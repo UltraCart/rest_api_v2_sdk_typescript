@@ -1,6 +1,6 @@
 /**
  * UltraCart Rest API V2
- * This is the next generation UltraCart REST API...
+ * UltraCart REST API Version 2
  *
  * OpenAPI spec version: 2.0.0
  * Contact: support@ultracart.com
@@ -34,6 +34,416 @@ let defaultBasePath = 'https://secure.ultracart.com/rest/v2';
 
 /* tslint:disable:no-unused-variable */
 
+export class AccountsReceivableRetryConfig {
+    /**
+    * True if the retry should run daily.  False puts the retry service into an inactive state for this merchant.
+    */
+    'active': boolean;
+    /**
+    * True if this account has linked accounts that it can process.
+    */
+    'allowProcessLinkedAccounts': boolean;
+    /**
+    * The current service plan that the account is on.
+    */
+    'currentServicePlan': string;
+    /**
+    * A list of days and what actions should take place on those days after an order reaches accounts receivable
+    */
+    'dailyActivityList': Array<AccountsReceivableRetryDayActivity>;
+    /**
+    * If not null, this account is managed by the specified parent merchant id.
+    */
+    'managedByLinkedAccountMerchantId': boolean;
+    /**
+    * UltraCart merchant ID
+    */
+    'merchantId': string;
+    /**
+    * A list of email addresses to receive summary notifications from the retry service.
+    */
+    'notifyEmails': Array<string>;
+    /**
+    * If true, email addresses are notified of rejections.
+    */
+    'notifyRejections': boolean;
+    /**
+    * If true, email addresses are notified of successful charges.
+    */
+    'notifySuccesses': boolean;
+    /**
+    * If true, all linked accounts are also processed using the same rules.
+    */
+    'processLinkedAccounts': boolean;
+    /**
+    * The percentage rate charged for the service.
+    */
+    'processingPercentage': string;
+    /**
+    * If true, the order is rejected the day after the last configured activity day
+    */
+    'rejectAtEnd': boolean;
+    /**
+    * True if the account is currently in trial mode.  Set to false to exit trial mode.
+    */
+    'trialMode': boolean;
+    /**
+    * The date when trial mode expires.  If this date is reached without exiting trial mode, the service will de-activate.
+    */
+    'trialModeExpirationDts': string;
+}
+
+export class AccountsReceivableRetryConfigResponse {
+    'config': AccountsReceivableRetryConfig;
+    'couponCodes': Array<string>;
+    'emails': Array<string>;
+    'error': Error;
+    'hasLinkedAccounts': boolean;
+    'metadata': ResponseMetadata;
+    /**
+    * Indicates if API call was successful
+    */
+    'success': boolean;
+}
+
+export class AccountsReceivableRetryDayActivity {
+    /**
+    * True if a charge attempt should be made on this day.  False means the order should be rejected on this day.
+    */
+    'charge': boolean;
+    /**
+    * The coupon code that should be applied to this order.
+    */
+    'couponCode': string;
+    /**
+    * The number of days since the order placed in Accounts Receivable
+    */
+    'day': number;
+}
+
+export class AccountsReceivableRetryStatAccount {
+    'days': Array<AccountsReceivableRetryStatMetrics>;
+    'merchantId': string;
+    'overall': AccountsReceivableRetryStatMetrics;
+    'revenueForPeriod': Array<AccountsReceivableRetryStatRevenue>;
+}
+
+export class AccountsReceivableRetryStatMetrics {
+    'attempts': number;
+    'attemptsFormatted': string;
+    'conversionRate': number;
+    'conversionRateFormatted': string;
+    'day': number;
+    'discounts': number;
+    'discountsFormatted': string;
+    'revenue': number;
+    'revenueFormatted': string;
+    'successes': number;
+    'successesFormatted': string;
+}
+
+export class AccountsReceivableRetryStatRevenue {
+    'label': string;
+    'revenue': number;
+}
+
+export class AccountsReceivableRetryStatsResponse {
+    'error': Error;
+    'linkedAccounts': Array<AccountsReceivableRetryStatAccount>;
+    'metadata': ResponseMetadata;
+    'overall': AccountsReceivableRetryStatAccount;
+    /**
+    * Indicates if API call was successful
+    */
+    'success': boolean;
+}
+
+export class Activity {
+    'action': string;
+    'metric': string;
+    'subject': string;
+    'ts': number;
+    'type': string;
+    'uuid': string;
+}
+
+export class AffiliateClick {
+    /**
+    * Unique object identifier for this click
+    */
+    'affiliateClickOid': number;
+    /**
+    * Unique object identifier for for the link that this click is associated with
+    */
+    'affiliateLinkOid': number;
+    /**
+    * Affiliate object ID associated with this click
+    */
+    'affiliateOid': number;
+    /**
+    * Date/time that the click was made
+    */
+    'clickDts': string;
+    /**
+    * IP address that generated the click
+    */
+    'ipAddress': string;
+    /**
+    * URL of the landing page the customer was sent to.
+    */
+    'landingPage': string;
+    /**
+    * Query string on the landing page URL the customer was sent to.
+    */
+    'landingPageQueryString': string;
+    'link': AffiliateLink;
+    /**
+    * URL that referred the click (Browser Header Referer)
+    */
+    'referrer': string;
+    /**
+    * Query string that was on the referrer URL.
+    */
+    'referrerQueryString': string;
+    /**
+    * Sub ID value passed on the click
+    */
+    'subId': string;
+}
+
+export class AffiliateClickQuery {
+    /**
+    * Unique object identifier for for the link that this click is associated with
+    */
+    'affiliateLinkOid': number;
+    /**
+    * Affiliate ID associated with the click
+    */
+    'affiliateOid': number;
+    /**
+    * Minimum click date/time to return
+    */
+    'clickDtsBegin': string;
+    /**
+    * Maximum click date/time to return
+    */
+    'clickDtsEnd': string;
+    /**
+    * IP address that generated the click
+    */
+    'ipAddress': string;
+    /**
+    * Sub ID value passed on the click
+    */
+    'subId': string;
+}
+
+export class AffiliateClicksResponse {
+    /**
+    * clicks
+    */
+    'clicks': Array<AffiliateClick>;
+    'error': Error;
+    'metadata': ResponseMetadata;
+    /**
+    * Indicates if API call was successful
+    */
+    'success': boolean;
+}
+
+export class AffiliateLedger {
+    /**
+    * Unique object identifier for the click associated with this ledger entry
+    */
+    'affiliateClickOid': number;
+    /**
+    * Unique object identifier for the link that this click is associated with
+    */
+    'affiliateLinkOid': number;
+    /**
+    * Affiliate object ID associated with this transaction
+    */
+    'affiliateOid': number;
+    /**
+    * User that assigned the transaction if it was done manually
+    */
+    'assignedByUser': string;
+    'click': AffiliateClick;
+    /**
+    * Item ID associated with this transaction
+    */
+    'itemId': string;
+    'link': AffiliateLink;
+    'order': Order;
+    /**
+    * Order ID associated with this transaction
+    */
+    'orderId': string;
+    /**
+    * Date/time of the original transaction for reversals
+    */
+    'originalTransactionDts': string;
+    /**
+    * Sub ID associated with transaction (from the click)
+    */
+    'subId': string;
+    /**
+    * Tier number that this transaction earned
+    */
+    'tierNumber': string;
+    /**
+    * Transaction amount
+    */
+    'transactionAmount': number;
+    /**
+    * Amount of the transaction that has been paid out.
+    */
+    'transactionAmountPaid': number;
+    /**
+    * Date/time that the transaction was made
+    */
+    'transactionDts': string;
+    /**
+    * Memo explaining the transaction
+    */
+    'transactionMemo': string;
+    /**
+    * Percentage associated with this transaction
+    */
+    'transactionPercentage': string;
+    /**
+    * Transaction state
+    */
+    'transactionState': AffiliateLedger.TransactionStateEnum;
+}
+
+export namespace AffiliateLedger {
+    export enum TransactionStateEnum {
+        Pending = <any> 'Pending',
+        Posted = <any> 'Posted',
+        Approved = <any> 'Approved',
+        Paid = <any> 'Paid',
+        Rejected = <any> 'Rejected',
+        PartiallyPaid = <any> 'Partially Paid'
+    }
+}
+export class AffiliateLedgerQuery {
+    /**
+    * Affiliate ID associated with the ledger
+    */
+    'affiliateOid': number;
+    /**
+    * Item id associated with the ledger entry
+    */
+    'itemId': string;
+    /**
+    * Order ID associated with the ledger entries
+    */
+    'orderId': string;
+    /**
+    * Sub ID value passed on the click that generated the ledger
+    */
+    'subId': string;
+    /**
+    * Minimum transaction date/time to return
+    */
+    'transactionDtsBegin': string;
+    /**
+    * Maximum transaction date/time to return
+    */
+    'transactionDtsEnd': string;
+}
+
+export class AffiliateLedgersResponse {
+    'error': Error;
+    /**
+    * ledgers
+    */
+    'ledgers': Array<AffiliateLedger>;
+    'metadata': ResponseMetadata;
+    /**
+    * Indicates if API call was successful
+    */
+    'success': boolean;
+}
+
+export class AffiliateLink {
+    /**
+    * Unique object identifier associated with this link
+    */
+    'affiliateLinkOid': number;
+    /**
+    * Managed link OID that this link object was generated from
+    */
+    'affiliateManagedLinkOid': number;
+    /**
+    * Affiliate object ID associated with this link
+    */
+    'affiliateOid': number;
+    /**
+    * The affiliate program item this managed link is associated with
+    */
+    'affiliateProgramItemOid': number;
+    /**
+    * Code associated with the link
+    */
+    'code': string;
+    /**
+    * Creative (image or text) associated with this link
+    */
+    'creativeOid': number;
+    /**
+    * Custom HTML associated with this link
+    */
+    'customHtml': string;
+    /**
+    * Approved status of the custom html
+    */
+    'customHtmlApprovalStatus': AffiliateLink.CustomHtmlApprovalStatusEnum;
+    /**
+    * Custom landing page URL if configured
+    */
+    'customLandingUrl': string;
+    /**
+    * True if the link has been deleted
+    */
+    'deleted': boolean;
+    /**
+    * Invisible link approval status
+    */
+    'invisibleLinkApprovalStatus': AffiliateLink.InvisibleLinkApprovalStatusEnum;
+    /**
+    * Invisible link URL prefix
+    */
+    'invisibleLinkUrlPrefix': string;
+    /**
+    * Name of the link
+    */
+    'name': string;
+    /**
+    * Type of link
+    */
+    'type': AffiliateLink.TypeEnum;
+}
+
+export namespace AffiliateLink {
+    export enum CustomHtmlApprovalStatusEnum {
+        Pending = <any> 'Pending',
+        Approved = <any> 'Approved',
+        Rejected = <any> 'Rejected'
+    }
+    export enum InvisibleLinkApprovalStatusEnum {
+        Pending = <any> 'Pending',
+        Approved = <any> 'Approved',
+        Rejected = <any> 'Rejected'
+    }
+    export enum TypeEnum {
+        Image = <any> 'image',
+        Text = <any> 'text',
+        Invisible = <any> 'invisible',
+        Direct = <any> 'direct'
+    }
+}
 export class ApiUserApplicationProfile {
     /**
     * Application logo URL
@@ -86,6 +496,10 @@ export class AutoOrder {
     * The date/time that the auto order was canceled
     */
     'canceledDts': string;
+    /**
+    * True if the auto order ran successfully to completion
+    */
+    'completed': boolean;
     /**
     * The number of credit card attempts that have taken place
     */
@@ -163,6 +577,10 @@ export class AutoOrderItem {
     */
     'frequency': AutoOrderItem.FrequencyEnum;
     /**
+    * The future rebill schedule for this item up to the next ten rebills
+    */
+    'futureSchedules': Array<AutoOrderItemFutureSchedule>;
+    /**
     * Date/time of the last order of this item
     */
     'lastOrderDts': string;
@@ -191,7 +609,7 @@ export class AutoOrderItem {
     */
     'options': Array<AutoOrderItemOption>;
     /**
-    * The original item id purchased
+    * The original item id purchased.  This item controls scheduling.  If you wish to modify a schedule, for example, from monthly to yearly, change this item from your monthly item to your yearly item, and then change the next_shipment_dts to your desired date.
     */
     'originalItemId': string;
     /**
@@ -237,6 +655,25 @@ export namespace AutoOrderItem {
         Yearly = <any> 'Yearly'
     }
 }
+export class AutoOrderItemFutureSchedule {
+    /**
+    * Item ID that should rebill
+    */
+    'itemId': string;
+    /**
+    * The number of times this rebill represents
+    */
+    'rebillCount': number;
+    /**
+    * Date/time that this item is scheduled to rebill
+    */
+    'shipmentDts': string;
+    /**
+    * The unit cost of the item rebilling
+    */
+    'unitCost': number;
+}
+
 export class AutoOrderItemOption {
     /**
     * Label
@@ -246,6 +683,85 @@ export class AutoOrderItemOption {
     * Value
     */
     'value': string;
+}
+
+export class AutoOrderQuery {
+    /**
+    * Auto order code
+    */
+    'autoOrderCode': string;
+    /**
+    * Card type
+    */
+    'cardType': string;
+    /**
+    * City
+    */
+    'city': string;
+    /**
+    * Company
+    */
+    'company': string;
+    /**
+    * ISO-3166 two letter country code
+    */
+    'countryCode': string;
+    /**
+    * Customer profile object identifier
+    */
+    'customerProfileOid': number;
+    /**
+    * Email
+    */
+    'email': string;
+    /**
+    * First name
+    */
+    'firstName': string;
+    /**
+    * Item ID
+    */
+    'itemId': string;
+    /**
+    * Last name
+    */
+    'lastName': string;
+    /**
+    * Next shipment date begin
+    */
+    'nextShipmentDateBegin': string;
+    /**
+    * Next shipment date end
+    */
+    'nextShipmentDateEnd': string;
+    /**
+    * Original order date begin
+    */
+    'originalOrderDateBegin': string;
+    /**
+    * Original order date end
+    */
+    'originalOrderDateEnd': string;
+    /**
+    * Original order ID
+    */
+    'originalOrderId': string;
+    /**
+    * Phone
+    */
+    'phone': string;
+    /**
+    * Postal code
+    */
+    'postalCode': string;
+    /**
+    * State
+    */
+    'state': string;
+    /**
+    * Status
+    */
+    'status': string;
 }
 
 export class AutoOrderResponse {
@@ -266,6 +782,61 @@ export class AutoOrdersResponse {
     * Indicates if API call was successful
     */
     'success': boolean;
+}
+
+export class AvalaraConfig {
+    /**
+    * Avalara account ID
+    */
+    'accountId': string;
+    /**
+    * True if Avalara is active for this merchant
+    */
+    'active': boolean;
+    /**
+    * Unique identifier for this avalara config object
+    */
+    'avalaraOid': number;
+    /**
+    * Avalara company ID
+    */
+    'companyId': string;
+    /**
+    * True if this Avalara configuration is set to enable tax valuation by UPC
+    */
+    'enableUpc': boolean;
+    /**
+    * True if this Avalara configuration is to estimate taxes only and not report placed orders to Avalara
+    */
+    'estimateOnly': boolean;
+    /**
+    * Optional customer code for customers without profiles, defaults to GuestCustomer
+    */
+    'guestCustomerCode': string;
+    /**
+    * Date/time of the connection test to Avalara
+    */
+    'lastTestDts': string;
+    /**
+    * Avalara license key
+    */
+    'licenseKey': string;
+    /**
+    * True if this Avalara instance is pointed at the Avalara Sandbox
+    */
+    'sandbox': boolean;
+    /**
+    * Send test orders through to Avalara.  The default is to not transmit test orders to Avalara.
+    */
+    'sendTestOrders': boolean;
+    /**
+    * Avalara service URL
+    */
+    'serviceUrl': string;
+    /**
+    * Test results of the last connection test to Avalara
+    */
+    'testResults': string;
 }
 
 export class BaseResponse {
@@ -298,6 +869,7 @@ export class Cart {
     * The ISO-4217 three letter currency code the customer is viewing prices in
     */
     'currencyCode': string;
+    'currencyConversion': CartCurrencyConversion;
     'customerProfile': CartCustomerProfile;
     /**
     * The exchange rate if the customer is viewing a different currency than the base
@@ -339,6 +911,17 @@ export class CartAffiliate {
     * Affiliate sub id associated with the cart
     */
     'affiliateSubId': string;
+}
+
+export class CartAffirmCheckoutResponse {
+    /**
+    * Checkout JSON object
+    */
+    'checkoutJson': string;
+    /**
+    * Errors that should be displayed to the customer
+    */
+    'errors': Array<string>;
 }
 
 export class CartBilling {
@@ -462,9 +1045,13 @@ export class CartCheckout {
     */
     'customField7': string;
     /**
-    * IP Address
+    * IP Address (read only unless non-browser key authenticated)
     */
     'ipAddress': string;
+    /**
+    * Return code assigned for send return email operation
+    */
+    'returnCode': string;
     /**
     * Screen branding theme code
     */
@@ -476,6 +1063,17 @@ export class CartCoupon {
     * Coupon code
     */
     'couponCode': string;
+}
+
+export class CartCurrencyConversion {
+    /**
+    * Base currency code for this merchant
+    */
+    'baseCurrencyCode': string;
+    /**
+    * Conversion information for 1 unit of base currency to target currencies
+    */
+    'currencies': Array<Currency>;
 }
 
 export class CartCustomerProfile {
@@ -507,6 +1105,10 @@ export class CartCustomerProfile {
     * DHL account number on file
     */
     'dhlAccountNumber': string;
+    /**
+    * DHL duty account number on file
+    */
+    'dhlDutyAccountNumber': string;
     /**
     * Email
     */
@@ -1108,6 +1710,7 @@ export class CartMarketing {
 }
 
 export class CartPayment {
+    'affirm': CartPaymentAffirm;
     'amazon': CartPaymentAmazon;
     'check': CartPaymentCheck;
     'creditCard': CartPaymentCreditCard;
@@ -1120,6 +1723,13 @@ export class CartPayment {
     * Rotating transaction gateway code
     */
     'rtgCode': string;
+}
+
+export class CartPaymentAffirm {
+    /**
+    * Affirm checkout token
+    */
+    'affirmCheckoutToken': string;
 }
 
 export class CartPaymentAmazon {
@@ -1184,6 +1794,10 @@ export class CartPaymentPurchaseOrder {
 
 export class CartProfileLoginRequest {
     'cart': Cart;
+    /**
+    * Unique identifier for customer profile.  Can not be used with browser key authentication type.
+    */
+    'customerProfileOid': number;
     /**
     * Password for the profile
     */
@@ -1389,9 +2003,9 @@ export class CartSettingsShipping {
 
 export class CartSettingsShippingCalendar {
     /**
-    * Specified dates that are blacked out on the calendar
+    * Specified dates that are blacked out on the calendar in ISO8601 format
     */
-    'blackouts': string;
+    'blackouts': Array<string>;
     /**
     * Days of week that should be enabled on the calendar (0 - Sunday through 6 - Saturday)
     */
@@ -1721,6 +2335,10 @@ export class ChargebackDisputesResponse {
     'success': boolean;
 }
 
+export class CheckoutAllowedCountriesResponse {
+    'countries': Array<Country>;
+}
+
 export class CheckoutHandoffRequest {
     'cart': Cart;
     /**
@@ -1754,7 +2372,8 @@ export namespace CheckoutHandoffRequest {
         Checkout = <any> 'checkout',
         PayPal = <any> 'payPal',
         PayPalCredit = <any> 'payPalCredit',
-        View = <any> 'view'
+        View = <any> 'view',
+        Affirm = <any> 'affirm'
     }
 }
 export class CheckoutHandoffResponse {
@@ -1783,6 +2402,10 @@ export class CheckoutSetupBrowserKeyResponse {
     'browserKey': string;
 }
 
+export class CheckoutStateProvinceResponse {
+    'stateProvinces': Array<StateProvince>;
+}
+
 export class CityStateZip {
     'city': string;
     'error': string;
@@ -1791,7 +2414,836 @@ export class CityStateZip {
     'zip': string;
 }
 
+export class CountriesResponse {
+    'countries': Array<Country>;
+}
+
+export class Country {
+    /**
+    * iso_2_code
+    */
+    'iso2Code': string;
+    /**
+    * name
+    */
+    'name': string;
+}
+
+export class Coupon {
+    /**
+    * Associates an order with an affiliate when this value is set.
+    */
+    'affiliateOid': number;
+    'amountOffItems': CouponAmountOffItems;
+    'amountOffShipping': CouponAmountOffShipping;
+    'amountOffShippingWithItemsPurchase': CouponAmountOffShippingWithItemsPurchase;
+    'amountOffSubtotal': CouponAmountOffSubtotal;
+    'amountOffSubtotalAndFreeShipping': CouponAmountOffSubtotalFreeShippingWithPurchase;
+    'amountOffSubtotalAndShipping': CouponAmountOffSubtotalAndShipping;
+    'amountOffSubtotalWithBlockPurchase': CouponAmountOffSubtotalWithBlockPurchase;
+    'amountOffSubtotalWithItemsPurchase': CouponAmountOffSubtotalWithItemsPurchase;
+    'automaticallyApplyCouponCodes': CouponAutomaticallyApplyCouponCodes;
+    /**
+    * Calculated description displayed to the customer if no description is specified.
+    */
+    'calculated)description': string;
+    /**
+    * True if this coupon can be used with other coupons in a single order.
+    */
+    'canBeUsedWithOtherCoupons': boolean;
+    /**
+    * Coupon oid.
+    */
+    'couponOid': number;
+    /**
+    * Coupon type.
+    */
+    'couponType': string;
+    /**
+    * Description of the coupon up to 50 characters.
+    */
+    'description': string;
+    'discountItemWithItemPurchase': CouponDiscountItemWithItemPurchase;
+    'discountItems': CouponDiscountItems;
+    /**
+    * Date/time when coupon expires
+    */
+    'expirationDts': string;
+    'freeItemAndShippingWithSubtotal': CouponFreeItemAndShippingWithSubtotal;
+    'freeItemWithItemPurchase': CouponFreeItemWithItemPurchase;
+    'freeItemWithSubtotal': CouponFreeItemWithSubtotal;
+    'freeItemsWithItemPurchase': CouponFreeItemsWithItemPurchase;
+    'freeItemsWithMixmatchPurchase': CouponFreeItemsWithMixMatchPurchase;
+    'freeShipping': CouponFreeShipping;
+    'freeShippingSpecificItems': CouponFreeShippingSpecificItems;
+    'freeShippingWithItemsPurchase': CouponFreeShippingWithItemsPurchase;
+    'freeShippingWithSubtotal': CouponFreeShippingWithSubtotal;
+    /**
+    * Merchant code of coupon up to 20 characters.
+    */
+    'merchantCode': string;
+    'multipleAmountsOffItems': CouponMultipleAmountsOffItems;
+    'noDiscount': CouponNoDiscount;
+    'percentOffItemWithItemsQuantityPurchase': CouponPercentOffItemWithItemsQuantityPurchase;
+    'percentOffItems': CouponPercentOffItems;
+    'percentOffItemsAndFreeShipping': CouponPercentOffItemsAndFreeShipping;
+    'percentOffItemsWithItemsPurchase': CouponPercentOffItemsWithItemsPurchase;
+    'percentOffRetailPriceItems': CouponPercentOffRetailPriceItems;
+    'percentOffShipping': CouponPercentOffShipping;
+    'percentOffSubtotal': CouponPercentOffSubtotal;
+    'percentOffSubtotalAndFreeShipping': CouponPercentOffSubtotalAndFreeShipping;
+    'percentOffSubtotalLimit': CouponPercentOffSubtotalLimit;
+    'percentOffSubtotalWithItems purchase': CouponPercentOffSubtotalWithItemsPurchase;
+    'percentOffSubtotalWithSubtotal': CouponPercentOffSubtotalWithSubtotal;
+    /**
+    * Quickbooks accounting code.
+    */
+    'quickbooksCode': string;
+    /**
+    * Date/time when coupon is valid
+    */
+    'startDts': string;
+    'tieredAmountOffItem': CouponTieredAmountOffItem;
+    'tieredAmountOffSubtotal': CouponTieredAmountOffSubtotal;
+    'tieredPercentOffItems': CouponTieredPercentOffItems;
+    'tieredPercentOffShipping': CouponTieredPercentOffShipping;
+    'tieredPercentOffSubtotal': CouponTieredPercentOffSubtotal;
+    /**
+    * Who may use this coupon.
+    */
+    'usableBy': string;
+}
+
+export class CouponAmountOffItems {
+    /**
+    * The ISO-4217 three letter currency code the customer is viewing prices in
+    */
+    'currencyCode': string;
+    /**
+    * The amount of shipping discount
+    */
+    'discountAmount': number;
+    /**
+    * A list of items which are eligible for the discount amount.
+    */
+    'items': Array<string>;
+}
+
+export class CouponAmountOffShipping {
+    /**
+    * The ISO-4217 three letter currency code the customer is viewing prices in
+    */
+    'currencyCode': string;
+    /**
+    * The amount of subtotal discount
+    */
+    'discountAmount': number;
+    /**
+    * One or more shipping methods that may be used with this coupon
+    */
+    'shippingMethods': Array<string>;
+}
+
+export class CouponAmountOffShippingWithItemsPurchase {
+    /**
+    * The ISO-4217 three letter currency code the customer is viewing prices in
+    */
+    'currencyCode': string;
+    /**
+    * The amount of shipping discount
+    */
+    'discountAmount': number;
+    /**
+    * A list of items of which at least one must be purchased for coupon to be valid.
+    */
+    'items': Array<string>;
+    /**
+    * One or more shipping methods that may receive this discount
+    */
+    'shippingMethods': Array<string>;
+}
+
+export class CouponAmountOffSubtotal {
+    /**
+    * The ISO-4217 three letter currency code the customer is viewing prices in
+    */
+    'currencyCode': string;
+    /**
+    * The amount of subtotal discount
+    */
+    'discountAmount': number;
+}
+
+export class CouponAmountOffSubtotalAndShipping {
+    /**
+    * The ISO-4217 three letter currency code the customer is viewing prices in
+    */
+    'currencyCode': string;
+    /**
+    * The amount of subtotal discount
+    */
+    'discountAmount': number;
+}
+
+export class CouponAmountOffSubtotalFreeShippingWithPurchase {
+    /**
+    * The ISO-4217 three letter currency code the customer is viewing prices in
+    */
+    'currencyCode': string;
+    /**
+    * The amount of subtotal discount
+    */
+    'discountAmount': number;
+    /**
+    * The purchase amount to qualify for subtotal discount and free shipping
+    */
+    'purchaseAmount': number;
+    /**
+    * One or more shipping methods that may be free
+    */
+    'shippingMethods': Array<string>;
+}
+
+export class CouponAmountOffSubtotalWithBlockPurchase {
+    /**
+    * The ISO-4217 three letter currency code the customer is viewing prices in
+    */
+    'currencyCode': string;
+    /**
+    * The amount of subtotal discount
+    */
+    'discountAmount': number;
+    /**
+    * Required item that must be purchased for coupon to be valid
+    */
+    'requiredPurchaseItem': string;
+    /**
+    * Discount amount is multiplied by the number of blocks.  A block is this many quantity of the required item.
+    */
+    'requiredPurchaseQuantity': number;
+}
+
+export class CouponAmountOffSubtotalWithItemsPurchase {
+    /**
+    * The ISO-4217 three letter currency code the customer is viewing prices in
+    */
+    'currencyCode': string;
+    /**
+    * The amount of shipping discount
+    */
+    'discountAmount': number;
+    /**
+    * A list of items of which a quantity of one or many must be purchased for coupon to be valid.
+    */
+    'items': Array<string>;
+    /**
+    * The quantity of items that must be purchased for the discount to be applied.
+    */
+    'requiredPurchaseQuantity': number;
+}
+
+export class CouponAutomaticallyApplyCouponCodes {
+    /**
+    * The coupon codes to automatically apply if this coupon is applied
+    */
+    'couponCodes': Array<string>;
+}
+
+export class CouponCodesRequest {
+    'error': Error;
+    /**
+    * Expiration Date
+    */
+    'expirationDts': string;
+    /**
+    * Expiration seconds
+    */
+    'expirationSeconds': number;
+    'metadata': ResponseMetadata;
+    /**
+    * Quantity
+    */
+    'quantity': number;
+    /**
+    * Indicates if API call was successful
+    */
+    'success': boolean;
+}
+
+export class CouponCodesResponse {
+    /**
+    * Coupon codes
+    */
+    'couponCodes': Array<string>;
+    'error': Error;
+    /**
+    * Expiration date
+    */
+    'expirationDts': string;
+    'metadata': ResponseMetadata;
+    /**
+    * Indicates if API call was successful
+    */
+    'success': boolean;
+}
+
+export class CouponDiscountItemWithItemPurchase {
+    /**
+    * The ISO-4217 three letter currency code the customer is viewing prices in
+    */
+    'currencyCode': string;
+    /**
+    * The item that will be sold at the discount_price when required_purchase_item is purchased.
+    */
+    'discountItem': string;
+    /**
+    * The price (unit cost) of the discounted item
+    */
+    'discountPrice': number;
+    /**
+    * The (optional) maximum quantity of discounted items.
+    */
+    'limit': number;
+    /**
+    * The item that must be purchased for the discount to be applied to the discount item.
+    */
+    'requiredPurchaseItem': string;
+}
+
+export class CouponDiscountItems {
+    /**
+    * The ISO-4217 three letter currency code the customer is viewing prices in
+    */
+    'currencyCode': string;
+    /**
+    * The price (unit cost) of the discounted item
+    */
+    'discountPrice': number;
+    /**
+    * A list of items that are eligible for this discount_price.
+    */
+    'items': Array<string>;
+    /**
+    * The (optional) maximum quantity of discounted items.
+    */
+    'limit': number;
+}
+
+export class CouponEditorValues {
+    /**
+    * coupon_types
+    */
+    'couponTypes': Array<string>;
+}
+
+export class CouponFreeItemAndShippingWithSubtotal {
+    /**
+    * The ISO-4217 three letter currency code the customer is viewing prices in
+    */
+    'currencyCode': string;
+    /**
+    * A list of items that are eligible for this discount_price.
+    */
+    'items': Array<string>;
+    /**
+    * The limit of free items that may be received when purchasing multiple items
+    */
+    'limit': number;
+    /**
+    * One or more shipping methods that may be free
+    */
+    'shippingMethods': Array<string>;
+    /**
+    * The amount of subtotal required to receive the discount percent
+    */
+    'subtotalAmount': number;
+}
+
+export class CouponFreeItemWithItemPurchase {
+    /**
+    * A list of free items which will receive a discount if one of the required purchase items is purchased.
+    */
+    'items': Array<string>;
+    /**
+    * The (optional) maximum quantity of discounted items.
+    */
+    'limit': number;
+    /**
+    * Required items (at least one from the list) that must be purchased for coupon to be valid
+    */
+    'requiredPurchaseItems': Array<string>;
+}
+
+export class CouponFreeItemWithSubtotal {
+    /**
+    * The ISO-4217 three letter currency code the customer is viewing prices in
+    */
+    'currencyCode': string;
+    /**
+    * A list of items that are eligible for this discount_price.
+    */
+    'items': Array<string>;
+    /**
+    * The limit of free items that may be received when purchasing multiple items
+    */
+    'limit': number;
+    /**
+    * The amount of subtotal required to receive the discount percent
+    */
+    'subtotalAmount': number;
+}
+
+export class CouponFreeItemsWithItemPurchase {
+    /**
+    * The item id of the free item that will be received when the required mix and match group quantity is purchased.
+    */
+    'freeItem': string;
+    /**
+    * The quantity of free item that will be received.
+    */
+    'freeQuantity': number;
+    /**
+    * The limit of free items that may be received when purchasing multiple items
+    */
+    'limit': number;
+    /**
+    * Required item that must be purchased for coupon to be valid
+    */
+    'requiredPurchaseItem': string;
+    /**
+    * Required quantity of mix and match group items that must be purchased for coupon to be valid
+    */
+    'requiredPurchaseQuantity': number;
+}
+
+export class CouponFreeItemsWithMixMatchPurchase {
+    /**
+    * The item id of the free item that will be received when the required mix and match group quantity is purchased.
+    */
+    'freeItem': string;
+    /**
+    * The quantity of free item that will be received.
+    */
+    'freeQuantity': number;
+    /**
+    * The limit of free items that may be received when purchasing multiple mix and match group items
+    */
+    'limit': number;
+    /**
+    * Required mix and match group that must be purchased for coupon to be valid
+    */
+    'requiredPurchaseMixAndMatchGroup': string;
+    /**
+    * Required quantity of mix and match group items that must be purchased for coupon to be valid
+    */
+    'requiredPurchaseQuantity': number;
+}
+
+export class CouponFreeShipping {
+    /**
+    * One or more shipping methods that may be used with this coupon
+    */
+    'shippingMethods': Array<string>;
+}
+
+export class CouponFreeShippingSpecificItems {
+    /**
+    * A list of items of which at least one must be purchased for coupon to be valid.
+    */
+    'items': Array<string>;
+}
+
+export class CouponFreeShippingWithItemsPurchase {
+    /**
+    * A list of items of which at least one must be purchased for coupon to be valid.
+    */
+    'items': Array<string>;
+    /**
+    * One or more shipping methods that may receive this discount
+    */
+    'shippingMethods': Array<string>;
+}
+
+export class CouponFreeShippingWithSubtotal {
+    /**
+    * The ISO-4217 three letter currency code the customer is viewing prices in
+    */
+    'currencyCode': string;
+    /**
+    * The purchase amount to qualify for subtotal discount and free shipping
+    */
+    'purchaseAmount': number;
+    /**
+    * One or more shipping methods that may be used with this coupon
+    */
+    'shippingMethods': Array<string>;
+}
+
+export class CouponMultipleAmountsOffItems {
+    /**
+    * A list of item discounts.
+    */
+    'discounts': Array<CouponTierItemDiscount>;
+    /**
+    * The (optional) maximum quantity of items that may receive a discount.
+    */
+    'limit': number;
+}
+
+export class CouponNoDiscount {
+}
+
+export class CouponPercentOffItemWithItemsQuantityPurchase {
+    /**
+    * The percentage of subtotal discount
+    */
+    'discountPercent': number;
+    /**
+    * A list of items which will receive a discount if one of the required purchase items is purchased.
+    */
+    'items': Array<string>;
+    /**
+    * The (optional) maximum quantity of discounted items.
+    */
+    'limit': number;
+    /**
+    * Required items (at least one from the list) that must be purchased for coupon to be valid
+    */
+    'requiredPurchaseItems': Array<string>;
+    /**
+    * The quantity of items that must be purchased for the discount to be applied.
+    */
+    'requiredPurchaseQuantity': number;
+}
+
+export class CouponPercentOffItems {
+    /**
+    * The percentage of subtotal discount
+    */
+    'discountPercent': number;
+    /**
+    * A list of items which cannot be discounted.
+    */
+    'excludedItems': Array<string>;
+    /**
+    * An optional list of items which will receive a discount.  If blank, discount applies to all items except excluded items.
+    */
+    'items': Array<string>;
+    /**
+    * The (optional) maximum quantity of discounted items.
+    */
+    'limit': number;
+}
+
+export class CouponPercentOffItemsAndFreeShipping {
+    /**
+    * The percentage of subtotal discount
+    */
+    'discountPercent': number;
+    /**
+    * A list of items which cannot be discounted.
+    */
+    'excludedItems': Array<string>;
+    /**
+    * An optional list of items which will receive a discount.  If blank, discount applies to all items except excluded items.
+    */
+    'items': Array<string>;
+}
+
+export class CouponPercentOffItemsWithItemsPurchase {
+    /**
+    * The percentage of subtotal discount
+    */
+    'discountPercent': number;
+    /**
+    * A list of items which will receive a discount if one of the required purchase items is purchased.
+    */
+    'items': Array<string>;
+    /**
+    * The (optional) maximum quantity of discounted items.
+    */
+    'limit': number;
+    /**
+    * Required items (at least one from the list) that must be purchased for coupon to be valid
+    */
+    'requiredPurchaseItems': Array<string>;
+}
+
+export class CouponPercentOffRetailPriceItems {
+    /**
+    * The percentage of subtotal discount
+    */
+    'discountPercent': number;
+    /**
+    * A list of items which cannot be discounted.
+    */
+    'excludedItems': Array<string>;
+    /**
+    * An optional list of items which will receive a discount.  If blank, discount applies to all items except excluded items.
+    */
+    'items': Array<string>;
+    /**
+    * The (optional) maximum quantity of discounted items.
+    */
+    'limit': number;
+}
+
+export class CouponPercentOffShipping {
+    /**
+    * The percentage of subtotal discount
+    */
+    'discountPercent': number;
+    /**
+    * One or more shipping methods that may be used with this coupon
+    */
+    'shippingMethods': Array<string>;
+}
+
+export class CouponPercentOffSubtotal {
+    /**
+    * The percentage of subtotal discount
+    */
+    'discountPercent': number;
+}
+
+export class CouponPercentOffSubtotalAndFreeShipping {
+    /**
+    * The percentage of subtotal discount
+    */
+    'discountPercent': number;
+    /**
+    * One or more shipping methods that may be free
+    */
+    'shippingMethods': Array<string>;
+}
+
+export class CouponPercentOffSubtotalLimit {
+    /**
+    * The ISO-4217 three letter currency code the customer is viewing prices in
+    */
+    'currencyCode': string;
+    /**
+    * The percentage of subtotal discount
+    */
+    'discountPercent': number;
+    /**
+    * The maximum amount of subtotal used to determine discount.
+    */
+    'limit': number;
+}
+
+export class CouponPercentOffSubtotalWithItemsPurchase {
+    /**
+    * The percentage of subtotal discount
+    */
+    'discountPercent': number;
+    /**
+    * A list of items of which at least one must be purchased for coupon to be valid.
+    */
+    'items': Array<string>;
+}
+
+export class CouponPercentOffSubtotalWithSubtotal {
+    /**
+    * The ISO-4217 three letter currency code the customer is viewing prices in
+    */
+    'currencyCode': string;
+    /**
+    * The percentage of subtotal discount
+    */
+    'discountPercent': number;
+    /**
+    * The amount of subtotal required to receive the discount percent
+    */
+    'subtotalAmount': number;
+}
+
+export class CouponQuery {
+    /**
+    * Affiliate oid
+    */
+    'affiliateOid': number;
+    /**
+    * The type of coupon.
+    */
+    'couponType': string;
+    /**
+    * Description of this coupon
+    */
+    'description': string;
+    /**
+    * Exclude expired coupons if true
+    */
+    'excludeExpired': boolean;
+    /**
+    * Expiration date begin
+    */
+    'expirationDtsBegin': string;
+    /**
+    * Expiration date begin
+    */
+    'expirationDtsEnd': string;
+    /**
+    * Merchant code is a unique character string for this coupon.
+    */
+    'merchantCode': string;
+    /**
+    * Start date begin
+    */
+    'startDtsBegin': string;
+    /**
+    * Start date end
+    */
+    'startDtsEnd': string;
+}
+
+export class CouponResponse {
+    'coupon': Coupon;
+    'error': Error;
+    'metadata': ResponseMetadata;
+    /**
+    * Indicates if API call was successful
+    */
+    'success': boolean;
+}
+
+export class CouponTierAmount {
+    /**
+    * The amount of subtotal discount
+    */
+    'discountAmount': number;
+    /**
+    * The amount of subtotal required to receive the discount amount
+    */
+    'subtotalAmount': number;
+}
+
+export class CouponTierItemDiscount {
+    /**
+    * The amount of subtotal discount
+    */
+    'discountAmount': number;
+    /**
+    * A list of items which will receive this discount.
+    */
+    'items': Array<string>;
+}
+
+export class CouponTierPercent {
+    /**
+    * The percent of subtotal discount
+    */
+    'discountPercent': number;
+    /**
+    * The amount of subtotal required to receive the discount percent
+    */
+    'subtotalAmount': number;
+}
+
+export class CouponTierQuantityAmount {
+    /**
+    * The amount of discount per item.
+    */
+    'discountAmount': number;
+    /**
+    * The quantity of item purchased (in units)
+    */
+    'itemQuantity': number;
+}
+
+export class CouponTierQuantityPercent {
+    /**
+    * The percent of discount per item.
+    */
+    'discountPercent': number;
+    /**
+    * The quantity of item purchased (in units)
+    */
+    'itemQuantity': number;
+}
+
+export class CouponTieredAmountOffItem {
+    /**
+    * The item being discounted by this coupon.
+    */
+    'item': string;
+    /**
+    * The maximum amount of total discount by this coupon.
+    */
+    'limit': number;
+    /**
+    * A list of discount tiers.
+    */
+    'tiers': Array<CouponTierQuantityAmount>;
+}
+
+export class CouponTieredAmountOffSubtotal {
+    /**
+    * An optional list of items of which a quantity of one or many must be purchased for coupon to be valid.  If empty, all items apply toward subtotal amount.
+    */
+    'items': Array<string>;
+    /**
+    * A list of discount tiers.
+    */
+    'tiers': Array<CouponTierAmount>;
+}
+
+export class CouponTieredPercentOffItems {
+    /**
+    * A list of items of which at least one must be purchased for coupon to be valid.
+    */
+    'items': Array<string>;
+    /**
+    * The maximum amount of total discount by this coupon.
+    */
+    'limit': number;
+    /**
+    * A list of discount tiers.
+    */
+    'tiers': Array<CouponTierQuantityPercent>;
+}
+
+export class CouponTieredPercentOffShipping {
+    /**
+    * One or more shipping methods that may receive this discount
+    */
+    'shippingMethods': Array<string>;
+    /**
+    * A list of discount tiers.
+    */
+    'tiers': Array<CouponTierPercent>;
+}
+
+export class CouponTieredPercentOffSubtotal {
+    /**
+    * An optional list of items of which a quantity of one or many must be purchased for coupon to be valid.  If empty, all items apply toward subtotal amount.
+    */
+    'items': Array<string>;
+    /**
+    * A list of discount tiers.
+    */
+    'tiers': Array<CouponTierPercent>;
+}
+
+export class CouponsResponse {
+    'coupons': Array<Coupon>;
+    'error': Error;
+    'metadata': ResponseMetadata;
+    /**
+    * Indicates if API call was successful
+    */
+    'success': boolean;
+}
+
 export class Currency {
+    /**
+    * Currency code of the localized value
+    */
+    'currencyCode': string;
+    /**
+    * Exchange rate used to localize
+    */
+    'exchangeRate': number;
     /**
     * Value localized to the customer
     */
@@ -1807,6 +3259,7 @@ export class Currency {
 }
 
 export class Customer {
+    'activity': CustomerActivity;
     /**
     * Affiliate oid
     */
@@ -1832,6 +3285,10 @@ export class Customer {
     */
     'allowSelectionOfAddressType': boolean;
     /**
+    * Attachments
+    */
+    'attachments': Array<CustomerAttachment>;
+    /**
     * Auto approve COD
     */
     'autoApproveCod': boolean;
@@ -1856,6 +3313,10 @@ export class Customer {
     */
     'cards': Array<CustomerCard>;
     /**
+    * Additional emails to CC notification
+    */
+    'ccEmails': Array<CustomerEmail>;
+    /**
     * Customer profile object identifier
     */
     'customerProfileOid': number;
@@ -1863,6 +3324,10 @@ export class Customer {
     * DHL account number
     */
     'dhlAccountNumber': string;
+    /**
+    * DHL duty account number
+    */
+    'dhlDutyAccountNumber': string;
     /**
     * Email address of this customer profile
     */
@@ -1916,6 +3381,11 @@ export class Customer {
     */
     'noRealtimeCharge': boolean;
     /**
+    * Orders associated with this customer profile
+    */
+    'orders': Array<Order>;
+    'ordersSummary': CustomerOrdersSummary;
+    /**
     * Password (may only be set, never read)
     */
     'password': string;
@@ -1923,6 +3393,7 @@ export class Customer {
     * Pricing tiers for this customer
     */
     'pricingTiers': Array<CustomerPricingTier>;
+    'privacy': CustomerPrivacy;
     /**
     * QuickBooks class to import this customer as
     */
@@ -1932,9 +3403,15 @@ export class Customer {
     */
     'qbCode': string;
     /**
+    * Quotes associated with this customer profile
+    */
+    'quotes': Array<Order>;
+    'quotesSummary': CustomerQuotesSummary;
+    /**
     * Referral Source
     */
     'referralSource': string;
+    'reviewer': CustomerReviewer;
     /**
     * Sales rep code
     */
@@ -1952,9 +3429,14 @@ export class Customer {
     */
     'signupDts': string;
     /**
+    * Software entitlements owned by this customer
+    */
+    'softwareEntitlements': Array<CustomerSoftwareEntitlement>;
+    /**
     * Suppress buySAFE
     */
     'suppressBuysafe': boolean;
+    'taxCodes': CustomerTaxCodes;
     /**
     * True if the customer is tax exempt
     */
@@ -1983,6 +3465,47 @@ export class Customer {
     * Website url
     */
     'websiteUrl': string;
+}
+
+export class CustomerActivity {
+    'activities': Array<Activity>;
+    'memberships': Array<ListSegmentMembership>;
+    'metrics': Array<Metric>;
+    'propertiesList': Array<Property>;
+}
+
+export class CustomerAffiliate {
+    /**
+    * Affiliate object identifier
+    */
+    'affiliateOid': number;
+    /**
+    * email
+    */
+    'email': string;
+}
+
+export class CustomerAttachment {
+    /**
+    * Attachment identifier
+    */
+    'customerProfileAttachmentOid': number;
+    /**
+    * Description
+    */
+    'description': string;
+    /**
+    * File name
+    */
+    'fileName': string;
+    /**
+    * Mime typoe
+    */
+    'mimeType': string;
+    /**
+    * Upload date/time
+    */
+    'uploadDts': string;
 }
 
 export class CustomerBilling {
@@ -2091,6 +3614,98 @@ export class CustomerCard {
     'lastUsedDts': string;
 }
 
+export class CustomerEditorValues {
+    /**
+    * affiliates
+    */
+    'affiliates': Array<CustomerAffiliate>;
+    /**
+    * card_exp_months
+    */
+    'cardExpMonths': Array<string>;
+    /**
+    * card_exp_years
+    */
+    'cardExpYears': Array<string>;
+    /**
+    * card_types
+    */
+    'cardTypes': Array<string>;
+    /**
+    * countries
+    */
+    'countries': Array<Country>;
+    /**
+    * qb_classes
+    */
+    'qbClasses': Array<string>;
+    /**
+    * sales_rep_codes
+    */
+    'salesRepCodes': Array<string>;
+    /**
+    * terms
+    */
+    'terms': Array<string>;
+}
+
+export class CustomerEmail {
+    /**
+    * ID of the email
+    */
+    'customerProfileEmailOid': number;
+    /**
+    * Email
+    */
+    'email': string;
+    /**
+    * Label
+    */
+    'label': string;
+    /**
+    * CC this email on receipt notifications
+    */
+    'receiptNotification': boolean;
+    /**
+    * CC this email on refund notifications
+    */
+    'refundNotification': boolean;
+    /**
+    * CC this email on shipment notifications
+    */
+    'shipmentNotification': boolean;
+}
+
+export class CustomerEmailListChanges {
+    /**
+    * Add this customer to these email lists
+    */
+    'addToLists': Array<string>;
+    /**
+    * Remove this customer from these email lists
+    */
+    'removeFromLists': Array<string>;
+}
+
+export class CustomerOrdersSummary {
+    /**
+    * First order date
+    */
+    'firstOrderDts': string;
+    /**
+    * Last order date
+    */
+    'lastOrderDts': string;
+    /**
+    * Total number of orders
+    */
+    'orderCount': number;
+    /**
+    * Total amount associated with the orders
+    */
+    'total': number;
+}
+
 export class CustomerPricingTier {
     /**
     * Name
@@ -2102,6 +3717,155 @@ export class CustomerPricingTier {
     'pricingTierOid': number;
 }
 
+export class CustomerPrivacy {
+    /**
+    * Last update date
+    */
+    'lastUpdateDts': string;
+    /**
+    * The customer has opted in to marketing
+    */
+    'marketing': boolean;
+    /**
+    * The customer has opted in to preference tracking
+    */
+    'preference': boolean;
+    /**
+    * The customer has opted in to statistics collection
+    */
+    'statistics': boolean;
+}
+
+export class CustomerQuery {
+    /**
+    * Billing city
+    */
+    'billingCity': string;
+    /**
+    * Billing company
+    */
+    'billingCompany': string;
+    /**
+    * Billing country code
+    */
+    'billingCountryCode': string;
+    /**
+    * Billing day phone
+    */
+    'billingDayPhone': string;
+    /**
+    * Billing evening phone
+    */
+    'billingEveningPhone': string;
+    /**
+    * Billing first name
+    */
+    'billingFirstName': string;
+    /**
+    * Billing last name
+    */
+    'billingLastName': string;
+    /**
+    * Billing postal code
+    */
+    'billingPostalCode': string;
+    /**
+    * Billing state
+    */
+    'billingState': string;
+    /**
+    * Email address of this customer profile
+    */
+    'email': string;
+    /**
+    * Last modified date end
+    */
+    'lastModifiedDtsEnd': string;
+    /**
+    * Last modified date start
+    */
+    'lastModifiedDtsStart': string;
+    /**
+    * Pricing tier name
+    */
+    'pricingTierName': string;
+    /**
+    * Pricing tier oid
+    */
+    'pricingTierOid': number;
+    /**
+    * QuickBooks class to import this customer as
+    */
+    'qbClass': string;
+    /**
+    * QuickBooks name to import this customer as
+    */
+    'quickbooksCode': string;
+    /**
+    * Billing city
+    */
+    'shippingCity': string;
+    /**
+    * Billing company
+    */
+    'shippingCompany': string;
+    /**
+    * Billing country code
+    */
+    'shippingCountryCode': string;
+    /**
+    * Billing day phone
+    */
+    'shippingDayPhone': string;
+    /**
+    * Billing evening phone
+    */
+    'shippingEveningPhone': string;
+    /**
+    * Billing first name
+    */
+    'shippingFirstName': string;
+    /**
+    * Billing last name
+    */
+    'shippingLastName': string;
+    /**
+    * Billing postal code
+    */
+    'shippingPostalCode': string;
+    /**
+    * Billing state
+    */
+    'shippingState': string;
+    /**
+    * Signup date end
+    */
+    'signupDtsEnd': string;
+    /**
+    * Signup date start
+    */
+    'signupDtsStart': string;
+}
+
+export class CustomerQuotesSummary {
+    /**
+    * First quote date
+    */
+    'firstQuoteDts': string;
+    /**
+    * Last quote date
+    */
+    'lastQuoteDts': string;
+    /**
+    * Total number of quote
+    */
+    'quoteCount': number;
+    /**
+    * Total amount associated with the quotes
+    */
+    'total': number;
+}
+
 export class CustomerResponse {
     'customer': Customer;
     'error': Error;
@@ -2110,6 +3874,49 @@ export class CustomerResponse {
     * Indicates if API call was successful
     */
     'success': boolean;
+}
+
+export class CustomerReviewer {
+    /**
+    * True if reviewes from this customer profile should automatically be approved
+    */
+    'autoApprove': boolean;
+    /**
+    * Average overall rating of items reviewed
+    */
+    'averageOverallRating': number;
+    /**
+    * True if the customer is an expert
+    */
+    'expert': boolean;
+    /**
+    * First review
+    */
+    'firstReview': string;
+    /**
+    * Last review
+    */
+    'lastReview': string;
+    /**
+    * Location of the reviewer
+    */
+    'location': string;
+    /**
+    * Nickname of the reviewer
+    */
+    'nickname': string;
+    /**
+    * Number of helpful review votes
+    */
+    'numberHelpfulReviewVotes': number;
+    /**
+    * Rank of this reviewer
+    */
+    'rank': number;
+    /**
+    * Number of reviews contributed
+    */
+    'reviewsContributed': number;
 }
 
 export class CustomerShipping {
@@ -2183,6 +3990,56 @@ export class CustomerShipping {
     'title': string;
 }
 
+export class CustomerSoftwareEntitlement {
+    /**
+    * Activation Code Associated with the software
+    */
+    'activationCode': string;
+    /**
+    * Date/time when the activation code was created
+    */
+    'activationDts': string;
+    /**
+    * Customer profile software entitlement object identifier
+    */
+    'customerSoftwareEntitlementOid': number;
+    /**
+    * Date/time when the activation code will expire
+    */
+    'expirationDts': string;
+    /**
+    * Item description used to purchase this software.
+    */
+    'purchasedViaItemDescription': string;
+    /**
+    * Item ID used to purchase this software.
+    */
+    'purchasedViaItemId': string;
+    /**
+    * Order ID used to purchase this software.
+    */
+    'purchasedViaOrderId': string;
+    /**
+    * SKU of the software
+    */
+    'softwareSku': string;
+}
+
+export class CustomerTaxCodes {
+    /**
+    * Avalara customer code
+    */
+    'avalaraCustomerCode': string;
+    /**
+    * Avalara entity use code
+    */
+    'avalaraEntityUseCode': string;
+    /**
+    * TaxJar customer id
+    */
+    'taxjarCustomerId': string;
+}
+
 export class CustomersResponse {
     'customers': Array<Customer>;
     'error': Error;
@@ -2191,6 +4048,12 @@ export class CustomersResponse {
     * Indicates if API call was successful
     */
     'success': boolean;
+}
+
+export class DataTablesServerSideResponse {
+    'draw': number;
+    'recordsFiltered': number;
+    'recordsTotal': number;
 }
 
 export class Distance {
@@ -2263,6 +4126,7 @@ export class DistributionCenter {
     * True if the shipment should be held before transmission and require a manual release
     */
     'holdBeforeTransmission': boolean;
+    'holdAutoOrderBeforeShipmentMinutes': number;
     /**
     * Latitude where the distribution center is located
     */
@@ -2355,6 +4219,1068 @@ export class DistributionCentersResponse {
     'success': boolean;
 }
 
+export class EmailBaseTemplateListResponse {
+    'templatePaths': Array<string>;
+}
+
+export class EmailCampaign {
+    /**
+    * Click rate of emails
+    */
+    'clickRateFormatted': string;
+    /**
+    * Created date
+    */
+    'createdDts': string;
+    /**
+    * True if this campaign was deleted
+    */
+    'deleted': boolean;
+    /**
+    * Email campaign UUID
+    */
+    'emailCampaignUuid': string;
+    /**
+    * Email communication sequence UUID
+    */
+    'emailCommunicationSequenceUuid': string;
+    /**
+    * List and segment memberships
+    */
+    'memberships': Array<EmailListSegmentMembership>;
+    /**
+    * Merchant ID
+    */
+    'merchantId': string;
+    /**
+    * Name of email campaign
+    */
+    'name': string;
+    /**
+    * Open rate of emails
+    */
+    'openRateFormatted': string;
+    /**
+    * Revenue associated with campaign
+    */
+    'revenueFormatted': string;
+    /**
+    * Scheduled date
+    */
+    'scheduledDts': string;
+    /**
+    * Status of the campaign of draft, archived, and sent
+    */
+    'status': string;
+    /**
+    * Timestamp when the last status change happened
+    */
+    'statusDts': string;
+    /**
+    * Storefront oid
+    */
+    'storefrontOid': number;
+}
+
+export class EmailCampaignResponse {
+    'campaign': EmailCampaign;
+    'error': Error;
+    'metadata': ResponseMetadata;
+    /**
+    * Indicates if API call was successful
+    */
+    'success': boolean;
+}
+
+export class EmailCampaignsResponse {
+    'campaigns': Array<EmailCampaign>;
+    'error': Error;
+    'metadata': ResponseMetadata;
+    /**
+    * Indicates if API call was successful
+    */
+    'success': boolean;
+}
+
+export class EmailCommseq {
+    /**
+    * Array of steps
+    */
+    'emailCommunicationSequenceSteps': Array<EmailCommseqStep>;
+    /**
+    * Email commseq UUID
+    */
+    'emailCommunicationSequenceUuid': string;
+    /**
+    * Merchant ID
+    */
+    'merchantId': string;
+    /**
+    * Storefront oid
+    */
+    'storefrontOid': number;
+}
+
+export class EmailCommseqEmail {
+    /**
+    * Deleted
+    */
+    'deleted': boolean;
+    /**
+    * Edited by user
+    */
+    'editedByUser': string;
+    /**
+    * Email communication sequence email uuid
+    */
+    'emailCommunicationSequenceEmailUuid': string;
+    /**
+    * Email container cjson
+    */
+    'emailContainerCjson': string;
+    /**
+    * Email template virtual path
+    */
+    'emailTemplateVmPath': string;
+    /**
+    * Filter profile equation json
+    */
+    'filterProfileEquationJson': string;
+    /**
+    * Individually render
+    */
+    'individuallyRender': boolean;
+    /**
+    * Merchant ID
+    */
+    'merchantId': string;
+    /**
+    * Preview text
+    */
+    'previewText': string;
+    /**
+    * Smart sending
+    */
+    'smartSending': boolean;
+    /**
+    * Storefront oid
+    */
+    'storefrontOid': number;
+    /**
+    * Subject
+    */
+    'subject': string;
+    /**
+    * Transactional email
+    */
+    'transactionalEmail': boolean;
+    /**
+    * Version
+    */
+    'version': number;
+}
+
+export class EmailCommseqEmailResponse {
+    'email': EmailCommseqEmail;
+    'error': Error;
+    'metadata': ResponseMetadata;
+    /**
+    * Indicates if API call was successful
+    */
+    'success': boolean;
+}
+
+export class EmailCommseqEmailsRequest {
+    'error': Error;
+    'espCommseqEmailUuids': Array<string>;
+    'metadata': ResponseMetadata;
+    /**
+    * Indicates if API call was successful
+    */
+    'success': boolean;
+}
+
+export class EmailCommseqEmailsResponse {
+    'emails': Array<EmailCommseqEmail>;
+    'error': Error;
+    'metadata': ResponseMetadata;
+    /**
+    * Indicates if API call was successful
+    */
+    'success': boolean;
+}
+
+export class EmailCommseqResponse {
+    'communicationSequence': EmailCommseq;
+    'error': Error;
+    'metadata': ResponseMetadata;
+    /**
+    * Indicates if API call was successful
+    */
+    'success': boolean;
+}
+
+export class EmailCommseqStat {
+    /**
+    * Count of clicked emails
+    */
+    'clickCount': number;
+    /**
+    * Count of clicked emails, formatted
+    */
+    'clickCountFormatted': string;
+    /**
+    * Count of delivered emails
+    */
+    'deliveredCount': number;
+    /**
+    * Count of delivered emails, formatted
+    */
+    'deliveredCountFormatted': string;
+    /**
+    * UUID associated with the communication sequence
+    */
+    'emailCommunicationSequenceUuid': string;
+    /**
+    * Count of customers that finished the sequence
+    */
+    'finishedCount': number;
+    /**
+    * Count of customers that finished the sequence, formatted
+    */
+    'finishedCountFormatted': string;
+    /**
+    * Count of customers in progress
+    */
+    'inProgressCount': number;
+    /**
+    * Count of customers in progress, formatted
+    */
+    'inProgressCountFormatted': string;
+    /**
+    * Count of emails kicked
+    */
+    'kickboxCount': number;
+    /**
+    * Count of emails kicked, formatted
+    */
+    'kickboxCountFormatted': string;
+    /**
+    * Merchant ID
+    */
+    'merchantId': string;
+    /**
+    * Count of opened emails
+    */
+    'openCount': number;
+    /**
+    * Count of opened emails, formatted
+    */
+    'openCountFormatted': string;
+    /**
+    * Count of emails permanently bounced
+    */
+    'permanentBounceCount': number;
+    /**
+    * Count of emails permanently bounced, formatted
+    */
+    'permanentBounceCountFormatted': string;
+    /**
+    * Profit
+    */
+    'profit': number;
+    /**
+    * Profit, formatted
+    */
+    'profitFormatted': string;
+    /**
+    * Revenue
+    */
+    'revenue': number;
+    /**
+    * Revenue, formatted
+    */
+    'revenueFormatted': string;
+    /**
+    * Count of emails sent
+    */
+    'sendCount': number;
+    /**
+    * Count of emails sent, formatted
+    */
+    'sendCountFormatted': string;
+    /**
+    * Count of skipped emails
+    */
+    'skippedCount': number;
+    /**
+    * Count of skipped emails, formatted
+    */
+    'skippedCountFormatted': string;
+    /**
+    * Count of emails classified as spam
+    */
+    'spamCount': number;
+    /**
+    * Count of emails classified as spam, formatted
+    */
+    'spamCountFormatted': string;
+    /**
+    * Count of customers that started the sequence
+    */
+    'startedCount': number;
+    /**
+    * Count of customers that started the sequence, formatted
+    */
+    'startedCountFormatted': string;
+    /**
+    * Storefront oid
+    */
+    'storefrontOid': number;
+    /**
+    * Count of views
+    */
+    'viewCount': number;
+    /**
+    * Count of views, formatted
+    */
+    'viewCountFormatted': string;
+}
+
+export class EmailCommseqStatResponse {
+    'error': Error;
+    'metadata': ResponseMetadata;
+    'stats': EmailCommseqStat;
+    /**
+    * Indicates if API call was successful
+    */
+    'success': boolean;
+}
+
+export class EmailCommseqStep {
+    /**
+    * Array of child steps for the alternate path
+    */
+    'altChildEmailCommunicationSequenceSteps': Array<EmailCommseqStep>;
+    /**
+    * Array of child steps
+    */
+    'childEmailCommunicationSequenceSteps': Array<EmailCommseqStep>;
+    /**
+    * Email commseq step UUID
+    */
+    'emailCommunicationSequenceStepUuid': string;
+    /**
+    * Filter profile equation JSON
+    */
+    'filterProfileEquationJson': string;
+    /**
+    * Arbitrary Configuration for a step
+    */
+    'stepConfigJson': string;
+    /**
+    * Type of step
+    */
+    'type': EmailCommseqStep.TypeEnum;
+}
+
+export namespace EmailCommseqStep {
+    export enum TypeEnum {
+        Begin = <any> 'begin',
+        Wait = <any> 'wait',
+        Email = <any> 'email',
+        Merge = <any> 'merge',
+        Condition = <any> 'condition',
+        End = <any> 'end'
+    }
+}
+export class EmailCommseqsResponse {
+    'communicationSequences': Array<EmailCommseq>;
+    'error': Error;
+    'metadata': ResponseMetadata;
+    /**
+    * Indicates if API call was successful
+    */
+    'success': boolean;
+}
+
+export class EmailCustomer {
+    'email': string;
+    'espCustomerUuid': string;
+    'firstName': string;
+    'lastName': string;
+}
+
+export class EmailCustomerEditorUrlResponse {
+    'editorUrl': string;
+    'error': Error;
+    'metadata': ResponseMetadata;
+    /**
+    * Indicates if API call was successful
+    */
+    'success': boolean;
+}
+
+export class EmailDashboardActivity {
+    /**
+    * Type of action such as add, remove, subscribe, unsubscribe
+    */
+    'action': string;
+    /**
+    * Date/time of the activity
+    */
+    'activityDts': string;
+    /**
+    * List or segment name
+    */
+    'destinationName': string;
+    /**
+    * List or segment uuid
+    */
+    'destinationUuid': string;
+    /**
+    * Email address
+    */
+    'email': string;
+    /**
+    * true if activity is related to list
+    */
+    'isList': boolean;
+    /**
+    * true if activity is related to segment
+    */
+    'isSegment': boolean;
+}
+
+export class EmailDashboardActivityResponse {
+    'activity': Array<EmailDashboardActivity>;
+    'error': Error;
+    'metadata': ResponseMetadata;
+    /**
+    * Indicates if API call was successful
+    */
+    'success': boolean;
+}
+
+export class EmailDashboardStatsResponse {
+    'error': Error;
+    'metadata': ResponseMetadata;
+    'stats': Array<EmailStat>;
+    /**
+    * Indicates if API call was successful
+    */
+    'success': boolean;
+}
+
+export class EmailDomain {
+    'comment': string;
+    'dkim': Array<VerificationRecord>;
+    'dkimStatus': string;
+    'domain': string;
+    'espDomainUuid': string;
+    'identityStatus': string;
+    'merchantId': string;
+    'provider': string;
+    'startDkimDts': string;
+    'startIdentityDts': string;
+    'verification': VerificationRecord;
+}
+
+export class EmailFlow {
+    /**
+    * True if a customer may be enrolled in this flow multiple times
+    */
+    'allowMultipleConcurrentEnrollments': boolean;
+    /**
+    * Created date
+    */
+    'createdDts': string;
+    /**
+    * True if this campaign was deleted
+    */
+    'deleted': boolean;
+    /**
+    * Email communication sequence UUID
+    */
+    'emailCommunicationSequenceUuid': string;
+    /**
+    * Email flow UUID
+    */
+    'emailFlowUuid': string;
+    /**
+    * File profile equation json
+    */
+    'filterProfileEquationJson': string;
+    /**
+    * Merchant ID
+    */
+    'merchantId': string;
+    /**
+    * Name of email flow
+    */
+    'name': string;
+    /**
+    * Status of the campaign of draft, archived, active, and inactive
+    */
+    'status': string;
+    /**
+    * Timestamp when the last status change happened
+    */
+    'statusDts': string;
+    /**
+    * Storefront oid
+    */
+    'storefrontOid': number;
+    /**
+    * Trigger parameter
+    */
+    'triggerParameter': string;
+    /**
+    * Trigger parameter name
+    */
+    'triggerParameterName': string;
+    /**
+    * Trigger type
+    */
+    'triggerType': string;
+}
+
+export class EmailFlowResponse {
+    'error': Error;
+    'flow': EmailFlow;
+    'metadata': ResponseMetadata;
+    /**
+    * Indicates if API call was successful
+    */
+    'success': boolean;
+}
+
+export class EmailFlowsResponse {
+    'error': Error;
+    'flows': Array<EmailFlow>;
+    'metadata': ResponseMetadata;
+    /**
+    * Indicates if API call was successful
+    */
+    'success': boolean;
+}
+
+export class EmailHistogramPropertyNamesResponse {
+    'propertyNames': Array<string>;
+}
+
+export class EmailHistogramPropertyValuesResponse {
+    'propertyValues': Array<string>;
+}
+
+export class EmailList {
+    /**
+    * Created date
+    */
+    'createdDts': string;
+    /**
+    * True if this campaign was deleted
+    */
+    'deleted': boolean;
+    /**
+    * Email list UUID
+    */
+    'emailListUuid': string;
+    /**
+    * Count of members in this list
+    */
+    'memberCount': number;
+    /**
+    * Merchant ID
+    */
+    'merchantId': string;
+    /**
+    * Name of email list
+    */
+    'name': string;
+    /**
+    * Storefront oid
+    */
+    'storefrontOid': number;
+}
+
+export class EmailListArchiveResponse {
+    'error': Error;
+    'listInUse': boolean;
+    'metadata': ResponseMetadata;
+    /**
+    * Indicates if API call was successful
+    */
+    'success': boolean;
+}
+
+export class EmailListCustomer {
+    /**
+    * Added timestamp
+    */
+    'addDts': string;
+    /**
+    * Email
+    */
+    'email': string;
+    /**
+    * Email customer UUID
+    */
+    'emailCustomerUuid': string;
+    /**
+    * Email list member UUID
+    */
+    'emailListMemberUuid': string;
+}
+
+export class EmailListCustomersResponse {
+    /**
+    * Customers on the page
+    */
+    'customers': Array<EmailListCustomer>;
+    /**
+    * Page number (one based offset)
+    */
+    'pageNumber': number;
+    /**
+    * Number of records per page
+    */
+    'pageSize': number;
+    /**
+    * Total customers
+    */
+    'totalCustomers': number;
+    /**
+    * Total number of pages
+    */
+    'totalPages': number;
+}
+
+export class EmailListResponse {
+    'error': Error;
+    'list': EmailList;
+    'metadata': ResponseMetadata;
+    /**
+    * Indicates if API call was successful
+    */
+    'success': boolean;
+}
+
+export class EmailListSegmentMembership {
+    /**
+    * UUID identifying this email list or null if this is a segment
+    */
+    'emailListUuid': string;
+    /**
+    * UUID identifying this email segment or null if this is a list
+    */
+    'emailSegmentUuid': string;
+    /**
+    * true if customers from this list/segment is excluded from membership
+    */
+    'exclude': boolean;
+    /**
+    * Name of this email list or segment
+    */
+    'name': string;
+}
+
+export class EmailListSubscribeResponse {
+    'added': number;
+    'memberCount': number;
+}
+
+export class EmailListsResponse {
+    'error': Error;
+    'lists': Array<EmailList>;
+    'metadata': ResponseMetadata;
+    /**
+    * Indicates if API call was successful
+    */
+    'success': boolean;
+}
+
+export class EmailSegment {
+    /**
+    * Created date
+    */
+    'createdDts': string;
+    /**
+    * True if this campaign was deleted
+    */
+    'deleted': boolean;
+    /**
+    * Email segment UUID
+    */
+    'emailSegmentUuid': string;
+    /**
+    * File profile equation json
+    */
+    'filterProfileEquationJson': string;
+    /**
+    * Count of members in this segment
+    */
+    'memberCount': number;
+    /**
+    * Merchant ID
+    */
+    'merchantId': string;
+    /**
+    * Name of email segment
+    */
+    'name': string;
+    /**
+    * True if a rebuild is required because some part of the segment has changed
+    */
+    'rebuildRequired': boolean;
+    /**
+    * Storefront oid
+    */
+    'storefrontOid': number;
+}
+
+export class EmailSegmentArchiveResponse {
+    'error': Error;
+    'metadata': ResponseMetadata;
+    'segmentInUse': boolean;
+    /**
+    * Indicates if API call was successful
+    */
+    'success': boolean;
+}
+
+export class EmailSegmentCustomer {
+    /**
+    * Added timestamp
+    */
+    'addDts': string;
+    /**
+    * Email
+    */
+    'email': string;
+    /**
+    * Email customer UUID
+    */
+    'emailCustomerUuid': string;
+    /**
+    * Email segment member UUID
+    */
+    'emailSegmentMemberUuid': string;
+}
+
+export class EmailSegmentCustomersResponse {
+    /**
+    * Customers on the page
+    */
+    'customers': Array<EmailSegmentCustomer>;
+    /**
+    * Page number (one based offset)
+    */
+    'pageNumber': number;
+    /**
+    * Number of records per page
+    */
+    'pageSize': number;
+    /**
+    * Total customers
+    */
+    'totalCustomers': number;
+    /**
+    * Total number of pages
+    */
+    'totalPages': number;
+}
+
+export class EmailSegmentResponse {
+    'error': Error;
+    'metadata': ResponseMetadata;
+    'segment': EmailSegment;
+    /**
+    * Indicates if API call was successful
+    */
+    'success': boolean;
+}
+
+export class EmailSegmentsResponse {
+    'error': Error;
+    'metadata': ResponseMetadata;
+    'segments': Array<EmailSegment>;
+    /**
+    * Indicates if API call was successful
+    */
+    'success': boolean;
+}
+
+export class EmailSendingDomainResponse {
+    'domain': EmailDomain;
+    'error': Error;
+    'metadata': ResponseMetadata;
+    /**
+    * Indicates if API call was successful
+    */
+    'success': boolean;
+}
+
+export class EmailSendingDomainsResponse {
+    'domains': Array<EmailDomain>;
+    'error': Error;
+    'metadata': ResponseMetadata;
+    /**
+    * Indicates if API call was successful
+    */
+    'success': boolean;
+}
+
+export class EmailStat {
+    /**
+    * Count of clicked emails
+    */
+    'clickCount': number;
+    /**
+    * Count of clicked emails, formatted
+    */
+    'clickCountFormatted': string;
+    /**
+    * Count of delivered emails
+    */
+    'deliveredCount': number;
+    /**
+    * Count of delivered emails, formatted
+    */
+    'deliveredCountFormatted': string;
+    /**
+    * Count of emails kicked
+    */
+    'kickboxCount': number;
+    /**
+    * Count of emails kicked, formatted
+    */
+    'kickboxCountFormatted': string;
+    /**
+    * Merchant ID
+    */
+    'merchantId': string;
+    /**
+    * List or segment name
+    */
+    'name': string;
+    /**
+    * Count of opened emails
+    */
+    'openCount': number;
+    /**
+    * Count of opened emails, formatted
+    */
+    'openCountFormatted': string;
+    /**
+    * Count of emails permanently bounced
+    */
+    'permanentBounceCount': number;
+    /**
+    * Count of emails permanently bounced, formatted
+    */
+    'permanentBounceCountFormatted': string;
+    /**
+    * Profit
+    */
+    'profit': number;
+    /**
+    * Profit, formatted
+    */
+    'profitFormatted': string;
+    /**
+    * Revenue
+    */
+    'revenue': number;
+    /**
+    * Revenue, formatted
+    */
+    'revenueFormatted': string;
+    /**
+    * Count of emails sent
+    */
+    'sendCount': number;
+    /**
+    * Count of emails sent, formatted
+    */
+    'sendCountFormatted': string;
+    /**
+    * Count of skipped emails
+    */
+    'skippedCount': number;
+    /**
+    * Count of skipped emails, formatted
+    */
+    'skippedCountFormatted': string;
+    /**
+    * Count of emails classified as spam
+    */
+    'spamCount': number;
+    /**
+    * Count of emails classified as spam, formatted
+    */
+    'spamCountFormatted': string;
+    /**
+    * Campaign, Flow or None (for anything else)
+    */
+    'statType': string;
+    /**
+    * Status of campaign or flow
+    */
+    'status': string;
+    /**
+    * Status dts of campaign or flow
+    */
+    'statusDts': string;
+    /**
+    * Storefront oid
+    */
+    'storefrontOid': number;
+    /**
+    * List or segment uuid
+    */
+    'uuid': string;
+    /**
+    * Count of views
+    */
+    'viewCount': number;
+    /**
+    * Count of views, formatted
+    */
+    'viewCountFormatted': string;
+}
+
+export class EmailStatSummaryRequest {
+    'commseqEmailUuids': Array<string>;
+    'days': number;
+}
+
+export class EmailStatSummaryResponse {
+    'error': Error;
+    'metadata': ResponseMetadata;
+    'stats': Array<EmailStat>;
+    /**
+    * Indicates if API call was successful
+    */
+    'success': boolean;
+}
+
+export class EmailStepWaitingRequest {
+    'commseqStepUuids': Array<string>;
+}
+
+export class EmailStepWaitingResponse {
+    'stepWaitings': Array<StepWaiting>;
+}
+
+export class EmailTemplate {
+    /**
+    * Container cjson
+    */
+    'containerCjson': string;
+    /**
+    * Description of email template
+    */
+    'description': string;
+    /**
+    * Email template oid
+    */
+    'emailTemplateOid': number;
+    /**
+    * Email Template VM Path
+    */
+    'emailTemplateVmPath': string;
+    /**
+    * Merchant ID
+    */
+    'merchantId': string;
+    /**
+    * Name of email template
+    */
+    'name': string;
+    /**
+    * Amazon key for preview png image
+    */
+    'previewAmazonListingKey': string;
+    /**
+    * Sort order (optional)
+    */
+    'sortOrder': number;
+    /**
+    * StoreFront oid
+    */
+    'storefrontOid': number;
+    /**
+    * True if this email template is system-wide,false if merchant specific
+    */
+    'system': boolean;
+    /**
+    * Trigger type
+    */
+    'triggerType': string;
+}
+
+export class EmailTemplatesResponse {
+    'error': Error;
+    'metadata': ResponseMetadata;
+    /**
+    * Indicates if API call was successful
+    */
+    'success': boolean;
+    'templates': Array<EmailTemplate>;
+}
+
+export class EmailThirdPartyList {
+    /**
+    * id
+    */
+    'id': string;
+    /**
+    * name
+    */
+    'name': string;
+}
+
+export class EmailThirdPartyListImportRequest {
+    /**
+    * providers
+    */
+    'providers': Array<EmailThirdPartyProvider>;
+}
+
+export class EmailThirdPartyProvider {
+    /**
+    * URL to the settings screen to connect.  Null if the provider is already connected.
+    */
+    'connectUrl': string;
+    /**
+    * list_count
+    */
+    'listCount': number;
+    /**
+    * lists
+    */
+    'lists': Array<EmailThirdPartyList>;
+    /**
+    * logo_url
+    */
+    'logoUrl': string;
+    /**
+    * name
+    */
+    'name': string;
+}
+
+export class EmailThirdPartyProvidersResponse {
+    'error': Error;
+    'metadata': ResponseMetadata;
+    'providers': Array<EmailThirdPartyProvider>;
+    /**
+    * Indicates if API call was successful
+    */
+    'success': boolean;
+}
+
 export class Error {
     /**
     * A technical message meant to be read by a developer
@@ -2383,6 +5309,167 @@ export class ErrorResponse {
     'success': boolean;
 }
 
+export class Experiment {
+    /**
+    * Contained ID where the experiment element was located
+    */
+    'containerId': string;
+    /**
+    * Duration in days
+    */
+    'durationDays': number;
+    /**
+    * End date/time
+    */
+    'endDts': string;
+    /**
+    * Whether or not traffic is equally weighted or shifts over time during the experiment
+    */
+    'equalWeighting': boolean;
+    /**
+    * Experiment id
+    */
+    'id': string;
+    /**
+    * Experiment name
+    */
+    'name': string;
+    /**
+    * Notes about the experiment
+    */
+    'notes': string;
+    /**
+    * Objective that is being optimized
+    */
+    'objective': string;
+    /**
+    * Type of optimization
+    */
+    'optimizationType': string;
+    /**
+    * Total number of sessions in the experiment
+    */
+    'sessionCount': number;
+    /**
+    * Start date/time
+    */
+    'startDts': string;
+    /**
+    * Status of the experiment
+    */
+    'status': Experiment.StatusEnum;
+    /**
+    * Storefront Experiment Oid
+    */
+    'storefrontExperimentOid': number;
+    /**
+    * Storefront oid
+    */
+    'storefrontOid': number;
+    /**
+    * URI the experiment was started on
+    */
+    'uri': string;
+    /**
+    * Variations being tested in the experiment
+    */
+    'variations': Array<ExperimentVariation>;
+}
+
+export namespace Experiment {
+    export enum StatusEnum {
+        Running = <any> 'Running',
+        Ended = <any> 'Ended',
+        Deleted = <any> 'Deleted'
+    }
+}
+export class ExperimentResponse {
+    'error': Error;
+    'experiment': Experiment;
+    'metadata': ResponseMetadata;
+    /**
+    * Indicates if API call was successful
+    */
+    'success': boolean;
+}
+
+export class ExperimentVariation {
+    /**
+    * Total add to cart count for this variation
+    */
+    'addToCartCount': number;
+    /**
+    * Average duration seconds per session for this variation
+    */
+    'averageDurationSeconds': number;
+    /**
+    * Average objective value per session for this variation
+    */
+    'averageObjectivePerSession': number;
+    /**
+    * Total bounce count for this variation
+    */
+    'bounceCount': number;
+    /**
+    * Conversion rate for this variation
+    */
+    'conversionRate': number;
+    /**
+    * Total number of seconds spent on the site for this variation
+    */
+    'durationSecondsSum': number;
+    /**
+    * Total initiate checkout count for this variation
+    */
+    'initiateCheckoutCount': number;
+    /**
+    * Total order count for this variation
+    */
+    'orderCount': number;
+    /**
+    * Percentage of the traffic the variation originally started out with
+    */
+    'originalTrafficPercentage': number;
+    /**
+    * Total page view count for this variation
+    */
+    'pageViewCount': number;
+    /**
+    * Total revenue for this variation
+    */
+    'revenue': number;
+    /**
+    * Total sessions for this variation
+    */
+    'sessionCount': number;
+    /**
+    * Percentage of the traffic this variation is currently receiving
+    */
+    'trafficPercentage': number;
+    /**
+    * Name of the variation
+    */
+    'variationName': string;
+    /**
+    * Variation number
+    */
+    'variationNumber': number;
+    /**
+    * True if this variation has been declared the winner
+    */
+    'winner': boolean;
+}
+
+export class ExperimentsResponse {
+    'error': Error;
+    'experiments': Array<Experiment>;
+    'metadata': ResponseMetadata;
+    /**
+    * Indicates if API call was successful
+    */
+    'success': boolean;
+}
+
 export class FulfillmentInventory {
     'itemId': string;
     'quantity': number;
@@ -2390,13 +5477,59 @@ export class FulfillmentInventory {
 
 export class FulfillmentShipment {
     /**
+    * Fees charged by the fulfillment company other than the shipping cost to process the order.
+    */
+    'fulfillmentFee': number;
+    /**
     * Order ID that was shipped
     */
     'orderId': string;
     /**
+    * The cost of the packaging used to sent this shipment
+    */
+    'packageCost': number;
+    /**
+    * The actual total cost of shipping this order
+    */
+    'shippingCost': number;
+    /**
     * Tracking numbers associated with the shipment
     */
     'trackingNumbers': Array<string>;
+}
+
+export class GeocodeRequest {
+    /**
+    * address
+    */
+    'address': string;
+    /**
+    * city
+    */
+    'city': string;
+    /**
+    * country_code
+    */
+    'countryCode': string;
+    /**
+    * postal_code
+    */
+    'postalCode': string;
+    /**
+    * state
+    */
+    'state': string;
+}
+
+export class GeocodeResponse {
+    'error': Error;
+    'latitude': number;
+    'longitude': number;
+    'metadata': ResponseMetadata;
+    /**
+    * Indicates if API call was successful
+    */
+    'success': boolean;
 }
 
 export class HTTPHeader {
@@ -2476,6 +5609,10 @@ export class Item {
     * Parent category of the item.  Zero indicates the root folder.
     */
     'parentCategoryId': number;
+    /**
+    * Parent category path.  / indicates the root folder.
+    */
+    'parentCategoryPath': string;
     'paymentProcessing': ItemPaymentProcessing;
     'physical': ItemPhysical;
     'pricing': ItemPricing;
@@ -2582,6 +5719,10 @@ export class ItemAutoOrder {
     * True if the customer should be given free shipping
     */
     'freeShippingAutoOrder': boolean;
+    /**
+    * True if other auto orders for this customer should refunded if this item is refunded.
+    */
+    'refundOtherAutoOrders': boolean;
     /**
     * The rebill steps if this auto order is an upsell
     */
@@ -2723,6 +5864,10 @@ export class ItemChannelPartnerMapping {
     * Barcode UK (EDI only)
     */
     'barcodeUk': string;
+    /**
+    * Buyer catalog number (EDI only)
+    */
+    'buyerCatalogNumber': string;
     /**
     * Buyer DPCI (EDI only)
     */
@@ -2980,7 +6125,7 @@ export class ItemContentMultimedia {
     */
     'type': ItemContentMultimedia.TypeEnum;
     /**
-    * URL to download file
+    * URL to download file (on new multimedia record this can be a URL for UltraCart to fetch)
     */
     'url': string;
     /**
@@ -3619,6 +6764,7 @@ export class ItemGoogleProductSearch {
     * Search position
     */
     'searchPosition': number;
+    'shippingLabel': string;
     /**
     * Size
     */
@@ -4244,6 +7390,10 @@ export class ItemShipping {
     */
     'cases': Array<ItemShippingCase>;
     /**
+    * This item is on pre-order
+    */
+    'collectSerialNumbers': boolean;
+    /**
     * Country code of origin for customs forms.  (ISO-3166 two letter code)
     */
     'countryCodeOfOrigin': string;
@@ -4765,6 +7915,13 @@ export class ItemWishlistMember {
     'wishlistMemberSku': string;
 }
 
+export class ItemsRequest {
+    /**
+    * items
+    */
+    'items': Array<Item>;
+}
+
 export class ItemsResponse {
     'error': Error;
     /**
@@ -4776,6 +7933,48 @@ export class ItemsResponse {
     * Indicates if API call was successful
     */
     'success': boolean;
+}
+
+export class KeyValue {
+    /**
+    * Optional description of the lookup value
+    */
+    'description': string;
+    /**
+    * The key or id of this lookup value
+    */
+    'key': string;
+    /**
+    * The value of this lookup value
+    */
+    'value': string;
+}
+
+export class ListSegmentMembership {
+    'name': string;
+    'type': string;
+    'uuid': string;
+}
+
+export class LookupResponse {
+    'error': Error;
+    'metadata': ResponseMetadata;
+    /**
+    * Indicates if API call was successful
+    */
+    'success': boolean;
+    'values': Array<KeyValue>;
+}
+
+export class Metric {
+    'allTime': number;
+    'allTimeFormatted': string;
+    'last30': number;
+    'last30Formatted': string;
+    'name': string;
+    'prior30': number;
+    'prior30Formatted': string;
+    'type': string;
 }
 
 export class OauthRevokeSuccessResponse {
@@ -4876,6 +8075,10 @@ export class Order {
     */
     'orderId': string;
     'payment': OrderPayment;
+    /**
+    * Properties, available only through update, not through insert due to the nature of how properties are handled internally
+    */
+    'properties': Array<OrderProperty>;
     'quote': OrderQuote;
     /**
     * If the order was refunded, the date/time that the last refund occurred
@@ -4971,9 +8174,13 @@ export namespace OrderAffiliateLedger {
 }
 export class OrderAutoOrder {
     /**
-    * Unique identifier assigned to the auto order
+    * Unique code assigned to the auto order
     */
     'autoOrderCode': string;
+    /**
+    * Unique identifier assigned to the auto order
+    */
+    'autoOrderOid': number;
     /**
     * Orignal order id that started this auto order sequence
     */
@@ -5020,6 +8227,10 @@ export class OrderBilling {
     * Day time phone
     */
     'dayPhone': string;
+    /**
+    * Day time phone (E164 format)
+    */
+    'dayPhoneE164': string;
     /**
     * Email
     */
@@ -5073,21 +8284,45 @@ export class OrderBuysafe {
 
 export class OrderChannelPartner {
     /**
+    * If true, any purchase order submitted is automatically approved
+    */
+    'autoApprovePurchaseOrder': boolean;
+    /**
     * The code of the channel partner
     */
     'channelPartnerCode': string;
     /**
-    * Additional data provided by the channel partner
+    * Additional data provided by the channel partner, read-only
     */
     'channelPartnerData': string;
     /**
-    * Channel partner object identifier
+    * Channel partner object identifier, read-only and available on existing channel orders only.
     */
     'channelPartnerOid': number;
     /**
     * The order ID assigned by the channel partner for this order
     */
     'channelPartnerOrderId': string;
+    /**
+    * Indicates this order should be placed in Account Receivable for later payment processing
+    */
+    'noRealtimePaymentProcessing': boolean;
+    /**
+    * Indicates this order was already paid for via a channel purchase and no payment collection should be attempted
+    */
+    'skipPaymentProcessing': boolean;
+    /**
+    * Instructs UltraCart to skip shipping department and mark this order as fully complete.  Set this flag if you have already shipped product for this order.
+    */
+    'storeCompleted': boolean;
+    /**
+    * If true, any failed payment will place the order in Accounts Receivable rather than rejecting it.
+    */
+    'storeIfPaymentDeclines': boolean;
+    /**
+    * Any warnings are raised as errors and halt the import of the order
+    */
+    'treatWarningsAsErrors': boolean;
 }
 
 export class OrderCheckout {
@@ -5146,6 +8381,10 @@ export class OrderCoupon {
     * QuickBooks accounting code for this coupon
     */
     'accountingCode': string;
+    /**
+    * Whether or not the coupon was automatically applied to the order
+    */
+    'automaticallyApplied': boolean;
     /**
     * Coupon code configured by the merchant.  Will differ if the customer used a one time coupon code generated off this base coupon
     */
@@ -5231,6 +8470,92 @@ export class OrderEdi {
     * Shipping address identification code from the EDI order.  Typically DUNS or DUNS+4
     */
     'shipToEdiCode': string;
+}
+
+export class OrderFormat {
+    /**
+    * The context to generate the order view for.
+    */
+    'context': string;
+    /**
+    * True to not link the email address to the order search
+    */
+    'dontLinkEmailToSearch': boolean;
+    /**
+    * True to make the email address a clickable mailto link
+    */
+    'emailAsLink': boolean;
+    /**
+    * Specify a distribution center oid to filter the items displayed to that particular distribution center.
+    */
+    'filterDistributionCenterOid': number;
+    /**
+    * The container oid to filter items to.
+    */
+    'filterToItemsInContactOid': number;
+    /**
+    * The desired format.
+    */
+    'format': OrderFormat.FormatEnum;
+    /**
+    * True to ide the bill to address
+    */
+    'hideBillToAddress': boolean;
+    /**
+    * True to hide price information
+    */
+    'hidePriceInformation': boolean;
+    /**
+    * True to link file attachments for download
+    */
+    'linkFileAttachments': boolean;
+    /**
+    * True to show contact information
+    */
+    'showContactInfo': boolean;
+    /**
+    * True to show the order in the merchant currency
+    */
+    'showInMerchantCurrency': boolean;
+    /**
+    * True to show internal information about the order
+    */
+    'showInternalInformation': boolean;
+    /**
+    * True to show merchant notes
+    */
+    'showMerchantNotes': boolean;
+    /**
+    * True to show non-sensitive payment information
+    */
+    'showNonSensitivePaymentInfo': boolean;
+    /**
+    * True to show payment information
+    */
+    'showPaymentInfo': boolean;
+    /**
+    * True to translate the order into the native language of the customer
+    */
+    'translate': boolean;
+}
+
+export namespace OrderFormat {
+    export enum FormatEnum {
+        Text = <any> 'text',
+        Div = <any> 'div',
+        Table = <any> 'table',
+        Email = <any> 'email'
+    }
+}
+export class OrderFormatResponse {
+    /**
+    * The URLs to any stylesheets that need to be included to properly view the markup.
+    */
+    'cssLinks': Array<string>;
+    /**
+    * The formatted result of the order.  This will be HTML or text depending upon the requested format.
+    */
+    'formattedResult': string;
 }
 
 export class OrderFraudScore {
@@ -5399,6 +8724,15 @@ export class OrderItem {
     * Activation codes assigned to this item
     */
     'activationCodes': Array<string>;
+    'arbitraryUnitCost': Currency;
+    /**
+    * Date/time of the last rebill, used only during order insert to help project future rebills
+    */
+    'autoOrderLastRebillDts': string;
+    /**
+    * Auto order schedule, used only during inserts supplying the recurring schedule
+    */
+    'autoOrderSchedule': string;
     /**
     * Barcode
     */
@@ -5506,11 +8840,15 @@ export class OrderItem {
     */
     'pricingTierName': string;
     /**
+    * Properties
+    */
+    'properties': Array<OrderItemProperty>;
+    /**
     * Quantity
     */
     'quantity': number;
     /**
-    * Quantity refunded on this item
+    * Quantity refunded on this item (read only except refund operation)
     */
     'quantityRefunded': number;
     /**
@@ -5645,6 +8983,25 @@ export class OrderItemOptionFileAttachment {
     'size': number;
 }
 
+export class OrderItemProperty {
+    /**
+    * True if this property is displayed to the customer
+    */
+    'display': boolean;
+    /**
+    * The date/time that the property expires and is deleted
+    */
+    'expirationDts': string;
+    /**
+    * Name
+    */
+    'name': string;
+    /**
+    * Value
+    */
+    'value': string;
+}
+
 export class OrderLinkedShipment {
     /**
     * True if this order has child linked shipments
@@ -5692,7 +9049,7 @@ export class OrderPayment {
     */
     'holdForFraudReview': boolean;
     /**
-    * Date/time that the payment was successfully processed
+    * Date/time that the payment was successfully processed, for new orders, this field is only considered if channel_partner.skip_payment_processing is true
     */
     'paymentDts': string;
     /**
@@ -5747,15 +9104,17 @@ export namespace OrderPayment {
         Cash = <any> 'Cash',
         Check = <any> 'Check',
         COD = <any> 'COD',
-        Coinbase = <any> 'Coinbase',
         CreditCard = <any> 'Credit Card',
+        EBay = <any> 'eBay',
         ECheck = <any> 'eCheck',
+        LoanHero = <any> 'LoanHero',
         MoneyOrder = <any> 'Money Order',
         PayPal = <any> 'PayPal',
         PurchaseOrder = <any> 'Purchase Order',
         QuoteRequest = <any> 'Quote Request',
         Unknown = <any> 'Unknown',
-        WireTransfer = <any> 'Wire Transfer'
+        WireTransfer = <any> 'Wire Transfer',
+        Walmart = <any> 'Walmart'
     }
     export enum PaymentStatusEnum {
         Unprocessed = <any> 'Unprocessed',
@@ -5816,6 +9175,10 @@ export class OrderPaymentCreditCard {
     * Card type
     */
     'cardType': OrderPaymentCreditCard.CardTypeEnum;
+    /**
+    * Card verification number token from hosted fields, only for import/insert of new orders, completely ignored for updates, and always null/empty for queries
+    */
+    'cardVerificationNumberToken': string;
 }
 
 export namespace OrderPaymentCreditCard {
@@ -5922,6 +9285,186 @@ export class OrderPaymentTransactionDetail {
     'value': string;
 }
 
+export class OrderProperty {
+    /**
+    * True if this property is displayed to the customer
+    */
+    'display': boolean;
+    /**
+    * The date/time that the property expires and is deleted
+    */
+    'expirationDts': string;
+    /**
+    * Name
+    */
+    'name': string;
+    /**
+    * Value
+    */
+    'value': string;
+}
+
+export class OrderQuery {
+    /**
+    * CC Email
+    */
+    'ccEmail': string;
+    /**
+    * The code of the channel partner
+    */
+    'channelPartnerCode': string;
+    /**
+    * The order ID assigned by the channel partner for this order
+    */
+    'channelPartnerOrderId': string;
+    /**
+    * City
+    */
+    'city': string;
+    /**
+    * Company
+    */
+    'company': string;
+    /**
+    * ISO-3166 two letter country code
+    */
+    'countryCode': string;
+    /**
+    * Date/time that the order was created
+    */
+    'creationDateBegin': string;
+    /**
+    * Date/time that the order was created
+    */
+    'creationDateEnd': string;
+    /**
+    * Current stage that the order is in.
+    */
+    'currentStage': OrderQuery.CurrentStageEnum;
+    /**
+    * The customer profile to find associated orders for
+    */
+    'customerProfileOid': number;
+    /**
+    * Email
+    */
+    'email': string;
+    /**
+    * First name
+    */
+    'firstName': string;
+    /**
+    * Item ID
+    */
+    'itemId': string;
+    /**
+    * Last name
+    */
+    'lastName': string;
+    /**
+    * Order ID
+    */
+    'orderId': string;
+    /**
+    * Date/time that the order was successfully processed
+    */
+    'paymentDateBegin': string;
+    /**
+    * Date/time that the order was successfully processed
+    */
+    'paymentDateEnd': string;
+    /**
+    * Payment method
+    */
+    'paymentMethod': OrderQuery.PaymentMethodEnum;
+    /**
+    * Phone
+    */
+    'phone': string;
+    /**
+    * Postal code
+    */
+    'postalCode': string;
+    /**
+    * Purchase order number
+    */
+    'purchaseOrderNumber': string;
+    /**
+    * Date/time that the order was refunded
+    */
+    'refundDateBegin': string;
+    /**
+    * Date/time that the order was refunded
+    */
+    'refundDateEnd': string;
+    /**
+    * RMA number
+    */
+    'rma': string;
+    /**
+    * Screen branding theme code associated with the order (legacy checkout)
+    */
+    'screenBrandingThemeCode': string;
+    /**
+    * Date/time that the order was shipping
+    */
+    'shipmentDateBegin': string;
+    /**
+    * Date/time that the order was shipped
+    */
+    'shipmentDateEnd': string;
+    /**
+    * State for United States otherwise region or province for other countries
+    */
+    'stateRegion': string;
+    /**
+    * StoreFront host name associated with the order
+    */
+    'storefrontHostName': string;
+    /**
+    * Total
+    */
+    'total': number;
+}
+
+export namespace OrderQuery {
+    export enum CurrentStageEnum {
+        AccountsReceivable = <any> 'Accounts Receivable',
+        PendingClearance = <any> 'Pending Clearance',
+        FraudReview = <any> 'Fraud Review',
+        Rejected = <any> 'Rejected',
+        ShippingDepartment = <any> 'Shipping Department',
+        CompletedOrder = <any> 'Completed Order',
+        QuoteRequest = <any> 'Quote Request',
+        QuoteSent = <any> 'Quote Sent',
+        LeastCostRouting = <any> 'Least Cost Routing',
+        Unknown = <any> 'Unknown'
+    }
+    export enum PaymentMethodEnum {
+        Affirm = <any> 'Affirm',
+        Amazon = <any> 'Amazon',
+        AmazonSC = <any> 'Amazon SC',
+        Cash = <any> 'Cash',
+        Check = <any> 'Check',
+        COD = <any> 'COD',
+        CreditCard = <any> 'Credit Card',
+        ECheck = <any> 'eCheck',
+        LoanHero = <any> 'LoanHero',
+        MoneyOrder = <any> 'Money Order',
+        PayPal = <any> 'PayPal',
+        PurchaseOrder = <any> 'Purchase Order',
+        QuoteRequest = <any> 'Quote Request',
+        Unknown = <any> 'Unknown',
+        WireTransfer = <any> 'Wire Transfer'
+    }
+}
+export class OrderQueryBatch {
+    /**
+    * Order IDs
+    */
+    'orderIds': Array<string>;
+}
+
 export class OrderQuote {
     /**
     * Expiration of quote at date/time
@@ -5935,6 +9478,93 @@ export class OrderQuote {
     * Quoted on date/time
     */
     'quotedDts': string;
+}
+
+export class OrderReplacement {
+    /**
+    * Additional merchant notes to append to the new order
+    */
+    'additionalMerchantNotesNewOrder': string;
+    /**
+    * Additional merchant notes to append to the original order
+    */
+    'additionalMerchantNotesOriginalOrder': string;
+    /**
+    * Custom field 1
+    */
+    'customField1': string;
+    /**
+    * Custom field 2
+    */
+    'customField2': string;
+    /**
+    * Custom field 3
+    */
+    'customField3': string;
+    /**
+    * Custom field 4
+    */
+    'customField4': string;
+    /**
+    * Custom field 5
+    */
+    'customField5': string;
+    /**
+    * Custom field 6
+    */
+    'customField6': string;
+    /**
+    * Custom field 7
+    */
+    'customField7': string;
+    /**
+    * Set to true if this replacement shipment should be free for the customer.
+    */
+    'free': boolean;
+    /**
+    * Set to true if you want to immediately charge the payment on this order, otherwise it will go to Accounts Receivable.
+    */
+    'immediateCharge': boolean;
+    /**
+    * Items to include in the replacement order
+    */
+    'items': Array<OrderReplacementItem>;
+    /**
+    * Original order id
+    */
+    'originalOrderId': string;
+    /**
+    * Shipping method to use.  If not specified or invalid then least cost shipping will take place.
+    */
+    'shippingMethod': string;
+    /**
+    * Set to true if you want to skip the payment as if it was successful.
+    */
+    'skipPayment': boolean;
+}
+
+export class OrderReplacementItem {
+    /**
+    * Cost to charge the customer if specified.  If not specified then the default item cost is used.
+    */
+    'arbitraryUnitCost': number;
+    /**
+    * Item ID
+    */
+    'merchantItemId': string;
+    /**
+    * Quantity
+    */
+    'quantity': number;
+}
+
+export class OrderReplacementResponse {
+    'chargeSuccessful': boolean;
+    'errorMessage': string;
+    'feedback': string;
+    'free': boolean;
+    'orderId': string;
+    'successful': boolean;
 }
 
 export class OrderResponse {
@@ -5980,6 +9610,10 @@ export class OrderShipping {
     */
     'dayPhone': string;
     /**
+    * Day time phone (E164 format)
+    */
+    'dayPhoneE164': string;
+    /**
     * Date the customer is requesting delivery on.  Typically used for perishable product delivery.
     */
     'deliveryDate': string;
@@ -5995,6 +9629,14 @@ export class OrderShipping {
     * Last name
     */
     'lastName': string;
+    /**
+    * If true, instructs UltraCart to apply the cheapest shipping method to this order.  Used only for channel partner order inserts.
+    */
+    'leastCostRoute': boolean;
+    /**
+    * List of shipping methods to consider if least_code_route is true. Used only for channel parter order inserts.
+    */
+    'leastCostRouteShippingMethods': Array<string>;
     /**
     * Lift gate requested (LTL shipping methods only)
     */
@@ -6055,6 +9697,7 @@ export class OrderShipping {
 }
 
 export class OrderSummary {
+    'arbitraryShippingHandlingTotal': Currency;
     'otherRefunded': Currency;
     'shippingHandlingRefunded': Currency;
     'shippingHandlingTotal': Currency;
@@ -6073,6 +9716,18 @@ export class OrderSummary {
 
 export class OrderTaxes {
     /**
+    * Arbitrary Tax, this is meaningless for updating an order.  For inserting a new order, this will override any internal tax calculations and should only be used for orders completed outside the system.
+    */
+    'arbitraryTax': number;
+    /**
+    * Arbitrary tax rate, this is meaningless for updating an order.  For inserting a new order, this will override any internal tax calculations and should only be used for orders completed outside the system.
+    */
+    'arbitraryTaxRate': number;
+    /**
+    * Arbitrary taxable subtotal, this is meaningless for updating an order.  For inserting a new order, this will override any internal tax calculations and should only be used for orders completed outside the system.
+    */
+    'arbitraryTaxableSubtotal': number;
+    /**
     * QuickBooks tax city code
     */
     'taxCityAccountingCode': string;
@@ -6089,11 +9744,15 @@ export class OrderTaxes {
     */
     'taxCountyAccountingCode': string;
     /**
+    * True if gift charge is taxed
+    */
+    'taxGiftCharge': boolean;
+    /**
     * QuickBooks tax postal code code
     */
     'taxPostalCodeAccountingCode': string;
     /**
-    * Tax rate
+    * Tax rate, this is meaningless for updating an order.  For inserting a new order, if you need to override internal tax calculations, use the arbitrary fields.
     */
     'taxRate': number;
     /**
@@ -6117,7 +9776,11 @@ export class OrderTaxes {
     */
     'taxRateState': number;
     /**
-    * QuickBOoks tax state code
+    * True if shipping is taxed
+    */
+    'taxShipping': boolean;
+    /**
+    * QuickBooks tax state code
     */
     'taxStateAccountingCode': string;
 }
@@ -6133,6 +9796,160 @@ export class OrdersResponse {
     * Indicates if API call was successful
     */
     'success': boolean;
+}
+
+export class PricingTier {
+    /**
+    * Allow 3rd party billing
+    */
+    'allow3rdPartyBilling': boolean;
+    /**
+    * Allow COD
+    */
+    'allowCod': boolean;
+    /**
+    * Allow purchase order
+    */
+    'allowPurchaseOrder': boolean;
+    /**
+    * Allow quote request
+    */
+    'allowQuoteRequest': boolean;
+    'approvalNotification': PricingTierNotification;
+    /**
+    * Auto approve COD
+    */
+    'autoApproveCod': boolean;
+    /**
+    * Auto approve purchase order
+    */
+    'autoApprovePurchaseOrder': boolean;
+    /**
+    * Default on wholesale signup
+    */
+    'defaultOnWholesaleSignup': boolean;
+    /**
+    * Default percentage discount
+    */
+    'defaultPercentageDiscount': number;
+    /**
+    * Default shipping method oid
+    */
+    'defaultShippingMethodOid': number;
+    /**
+    * Default tier
+    */
+    'defaultTier': boolean;
+    /**
+    * Display on wholesale signup
+    */
+    'displayOnWholesaleSignup': boolean;
+    /**
+    * Exclude from free promotion
+    */
+    'excludeFromFreePromotion': boolean;
+    /**
+    * Exempt shipping handling charge
+    */
+    'exemptShippingHandlingCharge': boolean;
+    /**
+    * Free shipping
+    */
+    'freeShipping': boolean;
+    /**
+    * Free shipping minimum
+    */
+    'freeShippingMinimum': number;
+    /**
+    * Maximum item count
+    */
+    'maximumItemCount': number;
+    /**
+    * Minimum item count
+    */
+    'minimumItemCount': number;
+    /**
+    * Minimum subtotal
+    */
+    'minimumSubtotal': number;
+    /**
+    * Name
+    */
+    'name': string;
+    /**
+    * No coupons
+    */
+    'noCoupons': boolean;
+    /**
+    * No free shipping
+    */
+    'noFreeShipping': boolean;
+    /**
+    * No realtime charge
+    */
+    'noRealtimeCharge': boolean;
+    /**
+    * Not valid when coupon present
+    */
+    'notValidWhenCouponPresent': boolean;
+    /**
+    * Pricing Tier Oid
+    */
+    'pricingTierOid': number;
+    /**
+    * Realtime percentage discount
+    */
+    'realtimePercentageDiscount': number;
+    'signupNotification': PricingTierNotification;
+    /**
+    * Suppress buySAFE
+    */
+    'suppressBuysafe': boolean;
+    /**
+    * Suppress mailing list
+    */
+    'suppressMailingList': boolean;
+    /**
+    * Tax Exempt
+    */
+    'taxExempt': boolean;
+    /**
+    * Track separately
+    */
+    'trackSeparately': boolean;
+}
+
+export class PricingTierNotification {
+    /**
+    * Notification format
+    */
+    'format': string;
+    /**
+    * Notification subject
+    */
+    'subject': string;
+    /**
+    * Notification text
+    */
+    'text': string;
+}
+
+export class PricingTiersResponse {
+    'error': Error;
+    'metadata': ResponseMetadata;
+    /**
+    * pricing_tiers
+    */
+    'pricingTiers': Array<PricingTier>;
+    /**
+    * Indicates if API call was successful
+    */
+    'success': boolean;
+}
+
+export class Property {
+    'name': string;
+    'value': string;
 }
 
 export class ResponseMetadata {
@@ -6168,6 +9985,489 @@ export class ResultSet {
     * The total number of records in the result set.  May be null if the number is not known and the client should continue iterating as long as more is true.
     */
     'totalRecords': number;
+}
+
+export class SelfConfig {
+    /**
+    * True if sales tax should be collected based on billing address instead of shipping address
+    */
+    'taxBilling': boolean;
+}
+
+export class StateProvince {
+    /**
+    * abbreviation
+    */
+    'abbreviation': string;
+    /**
+    * name
+    */
+    'name': string;
+}
+
+export class StepWaiting {
+    'commseqStepUuid': string;
+    'numberWaiting': number;
+}
+
+export class TaxCity {
+    /**
+    * Accounting code for programs such as QuickBooks
+    */
+    'accountingCode': string;
+    /**
+    * City
+    */
+    'city': string;
+    /**
+    * Tax record object identifier used internally by database
+    */
+    'cityOid': number;
+    /**
+    * Tax record object identifier used internally by database
+    */
+    'countyOid': number;
+    /**
+    * Flag instructing engine to not collect city tax for this city
+    */
+    'dontCollectCity': boolean;
+    /**
+    * Flag instructing engine to not collect postal code tax for this city
+    */
+    'dontCollectPostalCode': boolean;
+    /**
+    * Postal Codes within this city
+    */
+    'postalCodes': Array<TaxPostalCode>;
+    /**
+    * Tax Rate
+    */
+    'taxRate': number;
+    /**
+    * Tax rate formatted
+    */
+    'taxRateFormatted': string;
+}
+
+export class TaxCountry {
+    /**
+    * Accounting code for programs such as QuickBooks
+    */
+    'accountingCode': string;
+    /**
+    * Country code (2 characters
+    */
+    'countryCode': string;
+    /**
+    * Tax record object identifier used internally by database
+    */
+    'countryOid': number;
+    /**
+    * States (or regions or territories) within this country
+    */
+    'states': Array<TaxState>;
+    /**
+    * True if taxation within this jurisdiction should charge tax on gift charge
+    */
+    'taxGiftCharge': boolean;
+    /**
+    * True if taxation within this jurisdiction should charge tax on gift wrap
+    */
+    'taxGiftWrap': boolean;
+    /**
+    * Tax Rate
+    */
+    'taxRate': number;
+    /**
+    * Tax rate formatted
+    */
+    'taxRateFormatted': string;
+    /**
+    * True if taxation within this jurisdiction should charge tax on shipping
+    */
+    'taxShipping': boolean;
+}
+
+export class TaxCountryCode {
+    /**
+    * Accounting code for programs such as QuickBooks
+    */
+    'accountingCode': string;
+    /**
+    * Country code (2 characters
+    */
+    'countryCode': string;
+    /**
+    * Country name
+    */
+    'countryName': string;
+    /**
+    * Tax Rate
+    */
+    'taxRate': number;
+    /**
+    * Tax rate formatted
+    */
+    'taxRateFormatted': string;
+}
+
+export class TaxCounty {
+    /**
+    * Accounting code for programs such as QuickBooks
+    */
+    'accountingCode': string;
+    /**
+    * Cities within this city
+    */
+    'cities': Array<TaxCity>;
+    /**
+    * County
+    */
+    'county': string;
+    /**
+    * Tax record object identifier used internally by database
+    */
+    'countyOid': number;
+    /**
+    * Flag instructing engine to not collect city tax for this county
+    */
+    'dontCollectCity': boolean;
+    /**
+    * Flag instructing engine to not collect county tax for this county
+    */
+    'dontCollectCounty': boolean;
+    /**
+    * Flag instructing engine to not collect postal code tax for this county
+    */
+    'dontCollectPostalCode': boolean;
+    /**
+    * Tax record object identifier used internally by database
+    */
+    'stateOid': number;
+    /**
+    * Tax Rate
+    */
+    'taxRate': number;
+    /**
+    * Tax rate formatted
+    */
+    'taxRateFormatted': string;
+}
+
+export class TaxJarConfig {
+    /**
+    * True if TaxJar is active for this merchant
+    */
+    'active': boolean;
+    /**
+    * TaxJar API key
+    */
+    'apiKey': string;
+    /**
+    * True if this TaxJar configuration is to estimate taxes only and not report placed orders to TaxJar
+    */
+    'estimateOnly': boolean;
+    /**
+    * Send test orders through to TaxJar.  The default is to not transmit test orders to TaxJar.
+    */
+    'sendTestOrders': boolean;
+    /**
+    * Use distribution center from address
+    */
+    'useDistributionCenterFrom': boolean;
+}
+
+export class TaxPostalCode {
+    /**
+    * Accounting code for programs such as QuickBooks
+    */
+    'accountingCode': string;
+    /**
+    * Tax record object identifier used internally by database
+    */
+    'cityOid': number;
+    /**
+    * Flag instructing engine to not collect postal code tax for this postal code
+    */
+    'dontCollectPostalCode': boolean;
+    /**
+    * Postal Code (5 digits)
+    */
+    'postalCode': string;
+    /**
+    * Tax record object identifier used internally by database
+    */
+    'postalCodeOid': number;
+    /**
+    * Tax Rate
+    */
+    'taxRate': number;
+    /**
+    * Tax rate formatted
+    */
+    'taxRateFormatted': string;
+}
+
+export class TaxProviderActivateResult {
+    'details': string;
+    /**
+    * True if the connection was successful
+    */
+    'success': boolean;
+}
+
+export class TaxProviderAvalara {
+    'configuration': AvalaraConfig;
+    /**
+    * Description
+    */
+    'description': string;
+    /**
+    * Selected
+    */
+    'selected': boolean;
+    /**
+    * Title
+    */
+    'title': string;
+}
+
+export class TaxProviderAvalaraCompaniesResult {
+    /**
+    * Tax companies configured by the merchant
+    */
+    'companies': Array<TaxProviderAvalaraCompany>;
+}
+
+export class TaxProviderAvalaraCompany {
+    /**
+    * Company code
+    */
+    'companyCode': string;
+    /**
+    * Company name
+    */
+    'companyName': string;
+    /**
+    * Description
+    */
+    'description': string;
+    /**
+    * Selected
+    */
+    'selected': boolean;
+    /**
+    * Title
+    */
+    'title': string;
+}
+
+export class TaxProviderSelf {
+    'configuration': SelfConfig;
+    /**
+    * Countries that collect sales tax
+    */
+    'countries': Array<TaxCountry>;
+    /**
+    * Description
+    */
+    'description': string;
+    /**
+    * Selected
+    */
+    'selected': boolean;
+    /**
+    * Title
+    */
+    'title': string;
+}
+
+export class TaxProviderSelfCountriesResponse {
+    /**
+    * countries
+    */
+    'countries': Array<TaxCountryCode>;
+}
+
+export class TaxProviderSelfRegionsResponse {
+    /**
+    * regions
+    */
+    'regions': Array<TaxStateCode>;
+}
+
+export class TaxProviderTaxJar {
+    'configuration': TaxJarConfig;
+    /**
+    * Description
+    */
+    'description': string;
+    /**
+    * Selected
+    */
+    'selected': boolean;
+    /**
+    * Title
+    */
+    'title': string;
+}
+
+export class TaxProviderTestResult {
+    'details': string;
+    /**
+    * True if the connection was successful
+    */
+    'success': boolean;
+}
+
+export class TaxProviderUltraCart {
+    'configuration': UltraCartConfig;
+    /**
+    * Description
+    */
+    'description': string;
+    /**
+    * Selected
+    */
+    'selected': boolean;
+    /**
+    * States in the union showing their management status
+    */
+    'states': Array<TaxProviderUltraCartState>;
+    /**
+    * Title
+    */
+    'title': string;
+}
+
+export class TaxProviderUltraCartState {
+    /**
+    * True if this state taxes are managed by UltraCart
+    */
+    'enabled': boolean;
+    /**
+    * State Code (2 digits)
+    */
+    'stateCode': string;
+    /**
+    * Fully spelled out state name
+    */
+    'stateName': string;
+    /**
+    * True if gift charges should be taxed in this state.
+    */
+    'taxGiftCharge': boolean;
+    /**
+    * True if gift wrap should be taxed in this state.
+    */
+    'taxGiftWrap': boolean;
+    /**
+    * State tax rate formatted for display
+    */
+    'taxRateFormatted': string;
+    /**
+    * True if shipping should be taxed in this state.
+    */
+    'taxShipping': boolean;
+}
+
+export class TaxProvidersResponse {
+    'avalara': TaxProviderAvalara;
+    'error': Error;
+    'metadata': ResponseMetadata;
+    'self': TaxProviderSelf;
+    /**
+    * Indicates if API call was successful
+    */
+    'success': boolean;
+    'taxjar': TaxProviderTaxJar;
+    'ultracart': TaxProviderUltraCart;
+}
+
+export class TaxState {
+    /**
+    * Accounting code for programs such as QuickBooks
+    */
+    'accountingCode': string;
+    /**
+    * Counties within this state
+    */
+    'counties': Array<TaxCounty>;
+    /**
+    * Tax record object identifier used internally by database
+    */
+    'countryOid': number;
+    /**
+    * Flag instructing engine to not collect city tax for this state
+    */
+    'dontCollectCity': boolean;
+    /**
+    * Flag instructing engine to not collect county tax for this state
+    */
+    'dontCollectCounty': boolean;
+    /**
+    * Flag instructing engine to not collect postal code tax for this state
+    */
+    'dontCollectPostalCode': boolean;
+    /**
+    * Flag instructing engine to not collect state tax for this state
+    */
+    'dontCollectState': boolean;
+    /**
+    * State code
+    */
+    'stateCode': string;
+    /**
+    * Tax record object identifier used internally by database
+    */
+    'stateOid': number;
+    /**
+    * True if taxation within this jurisdiction should charge tax on gift charge
+    */
+    'taxGiftCharge': boolean;
+    /**
+    * True if taxation within this jurisdiction should charge tax on gift wrap
+    */
+    'taxGiftWrap': boolean;
+    /**
+    * Tax Rate
+    */
+    'taxRate': number;
+    /**
+    * Tax rate formatted
+    */
+    'taxRateFormatted': string;
+    /**
+    * True if taxation within this jurisdiction should charge tax on shipping
+    */
+    'taxShipping': boolean;
+    /**
+    * If true, use UltraCart managed rates for this state
+    */
+    'useUltracartManagedRates': boolean;
+}
+
+export class TaxStateCode {
+    /**
+    * Accounting code for programs such as QuickBooks
+    */
+    'accountingCode': string;
+    /**
+    * State code (2 characters
+    */
+    'stateCode': string;
+    /**
+    * State name
+    */
+    'stateName': string;
+    /**
+    * Tax Rate
+    */
+    'taxRate': number;
+    /**
+    * Tax rate formatted
+    */
+    'taxRateFormatted': string;
 }
 
 export class TempMultimedia {
@@ -6217,6 +10517,19 @@ export class TempMultimediaResponse {
     */
     'success': boolean;
     'tempMultimedia': TempMultimedia;
+}
+
+export class UltraCartConfig {
+    /**
+    * True if sales tax should be collected based on billing address instead of shipping address
+    */
+    'taxBilling': boolean;
+}
+
+export class VerificationRecord {
+    'name': string;
+    'type': string;
+    'value': string;
 }
 
 export class Webhook {
@@ -6336,6 +10649,10 @@ export class WebhookEventSubscription {
     * True if this is event is subscribed to
     */
     'subscribed': boolean;
+    /**
+    * True if the event can be triggered to reflow existing records
+    */
+    'supportsReflow': boolean;
     /**
     * The webhook event object identifier
     */
@@ -6539,6 +10856,198 @@ export class VoidAuth implements Authentication {
     }
 }
 
+export enum AffiliateApiApiKeys {
+    ultraCartBrowserApiKey,
+    ultraCartSimpleApiKey,
+}
+
+export class AffiliateApi {
+    protected basePath = defaultBasePath;
+    protected defaultHeaders : any = {};
+    protected _useQuerystring : boolean = false;
+
+    protected authentications = {
+        'default': <Authentication>new VoidAuth(),
+        'ultraCartBrowserApiKey': new ApiKeyAuth('header', 'x-ultracart-browser-key'),
+        'ultraCartOauth': new OAuth(),
+        'ultraCartSimpleApiKey': new ApiKeyAuth('header', 'x-ultracart-simple-key'),
+    }
+
+    constructor(basePath?: string);
+    constructor(basePathOrUsername: string, password?: string, basePath?: string) {
+        if (password) {
+            if (basePath) {
+                this.basePath = basePath;
+            }
+        } else {
+            if (basePathOrUsername) {
+                this.basePath = basePathOrUsername
+            }
+        }
+    }
+
+    set useQuerystring(value: boolean) {
+        this._useQuerystring = value;
+    }
+
+    public setApiKey(key: AffiliateApiApiKeys, value: string) {
+        this.authentications[AffiliateApiApiKeys[key]].apiKey = value;
+    }
+
+    set accessToken(token: string) {
+        this.authentications.ultraCartOauth.accessToken = token;
+    }
+    private extendObj<T1,T2>(objA: T1, objB: T2) {
+        for(let key in objB){
+            if(objB.hasOwnProperty(key)){
+                objA[key] = objB[key];
+            }
+        }
+        return <T1&T2>objA;
+    }
+    /**
+     * Retrieve clicks
+     * Retrieves a group of clicks from the account based on a query object.  If no parameters are specified, the API call will fail with a bad request error.  Always specify some parameters to limit the scope of the clicks returned to ones you are truly interested in.  You will need to make multiple API calls in order to retrieve the entire result set since this API performs result set pagination. 
+     * @param clickQuery Click query
+     * @param limit The maximum number of records to return on this one API call. (Maximum 10000)
+     * @param offset Pagination of the record set.  Offset is a zero based index.
+     * @param expand The object expansion to perform on the result.  Only option is link.
+     */
+    public getClicksByQuery (clickQuery: AffiliateClickQuery, limit?: number, offset?: number, expand?: string) : Promise<{ response: http.ClientResponse; body: AffiliateClicksResponse;  }> {
+        const localVarPath = this.basePath + '/affiliate/clicks/query';
+        let queryParameters: any = {};
+        let headerParams: any = this.extendObj({}, this.defaultHeaders);
+        let formParams: any = {};
+
+
+        // verify required parameter 'clickQuery' is not null or undefined
+        if (clickQuery === null || clickQuery === undefined) {
+            throw new Error('Required parameter clickQuery was null or undefined when calling getClicksByQuery.');
+        }
+
+        if (limit !== undefined) {
+            queryParameters['_limit'] = limit;
+        }
+
+        if (offset !== undefined) {
+            queryParameters['_offset'] = offset;
+        }
+
+        if (expand !== undefined) {
+            queryParameters['_expand'] = expand;
+        }
+
+        let useFormData = false;
+
+        let requestOptions: request.Options = {
+            method: 'POST',
+            qs: queryParameters,
+            headers: headerParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+            body: clickQuery,
+        };
+
+        this.authentications.ultraCartOauth.applyToRequest(requestOptions);
+
+        this.authentications.ultraCartSimpleApiKey.applyToRequest(requestOptions);
+
+        this.authentications.default.applyToRequest(requestOptions);
+
+        if (Object.keys(formParams).length) {
+            if (useFormData) {
+                (<any>requestOptions).formData = formParams;
+            } else {
+                requestOptions.form = formParams;
+            }
+        }
+        return new Promise<{ response: http.ClientResponse; body: AffiliateClicksResponse;  }>((resolve, reject) => {
+            request(requestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    if (response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * Retrieve ledger entries
+     * Retrieves a group of ledger entries from the account based on a query object.  If no parameters are specified, the API call will fail with a bad request error.  Always specify some parameters to limit the scope of the ledgers returned to ones you are truly interested in.  You will need to make multiple API calls in order to retrieve the entire result set since this API performs result set pagination. 
+     * @param ledgerQuery Ledger query
+     * @param limit The maximum number of records to return on this one API call. (Maximum 200)
+     * @param offset Pagination of the record set.  Offset is a zero based index.
+     * @param expand The object expansion to perform on the result.  Only option is link.
+     */
+    public getLedgersByQuery (ledgerQuery: AffiliateLedgerQuery, limit?: number, offset?: number, expand?: string) : Promise<{ response: http.ClientResponse; body: AffiliateLedgersResponse;  }> {
+        const localVarPath = this.basePath + '/affiliate/ledgers/query';
+        let queryParameters: any = {};
+        let headerParams: any = this.extendObj({}, this.defaultHeaders);
+        let formParams: any = {};
+
+
+        // verify required parameter 'ledgerQuery' is not null or undefined
+        if (ledgerQuery === null || ledgerQuery === undefined) {
+            throw new Error('Required parameter ledgerQuery was null or undefined when calling getLedgersByQuery.');
+        }
+
+        if (limit !== undefined) {
+            queryParameters['_limit'] = limit;
+        }
+
+        if (offset !== undefined) {
+            queryParameters['_offset'] = offset;
+        }
+
+        if (expand !== undefined) {
+            queryParameters['_expand'] = expand;
+        }
+
+        let useFormData = false;
+
+        let requestOptions: request.Options = {
+            method: 'POST',
+            qs: queryParameters,
+            headers: headerParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+            body: ledgerQuery,
+        };
+
+        this.authentications.ultraCartOauth.applyToRequest(requestOptions);
+
+        this.authentications.ultraCartSimpleApiKey.applyToRequest(requestOptions);
+
+        this.authentications.default.applyToRequest(requestOptions);
+
+        if (Object.keys(formParams).length) {
+            if (useFormData) {
+                (<any>requestOptions).formData = formParams;
+            } else {
+                requestOptions.form = formParams;
+            }
+        }
+        return new Promise<{ response: http.ClientResponse; body: AffiliateLedgersResponse;  }>((resolve, reject) => {
+            request(requestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    if (response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+}
 export enum AutoorderApiApiKeys {
     ultraCartBrowserApiKey,
     ultraCartSimpleApiKey,
@@ -6605,6 +11114,128 @@ export class AutoorderApi {
         // verify required parameter 'autoOrderOid' is not null or undefined
         if (autoOrderOid === null || autoOrderOid === undefined) {
             throw new Error('Required parameter autoOrderOid was null or undefined when calling getAutoOrder.');
+        }
+
+        if (expand !== undefined) {
+            queryParameters['_expand'] = expand;
+        }
+
+        let useFormData = false;
+
+        let requestOptions: request.Options = {
+            method: 'GET',
+            qs: queryParameters,
+            headers: headerParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.ultraCartOauth.applyToRequest(requestOptions);
+
+        this.authentications.ultraCartSimpleApiKey.applyToRequest(requestOptions);
+
+        this.authentications.default.applyToRequest(requestOptions);
+
+        if (Object.keys(formParams).length) {
+            if (useFormData) {
+                (<any>requestOptions).formData = formParams;
+            } else {
+                requestOptions.form = formParams;
+            }
+        }
+        return new Promise<{ response: http.ClientResponse; body: AutoOrderResponse;  }>((resolve, reject) => {
+            request(requestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    if (response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * Retrieve an auto order
+     * Retrieves a single auto order using the specified reference (original) order id. 
+     * @param autoOrderCode The auto order oid to retrieve.
+     * @param expand The object expansion to perform on the result.  See documentation for examples
+     */
+    public getAutoOrderByCode (autoOrderCode: string, expand?: string) : Promise<{ response: http.ClientResponse; body: AutoOrderResponse;  }> {
+        const localVarPath = this.basePath + '/auto_order/auto_orders/code/{auto_order_code}'
+            .replace('{' + 'auto_order_code' + '}', String(autoOrderCode));
+        let queryParameters: any = {};
+        let headerParams: any = this.extendObj({}, this.defaultHeaders);
+        let formParams: any = {};
+
+
+        // verify required parameter 'autoOrderCode' is not null or undefined
+        if (autoOrderCode === null || autoOrderCode === undefined) {
+            throw new Error('Required parameter autoOrderCode was null or undefined when calling getAutoOrderByCode.');
+        }
+
+        if (expand !== undefined) {
+            queryParameters['_expand'] = expand;
+        }
+
+        let useFormData = false;
+
+        let requestOptions: request.Options = {
+            method: 'GET',
+            qs: queryParameters,
+            headers: headerParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.ultraCartOauth.applyToRequest(requestOptions);
+
+        this.authentications.ultraCartSimpleApiKey.applyToRequest(requestOptions);
+
+        this.authentications.default.applyToRequest(requestOptions);
+
+        if (Object.keys(formParams).length) {
+            if (useFormData) {
+                (<any>requestOptions).formData = formParams;
+            } else {
+                requestOptions.form = formParams;
+            }
+        }
+        return new Promise<{ response: http.ClientResponse; body: AutoOrderResponse;  }>((resolve, reject) => {
+            request(requestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    if (response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * Retrieve an auto order
+     * Retrieves a single auto order using the specified reference (original) order id. 
+     * @param referenceOrderId The auto order oid to retrieve.
+     * @param expand The object expansion to perform on the result.  See documentation for examples
+     */
+    public getAutoOrderByReferenceOrderId (referenceOrderId: string, expand?: string) : Promise<{ response: http.ClientResponse; body: AutoOrderResponse;  }> {
+        const localVarPath = this.basePath + '/auto_order/auto_orders/reference_order_id/{reference_order_id}'
+            .replace('{' + 'reference_order_id' + '}', String(referenceOrderId));
+        let queryParameters: any = {};
+        let headerParams: any = this.extendObj({}, this.defaultHeaders);
+        let formParams: any = {};
+
+
+        // verify required parameter 'referenceOrderId' is not null or undefined
+        if (referenceOrderId === null || referenceOrderId === undefined) {
+            throw new Error('Required parameter referenceOrderId was null or undefined when calling getAutoOrderByReferenceOrderId.');
         }
 
         if (expand !== undefined) {
@@ -6784,6 +11415,82 @@ export class AutoorderApi {
             uri: localVarPath,
             useQuerystring: this._useQuerystring,
             json: true,
+        };
+
+        this.authentications.ultraCartOauth.applyToRequest(requestOptions);
+
+        this.authentications.ultraCartSimpleApiKey.applyToRequest(requestOptions);
+
+        this.authentications.default.applyToRequest(requestOptions);
+
+        if (Object.keys(formParams).length) {
+            if (useFormData) {
+                (<any>requestOptions).formData = formParams;
+            } else {
+                requestOptions.form = formParams;
+            }
+        }
+        return new Promise<{ response: http.ClientResponse; body: AutoOrdersResponse;  }>((resolve, reject) => {
+            request(requestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    if (response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * Retrieve auto orders
+     * Retrieves a group of auto orders from the account based on a query object.  You will need to make multiple API calls in order to retrieve the entire result set since this API performs result set pagination. 
+     * @param autoOrderQuery Auto order query
+     * @param limit The maximum number of records to return on this one API call. (Maximum 200)
+     * @param offset Pagination of the record set.  Offset is a zero based index.
+     * @param sort The sort order of the auto orders.  See Sorting documentation for examples of using multiple values and sorting by ascending and descending.
+     * @param expand The object expansion to perform on the result.
+     */
+    public getAutoOrdersByQuery (autoOrderQuery: AutoOrderQuery, limit?: number, offset?: number, sort?: string, expand?: string) : Promise<{ response: http.ClientResponse; body: AutoOrdersResponse;  }> {
+        const localVarPath = this.basePath + '/auto_order/auto_orders/query';
+        let queryParameters: any = {};
+        let headerParams: any = this.extendObj({}, this.defaultHeaders);
+        let formParams: any = {};
+
+
+        // verify required parameter 'autoOrderQuery' is not null or undefined
+        if (autoOrderQuery === null || autoOrderQuery === undefined) {
+            throw new Error('Required parameter autoOrderQuery was null or undefined when calling getAutoOrdersByQuery.');
+        }
+
+        if (limit !== undefined) {
+            queryParameters['_limit'] = limit;
+        }
+
+        if (offset !== undefined) {
+            queryParameters['_offset'] = offset;
+        }
+
+        if (sort !== undefined) {
+            queryParameters['_sort'] = sort;
+        }
+
+        if (expand !== undefined) {
+            queryParameters['_expand'] = expand;
+        }
+
+        let useFormData = false;
+
+        let requestOptions: request.Options = {
+            method: 'POST',
+            qs: queryParameters,
+            headers: headerParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+            body: autoOrderQuery,
         };
 
         this.authentications.ultraCartOauth.applyToRequest(requestOptions);
@@ -7451,6 +12158,115 @@ export class CheckoutApi {
         });
     }
     /**
+     * Get affirm checkout (by cart id)
+     * Get a Affirm checkout object for the specified cart_id parameter. 
+     * @param cartId Cart ID to retrieve
+     */
+    public getAffirmCheckout (cartId: string) : Promise<{ response: http.ClientResponse; body: CartAffirmCheckoutResponse;  }> {
+        const localVarPath = this.basePath + '/checkout/cart/{cart_id}/affirmCheckout'
+            .replace('{' + 'cart_id' + '}', String(cartId));
+        let queryParameters: any = {};
+        let headerParams: any = this.extendObj({}, this.defaultHeaders);
+        let formParams: any = {};
+
+
+        // verify required parameter 'cartId' is not null or undefined
+        if (cartId === null || cartId === undefined) {
+            throw new Error('Required parameter cartId was null or undefined when calling getAffirmCheckout.');
+        }
+
+        let useFormData = false;
+
+        let requestOptions: request.Options = {
+            method: 'GET',
+            qs: queryParameters,
+            headers: headerParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.ultraCartBrowserApiKey.applyToRequest(requestOptions);
+
+        this.authentications.ultraCartOauth.applyToRequest(requestOptions);
+
+        this.authentications.ultraCartSimpleApiKey.applyToRequest(requestOptions);
+
+        this.authentications.default.applyToRequest(requestOptions);
+
+        if (Object.keys(formParams).length) {
+            if (useFormData) {
+                (<any>requestOptions).formData = formParams;
+            } else {
+                requestOptions.form = formParams;
+            }
+        }
+        return new Promise<{ response: http.ClientResponse; body: CartAffirmCheckoutResponse;  }>((resolve, reject) => {
+            request(requestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    if (response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * Allowed countries
+     * Lookup the allowed countries for this merchant id 
+     */
+    public getAllowedCountries () : Promise<{ response: http.ClientResponse; body: CheckoutAllowedCountriesResponse;  }> {
+        const localVarPath = this.basePath + '/checkout/allowedCountries';
+        let queryParameters: any = {};
+        let headerParams: any = this.extendObj({}, this.defaultHeaders);
+        let formParams: any = {};
+
+
+        let useFormData = false;
+
+        let requestOptions: request.Options = {
+            method: 'POST',
+            qs: queryParameters,
+            headers: headerParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.ultraCartBrowserApiKey.applyToRequest(requestOptions);
+
+        this.authentications.ultraCartOauth.applyToRequest(requestOptions);
+
+        this.authentications.ultraCartSimpleApiKey.applyToRequest(requestOptions);
+
+        this.authentications.default.applyToRequest(requestOptions);
+
+        if (Object.keys(formParams).length) {
+            if (useFormData) {
+                (<any>requestOptions).formData = formParams;
+            } else {
+                requestOptions.form = formParams;
+            }
+        }
+        return new Promise<{ response: http.ClientResponse; body: CheckoutAllowedCountriesResponse;  }>((resolve, reject) => {
+            request(requestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    if (response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
      * Get cart
      * If the cookie is set on the browser making the request then it will return their active cart.  Otherwise it will create a new cart. 
      * @param expand The object expansion to perform on the result.  See documentation for examples
@@ -7633,8 +12449,66 @@ export class CheckoutApi {
         });
     }
     /**
+     * Get state/province list for a country code
+     * Lookup a state/province list for a given country code 
+     * @param countryCode Two letter ISO country code
+     */
+    public getStateProvincesForCountry (countryCode: string) : Promise<{ response: http.ClientResponse; body: CheckoutStateProvinceResponse;  }> {
+        const localVarPath = this.basePath + '/checkout/stateProvincesForCountry/{country_code}'
+            .replace('{' + 'country_code' + '}', String(countryCode));
+        let queryParameters: any = {};
+        let headerParams: any = this.extendObj({}, this.defaultHeaders);
+        let formParams: any = {};
+
+
+        // verify required parameter 'countryCode' is not null or undefined
+        if (countryCode === null || countryCode === undefined) {
+            throw new Error('Required parameter countryCode was null or undefined when calling getStateProvincesForCountry.');
+        }
+
+        let useFormData = false;
+
+        let requestOptions: request.Options = {
+            method: 'POST',
+            qs: queryParameters,
+            headers: headerParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.ultraCartBrowserApiKey.applyToRequest(requestOptions);
+
+        this.authentications.ultraCartOauth.applyToRequest(requestOptions);
+
+        this.authentications.ultraCartSimpleApiKey.applyToRequest(requestOptions);
+
+        this.authentications.default.applyToRequest(requestOptions);
+
+        if (Object.keys(formParams).length) {
+            if (useFormData) {
+                (<any>requestOptions).formData = formParams;
+            } else {
+                requestOptions.form = formParams;
+            }
+        }
+        return new Promise<{ response: http.ClientResponse; body: CheckoutStateProvinceResponse;  }>((resolve, reject) => {
+            request(requestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    if (response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
      * Handoff cart
-     * Handoff the browser to UltraCart for view cart on StoreFront, transfer to PayPal or finalization of the order (including upsell processing). 
+     * Handoff the browser to UltraCart for view cart on StoreFront, transfer to PayPal, transfer to Affirm or finalization of the order (including upsell processing). 
      * @param handoffRequest Handoff request
      * @param expand The object expansion to perform on the result.  See documentation for examples
      */
@@ -8200,6 +13074,728 @@ export class CheckoutApi {
         });
     }
 }
+export enum CouponApiApiKeys {
+    ultraCartBrowserApiKey,
+    ultraCartSimpleApiKey,
+}
+
+export class CouponApi {
+    protected basePath = defaultBasePath;
+    protected defaultHeaders : any = {};
+    protected _useQuerystring : boolean = false;
+
+    protected authentications = {
+        'default': <Authentication>new VoidAuth(),
+        'ultraCartBrowserApiKey': new ApiKeyAuth('header', 'x-ultracart-browser-key'),
+        'ultraCartOauth': new OAuth(),
+        'ultraCartSimpleApiKey': new ApiKeyAuth('header', 'x-ultracart-simple-key'),
+    }
+
+    constructor(basePath?: string);
+    constructor(basePathOrUsername: string, password?: string, basePath?: string) {
+        if (password) {
+            if (basePath) {
+                this.basePath = basePath;
+            }
+        } else {
+            if (basePathOrUsername) {
+                this.basePath = basePathOrUsername
+            }
+        }
+    }
+
+    set useQuerystring(value: boolean) {
+        this._useQuerystring = value;
+    }
+
+    public setApiKey(key: CouponApiApiKeys, value: string) {
+        this.authentications[CouponApiApiKeys[key]].apiKey = value;
+    }
+
+    set accessToken(token: string) {
+        this.authentications.ultraCartOauth.accessToken = token;
+    }
+    private extendObj<T1,T2>(objA: T1, objB: T2) {
+        for(let key in objB){
+            if(objB.hasOwnProperty(key)){
+                objA[key] = objB[key];
+            }
+        }
+        return <T1&T2>objA;
+    }
+    /**
+     * Delete a coupon
+     * Delete a coupon on the UltraCart account. 
+     * @param couponOid The coupon_oid to delete.
+     */
+    public deleteCoupon (couponOid: number) : Promise<{ response: http.ClientResponse; body: CouponResponse;  }> {
+        const localVarPath = this.basePath + '/coupon/coupons/{coupon_oid}'
+            .replace('{' + 'coupon_oid' + '}', String(couponOid));
+        let queryParameters: any = {};
+        let headerParams: any = this.extendObj({}, this.defaultHeaders);
+        let formParams: any = {};
+
+
+        // verify required parameter 'couponOid' is not null or undefined
+        if (couponOid === null || couponOid === undefined) {
+            throw new Error('Required parameter couponOid was null or undefined when calling deleteCoupon.');
+        }
+
+        let useFormData = false;
+
+        let requestOptions: request.Options = {
+            method: 'DELETE',
+            qs: queryParameters,
+            headers: headerParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.ultraCartOauth.applyToRequest(requestOptions);
+
+        this.authentications.ultraCartSimpleApiKey.applyToRequest(requestOptions);
+
+        this.authentications.default.applyToRequest(requestOptions);
+
+        if (Object.keys(formParams).length) {
+            if (useFormData) {
+                (<any>requestOptions).formData = formParams;
+            } else {
+                requestOptions.form = formParams;
+            }
+        }
+        return new Promise<{ response: http.ClientResponse; body: CouponResponse;  }>((resolve, reject) => {
+            request(requestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    if (response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * Generates one time codes for a coupon
+     * Generate one time codes for a coupon 
+     * @param couponOid The coupon oid to generate codes.
+     * @param couponCodesRequest Coupon code generation parameters
+     */
+    public generateCouponCodes (couponOid: number, couponCodesRequest: CouponCodesRequest) : Promise<{ response: http.ClientResponse; body: CouponCodesResponse;  }> {
+        const localVarPath = this.basePath + '/coupon/coupons/{coupon_oid}/generate_codes'
+            .replace('{' + 'coupon_oid' + '}', String(couponOid));
+        let queryParameters: any = {};
+        let headerParams: any = this.extendObj({}, this.defaultHeaders);
+        let formParams: any = {};
+
+
+        // verify required parameter 'couponOid' is not null or undefined
+        if (couponOid === null || couponOid === undefined) {
+            throw new Error('Required parameter couponOid was null or undefined when calling generateCouponCodes.');
+        }
+
+        // verify required parameter 'couponCodesRequest' is not null or undefined
+        if (couponCodesRequest === null || couponCodesRequest === undefined) {
+            throw new Error('Required parameter couponCodesRequest was null or undefined when calling generateCouponCodes.');
+        }
+
+        let useFormData = false;
+
+        let requestOptions: request.Options = {
+            method: 'POST',
+            qs: queryParameters,
+            headers: headerParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+            body: couponCodesRequest,
+        };
+
+        this.authentications.ultraCartOauth.applyToRequest(requestOptions);
+
+        this.authentications.ultraCartSimpleApiKey.applyToRequest(requestOptions);
+
+        this.authentications.default.applyToRequest(requestOptions);
+
+        if (Object.keys(formParams).length) {
+            if (useFormData) {
+                (<any>requestOptions).formData = formParams;
+            } else {
+                requestOptions.form = formParams;
+            }
+        }
+        return new Promise<{ response: http.ClientResponse; body: CouponCodesResponse;  }>((resolve, reject) => {
+            request(requestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    if (response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * Generates one time codes by merchant code
+     * Generate one time codes by merchant code 
+     * @param merchantCode The merchant code to generate one time codes.
+     * @param couponCodesRequest Coupon code generation parameters
+     */
+    public generateOneTimeCodesByMerchantCode (merchantCode: string, couponCodesRequest: CouponCodesRequest) : Promise<{ response: http.ClientResponse; body: CouponCodesResponse;  }> {
+        const localVarPath = this.basePath + '/coupon/coupons/merchant_code/{merchant_code}/generate_codes'
+            .replace('{' + 'merchant_code' + '}', String(merchantCode));
+        let queryParameters: any = {};
+        let headerParams: any = this.extendObj({}, this.defaultHeaders);
+        let formParams: any = {};
+
+
+        // verify required parameter 'merchantCode' is not null or undefined
+        if (merchantCode === null || merchantCode === undefined) {
+            throw new Error('Required parameter merchantCode was null or undefined when calling generateOneTimeCodesByMerchantCode.');
+        }
+
+        // verify required parameter 'couponCodesRequest' is not null or undefined
+        if (couponCodesRequest === null || couponCodesRequest === undefined) {
+            throw new Error('Required parameter couponCodesRequest was null or undefined when calling generateOneTimeCodesByMerchantCode.');
+        }
+
+        let useFormData = false;
+
+        let requestOptions: request.Options = {
+            method: 'POST',
+            qs: queryParameters,
+            headers: headerParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+            body: couponCodesRequest,
+        };
+
+        this.authentications.ultraCartOauth.applyToRequest(requestOptions);
+
+        this.authentications.ultraCartSimpleApiKey.applyToRequest(requestOptions);
+
+        this.authentications.default.applyToRequest(requestOptions);
+
+        if (Object.keys(formParams).length) {
+            if (useFormData) {
+                (<any>requestOptions).formData = formParams;
+            } else {
+                requestOptions.form = formParams;
+            }
+        }
+        return new Promise<{ response: http.ClientResponse; body: CouponCodesResponse;  }>((resolve, reject) => {
+            request(requestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    if (response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * Retrieve a coupon
+     * Retrieves a single coupon using the specified coupon profile oid. 
+     * @param couponOid The coupon oid to retrieve.
+     * @param expand The object expansion to perform on the result.  See documentation for examples
+     */
+    public getCoupon (couponOid: number, expand?: string) : Promise<{ response: http.ClientResponse; body: CouponResponse;  }> {
+        const localVarPath = this.basePath + '/coupon/coupons/{coupon_oid}'
+            .replace('{' + 'coupon_oid' + '}', String(couponOid));
+        let queryParameters: any = {};
+        let headerParams: any = this.extendObj({}, this.defaultHeaders);
+        let formParams: any = {};
+
+
+        // verify required parameter 'couponOid' is not null or undefined
+        if (couponOid === null || couponOid === undefined) {
+            throw new Error('Required parameter couponOid was null or undefined when calling getCoupon.');
+        }
+
+        if (expand !== undefined) {
+            queryParameters['_expand'] = expand;
+        }
+
+        let useFormData = false;
+
+        let requestOptions: request.Options = {
+            method: 'GET',
+            qs: queryParameters,
+            headers: headerParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.ultraCartOauth.applyToRequest(requestOptions);
+
+        this.authentications.ultraCartSimpleApiKey.applyToRequest(requestOptions);
+
+        this.authentications.default.applyToRequest(requestOptions);
+
+        if (Object.keys(formParams).length) {
+            if (useFormData) {
+                (<any>requestOptions).formData = formParams;
+            } else {
+                requestOptions.form = formParams;
+            }
+        }
+        return new Promise<{ response: http.ClientResponse; body: CouponResponse;  }>((resolve, reject) => {
+            request(requestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    if (response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * Retrieve a coupon by merchant code
+     * Retrieves a single coupon using the specified merchant code. 
+     * @param merchantCode The coupon merchant code to retrieve.
+     * @param expand The object expansion to perform on the result.  See documentation for examples
+     */
+    public getCouponByMerchantCode (merchantCode: string, expand?: string) : Promise<{ response: http.ClientResponse; body: CouponResponse;  }> {
+        const localVarPath = this.basePath + '/coupon/coupons/merchant_code/{merchant_code}'
+            .replace('{' + 'merchant_code' + '}', String(merchantCode));
+        let queryParameters: any = {};
+        let headerParams: any = this.extendObj({}, this.defaultHeaders);
+        let formParams: any = {};
+
+
+        // verify required parameter 'merchantCode' is not null or undefined
+        if (merchantCode === null || merchantCode === undefined) {
+            throw new Error('Required parameter merchantCode was null or undefined when calling getCouponByMerchantCode.');
+        }
+
+        if (expand !== undefined) {
+            queryParameters['_expand'] = expand;
+        }
+
+        let useFormData = false;
+
+        let requestOptions: request.Options = {
+            method: 'GET',
+            qs: queryParameters,
+            headers: headerParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.ultraCartOauth.applyToRequest(requestOptions);
+
+        this.authentications.ultraCartSimpleApiKey.applyToRequest(requestOptions);
+
+        this.authentications.default.applyToRequest(requestOptions);
+
+        if (Object.keys(formParams).length) {
+            if (useFormData) {
+                (<any>requestOptions).formData = formParams;
+            } else {
+                requestOptions.form = formParams;
+            }
+        }
+        return new Promise<{ response: http.ClientResponse; body: CouponResponse;  }>((resolve, reject) => {
+            request(requestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    if (response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * Retrieve coupons
+     * Retrieves coupons for this account.  If no parameters are specified, all coupons will be returned.  You will need to make multiple API calls in order to retrieve the entire result set since this API performs result set pagination. 
+     * @param merchantCode Merchant code
+     * @param description Description
+     * @param couponType Coupon type
+     * @param startDateBegin Start date begin
+     * @param startDateEnd Start date end
+     * @param expirationDateBegin Expiration date begin
+     * @param expirationDateEnd Expiration date end
+     * @param affiliateOid Affiliate oid
+     * @param excludeExpired Exclude expired
+     * @param limit The maximum number of records to return on this one API call. (Max 200)
+     * @param offset Pagination of the record set.  Offset is a zero based index.
+     * @param sort The sort order of the coupons.  See Sorting documentation for examples of using multiple values and sorting by ascending and descending.
+     * @param expand The object expansion to perform on the result.  See documentation for examples
+     */
+    public getCoupons (merchantCode?: string, description?: string, couponType?: string, startDateBegin?: string, startDateEnd?: string, expirationDateBegin?: string, expirationDateEnd?: string, affiliateOid?: number, excludeExpired?: boolean, limit?: number, offset?: number, sort?: string, expand?: string) : Promise<{ response: http.ClientResponse; body: CouponsResponse;  }> {
+        const localVarPath = this.basePath + '/coupon/coupons';
+        let queryParameters: any = {};
+        let headerParams: any = this.extendObj({}, this.defaultHeaders);
+        let formParams: any = {};
+
+
+        if (merchantCode !== undefined) {
+            queryParameters['merchant_code'] = merchantCode;
+        }
+
+        if (description !== undefined) {
+            queryParameters['description'] = description;
+        }
+
+        if (couponType !== undefined) {
+            queryParameters['coupon_type'] = couponType;
+        }
+
+        if (startDateBegin !== undefined) {
+            queryParameters['start_date_begin'] = startDateBegin;
+        }
+
+        if (startDateEnd !== undefined) {
+            queryParameters['start_date_end'] = startDateEnd;
+        }
+
+        if (expirationDateBegin !== undefined) {
+            queryParameters['expiration_date_begin'] = expirationDateBegin;
+        }
+
+        if (expirationDateEnd !== undefined) {
+            queryParameters['expiration_date_end'] = expirationDateEnd;
+        }
+
+        if (affiliateOid !== undefined) {
+            queryParameters['affiliate_oid'] = affiliateOid;
+        }
+
+        if (excludeExpired !== undefined) {
+            queryParameters['exclude_expired'] = excludeExpired;
+        }
+
+        if (limit !== undefined) {
+            queryParameters['_limit'] = limit;
+        }
+
+        if (offset !== undefined) {
+            queryParameters['_offset'] = offset;
+        }
+
+        if (sort !== undefined) {
+            queryParameters['_sort'] = sort;
+        }
+
+        if (expand !== undefined) {
+            queryParameters['_expand'] = expand;
+        }
+
+        let useFormData = false;
+
+        let requestOptions: request.Options = {
+            method: 'GET',
+            qs: queryParameters,
+            headers: headerParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.ultraCartOauth.applyToRequest(requestOptions);
+
+        this.authentications.ultraCartSimpleApiKey.applyToRequest(requestOptions);
+
+        this.authentications.default.applyToRequest(requestOptions);
+
+        if (Object.keys(formParams).length) {
+            if (useFormData) {
+                (<any>requestOptions).formData = formParams;
+            } else {
+                requestOptions.form = formParams;
+            }
+        }
+        return new Promise<{ response: http.ClientResponse; body: CouponsResponse;  }>((resolve, reject) => {
+            request(requestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    if (response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * Retrieve coupons by query
+     * Retrieves coupons from the account.  If no parameters are specified, all coupons will be returned.  You will need to make multiple API calls in order to retrieve the entire result set since this API performs result set pagination. 
+     * @param couponQuery Coupon query
+     * @param limit The maximum number of records to return on this one API call. (Max 200)
+     * @param offset Pagination of the record set.  Offset is a zero based index.
+     * @param sort The sort order of the coupons.  See Sorting documentation for examples of using multiple values and sorting by ascending and descending.
+     * @param expand The object expansion to perform on the result.  See documentation for examples
+     */
+    public getCouponsByQuery (couponQuery: CouponQuery, limit?: number, offset?: number, sort?: string, expand?: string) : Promise<{ response: http.ClientResponse; body: CouponsResponse;  }> {
+        const localVarPath = this.basePath + '/coupon/coupons/query';
+        let queryParameters: any = {};
+        let headerParams: any = this.extendObj({}, this.defaultHeaders);
+        let formParams: any = {};
+
+
+        // verify required parameter 'couponQuery' is not null or undefined
+        if (couponQuery === null || couponQuery === undefined) {
+            throw new Error('Required parameter couponQuery was null or undefined when calling getCouponsByQuery.');
+        }
+
+        if (limit !== undefined) {
+            queryParameters['_limit'] = limit;
+        }
+
+        if (offset !== undefined) {
+            queryParameters['_offset'] = offset;
+        }
+
+        if (sort !== undefined) {
+            queryParameters['_sort'] = sort;
+        }
+
+        if (expand !== undefined) {
+            queryParameters['_expand'] = expand;
+        }
+
+        let useFormData = false;
+
+        let requestOptions: request.Options = {
+            method: 'GET',
+            qs: queryParameters,
+            headers: headerParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+            body: couponQuery,
+        };
+
+        this.authentications.ultraCartOauth.applyToRequest(requestOptions);
+
+        this.authentications.ultraCartSimpleApiKey.applyToRequest(requestOptions);
+
+        this.authentications.default.applyToRequest(requestOptions);
+
+        if (Object.keys(formParams).length) {
+            if (useFormData) {
+                (<any>requestOptions).formData = formParams;
+            } else {
+                requestOptions.form = formParams;
+            }
+        }
+        return new Promise<{ response: http.ClientResponse; body: CouponsResponse;  }>((resolve, reject) => {
+            request(requestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    if (response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * Retrieve values needed for a coupon editor
+     * Retrieve values needed for a coupon editor 
+     */
+    public getEditorValues () : Promise<{ response: http.ClientResponse; body: CouponEditorValues;  }> {
+        const localVarPath = this.basePath + '/coupon/editor_values';
+        let queryParameters: any = {};
+        let headerParams: any = this.extendObj({}, this.defaultHeaders);
+        let formParams: any = {};
+
+
+        let useFormData = false;
+
+        let requestOptions: request.Options = {
+            method: 'GET',
+            qs: queryParameters,
+            headers: headerParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.ultraCartOauth.applyToRequest(requestOptions);
+
+        this.authentications.ultraCartSimpleApiKey.applyToRequest(requestOptions);
+
+        this.authentications.default.applyToRequest(requestOptions);
+
+        if (Object.keys(formParams).length) {
+            if (useFormData) {
+                (<any>requestOptions).formData = formParams;
+            } else {
+                requestOptions.form = formParams;
+            }
+        }
+        return new Promise<{ response: http.ClientResponse; body: CouponEditorValues;  }>((resolve, reject) => {
+            request(requestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    if (response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * Insert a coupon
+     * Insert a coupon on the UltraCart account. 
+     * @param coupon Coupon to insert
+     * @param expand The object expansion to perform on the result.  See documentation for examples
+     */
+    public insertCoupon (coupon: Coupon, expand?: string) : Promise<{ response: http.ClientResponse; body: CouponResponse;  }> {
+        const localVarPath = this.basePath + '/coupon/coupons';
+        let queryParameters: any = {};
+        let headerParams: any = this.extendObj({}, this.defaultHeaders);
+        let formParams: any = {};
+
+
+        // verify required parameter 'coupon' is not null or undefined
+        if (coupon === null || coupon === undefined) {
+            throw new Error('Required parameter coupon was null or undefined when calling insertCoupon.');
+        }
+
+        if (expand !== undefined) {
+            queryParameters['_expand'] = expand;
+        }
+
+        let useFormData = false;
+
+        let requestOptions: request.Options = {
+            method: 'POST',
+            qs: queryParameters,
+            headers: headerParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+            body: coupon,
+        };
+
+        this.authentications.ultraCartOauth.applyToRequest(requestOptions);
+
+        this.authentications.ultraCartSimpleApiKey.applyToRequest(requestOptions);
+
+        this.authentications.default.applyToRequest(requestOptions);
+
+        if (Object.keys(formParams).length) {
+            if (useFormData) {
+                (<any>requestOptions).formData = formParams;
+            } else {
+                requestOptions.form = formParams;
+            }
+        }
+        return new Promise<{ response: http.ClientResponse; body: CouponResponse;  }>((resolve, reject) => {
+            request(requestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    if (response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * Update a coupon
+     * Update a coupon on the UltraCart account. 
+     * @param coupon Coupon to update
+     * @param couponOid The coupon_oid to update.
+     * @param expand The object expansion to perform on the result.  See documentation for examples
+     */
+    public updateCoupon (coupon: Coupon, couponOid: number, expand?: string) : Promise<{ response: http.ClientResponse; body: CouponResponse;  }> {
+        const localVarPath = this.basePath + '/coupon/coupons/{coupon_oid}'
+            .replace('{' + 'coupon_oid' + '}', String(couponOid));
+        let queryParameters: any = {};
+        let headerParams: any = this.extendObj({}, this.defaultHeaders);
+        let formParams: any = {};
+
+
+        // verify required parameter 'coupon' is not null or undefined
+        if (coupon === null || coupon === undefined) {
+            throw new Error('Required parameter coupon was null or undefined when calling updateCoupon.');
+        }
+
+        // verify required parameter 'couponOid' is not null or undefined
+        if (couponOid === null || couponOid === undefined) {
+            throw new Error('Required parameter couponOid was null or undefined when calling updateCoupon.');
+        }
+
+        if (expand !== undefined) {
+            queryParameters['_expand'] = expand;
+        }
+
+        let useFormData = false;
+
+        let requestOptions: request.Options = {
+            method: 'PUT',
+            qs: queryParameters,
+            headers: headerParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+            body: coupon,
+        };
+
+        this.authentications.ultraCartOauth.applyToRequest(requestOptions);
+
+        this.authentications.ultraCartSimpleApiKey.applyToRequest(requestOptions);
+
+        this.authentications.default.applyToRequest(requestOptions);
+
+        if (Object.keys(formParams).length) {
+            if (useFormData) {
+                (<any>requestOptions).formData = formParams;
+            } else {
+                requestOptions.form = formParams;
+            }
+        }
+        return new Promise<{ response: http.ClientResponse; body: CouponResponse;  }>((resolve, reject) => {
+            request(requestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    if (response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+}
 export enum CustomerApiApiKeys {
     ultraCartBrowserApiKey,
     ultraCartSimpleApiKey,
@@ -8576,6 +14172,239 @@ export class CustomerApi {
         });
     }
     /**
+     * Retrieve customers by query
+     * Retrieves customers from the account.  If no parameters are specified, all customers will be returned.  You will need to make multiple API calls in order to retrieve the entire result set since this API performs result set pagination. 
+     * @param customerQuery Customer query
+     * @param limit The maximum number of records to return on this one API call. (Max 200)
+     * @param offset Pagination of the record set.  Offset is a zero based index.
+     * @param since Fetch customers that have been created/modified since this date/time.
+     * @param sort The sort order of the customers.  See Sorting documentation for examples of using multiple values and sorting by ascending and descending.
+     * @param expand The object expansion to perform on the result.  See documentation for examples
+     */
+    public getCustomersByQuery (customerQuery: CustomerQuery, limit?: number, offset?: number, since?: string, sort?: string, expand?: string) : Promise<{ response: http.ClientResponse; body: CustomersResponse;  }> {
+        const localVarPath = this.basePath + '/customer/customers/query';
+        let queryParameters: any = {};
+        let headerParams: any = this.extendObj({}, this.defaultHeaders);
+        let formParams: any = {};
+
+
+        // verify required parameter 'customerQuery' is not null or undefined
+        if (customerQuery === null || customerQuery === undefined) {
+            throw new Error('Required parameter customerQuery was null or undefined when calling getCustomersByQuery.');
+        }
+
+        if (limit !== undefined) {
+            queryParameters['_limit'] = limit;
+        }
+
+        if (offset !== undefined) {
+            queryParameters['_offset'] = offset;
+        }
+
+        if (since !== undefined) {
+            queryParameters['_since'] = since;
+        }
+
+        if (sort !== undefined) {
+            queryParameters['_sort'] = sort;
+        }
+
+        if (expand !== undefined) {
+            queryParameters['_expand'] = expand;
+        }
+
+        let useFormData = false;
+
+        let requestOptions: request.Options = {
+            method: 'GET',
+            qs: queryParameters,
+            headers: headerParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+            body: customerQuery,
+        };
+
+        this.authentications.ultraCartOauth.applyToRequest(requestOptions);
+
+        this.authentications.ultraCartSimpleApiKey.applyToRequest(requestOptions);
+
+        this.authentications.default.applyToRequest(requestOptions);
+
+        if (Object.keys(formParams).length) {
+            if (useFormData) {
+                (<any>requestOptions).formData = formParams;
+            } else {
+                requestOptions.form = formParams;
+            }
+        }
+        return new Promise<{ response: http.ClientResponse; body: CustomersResponse;  }>((resolve, reject) => {
+            request(requestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    if (response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * Retrieve customers for DataTables plugin
+     * Retrieves customers from the account.  If no searches are specified, all customers will be returned. 
+     * @param expand The object expansion to perform on the result.  See documentation for examples
+     */
+    public getCustomersForDataTables (expand?: string) : Promise<{ response: http.ClientResponse; body: DataTablesServerSideResponse;  }> {
+        const localVarPath = this.basePath + '/customer/customers/dataTables';
+        let queryParameters: any = {};
+        let headerParams: any = this.extendObj({}, this.defaultHeaders);
+        let formParams: any = {};
+
+
+        if (expand !== undefined) {
+            queryParameters['_expand'] = expand;
+        }
+
+        let useFormData = false;
+
+        let requestOptions: request.Options = {
+            method: 'POST',
+            qs: queryParameters,
+            headers: headerParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.ultraCartOauth.applyToRequest(requestOptions);
+
+        this.authentications.ultraCartSimpleApiKey.applyToRequest(requestOptions);
+
+        this.authentications.default.applyToRequest(requestOptions);
+
+        if (Object.keys(formParams).length) {
+            if (useFormData) {
+                (<any>requestOptions).formData = formParams;
+            } else {
+                requestOptions.form = formParams;
+            }
+        }
+        return new Promise<{ response: http.ClientResponse; body: DataTablesServerSideResponse;  }>((resolve, reject) => {
+            request(requestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    if (response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * Retrieve values needed for a customer profile editor
+     * Retrieve values needed for a customer profile editor. 
+     */
+    public getEditorValues () : Promise<{ response: http.ClientResponse; body: CustomerEditorValues;  }> {
+        const localVarPath = this.basePath + '/customer/editor_values';
+        let queryParameters: any = {};
+        let headerParams: any = this.extendObj({}, this.defaultHeaders);
+        let formParams: any = {};
+
+
+        let useFormData = false;
+
+        let requestOptions: request.Options = {
+            method: 'GET',
+            qs: queryParameters,
+            headers: headerParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.ultraCartOauth.applyToRequest(requestOptions);
+
+        this.authentications.ultraCartSimpleApiKey.applyToRequest(requestOptions);
+
+        this.authentications.default.applyToRequest(requestOptions);
+
+        if (Object.keys(formParams).length) {
+            if (useFormData) {
+                (<any>requestOptions).formData = formParams;
+            } else {
+                requestOptions.form = formParams;
+            }
+        }
+        return new Promise<{ response: http.ClientResponse; body: CustomerEditorValues;  }>((resolve, reject) => {
+            request(requestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    if (response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * Retrieve all email lists across all storefronts
+     * Retrieve all email lists across all storefronts 
+     */
+    public getEmailLists () : Promise<{ response: http.ClientResponse; body: EmailListsResponse;  }> {
+        const localVarPath = this.basePath + '/customer/email_lists';
+        let queryParameters: any = {};
+        let headerParams: any = this.extendObj({}, this.defaultHeaders);
+        let formParams: any = {};
+
+
+        let useFormData = false;
+
+        let requestOptions: request.Options = {
+            method: 'GET',
+            qs: queryParameters,
+            headers: headerParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.ultraCartOauth.applyToRequest(requestOptions);
+
+        this.authentications.ultraCartSimpleApiKey.applyToRequest(requestOptions);
+
+        this.authentications.default.applyToRequest(requestOptions);
+
+        if (Object.keys(formParams).length) {
+            if (useFormData) {
+                (<any>requestOptions).formData = formParams;
+            } else {
+                requestOptions.form = formParams;
+            }
+        }
+        return new Promise<{ response: http.ClientResponse; body: EmailListsResponse;  }>((resolve, reject) => {
+            request(requestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    if (response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
      * Insert a customer
      * Insert a customer on the UltraCart account. 
      * @param customer Customer to insert
@@ -8691,6 +14520,69 @@ export class CustomerApi {
             }
         }
         return new Promise<{ response: http.ClientResponse; body: CustomerResponse;  }>((resolve, reject) => {
+            request(requestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    if (response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * Update email list subscriptions for a customer
+     * Update email list subscriptions for a customer 
+     * @param customerProfileOid The customer profile oid
+     * @param listChanges List changes
+     */
+    public updateCustomerEmailLists (customerProfileOid: number, listChanges: CustomerEmailListChanges) : Promise<{ response: http.ClientResponse; body: CustomerEmailListChanges;  }> {
+        const localVarPath = this.basePath + '/customer/customers/{customer_profile_oid}/email_lists'
+            .replace('{' + 'customer_profile_oid' + '}', String(customerProfileOid));
+        let queryParameters: any = {};
+        let headerParams: any = this.extendObj({}, this.defaultHeaders);
+        let formParams: any = {};
+
+
+        // verify required parameter 'customerProfileOid' is not null or undefined
+        if (customerProfileOid === null || customerProfileOid === undefined) {
+            throw new Error('Required parameter customerProfileOid was null or undefined when calling updateCustomerEmailLists.');
+        }
+
+        // verify required parameter 'listChanges' is not null or undefined
+        if (listChanges === null || listChanges === undefined) {
+            throw new Error('Required parameter listChanges was null or undefined when calling updateCustomerEmailLists.');
+        }
+
+        let useFormData = false;
+
+        let requestOptions: request.Options = {
+            method: 'POST',
+            qs: queryParameters,
+            headers: headerParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+            body: listChanges,
+        };
+
+        this.authentications.ultraCartOauth.applyToRequest(requestOptions);
+
+        this.authentications.ultraCartSimpleApiKey.applyToRequest(requestOptions);
+
+        this.authentications.default.applyToRequest(requestOptions);
+
+        if (Object.keys(formParams).length) {
+            if (useFormData) {
+                (<any>requestOptions).formData = formParams;
+            } else {
+                requestOptions.form = formParams;
+            }
+        }
+        return new Promise<{ response: http.ClientResponse; body: CustomerEmailListChanges;  }>((resolve, reject) => {
             request(requestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -9221,6 +15113,72 @@ export class ItemApi {
         });
     }
     /**
+     * Retrieve an item by item id
+     * Retrieves a single item using the specified item id. 
+     * @param merchantItemId The item id to retrieve.
+     * @param expand The object expansion to perform on the result.  See documentation for examples
+     * @param placeholders Whether or not placeholder values should be returned in the result.  Useful for UIs that consume this REST API.
+     */
+    public getItemByMerchantItemId (merchantItemId: string, expand?: string, placeholders?: boolean) : Promise<{ response: http.ClientResponse; body: ItemResponse;  }> {
+        const localVarPath = this.basePath + '/item/items/merchant_item_id/{merchant_item_id}'
+            .replace('{' + 'merchant_item_id' + '}', String(merchantItemId));
+        let queryParameters: any = {};
+        let headerParams: any = this.extendObj({}, this.defaultHeaders);
+        let formParams: any = {};
+
+
+        // verify required parameter 'merchantItemId' is not null or undefined
+        if (merchantItemId === null || merchantItemId === undefined) {
+            throw new Error('Required parameter merchantItemId was null or undefined when calling getItemByMerchantItemId.');
+        }
+
+        if (expand !== undefined) {
+            queryParameters['_expand'] = expand;
+        }
+
+        if (placeholders !== undefined) {
+            queryParameters['_placeholders'] = placeholders;
+        }
+
+        let useFormData = false;
+
+        let requestOptions: request.Options = {
+            method: 'GET',
+            qs: queryParameters,
+            headers: headerParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.ultraCartOauth.applyToRequest(requestOptions);
+
+        this.authentications.ultraCartSimpleApiKey.applyToRequest(requestOptions);
+
+        this.authentications.default.applyToRequest(requestOptions);
+
+        if (Object.keys(formParams).length) {
+            if (useFormData) {
+                (<any>requestOptions).formData = formParams;
+            } else {
+                requestOptions.form = formParams;
+            }
+        }
+        return new Promise<{ response: http.ClientResponse; body: ItemResponse;  }>((resolve, reject) => {
+            request(requestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    if (response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
      * Retrieve items
      * Retrieves a group of items from the account.  If no parameters are specified, all items will be returned.  You will need to make multiple API calls in order to retrieve the entire result set since this API performs result set pagination. 
      * @param parentCategoryId The parent category object id to retrieve items for.  Unspecified means all items on the account.  0 &#x3D; root
@@ -9296,6 +15254,60 @@ export class ItemApi {
             }
         }
         return new Promise<{ response: http.ClientResponse; body: ItemsResponse;  }>((resolve, reject) => {
+            request(requestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    if (response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * Retrieve pricing tiers
+     * Retrieves the pricing tiers 
+     * @param expand The object expansion to perform on the result.  See documentation for examples
+     */
+    public getPricingTiers (expand?: string) : Promise<{ response: http.ClientResponse; body: PricingTiersResponse;  }> {
+        const localVarPath = this.basePath + '/item/pricing_tiers';
+        let queryParameters: any = {};
+        let headerParams: any = this.extendObj({}, this.defaultHeaders);
+        let formParams: any = {};
+
+
+        if (expand !== undefined) {
+            queryParameters['_expand'] = expand;
+        }
+
+        let useFormData = false;
+
+        let requestOptions: request.Options = {
+            method: 'GET',
+            qs: queryParameters,
+            headers: headerParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.ultraCartOauth.applyToRequest(requestOptions);
+
+        this.authentications.ultraCartSimpleApiKey.applyToRequest(requestOptions);
+
+        this.authentications.default.applyToRequest(requestOptions);
+
+        if (Object.keys(formParams).length) {
+            if (useFormData) {
+                (<any>requestOptions).formData = formParams;
+            } else {
+                requestOptions.form = formParams;
+            }
+        }
+        return new Promise<{ response: http.ClientResponse; body: PricingTiersResponse;  }>((resolve, reject) => {
             request(requestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -9435,6 +15447,77 @@ export class ItemApi {
             }
         }
         return new Promise<{ response: http.ClientResponse; body: ItemResponse;  }>((resolve, reject) => {
+            request(requestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    if (response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * Update multiple items
+     * Update multiple item on the UltraCart account. 
+     * @param itemsRequest Items to update (synchronous maximum 20 / asynchronous maximum 100)
+     * @param expand The object expansion to perform on the result.  See documentation for examples
+     * @param placeholders Whether or not placeholder values should be returned in the result.  Useful for UIs that consume this REST API.
+     * @param async True if the operation should be run async.  No result returned
+     */
+    public updateItems (itemsRequest: ItemsRequest, expand?: string, placeholders?: boolean, async?: boolean) : Promise<{ response: http.ClientResponse; body: ItemsResponse;  }> {
+        const localVarPath = this.basePath + '/item/items/batch';
+        let queryParameters: any = {};
+        let headerParams: any = this.extendObj({}, this.defaultHeaders);
+        let formParams: any = {};
+
+
+        // verify required parameter 'itemsRequest' is not null or undefined
+        if (itemsRequest === null || itemsRequest === undefined) {
+            throw new Error('Required parameter itemsRequest was null or undefined when calling updateItems.');
+        }
+
+        if (expand !== undefined) {
+            queryParameters['_expand'] = expand;
+        }
+
+        if (placeholders !== undefined) {
+            queryParameters['_placeholders'] = placeholders;
+        }
+
+        if (async !== undefined) {
+            queryParameters['_async'] = async;
+        }
+
+        let useFormData = false;
+
+        let requestOptions: request.Options = {
+            method: 'PUT',
+            qs: queryParameters,
+            headers: headerParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+            body: itemsRequest,
+        };
+
+        this.authentications.ultraCartOauth.applyToRequest(requestOptions);
+
+        this.authentications.ultraCartSimpleApiKey.applyToRequest(requestOptions);
+
+        this.authentications.default.applyToRequest(requestOptions);
+
+        if (Object.keys(formParams).length) {
+            if (useFormData) {
+                (<any>requestOptions).formData = formParams;
+            } else {
+                requestOptions.form = formParams;
+            }
+        }
+        return new Promise<{ response: http.ClientResponse; body: ItemsResponse;  }>((resolve, reject) => {
             request(requestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -9878,6 +15961,177 @@ export class OrderApi {
         });
     }
     /**
+     * Format order
+     * Format the order for display at text or html 
+     * @param orderId The order id to format
+     * @param formatOptions Format options
+     */
+    public format (orderId: string, formatOptions: OrderFormat) : Promise<{ response: http.ClientResponse; body: OrderFormatResponse;  }> {
+        const localVarPath = this.basePath + '/order/orders/{order_id}/format'
+            .replace('{' + 'order_id' + '}', String(orderId));
+        let queryParameters: any = {};
+        let headerParams: any = this.extendObj({}, this.defaultHeaders);
+        let formParams: any = {};
+
+
+        // verify required parameter 'orderId' is not null or undefined
+        if (orderId === null || orderId === undefined) {
+            throw new Error('Required parameter orderId was null or undefined when calling format.');
+        }
+
+        // verify required parameter 'formatOptions' is not null or undefined
+        if (formatOptions === null || formatOptions === undefined) {
+            throw new Error('Required parameter formatOptions was null or undefined when calling format.');
+        }
+
+        let useFormData = false;
+
+        let requestOptions: request.Options = {
+            method: 'POST',
+            qs: queryParameters,
+            headers: headerParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+            body: formatOptions,
+        };
+
+        this.authentications.ultraCartOauth.applyToRequest(requestOptions);
+
+        this.authentications.ultraCartSimpleApiKey.applyToRequest(requestOptions);
+
+        this.authentications.default.applyToRequest(requestOptions);
+
+        if (Object.keys(formParams).length) {
+            if (useFormData) {
+                (<any>requestOptions).formData = formParams;
+            } else {
+                requestOptions.form = formParams;
+            }
+        }
+        return new Promise<{ response: http.ClientResponse; body: OrderFormatResponse;  }>((resolve, reject) => {
+            request(requestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    if (response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * Retrieve A/R Retry Configuration
+     * Retrieve A/R Retry Configuration. This is primarily an internal API call.  It is doubtful you would ever need to use it. 
+     */
+    public getAccountsReceivableRetryConfig () : Promise<{ response: http.ClientResponse; body: AccountsReceivableRetryConfigResponse;  }> {
+        const localVarPath = this.basePath + '/order/accountsReceivableRetryConfig';
+        let queryParameters: any = {};
+        let headerParams: any = this.extendObj({}, this.defaultHeaders);
+        let formParams: any = {};
+
+
+        let useFormData = false;
+
+        let requestOptions: request.Options = {
+            method: 'GET',
+            qs: queryParameters,
+            headers: headerParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.ultraCartOauth.applyToRequest(requestOptions);
+
+        this.authentications.ultraCartSimpleApiKey.applyToRequest(requestOptions);
+
+        this.authentications.default.applyToRequest(requestOptions);
+
+        if (Object.keys(formParams).length) {
+            if (useFormData) {
+                (<any>requestOptions).formData = formParams;
+            } else {
+                requestOptions.form = formParams;
+            }
+        }
+        return new Promise<{ response: http.ClientResponse; body: AccountsReceivableRetryConfigResponse;  }>((resolve, reject) => {
+            request(requestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    if (response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * Retrieve A/R Retry Statistics
+     * Retrieve A/R Retry Statistics. This is primarily an internal API call.  It is doubtful you would ever need to use it. 
+     * @param from null
+     * @param to null
+     */
+    public getAccountsReceivableRetryStats (from?: string, to?: string) : Promise<{ response: http.ClientResponse; body: AccountsReceivableRetryStatsResponse;  }> {
+        const localVarPath = this.basePath + '/order/accountsReceivableRetryConfig/stats';
+        let queryParameters: any = {};
+        let headerParams: any = this.extendObj({}, this.defaultHeaders);
+        let formParams: any = {};
+
+
+        if (from !== undefined) {
+            queryParameters['from'] = from;
+        }
+
+        if (to !== undefined) {
+            queryParameters['to'] = to;
+        }
+
+        let useFormData = false;
+
+        let requestOptions: request.Options = {
+            method: 'GET',
+            qs: queryParameters,
+            headers: headerParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.ultraCartOauth.applyToRequest(requestOptions);
+
+        this.authentications.ultraCartSimpleApiKey.applyToRequest(requestOptions);
+
+        this.authentications.default.applyToRequest(requestOptions);
+
+        if (Object.keys(formParams).length) {
+            if (useFormData) {
+                (<any>requestOptions).formData = formParams;
+            } else {
+                requestOptions.form = formParams;
+            }
+        }
+        return new Promise<{ response: http.ClientResponse; body: AccountsReceivableRetryStatsResponse;  }>((resolve, reject) => {
+            request(requestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    if (response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
      * Retrieve an order
      * Retrieves a single order using the specified order id. 
      * @param orderId The order id to retrieve.
@@ -9968,12 +16222,15 @@ export class OrderApi {
      * @param currentStage Current Stage
      * @param channelPartnerCode Channel Partner Code
      * @param channelPartnerOrderId Channel Partner Order ID
+     * @param customerProfileOid null
+     * @param refund Date Begin null
+     * @param refund Date End null
      * @param limit The maximum number of records to return on this one API call. (Maximum 200)
      * @param offset Pagination of the record set.  Offset is a zero based index.
      * @param sort The sort order of the orders.  See Sorting documentation for examples of using multiple values and sorting by ascending and descending.
      * @param expand The object expansion to perform on the result.
      */
-    public getOrders (orderId?: string, paymentMethod?: string, company?: string, firstName?: string, lastName?: string, city?: string, stateRegion?: string, postalCode?: string, countryCode?: string, phone?: string, email?: string, ccEmail?: string, total?: number, screenBrandingThemeCode?: string, storefrontHostName?: string, creationDateBegin?: string, creationDateEnd?: string, paymentDateBegin?: string, paymentDateEnd?: string, shipmentDateBegin?: string, shipmentDateEnd?: string, rma?: string, purchaseOrderNumber?: string, itemId?: string, currentStage?: string, channelPartnerCode?: string, channelPartnerOrderId?: string, limit?: number, offset?: number, sort?: string, expand?: string) : Promise<{ response: http.ClientResponse; body: OrdersResponse;  }> {
+    public getOrders (orderId?: string, paymentMethod?: string, company?: string, firstName?: string, lastName?: string, city?: string, stateRegion?: string, postalCode?: string, countryCode?: string, phone?: string, email?: string, ccEmail?: string, total?: number, screenBrandingThemeCode?: string, storefrontHostName?: string, creationDateBegin?: string, creationDateEnd?: string, paymentDateBegin?: string, paymentDateEnd?: string, shipmentDateBegin?: string, shipmentDateEnd?: string, rma?: string, purchaseOrderNumber?: string, itemId?: string, currentStage?: string, channelPartnerCode?: string, channelPartnerOrderId?: string, customerProfileOid?: number, refund Date Begin?: string, refund Date End?: string, limit?: number, offset?: number, sort?: string, expand?: string) : Promise<{ response: http.ClientResponse; body: OrdersResponse;  }> {
         const localVarPath = this.basePath + '/order/orders';
         let queryParameters: any = {};
         let headerParams: any = this.extendObj({}, this.defaultHeaders);
@@ -10088,6 +16345,18 @@ export class OrderApi {
             queryParameters['channel_partner_order_id'] = channelPartnerOrderId;
         }
 
+        if (customerProfileOid !== undefined) {
+            queryParameters['customer_profile_oid'] = customerProfileOid;
+        }
+
+        if (refund Date Begin !== undefined) {
+            queryParameters['Refund Date Begin'] = refund Date Begin;
+        }
+
+        if (refund Date End !== undefined) {
+            queryParameters['Refund Date End'] = refund Date End;
+        }
+
         if (limit !== undefined) {
             queryParameters['_limit'] = limit;
         }
@@ -10129,6 +16398,360 @@ export class OrderApi {
             }
         }
         return new Promise<{ response: http.ClientResponse; body: OrdersResponse;  }>((resolve, reject) => {
+            request(requestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    if (response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * Retrieve order batch
+     * Retrieves a group of orders from the account based on an array of order ids.  If more than 500 order ids are specified, the API call will fail with a bad request error. 
+     * @param orderBatch Order batch
+     * @param expand The object expansion to perform on the result.
+     */
+    public getOrdersBatch (orderBatch: OrderQueryBatch, expand?: string) : Promise<{ response: http.ClientResponse; body: OrdersResponse;  }> {
+        const localVarPath = this.basePath + '/order/orders/batch';
+        let queryParameters: any = {};
+        let headerParams: any = this.extendObj({}, this.defaultHeaders);
+        let formParams: any = {};
+
+
+        // verify required parameter 'orderBatch' is not null or undefined
+        if (orderBatch === null || orderBatch === undefined) {
+            throw new Error('Required parameter orderBatch was null or undefined when calling getOrdersBatch.');
+        }
+
+        if (expand !== undefined) {
+            queryParameters['_expand'] = expand;
+        }
+
+        let useFormData = false;
+
+        let requestOptions: request.Options = {
+            method: 'POST',
+            qs: queryParameters,
+            headers: headerParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+            body: orderBatch,
+        };
+
+        this.authentications.ultraCartOauth.applyToRequest(requestOptions);
+
+        this.authentications.ultraCartSimpleApiKey.applyToRequest(requestOptions);
+
+        this.authentications.default.applyToRequest(requestOptions);
+
+        if (Object.keys(formParams).length) {
+            if (useFormData) {
+                (<any>requestOptions).formData = formParams;
+            } else {
+                requestOptions.form = formParams;
+            }
+        }
+        return new Promise<{ response: http.ClientResponse; body: OrdersResponse;  }>((resolve, reject) => {
+            request(requestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    if (response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * Retrieve orders
+     * Retrieves a group of orders from the account based on a query object.  If no parameters are specified, the API call will fail with a bad request error.  Always specify some parameters to limit the scope of the orders returned to ones you are truly interested in.  You will need to make multiple API calls in order to retrieve the entire result set since this API performs result set pagination. 
+     * @param orderQuery Order query
+     * @param limit The maximum number of records to return on this one API call. (Maximum 200)
+     * @param offset Pagination of the record set.  Offset is a zero based index.
+     * @param sort The sort order of the orders.  See Sorting documentation for examples of using multiple values and sorting by ascending and descending.
+     * @param expand The object expansion to perform on the result.
+     */
+    public getOrdersByQuery (orderQuery: OrderQuery, limit?: number, offset?: number, sort?: string, expand?: string) : Promise<{ response: http.ClientResponse; body: OrdersResponse;  }> {
+        const localVarPath = this.basePath + '/order/orders/query';
+        let queryParameters: any = {};
+        let headerParams: any = this.extendObj({}, this.defaultHeaders);
+        let formParams: any = {};
+
+
+        // verify required parameter 'orderQuery' is not null or undefined
+        if (orderQuery === null || orderQuery === undefined) {
+            throw new Error('Required parameter orderQuery was null or undefined when calling getOrdersByQuery.');
+        }
+
+        if (limit !== undefined) {
+            queryParameters['_limit'] = limit;
+        }
+
+        if (offset !== undefined) {
+            queryParameters['_offset'] = offset;
+        }
+
+        if (sort !== undefined) {
+            queryParameters['_sort'] = sort;
+        }
+
+        if (expand !== undefined) {
+            queryParameters['_expand'] = expand;
+        }
+
+        let useFormData = false;
+
+        let requestOptions: request.Options = {
+            method: 'POST',
+            qs: queryParameters,
+            headers: headerParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+            body: orderQuery,
+        };
+
+        this.authentications.ultraCartOauth.applyToRequest(requestOptions);
+
+        this.authentications.ultraCartSimpleApiKey.applyToRequest(requestOptions);
+
+        this.authentications.default.applyToRequest(requestOptions);
+
+        if (Object.keys(formParams).length) {
+            if (useFormData) {
+                (<any>requestOptions).formData = formParams;
+            } else {
+                requestOptions.form = formParams;
+            }
+        }
+        return new Promise<{ response: http.ClientResponse; body: OrdersResponse;  }>((resolve, reject) => {
+            request(requestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    if (response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * Insert an order
+     * Inserts a new order on the UltraCart account.  This is probably NOT the method you want.  This is for channel orders.  For regular orders the customer is entering, use the CheckoutApi.  It has many, many more features, checks, and validations. 
+     * @param order Order to insert
+     * @param expand The object expansion to perform on the result.  See documentation for examples
+     */
+    public insertOrder (order: Order, expand?: string) : Promise<{ response: http.ClientResponse; body: OrderResponse;  }> {
+        const localVarPath = this.basePath + '/order/orders';
+        let queryParameters: any = {};
+        let headerParams: any = this.extendObj({}, this.defaultHeaders);
+        let formParams: any = {};
+
+
+        // verify required parameter 'order' is not null or undefined
+        if (order === null || order === undefined) {
+            throw new Error('Required parameter order was null or undefined when calling insertOrder.');
+        }
+
+        if (expand !== undefined) {
+            queryParameters['_expand'] = expand;
+        }
+
+        let useFormData = false;
+
+        let requestOptions: request.Options = {
+            method: 'POST',
+            qs: queryParameters,
+            headers: headerParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+            body: order,
+        };
+
+        this.authentications.ultraCartOauth.applyToRequest(requestOptions);
+
+        this.authentications.ultraCartSimpleApiKey.applyToRequest(requestOptions);
+
+        this.authentications.default.applyToRequest(requestOptions);
+
+        if (Object.keys(formParams).length) {
+            if (useFormData) {
+                (<any>requestOptions).formData = formParams;
+            } else {
+                requestOptions.form = formParams;
+            }
+        }
+        return new Promise<{ response: http.ClientResponse; body: OrderResponse;  }>((resolve, reject) => {
+            request(requestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    if (response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * Refund an order
+     * Perform a refund operation on an order and then update the order if successful 
+     * @param order Order to refund
+     * @param orderId The order id to refund.
+     * @param rejectAfterRefund Reject order after refund
+     * @param skipCustomerNotification Skip customer email notification
+     * @param autoOrderCancel Cancel associated auto orders
+     * @param manualRefund Consider a manual refund done externally
+     * @param reverseAffiliateTransactions Reverse affiliate transactions
+     * @param expand The object expansion to perform on the result.  See documentation for examples
+     */
+    public refundOrder (order: Order, orderId: string, rejectAfterRefund?: boolean, skipCustomerNotification?: boolean, autoOrderCancel?: boolean, manualRefund?: boolean, reverseAffiliateTransactions?: boolean, expand?: string) : Promise<{ response: http.ClientResponse; body: OrderResponse;  }> {
+        const localVarPath = this.basePath + '/order/orders/{order_id}/refund'
+            .replace('{' + 'order_id' + '}', String(orderId));
+        let queryParameters: any = {};
+        let headerParams: any = this.extendObj({}, this.defaultHeaders);
+        let formParams: any = {};
+
+
+        // verify required parameter 'order' is not null or undefined
+        if (order === null || order === undefined) {
+            throw new Error('Required parameter order was null or undefined when calling refundOrder.');
+        }
+
+        // verify required parameter 'orderId' is not null or undefined
+        if (orderId === null || orderId === undefined) {
+            throw new Error('Required parameter orderId was null or undefined when calling refundOrder.');
+        }
+
+        if (rejectAfterRefund !== undefined) {
+            queryParameters['reject_after_refund'] = rejectAfterRefund;
+        }
+
+        if (skipCustomerNotification !== undefined) {
+            queryParameters['skip_customer_notification'] = skipCustomerNotification;
+        }
+
+        if (autoOrderCancel !== undefined) {
+            queryParameters['auto_order_cancel'] = autoOrderCancel;
+        }
+
+        if (manualRefund !== undefined) {
+            queryParameters['manual_refund'] = manualRefund;
+        }
+
+        if (reverseAffiliateTransactions !== undefined) {
+            queryParameters['reverse_affiliate_transactions'] = reverseAffiliateTransactions;
+        }
+
+        if (expand !== undefined) {
+            queryParameters['_expand'] = expand;
+        }
+
+        let useFormData = false;
+
+        let requestOptions: request.Options = {
+            method: 'PUT',
+            qs: queryParameters,
+            headers: headerParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+            body: order,
+        };
+
+        this.authentications.ultraCartOauth.applyToRequest(requestOptions);
+
+        this.authentications.ultraCartSimpleApiKey.applyToRequest(requestOptions);
+
+        this.authentications.default.applyToRequest(requestOptions);
+
+        if (Object.keys(formParams).length) {
+            if (useFormData) {
+                (<any>requestOptions).formData = formParams;
+            } else {
+                requestOptions.form = formParams;
+            }
+        }
+        return new Promise<{ response: http.ClientResponse; body: OrderResponse;  }>((resolve, reject) => {
+            request(requestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    if (response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * Replacement order
+     * Create a replacement order based upon a previous order 
+     * @param orderId The order id to generate a replacement for.
+     * @param replacement Replacement order details
+     */
+    public replacement (orderId: string, replacement: OrderReplacement) : Promise<{ response: http.ClientResponse; body: OrderReplacementResponse;  }> {
+        const localVarPath = this.basePath + '/order/orders/{order_id}/replacement'
+            .replace('{' + 'order_id' + '}', String(orderId));
+        let queryParameters: any = {};
+        let headerParams: any = this.extendObj({}, this.defaultHeaders);
+        let formParams: any = {};
+
+
+        // verify required parameter 'orderId' is not null or undefined
+        if (orderId === null || orderId === undefined) {
+            throw new Error('Required parameter orderId was null or undefined when calling replacement.');
+        }
+
+        // verify required parameter 'replacement' is not null or undefined
+        if (replacement === null || replacement === undefined) {
+            throw new Error('Required parameter replacement was null or undefined when calling replacement.');
+        }
+
+        let useFormData = false;
+
+        let requestOptions: request.Options = {
+            method: 'POST',
+            qs: queryParameters,
+            headers: headerParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+            body: replacement,
+        };
+
+        this.authentications.ultraCartOauth.applyToRequest(requestOptions);
+
+        this.authentications.ultraCartSimpleApiKey.applyToRequest(requestOptions);
+
+        this.authentications.default.applyToRequest(requestOptions);
+
+        if (Object.keys(formParams).length) {
+            if (useFormData) {
+                (<any>requestOptions).formData = formParams;
+            } else {
+                requestOptions.form = formParams;
+            }
+        }
+        return new Promise<{ response: http.ClientResponse; body: OrderReplacementResponse;  }>((resolve, reject) => {
             request(requestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -10255,8 +16878,64 @@ export class OrderApi {
         });
     }
     /**
+     * Update A/R Retry Configuration
+     * Update A/R Retry Configuration.  This is primarily an internal API call.  It is doubtful you would ever need to use it. 
+     * @param retryConfig AccountsReceivableRetryConfig object
+     */
+    public updateAccountsReceivableRetryConfig (retryConfig: AccountsReceivableRetryConfig) : Promise<{ response: http.ClientResponse; body: BaseResponse;  }> {
+        const localVarPath = this.basePath + '/order/accountsReceivableRetryConfig';
+        let queryParameters: any = {};
+        let headerParams: any = this.extendObj({}, this.defaultHeaders);
+        let formParams: any = {};
+
+
+        // verify required parameter 'retryConfig' is not null or undefined
+        if (retryConfig === null || retryConfig === undefined) {
+            throw new Error('Required parameter retryConfig was null or undefined when calling updateAccountsReceivableRetryConfig.');
+        }
+
+        let useFormData = false;
+
+        let requestOptions: request.Options = {
+            method: 'POST',
+            qs: queryParameters,
+            headers: headerParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+            body: retryConfig,
+        };
+
+        this.authentications.ultraCartOauth.applyToRequest(requestOptions);
+
+        this.authentications.ultraCartSimpleApiKey.applyToRequest(requestOptions);
+
+        this.authentications.default.applyToRequest(requestOptions);
+
+        if (Object.keys(formParams).length) {
+            if (useFormData) {
+                (<any>requestOptions).formData = formParams;
+            } else {
+                requestOptions.form = formParams;
+            }
+        }
+        return new Promise<{ response: http.ClientResponse; body: BaseResponse;  }>((resolve, reject) => {
+            request(requestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    if (response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
      * Update an order
-     * Update a new order on the UltraCart account. 
+     * Update a new order on the UltraCart account.  This is probably NOT the method you want.  It is rare to update a completed order.  This will not trigger charges, emails, or any other automation. 
      * @param order Order to update
      * @param orderId The order id to update.
      * @param expand The object expansion to perform on the result.  See documentation for examples
@@ -10309,6 +16988,5640 @@ export class OrderApi {
             }
         }
         return new Promise<{ response: http.ClientResponse; body: OrderResponse;  }>((resolve, reject) => {
+            request(requestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    if (response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+}
+export enum StorefrontApiApiKeys {
+    ultraCartBrowserApiKey,
+    ultraCartSimpleApiKey,
+}
+
+export class StorefrontApi {
+    protected basePath = defaultBasePath;
+    protected defaultHeaders : any = {};
+    protected _useQuerystring : boolean = false;
+
+    protected authentications = {
+        'default': <Authentication>new VoidAuth(),
+        'ultraCartBrowserApiKey': new ApiKeyAuth('header', 'x-ultracart-browser-key'),
+        'ultraCartOauth': new OAuth(),
+        'ultraCartSimpleApiKey': new ApiKeyAuth('header', 'x-ultracart-simple-key'),
+    }
+
+    constructor(basePath?: string);
+    constructor(basePathOrUsername: string, password?: string, basePath?: string) {
+        if (password) {
+            if (basePath) {
+                this.basePath = basePath;
+            }
+        } else {
+            if (basePathOrUsername) {
+                this.basePath = basePathOrUsername
+            }
+        }
+    }
+
+    set useQuerystring(value: boolean) {
+        this._useQuerystring = value;
+    }
+
+    public setApiKey(key: StorefrontApiApiKeys, value: string) {
+        this.authentications[StorefrontApiApiKeys[key]].apiKey = value;
+    }
+
+    set accessToken(token: string) {
+        this.authentications.ultraCartOauth.accessToken = token;
+    }
+    private extendObj<T1,T2>(objA: T1, objB: T2) {
+        for(let key in objB){
+            if(objB.hasOwnProperty(key)){
+                objA[key] = objB[key];
+            }
+        }
+        return <T1&T2>objA;
+    }
+    /**
+     * Archive email list
+     * 
+     * @param storefrontOid null
+     * @param emailListUuid null
+     */
+    public archiveEmailList (storefrontOid: string, emailListUuid: string) : Promise<{ response: http.ClientResponse; body: EmailListArchiveResponse;  }> {
+        const localVarPath = this.basePath + '/storefront/{storefront_oid}/email/lists/{email_list_uuid}/archive'
+            .replace('{' + 'storefront_oid' + '}', String(storefrontOid))
+            .replace('{' + 'email_list_uuid' + '}', String(emailListUuid));
+        let queryParameters: any = {};
+        let headerParams: any = this.extendObj({}, this.defaultHeaders);
+        let formParams: any = {};
+
+
+        // verify required parameter 'storefrontOid' is not null or undefined
+        if (storefrontOid === null || storefrontOid === undefined) {
+            throw new Error('Required parameter storefrontOid was null or undefined when calling archiveEmailList.');
+        }
+
+        // verify required parameter 'emailListUuid' is not null or undefined
+        if (emailListUuid === null || emailListUuid === undefined) {
+            throw new Error('Required parameter emailListUuid was null or undefined when calling archiveEmailList.');
+        }
+
+        let useFormData = false;
+
+        let requestOptions: request.Options = {
+            method: 'POST',
+            qs: queryParameters,
+            headers: headerParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.ultraCartBrowserApiKey.applyToRequest(requestOptions);
+
+        this.authentications.ultraCartOauth.applyToRequest(requestOptions);
+
+        this.authentications.ultraCartSimpleApiKey.applyToRequest(requestOptions);
+
+        this.authentications.default.applyToRequest(requestOptions);
+
+        if (Object.keys(formParams).length) {
+            if (useFormData) {
+                (<any>requestOptions).formData = formParams;
+            } else {
+                requestOptions.form = formParams;
+            }
+        }
+        return new Promise<{ response: http.ClientResponse; body: EmailListArchiveResponse;  }>((resolve, reject) => {
+            request(requestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    if (response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * Archive email segment
+     * 
+     * @param storefrontOid null
+     * @param emailSegmentUuid null
+     */
+    public archiveEmailSegment (storefrontOid: string, emailSegmentUuid: string) : Promise<{ response: http.ClientResponse; body: EmailSegmentArchiveResponse;  }> {
+        const localVarPath = this.basePath + '/storefront/{storefront_oid}/email/segments/{email_segment_uuid}/archive'
+            .replace('{' + 'storefront_oid' + '}', String(storefrontOid))
+            .replace('{' + 'email_segment_uuid' + '}', String(emailSegmentUuid));
+        let queryParameters: any = {};
+        let headerParams: any = this.extendObj({}, this.defaultHeaders);
+        let formParams: any = {};
+
+
+        // verify required parameter 'storefrontOid' is not null or undefined
+        if (storefrontOid === null || storefrontOid === undefined) {
+            throw new Error('Required parameter storefrontOid was null or undefined when calling archiveEmailSegment.');
+        }
+
+        // verify required parameter 'emailSegmentUuid' is not null or undefined
+        if (emailSegmentUuid === null || emailSegmentUuid === undefined) {
+            throw new Error('Required parameter emailSegmentUuid was null or undefined when calling archiveEmailSegment.');
+        }
+
+        let useFormData = false;
+
+        let requestOptions: request.Options = {
+            method: 'POST',
+            qs: queryParameters,
+            headers: headerParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.ultraCartBrowserApiKey.applyToRequest(requestOptions);
+
+        this.authentications.ultraCartOauth.applyToRequest(requestOptions);
+
+        this.authentications.ultraCartSimpleApiKey.applyToRequest(requestOptions);
+
+        this.authentications.default.applyToRequest(requestOptions);
+
+        if (Object.keys(formParams).length) {
+            if (useFormData) {
+                (<any>requestOptions).formData = formParams;
+            } else {
+                requestOptions.form = formParams;
+            }
+        }
+        return new Promise<{ response: http.ClientResponse; body: EmailSegmentArchiveResponse;  }>((resolve, reject) => {
+            request(requestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    if (response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * Clone email campaign
+     * 
+     * @param storefrontOid null
+     * @param emailCampaignUuid null
+     */
+    public cloneEmailCampaign (storefrontOid: string, emailCampaignUuid: string) : Promise<{ response: http.ClientResponse; body: EmailCampaignResponse;  }> {
+        const localVarPath = this.basePath + '/storefront/{storefront_oid}/email/campaigns/{email_campaign_uuid}/clone'
+            .replace('{' + 'storefront_oid' + '}', String(storefrontOid))
+            .replace('{' + 'email_campaign_uuid' + '}', String(emailCampaignUuid));
+        let queryParameters: any = {};
+        let headerParams: any = this.extendObj({}, this.defaultHeaders);
+        let formParams: any = {};
+
+
+        // verify required parameter 'storefrontOid' is not null or undefined
+        if (storefrontOid === null || storefrontOid === undefined) {
+            throw new Error('Required parameter storefrontOid was null or undefined when calling cloneEmailCampaign.');
+        }
+
+        // verify required parameter 'emailCampaignUuid' is not null or undefined
+        if (emailCampaignUuid === null || emailCampaignUuid === undefined) {
+            throw new Error('Required parameter emailCampaignUuid was null or undefined when calling cloneEmailCampaign.');
+        }
+
+        let useFormData = false;
+
+        let requestOptions: request.Options = {
+            method: 'POST',
+            qs: queryParameters,
+            headers: headerParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.ultraCartBrowserApiKey.applyToRequest(requestOptions);
+
+        this.authentications.ultraCartOauth.applyToRequest(requestOptions);
+
+        this.authentications.ultraCartSimpleApiKey.applyToRequest(requestOptions);
+
+        this.authentications.default.applyToRequest(requestOptions);
+
+        if (Object.keys(formParams).length) {
+            if (useFormData) {
+                (<any>requestOptions).formData = formParams;
+            } else {
+                requestOptions.form = formParams;
+            }
+        }
+        return new Promise<{ response: http.ClientResponse; body: EmailCampaignResponse;  }>((resolve, reject) => {
+            request(requestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    if (response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * Clone email flow
+     * 
+     * @param storefrontOid null
+     * @param emailFlowUuid null
+     */
+    public cloneEmailFlow (storefrontOid: string, emailFlowUuid: string) : Promise<{ response: http.ClientResponse; body: EmailFlowResponse;  }> {
+        const localVarPath = this.basePath + '/storefront/{storefront_oid}/email/flows/{email_flow_uuid}/clone'
+            .replace('{' + 'storefront_oid' + '}', String(storefrontOid))
+            .replace('{' + 'email_flow_uuid' + '}', String(emailFlowUuid));
+        let queryParameters: any = {};
+        let headerParams: any = this.extendObj({}, this.defaultHeaders);
+        let formParams: any = {};
+
+
+        // verify required parameter 'storefrontOid' is not null or undefined
+        if (storefrontOid === null || storefrontOid === undefined) {
+            throw new Error('Required parameter storefrontOid was null or undefined when calling cloneEmailFlow.');
+        }
+
+        // verify required parameter 'emailFlowUuid' is not null or undefined
+        if (emailFlowUuid === null || emailFlowUuid === undefined) {
+            throw new Error('Required parameter emailFlowUuid was null or undefined when calling cloneEmailFlow.');
+        }
+
+        let useFormData = false;
+
+        let requestOptions: request.Options = {
+            method: 'POST',
+            qs: queryParameters,
+            headers: headerParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.ultraCartBrowserApiKey.applyToRequest(requestOptions);
+
+        this.authentications.ultraCartOauth.applyToRequest(requestOptions);
+
+        this.authentications.ultraCartSimpleApiKey.applyToRequest(requestOptions);
+
+        this.authentications.default.applyToRequest(requestOptions);
+
+        if (Object.keys(formParams).length) {
+            if (useFormData) {
+                (<any>requestOptions).formData = formParams;
+            } else {
+                requestOptions.form = formParams;
+            }
+        }
+        return new Promise<{ response: http.ClientResponse; body: EmailFlowResponse;  }>((resolve, reject) => {
+            request(requestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    if (response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * Create email campaign
+     * 
+     * @param domain null
+     */
+    public createEmailSendingDomain (domain: string) : Promise<{ response: http.ClientResponse; body: EmailSendingDomainResponse;  }> {
+        const localVarPath = this.basePath + '/storefront/email/sending_domains/{domain}/create'
+            .replace('{' + 'domain' + '}', String(domain));
+        let queryParameters: any = {};
+        let headerParams: any = this.extendObj({}, this.defaultHeaders);
+        let formParams: any = {};
+
+
+        // verify required parameter 'domain' is not null or undefined
+        if (domain === null || domain === undefined) {
+            throw new Error('Required parameter domain was null or undefined when calling createEmailSendingDomain.');
+        }
+
+        let useFormData = false;
+
+        let requestOptions: request.Options = {
+            method: 'POST',
+            qs: queryParameters,
+            headers: headerParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.ultraCartBrowserApiKey.applyToRequest(requestOptions);
+
+        this.authentications.ultraCartOauth.applyToRequest(requestOptions);
+
+        this.authentications.ultraCartSimpleApiKey.applyToRequest(requestOptions);
+
+        this.authentications.default.applyToRequest(requestOptions);
+
+        if (Object.keys(formParams).length) {
+            if (useFormData) {
+                (<any>requestOptions).formData = formParams;
+            } else {
+                requestOptions.form = formParams;
+            }
+        }
+        return new Promise<{ response: http.ClientResponse; body: EmailSendingDomainResponse;  }>((resolve, reject) => {
+            request(requestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    if (response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * Delete email email
+     * 
+     * @param storefrontOid null
+     * @param commseqEmailUuid null
+     */
+    public deleteEmailEmail (storefrontOid: string, commseqEmailUuid: string) : Promise<{ response: http.ClientResponse; body: BaseResponse;  }> {
+        const localVarPath = this.basePath + '/storefront/{storefront_oid}/email/emails/{commseq_email_uuid}'
+            .replace('{' + 'storefront_oid' + '}', String(storefrontOid))
+            .replace('{' + 'commseq_email_uuid' + '}', String(commseqEmailUuid));
+        let queryParameters: any = {};
+        let headerParams: any = this.extendObj({}, this.defaultHeaders);
+        let formParams: any = {};
+
+
+        // verify required parameter 'storefrontOid' is not null or undefined
+        if (storefrontOid === null || storefrontOid === undefined) {
+            throw new Error('Required parameter storefrontOid was null or undefined when calling deleteEmailEmail.');
+        }
+
+        // verify required parameter 'commseqEmailUuid' is not null or undefined
+        if (commseqEmailUuid === null || commseqEmailUuid === undefined) {
+            throw new Error('Required parameter commseqEmailUuid was null or undefined when calling deleteEmailEmail.');
+        }
+
+        let useFormData = false;
+
+        let requestOptions: request.Options = {
+            method: 'DELETE',
+            qs: queryParameters,
+            headers: headerParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.ultraCartBrowserApiKey.applyToRequest(requestOptions);
+
+        this.authentications.ultraCartOauth.applyToRequest(requestOptions);
+
+        this.authentications.ultraCartSimpleApiKey.applyToRequest(requestOptions);
+
+        this.authentications.default.applyToRequest(requestOptions);
+
+        if (Object.keys(formParams).length) {
+            if (useFormData) {
+                (<any>requestOptions).formData = formParams;
+            } else {
+                requestOptions.form = formParams;
+            }
+        }
+        return new Promise<{ response: http.ClientResponse; body: BaseResponse;  }>((resolve, reject) => {
+            request(requestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    if (response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * Delete email list customer
+     * 
+     * @param storefrontOid null
+     * @param emailListUuid null
+     * @param emailCustomerUuid null
+     */
+    public deleteEmailListCustomer (storefrontOid: string, emailListUuid: string, emailCustomerUuid: string) : Promise<{ response: http.ClientResponse; body: BaseResponse;  }> {
+        const localVarPath = this.basePath + '/storefront/{storefront_oid}/email/lists/{email_list_uuid}/customers/{email_customer_uuid}'
+            .replace('{' + 'storefront_oid' + '}', String(storefrontOid))
+            .replace('{' + 'email_list_uuid' + '}', String(emailListUuid))
+            .replace('{' + 'email_customer_uuid' + '}', String(emailCustomerUuid));
+        let queryParameters: any = {};
+        let headerParams: any = this.extendObj({}, this.defaultHeaders);
+        let formParams: any = {};
+
+
+        // verify required parameter 'storefrontOid' is not null or undefined
+        if (storefrontOid === null || storefrontOid === undefined) {
+            throw new Error('Required parameter storefrontOid was null or undefined when calling deleteEmailListCustomer.');
+        }
+
+        // verify required parameter 'emailListUuid' is not null or undefined
+        if (emailListUuid === null || emailListUuid === undefined) {
+            throw new Error('Required parameter emailListUuid was null or undefined when calling deleteEmailListCustomer.');
+        }
+
+        // verify required parameter 'emailCustomerUuid' is not null or undefined
+        if (emailCustomerUuid === null || emailCustomerUuid === undefined) {
+            throw new Error('Required parameter emailCustomerUuid was null or undefined when calling deleteEmailListCustomer.');
+        }
+
+        let useFormData = false;
+
+        let requestOptions: request.Options = {
+            method: 'DELETE',
+            qs: queryParameters,
+            headers: headerParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.ultraCartBrowserApiKey.applyToRequest(requestOptions);
+
+        this.authentications.ultraCartOauth.applyToRequest(requestOptions);
+
+        this.authentications.ultraCartSimpleApiKey.applyToRequest(requestOptions);
+
+        this.authentications.default.applyToRequest(requestOptions);
+
+        if (Object.keys(formParams).length) {
+            if (useFormData) {
+                (<any>requestOptions).formData = formParams;
+            } else {
+                requestOptions.form = formParams;
+            }
+        }
+        return new Promise<{ response: http.ClientResponse; body: BaseResponse;  }>((resolve, reject) => {
+            request(requestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    if (response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * delete email campaign
+     * 
+     * @param domain null
+     */
+    public deleteEmailSendingDomain (domain: string) : Promise<{ response: http.ClientResponse; body: BaseResponse;  }> {
+        const localVarPath = this.basePath + '/storefront/email/sending_domains/{domain}'
+            .replace('{' + 'domain' + '}', String(domain));
+        let queryParameters: any = {};
+        let headerParams: any = this.extendObj({}, this.defaultHeaders);
+        let formParams: any = {};
+
+
+        // verify required parameter 'domain' is not null or undefined
+        if (domain === null || domain === undefined) {
+            throw new Error('Required parameter domain was null or undefined when calling deleteEmailSendingDomain.');
+        }
+
+        let useFormData = false;
+
+        let requestOptions: request.Options = {
+            method: 'DELETE',
+            qs: queryParameters,
+            headers: headerParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.ultraCartBrowserApiKey.applyToRequest(requestOptions);
+
+        this.authentications.ultraCartOauth.applyToRequest(requestOptions);
+
+        this.authentications.ultraCartSimpleApiKey.applyToRequest(requestOptions);
+
+        this.authentications.default.applyToRequest(requestOptions);
+
+        if (Object.keys(formParams).length) {
+            if (useFormData) {
+                (<any>requestOptions).formData = formParams;
+            } else {
+                requestOptions.form = formParams;
+            }
+        }
+        return new Promise<{ response: http.ClientResponse; body: BaseResponse;  }>((resolve, reject) => {
+            request(requestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    if (response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * Delete experiment
+     * 
+     * @param storefrontOid null
+     * @param storefrontExperimentOid null
+     */
+    public deleteExperiment (storefrontOid: string, storefrontExperimentOid: number) : Promise<{ response: http.ClientResponse; body?: any;  }> {
+        const localVarPath = this.basePath + '/storefront/{storefront_oid}/experiments/{storefront_experiment_oid}'
+            .replace('{' + 'storefront_oid' + '}', String(storefrontOid))
+            .replace('{' + 'storefront_experiment_oid' + '}', String(storefrontExperimentOid));
+        let queryParameters: any = {};
+        let headerParams: any = this.extendObj({}, this.defaultHeaders);
+        let formParams: any = {};
+
+
+        // verify required parameter 'storefrontOid' is not null or undefined
+        if (storefrontOid === null || storefrontOid === undefined) {
+            throw new Error('Required parameter storefrontOid was null or undefined when calling deleteExperiment.');
+        }
+
+        // verify required parameter 'storefrontExperimentOid' is not null or undefined
+        if (storefrontExperimentOid === null || storefrontExperimentOid === undefined) {
+            throw new Error('Required parameter storefrontExperimentOid was null or undefined when calling deleteExperiment.');
+        }
+
+        let useFormData = false;
+
+        let requestOptions: request.Options = {
+            method: 'DELETE',
+            qs: queryParameters,
+            headers: headerParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.ultraCartBrowserApiKey.applyToRequest(requestOptions);
+
+        this.authentications.ultraCartOauth.applyToRequest(requestOptions);
+
+        this.authentications.ultraCartSimpleApiKey.applyToRequest(requestOptions);
+
+        this.authentications.default.applyToRequest(requestOptions);
+
+        if (Object.keys(formParams).length) {
+            if (useFormData) {
+                (<any>requestOptions).formData = formParams;
+            } else {
+                requestOptions.form = formParams;
+            }
+        }
+        return new Promise<{ response: http.ClientResponse; body?: any;  }>((resolve, reject) => {
+            request(requestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    if (response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * Obtain lat/long for an address
+     * 
+     * @param storefrontOid null
+     * @param geocodeRequest geocode request
+     */
+    public geocodeAddress (storefrontOid: string, geocodeRequest: GeocodeRequest) : Promise<{ response: http.ClientResponse; body: GeocodeResponse;  }> {
+        const localVarPath = this.basePath + '/storefront/{storefront_oid}/email/geocode'
+            .replace('{' + 'storefront_oid' + '}', String(storefrontOid));
+        let queryParameters: any = {};
+        let headerParams: any = this.extendObj({}, this.defaultHeaders);
+        let formParams: any = {};
+
+
+        // verify required parameter 'storefrontOid' is not null or undefined
+        if (storefrontOid === null || storefrontOid === undefined) {
+            throw new Error('Required parameter storefrontOid was null or undefined when calling geocodeAddress.');
+        }
+
+        // verify required parameter 'geocodeRequest' is not null or undefined
+        if (geocodeRequest === null || geocodeRequest === undefined) {
+            throw new Error('Required parameter geocodeRequest was null or undefined when calling geocodeAddress.');
+        }
+
+        let useFormData = false;
+
+        let requestOptions: request.Options = {
+            method: 'POST',
+            qs: queryParameters,
+            headers: headerParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+            body: geocodeRequest,
+        };
+
+        this.authentications.ultraCartBrowserApiKey.applyToRequest(requestOptions);
+
+        this.authentications.ultraCartOauth.applyToRequest(requestOptions);
+
+        this.authentications.ultraCartSimpleApiKey.applyToRequest(requestOptions);
+
+        this.authentications.default.applyToRequest(requestOptions);
+
+        if (Object.keys(formParams).length) {
+            if (useFormData) {
+                (<any>requestOptions).formData = formParams;
+            } else {
+                requestOptions.form = formParams;
+            }
+        }
+        return new Promise<{ response: http.ClientResponse; body: GeocodeResponse;  }>((resolve, reject) => {
+            request(requestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    if (response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * Get countries
+     * Obtain a list of all the countries 
+     * @param storefrontOid null
+     */
+    public getCountries (storefrontOid: string) : Promise<{ response: http.ClientResponse; body: CountriesResponse;  }> {
+        const localVarPath = this.basePath + '/storefront/{storefront_oid}/email/countries'
+            .replace('{' + 'storefront_oid' + '}', String(storefrontOid));
+        let queryParameters: any = {};
+        let headerParams: any = this.extendObj({}, this.defaultHeaders);
+        let formParams: any = {};
+
+
+        // verify required parameter 'storefrontOid' is not null or undefined
+        if (storefrontOid === null || storefrontOid === undefined) {
+            throw new Error('Required parameter storefrontOid was null or undefined when calling getCountries.');
+        }
+
+        let useFormData = false;
+
+        let requestOptions: request.Options = {
+            method: 'GET',
+            qs: queryParameters,
+            headers: headerParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.ultraCartBrowserApiKey.applyToRequest(requestOptions);
+
+        this.authentications.ultraCartOauth.applyToRequest(requestOptions);
+
+        this.authentications.ultraCartSimpleApiKey.applyToRequest(requestOptions);
+
+        this.authentications.default.applyToRequest(requestOptions);
+
+        if (Object.keys(formParams).length) {
+            if (useFormData) {
+                (<any>requestOptions).formData = formParams;
+            } else {
+                requestOptions.form = formParams;
+            }
+        }
+        return new Promise<{ response: http.ClientResponse; body: CountriesResponse;  }>((resolve, reject) => {
+            request(requestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    if (response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * Get email communication base templates
+     * 
+     * @param storefrontOid null
+     */
+    public getEmailBaseTemplates (storefrontOid: string) : Promise<{ response: http.ClientResponse; body: EmailBaseTemplateListResponse;  }> {
+        const localVarPath = this.basePath + '/storefront/{storefront_oid}/email/baseTemplates'
+            .replace('{' + 'storefront_oid' + '}', String(storefrontOid));
+        let queryParameters: any = {};
+        let headerParams: any = this.extendObj({}, this.defaultHeaders);
+        let formParams: any = {};
+
+
+        // verify required parameter 'storefrontOid' is not null or undefined
+        if (storefrontOid === null || storefrontOid === undefined) {
+            throw new Error('Required parameter storefrontOid was null or undefined when calling getEmailBaseTemplates.');
+        }
+
+        let useFormData = false;
+
+        let requestOptions: request.Options = {
+            method: 'GET',
+            qs: queryParameters,
+            headers: headerParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.ultraCartBrowserApiKey.applyToRequest(requestOptions);
+
+        this.authentications.ultraCartOauth.applyToRequest(requestOptions);
+
+        this.authentications.ultraCartSimpleApiKey.applyToRequest(requestOptions);
+
+        this.authentications.default.applyToRequest(requestOptions);
+
+        if (Object.keys(formParams).length) {
+            if (useFormData) {
+                (<any>requestOptions).formData = formParams;
+            } else {
+                requestOptions.form = formParams;
+            }
+        }
+        return new Promise<{ response: http.ClientResponse; body: EmailBaseTemplateListResponse;  }>((resolve, reject) => {
+            request(requestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    if (response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * Get email campaign
+     * 
+     * @param storefrontOid null
+     * @param emailCampaignUuid null
+     */
+    public getEmailCampaign (storefrontOid: string, emailCampaignUuid: string) : Promise<{ response: http.ClientResponse; body: EmailCampaignResponse;  }> {
+        const localVarPath = this.basePath + '/storefront/{storefront_oid}/email/campaigns/{email_campaign_uuid}'
+            .replace('{' + 'storefront_oid' + '}', String(storefrontOid))
+            .replace('{' + 'email_campaign_uuid' + '}', String(emailCampaignUuid));
+        let queryParameters: any = {};
+        let headerParams: any = this.extendObj({}, this.defaultHeaders);
+        let formParams: any = {};
+
+
+        // verify required parameter 'storefrontOid' is not null or undefined
+        if (storefrontOid === null || storefrontOid === undefined) {
+            throw new Error('Required parameter storefrontOid was null or undefined when calling getEmailCampaign.');
+        }
+
+        // verify required parameter 'emailCampaignUuid' is not null or undefined
+        if (emailCampaignUuid === null || emailCampaignUuid === undefined) {
+            throw new Error('Required parameter emailCampaignUuid was null or undefined when calling getEmailCampaign.');
+        }
+
+        let useFormData = false;
+
+        let requestOptions: request.Options = {
+            method: 'GET',
+            qs: queryParameters,
+            headers: headerParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.ultraCartBrowserApiKey.applyToRequest(requestOptions);
+
+        this.authentications.ultraCartOauth.applyToRequest(requestOptions);
+
+        this.authentications.ultraCartSimpleApiKey.applyToRequest(requestOptions);
+
+        this.authentications.default.applyToRequest(requestOptions);
+
+        if (Object.keys(formParams).length) {
+            if (useFormData) {
+                (<any>requestOptions).formData = formParams;
+            } else {
+                requestOptions.form = formParams;
+            }
+        }
+        return new Promise<{ response: http.ClientResponse; body: EmailCampaignResponse;  }>((resolve, reject) => {
+            request(requestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    if (response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * Get email campaigns
+     * 
+     * @param storefrontOid null
+     */
+    public getEmailCampaigns (storefrontOid: string) : Promise<{ response: http.ClientResponse; body: EmailCampaignsResponse;  }> {
+        const localVarPath = this.basePath + '/storefront/{storefront_oid}/email/campaigns'
+            .replace('{' + 'storefront_oid' + '}', String(storefrontOid));
+        let queryParameters: any = {};
+        let headerParams: any = this.extendObj({}, this.defaultHeaders);
+        let formParams: any = {};
+
+
+        // verify required parameter 'storefrontOid' is not null or undefined
+        if (storefrontOid === null || storefrontOid === undefined) {
+            throw new Error('Required parameter storefrontOid was null or undefined when calling getEmailCampaigns.');
+        }
+
+        let useFormData = false;
+
+        let requestOptions: request.Options = {
+            method: 'GET',
+            qs: queryParameters,
+            headers: headerParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.ultraCartBrowserApiKey.applyToRequest(requestOptions);
+
+        this.authentications.ultraCartOauth.applyToRequest(requestOptions);
+
+        this.authentications.ultraCartSimpleApiKey.applyToRequest(requestOptions);
+
+        this.authentications.default.applyToRequest(requestOptions);
+
+        if (Object.keys(formParams).length) {
+            if (useFormData) {
+                (<any>requestOptions).formData = formParams;
+            } else {
+                requestOptions.form = formParams;
+            }
+        }
+        return new Promise<{ response: http.ClientResponse; body: EmailCampaignsResponse;  }>((resolve, reject) => {
+            request(requestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    if (response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * Get email campaigns with stats
+     * 
+     * @param storefrontOid null
+     * @param statDays null
+     */
+    public getEmailCampaignsWithStats (storefrontOid: string, statDays: string) : Promise<{ response: http.ClientResponse; body: EmailCampaignsResponse;  }> {
+        const localVarPath = this.basePath + '/storefront/{storefront_oid}/email/campaignsWithStats/{stat_days}'
+            .replace('{' + 'storefront_oid' + '}', String(storefrontOid))
+            .replace('{' + 'stat_days' + '}', String(statDays));
+        let queryParameters: any = {};
+        let headerParams: any = this.extendObj({}, this.defaultHeaders);
+        let formParams: any = {};
+
+
+        // verify required parameter 'storefrontOid' is not null or undefined
+        if (storefrontOid === null || storefrontOid === undefined) {
+            throw new Error('Required parameter storefrontOid was null or undefined when calling getEmailCampaignsWithStats.');
+        }
+
+        // verify required parameter 'statDays' is not null or undefined
+        if (statDays === null || statDays === undefined) {
+            throw new Error('Required parameter statDays was null or undefined when calling getEmailCampaignsWithStats.');
+        }
+
+        let useFormData = false;
+
+        let requestOptions: request.Options = {
+            method: 'GET',
+            qs: queryParameters,
+            headers: headerParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.ultraCartBrowserApiKey.applyToRequest(requestOptions);
+
+        this.authentications.ultraCartOauth.applyToRequest(requestOptions);
+
+        this.authentications.ultraCartSimpleApiKey.applyToRequest(requestOptions);
+
+        this.authentications.default.applyToRequest(requestOptions);
+
+        if (Object.keys(formParams).length) {
+            if (useFormData) {
+                (<any>requestOptions).formData = formParams;
+            } else {
+                requestOptions.form = formParams;
+            }
+        }
+        return new Promise<{ response: http.ClientResponse; body: EmailCampaignsResponse;  }>((resolve, reject) => {
+            request(requestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    if (response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * Get email commseq
+     * 
+     * @param storefrontOid null
+     * @param commseqUuid null
+     */
+    public getEmailCommseq (storefrontOid: string, commseqUuid: string) : Promise<{ response: http.ClientResponse; body: EmailCommseqResponse;  }> {
+        const localVarPath = this.basePath + '/storefront/{storefront_oid}/email/commseqs/{commseq_uuid}'
+            .replace('{' + 'storefront_oid' + '}', String(storefrontOid))
+            .replace('{' + 'commseq_uuid' + '}', String(commseqUuid));
+        let queryParameters: any = {};
+        let headerParams: any = this.extendObj({}, this.defaultHeaders);
+        let formParams: any = {};
+
+
+        // verify required parameter 'storefrontOid' is not null or undefined
+        if (storefrontOid === null || storefrontOid === undefined) {
+            throw new Error('Required parameter storefrontOid was null or undefined when calling getEmailCommseq.');
+        }
+
+        // verify required parameter 'commseqUuid' is not null or undefined
+        if (commseqUuid === null || commseqUuid === undefined) {
+            throw new Error('Required parameter commseqUuid was null or undefined when calling getEmailCommseq.');
+        }
+
+        let useFormData = false;
+
+        let requestOptions: request.Options = {
+            method: 'GET',
+            qs: queryParameters,
+            headers: headerParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.ultraCartBrowserApiKey.applyToRequest(requestOptions);
+
+        this.authentications.ultraCartOauth.applyToRequest(requestOptions);
+
+        this.authentications.ultraCartSimpleApiKey.applyToRequest(requestOptions);
+
+        this.authentications.default.applyToRequest(requestOptions);
+
+        if (Object.keys(formParams).length) {
+            if (useFormData) {
+                (<any>requestOptions).formData = formParams;
+            } else {
+                requestOptions.form = formParams;
+            }
+        }
+        return new Promise<{ response: http.ClientResponse; body: EmailCommseqResponse;  }>((resolve, reject) => {
+            request(requestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    if (response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * Get email communication sequence emails stats
+     * 
+     * @param storefrontOid null
+     * @param commseqUuid null
+     * @param statsRequest StatsRequest
+     */
+    public getEmailCommseqEmailStats (storefrontOid: string, commseqUuid: string, statsRequest: EmailStatSummaryRequest) : Promise<{ response: http.ClientResponse; body: EmailStatSummaryResponse;  }> {
+        const localVarPath = this.basePath + '/storefront/{storefront_oid}/email/commseqs/{commseq_uuid}/emailStats'
+            .replace('{' + 'storefront_oid' + '}', String(storefrontOid))
+            .replace('{' + 'commseq_uuid' + '}', String(commseqUuid));
+        let queryParameters: any = {};
+        let headerParams: any = this.extendObj({}, this.defaultHeaders);
+        let formParams: any = {};
+
+
+        // verify required parameter 'storefrontOid' is not null or undefined
+        if (storefrontOid === null || storefrontOid === undefined) {
+            throw new Error('Required parameter storefrontOid was null or undefined when calling getEmailCommseqEmailStats.');
+        }
+
+        // verify required parameter 'commseqUuid' is not null or undefined
+        if (commseqUuid === null || commseqUuid === undefined) {
+            throw new Error('Required parameter commseqUuid was null or undefined when calling getEmailCommseqEmailStats.');
+        }
+
+        // verify required parameter 'statsRequest' is not null or undefined
+        if (statsRequest === null || statsRequest === undefined) {
+            throw new Error('Required parameter statsRequest was null or undefined when calling getEmailCommseqEmailStats.');
+        }
+
+        let useFormData = false;
+
+        let requestOptions: request.Options = {
+            method: 'POST',
+            qs: queryParameters,
+            headers: headerParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+            body: statsRequest,
+        };
+
+        this.authentications.ultraCartBrowserApiKey.applyToRequest(requestOptions);
+
+        this.authentications.ultraCartOauth.applyToRequest(requestOptions);
+
+        this.authentications.ultraCartSimpleApiKey.applyToRequest(requestOptions);
+
+        this.authentications.default.applyToRequest(requestOptions);
+
+        if (Object.keys(formParams).length) {
+            if (useFormData) {
+                (<any>requestOptions).formData = formParams;
+            } else {
+                requestOptions.form = formParams;
+            }
+        }
+        return new Promise<{ response: http.ClientResponse; body: EmailStatSummaryResponse;  }>((resolve, reject) => {
+            request(requestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    if (response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * Get communication sequence stats overall
+     * 
+     * @param storefrontOid null
+     * @param commseqUuid null
+     */
+    public getEmailCommseqStatOverall (storefrontOid: string, commseqUuid: string) : Promise<{ response: http.ClientResponse; body: EmailCommseqStatResponse;  }> {
+        const localVarPath = this.basePath + '/storefront/{storefront_oid}/email/commseqs/{commseq_uuid}/stat'
+            .replace('{' + 'storefront_oid' + '}', String(storefrontOid))
+            .replace('{' + 'commseq_uuid' + '}', String(commseqUuid));
+        let queryParameters: any = {};
+        let headerParams: any = this.extendObj({}, this.defaultHeaders);
+        let formParams: any = {};
+
+
+        // verify required parameter 'storefrontOid' is not null or undefined
+        if (storefrontOid === null || storefrontOid === undefined) {
+            throw new Error('Required parameter storefrontOid was null or undefined when calling getEmailCommseqStatOverall.');
+        }
+
+        // verify required parameter 'commseqUuid' is not null or undefined
+        if (commseqUuid === null || commseqUuid === undefined) {
+            throw new Error('Required parameter commseqUuid was null or undefined when calling getEmailCommseqStatOverall.');
+        }
+
+        let useFormData = false;
+
+        let requestOptions: request.Options = {
+            method: 'GET',
+            qs: queryParameters,
+            headers: headerParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.ultraCartBrowserApiKey.applyToRequest(requestOptions);
+
+        this.authentications.ultraCartOauth.applyToRequest(requestOptions);
+
+        this.authentications.ultraCartSimpleApiKey.applyToRequest(requestOptions);
+
+        this.authentications.default.applyToRequest(requestOptions);
+
+        if (Object.keys(formParams).length) {
+            if (useFormData) {
+                (<any>requestOptions).formData = formParams;
+            } else {
+                requestOptions.form = formParams;
+            }
+        }
+        return new Promise<{ response: http.ClientResponse; body: EmailCommseqStatResponse;  }>((resolve, reject) => {
+            request(requestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    if (response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * Get email communication sequence customers waiting at each requested step
+     * 
+     * @param storefrontOid null
+     * @param commseqUuid null
+     * @param waitingRequest WaitingRequest
+     */
+    public getEmailCommseqStepWaiting (storefrontOid: string, commseqUuid: string, waitingRequest: EmailStepWaitingRequest) : Promise<{ response: http.ClientResponse; body: EmailStepWaitingResponse;  }> {
+        const localVarPath = this.basePath + '/storefront/{storefront_oid}/email/commseqs/{commseq_uuid}/waiting'
+            .replace('{' + 'storefront_oid' + '}', String(storefrontOid))
+            .replace('{' + 'commseq_uuid' + '}', String(commseqUuid));
+        let queryParameters: any = {};
+        let headerParams: any = this.extendObj({}, this.defaultHeaders);
+        let formParams: any = {};
+
+
+        // verify required parameter 'storefrontOid' is not null or undefined
+        if (storefrontOid === null || storefrontOid === undefined) {
+            throw new Error('Required parameter storefrontOid was null or undefined when calling getEmailCommseqStepWaiting.');
+        }
+
+        // verify required parameter 'commseqUuid' is not null or undefined
+        if (commseqUuid === null || commseqUuid === undefined) {
+            throw new Error('Required parameter commseqUuid was null or undefined when calling getEmailCommseqStepWaiting.');
+        }
+
+        // verify required parameter 'waitingRequest' is not null or undefined
+        if (waitingRequest === null || waitingRequest === undefined) {
+            throw new Error('Required parameter waitingRequest was null or undefined when calling getEmailCommseqStepWaiting.');
+        }
+
+        let useFormData = false;
+
+        let requestOptions: request.Options = {
+            method: 'POST',
+            qs: queryParameters,
+            headers: headerParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+            body: waitingRequest,
+        };
+
+        this.authentications.ultraCartBrowserApiKey.applyToRequest(requestOptions);
+
+        this.authentications.ultraCartOauth.applyToRequest(requestOptions);
+
+        this.authentications.ultraCartSimpleApiKey.applyToRequest(requestOptions);
+
+        this.authentications.default.applyToRequest(requestOptions);
+
+        if (Object.keys(formParams).length) {
+            if (useFormData) {
+                (<any>requestOptions).formData = formParams;
+            } else {
+                requestOptions.form = formParams;
+            }
+        }
+        return new Promise<{ response: http.ClientResponse; body: EmailStepWaitingResponse;  }>((resolve, reject) => {
+            request(requestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    if (response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * Get email commseqs
+     * 
+     * @param storefrontOid null
+     */
+    public getEmailCommseqs (storefrontOid: string) : Promise<{ response: http.ClientResponse; body: EmailCommseqsResponse;  }> {
+        const localVarPath = this.basePath + '/storefront/{storefront_oid}/email/commseqs'
+            .replace('{' + 'storefront_oid' + '}', String(storefrontOid));
+        let queryParameters: any = {};
+        let headerParams: any = this.extendObj({}, this.defaultHeaders);
+        let formParams: any = {};
+
+
+        // verify required parameter 'storefrontOid' is not null or undefined
+        if (storefrontOid === null || storefrontOid === undefined) {
+            throw new Error('Required parameter storefrontOid was null or undefined when calling getEmailCommseqs.');
+        }
+
+        let useFormData = false;
+
+        let requestOptions: request.Options = {
+            method: 'GET',
+            qs: queryParameters,
+            headers: headerParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.ultraCartBrowserApiKey.applyToRequest(requestOptions);
+
+        this.authentications.ultraCartOauth.applyToRequest(requestOptions);
+
+        this.authentications.ultraCartSimpleApiKey.applyToRequest(requestOptions);
+
+        this.authentications.default.applyToRequest(requestOptions);
+
+        if (Object.keys(formParams).length) {
+            if (useFormData) {
+                (<any>requestOptions).formData = formParams;
+            } else {
+                requestOptions.form = formParams;
+            }
+        }
+        return new Promise<{ response: http.ClientResponse; body: EmailCommseqsResponse;  }>((resolve, reject) => {
+            request(requestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    if (response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * Get email dashboard activity
+     * 
+     * @param storefrontOid null
+     * @param lastRecords null
+     */
+    public getEmailDashboardActivity (storefrontOid: string, lastRecords?: number) : Promise<{ response: http.ClientResponse; body: EmailDashboardActivityResponse;  }> {
+        const localVarPath = this.basePath + '/storefront/{storefront_oid}/email/dashboard_activity'
+            .replace('{' + 'storefront_oid' + '}', String(storefrontOid));
+        let queryParameters: any = {};
+        let headerParams: any = this.extendObj({}, this.defaultHeaders);
+        let formParams: any = {};
+
+
+        // verify required parameter 'storefrontOid' is not null or undefined
+        if (storefrontOid === null || storefrontOid === undefined) {
+            throw new Error('Required parameter storefrontOid was null or undefined when calling getEmailDashboardActivity.');
+        }
+
+        if (lastRecords !== undefined) {
+            queryParameters['last_records'] = lastRecords;
+        }
+
+        let useFormData = false;
+
+        let requestOptions: request.Options = {
+            method: 'GET',
+            qs: queryParameters,
+            headers: headerParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.ultraCartBrowserApiKey.applyToRequest(requestOptions);
+
+        this.authentications.ultraCartOauth.applyToRequest(requestOptions);
+
+        this.authentications.ultraCartSimpleApiKey.applyToRequest(requestOptions);
+
+        this.authentications.default.applyToRequest(requestOptions);
+
+        if (Object.keys(formParams).length) {
+            if (useFormData) {
+                (<any>requestOptions).formData = formParams;
+            } else {
+                requestOptions.form = formParams;
+            }
+        }
+        return new Promise<{ response: http.ClientResponse; body: EmailDashboardActivityResponse;  }>((resolve, reject) => {
+            request(requestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    if (response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * Get dashboard stats
+     * 
+     * @param storefrontOid null
+     * @param days null
+     */
+    public getEmailDashboardStats (storefrontOid: string, days?: number) : Promise<{ response: http.ClientResponse; body: EmailDashboardStatsResponse;  }> {
+        const localVarPath = this.basePath + '/storefront/{storefront_oid}/email/dashboard_stats'
+            .replace('{' + 'storefront_oid' + '}', String(storefrontOid));
+        let queryParameters: any = {};
+        let headerParams: any = this.extendObj({}, this.defaultHeaders);
+        let formParams: any = {};
+
+
+        // verify required parameter 'storefrontOid' is not null or undefined
+        if (storefrontOid === null || storefrontOid === undefined) {
+            throw new Error('Required parameter storefrontOid was null or undefined when calling getEmailDashboardStats.');
+        }
+
+        if (days !== undefined) {
+            queryParameters['days'] = days;
+        }
+
+        let useFormData = false;
+
+        let requestOptions: request.Options = {
+            method: 'GET',
+            qs: queryParameters,
+            headers: headerParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.ultraCartBrowserApiKey.applyToRequest(requestOptions);
+
+        this.authentications.ultraCartOauth.applyToRequest(requestOptions);
+
+        this.authentications.ultraCartSimpleApiKey.applyToRequest(requestOptions);
+
+        this.authentications.default.applyToRequest(requestOptions);
+
+        if (Object.keys(formParams).length) {
+            if (useFormData) {
+                (<any>requestOptions).formData = formParams;
+            } else {
+                requestOptions.form = formParams;
+            }
+        }
+        return new Promise<{ response: http.ClientResponse; body: EmailDashboardStatsResponse;  }>((resolve, reject) => {
+            request(requestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    if (response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * Get email email
+     * 
+     * @param storefrontOid null
+     * @param commseqEmailUuid null
+     */
+    public getEmailEmail (storefrontOid: string, commseqEmailUuid: string) : Promise<{ response: http.ClientResponse; body: EmailCommseqEmailResponse;  }> {
+        const localVarPath = this.basePath + '/storefront/{storefront_oid}/email/emails/{commseq_email_uuid}'
+            .replace('{' + 'storefront_oid' + '}', String(storefrontOid))
+            .replace('{' + 'commseq_email_uuid' + '}', String(commseqEmailUuid));
+        let queryParameters: any = {};
+        let headerParams: any = this.extendObj({}, this.defaultHeaders);
+        let formParams: any = {};
+
+
+        // verify required parameter 'storefrontOid' is not null or undefined
+        if (storefrontOid === null || storefrontOid === undefined) {
+            throw new Error('Required parameter storefrontOid was null or undefined when calling getEmailEmail.');
+        }
+
+        // verify required parameter 'commseqEmailUuid' is not null or undefined
+        if (commseqEmailUuid === null || commseqEmailUuid === undefined) {
+            throw new Error('Required parameter commseqEmailUuid was null or undefined when calling getEmailEmail.');
+        }
+
+        let useFormData = false;
+
+        let requestOptions: request.Options = {
+            method: 'GET',
+            qs: queryParameters,
+            headers: headerParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.ultraCartBrowserApiKey.applyToRequest(requestOptions);
+
+        this.authentications.ultraCartOauth.applyToRequest(requestOptions);
+
+        this.authentications.ultraCartSimpleApiKey.applyToRequest(requestOptions);
+
+        this.authentications.default.applyToRequest(requestOptions);
+
+        if (Object.keys(formParams).length) {
+            if (useFormData) {
+                (<any>requestOptions).formData = formParams;
+            } else {
+                requestOptions.form = formParams;
+            }
+        }
+        return new Promise<{ response: http.ClientResponse; body: EmailCommseqEmailResponse;  }>((resolve, reject) => {
+            request(requestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    if (response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * Get email emails
+     * 
+     * @param storefrontOid null
+     */
+    public getEmailEmails (storefrontOid: string) : Promise<{ response: http.ClientResponse; body: EmailCommseqEmailsResponse;  }> {
+        const localVarPath = this.basePath + '/storefront/{storefront_oid}/email/emails'
+            .replace('{' + 'storefront_oid' + '}', String(storefrontOid));
+        let queryParameters: any = {};
+        let headerParams: any = this.extendObj({}, this.defaultHeaders);
+        let formParams: any = {};
+
+
+        // verify required parameter 'storefrontOid' is not null or undefined
+        if (storefrontOid === null || storefrontOid === undefined) {
+            throw new Error('Required parameter storefrontOid was null or undefined when calling getEmailEmails.');
+        }
+
+        let useFormData = false;
+
+        let requestOptions: request.Options = {
+            method: 'GET',
+            qs: queryParameters,
+            headers: headerParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.ultraCartBrowserApiKey.applyToRequest(requestOptions);
+
+        this.authentications.ultraCartOauth.applyToRequest(requestOptions);
+
+        this.authentications.ultraCartSimpleApiKey.applyToRequest(requestOptions);
+
+        this.authentications.default.applyToRequest(requestOptions);
+
+        if (Object.keys(formParams).length) {
+            if (useFormData) {
+                (<any>requestOptions).formData = formParams;
+            } else {
+                requestOptions.form = formParams;
+            }
+        }
+        return new Promise<{ response: http.ClientResponse; body: EmailCommseqEmailsResponse;  }>((resolve, reject) => {
+            request(requestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    if (response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * Get email emails multiple
+     * 
+     * @param storefrontOid null
+     * @param emailCommseqEmailsRequest Request of email uuids
+     */
+    public getEmailEmailsMultiple (storefrontOid: string, emailCommseqEmailsRequest: EmailCommseqEmailsRequest) : Promise<{ response: http.ClientResponse; body: EmailCommseqEmailsResponse;  }> {
+        const localVarPath = this.basePath + '/storefront/{storefront_oid}/email/emails/multiple'
+            .replace('{' + 'storefront_oid' + '}', String(storefrontOid));
+        let queryParameters: any = {};
+        let headerParams: any = this.extendObj({}, this.defaultHeaders);
+        let formParams: any = {};
+
+
+        // verify required parameter 'storefrontOid' is not null or undefined
+        if (storefrontOid === null || storefrontOid === undefined) {
+            throw new Error('Required parameter storefrontOid was null or undefined when calling getEmailEmailsMultiple.');
+        }
+
+        // verify required parameter 'emailCommseqEmailsRequest' is not null or undefined
+        if (emailCommseqEmailsRequest === null || emailCommseqEmailsRequest === undefined) {
+            throw new Error('Required parameter emailCommseqEmailsRequest was null or undefined when calling getEmailEmailsMultiple.');
+        }
+
+        let useFormData = false;
+
+        let requestOptions: request.Options = {
+            method: 'POST',
+            qs: queryParameters,
+            headers: headerParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+            body: emailCommseqEmailsRequest,
+        };
+
+        this.authentications.ultraCartBrowserApiKey.applyToRequest(requestOptions);
+
+        this.authentications.ultraCartOauth.applyToRequest(requestOptions);
+
+        this.authentications.ultraCartSimpleApiKey.applyToRequest(requestOptions);
+
+        this.authentications.default.applyToRequest(requestOptions);
+
+        if (Object.keys(formParams).length) {
+            if (useFormData) {
+                (<any>requestOptions).formData = formParams;
+            } else {
+                requestOptions.form = formParams;
+            }
+        }
+        return new Promise<{ response: http.ClientResponse; body: EmailCommseqEmailsResponse;  }>((resolve, reject) => {
+            request(requestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    if (response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * Get email flow
+     * 
+     * @param storefrontOid null
+     * @param emailFlowUuid null
+     */
+    public getEmailFlow (storefrontOid: string, emailFlowUuid: string) : Promise<{ response: http.ClientResponse; body: EmailFlowResponse;  }> {
+        const localVarPath = this.basePath + '/storefront/{storefront_oid}/email/flows/{email_flow_uuid}'
+            .replace('{' + 'storefront_oid' + '}', String(storefrontOid))
+            .replace('{' + 'email_flow_uuid' + '}', String(emailFlowUuid));
+        let queryParameters: any = {};
+        let headerParams: any = this.extendObj({}, this.defaultHeaders);
+        let formParams: any = {};
+
+
+        // verify required parameter 'storefrontOid' is not null or undefined
+        if (storefrontOid === null || storefrontOid === undefined) {
+            throw new Error('Required parameter storefrontOid was null or undefined when calling getEmailFlow.');
+        }
+
+        // verify required parameter 'emailFlowUuid' is not null or undefined
+        if (emailFlowUuid === null || emailFlowUuid === undefined) {
+            throw new Error('Required parameter emailFlowUuid was null or undefined when calling getEmailFlow.');
+        }
+
+        let useFormData = false;
+
+        let requestOptions: request.Options = {
+            method: 'GET',
+            qs: queryParameters,
+            headers: headerParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.ultraCartBrowserApiKey.applyToRequest(requestOptions);
+
+        this.authentications.ultraCartOauth.applyToRequest(requestOptions);
+
+        this.authentications.ultraCartSimpleApiKey.applyToRequest(requestOptions);
+
+        this.authentications.default.applyToRequest(requestOptions);
+
+        if (Object.keys(formParams).length) {
+            if (useFormData) {
+                (<any>requestOptions).formData = formParams;
+            } else {
+                requestOptions.form = formParams;
+            }
+        }
+        return new Promise<{ response: http.ClientResponse; body: EmailFlowResponse;  }>((resolve, reject) => {
+            request(requestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    if (response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * Get email flows
+     * 
+     * @param storefrontOid null
+     */
+    public getEmailFlows (storefrontOid: string) : Promise<{ response: http.ClientResponse; body: EmailFlowsResponse;  }> {
+        const localVarPath = this.basePath + '/storefront/{storefront_oid}/email/flows'
+            .replace('{' + 'storefront_oid' + '}', String(storefrontOid));
+        let queryParameters: any = {};
+        let headerParams: any = this.extendObj({}, this.defaultHeaders);
+        let formParams: any = {};
+
+
+        // verify required parameter 'storefrontOid' is not null or undefined
+        if (storefrontOid === null || storefrontOid === undefined) {
+            throw new Error('Required parameter storefrontOid was null or undefined when calling getEmailFlows.');
+        }
+
+        let useFormData = false;
+
+        let requestOptions: request.Options = {
+            method: 'GET',
+            qs: queryParameters,
+            headers: headerParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.ultraCartBrowserApiKey.applyToRequest(requestOptions);
+
+        this.authentications.ultraCartOauth.applyToRequest(requestOptions);
+
+        this.authentications.ultraCartSimpleApiKey.applyToRequest(requestOptions);
+
+        this.authentications.default.applyToRequest(requestOptions);
+
+        if (Object.keys(formParams).length) {
+            if (useFormData) {
+                (<any>requestOptions).formData = formParams;
+            } else {
+                requestOptions.form = formParams;
+            }
+        }
+        return new Promise<{ response: http.ClientResponse; body: EmailFlowsResponse;  }>((resolve, reject) => {
+            request(requestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    if (response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * Get email list
+     * 
+     * @param storefrontOid null
+     * @param emailListUuid null
+     */
+    public getEmailList (storefrontOid: string, emailListUuid: string) : Promise<{ response: http.ClientResponse; body: EmailListResponse;  }> {
+        const localVarPath = this.basePath + '/storefront/{storefront_oid}/email/lists/{email_list_uuid}'
+            .replace('{' + 'storefront_oid' + '}', String(storefrontOid))
+            .replace('{' + 'email_list_uuid' + '}', String(emailListUuid));
+        let queryParameters: any = {};
+        let headerParams: any = this.extendObj({}, this.defaultHeaders);
+        let formParams: any = {};
+
+
+        // verify required parameter 'storefrontOid' is not null or undefined
+        if (storefrontOid === null || storefrontOid === undefined) {
+            throw new Error('Required parameter storefrontOid was null or undefined when calling getEmailList.');
+        }
+
+        // verify required parameter 'emailListUuid' is not null or undefined
+        if (emailListUuid === null || emailListUuid === undefined) {
+            throw new Error('Required parameter emailListUuid was null or undefined when calling getEmailList.');
+        }
+
+        let useFormData = false;
+
+        let requestOptions: request.Options = {
+            method: 'GET',
+            qs: queryParameters,
+            headers: headerParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.ultraCartBrowserApiKey.applyToRequest(requestOptions);
+
+        this.authentications.ultraCartOauth.applyToRequest(requestOptions);
+
+        this.authentications.ultraCartSimpleApiKey.applyToRequest(requestOptions);
+
+        this.authentications.default.applyToRequest(requestOptions);
+
+        if (Object.keys(formParams).length) {
+            if (useFormData) {
+                (<any>requestOptions).formData = formParams;
+            } else {
+                requestOptions.form = formParams;
+            }
+        }
+        return new Promise<{ response: http.ClientResponse; body: EmailListResponse;  }>((resolve, reject) => {
+            request(requestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    if (response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * Get email list customers
+     * 
+     * @param storefrontOid null
+     * @param emailListUuid null
+     * @param emailCustomerUuid null
+     */
+    public getEmailListCustomerEditorUrl (storefrontOid: string, emailListUuid: string, emailCustomerUuid: string) : Promise<{ response: http.ClientResponse; body: EmailCustomerEditorUrlResponse;  }> {
+        const localVarPath = this.basePath + '/storefront/{storefront_oid}/email/lists/{email_list_uuid}/customers/{email_customer_uuid}/editor_url'
+            .replace('{' + 'storefront_oid' + '}', String(storefrontOid))
+            .replace('{' + 'email_list_uuid' + '}', String(emailListUuid))
+            .replace('{' + 'email_customer_uuid' + '}', String(emailCustomerUuid));
+        let queryParameters: any = {};
+        let headerParams: any = this.extendObj({}, this.defaultHeaders);
+        let formParams: any = {};
+
+
+        // verify required parameter 'storefrontOid' is not null or undefined
+        if (storefrontOid === null || storefrontOid === undefined) {
+            throw new Error('Required parameter storefrontOid was null or undefined when calling getEmailListCustomerEditorUrl.');
+        }
+
+        // verify required parameter 'emailListUuid' is not null or undefined
+        if (emailListUuid === null || emailListUuid === undefined) {
+            throw new Error('Required parameter emailListUuid was null or undefined when calling getEmailListCustomerEditorUrl.');
+        }
+
+        // verify required parameter 'emailCustomerUuid' is not null or undefined
+        if (emailCustomerUuid === null || emailCustomerUuid === undefined) {
+            throw new Error('Required parameter emailCustomerUuid was null or undefined when calling getEmailListCustomerEditorUrl.');
+        }
+
+        let useFormData = false;
+
+        let requestOptions: request.Options = {
+            method: 'GET',
+            qs: queryParameters,
+            headers: headerParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.ultraCartBrowserApiKey.applyToRequest(requestOptions);
+
+        this.authentications.ultraCartOauth.applyToRequest(requestOptions);
+
+        this.authentications.ultraCartSimpleApiKey.applyToRequest(requestOptions);
+
+        this.authentications.default.applyToRequest(requestOptions);
+
+        if (Object.keys(formParams).length) {
+            if (useFormData) {
+                (<any>requestOptions).formData = formParams;
+            } else {
+                requestOptions.form = formParams;
+            }
+        }
+        return new Promise<{ response: http.ClientResponse; body: EmailCustomerEditorUrlResponse;  }>((resolve, reject) => {
+            request(requestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    if (response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * Get email list customers
+     * 
+     * @param storefrontOid null
+     * @param emailListUuid null
+     * @param pageNumber null
+     * @param pageSize null
+     */
+    public getEmailListCustomers (storefrontOid: string, emailListUuid: string, pageNumber?: number, pageSize?: number) : Promise<{ response: http.ClientResponse; body: EmailListCustomersResponse;  }> {
+        const localVarPath = this.basePath + '/storefront/{storefront_oid}/email/lists/{email_list_uuid}/customers'
+            .replace('{' + 'storefront_oid' + '}', String(storefrontOid))
+            .replace('{' + 'email_list_uuid' + '}', String(emailListUuid));
+        let queryParameters: any = {};
+        let headerParams: any = this.extendObj({}, this.defaultHeaders);
+        let formParams: any = {};
+
+
+        // verify required parameter 'storefrontOid' is not null or undefined
+        if (storefrontOid === null || storefrontOid === undefined) {
+            throw new Error('Required parameter storefrontOid was null or undefined when calling getEmailListCustomers.');
+        }
+
+        // verify required parameter 'emailListUuid' is not null or undefined
+        if (emailListUuid === null || emailListUuid === undefined) {
+            throw new Error('Required parameter emailListUuid was null or undefined when calling getEmailListCustomers.');
+        }
+
+        if (pageNumber !== undefined) {
+            queryParameters['pageNumber'] = pageNumber;
+        }
+
+        if (pageSize !== undefined) {
+            queryParameters['pageSize'] = pageSize;
+        }
+
+        let useFormData = false;
+
+        let requestOptions: request.Options = {
+            method: 'GET',
+            qs: queryParameters,
+            headers: headerParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.ultraCartBrowserApiKey.applyToRequest(requestOptions);
+
+        this.authentications.ultraCartOauth.applyToRequest(requestOptions);
+
+        this.authentications.ultraCartSimpleApiKey.applyToRequest(requestOptions);
+
+        this.authentications.default.applyToRequest(requestOptions);
+
+        if (Object.keys(formParams).length) {
+            if (useFormData) {
+                (<any>requestOptions).formData = formParams;
+            } else {
+                requestOptions.form = formParams;
+            }
+        }
+        return new Promise<{ response: http.ClientResponse; body: EmailListCustomersResponse;  }>((resolve, reject) => {
+            request(requestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    if (response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * Get email lists
+     * 
+     * @param storefrontOid null
+     */
+    public getEmailLists (storefrontOid: string) : Promise<{ response: http.ClientResponse; body: EmailListsResponse;  }> {
+        const localVarPath = this.basePath + '/storefront/{storefront_oid}/email/lists'
+            .replace('{' + 'storefront_oid' + '}', String(storefrontOid));
+        let queryParameters: any = {};
+        let headerParams: any = this.extendObj({}, this.defaultHeaders);
+        let formParams: any = {};
+
+
+        // verify required parameter 'storefrontOid' is not null or undefined
+        if (storefrontOid === null || storefrontOid === undefined) {
+            throw new Error('Required parameter storefrontOid was null or undefined when calling getEmailLists.');
+        }
+
+        let useFormData = false;
+
+        let requestOptions: request.Options = {
+            method: 'GET',
+            qs: queryParameters,
+            headers: headerParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.ultraCartBrowserApiKey.applyToRequest(requestOptions);
+
+        this.authentications.ultraCartOauth.applyToRequest(requestOptions);
+
+        this.authentications.ultraCartSimpleApiKey.applyToRequest(requestOptions);
+
+        this.authentications.default.applyToRequest(requestOptions);
+
+        if (Object.keys(formParams).length) {
+            if (useFormData) {
+                (<any>requestOptions).formData = formParams;
+            } else {
+                requestOptions.form = formParams;
+            }
+        }
+        return new Promise<{ response: http.ClientResponse; body: EmailListsResponse;  }>((resolve, reject) => {
+            request(requestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    if (response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * Get email segment
+     * 
+     * @param storefrontOid null
+     * @param emailSegmentUuid null
+     */
+    public getEmailSegment (storefrontOid: string, emailSegmentUuid: string) : Promise<{ response: http.ClientResponse; body: EmailSegmentResponse;  }> {
+        const localVarPath = this.basePath + '/storefront/{storefront_oid}/email/segments/{email_segment_uuid}'
+            .replace('{' + 'storefront_oid' + '}', String(storefrontOid))
+            .replace('{' + 'email_segment_uuid' + '}', String(emailSegmentUuid));
+        let queryParameters: any = {};
+        let headerParams: any = this.extendObj({}, this.defaultHeaders);
+        let formParams: any = {};
+
+
+        // verify required parameter 'storefrontOid' is not null or undefined
+        if (storefrontOid === null || storefrontOid === undefined) {
+            throw new Error('Required parameter storefrontOid was null or undefined when calling getEmailSegment.');
+        }
+
+        // verify required parameter 'emailSegmentUuid' is not null or undefined
+        if (emailSegmentUuid === null || emailSegmentUuid === undefined) {
+            throw new Error('Required parameter emailSegmentUuid was null or undefined when calling getEmailSegment.');
+        }
+
+        let useFormData = false;
+
+        let requestOptions: request.Options = {
+            method: 'GET',
+            qs: queryParameters,
+            headers: headerParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.ultraCartBrowserApiKey.applyToRequest(requestOptions);
+
+        this.authentications.ultraCartOauth.applyToRequest(requestOptions);
+
+        this.authentications.ultraCartSimpleApiKey.applyToRequest(requestOptions);
+
+        this.authentications.default.applyToRequest(requestOptions);
+
+        if (Object.keys(formParams).length) {
+            if (useFormData) {
+                (<any>requestOptions).formData = formParams;
+            } else {
+                requestOptions.form = formParams;
+            }
+        }
+        return new Promise<{ response: http.ClientResponse; body: EmailSegmentResponse;  }>((resolve, reject) => {
+            request(requestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    if (response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * Get email segment customers editor URL
+     * 
+     * @param storefrontOid null
+     * @param emailSegmentUuid null
+     * @param emailCustomerUuid null
+     */
+    public getEmailSegmentCustomerEditorUrl (storefrontOid: string, emailSegmentUuid: string, emailCustomerUuid: string) : Promise<{ response: http.ClientResponse; body: EmailCustomerEditorUrlResponse;  }> {
+        const localVarPath = this.basePath + '/storefront/{storefront_oid}/email/segments/{email_segment_uuid}/customers/{email_customer_uuid}/editor_url'
+            .replace('{' + 'storefront_oid' + '}', String(storefrontOid))
+            .replace('{' + 'email_segment_uuid' + '}', String(emailSegmentUuid))
+            .replace('{' + 'email_customer_uuid' + '}', String(emailCustomerUuid));
+        let queryParameters: any = {};
+        let headerParams: any = this.extendObj({}, this.defaultHeaders);
+        let formParams: any = {};
+
+
+        // verify required parameter 'storefrontOid' is not null or undefined
+        if (storefrontOid === null || storefrontOid === undefined) {
+            throw new Error('Required parameter storefrontOid was null or undefined when calling getEmailSegmentCustomerEditorUrl.');
+        }
+
+        // verify required parameter 'emailSegmentUuid' is not null or undefined
+        if (emailSegmentUuid === null || emailSegmentUuid === undefined) {
+            throw new Error('Required parameter emailSegmentUuid was null or undefined when calling getEmailSegmentCustomerEditorUrl.');
+        }
+
+        // verify required parameter 'emailCustomerUuid' is not null or undefined
+        if (emailCustomerUuid === null || emailCustomerUuid === undefined) {
+            throw new Error('Required parameter emailCustomerUuid was null or undefined when calling getEmailSegmentCustomerEditorUrl.');
+        }
+
+        let useFormData = false;
+
+        let requestOptions: request.Options = {
+            method: 'GET',
+            qs: queryParameters,
+            headers: headerParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.ultraCartBrowserApiKey.applyToRequest(requestOptions);
+
+        this.authentications.ultraCartOauth.applyToRequest(requestOptions);
+
+        this.authentications.ultraCartSimpleApiKey.applyToRequest(requestOptions);
+
+        this.authentications.default.applyToRequest(requestOptions);
+
+        if (Object.keys(formParams).length) {
+            if (useFormData) {
+                (<any>requestOptions).formData = formParams;
+            } else {
+                requestOptions.form = formParams;
+            }
+        }
+        return new Promise<{ response: http.ClientResponse; body: EmailCustomerEditorUrlResponse;  }>((resolve, reject) => {
+            request(requestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    if (response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * Get email segment customers
+     * 
+     * @param storefrontOid null
+     * @param emailSegmentUuid null
+     * @param pageNumber null
+     * @param pageSize null
+     */
+    public getEmailSegmentCustomers (storefrontOid: string, emailSegmentUuid: string, pageNumber?: number, pageSize?: number) : Promise<{ response: http.ClientResponse; body: EmailSegmentCustomersResponse;  }> {
+        const localVarPath = this.basePath + '/storefront/{storefront_oid}/email/segments/{email_segment_uuid}/customers'
+            .replace('{' + 'storefront_oid' + '}', String(storefrontOid))
+            .replace('{' + 'email_segment_uuid' + '}', String(emailSegmentUuid));
+        let queryParameters: any = {};
+        let headerParams: any = this.extendObj({}, this.defaultHeaders);
+        let formParams: any = {};
+
+
+        // verify required parameter 'storefrontOid' is not null or undefined
+        if (storefrontOid === null || storefrontOid === undefined) {
+            throw new Error('Required parameter storefrontOid was null or undefined when calling getEmailSegmentCustomers.');
+        }
+
+        // verify required parameter 'emailSegmentUuid' is not null or undefined
+        if (emailSegmentUuid === null || emailSegmentUuid === undefined) {
+            throw new Error('Required parameter emailSegmentUuid was null or undefined when calling getEmailSegmentCustomers.');
+        }
+
+        if (pageNumber !== undefined) {
+            queryParameters['pageNumber'] = pageNumber;
+        }
+
+        if (pageSize !== undefined) {
+            queryParameters['pageSize'] = pageSize;
+        }
+
+        let useFormData = false;
+
+        let requestOptions: request.Options = {
+            method: 'GET',
+            qs: queryParameters,
+            headers: headerParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.ultraCartBrowserApiKey.applyToRequest(requestOptions);
+
+        this.authentications.ultraCartOauth.applyToRequest(requestOptions);
+
+        this.authentications.ultraCartSimpleApiKey.applyToRequest(requestOptions);
+
+        this.authentications.default.applyToRequest(requestOptions);
+
+        if (Object.keys(formParams).length) {
+            if (useFormData) {
+                (<any>requestOptions).formData = formParams;
+            } else {
+                requestOptions.form = formParams;
+            }
+        }
+        return new Promise<{ response: http.ClientResponse; body: EmailSegmentCustomersResponse;  }>((resolve, reject) => {
+            request(requestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    if (response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * Get email segments
+     * 
+     * @param storefrontOid null
+     */
+    public getEmailSegments (storefrontOid: string) : Promise<{ response: http.ClientResponse; body: EmailSegmentsResponse;  }> {
+        const localVarPath = this.basePath + '/storefront/{storefront_oid}/email/segments'
+            .replace('{' + 'storefront_oid' + '}', String(storefrontOid));
+        let queryParameters: any = {};
+        let headerParams: any = this.extendObj({}, this.defaultHeaders);
+        let formParams: any = {};
+
+
+        // verify required parameter 'storefrontOid' is not null or undefined
+        if (storefrontOid === null || storefrontOid === undefined) {
+            throw new Error('Required parameter storefrontOid was null or undefined when calling getEmailSegments.');
+        }
+
+        let useFormData = false;
+
+        let requestOptions: request.Options = {
+            method: 'GET',
+            qs: queryParameters,
+            headers: headerParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.ultraCartBrowserApiKey.applyToRequest(requestOptions);
+
+        this.authentications.ultraCartOauth.applyToRequest(requestOptions);
+
+        this.authentications.ultraCartSimpleApiKey.applyToRequest(requestOptions);
+
+        this.authentications.default.applyToRequest(requestOptions);
+
+        if (Object.keys(formParams).length) {
+            if (useFormData) {
+                (<any>requestOptions).formData = formParams;
+            } else {
+                requestOptions.form = formParams;
+            }
+        }
+        return new Promise<{ response: http.ClientResponse; body: EmailSegmentsResponse;  }>((resolve, reject) => {
+            request(requestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    if (response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * Get email sending domain
+     * 
+     * @param domain null
+     */
+    public getEmailSendingDomain (domain: string) : Promise<{ response: http.ClientResponse; body: EmailSendingDomainResponse;  }> {
+        const localVarPath = this.basePath + '/storefront/email/sending_domain/{domain}'
+            .replace('{' + 'domain' + '}', String(domain));
+        let queryParameters: any = {};
+        let headerParams: any = this.extendObj({}, this.defaultHeaders);
+        let formParams: any = {};
+
+
+        // verify required parameter 'domain' is not null or undefined
+        if (domain === null || domain === undefined) {
+            throw new Error('Required parameter domain was null or undefined when calling getEmailSendingDomain.');
+        }
+
+        let useFormData = false;
+
+        let requestOptions: request.Options = {
+            method: 'GET',
+            qs: queryParameters,
+            headers: headerParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.ultraCartBrowserApiKey.applyToRequest(requestOptions);
+
+        this.authentications.ultraCartOauth.applyToRequest(requestOptions);
+
+        this.authentications.ultraCartSimpleApiKey.applyToRequest(requestOptions);
+
+        this.authentications.default.applyToRequest(requestOptions);
+
+        if (Object.keys(formParams).length) {
+            if (useFormData) {
+                (<any>requestOptions).formData = formParams;
+            } else {
+                requestOptions.form = formParams;
+            }
+        }
+        return new Promise<{ response: http.ClientResponse; body: EmailSendingDomainResponse;  }>((resolve, reject) => {
+            request(requestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    if (response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * Get email sending domain status
+     * 
+     * @param domain null
+     */
+    public getEmailSendingDomainStatus (domain: string) : Promise<{ response: http.ClientResponse; body: EmailSendingDomainResponse;  }> {
+        const localVarPath = this.basePath + '/storefront/email/sending_domains/{domain}/status'
+            .replace('{' + 'domain' + '}', String(domain));
+        let queryParameters: any = {};
+        let headerParams: any = this.extendObj({}, this.defaultHeaders);
+        let formParams: any = {};
+
+
+        // verify required parameter 'domain' is not null or undefined
+        if (domain === null || domain === undefined) {
+            throw new Error('Required parameter domain was null or undefined when calling getEmailSendingDomainStatus.');
+        }
+
+        let useFormData = false;
+
+        let requestOptions: request.Options = {
+            method: 'POST',
+            qs: queryParameters,
+            headers: headerParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.ultraCartBrowserApiKey.applyToRequest(requestOptions);
+
+        this.authentications.ultraCartOauth.applyToRequest(requestOptions);
+
+        this.authentications.ultraCartSimpleApiKey.applyToRequest(requestOptions);
+
+        this.authentications.default.applyToRequest(requestOptions);
+
+        if (Object.keys(formParams).length) {
+            if (useFormData) {
+                (<any>requestOptions).formData = formParams;
+            } else {
+                requestOptions.form = formParams;
+            }
+        }
+        return new Promise<{ response: http.ClientResponse; body: EmailSendingDomainResponse;  }>((resolve, reject) => {
+            request(requestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    if (response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * Get email sending domains
+     * 
+     */
+    public getEmailSendingDomains () : Promise<{ response: http.ClientResponse; body: EmailSendingDomainsResponse;  }> {
+        const localVarPath = this.basePath + '/storefront/email/sending_domains';
+        let queryParameters: any = {};
+        let headerParams: any = this.extendObj({}, this.defaultHeaders);
+        let formParams: any = {};
+
+
+        let useFormData = false;
+
+        let requestOptions: request.Options = {
+            method: 'GET',
+            qs: queryParameters,
+            headers: headerParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.ultraCartBrowserApiKey.applyToRequest(requestOptions);
+
+        this.authentications.ultraCartOauth.applyToRequest(requestOptions);
+
+        this.authentications.ultraCartSimpleApiKey.applyToRequest(requestOptions);
+
+        this.authentications.default.applyToRequest(requestOptions);
+
+        if (Object.keys(formParams).length) {
+            if (useFormData) {
+                (<any>requestOptions).formData = formParams;
+            } else {
+                requestOptions.form = formParams;
+            }
+        }
+        return new Promise<{ response: http.ClientResponse; body: EmailSendingDomainsResponse;  }>((resolve, reject) => {
+            request(requestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    if (response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * Get email template
+     * 
+     * @param storefrontOid null
+     * @param emailTemplateOid null
+     */
+    public getEmailTemplate (storefrontOid: string, emailTemplateOid: number) : Promise<{ response: http.ClientResponse; body: EmailTemplate;  }> {
+        const localVarPath = this.basePath + '/storefront/{storefront_oid}/email/templates/{email_template_oid}'
+            .replace('{' + 'storefront_oid' + '}', String(storefrontOid))
+            .replace('{' + 'email_template_oid' + '}', String(emailTemplateOid));
+        let queryParameters: any = {};
+        let headerParams: any = this.extendObj({}, this.defaultHeaders);
+        let formParams: any = {};
+
+
+        // verify required parameter 'storefrontOid' is not null or undefined
+        if (storefrontOid === null || storefrontOid === undefined) {
+            throw new Error('Required parameter storefrontOid was null or undefined when calling getEmailTemplate.');
+        }
+
+        // verify required parameter 'emailTemplateOid' is not null or undefined
+        if (emailTemplateOid === null || emailTemplateOid === undefined) {
+            throw new Error('Required parameter emailTemplateOid was null or undefined when calling getEmailTemplate.');
+        }
+
+        let useFormData = false;
+
+        let requestOptions: request.Options = {
+            method: 'GET',
+            qs: queryParameters,
+            headers: headerParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.ultraCartBrowserApiKey.applyToRequest(requestOptions);
+
+        this.authentications.ultraCartOauth.applyToRequest(requestOptions);
+
+        this.authentications.ultraCartSimpleApiKey.applyToRequest(requestOptions);
+
+        this.authentications.default.applyToRequest(requestOptions);
+
+        if (Object.keys(formParams).length) {
+            if (useFormData) {
+                (<any>requestOptions).formData = formParams;
+            } else {
+                requestOptions.form = formParams;
+            }
+        }
+        return new Promise<{ response: http.ClientResponse; body: EmailTemplate;  }>((resolve, reject) => {
+            request(requestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    if (response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * Get email templates
+     * 
+     * @param storefrontOid null
+     * @param triggerType null
+     */
+    public getEmailTemplates (storefrontOid: string, triggerType?: string) : Promise<{ response: http.ClientResponse; body: EmailTemplatesResponse;  }> {
+        const localVarPath = this.basePath + '/storefront/{storefront_oid}/email/templates'
+            .replace('{' + 'storefront_oid' + '}', String(storefrontOid));
+        let queryParameters: any = {};
+        let headerParams: any = this.extendObj({}, this.defaultHeaders);
+        let formParams: any = {};
+
+
+        // verify required parameter 'storefrontOid' is not null or undefined
+        if (storefrontOid === null || storefrontOid === undefined) {
+            throw new Error('Required parameter storefrontOid was null or undefined when calling getEmailTemplates.');
+        }
+
+        if (triggerType !== undefined) {
+            queryParameters['trigger_type'] = triggerType;
+        }
+
+        let useFormData = false;
+
+        let requestOptions: request.Options = {
+            method: 'GET',
+            qs: queryParameters,
+            headers: headerParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.ultraCartBrowserApiKey.applyToRequest(requestOptions);
+
+        this.authentications.ultraCartOauth.applyToRequest(requestOptions);
+
+        this.authentications.ultraCartSimpleApiKey.applyToRequest(requestOptions);
+
+        this.authentications.default.applyToRequest(requestOptions);
+
+        if (Object.keys(formParams).length) {
+            if (useFormData) {
+                (<any>requestOptions).formData = formParams;
+            } else {
+                requestOptions.form = formParams;
+            }
+        }
+        return new Promise<{ response: http.ClientResponse; body: EmailTemplatesResponse;  }>((resolve, reject) => {
+            request(requestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    if (response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * Get a list of third party email providers
+     * 
+     * @param storefrontOid null
+     */
+    public getEmailThirdPartyProviders (storefrontOid: string) : Promise<{ response: http.ClientResponse; body: EmailThirdPartyProvidersResponse;  }> {
+        const localVarPath = this.basePath + '/storefront/{storefront_oid}/email/third_party_providers'
+            .replace('{' + 'storefront_oid' + '}', String(storefrontOid));
+        let queryParameters: any = {};
+        let headerParams: any = this.extendObj({}, this.defaultHeaders);
+        let formParams: any = {};
+
+
+        // verify required parameter 'storefrontOid' is not null or undefined
+        if (storefrontOid === null || storefrontOid === undefined) {
+            throw new Error('Required parameter storefrontOid was null or undefined when calling getEmailThirdPartyProviders.');
+        }
+
+        let useFormData = false;
+
+        let requestOptions: request.Options = {
+            method: 'GET',
+            qs: queryParameters,
+            headers: headerParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.ultraCartBrowserApiKey.applyToRequest(requestOptions);
+
+        this.authentications.ultraCartOauth.applyToRequest(requestOptions);
+
+        this.authentications.ultraCartSimpleApiKey.applyToRequest(requestOptions);
+
+        this.authentications.default.applyToRequest(requestOptions);
+
+        if (Object.keys(formParams).length) {
+            if (useFormData) {
+                (<any>requestOptions).formData = formParams;
+            } else {
+                requestOptions.form = formParams;
+            }
+        }
+        return new Promise<{ response: http.ClientResponse; body: EmailThirdPartyProvidersResponse;  }>((resolve, reject) => {
+            request(requestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    if (response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * Get experiments
+     * 
+     * @param storefrontOid null
+     */
+    public getExperiments (storefrontOid: string) : Promise<{ response: http.ClientResponse; body: ExperimentsResponse;  }> {
+        const localVarPath = this.basePath + '/storefront/{storefront_oid}/experiments'
+            .replace('{' + 'storefront_oid' + '}', String(storefrontOid));
+        let queryParameters: any = {};
+        let headerParams: any = this.extendObj({}, this.defaultHeaders);
+        let formParams: any = {};
+
+
+        // verify required parameter 'storefrontOid' is not null or undefined
+        if (storefrontOid === null || storefrontOid === undefined) {
+            throw new Error('Required parameter storefrontOid was null or undefined when calling getExperiments.');
+        }
+
+        let useFormData = false;
+
+        let requestOptions: request.Options = {
+            method: 'GET',
+            qs: queryParameters,
+            headers: headerParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.ultraCartBrowserApiKey.applyToRequest(requestOptions);
+
+        this.authentications.ultraCartOauth.applyToRequest(requestOptions);
+
+        this.authentications.ultraCartSimpleApiKey.applyToRequest(requestOptions);
+
+        this.authentications.default.applyToRequest(requestOptions);
+
+        if (Object.keys(formParams).length) {
+            if (useFormData) {
+                (<any>requestOptions).formData = formParams;
+            } else {
+                requestOptions.form = formParams;
+            }
+        }
+        return new Promise<{ response: http.ClientResponse; body: ExperimentsResponse;  }>((resolve, reject) => {
+            request(requestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    if (response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * Get histogram property names
+     * Obtain a list of property names for a given property type 
+     * @param storefrontOid null
+     * @param propertyType null
+     */
+    public getHistogramPropertyNames (storefrontOid: string, propertyType?: string) : Promise<{ response: http.ClientResponse; body: EmailHistogramPropertyNamesResponse;  }> {
+        const localVarPath = this.basePath + '/storefront/{storefront_oid}/email/histogram/property_names'
+            .replace('{' + 'storefront_oid' + '}', String(storefrontOid));
+        let queryParameters: any = {};
+        let headerParams: any = this.extendObj({}, this.defaultHeaders);
+        let formParams: any = {};
+
+
+        // verify required parameter 'storefrontOid' is not null or undefined
+        if (storefrontOid === null || storefrontOid === undefined) {
+            throw new Error('Required parameter storefrontOid was null or undefined when calling getHistogramPropertyNames.');
+        }
+
+        if (propertyType !== undefined) {
+            queryParameters['property_type'] = propertyType;
+        }
+
+        let useFormData = false;
+
+        let requestOptions: request.Options = {
+            method: 'GET',
+            qs: queryParameters,
+            headers: headerParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.ultraCartBrowserApiKey.applyToRequest(requestOptions);
+
+        this.authentications.ultraCartOauth.applyToRequest(requestOptions);
+
+        this.authentications.ultraCartSimpleApiKey.applyToRequest(requestOptions);
+
+        this.authentications.default.applyToRequest(requestOptions);
+
+        if (Object.keys(formParams).length) {
+            if (useFormData) {
+                (<any>requestOptions).formData = formParams;
+            } else {
+                requestOptions.form = formParams;
+            }
+        }
+        return new Promise<{ response: http.ClientResponse; body: EmailHistogramPropertyNamesResponse;  }>((resolve, reject) => {
+            request(requestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    if (response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * Get histogram property values
+     * Obtain a list of property values for a given property name and type 
+     * @param storefrontOid null
+     * @param propertyName null
+     * @param propertyType null
+     * @param limit null
+     */
+    public getHistogramPropertyValues (storefrontOid: string, propertyName?: string, propertyType?: string, limit?: number) : Promise<{ response: http.ClientResponse; body: EmailHistogramPropertyValuesResponse;  }> {
+        const localVarPath = this.basePath + '/storefront/{storefront_oid}/email/histogram/property_values'
+            .replace('{' + 'storefront_oid' + '}', String(storefrontOid));
+        let queryParameters: any = {};
+        let headerParams: any = this.extendObj({}, this.defaultHeaders);
+        let formParams: any = {};
+
+
+        // verify required parameter 'storefrontOid' is not null or undefined
+        if (storefrontOid === null || storefrontOid === undefined) {
+            throw new Error('Required parameter storefrontOid was null or undefined when calling getHistogramPropertyValues.');
+        }
+
+        if (propertyName !== undefined) {
+            queryParameters['property_name'] = propertyName;
+        }
+
+        if (propertyType !== undefined) {
+            queryParameters['property_type'] = propertyType;
+        }
+
+        if (limit !== undefined) {
+            queryParameters['limit'] = limit;
+        }
+
+        let useFormData = false;
+
+        let requestOptions: request.Options = {
+            method: 'GET',
+            qs: queryParameters,
+            headers: headerParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.ultraCartBrowserApiKey.applyToRequest(requestOptions);
+
+        this.authentications.ultraCartOauth.applyToRequest(requestOptions);
+
+        this.authentications.ultraCartSimpleApiKey.applyToRequest(requestOptions);
+
+        this.authentications.default.applyToRequest(requestOptions);
+
+        if (Object.keys(formParams).length) {
+            if (useFormData) {
+                (<any>requestOptions).formData = formParams;
+            } else {
+                requestOptions.form = formParams;
+            }
+        }
+        return new Promise<{ response: http.ClientResponse; body: EmailHistogramPropertyValuesResponse;  }>((resolve, reject) => {
+            request(requestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    if (response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * Import a third party provider list
+     * 
+     * @param storefrontOid null
+     * @param importRequest lists to import
+     */
+    public importEmailThirdPartyProviderList (storefrontOid: string, importRequest: EmailThirdPartyListImportRequest) : Promise<{ response: http.ClientResponse; body?: any;  }> {
+        const localVarPath = this.basePath + '/storefront/{storefront_oid}/email/third_party_providers/import'
+            .replace('{' + 'storefront_oid' + '}', String(storefrontOid));
+        let queryParameters: any = {};
+        let headerParams: any = this.extendObj({}, this.defaultHeaders);
+        let formParams: any = {};
+
+
+        // verify required parameter 'storefrontOid' is not null or undefined
+        if (storefrontOid === null || storefrontOid === undefined) {
+            throw new Error('Required parameter storefrontOid was null or undefined when calling importEmailThirdPartyProviderList.');
+        }
+
+        // verify required parameter 'importRequest' is not null or undefined
+        if (importRequest === null || importRequest === undefined) {
+            throw new Error('Required parameter importRequest was null or undefined when calling importEmailThirdPartyProviderList.');
+        }
+
+        let useFormData = false;
+
+        let requestOptions: request.Options = {
+            method: 'POST',
+            qs: queryParameters,
+            headers: headerParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+            body: importRequest,
+        };
+
+        this.authentications.ultraCartBrowserApiKey.applyToRequest(requestOptions);
+
+        this.authentications.ultraCartOauth.applyToRequest(requestOptions);
+
+        this.authentications.ultraCartSimpleApiKey.applyToRequest(requestOptions);
+
+        this.authentications.default.applyToRequest(requestOptions);
+
+        if (Object.keys(formParams).length) {
+            if (useFormData) {
+                (<any>requestOptions).formData = formParams;
+            } else {
+                requestOptions.form = formParams;
+            }
+        }
+        return new Promise<{ response: http.ClientResponse; body?: any;  }>((resolve, reject) => {
+            request(requestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    if (response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * Insert email campaign
+     * 
+     * @param storefrontOid null
+     * @param emailCampaign Email campaign
+     */
+    public insertEmailCampaign (storefrontOid: string, emailCampaign: EmailCampaign) : Promise<{ response: http.ClientResponse; body: EmailCampaignResponse;  }> {
+        const localVarPath = this.basePath + '/storefront/{storefront_oid}/email/campaigns'
+            .replace('{' + 'storefront_oid' + '}', String(storefrontOid));
+        let queryParameters: any = {};
+        let headerParams: any = this.extendObj({}, this.defaultHeaders);
+        let formParams: any = {};
+
+
+        // verify required parameter 'storefrontOid' is not null or undefined
+        if (storefrontOid === null || storefrontOid === undefined) {
+            throw new Error('Required parameter storefrontOid was null or undefined when calling insertEmailCampaign.');
+        }
+
+        // verify required parameter 'emailCampaign' is not null or undefined
+        if (emailCampaign === null || emailCampaign === undefined) {
+            throw new Error('Required parameter emailCampaign was null or undefined when calling insertEmailCampaign.');
+        }
+
+        let useFormData = false;
+
+        let requestOptions: request.Options = {
+            method: 'POST',
+            qs: queryParameters,
+            headers: headerParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+            body: emailCampaign,
+        };
+
+        this.authentications.ultraCartBrowserApiKey.applyToRequest(requestOptions);
+
+        this.authentications.ultraCartOauth.applyToRequest(requestOptions);
+
+        this.authentications.ultraCartSimpleApiKey.applyToRequest(requestOptions);
+
+        this.authentications.default.applyToRequest(requestOptions);
+
+        if (Object.keys(formParams).length) {
+            if (useFormData) {
+                (<any>requestOptions).formData = formParams;
+            } else {
+                requestOptions.form = formParams;
+            }
+        }
+        return new Promise<{ response: http.ClientResponse; body: EmailCampaignResponse;  }>((resolve, reject) => {
+            request(requestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    if (response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * Insert email commseq
+     * 
+     * @param storefrontOid null
+     * @param emailCommseq Email commseq
+     */
+    public insertEmailCommseq (storefrontOid: string, emailCommseq: EmailCommseq) : Promise<{ response: http.ClientResponse; body: EmailCommseqResponse;  }> {
+        const localVarPath = this.basePath + '/storefront/{storefront_oid}/email/commseqs'
+            .replace('{' + 'storefront_oid' + '}', String(storefrontOid));
+        let queryParameters: any = {};
+        let headerParams: any = this.extendObj({}, this.defaultHeaders);
+        let formParams: any = {};
+
+
+        // verify required parameter 'storefrontOid' is not null or undefined
+        if (storefrontOid === null || storefrontOid === undefined) {
+            throw new Error('Required parameter storefrontOid was null or undefined when calling insertEmailCommseq.');
+        }
+
+        // verify required parameter 'emailCommseq' is not null or undefined
+        if (emailCommseq === null || emailCommseq === undefined) {
+            throw new Error('Required parameter emailCommseq was null or undefined when calling insertEmailCommseq.');
+        }
+
+        let useFormData = false;
+
+        let requestOptions: request.Options = {
+            method: 'POST',
+            qs: queryParameters,
+            headers: headerParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+            body: emailCommseq,
+        };
+
+        this.authentications.ultraCartBrowserApiKey.applyToRequest(requestOptions);
+
+        this.authentications.ultraCartOauth.applyToRequest(requestOptions);
+
+        this.authentications.ultraCartSimpleApiKey.applyToRequest(requestOptions);
+
+        this.authentications.default.applyToRequest(requestOptions);
+
+        if (Object.keys(formParams).length) {
+            if (useFormData) {
+                (<any>requestOptions).formData = formParams;
+            } else {
+                requestOptions.form = formParams;
+            }
+        }
+        return new Promise<{ response: http.ClientResponse; body: EmailCommseqResponse;  }>((resolve, reject) => {
+            request(requestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    if (response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * Insert email email
+     * 
+     * @param storefrontOid null
+     * @param emailCommseqEmail Email email
+     */
+    public insertEmailEmail (storefrontOid: string, emailCommseqEmail: EmailCommseqEmail) : Promise<{ response: http.ClientResponse; body: EmailCommseqEmailResponse;  }> {
+        const localVarPath = this.basePath + '/storefront/{storefront_oid}/email/emails'
+            .replace('{' + 'storefront_oid' + '}', String(storefrontOid));
+        let queryParameters: any = {};
+        let headerParams: any = this.extendObj({}, this.defaultHeaders);
+        let formParams: any = {};
+
+
+        // verify required parameter 'storefrontOid' is not null or undefined
+        if (storefrontOid === null || storefrontOid === undefined) {
+            throw new Error('Required parameter storefrontOid was null or undefined when calling insertEmailEmail.');
+        }
+
+        // verify required parameter 'emailCommseqEmail' is not null or undefined
+        if (emailCommseqEmail === null || emailCommseqEmail === undefined) {
+            throw new Error('Required parameter emailCommseqEmail was null or undefined when calling insertEmailEmail.');
+        }
+
+        let useFormData = false;
+
+        let requestOptions: request.Options = {
+            method: 'POST',
+            qs: queryParameters,
+            headers: headerParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+            body: emailCommseqEmail,
+        };
+
+        this.authentications.ultraCartBrowserApiKey.applyToRequest(requestOptions);
+
+        this.authentications.ultraCartOauth.applyToRequest(requestOptions);
+
+        this.authentications.ultraCartSimpleApiKey.applyToRequest(requestOptions);
+
+        this.authentications.default.applyToRequest(requestOptions);
+
+        if (Object.keys(formParams).length) {
+            if (useFormData) {
+                (<any>requestOptions).formData = formParams;
+            } else {
+                requestOptions.form = formParams;
+            }
+        }
+        return new Promise<{ response: http.ClientResponse; body: EmailCommseqEmailResponse;  }>((resolve, reject) => {
+            request(requestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    if (response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * Insert email flow
+     * 
+     * @param storefrontOid null
+     * @param emailFlow Email flow
+     */
+    public insertEmailFlow (storefrontOid: string, emailFlow: EmailFlow) : Promise<{ response: http.ClientResponse; body: EmailFlowResponse;  }> {
+        const localVarPath = this.basePath + '/storefront/{storefront_oid}/email/flows'
+            .replace('{' + 'storefront_oid' + '}', String(storefrontOid));
+        let queryParameters: any = {};
+        let headerParams: any = this.extendObj({}, this.defaultHeaders);
+        let formParams: any = {};
+
+
+        // verify required parameter 'storefrontOid' is not null or undefined
+        if (storefrontOid === null || storefrontOid === undefined) {
+            throw new Error('Required parameter storefrontOid was null or undefined when calling insertEmailFlow.');
+        }
+
+        // verify required parameter 'emailFlow' is not null or undefined
+        if (emailFlow === null || emailFlow === undefined) {
+            throw new Error('Required parameter emailFlow was null or undefined when calling insertEmailFlow.');
+        }
+
+        let useFormData = false;
+
+        let requestOptions: request.Options = {
+            method: 'POST',
+            qs: queryParameters,
+            headers: headerParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+            body: emailFlow,
+        };
+
+        this.authentications.ultraCartBrowserApiKey.applyToRequest(requestOptions);
+
+        this.authentications.ultraCartOauth.applyToRequest(requestOptions);
+
+        this.authentications.ultraCartSimpleApiKey.applyToRequest(requestOptions);
+
+        this.authentications.default.applyToRequest(requestOptions);
+
+        if (Object.keys(formParams).length) {
+            if (useFormData) {
+                (<any>requestOptions).formData = formParams;
+            } else {
+                requestOptions.form = formParams;
+            }
+        }
+        return new Promise<{ response: http.ClientResponse; body: EmailFlowResponse;  }>((resolve, reject) => {
+            request(requestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    if (response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * Insert email list
+     * 
+     * @param storefrontOid null
+     * @param emailList Email list
+     */
+    public insertEmailList (storefrontOid: string, emailList: EmailList) : Promise<{ response: http.ClientResponse; body: EmailListResponse;  }> {
+        const localVarPath = this.basePath + '/storefront/{storefront_oid}/email/lists'
+            .replace('{' + 'storefront_oid' + '}', String(storefrontOid));
+        let queryParameters: any = {};
+        let headerParams: any = this.extendObj({}, this.defaultHeaders);
+        let formParams: any = {};
+
+
+        // verify required parameter 'storefrontOid' is not null or undefined
+        if (storefrontOid === null || storefrontOid === undefined) {
+            throw new Error('Required parameter storefrontOid was null or undefined when calling insertEmailList.');
+        }
+
+        // verify required parameter 'emailList' is not null or undefined
+        if (emailList === null || emailList === undefined) {
+            throw new Error('Required parameter emailList was null or undefined when calling insertEmailList.');
+        }
+
+        let useFormData = false;
+
+        let requestOptions: request.Options = {
+            method: 'POST',
+            qs: queryParameters,
+            headers: headerParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+            body: emailList,
+        };
+
+        this.authentications.ultraCartBrowserApiKey.applyToRequest(requestOptions);
+
+        this.authentications.ultraCartOauth.applyToRequest(requestOptions);
+
+        this.authentications.ultraCartSimpleApiKey.applyToRequest(requestOptions);
+
+        this.authentications.default.applyToRequest(requestOptions);
+
+        if (Object.keys(formParams).length) {
+            if (useFormData) {
+                (<any>requestOptions).formData = formParams;
+            } else {
+                requestOptions.form = formParams;
+            }
+        }
+        return new Promise<{ response: http.ClientResponse; body: EmailListResponse;  }>((resolve, reject) => {
+            request(requestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    if (response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * Insert email segment
+     * 
+     * @param storefrontOid null
+     * @param emailSegment Email segment
+     */
+    public insertEmailSegment (storefrontOid: string, emailSegment: EmailSegment) : Promise<{ response: http.ClientResponse; body: EmailSegmentResponse;  }> {
+        const localVarPath = this.basePath + '/storefront/{storefront_oid}/email/segments'
+            .replace('{' + 'storefront_oid' + '}', String(storefrontOid));
+        let queryParameters: any = {};
+        let headerParams: any = this.extendObj({}, this.defaultHeaders);
+        let formParams: any = {};
+
+
+        // verify required parameter 'storefrontOid' is not null or undefined
+        if (storefrontOid === null || storefrontOid === undefined) {
+            throw new Error('Required parameter storefrontOid was null or undefined when calling insertEmailSegment.');
+        }
+
+        // verify required parameter 'emailSegment' is not null or undefined
+        if (emailSegment === null || emailSegment === undefined) {
+            throw new Error('Required parameter emailSegment was null or undefined when calling insertEmailSegment.');
+        }
+
+        let useFormData = false;
+
+        let requestOptions: request.Options = {
+            method: 'POST',
+            qs: queryParameters,
+            headers: headerParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+            body: emailSegment,
+        };
+
+        this.authentications.ultraCartBrowserApiKey.applyToRequest(requestOptions);
+
+        this.authentications.ultraCartOauth.applyToRequest(requestOptions);
+
+        this.authentications.ultraCartSimpleApiKey.applyToRequest(requestOptions);
+
+        this.authentications.default.applyToRequest(requestOptions);
+
+        if (Object.keys(formParams).length) {
+            if (useFormData) {
+                (<any>requestOptions).formData = formParams;
+            } else {
+                requestOptions.form = formParams;
+            }
+        }
+        return new Promise<{ response: http.ClientResponse; body: EmailSegmentResponse;  }>((resolve, reject) => {
+            request(requestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    if (response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * Searches for all matching values
+     * 
+     * @param category null
+     * @param matches null
+     * @param maxHits null
+     */
+    public search (category?: string, matches?: string, maxHits?: number) : Promise<{ response: http.ClientResponse; body: LookupResponse;  }> {
+        const localVarPath = this.basePath + '/storefront/search';
+        let queryParameters: any = {};
+        let headerParams: any = this.extendObj({}, this.defaultHeaders);
+        let formParams: any = {};
+
+
+        if (category !== undefined) {
+            queryParameters['category'] = category;
+        }
+
+        if (matches !== undefined) {
+            queryParameters['matches'] = matches;
+        }
+
+        if (maxHits !== undefined) {
+            queryParameters['max_hits'] = maxHits;
+        }
+
+        let useFormData = false;
+
+        let requestOptions: request.Options = {
+            method: 'GET',
+            qs: queryParameters,
+            headers: headerParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.ultraCartBrowserApiKey.applyToRequest(requestOptions);
+
+        this.authentications.ultraCartOauth.applyToRequest(requestOptions);
+
+        this.authentications.ultraCartSimpleApiKey.applyToRequest(requestOptions);
+
+        this.authentications.default.applyToRequest(requestOptions);
+
+        if (Object.keys(formParams).length) {
+            if (useFormData) {
+                (<any>requestOptions).formData = formParams;
+            } else {
+                requestOptions.form = formParams;
+            }
+        }
+        return new Promise<{ response: http.ClientResponse; body: LookupResponse;  }>((resolve, reject) => {
+            request(requestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    if (response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * Search email list customers
+     * 
+     * @param storefrontOid null
+     * @param emailListUuid null
+     * @param startsWith null
+     */
+    public searchEmailListCustomers (storefrontOid: string, emailListUuid: string, startsWith?: string) : Promise<{ response: http.ClientResponse; body: EmailListCustomersResponse;  }> {
+        const localVarPath = this.basePath + '/storefront/{storefront_oid}/email/lists/{email_list_uuid}/search'
+            .replace('{' + 'storefront_oid' + '}', String(storefrontOid))
+            .replace('{' + 'email_list_uuid' + '}', String(emailListUuid));
+        let queryParameters: any = {};
+        let headerParams: any = this.extendObj({}, this.defaultHeaders);
+        let formParams: any = {};
+
+
+        // verify required parameter 'storefrontOid' is not null or undefined
+        if (storefrontOid === null || storefrontOid === undefined) {
+            throw new Error('Required parameter storefrontOid was null or undefined when calling searchEmailListCustomers.');
+        }
+
+        // verify required parameter 'emailListUuid' is not null or undefined
+        if (emailListUuid === null || emailListUuid === undefined) {
+            throw new Error('Required parameter emailListUuid was null or undefined when calling searchEmailListCustomers.');
+        }
+
+        if (startsWith !== undefined) {
+            queryParameters['startsWith'] = startsWith;
+        }
+
+        let useFormData = false;
+
+        let requestOptions: request.Options = {
+            method: 'GET',
+            qs: queryParameters,
+            headers: headerParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.ultraCartBrowserApiKey.applyToRequest(requestOptions);
+
+        this.authentications.ultraCartOauth.applyToRequest(requestOptions);
+
+        this.authentications.ultraCartSimpleApiKey.applyToRequest(requestOptions);
+
+        this.authentications.default.applyToRequest(requestOptions);
+
+        if (Object.keys(formParams).length) {
+            if (useFormData) {
+                (<any>requestOptions).formData = formParams;
+            } else {
+                requestOptions.form = formParams;
+            }
+        }
+        return new Promise<{ response: http.ClientResponse; body: EmailListCustomersResponse;  }>((resolve, reject) => {
+            request(requestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    if (response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * Search email segment customers
+     * 
+     * @param storefrontOid null
+     * @param emailSegmentUuid null
+     * @param startsWith null
+     */
+    public searchEmailSegmentCustomers (storefrontOid: string, emailSegmentUuid: string, startsWith?: string) : Promise<{ response: http.ClientResponse; body: EmailSegmentCustomersResponse;  }> {
+        const localVarPath = this.basePath + '/storefront/{storefront_oid}/email/segments/{email_segment_uuid}/search'
+            .replace('{' + 'storefront_oid' + '}', String(storefrontOid))
+            .replace('{' + 'email_segment_uuid' + '}', String(emailSegmentUuid));
+        let queryParameters: any = {};
+        let headerParams: any = this.extendObj({}, this.defaultHeaders);
+        let formParams: any = {};
+
+
+        // verify required parameter 'storefrontOid' is not null or undefined
+        if (storefrontOid === null || storefrontOid === undefined) {
+            throw new Error('Required parameter storefrontOid was null or undefined when calling searchEmailSegmentCustomers.');
+        }
+
+        // verify required parameter 'emailSegmentUuid' is not null or undefined
+        if (emailSegmentUuid === null || emailSegmentUuid === undefined) {
+            throw new Error('Required parameter emailSegmentUuid was null or undefined when calling searchEmailSegmentCustomers.');
+        }
+
+        if (startsWith !== undefined) {
+            queryParameters['startsWith'] = startsWith;
+        }
+
+        let useFormData = false;
+
+        let requestOptions: request.Options = {
+            method: 'GET',
+            qs: queryParameters,
+            headers: headerParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.ultraCartBrowserApiKey.applyToRequest(requestOptions);
+
+        this.authentications.ultraCartOauth.applyToRequest(requestOptions);
+
+        this.authentications.ultraCartSimpleApiKey.applyToRequest(requestOptions);
+
+        this.authentications.default.applyToRequest(requestOptions);
+
+        if (Object.keys(formParams).length) {
+            if (useFormData) {
+                (<any>requestOptions).formData = formParams;
+            } else {
+                requestOptions.form = formParams;
+            }
+        }
+        return new Promise<{ response: http.ClientResponse; body: EmailSegmentCustomersResponse;  }>((resolve, reject) => {
+            request(requestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    if (response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * Start email campaign
+     * 
+     * @param storefrontOid null
+     * @param emailCampaignUuid null
+     */
+    public startEmailCampaign (storefrontOid: string, emailCampaignUuid: string) : Promise<{ response: http.ClientResponse; body: BaseResponse;  }> {
+        const localVarPath = this.basePath + '/storefront/{storefront_oid}/email/campaigns/{email_campaign_uuid}/start'
+            .replace('{' + 'storefront_oid' + '}', String(storefrontOid))
+            .replace('{' + 'email_campaign_uuid' + '}', String(emailCampaignUuid));
+        let queryParameters: any = {};
+        let headerParams: any = this.extendObj({}, this.defaultHeaders);
+        let formParams: any = {};
+
+
+        // verify required parameter 'storefrontOid' is not null or undefined
+        if (storefrontOid === null || storefrontOid === undefined) {
+            throw new Error('Required parameter storefrontOid was null or undefined when calling startEmailCampaign.');
+        }
+
+        // verify required parameter 'emailCampaignUuid' is not null or undefined
+        if (emailCampaignUuid === null || emailCampaignUuid === undefined) {
+            throw new Error('Required parameter emailCampaignUuid was null or undefined when calling startEmailCampaign.');
+        }
+
+        let useFormData = false;
+
+        let requestOptions: request.Options = {
+            method: 'PUT',
+            qs: queryParameters,
+            headers: headerParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.ultraCartBrowserApiKey.applyToRequest(requestOptions);
+
+        this.authentications.ultraCartOauth.applyToRequest(requestOptions);
+
+        this.authentications.ultraCartSimpleApiKey.applyToRequest(requestOptions);
+
+        this.authentications.default.applyToRequest(requestOptions);
+
+        if (Object.keys(formParams).length) {
+            if (useFormData) {
+                (<any>requestOptions).formData = formParams;
+            } else {
+                requestOptions.form = formParams;
+            }
+        }
+        return new Promise<{ response: http.ClientResponse; body: BaseResponse;  }>((resolve, reject) => {
+            request(requestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    if (response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * Subscribe customers to email list
+     * 
+     * @param storefrontOid null
+     * @param emailListUuid null
+     * @param customers Customers
+     */
+    public subscribeToEmailList (storefrontOid: string, emailListUuid: string, customers: Array<EmailCustomer>) : Promise<{ response: http.ClientResponse; body: EmailListSubscribeResponse;  }> {
+        const localVarPath = this.basePath + '/storefront/{storefront_oid}/email/lists/{email_list_uuid}/subscribe'
+            .replace('{' + 'storefront_oid' + '}', String(storefrontOid))
+            .replace('{' + 'email_list_uuid' + '}', String(emailListUuid));
+        let queryParameters: any = {};
+        let headerParams: any = this.extendObj({}, this.defaultHeaders);
+        let formParams: any = {};
+
+
+        // verify required parameter 'storefrontOid' is not null or undefined
+        if (storefrontOid === null || storefrontOid === undefined) {
+            throw new Error('Required parameter storefrontOid was null or undefined when calling subscribeToEmailList.');
+        }
+
+        // verify required parameter 'emailListUuid' is not null or undefined
+        if (emailListUuid === null || emailListUuid === undefined) {
+            throw new Error('Required parameter emailListUuid was null or undefined when calling subscribeToEmailList.');
+        }
+
+        // verify required parameter 'customers' is not null or undefined
+        if (customers === null || customers === undefined) {
+            throw new Error('Required parameter customers was null or undefined when calling subscribeToEmailList.');
+        }
+
+        let useFormData = false;
+
+        let requestOptions: request.Options = {
+            method: 'POST',
+            qs: queryParameters,
+            headers: headerParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+            body: customers,
+        };
+
+        this.authentications.ultraCartBrowserApiKey.applyToRequest(requestOptions);
+
+        this.authentications.ultraCartOauth.applyToRequest(requestOptions);
+
+        this.authentications.ultraCartSimpleApiKey.applyToRequest(requestOptions);
+
+        this.authentications.default.applyToRequest(requestOptions);
+
+        if (Object.keys(formParams).length) {
+            if (useFormData) {
+                (<any>requestOptions).formData = formParams;
+            } else {
+                requestOptions.form = formParams;
+            }
+        }
+        return new Promise<{ response: http.ClientResponse; body: EmailListSubscribeResponse;  }>((resolve, reject) => {
+            request(requestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    if (response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * Update email campaign
+     * 
+     * @param storefrontOid null
+     * @param emailCampaignUuid null
+     * @param emailCampaign Email campaign
+     */
+    public updateEmailCampaign (storefrontOid: string, emailCampaignUuid: string, emailCampaign: EmailCampaign) : Promise<{ response: http.ClientResponse; body: EmailCampaignResponse;  }> {
+        const localVarPath = this.basePath + '/storefront/{storefront_oid}/email/campaigns/{email_campaign_uuid}'
+            .replace('{' + 'storefront_oid' + '}', String(storefrontOid))
+            .replace('{' + 'email_campaign_uuid' + '}', String(emailCampaignUuid));
+        let queryParameters: any = {};
+        let headerParams: any = this.extendObj({}, this.defaultHeaders);
+        let formParams: any = {};
+
+
+        // verify required parameter 'storefrontOid' is not null or undefined
+        if (storefrontOid === null || storefrontOid === undefined) {
+            throw new Error('Required parameter storefrontOid was null or undefined when calling updateEmailCampaign.');
+        }
+
+        // verify required parameter 'emailCampaignUuid' is not null or undefined
+        if (emailCampaignUuid === null || emailCampaignUuid === undefined) {
+            throw new Error('Required parameter emailCampaignUuid was null or undefined when calling updateEmailCampaign.');
+        }
+
+        // verify required parameter 'emailCampaign' is not null or undefined
+        if (emailCampaign === null || emailCampaign === undefined) {
+            throw new Error('Required parameter emailCampaign was null or undefined when calling updateEmailCampaign.');
+        }
+
+        let useFormData = false;
+
+        let requestOptions: request.Options = {
+            method: 'PUT',
+            qs: queryParameters,
+            headers: headerParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+            body: emailCampaign,
+        };
+
+        this.authentications.ultraCartBrowserApiKey.applyToRequest(requestOptions);
+
+        this.authentications.ultraCartOauth.applyToRequest(requestOptions);
+
+        this.authentications.ultraCartSimpleApiKey.applyToRequest(requestOptions);
+
+        this.authentications.default.applyToRequest(requestOptions);
+
+        if (Object.keys(formParams).length) {
+            if (useFormData) {
+                (<any>requestOptions).formData = formParams;
+            } else {
+                requestOptions.form = formParams;
+            }
+        }
+        return new Promise<{ response: http.ClientResponse; body: EmailCampaignResponse;  }>((resolve, reject) => {
+            request(requestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    if (response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * Update email commseq
+     * 
+     * @param storefrontOid null
+     * @param commseqUuid null
+     * @param emailCommseq Email commseq
+     */
+    public updateEmailCommseq (storefrontOid: string, commseqUuid: string, emailCommseq: EmailCommseq) : Promise<{ response: http.ClientResponse; body: EmailCommseqResponse;  }> {
+        const localVarPath = this.basePath + '/storefront/{storefront_oid}/email/commseqs/{commseq_uuid}'
+            .replace('{' + 'storefront_oid' + '}', String(storefrontOid))
+            .replace('{' + 'commseq_uuid' + '}', String(commseqUuid));
+        let queryParameters: any = {};
+        let headerParams: any = this.extendObj({}, this.defaultHeaders);
+        let formParams: any = {};
+
+
+        // verify required parameter 'storefrontOid' is not null or undefined
+        if (storefrontOid === null || storefrontOid === undefined) {
+            throw new Error('Required parameter storefrontOid was null or undefined when calling updateEmailCommseq.');
+        }
+
+        // verify required parameter 'commseqUuid' is not null or undefined
+        if (commseqUuid === null || commseqUuid === undefined) {
+            throw new Error('Required parameter commseqUuid was null or undefined when calling updateEmailCommseq.');
+        }
+
+        // verify required parameter 'emailCommseq' is not null or undefined
+        if (emailCommseq === null || emailCommseq === undefined) {
+            throw new Error('Required parameter emailCommseq was null or undefined when calling updateEmailCommseq.');
+        }
+
+        let useFormData = false;
+
+        let requestOptions: request.Options = {
+            method: 'PUT',
+            qs: queryParameters,
+            headers: headerParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+            body: emailCommseq,
+        };
+
+        this.authentications.ultraCartBrowserApiKey.applyToRequest(requestOptions);
+
+        this.authentications.ultraCartOauth.applyToRequest(requestOptions);
+
+        this.authentications.ultraCartSimpleApiKey.applyToRequest(requestOptions);
+
+        this.authentications.default.applyToRequest(requestOptions);
+
+        if (Object.keys(formParams).length) {
+            if (useFormData) {
+                (<any>requestOptions).formData = formParams;
+            } else {
+                requestOptions.form = formParams;
+            }
+        }
+        return new Promise<{ response: http.ClientResponse; body: EmailCommseqResponse;  }>((resolve, reject) => {
+            request(requestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    if (response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * Update email email
+     * 
+     * @param storefrontOid null
+     * @param commseqEmailUuid null
+     * @param emailCommseqEmail Email commseq email
+     */
+    public updateEmailEmail (storefrontOid: string, commseqEmailUuid: string, emailCommseqEmail: EmailCommseqEmail) : Promise<{ response: http.ClientResponse; body: EmailCommseqEmailResponse;  }> {
+        const localVarPath = this.basePath + '/storefront/{storefront_oid}/email/emails/{commseq_email_uuid}'
+            .replace('{' + 'storefront_oid' + '}', String(storefrontOid))
+            .replace('{' + 'commseq_email_uuid' + '}', String(commseqEmailUuid));
+        let queryParameters: any = {};
+        let headerParams: any = this.extendObj({}, this.defaultHeaders);
+        let formParams: any = {};
+
+
+        // verify required parameter 'storefrontOid' is not null or undefined
+        if (storefrontOid === null || storefrontOid === undefined) {
+            throw new Error('Required parameter storefrontOid was null or undefined when calling updateEmailEmail.');
+        }
+
+        // verify required parameter 'commseqEmailUuid' is not null or undefined
+        if (commseqEmailUuid === null || commseqEmailUuid === undefined) {
+            throw new Error('Required parameter commseqEmailUuid was null or undefined when calling updateEmailEmail.');
+        }
+
+        // verify required parameter 'emailCommseqEmail' is not null or undefined
+        if (emailCommseqEmail === null || emailCommseqEmail === undefined) {
+            throw new Error('Required parameter emailCommseqEmail was null or undefined when calling updateEmailEmail.');
+        }
+
+        let useFormData = false;
+
+        let requestOptions: request.Options = {
+            method: 'PUT',
+            qs: queryParameters,
+            headers: headerParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+            body: emailCommseqEmail,
+        };
+
+        this.authentications.ultraCartBrowserApiKey.applyToRequest(requestOptions);
+
+        this.authentications.ultraCartOauth.applyToRequest(requestOptions);
+
+        this.authentications.ultraCartSimpleApiKey.applyToRequest(requestOptions);
+
+        this.authentications.default.applyToRequest(requestOptions);
+
+        if (Object.keys(formParams).length) {
+            if (useFormData) {
+                (<any>requestOptions).formData = formParams;
+            } else {
+                requestOptions.form = formParams;
+            }
+        }
+        return new Promise<{ response: http.ClientResponse; body: EmailCommseqEmailResponse;  }>((resolve, reject) => {
+            request(requestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    if (response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * Update email flow
+     * 
+     * @param storefrontOid null
+     * @param emailFlowUuid null
+     * @param emailFlow Email flow
+     */
+    public updateEmailFlow (storefrontOid: string, emailFlowUuid: string, emailFlow: EmailFlow) : Promise<{ response: http.ClientResponse; body: EmailFlowResponse;  }> {
+        const localVarPath = this.basePath + '/storefront/{storefront_oid}/email/flows/{email_flow_uuid}'
+            .replace('{' + 'storefront_oid' + '}', String(storefrontOid))
+            .replace('{' + 'email_flow_uuid' + '}', String(emailFlowUuid));
+        let queryParameters: any = {};
+        let headerParams: any = this.extendObj({}, this.defaultHeaders);
+        let formParams: any = {};
+
+
+        // verify required parameter 'storefrontOid' is not null or undefined
+        if (storefrontOid === null || storefrontOid === undefined) {
+            throw new Error('Required parameter storefrontOid was null or undefined when calling updateEmailFlow.');
+        }
+
+        // verify required parameter 'emailFlowUuid' is not null or undefined
+        if (emailFlowUuid === null || emailFlowUuid === undefined) {
+            throw new Error('Required parameter emailFlowUuid was null or undefined when calling updateEmailFlow.');
+        }
+
+        // verify required parameter 'emailFlow' is not null or undefined
+        if (emailFlow === null || emailFlow === undefined) {
+            throw new Error('Required parameter emailFlow was null or undefined when calling updateEmailFlow.');
+        }
+
+        let useFormData = false;
+
+        let requestOptions: request.Options = {
+            method: 'PUT',
+            qs: queryParameters,
+            headers: headerParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+            body: emailFlow,
+        };
+
+        this.authentications.ultraCartBrowserApiKey.applyToRequest(requestOptions);
+
+        this.authentications.ultraCartOauth.applyToRequest(requestOptions);
+
+        this.authentications.ultraCartSimpleApiKey.applyToRequest(requestOptions);
+
+        this.authentications.default.applyToRequest(requestOptions);
+
+        if (Object.keys(formParams).length) {
+            if (useFormData) {
+                (<any>requestOptions).formData = formParams;
+            } else {
+                requestOptions.form = formParams;
+            }
+        }
+        return new Promise<{ response: http.ClientResponse; body: EmailFlowResponse;  }>((resolve, reject) => {
+            request(requestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    if (response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * Update email list
+     * 
+     * @param storefrontOid null
+     * @param emailListUuid null
+     * @param emailList Email list
+     */
+    public updateEmailList (storefrontOid: string, emailListUuid: string, emailList: EmailList) : Promise<{ response: http.ClientResponse; body: EmailListResponse;  }> {
+        const localVarPath = this.basePath + '/storefront/{storefront_oid}/email/lists/{email_list_uuid}'
+            .replace('{' + 'storefront_oid' + '}', String(storefrontOid))
+            .replace('{' + 'email_list_uuid' + '}', String(emailListUuid));
+        let queryParameters: any = {};
+        let headerParams: any = this.extendObj({}, this.defaultHeaders);
+        let formParams: any = {};
+
+
+        // verify required parameter 'storefrontOid' is not null or undefined
+        if (storefrontOid === null || storefrontOid === undefined) {
+            throw new Error('Required parameter storefrontOid was null or undefined when calling updateEmailList.');
+        }
+
+        // verify required parameter 'emailListUuid' is not null or undefined
+        if (emailListUuid === null || emailListUuid === undefined) {
+            throw new Error('Required parameter emailListUuid was null or undefined when calling updateEmailList.');
+        }
+
+        // verify required parameter 'emailList' is not null or undefined
+        if (emailList === null || emailList === undefined) {
+            throw new Error('Required parameter emailList was null or undefined when calling updateEmailList.');
+        }
+
+        let useFormData = false;
+
+        let requestOptions: request.Options = {
+            method: 'PUT',
+            qs: queryParameters,
+            headers: headerParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+            body: emailList,
+        };
+
+        this.authentications.ultraCartBrowserApiKey.applyToRequest(requestOptions);
+
+        this.authentications.ultraCartOauth.applyToRequest(requestOptions);
+
+        this.authentications.ultraCartSimpleApiKey.applyToRequest(requestOptions);
+
+        this.authentications.default.applyToRequest(requestOptions);
+
+        if (Object.keys(formParams).length) {
+            if (useFormData) {
+                (<any>requestOptions).formData = formParams;
+            } else {
+                requestOptions.form = formParams;
+            }
+        }
+        return new Promise<{ response: http.ClientResponse; body: EmailListResponse;  }>((resolve, reject) => {
+            request(requestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    if (response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * Update email segment
+     * 
+     * @param storefrontOid null
+     * @param emailSegmentUuid null
+     * @param emailSegment Email segment
+     */
+    public updateEmailSegment (storefrontOid: string, emailSegmentUuid: string, emailSegment: EmailSegment) : Promise<{ response: http.ClientResponse; body: EmailSegmentResponse;  }> {
+        const localVarPath = this.basePath + '/storefront/{storefront_oid}/email/segments/{email_segment_uuid}'
+            .replace('{' + 'storefront_oid' + '}', String(storefrontOid))
+            .replace('{' + 'email_segment_uuid' + '}', String(emailSegmentUuid));
+        let queryParameters: any = {};
+        let headerParams: any = this.extendObj({}, this.defaultHeaders);
+        let formParams: any = {};
+
+
+        // verify required parameter 'storefrontOid' is not null or undefined
+        if (storefrontOid === null || storefrontOid === undefined) {
+            throw new Error('Required parameter storefrontOid was null or undefined when calling updateEmailSegment.');
+        }
+
+        // verify required parameter 'emailSegmentUuid' is not null or undefined
+        if (emailSegmentUuid === null || emailSegmentUuid === undefined) {
+            throw new Error('Required parameter emailSegmentUuid was null or undefined when calling updateEmailSegment.');
+        }
+
+        // verify required parameter 'emailSegment' is not null or undefined
+        if (emailSegment === null || emailSegment === undefined) {
+            throw new Error('Required parameter emailSegment was null or undefined when calling updateEmailSegment.');
+        }
+
+        let useFormData = false;
+
+        let requestOptions: request.Options = {
+            method: 'PUT',
+            qs: queryParameters,
+            headers: headerParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+            body: emailSegment,
+        };
+
+        this.authentications.ultraCartBrowserApiKey.applyToRequest(requestOptions);
+
+        this.authentications.ultraCartOauth.applyToRequest(requestOptions);
+
+        this.authentications.ultraCartSimpleApiKey.applyToRequest(requestOptions);
+
+        this.authentications.default.applyToRequest(requestOptions);
+
+        if (Object.keys(formParams).length) {
+            if (useFormData) {
+                (<any>requestOptions).formData = formParams;
+            } else {
+                requestOptions.form = formParams;
+            }
+        }
+        return new Promise<{ response: http.ClientResponse; body: EmailSegmentResponse;  }>((resolve, reject) => {
+            request(requestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    if (response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * Update experiment
+     * 
+     * @param storefrontOid null
+     * @param storefrontExperimentOid null
+     * @param experiment Experiment
+     */
+    public updateExperiment (storefrontOid: string, storefrontExperimentOid: number, experiment: Experiment) : Promise<{ response: http.ClientResponse; body: ExperimentResponse;  }> {
+        const localVarPath = this.basePath + '/storefront/{storefront_oid}/experiments/{storefront_experiment_oid}'
+            .replace('{' + 'storefront_oid' + '}', String(storefrontOid))
+            .replace('{' + 'storefront_experiment_oid' + '}', String(storefrontExperimentOid));
+        let queryParameters: any = {};
+        let headerParams: any = this.extendObj({}, this.defaultHeaders);
+        let formParams: any = {};
+
+
+        // verify required parameter 'storefrontOid' is not null or undefined
+        if (storefrontOid === null || storefrontOid === undefined) {
+            throw new Error('Required parameter storefrontOid was null or undefined when calling updateExperiment.');
+        }
+
+        // verify required parameter 'storefrontExperimentOid' is not null or undefined
+        if (storefrontExperimentOid === null || storefrontExperimentOid === undefined) {
+            throw new Error('Required parameter storefrontExperimentOid was null or undefined when calling updateExperiment.');
+        }
+
+        // verify required parameter 'experiment' is not null or undefined
+        if (experiment === null || experiment === undefined) {
+            throw new Error('Required parameter experiment was null or undefined when calling updateExperiment.');
+        }
+
+        let useFormData = false;
+
+        let requestOptions: request.Options = {
+            method: 'PUT',
+            qs: queryParameters,
+            headers: headerParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+            body: experiment,
+        };
+
+        this.authentications.ultraCartBrowserApiKey.applyToRequest(requestOptions);
+
+        this.authentications.ultraCartOauth.applyToRequest(requestOptions);
+
+        this.authentications.ultraCartSimpleApiKey.applyToRequest(requestOptions);
+
+        this.authentications.default.applyToRequest(requestOptions);
+
+        if (Object.keys(formParams).length) {
+            if (useFormData) {
+                (<any>requestOptions).formData = formParams;
+            } else {
+                requestOptions.form = formParams;
+            }
+        }
+        return new Promise<{ response: http.ClientResponse; body: ExperimentResponse;  }>((resolve, reject) => {
+            request(requestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    if (response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+}
+export enum TaxApiApiKeys {
+    ultraCartBrowserApiKey,
+    ultraCartSimpleApiKey,
+}
+
+export class TaxApi {
+    protected basePath = defaultBasePath;
+    protected defaultHeaders : any = {};
+    protected _useQuerystring : boolean = false;
+
+    protected authentications = {
+        'default': <Authentication>new VoidAuth(),
+        'ultraCartBrowserApiKey': new ApiKeyAuth('header', 'x-ultracart-browser-key'),
+        'ultraCartOauth': new OAuth(),
+        'ultraCartSimpleApiKey': new ApiKeyAuth('header', 'x-ultracart-simple-key'),
+    }
+
+    constructor(basePath?: string);
+    constructor(basePathOrUsername: string, password?: string, basePath?: string) {
+        if (password) {
+            if (basePath) {
+                this.basePath = basePath;
+            }
+        } else {
+            if (basePathOrUsername) {
+                this.basePath = basePathOrUsername
+            }
+        }
+    }
+
+    set useQuerystring(value: boolean) {
+        this._useQuerystring = value;
+    }
+
+    public setApiKey(key: TaxApiApiKeys, value: string) {
+        this.authentications[TaxApiApiKeys[key]].apiKey = value;
+    }
+
+    set accessToken(token: string) {
+        this.authentications.ultraCartOauth.accessToken = token;
+    }
+    private extendObj<T1,T2>(objA: T1, objB: T2) {
+        for(let key in objB){
+            if(objB.hasOwnProperty(key)){
+                objA[key] = objB[key];
+            }
+        }
+        return <T1&T2>objA;
+    }
+    /**
+     * Deletes a Self tax provider city
+     * Deletes a Self tax provider city. 
+     * @param city The city being deleted.
+     * @param taxCity tax city to be deleted
+     */
+    public deleteTaxProviderSelfCity (city: string, taxCity: TaxCity) : Promise<{ response: http.ClientResponse; body?: any;  }> {
+        const localVarPath = this.basePath + '/tax/providers/self/city/{city}'
+            .replace('{' + 'city' + '}', String(city));
+        let queryParameters: any = {};
+        let headerParams: any = this.extendObj({}, this.defaultHeaders);
+        let formParams: any = {};
+
+
+        // verify required parameter 'city' is not null or undefined
+        if (city === null || city === undefined) {
+            throw new Error('Required parameter city was null or undefined when calling deleteTaxProviderSelfCity.');
+        }
+
+        // verify required parameter 'taxCity' is not null or undefined
+        if (taxCity === null || taxCity === undefined) {
+            throw new Error('Required parameter taxCity was null or undefined when calling deleteTaxProviderSelfCity.');
+        }
+
+        let useFormData = false;
+
+        let requestOptions: request.Options = {
+            method: 'DELETE',
+            qs: queryParameters,
+            headers: headerParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+            body: taxCity,
+        };
+
+        this.authentications.ultraCartOauth.applyToRequest(requestOptions);
+
+        this.authentications.ultraCartSimpleApiKey.applyToRequest(requestOptions);
+
+        this.authentications.default.applyToRequest(requestOptions);
+
+        if (Object.keys(formParams).length) {
+            if (useFormData) {
+                (<any>requestOptions).formData = formParams;
+            } else {
+                requestOptions.form = formParams;
+            }
+        }
+        return new Promise<{ response: http.ClientResponse; body?: any;  }>((resolve, reject) => {
+            request(requestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    if (response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * Deletes a Self tax provider country
+     * Deletes a Self tax provider country. 
+     * @param countryCode The country code being deleted.
+     * @param taxCountry tax country to be deleted
+     */
+    public deleteTaxProviderSelfCountry (countryCode: string, taxCountry: TaxCountry) : Promise<{ response: http.ClientResponse; body?: any;  }> {
+        const localVarPath = this.basePath + '/tax/providers/self/country/{countryCode}'
+            .replace('{' + 'countryCode' + '}', String(countryCode));
+        let queryParameters: any = {};
+        let headerParams: any = this.extendObj({}, this.defaultHeaders);
+        let formParams: any = {};
+
+
+        // verify required parameter 'countryCode' is not null or undefined
+        if (countryCode === null || countryCode === undefined) {
+            throw new Error('Required parameter countryCode was null or undefined when calling deleteTaxProviderSelfCountry.');
+        }
+
+        // verify required parameter 'taxCountry' is not null or undefined
+        if (taxCountry === null || taxCountry === undefined) {
+            throw new Error('Required parameter taxCountry was null or undefined when calling deleteTaxProviderSelfCountry.');
+        }
+
+        let useFormData = false;
+
+        let requestOptions: request.Options = {
+            method: 'DELETE',
+            qs: queryParameters,
+            headers: headerParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+            body: taxCountry,
+        };
+
+        this.authentications.ultraCartOauth.applyToRequest(requestOptions);
+
+        this.authentications.ultraCartSimpleApiKey.applyToRequest(requestOptions);
+
+        this.authentications.default.applyToRequest(requestOptions);
+
+        if (Object.keys(formParams).length) {
+            if (useFormData) {
+                (<any>requestOptions).formData = formParams;
+            } else {
+                requestOptions.form = formParams;
+            }
+        }
+        return new Promise<{ response: http.ClientResponse; body?: any;  }>((resolve, reject) => {
+            request(requestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    if (response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * Deletes a Self tax provider county
+     * Deletes a Self tax provider county. 
+     * @param county The county being deleted.
+     * @param taxCounty tax county to be deleted
+     */
+    public deleteTaxProviderSelfCounty (county: string, taxCounty: TaxCounty) : Promise<{ response: http.ClientResponse; body?: any;  }> {
+        const localVarPath = this.basePath + '/tax/providers/self/county/{county}'
+            .replace('{' + 'county' + '}', String(county));
+        let queryParameters: any = {};
+        let headerParams: any = this.extendObj({}, this.defaultHeaders);
+        let formParams: any = {};
+
+
+        // verify required parameter 'county' is not null or undefined
+        if (county === null || county === undefined) {
+            throw new Error('Required parameter county was null or undefined when calling deleteTaxProviderSelfCounty.');
+        }
+
+        // verify required parameter 'taxCounty' is not null or undefined
+        if (taxCounty === null || taxCounty === undefined) {
+            throw new Error('Required parameter taxCounty was null or undefined when calling deleteTaxProviderSelfCounty.');
+        }
+
+        let useFormData = false;
+
+        let requestOptions: request.Options = {
+            method: 'DELETE',
+            qs: queryParameters,
+            headers: headerParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+            body: taxCounty,
+        };
+
+        this.authentications.ultraCartOauth.applyToRequest(requestOptions);
+
+        this.authentications.ultraCartSimpleApiKey.applyToRequest(requestOptions);
+
+        this.authentications.default.applyToRequest(requestOptions);
+
+        if (Object.keys(formParams).length) {
+            if (useFormData) {
+                (<any>requestOptions).formData = formParams;
+            } else {
+                requestOptions.form = formParams;
+            }
+        }
+        return new Promise<{ response: http.ClientResponse; body?: any;  }>((resolve, reject) => {
+            request(requestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    if (response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * Deletes a Self tax provider postalCode
+     * Deletes a Self tax provider postalCode. 
+     * @param postalCode The postal code being deleted.
+     * @param taxPostalCode tax postal code to be deleted
+     */
+    public deleteTaxProviderSelfPostalCode (postalCode: string, taxPostalCode: TaxPostalCode) : Promise<{ response: http.ClientResponse; body?: any;  }> {
+        const localVarPath = this.basePath + '/tax/providers/self/postalCode/{postal_code}'
+            .replace('{' + 'postal_code' + '}', String(postalCode));
+        let queryParameters: any = {};
+        let headerParams: any = this.extendObj({}, this.defaultHeaders);
+        let formParams: any = {};
+
+
+        // verify required parameter 'postalCode' is not null or undefined
+        if (postalCode === null || postalCode === undefined) {
+            throw new Error('Required parameter postalCode was null or undefined when calling deleteTaxProviderSelfPostalCode.');
+        }
+
+        // verify required parameter 'taxPostalCode' is not null or undefined
+        if (taxPostalCode === null || taxPostalCode === undefined) {
+            throw new Error('Required parameter taxPostalCode was null or undefined when calling deleteTaxProviderSelfPostalCode.');
+        }
+
+        let useFormData = false;
+
+        let requestOptions: request.Options = {
+            method: 'DELETE',
+            qs: queryParameters,
+            headers: headerParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+            body: taxPostalCode,
+        };
+
+        this.authentications.ultraCartOauth.applyToRequest(requestOptions);
+
+        this.authentications.ultraCartSimpleApiKey.applyToRequest(requestOptions);
+
+        this.authentications.default.applyToRequest(requestOptions);
+
+        if (Object.keys(formParams).length) {
+            if (useFormData) {
+                (<any>requestOptions).formData = formParams;
+            } else {
+                requestOptions.form = formParams;
+            }
+        }
+        return new Promise<{ response: http.ClientResponse; body?: any;  }>((resolve, reject) => {
+            request(requestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    if (response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * Deletes a Self tax provider state
+     * Deletes a Self tax provider state. 
+     * @param stateCode The state code being deleted.
+     * @param taxState tax state to be deleted
+     */
+    public deleteTaxProviderSelfState (stateCode: string, taxState: TaxState) : Promise<{ response: http.ClientResponse; body?: any;  }> {
+        const localVarPath = this.basePath + '/tax/providers/self/state/{stateCode}'
+            .replace('{' + 'stateCode' + '}', String(stateCode));
+        let queryParameters: any = {};
+        let headerParams: any = this.extendObj({}, this.defaultHeaders);
+        let formParams: any = {};
+
+
+        // verify required parameter 'stateCode' is not null or undefined
+        if (stateCode === null || stateCode === undefined) {
+            throw new Error('Required parameter stateCode was null or undefined when calling deleteTaxProviderSelfState.');
+        }
+
+        // verify required parameter 'taxState' is not null or undefined
+        if (taxState === null || taxState === undefined) {
+            throw new Error('Required parameter taxState was null or undefined when calling deleteTaxProviderSelfState.');
+        }
+
+        let useFormData = false;
+
+        let requestOptions: request.Options = {
+            method: 'DELETE',
+            qs: queryParameters,
+            headers: headerParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+            body: taxState,
+        };
+
+        this.authentications.ultraCartOauth.applyToRequest(requestOptions);
+
+        this.authentications.ultraCartSimpleApiKey.applyToRequest(requestOptions);
+
+        this.authentications.default.applyToRequest(requestOptions);
+
+        if (Object.keys(formParams).length) {
+            if (useFormData) {
+                (<any>requestOptions).formData = formParams;
+            } else {
+                requestOptions.form = formParams;
+            }
+        }
+        return new Promise<{ response: http.ClientResponse; body?: any;  }>((resolve, reject) => {
+            request(requestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    if (response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * Retrieve the Avalara tax provider
+     * Retrieves the Avalara tax provider. 
+     */
+    public getTaxProviderAvalara () : Promise<{ response: http.ClientResponse; body: TaxProviderAvalara;  }> {
+        const localVarPath = this.basePath + '/tax/providers/avalara';
+        let queryParameters: any = {};
+        let headerParams: any = this.extendObj({}, this.defaultHeaders);
+        let formParams: any = {};
+
+
+        let useFormData = false;
+
+        let requestOptions: request.Options = {
+            method: 'GET',
+            qs: queryParameters,
+            headers: headerParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.ultraCartOauth.applyToRequest(requestOptions);
+
+        this.authentications.ultraCartSimpleApiKey.applyToRequest(requestOptions);
+
+        this.authentications.default.applyToRequest(requestOptions);
+
+        if (Object.keys(formParams).length) {
+            if (useFormData) {
+                (<any>requestOptions).formData = formParams;
+            } else {
+                requestOptions.form = formParams;
+            }
+        }
+        return new Promise<{ response: http.ClientResponse; body: TaxProviderAvalara;  }>((resolve, reject) => {
+            request(requestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    if (response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * Returns Avalara Tax companies configured by the merchant
+     * Returns Avalara Tax companies configured by the merchant 
+     * @param taxProviderAvalara TaxProviderAvalara object
+     */
+    public getTaxProviderAvalaraCompanies (taxProviderAvalara: TaxProviderAvalara) : Promise<{ response: http.ClientResponse; body: TaxProviderAvalaraCompaniesResult;  }> {
+        const localVarPath = this.basePath + '/tax/providers/avalara/companies';
+        let queryParameters: any = {};
+        let headerParams: any = this.extendObj({}, this.defaultHeaders);
+        let formParams: any = {};
+
+
+        // verify required parameter 'taxProviderAvalara' is not null or undefined
+        if (taxProviderAvalara === null || taxProviderAvalara === undefined) {
+            throw new Error('Required parameter taxProviderAvalara was null or undefined when calling getTaxProviderAvalaraCompanies.');
+        }
+
+        let useFormData = false;
+
+        let requestOptions: request.Options = {
+            method: 'POST',
+            qs: queryParameters,
+            headers: headerParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+            body: taxProviderAvalara,
+        };
+
+        this.authentications.ultraCartOauth.applyToRequest(requestOptions);
+
+        this.authentications.ultraCartSimpleApiKey.applyToRequest(requestOptions);
+
+        this.authentications.default.applyToRequest(requestOptions);
+
+        if (Object.keys(formParams).length) {
+            if (useFormData) {
+                (<any>requestOptions).formData = formParams;
+            } else {
+                requestOptions.form = formParams;
+            }
+        }
+        return new Promise<{ response: http.ClientResponse; body: TaxProviderAvalaraCompaniesResult;  }>((resolve, reject) => {
+            request(requestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    if (response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * Attempts to connect to Avalara and returns back the response
+     * Attempts to connect to Avalara and returns back the response. 
+     */
+    public getTaxProviderAvalaraTest () : Promise<{ response: http.ClientResponse; body: TaxProviderTestResult;  }> {
+        const localVarPath = this.basePath + '/tax/providers/avalara/test';
+        let queryParameters: any = {};
+        let headerParams: any = this.extendObj({}, this.defaultHeaders);
+        let formParams: any = {};
+
+
+        let useFormData = false;
+
+        let requestOptions: request.Options = {
+            method: 'GET',
+            qs: queryParameters,
+            headers: headerParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.ultraCartOauth.applyToRequest(requestOptions);
+
+        this.authentications.ultraCartSimpleApiKey.applyToRequest(requestOptions);
+
+        this.authentications.default.applyToRequest(requestOptions);
+
+        if (Object.keys(formParams).length) {
+            if (useFormData) {
+                (<any>requestOptions).formData = formParams;
+            } else {
+                requestOptions.form = formParams;
+            }
+        }
+        return new Promise<{ response: http.ClientResponse; body: TaxProviderTestResult;  }>((resolve, reject) => {
+            request(requestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    if (response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * Retrieve the Self tax provider
+     * Retrieves the Self tax provider. 
+     */
+    public getTaxProviderSelf () : Promise<{ response: http.ClientResponse; body: TaxProviderSelf;  }> {
+        const localVarPath = this.basePath + '/tax/providers/self';
+        let queryParameters: any = {};
+        let headerParams: any = this.extendObj({}, this.defaultHeaders);
+        let formParams: any = {};
+
+
+        let useFormData = false;
+
+        let requestOptions: request.Options = {
+            method: 'GET',
+            qs: queryParameters,
+            headers: headerParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.ultraCartOauth.applyToRequest(requestOptions);
+
+        this.authentications.ultraCartSimpleApiKey.applyToRequest(requestOptions);
+
+        this.authentications.default.applyToRequest(requestOptions);
+
+        if (Object.keys(formParams).length) {
+            if (useFormData) {
+                (<any>requestOptions).formData = formParams;
+            } else {
+                requestOptions.form = formParams;
+            }
+        }
+        return new Promise<{ response: http.ClientResponse; body: TaxProviderSelf;  }>((resolve, reject) => {
+            request(requestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    if (response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * Retrieve the Self tax provider countries
+     * Retrieves the Self tax provider countries. 
+     */
+    public getTaxProviderSelfCountries () : Promise<{ response: http.ClientResponse; body: TaxProviderSelfCountriesResponse;  }> {
+        const localVarPath = this.basePath + '/tax/providers/self/countries';
+        let queryParameters: any = {};
+        let headerParams: any = this.extendObj({}, this.defaultHeaders);
+        let formParams: any = {};
+
+
+        let useFormData = false;
+
+        let requestOptions: request.Options = {
+            method: 'GET',
+            qs: queryParameters,
+            headers: headerParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.ultraCartOauth.applyToRequest(requestOptions);
+
+        this.authentications.ultraCartSimpleApiKey.applyToRequest(requestOptions);
+
+        this.authentications.default.applyToRequest(requestOptions);
+
+        if (Object.keys(formParams).length) {
+            if (useFormData) {
+                (<any>requestOptions).formData = formParams;
+            } else {
+                requestOptions.form = formParams;
+            }
+        }
+        return new Promise<{ response: http.ClientResponse; body: TaxProviderSelfCountriesResponse;  }>((resolve, reject) => {
+            request(requestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    if (response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * Retrieve the Self tax provider regions for a given country code
+     * Retrieves the Self tax provider regions for a given country code. 
+     * @param countryCode The country code regions desired.
+     */
+    public getTaxProviderSelfRegionsByCountryCode (countryCode: string) : Promise<{ response: http.ClientResponse; body: TaxProviderSelfRegionsResponse;  }> {
+        const localVarPath = this.basePath + '/tax/providers/self/regions/{countryCode}'
+            .replace('{' + 'countryCode' + '}', String(countryCode));
+        let queryParameters: any = {};
+        let headerParams: any = this.extendObj({}, this.defaultHeaders);
+        let formParams: any = {};
+
+
+        // verify required parameter 'countryCode' is not null or undefined
+        if (countryCode === null || countryCode === undefined) {
+            throw new Error('Required parameter countryCode was null or undefined when calling getTaxProviderSelfRegionsByCountryCode.');
+        }
+
+        let useFormData = false;
+
+        let requestOptions: request.Options = {
+            method: 'GET',
+            qs: queryParameters,
+            headers: headerParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.ultraCartOauth.applyToRequest(requestOptions);
+
+        this.authentications.ultraCartSimpleApiKey.applyToRequest(requestOptions);
+
+        this.authentications.default.applyToRequest(requestOptions);
+
+        if (Object.keys(formParams).length) {
+            if (useFormData) {
+                (<any>requestOptions).formData = formParams;
+            } else {
+                requestOptions.form = formParams;
+            }
+        }
+        return new Promise<{ response: http.ClientResponse; body: TaxProviderSelfRegionsResponse;  }>((resolve, reject) => {
+            request(requestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    if (response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * Retrieve the TaxJar tax provider
+     * Retrieves the TaxJar tax provider. 
+     */
+    public getTaxProviderTaxJar () : Promise<{ response: http.ClientResponse; body: TaxProviderTaxJar;  }> {
+        const localVarPath = this.basePath + '/tax/providers/taxjar';
+        let queryParameters: any = {};
+        let headerParams: any = this.extendObj({}, this.defaultHeaders);
+        let formParams: any = {};
+
+
+        let useFormData = false;
+
+        let requestOptions: request.Options = {
+            method: 'GET',
+            qs: queryParameters,
+            headers: headerParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.ultraCartOauth.applyToRequest(requestOptions);
+
+        this.authentications.ultraCartSimpleApiKey.applyToRequest(requestOptions);
+
+        this.authentications.default.applyToRequest(requestOptions);
+
+        if (Object.keys(formParams).length) {
+            if (useFormData) {
+                (<any>requestOptions).formData = formParams;
+            } else {
+                requestOptions.form = formParams;
+            }
+        }
+        return new Promise<{ response: http.ClientResponse; body: TaxProviderTaxJar;  }>((resolve, reject) => {
+            request(requestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    if (response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * Attempts to connect to TaxJar and returns back the response
+     * Attempts to connect to TaxJar and returns back the response. 
+     */
+    public getTaxProviderTaxJarTest () : Promise<{ response: http.ClientResponse; body: TaxProviderTestResult;  }> {
+        const localVarPath = this.basePath + '/tax/providers/taxjar/test';
+        let queryParameters: any = {};
+        let headerParams: any = this.extendObj({}, this.defaultHeaders);
+        let formParams: any = {};
+
+
+        let useFormData = false;
+
+        let requestOptions: request.Options = {
+            method: 'GET',
+            qs: queryParameters,
+            headers: headerParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.ultraCartOauth.applyToRequest(requestOptions);
+
+        this.authentications.ultraCartSimpleApiKey.applyToRequest(requestOptions);
+
+        this.authentications.default.applyToRequest(requestOptions);
+
+        if (Object.keys(formParams).length) {
+            if (useFormData) {
+                (<any>requestOptions).formData = formParams;
+            } else {
+                requestOptions.form = formParams;
+            }
+        }
+        return new Promise<{ response: http.ClientResponse; body: TaxProviderTestResult;  }>((resolve, reject) => {
+            request(requestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    if (response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * Retrieve the UltraCart tax provider
+     * Retrieves the UltraCart tax provider. 
+     */
+    public getTaxProviderUltraCart () : Promise<{ response: http.ClientResponse; body: TaxProviderUltraCart;  }> {
+        const localVarPath = this.basePath + '/tax/providers/ultracart';
+        let queryParameters: any = {};
+        let headerParams: any = this.extendObj({}, this.defaultHeaders);
+        let formParams: any = {};
+
+
+        let useFormData = false;
+
+        let requestOptions: request.Options = {
+            method: 'GET',
+            qs: queryParameters,
+            headers: headerParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.ultraCartOauth.applyToRequest(requestOptions);
+
+        this.authentications.ultraCartSimpleApiKey.applyToRequest(requestOptions);
+
+        this.authentications.default.applyToRequest(requestOptions);
+
+        if (Object.keys(formParams).length) {
+            if (useFormData) {
+                (<any>requestOptions).formData = formParams;
+            } else {
+                requestOptions.form = formParams;
+            }
+        }
+        return new Promise<{ response: http.ClientResponse; body: TaxProviderUltraCart;  }>((resolve, reject) => {
+            request(requestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    if (response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * Retrieve tax methods
+     * Retrieves tax methods for this account. 
+     * @param limit The maximum number of records to return on this one API call. (Max 200)
+     * @param offset Pagination of the record set.  Offset is a zero based index.
+     * @param expand The object expansion to perform on the result.  See documentation for examples
+     */
+    public getTaxProviders (limit?: number, offset?: number, expand?: string) : Promise<{ response: http.ClientResponse; body: TaxProvidersResponse;  }> {
+        const localVarPath = this.basePath + '/tax/providers';
+        let queryParameters: any = {};
+        let headerParams: any = this.extendObj({}, this.defaultHeaders);
+        let formParams: any = {};
+
+
+        if (limit !== undefined) {
+            queryParameters['_limit'] = limit;
+        }
+
+        if (offset !== undefined) {
+            queryParameters['_offset'] = offset;
+        }
+
+        if (expand !== undefined) {
+            queryParameters['_expand'] = expand;
+        }
+
+        let useFormData = false;
+
+        let requestOptions: request.Options = {
+            method: 'GET',
+            qs: queryParameters,
+            headers: headerParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.ultraCartOauth.applyToRequest(requestOptions);
+
+        this.authentications.ultraCartSimpleApiKey.applyToRequest(requestOptions);
+
+        this.authentications.default.applyToRequest(requestOptions);
+
+        if (Object.keys(formParams).length) {
+            if (useFormData) {
+                (<any>requestOptions).formData = formParams;
+            } else {
+                requestOptions.form = formParams;
+            }
+        }
+        return new Promise<{ response: http.ClientResponse; body: TaxProvidersResponse;  }>((resolve, reject) => {
+            request(requestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    if (response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * Toggle a tax provider to active
+     * Toggle a tax provider to active. 
+     * @param providerName The tax provider to set active.
+     */
+    public setActiveTaxProvider (providerName: string) : Promise<{ response: http.ClientResponse; body: TaxProviderActivateResult;  }> {
+        const localVarPath = this.basePath + '/tax/providers/setActive/{providerName}'
+            .replace('{' + 'providerName' + '}', String(providerName));
+        let queryParameters: any = {};
+        let headerParams: any = this.extendObj({}, this.defaultHeaders);
+        let formParams: any = {};
+
+
+        // verify required parameter 'providerName' is not null or undefined
+        if (providerName === null || providerName === undefined) {
+            throw new Error('Required parameter providerName was null or undefined when calling setActiveTaxProvider.');
+        }
+
+        let useFormData = false;
+
+        let requestOptions: request.Options = {
+            method: 'POST',
+            qs: queryParameters,
+            headers: headerParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        this.authentications.ultraCartOauth.applyToRequest(requestOptions);
+
+        this.authentications.ultraCartSimpleApiKey.applyToRequest(requestOptions);
+
+        this.authentications.default.applyToRequest(requestOptions);
+
+        if (Object.keys(formParams).length) {
+            if (useFormData) {
+                (<any>requestOptions).formData = formParams;
+            } else {
+                requestOptions.form = formParams;
+            }
+        }
+        return new Promise<{ response: http.ClientResponse; body: TaxProviderActivateResult;  }>((resolve, reject) => {
+            request(requestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    if (response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * Update the Avalara tax provider
+     * Update the Avalara tax provider. 
+     * @param taxProviderAvalara TaxProviderAvalara object
+     */
+    public updateTaxProviderAvalara (taxProviderAvalara: TaxProviderAvalara) : Promise<{ response: http.ClientResponse; body: TaxProviderAvalara;  }> {
+        const localVarPath = this.basePath + '/tax/providers/avalara';
+        let queryParameters: any = {};
+        let headerParams: any = this.extendObj({}, this.defaultHeaders);
+        let formParams: any = {};
+
+
+        // verify required parameter 'taxProviderAvalara' is not null or undefined
+        if (taxProviderAvalara === null || taxProviderAvalara === undefined) {
+            throw new Error('Required parameter taxProviderAvalara was null or undefined when calling updateTaxProviderAvalara.');
+        }
+
+        let useFormData = false;
+
+        let requestOptions: request.Options = {
+            method: 'POST',
+            qs: queryParameters,
+            headers: headerParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+            body: taxProviderAvalara,
+        };
+
+        this.authentications.ultraCartOauth.applyToRequest(requestOptions);
+
+        this.authentications.ultraCartSimpleApiKey.applyToRequest(requestOptions);
+
+        this.authentications.default.applyToRequest(requestOptions);
+
+        if (Object.keys(formParams).length) {
+            if (useFormData) {
+                (<any>requestOptions).formData = formParams;
+            } else {
+                requestOptions.form = formParams;
+            }
+        }
+        return new Promise<{ response: http.ClientResponse; body: TaxProviderAvalara;  }>((resolve, reject) => {
+            request(requestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    if (response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * Update the Self tax provider
+     * Update the Self tax provider. 
+     * @param taxProviderSelf TaxProviderSelf object
+     */
+    public updateTaxProviderSelf (taxProviderSelf: TaxProviderSelf) : Promise<{ response: http.ClientResponse; body: TaxProviderSelf;  }> {
+        const localVarPath = this.basePath + '/tax/providers/self';
+        let queryParameters: any = {};
+        let headerParams: any = this.extendObj({}, this.defaultHeaders);
+        let formParams: any = {};
+
+
+        // verify required parameter 'taxProviderSelf' is not null or undefined
+        if (taxProviderSelf === null || taxProviderSelf === undefined) {
+            throw new Error('Required parameter taxProviderSelf was null or undefined when calling updateTaxProviderSelf.');
+        }
+
+        let useFormData = false;
+
+        let requestOptions: request.Options = {
+            method: 'POST',
+            qs: queryParameters,
+            headers: headerParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+            body: taxProviderSelf,
+        };
+
+        this.authentications.ultraCartOauth.applyToRequest(requestOptions);
+
+        this.authentications.ultraCartSimpleApiKey.applyToRequest(requestOptions);
+
+        this.authentications.default.applyToRequest(requestOptions);
+
+        if (Object.keys(formParams).length) {
+            if (useFormData) {
+                (<any>requestOptions).formData = formParams;
+            } else {
+                requestOptions.form = formParams;
+            }
+        }
+        return new Promise<{ response: http.ClientResponse; body: TaxProviderSelf;  }>((resolve, reject) => {
+            request(requestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    if (response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * Updates a Self tax provider city
+     * Updates a Self tax provider city. 
+     * @param city The city being updated.
+     * @param taxCity tax city to be updated
+     */
+    public updateTaxProviderSelfCity (city: string, taxCity: TaxCity) : Promise<{ response: http.ClientResponse; body: TaxCity;  }> {
+        const localVarPath = this.basePath + '/tax/providers/self/city/{city}'
+            .replace('{' + 'city' + '}', String(city));
+        let queryParameters: any = {};
+        let headerParams: any = this.extendObj({}, this.defaultHeaders);
+        let formParams: any = {};
+
+
+        // verify required parameter 'city' is not null or undefined
+        if (city === null || city === undefined) {
+            throw new Error('Required parameter city was null or undefined when calling updateTaxProviderSelfCity.');
+        }
+
+        // verify required parameter 'taxCity' is not null or undefined
+        if (taxCity === null || taxCity === undefined) {
+            throw new Error('Required parameter taxCity was null or undefined when calling updateTaxProviderSelfCity.');
+        }
+
+        let useFormData = false;
+
+        let requestOptions: request.Options = {
+            method: 'POST',
+            qs: queryParameters,
+            headers: headerParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+            body: taxCity,
+        };
+
+        this.authentications.ultraCartOauth.applyToRequest(requestOptions);
+
+        this.authentications.ultraCartSimpleApiKey.applyToRequest(requestOptions);
+
+        this.authentications.default.applyToRequest(requestOptions);
+
+        if (Object.keys(formParams).length) {
+            if (useFormData) {
+                (<any>requestOptions).formData = formParams;
+            } else {
+                requestOptions.form = formParams;
+            }
+        }
+        return new Promise<{ response: http.ClientResponse; body: TaxCity;  }>((resolve, reject) => {
+            request(requestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    if (response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * Updates a Self tax provider country
+     * Updates a Self tax provider country. 
+     * @param countryCode The country code being updated.
+     * @param taxCountry tax country to be updated
+     */
+    public updateTaxProviderSelfCountry (countryCode: string, taxCountry: TaxCountry) : Promise<{ response: http.ClientResponse; body: TaxCountry;  }> {
+        const localVarPath = this.basePath + '/tax/providers/self/country/{countryCode}'
+            .replace('{' + 'countryCode' + '}', String(countryCode));
+        let queryParameters: any = {};
+        let headerParams: any = this.extendObj({}, this.defaultHeaders);
+        let formParams: any = {};
+
+
+        // verify required parameter 'countryCode' is not null or undefined
+        if (countryCode === null || countryCode === undefined) {
+            throw new Error('Required parameter countryCode was null or undefined when calling updateTaxProviderSelfCountry.');
+        }
+
+        // verify required parameter 'taxCountry' is not null or undefined
+        if (taxCountry === null || taxCountry === undefined) {
+            throw new Error('Required parameter taxCountry was null or undefined when calling updateTaxProviderSelfCountry.');
+        }
+
+        let useFormData = false;
+
+        let requestOptions: request.Options = {
+            method: 'POST',
+            qs: queryParameters,
+            headers: headerParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+            body: taxCountry,
+        };
+
+        this.authentications.ultraCartOauth.applyToRequest(requestOptions);
+
+        this.authentications.ultraCartSimpleApiKey.applyToRequest(requestOptions);
+
+        this.authentications.default.applyToRequest(requestOptions);
+
+        if (Object.keys(formParams).length) {
+            if (useFormData) {
+                (<any>requestOptions).formData = formParams;
+            } else {
+                requestOptions.form = formParams;
+            }
+        }
+        return new Promise<{ response: http.ClientResponse; body: TaxCountry;  }>((resolve, reject) => {
+            request(requestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    if (response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * Updates a Self tax provider county
+     * Updates a Self tax provider county. 
+     * @param county The county being updated.
+     * @param taxCounty tax county to be updated
+     */
+    public updateTaxProviderSelfCounty (county: string, taxCounty: TaxCounty) : Promise<{ response: http.ClientResponse; body: TaxCounty;  }> {
+        const localVarPath = this.basePath + '/tax/providers/self/county/{county}'
+            .replace('{' + 'county' + '}', String(county));
+        let queryParameters: any = {};
+        let headerParams: any = this.extendObj({}, this.defaultHeaders);
+        let formParams: any = {};
+
+
+        // verify required parameter 'county' is not null or undefined
+        if (county === null || county === undefined) {
+            throw new Error('Required parameter county was null or undefined when calling updateTaxProviderSelfCounty.');
+        }
+
+        // verify required parameter 'taxCounty' is not null or undefined
+        if (taxCounty === null || taxCounty === undefined) {
+            throw new Error('Required parameter taxCounty was null or undefined when calling updateTaxProviderSelfCounty.');
+        }
+
+        let useFormData = false;
+
+        let requestOptions: request.Options = {
+            method: 'POST',
+            qs: queryParameters,
+            headers: headerParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+            body: taxCounty,
+        };
+
+        this.authentications.ultraCartOauth.applyToRequest(requestOptions);
+
+        this.authentications.ultraCartSimpleApiKey.applyToRequest(requestOptions);
+
+        this.authentications.default.applyToRequest(requestOptions);
+
+        if (Object.keys(formParams).length) {
+            if (useFormData) {
+                (<any>requestOptions).formData = formParams;
+            } else {
+                requestOptions.form = formParams;
+            }
+        }
+        return new Promise<{ response: http.ClientResponse; body: TaxCounty;  }>((resolve, reject) => {
+            request(requestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    if (response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * Updates a Self tax provider postalCode
+     * Updates a Self tax provider postalCode. 
+     * @param postalCode The postal code being updated.
+     * @param taxPostalCode tax postal code to be updated
+     */
+    public updateTaxProviderSelfPostalCode (postalCode: string, taxPostalCode: TaxPostalCode) : Promise<{ response: http.ClientResponse; body: TaxPostalCode;  }> {
+        const localVarPath = this.basePath + '/tax/providers/self/postalCode/{postal_code}'
+            .replace('{' + 'postal_code' + '}', String(postalCode));
+        let queryParameters: any = {};
+        let headerParams: any = this.extendObj({}, this.defaultHeaders);
+        let formParams: any = {};
+
+
+        // verify required parameter 'postalCode' is not null or undefined
+        if (postalCode === null || postalCode === undefined) {
+            throw new Error('Required parameter postalCode was null or undefined when calling updateTaxProviderSelfPostalCode.');
+        }
+
+        // verify required parameter 'taxPostalCode' is not null or undefined
+        if (taxPostalCode === null || taxPostalCode === undefined) {
+            throw new Error('Required parameter taxPostalCode was null or undefined when calling updateTaxProviderSelfPostalCode.');
+        }
+
+        let useFormData = false;
+
+        let requestOptions: request.Options = {
+            method: 'POST',
+            qs: queryParameters,
+            headers: headerParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+            body: taxPostalCode,
+        };
+
+        this.authentications.ultraCartOauth.applyToRequest(requestOptions);
+
+        this.authentications.ultraCartSimpleApiKey.applyToRequest(requestOptions);
+
+        this.authentications.default.applyToRequest(requestOptions);
+
+        if (Object.keys(formParams).length) {
+            if (useFormData) {
+                (<any>requestOptions).formData = formParams;
+            } else {
+                requestOptions.form = formParams;
+            }
+        }
+        return new Promise<{ response: http.ClientResponse; body: TaxPostalCode;  }>((resolve, reject) => {
+            request(requestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    if (response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * Updates a Self tax provider state
+     * Updates a Self tax provider state. 
+     * @param stateCode The state code being updated.
+     * @param taxState tax state to be updated
+     */
+    public updateTaxProviderSelfState (stateCode: string, taxState: TaxState) : Promise<{ response: http.ClientResponse; body: TaxState;  }> {
+        const localVarPath = this.basePath + '/tax/providers/self/state/{stateCode}'
+            .replace('{' + 'stateCode' + '}', String(stateCode));
+        let queryParameters: any = {};
+        let headerParams: any = this.extendObj({}, this.defaultHeaders);
+        let formParams: any = {};
+
+
+        // verify required parameter 'stateCode' is not null or undefined
+        if (stateCode === null || stateCode === undefined) {
+            throw new Error('Required parameter stateCode was null or undefined when calling updateTaxProviderSelfState.');
+        }
+
+        // verify required parameter 'taxState' is not null or undefined
+        if (taxState === null || taxState === undefined) {
+            throw new Error('Required parameter taxState was null or undefined when calling updateTaxProviderSelfState.');
+        }
+
+        let useFormData = false;
+
+        let requestOptions: request.Options = {
+            method: 'POST',
+            qs: queryParameters,
+            headers: headerParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+            body: taxState,
+        };
+
+        this.authentications.ultraCartOauth.applyToRequest(requestOptions);
+
+        this.authentications.ultraCartSimpleApiKey.applyToRequest(requestOptions);
+
+        this.authentications.default.applyToRequest(requestOptions);
+
+        if (Object.keys(formParams).length) {
+            if (useFormData) {
+                (<any>requestOptions).formData = formParams;
+            } else {
+                requestOptions.form = formParams;
+            }
+        }
+        return new Promise<{ response: http.ClientResponse; body: TaxState;  }>((resolve, reject) => {
+            request(requestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    if (response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * Update the TaxJar tax provider
+     * Update the TaxJar tax provider. 
+     * @param taxProviderTaxJar TaxProviderTaxJar object
+     */
+    public updateTaxProviderTaxJar (taxProviderTaxJar: TaxProviderTaxJar) : Promise<{ response: http.ClientResponse; body: TaxProviderTaxJar;  }> {
+        const localVarPath = this.basePath + '/tax/providers/taxjar';
+        let queryParameters: any = {};
+        let headerParams: any = this.extendObj({}, this.defaultHeaders);
+        let formParams: any = {};
+
+
+        // verify required parameter 'taxProviderTaxJar' is not null or undefined
+        if (taxProviderTaxJar === null || taxProviderTaxJar === undefined) {
+            throw new Error('Required parameter taxProviderTaxJar was null or undefined when calling updateTaxProviderTaxJar.');
+        }
+
+        let useFormData = false;
+
+        let requestOptions: request.Options = {
+            method: 'POST',
+            qs: queryParameters,
+            headers: headerParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+            body: taxProviderTaxJar,
+        };
+
+        this.authentications.ultraCartOauth.applyToRequest(requestOptions);
+
+        this.authentications.ultraCartSimpleApiKey.applyToRequest(requestOptions);
+
+        this.authentications.default.applyToRequest(requestOptions);
+
+        if (Object.keys(formParams).length) {
+            if (useFormData) {
+                (<any>requestOptions).formData = formParams;
+            } else {
+                requestOptions.form = formParams;
+            }
+        }
+        return new Promise<{ response: http.ClientResponse; body: TaxProviderTaxJar;  }>((resolve, reject) => {
+            request(requestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    if (response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * Update the UltraCart tax provider
+     * Update the UltraCart tax provider. 
+     * @param taxProviderUltracart TaxProviderUltraCart object
+     */
+    public updateTaxProviderUltraCart (taxProviderUltracart: TaxProviderUltraCart) : Promise<{ response: http.ClientResponse; body: TaxProviderUltraCart;  }> {
+        const localVarPath = this.basePath + '/tax/providers/ultracart';
+        let queryParameters: any = {};
+        let headerParams: any = this.extendObj({}, this.defaultHeaders);
+        let formParams: any = {};
+
+
+        // verify required parameter 'taxProviderUltracart' is not null or undefined
+        if (taxProviderUltracart === null || taxProviderUltracart === undefined) {
+            throw new Error('Required parameter taxProviderUltracart was null or undefined when calling updateTaxProviderUltraCart.');
+        }
+
+        let useFormData = false;
+
+        let requestOptions: request.Options = {
+            method: 'POST',
+            qs: queryParameters,
+            headers: headerParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+            body: taxProviderUltracart,
+        };
+
+        this.authentications.ultraCartOauth.applyToRequest(requestOptions);
+
+        this.authentications.ultraCartSimpleApiKey.applyToRequest(requestOptions);
+
+        this.authentications.default.applyToRequest(requestOptions);
+
+        if (Object.keys(formParams).length) {
+            if (useFormData) {
+                (<any>requestOptions).formData = formParams;
+            } else {
+                requestOptions.form = formParams;
+            }
+        }
+        return new Promise<{ response: http.ClientResponse; body: TaxProviderUltraCart;  }>((resolve, reject) => {
             request(requestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
@@ -10415,6 +22728,62 @@ export class WebhookApi {
             }
         }
         return new Promise<{ response: http.ClientResponse; body?: any;  }>((resolve, reject) => {
+            request(requestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    if (response.statusCode >= 200 && response.statusCode <= 299) {
+                        resolve({ response: response, body: body });
+                    } else {
+                        reject({ response: response, body: body });
+                    }
+                }
+            });
+        });
+    }
+    /**
+     * Delete a webhook by URL
+     * Delete a webhook based upon the URL on the webhook_url matching an existing webhook. 
+     * @param webhook Webhook to delete
+     */
+    public deleteWebhookByUrl (webhook: Webhook) : Promise<{ response: http.ClientResponse; body: WebhookResponse;  }> {
+        const localVarPath = this.basePath + '/webhook/webhooks';
+        let queryParameters: any = {};
+        let headerParams: any = this.extendObj({}, this.defaultHeaders);
+        let formParams: any = {};
+
+
+        // verify required parameter 'webhook' is not null or undefined
+        if (webhook === null || webhook === undefined) {
+            throw new Error('Required parameter webhook was null or undefined when calling deleteWebhookByUrl.');
+        }
+
+        let useFormData = false;
+
+        let requestOptions: request.Options = {
+            method: 'DELETE',
+            qs: queryParameters,
+            headers: headerParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+            body: webhook,
+        };
+
+        this.authentications.ultraCartOauth.applyToRequest(requestOptions);
+
+        this.authentications.ultraCartSimpleApiKey.applyToRequest(requestOptions);
+
+        this.authentications.default.applyToRequest(requestOptions);
+
+        if (Object.keys(formParams).length) {
+            if (useFormData) {
+                (<any>requestOptions).formData = formParams;
+            } else {
+                requestOptions.form = formParams;
+            }
+        }
+        return new Promise<{ response: http.ClientResponse; body: WebhookResponse;  }>((resolve, reject) => {
             request(requestOptions, (error, response, body) => {
                 if (error) {
                     reject(error);
