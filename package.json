@@ -1,7 +1,7 @@
 {
-    "name": "rest_api_v2_sdk_ts",
-    "version": "3.0.39",
-    "description": "NodeJS client for rest_api_v2_sdk_ts",
+    "name": "ultracart_rest_api_v2_typescript",
+    "version": "3.0.40",
+    "description": "NodeJS client for ultracart_rest_api_v2_typescript",
     "repository": "UltraCart/rest_api_v2_sdk_typescript",
     "main": "api.js",
     "types": "api.d.ts",
