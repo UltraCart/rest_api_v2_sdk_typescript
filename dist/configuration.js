@@ -16,6 +16,7 @@ exports.Configuration = void 0;
 var Configuration = /** @class */ (function () {
     function Configuration(param) {
         if (param === void 0) { param = {}; }
+        this.apiVersion = param.apiVersion;
         this.apiKey = param.apiKey;
         this.username = param.username;
         this.password = param.password;
