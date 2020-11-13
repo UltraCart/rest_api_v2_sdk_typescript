@@ -1,0 +1,13 @@
+{
+  "name": "ultracart_rest_api_v2_ts",
+  "version": "3.0.39",
+  "description": "UltraCart REST SDK for Typescript",
+  "license": "Unlicense",
+  "main": "api.ts",
+  "scripts": {
+    "test": "mocha --recursive"
+  },
+  "browser": {
+    "fs": false
+  }
+}
