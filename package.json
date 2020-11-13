@@ -1,28 +1,29 @@
 {
-    "name": "ultracart_rest_api_v2_typescript",
-    "version": "3.0.40",
-    "description": "NodeJS client for ultracart_rest_api_v2_typescript",
-    "repository": "UltraCart/rest_api_v2_sdk_typescript",
-    "main": "api.js",
-    "types": "api.d.ts",
-    "scripts": {
-        "clean": "rm -Rf node_modules/ *.js",
-        "build": "tsc",
-        "test": "npm run build && node client.js"
-    },
-    "author": "Swagger Codegen Contributors",
-    "license": "Unlicense",
-    "dependencies": {
-        "bluebird": "^3.5.0",
-        "request": "^2.81.0",
-        "@types/bluebird": "*",
-        "@types/request": "*"
-    },
-    "devDependencies": {
-        "minimist": "^1.2.5",
-        "typescript": "^2.4.2"
-    },
-    "publishConfig": {
-        "registry": "UltraCart"
-    }
+  "name": "ultracart_rest_api_v2_typescript",
+  "version": "3.0.40",
+  "description": "swagger client for ultracart_rest_api_v2_typescript",
+  "author": "Swagger Codegen Contributors",
+  "keywords": [
+    "fetch",
+    "typescript",
+    "swagger-client",
+    "ultracart_rest_api_v2_typescript"
+  ],
+  "license": "Unlicense",
+  "main": "./dist/index.js",
+  "typings": "./dist/index.d.ts",
+  "scripts": {
+    "build": "tsc --outDir dist/",
+    "prepublishOnly": "npm run build"
+  },
+  "dependencies": {
+    "portable-fetch": "*"
+  },
+  "devDependencies": {
+    "@types/node": "^14.14.7",
+    "typescript": "^4.0.5"
+  },
+  "publishConfig": {
+    "registry": "UltraCart"
+  }
 }
