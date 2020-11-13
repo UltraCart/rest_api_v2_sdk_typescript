@@ -1,0 +1,28 @@
+{
+    "name": "rest_api_v2_sdk_ts",
+    "version": "3.0.39",
+    "description": "NodeJS client for rest_api_v2_sdk_ts",
+    "repository": "UltraCart/rest_api_v2_sdk_typescript",
+    "main": "api.js",
+    "types": "api.d.ts",
+    "scripts": {
+        "clean": "rm -Rf node_modules/ *.js",
+        "build": "tsc",
+        "test": "npm run build && node client.js"
+    },
+    "author": "Swagger Codegen Contributors",
+    "license": "Unlicense",
+    "dependencies": {
+        "bluebird": "^3.5.0",
+        "request": "^2.81.0",
+        "@types/bluebird": "*",
+        "@types/request": "*"
+    },
+    "devDependencies": {
+        "typescript": "^2.4.2",
+        "minimist": "^1.2.5"
+    },
+    "publishConfig":{
+        "registry":"UltraCart"
+    }
+}
