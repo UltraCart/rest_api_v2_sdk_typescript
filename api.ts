@@ -35243,6 +35243,11 @@ let typeMap: {[index: string]: any} = {
     "Weight": Weight,
 }
 
+export interface Headers {
+  'X-UltraCart-Api-Version': string,
+  [key: string]: any;
+}
+
 export interface Authentication {
     /**
     * Apply authentication settings to header and query params.
@@ -35302,7 +35307,7 @@ export enum AffiliateApiApiKeys {
 
 export class AffiliateApi {
     protected _basePath = defaultBasePath;
-    protected defaultHeaders : any = {};
+    protected _defaultHeaders : Headers = {};
     protected _useQuerystring : boolean = false;
 
     protected authentications = {
@@ -35345,6 +35350,21 @@ export class AffiliateApi {
         (this.authentications as any)[AffiliateApiApiKeys[key]].apiKey = value;
     }
 
+    public setApiVersion(value: string) {
+      this._defaultHeaders['X-UltraCart-Api-Version'] = value;
+    }
+
+
+  set defaultHeaders(defaultHeaders: Headers) {
+      this._defaultHeaders = defaultHeaders;
+  }
+
+  get defaultHeaders() {
+      return this._defaultHeaders;
+  }
+
+
+
     set accessToken(token: string) {
         this.authentications.ultraCartOauth.accessToken = token;
     }
@@ -35360,7 +35380,7 @@ export class AffiliateApi {
     public getClicksByQuery (clickQuery: AffiliateClickQuery, limit?: number, offset?: number, expand?: string, options: any = {}) : Promise<{ response: http.ClientResponse; body: AffiliateClicksResponse;  }> {
         const localVarPath = this.basePath + '/affiliate/clicks/query';
         let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         let localVarFormParams: any = {};
 
         // verify required parameter 'clickQuery' is not null or undefined
@@ -35434,7 +35454,7 @@ export class AffiliateApi {
     public getLedgersByQuery (ledgerQuery: AffiliateLedgerQuery, limit?: number, offset?: number, expand?: string, options: any = {}) : Promise<{ response: http.ClientResponse; body: AffiliateLedgersResponse;  }> {
         const localVarPath = this.basePath + '/affiliate/ledgers/query';
         let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         let localVarFormParams: any = {};
 
         // verify required parameter 'ledgerQuery' is not null or undefined
@@ -35504,7 +35524,7 @@ export enum AutoOrderApiApiKeys {
 
 export class AutoOrderApi {
     protected _basePath = defaultBasePath;
-    protected defaultHeaders : any = {};
+    protected _defaultHeaders : Headers = {};
     protected _useQuerystring : boolean = false;
 
     protected authentications = {
@@ -35547,6 +35567,21 @@ export class AutoOrderApi {
         (this.authentications as any)[AutoOrderApiApiKeys[key]].apiKey = value;
     }
 
+    public setApiVersion(value: string) {
+      this._defaultHeaders['X-UltraCart-Api-Version'] = value;
+    }
+
+
+  set defaultHeaders(defaultHeaders: Headers) {
+      this._defaultHeaders = defaultHeaders;
+  }
+
+  get defaultHeaders() {
+      return this._defaultHeaders;
+  }
+
+
+
     set accessToken(token: string) {
         this.authentications.ultraCartOauth.accessToken = token;
     }
@@ -35561,7 +35596,7 @@ export class AutoOrderApi {
         const localVarPath = this.basePath + '/auto_order/auto_orders/{auto_order_oid}'
             .replace('{' + 'auto_order_oid' + '}', encodeURIComponent(String(autoOrderOid)));
         let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         let localVarFormParams: any = {};
 
         // verify required parameter 'autoOrderOid' is not null or undefined
@@ -35625,7 +35660,7 @@ export class AutoOrderApi {
         const localVarPath = this.basePath + '/auto_order/auto_orders/code/{auto_order_code}'
             .replace('{' + 'auto_order_code' + '}', encodeURIComponent(String(autoOrderCode)));
         let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         let localVarFormParams: any = {};
 
         // verify required parameter 'autoOrderCode' is not null or undefined
@@ -35689,7 +35724,7 @@ export class AutoOrderApi {
         const localVarPath = this.basePath + '/auto_order/auto_orders/reference_order_id/{reference_order_id}'
             .replace('{' + 'reference_order_id' + '}', encodeURIComponent(String(referenceOrderId)));
         let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         let localVarFormParams: any = {};
 
         // verify required parameter 'referenceOrderId' is not null or undefined
@@ -35773,7 +35808,7 @@ export class AutoOrderApi {
     public getAutoOrders (autoOrderCode?: string, originalOrderId?: string, firstName?: string, lastName?: string, company?: string, city?: string, state?: string, postalCode?: string, countryCode?: string, phone?: string, email?: string, originalOrderDateBegin?: string, originalOrderDateEnd?: string, nextShipmentDateBegin?: string, nextShipmentDateEnd?: string, cardType?: string, itemId?: string, status?: string, limit?: number, offset?: number, since?: string, sort?: string, expand?: string, options: any = {}) : Promise<{ response: http.ClientResponse; body: AutoOrdersResponse;  }> {
         const localVarPath = this.basePath + '/auto_order/auto_orders';
         let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         let localVarFormParams: any = {};
 
         if (autoOrderCode !== undefined) {
@@ -35919,7 +35954,7 @@ export class AutoOrderApi {
     public getAutoOrdersBatch (autoOrderBatch: AutoOrderQueryBatch, expand?: string, options: any = {}) : Promise<{ response: http.ClientResponse; body: AutoOrdersResponse;  }> {
         const localVarPath = this.basePath + '/auto_order/auto_orders/batch';
         let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         let localVarFormParams: any = {};
 
         // verify required parameter 'autoOrderBatch' is not null or undefined
@@ -35986,7 +36021,7 @@ export class AutoOrderApi {
     public getAutoOrdersByQuery (autoOrderQuery: AutoOrderQuery, limit?: number, offset?: number, sort?: string, expand?: string, options: any = {}) : Promise<{ response: http.ClientResponse; body: AutoOrdersResponse;  }> {
         const localVarPath = this.basePath + '/auto_order/auto_orders/query';
         let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         let localVarFormParams: any = {};
 
         // verify required parameter 'autoOrderQuery' is not null or undefined
@@ -36064,7 +36099,7 @@ export class AutoOrderApi {
         const localVarPath = this.basePath + '/auto_order/auto_orders/{auto_order_oid}'
             .replace('{' + 'auto_order_oid' + '}', encodeURIComponent(String(autoOrderOid)));
         let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         let localVarFormParams: any = {};
 
         // verify required parameter 'autoOrder' is not null or undefined
@@ -36135,7 +36170,7 @@ export class AutoOrderApi {
     public updateAutoOrdersBatch (autoOrdersRequest: AutoOrdersRequest, expand?: string, placeholders?: boolean, async?: boolean, options: any = {}) : Promise<{ response: http.ClientResponse; body: AutoOrdersResponse;  }> {
         const localVarPath = this.basePath + '/auto_order/auto_orders/batch';
         let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         let localVarFormParams: any = {};
 
         // verify required parameter 'autoOrdersRequest' is not null or undefined
@@ -36205,7 +36240,7 @@ export enum ChargebackApiApiKeys {
 
 export class ChargebackApi {
     protected _basePath = defaultBasePath;
-    protected defaultHeaders : any = {};
+    protected _defaultHeaders : Headers = {};
     protected _useQuerystring : boolean = false;
 
     protected authentications = {
@@ -36248,6 +36283,21 @@ export class ChargebackApi {
         (this.authentications as any)[ChargebackApiApiKeys[key]].apiKey = value;
     }
 
+    public setApiVersion(value: string) {
+      this._defaultHeaders['X-UltraCart-Api-Version'] = value;
+    }
+
+
+  set defaultHeaders(defaultHeaders: Headers) {
+      this._defaultHeaders = defaultHeaders;
+  }
+
+  get defaultHeaders() {
+      return this._defaultHeaders;
+  }
+
+
+
     set accessToken(token: string) {
         this.authentications.ultraCartOauth.accessToken = token;
     }
@@ -36261,7 +36311,7 @@ export class ChargebackApi {
         const localVarPath = this.basePath + '/chargeback/chargebacks/{chargeback_dispute_oid}'
             .replace('{' + 'chargeback_dispute_oid' + '}', encodeURIComponent(String(chargebackDisputeOid)));
         let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         let localVarFormParams: any = {};
 
         // verify required parameter 'chargebackDisputeOid' is not null or undefined
@@ -36321,7 +36371,7 @@ export class ChargebackApi {
         const localVarPath = this.basePath + '/chargeback/chargebacks/{chargeback_dispute_oid}'
             .replace('{' + 'chargeback_dispute_oid' + '}', encodeURIComponent(String(chargebackDisputeOid)));
         let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         let localVarFormParams: any = {};
 
         // verify required parameter 'chargebackDisputeOid' is not null or undefined
@@ -36394,7 +36444,7 @@ export class ChargebackApi {
     public getChargebackDisputes (orderId?: string, caseNumber?: string, status?: string, expirationDtsStart?: string, expirationDtsEnd?: string, chargebackDtsStart?: string, chargebackDtsEnd?: string, limit?: number, offset?: number, since?: string, sort?: string, expand?: string, options: any = {}) : Promise<{ response: http.ClientResponse; body: ChargebackDisputesResponse;  }> {
         const localVarPath = this.basePath + '/chargeback/chargebacks';
         let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         let localVarFormParams: any = {};
 
         if (orderId !== undefined) {
@@ -36496,7 +36546,7 @@ export class ChargebackApi {
     public insertChargeback (chargeback: ChargebackDispute, expand?: string, options: any = {}) : Promise<{ response: http.ClientResponse; body: ChargebackDisputeResponse;  }> {
         const localVarPath = this.basePath + '/chargeback/chargebacks';
         let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         let localVarFormParams: any = {};
 
         // verify required parameter 'chargeback' is not null or undefined
@@ -36562,7 +36612,7 @@ export class ChargebackApi {
         const localVarPath = this.basePath + '/chargeback/chargebacks/{chargeback_dispute_oid}'
             .replace('{' + 'chargeback_dispute_oid' + '}', encodeURIComponent(String(chargebackDisputeOid)));
         let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         let localVarFormParams: any = {};
 
         // verify required parameter 'chargeback' is not null or undefined
@@ -36629,7 +36679,7 @@ export enum CheckoutApiApiKeys {
 
 export class CheckoutApi {
     protected _basePath = defaultBasePath;
-    protected defaultHeaders : any = {};
+    protected _defaultHeaders : Headers = {};
     protected _useQuerystring : boolean = false;
 
     protected authentications = {
@@ -36672,6 +36722,21 @@ export class CheckoutApi {
         (this.authentications as any)[CheckoutApiApiKeys[key]].apiKey = value;
     }
 
+    public setApiVersion(value: string) {
+      this._defaultHeaders['X-UltraCart-Api-Version'] = value;
+    }
+
+
+  set defaultHeaders(defaultHeaders: Headers) {
+      this._defaultHeaders = defaultHeaders;
+  }
+
+  get defaultHeaders() {
+      return this._defaultHeaders;
+  }
+
+
+
     set accessToken(token: string) {
         this.authentications.ultraCartOauth.accessToken = token;
     }
@@ -36684,7 +36749,7 @@ export class CheckoutApi {
     public cityState (cart: Cart, options: any = {}) : Promise<{ response: http.ClientResponse; body: CityStateZip;  }> {
         const localVarPath = this.basePath + '/checkout/city_state';
         let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         let localVarFormParams: any = {};
 
         // verify required parameter 'cart' is not null or undefined
@@ -36745,7 +36810,7 @@ export class CheckoutApi {
     public finalizeOrder (finalizeRequest: CartFinalizeOrderRequest, options: any = {}) : Promise<{ response: http.ClientResponse; body: CartFinalizeOrderResponse;  }> {
         const localVarPath = this.basePath + '/checkout/cart/finalizeOrder';
         let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         let localVarFormParams: any = {};
 
         // verify required parameter 'finalizeRequest' is not null or undefined
@@ -36805,7 +36870,7 @@ export class CheckoutApi {
         const localVarPath = this.basePath + '/checkout/cart/{cart_id}/affirmCheckout'
             .replace('{' + 'cart_id' + '}', encodeURIComponent(String(cartId)));
         let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         let localVarFormParams: any = {};
 
         // verify required parameter 'cartId' is not null or undefined
@@ -36864,7 +36929,7 @@ export class CheckoutApi {
     public getAllowedCountries (options: any = {}) : Promise<{ response: http.ClientResponse; body: CheckoutAllowedCountriesResponse;  }> {
         const localVarPath = this.basePath + '/checkout/allowedCountries';
         let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         let localVarFormParams: any = {};
 
         (<any>Object).assign(localVarHeaderParams, options.headers);
@@ -36919,7 +36984,7 @@ export class CheckoutApi {
     public getCart (expand?: string, options: any = {}) : Promise<{ response: http.ClientResponse; body: CartResponse;  }> {
         const localVarPath = this.basePath + '/checkout/cart';
         let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         let localVarFormParams: any = {};
 
         if (expand !== undefined) {
@@ -36980,7 +37045,7 @@ export class CheckoutApi {
         const localVarPath = this.basePath + '/checkout/cart/{cart_id}'
             .replace('{' + 'cart_id' + '}', encodeURIComponent(String(cartId)));
         let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         let localVarFormParams: any = {};
 
         // verify required parameter 'cartId' is not null or undefined
@@ -37046,7 +37111,7 @@ export class CheckoutApi {
         const localVarPath = this.basePath + '/checkout/return/{return_code}'
             .replace('{' + 'return_code' + '}', encodeURIComponent(String(returnCode)));
         let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         let localVarFormParams: any = {};
 
         // verify required parameter 'returnCode' is not null or undefined
@@ -37111,7 +37176,7 @@ export class CheckoutApi {
         const localVarPath = this.basePath + '/checkout/stateProvincesForCountry/{country_code}'
             .replace('{' + 'country_code' + '}', encodeURIComponent(String(countryCode)));
         let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         let localVarFormParams: any = {};
 
         // verify required parameter 'countryCode' is not null or undefined
@@ -37172,7 +37237,7 @@ export class CheckoutApi {
     public handoffCart (handoffRequest: CheckoutHandoffRequest, expand?: string, options: any = {}) : Promise<{ response: http.ClientResponse; body: CheckoutHandoffResponse;  }> {
         const localVarPath = this.basePath + '/checkout/cart/handoff';
         let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         let localVarFormParams: any = {};
 
         // verify required parameter 'handoffRequest' is not null or undefined
@@ -37238,7 +37303,7 @@ export class CheckoutApi {
     public login (loginRequest: CartProfileLoginRequest, expand?: string, options: any = {}) : Promise<{ response: http.ClientResponse; body: CartProfileLoginResponse;  }> {
         const localVarPath = this.basePath + '/checkout/cart/profile/login';
         let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         let localVarFormParams: any = {};
 
         // verify required parameter 'loginRequest' is not null or undefined
@@ -37304,7 +37369,7 @@ export class CheckoutApi {
     public logout (cart: Cart, expand?: string, options: any = {}) : Promise<{ response: http.ClientResponse; body: CartResponse;  }> {
         const localVarPath = this.basePath + '/checkout/cart/profile/logout';
         let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         let localVarFormParams: any = {};
 
         // verify required parameter 'cart' is not null or undefined
@@ -37370,7 +37435,7 @@ export class CheckoutApi {
     public register (registerRequest: CartProfileRegisterRequest, expand?: string, options: any = {}) : Promise<{ response: http.ClientResponse; body: CartProfileRegisterResponse;  }> {
         const localVarPath = this.basePath + '/checkout/cart/profile/register';
         let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         let localVarFormParams: any = {};
 
         // verify required parameter 'registerRequest' is not null or undefined
@@ -37436,7 +37501,7 @@ export class CheckoutApi {
     public registerAffiliateClick (registerAffiliateClickRequest: RegisterAffiliateClickRequest, expand?: string, options: any = {}) : Promise<{ response: http.ClientResponse; body: RegisterAffiliateClickResponse;  }> {
         const localVarPath = this.basePath + '/checkout/affiliateClick/register';
         let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         let localVarFormParams: any = {};
 
         // verify required parameter 'registerAffiliateClickRequest' is not null or undefined
@@ -37502,7 +37567,7 @@ export class CheckoutApi {
     public relatedItemsForCart (cart: Cart, expand?: string, options: any = {}) : Promise<{ response: http.ClientResponse; body: ItemsResponse;  }> {
         const localVarPath = this.basePath + '/checkout/related_items';
         let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         let localVarFormParams: any = {};
 
         // verify required parameter 'cart' is not null or undefined
@@ -37570,7 +37635,7 @@ export class CheckoutApi {
         const localVarPath = this.basePath + '/checkout/relatedItems/{item_id}'
             .replace('{' + 'item_id' + '}', encodeURIComponent(String(itemId)));
         let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         let localVarFormParams: any = {};
 
         // verify required parameter 'itemId' is not null or undefined
@@ -37640,7 +37705,7 @@ export class CheckoutApi {
     public setupBrowserKey (browserKeyRequest: CheckoutSetupBrowserKeyRequest, options: any = {}) : Promise<{ response: http.ClientResponse; body: CheckoutSetupBrowserKeyResponse;  }> {
         const localVarPath = this.basePath + '/checkout/browser_key';
         let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         let localVarFormParams: any = {};
 
         // verify required parameter 'browserKeyRequest' is not null or undefined
@@ -37700,7 +37765,7 @@ export class CheckoutApi {
     public updateCart (cart: Cart, expand?: string, options: any = {}) : Promise<{ response: http.ClientResponse; body: CartResponse;  }> {
         const localVarPath = this.basePath + '/checkout/cart';
         let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         let localVarFormParams: any = {};
 
         // verify required parameter 'cart' is not null or undefined
@@ -37766,7 +37831,7 @@ export class CheckoutApi {
     public validateCart (validationRequest: CartValidationRequest, expand?: string, options: any = {}) : Promise<{ response: http.ClientResponse; body: CartValidationResponse;  }> {
         const localVarPath = this.basePath + '/checkout/cart/validate';
         let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         let localVarFormParams: any = {};
 
         // verify required parameter 'validationRequest' is not null or undefined
@@ -37830,7 +37895,7 @@ export enum CouponApiApiKeys {
 
 export class CouponApi {
     protected _basePath = defaultBasePath;
-    protected defaultHeaders : any = {};
+    protected _defaultHeaders : Headers = {};
     protected _useQuerystring : boolean = false;
 
     protected authentications = {
@@ -37873,6 +37938,21 @@ export class CouponApi {
         (this.authentications as any)[CouponApiApiKeys[key]].apiKey = value;
     }
 
+    public setApiVersion(value: string) {
+      this._defaultHeaders['X-UltraCart-Api-Version'] = value;
+    }
+
+
+  set defaultHeaders(defaultHeaders: Headers) {
+      this._defaultHeaders = defaultHeaders;
+  }
+
+  get defaultHeaders() {
+      return this._defaultHeaders;
+  }
+
+
+
     set accessToken(token: string) {
         this.authentications.ultraCartOauth.accessToken = token;
     }
@@ -37886,7 +37966,7 @@ export class CouponApi {
         const localVarPath = this.basePath + '/coupon/coupons/{coupon_oid}'
             .replace('{' + 'coupon_oid' + '}', encodeURIComponent(String(couponOid)));
         let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         let localVarFormParams: any = {};
 
         // verify required parameter 'couponOid' is not null or undefined
@@ -37946,7 +38026,7 @@ export class CouponApi {
         const localVarPath = this.basePath + '/coupon/coupons/{coupon_oid}/generate_codes'
             .replace('{' + 'coupon_oid' + '}', encodeURIComponent(String(couponOid)));
         let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         let localVarFormParams: any = {};
 
         // verify required parameter 'couponOid' is not null or undefined
@@ -38012,7 +38092,7 @@ export class CouponApi {
         const localVarPath = this.basePath + '/coupon/coupons/merchant_code/{merchant_code}/generate_codes'
             .replace('{' + 'merchant_code' + '}', encodeURIComponent(String(merchantCode)));
         let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         let localVarFormParams: any = {};
 
         // verify required parameter 'merchantCode' is not null or undefined
@@ -38078,7 +38158,7 @@ export class CouponApi {
         const localVarPath = this.basePath + '/coupon/coupons/{coupon_oid}'
             .replace('{' + 'coupon_oid' + '}', encodeURIComponent(String(couponOid)));
         let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         let localVarFormParams: any = {};
 
         // verify required parameter 'couponOid' is not null or undefined
@@ -38142,7 +38222,7 @@ export class CouponApi {
         const localVarPath = this.basePath + '/coupon/coupons/merchant_code/{merchant_code}'
             .replace('{' + 'merchant_code' + '}', encodeURIComponent(String(merchantCode)));
         let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         let localVarFormParams: any = {};
 
         // verify required parameter 'merchantCode' is not null or undefined
@@ -38216,7 +38296,7 @@ export class CouponApi {
     public getCoupons (merchantCode?: string, description?: string, couponType?: string, startDateBegin?: string, startDateEnd?: string, expirationDateBegin?: string, expirationDateEnd?: string, affiliateOid?: number, excludeExpired?: boolean, limit?: number, offset?: number, sort?: string, expand?: string, options: any = {}) : Promise<{ response: http.ClientResponse; body: CouponsResponse;  }> {
         const localVarPath = this.basePath + '/coupon/coupons';
         let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         let localVarFormParams: any = {};
 
         if (merchantCode !== undefined) {
@@ -38325,7 +38405,7 @@ export class CouponApi {
     public getCouponsByQuery (couponQuery: CouponQuery, limit?: number, offset?: number, sort?: string, expand?: string, options: any = {}) : Promise<{ response: http.ClientResponse; body: CouponsResponse;  }> {
         const localVarPath = this.basePath + '/coupon/coupons/query';
         let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         let localVarFormParams: any = {};
 
         // verify required parameter 'couponQuery' is not null or undefined
@@ -38399,7 +38479,7 @@ export class CouponApi {
     public getEditorValues (options: any = {}) : Promise<{ response: http.ClientResponse; body: CouponEditorValues;  }> {
         const localVarPath = this.basePath + '/coupon/editor_values';
         let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         let localVarFormParams: any = {};
 
         (<any>Object).assign(localVarHeaderParams, options.headers);
@@ -38453,7 +38533,7 @@ export class CouponApi {
     public insertCoupon (coupon: Coupon, expand?: string, options: any = {}) : Promise<{ response: http.ClientResponse; body: CouponResponse;  }> {
         const localVarPath = this.basePath + '/coupon/coupons';
         let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         let localVarFormParams: any = {};
 
         // verify required parameter 'coupon' is not null or undefined
@@ -38519,7 +38599,7 @@ export class CouponApi {
         const localVarPath = this.basePath + '/coupon/coupons/{coupon_oid}'
             .replace('{' + 'coupon_oid' + '}', encodeURIComponent(String(couponOid)));
         let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         let localVarFormParams: any = {};
 
         // verify required parameter 'coupon' is not null or undefined
@@ -38586,7 +38666,7 @@ export enum CustomerApiApiKeys {
 
 export class CustomerApi {
     protected _basePath = defaultBasePath;
-    protected defaultHeaders : any = {};
+    protected _defaultHeaders : Headers = {};
     protected _useQuerystring : boolean = false;
 
     protected authentications = {
@@ -38629,6 +38709,21 @@ export class CustomerApi {
         (this.authentications as any)[CustomerApiApiKeys[key]].apiKey = value;
     }
 
+    public setApiVersion(value: string) {
+      this._defaultHeaders['X-UltraCart-Api-Version'] = value;
+    }
+
+
+  set defaultHeaders(defaultHeaders: Headers) {
+      this._defaultHeaders = defaultHeaders;
+  }
+
+  get defaultHeaders() {
+      return this._defaultHeaders;
+  }
+
+
+
     set accessToken(token: string) {
         this.authentications.ultraCartOauth.accessToken = token;
     }
@@ -38642,7 +38737,7 @@ export class CustomerApi {
         const localVarPath = this.basePath + '/customer/customers/{customer_profile_oid}'
             .replace('{' + 'customer_profile_oid' + '}', encodeURIComponent(String(customerProfileOid)));
         let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         let localVarFormParams: any = {};
 
         // verify required parameter 'customerProfileOid' is not null or undefined
@@ -38702,7 +38797,7 @@ export class CustomerApi {
         const localVarPath = this.basePath + '/customer/customers/{customer_profile_oid}'
             .replace('{' + 'customer_profile_oid' + '}', encodeURIComponent(String(customerProfileOid)));
         let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         let localVarFormParams: any = {};
 
         // verify required parameter 'customerProfileOid' is not null or undefined
@@ -38795,7 +38890,7 @@ export class CustomerApi {
     public getCustomers (email?: string, qbClass?: string, quickbooksCode?: string, lastModifiedDtsStart?: string, lastModifiedDtsEnd?: string, signupDtsStart?: string, signupDtsEnd?: string, billingFirstName?: string, billingLastName?: string, billingCompany?: string, billingCity?: string, billingState?: string, billingPostalCode?: string, billingCountryCode?: string, billingDayPhone?: string, billingEveningPhone?: string, shippingFirstName?: string, shippingLastName?: string, shippingCompany?: string, shippingCity?: string, shippingState?: string, shippingPostalCode?: string, shippingCountryCode?: string, shippingDayPhone?: string, shippingEveningPhone?: string, pricingTierOid?: number, pricingTierName?: string, limit?: number, offset?: number, since?: string, sort?: string, expand?: string, options: any = {}) : Promise<{ response: http.ClientResponse; body: CustomersResponse;  }> {
         const localVarPath = this.basePath + '/customer/customers';
         let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         let localVarFormParams: any = {};
 
         if (email !== undefined) {
@@ -38981,7 +39076,7 @@ export class CustomerApi {
     public getCustomersByQuery (customerQuery: CustomerQuery, limit?: number, offset?: number, since?: string, sort?: string, expand?: string, options: any = {}) : Promise<{ response: http.ClientResponse; body: CustomersResponse;  }> {
         const localVarPath = this.basePath + '/customer/customers/query';
         let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         let localVarFormParams: any = {};
 
         // verify required parameter 'customerQuery' is not null or undefined
@@ -39060,7 +39155,7 @@ export class CustomerApi {
     public getCustomersForDataTables (expand?: string, options: any = {}) : Promise<{ response: http.ClientResponse; body: DataTablesServerSideResponse;  }> {
         const localVarPath = this.basePath + '/customer/customers/dataTables';
         let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         let localVarFormParams: any = {};
 
         if (expand !== undefined) {
@@ -39116,7 +39211,7 @@ export class CustomerApi {
     public getEditorValues (options: any = {}) : Promise<{ response: http.ClientResponse; body: CustomerEditorValues;  }> {
         const localVarPath = this.basePath + '/customer/editor_values';
         let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         let localVarFormParams: any = {};
 
         (<any>Object).assign(localVarHeaderParams, options.headers);
@@ -39168,7 +39263,7 @@ export class CustomerApi {
     public getEmailLists (options: any = {}) : Promise<{ response: http.ClientResponse; body: EmailListsResponse;  }> {
         const localVarPath = this.basePath + '/customer/email_lists';
         let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         let localVarFormParams: any = {};
 
         (<any>Object).assign(localVarHeaderParams, options.headers);
@@ -39222,7 +39317,7 @@ export class CustomerApi {
     public insertCustomer (customer: Customer, expand?: string, options: any = {}) : Promise<{ response: http.ClientResponse; body: CustomerResponse;  }> {
         const localVarPath = this.basePath + '/customer/customers';
         let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         let localVarFormParams: any = {};
 
         // verify required parameter 'customer' is not null or undefined
@@ -39288,7 +39383,7 @@ export class CustomerApi {
         const localVarPath = this.basePath + '/customer/customers/{customer_profile_oid}'
             .replace('{' + 'customer_profile_oid' + '}', encodeURIComponent(String(customerProfileOid)));
         let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         let localVarFormParams: any = {};
 
         // verify required parameter 'customer' is not null or undefined
@@ -39358,7 +39453,7 @@ export class CustomerApi {
         const localVarPath = this.basePath + '/customer/customers/{customer_profile_oid}/email_lists'
             .replace('{' + 'customer_profile_oid' + '}', encodeURIComponent(String(customerProfileOid)));
         let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         let localVarFormParams: any = {};
 
         // verify required parameter 'customerProfileOid' is not null or undefined
@@ -39421,7 +39516,7 @@ export enum FulfillmentApiApiKeys {
 
 export class FulfillmentApi {
     protected _basePath = defaultBasePath;
-    protected defaultHeaders : any = {};
+    protected _defaultHeaders : Headers = {};
     protected _useQuerystring : boolean = false;
 
     protected authentications = {
@@ -39464,6 +39559,21 @@ export class FulfillmentApi {
         (this.authentications as any)[FulfillmentApiApiKeys[key]].apiKey = value;
     }
 
+    public setApiVersion(value: string) {
+      this._defaultHeaders['X-UltraCart-Api-Version'] = value;
+    }
+
+
+  set defaultHeaders(defaultHeaders: Headers) {
+      this._defaultHeaders = defaultHeaders;
+  }
+
+  get defaultHeaders() {
+      return this._defaultHeaders;
+  }
+
+
+
     set accessToken(token: string) {
         this.authentications.ultraCartOauth.accessToken = token;
     }
@@ -39478,7 +39588,7 @@ export class FulfillmentApi {
         const localVarPath = this.basePath + '/fulfillment/distribution_centers/{distribution_center_code}/acknowledgements'
             .replace('{' + 'distribution_center_code' + '}', encodeURIComponent(String(distributionCenterCode)));
         let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         let localVarFormParams: any = {};
 
         // verify required parameter 'distributionCenterCode' is not null or undefined
@@ -39542,7 +39652,7 @@ export class FulfillmentApi {
         const localVarPath = this.basePath + '/fulfillment/distribution_centers/{distribution_center_code}/orders'
             .replace('{' + 'distribution_center_code' + '}', encodeURIComponent(String(distributionCenterCode)));
         let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         let localVarFormParams: any = {};
 
         // verify required parameter 'distributionCenterCode' is not null or undefined
@@ -39599,7 +39709,7 @@ export class FulfillmentApi {
     public getDistributionCenters (options: any = {}) : Promise<{ response: http.ClientResponse; body: DistributionCentersResponse;  }> {
         const localVarPath = this.basePath + '/fulfillment/distribution_centers';
         let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         let localVarFormParams: any = {};
 
         (<any>Object).assign(localVarHeaderParams, options.headers);
@@ -39654,7 +39764,7 @@ export class FulfillmentApi {
         const localVarPath = this.basePath + '/fulfillment/distribution_centers/{distribution_center_code}/shipments'
             .replace('{' + 'distribution_center_code' + '}', encodeURIComponent(String(distributionCenterCode)));
         let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         let localVarFormParams: any = {};
 
         // verify required parameter 'distributionCenterCode' is not null or undefined
@@ -39719,7 +39829,7 @@ export class FulfillmentApi {
         const localVarPath = this.basePath + '/fulfillment/distribution_centers/{distribution_center_code}/inventory'
             .replace('{' + 'distribution_center_code' + '}', encodeURIComponent(String(distributionCenterCode)));
         let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         let localVarFormParams: any = {};
 
         // verify required parameter 'distributionCenterCode' is not null or undefined
@@ -39781,7 +39891,7 @@ export enum ItemApiApiKeys {
 
 export class ItemApi {
     protected _basePath = defaultBasePath;
-    protected defaultHeaders : any = {};
+    protected _defaultHeaders : Headers = {};
     protected _useQuerystring : boolean = false;
 
     protected authentications = {
@@ -39824,6 +39934,21 @@ export class ItemApi {
         (this.authentications as any)[ItemApiApiKeys[key]].apiKey = value;
     }
 
+    public setApiVersion(value: string) {
+      this._defaultHeaders['X-UltraCart-Api-Version'] = value;
+    }
+
+
+  set defaultHeaders(defaultHeaders: Headers) {
+      this._defaultHeaders = defaultHeaders;
+  }
+
+  get defaultHeaders() {
+      return this._defaultHeaders;
+  }
+
+
+
     set accessToken(token: string) {
         this.authentications.ultraCartOauth.accessToken = token;
     }
@@ -39837,7 +39962,7 @@ export class ItemApi {
         const localVarPath = this.basePath + '/item/items/{merchant_item_oid}'
             .replace('{' + 'merchant_item_oid' + '}', encodeURIComponent(String(merchantItemOid)));
         let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         let localVarFormParams: any = {};
 
         // verify required parameter 'merchantItemOid' is not null or undefined
@@ -39897,7 +40022,7 @@ export class ItemApi {
         const localVarPath = this.basePath + '/item/items/{merchant_item_oid}'
             .replace('{' + 'merchant_item_oid' + '}', encodeURIComponent(String(merchantItemOid)));
         let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         let localVarFormParams: any = {};
 
         // verify required parameter 'merchantItemOid' is not null or undefined
@@ -39966,7 +40091,7 @@ export class ItemApi {
         const localVarPath = this.basePath + '/item/items/merchant_item_id/{merchant_item_id}'
             .replace('{' + 'merchant_item_id' + '}', encodeURIComponent(String(merchantItemId)));
         let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         let localVarFormParams: any = {};
 
         // verify required parameter 'merchantItemId' is not null or undefined
@@ -40039,7 +40164,7 @@ export class ItemApi {
     public getItems (parentCategoryId?: number, parentCategoryPath?: string, limit?: number, offset?: number, since?: string, sort?: string, expand?: string, placeholders?: boolean, options: any = {}) : Promise<{ response: http.ClientResponse; body: ItemsResponse;  }> {
         const localVarPath = this.basePath + '/item/items';
         let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         let localVarFormParams: any = {};
 
         if (parentCategoryId !== undefined) {
@@ -40124,7 +40249,7 @@ export class ItemApi {
     public getPricingTiers (expand?: string, options: any = {}) : Promise<{ response: http.ClientResponse; body: PricingTiersResponse;  }> {
         const localVarPath = this.basePath + '/item/pricing_tiers';
         let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         let localVarFormParams: any = {};
 
         if (expand !== undefined) {
@@ -40183,7 +40308,7 @@ export class ItemApi {
     public insertItem (item: Item, expand?: string, placeholders?: boolean, options: any = {}) : Promise<{ response: http.ClientResponse; body: ItemResponse;  }> {
         const localVarPath = this.basePath + '/item/items';
         let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         let localVarFormParams: any = {};
 
         // verify required parameter 'item' is not null or undefined
@@ -40254,7 +40379,7 @@ export class ItemApi {
         const localVarPath = this.basePath + '/item/items/{merchant_item_oid}'
             .replace('{' + 'merchant_item_oid' + '}', encodeURIComponent(String(merchantItemOid)));
         let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         let localVarFormParams: any = {};
 
         // verify required parameter 'item' is not null or undefined
@@ -40329,7 +40454,7 @@ export class ItemApi {
     public updateItems (itemsRequest: ItemsRequest, expand?: string, placeholders?: boolean, async?: boolean, options: any = {}) : Promise<{ response: http.ClientResponse; body: ItemsResponse;  }> {
         const localVarPath = this.basePath + '/item/items/batch';
         let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         let localVarFormParams: any = {};
 
         // verify required parameter 'itemsRequest' is not null or undefined
@@ -40400,7 +40525,7 @@ export class ItemApi {
     public uploadTemporaryMultimedia (file: Buffer, options: any = {}) : Promise<{ response: http.ClientResponse; body: TempMultimediaResponse;  }> {
         const localVarPath = this.basePath + '/item/temp_multimedia';
         let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         let localVarFormParams: any = {};
 
         // verify required parameter 'file' is not null or undefined
@@ -40462,7 +40587,7 @@ export enum OauthApiApiKeys {
 
 export class OauthApi {
     protected _basePath = defaultBasePath;
-    protected defaultHeaders : any = {};
+    protected _defaultHeaders : Headers = {};
     protected _useQuerystring : boolean = false;
 
     protected authentications = {
@@ -40505,6 +40630,21 @@ export class OauthApi {
         (this.authentications as any)[OauthApiApiKeys[key]].apiKey = value;
     }
 
+    public setApiVersion(value: string) {
+      this._defaultHeaders['X-UltraCart-Api-Version'] = value;
+    }
+
+
+  set defaultHeaders(defaultHeaders: Headers) {
+      this._defaultHeaders = defaultHeaders;
+  }
+
+  get defaultHeaders() {
+      return this._defaultHeaders;
+  }
+
+
+
     set accessToken(token: string) {
         this.authentications.ultraCartOauth.accessToken = token;
     }
@@ -40521,7 +40661,7 @@ export class OauthApi {
     public oauthAccessToken (clientId: string, grantType: string, code?: string, redirectUri?: string, refreshToken?: string, options: any = {}) : Promise<{ response: http.ClientResponse; body: OauthTokenResponse;  }> {
         const localVarPath = this.basePath + '/oauth/token';
         let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         let localVarFormParams: any = {};
 
         // verify required parameter 'clientId' is not null or undefined
@@ -40607,7 +40747,7 @@ export class OauthApi {
     public oauthRevoke (clientId: string, token: string, options: any = {}) : Promise<{ response: http.ClientResponse; body: OauthRevokeSuccessResponse;  }> {
         const localVarPath = this.basePath + '/oauth/revoke';
         let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         let localVarFormParams: any = {};
 
         // verify required parameter 'clientId' is not null or undefined
@@ -40679,7 +40819,7 @@ export enum OrderApiApiKeys {
 
 export class OrderApi {
     protected _basePath = defaultBasePath;
-    protected defaultHeaders : any = {};
+    protected _defaultHeaders : Headers = {};
     protected _useQuerystring : boolean = false;
 
     protected authentications = {
@@ -40722,6 +40862,21 @@ export class OrderApi {
         (this.authentications as any)[OrderApiApiKeys[key]].apiKey = value;
     }
 
+    public setApiVersion(value: string) {
+      this._defaultHeaders['X-UltraCart-Api-Version'] = value;
+    }
+
+
+  set defaultHeaders(defaultHeaders: Headers) {
+      this._defaultHeaders = defaultHeaders;
+  }
+
+  get defaultHeaders() {
+      return this._defaultHeaders;
+  }
+
+
+
     set accessToken(token: string) {
         this.authentications.ultraCartOauth.accessToken = token;
     }
@@ -40737,7 +40892,7 @@ export class OrderApi {
             .replace('{' + 'order_id' + '}', encodeURIComponent(String(orderId)))
             .replace('{' + 'desired_total' + '}', encodeURIComponent(String(desiredTotal)));
         let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         let localVarFormParams: any = {};
 
         // verify required parameter 'orderId' is not null or undefined
@@ -40801,7 +40956,7 @@ export class OrderApi {
         const localVarPath = this.basePath + '/order/orders/{order_id}/cancel'
             .replace('{' + 'order_id' + '}', encodeURIComponent(String(orderId)));
         let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         let localVarFormParams: any = {};
 
         // verify required parameter 'orderId' is not null or undefined
@@ -40860,7 +41015,7 @@ export class OrderApi {
         const localVarPath = this.basePath + '/order/orders/{order_id}'
             .replace('{' + 'order_id' + '}', encodeURIComponent(String(orderId)));
         let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         let localVarFormParams: any = {};
 
         // verify required parameter 'orderId' is not null or undefined
@@ -40919,7 +41074,7 @@ export class OrderApi {
         const localVarPath = this.basePath + '/order/orders/{order_id}/format'
             .replace('{' + 'order_id' + '}', encodeURIComponent(String(orderId)));
         let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         let localVarFormParams: any = {};
 
         // verify required parameter 'orderId' is not null or undefined
@@ -40984,7 +41139,7 @@ export class OrderApi {
         const localVarPath = this.basePath + '/order/orders/token/{order_id}'
             .replace('{' + 'order_id' + '}', encodeURIComponent(String(orderId)));
         let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         let localVarFormParams: any = {};
 
         // verify required parameter 'orderId' is not null or undefined
@@ -41041,7 +41196,7 @@ export class OrderApi {
     public getAccountsReceivableRetryConfig (options: any = {}) : Promise<{ response: http.ClientResponse; body: AccountsReceivableRetryConfigResponse;  }> {
         const localVarPath = this.basePath + '/order/accountsReceivableRetryConfig';
         let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         let localVarFormParams: any = {};
 
         (<any>Object).assign(localVarHeaderParams, options.headers);
@@ -41095,7 +41250,7 @@ export class OrderApi {
     public getAccountsReceivableRetryStats (from?: string, to?: string, options: any = {}) : Promise<{ response: http.ClientResponse; body: AccountsReceivableRetryStatsResponse;  }> {
         const localVarPath = this.basePath + '/order/accountsReceivableRetryConfig/stats';
         let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         let localVarFormParams: any = {};
 
         if (from !== undefined) {
@@ -41158,7 +41313,7 @@ export class OrderApi {
         const localVarPath = this.basePath + '/order/orders/{order_id}'
             .replace('{' + 'order_id' + '}', encodeURIComponent(String(orderId)));
         let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         let localVarFormParams: any = {};
 
         // verify required parameter 'orderId' is not null or undefined
@@ -41221,7 +41376,7 @@ export class OrderApi {
     public getOrderByToken (orderByTokenQuery: OrderByTokenQuery, expand?: string, options: any = {}) : Promise<{ response: http.ClientResponse; body: OrderResponse;  }> {
         const localVarPath = this.basePath + '/order/orders/token';
         let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         let localVarFormParams: any = {};
 
         // verify required parameter 'orderByTokenQuery' is not null or undefined
@@ -41317,7 +41472,7 @@ export class OrderApi {
     public getOrders (orderId?: string, paymentMethod?: string, company?: string, firstName?: string, lastName?: string, city?: string, stateRegion?: string, postalCode?: string, countryCode?: string, phone?: string, email?: string, ccEmail?: string, total?: number, screenBrandingThemeCode?: string, storefrontHostName?: string, creationDateBegin?: string, creationDateEnd?: string, paymentDateBegin?: string, paymentDateEnd?: string, shipmentDateBegin?: string, shipmentDateEnd?: string, rma?: string, purchaseOrderNumber?: string, itemId?: string, currentStage?: string, channelPartnerCode?: string, channelPartnerOrderId?: string, customerProfileOid?: number, refundDateBegin?: string, refundDateEnd?: string, limit?: number, offset?: number, sort?: string, expand?: string, options: any = {}) : Promise<{ response: http.ClientResponse; body: OrdersResponse;  }> {
         const localVarPath = this.basePath + '/order/orders';
         let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         let localVarFormParams: any = {};
 
         if (orderId !== undefined) {
@@ -41507,7 +41662,7 @@ export class OrderApi {
     public getOrdersBatch (orderBatch: OrderQueryBatch, expand?: string, options: any = {}) : Promise<{ response: http.ClientResponse; body: OrdersResponse;  }> {
         const localVarPath = this.basePath + '/order/orders/batch';
         let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         let localVarFormParams: any = {};
 
         // verify required parameter 'orderBatch' is not null or undefined
@@ -41574,7 +41729,7 @@ export class OrderApi {
     public getOrdersByQuery (orderQuery: OrderQuery, limit?: number, offset?: number, sort?: string, expand?: string, options: any = {}) : Promise<{ response: http.ClientResponse; body: OrdersResponse;  }> {
         const localVarPath = this.basePath + '/order/orders/query';
         let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         let localVarFormParams: any = {};
 
         // verify required parameter 'orderQuery' is not null or undefined
@@ -41650,7 +41805,7 @@ export class OrderApi {
     public insertOrder (order: Order, expand?: string, options: any = {}) : Promise<{ response: http.ClientResponse; body: OrderResponse;  }> {
         const localVarPath = this.basePath + '/order/orders';
         let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         let localVarFormParams: any = {};
 
         // verify required parameter 'order' is not null or undefined
@@ -41715,7 +41870,7 @@ export class OrderApi {
         const localVarPath = this.basePath + '/order/orders/{order_id}/process_payment'
             .replace('{' + 'order_id' + '}', encodeURIComponent(String(orderId)));
         let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         let localVarFormParams: any = {};
 
         // verify required parameter 'orderId' is not null or undefined
@@ -41787,7 +41942,7 @@ export class OrderApi {
         const localVarPath = this.basePath + '/order/orders/{order_id}/refund'
             .replace('{' + 'order_id' + '}', encodeURIComponent(String(orderId)));
         let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         let localVarFormParams: any = {};
 
         // verify required parameter 'order' is not null or undefined
@@ -41877,7 +42032,7 @@ export class OrderApi {
         const localVarPath = this.basePath + '/order/orders/{order_id}/replacement'
             .replace('{' + 'order_id' + '}', encodeURIComponent(String(orderId)));
         let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         let localVarFormParams: any = {};
 
         // verify required parameter 'orderId' is not null or undefined
@@ -41942,7 +42097,7 @@ export class OrderApi {
         const localVarPath = this.basePath + '/order/orders/{order_id}/resend_receipt'
             .replace('{' + 'order_id' + '}', encodeURIComponent(String(orderId)));
         let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         let localVarFormParams: any = {};
 
         // verify required parameter 'orderId' is not null or undefined
@@ -42001,7 +42156,7 @@ export class OrderApi {
         const localVarPath = this.basePath + '/order/orders/{order_id}/resend_shipment_confirmation'
             .replace('{' + 'order_id' + '}', encodeURIComponent(String(orderId)));
         let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         let localVarFormParams: any = {};
 
         // verify required parameter 'orderId' is not null or undefined
@@ -42059,7 +42214,7 @@ export class OrderApi {
     public updateAccountsReceivableRetryConfig (retryConfig: AccountsReceivableRetryConfig, options: any = {}) : Promise<{ response: http.ClientResponse; body: BaseResponse;  }> {
         const localVarPath = this.basePath + '/order/accountsReceivableRetryConfig';
         let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         let localVarFormParams: any = {};
 
         // verify required parameter 'retryConfig' is not null or undefined
@@ -42121,7 +42276,7 @@ export class OrderApi {
         const localVarPath = this.basePath + '/order/orders/{order_id}'
             .replace('{' + 'order_id' + '}', encodeURIComponent(String(orderId)));
         let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         let localVarFormParams: any = {};
 
         // verify required parameter 'order' is not null or undefined
@@ -42188,7 +42343,7 @@ export enum StorefrontApiApiKeys {
 
 export class StorefrontApi {
     protected _basePath = defaultBasePath;
-    protected defaultHeaders : any = {};
+    protected _defaultHeaders : Headers = {};
     protected _useQuerystring : boolean = false;
 
     protected authentications = {
@@ -42231,6 +42386,21 @@ export class StorefrontApi {
         (this.authentications as any)[StorefrontApiApiKeys[key]].apiKey = value;
     }
 
+    public setApiVersion(value: string) {
+      this._defaultHeaders['X-UltraCart-Api-Version'] = value;
+    }
+
+
+  set defaultHeaders(defaultHeaders: Headers) {
+      this._defaultHeaders = defaultHeaders;
+  }
+
+  get defaultHeaders() {
+      return this._defaultHeaders;
+  }
+
+
+
     set accessToken(token: string) {
         this.authentications.ultraCartOauth.accessToken = token;
     }
@@ -42243,7 +42413,7 @@ export class StorefrontApi {
     public addToLibrary (addLibraryRequest: AddLibraryItemRequest, options: any = {}) : Promise<{ response: http.ClientResponse; body: LibraryItemResponse;  }> {
         const localVarPath = this.basePath + '/storefront/code_library';
         let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         let localVarFormParams: any = {};
 
         // verify required parameter 'addLibraryRequest' is not null or undefined
@@ -42304,7 +42474,7 @@ export class StorefrontApi {
     public applyToStoreFront (applyLibraryRequest: ApplyLibraryItemRequest, options: any = {}) : Promise<{ response: http.ClientResponse; body: ApplyLibraryItemResponse;  }> {
         const localVarPath = this.basePath + '/storefront/code_library/apply';
         let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         let localVarFormParams: any = {};
 
         // verify required parameter 'applyLibraryRequest' is not null or undefined
@@ -42368,7 +42538,7 @@ export class StorefrontApi {
             .replace('{' + 'storefront_oid' + '}', encodeURIComponent(String(storefrontOid)))
             .replace('{' + 'email_list_uuid' + '}', encodeURIComponent(String(emailListUuid)));
         let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         let localVarFormParams: any = {};
 
         // verify required parameter 'storefrontOid' is not null or undefined
@@ -42436,7 +42606,7 @@ export class StorefrontApi {
             .replace('{' + 'storefront_oid' + '}', encodeURIComponent(String(storefrontOid)))
             .replace('{' + 'email_segment_uuid' + '}', encodeURIComponent(String(emailSegmentUuid)));
         let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         let localVarFormParams: any = {};
 
         // verify required parameter 'storefrontOid' is not null or undefined
@@ -42505,7 +42675,7 @@ export class StorefrontApi {
             .replace('{' + 'storefront_oid' + '}', encodeURIComponent(String(storefrontOid)))
             .replace('{' + 'email_flow_uuid' + '}', encodeURIComponent(String(emailFlowUuid)));
         let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         let localVarFormParams: any = {};
 
         // verify required parameter 'storefrontOid' is not null or undefined
@@ -42581,7 +42751,7 @@ export class StorefrontApi {
             .replace('{' + 'email_segment_uuid' + '}', encodeURIComponent(String(emailSegmentUuid)))
             .replace('{' + 'email_segment_rebuild_uuid' + '}', encodeURIComponent(String(emailSegmentRebuildUuid)));
         let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         let localVarFormParams: any = {};
 
         // verify required parameter 'storefrontOid' is not null or undefined
@@ -42655,7 +42825,7 @@ export class StorefrontApi {
             .replace('{' + 'storefront_oid' + '}', encodeURIComponent(String(storefrontOid)))
             .replace('{' + 'email_campaign_uuid' + '}', encodeURIComponent(String(emailCampaignUuid)));
         let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         let localVarFormParams: any = {};
 
         // verify required parameter 'storefrontOid' is not null or undefined
@@ -42728,7 +42898,7 @@ export class StorefrontApi {
             .replace('{' + 'storefront_oid' + '}', encodeURIComponent(String(storefrontOid)))
             .replace('{' + 'email_flow_uuid' + '}', encodeURIComponent(String(emailFlowUuid)));
         let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         let localVarFormParams: any = {};
 
         // verify required parameter 'storefrontOid' is not null or undefined
@@ -42798,7 +42968,7 @@ export class StorefrontApi {
         const localVarPath = this.basePath + '/storefront/email/sending_domains/{domain}/create'
             .replace('{' + 'domain' + '}', encodeURIComponent(String(domain)));
         let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         let localVarFormParams: any = {};
 
         // verify required parameter 'domain' is not null or undefined
@@ -42861,7 +43031,7 @@ export class StorefrontApi {
             .replace('{' + 'storefront_oid' + '}', encodeURIComponent(String(storefrontOid)))
             .replace('{' + 'commseq_uuid' + '}', encodeURIComponent(String(commseqUuid)));
         let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         let localVarFormParams: any = {};
 
         // verify required parameter 'storefrontOid' is not null or undefined
@@ -42928,7 +43098,7 @@ export class StorefrontApi {
             .replace('{' + 'storefront_oid' + '}', encodeURIComponent(String(storefrontOid)))
             .replace('{' + 'commseq_email_uuid' + '}', encodeURIComponent(String(commseqEmailUuid)));
         let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         let localVarFormParams: any = {};
 
         // verify required parameter 'storefrontOid' is not null or undefined
@@ -42998,7 +43168,7 @@ export class StorefrontApi {
             .replace('{' + 'email_list_uuid' + '}', encodeURIComponent(String(emailListUuid)))
             .replace('{' + 'email_customer_uuid' + '}', encodeURIComponent(String(emailCustomerUuid)));
         let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         let localVarFormParams: any = {};
 
         // verify required parameter 'storefrontOid' is not null or undefined
@@ -43071,7 +43241,7 @@ export class StorefrontApi {
             .replace('{' + 'storefront_oid' + '}', encodeURIComponent(String(storefrontOid)))
             .replace('{' + 'commseq_postcard_uuid' + '}', encodeURIComponent(String(commseqPostcardUuid)));
         let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         let localVarFormParams: any = {};
 
         // verify required parameter 'storefrontOid' is not null or undefined
@@ -43137,7 +43307,7 @@ export class StorefrontApi {
         const localVarPath = this.basePath + '/storefront/email/sending_domains/{domain}'
             .replace('{' + 'domain' + '}', encodeURIComponent(String(domain)));
         let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         let localVarFormParams: any = {};
 
         // verify required parameter 'domain' is not null or undefined
@@ -43200,7 +43370,7 @@ export class StorefrontApi {
             .replace('{' + 'storefront_oid' + '}', encodeURIComponent(String(storefrontOid)))
             .replace('{' + 'storefront_experiment_oid' + '}', encodeURIComponent(String(storefrontExperimentOid)));
         let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         let localVarFormParams: any = {};
 
         // verify required parameter 'storefrontOid' is not null or undefined
@@ -43265,7 +43435,7 @@ export class StorefrontApi {
         const localVarPath = this.basePath + '/storefront/code_library/{library_item_oid}'
             .replace('{' + 'library_item_oid' + '}', encodeURIComponent(String(libraryItemOid)));
         let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         let localVarFormParams: any = {};
 
         // verify required parameter 'libraryItemOid' is not null or undefined
@@ -43325,7 +43495,7 @@ export class StorefrontApi {
         const localVarPath = this.basePath + '/storefront/code_library/{library_item_oid}/duplicate'
             .replace('{' + 'library_item_oid' + '}', encodeURIComponent(String(libraryItemOid)));
         let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         let localVarFormParams: any = {};
 
         // verify required parameter 'libraryItemOid' is not null or undefined
@@ -43387,7 +43557,7 @@ export class StorefrontApi {
         const localVarPath = this.basePath + '/storefront/{storefront_oid}/email/geocode'
             .replace('{' + 'storefront_oid' + '}', encodeURIComponent(String(storefrontOid)));
         let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         let localVarFormParams: any = {};
 
         // verify required parameter 'storefrontOid' is not null or undefined
@@ -43454,7 +43624,7 @@ export class StorefrontApi {
         const localVarPath = this.basePath + '/storefront/{storefront_oid}/email/countries'
             .replace('{' + 'storefront_oid' + '}', encodeURIComponent(String(storefrontOid)));
         let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         let localVarFormParams: any = {};
 
         // verify required parameter 'storefrontOid' is not null or undefined
@@ -43515,7 +43685,7 @@ export class StorefrontApi {
         const localVarPath = this.basePath + '/storefront/{storefront_oid}/editor_token'
             .replace('{' + 'storefront_oid' + '}', encodeURIComponent(String(storefrontOid)));
         let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         let localVarFormParams: any = {};
 
         // verify required parameter 'storefrontOid' is not null or undefined
@@ -43576,7 +43746,7 @@ export class StorefrontApi {
         const localVarPath = this.basePath + '/storefront/{storefront_oid}/email/baseTemplates'
             .replace('{' + 'storefront_oid' + '}', encodeURIComponent(String(storefrontOid)));
         let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         let localVarFormParams: any = {};
 
         // verify required parameter 'storefrontOid' is not null or undefined
@@ -43639,7 +43809,7 @@ export class StorefrontApi {
             .replace('{' + 'storefront_oid' + '}', encodeURIComponent(String(storefrontOid)))
             .replace('{' + 'email_campaign_uuid' + '}', encodeURIComponent(String(emailCampaignUuid)));
         let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         let localVarFormParams: any = {};
 
         // verify required parameter 'storefrontOid' is not null or undefined
@@ -43707,7 +43877,7 @@ export class StorefrontApi {
             .replace('{' + 'storefront_oid' + '}', encodeURIComponent(String(storefrontOid)))
             .replace('{' + 'email_campaign_uuid' + '}', encodeURIComponent(String(emailCampaignUuid)));
         let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         let localVarFormParams: any = {};
 
         // verify required parameter 'storefrontOid' is not null or undefined
@@ -43773,7 +43943,7 @@ export class StorefrontApi {
         const localVarPath = this.basePath + '/storefront/{storefront_oid}/email/campaigns'
             .replace('{' + 'storefront_oid' + '}', encodeURIComponent(String(storefrontOid)));
         let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         let localVarFormParams: any = {};
 
         // verify required parameter 'storefrontOid' is not null or undefined
@@ -43836,7 +44006,7 @@ export class StorefrontApi {
             .replace('{' + 'storefront_oid' + '}', encodeURIComponent(String(storefrontOid)))
             .replace('{' + 'stat_days' + '}', encodeURIComponent(String(statDays)));
         let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         let localVarFormParams: any = {};
 
         // verify required parameter 'storefrontOid' is not null or undefined
@@ -43904,7 +44074,7 @@ export class StorefrontApi {
             .replace('{' + 'storefront_oid' + '}', encodeURIComponent(String(storefrontOid)))
             .replace('{' + 'commseq_uuid' + '}', encodeURIComponent(String(commseqUuid)));
         let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         let localVarFormParams: any = {};
 
         // verify required parameter 'storefrontOid' is not null or undefined
@@ -43973,7 +44143,7 @@ export class StorefrontApi {
             .replace('{' + 'storefront_oid' + '}', encodeURIComponent(String(storefrontOid)))
             .replace('{' + 'commseq_uuid' + '}', encodeURIComponent(String(commseqUuid)));
         let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         let localVarFormParams: any = {};
 
         // verify required parameter 'storefrontOid' is not null or undefined
@@ -44048,7 +44218,7 @@ export class StorefrontApi {
             .replace('{' + 'storefront_oid' + '}', encodeURIComponent(String(storefrontOid)))
             .replace('{' + 'commseq_uuid' + '}', encodeURIComponent(String(commseqUuid)));
         let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         let localVarFormParams: any = {};
 
         // verify required parameter 'storefrontOid' is not null or undefined
@@ -44122,7 +44292,7 @@ export class StorefrontApi {
             .replace('{' + 'storefront_oid' + '}', encodeURIComponent(String(storefrontOid)))
             .replace('{' + 'commseq_uuid' + '}', encodeURIComponent(String(commseqUuid)));
         let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         let localVarFormParams: any = {};
 
         // verify required parameter 'storefrontOid' is not null or undefined
@@ -44191,7 +44361,7 @@ export class StorefrontApi {
             .replace('{' + 'storefront_oid' + '}', encodeURIComponent(String(storefrontOid)))
             .replace('{' + 'commseq_uuid' + '}', encodeURIComponent(String(commseqUuid)));
         let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         let localVarFormParams: any = {};
 
         // verify required parameter 'storefrontOid' is not null or undefined
@@ -44266,7 +44436,7 @@ export class StorefrontApi {
             .replace('{' + 'storefront_oid' + '}', encodeURIComponent(String(storefrontOid)))
             .replace('{' + 'commseq_uuid' + '}', encodeURIComponent(String(commseqUuid)));
         let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         let localVarFormParams: any = {};
 
         // verify required parameter 'storefrontOid' is not null or undefined
@@ -44338,7 +44508,7 @@ export class StorefrontApi {
         const localVarPath = this.basePath + '/storefront/{storefront_oid}/email/commseqs'
             .replace('{' + 'storefront_oid' + '}', encodeURIComponent(String(storefrontOid)));
         let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         let localVarFormParams: any = {};
 
         // verify required parameter 'storefrontOid' is not null or undefined
@@ -44401,7 +44571,7 @@ export class StorefrontApi {
             .replace('{' + 'storefront_oid' + '}', encodeURIComponent(String(storefrontOid)))
             .replace('{' + 'email_customer_uuid' + '}', encodeURIComponent(String(emailCustomerUuid)));
         let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         let localVarFormParams: any = {};
 
         // verify required parameter 'storefrontOid' is not null or undefined
@@ -44470,7 +44640,7 @@ export class StorefrontApi {
         const localVarPath = this.basePath + '/storefront/{storefront_oid}/email/customers'
             .replace('{' + 'storefront_oid' + '}', encodeURIComponent(String(storefrontOid)));
         let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         let localVarFormParams: any = {};
 
         // verify required parameter 'storefrontOid' is not null or undefined
@@ -44544,7 +44714,7 @@ export class StorefrontApi {
         const localVarPath = this.basePath + '/storefront/{storefront_oid}/email/dashboard_activity'
             .replace('{' + 'storefront_oid' + '}', encodeURIComponent(String(storefrontOid)));
         let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         let localVarFormParams: any = {};
 
         // verify required parameter 'storefrontOid' is not null or undefined
@@ -44610,7 +44780,7 @@ export class StorefrontApi {
         const localVarPath = this.basePath + '/storefront/{storefront_oid}/email/dashboard_stats'
             .replace('{' + 'storefront_oid' + '}', encodeURIComponent(String(storefrontOid)));
         let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         let localVarFormParams: any = {};
 
         // verify required parameter 'storefrontOid' is not null or undefined
@@ -44677,7 +44847,7 @@ export class StorefrontApi {
             .replace('{' + 'storefront_oid' + '}', encodeURIComponent(String(storefrontOid)))
             .replace('{' + 'commseq_email_uuid' + '}', encodeURIComponent(String(commseqEmailUuid)));
         let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         let localVarFormParams: any = {};
 
         // verify required parameter 'storefrontOid' is not null or undefined
@@ -44750,7 +44920,7 @@ export class StorefrontApi {
             .replace('{' + 'commseq_step_uuid' + '}', encodeURIComponent(String(commseqStepUuid)))
             .replace('{' + 'commseq_email_uuid' + '}', encodeURIComponent(String(commseqEmailUuid)));
         let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         let localVarFormParams: any = {};
 
         // verify required parameter 'storefrontOid' is not null or undefined
@@ -44834,7 +45004,7 @@ export class StorefrontApi {
             .replace('{' + 'commseq_email_uuid' + '}', encodeURIComponent(String(commseqEmailUuid)))
             .replace('{' + 'order_id' + '}', encodeURIComponent(String(orderId)));
         let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         let localVarFormParams: any = {};
 
         // verify required parameter 'storefrontOid' is not null or undefined
@@ -44912,7 +45082,7 @@ export class StorefrontApi {
             .replace('{' + 'commseq_step_uuid' + '}', encodeURIComponent(String(commseqStepUuid)))
             .replace('{' + 'commseq_email_uuid' + '}', encodeURIComponent(String(commseqEmailUuid)));
         let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         let localVarFormParams: any = {};
 
         // verify required parameter 'storefrontOid' is not null or undefined
@@ -44992,7 +45162,7 @@ export class StorefrontApi {
         const localVarPath = this.basePath + '/storefront/{storefront_oid}/email/emails'
             .replace('{' + 'storefront_oid' + '}', encodeURIComponent(String(storefrontOid)));
         let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         let localVarFormParams: any = {};
 
         // verify required parameter 'storefrontOid' is not null or undefined
@@ -45054,7 +45224,7 @@ export class StorefrontApi {
         const localVarPath = this.basePath + '/storefront/{storefront_oid}/email/emails/multiple'
             .replace('{' + 'storefront_oid' + '}', encodeURIComponent(String(storefrontOid)));
         let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         let localVarFormParams: any = {};
 
         // verify required parameter 'storefrontOid' is not null or undefined
@@ -45123,7 +45293,7 @@ export class StorefrontApi {
             .replace('{' + 'storefront_oid' + '}', encodeURIComponent(String(storefrontOid)))
             .replace('{' + 'email_flow_uuid' + '}', encodeURIComponent(String(emailFlowUuid)));
         let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         let localVarFormParams: any = {};
 
         // verify required parameter 'storefrontOid' is not null or undefined
@@ -45191,7 +45361,7 @@ export class StorefrontApi {
             .replace('{' + 'storefront_oid' + '}', encodeURIComponent(String(storefrontOid)))
             .replace('{' + 'email_flow_uuid' + '}', encodeURIComponent(String(emailFlowUuid)));
         let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         let localVarFormParams: any = {};
 
         // verify required parameter 'storefrontOid' is not null or undefined
@@ -45257,7 +45427,7 @@ export class StorefrontApi {
         const localVarPath = this.basePath + '/storefront/{storefront_oid}/email/flows'
             .replace('{' + 'storefront_oid' + '}', encodeURIComponent(String(storefrontOid)));
         let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         let localVarFormParams: any = {};
 
         // verify required parameter 'storefrontOid' is not null or undefined
@@ -45316,7 +45486,7 @@ export class StorefrontApi {
     public getEmailGlobalSettings (options: any = {}) : Promise<{ response: http.ClientResponse; body: EmailGlobalSettingsResponse;  }> {
         const localVarPath = this.basePath + '/storefront/email/global_settings';
         let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         let localVarFormParams: any = {};
 
         (<any>Object).assign(localVarHeaderParams, options.headers);
@@ -45374,7 +45544,7 @@ export class StorefrontApi {
             .replace('{' + 'storefront_oid' + '}', encodeURIComponent(String(storefrontOid)))
             .replace('{' + 'email_list_uuid' + '}', encodeURIComponent(String(emailListUuid)));
         let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         let localVarFormParams: any = {};
 
         // verify required parameter 'storefrontOid' is not null or undefined
@@ -45444,7 +45614,7 @@ export class StorefrontApi {
             .replace('{' + 'email_list_uuid' + '}', encodeURIComponent(String(emailListUuid)))
             .replace('{' + 'email_customer_uuid' + '}', encodeURIComponent(String(emailCustomerUuid)));
         let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         let localVarFormParams: any = {};
 
         // verify required parameter 'storefrontOid' is not null or undefined
@@ -45519,7 +45689,7 @@ export class StorefrontApi {
             .replace('{' + 'storefront_oid' + '}', encodeURIComponent(String(storefrontOid)))
             .replace('{' + 'email_list_uuid' + '}', encodeURIComponent(String(emailListUuid)));
         let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         let localVarFormParams: any = {};
 
         // verify required parameter 'storefrontOid' is not null or undefined
@@ -45593,7 +45763,7 @@ export class StorefrontApi {
         const localVarPath = this.basePath + '/storefront/{storefront_oid}/email/lists'
             .replace('{' + 'storefront_oid' + '}', encodeURIComponent(String(storefrontOid)));
         let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         let localVarFormParams: any = {};
 
         // verify required parameter 'storefrontOid' is not null or undefined
@@ -45654,7 +45824,7 @@ export class StorefrontApi {
         const localVarPath = this.basePath + '/storefront/{storefront_oid}/email/performance'
             .replace('{' + 'storefront_oid' + '}', encodeURIComponent(String(storefrontOid)));
         let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         let localVarFormParams: any = {};
 
         // verify required parameter 'storefrontOid' is not null or undefined
@@ -45715,7 +45885,7 @@ export class StorefrontApi {
         const localVarPath = this.basePath + '/storefront/{storefront_oid}/email/plan'
             .replace('{' + 'storefront_oid' + '}', encodeURIComponent(String(storefrontOid)));
         let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         let localVarFormParams: any = {};
 
         // verify required parameter 'storefrontOid' is not null or undefined
@@ -45778,7 +45948,7 @@ export class StorefrontApi {
             .replace('{' + 'storefront_oid' + '}', encodeURIComponent(String(storefrontOid)))
             .replace('{' + 'commseq_postcard_uuid' + '}', encodeURIComponent(String(commseqPostcardUuid)));
         let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         let localVarFormParams: any = {};
 
         // verify required parameter 'storefrontOid' is not null or undefined
@@ -45844,7 +46014,7 @@ export class StorefrontApi {
         const localVarPath = this.basePath + '/storefront/{storefront_oid}/email/postcards'
             .replace('{' + 'storefront_oid' + '}', encodeURIComponent(String(storefrontOid)));
         let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         let localVarFormParams: any = {};
 
         // verify required parameter 'storefrontOid' is not null or undefined
@@ -45906,7 +46076,7 @@ export class StorefrontApi {
         const localVarPath = this.basePath + '/storefront/{storefront_oid}/email/postcards/multiple'
             .replace('{' + 'storefront_oid' + '}', encodeURIComponent(String(storefrontOid)));
         let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         let localVarFormParams: any = {};
 
         // verify required parameter 'storefrontOid' is not null or undefined
@@ -45975,7 +46145,7 @@ export class StorefrontApi {
             .replace('{' + 'storefront_oid' + '}', encodeURIComponent(String(storefrontOid)))
             .replace('{' + 'email_segment_uuid' + '}', encodeURIComponent(String(emailSegmentUuid)));
         let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         let localVarFormParams: any = {};
 
         // verify required parameter 'storefrontOid' is not null or undefined
@@ -46045,7 +46215,7 @@ export class StorefrontApi {
             .replace('{' + 'email_segment_uuid' + '}', encodeURIComponent(String(emailSegmentUuid)))
             .replace('{' + 'email_customer_uuid' + '}', encodeURIComponent(String(emailCustomerUuid)));
         let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         let localVarFormParams: any = {};
 
         // verify required parameter 'storefrontOid' is not null or undefined
@@ -46120,7 +46290,7 @@ export class StorefrontApi {
             .replace('{' + 'storefront_oid' + '}', encodeURIComponent(String(storefrontOid)))
             .replace('{' + 'email_segment_uuid' + '}', encodeURIComponent(String(emailSegmentUuid)));
         let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         let localVarFormParams: any = {};
 
         // verify required parameter 'storefrontOid' is not null or undefined
@@ -46194,7 +46364,7 @@ export class StorefrontApi {
         const localVarPath = this.basePath + '/storefront/{storefront_oid}/email/segments'
             .replace('{' + 'storefront_oid' + '}', encodeURIComponent(String(storefrontOid)));
         let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         let localVarFormParams: any = {};
 
         // verify required parameter 'storefrontOid' is not null or undefined
@@ -46255,7 +46425,7 @@ export class StorefrontApi {
         const localVarPath = this.basePath + '/storefront/email/sending_domain/{domain}'
             .replace('{' + 'domain' + '}', encodeURIComponent(String(domain)));
         let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         let localVarFormParams: any = {};
 
         // verify required parameter 'domain' is not null or undefined
@@ -46316,7 +46486,7 @@ export class StorefrontApi {
         const localVarPath = this.basePath + '/storefront/email/sending_domains/{domain}/status'
             .replace('{' + 'domain' + '}', encodeURIComponent(String(domain)));
         let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         let localVarFormParams: any = {};
 
         // verify required parameter 'domain' is not null or undefined
@@ -46375,7 +46545,7 @@ export class StorefrontApi {
     public getEmailSendingDomains (options: any = {}) : Promise<{ response: http.ClientResponse; body: EmailSendingDomainsResponse;  }> {
         const localVarPath = this.basePath + '/storefront/email/sending_domains';
         let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         let localVarFormParams: any = {};
 
         (<any>Object).assign(localVarHeaderParams, options.headers);
@@ -46431,7 +46601,7 @@ export class StorefrontApi {
         const localVarPath = this.basePath + '/storefront/{storefront_oid}/email/settings'
             .replace('{' + 'storefront_oid' + '}', encodeURIComponent(String(storefrontOid)));
         let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         let localVarFormParams: any = {};
 
         // verify required parameter 'storefrontOid' is not null or undefined
@@ -46494,7 +46664,7 @@ export class StorefrontApi {
             .replace('{' + 'storefront_oid' + '}', encodeURIComponent(String(storefrontOid)))
             .replace('{' + 'email_template_oid' + '}', encodeURIComponent(String(emailTemplateOid)));
         let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         let localVarFormParams: any = {};
 
         // verify required parameter 'storefrontOid' is not null or undefined
@@ -46561,7 +46731,7 @@ export class StorefrontApi {
         const localVarPath = this.basePath + '/storefront/{storefront_oid}/email/templates'
             .replace('{' + 'storefront_oid' + '}', encodeURIComponent(String(storefrontOid)));
         let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         let localVarFormParams: any = {};
 
         // verify required parameter 'storefrontOid' is not null or undefined
@@ -46626,7 +46796,7 @@ export class StorefrontApi {
         const localVarPath = this.basePath + '/storefront/{storefront_oid}/email/third_party_providers'
             .replace('{' + 'storefront_oid' + '}', encodeURIComponent(String(storefrontOid)));
         let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         let localVarFormParams: any = {};
 
         // verify required parameter 'storefrontOid' is not null or undefined
@@ -46687,7 +46857,7 @@ export class StorefrontApi {
         const localVarPath = this.basePath + '/storefront/{storefront_oid}/experiments'
             .replace('{' + 'storefront_oid' + '}', encodeURIComponent(String(storefrontOid)));
         let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         let localVarFormParams: any = {};
 
         // verify required parameter 'storefrontOid' is not null or undefined
@@ -46749,7 +46919,7 @@ export class StorefrontApi {
         const localVarPath = this.basePath + '/storefront/{storefront_oid}/email/histogram/property_names'
             .replace('{' + 'storefront_oid' + '}', encodeURIComponent(String(storefrontOid)));
         let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         let localVarFormParams: any = {};
 
         // verify required parameter 'storefrontOid' is not null or undefined
@@ -46817,7 +46987,7 @@ export class StorefrontApi {
         const localVarPath = this.basePath + '/storefront/{storefront_oid}/email/histogram/property_values'
             .replace('{' + 'storefront_oid' + '}', encodeURIComponent(String(storefrontOid)));
         let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         let localVarFormParams: any = {};
 
         // verify required parameter 'storefrontOid' is not null or undefined
@@ -46888,7 +47058,7 @@ export class StorefrontApi {
     public getLibraryFilterValues (options: any = {}) : Promise<{ response: http.ClientResponse; body: LibraryFilterValuesResponse;  }> {
         const localVarPath = this.basePath + '/storefront/code_library/filter_values';
         let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         let localVarFormParams: any = {};
 
         (<any>Object).assign(localVarHeaderParams, options.headers);
@@ -46944,7 +47114,7 @@ export class StorefrontApi {
         const localVarPath = this.basePath + '/storefront/code_library/{library_item_oid}'
             .replace('{' + 'library_item_oid' + '}', encodeURIComponent(String(libraryItemOid)));
         let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         let localVarFormParams: any = {};
 
         // verify required parameter 'libraryItemOid' is not null or undefined
@@ -47004,7 +47174,7 @@ export class StorefrontApi {
     public getThumbnailParameters (thumbnailParameters: ThumbnailParametersRequest, options: any = {}) : Promise<{ response: http.ClientResponse; body: ThumbnailParametersResponse;  }> {
         const localVarPath = this.basePath + '/storefront/thumbnailParameters';
         let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         let localVarFormParams: any = {};
 
         // verify required parameter 'thumbnailParameters' is not null or undefined
@@ -47068,7 +47238,7 @@ export class StorefrontApi {
             .replace('{' + 'storefront_oid' + '}', encodeURIComponent(String(storefrontOid)))
             .replace('{' + 'email_id' + '}', encodeURIComponent(String(emailId)));
         let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         let localVarFormParams: any = {};
 
         // verify required parameter 'storefrontOid' is not null or undefined
@@ -47134,7 +47304,7 @@ export class StorefrontApi {
         const localVarPath = this.basePath + '/storefront/{storefront_oid}/transaction_email/list'
             .replace('{' + 'storefront_oid' + '}', encodeURIComponent(String(storefrontOid)));
         let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         let localVarFormParams: any = {};
 
         // verify required parameter 'storefrontOid' is not null or undefined
@@ -47197,7 +47367,7 @@ export class StorefrontApi {
             .replace('{' + 'storefront_oid' + '}', encodeURIComponent(String(storefrontOid)))
             .replace('{' + 'email_id' + '}', encodeURIComponent(String(emailId)));
         let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         let localVarFormParams: any = {};
 
         // verify required parameter 'storefrontOid' is not null or undefined
@@ -47264,7 +47434,7 @@ export class StorefrontApi {
         const localVarPath = this.basePath + '/storefront/{storefront_oid}/email/globalUnsubscribe'
             .replace('{' + 'storefront_oid' + '}', encodeURIComponent(String(storefrontOid)));
         let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         let localVarFormParams: any = {};
 
         // verify required parameter 'storefrontOid' is not null or undefined
@@ -47332,7 +47502,7 @@ export class StorefrontApi {
         const localVarPath = this.basePath + '/storefront/{storefront_oid}/email/third_party_providers/import'
             .replace('{' + 'storefront_oid' + '}', encodeURIComponent(String(storefrontOid)));
         let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         let localVarFormParams: any = {};
 
         // verify required parameter 'storefrontOid' is not null or undefined
@@ -47399,7 +47569,7 @@ export class StorefrontApi {
         const localVarPath = this.basePath + '/storefront/{storefront_oid}/email/campaigns'
             .replace('{' + 'storefront_oid' + '}', encodeURIComponent(String(storefrontOid)));
         let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         let localVarFormParams: any = {};
 
         // verify required parameter 'storefrontOid' is not null or undefined
@@ -47467,7 +47637,7 @@ export class StorefrontApi {
         const localVarPath = this.basePath + '/storefront/{storefront_oid}/email/commseqs'
             .replace('{' + 'storefront_oid' + '}', encodeURIComponent(String(storefrontOid)));
         let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         let localVarFormParams: any = {};
 
         // verify required parameter 'storefrontOid' is not null or undefined
@@ -47535,7 +47705,7 @@ export class StorefrontApi {
         const localVarPath = this.basePath + '/storefront/{storefront_oid}/email/emails'
             .replace('{' + 'storefront_oid' + '}', encodeURIComponent(String(storefrontOid)));
         let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         let localVarFormParams: any = {};
 
         // verify required parameter 'storefrontOid' is not null or undefined
@@ -47603,7 +47773,7 @@ export class StorefrontApi {
         const localVarPath = this.basePath + '/storefront/{storefront_oid}/email/flows'
             .replace('{' + 'storefront_oid' + '}', encodeURIComponent(String(storefrontOid)));
         let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         let localVarFormParams: any = {};
 
         // verify required parameter 'storefrontOid' is not null or undefined
@@ -47671,7 +47841,7 @@ export class StorefrontApi {
         const localVarPath = this.basePath + '/storefront/{storefront_oid}/email/lists'
             .replace('{' + 'storefront_oid' + '}', encodeURIComponent(String(storefrontOid)));
         let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         let localVarFormParams: any = {};
 
         // verify required parameter 'storefrontOid' is not null or undefined
@@ -47739,7 +47909,7 @@ export class StorefrontApi {
         const localVarPath = this.basePath + '/storefront/{storefront_oid}/email/postcards'
             .replace('{' + 'storefront_oid' + '}', encodeURIComponent(String(storefrontOid)));
         let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         let localVarFormParams: any = {};
 
         // verify required parameter 'storefrontOid' is not null or undefined
@@ -47807,7 +47977,7 @@ export class StorefrontApi {
         const localVarPath = this.basePath + '/storefront/{storefront_oid}/email/segments'
             .replace('{' + 'storefront_oid' + '}', encodeURIComponent(String(storefrontOid)));
         let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         let localVarFormParams: any = {};
 
         // verify required parameter 'storefrontOid' is not null or undefined
@@ -47876,7 +48046,7 @@ export class StorefrontApi {
             .replace('{' + 'storefront_oid' + '}', encodeURIComponent(String(storefrontOid)))
             .replace('{' + 'email_segment_uuid' + '}', encodeURIComponent(String(emailSegmentUuid)));
         let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         let localVarFormParams: any = {};
 
         // verify required parameter 'storefrontOid' is not null or undefined
@@ -47942,7 +48112,7 @@ export class StorefrontApi {
         const localVarPath = this.basePath + '/storefront/code_library/{library_item_oid}/publish'
             .replace('{' + 'library_item_oid' + '}', encodeURIComponent(String(libraryItemOid)));
         let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         let localVarFormParams: any = {};
 
         // verify required parameter 'libraryItemOid' is not null or undefined
@@ -48004,7 +48174,7 @@ export class StorefrontApi {
         const localVarPath = this.basePath + '/storefront/code_library/{library_item_oid}/purchase'
             .replace('{' + 'library_item_oid' + '}', encodeURIComponent(String(libraryItemOid)));
         let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         let localVarFormParams: any = {};
 
         // verify required parameter 'libraryItemOid' is not null or undefined
@@ -48073,7 +48243,7 @@ export class StorefrontApi {
             .replace('{' + 'commseq_uuid' + '}', encodeURIComponent(String(commseqUuid)))
             .replace('{' + 'commseq_step_uuid' + '}', encodeURIComponent(String(commseqStepUuid)));
         let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         let localVarFormParams: any = {};
 
         // verify required parameter 'storefrontOid' is not null or undefined
@@ -48146,7 +48316,7 @@ export class StorefrontApi {
             .replace('{' + 'storefront_oid' + '}', encodeURIComponent(String(storefrontOid)))
             .replace('{' + 'commseq_email_uuid' + '}', encodeURIComponent(String(commseqEmailUuid)));
         let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         let localVarFormParams: any = {};
 
         // verify required parameter 'storefrontOid' is not null or undefined
@@ -48221,7 +48391,7 @@ export class StorefrontApi {
     public search (category?: string, matches?: string, storefrontOid?: string, maxHits?: number, subcategory?: string, options: any = {}) : Promise<{ response: http.ClientResponse; body: LookupResponse;  }> {
         const localVarPath = this.basePath + '/storefront/search';
         let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         let localVarFormParams: any = {};
 
         if (category !== undefined) {
@@ -48296,7 +48466,7 @@ export class StorefrontApi {
     public search2 (lookupRequest: LookupRequest, options: any = {}) : Promise<{ response: http.ClientResponse; body: LookupResponse;  }> {
         const localVarPath = this.basePath + '/storefront/search';
         let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         let localVarFormParams: any = {};
 
         // verify required parameter 'lookupRequest' is not null or undefined
@@ -48361,7 +48531,7 @@ export class StorefrontApi {
             .replace('{' + 'storefront_oid' + '}', encodeURIComponent(String(storefrontOid)))
             .replace('{' + 'email_list_uuid' + '}', encodeURIComponent(String(emailListUuid)));
         let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         let localVarFormParams: any = {};
 
         // verify required parameter 'storefrontOid' is not null or undefined
@@ -48434,7 +48604,7 @@ export class StorefrontApi {
             .replace('{' + 'storefront_oid' + '}', encodeURIComponent(String(storefrontOid)))
             .replace('{' + 'email_segment_uuid' + '}', encodeURIComponent(String(emailSegmentUuid)));
         let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         let localVarFormParams: any = {};
 
         // verify required parameter 'storefrontOid' is not null or undefined
@@ -48506,7 +48676,7 @@ export class StorefrontApi {
     public searchLibraryItems (itemQuery: LibraryItemQuery, limit?: number, offset?: number, sort?: string, options: any = {}) : Promise<{ response: http.ClientResponse; body: LibraryItemsResponse;  }> {
         const localVarPath = this.basePath + '/storefront/code_library/search';
         let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         let localVarFormParams: any = {};
 
         // verify required parameter 'itemQuery' is not null or undefined
@@ -48580,7 +48750,7 @@ export class StorefrontApi {
     public searchPublishedItems (itemQuery: LibraryItemQuery, limit?: number, offset?: number, sort?: string, options: any = {}) : Promise<{ response: http.ClientResponse; body: LibraryItemsResponse;  }> {
         const localVarPath = this.basePath + '/storefront/code_library/search_published';
         let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         let localVarFormParams: any = {};
 
         // verify required parameter 'itemQuery' is not null or undefined
@@ -48654,7 +48824,7 @@ export class StorefrontApi {
     public searchReviewItems (itemQuery: LibraryItemQuery, limit?: number, offset?: number, sort?: string, options: any = {}) : Promise<{ response: http.ClientResponse; body: LibraryItemsResponse;  }> {
         const localVarPath = this.basePath + '/storefront/code_library/search_review';
         let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         let localVarFormParams: any = {};
 
         // verify required parameter 'itemQuery' is not null or undefined
@@ -48728,7 +48898,7 @@ export class StorefrontApi {
     public searchSharedItems (itemQuery: LibraryItemQuery, limit?: number, offset?: number, sort?: string, options: any = {}) : Promise<{ response: http.ClientResponse; body: LibraryItemsResponse;  }> {
         const localVarPath = this.basePath + '/storefront/code_library/search_shared';
         let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         let localVarFormParams: any = {};
 
         // verify required parameter 'itemQuery' is not null or undefined
@@ -48803,7 +48973,7 @@ export class StorefrontApi {
             .replace('{' + 'storefront_oid' + '}', encodeURIComponent(String(storefrontOid)))
             .replace('{' + 'commseq_email_uuid' + '}', encodeURIComponent(String(commseqEmailUuid)));
         let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         let localVarFormParams: any = {};
 
         // verify required parameter 'storefrontOid' is not null or undefined
@@ -48878,7 +49048,7 @@ export class StorefrontApi {
             .replace('{' + 'storefront_oid' + '}', encodeURIComponent(String(storefrontOid)))
             .replace('{' + 'commseq_postcard_uuid' + '}', encodeURIComponent(String(commseqPostcardUuid)));
         let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         let localVarFormParams: any = {};
 
         // verify required parameter 'storefrontOid' is not null or undefined
@@ -48952,7 +49122,7 @@ export class StorefrontApi {
             .replace('{' + 'storefront_oid' + '}', encodeURIComponent(String(storefrontOid)))
             .replace('{' + 'email_campaign_uuid' + '}', encodeURIComponent(String(emailCampaignUuid)));
         let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         let localVarFormParams: any = {};
 
         // verify required parameter 'storefrontOid' is not null or undefined
@@ -49021,7 +49191,7 @@ export class StorefrontApi {
             .replace('{' + 'storefront_oid' + '}', encodeURIComponent(String(storefrontOid)))
             .replace('{' + 'email_list_uuid' + '}', encodeURIComponent(String(emailListUuid)));
         let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         let localVarFormParams: any = {};
 
         // verify required parameter 'storefrontOid' is not null or undefined
@@ -49096,7 +49266,7 @@ export class StorefrontApi {
             .replace('{' + 'storefront_oid' + '}', encodeURIComponent(String(storefrontOid)))
             .replace('{' + 'email_campaign_uuid' + '}', encodeURIComponent(String(emailCampaignUuid)));
         let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         let localVarFormParams: any = {};
 
         // verify required parameter 'storefrontOid' is not null or undefined
@@ -49171,7 +49341,7 @@ export class StorefrontApi {
             .replace('{' + 'storefront_oid' + '}', encodeURIComponent(String(storefrontOid)))
             .replace('{' + 'commseq_uuid' + '}', encodeURIComponent(String(commseqUuid)));
         let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         let localVarFormParams: any = {};
 
         // verify required parameter 'storefrontOid' is not null or undefined
@@ -49246,7 +49416,7 @@ export class StorefrontApi {
             .replace('{' + 'storefront_oid' + '}', encodeURIComponent(String(storefrontOid)))
             .replace('{' + 'email_customer_uuid' + '}', encodeURIComponent(String(emailCustomerUuid)));
         let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         let localVarFormParams: any = {};
 
         // verify required parameter 'storefrontOid' is not null or undefined
@@ -49320,7 +49490,7 @@ export class StorefrontApi {
             .replace('{' + 'storefront_oid' + '}', encodeURIComponent(String(storefrontOid)))
             .replace('{' + 'commseq_email_uuid' + '}', encodeURIComponent(String(commseqEmailUuid)));
         let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         let localVarFormParams: any = {};
 
         // verify required parameter 'storefrontOid' is not null or undefined
@@ -49395,7 +49565,7 @@ export class StorefrontApi {
             .replace('{' + 'storefront_oid' + '}', encodeURIComponent(String(storefrontOid)))
             .replace('{' + 'email_flow_uuid' + '}', encodeURIComponent(String(emailFlowUuid)));
         let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         let localVarFormParams: any = {};
 
         // verify required parameter 'storefrontOid' is not null or undefined
@@ -49466,7 +49636,7 @@ export class StorefrontApi {
     public updateEmailGlobalSettings (globalSettings: EmailGlobalSettings, options: any = {}) : Promise<{ response: http.ClientResponse; body: EmailGlobalSettingsResponse;  }> {
         const localVarPath = this.basePath + '/storefront/email/global_settings';
         let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         let localVarFormParams: any = {};
 
         // verify required parameter 'globalSettings' is not null or undefined
@@ -49531,7 +49701,7 @@ export class StorefrontApi {
             .replace('{' + 'storefront_oid' + '}', encodeURIComponent(String(storefrontOid)))
             .replace('{' + 'email_list_uuid' + '}', encodeURIComponent(String(emailListUuid)));
         let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         let localVarFormParams: any = {};
 
         // verify required parameter 'storefrontOid' is not null or undefined
@@ -49604,7 +49774,7 @@ export class StorefrontApi {
         const localVarPath = this.basePath + '/storefront/{storefront_oid}/email/plan'
             .replace('{' + 'storefront_oid' + '}', encodeURIComponent(String(storefrontOid)));
         let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         let localVarFormParams: any = {};
 
         // verify required parameter 'storefrontOid' is not null or undefined
@@ -49674,7 +49844,7 @@ export class StorefrontApi {
             .replace('{' + 'storefront_oid' + '}', encodeURIComponent(String(storefrontOid)))
             .replace('{' + 'commseq_postcard_uuid' + '}', encodeURIComponent(String(commseqPostcardUuid)));
         let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         let localVarFormParams: any = {};
 
         // verify required parameter 'storefrontOid' is not null or undefined
@@ -49749,7 +49919,7 @@ export class StorefrontApi {
             .replace('{' + 'storefront_oid' + '}', encodeURIComponent(String(storefrontOid)))
             .replace('{' + 'email_segment_uuid' + '}', encodeURIComponent(String(emailSegmentUuid)));
         let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         let localVarFormParams: any = {};
 
         // verify required parameter 'storefrontOid' is not null or undefined
@@ -49822,7 +49992,7 @@ export class StorefrontApi {
         const localVarPath = this.basePath + '/storefront/{storefront_oid}/email/settings'
             .replace('{' + 'storefront_oid' + '}', encodeURIComponent(String(storefrontOid)));
         let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         let localVarFormParams: any = {};
 
         // verify required parameter 'storefrontOid' is not null or undefined
@@ -49892,7 +50062,7 @@ export class StorefrontApi {
             .replace('{' + 'storefront_oid' + '}', encodeURIComponent(String(storefrontOid)))
             .replace('{' + 'storefront_experiment_oid' + '}', encodeURIComponent(String(storefrontExperimentOid)));
         let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         let localVarFormParams: any = {};
 
         // verify required parameter 'storefrontOid' is not null or undefined
@@ -49965,7 +50135,7 @@ export class StorefrontApi {
         const localVarPath = this.basePath + '/storefront/code_library/{library_item_oid}'
             .replace('{' + 'library_item_oid' + '}', encodeURIComponent(String(libraryItemOid)));
         let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         let localVarFormParams: any = {};
 
         // verify required parameter 'libraryItemOid' is not null or undefined
@@ -50035,7 +50205,7 @@ export class StorefrontApi {
             .replace('{' + 'storefront_oid' + '}', encodeURIComponent(String(storefrontOid)))
             .replace('{' + 'email_id' + '}', encodeURIComponent(String(emailId)));
         let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         let localVarFormParams: any = {};
 
         // verify required parameter 'storefrontOid' is not null or undefined
@@ -50105,7 +50275,7 @@ export enum TaxApiApiKeys {
 
 export class TaxApi {
     protected _basePath = defaultBasePath;
-    protected defaultHeaders : any = {};
+    protected _defaultHeaders : Headers = {};
     protected _useQuerystring : boolean = false;
 
     protected authentications = {
@@ -50148,6 +50318,21 @@ export class TaxApi {
         (this.authentications as any)[TaxApiApiKeys[key]].apiKey = value;
     }
 
+    public setApiVersion(value: string) {
+      this._defaultHeaders['X-UltraCart-Api-Version'] = value;
+    }
+
+
+  set defaultHeaders(defaultHeaders: Headers) {
+      this._defaultHeaders = defaultHeaders;
+  }
+
+  get defaultHeaders() {
+      return this._defaultHeaders;
+  }
+
+
+
     set accessToken(token: string) {
         this.authentications.ultraCartOauth.accessToken = token;
     }
@@ -50162,7 +50347,7 @@ export class TaxApi {
         const localVarPath = this.basePath + '/tax/providers/self/city/{city}'
             .replace('{' + 'city' + '}', encodeURIComponent(String(city)));
         let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         let localVarFormParams: any = {};
 
         // verify required parameter 'city' is not null or undefined
@@ -50227,7 +50412,7 @@ export class TaxApi {
         const localVarPath = this.basePath + '/tax/providers/self/country/{countryCode}'
             .replace('{' + 'countryCode' + '}', encodeURIComponent(String(countryCode)));
         let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         let localVarFormParams: any = {};
 
         // verify required parameter 'countryCode' is not null or undefined
@@ -50292,7 +50477,7 @@ export class TaxApi {
         const localVarPath = this.basePath + '/tax/providers/self/county/{county}'
             .replace('{' + 'county' + '}', encodeURIComponent(String(county)));
         let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         let localVarFormParams: any = {};
 
         // verify required parameter 'county' is not null or undefined
@@ -50357,7 +50542,7 @@ export class TaxApi {
         const localVarPath = this.basePath + '/tax/providers/self/postalCode/{postal_code}'
             .replace('{' + 'postal_code' + '}', encodeURIComponent(String(postalCode)));
         let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         let localVarFormParams: any = {};
 
         // verify required parameter 'postalCode' is not null or undefined
@@ -50422,7 +50607,7 @@ export class TaxApi {
         const localVarPath = this.basePath + '/tax/providers/self/state/{stateCode}'
             .replace('{' + 'stateCode' + '}', encodeURIComponent(String(stateCode)));
         let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         let localVarFormParams: any = {};
 
         // verify required parameter 'stateCode' is not null or undefined
@@ -50484,7 +50669,7 @@ export class TaxApi {
     public getTaxProviderAvalara (options: any = {}) : Promise<{ response: http.ClientResponse; body: TaxProviderAvalara;  }> {
         const localVarPath = this.basePath + '/tax/providers/avalara';
         let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         let localVarFormParams: any = {};
 
         (<any>Object).assign(localVarHeaderParams, options.headers);
@@ -50537,7 +50722,7 @@ export class TaxApi {
     public getTaxProviderAvalaraCompanies (taxProviderAvalara: TaxProviderAvalara, options: any = {}) : Promise<{ response: http.ClientResponse; body: TaxProviderAvalaraCompaniesResult;  }> {
         const localVarPath = this.basePath + '/tax/providers/avalara/companies';
         let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         let localVarFormParams: any = {};
 
         // verify required parameter 'taxProviderAvalara' is not null or undefined
@@ -50595,7 +50780,7 @@ export class TaxApi {
     public getTaxProviderAvalaraTest (options: any = {}) : Promise<{ response: http.ClientResponse; body: TaxProviderTestResult;  }> {
         const localVarPath = this.basePath + '/tax/providers/avalara/test';
         let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         let localVarFormParams: any = {};
 
         (<any>Object).assign(localVarHeaderParams, options.headers);
@@ -50647,7 +50832,7 @@ export class TaxApi {
     public getTaxProviderSelf (options: any = {}) : Promise<{ response: http.ClientResponse; body: TaxProviderSelf;  }> {
         const localVarPath = this.basePath + '/tax/providers/self';
         let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         let localVarFormParams: any = {};
 
         (<any>Object).assign(localVarHeaderParams, options.headers);
@@ -50699,7 +50884,7 @@ export class TaxApi {
     public getTaxProviderSelfCountries (options: any = {}) : Promise<{ response: http.ClientResponse; body: TaxProviderSelfCountriesResponse;  }> {
         const localVarPath = this.basePath + '/tax/providers/self/countries';
         let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         let localVarFormParams: any = {};
 
         (<any>Object).assign(localVarHeaderParams, options.headers);
@@ -50753,7 +50938,7 @@ export class TaxApi {
         const localVarPath = this.basePath + '/tax/providers/self/regions/{countryCode}'
             .replace('{' + 'countryCode' + '}', encodeURIComponent(String(countryCode)));
         let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         let localVarFormParams: any = {};
 
         // verify required parameter 'countryCode' is not null or undefined
@@ -50810,7 +50995,7 @@ export class TaxApi {
     public getTaxProviderSovos (options: any = {}) : Promise<{ response: http.ClientResponse; body: TaxProviderSovos;  }> {
         const localVarPath = this.basePath + '/tax/providers/sovos';
         let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         let localVarFormParams: any = {};
 
         (<any>Object).assign(localVarHeaderParams, options.headers);
@@ -50862,7 +51047,7 @@ export class TaxApi {
     public getTaxProviderSovosTest (options: any = {}) : Promise<{ response: http.ClientResponse; body: TaxProviderTestResult;  }> {
         const localVarPath = this.basePath + '/tax/providers/sovos/test';
         let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         let localVarFormParams: any = {};
 
         (<any>Object).assign(localVarHeaderParams, options.headers);
@@ -50914,7 +51099,7 @@ export class TaxApi {
     public getTaxProviderTaxJar (options: any = {}) : Promise<{ response: http.ClientResponse; body: TaxProviderTaxJar;  }> {
         const localVarPath = this.basePath + '/tax/providers/taxjar';
         let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         let localVarFormParams: any = {};
 
         (<any>Object).assign(localVarHeaderParams, options.headers);
@@ -50966,7 +51151,7 @@ export class TaxApi {
     public getTaxProviderTaxJarTest (options: any = {}) : Promise<{ response: http.ClientResponse; body: TaxProviderTestResult;  }> {
         const localVarPath = this.basePath + '/tax/providers/taxjar/test';
         let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         let localVarFormParams: any = {};
 
         (<any>Object).assign(localVarHeaderParams, options.headers);
@@ -51018,7 +51203,7 @@ export class TaxApi {
     public getTaxProviderUltraCart (options: any = {}) : Promise<{ response: http.ClientResponse; body: TaxProviderUltraCart;  }> {
         const localVarPath = this.basePath + '/tax/providers/ultracart';
         let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         let localVarFormParams: any = {};
 
         (<any>Object).assign(localVarHeaderParams, options.headers);
@@ -51073,7 +51258,7 @@ export class TaxApi {
     public getTaxProviders (limit?: number, offset?: number, expand?: string, options: any = {}) : Promise<{ response: http.ClientResponse; body: TaxProvidersResponse;  }> {
         const localVarPath = this.basePath + '/tax/providers';
         let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         let localVarFormParams: any = {};
 
         if (limit !== undefined) {
@@ -51139,7 +51324,7 @@ export class TaxApi {
         const localVarPath = this.basePath + '/tax/providers/setActive/{providerName}'
             .replace('{' + 'providerName' + '}', encodeURIComponent(String(providerName)));
         let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         let localVarFormParams: any = {};
 
         // verify required parameter 'providerName' is not null or undefined
@@ -51197,7 +51382,7 @@ export class TaxApi {
     public updateTaxProviderAvalara (taxProviderAvalara: TaxProviderAvalara, options: any = {}) : Promise<{ response: http.ClientResponse; body: TaxProviderAvalara;  }> {
         const localVarPath = this.basePath + '/tax/providers/avalara';
         let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         let localVarFormParams: any = {};
 
         // verify required parameter 'taxProviderAvalara' is not null or undefined
@@ -51256,7 +51441,7 @@ export class TaxApi {
     public updateTaxProviderSelf (taxProviderSelf: TaxProviderSelf, options: any = {}) : Promise<{ response: http.ClientResponse; body: TaxProviderSelf;  }> {
         const localVarPath = this.basePath + '/tax/providers/self';
         let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         let localVarFormParams: any = {};
 
         // verify required parameter 'taxProviderSelf' is not null or undefined
@@ -51317,7 +51502,7 @@ export class TaxApi {
         const localVarPath = this.basePath + '/tax/providers/self/city/{city}'
             .replace('{' + 'city' + '}', encodeURIComponent(String(city)));
         let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         let localVarFormParams: any = {};
 
         // verify required parameter 'city' is not null or undefined
@@ -51383,7 +51568,7 @@ export class TaxApi {
         const localVarPath = this.basePath + '/tax/providers/self/country/{countryCode}'
             .replace('{' + 'countryCode' + '}', encodeURIComponent(String(countryCode)));
         let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         let localVarFormParams: any = {};
 
         // verify required parameter 'countryCode' is not null or undefined
@@ -51449,7 +51634,7 @@ export class TaxApi {
         const localVarPath = this.basePath + '/tax/providers/self/county/{county}'
             .replace('{' + 'county' + '}', encodeURIComponent(String(county)));
         let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         let localVarFormParams: any = {};
 
         // verify required parameter 'county' is not null or undefined
@@ -51515,7 +51700,7 @@ export class TaxApi {
         const localVarPath = this.basePath + '/tax/providers/self/postalCode/{postal_code}'
             .replace('{' + 'postal_code' + '}', encodeURIComponent(String(postalCode)));
         let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         let localVarFormParams: any = {};
 
         // verify required parameter 'postalCode' is not null or undefined
@@ -51581,7 +51766,7 @@ export class TaxApi {
         const localVarPath = this.basePath + '/tax/providers/self/state/{stateCode}'
             .replace('{' + 'stateCode' + '}', encodeURIComponent(String(stateCode)));
         let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         let localVarFormParams: any = {};
 
         // verify required parameter 'stateCode' is not null or undefined
@@ -51645,7 +51830,7 @@ export class TaxApi {
     public updateTaxProviderSovos (taxProviderSovos: TaxProviderSovos, options: any = {}) : Promise<{ response: http.ClientResponse; body: TaxProviderSovos;  }> {
         const localVarPath = this.basePath + '/tax/providers/sovos';
         let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         let localVarFormParams: any = {};
 
         // verify required parameter 'taxProviderSovos' is not null or undefined
@@ -51704,7 +51889,7 @@ export class TaxApi {
     public updateTaxProviderTaxJar (taxProviderTaxJar: TaxProviderTaxJar, options: any = {}) : Promise<{ response: http.ClientResponse; body: TaxProviderTaxJar;  }> {
         const localVarPath = this.basePath + '/tax/providers/taxjar';
         let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         let localVarFormParams: any = {};
 
         // verify required parameter 'taxProviderTaxJar' is not null or undefined
@@ -51763,7 +51948,7 @@ export class TaxApi {
     public updateTaxProviderUltraCart (taxProviderUltracart: TaxProviderUltraCart, options: any = {}) : Promise<{ response: http.ClientResponse; body: TaxProviderUltraCart;  }> {
         const localVarPath = this.basePath + '/tax/providers/ultracart';
         let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         let localVarFormParams: any = {};
 
         // verify required parameter 'taxProviderUltracart' is not null or undefined
@@ -51821,7 +52006,7 @@ export enum UserApiApiKeys {
 
 export class UserApi {
     protected _basePath = defaultBasePath;
-    protected defaultHeaders : any = {};
+    protected _defaultHeaders : Headers = {};
     protected _useQuerystring : boolean = false;
 
     protected authentications = {
@@ -51864,6 +52049,21 @@ export class UserApi {
         (this.authentications as any)[UserApiApiKeys[key]].apiKey = value;
     }
 
+    public setApiVersion(value: string) {
+      this._defaultHeaders['X-UltraCart-Api-Version'] = value;
+    }
+
+
+  set defaultHeaders(defaultHeaders: Headers) {
+      this._defaultHeaders = defaultHeaders;
+  }
+
+  get defaultHeaders() {
+      return this._defaultHeaders;
+  }
+
+
+
     set accessToken(token: string) {
         this.authentications.ultraCartOauth.accessToken = token;
     }
@@ -51877,7 +52077,7 @@ export class UserApi {
         const localVarPath = this.basePath + '/user/groups/{group_oid}'
             .replace('{' + 'group_oid' + '}', encodeURIComponent(String(groupOid)));
         let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         let localVarFormParams: any = {};
 
         // verify required parameter 'groupOid' is not null or undefined
@@ -51935,7 +52135,7 @@ export class UserApi {
         const localVarPath = this.basePath + '/user/users/{user_id}'
             .replace('{' + 'user_id' + '}', encodeURIComponent(String(userId)));
         let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         let localVarFormParams: any = {};
 
         // verify required parameter 'userId' is not null or undefined
@@ -51993,7 +52193,7 @@ export class UserApi {
         const localVarPath = this.basePath + '/user/groups/{group_oid}'
             .replace('{' + 'group_oid' + '}', encodeURIComponent(String(groupOid)));
         let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         let localVarFormParams: any = {};
 
         // verify required parameter 'groupOid' is not null or undefined
@@ -52049,7 +52249,7 @@ export class UserApi {
     public getGroups (options: any = {}) : Promise<{ response: http.ClientResponse; body: GroupsResponse;  }> {
         const localVarPath = this.basePath + '/user/groups';
         let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         let localVarFormParams: any = {};
 
         (<any>Object).assign(localVarHeaderParams, options.headers);
@@ -52103,7 +52303,7 @@ export class UserApi {
         const localVarPath = this.basePath + '/user/users/{user_id}'
             .replace('{' + 'user_id' + '}', encodeURIComponent(String(userId)));
         let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         let localVarFormParams: any = {};
 
         // verify required parameter 'userId' is not null or undefined
@@ -52162,7 +52362,7 @@ export class UserApi {
         const localVarPath = this.basePath + '/user/users/{user_id}/logins'
             .replace('{' + 'user_id' + '}', encodeURIComponent(String(userId)));
         let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         let localVarFormParams: any = {};
 
         // verify required parameter 'userId' is not null or undefined
@@ -52219,7 +52419,7 @@ export class UserApi {
     public getUsers (options: any = {}) : Promise<{ response: http.ClientResponse; body: UsersResponse;  }> {
         const localVarPath = this.basePath + '/user/users';
         let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         let localVarFormParams: any = {};
 
         (<any>Object).assign(localVarHeaderParams, options.headers);
@@ -52272,7 +52472,7 @@ export class UserApi {
     public insertGroup (group: Group, options: any = {}) : Promise<{ response: http.ClientResponse; body: GroupResponse;  }> {
         const localVarPath = this.basePath + '/user/groups';
         let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         let localVarFormParams: any = {};
 
         // verify required parameter 'group' is not null or undefined
@@ -52331,7 +52531,7 @@ export class UserApi {
     public insertUser (user: User, options: any = {}) : Promise<{ response: http.ClientResponse; body: UserResponse;  }> {
         const localVarPath = this.basePath + '/user/users';
         let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         let localVarFormParams: any = {};
 
         // verify required parameter 'user' is not null or undefined
@@ -52392,7 +52592,7 @@ export class UserApi {
         const localVarPath = this.basePath + '/user/groups/{group_oid}'
             .replace('{' + 'group_oid' + '}', encodeURIComponent(String(groupOid)));
         let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         let localVarFormParams: any = {};
 
         // verify required parameter 'group' is not null or undefined
@@ -52458,7 +52658,7 @@ export class UserApi {
         const localVarPath = this.basePath + '/user/users/{user_id}'
             .replace('{' + 'user_id' + '}', encodeURIComponent(String(userId)));
         let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         let localVarFormParams: any = {};
 
         // verify required parameter 'user' is not null or undefined
@@ -52521,7 +52721,7 @@ export enum WebhookApiApiKeys {
 
 export class WebhookApi {
     protected _basePath = defaultBasePath;
-    protected defaultHeaders : any = {};
+    protected _defaultHeaders : Headers = {};
     protected _useQuerystring : boolean = false;
 
     protected authentications = {
@@ -52564,6 +52764,21 @@ export class WebhookApi {
         (this.authentications as any)[WebhookApiApiKeys[key]].apiKey = value;
     }
 
+    public setApiVersion(value: string) {
+      this._defaultHeaders['X-UltraCart-Api-Version'] = value;
+    }
+
+
+  set defaultHeaders(defaultHeaders: Headers) {
+      this._defaultHeaders = defaultHeaders;
+  }
+
+  get defaultHeaders() {
+      return this._defaultHeaders;
+  }
+
+
+
     set accessToken(token: string) {
         this.authentications.ultraCartOauth.accessToken = token;
     }
@@ -52577,7 +52792,7 @@ export class WebhookApi {
         const localVarPath = this.basePath + '/webhook/webhooks/{webhookOid}'
             .replace('{' + 'webhookOid' + '}', encodeURIComponent(String(webhookOid)));
         let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         let localVarFormParams: any = {};
 
         // verify required parameter 'webhookOid' is not null or undefined
@@ -52634,7 +52849,7 @@ export class WebhookApi {
     public deleteWebhookByUrl (webhook: Webhook, options: any = {}) : Promise<{ response: http.ClientResponse; body: WebhookResponse;  }> {
         const localVarPath = this.basePath + '/webhook/webhooks';
         let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         let localVarFormParams: any = {};
 
         // verify required parameter 'webhook' is not null or undefined
@@ -52696,7 +52911,7 @@ export class WebhookApi {
             .replace('{' + 'webhookOid' + '}', encodeURIComponent(String(webhookOid)))
             .replace('{' + 'requestId' + '}', encodeURIComponent(String(requestId)));
         let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         let localVarFormParams: any = {};
 
         // verify required parameter 'webhookOid' is not null or undefined
@@ -52763,7 +52978,7 @@ export class WebhookApi {
         const localVarPath = this.basePath + '/webhook/webhooks/{webhookOid}/logs'
             .replace('{' + 'webhookOid' + '}', encodeURIComponent(String(webhookOid)));
         let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         let localVarFormParams: any = {};
 
         // verify required parameter 'webhookOid' is not null or undefined
@@ -52836,7 +53051,7 @@ export class WebhookApi {
     public getWebhooks (limit?: number, offset?: number, sort?: string, placeholders?: boolean, options: any = {}) : Promise<{ response: http.ClientResponse; body: WebhooksResponse;  }> {
         const localVarPath = this.basePath + '/webhook/webhooks';
         let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         let localVarFormParams: any = {};
 
         if (limit !== undefined) {
@@ -52906,7 +53121,7 @@ export class WebhookApi {
     public insertWebhook (webhook: Webhook, placeholders?: boolean, options: any = {}) : Promise<{ response: http.ClientResponse; body: WebhookResponse;  }> {
         const localVarPath = this.basePath + '/webhook/webhooks';
         let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         let localVarFormParams: any = {};
 
         // verify required parameter 'webhook' is not null or undefined
@@ -52972,7 +53187,7 @@ export class WebhookApi {
             .replace('{' + 'webhookOid' + '}', encodeURIComponent(String(webhookOid)))
             .replace('{' + 'eventName' + '}', encodeURIComponent(String(eventName)));
         let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         let localVarFormParams: any = {};
 
         // verify required parameter 'webhookOid' is not null or undefined
@@ -53038,7 +53253,7 @@ export class WebhookApi {
         const localVarPath = this.basePath + '/webhook/webhooks/{webhookOid}'
             .replace('{' + 'webhookOid' + '}', encodeURIComponent(String(webhookOid)));
         let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         let localVarFormParams: any = {};
 
         // verify required parameter 'webhook' is not null or undefined
