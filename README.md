@@ -1,4 +1,4 @@
-## ultracart_rest_api_v2_typescript@3.0.41
+## ultracart_rest_api_v2_typescript@3.0.42
 
 This generator creates TypeScript/JavaScript client that utilizes [Fetch API](https://fetch.spec.whatwg.org/). The generated Node module can be used in the following environments:
 
@@ -36,7 +36,7 @@ navigate to the folder of your consuming project and run one of the following co
 _published:_
 
 ```
-npm install ultracart_rest_api_v2_typescript@3.0.41 --save
+npm install ultracart_rest_api_v2_typescript@3.0.42 --save
 ```
 
 _unPublished (not recommended):_
@@ -51,6 +51,7 @@ Not every change is committed to every SDK.
 
 | Version | Date | Comments |
 | --: | :-: | --- |
+| 3.0.42 | 12/02/2020 | Added display values to CouponApi.getEditorValues to make type dropdowns easy |
 | 3.0.41 | 11/17/2020 | New modify cart step option for StoreFront communications |
 | 3.0.39 | 11/12/2020 | Added Customer.tax_codes.taxjar_exemption_type |
 | 3.0.38 | 11/09/2020 | Added TaxProviderTaxJar.configuration.send_outside_nexus flag |

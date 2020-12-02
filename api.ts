@@ -5875,6 +5875,12 @@ export interface CouponEditorValues {
      * @memberof CouponEditorValues
      */
     coupon_types?: Array<string>;
+    /**
+     * coupon_types_for_display
+     * @type {Array<CouponType>}
+     * @memberof CouponEditorValues
+     */
+    coupon_types_for_display?: Array<CouponType>;
 }
 
 /**
@@ -6785,6 +6791,26 @@ export interface CouponTieredPercentOffSubtotal {
      * @memberof CouponTieredPercentOffSubtotal
      */
     tiers?: Array<CouponTierPercent>;
+}
+
+/**
+ * 
+ * @export
+ * @interface CouponType
+ */
+export interface CouponType {
+    /**
+     * A friendly display of the coupon type suitable for human reading
+     * @type {string}
+     * @memberof CouponType
+     */
+    localized?: string;
+    /**
+     * The name of the coupon type
+     * @type {string}
+     * @memberof CouponType
+     */
+    name?: string;
 }
 
 /**
@@ -18476,6 +18502,12 @@ export interface LibraryItem {
      */
     rejected_reason?: string;
     /**
+     * This counter records how many times a library item has been published.  This is used to show version history.
+     * @type {number}
+     * @memberof LibraryItem
+     */
+    release_version?: number;
+    /**
      * Any published library items must be reviewed by UltraCart staff for malicious content.  This flag shows the status of that review.  This is always false for non-published items
      * @type {boolean}
      * @memberof LibraryItem
@@ -18553,6 +18585,12 @@ export interface LibraryItem {
      * @memberof LibraryItem
      */
     type?: string;
+    /**
+     * True if this library item was published but is awaiting review from UltraCart staff.
+     * @type {boolean}
+     * @memberof LibraryItem
+     */
+    under_review?: boolean;
 }
 
 /**
