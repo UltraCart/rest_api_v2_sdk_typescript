@@ -5800,6 +5800,12 @@ export interface CouponCodesResponse {
  */
 export interface CouponDeletesRequest {
     /**
+     * Coupon codes
+     * @type {Array<string>}
+     * @memberof CouponDeletesRequest
+     */
+    coupon_codes?: Array<string>;
+    /**
      * Coupon oids
      * @type {Array<number>}
      * @memberof CouponDeletesRequest
@@ -30196,6 +30202,116 @@ export const CouponApiFetchParamCreator = function (configuration?: Configuratio
             };
         },
         /**
+         * Delete coupons on the UltraCart account. 
+         * @summary Deletes multiple coupons
+         * @param {CouponDeletesRequest} coupon_delete_request Coupon oids to delete
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        deleteCouponsByCode(coupon_delete_request: CouponDeletesRequest, options: any = {}): FetchArgs {
+            // verify required parameter 'coupon_delete_request' is not null or undefined
+            if (coupon_delete_request === null || coupon_delete_request === undefined) {
+                throw new RequiredError('coupon_delete_request','Required parameter coupon_delete_request was null or undefined when calling deleteCouponsByCode.');
+            }
+            const localVarPath = `/coupon/coupons/by_code`;
+            const localVarUrlObj = url.parse(localVarPath, true);
+            const localVarRequestOptions = Object.assign({ method: 'DELETE' }, options);
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+    if(configuration && configuration.apiVersion) {
+      localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+    }
+
+
+
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+				const localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+					? configuration.accessToken("ultraCartOauth", ["coupon_write"])
+					: configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
+					? configuration.apiKey("x-ultracart-simple-key")
+					: configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+            const needsSerialization = (<any>"CouponDeletesRequest" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
+            localVarRequestOptions.body =  needsSerialization ? JSON.stringify(coupon_delete_request || {}) : (coupon_delete_request || "");
+
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Delete coupons on the UltraCart account. 
+         * @summary Deletes multiple coupons
+         * @param {CouponDeletesRequest} coupon_delete_request Coupon oids to delete
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        deleteCouponsByOid(coupon_delete_request: CouponDeletesRequest, options: any = {}): FetchArgs {
+            // verify required parameter 'coupon_delete_request' is not null or undefined
+            if (coupon_delete_request === null || coupon_delete_request === undefined) {
+                throw new RequiredError('coupon_delete_request','Required parameter coupon_delete_request was null or undefined when calling deleteCouponsByOid.');
+            }
+            const localVarPath = `/coupon/coupons/by_oid`;
+            const localVarUrlObj = url.parse(localVarPath, true);
+            const localVarRequestOptions = Object.assign({ method: 'DELETE' }, options);
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+    if(configuration && configuration.apiVersion) {
+      localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+    }
+
+
+
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+				const localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+					? configuration.accessToken("ultraCartOauth", ["coupon_write"])
+					: configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
+					? configuration.apiKey("x-ultracart-simple-key")
+					: configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+            const needsSerialization = (<any>"CouponDeletesRequest" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
+            localVarRequestOptions.body =  needsSerialization ? JSON.stringify(coupon_delete_request || {}) : (coupon_delete_request || "");
+
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
          * Generate one time codes for a coupon 
          * @summary Generates one time codes for a coupon
          * @param {number} coupon_oid The coupon oid to generate codes.
@@ -30818,6 +30934,44 @@ export const CouponApiFp = function(configuration?: Configuration) {
             };
         },
         /**
+         * Delete coupons on the UltraCart account. 
+         * @summary Deletes multiple coupons
+         * @param {CouponDeletesRequest} coupon_delete_request Coupon oids to delete
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        deleteCouponsByCode(coupon_delete_request: CouponDeletesRequest, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Response> {
+            const localVarFetchArgs = CouponApiFetchParamCreator(configuration).deleteCouponsByCode(coupon_delete_request, options);
+            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+                    if (response.status >= 200 && response.status < 300) {
+                        return response;
+                    } else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
+         * Delete coupons on the UltraCart account. 
+         * @summary Deletes multiple coupons
+         * @param {CouponDeletesRequest} coupon_delete_request Coupon oids to delete
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        deleteCouponsByOid(coupon_delete_request: CouponDeletesRequest, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Response> {
+            const localVarFetchArgs = CouponApiFetchParamCreator(configuration).deleteCouponsByOid(coupon_delete_request, options);
+            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+                    if (response.status >= 200 && response.status < 300) {
+                        return response;
+                    } else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
          * Generate one time codes for a coupon 
          * @summary Generates one time codes for a coupon
          * @param {number} coupon_oid The coupon oid to generate codes.
@@ -31030,6 +31184,26 @@ export const CouponApiFactory = function (configuration?: Configuration, fetch?:
             return CouponApiFp(configuration).deleteCoupon(coupon_oid, options)(fetch, basePath);
         },
         /**
+         * Delete coupons on the UltraCart account. 
+         * @summary Deletes multiple coupons
+         * @param {CouponDeletesRequest} coupon_delete_request Coupon oids to delete
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        deleteCouponsByCode(coupon_delete_request: CouponDeletesRequest, options?: any) {
+            return CouponApiFp(configuration).deleteCouponsByCode(coupon_delete_request, options)(fetch, basePath);
+        },
+        /**
+         * Delete coupons on the UltraCart account. 
+         * @summary Deletes multiple coupons
+         * @param {CouponDeletesRequest} coupon_delete_request Coupon oids to delete
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        deleteCouponsByOid(coupon_delete_request: CouponDeletesRequest, options?: any) {
+            return CouponApiFp(configuration).deleteCouponsByOid(coupon_delete_request, options)(fetch, basePath);
+        },
+        /**
          * Generate one time codes for a coupon 
          * @summary Generates one time codes for a coupon
          * @param {number} coupon_oid The coupon oid to generate codes.
@@ -31159,6 +31333,26 @@ export interface CouponApiInterface {
      * @memberof CouponApiInterface
      */
     deleteCoupon(coupon_oid: number, options?: any): Promise<{}>;
+
+    /**
+     * Delete coupons on the UltraCart account. 
+     * @summary Deletes multiple coupons
+     * @param {CouponDeletesRequest} coupon_delete_request Coupon oids to delete
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof CouponApiInterface
+     */
+    deleteCouponsByCode(coupon_delete_request: CouponDeletesRequest, options?: any): Promise<{}>;
+
+    /**
+     * Delete coupons on the UltraCart account. 
+     * @summary Deletes multiple coupons
+     * @param {CouponDeletesRequest} coupon_delete_request Coupon oids to delete
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof CouponApiInterface
+     */
+    deleteCouponsByOid(coupon_delete_request: CouponDeletesRequest, options?: any): Promise<{}>;
 
     /**
      * Generate one time codes for a coupon 
@@ -31291,6 +31485,30 @@ export class CouponApi extends BaseAPI implements CouponApiInterface {
      */
     public deleteCoupon(coupon_oid: number, options?: any) {
         return CouponApiFp(this.configuration).deleteCoupon(coupon_oid, options)(this.fetch, this.basePath);
+    }
+
+    /**
+     * Delete coupons on the UltraCart account. 
+     * @summary Deletes multiple coupons
+     * @param {CouponDeletesRequest} coupon_delete_request Coupon oids to delete
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof CouponApi
+     */
+    public deleteCouponsByCode(coupon_delete_request: CouponDeletesRequest, options?: any) {
+        return CouponApiFp(this.configuration).deleteCouponsByCode(coupon_delete_request, options)(this.fetch, this.basePath);
+    }
+
+    /**
+     * Delete coupons on the UltraCart account. 
+     * @summary Deletes multiple coupons
+     * @param {CouponDeletesRequest} coupon_delete_request Coupon oids to delete
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof CouponApi
+     */
+    public deleteCouponsByOid(coupon_delete_request: CouponDeletesRequest, options?: any) {
+        return CouponApiFp(this.configuration).deleteCouponsByOid(coupon_delete_request, options)(this.fetch, this.basePath);
     }
 
     /**

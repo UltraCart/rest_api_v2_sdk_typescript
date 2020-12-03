@@ -5659,6 +5659,12 @@ export interface CouponCodesResponse {
  */
 export interface CouponDeletesRequest {
     /**
+     * Coupon codes
+     * @type {Array<string>}
+     * @memberof CouponDeletesRequest
+     */
+    coupon_codes?: Array<string>;
+    /**
      * Coupon oids
      * @type {Array<number>}
      * @memberof CouponDeletesRequest
@@ -27082,6 +27088,22 @@ export declare const CouponApiFetchParamCreator: (configuration?: Configuration)
      */
     deleteCoupon(coupon_oid: number, options?: any): FetchArgs;
     /**
+     * Delete coupons on the UltraCart account.
+     * @summary Deletes multiple coupons
+     * @param {CouponDeletesRequest} coupon_delete_request Coupon oids to delete
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    deleteCouponsByCode(coupon_delete_request: CouponDeletesRequest, options?: any): FetchArgs;
+    /**
+     * Delete coupons on the UltraCart account.
+     * @summary Deletes multiple coupons
+     * @param {CouponDeletesRequest} coupon_delete_request Coupon oids to delete
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    deleteCouponsByOid(coupon_delete_request: CouponDeletesRequest, options?: any): FetchArgs;
+    /**
      * Generate one time codes for a coupon
      * @summary Generates one time codes for a coupon
      * @param {number} coupon_oid The coupon oid to generate codes.
@@ -27190,6 +27212,22 @@ export declare const CouponApiFp: (configuration?: Configuration) => {
      */
     deleteCoupon(coupon_oid: number, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Response>;
     /**
+     * Delete coupons on the UltraCart account.
+     * @summary Deletes multiple coupons
+     * @param {CouponDeletesRequest} coupon_delete_request Coupon oids to delete
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    deleteCouponsByCode(coupon_delete_request: CouponDeletesRequest, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Response>;
+    /**
+     * Delete coupons on the UltraCart account.
+     * @summary Deletes multiple coupons
+     * @param {CouponDeletesRequest} coupon_delete_request Coupon oids to delete
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    deleteCouponsByOid(coupon_delete_request: CouponDeletesRequest, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Response>;
+    /**
      * Generate one time codes for a coupon
      * @summary Generates one time codes for a coupon
      * @param {number} coupon_oid The coupon oid to generate codes.
@@ -27297,6 +27335,22 @@ export declare const CouponApiFactory: (configuration?: Configuration, fetch?: F
      * @throws {RequiredError}
      */
     deleteCoupon(coupon_oid: number, options?: any): Promise<Response>;
+    /**
+     * Delete coupons on the UltraCart account.
+     * @summary Deletes multiple coupons
+     * @param {CouponDeletesRequest} coupon_delete_request Coupon oids to delete
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    deleteCouponsByCode(coupon_delete_request: CouponDeletesRequest, options?: any): Promise<Response>;
+    /**
+     * Delete coupons on the UltraCart account.
+     * @summary Deletes multiple coupons
+     * @param {CouponDeletesRequest} coupon_delete_request Coupon oids to delete
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    deleteCouponsByOid(coupon_delete_request: CouponDeletesRequest, options?: any): Promise<Response>;
     /**
      * Generate one time codes for a coupon
      * @summary Generates one time codes for a coupon
@@ -27407,6 +27461,24 @@ export interface CouponApiInterface {
      * @memberof CouponApiInterface
      */
     deleteCoupon(coupon_oid: number, options?: any): Promise<{}>;
+    /**
+     * Delete coupons on the UltraCart account.
+     * @summary Deletes multiple coupons
+     * @param {CouponDeletesRequest} coupon_delete_request Coupon oids to delete
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof CouponApiInterface
+     */
+    deleteCouponsByCode(coupon_delete_request: CouponDeletesRequest, options?: any): Promise<{}>;
+    /**
+     * Delete coupons on the UltraCart account.
+     * @summary Deletes multiple coupons
+     * @param {CouponDeletesRequest} coupon_delete_request Coupon oids to delete
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof CouponApiInterface
+     */
+    deleteCouponsByOid(coupon_delete_request: CouponDeletesRequest, options?: any): Promise<{}>;
     /**
      * Generate one time codes for a coupon
      * @summary Generates one time codes for a coupon
@@ -27527,6 +27599,24 @@ export declare class CouponApi extends BaseAPI implements CouponApiInterface {
      * @memberof CouponApi
      */
     deleteCoupon(coupon_oid: number, options?: any): Promise<Response>;
+    /**
+     * Delete coupons on the UltraCart account.
+     * @summary Deletes multiple coupons
+     * @param {CouponDeletesRequest} coupon_delete_request Coupon oids to delete
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof CouponApi
+     */
+    deleteCouponsByCode(coupon_delete_request: CouponDeletesRequest, options?: any): Promise<Response>;
+    /**
+     * Delete coupons on the UltraCart account.
+     * @summary Deletes multiple coupons
+     * @param {CouponDeletesRequest} coupon_delete_request Coupon oids to delete
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof CouponApi
+     */
+    deleteCouponsByOid(coupon_delete_request: CouponDeletesRequest, options?: any): Promise<Response>;
     /**
      * Generate one time codes for a coupon
      * @summary Generates one time codes for a coupon
