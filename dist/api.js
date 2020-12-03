@@ -5174,7 +5174,7 @@ var CouponApiFp = function (configuration) {
                 if (basePath === void 0) { basePath = BASE_PATH; }
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(function (response) {
                     if (response.status >= 200 && response.status < 300) {
-                        return response.json();
+                        return response;
                     }
                     else {
                         throw response;
@@ -15052,6 +15052,59 @@ var StorefrontApiFetchParamCreator = function (configuration) {
         },
         /**
          *
+         * @summary Get all published versions for a library item.
+         * @param {number} library_item_oid
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getLibraryItemPublishedVersions: function (library_item_oid, options) {
+            if (options === void 0) { options = {}; }
+            // verify required parameter 'library_item_oid' is not null or undefined
+            if (library_item_oid === null || library_item_oid === undefined) {
+                throw new RequiredError('library_item_oid', 'Required parameter library_item_oid was null or undefined when calling getLibraryItemPublishedVersions.');
+            }
+            var localVarPath = "/storefront/code_library/{library_item_oid}/published_versions"
+                .replace("{" + "library_item_oid" + "}", encodeURIComponent(String(library_item_oid)));
+            var localVarUrlObj = url.parse(localVarPath, true);
+            var localVarRequestOptions = Object.assign({ method: 'GET' }, options);
+            var localVarHeaderParameter = {};
+            var localVarQueryParameter = {};
+            if (configuration && configuration.apiVersion) {
+                localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+            }
+            // authentication ultraCartBrowserApiKey required
+            if (configuration && configuration.apiKey) {
+                var localVarApiKeyValue = typeof configuration.apiKey === 'function'
+                    ? configuration.apiKey("x-ultracart-browser-key")
+                    : configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-browser-key"] = localVarApiKeyValue;
+            }
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+                var localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+                    ? configuration.accessToken("ultraCartOauth", ["storefront_read"])
+                    : configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                var localVarApiKeyValue = typeof configuration.apiKey === 'function'
+                    ? configuration.apiKey("x-ultracart-simple-key")
+                    : configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         *
          * @summary Get thumbnail parameters
          * @param {ThumbnailParametersRequest} thumbnail_parameters Thumbnail Parameters
          * @param {*} [options] Override http request option.
@@ -15888,14 +15941,19 @@ var StorefrontApiFetchParamCreator = function (configuration) {
          *
          * @summary Publish library item.
          * @param {number} library_item_oid
+         * @param {PublishLibraryItemRequest} publish_library_request Publish library item request
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        publishLibraryItem: function (library_item_oid, options) {
+        publishLibraryItem: function (library_item_oid, publish_library_request, options) {
             if (options === void 0) { options = {}; }
             // verify required parameter 'library_item_oid' is not null or undefined
             if (library_item_oid === null || library_item_oid === undefined) {
                 throw new RequiredError('library_item_oid', 'Required parameter library_item_oid was null or undefined when calling publishLibraryItem.');
+            }
+            // verify required parameter 'publish_library_request' is not null or undefined
+            if (publish_library_request === null || publish_library_request === undefined) {
+                throw new RequiredError('publish_library_request', 'Required parameter publish_library_request was null or undefined when calling publishLibraryItem.');
             }
             var localVarPath = "/storefront/code_library/{library_item_oid}/publish"
                 .replace("{" + "library_item_oid" + "}", encodeURIComponent(String(library_item_oid)));
@@ -15928,10 +15986,13 @@ var StorefrontApiFetchParamCreator = function (configuration) {
                     : configuration.apiKey;
                 localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
             }
+            localVarHeaderParameter['Content-Type'] = 'application/json';
             localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
             // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
             delete localVarUrlObj.search;
             localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+            var needsSerialization = ("PublishLibraryItemRequest" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
+            localVarRequestOptions.body = needsSerialization ? JSON.stringify(publish_library_request || {}) : (publish_library_request || "");
             return {
                 url: url.format(localVarUrlObj),
                 options: localVarRequestOptions,
@@ -19422,6 +19483,28 @@ var StorefrontApiFp = function (configuration) {
         },
         /**
          *
+         * @summary Get all published versions for a library item.
+         * @param {number} library_item_oid
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getLibraryItemPublishedVersions: function (library_item_oid, options) {
+            var localVarFetchArgs = exports.StorefrontApiFetchParamCreator(configuration).getLibraryItemPublishedVersions(library_item_oid, options);
+            return function (fetch, basePath) {
+                if (fetch === void 0) { fetch = portableFetch; }
+                if (basePath === void 0) { basePath = BASE_PATH; }
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(function (response) {
+                    if (response.status >= 200 && response.status < 300) {
+                        return response.json();
+                    }
+                    else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
+         *
          * @summary Get thumbnail parameters
          * @param {ThumbnailParametersRequest} thumbnail_parameters Thumbnail Parameters
          * @param {*} [options] Override http request option.
@@ -19744,11 +19827,12 @@ var StorefrontApiFp = function (configuration) {
          *
          * @summary Publish library item.
          * @param {number} library_item_oid
+         * @param {PublishLibraryItemRequest} publish_library_request Publish library item request
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        publishLibraryItem: function (library_item_oid, options) {
-            var localVarFetchArgs = exports.StorefrontApiFetchParamCreator(configuration).publishLibraryItem(library_item_oid, options);
+        publishLibraryItem: function (library_item_oid, publish_library_request, options) {
+            var localVarFetchArgs = exports.StorefrontApiFetchParamCreator(configuration).publishLibraryItem(library_item_oid, publish_library_request, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -21243,6 +21327,16 @@ var StorefrontApiFactory = function (configuration, fetch, basePath) {
         },
         /**
          *
+         * @summary Get all published versions for a library item.
+         * @param {number} library_item_oid
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getLibraryItemPublishedVersions: function (library_item_oid, options) {
+            return exports.StorefrontApiFp(configuration).getLibraryItemPublishedVersions(library_item_oid, options)(fetch, basePath);
+        },
+        /**
+         *
          * @summary Get thumbnail parameters
          * @param {ThumbnailParametersRequest} thumbnail_parameters Thumbnail Parameters
          * @param {*} [options] Override http request option.
@@ -21397,11 +21491,12 @@ var StorefrontApiFactory = function (configuration, fetch, basePath) {
          *
          * @summary Publish library item.
          * @param {number} library_item_oid
+         * @param {PublishLibraryItemRequest} publish_library_request Publish library item request
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        publishLibraryItem: function (library_item_oid, options) {
-            return exports.StorefrontApiFp(configuration).publishLibraryItem(library_item_oid, options)(fetch, basePath);
+        publishLibraryItem: function (library_item_oid, publish_library_request, options) {
+            return exports.StorefrontApiFp(configuration).publishLibraryItem(library_item_oid, publish_library_request, options)(fetch, basePath);
         },
         /**
          *
@@ -22612,6 +22707,17 @@ var StorefrontApi = /** @class */ (function (_super) {
     };
     /**
      *
+     * @summary Get all published versions for a library item.
+     * @param {number} library_item_oid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof StorefrontApi
+     */
+    StorefrontApi.prototype.getLibraryItemPublishedVersions = function (library_item_oid, options) {
+        return exports.StorefrontApiFp(this.configuration).getLibraryItemPublishedVersions(library_item_oid, options)(this.fetch, this.basePath);
+    };
+    /**
+     *
      * @summary Get thumbnail parameters
      * @param {ThumbnailParametersRequest} thumbnail_parameters Thumbnail Parameters
      * @param {*} [options] Override http request option.
@@ -22780,12 +22886,13 @@ var StorefrontApi = /** @class */ (function (_super) {
      *
      * @summary Publish library item.
      * @param {number} library_item_oid
+     * @param {PublishLibraryItemRequest} publish_library_request Publish library item request
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof StorefrontApi
      */
-    StorefrontApi.prototype.publishLibraryItem = function (library_item_oid, options) {
-        return exports.StorefrontApiFp(this.configuration).publishLibraryItem(library_item_oid, options)(this.fetch, this.basePath);
+    StorefrontApi.prototype.publishLibraryItem = function (library_item_oid, publish_library_request, options) {
+        return exports.StorefrontApiFp(this.configuration).publishLibraryItem(library_item_oid, publish_library_request, options)(this.fetch, this.basePath);
     };
     /**
      *

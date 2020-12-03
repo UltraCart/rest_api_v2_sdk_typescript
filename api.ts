@@ -5796,6 +5796,20 @@ export interface CouponCodesResponse {
 /**
  * 
  * @export
+ * @interface CouponDeletesRequest
+ */
+export interface CouponDeletesRequest {
+    /**
+     * Coupon oids
+     * @type {Array<number>}
+     * @memberof CouponDeletesRequest
+     */
+    coupon_oids?: Array<number>;
+}
+
+/**
+ * 
+ * @export
  * @interface CouponDiscountItemWithItemPurchase
  */
 export interface CouponDiscountItemWithItemPurchase {
@@ -18466,6 +18480,12 @@ export interface LibraryItem {
      */
     published_from_library_item_oid?: number;
     /**
+     * 
+     * @type {LibraryItemPublishedMeta}
+     * @memberof LibraryItem
+     */
+    published_meta?: LibraryItemPublishedMeta;
+    /**
      * The source version when this item was published.  This allows for out-of-date alerts to be shown when there is a difference between source and published
      * @type {number}
      * @memberof LibraryItem
@@ -18663,6 +18683,56 @@ export interface LibraryItemEmail {
      * @memberof LibraryItemEmail
      */
     library_item_oid?: number;
+}
+
+/**
+ * 
+ * @export
+ * @interface LibraryItemPublishedMeta
+ */
+export interface LibraryItemPublishedMeta {
+    /**
+     * The number of published versions a source item has, or zero if this item is not a source or is private
+     * @type {number}
+     * @memberof LibraryItemPublishedMeta
+     */
+    count_of_versions?: number;
+    /**
+     * The oid pointing to the most recent published version, or zero if this is not a published source item.
+     * @type {number}
+     * @memberof LibraryItemPublishedMeta
+     */
+    library_item_published_oid?: number;
+    /**
+     * The oid pointing to the review data if this is a source library item and currently under review
+     * @type {number}
+     * @memberof LibraryItemPublishedMeta
+     */
+    library_item_review_oid?: number;
+    /**
+     * True if this is a source item and is under review and was rejected.
+     * @type {boolean}
+     * @memberof LibraryItemPublishedMeta
+     */
+    rejected?: boolean;
+    /**
+     * The reason for rejection if this item is a source item, is under review, and was rejected.  For all other cases, this value will be null or missing.
+     * @type {string}
+     * @memberof LibraryItemPublishedMeta
+     */
+    rejected_reason?: string;
+    /**
+     * If this library item is a source item and it is published, this is the most recent release version number
+     * @type {number}
+     * @memberof LibraryItemPublishedMeta
+     */
+    release_version?: number;
+    /**
+     * True if this library item is a source item and is currently under review
+     * @type {boolean}
+     * @memberof LibraryItemPublishedMeta
+     */
+    under_review?: boolean;
 }
 
 /**
@@ -23184,6 +23254,20 @@ export interface Property {
      * @memberof Property
      */
     value?: string;
+}
+
+/**
+ * 
+ * @export
+ * @interface PublishLibraryItemRequest
+ */
+export interface PublishLibraryItemRequest {
+    /**
+     * Release notes for this release version.
+     * @type {string}
+     * @memberof PublishLibraryItemRequest
+     */
+    release_notes?: string;
 }
 
 /**
@@ -30721,12 +30805,12 @@ export const CouponApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        deleteCoupon(coupon_oid: number, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<CouponResponse> {
+        deleteCoupon(coupon_oid: number, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Response> {
             const localVarFetchArgs = CouponApiFetchParamCreator(configuration).deleteCoupon(coupon_oid, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
                     if (response.status >= 200 && response.status < 300) {
-                        return response.json();
+                        return response;
                     } else {
                         throw response;
                     }
@@ -31074,7 +31158,7 @@ export interface CouponApiInterface {
      * @throws {RequiredError}
      * @memberof CouponApiInterface
      */
-    deleteCoupon(coupon_oid: number, options?: any): Promise<CouponResponse>;
+    deleteCoupon(coupon_oid: number, options?: any): Promise<{}>;
 
     /**
      * Generate one time codes for a coupon 
@@ -42159,6 +42243,66 @@ export const StorefrontApiFetchParamCreator = function (configuration?: Configur
         },
         /**
          * 
+         * @summary Get all published versions for a library item.
+         * @param {number} library_item_oid 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getLibraryItemPublishedVersions(library_item_oid: number, options: any = {}): FetchArgs {
+            // verify required parameter 'library_item_oid' is not null or undefined
+            if (library_item_oid === null || library_item_oid === undefined) {
+                throw new RequiredError('library_item_oid','Required parameter library_item_oid was null or undefined when calling getLibraryItemPublishedVersions.');
+            }
+            const localVarPath = `/storefront/code_library/{library_item_oid}/published_versions`
+                .replace(`{${"library_item_oid"}}`, encodeURIComponent(String(library_item_oid)));
+            const localVarUrlObj = url.parse(localVarPath, true);
+            const localVarRequestOptions = Object.assign({ method: 'GET' }, options);
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+    if(configuration && configuration.apiVersion) {
+      localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+    }
+
+
+
+            // authentication ultraCartBrowserApiKey required
+            if (configuration && configuration.apiKey) {
+                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
+					? configuration.apiKey("x-ultracart-browser-key")
+					: configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-browser-key"] = localVarApiKeyValue;
+            }
+
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+				const localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+					? configuration.accessToken("ultraCartOauth", ["storefront_read"])
+					: configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
+					? configuration.apiKey("x-ultracart-simple-key")
+					: configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
          * @summary Get thumbnail parameters
          * @param {ThumbnailParametersRequest} thumbnail_parameters Thumbnail Parameters
          * @param {*} [options] Override http request option.
@@ -43103,13 +43247,18 @@ export const StorefrontApiFetchParamCreator = function (configuration?: Configur
          * 
          * @summary Publish library item.
          * @param {number} library_item_oid 
+         * @param {PublishLibraryItemRequest} publish_library_request Publish library item request
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        publishLibraryItem(library_item_oid: number, options: any = {}): FetchArgs {
+        publishLibraryItem(library_item_oid: number, publish_library_request: PublishLibraryItemRequest, options: any = {}): FetchArgs {
             // verify required parameter 'library_item_oid' is not null or undefined
             if (library_item_oid === null || library_item_oid === undefined) {
                 throw new RequiredError('library_item_oid','Required parameter library_item_oid was null or undefined when calling publishLibraryItem.');
+            }
+            // verify required parameter 'publish_library_request' is not null or undefined
+            if (publish_library_request === null || publish_library_request === undefined) {
+                throw new RequiredError('publish_library_request','Required parameter publish_library_request was null or undefined when calling publishLibraryItem.');
             }
             const localVarPath = `/storefront/code_library/{library_item_oid}/publish`
                 .replace(`{${"library_item_oid"}}`, encodeURIComponent(String(library_item_oid)));
@@ -43149,10 +43298,14 @@ export const StorefrontApiFetchParamCreator = function (configuration?: Configur
                 localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
             }
 
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
             localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
             // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
             delete localVarUrlObj.search;
             localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+            const needsSerialization = (<any>"PublishLibraryItemRequest" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
+            localVarRequestOptions.body =  needsSerialization ? JSON.stringify(publish_library_request || {}) : (publish_library_request || "");
 
             return {
                 url: url.format(localVarUrlObj),
@@ -46673,6 +46826,25 @@ export const StorefrontApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
+         * @summary Get all published versions for a library item.
+         * @param {number} library_item_oid 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getLibraryItemPublishedVersions(library_item_oid: number, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<LibraryItemResponse> {
+            const localVarFetchArgs = StorefrontApiFetchParamCreator(configuration).getLibraryItemPublishedVersions(library_item_oid, options);
+            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+                    if (response.status >= 200 && response.status < 300) {
+                        return response.json();
+                    } else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
+         * 
          * @summary Get thumbnail parameters
          * @param {ThumbnailParametersRequest} thumbnail_parameters Thumbnail Parameters
          * @param {*} [options] Override http request option.
@@ -46953,11 +47125,12 @@ export const StorefrontApiFp = function(configuration?: Configuration) {
          * 
          * @summary Publish library item.
          * @param {number} library_item_oid 
+         * @param {PublishLibraryItemRequest} publish_library_request Publish library item request
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        publishLibraryItem(library_item_oid: number, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<LibraryItemResponse> {
-            const localVarFetchArgs = StorefrontApiFetchParamCreator(configuration).publishLibraryItem(library_item_oid, options);
+        publishLibraryItem(library_item_oid: number, publish_library_request: PublishLibraryItemRequest, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<LibraryItemResponse> {
+            const localVarFetchArgs = StorefrontApiFetchParamCreator(configuration).publishLibraryItem(library_item_oid, publish_library_request, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
                     if (response.status >= 200 && response.status < 300) {
@@ -48362,6 +48535,16 @@ export const StorefrontApiFactory = function (configuration?: Configuration, fet
         },
         /**
          * 
+         * @summary Get all published versions for a library item.
+         * @param {number} library_item_oid 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getLibraryItemPublishedVersions(library_item_oid: number, options?: any) {
+            return StorefrontApiFp(configuration).getLibraryItemPublishedVersions(library_item_oid, options)(fetch, basePath);
+        },
+        /**
+         * 
          * @summary Get thumbnail parameters
          * @param {ThumbnailParametersRequest} thumbnail_parameters Thumbnail Parameters
          * @param {*} [options] Override http request option.
@@ -48516,11 +48699,12 @@ export const StorefrontApiFactory = function (configuration?: Configuration, fet
          * 
          * @summary Publish library item.
          * @param {number} library_item_oid 
+         * @param {PublishLibraryItemRequest} publish_library_request Publish library item request
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        publishLibraryItem(library_item_oid: number, options?: any) {
-            return StorefrontApiFp(configuration).publishLibraryItem(library_item_oid, options)(fetch, basePath);
+        publishLibraryItem(library_item_oid: number, publish_library_request: PublishLibraryItemRequest, options?: any) {
+            return StorefrontApiFp(configuration).publishLibraryItem(library_item_oid, publish_library_request, options)(fetch, basePath);
         },
         /**
          * 
@@ -49655,6 +49839,16 @@ export interface StorefrontApiInterface {
 
     /**
      * 
+     * @summary Get all published versions for a library item.
+     * @param {number} library_item_oid 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof StorefrontApiInterface
+     */
+    getLibraryItemPublishedVersions(library_item_oid: number, options?: any): Promise<LibraryItemResponse>;
+
+    /**
+     * 
      * @summary Get thumbnail parameters
      * @param {ThumbnailParametersRequest} thumbnail_parameters Thumbnail Parameters
      * @param {*} [options] Override http request option.
@@ -49809,11 +50003,12 @@ export interface StorefrontApiInterface {
      * 
      * @summary Publish library item.
      * @param {number} library_item_oid 
+     * @param {PublishLibraryItemRequest} publish_library_request Publish library item request
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof StorefrontApiInterface
      */
-    publishLibraryItem(library_item_oid: number, options?: any): Promise<LibraryItemResponse>;
+    publishLibraryItem(library_item_oid: number, publish_library_request: PublishLibraryItemRequest, options?: any): Promise<LibraryItemResponse>;
 
     /**
      * 
@@ -51090,6 +51285,18 @@ export class StorefrontApi extends BaseAPI implements StorefrontApiInterface {
 
     /**
      * 
+     * @summary Get all published versions for a library item.
+     * @param {number} library_item_oid 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof StorefrontApi
+     */
+    public getLibraryItemPublishedVersions(library_item_oid: number, options?: any) {
+        return StorefrontApiFp(this.configuration).getLibraryItemPublishedVersions(library_item_oid, options)(this.fetch, this.basePath);
+    }
+
+    /**
+     * 
      * @summary Get thumbnail parameters
      * @param {ThumbnailParametersRequest} thumbnail_parameters Thumbnail Parameters
      * @param {*} [options] Override http request option.
@@ -51272,12 +51479,13 @@ export class StorefrontApi extends BaseAPI implements StorefrontApiInterface {
      * 
      * @summary Publish library item.
      * @param {number} library_item_oid 
+     * @param {PublishLibraryItemRequest} publish_library_request Publish library item request
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof StorefrontApi
      */
-    public publishLibraryItem(library_item_oid: number, options?: any) {
-        return StorefrontApiFp(this.configuration).publishLibraryItem(library_item_oid, options)(this.fetch, this.basePath);
+    public publishLibraryItem(library_item_oid: number, publish_library_request: PublishLibraryItemRequest, options?: any) {
+        return StorefrontApiFp(this.configuration).publishLibraryItem(library_item_oid, publish_library_request, options)(this.fetch, this.basePath);
     }
 
     /**

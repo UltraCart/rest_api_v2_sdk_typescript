@@ -5655,6 +5655,19 @@ export interface CouponCodesResponse {
 /**
  *
  * @export
+ * @interface CouponDeletesRequest
+ */
+export interface CouponDeletesRequest {
+    /**
+     * Coupon oids
+     * @type {Array<number>}
+     * @memberof CouponDeletesRequest
+     */
+    coupon_oids?: Array<number>;
+}
+/**
+ *
+ * @export
  * @interface CouponDiscountItemWithItemPurchase
  */
 export interface CouponDiscountItemWithItemPurchase {
@@ -18063,6 +18076,12 @@ export interface LibraryItem {
      */
     published_from_library_item_oid?: number;
     /**
+     *
+     * @type {LibraryItemPublishedMeta}
+     * @memberof LibraryItem
+     */
+    published_meta?: LibraryItemPublishedMeta;
+    /**
      * The source version when this item was published.  This allows for out-of-date alerts to be shown when there is a difference between source and published
      * @type {number}
      * @memberof LibraryItem
@@ -18257,6 +18276,55 @@ export interface LibraryItemEmail {
      * @memberof LibraryItemEmail
      */
     library_item_oid?: number;
+}
+/**
+ *
+ * @export
+ * @interface LibraryItemPublishedMeta
+ */
+export interface LibraryItemPublishedMeta {
+    /**
+     * The number of published versions a source item has, or zero if this item is not a source or is private
+     * @type {number}
+     * @memberof LibraryItemPublishedMeta
+     */
+    count_of_versions?: number;
+    /**
+     * The oid pointing to the most recent published version, or zero if this is not a published source item.
+     * @type {number}
+     * @memberof LibraryItemPublishedMeta
+     */
+    library_item_published_oid?: number;
+    /**
+     * The oid pointing to the review data if this is a source library item and currently under review
+     * @type {number}
+     * @memberof LibraryItemPublishedMeta
+     */
+    library_item_review_oid?: number;
+    /**
+     * True if this is a source item and is under review and was rejected.
+     * @type {boolean}
+     * @memberof LibraryItemPublishedMeta
+     */
+    rejected?: boolean;
+    /**
+     * The reason for rejection if this item is a source item, is under review, and was rejected.  For all other cases, this value will be null or missing.
+     * @type {string}
+     * @memberof LibraryItemPublishedMeta
+     */
+    rejected_reason?: string;
+    /**
+     * If this library item is a source item and it is published, this is the most recent release version number
+     * @type {number}
+     * @memberof LibraryItemPublishedMeta
+     */
+    release_version?: number;
+    /**
+     * True if this library item is a source item and is currently under review
+     * @type {boolean}
+     * @memberof LibraryItemPublishedMeta
+     */
+    under_review?: boolean;
 }
 /**
  *
@@ -22698,6 +22766,19 @@ export interface Property {
 /**
  *
  * @export
+ * @interface PublishLibraryItemRequest
+ */
+export interface PublishLibraryItemRequest {
+    /**
+     * Release notes for this release version.
+     * @type {string}
+     * @memberof PublishLibraryItemRequest
+     */
+    release_notes?: string;
+}
+/**
+ *
+ * @export
  * @interface RegisterAffiliateClickRequest
  */
 export interface RegisterAffiliateClickRequest {
@@ -27107,7 +27188,7 @@ export declare const CouponApiFp: (configuration?: Configuration) => {
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    deleteCoupon(coupon_oid: number, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<CouponResponse>;
+    deleteCoupon(coupon_oid: number, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Response>;
     /**
      * Generate one time codes for a coupon
      * @summary Generates one time codes for a coupon
@@ -27215,7 +27296,7 @@ export declare const CouponApiFactory: (configuration?: Configuration, fetch?: F
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    deleteCoupon(coupon_oid: number, options?: any): Promise<CouponResponse>;
+    deleteCoupon(coupon_oid: number, options?: any): Promise<Response>;
     /**
      * Generate one time codes for a coupon
      * @summary Generates one time codes for a coupon
@@ -27325,7 +27406,7 @@ export interface CouponApiInterface {
      * @throws {RequiredError}
      * @memberof CouponApiInterface
      */
-    deleteCoupon(coupon_oid: number, options?: any): Promise<CouponResponse>;
+    deleteCoupon(coupon_oid: number, options?: any): Promise<{}>;
     /**
      * Generate one time codes for a coupon
      * @summary Generates one time codes for a coupon
@@ -27445,7 +27526,7 @@ export declare class CouponApi extends BaseAPI implements CouponApiInterface {
      * @throws {RequiredError}
      * @memberof CouponApi
      */
-    deleteCoupon(coupon_oid: number, options?: any): Promise<CouponResponse>;
+    deleteCoupon(coupon_oid: number, options?: any): Promise<Response>;
     /**
      * Generate one time codes for a coupon
      * @summary Generates one time codes for a coupon
@@ -30884,6 +30965,14 @@ export declare const StorefrontApiFetchParamCreator: (configuration?: Configurat
     getLibraryItem(library_item_oid: number, options?: any): FetchArgs;
     /**
      *
+     * @summary Get all published versions for a library item.
+     * @param {number} library_item_oid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getLibraryItemPublishedVersions(library_item_oid: number, options?: any): FetchArgs;
+    /**
+     *
      * @summary Get thumbnail parameters
      * @param {ThumbnailParametersRequest} thumbnail_parameters Thumbnail Parameters
      * @param {*} [options] Override http request option.
@@ -31010,10 +31099,11 @@ export declare const StorefrontApiFetchParamCreator: (configuration?: Configurat
      *
      * @summary Publish library item.
      * @param {number} library_item_oid
+     * @param {PublishLibraryItemRequest} publish_library_request Publish library item request
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    publishLibraryItem(library_item_oid: number, options?: any): FetchArgs;
+    publishLibraryItem(library_item_oid: number, publish_library_request: PublishLibraryItemRequest, options?: any): FetchArgs;
     /**
      *
      * @summary Purchase public library item, which creates a copy of the item in your personal code library
@@ -31944,6 +32034,14 @@ export declare const StorefrontApiFp: (configuration?: Configuration) => {
     getLibraryItem(library_item_oid: number, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<LibraryItemResponse>;
     /**
      *
+     * @summary Get all published versions for a library item.
+     * @param {number} library_item_oid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getLibraryItemPublishedVersions(library_item_oid: number, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<LibraryItemResponse>;
+    /**
+     *
      * @summary Get thumbnail parameters
      * @param {ThumbnailParametersRequest} thumbnail_parameters Thumbnail Parameters
      * @param {*} [options] Override http request option.
@@ -32070,10 +32168,11 @@ export declare const StorefrontApiFp: (configuration?: Configuration) => {
      *
      * @summary Publish library item.
      * @param {number} library_item_oid
+     * @param {PublishLibraryItemRequest} publish_library_request Publish library item request
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    publishLibraryItem(library_item_oid: number, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<LibraryItemResponse>;
+    publishLibraryItem(library_item_oid: number, publish_library_request: PublishLibraryItemRequest, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<LibraryItemResponse>;
     /**
      *
      * @summary Purchase public library item, which creates a copy of the item in your personal code library
@@ -33004,6 +33103,14 @@ export declare const StorefrontApiFactory: (configuration?: Configuration, fetch
     getLibraryItem(library_item_oid: number, options?: any): Promise<LibraryItemResponse>;
     /**
      *
+     * @summary Get all published versions for a library item.
+     * @param {number} library_item_oid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getLibraryItemPublishedVersions(library_item_oid: number, options?: any): Promise<LibraryItemResponse>;
+    /**
+     *
      * @summary Get thumbnail parameters
      * @param {ThumbnailParametersRequest} thumbnail_parameters Thumbnail Parameters
      * @param {*} [options] Override http request option.
@@ -33130,10 +33237,11 @@ export declare const StorefrontApiFactory: (configuration?: Configuration, fetch
      *
      * @summary Publish library item.
      * @param {number} library_item_oid
+     * @param {PublishLibraryItemRequest} publish_library_request Publish library item request
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    publishLibraryItem(library_item_oid: number, options?: any): Promise<LibraryItemResponse>;
+    publishLibraryItem(library_item_oid: number, publish_library_request: PublishLibraryItemRequest, options?: any): Promise<LibraryItemResponse>;
     /**
      *
      * @summary Purchase public library item, which creates a copy of the item in your personal code library
@@ -34136,6 +34244,15 @@ export interface StorefrontApiInterface {
     getLibraryItem(library_item_oid: number, options?: any): Promise<LibraryItemResponse>;
     /**
      *
+     * @summary Get all published versions for a library item.
+     * @param {number} library_item_oid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof StorefrontApiInterface
+     */
+    getLibraryItemPublishedVersions(library_item_oid: number, options?: any): Promise<LibraryItemResponse>;
+    /**
+     *
      * @summary Get thumbnail parameters
      * @param {ThumbnailParametersRequest} thumbnail_parameters Thumbnail Parameters
      * @param {*} [options] Override http request option.
@@ -34276,11 +34393,12 @@ export interface StorefrontApiInterface {
      *
      * @summary Publish library item.
      * @param {number} library_item_oid
+     * @param {PublishLibraryItemRequest} publish_library_request Publish library item request
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof StorefrontApiInterface
      */
-    publishLibraryItem(library_item_oid: number, options?: any): Promise<LibraryItemResponse>;
+    publishLibraryItem(library_item_oid: number, publish_library_request: PublishLibraryItemRequest, options?: any): Promise<LibraryItemResponse>;
     /**
      *
      * @summary Purchase public library item, which creates a copy of the item in your personal code library
@@ -35313,6 +35431,15 @@ export declare class StorefrontApi extends BaseAPI implements StorefrontApiInter
     getLibraryItem(library_item_oid: number, options?: any): Promise<LibraryItemResponse>;
     /**
      *
+     * @summary Get all published versions for a library item.
+     * @param {number} library_item_oid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof StorefrontApi
+     */
+    getLibraryItemPublishedVersions(library_item_oid: number, options?: any): Promise<LibraryItemResponse>;
+    /**
+     *
      * @summary Get thumbnail parameters
      * @param {ThumbnailParametersRequest} thumbnail_parameters Thumbnail Parameters
      * @param {*} [options] Override http request option.
@@ -35453,11 +35580,12 @@ export declare class StorefrontApi extends BaseAPI implements StorefrontApiInter
      *
      * @summary Publish library item.
      * @param {number} library_item_oid
+     * @param {PublishLibraryItemRequest} publish_library_request Publish library item request
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof StorefrontApi
      */
-    publishLibraryItem(library_item_oid: number, options?: any): Promise<LibraryItemResponse>;
+    publishLibraryItem(library_item_oid: number, publish_library_request: PublishLibraryItemRequest, options?: any): Promise<LibraryItemResponse>;
     /**
      *
      * @summary Purchase public library item, which creates a copy of the item in your personal code library
