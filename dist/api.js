@@ -5247,6 +5247,60 @@ var CouponApiFetchParamCreator = function (configuration) {
                 options: localVarRequestOptions,
             };
         },
+        /**
+         * Upload one-time codes for a coupon
+         * @summary Upload one-time codes for a coupon
+         * @param {number} coupon_oid The coupon oid to associate with the provided one-time codes.
+         * @param {UploadCouponCodesRequest} upload_coupon_codes_request One-time coupon codes
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        uploadCouponCodes: function (coupon_oid, upload_coupon_codes_request, options) {
+            if (options === void 0) { options = {}; }
+            // verify required parameter 'coupon_oid' is not null or undefined
+            if (coupon_oid === null || coupon_oid === undefined) {
+                throw new RequiredError('coupon_oid', 'Required parameter coupon_oid was null or undefined when calling uploadCouponCodes.');
+            }
+            // verify required parameter 'upload_coupon_codes_request' is not null or undefined
+            if (upload_coupon_codes_request === null || upload_coupon_codes_request === undefined) {
+                throw new RequiredError('upload_coupon_codes_request', 'Required parameter upload_coupon_codes_request was null or undefined when calling uploadCouponCodes.');
+            }
+            var localVarPath = "/coupon/coupons/{coupon_oid}/upload_codes"
+                .replace("{" + "coupon_oid" + "}", encodeURIComponent(String(coupon_oid)));
+            var localVarUrlObj = url.parse(localVarPath, true);
+            var localVarRequestOptions = Object.assign({ method: 'POST' }, options);
+            var localVarHeaderParameter = {};
+            var localVarQueryParameter = {};
+            if (configuration && configuration.apiVersion) {
+                localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+            }
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+                var localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+                    ? configuration.accessToken("ultraCartOauth", ["coupon_write"])
+                    : configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                var localVarApiKeyValue = typeof configuration.apiKey === 'function'
+                    ? configuration.apiKey("x-ultracart-simple-key")
+                    : configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+            localVarHeaderParameter['Content-Type'] = 'application/json; charset=UTF-8';
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+            var needsSerialization = ("UploadCouponCodesRequest" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
+            localVarRequestOptions.body = needsSerialization ? JSON.stringify(upload_coupon_codes_request || {}) : (upload_coupon_codes_request || "");
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
     };
 };
 exports.CouponApiFetchParamCreator = CouponApiFetchParamCreator;
@@ -5542,6 +5596,29 @@ var CouponApiFp = function (configuration) {
                 });
             };
         },
+        /**
+         * Upload one-time codes for a coupon
+         * @summary Upload one-time codes for a coupon
+         * @param {number} coupon_oid The coupon oid to associate with the provided one-time codes.
+         * @param {UploadCouponCodesRequest} upload_coupon_codes_request One-time coupon codes
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        uploadCouponCodes: function (coupon_oid, upload_coupon_codes_request, options) {
+            var localVarFetchArgs = exports.CouponApiFetchParamCreator(configuration).uploadCouponCodes(coupon_oid, upload_coupon_codes_request, options);
+            return function (fetch, basePath) {
+                if (fetch === void 0) { fetch = portableFetch; }
+                if (basePath === void 0) { basePath = BASE_PATH; }
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(function (response) {
+                    if (response.status >= 200 && response.status < 300) {
+                        return response.json();
+                    }
+                    else {
+                        throw response;
+                    }
+                });
+            };
+        },
     };
 };
 exports.CouponApiFp = CouponApiFp;
@@ -5692,6 +5769,17 @@ var CouponApiFactory = function (configuration, fetch, basePath) {
          */
         updateCoupon: function (coupon, coupon_oid, _expand, options) {
             return exports.CouponApiFp(configuration).updateCoupon(coupon, coupon_oid, _expand, options)(fetch, basePath);
+        },
+        /**
+         * Upload one-time codes for a coupon
+         * @summary Upload one-time codes for a coupon
+         * @param {number} coupon_oid The coupon oid to associate with the provided one-time codes.
+         * @param {UploadCouponCodesRequest} upload_coupon_codes_request One-time coupon codes
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        uploadCouponCodes: function (coupon_oid, upload_coupon_codes_request, options) {
+            return exports.CouponApiFp(configuration).uploadCouponCodes(coupon_oid, upload_coupon_codes_request, options)(fetch, basePath);
         },
     };
 };
@@ -5860,6 +5948,18 @@ var CouponApi = /** @class */ (function (_super) {
      */
     CouponApi.prototype.updateCoupon = function (coupon, coupon_oid, _expand, options) {
         return exports.CouponApiFp(this.configuration).updateCoupon(coupon, coupon_oid, _expand, options)(this.fetch, this.basePath);
+    };
+    /**
+     * Upload one-time codes for a coupon
+     * @summary Upload one-time codes for a coupon
+     * @param {number} coupon_oid The coupon oid to associate with the provided one-time codes.
+     * @param {UploadCouponCodesRequest} upload_coupon_codes_request One-time coupon codes
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof CouponApi
+     */
+    CouponApi.prototype.uploadCouponCodes = function (coupon_oid, upload_coupon_codes_request, options) {
+        return exports.CouponApiFp(this.configuration).uploadCouponCodes(coupon_oid, upload_coupon_codes_request, options)(this.fetch, this.basePath);
     };
     return CouponApi;
 }(BaseAPI));
@@ -11990,6 +12090,59 @@ var StorefrontApiFetchParamCreator = function (configuration) {
                 throw new RequiredError('library_item_oid', 'Required parameter library_item_oid was null or undefined when calling deleteLibraryItem.');
             }
             var localVarPath = "/storefront/code_library/{library_item_oid}"
+                .replace("{" + "library_item_oid" + "}", encodeURIComponent(String(library_item_oid)));
+            var localVarUrlObj = url.parse(localVarPath, true);
+            var localVarRequestOptions = Object.assign({ method: 'DELETE' }, options);
+            var localVarHeaderParameter = {};
+            var localVarQueryParameter = {};
+            if (configuration && configuration.apiVersion) {
+                localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+            }
+            // authentication ultraCartBrowserApiKey required
+            if (configuration && configuration.apiKey) {
+                var localVarApiKeyValue = typeof configuration.apiKey === 'function'
+                    ? configuration.apiKey("x-ultracart-browser-key")
+                    : configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-browser-key"] = localVarApiKeyValue;
+            }
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+                var localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+                    ? configuration.accessToken("ultraCartOauth", ["storefront_write"])
+                    : configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                var localVarApiKeyValue = typeof configuration.apiKey === 'function'
+                    ? configuration.apiKey("x-ultracart-simple-key")
+                    : configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         *
+         * @summary Delete all published versions for a library item, including anything in review.
+         * @param {number} library_item_oid
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        deleteLibraryItemPublishedVersions: function (library_item_oid, options) {
+            if (options === void 0) { options = {}; }
+            // verify required parameter 'library_item_oid' is not null or undefined
+            if (library_item_oid === null || library_item_oid === undefined) {
+                throw new RequiredError('library_item_oid', 'Required parameter library_item_oid was null or undefined when calling deleteLibraryItemPublishedVersions.');
+            }
+            var localVarPath = "/storefront/code_library/{library_item_oid}/published_versions"
                 .replace("{" + "library_item_oid" + "}", encodeURIComponent(String(library_item_oid)));
             var localVarUrlObj = url.parse(localVarPath, true);
             var localVarRequestOptions = Object.assign({ method: 'DELETE' }, options);
@@ -18404,6 +18557,28 @@ var StorefrontApiFp = function (configuration) {
         },
         /**
          *
+         * @summary Delete all published versions for a library item, including anything in review.
+         * @param {number} library_item_oid
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        deleteLibraryItemPublishedVersions: function (library_item_oid, options) {
+            var localVarFetchArgs = exports.StorefrontApiFetchParamCreator(configuration).deleteLibraryItemPublishedVersions(library_item_oid, options);
+            return function (fetch, basePath) {
+                if (fetch === void 0) { fetch = portableFetch; }
+                if (basePath === void 0) { basePath = BASE_PATH; }
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(function (response) {
+                    if (response.status >= 200 && response.status < 300) {
+                        return response;
+                    }
+                    else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
+         *
          * @summary Duplicate library item.
          * @param {number} library_item_oid
          * @param {*} [options] Override http request option.
@@ -20908,6 +21083,16 @@ var StorefrontApiFactory = function (configuration, fetch, basePath) {
         },
         /**
          *
+         * @summary Delete all published versions for a library item, including anything in review.
+         * @param {number} library_item_oid
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        deleteLibraryItemPublishedVersions: function (library_item_oid, options) {
+            return exports.StorefrontApiFp(configuration).deleteLibraryItemPublishedVersions(library_item_oid, options)(fetch, basePath);
+        },
+        /**
+         *
          * @summary Duplicate library item.
          * @param {number} library_item_oid
          * @param {*} [options] Override http request option.
@@ -22230,6 +22415,17 @@ var StorefrontApi = /** @class */ (function (_super) {
      */
     StorefrontApi.prototype.deleteLibraryItem = function (library_item_oid, options) {
         return exports.StorefrontApiFp(this.configuration).deleteLibraryItem(library_item_oid, options)(this.fetch, this.basePath);
+    };
+    /**
+     *
+     * @summary Delete all published versions for a library item, including anything in review.
+     * @param {number} library_item_oid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof StorefrontApi
+     */
+    StorefrontApi.prototype.deleteLibraryItemPublishedVersions = function (library_item_oid, options) {
+        return exports.StorefrontApiFp(this.configuration).deleteLibraryItemPublishedVersions(library_item_oid, options)(this.fetch, this.basePath);
     };
     /**
      *

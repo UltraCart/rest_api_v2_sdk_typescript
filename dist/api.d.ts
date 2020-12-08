@@ -24346,6 +24346,92 @@ export interface UltraCartConfig {
 /**
  *
  * @export
+ * @interface UploadCouponCodesRequest
+ */
+export interface UploadCouponCodesRequest {
+    /**
+     * Coupon codes
+     * @type {Array<string>}
+     * @memberof UploadCouponCodesRequest
+     */
+    coupon_codes?: Array<string>;
+    /**
+     *
+     * @type {Error}
+     * @memberof UploadCouponCodesRequest
+     */
+    error?: Error;
+    /**
+     *
+     * @type {ResponseMetadata}
+     * @memberof UploadCouponCodesRequest
+     */
+    metadata?: ResponseMetadata;
+    /**
+     * Indicates if API call was successful
+     * @type {boolean}
+     * @memberof UploadCouponCodesRequest
+     */
+    success?: boolean;
+    /**
+     *
+     * @type {Warning}
+     * @memberof UploadCouponCodesRequest
+     */
+    warning?: Warning;
+}
+/**
+ *
+ * @export
+ * @interface UploadCouponCodesResponse
+ */
+export interface UploadCouponCodesResponse {
+    /**
+     * Duplicate codes
+     * @type {Array<string>}
+     * @memberof UploadCouponCodesResponse
+     */
+    duplicate_codes?: Array<string>;
+    /**
+     *
+     * @type {Error}
+     * @memberof UploadCouponCodesResponse
+     */
+    error?: Error;
+    /**
+     *
+     * @type {ResponseMetadata}
+     * @memberof UploadCouponCodesResponse
+     */
+    metadata?: ResponseMetadata;
+    /**
+     * Rejected codes
+     * @type {Array<string>}
+     * @memberof UploadCouponCodesResponse
+     */
+    rejected_codes?: Array<string>;
+    /**
+     * Indicates if API call was successful
+     * @type {boolean}
+     * @memberof UploadCouponCodesResponse
+     */
+    success?: boolean;
+    /**
+     * Uploaded codes
+     * @type {Array<string>}
+     * @memberof UploadCouponCodesResponse
+     */
+    uploaded_codes?: Array<string>;
+    /**
+     *
+     * @type {Warning}
+     * @memberof UploadCouponCodesResponse
+     */
+    warning?: Warning;
+}
+/**
+ *
+ * @export
  * @interface User
  */
 export interface User {
@@ -27197,6 +27283,15 @@ export declare const CouponApiFetchParamCreator: (configuration?: Configuration)
      * @throws {RequiredError}
      */
     updateCoupon(coupon: Coupon, coupon_oid: number, _expand?: string, options?: any): FetchArgs;
+    /**
+     * Upload one-time codes for a coupon
+     * @summary Upload one-time codes for a coupon
+     * @param {number} coupon_oid The coupon oid to associate with the provided one-time codes.
+     * @param {UploadCouponCodesRequest} upload_coupon_codes_request One-time coupon codes
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    uploadCouponCodes(coupon_oid: number, upload_coupon_codes_request: UploadCouponCodesRequest, options?: any): FetchArgs;
 };
 /**
  * CouponApi - functional programming interface
@@ -27321,6 +27416,15 @@ export declare const CouponApiFp: (configuration?: Configuration) => {
      * @throws {RequiredError}
      */
     updateCoupon(coupon: Coupon, coupon_oid: number, _expand?: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<CouponResponse>;
+    /**
+     * Upload one-time codes for a coupon
+     * @summary Upload one-time codes for a coupon
+     * @param {number} coupon_oid The coupon oid to associate with the provided one-time codes.
+     * @param {UploadCouponCodesRequest} upload_coupon_codes_request One-time coupon codes
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    uploadCouponCodes(coupon_oid: number, upload_coupon_codes_request: UploadCouponCodesRequest, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<UploadCouponCodesResponse>;
 };
 /**
  * CouponApi - factory interface
@@ -27445,6 +27549,15 @@ export declare const CouponApiFactory: (configuration?: Configuration, fetch?: F
      * @throws {RequiredError}
      */
     updateCoupon(coupon: Coupon, coupon_oid: number, _expand?: string, options?: any): Promise<CouponResponse>;
+    /**
+     * Upload one-time codes for a coupon
+     * @summary Upload one-time codes for a coupon
+     * @param {number} coupon_oid The coupon oid to associate with the provided one-time codes.
+     * @param {UploadCouponCodesRequest} upload_coupon_codes_request One-time coupon codes
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    uploadCouponCodes(coupon_oid: number, upload_coupon_codes_request: UploadCouponCodesRequest, options?: any): Promise<UploadCouponCodesResponse>;
 };
 /**
  * CouponApi - interface
@@ -27582,6 +27695,16 @@ export interface CouponApiInterface {
      * @memberof CouponApiInterface
      */
     updateCoupon(coupon: Coupon, coupon_oid: number, _expand?: string, options?: any): Promise<CouponResponse>;
+    /**
+     * Upload one-time codes for a coupon
+     * @summary Upload one-time codes for a coupon
+     * @param {number} coupon_oid The coupon oid to associate with the provided one-time codes.
+     * @param {UploadCouponCodesRequest} upload_coupon_codes_request One-time coupon codes
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof CouponApiInterface
+     */
+    uploadCouponCodes(coupon_oid: number, upload_coupon_codes_request: UploadCouponCodesRequest, options?: any): Promise<UploadCouponCodesResponse>;
 }
 /**
  * CouponApi - object-oriented interface
@@ -27720,6 +27843,16 @@ export declare class CouponApi extends BaseAPI implements CouponApiInterface {
      * @memberof CouponApi
      */
     updateCoupon(coupon: Coupon, coupon_oid: number, _expand?: string, options?: any): Promise<CouponResponse>;
+    /**
+     * Upload one-time codes for a coupon
+     * @summary Upload one-time codes for a coupon
+     * @param {number} coupon_oid The coupon oid to associate with the provided one-time codes.
+     * @param {UploadCouponCodesRequest} upload_coupon_codes_request One-time coupon codes
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof CouponApi
+     */
+    uploadCouponCodes(coupon_oid: number, upload_coupon_codes_request: UploadCouponCodesRequest, options?: any): Promise<UploadCouponCodesResponse>;
 }
 /**
  * CustomerApi - fetch parameter creator
@@ -30564,6 +30697,14 @@ export declare const StorefrontApiFetchParamCreator: (configuration?: Configurat
     deleteLibraryItem(library_item_oid: number, options?: any): FetchArgs;
     /**
      *
+     * @summary Delete all published versions for a library item, including anything in review.
+     * @param {number} library_item_oid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    deleteLibraryItemPublishedVersions(library_item_oid: number, options?: any): FetchArgs;
+    /**
+     *
      * @summary Duplicate library item.
      * @param {number} library_item_oid
      * @param {*} [options] Override http request option.
@@ -31633,6 +31774,14 @@ export declare const StorefrontApiFp: (configuration?: Configuration) => {
     deleteLibraryItem(library_item_oid: number, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Response>;
     /**
      *
+     * @summary Delete all published versions for a library item, including anything in review.
+     * @param {number} library_item_oid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    deleteLibraryItemPublishedVersions(library_item_oid: number, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Response>;
+    /**
+     *
      * @summary Duplicate library item.
      * @param {number} library_item_oid
      * @param {*} [options] Override http request option.
@@ -32129,7 +32278,7 @@ export declare const StorefrontApiFp: (configuration?: Configuration) => {
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getLibraryItemPublishedVersions(library_item_oid: number, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<LibraryItemResponse>;
+    getLibraryItemPublishedVersions(library_item_oid: number, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<LibraryItemsResponse>;
     /**
      *
      * @summary Get thumbnail parameters
@@ -32702,6 +32851,14 @@ export declare const StorefrontApiFactory: (configuration?: Configuration, fetch
     deleteLibraryItem(library_item_oid: number, options?: any): Promise<Response>;
     /**
      *
+     * @summary Delete all published versions for a library item, including anything in review.
+     * @param {number} library_item_oid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    deleteLibraryItemPublishedVersions(library_item_oid: number, options?: any): Promise<Response>;
+    /**
+     *
      * @summary Duplicate library item.
      * @param {number} library_item_oid
      * @param {*} [options] Override http request option.
@@ -33198,7 +33355,7 @@ export declare const StorefrontApiFactory: (configuration?: Configuration, fetch
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getLibraryItemPublishedVersions(library_item_oid: number, options?: any): Promise<LibraryItemResponse>;
+    getLibraryItemPublishedVersions(library_item_oid: number, options?: any): Promise<LibraryItemsResponse>;
     /**
      *
      * @summary Get thumbnail parameters
@@ -33788,6 +33945,15 @@ export interface StorefrontApiInterface {
     deleteLibraryItem(library_item_oid: number, options?: any): Promise<{}>;
     /**
      *
+     * @summary Delete all published versions for a library item, including anything in review.
+     * @param {number} library_item_oid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof StorefrontApiInterface
+     */
+    deleteLibraryItemPublishedVersions(library_item_oid: number, options?: any): Promise<{}>;
+    /**
+     *
      * @summary Duplicate library item.
      * @param {number} library_item_oid
      * @param {*} [options] Override http request option.
@@ -34340,7 +34506,7 @@ export interface StorefrontApiInterface {
      * @throws {RequiredError}
      * @memberof StorefrontApiInterface
      */
-    getLibraryItemPublishedVersions(library_item_oid: number, options?: any): Promise<LibraryItemResponse>;
+    getLibraryItemPublishedVersions(library_item_oid: number, options?: any): Promise<LibraryItemsResponse>;
     /**
      *
      * @summary Get thumbnail parameters
@@ -34975,6 +35141,15 @@ export declare class StorefrontApi extends BaseAPI implements StorefrontApiInter
     deleteLibraryItem(library_item_oid: number, options?: any): Promise<Response>;
     /**
      *
+     * @summary Delete all published versions for a library item, including anything in review.
+     * @param {number} library_item_oid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof StorefrontApi
+     */
+    deleteLibraryItemPublishedVersions(library_item_oid: number, options?: any): Promise<Response>;
+    /**
+     *
      * @summary Duplicate library item.
      * @param {number} library_item_oid
      * @param {*} [options] Override http request option.
@@ -35527,7 +35702,7 @@ export declare class StorefrontApi extends BaseAPI implements StorefrontApiInter
      * @throws {RequiredError}
      * @memberof StorefrontApi
      */
-    getLibraryItemPublishedVersions(library_item_oid: number, options?: any): Promise<LibraryItemResponse>;
+    getLibraryItemPublishedVersions(library_item_oid: number, options?: any): Promise<LibraryItemsResponse>;
     /**
      *
      * @summary Get thumbnail parameters

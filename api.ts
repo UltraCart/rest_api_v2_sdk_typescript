@@ -24880,6 +24880,94 @@ export interface UltraCartConfig {
 /**
  * 
  * @export
+ * @interface UploadCouponCodesRequest
+ */
+export interface UploadCouponCodesRequest {
+    /**
+     * Coupon codes
+     * @type {Array<string>}
+     * @memberof UploadCouponCodesRequest
+     */
+    coupon_codes?: Array<string>;
+    /**
+     * 
+     * @type {Error}
+     * @memberof UploadCouponCodesRequest
+     */
+    error?: Error;
+    /**
+     * 
+     * @type {ResponseMetadata}
+     * @memberof UploadCouponCodesRequest
+     */
+    metadata?: ResponseMetadata;
+    /**
+     * Indicates if API call was successful
+     * @type {boolean}
+     * @memberof UploadCouponCodesRequest
+     */
+    success?: boolean;
+    /**
+     * 
+     * @type {Warning}
+     * @memberof UploadCouponCodesRequest
+     */
+    warning?: Warning;
+}
+
+/**
+ * 
+ * @export
+ * @interface UploadCouponCodesResponse
+ */
+export interface UploadCouponCodesResponse {
+    /**
+     * Duplicate codes
+     * @type {Array<string>}
+     * @memberof UploadCouponCodesResponse
+     */
+    duplicate_codes?: Array<string>;
+    /**
+     * 
+     * @type {Error}
+     * @memberof UploadCouponCodesResponse
+     */
+    error?: Error;
+    /**
+     * 
+     * @type {ResponseMetadata}
+     * @memberof UploadCouponCodesResponse
+     */
+    metadata?: ResponseMetadata;
+    /**
+     * Rejected codes
+     * @type {Array<string>}
+     * @memberof UploadCouponCodesResponse
+     */
+    rejected_codes?: Array<string>;
+    /**
+     * Indicates if API call was successful
+     * @type {boolean}
+     * @memberof UploadCouponCodesResponse
+     */
+    success?: boolean;
+    /**
+     * Uploaded codes
+     * @type {Array<string>}
+     * @memberof UploadCouponCodesResponse
+     */
+    uploaded_codes?: Array<string>;
+    /**
+     * 
+     * @type {Warning}
+     * @memberof UploadCouponCodesResponse
+     */
+    warning?: Warning;
+}
+
+/**
+ * 
+ * @export
  * @interface User
  */
 export interface User {
@@ -30905,6 +30993,67 @@ export const CouponApiFetchParamCreator = function (configuration?: Configuratio
                 options: localVarRequestOptions,
             };
         },
+        /**
+         * Upload one-time codes for a coupon 
+         * @summary Upload one-time codes for a coupon
+         * @param {number} coupon_oid The coupon oid to associate with the provided one-time codes.
+         * @param {UploadCouponCodesRequest} upload_coupon_codes_request One-time coupon codes
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        uploadCouponCodes(coupon_oid: number, upload_coupon_codes_request: UploadCouponCodesRequest, options: any = {}): FetchArgs {
+            // verify required parameter 'coupon_oid' is not null or undefined
+            if (coupon_oid === null || coupon_oid === undefined) {
+                throw new RequiredError('coupon_oid','Required parameter coupon_oid was null or undefined when calling uploadCouponCodes.');
+            }
+            // verify required parameter 'upload_coupon_codes_request' is not null or undefined
+            if (upload_coupon_codes_request === null || upload_coupon_codes_request === undefined) {
+                throw new RequiredError('upload_coupon_codes_request','Required parameter upload_coupon_codes_request was null or undefined when calling uploadCouponCodes.');
+            }
+            const localVarPath = `/coupon/coupons/{coupon_oid}/upload_codes`
+                .replace(`{${"coupon_oid"}}`, encodeURIComponent(String(coupon_oid)));
+            const localVarUrlObj = url.parse(localVarPath, true);
+            const localVarRequestOptions = Object.assign({ method: 'POST' }, options);
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+    if(configuration && configuration.apiVersion) {
+      localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+    }
+
+
+
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+				const localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+					? configuration.accessToken("ultraCartOauth", ["coupon_write"])
+					: configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
+					? configuration.apiKey("x-ultracart-simple-key")
+					: configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+
+            localVarHeaderParameter['Content-Type'] = 'application/json; charset=UTF-8';
+
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+            const needsSerialization = (<any>"UploadCouponCodesRequest" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
+            localVarRequestOptions.body =  needsSerialization ? JSON.stringify(upload_coupon_codes_request || {}) : (upload_coupon_codes_request || "");
+
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
     }
 };
 
@@ -31164,6 +31313,26 @@ export const CouponApiFp = function(configuration?: Configuration) {
                 });
             };
         },
+        /**
+         * Upload one-time codes for a coupon 
+         * @summary Upload one-time codes for a coupon
+         * @param {number} coupon_oid The coupon oid to associate with the provided one-time codes.
+         * @param {UploadCouponCodesRequest} upload_coupon_codes_request One-time coupon codes
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        uploadCouponCodes(coupon_oid: number, upload_coupon_codes_request: UploadCouponCodesRequest, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<UploadCouponCodesResponse> {
+            const localVarFetchArgs = CouponApiFetchParamCreator(configuration).uploadCouponCodes(coupon_oid, upload_coupon_codes_request, options);
+            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+                    if (response.status >= 200 && response.status < 300) {
+                        return response.json();
+                    } else {
+                        throw response;
+                    }
+                });
+            };
+        },
     }
 };
 
@@ -31315,6 +31484,17 @@ export const CouponApiFactory = function (configuration?: Configuration, fetch?:
         updateCoupon(coupon: Coupon, coupon_oid: number, _expand?: string, options?: any) {
             return CouponApiFp(configuration).updateCoupon(coupon, coupon_oid, _expand, options)(fetch, basePath);
         },
+        /**
+         * Upload one-time codes for a coupon 
+         * @summary Upload one-time codes for a coupon
+         * @param {number} coupon_oid The coupon oid to associate with the provided one-time codes.
+         * @param {UploadCouponCodesRequest} upload_coupon_codes_request One-time coupon codes
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        uploadCouponCodes(coupon_oid: number, upload_coupon_codes_request: UploadCouponCodesRequest, options?: any) {
+            return CouponApiFp(configuration).uploadCouponCodes(coupon_oid, upload_coupon_codes_request, options)(fetch, basePath);
+        },
     };
 };
 
@@ -31465,6 +31645,17 @@ export interface CouponApiInterface {
      * @memberof CouponApiInterface
      */
     updateCoupon(coupon: Coupon, coupon_oid: number, _expand?: string, options?: any): Promise<CouponResponse>;
+
+    /**
+     * Upload one-time codes for a coupon 
+     * @summary Upload one-time codes for a coupon
+     * @param {number} coupon_oid The coupon oid to associate with the provided one-time codes.
+     * @param {UploadCouponCodesRequest} upload_coupon_codes_request One-time coupon codes
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof CouponApiInterface
+     */
+    uploadCouponCodes(coupon_oid: number, upload_coupon_codes_request: UploadCouponCodesRequest, options?: any): Promise<UploadCouponCodesResponse>;
 
 }
 
@@ -31639,6 +31830,19 @@ export class CouponApi extends BaseAPI implements CouponApiInterface {
      */
     public updateCoupon(coupon: Coupon, coupon_oid: number, _expand?: string, options?: any) {
         return CouponApiFp(this.configuration).updateCoupon(coupon, coupon_oid, _expand, options)(this.fetch, this.basePath);
+    }
+
+    /**
+     * Upload one-time codes for a coupon 
+     * @summary Upload one-time codes for a coupon
+     * @param {number} coupon_oid The coupon oid to associate with the provided one-time codes.
+     * @param {UploadCouponCodesRequest} upload_coupon_codes_request One-time coupon codes
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof CouponApi
+     */
+    public uploadCouponCodes(coupon_oid: number, upload_coupon_codes_request: UploadCouponCodesRequest, options?: any) {
+        return CouponApiFp(this.configuration).uploadCouponCodes(coupon_oid, upload_coupon_codes_request, options)(this.fetch, this.basePath);
     }
 
 }
@@ -38850,6 +39054,66 @@ export const StorefrontApiFetchParamCreator = function (configuration?: Configur
         },
         /**
          * 
+         * @summary Delete all published versions for a library item, including anything in review.
+         * @param {number} library_item_oid 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        deleteLibraryItemPublishedVersions(library_item_oid: number, options: any = {}): FetchArgs {
+            // verify required parameter 'library_item_oid' is not null or undefined
+            if (library_item_oid === null || library_item_oid === undefined) {
+                throw new RequiredError('library_item_oid','Required parameter library_item_oid was null or undefined when calling deleteLibraryItemPublishedVersions.');
+            }
+            const localVarPath = `/storefront/code_library/{library_item_oid}/published_versions`
+                .replace(`{${"library_item_oid"}}`, encodeURIComponent(String(library_item_oid)));
+            const localVarUrlObj = url.parse(localVarPath, true);
+            const localVarRequestOptions = Object.assign({ method: 'DELETE' }, options);
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+    if(configuration && configuration.apiVersion) {
+      localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+    }
+
+
+
+            // authentication ultraCartBrowserApiKey required
+            if (configuration && configuration.apiKey) {
+                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
+					? configuration.apiKey("x-ultracart-browser-key")
+					: configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-browser-key"] = localVarApiKeyValue;
+            }
+
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+				const localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+					? configuration.accessToken("ultraCartOauth", ["storefront_write"])
+					: configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
+					? configuration.apiKey("x-ultracart-simple-key")
+					: configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
          * @summary Duplicate library item.
          * @param {number} library_item_oid 
          * @param {*} [options] Override http request option.
@@ -45948,6 +46212,25 @@ export const StorefrontApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
+         * @summary Delete all published versions for a library item, including anything in review.
+         * @param {number} library_item_oid 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        deleteLibraryItemPublishedVersions(library_item_oid: number, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Response> {
+            const localVarFetchArgs = StorefrontApiFetchParamCreator(configuration).deleteLibraryItemPublishedVersions(library_item_oid, options);
+            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+                    if (response.status >= 200 && response.status < 300) {
+                        return response;
+                    } else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
+         * 
          * @summary Duplicate library item.
          * @param {number} library_item_oid 
          * @param {*} [options] Override http request option.
@@ -47049,7 +47332,7 @@ export const StorefrontApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getLibraryItemPublishedVersions(library_item_oid: number, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<LibraryItemResponse> {
+        getLibraryItemPublishedVersions(library_item_oid: number, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<LibraryItemsResponse> {
             const localVarFetchArgs = StorefrontApiFetchParamCreator(configuration).getLibraryItemPublishedVersions(library_item_oid, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
@@ -48149,6 +48432,16 @@ export const StorefrontApiFactory = function (configuration?: Configuration, fet
          */
         deleteLibraryItem(library_item_oid: number, options?: any) {
             return StorefrontApiFp(configuration).deleteLibraryItem(library_item_oid, options)(fetch, basePath);
+        },
+        /**
+         * 
+         * @summary Delete all published versions for a library item, including anything in review.
+         * @param {number} library_item_oid 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        deleteLibraryItemPublishedVersions(library_item_oid: number, options?: any) {
+            return StorefrontApiFp(configuration).deleteLibraryItemPublishedVersions(library_item_oid, options)(fetch, basePath);
         },
         /**
          * 
@@ -49456,6 +49749,16 @@ export interface StorefrontApiInterface {
 
     /**
      * 
+     * @summary Delete all published versions for a library item, including anything in review.
+     * @param {number} library_item_oid 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof StorefrontApiInterface
+     */
+    deleteLibraryItemPublishedVersions(library_item_oid: number, options?: any): Promise<{}>;
+
+    /**
+     * 
      * @summary Duplicate library item.
      * @param {number} library_item_oid 
      * @param {*} [options] Override http request option.
@@ -50063,7 +50366,7 @@ export interface StorefrontApiInterface {
      * @throws {RequiredError}
      * @memberof StorefrontApiInterface
      */
-    getLibraryItemPublishedVersions(library_item_oid: number, options?: any): Promise<LibraryItemResponse>;
+    getLibraryItemPublishedVersions(library_item_oid: number, options?: any): Promise<LibraryItemsResponse>;
 
     /**
      * 
@@ -50788,6 +51091,18 @@ export class StorefrontApi extends BaseAPI implements StorefrontApiInterface {
      */
     public deleteLibraryItem(library_item_oid: number, options?: any) {
         return StorefrontApiFp(this.configuration).deleteLibraryItem(library_item_oid, options)(this.fetch, this.basePath);
+    }
+
+    /**
+     * 
+     * @summary Delete all published versions for a library item, including anything in review.
+     * @param {number} library_item_oid 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof StorefrontApi
+     */
+    public deleteLibraryItemPublishedVersions(library_item_oid: number, options?: any) {
+        return StorefrontApiFp(this.configuration).deleteLibraryItemPublishedVersions(library_item_oid, options)(this.fetch, this.basePath);
     }
 
     /**
