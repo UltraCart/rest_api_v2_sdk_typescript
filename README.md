@@ -1,4 +1,4 @@
-## ultracart_rest_api_v2_typescript@3.0.49
+## ultracart_rest_api_v2_typescript@3.0.55
 
 This generator creates TypeScript/JavaScript client that utilizes [Fetch API](https://fetch.spec.whatwg.org/). The generated Node module can be used in the following environments:
 
@@ -36,7 +36,7 @@ navigate to the folder of your consuming project and run one of the following co
 _published:_
 
 ```
-npm install ultracart_rest_api_v2_typescript@3.0.49 --save
+npm install ultracart_rest_api_v2_typescript@3.0.55 --save
 ```
 
 _unPublished (not recommended):_
@@ -51,6 +51,8 @@ Not every change is committed to every SDK.
 
 | Version | Date | Comments |
 | --: | :-: | --- |
+| 3.0.53 | 12/14/2020 | StoreFrontAPI: added a duplicate method to load the pricing tiers on the StoreFront |
+| 3.0.51 | 12/09/2020 | UserAPI: internal bug preventing proper usage of user group creation |
 | 3.0.45 | 12/03/2020 | CouponAPI: added partial searches to getCoupon params, added deleteCoupons method, fixed bugs |
 | 3.0.44 | 12/03/2020 | Code library updates, intended for internal use |
 | 3.0.43 | 12/02/2020 | Added fields to code library to handle versions of published items |

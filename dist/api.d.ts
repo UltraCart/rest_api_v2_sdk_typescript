@@ -5359,6 +5359,12 @@ export interface CouponAmountOffItems {
      * @memberof CouponAmountOffItems
      */
     items?: Array<string>;
+    /**
+     * The limit of items which are eligible for the discount amount.
+     * @type {number}
+     * @memberof CouponAmountOffItems
+     */
+    limit?: number;
 }
 /**
  *
@@ -13048,6 +13054,30 @@ export interface EmailThirdPartyProvider {
      * @memberof EmailThirdPartyProvider
      */
     name?: string;
+    /**
+     * True if this provider can support adding tags
+     * @type {boolean}
+     * @memberof EmailThirdPartyProvider
+     */
+    supports_add_tags?: boolean;
+    /**
+     * True if this provider can support list subscribe
+     * @type {boolean}
+     * @memberof EmailThirdPartyProvider
+     */
+    supports_list_subscribe?: boolean;
+    /**
+     * True if this provider can support list unsubscribe
+     * @type {boolean}
+     * @memberof EmailThirdPartyProvider
+     */
+    supports_list_unsubscribe?: boolean;
+    /**
+     * True if this provider can support remove tags
+     * @type {boolean}
+     * @memberof EmailThirdPartyProvider
+     */
+    supports_remove_tags?: boolean;
 }
 /**
  *
@@ -18106,6 +18136,12 @@ export interface LibraryItem {
      */
     purchased_from_library_item_oid?: number;
     /**
+     *
+     * @type {LibraryItemPurchasedMeta}
+     * @memberof LibraryItem
+     */
+    purchased_meta?: LibraryItemPurchasedMeta;
+    /**
      * The published version when this item was purchased.  This allows for out-of-date alerts to be shown when there is a difference between published and purchased
      * @type {number}
      * @memberof LibraryItem
@@ -18123,6 +18159,12 @@ export interface LibraryItem {
      * @memberof LibraryItem
      */
     rejected_reason?: string;
+    /**
+     * Release notes specific to each published version and only appearing on public items.
+     * @type {string}
+     * @memberof LibraryItem
+     */
+    release_notes?: string;
     /**
      * This counter records how many times a library item has been published.  This is used to show version history.
      * @type {number}
@@ -18326,11 +18368,42 @@ export interface LibraryItemPublishedMeta {
      */
     release_version?: number;
     /**
+     * If this library item is a source item and has a published item currently under review, this is that version number
+     * @type {number}
+     * @memberof LibraryItemPublishedMeta
+     */
+    review_version?: number;
+    /**
      * True if this library item is a source item and is currently under review
      * @type {boolean}
      * @memberof LibraryItemPublishedMeta
      */
     under_review?: boolean;
+}
+/**
+ *
+ * @export
+ * @interface LibraryItemPurchasedMeta
+ */
+export interface LibraryItemPurchasedMeta {
+    /**
+     * The most recent version of the item purchased
+     * @type {number}
+     * @memberof LibraryItemPurchasedMeta
+     */
+    most_recent_version?: number;
+    /**
+     * If this is a public item and the merchant has already purchased it, this is their version.  If not yet purchased, this will be zero.  This value will only be populated during a searchPublicItems() call.
+     * @type {number}
+     * @memberof LibraryItemPurchasedMeta
+     */
+    my_purchased_version?: number;
+    /**
+     * True if the most recent version of this purchase it greater than what was purchased
+     * @type {boolean}
+     * @memberof LibraryItemPurchasedMeta
+     */
+    upgrade_available?: boolean;
 }
 /**
  *
@@ -24527,19 +24600,19 @@ export interface User {
  */
 export interface UserGroupMembership {
     /**
-     *
+     * The unique object identifier (oid for short) for this group
      * @type {number}
      * @memberof UserGroupMembership
      */
-    groupOid?: number;
+    group_oid?: number;
     /**
-     *
+     * True if this user is a member of the group.
      * @type {boolean}
      * @memberof UserGroupMembership
      */
     member?: boolean;
     /**
-     *
+     * The name of this group.
      * @type {string}
      * @memberof UserGroupMembership
      */
@@ -31203,6 +31276,14 @@ export declare const StorefrontApiFetchParamCreator: (configuration?: Configurat
      */
     getLibraryItemPublishedVersions(library_item_oid: number, options?: any): FetchArgs;
     /**
+     * Retrieves the pricing tiers
+     * @summary Retrieve pricing tiers
+     * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getPricingTiers(_expand?: string, options?: any): FetchArgs;
+    /**
      *
      * @summary Get thumbnail parameters
      * @param {ThumbnailParametersRequest} thumbnail_parameters Thumbnail Parameters
@@ -32280,6 +32361,14 @@ export declare const StorefrontApiFp: (configuration?: Configuration) => {
      */
     getLibraryItemPublishedVersions(library_item_oid: number, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<LibraryItemsResponse>;
     /**
+     * Retrieves the pricing tiers
+     * @summary Retrieve pricing tiers
+     * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getPricingTiers(_expand?: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<PricingTiersResponse>;
+    /**
      *
      * @summary Get thumbnail parameters
      * @param {ThumbnailParametersRequest} thumbnail_parameters Thumbnail Parameters
@@ -33356,6 +33445,14 @@ export declare const StorefrontApiFactory: (configuration?: Configuration, fetch
      * @throws {RequiredError}
      */
     getLibraryItemPublishedVersions(library_item_oid: number, options?: any): Promise<LibraryItemsResponse>;
+    /**
+     * Retrieves the pricing tiers
+     * @summary Retrieve pricing tiers
+     * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getPricingTiers(_expand?: string, options?: any): Promise<PricingTiersResponse>;
     /**
      *
      * @summary Get thumbnail parameters
@@ -34507,6 +34604,15 @@ export interface StorefrontApiInterface {
      * @memberof StorefrontApiInterface
      */
     getLibraryItemPublishedVersions(library_item_oid: number, options?: any): Promise<LibraryItemsResponse>;
+    /**
+     * Retrieves the pricing tiers
+     * @summary Retrieve pricing tiers
+     * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof StorefrontApiInterface
+     */
+    getPricingTiers(_expand?: string, options?: any): Promise<PricingTiersResponse>;
     /**
      *
      * @summary Get thumbnail parameters
@@ -35703,6 +35809,15 @@ export declare class StorefrontApi extends BaseAPI implements StorefrontApiInter
      * @memberof StorefrontApi
      */
     getLibraryItemPublishedVersions(library_item_oid: number, options?: any): Promise<LibraryItemsResponse>;
+    /**
+     * Retrieves the pricing tiers
+     * @summary Retrieve pricing tiers
+     * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof StorefrontApi
+     */
+    getPricingTiers(_expand?: string, options?: any): Promise<PricingTiersResponse>;
     /**
      *
      * @summary Get thumbnail parameters
