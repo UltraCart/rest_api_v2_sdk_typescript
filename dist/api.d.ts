@@ -5752,6 +5752,12 @@ export interface CouponDiscountItems {
  */
 export interface CouponEditorValues {
     /**
+     * affiliates
+     * @type {Array<SimpleValue>}
+     * @memberof CouponEditorValues
+     */
+    affiliates?: Array<SimpleValue>;
+    /**
      * coupon_types
      * @type {Array<string>}
      * @memberof CouponEditorValues
@@ -5763,6 +5769,30 @@ export interface CouponEditorValues {
      * @memberof CouponEditorValues
      */
     coupon_types_for_display?: Array<CouponType>;
+    /**
+     * currency_codes
+     * @type {Array<string>}
+     * @memberof CouponEditorValues
+     */
+    currency_codes?: Array<string>;
+    /**
+     * mix_and_match_names
+     * @type {Array<string>}
+     * @memberof CouponEditorValues
+     */
+    mix_and_match_names?: Array<string>;
+    /**
+     * screen_branding_themes
+     * @type {Array<SimpleValue>}
+     * @memberof CouponEditorValues
+     */
+    screen_branding_themes?: Array<SimpleValue>;
+    /**
+     * shipping_methods
+     * @type {Array<string>}
+     * @memberof CouponEditorValues
+     */
+    shipping_methods?: Array<string>;
 }
 /**
  *
@@ -23040,6 +23070,25 @@ export interface SelfConfig {
      * @memberof SelfConfig
      */
     tax_billing?: boolean;
+}
+/**
+ *
+ * @export
+ * @interface SimpleValue
+ */
+export interface SimpleValue {
+    /**
+     * A friendly display of this value suitable for human reading
+     * @type {string}
+     * @memberof SimpleValue
+     */
+    display?: string;
+    /**
+     * The actual value
+     * @type {string}
+     * @memberof SimpleValue
+     */
+    value?: string;
 }
 /**
  *
