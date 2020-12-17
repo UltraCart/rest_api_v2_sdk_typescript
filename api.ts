@@ -5206,6 +5206,12 @@ export interface Coupon {
      */
     automatically_apply_coupon_codes?: CouponAutomaticallyApplyCouponCodes;
     /**
+     * 
+     * @type {CouponBuyOneGetOneLimit}
+     * @memberof Coupon
+     */
+    buy_one_get_one?: CouponBuyOneGetOneLimit;
+    /**
      * Calculated description displayed to the customer if no description is specified.
      * @type {string}
      * @memberof Coupon
@@ -5708,6 +5714,26 @@ export interface CouponAutomaticallyApplyCouponCodes {
 /**
  * 
  * @export
+ * @interface CouponBuyOneGetOneLimit
+ */
+export interface CouponBuyOneGetOneLimit {
+    /**
+     * An optional list of items of which one must be purchased to receive free quantity of the same item.
+     * @type {Array<string>}
+     * @memberof CouponBuyOneGetOneLimit
+     */
+    items?: Array<string>;
+    /**
+     * The limit of free items that may be received when purchasing multiple items
+     * @type {number}
+     * @memberof CouponBuyOneGetOneLimit
+     */
+    limit?: number;
+}
+
+/**
+ * 
+ * @export
  * @interface CouponCodesRequest
  */
 export interface CouponCodesRequest {
@@ -6189,6 +6215,14 @@ export interface CouponFreeShippingWithSubtotal {
      * @memberof CouponFreeShippingWithSubtotal
      */
     shipping_methods?: Array<string>;
+}
+
+/**
+ * 
+ * @export
+ * @interface CouponItemSearchResult
+ */
+export interface CouponItemSearchResult {
 }
 
 /**
@@ -31052,6 +31086,62 @@ export const CouponApiFetchParamCreator = function (configuration?: Configuratio
             };
         },
         /**
+         * Searches for items to display within a coupon editor and assign to coupons 
+         * @summary Searches for items to display within a coupon editor and assign to coupons
+         * @param {string} [s] 
+         * @param {number} [m] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        searchItems(s?: string, m?: number, options: any = {}): FetchArgs {
+            const localVarPath = `/coupon/searchItems`;
+            const localVarUrlObj = url.parse(localVarPath, true);
+            const localVarRequestOptions = Object.assign({ method: 'GET' }, options);
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+    if(configuration && configuration.apiVersion) {
+      localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+    }
+
+
+
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+				const localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+					? configuration.accessToken("ultraCartOauth", ["coupon_read"])
+					: configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
+					? configuration.apiKey("x-ultracart-simple-key")
+					: configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+
+            if (s !== undefined) {
+                localVarQueryParameter['s'] = s;
+            }
+
+            if (m !== undefined) {
+                localVarQueryParameter['m'] = m;
+            }
+
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
          * Update a coupon on the UltraCart account. 
          * @summary Update a coupon
          * @param {Coupon} coupon Coupon to update
@@ -31417,6 +31507,26 @@ export const CouponApiFp = function(configuration?: Configuration) {
             };
         },
         /**
+         * Searches for items to display within a coupon editor and assign to coupons 
+         * @summary Searches for items to display within a coupon editor and assign to coupons
+         * @param {string} [s] 
+         * @param {number} [m] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        searchItems(s?: string, m?: number, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<CouponItemSearchResult> {
+            const localVarFetchArgs = CouponApiFetchParamCreator(configuration).searchItems(s, m, options);
+            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+                    if (response.status >= 200 && response.status < 300) {
+                        return response.json();
+                    } else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
          * Update a coupon on the UltraCart account. 
          * @summary Update a coupon
          * @param {Coupon} coupon Coupon to update
@@ -31597,6 +31707,17 @@ export const CouponApiFactory = function (configuration?: Configuration, fetch?:
             return CouponApiFp(configuration).insertCoupon(coupon, _expand, options)(fetch, basePath);
         },
         /**
+         * Searches for items to display within a coupon editor and assign to coupons 
+         * @summary Searches for items to display within a coupon editor and assign to coupons
+         * @param {string} [s] 
+         * @param {number} [m] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        searchItems(s?: string, m?: number, options?: any) {
+            return CouponApiFp(configuration).searchItems(s, m, options)(fetch, basePath);
+        },
+        /**
          * Update a coupon on the UltraCart account. 
          * @summary Update a coupon
          * @param {Coupon} coupon Coupon to update
@@ -31757,6 +31878,17 @@ export interface CouponApiInterface {
      * @memberof CouponApiInterface
      */
     insertCoupon(coupon: Coupon, _expand?: string, options?: any): Promise<CouponResponse>;
+
+    /**
+     * Searches for items to display within a coupon editor and assign to coupons 
+     * @summary Searches for items to display within a coupon editor and assign to coupons
+     * @param {string} [s] 
+     * @param {number} [m] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof CouponApiInterface
+     */
+    searchItems(s?: string, m?: number, options?: any): Promise<CouponItemSearchResult>;
 
     /**
      * Update a coupon on the UltraCart account. 
@@ -31940,6 +32072,19 @@ export class CouponApi extends BaseAPI implements CouponApiInterface {
      */
     public insertCoupon(coupon: Coupon, _expand?: string, options?: any) {
         return CouponApiFp(this.configuration).insertCoupon(coupon, _expand, options)(this.fetch, this.basePath);
+    }
+
+    /**
+     * Searches for items to display within a coupon editor and assign to coupons 
+     * @summary Searches for items to display within a coupon editor and assign to coupons
+     * @param {string} [s] 
+     * @param {number} [m] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof CouponApi
+     */
+    public searchItems(s?: string, m?: number, options?: any) {
+        return CouponApiFp(this.configuration).searchItems(s, m, options)(this.fetch, this.basePath);
     }
 
     /**
