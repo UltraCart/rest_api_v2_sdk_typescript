@@ -6223,6 +6223,92 @@ export interface CouponFreeShippingWithSubtotal {
  * @interface CouponItemSearchResult
  */
 export interface CouponItemSearchResult {
+    /**
+     * The cost of this item.
+     * @type {string}
+     * @memberof CouponItemSearchResult
+     */
+    cost?: string;
+    /**
+     * A human readable description of this item.
+     * @type {string}
+     * @memberof CouponItemSearchResult
+     */
+    description?: string;
+    /**
+     * The manufacturer of this item.
+     * @type {string}
+     * @memberof CouponItemSearchResult
+     */
+    manufacturer_name?: string;
+    /**
+     * The manufacturer sku of this item.
+     * @type {string}
+     * @memberof CouponItemSearchResult
+     */
+    manufacturer_sku?: string;
+    /**
+     * The merchant item identifier, which is unique for this merchant, but not across all of UltraCart.
+     * @type {string}
+     * @memberof CouponItemSearchResult
+     */
+    merchant_item_id?: string;
+    /**
+     * The unique internal identifier used by UltraCart to manage this item.
+     * @type {number}
+     * @memberof CouponItemSearchResult
+     */
+    merchant_item_oid?: number;
+    /**
+     * The search score of this item.  Larger scores mean more accurate matches against the search term.
+     * @type {string}
+     * @memberof CouponItemSearchResult
+     */
+    score?: string;
+    /**
+     * A url for displaying a thumbnail of this item
+     * @type {string}
+     * @memberof CouponItemSearchResult
+     */
+    thumbnail_url?: string;
+}
+
+/**
+ * 
+ * @export
+ * @interface CouponItemSearchResultsResponse
+ */
+export interface CouponItemSearchResultsResponse {
+    /**
+     * 
+     * @type {Error}
+     * @memberof CouponItemSearchResultsResponse
+     */
+    error?: Error;
+    /**
+     * 
+     * @type {ResponseMetadata}
+     * @memberof CouponItemSearchResultsResponse
+     */
+    metadata?: ResponseMetadata;
+    /**
+     * search_results
+     * @type {Array<CouponItemSearchResult>}
+     * @memberof CouponItemSearchResultsResponse
+     */
+    search_results?: Array<CouponItemSearchResult>;
+    /**
+     * Indicates if API call was successful
+     * @type {boolean}
+     * @memberof CouponItemSearchResultsResponse
+     */
+    success?: boolean;
+    /**
+     * 
+     * @type {Warning}
+     * @memberof CouponItemSearchResultsResponse
+     */
+    warning?: Warning;
 }
 
 /**
@@ -31514,7 +31600,7 @@ export const CouponApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        searchItems(s?: string, m?: number, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<CouponItemSearchResult> {
+        searchItems(s?: string, m?: number, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<CouponItemSearchResultsResponse> {
             const localVarFetchArgs = CouponApiFetchParamCreator(configuration).searchItems(s, m, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
@@ -31888,7 +31974,7 @@ export interface CouponApiInterface {
      * @throws {RequiredError}
      * @memberof CouponApiInterface
      */
-    searchItems(s?: string, m?: number, options?: any): Promise<CouponItemSearchResult>;
+    searchItems(s?: string, m?: number, options?: any): Promise<CouponItemSearchResultsResponse>;
 
     /**
      * Update a coupon on the UltraCart account. 

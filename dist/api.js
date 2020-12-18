@@ -5190,6 +5190,54 @@ var CouponApiFetchParamCreator = function (configuration) {
             };
         },
         /**
+         * Searches for items to display within a coupon editor and assign to coupons
+         * @summary Searches for items to display within a coupon editor and assign to coupons
+         * @param {string} [s]
+         * @param {number} [m]
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        searchItems: function (s, m, options) {
+            if (options === void 0) { options = {}; }
+            var localVarPath = "/coupon/searchItems";
+            var localVarUrlObj = url.parse(localVarPath, true);
+            var localVarRequestOptions = Object.assign({ method: 'GET' }, options);
+            var localVarHeaderParameter = {};
+            var localVarQueryParameter = {};
+            if (configuration && configuration.apiVersion) {
+                localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+            }
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+                var localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+                    ? configuration.accessToken("ultraCartOauth", ["coupon_read"])
+                    : configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                var localVarApiKeyValue = typeof configuration.apiKey === 'function'
+                    ? configuration.apiKey("x-ultracart-simple-key")
+                    : configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+            if (s !== undefined) {
+                localVarQueryParameter['s'] = s;
+            }
+            if (m !== undefined) {
+                localVarQueryParameter['m'] = m;
+            }
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
          * Update a coupon on the UltraCart account.
          * @summary Update a coupon
          * @param {Coupon} coupon Coupon to update
@@ -5573,6 +5621,29 @@ var CouponApiFp = function (configuration) {
             };
         },
         /**
+         * Searches for items to display within a coupon editor and assign to coupons
+         * @summary Searches for items to display within a coupon editor and assign to coupons
+         * @param {string} [s]
+         * @param {number} [m]
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        searchItems: function (s, m, options) {
+            var localVarFetchArgs = exports.CouponApiFetchParamCreator(configuration).searchItems(s, m, options);
+            return function (fetch, basePath) {
+                if (fetch === void 0) { fetch = portableFetch; }
+                if (basePath === void 0) { basePath = BASE_PATH; }
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(function (response) {
+                    if (response.status >= 200 && response.status < 300) {
+                        return response.json();
+                    }
+                    else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
          * Update a coupon on the UltraCart account.
          * @summary Update a coupon
          * @param {Coupon} coupon Coupon to update
@@ -5759,6 +5830,17 @@ var CouponApiFactory = function (configuration, fetch, basePath) {
             return exports.CouponApiFp(configuration).insertCoupon(coupon, _expand, options)(fetch, basePath);
         },
         /**
+         * Searches for items to display within a coupon editor and assign to coupons
+         * @summary Searches for items to display within a coupon editor and assign to coupons
+         * @param {string} [s]
+         * @param {number} [m]
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        searchItems: function (s, m, options) {
+            return exports.CouponApiFp(configuration).searchItems(s, m, options)(fetch, basePath);
+        },
+        /**
          * Update a coupon on the UltraCart account.
          * @summary Update a coupon
          * @param {Coupon} coupon Coupon to update
@@ -5935,6 +6017,18 @@ var CouponApi = /** @class */ (function (_super) {
      */
     CouponApi.prototype.insertCoupon = function (coupon, _expand, options) {
         return exports.CouponApiFp(this.configuration).insertCoupon(coupon, _expand, options)(this.fetch, this.basePath);
+    };
+    /**
+     * Searches for items to display within a coupon editor and assign to coupons
+     * @summary Searches for items to display within a coupon editor and assign to coupons
+     * @param {string} [s]
+     * @param {number} [m]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof CouponApi
+     */
+    CouponApi.prototype.searchItems = function (s, m, options) {
+        return exports.CouponApiFp(this.configuration).searchItems(s, m, options)(this.fetch, this.basePath);
     };
     /**
      * Update a coupon on the UltraCart account.
