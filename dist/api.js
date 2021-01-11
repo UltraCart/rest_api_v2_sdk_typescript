@@ -302,6 +302,7 @@ var CheckoutHandoffRequest;
         OperationEnum[OperationEnum["PayPalCredit"] = 'payPalCredit'] = "PayPalCredit";
         OperationEnum[OperationEnum["View"] = 'view'] = "View";
         OperationEnum[OperationEnum["Affirm"] = 'affirm'] = "Affirm";
+        OperationEnum[OperationEnum["Sezzle"] = 'sezzle'] = "Sezzle";
     })(OperationEnum = CheckoutHandoffRequest.OperationEnum || (CheckoutHandoffRequest.OperationEnum = {}));
 })(CheckoutHandoffRequest = exports.CheckoutHandoffRequest || (exports.CheckoutHandoffRequest = {}));
 /**
@@ -3159,7 +3160,7 @@ var CheckoutApiFetchParamCreator = function (configuration) {
             };
         },
         /**
-         * Handoff the browser to UltraCart for view cart on StoreFront, transfer to PayPal, transfer to Affirm or finalization of the order (including upsell processing).
+         * Handoff the browser to UltraCart for view cart on StoreFront, transfer to PayPal, transfer to Affirm, transfer to Sezzle or finalization of the order (including upsell processing).
          * @summary Handoff cart
          * @param {CheckoutHandoffRequest} handoff_request Handoff request
          * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
@@ -3930,7 +3931,7 @@ var CheckoutApiFp = function (configuration) {
             };
         },
         /**
-         * Handoff the browser to UltraCart for view cart on StoreFront, transfer to PayPal, transfer to Affirm or finalization of the order (including upsell processing).
+         * Handoff the browser to UltraCart for view cart on StoreFront, transfer to PayPal, transfer to Affirm, transfer to Sezzle or finalization of the order (including upsell processing).
          * @summary Handoff cart
          * @param {CheckoutHandoffRequest} handoff_request Handoff request
          * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
@@ -4250,7 +4251,7 @@ var CheckoutApiFactory = function (configuration, fetch, basePath) {
             return exports.CheckoutApiFp(configuration).getStateProvincesForCountry(country_code, options)(fetch, basePath);
         },
         /**
-         * Handoff the browser to UltraCart for view cart on StoreFront, transfer to PayPal, transfer to Affirm or finalization of the order (including upsell processing).
+         * Handoff the browser to UltraCart for view cart on StoreFront, transfer to PayPal, transfer to Affirm, transfer to Sezzle or finalization of the order (including upsell processing).
          * @summary Handoff cart
          * @param {CheckoutHandoffRequest} handoff_request Handoff request
          * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
@@ -4463,7 +4464,7 @@ var CheckoutApi = /** @class */ (function (_super) {
         return exports.CheckoutApiFp(this.configuration).getStateProvincesForCountry(country_code, options)(this.fetch, this.basePath);
     };
     /**
-     * Handoff the browser to UltraCart for view cart on StoreFront, transfer to PayPal, transfer to Affirm or finalization of the order (including upsell processing).
+     * Handoff the browser to UltraCart for view cart on StoreFront, transfer to PayPal, transfer to Affirm, transfer to Sezzle or finalization of the order (including upsell processing).
      * @summary Handoff cart
      * @param {CheckoutHandoffRequest} handoff_request Handoff request
      * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
@@ -4836,6 +4837,46 @@ var CouponApiFetchParamCreator = function (configuration) {
             localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
             var needsSerialization = ("CouponCodesRequest" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
             localVarRequestOptions.body = needsSerialization ? JSON.stringify(coupon_codes_request || {}) : (coupon_codes_request || "");
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Retrieve auto apply rules and conditions
+         * @summary Retrieve auto apply rules and conditions
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getAutoApply: function (options) {
+            if (options === void 0) { options = {}; }
+            var localVarPath = "/coupon/auto_apply";
+            var localVarUrlObj = url.parse(localVarPath, true);
+            var localVarRequestOptions = Object.assign({ method: 'GET' }, options);
+            var localVarHeaderParameter = {};
+            var localVarQueryParameter = {};
+            if (configuration && configuration.apiVersion) {
+                localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+            }
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+                var localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+                    ? configuration.accessToken("ultraCartOauth", ["coupon_read"])
+                    : configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                var localVarApiKeyValue = typeof configuration.apiKey === 'function'
+                    ? configuration.apiKey("x-ultracart-simple-key")
+                    : configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
             return {
                 url: url.format(localVarUrlObj),
                 options: localVarRequestOptions,
@@ -5238,6 +5279,54 @@ var CouponApiFetchParamCreator = function (configuration) {
             };
         },
         /**
+         * Update auto apply rules and conditions
+         * @summary Update auto apply rules and conditions
+         * @param {CouponAutoApplyConditions} conditions Conditions
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        updateAutoApply: function (conditions, options) {
+            if (options === void 0) { options = {}; }
+            // verify required parameter 'conditions' is not null or undefined
+            if (conditions === null || conditions === undefined) {
+                throw new RequiredError('conditions', 'Required parameter conditions was null or undefined when calling updateAutoApply.');
+            }
+            var localVarPath = "/coupon/auto_apply";
+            var localVarUrlObj = url.parse(localVarPath, true);
+            var localVarRequestOptions = Object.assign({ method: 'POST' }, options);
+            var localVarHeaderParameter = {};
+            var localVarQueryParameter = {};
+            if (configuration && configuration.apiVersion) {
+                localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+            }
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+                var localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+                    ? configuration.accessToken("ultraCartOauth", ["coupon_write"])
+                    : configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                var localVarApiKeyValue = typeof configuration.apiKey === 'function'
+                    ? configuration.apiKey("x-ultracart-simple-key")
+                    : configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+            var needsSerialization = ("CouponAutoApplyConditions" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
+            localVarRequestOptions.body = needsSerialization ? JSON.stringify(conditions || {}) : (conditions || "");
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
          * Update a coupon on the UltraCart account.
          * @summary Update a coupon
          * @param {Coupon} coupon Coupon to update
@@ -5471,6 +5560,27 @@ var CouponApiFp = function (configuration) {
             };
         },
         /**
+         * Retrieve auto apply rules and conditions
+         * @summary Retrieve auto apply rules and conditions
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getAutoApply: function (options) {
+            var localVarFetchArgs = exports.CouponApiFetchParamCreator(configuration).getAutoApply(options);
+            return function (fetch, basePath) {
+                if (fetch === void 0) { fetch = portableFetch; }
+                if (basePath === void 0) { basePath = BASE_PATH; }
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(function (response) {
+                    if (response.status >= 200 && response.status < 300) {
+                        return response.json();
+                    }
+                    else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
          * Retrieves a single coupon using the specified coupon profile oid.
          * @summary Retrieve a coupon
          * @param {number} coupon_oid The coupon oid to retrieve.
@@ -5644,6 +5754,28 @@ var CouponApiFp = function (configuration) {
             };
         },
         /**
+         * Update auto apply rules and conditions
+         * @summary Update auto apply rules and conditions
+         * @param {CouponAutoApplyConditions} conditions Conditions
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        updateAutoApply: function (conditions, options) {
+            var localVarFetchArgs = exports.CouponApiFetchParamCreator(configuration).updateAutoApply(conditions, options);
+            return function (fetch, basePath) {
+                if (fetch === void 0) { fetch = portableFetch; }
+                if (basePath === void 0) { basePath = BASE_PATH; }
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(function (response) {
+                    if (response.status >= 200 && response.status < 300) {
+                        return response;
+                    }
+                    else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
          * Update a coupon on the UltraCart account.
          * @summary Update a coupon
          * @param {Coupon} coupon Coupon to update
@@ -5752,6 +5884,15 @@ var CouponApiFactory = function (configuration, fetch, basePath) {
             return exports.CouponApiFp(configuration).generateOneTimeCodesByMerchantCode(merchant_code, coupon_codes_request, options)(fetch, basePath);
         },
         /**
+         * Retrieve auto apply rules and conditions
+         * @summary Retrieve auto apply rules and conditions
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getAutoApply: function (options) {
+            return exports.CouponApiFp(configuration).getAutoApply(options)(fetch, basePath);
+        },
+        /**
          * Retrieves a single coupon using the specified coupon profile oid.
          * @summary Retrieve a coupon
          * @param {number} coupon_oid The coupon oid to retrieve.
@@ -5839,6 +5980,16 @@ var CouponApiFactory = function (configuration, fetch, basePath) {
          */
         searchItems: function (s, m, options) {
             return exports.CouponApiFp(configuration).searchItems(s, m, options)(fetch, basePath);
+        },
+        /**
+         * Update auto apply rules and conditions
+         * @summary Update auto apply rules and conditions
+         * @param {CouponAutoApplyConditions} conditions Conditions
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        updateAutoApply: function (conditions, options) {
+            return exports.CouponApiFp(configuration).updateAutoApply(conditions, options)(fetch, basePath);
         },
         /**
          * Update a coupon on the UltraCart account.
@@ -5935,6 +6086,16 @@ var CouponApi = /** @class */ (function (_super) {
         return exports.CouponApiFp(this.configuration).generateOneTimeCodesByMerchantCode(merchant_code, coupon_codes_request, options)(this.fetch, this.basePath);
     };
     /**
+     * Retrieve auto apply rules and conditions
+     * @summary Retrieve auto apply rules and conditions
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof CouponApi
+     */
+    CouponApi.prototype.getAutoApply = function (options) {
+        return exports.CouponApiFp(this.configuration).getAutoApply(options)(this.fetch, this.basePath);
+    };
+    /**
      * Retrieves a single coupon using the specified coupon profile oid.
      * @summary Retrieve a coupon
      * @param {number} coupon_oid The coupon oid to retrieve.
@@ -6029,6 +6190,17 @@ var CouponApi = /** @class */ (function (_super) {
      */
     CouponApi.prototype.searchItems = function (s, m, options) {
         return exports.CouponApiFp(this.configuration).searchItems(s, m, options)(this.fetch, this.basePath);
+    };
+    /**
+     * Update auto apply rules and conditions
+     * @summary Update auto apply rules and conditions
+     * @param {CouponAutoApplyConditions} conditions Conditions
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof CouponApi
+     */
+    CouponApi.prototype.updateAutoApply = function (conditions, options) {
+        return exports.CouponApiFp(this.configuration).updateAutoApply(conditions, options)(this.fetch, this.basePath);
     };
     /**
      * Update a coupon on the UltraCart account.

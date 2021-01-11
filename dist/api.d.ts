@@ -4868,7 +4868,8 @@ export declare namespace CheckoutHandoffRequest {
         PayPal,
         PayPalCredit,
         View,
-        Affirm
+        Affirm,
+        Sezzle
     }
 }
 /**
@@ -5305,6 +5306,12 @@ export interface Coupon {
      */
     start_dts?: string;
     /**
+     * If true, this coupon can be used with ANY other coupon regardless of the other coupons configuration
+     * @type {boolean}
+     * @memberof Coupon
+     */
+    super_coupon?: boolean;
+    /**
      *
      * @type {CouponTieredAmountOffItem}
      * @memberof Coupon
@@ -5562,6 +5569,74 @@ export interface CouponAmountOffSubtotalWithItemsPurchase {
 /**
  *
  * @export
+ * @interface CouponAutoApplyCondition
+ */
+export interface CouponAutoApplyCondition {
+    /**
+     *
+     * @type {string}
+     * @memberof CouponAutoApplyCondition
+     */
+    coupon_code?: string;
+    /**
+     * The minimum subtotal that must be purchased to receive this coupon. Item and subtotal are exclusive.  Only one can be populated.
+     * @type {number}
+     * @memberof CouponAutoApplyCondition
+     */
+    minimum_subtotal?: number;
+    /**
+     * The item that must be purchased to receive this coupon. Item and subtotal are exclusive.  Only one can be populated.
+     * @type {string}
+     * @memberof CouponAutoApplyCondition
+     */
+    required_item_id?: string;
+}
+/**
+ *
+ * @export
+ * @interface CouponAutoApplyConditions
+ */
+export interface CouponAutoApplyConditions {
+    /**
+     *
+     * @type {Error}
+     * @memberof CouponAutoApplyConditions
+     */
+    error?: Error;
+    /**
+     *
+     * @type {ResponseMetadata}
+     * @memberof CouponAutoApplyConditions
+     */
+    metadata?: ResponseMetadata;
+    /**
+     *
+     * @type {Array<CouponAutoApplyCondition>}
+     * @memberof CouponAutoApplyConditions
+     */
+    required_items?: Array<CouponAutoApplyCondition>;
+    /**
+     *
+     * @type {Array<CouponAutoApplyCondition>}
+     * @memberof CouponAutoApplyConditions
+     */
+    subtotal_levels?: Array<CouponAutoApplyCondition>;
+    /**
+     * Indicates if API call was successful
+     * @type {boolean}
+     * @memberof CouponAutoApplyConditions
+     */
+    success?: boolean;
+    /**
+     *
+     * @type {Warning}
+     * @memberof CouponAutoApplyConditions
+     */
+    warning?: Warning;
+}
+/**
+ *
+ * @export
  * @interface CouponAutomaticallyApplyCouponCodes
  */
 export interface CouponAutomaticallyApplyCouponCodes {
@@ -5801,23 +5876,41 @@ export interface CouponEditorValues {
      */
     currency_codes?: Array<string>;
     /**
+     * deprecated_themes
+     * @type {Array<SimpleValue>}
+     * @memberof CouponEditorValues
+     */
+    deprecated_themes?: Array<SimpleValue>;
+    /**
      * mix_and_match_names
      * @type {Array<string>}
      * @memberof CouponEditorValues
      */
     mix_and_match_names?: Array<string>;
     /**
-     * screen_branding_themes
-     * @type {Array<SimpleValue>}
-     * @memberof CouponEditorValues
-     */
-    screen_branding_themes?: Array<SimpleValue>;
-    /**
      * shipping_methods
      * @type {Array<string>}
      * @memberof CouponEditorValues
      */
     shipping_methods?: Array<string>;
+    /**
+     * storefronts
+     * @type {Array<SimpleValue>}
+     * @memberof CouponEditorValues
+     */
+    storefronts?: Array<SimpleValue>;
+    /**
+     * usable_by
+     * @type {Array<SimpleValue>}
+     * @memberof CouponEditorValues
+     */
+    usable_by?: Array<SimpleValue>;
+    /**
+     * valid_with_other_coupons
+     * @type {Array<string>}
+     * @memberof CouponEditorValues
+     */
+    valid_with_other_coupons?: Array<string>;
 }
 /**
  *
@@ -14814,7 +14907,7 @@ export interface ItemContent {
      */
     exclude_from_top_sellers?: boolean;
     /**
-     * Extended description (max 2000 characters)
+     * Extended description (max 10000 characters)
      * @type {string}
      * @memberof ItemContent
      */
@@ -26626,7 +26719,7 @@ export declare const CheckoutApiFetchParamCreator: (configuration?: Configuratio
      */
     getStateProvincesForCountry(country_code: string, options?: any): FetchArgs;
     /**
-     * Handoff the browser to UltraCart for view cart on StoreFront, transfer to PayPal, transfer to Affirm or finalization of the order (including upsell processing).
+     * Handoff the browser to UltraCart for view cart on StoreFront, transfer to PayPal, transfer to Affirm, transfer to Sezzle or finalization of the order (including upsell processing).
      * @summary Handoff cart
      * @param {CheckoutHandoffRequest} handoff_request Handoff request
      * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
@@ -26787,7 +26880,7 @@ export declare const CheckoutApiFp: (configuration?: Configuration) => {
      */
     getStateProvincesForCountry(country_code: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<CheckoutStateProvinceResponse>;
     /**
-     * Handoff the browser to UltraCart for view cart on StoreFront, transfer to PayPal, transfer to Affirm or finalization of the order (including upsell processing).
+     * Handoff the browser to UltraCart for view cart on StoreFront, transfer to PayPal, transfer to Affirm, transfer to Sezzle or finalization of the order (including upsell processing).
      * @summary Handoff cart
      * @param {CheckoutHandoffRequest} handoff_request Handoff request
      * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
@@ -26948,7 +27041,7 @@ export declare const CheckoutApiFactory: (configuration?: Configuration, fetch?:
      */
     getStateProvincesForCountry(country_code: string, options?: any): Promise<CheckoutStateProvinceResponse>;
     /**
-     * Handoff the browser to UltraCart for view cart on StoreFront, transfer to PayPal, transfer to Affirm or finalization of the order (including upsell processing).
+     * Handoff the browser to UltraCart for view cart on StoreFront, transfer to PayPal, transfer to Affirm, transfer to Sezzle or finalization of the order (including upsell processing).
      * @summary Handoff cart
      * @param {CheckoutHandoffRequest} handoff_request Handoff request
      * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
@@ -27118,7 +27211,7 @@ export interface CheckoutApiInterface {
      */
     getStateProvincesForCountry(country_code: string, options?: any): Promise<CheckoutStateProvinceResponse>;
     /**
-     * Handoff the browser to UltraCart for view cart on StoreFront, transfer to PayPal, transfer to Affirm or finalization of the order (including upsell processing).
+     * Handoff the browser to UltraCart for view cart on StoreFront, transfer to PayPal, transfer to Affirm, transfer to Sezzle or finalization of the order (including upsell processing).
      * @summary Handoff cart
      * @param {CheckoutHandoffRequest} handoff_request Handoff request
      * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
@@ -27299,7 +27392,7 @@ export declare class CheckoutApi extends BaseAPI implements CheckoutApiInterface
      */
     getStateProvincesForCountry(country_code: string, options?: any): Promise<CheckoutStateProvinceResponse>;
     /**
-     * Handoff the browser to UltraCart for view cart on StoreFront, transfer to PayPal, transfer to Affirm or finalization of the order (including upsell processing).
+     * Handoff the browser to UltraCart for view cart on StoreFront, transfer to PayPal, transfer to Affirm, transfer to Sezzle or finalization of the order (including upsell processing).
      * @summary Handoff cart
      * @param {CheckoutHandoffRequest} handoff_request Handoff request
      * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
@@ -27447,6 +27540,13 @@ export declare const CouponApiFetchParamCreator: (configuration?: Configuration)
      */
     generateOneTimeCodesByMerchantCode(merchant_code: string, coupon_codes_request: CouponCodesRequest, options?: any): FetchArgs;
     /**
+     * Retrieve auto apply rules and conditions
+     * @summary Retrieve auto apply rules and conditions
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getAutoApply(options?: any): FetchArgs;
+    /**
      * Retrieves a single coupon using the specified coupon profile oid.
      * @summary Retrieve a coupon
      * @param {number} coupon_oid The coupon oid to retrieve.
@@ -27522,6 +27622,14 @@ export declare const CouponApiFetchParamCreator: (configuration?: Configuration)
      */
     searchItems(s?: string, m?: number, options?: any): FetchArgs;
     /**
+     * Update auto apply rules and conditions
+     * @summary Update auto apply rules and conditions
+     * @param {CouponAutoApplyConditions} conditions Conditions
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    updateAutoApply(conditions: CouponAutoApplyConditions, options?: any): FetchArgs;
+    /**
      * Update a coupon on the UltraCart account.
      * @summary Update a coupon
      * @param {Coupon} coupon Coupon to update
@@ -27588,6 +27696,13 @@ export declare const CouponApiFp: (configuration?: Configuration) => {
      * @throws {RequiredError}
      */
     generateOneTimeCodesByMerchantCode(merchant_code: string, coupon_codes_request: CouponCodesRequest, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<CouponCodesResponse>;
+    /**
+     * Retrieve auto apply rules and conditions
+     * @summary Retrieve auto apply rules and conditions
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getAutoApply(options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<CouponAutoApplyConditions>;
     /**
      * Retrieves a single coupon using the specified coupon profile oid.
      * @summary Retrieve a coupon
@@ -27664,6 +27779,14 @@ export declare const CouponApiFp: (configuration?: Configuration) => {
      */
     searchItems(s?: string, m?: number, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<CouponItemSearchResultsResponse>;
     /**
+     * Update auto apply rules and conditions
+     * @summary Update auto apply rules and conditions
+     * @param {CouponAutoApplyConditions} conditions Conditions
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    updateAutoApply(conditions: CouponAutoApplyConditions, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Response>;
+    /**
      * Update a coupon on the UltraCart account.
      * @summary Update a coupon
      * @param {Coupon} coupon Coupon to update
@@ -27730,6 +27853,13 @@ export declare const CouponApiFactory: (configuration?: Configuration, fetch?: F
      * @throws {RequiredError}
      */
     generateOneTimeCodesByMerchantCode(merchant_code: string, coupon_codes_request: CouponCodesRequest, options?: any): Promise<CouponCodesResponse>;
+    /**
+     * Retrieve auto apply rules and conditions
+     * @summary Retrieve auto apply rules and conditions
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getAutoApply(options?: any): Promise<CouponAutoApplyConditions>;
     /**
      * Retrieves a single coupon using the specified coupon profile oid.
      * @summary Retrieve a coupon
@@ -27805,6 +27935,14 @@ export declare const CouponApiFactory: (configuration?: Configuration, fetch?: F
      * @throws {RequiredError}
      */
     searchItems(s?: string, m?: number, options?: any): Promise<CouponItemSearchResultsResponse>;
+    /**
+     * Update auto apply rules and conditions
+     * @summary Update auto apply rules and conditions
+     * @param {CouponAutoApplyConditions} conditions Conditions
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    updateAutoApply(conditions: CouponAutoApplyConditions, options?: any): Promise<Response>;
     /**
      * Update a coupon on the UltraCart account.
      * @summary Update a coupon
@@ -27879,6 +28017,14 @@ export interface CouponApiInterface {
      */
     generateOneTimeCodesByMerchantCode(merchant_code: string, coupon_codes_request: CouponCodesRequest, options?: any): Promise<CouponCodesResponse>;
     /**
+     * Retrieve auto apply rules and conditions
+     * @summary Retrieve auto apply rules and conditions
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof CouponApiInterface
+     */
+    getAutoApply(options?: any): Promise<CouponAutoApplyConditions>;
+    /**
      * Retrieves a single coupon using the specified coupon profile oid.
      * @summary Retrieve a coupon
      * @param {number} coupon_oid The coupon oid to retrieve.
@@ -27960,6 +28106,15 @@ export interface CouponApiInterface {
      * @memberof CouponApiInterface
      */
     searchItems(s?: string, m?: number, options?: any): Promise<CouponItemSearchResultsResponse>;
+    /**
+     * Update auto apply rules and conditions
+     * @summary Update auto apply rules and conditions
+     * @param {CouponAutoApplyConditions} conditions Conditions
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof CouponApiInterface
+     */
+    updateAutoApply(conditions: CouponAutoApplyConditions, options?: any): Promise<{}>;
     /**
      * Update a coupon on the UltraCart account.
      * @summary Update a coupon
@@ -28037,6 +28192,14 @@ export declare class CouponApi extends BaseAPI implements CouponApiInterface {
      */
     generateOneTimeCodesByMerchantCode(merchant_code: string, coupon_codes_request: CouponCodesRequest, options?: any): Promise<CouponCodesResponse>;
     /**
+     * Retrieve auto apply rules and conditions
+     * @summary Retrieve auto apply rules and conditions
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof CouponApi
+     */
+    getAutoApply(options?: any): Promise<CouponAutoApplyConditions>;
+    /**
      * Retrieves a single coupon using the specified coupon profile oid.
      * @summary Retrieve a coupon
      * @param {number} coupon_oid The coupon oid to retrieve.
@@ -28118,6 +28281,15 @@ export declare class CouponApi extends BaseAPI implements CouponApiInterface {
      * @memberof CouponApi
      */
     searchItems(s?: string, m?: number, options?: any): Promise<CouponItemSearchResultsResponse>;
+    /**
+     * Update auto apply rules and conditions
+     * @summary Update auto apply rules and conditions
+     * @param {CouponAutoApplyConditions} conditions Conditions
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof CouponApi
+     */
+    updateAutoApply(conditions: CouponAutoApplyConditions, options?: any): Promise<Response>;
     /**
      * Update a coupon on the UltraCart account.
      * @summary Update a coupon
