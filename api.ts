@@ -6063,6 +6063,50 @@ export interface CouponEditorValues {
 /**
  * 
  * @export
+ * @interface CouponExistsResponse
+ */
+export interface CouponExistsResponse {
+    /**
+     * Coupon Code
+     * @type {string}
+     * @memberof CouponExistsResponse
+     */
+    coupon_code?: string;
+    /**
+     * 
+     * @type {Error}
+     * @memberof CouponExistsResponse
+     */
+    error?: Error;
+    /**
+     * Exists
+     * @type {boolean}
+     * @memberof CouponExistsResponse
+     */
+    exists?: boolean;
+    /**
+     * 
+     * @type {ResponseMetadata}
+     * @memberof CouponExistsResponse
+     */
+    metadata?: ResponseMetadata;
+    /**
+     * Indicates if API call was successful
+     * @type {boolean}
+     * @memberof CouponExistsResponse
+     */
+    success?: boolean;
+    /**
+     * 
+     * @type {Warning}
+     * @memberof CouponExistsResponse
+     */
+    warning?: Warning;
+}
+
+/**
+ * 
+ * @export
  * @interface CouponFreeItemAndShippingWithSubtotal
  */
 export interface CouponFreeItemAndShippingWithSubtotal {
@@ -7082,6 +7126,20 @@ export interface CouponType {
      * @memberof CouponType
      */
     name?: string;
+}
+
+/**
+ * 
+ * @export
+ * @interface CouponsRequest
+ */
+export interface CouponsRequest {
+    /**
+     * coupons
+     * @type {Array<Coupon>}
+     * @memberof CouponsRequest
+     */
+    coupons?: Array<Coupon>;
 }
 
 /**
@@ -9196,6 +9254,12 @@ export interface EmailCampaign {
      */
     revenue_formatted?: string;
     /**
+     * Revenue per customer associated with campaign
+     * @type {string}
+     * @memberof EmailCampaign
+     */
+    revenue_per_customer_formatted?: string;
+    /**
      * Scheduled date
      * @type {string}
      * @memberof EmailCampaign
@@ -10968,6 +11032,12 @@ export interface EmailFlow {
      * @memberof EmailFlow
      */
     revenue_formatted?: string;
+    /**
+     * Revenue per customer, formatted
+     * @type {string}
+     * @memberof EmailFlow
+     */
+    revenue_per_customerformatted?: string;
     /**
      * URL to a large full length screenshot
      * @type {string}
@@ -14082,6 +14152,26 @@ export interface FulfillmentShipment {
      * @memberof FulfillmentShipment
      */
     tracking_numbers?: Array<string>;
+}
+
+/**
+ * 
+ * @export
+ * @interface GeoPoint
+ */
+export interface GeoPoint {
+    /**
+     * 
+     * @type {number}
+     * @memberof GeoPoint
+     */
+    lat?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof GeoPoint
+     */
+    lon?: number;
 }
 
 /**
@@ -23738,6 +23828,1512 @@ export interface ResultSet {
 /**
  * 
  * @export
+ * @interface ScreenRecording
+ */
+export interface ScreenRecording {
+    /**
+     * 
+     * @type {number}
+     * @memberof ScreenRecording
+     */
+    analytics_client_oid?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof ScreenRecording
+     */
+    analytics_session_dts?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof ScreenRecording
+     */
+    analytics_session_oid?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof ScreenRecording
+     */
+    email?: string;
+    /**
+     * Ending timestamp
+     * @type {string}
+     * @memberof ScreenRecording
+     */
+    end_timestamp?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ScreenRecording
+     */
+    esp_customer_uuid?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof ScreenRecording
+     */
+    events_gz_size?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof ScreenRecording
+     */
+    events_json_key?: string;
+    /**
+     * 
+     * @type {Array<number>}
+     * @memberof ScreenRecording
+     */
+    favorites?: Array<number>;
+    /**
+     * 
+     * @type {GeoPoint}
+     * @memberof ScreenRecording
+     */
+    geolocation?: GeoPoint;
+    /**
+     * 
+     * @type {string}
+     * @memberof ScreenRecording
+     */
+    geolocation_country?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ScreenRecording
+     */
+    geolocation_state?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ScreenRecording
+     */
+    merchant_id?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ScreenRecording
+     */
+    order_id?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof ScreenRecording
+     */
+    page_view_count?: number;
+    /**
+     * 
+     * @type {Array<ScreenRecordingPageView>}
+     * @memberof ScreenRecording
+     */
+    page_views?: Array<ScreenRecordingPageView>;
+    /**
+     * 
+     * @type {string}
+     * @memberof ScreenRecording
+     */
+    rrweb_version?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ScreenRecording
+     */
+    screen_recording_uuid?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ScreenRecording
+     */
+    signed_download_url?: string;
+    /**
+     * Starting timestamp
+     * @type {string}
+     * @memberof ScreenRecording
+     */
+    start_timestamp?: string;
+    /**
+     * 
+     * @type {Array<number>}
+     * @memberof ScreenRecording
+     */
+    storefront_oids?: Array<number>;
+    /**
+     * 
+     * @type {Array<ScreenRecordingStoreFront>}
+     * @memberof ScreenRecording
+     */
+    storefronts?: Array<ScreenRecordingStoreFront>;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof ScreenRecording
+     */
+    tags?: Array<string>;
+    /**
+     * 
+     * @type {number}
+     * @memberof ScreenRecording
+     */
+    time_on_site?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof ScreenRecording
+     */
+    ucacid?: string;
+    /**
+     * 
+     * @type {ScreenRecordingUserAgent}
+     * @memberof ScreenRecording
+     */
+    user_agent?: ScreenRecordingUserAgent;
+    /**
+     * 
+     * @type {string}
+     * @memberof ScreenRecording
+     */
+    user_agent_raw?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ScreenRecording
+     */
+    user_ip?: string;
+    /**
+     * 
+     * @type {Array<ScreenRecordingUserProperty>}
+     * @memberof ScreenRecording
+     */
+    user_properties?: Array<ScreenRecordingUserProperty>;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof ScreenRecording
+     */
+    watched?: boolean;
+    /**
+     * 
+     * @type {number}
+     * @memberof ScreenRecording
+     */
+    window_height?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof ScreenRecording
+     */
+    window_width?: number;
+}
+
+/**
+ * 
+ * @export
+ * @interface ScreenRecordingFilter
+ */
+export interface ScreenRecordingFilter {
+    /**
+     * 
+     * @type {ScreenRecordingFilterStringSearch}
+     * @memberof ScreenRecordingFilter
+     */
+    email?: ScreenRecordingFilterStringSearch;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof ScreenRecordingFilter
+     */
+    email_identified?: boolean;
+    /**
+     * 
+     * @type {ScreenRecordingFilterRangeDate}
+     * @memberof ScreenRecordingFilter
+     */
+    end_timestamp?: ScreenRecordingFilterRangeDate;
+    /**
+     * 
+     * @type {string}
+     * @memberof ScreenRecordingFilter
+     */
+    esp_customer_uuid?: string;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof ScreenRecordingFilter
+     */
+    favorite?: boolean;
+    /**
+     * 
+     * @type {ScreenRecordingFilterGeoDistance}
+     * @memberof ScreenRecordingFilter
+     */
+    geolocation?: ScreenRecordingFilterGeoDistance;
+    /**
+     * 
+     * @type {ScreenRecordingFilterStringSearch}
+     * @memberof ScreenRecordingFilter
+     */
+    geolocation_country?: ScreenRecordingFilterStringSearch;
+    /**
+     * 
+     * @type {ScreenRecordingFilterStringSearch}
+     * @memberof ScreenRecordingFilter
+     */
+    geolocation_state?: ScreenRecordingFilterStringSearch;
+    /**
+     * 
+     * @type {number}
+     * @memberof ScreenRecordingFilter
+     */
+    max_filter_values?: number;
+    /**
+     * 
+     * @type {ScreenRecordingFilterStringSearch}
+     * @memberof ScreenRecordingFilter
+     */
+    order_id?: ScreenRecordingFilterStringSearch;
+    /**
+     * 
+     * @type {ScreenRecordingFilterRangeInteger}
+     * @memberof ScreenRecordingFilter
+     */
+    page_view_count?: ScreenRecordingFilterRangeInteger;
+    /**
+     * 
+     * @type {Array<ScreenRecordingFilterPageView>}
+     * @memberof ScreenRecordingFilter
+     */
+    page_views?: Array<ScreenRecordingFilterPageView>;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof ScreenRecordingFilter
+     */
+    placed_order?: boolean;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof ScreenRecordingFilter
+     */
+    screen_recording_uuids?: Array<string>;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof ScreenRecordingFilter
+     */
+    screen_sizes?: Array<string>;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof ScreenRecordingFilter
+     */
+    skip_filter_values?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof ScreenRecordingFilter
+     */
+    skip_hits?: boolean;
+    /**
+     * 
+     * @type {ScreenRecordingFilterRangeDate}
+     * @memberof ScreenRecordingFilter
+     */
+    start_timestamp?: ScreenRecordingFilterRangeDate;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof ScreenRecordingFilter
+     */
+    tags?: Array<string>;
+    /**
+     * 
+     * @type {ScreenRecordingFilterRangeInteger}
+     * @memberof ScreenRecordingFilter
+     */
+    time_on_site?: ScreenRecordingFilterRangeInteger;
+    /**
+     * 
+     * @type {string}
+     * @memberof ScreenRecordingFilter
+     */
+    user_agent_device_name?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ScreenRecordingFilter
+     */
+    user_agent_name?: string;
+    /**
+     * 
+     * @type {ScreenRecordingFilterStringSearch}
+     * @memberof ScreenRecordingFilter
+     */
+    user_agent_original?: ScreenRecordingFilterStringSearch;
+    /**
+     * 
+     * @type {string}
+     * @memberof ScreenRecordingFilter
+     */
+    user_agent_os_name?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ScreenRecordingFilter
+     */
+    user_agent_os_version?: string;
+    /**
+     * 
+     * @type {ScreenRecordingFilterIpSearch}
+     * @memberof ScreenRecordingFilter
+     */
+    user_ip?: ScreenRecordingFilterIpSearch;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof ScreenRecordingFilter
+     */
+    watched?: boolean;
+}
+
+/**
+ * 
+ * @export
+ * @interface ScreenRecordingFilterGeoDistance
+ */
+export interface ScreenRecordingFilterGeoDistance {
+    /**
+     * 
+     * @type {number}
+     * @memberof ScreenRecordingFilterGeoDistance
+     */
+    distance?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof ScreenRecordingFilterGeoDistance
+     */
+    distance_uom?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ScreenRecordingFilterGeoDistance
+     */
+    from_address?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof ScreenRecordingFilterGeoDistance
+     */
+    lat?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof ScreenRecordingFilterGeoDistance
+     */
+    lon?: number;
+}
+
+/**
+ * 
+ * @export
+ * @interface ScreenRecordingFilterIpSearch
+ */
+export interface ScreenRecordingFilterIpSearch {
+    /**
+     * 
+     * @type {boolean}
+     * @memberof ScreenRecordingFilterIpSearch
+     */
+    does_not_exist?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof ScreenRecordingFilterIpSearch
+     */
+    exists?: boolean;
+    /**
+     * 
+     * @type {string}
+     * @memberof ScreenRecordingFilterIpSearch
+     */
+    is?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ScreenRecordingFilterIpSearch
+     */
+    is_not?: string;
+}
+
+/**
+ * 
+ * @export
+ * @interface ScreenRecordingFilterPageView
+ */
+export interface ScreenRecordingFilterPageView {
+    /**
+     * 
+     * @type {Array<ScreenRecordingFilterPageViewEvent>}
+     * @memberof ScreenRecordingFilterPageView
+     */
+    events?: Array<ScreenRecordingFilterPageViewEvent>;
+    /**
+     * 
+     * @type {Array<ScreenRecordingFilterPageViewParam>}
+     * @memberof ScreenRecordingFilterPageView
+     */
+    params?: Array<ScreenRecordingFilterPageViewParam>;
+    /**
+     * 
+     * @type {ScreenRecordingFilterStringSearch}
+     * @memberof ScreenRecordingFilterPageView
+     */
+    referrer?: ScreenRecordingFilterStringSearch;
+    /**
+     * 
+     * @type {Array<ScreenRecordingFilterPageViewReferrerParam>}
+     * @memberof ScreenRecordingFilterPageView
+     */
+    referrer_params?: Array<ScreenRecordingFilterPageViewReferrerParam>;
+    /**
+     * 
+     * @type {ScreenRecordingFilterStringSearch}
+     * @memberof ScreenRecordingFilterPageView
+     */
+    referrer_raw?: ScreenRecordingFilterStringSearch;
+    /**
+     * 
+     * @type {ScreenRecordingFilterRangeInteger}
+     * @memberof ScreenRecordingFilterPageView
+     */
+    time_on_page?: ScreenRecordingFilterRangeInteger;
+    /**
+     * 
+     * @type {ScreenRecordingFilterStringSearch}
+     * @memberof ScreenRecordingFilterPageView
+     */
+    url?: ScreenRecordingFilterStringSearch;
+}
+
+/**
+ * 
+ * @export
+ * @interface ScreenRecordingFilterPageViewEvent
+ */
+export interface ScreenRecordingFilterPageViewEvent {
+    /**
+     * 
+     * @type {string}
+     * @memberof ScreenRecordingFilterPageViewEvent
+     */
+    event_name?: string;
+    /**
+     * 
+     * @type {Array<ScreenRecordingFilterPageViewEventParam>}
+     * @memberof ScreenRecordingFilterPageViewEvent
+     */
+    event_params?: Array<ScreenRecordingFilterPageViewEventParam>;
+}
+
+/**
+ * 
+ * @export
+ * @interface ScreenRecordingFilterPageViewEventParam
+ */
+export interface ScreenRecordingFilterPageViewEventParam {
+    /**
+     * 
+     * @type {string}
+     * @memberof ScreenRecordingFilterPageViewEventParam
+     */
+    name?: string;
+    /**
+     * 
+     * @type {ScreenRecordingFilterRangeBigDecimal}
+     * @memberof ScreenRecordingFilterPageViewEventParam
+     */
+    value_bd?: ScreenRecordingFilterRangeBigDecimal;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof ScreenRecordingFilterPageViewEventParam
+     */
+    value_bool?: boolean;
+    /**
+     * 
+     * @type {ScreenRecordingFilterRangeInteger}
+     * @memberof ScreenRecordingFilterPageViewEventParam
+     */
+    value_num?: ScreenRecordingFilterRangeInteger;
+    /**
+     * 
+     * @type {ScreenRecordingFilterStringSearch}
+     * @memberof ScreenRecordingFilterPageViewEventParam
+     */
+    value_text?: ScreenRecordingFilterStringSearch;
+}
+
+/**
+ * 
+ * @export
+ * @interface ScreenRecordingFilterPageViewParam
+ */
+export interface ScreenRecordingFilterPageViewParam {
+    /**
+     * 
+     * @type {string}
+     * @memberof ScreenRecordingFilterPageViewParam
+     */
+    name?: string;
+    /**
+     * 
+     * @type {ScreenRecordingFilterStringSearch}
+     * @memberof ScreenRecordingFilterPageViewParam
+     */
+    value?: ScreenRecordingFilterStringSearch;
+}
+
+/**
+ * 
+ * @export
+ * @interface ScreenRecordingFilterPageViewReferrerParam
+ */
+export interface ScreenRecordingFilterPageViewReferrerParam {
+    /**
+     * 
+     * @type {string}
+     * @memberof ScreenRecordingFilterPageViewReferrerParam
+     */
+    name?: string;
+    /**
+     * 
+     * @type {ScreenRecordingFilterStringSearch}
+     * @memberof ScreenRecordingFilterPageViewReferrerParam
+     */
+    value?: ScreenRecordingFilterStringSearch;
+}
+
+/**
+ * 
+ * @export
+ * @interface ScreenRecordingFilterRangeBigDecimal
+ */
+export interface ScreenRecordingFilterRangeBigDecimal {
+    /**
+     * 
+     * @type {number}
+     * @memberof ScreenRecordingFilterRangeBigDecimal
+     */
+    eq?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof ScreenRecordingFilterRangeBigDecimal
+     */
+    gt?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof ScreenRecordingFilterRangeBigDecimal
+     */
+    gte?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof ScreenRecordingFilterRangeBigDecimal
+     */
+    lt?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof ScreenRecordingFilterRangeBigDecimal
+     */
+    lte?: number;
+}
+
+/**
+ * 
+ * @export
+ * @interface ScreenRecordingFilterRangeDate
+ */
+export interface ScreenRecordingFilterRangeDate {
+    /**
+     * End of the range
+     * @type {string}
+     * @memberof ScreenRecordingFilterRangeDate
+     */
+    end?: string;
+    /**
+     * Start of the range
+     * @type {string}
+     * @memberof ScreenRecordingFilterRangeDate
+     */
+    start?: string;
+}
+
+/**
+ * 
+ * @export
+ * @interface ScreenRecordingFilterRangeInteger
+ */
+export interface ScreenRecordingFilterRangeInteger {
+    /**
+     * 
+     * @type {number}
+     * @memberof ScreenRecordingFilterRangeInteger
+     */
+    eq?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof ScreenRecordingFilterRangeInteger
+     */
+    gt?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof ScreenRecordingFilterRangeInteger
+     */
+    gte?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof ScreenRecordingFilterRangeInteger
+     */
+    lt?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof ScreenRecordingFilterRangeInteger
+     */
+    lte?: number;
+}
+
+/**
+ * 
+ * @export
+ * @interface ScreenRecordingFilterStringSearch
+ */
+export interface ScreenRecordingFilterStringSearch {
+    /**
+     * 
+     * @type {boolean}
+     * @memberof ScreenRecordingFilterStringSearch
+     */
+    does_not_exist?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof ScreenRecordingFilterStringSearch
+     */
+    exists?: boolean;
+    /**
+     * 
+     * @type {string}
+     * @memberof ScreenRecordingFilterStringSearch
+     */
+    is?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ScreenRecordingFilterStringSearch
+     */
+    is_not?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ScreenRecordingFilterStringSearch
+     */
+    starts_with?: string;
+}
+
+/**
+ * 
+ * @export
+ * @interface ScreenRecordingFilterValues
+ */
+export interface ScreenRecordingFilterValues {
+    /**
+     * 
+     * @type {Array<ScreenRecordingFilterValuesEvent>}
+     * @memberof ScreenRecordingFilterValues
+     */
+    events?: Array<ScreenRecordingFilterValuesEvent>;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof ScreenRecordingFilterValues
+     */
+    geolocation_countries?: Array<string>;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof ScreenRecordingFilterValues
+     */
+    geolocation_states?: Array<string>;
+    /**
+     * 
+     * @type {number}
+     * @memberof ScreenRecordingFilterValues
+     */
+    max_values?: number;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof ScreenRecordingFilterValues
+     */
+    urls?: Array<string>;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof ScreenRecordingFilterValues
+     */
+    user_agent_device_names?: Array<string>;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof ScreenRecordingFilterValues
+     */
+    user_agent_device_os_names?: Array<string>;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof ScreenRecordingFilterValues
+     */
+    user_agent_device_os_versions?: Array<string>;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof ScreenRecordingFilterValues
+     */
+    user_agent_names?: Array<string>;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof ScreenRecordingFilterValues
+     */
+    user_agent_originals?: Array<string>;
+}
+
+/**
+ * 
+ * @export
+ * @interface ScreenRecordingFilterValuesEvent
+ */
+export interface ScreenRecordingFilterValuesEvent {
+    /**
+     * 
+     * @type {string}
+     * @memberof ScreenRecordingFilterValuesEvent
+     */
+    name?: string;
+    /**
+     * 
+     * @type {Array<ScreenRecordingFilterValuesEventParams>}
+     * @memberof ScreenRecordingFilterValuesEvent
+     */
+    params?: Array<ScreenRecordingFilterValuesEventParams>;
+}
+
+/**
+ * 
+ * @export
+ * @interface ScreenRecordingFilterValuesEventParams
+ */
+export interface ScreenRecordingFilterValuesEventParams {
+    /**
+     * 
+     * @type {string}
+     * @memberof ScreenRecordingFilterValuesEventParams
+     */
+    name?: string;
+    /**
+     * 
+     * @type {Array<number>}
+     * @memberof ScreenRecordingFilterValuesEventParams
+     */
+    values_bd?: Array<number>;
+    /**
+     * 
+     * @type {Array<boolean>}
+     * @memberof ScreenRecordingFilterValuesEventParams
+     */
+    values_bool?: Array<boolean>;
+    /**
+     * 
+     * @type {Array<number>}
+     * @memberof ScreenRecordingFilterValuesEventParams
+     */
+    values_num?: Array<number>;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof ScreenRecordingFilterValuesEventParams
+     */
+    values_text?: Array<string>;
+}
+
+/**
+ * 
+ * @export
+ * @interface ScreenRecordingMultifield
+ */
+export interface ScreenRecordingMultifield {
+    /**
+     * 
+     * @type {number}
+     * @memberof ScreenRecordingMultifield
+     */
+    bd?: number;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof ScreenRecordingMultifield
+     */
+    bool?: boolean;
+    /**
+     * 
+     * @type {string}
+     * @memberof ScreenRecordingMultifield
+     */
+    json?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof ScreenRecordingMultifield
+     */
+    num?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof ScreenRecordingMultifield
+     */
+    text?: string;
+}
+
+/**
+ * 
+ * @export
+ * @interface ScreenRecordingPageView
+ */
+export interface ScreenRecordingPageView {
+    /**
+     * 
+     * @type {Array<ScreenRecordingPageViewEvent>}
+     * @memberof ScreenRecordingPageView
+     */
+    events?: Array<ScreenRecordingPageViewEvent>;
+    /**
+     * First event timestamp
+     * @type {string}
+     * @memberof ScreenRecordingPageView
+     */
+    first_event_timestamp?: string;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof ScreenRecordingPageView
+     */
+    http_post?: boolean;
+    /**
+     * Last event timestamp
+     * @type {string}
+     * @memberof ScreenRecordingPageView
+     */
+    last_event_timestamp?: string;
+    /**
+     * 
+     * @type {Array<ScreenRecordingPageViewParameter>}
+     * @memberof ScreenRecordingPageView
+     */
+    params?: Array<ScreenRecordingPageViewParameter>;
+    /**
+     * 
+     * @type {number}
+     * @memberof ScreenRecordingPageView
+     */
+    range_end?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof ScreenRecordingPageView
+     */
+    range_start?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof ScreenRecordingPageView
+     */
+    referrer?: string;
+    /**
+     * 
+     * @type {Array<ScreenRecordingPageViewParameter>}
+     * @memberof ScreenRecordingPageView
+     */
+    referrer_params?: Array<ScreenRecordingPageViewParameter>;
+    /**
+     * 
+     * @type {string}
+     * @memberof ScreenRecordingPageView
+     */
+    referrer_raw?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ScreenRecordingPageView
+     */
+    screen_recording_page_view_uuid?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof ScreenRecordingPageView
+     */
+    time_on_page?: number;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof ScreenRecordingPageView
+     */
+    truncated_events?: boolean;
+    /**
+     * 
+     * @type {string}
+     * @memberof ScreenRecordingPageView
+     */
+    ucapv?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ScreenRecordingPageView
+     */
+    url?: string;
+}
+
+/**
+ * 
+ * @export
+ * @interface ScreenRecordingPageViewEvent
+ */
+export interface ScreenRecordingPageViewEvent {
+    /**
+     * 
+     * @type {string}
+     * @memberof ScreenRecordingPageViewEvent
+     */
+    name?: string;
+    /**
+     * 
+     * @type {Array<ScreenRecordingPageViewEventParameter>}
+     * @memberof ScreenRecordingPageViewEvent
+     */
+    params?: Array<ScreenRecordingPageViewEventParameter>;
+    /**
+     * Timestamp of the event
+     * @type {string}
+     * @memberof ScreenRecordingPageViewEvent
+     */
+    timestamp?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof ScreenRecordingPageViewEvent
+     */
+    ts?: number;
+}
+
+/**
+ * 
+ * @export
+ * @interface ScreenRecordingPageViewEventParameter
+ */
+export interface ScreenRecordingPageViewEventParameter {
+    /**
+     * 
+     * @type {string}
+     * @memberof ScreenRecordingPageViewEventParameter
+     */
+    name?: string;
+    /**
+     * 
+     * @type {ScreenRecordingMultifield}
+     * @memberof ScreenRecordingPageViewEventParameter
+     */
+    value?: ScreenRecordingMultifield;
+}
+
+/**
+ * 
+ * @export
+ * @interface ScreenRecordingPageViewParameter
+ */
+export interface ScreenRecordingPageViewParameter {
+    /**
+     * 
+     * @type {string}
+     * @memberof ScreenRecordingPageViewParameter
+     */
+    name?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ScreenRecordingPageViewParameter
+     */
+    value?: string;
+}
+
+/**
+ * 
+ * @export
+ * @interface ScreenRecordingQueryRequest
+ */
+export interface ScreenRecordingQueryRequest {
+    /**
+     * 
+     * @type {ScreenRecordingFilter}
+     * @memberof ScreenRecordingQueryRequest
+     */
+    filter?: ScreenRecordingFilter;
+}
+
+/**
+ * 
+ * @export
+ * @interface ScreenRecordingQueryResponse
+ */
+export interface ScreenRecordingQueryResponse {
+    /**
+     * 
+     * @type {Error}
+     * @memberof ScreenRecordingQueryResponse
+     */
+    error?: Error;
+    /**
+     * 
+     * @type {ScreenRecordingFilter}
+     * @memberof ScreenRecordingQueryResponse
+     */
+    filter?: ScreenRecordingFilter;
+    /**
+     * 
+     * @type {ScreenRecordingFilterValues}
+     * @memberof ScreenRecordingQueryResponse
+     */
+    filter_values?: ScreenRecordingFilterValues;
+    /**
+     * 
+     * @type {ResponseMetadata}
+     * @memberof ScreenRecordingQueryResponse
+     */
+    metadata?: ResponseMetadata;
+    /**
+     * 
+     * @type {Array<ScreenRecording>}
+     * @memberof ScreenRecordingQueryResponse
+     */
+    screen_recordings?: Array<ScreenRecording>;
+    /**
+     * Indicates if API call was successful
+     * @type {boolean}
+     * @memberof ScreenRecordingQueryResponse
+     */
+    success?: boolean;
+    /**
+     * 
+     * @type {Warning}
+     * @memberof ScreenRecordingQueryResponse
+     */
+    warning?: Warning;
+}
+
+/**
+ * 
+ * @export
+ * @interface ScreenRecordingResponse
+ */
+export interface ScreenRecordingResponse {
+    /**
+     * 
+     * @type {Error}
+     * @memberof ScreenRecordingResponse
+     */
+    error?: Error;
+    /**
+     * 
+     * @type {ResponseMetadata}
+     * @memberof ScreenRecordingResponse
+     */
+    metadata?: ResponseMetadata;
+    /**
+     * 
+     * @type {ScreenRecording}
+     * @memberof ScreenRecordingResponse
+     */
+    screen_recording?: ScreenRecording;
+    /**
+     * Indicates if API call was successful
+     * @type {boolean}
+     * @memberof ScreenRecordingResponse
+     */
+    success?: boolean;
+    /**
+     * 
+     * @type {Warning}
+     * @memberof ScreenRecordingResponse
+     */
+    warning?: Warning;
+}
+
+/**
+ * 
+ * @export
+ * @interface ScreenRecordingSegment
+ */
+export interface ScreenRecordingSegment {
+    /**
+     * 
+     * @type {string}
+     * @memberof ScreenRecordingSegment
+     */
+    create_dts?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ScreenRecordingSegment
+     */
+    description?: string;
+    /**
+     * 
+     * @type {ScreenRecordingFilter}
+     * @memberof ScreenRecordingSegment
+     */
+    filter?: ScreenRecordingFilter;
+    /**
+     * 
+     * @type {string}
+     * @memberof ScreenRecordingSegment
+     */
+    name?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof ScreenRecordingSegment
+     */
+    screen_recording_segment_oid?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof ScreenRecordingSegment
+     */
+    session_count?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof ScreenRecordingSegment
+     */
+    session_count_last_update_dts?: string;
+}
+
+/**
+ * 
+ * @export
+ * @interface ScreenRecordingSegmentResponse
+ */
+export interface ScreenRecordingSegmentResponse {
+    /**
+     * 
+     * @type {Error}
+     * @memberof ScreenRecordingSegmentResponse
+     */
+    error?: Error;
+    /**
+     * 
+     * @type {ResponseMetadata}
+     * @memberof ScreenRecordingSegmentResponse
+     */
+    metadata?: ResponseMetadata;
+    /**
+     * 
+     * @type {ScreenRecordingSegment}
+     * @memberof ScreenRecordingSegmentResponse
+     */
+    segment?: ScreenRecordingSegment;
+    /**
+     * Indicates if API call was successful
+     * @type {boolean}
+     * @memberof ScreenRecordingSegmentResponse
+     */
+    success?: boolean;
+    /**
+     * 
+     * @type {Warning}
+     * @memberof ScreenRecordingSegmentResponse
+     */
+    warning?: Warning;
+}
+
+/**
+ * 
+ * @export
+ * @interface ScreenRecordingSegmentsResponse
+ */
+export interface ScreenRecordingSegmentsResponse {
+    /**
+     * 
+     * @type {Error}
+     * @memberof ScreenRecordingSegmentsResponse
+     */
+    error?: Error;
+    /**
+     * 
+     * @type {ResponseMetadata}
+     * @memberof ScreenRecordingSegmentsResponse
+     */
+    metadata?: ResponseMetadata;
+    /**
+     * 
+     * @type {Array<ScreenRecordingSegment>}
+     * @memberof ScreenRecordingSegmentsResponse
+     */
+    segments?: Array<ScreenRecordingSegment>;
+    /**
+     * Indicates if API call was successful
+     * @type {boolean}
+     * @memberof ScreenRecordingSegmentsResponse
+     */
+    success?: boolean;
+    /**
+     * 
+     * @type {Warning}
+     * @memberof ScreenRecordingSegmentsResponse
+     */
+    warning?: Warning;
+}
+
+/**
+ * 
+ * @export
+ * @interface ScreenRecordingSettings
+ */
+export interface ScreenRecordingSettings {
+    /**
+     * 
+     * @type {boolean}
+     * @memberof ScreenRecordingSettings
+     */
+    enabled?: boolean;
+}
+
+/**
+ * 
+ * @export
+ * @interface ScreenRecordingSettingsResponse
+ */
+export interface ScreenRecordingSettingsResponse {
+    /**
+     * 
+     * @type {Error}
+     * @memberof ScreenRecordingSettingsResponse
+     */
+    error?: Error;
+    /**
+     * 
+     * @type {ResponseMetadata}
+     * @memberof ScreenRecordingSettingsResponse
+     */
+    metadata?: ResponseMetadata;
+    /**
+     * 
+     * @type {ScreenRecordingSettings}
+     * @memberof ScreenRecordingSettingsResponse
+     */
+    settings?: ScreenRecordingSettings;
+    /**
+     * Indicates if API call was successful
+     * @type {boolean}
+     * @memberof ScreenRecordingSettingsResponse
+     */
+    success?: boolean;
+    /**
+     * 
+     * @type {Warning}
+     * @memberof ScreenRecordingSettingsResponse
+     */
+    warning?: Warning;
+}
+
+/**
+ * 
+ * @export
+ * @interface ScreenRecordingStoreFront
+ */
+export interface ScreenRecordingStoreFront {
+    /**
+     * 
+     * @type {string}
+     * @memberof ScreenRecordingStoreFront
+     */
+    storefront_host_name?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof ScreenRecordingStoreFront
+     */
+    storefront_oid?: number;
+}
+
+/**
+ * 
+ * @export
+ * @interface ScreenRecordingTagsRequest
+ */
+export interface ScreenRecordingTagsRequest {
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof ScreenRecordingTagsRequest
+     */
+    tags?: Array<string>;
+}
+
+/**
+ * 
+ * @export
+ * @interface ScreenRecordingTagsResponse
+ */
+export interface ScreenRecordingTagsResponse {
+    /**
+     * 
+     * @type {Error}
+     * @memberof ScreenRecordingTagsResponse
+     */
+    error?: Error;
+    /**
+     * 
+     * @type {ResponseMetadata}
+     * @memberof ScreenRecordingTagsResponse
+     */
+    metadata?: ResponseMetadata;
+    /**
+     * Indicates if API call was successful
+     * @type {boolean}
+     * @memberof ScreenRecordingTagsResponse
+     */
+    success?: boolean;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof ScreenRecordingTagsResponse
+     */
+    tags?: Array<string>;
+    /**
+     * 
+     * @type {Warning}
+     * @memberof ScreenRecordingTagsResponse
+     */
+    warning?: Warning;
+}
+
+/**
+ * 
+ * @export
+ * @interface ScreenRecordingUserAgent
+ */
+export interface ScreenRecordingUserAgent {
+    /**
+     * 
+     * @type {ScreenRecordingUserAgentDevice}
+     * @memberof ScreenRecordingUserAgent
+     */
+    device?: ScreenRecordingUserAgentDevice;
+    /**
+     * 
+     * @type {string}
+     * @memberof ScreenRecordingUserAgent
+     */
+    name?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ScreenRecordingUserAgent
+     */
+    original?: string;
+    /**
+     * 
+     * @type {ScreenRecordingUserAgentOS}
+     * @memberof ScreenRecordingUserAgent
+     */
+    os?: ScreenRecordingUserAgentOS;
+    /**
+     * 
+     * @type {string}
+     * @memberof ScreenRecordingUserAgent
+     */
+    version?: string;
+}
+
+/**
+ * 
+ * @export
+ * @interface ScreenRecordingUserAgentDevice
+ */
+export interface ScreenRecordingUserAgentDevice {
+    /**
+     * 
+     * @type {string}
+     * @memberof ScreenRecordingUserAgentDevice
+     */
+    name?: string;
+}
+
+/**
+ * 
+ * @export
+ * @interface ScreenRecordingUserAgentOS
+ */
+export interface ScreenRecordingUserAgentOS {
+    /**
+     * 
+     * @type {string}
+     * @memberof ScreenRecordingUserAgentOS
+     */
+    full?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ScreenRecordingUserAgentOS
+     */
+    name?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ScreenRecordingUserAgentOS
+     */
+    version?: string;
+}
+
+/**
+ * 
+ * @export
+ * @interface ScreenRecordingUserProperty
+ */
+export interface ScreenRecordingUserProperty {
+    /**
+     * 
+     * @type {string}
+     * @memberof ScreenRecordingUserProperty
+     */
+    name?: string;
+    /**
+     * 
+     * @type {ScreenRecordingMultifield}
+     * @memberof ScreenRecordingUserProperty
+     */
+    value?: ScreenRecordingMultifield;
+}
+
+/**
+ * 
+ * @export
  * @interface ScreenshotsResponse
  */
 export interface ScreenshotsResponse {
@@ -30739,6 +32335,58 @@ export const CouponApiFetchParamCreator = function (configuration?: Configuratio
             };
         },
         /**
+         * Determines if a coupon merchant code already exists. 
+         * @summary Determines if a coupon merchant code already exists
+         * @param {string} merchant_code The coupon merchant code to examine.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        doesCouponCodeExist(merchant_code: string, options: any = {}): FetchArgs {
+            // verify required parameter 'merchant_code' is not null or undefined
+            if (merchant_code === null || merchant_code === undefined) {
+                throw new RequiredError('merchant_code','Required parameter merchant_code was null or undefined when calling doesCouponCodeExist.');
+            }
+            const localVarPath = `/coupon/coupons/merchant_code/{merchant_code}/exists`
+                .replace(`{${"merchant_code"}}`, encodeURIComponent(String(merchant_code)));
+            const localVarUrlObj = url.parse(localVarPath, true);
+            const localVarRequestOptions = Object.assign({ method: 'GET' }, options);
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+    if(configuration && configuration.apiVersion) {
+      localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+    }
+
+
+
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+				const localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+					? configuration.accessToken("ultraCartOauth", ["coupon_read"])
+					: configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
+					? configuration.apiKey("x-ultracart-simple-key")
+					: configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
          * Generate one time codes for a coupon 
          * @summary Generates one time codes for a coupon
          * @param {number} coupon_oid The coupon oid to generate codes.
@@ -31313,6 +32961,71 @@ export const CouponApiFetchParamCreator = function (configuration?: Configuratio
             };
         },
         /**
+         * Insert multiple coupon on the UltraCart account. 
+         * @summary Insert multiple coupons
+         * @param {CouponsRequest} coupons_request Coupons to insert (maximum 20)
+         * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
+         * @param {boolean} [_placeholders] Whether or not placeholder values should be returned in the result.  Useful for UIs that consume this REST API.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        insertCoupons(coupons_request: CouponsRequest, _expand?: string, _placeholders?: boolean, options: any = {}): FetchArgs {
+            // verify required parameter 'coupons_request' is not null or undefined
+            if (coupons_request === null || coupons_request === undefined) {
+                throw new RequiredError('coupons_request','Required parameter coupons_request was null or undefined when calling insertCoupons.');
+            }
+            const localVarPath = `/coupon/coupons/batch`;
+            const localVarUrlObj = url.parse(localVarPath, true);
+            const localVarRequestOptions = Object.assign({ method: 'POST' }, options);
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+    if(configuration && configuration.apiVersion) {
+      localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+    }
+
+
+
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+				const localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+					? configuration.accessToken("ultraCartOauth", ["coupon_write"])
+					: configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
+					? configuration.apiKey("x-ultracart-simple-key")
+					: configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+
+            if (_expand !== undefined) {
+                localVarQueryParameter['_expand'] = _expand;
+            }
+
+            if (_placeholders !== undefined) {
+                localVarQueryParameter['_placeholders'] = _placeholders;
+            }
+
+            localVarHeaderParameter['Content-Type'] = 'application/json; charset=UTF-8';
+
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+            const needsSerialization = (<any>"CouponsRequest" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
+            localVarRequestOptions.body =  needsSerialization ? JSON.stringify(coupons_request || {}) : (coupons_request || "");
+
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
          * Searches for items to display within a coupon editor and assign to coupons 
          * @summary Searches for items to display within a coupon editor and assign to coupons
          * @param {string} [s] 
@@ -31490,6 +33203,76 @@ export const CouponApiFetchParamCreator = function (configuration?: Configuratio
             };
         },
         /**
+         * Update multiple coupon on the UltraCart account. 
+         * @summary Update multiple coupons
+         * @param {CouponsRequest} coupons_request Coupons to update (synchronous maximum 20 / asynchronous maximum 100)
+         * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
+         * @param {boolean} [_placeholders] Whether or not placeholder values should be returned in the result.  Useful for UIs that consume this REST API.
+         * @param {boolean} [_async] True if the operation should be run async.  No result returned
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        updateCoupons(coupons_request: CouponsRequest, _expand?: string, _placeholders?: boolean, _async?: boolean, options: any = {}): FetchArgs {
+            // verify required parameter 'coupons_request' is not null or undefined
+            if (coupons_request === null || coupons_request === undefined) {
+                throw new RequiredError('coupons_request','Required parameter coupons_request was null or undefined when calling updateCoupons.');
+            }
+            const localVarPath = `/coupon/coupons/batch`;
+            const localVarUrlObj = url.parse(localVarPath, true);
+            const localVarRequestOptions = Object.assign({ method: 'PUT' }, options);
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+    if(configuration && configuration.apiVersion) {
+      localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+    }
+
+
+
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+				const localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+					? configuration.accessToken("ultraCartOauth", ["coupon_write"])
+					: configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
+					? configuration.apiKey("x-ultracart-simple-key")
+					: configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+
+            if (_expand !== undefined) {
+                localVarQueryParameter['_expand'] = _expand;
+            }
+
+            if (_placeholders !== undefined) {
+                localVarQueryParameter['_placeholders'] = _placeholders;
+            }
+
+            if (_async !== undefined) {
+                localVarQueryParameter['_async'] = _async;
+            }
+
+            localVarHeaderParameter['Content-Type'] = 'application/json; charset=UTF-8';
+
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+            const needsSerialization = (<any>"CouponsRequest" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
+            localVarRequestOptions.body =  needsSerialization ? JSON.stringify(coupons_request || {}) : (coupons_request || "");
+
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
          * Upload one-time codes for a coupon 
          * @summary Upload one-time codes for a coupon
          * @param {number} coupon_oid The coupon oid to associate with the provided one-time codes.
@@ -31610,6 +33393,25 @@ export const CouponApiFp = function(configuration?: Configuration) {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
                     if (response.status >= 200 && response.status < 300) {
                         return response;
+                    } else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
+         * Determines if a coupon merchant code already exists. 
+         * @summary Determines if a coupon merchant code already exists
+         * @param {string} merchant_code The coupon merchant code to examine.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        doesCouponCodeExist(merchant_code: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<CouponExistsResponse> {
+            const localVarFetchArgs = CouponApiFetchParamCreator(configuration).doesCouponCodeExist(merchant_code, options);
+            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+                    if (response.status >= 200 && response.status < 300) {
+                        return response.json();
                     } else {
                         throw response;
                     }
@@ -31807,6 +33609,27 @@ export const CouponApiFp = function(configuration?: Configuration) {
             };
         },
         /**
+         * Insert multiple coupon on the UltraCart account. 
+         * @summary Insert multiple coupons
+         * @param {CouponsRequest} coupons_request Coupons to insert (maximum 20)
+         * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
+         * @param {boolean} [_placeholders] Whether or not placeholder values should be returned in the result.  Useful for UIs that consume this REST API.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        insertCoupons(coupons_request: CouponsRequest, _expand?: string, _placeholders?: boolean, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<CouponsResponse> {
+            const localVarFetchArgs = CouponApiFetchParamCreator(configuration).insertCoupons(coupons_request, _expand, _placeholders, options);
+            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+                    if (response.status >= 200 && response.status < 300) {
+                        return response.json();
+                    } else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
          * Searches for items to display within a coupon editor and assign to coupons 
          * @summary Searches for items to display within a coupon editor and assign to coupons
          * @param {string} [s] 
@@ -31856,6 +33679,28 @@ export const CouponApiFp = function(configuration?: Configuration) {
          */
         updateCoupon(coupon: Coupon, coupon_oid: number, _expand?: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<CouponResponse> {
             const localVarFetchArgs = CouponApiFetchParamCreator(configuration).updateCoupon(coupon, coupon_oid, _expand, options);
+            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+                    if (response.status >= 200 && response.status < 300) {
+                        return response.json();
+                    } else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
+         * Update multiple coupon on the UltraCart account. 
+         * @summary Update multiple coupons
+         * @param {CouponsRequest} coupons_request Coupons to update (synchronous maximum 20 / asynchronous maximum 100)
+         * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
+         * @param {boolean} [_placeholders] Whether or not placeholder values should be returned in the result.  Useful for UIs that consume this REST API.
+         * @param {boolean} [_async] True if the operation should be run async.  No result returned
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        updateCoupons(coupons_request: CouponsRequest, _expand?: string, _placeholders?: boolean, _async?: boolean, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<CouponsResponse> {
+            const localVarFetchArgs = CouponApiFetchParamCreator(configuration).updateCoupons(coupons_request, _expand, _placeholders, _async, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
                     if (response.status >= 200 && response.status < 300) {
@@ -31924,6 +33769,16 @@ export const CouponApiFactory = function (configuration?: Configuration, fetch?:
          */
         deleteCouponsByOid(coupon_delete_request: CouponDeletesRequest, options?: any) {
             return CouponApiFp(configuration).deleteCouponsByOid(coupon_delete_request, options)(fetch, basePath);
+        },
+        /**
+         * Determines if a coupon merchant code already exists. 
+         * @summary Determines if a coupon merchant code already exists
+         * @param {string} merchant_code The coupon merchant code to examine.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        doesCouponCodeExist(merchant_code: string, options?: any) {
+            return CouponApiFp(configuration).doesCouponCodeExist(merchant_code, options)(fetch, basePath);
         },
         /**
          * Generate one time codes for a coupon 
@@ -32035,6 +33890,18 @@ export const CouponApiFactory = function (configuration?: Configuration, fetch?:
             return CouponApiFp(configuration).insertCoupon(coupon, _expand, options)(fetch, basePath);
         },
         /**
+         * Insert multiple coupon on the UltraCart account. 
+         * @summary Insert multiple coupons
+         * @param {CouponsRequest} coupons_request Coupons to insert (maximum 20)
+         * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
+         * @param {boolean} [_placeholders] Whether or not placeholder values should be returned in the result.  Useful for UIs that consume this REST API.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        insertCoupons(coupons_request: CouponsRequest, _expand?: string, _placeholders?: boolean, options?: any) {
+            return CouponApiFp(configuration).insertCoupons(coupons_request, _expand, _placeholders, options)(fetch, basePath);
+        },
+        /**
          * Searches for items to display within a coupon editor and assign to coupons 
          * @summary Searches for items to display within a coupon editor and assign to coupons
          * @param {string} [s] 
@@ -32066,6 +33933,19 @@ export const CouponApiFactory = function (configuration?: Configuration, fetch?:
          */
         updateCoupon(coupon: Coupon, coupon_oid: number, _expand?: string, options?: any) {
             return CouponApiFp(configuration).updateCoupon(coupon, coupon_oid, _expand, options)(fetch, basePath);
+        },
+        /**
+         * Update multiple coupon on the UltraCart account. 
+         * @summary Update multiple coupons
+         * @param {CouponsRequest} coupons_request Coupons to update (synchronous maximum 20 / asynchronous maximum 100)
+         * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
+         * @param {boolean} [_placeholders] Whether or not placeholder values should be returned in the result.  Useful for UIs that consume this REST API.
+         * @param {boolean} [_async] True if the operation should be run async.  No result returned
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        updateCoupons(coupons_request: CouponsRequest, _expand?: string, _placeholders?: boolean, _async?: boolean, options?: any) {
+            return CouponApiFp(configuration).updateCoupons(coupons_request, _expand, _placeholders, _async, options)(fetch, basePath);
         },
         /**
          * Upload one-time codes for a coupon 
@@ -32116,6 +33996,16 @@ export interface CouponApiInterface {
      * @memberof CouponApiInterface
      */
     deleteCouponsByOid(coupon_delete_request: CouponDeletesRequest, options?: any): Promise<{}>;
+
+    /**
+     * Determines if a coupon merchant code already exists. 
+     * @summary Determines if a coupon merchant code already exists
+     * @param {string} merchant_code The coupon merchant code to examine.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof CouponApiInterface
+     */
+    doesCouponCodeExist(merchant_code: string, options?: any): Promise<CouponExistsResponse>;
 
     /**
      * Generate one time codes for a coupon 
@@ -32227,6 +34117,18 @@ export interface CouponApiInterface {
     insertCoupon(coupon: Coupon, _expand?: string, options?: any): Promise<CouponResponse>;
 
     /**
+     * Insert multiple coupon on the UltraCart account. 
+     * @summary Insert multiple coupons
+     * @param {CouponsRequest} coupons_request Coupons to insert (maximum 20)
+     * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
+     * @param {boolean} [_placeholders] Whether or not placeholder values should be returned in the result.  Useful for UIs that consume this REST API.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof CouponApiInterface
+     */
+    insertCoupons(coupons_request: CouponsRequest, _expand?: string, _placeholders?: boolean, options?: any): Promise<CouponsResponse>;
+
+    /**
      * Searches for items to display within a coupon editor and assign to coupons 
      * @summary Searches for items to display within a coupon editor and assign to coupons
      * @param {string} [s] 
@@ -32258,6 +34160,19 @@ export interface CouponApiInterface {
      * @memberof CouponApiInterface
      */
     updateCoupon(coupon: Coupon, coupon_oid: number, _expand?: string, options?: any): Promise<CouponResponse>;
+
+    /**
+     * Update multiple coupon on the UltraCart account. 
+     * @summary Update multiple coupons
+     * @param {CouponsRequest} coupons_request Coupons to update (synchronous maximum 20 / asynchronous maximum 100)
+     * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
+     * @param {boolean} [_placeholders] Whether or not placeholder values should be returned in the result.  Useful for UIs that consume this REST API.
+     * @param {boolean} [_async] True if the operation should be run async.  No result returned
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof CouponApiInterface
+     */
+    updateCoupons(coupons_request: CouponsRequest, _expand?: string, _placeholders?: boolean, _async?: boolean, options?: any): Promise<CouponsResponse>;
 
     /**
      * Upload one-time codes for a coupon 
@@ -32313,6 +34228,18 @@ export class CouponApi extends BaseAPI implements CouponApiInterface {
      */
     public deleteCouponsByOid(coupon_delete_request: CouponDeletesRequest, options?: any) {
         return CouponApiFp(this.configuration).deleteCouponsByOid(coupon_delete_request, options)(this.fetch, this.basePath);
+    }
+
+    /**
+     * Determines if a coupon merchant code already exists. 
+     * @summary Determines if a coupon merchant code already exists
+     * @param {string} merchant_code The coupon merchant code to examine.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof CouponApi
+     */
+    public doesCouponCodeExist(merchant_code: string, options?: any) {
+        return CouponApiFp(this.configuration).doesCouponCodeExist(merchant_code, options)(this.fetch, this.basePath);
     }
 
     /**
@@ -32443,6 +34370,20 @@ export class CouponApi extends BaseAPI implements CouponApiInterface {
     }
 
     /**
+     * Insert multiple coupon on the UltraCart account. 
+     * @summary Insert multiple coupons
+     * @param {CouponsRequest} coupons_request Coupons to insert (maximum 20)
+     * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
+     * @param {boolean} [_placeholders] Whether or not placeholder values should be returned in the result.  Useful for UIs that consume this REST API.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof CouponApi
+     */
+    public insertCoupons(coupons_request: CouponsRequest, _expand?: string, _placeholders?: boolean, options?: any) {
+        return CouponApiFp(this.configuration).insertCoupons(coupons_request, _expand, _placeholders, options)(this.fetch, this.basePath);
+    }
+
+    /**
      * Searches for items to display within a coupon editor and assign to coupons 
      * @summary Searches for items to display within a coupon editor and assign to coupons
      * @param {string} [s] 
@@ -32479,6 +34420,21 @@ export class CouponApi extends BaseAPI implements CouponApiInterface {
      */
     public updateCoupon(coupon: Coupon, coupon_oid: number, _expand?: string, options?: any) {
         return CouponApiFp(this.configuration).updateCoupon(coupon, coupon_oid, _expand, options)(this.fetch, this.basePath);
+    }
+
+    /**
+     * Update multiple coupon on the UltraCart account. 
+     * @summary Update multiple coupons
+     * @param {CouponsRequest} coupons_request Coupons to update (synchronous maximum 20 / asynchronous maximum 100)
+     * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
+     * @param {boolean} [_placeholders] Whether or not placeholder values should be returned in the result.  Useful for UIs that consume this REST API.
+     * @param {boolean} [_async] True if the operation should be run async.  No result returned
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof CouponApi
+     */
+    public updateCoupons(coupons_request: CouponsRequest, _expand?: string, _placeholders?: boolean, _async?: boolean, options?: any) {
+        return CouponApiFp(this.configuration).updateCoupons(coupons_request, _expand, _placeholders, _async, options)(this.fetch, this.basePath);
     }
 
     /**
@@ -39763,6 +41719,72 @@ export const StorefrontApiFetchParamCreator = function (configuration?: Configur
         },
         /**
          * 
+         * @summary Delete screen recording segment
+         * @param {number} storefront_oid 
+         * @param {number} screen_recording_segment_oid 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        deleteScreenRecordingSegment(storefront_oid: number, screen_recording_segment_oid: number, options: any = {}): FetchArgs {
+            // verify required parameter 'storefront_oid' is not null or undefined
+            if (storefront_oid === null || storefront_oid === undefined) {
+                throw new RequiredError('storefront_oid','Required parameter storefront_oid was null or undefined when calling deleteScreenRecordingSegment.');
+            }
+            // verify required parameter 'screen_recording_segment_oid' is not null or undefined
+            if (screen_recording_segment_oid === null || screen_recording_segment_oid === undefined) {
+                throw new RequiredError('screen_recording_segment_oid','Required parameter screen_recording_segment_oid was null or undefined when calling deleteScreenRecordingSegment.');
+            }
+            const localVarPath = `/storefront/{storefront_oid}/screen_recordings/segments/{screen_recording_segment_oid}`
+                .replace(`{${"storefront_oid"}}`, encodeURIComponent(String(storefront_oid)))
+                .replace(`{${"screen_recording_segment_oid"}}`, encodeURIComponent(String(screen_recording_segment_oid)));
+            const localVarUrlObj = url.parse(localVarPath, true);
+            const localVarRequestOptions = Object.assign({ method: 'DELETE' }, options);
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+    if(configuration && configuration.apiVersion) {
+      localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+    }
+
+
+
+            // authentication ultraCartBrowserApiKey required
+            if (configuration && configuration.apiKey) {
+                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
+					? configuration.apiKey("x-ultracart-browser-key")
+					: configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-browser-key"] = localVarApiKeyValue;
+            }
+
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+				const localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+					? configuration.accessToken("ultraCartOauth", ["storefront_write"])
+					: configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
+					? configuration.apiKey("x-ultracart-simple-key")
+					: configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
          * @summary Duplicate library item.
          * @param {number} library_item_oid 
          * @param {*} [options] Override http request option.
@@ -39799,6 +41821,64 @@ export const StorefrontApiFetchParamCreator = function (configuration?: Configur
             if (configuration && configuration.accessToken) {
 				const localVarAccessTokenValue = typeof configuration.accessToken === 'function'
 					? configuration.accessToken("ultraCartOauth", ["storefront_write"])
+					: configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
+					? configuration.apiKey("x-ultracart-simple-key")
+					: configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Update favorite flag on screen recording 
+         * @summary Update favorite flag on screen recording
+         * @param {number} storefront_oid 
+         * @param {string} screen_recording_uuid 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        favoriteScreenRecording(storefront_oid: number, screen_recording_uuid: string, options: any = {}): FetchArgs {
+            // verify required parameter 'storefront_oid' is not null or undefined
+            if (storefront_oid === null || storefront_oid === undefined) {
+                throw new RequiredError('storefront_oid','Required parameter storefront_oid was null or undefined when calling favoriteScreenRecording.');
+            }
+            // verify required parameter 'screen_recording_uuid' is not null or undefined
+            if (screen_recording_uuid === null || screen_recording_uuid === undefined) {
+                throw new RequiredError('screen_recording_uuid','Required parameter screen_recording_uuid was null or undefined when calling favoriteScreenRecording.');
+            }
+            const localVarPath = `/storefront/{storefront_oid}/screen_recordings/{screen_recording_uuid}/favorite`
+                .replace(`{${"storefront_oid"}}`, encodeURIComponent(String(storefront_oid)))
+                .replace(`{${"screen_recording_uuid"}}`, encodeURIComponent(String(screen_recording_uuid)));
+            const localVarUrlObj = url.parse(localVarPath, true);
+            const localVarRequestOptions = Object.assign({ method: 'POST' }, options);
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+    if(configuration && configuration.apiVersion) {
+      localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+    }
+
+
+
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+				const localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+					? configuration.accessToken("ultraCartOauth", ["storefront_read"])
 					: configuration.accessToken;
                 localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
             }
@@ -43484,6 +45564,515 @@ export const StorefrontApiFetchParamCreator = function (configuration?: Configur
             };
         },
         /**
+         * Get screen recording 
+         * @summary Get screen recording
+         * @param {number} storefront_oid 
+         * @param {string} screen_recording_uuid 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getScreenRecording(storefront_oid: number, screen_recording_uuid: string, options: any = {}): FetchArgs {
+            // verify required parameter 'storefront_oid' is not null or undefined
+            if (storefront_oid === null || storefront_oid === undefined) {
+                throw new RequiredError('storefront_oid','Required parameter storefront_oid was null or undefined when calling getScreenRecording.');
+            }
+            // verify required parameter 'screen_recording_uuid' is not null or undefined
+            if (screen_recording_uuid === null || screen_recording_uuid === undefined) {
+                throw new RequiredError('screen_recording_uuid','Required parameter screen_recording_uuid was null or undefined when calling getScreenRecording.');
+            }
+            const localVarPath = `/storefront/{storefront_oid}/screen_recordings/{screen_recording_uuid}`
+                .replace(`{${"storefront_oid"}}`, encodeURIComponent(String(storefront_oid)))
+                .replace(`{${"screen_recording_uuid"}}`, encodeURIComponent(String(screen_recording_uuid)));
+            const localVarUrlObj = url.parse(localVarPath, true);
+            const localVarRequestOptions = Object.assign({ method: 'GET' }, options);
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+    if(configuration && configuration.apiVersion) {
+      localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+    }
+
+
+
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+				const localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+					? configuration.accessToken("ultraCartOauth", ["storefront_read"])
+					: configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
+					? configuration.apiKey("x-ultracart-simple-key")
+					: configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Get screen recording page view data 
+         * @summary Get screen recording page view data
+         * @param {number} storefront_oid 
+         * @param {string} screen_recording_uuid 
+         * @param {string} screen_recording_page_view_uuid 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getScreenRecordingPageViewData(storefront_oid: number, screen_recording_uuid: string, screen_recording_page_view_uuid: string, options: any = {}): FetchArgs {
+            // verify required parameter 'storefront_oid' is not null or undefined
+            if (storefront_oid === null || storefront_oid === undefined) {
+                throw new RequiredError('storefront_oid','Required parameter storefront_oid was null or undefined when calling getScreenRecordingPageViewData.');
+            }
+            // verify required parameter 'screen_recording_uuid' is not null or undefined
+            if (screen_recording_uuid === null || screen_recording_uuid === undefined) {
+                throw new RequiredError('screen_recording_uuid','Required parameter screen_recording_uuid was null or undefined when calling getScreenRecordingPageViewData.');
+            }
+            // verify required parameter 'screen_recording_page_view_uuid' is not null or undefined
+            if (screen_recording_page_view_uuid === null || screen_recording_page_view_uuid === undefined) {
+                throw new RequiredError('screen_recording_page_view_uuid','Required parameter screen_recording_page_view_uuid was null or undefined when calling getScreenRecordingPageViewData.');
+            }
+            const localVarPath = `/storefront/{storefront_oid}/screen_recordings/{screen_recording_uuid}/page_view_data/{screen_recording_page_view_uuid}`
+                .replace(`{${"storefront_oid"}}`, encodeURIComponent(String(storefront_oid)))
+                .replace(`{${"screen_recording_uuid"}}`, encodeURIComponent(String(screen_recording_uuid)))
+                .replace(`{${"screen_recording_page_view_uuid"}}`, encodeURIComponent(String(screen_recording_page_view_uuid)));
+            const localVarUrlObj = url.parse(localVarPath, true);
+            const localVarRequestOptions = Object.assign({ method: 'GET' }, options);
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+    if(configuration && configuration.apiVersion) {
+      localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+    }
+
+
+
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+				const localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+					? configuration.accessToken("ultraCartOauth", ["storefront_read"])
+					: configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
+					? configuration.apiKey("x-ultracart-simple-key")
+					: configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @summary Get screen recording segment
+         * @param {number} storefront_oid 
+         * @param {number} screen_recording_segment_oid 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getScreenRecordingSegment(storefront_oid: number, screen_recording_segment_oid: number, options: any = {}): FetchArgs {
+            // verify required parameter 'storefront_oid' is not null or undefined
+            if (storefront_oid === null || storefront_oid === undefined) {
+                throw new RequiredError('storefront_oid','Required parameter storefront_oid was null or undefined when calling getScreenRecordingSegment.');
+            }
+            // verify required parameter 'screen_recording_segment_oid' is not null or undefined
+            if (screen_recording_segment_oid === null || screen_recording_segment_oid === undefined) {
+                throw new RequiredError('screen_recording_segment_oid','Required parameter screen_recording_segment_oid was null or undefined when calling getScreenRecordingSegment.');
+            }
+            const localVarPath = `/storefront/{storefront_oid}/screen_recordings/segments/{screen_recording_segment_oid}`
+                .replace(`{${"storefront_oid"}}`, encodeURIComponent(String(storefront_oid)))
+                .replace(`{${"screen_recording_segment_oid"}}`, encodeURIComponent(String(screen_recording_segment_oid)));
+            const localVarUrlObj = url.parse(localVarPath, true);
+            const localVarRequestOptions = Object.assign({ method: 'GET' }, options);
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+    if(configuration && configuration.apiVersion) {
+      localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+    }
+
+
+
+            // authentication ultraCartBrowserApiKey required
+            if (configuration && configuration.apiKey) {
+                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
+					? configuration.apiKey("x-ultracart-browser-key")
+					: configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-browser-key"] = localVarApiKeyValue;
+            }
+
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+				const localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+					? configuration.accessToken("ultraCartOauth", ["storefront_write"])
+					: configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
+					? configuration.apiKey("x-ultracart-simple-key")
+					: configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @summary Get screen recording segments
+         * @param {number} storefront_oid 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getScreenRecordingSegments(storefront_oid: number, options: any = {}): FetchArgs {
+            // verify required parameter 'storefront_oid' is not null or undefined
+            if (storefront_oid === null || storefront_oid === undefined) {
+                throw new RequiredError('storefront_oid','Required parameter storefront_oid was null or undefined when calling getScreenRecordingSegments.');
+            }
+            const localVarPath = `/storefront/{storefront_oid}/screen_recordings/segments`
+                .replace(`{${"storefront_oid"}}`, encodeURIComponent(String(storefront_oid)));
+            const localVarUrlObj = url.parse(localVarPath, true);
+            const localVarRequestOptions = Object.assign({ method: 'GET' }, options);
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+    if(configuration && configuration.apiVersion) {
+      localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+    }
+
+
+
+            // authentication ultraCartBrowserApiKey required
+            if (configuration && configuration.apiKey) {
+                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
+					? configuration.apiKey("x-ultracart-browser-key")
+					: configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-browser-key"] = localVarApiKeyValue;
+            }
+
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+				const localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+					? configuration.accessToken("ultraCartOauth", ["storefront_write"])
+					: configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
+					? configuration.apiKey("x-ultracart-simple-key")
+					: configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @summary Get screen recording settings
+         * @param {number} storefront_oid 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getScreenRecordingSettings(storefront_oid: number, options: any = {}): FetchArgs {
+            // verify required parameter 'storefront_oid' is not null or undefined
+            if (storefront_oid === null || storefront_oid === undefined) {
+                throw new RequiredError('storefront_oid','Required parameter storefront_oid was null or undefined when calling getScreenRecordingSettings.');
+            }
+            const localVarPath = `/storefront/{storefront_oid}/screen_recordings/settings`
+                .replace(`{${"storefront_oid"}}`, encodeURIComponent(String(storefront_oid)));
+            const localVarUrlObj = url.parse(localVarPath, true);
+            const localVarRequestOptions = Object.assign({ method: 'GET' }, options);
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+    if(configuration && configuration.apiVersion) {
+      localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+    }
+
+
+
+            // authentication ultraCartBrowserApiKey required
+            if (configuration && configuration.apiKey) {
+                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
+					? configuration.apiKey("x-ultracart-browser-key")
+					: configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-browser-key"] = localVarApiKeyValue;
+            }
+
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+				const localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+					? configuration.accessToken("ultraCartOauth", ["storefront_write"])
+					: configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
+					? configuration.apiKey("x-ultracart-simple-key")
+					: configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Get tags used by screen recording 
+         * @summary Get tags used by screen recording
+         * @param {number} storefront_oid 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getScreenRecordingTags(storefront_oid: number, options: any = {}): FetchArgs {
+            // verify required parameter 'storefront_oid' is not null or undefined
+            if (storefront_oid === null || storefront_oid === undefined) {
+                throw new RequiredError('storefront_oid','Required parameter storefront_oid was null or undefined when calling getScreenRecordingTags.');
+            }
+            const localVarPath = `/storefront/{storefront_oid}/screen_recordings/tags`
+                .replace(`{${"storefront_oid"}}`, encodeURIComponent(String(storefront_oid)));
+            const localVarUrlObj = url.parse(localVarPath, true);
+            const localVarRequestOptions = Object.assign({ method: 'POST' }, options);
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+    if(configuration && configuration.apiVersion) {
+      localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+    }
+
+
+
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+				const localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+					? configuration.accessToken("ultraCartOauth", ["storefront_read"])
+					: configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
+					? configuration.apiKey("x-ultracart-simple-key")
+					: configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Query screen recordings 
+         * @summary Query screen recordings
+         * @param {number} storefront_oid 
+         * @param {ScreenRecordingQueryRequest} query Query
+         * @param {number} [_limit] The maximum number of records to return on this one API call. (Default 100, Max 500)
+         * @param {number} [_offset] Pagination of the record set.  Offset is a zero based index.
+         * @param {string} [_sort] The sort order of the items.  See Sorting documentation for examples of using multiple values and sorting by ascending and descending.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getScreenRecordingsByQuery(storefront_oid: number, query: ScreenRecordingQueryRequest, _limit?: number, _offset?: number, _sort?: string, options: any = {}): FetchArgs {
+            // verify required parameter 'storefront_oid' is not null or undefined
+            if (storefront_oid === null || storefront_oid === undefined) {
+                throw new RequiredError('storefront_oid','Required parameter storefront_oid was null or undefined when calling getScreenRecordingsByQuery.');
+            }
+            // verify required parameter 'query' is not null or undefined
+            if (query === null || query === undefined) {
+                throw new RequiredError('query','Required parameter query was null or undefined when calling getScreenRecordingsByQuery.');
+            }
+            const localVarPath = `/storefront/{storefront_oid}/screen_recordings/query`
+                .replace(`{${"storefront_oid"}}`, encodeURIComponent(String(storefront_oid)));
+            const localVarUrlObj = url.parse(localVarPath, true);
+            const localVarRequestOptions = Object.assign({ method: 'POST' }, options);
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+    if(configuration && configuration.apiVersion) {
+      localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+    }
+
+
+
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+				const localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+					? configuration.accessToken("ultraCartOauth", ["storefront_read"])
+					: configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
+					? configuration.apiKey("x-ultracart-simple-key")
+					: configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+
+            if (_limit !== undefined) {
+                localVarQueryParameter['_limit'] = _limit;
+            }
+
+            if (_offset !== undefined) {
+                localVarQueryParameter['_offset'] = _offset;
+            }
+
+            if (_sort !== undefined) {
+                localVarQueryParameter['_sort'] = _sort;
+            }
+
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+            const needsSerialization = (<any>"ScreenRecordingQueryRequest" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
+            localVarRequestOptions.body =  needsSerialization ? JSON.stringify(query || {}) : (query || "");
+
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Get screen recordings by segment 
+         * @summary Get screen recordings by segment
+         * @param {number} storefront_oid 
+         * @param {number} screen_recording_segment_oid 
+         * @param {number} [_limit] The maximum number of records to return on this one API call. (Default 100, Max 500)
+         * @param {number} [_offset] Pagination of the record set.  Offset is a zero based index.
+         * @param {string} [_sort] The sort order of the items.  See Sorting documentation for examples of using multiple values and sorting by ascending and descending.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getScreenRecordingsBySegment(storefront_oid: number, screen_recording_segment_oid: number, _limit?: number, _offset?: number, _sort?: string, options: any = {}): FetchArgs {
+            // verify required parameter 'storefront_oid' is not null or undefined
+            if (storefront_oid === null || storefront_oid === undefined) {
+                throw new RequiredError('storefront_oid','Required parameter storefront_oid was null or undefined when calling getScreenRecordingsBySegment.');
+            }
+            // verify required parameter 'screen_recording_segment_oid' is not null or undefined
+            if (screen_recording_segment_oid === null || screen_recording_segment_oid === undefined) {
+                throw new RequiredError('screen_recording_segment_oid','Required parameter screen_recording_segment_oid was null or undefined when calling getScreenRecordingsBySegment.');
+            }
+            const localVarPath = `/storefront/{storefront_oid}/screen_recordings/segments/{screen_recording_segment_oid}/query`
+                .replace(`{${"storefront_oid"}}`, encodeURIComponent(String(storefront_oid)))
+                .replace(`{${"screen_recording_segment_oid"}}`, encodeURIComponent(String(screen_recording_segment_oid)));
+            const localVarUrlObj = url.parse(localVarPath, true);
+            const localVarRequestOptions = Object.assign({ method: 'POST' }, options);
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+    if(configuration && configuration.apiVersion) {
+      localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+    }
+
+
+
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+				const localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+					? configuration.accessToken("ultraCartOauth", ["storefront_read"])
+					: configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
+					? configuration.apiKey("x-ultracart-simple-key")
+					: configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+
+            if (_limit !== undefined) {
+                localVarQueryParameter['_limit'] = _limit;
+            }
+
+            if (_offset !== undefined) {
+                localVarQueryParameter['_offset'] = _offset;
+            }
+
+            if (_sort !== undefined) {
+                localVarQueryParameter['_sort'] = _sort;
+            }
+
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
          * 
          * @summary Get thumbnail parameters
          * @param {ThumbnailParametersRequest} thumbnail_parameters Thumbnail Parameters
@@ -44353,6 +46942,75 @@ export const StorefrontApiFetchParamCreator = function (configuration?: Configur
             localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
             const needsSerialization = (<any>"EmailSegment" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
             localVarRequestOptions.body =  needsSerialization ? JSON.stringify(email_segment || {}) : (email_segment || "");
+
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @summary Insert screen recording segment
+         * @param {number} storefront_oid 
+         * @param {ScreenRecordingSegment} segment Segment
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        insertScreenRecordingSegment(storefront_oid: number, segment: ScreenRecordingSegment, options: any = {}): FetchArgs {
+            // verify required parameter 'storefront_oid' is not null or undefined
+            if (storefront_oid === null || storefront_oid === undefined) {
+                throw new RequiredError('storefront_oid','Required parameter storefront_oid was null or undefined when calling insertScreenRecordingSegment.');
+            }
+            // verify required parameter 'segment' is not null or undefined
+            if (segment === null || segment === undefined) {
+                throw new RequiredError('segment','Required parameter segment was null or undefined when calling insertScreenRecordingSegment.');
+            }
+            const localVarPath = `/storefront/{storefront_oid}/screen_recordings/segments`
+                .replace(`{${"storefront_oid"}}`, encodeURIComponent(String(storefront_oid)));
+            const localVarUrlObj = url.parse(localVarPath, true);
+            const localVarRequestOptions = Object.assign({ method: 'POST' }, options);
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+    if(configuration && configuration.apiVersion) {
+      localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+    }
+
+
+
+            // authentication ultraCartBrowserApiKey required
+            if (configuration && configuration.apiKey) {
+                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
+					? configuration.apiKey("x-ultracart-browser-key")
+					: configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-browser-key"] = localVarApiKeyValue;
+            }
+
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+				const localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+					? configuration.accessToken("ultraCartOauth", ["storefront_write"])
+					: configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
+					? configuration.apiKey("x-ultracart-simple-key")
+					: configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+            const needsSerialization = (<any>"ScreenRecordingSegment" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
+            localVarRequestOptions.body =  needsSerialization ? JSON.stringify(segment || {}) : (segment || "");
 
             return {
                 url: url.format(localVarUrlObj),
@@ -45562,6 +48220,64 @@ export const StorefrontApiFetchParamCreator = function (configuration?: Configur
             };
         },
         /**
+         * Remove favorite flag on screen recording 
+         * @summary Remove favorite flag on screen recording
+         * @param {number} storefront_oid 
+         * @param {string} screen_recording_uuid 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        unfavoriteScreenRecording(storefront_oid: number, screen_recording_uuid: string, options: any = {}): FetchArgs {
+            // verify required parameter 'storefront_oid' is not null or undefined
+            if (storefront_oid === null || storefront_oid === undefined) {
+                throw new RequiredError('storefront_oid','Required parameter storefront_oid was null or undefined when calling unfavoriteScreenRecording.');
+            }
+            // verify required parameter 'screen_recording_uuid' is not null or undefined
+            if (screen_recording_uuid === null || screen_recording_uuid === undefined) {
+                throw new RequiredError('screen_recording_uuid','Required parameter screen_recording_uuid was null or undefined when calling unfavoriteScreenRecording.');
+            }
+            const localVarPath = `/storefront/{storefront_oid}/screen_recordings/{screen_recording_uuid}/favorite`
+                .replace(`{${"storefront_oid"}}`, encodeURIComponent(String(storefront_oid)))
+                .replace(`{${"screen_recording_uuid"}}`, encodeURIComponent(String(screen_recording_uuid)));
+            const localVarUrlObj = url.parse(localVarPath, true);
+            const localVarRequestOptions = Object.assign({ method: 'DELETE' }, options);
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+    if(configuration && configuration.apiVersion) {
+      localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+    }
+
+
+
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+				const localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+					? configuration.accessToken("ultraCartOauth", ["storefront_read"])
+					: configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
+					? configuration.apiKey("x-ultracart-simple-key")
+					: configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
          * 
          * @summary Update email campaign
          * @param {number} storefront_oid 
@@ -46507,6 +49223,217 @@ export const StorefrontApiFetchParamCreator = function (configuration?: Configur
             };
         },
         /**
+         * 
+         * @summary Update screen recording segment
+         * @param {number} storefront_oid 
+         * @param {number} screen_recording_segment_oid 
+         * @param {ScreenRecordingSegment} segment Segment
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        updateScreenRecordingSegment(storefront_oid: number, screen_recording_segment_oid: number, segment: ScreenRecordingSegment, options: any = {}): FetchArgs {
+            // verify required parameter 'storefront_oid' is not null or undefined
+            if (storefront_oid === null || storefront_oid === undefined) {
+                throw new RequiredError('storefront_oid','Required parameter storefront_oid was null or undefined when calling updateScreenRecordingSegment.');
+            }
+            // verify required parameter 'screen_recording_segment_oid' is not null or undefined
+            if (screen_recording_segment_oid === null || screen_recording_segment_oid === undefined) {
+                throw new RequiredError('screen_recording_segment_oid','Required parameter screen_recording_segment_oid was null or undefined when calling updateScreenRecordingSegment.');
+            }
+            // verify required parameter 'segment' is not null or undefined
+            if (segment === null || segment === undefined) {
+                throw new RequiredError('segment','Required parameter segment was null or undefined when calling updateScreenRecordingSegment.');
+            }
+            const localVarPath = `/storefront/{storefront_oid}/screen_recordings/segments/{screen_recording_segment_oid}`
+                .replace(`{${"storefront_oid"}}`, encodeURIComponent(String(storefront_oid)))
+                .replace(`{${"screen_recording_segment_oid"}}`, encodeURIComponent(String(screen_recording_segment_oid)));
+            const localVarUrlObj = url.parse(localVarPath, true);
+            const localVarRequestOptions = Object.assign({ method: 'POST' }, options);
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+    if(configuration && configuration.apiVersion) {
+      localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+    }
+
+
+
+            // authentication ultraCartBrowserApiKey required
+            if (configuration && configuration.apiKey) {
+                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
+					? configuration.apiKey("x-ultracart-browser-key")
+					: configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-browser-key"] = localVarApiKeyValue;
+            }
+
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+				const localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+					? configuration.accessToken("ultraCartOauth", ["storefront_write"])
+					: configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
+					? configuration.apiKey("x-ultracart-simple-key")
+					: configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+            const needsSerialization = (<any>"ScreenRecordingSegment" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
+            localVarRequestOptions.body =  needsSerialization ? JSON.stringify(segment || {}) : (segment || "");
+
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @summary Update screen recording settings
+         * @param {number} storefront_oid 
+         * @param {ScreenRecordingSettings} settings Settings
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        updateScreenRecordingSettings(storefront_oid: number, settings: ScreenRecordingSettings, options: any = {}): FetchArgs {
+            // verify required parameter 'storefront_oid' is not null or undefined
+            if (storefront_oid === null || storefront_oid === undefined) {
+                throw new RequiredError('storefront_oid','Required parameter storefront_oid was null or undefined when calling updateScreenRecordingSettings.');
+            }
+            // verify required parameter 'settings' is not null or undefined
+            if (settings === null || settings === undefined) {
+                throw new RequiredError('settings','Required parameter settings was null or undefined when calling updateScreenRecordingSettings.');
+            }
+            const localVarPath = `/storefront/{storefront_oid}/screen_recordings/settings`
+                .replace(`{${"storefront_oid"}}`, encodeURIComponent(String(storefront_oid)));
+            const localVarUrlObj = url.parse(localVarPath, true);
+            const localVarRequestOptions = Object.assign({ method: 'POST' }, options);
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+    if(configuration && configuration.apiVersion) {
+      localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+    }
+
+
+
+            // authentication ultraCartBrowserApiKey required
+            if (configuration && configuration.apiKey) {
+                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
+					? configuration.apiKey("x-ultracart-browser-key")
+					: configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-browser-key"] = localVarApiKeyValue;
+            }
+
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+				const localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+					? configuration.accessToken("ultraCartOauth", ["storefront_write"])
+					: configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
+					? configuration.apiKey("x-ultracart-simple-key")
+					: configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+            const needsSerialization = (<any>"ScreenRecordingSettings" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
+            localVarRequestOptions.body =  needsSerialization ? JSON.stringify(settings || {}) : (settings || "");
+
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Update tags on a screen recording 
+         * @summary Update tags on a screen recording
+         * @param {number} storefront_oid 
+         * @param {string} screen_recording_uuid 
+         * @param {ScreenRecordingTagsRequest} tags Tags
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        updateScreenRecordingTags(storefront_oid: number, screen_recording_uuid: string, tags: ScreenRecordingTagsRequest, options: any = {}): FetchArgs {
+            // verify required parameter 'storefront_oid' is not null or undefined
+            if (storefront_oid === null || storefront_oid === undefined) {
+                throw new RequiredError('storefront_oid','Required parameter storefront_oid was null or undefined when calling updateScreenRecordingTags.');
+            }
+            // verify required parameter 'screen_recording_uuid' is not null or undefined
+            if (screen_recording_uuid === null || screen_recording_uuid === undefined) {
+                throw new RequiredError('screen_recording_uuid','Required parameter screen_recording_uuid was null or undefined when calling updateScreenRecordingTags.');
+            }
+            // verify required parameter 'tags' is not null or undefined
+            if (tags === null || tags === undefined) {
+                throw new RequiredError('tags','Required parameter tags was null or undefined when calling updateScreenRecordingTags.');
+            }
+            const localVarPath = `/storefront/{storefront_oid}/screen_recordings/{screen_recording_uuid}/tags`
+                .replace(`{${"storefront_oid"}}`, encodeURIComponent(String(storefront_oid)))
+                .replace(`{${"screen_recording_uuid"}}`, encodeURIComponent(String(screen_recording_uuid)));
+            const localVarUrlObj = url.parse(localVarPath, true);
+            const localVarRequestOptions = Object.assign({ method: 'POST' }, options);
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+    if(configuration && configuration.apiVersion) {
+      localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+    }
+
+
+
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+				const localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+					? configuration.accessToken("ultraCartOauth", ["storefront_read"])
+					: configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
+					? configuration.apiKey("x-ultracart-simple-key")
+					: configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+            const needsSerialization = (<any>"ScreenRecordingTagsRequest" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
+            localVarRequestOptions.body =  needsSerialization ? JSON.stringify(tags || {}) : (tags || "");
+
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
          * Updates a transactional email 
          * @summary Updates a transaction email object
          * @param {number} storefront_oid 
@@ -46931,6 +49858,26 @@ export const StorefrontApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
+         * @summary Delete screen recording segment
+         * @param {number} storefront_oid 
+         * @param {number} screen_recording_segment_oid 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        deleteScreenRecordingSegment(storefront_oid: number, screen_recording_segment_oid: number, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ScreenRecordingSegmentResponse> {
+            const localVarFetchArgs = StorefrontApiFetchParamCreator(configuration).deleteScreenRecordingSegment(storefront_oid, screen_recording_segment_oid, options);
+            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+                    if (response.status >= 200 && response.status < 300) {
+                        return response.json();
+                    } else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
+         * 
          * @summary Duplicate library item.
          * @param {number} library_item_oid 
          * @param {*} [options] Override http request option.
@@ -46942,6 +49889,26 @@ export const StorefrontApiFp = function(configuration?: Configuration) {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
                     if (response.status >= 200 && response.status < 300) {
                         return response.json();
+                    } else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
+         * Update favorite flag on screen recording 
+         * @summary Update favorite flag on screen recording
+         * @param {number} storefront_oid 
+         * @param {string} screen_recording_uuid 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        favoriteScreenRecording(storefront_oid: number, screen_recording_uuid: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Response> {
+            const localVarFetchArgs = StorefrontApiFetchParamCreator(configuration).favoriteScreenRecording(storefront_oid, screen_recording_uuid, options);
+            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+                    if (response.status >= 200 && response.status < 300) {
+                        return response;
                     } else {
                         throw response;
                     }
@@ -48064,6 +51031,170 @@ export const StorefrontApiFp = function(configuration?: Configuration) {
             };
         },
         /**
+         * Get screen recording 
+         * @summary Get screen recording
+         * @param {number} storefront_oid 
+         * @param {string} screen_recording_uuid 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getScreenRecording(storefront_oid: number, screen_recording_uuid: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ScreenRecordingResponse> {
+            const localVarFetchArgs = StorefrontApiFetchParamCreator(configuration).getScreenRecording(storefront_oid, screen_recording_uuid, options);
+            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+                    if (response.status >= 200 && response.status < 300) {
+                        return response.json();
+                    } else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
+         * Get screen recording page view data 
+         * @summary Get screen recording page view data
+         * @param {number} storefront_oid 
+         * @param {string} screen_recording_uuid 
+         * @param {string} screen_recording_page_view_uuid 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getScreenRecordingPageViewData(storefront_oid: number, screen_recording_uuid: string, screen_recording_page_view_uuid: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ScreenRecordingResponse> {
+            const localVarFetchArgs = StorefrontApiFetchParamCreator(configuration).getScreenRecordingPageViewData(storefront_oid, screen_recording_uuid, screen_recording_page_view_uuid, options);
+            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+                    if (response.status >= 200 && response.status < 300) {
+                        return response.json();
+                    } else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
+         * 
+         * @summary Get screen recording segment
+         * @param {number} storefront_oid 
+         * @param {number} screen_recording_segment_oid 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getScreenRecordingSegment(storefront_oid: number, screen_recording_segment_oid: number, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ScreenRecordingSegmentResponse> {
+            const localVarFetchArgs = StorefrontApiFetchParamCreator(configuration).getScreenRecordingSegment(storefront_oid, screen_recording_segment_oid, options);
+            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+                    if (response.status >= 200 && response.status < 300) {
+                        return response.json();
+                    } else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
+         * 
+         * @summary Get screen recording segments
+         * @param {number} storefront_oid 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getScreenRecordingSegments(storefront_oid: number, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ScreenRecordingSegmentsResponse> {
+            const localVarFetchArgs = StorefrontApiFetchParamCreator(configuration).getScreenRecordingSegments(storefront_oid, options);
+            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+                    if (response.status >= 200 && response.status < 300) {
+                        return response.json();
+                    } else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
+         * 
+         * @summary Get screen recording settings
+         * @param {number} storefront_oid 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getScreenRecordingSettings(storefront_oid: number, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ScreenRecordingSettingsResponse> {
+            const localVarFetchArgs = StorefrontApiFetchParamCreator(configuration).getScreenRecordingSettings(storefront_oid, options);
+            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+                    if (response.status >= 200 && response.status < 300) {
+                        return response.json();
+                    } else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
+         * Get tags used by screen recording 
+         * @summary Get tags used by screen recording
+         * @param {number} storefront_oid 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getScreenRecordingTags(storefront_oid: number, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ScreenRecordingTagsResponse> {
+            const localVarFetchArgs = StorefrontApiFetchParamCreator(configuration).getScreenRecordingTags(storefront_oid, options);
+            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+                    if (response.status >= 200 && response.status < 300) {
+                        return response.json();
+                    } else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
+         * Query screen recordings 
+         * @summary Query screen recordings
+         * @param {number} storefront_oid 
+         * @param {ScreenRecordingQueryRequest} query Query
+         * @param {number} [_limit] The maximum number of records to return on this one API call. (Default 100, Max 500)
+         * @param {number} [_offset] Pagination of the record set.  Offset is a zero based index.
+         * @param {string} [_sort] The sort order of the items.  See Sorting documentation for examples of using multiple values and sorting by ascending and descending.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getScreenRecordingsByQuery(storefront_oid: number, query: ScreenRecordingQueryRequest, _limit?: number, _offset?: number, _sort?: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ScreenRecordingQueryResponse> {
+            const localVarFetchArgs = StorefrontApiFetchParamCreator(configuration).getScreenRecordingsByQuery(storefront_oid, query, _limit, _offset, _sort, options);
+            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+                    if (response.status >= 200 && response.status < 300) {
+                        return response.json();
+                    } else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
+         * Get screen recordings by segment 
+         * @summary Get screen recordings by segment
+         * @param {number} storefront_oid 
+         * @param {number} screen_recording_segment_oid 
+         * @param {number} [_limit] The maximum number of records to return on this one API call. (Default 100, Max 500)
+         * @param {number} [_offset] Pagination of the record set.  Offset is a zero based index.
+         * @param {string} [_sort] The sort order of the items.  See Sorting documentation for examples of using multiple values and sorting by ascending and descending.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getScreenRecordingsBySegment(storefront_oid: number, screen_recording_segment_oid: number, _limit?: number, _offset?: number, _sort?: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ScreenRecordingQueryResponse> {
+            const localVarFetchArgs = StorefrontApiFetchParamCreator(configuration).getScreenRecordingsBySegment(storefront_oid, screen_recording_segment_oid, _limit, _offset, _sort, options);
+            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+                    if (response.status >= 200 && response.status < 300) {
+                        return response.json();
+                    } else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
          * 
          * @summary Get thumbnail parameters
          * @param {ThumbnailParametersRequest} thumbnail_parameters Thumbnail Parameters
@@ -48311,6 +51442,26 @@ export const StorefrontApiFp = function(configuration?: Configuration) {
          */
         insertEmailSegment(storefront_oid: number, email_segment: EmailSegment, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<EmailSegmentResponse> {
             const localVarFetchArgs = StorefrontApiFetchParamCreator(configuration).insertEmailSegment(storefront_oid, email_segment, options);
+            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+                    if (response.status >= 200 && response.status < 300) {
+                        return response.json();
+                    } else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
+         * 
+         * @summary Insert screen recording segment
+         * @param {number} storefront_oid 
+         * @param {ScreenRecordingSegment} segment Segment
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        insertScreenRecordingSegment(storefront_oid: number, segment: ScreenRecordingSegment, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ScreenRecordingSegmentResponse> {
+            const localVarFetchArgs = StorefrontApiFetchParamCreator(configuration).insertScreenRecordingSegment(storefront_oid, segment, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
                     if (response.status >= 200 && response.status < 300) {
@@ -48679,6 +51830,26 @@ export const StorefrontApiFp = function(configuration?: Configuration) {
             };
         },
         /**
+         * Remove favorite flag on screen recording 
+         * @summary Remove favorite flag on screen recording
+         * @param {number} storefront_oid 
+         * @param {string} screen_recording_uuid 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        unfavoriteScreenRecording(storefront_oid: number, screen_recording_uuid: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Response> {
+            const localVarFetchArgs = StorefrontApiFetchParamCreator(configuration).unfavoriteScreenRecording(storefront_oid, screen_recording_uuid, options);
+            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+                    if (response.status >= 200 && response.status < 300) {
+                        return response;
+                    } else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
          * 
          * @summary Update email campaign
          * @param {number} storefront_oid 
@@ -48947,6 +52118,68 @@ export const StorefrontApiFp = function(configuration?: Configuration) {
             };
         },
         /**
+         * 
+         * @summary Update screen recording segment
+         * @param {number} storefront_oid 
+         * @param {number} screen_recording_segment_oid 
+         * @param {ScreenRecordingSegment} segment Segment
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        updateScreenRecordingSegment(storefront_oid: number, screen_recording_segment_oid: number, segment: ScreenRecordingSegment, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ScreenRecordingSegmentResponse> {
+            const localVarFetchArgs = StorefrontApiFetchParamCreator(configuration).updateScreenRecordingSegment(storefront_oid, screen_recording_segment_oid, segment, options);
+            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+                    if (response.status >= 200 && response.status < 300) {
+                        return response.json();
+                    } else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
+         * 
+         * @summary Update screen recording settings
+         * @param {number} storefront_oid 
+         * @param {ScreenRecordingSettings} settings Settings
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        updateScreenRecordingSettings(storefront_oid: number, settings: ScreenRecordingSettings, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ScreenRecordingSettingsResponse> {
+            const localVarFetchArgs = StorefrontApiFetchParamCreator(configuration).updateScreenRecordingSettings(storefront_oid, settings, options);
+            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+                    if (response.status >= 200 && response.status < 300) {
+                        return response.json();
+                    } else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
+         * Update tags on a screen recording 
+         * @summary Update tags on a screen recording
+         * @param {number} storefront_oid 
+         * @param {string} screen_recording_uuid 
+         * @param {ScreenRecordingTagsRequest} tags Tags
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        updateScreenRecordingTags(storefront_oid: number, screen_recording_uuid: string, tags: ScreenRecordingTagsRequest, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Response> {
+            const localVarFetchArgs = StorefrontApiFetchParamCreator(configuration).updateScreenRecordingTags(storefront_oid, screen_recording_uuid, tags, options);
+            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+                    if (response.status >= 200 && response.status < 300) {
+                        return response;
+                    } else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
          * Updates a transactional email 
          * @summary Updates a transaction email object
          * @param {number} storefront_oid 
@@ -49164,6 +52397,17 @@ export const StorefrontApiFactory = function (configuration?: Configuration, fet
         },
         /**
          * 
+         * @summary Delete screen recording segment
+         * @param {number} storefront_oid 
+         * @param {number} screen_recording_segment_oid 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        deleteScreenRecordingSegment(storefront_oid: number, screen_recording_segment_oid: number, options?: any) {
+            return StorefrontApiFp(configuration).deleteScreenRecordingSegment(storefront_oid, screen_recording_segment_oid, options)(fetch, basePath);
+        },
+        /**
+         * 
          * @summary Duplicate library item.
          * @param {number} library_item_oid 
          * @param {*} [options] Override http request option.
@@ -49171,6 +52415,17 @@ export const StorefrontApiFactory = function (configuration?: Configuration, fet
          */
         duplicateLibraryItem(library_item_oid: number, options?: any) {
             return StorefrontApiFp(configuration).duplicateLibraryItem(library_item_oid, options)(fetch, basePath);
+        },
+        /**
+         * Update favorite flag on screen recording 
+         * @summary Update favorite flag on screen recording
+         * @param {number} storefront_oid 
+         * @param {string} screen_recording_uuid 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        favoriteScreenRecording(storefront_oid: number, screen_recording_uuid: string, options?: any) {
+            return StorefrontApiFp(configuration).favoriteScreenRecording(storefront_oid, screen_recording_uuid, options)(fetch, basePath);
         },
         /**
          * 
@@ -49784,6 +53039,98 @@ export const StorefrontApiFactory = function (configuration?: Configuration, fet
             return StorefrontApiFp(configuration).getPricingTiers(_expand, options)(fetch, basePath);
         },
         /**
+         * Get screen recording 
+         * @summary Get screen recording
+         * @param {number} storefront_oid 
+         * @param {string} screen_recording_uuid 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getScreenRecording(storefront_oid: number, screen_recording_uuid: string, options?: any) {
+            return StorefrontApiFp(configuration).getScreenRecording(storefront_oid, screen_recording_uuid, options)(fetch, basePath);
+        },
+        /**
+         * Get screen recording page view data 
+         * @summary Get screen recording page view data
+         * @param {number} storefront_oid 
+         * @param {string} screen_recording_uuid 
+         * @param {string} screen_recording_page_view_uuid 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getScreenRecordingPageViewData(storefront_oid: number, screen_recording_uuid: string, screen_recording_page_view_uuid: string, options?: any) {
+            return StorefrontApiFp(configuration).getScreenRecordingPageViewData(storefront_oid, screen_recording_uuid, screen_recording_page_view_uuid, options)(fetch, basePath);
+        },
+        /**
+         * 
+         * @summary Get screen recording segment
+         * @param {number} storefront_oid 
+         * @param {number} screen_recording_segment_oid 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getScreenRecordingSegment(storefront_oid: number, screen_recording_segment_oid: number, options?: any) {
+            return StorefrontApiFp(configuration).getScreenRecordingSegment(storefront_oid, screen_recording_segment_oid, options)(fetch, basePath);
+        },
+        /**
+         * 
+         * @summary Get screen recording segments
+         * @param {number} storefront_oid 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getScreenRecordingSegments(storefront_oid: number, options?: any) {
+            return StorefrontApiFp(configuration).getScreenRecordingSegments(storefront_oid, options)(fetch, basePath);
+        },
+        /**
+         * 
+         * @summary Get screen recording settings
+         * @param {number} storefront_oid 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getScreenRecordingSettings(storefront_oid: number, options?: any) {
+            return StorefrontApiFp(configuration).getScreenRecordingSettings(storefront_oid, options)(fetch, basePath);
+        },
+        /**
+         * Get tags used by screen recording 
+         * @summary Get tags used by screen recording
+         * @param {number} storefront_oid 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getScreenRecordingTags(storefront_oid: number, options?: any) {
+            return StorefrontApiFp(configuration).getScreenRecordingTags(storefront_oid, options)(fetch, basePath);
+        },
+        /**
+         * Query screen recordings 
+         * @summary Query screen recordings
+         * @param {number} storefront_oid 
+         * @param {ScreenRecordingQueryRequest} query Query
+         * @param {number} [_limit] The maximum number of records to return on this one API call. (Default 100, Max 500)
+         * @param {number} [_offset] Pagination of the record set.  Offset is a zero based index.
+         * @param {string} [_sort] The sort order of the items.  See Sorting documentation for examples of using multiple values and sorting by ascending and descending.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getScreenRecordingsByQuery(storefront_oid: number, query: ScreenRecordingQueryRequest, _limit?: number, _offset?: number, _sort?: string, options?: any) {
+            return StorefrontApiFp(configuration).getScreenRecordingsByQuery(storefront_oid, query, _limit, _offset, _sort, options)(fetch, basePath);
+        },
+        /**
+         * Get screen recordings by segment 
+         * @summary Get screen recordings by segment
+         * @param {number} storefront_oid 
+         * @param {number} screen_recording_segment_oid 
+         * @param {number} [_limit] The maximum number of records to return on this one API call. (Default 100, Max 500)
+         * @param {number} [_offset] Pagination of the record set.  Offset is a zero based index.
+         * @param {string} [_sort] The sort order of the items.  See Sorting documentation for examples of using multiple values and sorting by ascending and descending.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getScreenRecordingsBySegment(storefront_oid: number, screen_recording_segment_oid: number, _limit?: number, _offset?: number, _sort?: string, options?: any) {
+            return StorefrontApiFp(configuration).getScreenRecordingsBySegment(storefront_oid, screen_recording_segment_oid, _limit, _offset, _sort, options)(fetch, basePath);
+        },
+        /**
          * 
          * @summary Get thumbnail parameters
          * @param {ThumbnailParametersRequest} thumbnail_parameters Thumbnail Parameters
@@ -49923,6 +53270,17 @@ export const StorefrontApiFactory = function (configuration?: Configuration, fet
          */
         insertEmailSegment(storefront_oid: number, email_segment: EmailSegment, options?: any) {
             return StorefrontApiFp(configuration).insertEmailSegment(storefront_oid, email_segment, options)(fetch, basePath);
+        },
+        /**
+         * 
+         * @summary Insert screen recording segment
+         * @param {number} storefront_oid 
+         * @param {ScreenRecordingSegment} segment Segment
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        insertScreenRecordingSegment(storefront_oid: number, segment: ScreenRecordingSegment, options?: any) {
+            return StorefrontApiFp(configuration).insertScreenRecordingSegment(storefront_oid, segment, options)(fetch, basePath);
         },
         /**
          * 
@@ -50129,6 +53487,17 @@ export const StorefrontApiFactory = function (configuration?: Configuration, fet
             return StorefrontApiFp(configuration).subscribeToEmailList(storefront_oid, email_list_uuid, customers, options)(fetch, basePath);
         },
         /**
+         * Remove favorite flag on screen recording 
+         * @summary Remove favorite flag on screen recording
+         * @param {number} storefront_oid 
+         * @param {string} screen_recording_uuid 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        unfavoriteScreenRecording(storefront_oid: number, screen_recording_uuid: string, options?: any) {
+            return StorefrontApiFp(configuration).unfavoriteScreenRecording(storefront_oid, screen_recording_uuid, options)(fetch, basePath);
+        },
+        /**
          * 
          * @summary Update email campaign
          * @param {number} storefront_oid 
@@ -50278,6 +53647,41 @@ export const StorefrontApiFactory = function (configuration?: Configuration, fet
          */
         updateLibraryItem(library_item_oid: number, library_item: LibraryItem, options?: any) {
             return StorefrontApiFp(configuration).updateLibraryItem(library_item_oid, library_item, options)(fetch, basePath);
+        },
+        /**
+         * 
+         * @summary Update screen recording segment
+         * @param {number} storefront_oid 
+         * @param {number} screen_recording_segment_oid 
+         * @param {ScreenRecordingSegment} segment Segment
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        updateScreenRecordingSegment(storefront_oid: number, screen_recording_segment_oid: number, segment: ScreenRecordingSegment, options?: any) {
+            return StorefrontApiFp(configuration).updateScreenRecordingSegment(storefront_oid, screen_recording_segment_oid, segment, options)(fetch, basePath);
+        },
+        /**
+         * 
+         * @summary Update screen recording settings
+         * @param {number} storefront_oid 
+         * @param {ScreenRecordingSettings} settings Settings
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        updateScreenRecordingSettings(storefront_oid: number, settings: ScreenRecordingSettings, options?: any) {
+            return StorefrontApiFp(configuration).updateScreenRecordingSettings(storefront_oid, settings, options)(fetch, basePath);
+        },
+        /**
+         * Update tags on a screen recording 
+         * @summary Update tags on a screen recording
+         * @param {number} storefront_oid 
+         * @param {string} screen_recording_uuid 
+         * @param {ScreenRecordingTagsRequest} tags Tags
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        updateScreenRecordingTags(storefront_oid: number, screen_recording_uuid: string, tags: ScreenRecordingTagsRequest, options?: any) {
+            return StorefrontApiFp(configuration).updateScreenRecordingTags(storefront_oid, screen_recording_uuid, tags, options)(fetch, basePath);
         },
         /**
          * Updates a transactional email 
@@ -50488,6 +53892,17 @@ export interface StorefrontApiInterface {
 
     /**
      * 
+     * @summary Delete screen recording segment
+     * @param {number} storefront_oid 
+     * @param {number} screen_recording_segment_oid 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof StorefrontApiInterface
+     */
+    deleteScreenRecordingSegment(storefront_oid: number, screen_recording_segment_oid: number, options?: any): Promise<ScreenRecordingSegmentResponse>;
+
+    /**
+     * 
      * @summary Duplicate library item.
      * @param {number} library_item_oid 
      * @param {*} [options] Override http request option.
@@ -50495,6 +53910,17 @@ export interface StorefrontApiInterface {
      * @memberof StorefrontApiInterface
      */
     duplicateLibraryItem(library_item_oid: number, options?: any): Promise<LibraryItemResponse>;
+
+    /**
+     * Update favorite flag on screen recording 
+     * @summary Update favorite flag on screen recording
+     * @param {number} storefront_oid 
+     * @param {string} screen_recording_uuid 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof StorefrontApiInterface
+     */
+    favoriteScreenRecording(storefront_oid: number, screen_recording_uuid: string, options?: any): Promise<{}>;
 
     /**
      * 
@@ -51108,6 +54534,98 @@ export interface StorefrontApiInterface {
     getPricingTiers(_expand?: string, options?: any): Promise<PricingTiersResponse>;
 
     /**
+     * Get screen recording 
+     * @summary Get screen recording
+     * @param {number} storefront_oid 
+     * @param {string} screen_recording_uuid 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof StorefrontApiInterface
+     */
+    getScreenRecording(storefront_oid: number, screen_recording_uuid: string, options?: any): Promise<ScreenRecordingResponse>;
+
+    /**
+     * Get screen recording page view data 
+     * @summary Get screen recording page view data
+     * @param {number} storefront_oid 
+     * @param {string} screen_recording_uuid 
+     * @param {string} screen_recording_page_view_uuid 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof StorefrontApiInterface
+     */
+    getScreenRecordingPageViewData(storefront_oid: number, screen_recording_uuid: string, screen_recording_page_view_uuid: string, options?: any): Promise<ScreenRecordingResponse>;
+
+    /**
+     * 
+     * @summary Get screen recording segment
+     * @param {number} storefront_oid 
+     * @param {number} screen_recording_segment_oid 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof StorefrontApiInterface
+     */
+    getScreenRecordingSegment(storefront_oid: number, screen_recording_segment_oid: number, options?: any): Promise<ScreenRecordingSegmentResponse>;
+
+    /**
+     * 
+     * @summary Get screen recording segments
+     * @param {number} storefront_oid 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof StorefrontApiInterface
+     */
+    getScreenRecordingSegments(storefront_oid: number, options?: any): Promise<ScreenRecordingSegmentsResponse>;
+
+    /**
+     * 
+     * @summary Get screen recording settings
+     * @param {number} storefront_oid 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof StorefrontApiInterface
+     */
+    getScreenRecordingSettings(storefront_oid: number, options?: any): Promise<ScreenRecordingSettingsResponse>;
+
+    /**
+     * Get tags used by screen recording 
+     * @summary Get tags used by screen recording
+     * @param {number} storefront_oid 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof StorefrontApiInterface
+     */
+    getScreenRecordingTags(storefront_oid: number, options?: any): Promise<ScreenRecordingTagsResponse>;
+
+    /**
+     * Query screen recordings 
+     * @summary Query screen recordings
+     * @param {number} storefront_oid 
+     * @param {ScreenRecordingQueryRequest} query Query
+     * @param {number} [_limit] The maximum number of records to return on this one API call. (Default 100, Max 500)
+     * @param {number} [_offset] Pagination of the record set.  Offset is a zero based index.
+     * @param {string} [_sort] The sort order of the items.  See Sorting documentation for examples of using multiple values and sorting by ascending and descending.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof StorefrontApiInterface
+     */
+    getScreenRecordingsByQuery(storefront_oid: number, query: ScreenRecordingQueryRequest, _limit?: number, _offset?: number, _sort?: string, options?: any): Promise<ScreenRecordingQueryResponse>;
+
+    /**
+     * Get screen recordings by segment 
+     * @summary Get screen recordings by segment
+     * @param {number} storefront_oid 
+     * @param {number} screen_recording_segment_oid 
+     * @param {number} [_limit] The maximum number of records to return on this one API call. (Default 100, Max 500)
+     * @param {number} [_offset] Pagination of the record set.  Offset is a zero based index.
+     * @param {string} [_sort] The sort order of the items.  See Sorting documentation for examples of using multiple values and sorting by ascending and descending.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof StorefrontApiInterface
+     */
+    getScreenRecordingsBySegment(storefront_oid: number, screen_recording_segment_oid: number, _limit?: number, _offset?: number, _sort?: string, options?: any): Promise<ScreenRecordingQueryResponse>;
+
+    /**
      * 
      * @summary Get thumbnail parameters
      * @param {ThumbnailParametersRequest} thumbnail_parameters Thumbnail Parameters
@@ -51247,6 +54765,17 @@ export interface StorefrontApiInterface {
      * @memberof StorefrontApiInterface
      */
     insertEmailSegment(storefront_oid: number, email_segment: EmailSegment, options?: any): Promise<EmailSegmentResponse>;
+
+    /**
+     * 
+     * @summary Insert screen recording segment
+     * @param {number} storefront_oid 
+     * @param {ScreenRecordingSegment} segment Segment
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof StorefrontApiInterface
+     */
+    insertScreenRecordingSegment(storefront_oid: number, segment: ScreenRecordingSegment, options?: any): Promise<ScreenRecordingSegmentResponse>;
 
     /**
      * 
@@ -51453,6 +54982,17 @@ export interface StorefrontApiInterface {
     subscribeToEmailList(storefront_oid: number, email_list_uuid: string, customers: Array<EmailCustomer>, options?: any): Promise<EmailListSubscribeResponse>;
 
     /**
+     * Remove favorite flag on screen recording 
+     * @summary Remove favorite flag on screen recording
+     * @param {number} storefront_oid 
+     * @param {string} screen_recording_uuid 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof StorefrontApiInterface
+     */
+    unfavoriteScreenRecording(storefront_oid: number, screen_recording_uuid: string, options?: any): Promise<{}>;
+
+    /**
      * 
      * @summary Update email campaign
      * @param {number} storefront_oid 
@@ -51602,6 +55142,41 @@ export interface StorefrontApiInterface {
      * @memberof StorefrontApiInterface
      */
     updateLibraryItem(library_item_oid: number, library_item: LibraryItem, options?: any): Promise<LibraryItemResponse>;
+
+    /**
+     * 
+     * @summary Update screen recording segment
+     * @param {number} storefront_oid 
+     * @param {number} screen_recording_segment_oid 
+     * @param {ScreenRecordingSegment} segment Segment
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof StorefrontApiInterface
+     */
+    updateScreenRecordingSegment(storefront_oid: number, screen_recording_segment_oid: number, segment: ScreenRecordingSegment, options?: any): Promise<ScreenRecordingSegmentResponse>;
+
+    /**
+     * 
+     * @summary Update screen recording settings
+     * @param {number} storefront_oid 
+     * @param {ScreenRecordingSettings} settings Settings
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof StorefrontApiInterface
+     */
+    updateScreenRecordingSettings(storefront_oid: number, settings: ScreenRecordingSettings, options?: any): Promise<ScreenRecordingSettingsResponse>;
+
+    /**
+     * Update tags on a screen recording 
+     * @summary Update tags on a screen recording
+     * @param {number} storefront_oid 
+     * @param {string} screen_recording_uuid 
+     * @param {ScreenRecordingTagsRequest} tags Tags
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof StorefrontApiInterface
+     */
+    updateScreenRecordingTags(storefront_oid: number, screen_recording_uuid: string, tags: ScreenRecordingTagsRequest, options?: any): Promise<{}>;
 
     /**
      * Updates a transactional email 
@@ -51846,6 +55421,19 @@ export class StorefrontApi extends BaseAPI implements StorefrontApiInterface {
 
     /**
      * 
+     * @summary Delete screen recording segment
+     * @param {number} storefront_oid 
+     * @param {number} screen_recording_segment_oid 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof StorefrontApi
+     */
+    public deleteScreenRecordingSegment(storefront_oid: number, screen_recording_segment_oid: number, options?: any) {
+        return StorefrontApiFp(this.configuration).deleteScreenRecordingSegment(storefront_oid, screen_recording_segment_oid, options)(this.fetch, this.basePath);
+    }
+
+    /**
+     * 
      * @summary Duplicate library item.
      * @param {number} library_item_oid 
      * @param {*} [options] Override http request option.
@@ -51854,6 +55442,19 @@ export class StorefrontApi extends BaseAPI implements StorefrontApiInterface {
      */
     public duplicateLibraryItem(library_item_oid: number, options?: any) {
         return StorefrontApiFp(this.configuration).duplicateLibraryItem(library_item_oid, options)(this.fetch, this.basePath);
+    }
+
+    /**
+     * Update favorite flag on screen recording 
+     * @summary Update favorite flag on screen recording
+     * @param {number} storefront_oid 
+     * @param {string} screen_recording_uuid 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof StorefrontApi
+     */
+    public favoriteScreenRecording(storefront_oid: number, screen_recording_uuid: string, options?: any) {
+        return StorefrontApiFp(this.configuration).favoriteScreenRecording(storefront_oid, screen_recording_uuid, options)(this.fetch, this.basePath);
     }
 
     /**
@@ -52580,6 +56181,114 @@ export class StorefrontApi extends BaseAPI implements StorefrontApiInterface {
     }
 
     /**
+     * Get screen recording 
+     * @summary Get screen recording
+     * @param {number} storefront_oid 
+     * @param {string} screen_recording_uuid 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof StorefrontApi
+     */
+    public getScreenRecording(storefront_oid: number, screen_recording_uuid: string, options?: any) {
+        return StorefrontApiFp(this.configuration).getScreenRecording(storefront_oid, screen_recording_uuid, options)(this.fetch, this.basePath);
+    }
+
+    /**
+     * Get screen recording page view data 
+     * @summary Get screen recording page view data
+     * @param {number} storefront_oid 
+     * @param {string} screen_recording_uuid 
+     * @param {string} screen_recording_page_view_uuid 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof StorefrontApi
+     */
+    public getScreenRecordingPageViewData(storefront_oid: number, screen_recording_uuid: string, screen_recording_page_view_uuid: string, options?: any) {
+        return StorefrontApiFp(this.configuration).getScreenRecordingPageViewData(storefront_oid, screen_recording_uuid, screen_recording_page_view_uuid, options)(this.fetch, this.basePath);
+    }
+
+    /**
+     * 
+     * @summary Get screen recording segment
+     * @param {number} storefront_oid 
+     * @param {number} screen_recording_segment_oid 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof StorefrontApi
+     */
+    public getScreenRecordingSegment(storefront_oid: number, screen_recording_segment_oid: number, options?: any) {
+        return StorefrontApiFp(this.configuration).getScreenRecordingSegment(storefront_oid, screen_recording_segment_oid, options)(this.fetch, this.basePath);
+    }
+
+    /**
+     * 
+     * @summary Get screen recording segments
+     * @param {number} storefront_oid 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof StorefrontApi
+     */
+    public getScreenRecordingSegments(storefront_oid: number, options?: any) {
+        return StorefrontApiFp(this.configuration).getScreenRecordingSegments(storefront_oid, options)(this.fetch, this.basePath);
+    }
+
+    /**
+     * 
+     * @summary Get screen recording settings
+     * @param {number} storefront_oid 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof StorefrontApi
+     */
+    public getScreenRecordingSettings(storefront_oid: number, options?: any) {
+        return StorefrontApiFp(this.configuration).getScreenRecordingSettings(storefront_oid, options)(this.fetch, this.basePath);
+    }
+
+    /**
+     * Get tags used by screen recording 
+     * @summary Get tags used by screen recording
+     * @param {number} storefront_oid 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof StorefrontApi
+     */
+    public getScreenRecordingTags(storefront_oid: number, options?: any) {
+        return StorefrontApiFp(this.configuration).getScreenRecordingTags(storefront_oid, options)(this.fetch, this.basePath);
+    }
+
+    /**
+     * Query screen recordings 
+     * @summary Query screen recordings
+     * @param {number} storefront_oid 
+     * @param {ScreenRecordingQueryRequest} query Query
+     * @param {number} [_limit] The maximum number of records to return on this one API call. (Default 100, Max 500)
+     * @param {number} [_offset] Pagination of the record set.  Offset is a zero based index.
+     * @param {string} [_sort] The sort order of the items.  See Sorting documentation for examples of using multiple values and sorting by ascending and descending.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof StorefrontApi
+     */
+    public getScreenRecordingsByQuery(storefront_oid: number, query: ScreenRecordingQueryRequest, _limit?: number, _offset?: number, _sort?: string, options?: any) {
+        return StorefrontApiFp(this.configuration).getScreenRecordingsByQuery(storefront_oid, query, _limit, _offset, _sort, options)(this.fetch, this.basePath);
+    }
+
+    /**
+     * Get screen recordings by segment 
+     * @summary Get screen recordings by segment
+     * @param {number} storefront_oid 
+     * @param {number} screen_recording_segment_oid 
+     * @param {number} [_limit] The maximum number of records to return on this one API call. (Default 100, Max 500)
+     * @param {number} [_offset] Pagination of the record set.  Offset is a zero based index.
+     * @param {string} [_sort] The sort order of the items.  See Sorting documentation for examples of using multiple values and sorting by ascending and descending.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof StorefrontApi
+     */
+    public getScreenRecordingsBySegment(storefront_oid: number, screen_recording_segment_oid: number, _limit?: number, _offset?: number, _sort?: string, options?: any) {
+        return StorefrontApiFp(this.configuration).getScreenRecordingsBySegment(storefront_oid, screen_recording_segment_oid, _limit, _offset, _sort, options)(this.fetch, this.basePath);
+    }
+
+    /**
      * 
      * @summary Get thumbnail parameters
      * @param {ThumbnailParametersRequest} thumbnail_parameters Thumbnail Parameters
@@ -52744,6 +56453,19 @@ export class StorefrontApi extends BaseAPI implements StorefrontApiInterface {
      */
     public insertEmailSegment(storefront_oid: number, email_segment: EmailSegment, options?: any) {
         return StorefrontApiFp(this.configuration).insertEmailSegment(storefront_oid, email_segment, options)(this.fetch, this.basePath);
+    }
+
+    /**
+     * 
+     * @summary Insert screen recording segment
+     * @param {number} storefront_oid 
+     * @param {ScreenRecordingSegment} segment Segment
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof StorefrontApi
+     */
+    public insertScreenRecordingSegment(storefront_oid: number, segment: ScreenRecordingSegment, options?: any) {
+        return StorefrontApiFp(this.configuration).insertScreenRecordingSegment(storefront_oid, segment, options)(this.fetch, this.basePath);
     }
 
     /**
@@ -52985,6 +56707,19 @@ export class StorefrontApi extends BaseAPI implements StorefrontApiInterface {
     }
 
     /**
+     * Remove favorite flag on screen recording 
+     * @summary Remove favorite flag on screen recording
+     * @param {number} storefront_oid 
+     * @param {string} screen_recording_uuid 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof StorefrontApi
+     */
+    public unfavoriteScreenRecording(storefront_oid: number, screen_recording_uuid: string, options?: any) {
+        return StorefrontApiFp(this.configuration).unfavoriteScreenRecording(storefront_oid, screen_recording_uuid, options)(this.fetch, this.basePath);
+    }
+
+    /**
      * 
      * @summary Update email campaign
      * @param {number} storefront_oid 
@@ -53159,6 +56894,47 @@ export class StorefrontApi extends BaseAPI implements StorefrontApiInterface {
      */
     public updateLibraryItem(library_item_oid: number, library_item: LibraryItem, options?: any) {
         return StorefrontApiFp(this.configuration).updateLibraryItem(library_item_oid, library_item, options)(this.fetch, this.basePath);
+    }
+
+    /**
+     * 
+     * @summary Update screen recording segment
+     * @param {number} storefront_oid 
+     * @param {number} screen_recording_segment_oid 
+     * @param {ScreenRecordingSegment} segment Segment
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof StorefrontApi
+     */
+    public updateScreenRecordingSegment(storefront_oid: number, screen_recording_segment_oid: number, segment: ScreenRecordingSegment, options?: any) {
+        return StorefrontApiFp(this.configuration).updateScreenRecordingSegment(storefront_oid, screen_recording_segment_oid, segment, options)(this.fetch, this.basePath);
+    }
+
+    /**
+     * 
+     * @summary Update screen recording settings
+     * @param {number} storefront_oid 
+     * @param {ScreenRecordingSettings} settings Settings
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof StorefrontApi
+     */
+    public updateScreenRecordingSettings(storefront_oid: number, settings: ScreenRecordingSettings, options?: any) {
+        return StorefrontApiFp(this.configuration).updateScreenRecordingSettings(storefront_oid, settings, options)(this.fetch, this.basePath);
+    }
+
+    /**
+     * Update tags on a screen recording 
+     * @summary Update tags on a screen recording
+     * @param {number} storefront_oid 
+     * @param {string} screen_recording_uuid 
+     * @param {ScreenRecordingTagsRequest} tags Tags
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof StorefrontApi
+     */
+    public updateScreenRecordingTags(storefront_oid: number, screen_recording_uuid: string, tags: ScreenRecordingTagsRequest, options?: any) {
+        return StorefrontApiFp(this.configuration).updateScreenRecordingTags(storefront_oid, screen_recording_uuid, tags, options)(this.fetch, this.basePath);
     }
 
     /**

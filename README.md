@@ -1,4 +1,4 @@
-## ultracart_rest_api_v2_typescript@3.0.59
+## ultracart_rest_api_v2_typescript@3.0.63
 
 This generator creates TypeScript/JavaScript client that utilizes [Fetch API](https://fetch.spec.whatwg.org/). The generated Node module can be used in the following environments:
 
@@ -36,7 +36,7 @@ navigate to the folder of your consuming project and run one of the following co
 _published:_
 
 ```
-npm install ultracart_rest_api_v2_typescript@3.0.59 --save
+npm install ultracart_rest_api_v2_typescript@3.0.63 --save
 ```
 
 _unPublished (not recommended):_
@@ -51,6 +51,9 @@ Not every change is committed to every SDK.
 
 | Version | Date | Comments |
 | --: | :-: | --- |
+| 3.0.63 | 01/19/2021 | CouponAPI: bug fixes and new method doesCouponCodeExist |
+| 3.0.62 | 01/19/2021 | Added retry ability when rate limit is triggered (PHP SDK only) only) Other sdk to follow. |
+| 3.0.60 | 01/14/2021 | Working with Ruby SDK |
 | 3.0.57 | 12/17/2020 | CouponAPI: Added Buy one get one free coupon |
 | 3.0.53 | 12/14/2020 | StoreFrontAPI: added a duplicate method to load the pricing tiers on the StoreFront |
 | 3.0.51 | 12/09/2020 | UserAPI: internal bug preventing proper usage of user group creation |
