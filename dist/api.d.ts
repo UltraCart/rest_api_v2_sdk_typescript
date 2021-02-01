@@ -447,6 +447,12 @@ export interface Activity {
  */
 export interface AddLibraryItemRequest {
     /**
+     * Attributes associated with the library item to contain additional configuration.
+     * @type {Array<LibraryItemAttribute>}
+     * @memberof AddLibraryItemRequest
+     */
+    attributes?: Array<LibraryItemAttribute>;
+    /**
      * Cjson to be added to library
      * @type {string}
      * @memberof AddLibraryItemRequest
@@ -1066,6 +1072,12 @@ export interface ApplyLibraryItemRequest {
  * @interface ApplyLibraryItemResponse
  */
 export interface ApplyLibraryItemResponse {
+    /**
+     * Attributes from the library item
+     * @type {Array<LibraryItemAttribute>}
+     * @memberof ApplyLibraryItemResponse
+     */
+    attributes?: Array<LibraryItemAttribute>;
     /**
      * Cjson from library item, only populated if this library item was a cjson snippet or marketing email (not transactional)
      * @type {string}
@@ -2283,6 +2295,12 @@ export interface CartCheckout {
      * @memberof CartCheckout
      */
     return_code?: string;
+    /**
+     * The URL to redirect the customer to when they return from an abandon cart email.  Must be https protocol.
+     * @type {string}
+     * @memberof CartCheckout
+     */
+    return_url?: string;
     /**
      * Screen branding theme code
      * @type {string}
@@ -8974,6 +8992,12 @@ export interface EmailCampaign {
      */
     end_once_customer_purchases?: boolean;
     /**
+     * Campaign folder UUID.  Null for uncategorized
+     * @type {string}
+     * @memberof EmailCampaign
+     */
+    esp_campaign_folder_uuid?: string;
+    /**
      * User of the sending address
      * @type {string}
      * @memberof EmailCampaign
@@ -9069,6 +9093,117 @@ export interface EmailCampaign {
      * @memberof EmailCampaign
      */
     storefront_oid?: number;
+}
+/**
+ *
+ * @export
+ * @interface EmailCampaignFolder
+ */
+export interface EmailCampaignFolder {
+    /**
+     * Email campaign folder UUID
+     * @type {string}
+     * @memberof EmailCampaignFolder
+     */
+    esp_campaign_folder_uuid?: string;
+    /**
+     * Merchant ID
+     * @type {string}
+     * @memberof EmailCampaignFolder
+     */
+    merchant_id?: string;
+    /**
+     * Name of email campaign folder
+     * @type {string}
+     * @memberof EmailCampaignFolder
+     */
+    name?: string;
+    /**
+     * Storefront oid
+     * @type {number}
+     * @memberof EmailCampaignFolder
+     */
+    storefront_oid?: number;
+    /**
+     * System generated folder
+     * @type {boolean}
+     * @memberof EmailCampaignFolder
+     */
+    system_generated?: boolean;
+}
+/**
+ *
+ * @export
+ * @interface EmailCampaignFolderResponse
+ */
+export interface EmailCampaignFolderResponse {
+    /**
+     *
+     * @type {EmailCampaignFolder}
+     * @memberof EmailCampaignFolderResponse
+     */
+    campaign_folder?: EmailCampaignFolder;
+    /**
+     *
+     * @type {Error}
+     * @memberof EmailCampaignFolderResponse
+     */
+    error?: Error;
+    /**
+     *
+     * @type {ResponseMetadata}
+     * @memberof EmailCampaignFolderResponse
+     */
+    metadata?: ResponseMetadata;
+    /**
+     * Indicates if API call was successful
+     * @type {boolean}
+     * @memberof EmailCampaignFolderResponse
+     */
+    success?: boolean;
+    /**
+     *
+     * @type {Warning}
+     * @memberof EmailCampaignFolderResponse
+     */
+    warning?: Warning;
+}
+/**
+ *
+ * @export
+ * @interface EmailCampaignFoldersResponse
+ */
+export interface EmailCampaignFoldersResponse {
+    /**
+     *
+     * @type {Array<EmailCampaignFolder>}
+     * @memberof EmailCampaignFoldersResponse
+     */
+    campaign_folders?: Array<EmailCampaignFolder>;
+    /**
+     *
+     * @type {Error}
+     * @memberof EmailCampaignFoldersResponse
+     */
+    error?: Error;
+    /**
+     *
+     * @type {ResponseMetadata}
+     * @memberof EmailCampaignFoldersResponse
+     */
+    metadata?: ResponseMetadata;
+    /**
+     * Indicates if API call was successful
+     * @type {boolean}
+     * @memberof EmailCampaignFoldersResponse
+     */
+    success?: boolean;
+    /**
+     *
+     * @type {Warning}
+     * @memberof EmailCampaignFoldersResponse
+     */
+    warning?: Warning;
 }
 /**
  *
@@ -10739,6 +10874,12 @@ export interface EmailFlow {
      */
     esp_domain_uuid?: string;
     /**
+     * Flow folder UUID.  Null for uncategorized
+     * @type {string}
+     * @memberof EmailFlow
+     */
+    esp_flow_folder_uuid?: string;
+    /**
      * Friendly name of the sending email
      * @type {string}
      * @memberof EmailFlow
@@ -10785,7 +10926,7 @@ export interface EmailFlow {
      * @type {string}
      * @memberof EmailFlow
      */
-    revenue_per_customerformatted?: string;
+    revenue_per_customer_formatted?: string;
     /**
      * URL to a large full length screenshot
      * @type {string}
@@ -10876,6 +11017,117 @@ export interface EmailFlowBackPopulateResponse {
      *
      * @type {Warning}
      * @memberof EmailFlowBackPopulateResponse
+     */
+    warning?: Warning;
+}
+/**
+ *
+ * @export
+ * @interface EmailFlowFolder
+ */
+export interface EmailFlowFolder {
+    /**
+     * Email flow folder UUID
+     * @type {string}
+     * @memberof EmailFlowFolder
+     */
+    esp_flow_folder_uuid?: string;
+    /**
+     * Merchant ID
+     * @type {string}
+     * @memberof EmailFlowFolder
+     */
+    merchant_id?: string;
+    /**
+     * Name of email flow folder
+     * @type {string}
+     * @memberof EmailFlowFolder
+     */
+    name?: string;
+    /**
+     * Storefront oid
+     * @type {number}
+     * @memberof EmailFlowFolder
+     */
+    storefront_oid?: number;
+    /**
+     * System generated folder
+     * @type {boolean}
+     * @memberof EmailFlowFolder
+     */
+    system_generated?: boolean;
+}
+/**
+ *
+ * @export
+ * @interface EmailFlowFolderResponse
+ */
+export interface EmailFlowFolderResponse {
+    /**
+     *
+     * @type {Error}
+     * @memberof EmailFlowFolderResponse
+     */
+    error?: Error;
+    /**
+     *
+     * @type {EmailFlowFolder}
+     * @memberof EmailFlowFolderResponse
+     */
+    flow_folder?: EmailFlowFolder;
+    /**
+     *
+     * @type {ResponseMetadata}
+     * @memberof EmailFlowFolderResponse
+     */
+    metadata?: ResponseMetadata;
+    /**
+     * Indicates if API call was successful
+     * @type {boolean}
+     * @memberof EmailFlowFolderResponse
+     */
+    success?: boolean;
+    /**
+     *
+     * @type {Warning}
+     * @memberof EmailFlowFolderResponse
+     */
+    warning?: Warning;
+}
+/**
+ *
+ * @export
+ * @interface EmailFlowFoldersResponse
+ */
+export interface EmailFlowFoldersResponse {
+    /**
+     *
+     * @type {Error}
+     * @memberof EmailFlowFoldersResponse
+     */
+    error?: Error;
+    /**
+     *
+     * @type {Array<EmailFlowFolder>}
+     * @memberof EmailFlowFoldersResponse
+     */
+    flow_folders?: Array<EmailFlowFolder>;
+    /**
+     *
+     * @type {ResponseMetadata}
+     * @memberof EmailFlowFoldersResponse
+     */
+    metadata?: ResponseMetadata;
+    /**
+     * Indicates if API call was successful
+     * @type {boolean}
+     * @memberof EmailFlowFoldersResponse
+     */
+    success?: boolean;
+    /**
+     *
+     * @type {Warning}
+     * @memberof EmailFlowFoldersResponse
      */
     warning?: Warning;
 }
@@ -11745,6 +11997,12 @@ export interface EmailPlan {
     additional_emails?: number;
     /**
      *
+     * @type {number}
+     * @memberof EmailPlan
+     */
+    additional_fee?: number;
+    /**
+     *
      * @type {boolean}
      * @memberof EmailPlan
      */
@@ -11852,6 +12110,18 @@ export interface EmailPlanAdditional {
      * @memberof EmailPlanAdditional
      */
     cost?: number;
+    /**
+     *
+     * @type {number}
+     * @memberof EmailPlanAdditional
+     */
+    cost_change?: number;
+    /**
+     *
+     * @type {string}
+     * @memberof EmailPlanAdditional
+     */
+    cost_change_formatted?: string;
     /**
      *
      * @type {string}
@@ -18356,6 +18626,12 @@ export interface LibraryItem {
     assets?: Array<LibraryItemAsset>;
     /**
      *
+     * @type {Array<LibraryItemAttribute>}
+     * @memberof LibraryItem
+     */
+    attributes?: Array<LibraryItemAttribute>;
+    /**
+     *
      * @type {Array<string>}
      * @memberof LibraryItem
      */
@@ -18626,6 +18902,31 @@ export interface LibraryItemAsset {
      * @memberof LibraryItemAsset
      */
     url?: string;
+}
+/**
+ *
+ * @export
+ * @interface LibraryItemAttribute
+ */
+export interface LibraryItemAttribute {
+    /**
+     *
+     * @type {number}
+     * @memberof LibraryItemAttribute
+     */
+    libraryItemOid?: number;
+    /**
+     *
+     * @type {string}
+     * @memberof LibraryItemAttribute
+     */
+    name?: string;
+    /**
+     *
+     * @type {string}
+     * @memberof LibraryItemAttribute
+     */
+    value?: string;
 }
 /**
  *
@@ -28268,6 +28569,15 @@ export declare const CheckoutApiFetchParamCreator: (configuration?: Configuratio
      */
     getCartByReturnCode(return_code: string, _expand?: string, options?: any): FetchArgs;
     /**
+     * Get a cart specified by the encrypted return token parameter.
+     * @summary Get cart (by return token)
+     * @param {string} [return_token] Return token provided by StoreFront Communications
+     * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getCartByReturnToken(return_token?: string, _expand?: string, options?: any): FetchArgs;
+    /**
      * Lookup a state/province list for a given country code
      * @summary Get state/province list for a country code
      * @param {string} country_code Two letter ISO country code
@@ -28429,6 +28739,15 @@ export declare const CheckoutApiFp: (configuration?: Configuration) => {
      */
     getCartByReturnCode(return_code: string, _expand?: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<CartResponse>;
     /**
+     * Get a cart specified by the encrypted return token parameter.
+     * @summary Get cart (by return token)
+     * @param {string} [return_token] Return token provided by StoreFront Communications
+     * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getCartByReturnToken(return_token?: string, _expand?: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<CartResponse>;
+    /**
      * Lookup a state/province list for a given country code
      * @summary Get state/province list for a country code
      * @param {string} country_code Two letter ISO country code
@@ -28589,6 +28908,15 @@ export declare const CheckoutApiFactory: (configuration?: Configuration, fetch?:
      * @throws {RequiredError}
      */
     getCartByReturnCode(return_code: string, _expand?: string, options?: any): Promise<CartResponse>;
+    /**
+     * Get a cart specified by the encrypted return token parameter.
+     * @summary Get cart (by return token)
+     * @param {string} [return_token] Return token provided by StoreFront Communications
+     * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getCartByReturnToken(return_token?: string, _expand?: string, options?: any): Promise<CartResponse>;
     /**
      * Lookup a state/province list for a given country code
      * @summary Get state/province list for a country code
@@ -28758,6 +29086,16 @@ export interface CheckoutApiInterface {
      * @memberof CheckoutApiInterface
      */
     getCartByReturnCode(return_code: string, _expand?: string, options?: any): Promise<CartResponse>;
+    /**
+     * Get a cart specified by the encrypted return token parameter.
+     * @summary Get cart (by return token)
+     * @param {string} [return_token] Return token provided by StoreFront Communications
+     * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof CheckoutApiInterface
+     */
+    getCartByReturnToken(return_token?: string, _expand?: string, options?: any): Promise<CartResponse>;
     /**
      * Lookup a state/province list for a given country code
      * @summary Get state/province list for a country code
@@ -28939,6 +29277,16 @@ export declare class CheckoutApi extends BaseAPI implements CheckoutApiInterface
      * @memberof CheckoutApi
      */
     getCartByReturnCode(return_code: string, _expand?: string, options?: any): Promise<CartResponse>;
+    /**
+     * Get a cart specified by the encrypted return token parameter.
+     * @summary Get cart (by return token)
+     * @param {string} [return_token] Return token provided by StoreFront Communications
+     * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof CheckoutApi
+     */
+    getCartByReturnToken(return_token?: string, _expand?: string, options?: any): Promise<CartResponse>;
     /**
      * Lookup a state/province list for a given country code
      * @summary Get state/province list for a country code
@@ -32801,6 +33149,15 @@ export declare const StorefrontApiFetchParamCreator: (configuration?: Configurat
     createEmailSendingDomain(domain: string, options?: any): FetchArgs;
     /**
      *
+     * @summary Delete email campaignFolder
+     * @param {number} storefront_oid
+     * @param {string} email_campaign_folder_uuid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    deleteEmailCampaignFolder(storefront_oid: number, email_campaign_folder_uuid: string, options?: any): FetchArgs;
+    /**
+     *
      * @summary Delete communication sequence stats
      * @param {number} storefront_oid
      * @param {string} commseq_uuid
@@ -32817,6 +33174,15 @@ export declare const StorefrontApiFetchParamCreator: (configuration?: Configurat
      * @throws {RequiredError}
      */
     deleteEmailEmail(storefront_oid: number, commseq_email_uuid: string, options?: any): FetchArgs;
+    /**
+     *
+     * @summary Delete email flowFolder
+     * @param {number} storefront_oid
+     * @param {string} email_flow_folder_uuid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    deleteEmailFlowFolder(storefront_oid: number, email_flow_folder_uuid: string, options?: any): FetchArgs;
     /**
      *
      * @summary Delete email list customer
@@ -32937,6 +33303,23 @@ export declare const StorefrontApiFetchParamCreator: (configuration?: Configurat
      * @throws {RequiredError}
      */
     getEmailCampaign(storefront_oid: number, email_campaign_uuid: string, options?: any): FetchArgs;
+    /**
+     *
+     * @summary Get email campaign folder
+     * @param {number} storefront_oid
+     * @param {string} email_campaign_folder_uuid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getEmailCampaignFolder(storefront_oid: number, email_campaign_folder_uuid: string, options?: any): FetchArgs;
+    /**
+     *
+     * @summary Get email campaign folders
+     * @param {number} storefront_oid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getEmailCampaignFolders(storefront_oid: number, options?: any): FetchArgs;
     /**
      *
      * @summary Get email campaign screenshots
@@ -33136,6 +33519,23 @@ export declare const StorefrontApiFetchParamCreator: (configuration?: Configurat
      * @throws {RequiredError}
      */
     getEmailFlow(storefront_oid: number, email_flow_uuid: string, options?: any): FetchArgs;
+    /**
+     *
+     * @summary Get email flow folder
+     * @param {number} storefront_oid
+     * @param {string} email_flow_folder_uuid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getEmailFlowFolder(storefront_oid: number, email_flow_folder_uuid: string, options?: any): FetchArgs;
+    /**
+     *
+     * @summary Get email flow folders
+     * @param {number} storefront_oid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getEmailFlowFolders(storefront_oid: number, options?: any): FetchArgs;
     /**
      *
      * @summary Get email flow screenshots
@@ -33533,6 +33933,15 @@ export declare const StorefrontApiFetchParamCreator: (configuration?: Configurat
     insertEmailCampaign(storefront_oid: number, email_campaign: EmailCampaign, options?: any): FetchArgs;
     /**
      *
+     * @summary Insert email campaign folder
+     * @param {number} storefront_oid
+     * @param {EmailCampaignFolder} email_campaign_folder Email campaign folder
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    insertEmailCampaignFolder(storefront_oid: number, email_campaign_folder: EmailCampaignFolder, options?: any): FetchArgs;
+    /**
+     *
      * @summary Insert email commseq
      * @param {number} storefront_oid
      * @param {EmailCommseq} email_commseq Email commseq
@@ -33558,6 +33967,15 @@ export declare const StorefrontApiFetchParamCreator: (configuration?: Configurat
      * @throws {RequiredError}
      */
     insertEmailFlow(storefront_oid: number, email_flow: EmailFlow, options?: any): FetchArgs;
+    /**
+     *
+     * @summary Insert email flow folder
+     * @param {number} storefront_oid
+     * @param {EmailFlowFolder} email_flow_folder Email flow folder
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    insertEmailFlowFolder(storefront_oid: number, email_flow_folder: EmailFlowFolder, options?: any): FetchArgs;
     /**
      *
      * @summary Insert email list
@@ -33785,6 +34203,16 @@ export declare const StorefrontApiFetchParamCreator: (configuration?: Configurat
     updateEmailCampaign(storefront_oid: number, email_campaign_uuid: string, email_campaign: EmailCampaign, options?: any): FetchArgs;
     /**
      *
+     * @summary Update email campaign folder
+     * @param {number} storefront_oid
+     * @param {string} email_campaign_folder_uuid
+     * @param {EmailCampaignFolder} email_campaign_folder Email campaign folder
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    updateEmailCampaignFolder(storefront_oid: number, email_campaign_folder_uuid: string, email_campaign_folder: EmailCampaignFolder, options?: any): FetchArgs;
+    /**
+     *
      * @summary Update email commseq
      * @param {number} storefront_oid
      * @param {string} commseq_uuid
@@ -33823,6 +34251,16 @@ export declare const StorefrontApiFetchParamCreator: (configuration?: Configurat
      * @throws {RequiredError}
      */
     updateEmailFlow(storefront_oid: number, email_flow_uuid: string, email_flow: EmailFlow, options?: any): FetchArgs;
+    /**
+     *
+     * @summary Update email flow folder
+     * @param {number} storefront_oid
+     * @param {string} email_flow_folder_uuid
+     * @param {EmailFlowFolder} email_flow_folder Email flow folder
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    updateEmailFlowFolder(storefront_oid: number, email_flow_folder_uuid: string, email_flow_folder: EmailFlowFolder, options?: any): FetchArgs;
     /**
      *
      * @summary Update email global settings
@@ -34027,6 +34465,15 @@ export declare const StorefrontApiFp: (configuration?: Configuration) => {
     createEmailSendingDomain(domain: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<EmailSendingDomainResponse>;
     /**
      *
+     * @summary Delete email campaignFolder
+     * @param {number} storefront_oid
+     * @param {string} email_campaign_folder_uuid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    deleteEmailCampaignFolder(storefront_oid: number, email_campaign_folder_uuid: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<BaseResponse>;
+    /**
+     *
      * @summary Delete communication sequence stats
      * @param {number} storefront_oid
      * @param {string} commseq_uuid
@@ -34043,6 +34490,15 @@ export declare const StorefrontApiFp: (configuration?: Configuration) => {
      * @throws {RequiredError}
      */
     deleteEmailEmail(storefront_oid: number, commseq_email_uuid: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<BaseResponse>;
+    /**
+     *
+     * @summary Delete email flowFolder
+     * @param {number} storefront_oid
+     * @param {string} email_flow_folder_uuid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    deleteEmailFlowFolder(storefront_oid: number, email_flow_folder_uuid: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<BaseResponse>;
     /**
      *
      * @summary Delete email list customer
@@ -34163,6 +34619,23 @@ export declare const StorefrontApiFp: (configuration?: Configuration) => {
      * @throws {RequiredError}
      */
     getEmailCampaign(storefront_oid: number, email_campaign_uuid: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<EmailCampaignResponse>;
+    /**
+     *
+     * @summary Get email campaign folder
+     * @param {number} storefront_oid
+     * @param {string} email_campaign_folder_uuid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getEmailCampaignFolder(storefront_oid: number, email_campaign_folder_uuid: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<EmailCampaignFolderResponse>;
+    /**
+     *
+     * @summary Get email campaign folders
+     * @param {number} storefront_oid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getEmailCampaignFolders(storefront_oid: number, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<EmailCampaignFoldersResponse>;
     /**
      *
      * @summary Get email campaign screenshots
@@ -34362,6 +34835,23 @@ export declare const StorefrontApiFp: (configuration?: Configuration) => {
      * @throws {RequiredError}
      */
     getEmailFlow(storefront_oid: number, email_flow_uuid: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<EmailFlowResponse>;
+    /**
+     *
+     * @summary Get email flow folder
+     * @param {number} storefront_oid
+     * @param {string} email_flow_folder_uuid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getEmailFlowFolder(storefront_oid: number, email_flow_folder_uuid: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<EmailFlowFolderResponse>;
+    /**
+     *
+     * @summary Get email flow folders
+     * @param {number} storefront_oid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getEmailFlowFolders(storefront_oid: number, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<EmailFlowFoldersResponse>;
     /**
      *
      * @summary Get email flow screenshots
@@ -34759,6 +35249,15 @@ export declare const StorefrontApiFp: (configuration?: Configuration) => {
     insertEmailCampaign(storefront_oid: number, email_campaign: EmailCampaign, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<EmailCampaignResponse>;
     /**
      *
+     * @summary Insert email campaign folder
+     * @param {number} storefront_oid
+     * @param {EmailCampaignFolder} email_campaign_folder Email campaign folder
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    insertEmailCampaignFolder(storefront_oid: number, email_campaign_folder: EmailCampaignFolder, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<EmailCampaignFolderResponse>;
+    /**
+     *
      * @summary Insert email commseq
      * @param {number} storefront_oid
      * @param {EmailCommseq} email_commseq Email commseq
@@ -34784,6 +35283,15 @@ export declare const StorefrontApiFp: (configuration?: Configuration) => {
      * @throws {RequiredError}
      */
     insertEmailFlow(storefront_oid: number, email_flow: EmailFlow, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<EmailFlowResponse>;
+    /**
+     *
+     * @summary Insert email flow folder
+     * @param {number} storefront_oid
+     * @param {EmailFlowFolder} email_flow_folder Email flow folder
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    insertEmailFlowFolder(storefront_oid: number, email_flow_folder: EmailFlowFolder, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<EmailFlowFolderResponse>;
     /**
      *
      * @summary Insert email list
@@ -35011,6 +35519,16 @@ export declare const StorefrontApiFp: (configuration?: Configuration) => {
     updateEmailCampaign(storefront_oid: number, email_campaign_uuid: string, email_campaign: EmailCampaign, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<EmailCampaignResponse>;
     /**
      *
+     * @summary Update email campaign folder
+     * @param {number} storefront_oid
+     * @param {string} email_campaign_folder_uuid
+     * @param {EmailCampaignFolder} email_campaign_folder Email campaign folder
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    updateEmailCampaignFolder(storefront_oid: number, email_campaign_folder_uuid: string, email_campaign_folder: EmailCampaignFolder, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<EmailCampaignFolderResponse>;
+    /**
+     *
      * @summary Update email commseq
      * @param {number} storefront_oid
      * @param {string} commseq_uuid
@@ -35049,6 +35567,16 @@ export declare const StorefrontApiFp: (configuration?: Configuration) => {
      * @throws {RequiredError}
      */
     updateEmailFlow(storefront_oid: number, email_flow_uuid: string, email_flow: EmailFlow, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<EmailFlowResponse>;
+    /**
+     *
+     * @summary Update email flow folder
+     * @param {number} storefront_oid
+     * @param {string} email_flow_folder_uuid
+     * @param {EmailFlowFolder} email_flow_folder Email flow folder
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    updateEmailFlowFolder(storefront_oid: number, email_flow_folder_uuid: string, email_flow_folder: EmailFlowFolder, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<EmailFlowFolderResponse>;
     /**
      *
      * @summary Update email global settings
@@ -35253,6 +35781,15 @@ export declare const StorefrontApiFactory: (configuration?: Configuration, fetch
     createEmailSendingDomain(domain: string, options?: any): Promise<EmailSendingDomainResponse>;
     /**
      *
+     * @summary Delete email campaignFolder
+     * @param {number} storefront_oid
+     * @param {string} email_campaign_folder_uuid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    deleteEmailCampaignFolder(storefront_oid: number, email_campaign_folder_uuid: string, options?: any): Promise<BaseResponse>;
+    /**
+     *
      * @summary Delete communication sequence stats
      * @param {number} storefront_oid
      * @param {string} commseq_uuid
@@ -35269,6 +35806,15 @@ export declare const StorefrontApiFactory: (configuration?: Configuration, fetch
      * @throws {RequiredError}
      */
     deleteEmailEmail(storefront_oid: number, commseq_email_uuid: string, options?: any): Promise<BaseResponse>;
+    /**
+     *
+     * @summary Delete email flowFolder
+     * @param {number} storefront_oid
+     * @param {string} email_flow_folder_uuid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    deleteEmailFlowFolder(storefront_oid: number, email_flow_folder_uuid: string, options?: any): Promise<BaseResponse>;
     /**
      *
      * @summary Delete email list customer
@@ -35389,6 +35935,23 @@ export declare const StorefrontApiFactory: (configuration?: Configuration, fetch
      * @throws {RequiredError}
      */
     getEmailCampaign(storefront_oid: number, email_campaign_uuid: string, options?: any): Promise<EmailCampaignResponse>;
+    /**
+     *
+     * @summary Get email campaign folder
+     * @param {number} storefront_oid
+     * @param {string} email_campaign_folder_uuid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getEmailCampaignFolder(storefront_oid: number, email_campaign_folder_uuid: string, options?: any): Promise<EmailCampaignFolderResponse>;
+    /**
+     *
+     * @summary Get email campaign folders
+     * @param {number} storefront_oid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getEmailCampaignFolders(storefront_oid: number, options?: any): Promise<EmailCampaignFoldersResponse>;
     /**
      *
      * @summary Get email campaign screenshots
@@ -35588,6 +36151,23 @@ export declare const StorefrontApiFactory: (configuration?: Configuration, fetch
      * @throws {RequiredError}
      */
     getEmailFlow(storefront_oid: number, email_flow_uuid: string, options?: any): Promise<EmailFlowResponse>;
+    /**
+     *
+     * @summary Get email flow folder
+     * @param {number} storefront_oid
+     * @param {string} email_flow_folder_uuid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getEmailFlowFolder(storefront_oid: number, email_flow_folder_uuid: string, options?: any): Promise<EmailFlowFolderResponse>;
+    /**
+     *
+     * @summary Get email flow folders
+     * @param {number} storefront_oid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getEmailFlowFolders(storefront_oid: number, options?: any): Promise<EmailFlowFoldersResponse>;
     /**
      *
      * @summary Get email flow screenshots
@@ -35985,6 +36565,15 @@ export declare const StorefrontApiFactory: (configuration?: Configuration, fetch
     insertEmailCampaign(storefront_oid: number, email_campaign: EmailCampaign, options?: any): Promise<EmailCampaignResponse>;
     /**
      *
+     * @summary Insert email campaign folder
+     * @param {number} storefront_oid
+     * @param {EmailCampaignFolder} email_campaign_folder Email campaign folder
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    insertEmailCampaignFolder(storefront_oid: number, email_campaign_folder: EmailCampaignFolder, options?: any): Promise<EmailCampaignFolderResponse>;
+    /**
+     *
      * @summary Insert email commseq
      * @param {number} storefront_oid
      * @param {EmailCommseq} email_commseq Email commseq
@@ -36010,6 +36599,15 @@ export declare const StorefrontApiFactory: (configuration?: Configuration, fetch
      * @throws {RequiredError}
      */
     insertEmailFlow(storefront_oid: number, email_flow: EmailFlow, options?: any): Promise<EmailFlowResponse>;
+    /**
+     *
+     * @summary Insert email flow folder
+     * @param {number} storefront_oid
+     * @param {EmailFlowFolder} email_flow_folder Email flow folder
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    insertEmailFlowFolder(storefront_oid: number, email_flow_folder: EmailFlowFolder, options?: any): Promise<EmailFlowFolderResponse>;
     /**
      *
      * @summary Insert email list
@@ -36237,6 +36835,16 @@ export declare const StorefrontApiFactory: (configuration?: Configuration, fetch
     updateEmailCampaign(storefront_oid: number, email_campaign_uuid: string, email_campaign: EmailCampaign, options?: any): Promise<EmailCampaignResponse>;
     /**
      *
+     * @summary Update email campaign folder
+     * @param {number} storefront_oid
+     * @param {string} email_campaign_folder_uuid
+     * @param {EmailCampaignFolder} email_campaign_folder Email campaign folder
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    updateEmailCampaignFolder(storefront_oid: number, email_campaign_folder_uuid: string, email_campaign_folder: EmailCampaignFolder, options?: any): Promise<EmailCampaignFolderResponse>;
+    /**
+     *
      * @summary Update email commseq
      * @param {number} storefront_oid
      * @param {string} commseq_uuid
@@ -36275,6 +36883,16 @@ export declare const StorefrontApiFactory: (configuration?: Configuration, fetch
      * @throws {RequiredError}
      */
     updateEmailFlow(storefront_oid: number, email_flow_uuid: string, email_flow: EmailFlow, options?: any): Promise<EmailFlowResponse>;
+    /**
+     *
+     * @summary Update email flow folder
+     * @param {number} storefront_oid
+     * @param {string} email_flow_folder_uuid
+     * @param {EmailFlowFolder} email_flow_folder Email flow folder
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    updateEmailFlowFolder(storefront_oid: number, email_flow_folder_uuid: string, email_flow_folder: EmailFlowFolder, options?: any): Promise<EmailFlowFolderResponse>;
     /**
      *
      * @summary Update email global settings
@@ -36489,6 +37107,16 @@ export interface StorefrontApiInterface {
     createEmailSendingDomain(domain: string, options?: any): Promise<EmailSendingDomainResponse>;
     /**
      *
+     * @summary Delete email campaignFolder
+     * @param {number} storefront_oid
+     * @param {string} email_campaign_folder_uuid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof StorefrontApiInterface
+     */
+    deleteEmailCampaignFolder(storefront_oid: number, email_campaign_folder_uuid: string, options?: any): Promise<BaseResponse>;
+    /**
+     *
      * @summary Delete communication sequence stats
      * @param {number} storefront_oid
      * @param {string} commseq_uuid
@@ -36507,6 +37135,16 @@ export interface StorefrontApiInterface {
      * @memberof StorefrontApiInterface
      */
     deleteEmailEmail(storefront_oid: number, commseq_email_uuid: string, options?: any): Promise<BaseResponse>;
+    /**
+     *
+     * @summary Delete email flowFolder
+     * @param {number} storefront_oid
+     * @param {string} email_flow_folder_uuid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof StorefrontApiInterface
+     */
+    deleteEmailFlowFolder(storefront_oid: number, email_flow_folder_uuid: string, options?: any): Promise<BaseResponse>;
     /**
      *
      * @summary Delete email list customer
@@ -36641,6 +37279,25 @@ export interface StorefrontApiInterface {
      * @memberof StorefrontApiInterface
      */
     getEmailCampaign(storefront_oid: number, email_campaign_uuid: string, options?: any): Promise<EmailCampaignResponse>;
+    /**
+     *
+     * @summary Get email campaign folder
+     * @param {number} storefront_oid
+     * @param {string} email_campaign_folder_uuid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof StorefrontApiInterface
+     */
+    getEmailCampaignFolder(storefront_oid: number, email_campaign_folder_uuid: string, options?: any): Promise<EmailCampaignFolderResponse>;
+    /**
+     *
+     * @summary Get email campaign folders
+     * @param {number} storefront_oid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof StorefrontApiInterface
+     */
+    getEmailCampaignFolders(storefront_oid: number, options?: any): Promise<EmailCampaignFoldersResponse>;
     /**
      *
      * @summary Get email campaign screenshots
@@ -36861,6 +37518,25 @@ export interface StorefrontApiInterface {
      * @memberof StorefrontApiInterface
      */
     getEmailFlow(storefront_oid: number, email_flow_uuid: string, options?: any): Promise<EmailFlowResponse>;
+    /**
+     *
+     * @summary Get email flow folder
+     * @param {number} storefront_oid
+     * @param {string} email_flow_folder_uuid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof StorefrontApiInterface
+     */
+    getEmailFlowFolder(storefront_oid: number, email_flow_folder_uuid: string, options?: any): Promise<EmailFlowFolderResponse>;
+    /**
+     *
+     * @summary Get email flow folders
+     * @param {number} storefront_oid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof StorefrontApiInterface
+     */
+    getEmailFlowFolders(storefront_oid: number, options?: any): Promise<EmailFlowFoldersResponse>;
     /**
      *
      * @summary Get email flow screenshots
@@ -37303,6 +37979,16 @@ export interface StorefrontApiInterface {
     insertEmailCampaign(storefront_oid: number, email_campaign: EmailCampaign, options?: any): Promise<EmailCampaignResponse>;
     /**
      *
+     * @summary Insert email campaign folder
+     * @param {number} storefront_oid
+     * @param {EmailCampaignFolder} email_campaign_folder Email campaign folder
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof StorefrontApiInterface
+     */
+    insertEmailCampaignFolder(storefront_oid: number, email_campaign_folder: EmailCampaignFolder, options?: any): Promise<EmailCampaignFolderResponse>;
+    /**
+     *
      * @summary Insert email commseq
      * @param {number} storefront_oid
      * @param {EmailCommseq} email_commseq Email commseq
@@ -37331,6 +38017,16 @@ export interface StorefrontApiInterface {
      * @memberof StorefrontApiInterface
      */
     insertEmailFlow(storefront_oid: number, email_flow: EmailFlow, options?: any): Promise<EmailFlowResponse>;
+    /**
+     *
+     * @summary Insert email flow folder
+     * @param {number} storefront_oid
+     * @param {EmailFlowFolder} email_flow_folder Email flow folder
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof StorefrontApiInterface
+     */
+    insertEmailFlowFolder(storefront_oid: number, email_flow_folder: EmailFlowFolder, options?: any): Promise<EmailFlowFolderResponse>;
     /**
      *
      * @summary Insert email list
@@ -37581,6 +38277,17 @@ export interface StorefrontApiInterface {
     updateEmailCampaign(storefront_oid: number, email_campaign_uuid: string, email_campaign: EmailCampaign, options?: any): Promise<EmailCampaignResponse>;
     /**
      *
+     * @summary Update email campaign folder
+     * @param {number} storefront_oid
+     * @param {string} email_campaign_folder_uuid
+     * @param {EmailCampaignFolder} email_campaign_folder Email campaign folder
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof StorefrontApiInterface
+     */
+    updateEmailCampaignFolder(storefront_oid: number, email_campaign_folder_uuid: string, email_campaign_folder: EmailCampaignFolder, options?: any): Promise<EmailCampaignFolderResponse>;
+    /**
+     *
      * @summary Update email commseq
      * @param {number} storefront_oid
      * @param {string} commseq_uuid
@@ -37623,6 +38330,17 @@ export interface StorefrontApiInterface {
      * @memberof StorefrontApiInterface
      */
     updateEmailFlow(storefront_oid: number, email_flow_uuid: string, email_flow: EmailFlow, options?: any): Promise<EmailFlowResponse>;
+    /**
+     *
+     * @summary Update email flow folder
+     * @param {number} storefront_oid
+     * @param {string} email_flow_folder_uuid
+     * @param {EmailFlowFolder} email_flow_folder Email flow folder
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof StorefrontApiInterface
+     */
+    updateEmailFlowFolder(storefront_oid: number, email_flow_folder_uuid: string, email_flow_folder: EmailFlowFolder, options?: any): Promise<EmailFlowFolderResponse>;
     /**
      *
      * @summary Update email global settings
@@ -37850,6 +38568,16 @@ export declare class StorefrontApi extends BaseAPI implements StorefrontApiInter
     createEmailSendingDomain(domain: string, options?: any): Promise<EmailSendingDomainResponse>;
     /**
      *
+     * @summary Delete email campaignFolder
+     * @param {number} storefront_oid
+     * @param {string} email_campaign_folder_uuid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof StorefrontApi
+     */
+    deleteEmailCampaignFolder(storefront_oid: number, email_campaign_folder_uuid: string, options?: any): Promise<BaseResponse>;
+    /**
+     *
      * @summary Delete communication sequence stats
      * @param {number} storefront_oid
      * @param {string} commseq_uuid
@@ -37868,6 +38596,16 @@ export declare class StorefrontApi extends BaseAPI implements StorefrontApiInter
      * @memberof StorefrontApi
      */
     deleteEmailEmail(storefront_oid: number, commseq_email_uuid: string, options?: any): Promise<BaseResponse>;
+    /**
+     *
+     * @summary Delete email flowFolder
+     * @param {number} storefront_oid
+     * @param {string} email_flow_folder_uuid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof StorefrontApi
+     */
+    deleteEmailFlowFolder(storefront_oid: number, email_flow_folder_uuid: string, options?: any): Promise<BaseResponse>;
     /**
      *
      * @summary Delete email list customer
@@ -38002,6 +38740,25 @@ export declare class StorefrontApi extends BaseAPI implements StorefrontApiInter
      * @memberof StorefrontApi
      */
     getEmailCampaign(storefront_oid: number, email_campaign_uuid: string, options?: any): Promise<EmailCampaignResponse>;
+    /**
+     *
+     * @summary Get email campaign folder
+     * @param {number} storefront_oid
+     * @param {string} email_campaign_folder_uuid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof StorefrontApi
+     */
+    getEmailCampaignFolder(storefront_oid: number, email_campaign_folder_uuid: string, options?: any): Promise<EmailCampaignFolderResponse>;
+    /**
+     *
+     * @summary Get email campaign folders
+     * @param {number} storefront_oid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof StorefrontApi
+     */
+    getEmailCampaignFolders(storefront_oid: number, options?: any): Promise<EmailCampaignFoldersResponse>;
     /**
      *
      * @summary Get email campaign screenshots
@@ -38222,6 +38979,25 @@ export declare class StorefrontApi extends BaseAPI implements StorefrontApiInter
      * @memberof StorefrontApi
      */
     getEmailFlow(storefront_oid: number, email_flow_uuid: string, options?: any): Promise<EmailFlowResponse>;
+    /**
+     *
+     * @summary Get email flow folder
+     * @param {number} storefront_oid
+     * @param {string} email_flow_folder_uuid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof StorefrontApi
+     */
+    getEmailFlowFolder(storefront_oid: number, email_flow_folder_uuid: string, options?: any): Promise<EmailFlowFolderResponse>;
+    /**
+     *
+     * @summary Get email flow folders
+     * @param {number} storefront_oid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof StorefrontApi
+     */
+    getEmailFlowFolders(storefront_oid: number, options?: any): Promise<EmailFlowFoldersResponse>;
     /**
      *
      * @summary Get email flow screenshots
@@ -38664,6 +39440,16 @@ export declare class StorefrontApi extends BaseAPI implements StorefrontApiInter
     insertEmailCampaign(storefront_oid: number, email_campaign: EmailCampaign, options?: any): Promise<EmailCampaignResponse>;
     /**
      *
+     * @summary Insert email campaign folder
+     * @param {number} storefront_oid
+     * @param {EmailCampaignFolder} email_campaign_folder Email campaign folder
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof StorefrontApi
+     */
+    insertEmailCampaignFolder(storefront_oid: number, email_campaign_folder: EmailCampaignFolder, options?: any): Promise<EmailCampaignFolderResponse>;
+    /**
+     *
      * @summary Insert email commseq
      * @param {number} storefront_oid
      * @param {EmailCommseq} email_commseq Email commseq
@@ -38692,6 +39478,16 @@ export declare class StorefrontApi extends BaseAPI implements StorefrontApiInter
      * @memberof StorefrontApi
      */
     insertEmailFlow(storefront_oid: number, email_flow: EmailFlow, options?: any): Promise<EmailFlowResponse>;
+    /**
+     *
+     * @summary Insert email flow folder
+     * @param {number} storefront_oid
+     * @param {EmailFlowFolder} email_flow_folder Email flow folder
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof StorefrontApi
+     */
+    insertEmailFlowFolder(storefront_oid: number, email_flow_folder: EmailFlowFolder, options?: any): Promise<EmailFlowFolderResponse>;
     /**
      *
      * @summary Insert email list
@@ -38942,6 +39738,17 @@ export declare class StorefrontApi extends BaseAPI implements StorefrontApiInter
     updateEmailCampaign(storefront_oid: number, email_campaign_uuid: string, email_campaign: EmailCampaign, options?: any): Promise<EmailCampaignResponse>;
     /**
      *
+     * @summary Update email campaign folder
+     * @param {number} storefront_oid
+     * @param {string} email_campaign_folder_uuid
+     * @param {EmailCampaignFolder} email_campaign_folder Email campaign folder
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof StorefrontApi
+     */
+    updateEmailCampaignFolder(storefront_oid: number, email_campaign_folder_uuid: string, email_campaign_folder: EmailCampaignFolder, options?: any): Promise<EmailCampaignFolderResponse>;
+    /**
+     *
      * @summary Update email commseq
      * @param {number} storefront_oid
      * @param {string} commseq_uuid
@@ -38984,6 +39791,17 @@ export declare class StorefrontApi extends BaseAPI implements StorefrontApiInter
      * @memberof StorefrontApi
      */
     updateEmailFlow(storefront_oid: number, email_flow_uuid: string, email_flow: EmailFlow, options?: any): Promise<EmailFlowResponse>;
+    /**
+     *
+     * @summary Update email flow folder
+     * @param {number} storefront_oid
+     * @param {string} email_flow_folder_uuid
+     * @param {EmailFlowFolder} email_flow_folder Email flow folder
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof StorefrontApi
+     */
+    updateEmailFlowFolder(storefront_oid: number, email_flow_folder_uuid: string, email_flow_folder: EmailFlowFolder, options?: any): Promise<EmailFlowFolderResponse>;
     /**
      *
      * @summary Update email global settings

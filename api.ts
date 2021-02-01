@@ -473,6 +473,12 @@ export interface Activity {
  */
 export interface AddLibraryItemRequest {
     /**
+     * Attributes associated with the library item to contain additional configuration.
+     * @type {Array<LibraryItemAttribute>}
+     * @memberof AddLibraryItemRequest
+     */
+    attributes?: Array<LibraryItemAttribute>;
+    /**
      * Cjson to be added to library
      * @type {string}
      * @memberof AddLibraryItemRequest
@@ -1104,6 +1110,12 @@ export interface ApplyLibraryItemRequest {
  * @interface ApplyLibraryItemResponse
  */
 export interface ApplyLibraryItemResponse {
+    /**
+     * Attributes from the library item
+     * @type {Array<LibraryItemAttribute>}
+     * @memberof ApplyLibraryItemResponse
+     */
+    attributes?: Array<LibraryItemAttribute>;
     /**
      * Cjson from library item, only populated if this library item was a cjson snippet or marketing email (not transactional)
      * @type {string}
@@ -2342,6 +2354,12 @@ export interface CartCheckout {
      * @memberof CartCheckout
      */
     return_code?: string;
+    /**
+     * The URL to redirect the customer to when they return from an abandon cart email.  Must be https protocol.
+     * @type {string}
+     * @memberof CartCheckout
+     */
+    return_url?: string;
     /**
      * Screen branding theme code
      * @type {string}
@@ -9194,6 +9212,12 @@ export interface EmailCampaign {
      */
     end_once_customer_purchases?: boolean;
     /**
+     * Campaign folder UUID.  Null for uncategorized
+     * @type {string}
+     * @memberof EmailCampaign
+     */
+    esp_campaign_folder_uuid?: string;
+    /**
      * User of the sending address
      * @type {string}
      * @memberof EmailCampaign
@@ -9289,6 +9313,120 @@ export interface EmailCampaign {
      * @memberof EmailCampaign
      */
     storefront_oid?: number;
+}
+
+/**
+ * 
+ * @export
+ * @interface EmailCampaignFolder
+ */
+export interface EmailCampaignFolder {
+    /**
+     * Email campaign folder UUID
+     * @type {string}
+     * @memberof EmailCampaignFolder
+     */
+    esp_campaign_folder_uuid?: string;
+    /**
+     * Merchant ID
+     * @type {string}
+     * @memberof EmailCampaignFolder
+     */
+    merchant_id?: string;
+    /**
+     * Name of email campaign folder
+     * @type {string}
+     * @memberof EmailCampaignFolder
+     */
+    name?: string;
+    /**
+     * Storefront oid
+     * @type {number}
+     * @memberof EmailCampaignFolder
+     */
+    storefront_oid?: number;
+    /**
+     * System generated folder
+     * @type {boolean}
+     * @memberof EmailCampaignFolder
+     */
+    system_generated?: boolean;
+}
+
+/**
+ * 
+ * @export
+ * @interface EmailCampaignFolderResponse
+ */
+export interface EmailCampaignFolderResponse {
+    /**
+     * 
+     * @type {EmailCampaignFolder}
+     * @memberof EmailCampaignFolderResponse
+     */
+    campaign_folder?: EmailCampaignFolder;
+    /**
+     * 
+     * @type {Error}
+     * @memberof EmailCampaignFolderResponse
+     */
+    error?: Error;
+    /**
+     * 
+     * @type {ResponseMetadata}
+     * @memberof EmailCampaignFolderResponse
+     */
+    metadata?: ResponseMetadata;
+    /**
+     * Indicates if API call was successful
+     * @type {boolean}
+     * @memberof EmailCampaignFolderResponse
+     */
+    success?: boolean;
+    /**
+     * 
+     * @type {Warning}
+     * @memberof EmailCampaignFolderResponse
+     */
+    warning?: Warning;
+}
+
+/**
+ * 
+ * @export
+ * @interface EmailCampaignFoldersResponse
+ */
+export interface EmailCampaignFoldersResponse {
+    /**
+     * 
+     * @type {Array<EmailCampaignFolder>}
+     * @memberof EmailCampaignFoldersResponse
+     */
+    campaign_folders?: Array<EmailCampaignFolder>;
+    /**
+     * 
+     * @type {Error}
+     * @memberof EmailCampaignFoldersResponse
+     */
+    error?: Error;
+    /**
+     * 
+     * @type {ResponseMetadata}
+     * @memberof EmailCampaignFoldersResponse
+     */
+    metadata?: ResponseMetadata;
+    /**
+     * Indicates if API call was successful
+     * @type {boolean}
+     * @memberof EmailCampaignFoldersResponse
+     */
+    success?: boolean;
+    /**
+     * 
+     * @type {Warning}
+     * @memberof EmailCampaignFoldersResponse
+     */
+    warning?: Warning;
 }
 
 /**
@@ -10991,6 +11129,12 @@ export interface EmailFlow {
      */
     esp_domain_uuid?: string;
     /**
+     * Flow folder UUID.  Null for uncategorized
+     * @type {string}
+     * @memberof EmailFlow
+     */
+    esp_flow_folder_uuid?: string;
+    /**
      * Friendly name of the sending email
      * @type {string}
      * @memberof EmailFlow
@@ -11037,7 +11181,7 @@ export interface EmailFlow {
      * @type {string}
      * @memberof EmailFlow
      */
-    revenue_per_customerformatted?: string;
+    revenue_per_customer_formatted?: string;
     /**
      * URL to a large full length screenshot
      * @type {string}
@@ -11130,6 +11274,120 @@ export interface EmailFlowBackPopulateResponse {
      * 
      * @type {Warning}
      * @memberof EmailFlowBackPopulateResponse
+     */
+    warning?: Warning;
+}
+
+/**
+ * 
+ * @export
+ * @interface EmailFlowFolder
+ */
+export interface EmailFlowFolder {
+    /**
+     * Email flow folder UUID
+     * @type {string}
+     * @memberof EmailFlowFolder
+     */
+    esp_flow_folder_uuid?: string;
+    /**
+     * Merchant ID
+     * @type {string}
+     * @memberof EmailFlowFolder
+     */
+    merchant_id?: string;
+    /**
+     * Name of email flow folder
+     * @type {string}
+     * @memberof EmailFlowFolder
+     */
+    name?: string;
+    /**
+     * Storefront oid
+     * @type {number}
+     * @memberof EmailFlowFolder
+     */
+    storefront_oid?: number;
+    /**
+     * System generated folder
+     * @type {boolean}
+     * @memberof EmailFlowFolder
+     */
+    system_generated?: boolean;
+}
+
+/**
+ * 
+ * @export
+ * @interface EmailFlowFolderResponse
+ */
+export interface EmailFlowFolderResponse {
+    /**
+     * 
+     * @type {Error}
+     * @memberof EmailFlowFolderResponse
+     */
+    error?: Error;
+    /**
+     * 
+     * @type {EmailFlowFolder}
+     * @memberof EmailFlowFolderResponse
+     */
+    flow_folder?: EmailFlowFolder;
+    /**
+     * 
+     * @type {ResponseMetadata}
+     * @memberof EmailFlowFolderResponse
+     */
+    metadata?: ResponseMetadata;
+    /**
+     * Indicates if API call was successful
+     * @type {boolean}
+     * @memberof EmailFlowFolderResponse
+     */
+    success?: boolean;
+    /**
+     * 
+     * @type {Warning}
+     * @memberof EmailFlowFolderResponse
+     */
+    warning?: Warning;
+}
+
+/**
+ * 
+ * @export
+ * @interface EmailFlowFoldersResponse
+ */
+export interface EmailFlowFoldersResponse {
+    /**
+     * 
+     * @type {Error}
+     * @memberof EmailFlowFoldersResponse
+     */
+    error?: Error;
+    /**
+     * 
+     * @type {Array<EmailFlowFolder>}
+     * @memberof EmailFlowFoldersResponse
+     */
+    flow_folders?: Array<EmailFlowFolder>;
+    /**
+     * 
+     * @type {ResponseMetadata}
+     * @memberof EmailFlowFoldersResponse
+     */
+    metadata?: ResponseMetadata;
+    /**
+     * Indicates if API call was successful
+     * @type {boolean}
+     * @memberof EmailFlowFoldersResponse
+     */
+    success?: boolean;
+    /**
+     * 
+     * @type {Warning}
+     * @memberof EmailFlowFoldersResponse
      */
     warning?: Warning;
 }
@@ -12024,6 +12282,12 @@ export interface EmailPlan {
     additional_emails?: number;
     /**
      * 
+     * @type {number}
+     * @memberof EmailPlan
+     */
+    additional_fee?: number;
+    /**
+     * 
      * @type {boolean}
      * @memberof EmailPlan
      */
@@ -12132,6 +12396,18 @@ export interface EmailPlanAdditional {
      * @memberof EmailPlanAdditional
      */
     cost?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof EmailPlanAdditional
+     */
+    cost_change?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof EmailPlanAdditional
+     */
+    cost_change_formatted?: string;
     /**
      * 
      * @type {string}
@@ -18768,6 +19044,12 @@ export interface LibraryItem {
     assets?: Array<LibraryItemAsset>;
     /**
      * 
+     * @type {Array<LibraryItemAttribute>}
+     * @memberof LibraryItem
+     */
+    attributes?: Array<LibraryItemAttribute>;
+    /**
+     * 
      * @type {Array<string>}
      * @memberof LibraryItem
      */
@@ -19040,6 +19322,32 @@ export interface LibraryItemAsset {
      * @memberof LibraryItemAsset
      */
     url?: string;
+}
+
+/**
+ * 
+ * @export
+ * @interface LibraryItemAttribute
+ */
+export interface LibraryItemAttribute {
+    /**
+     * 
+     * @type {number}
+     * @memberof LibraryItemAttribute
+     */
+    libraryItemOid?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof LibraryItemAttribute
+     */
+    name?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof LibraryItemAttribute
+     */
+    value?: string;
 }
 
 /**
@@ -30434,6 +30742,70 @@ export const CheckoutApiFetchParamCreator = function (configuration?: Configurat
             };
         },
         /**
+         * Get a cart specified by the encrypted return token parameter. 
+         * @summary Get cart (by return token)
+         * @param {string} [return_token] Return token provided by StoreFront Communications
+         * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getCartByReturnToken(return_token?: string, _expand?: string, options: any = {}): FetchArgs {
+            const localVarPath = `/checkout/return_token`;
+            const localVarUrlObj = url.parse(localVarPath, true);
+            const localVarRequestOptions = Object.assign({ method: 'GET' }, options);
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+    if(configuration && configuration.apiVersion) {
+      localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+    }
+
+
+
+            // authentication ultraCartBrowserApiKey required
+            if (configuration && configuration.apiKey) {
+                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
+					? configuration.apiKey("x-ultracart-browser-key")
+					: configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-browser-key"] = localVarApiKeyValue;
+            }
+
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+				const localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+					? configuration.accessToken("ultraCartOauth", ["checkout_read"])
+					: configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
+					? configuration.apiKey("x-ultracart-simple-key")
+					: configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+
+            if (return_token !== undefined) {
+                localVarQueryParameter['return_token'] = return_token;
+            }
+
+            if (_expand !== undefined) {
+                localVarQueryParameter['_expand'] = _expand;
+            }
+
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
          * Lookup a state/province list for a given country code 
          * @summary Get state/province list for a country code
          * @param {string} country_code Two letter ISO country code
@@ -31310,6 +31682,26 @@ export const CheckoutApiFp = function(configuration?: Configuration) {
             };
         },
         /**
+         * Get a cart specified by the encrypted return token parameter. 
+         * @summary Get cart (by return token)
+         * @param {string} [return_token] Return token provided by StoreFront Communications
+         * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getCartByReturnToken(return_token?: string, _expand?: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<CartResponse> {
+            const localVarFetchArgs = CheckoutApiFetchParamCreator(configuration).getCartByReturnToken(return_token, _expand, options);
+            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+                    if (response.status >= 200 && response.status < 300) {
+                        return response.json();
+                    } else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
          * Lookup a state/province list for a given country code 
          * @summary Get state/province list for a country code
          * @param {string} country_code Two letter ISO country code
@@ -31609,6 +32001,17 @@ export const CheckoutApiFactory = function (configuration?: Configuration, fetch
             return CheckoutApiFp(configuration).getCartByReturnCode(return_code, _expand, options)(fetch, basePath);
         },
         /**
+         * Get a cart specified by the encrypted return token parameter. 
+         * @summary Get cart (by return token)
+         * @param {string} [return_token] Return token provided by StoreFront Communications
+         * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getCartByReturnToken(return_token?: string, _expand?: string, options?: any) {
+            return CheckoutApiFp(configuration).getCartByReturnToken(return_token, _expand, options)(fetch, basePath);
+        },
+        /**
          * Lookup a state/province list for a given country code 
          * @summary Get state/province list for a country code
          * @param {string} country_code Two letter ISO country code
@@ -31807,6 +32210,17 @@ export interface CheckoutApiInterface {
      * @memberof CheckoutApiInterface
      */
     getCartByReturnCode(return_code: string, _expand?: string, options?: any): Promise<CartResponse>;
+
+    /**
+     * Get a cart specified by the encrypted return token parameter. 
+     * @summary Get cart (by return token)
+     * @param {string} [return_token] Return token provided by StoreFront Communications
+     * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof CheckoutApiInterface
+     */
+    getCartByReturnToken(return_token?: string, _expand?: string, options?: any): Promise<CartResponse>;
 
     /**
      * Lookup a state/province list for a given country code 
@@ -32020,6 +32434,19 @@ export class CheckoutApi extends BaseAPI implements CheckoutApiInterface {
      */
     public getCartByReturnCode(return_code: string, _expand?: string, options?: any) {
         return CheckoutApiFp(this.configuration).getCartByReturnCode(return_code, _expand, options)(this.fetch, this.basePath);
+    }
+
+    /**
+     * Get a cart specified by the encrypted return token parameter. 
+     * @summary Get cart (by return token)
+     * @param {string} [return_token] Return token provided by StoreFront Communications
+     * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof CheckoutApi
+     */
+    public getCartByReturnToken(return_token?: string, _expand?: string, options?: any) {
+        return CheckoutApiFp(this.configuration).getCartByReturnToken(return_token, _expand, options)(this.fetch, this.basePath);
     }
 
     /**
@@ -41203,6 +41630,72 @@ export const StorefrontApiFetchParamCreator = function (configuration?: Configur
         },
         /**
          * 
+         * @summary Delete email campaignFolder
+         * @param {number} storefront_oid 
+         * @param {string} email_campaign_folder_uuid 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        deleteEmailCampaignFolder(storefront_oid: number, email_campaign_folder_uuid: string, options: any = {}): FetchArgs {
+            // verify required parameter 'storefront_oid' is not null or undefined
+            if (storefront_oid === null || storefront_oid === undefined) {
+                throw new RequiredError('storefront_oid','Required parameter storefront_oid was null or undefined when calling deleteEmailCampaignFolder.');
+            }
+            // verify required parameter 'email_campaign_folder_uuid' is not null or undefined
+            if (email_campaign_folder_uuid === null || email_campaign_folder_uuid === undefined) {
+                throw new RequiredError('email_campaign_folder_uuid','Required parameter email_campaign_folder_uuid was null or undefined when calling deleteEmailCampaignFolder.');
+            }
+            const localVarPath = `/storefront/{storefront_oid}/email/campaign_folders/{email_campaign_folder_uuid}`
+                .replace(`{${"storefront_oid"}}`, encodeURIComponent(String(storefront_oid)))
+                .replace(`{${"email_campaign_folder_uuid"}}`, encodeURIComponent(String(email_campaign_folder_uuid)));
+            const localVarUrlObj = url.parse(localVarPath, true);
+            const localVarRequestOptions = Object.assign({ method: 'DELETE' }, options);
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+    if(configuration && configuration.apiVersion) {
+      localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+    }
+
+
+
+            // authentication ultraCartBrowserApiKey required
+            if (configuration && configuration.apiKey) {
+                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
+					? configuration.apiKey("x-ultracart-browser-key")
+					: configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-browser-key"] = localVarApiKeyValue;
+            }
+
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+				const localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+					? configuration.accessToken("ultraCartOauth", ["storefront_write"])
+					: configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
+					? configuration.apiKey("x-ultracart-simple-key")
+					: configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
          * @summary Delete communication sequence stats
          * @param {number} storefront_oid 
          * @param {string} commseq_uuid 
@@ -41287,6 +41780,72 @@ export const StorefrontApiFetchParamCreator = function (configuration?: Configur
             const localVarPath = `/storefront/{storefront_oid}/email/emails/{commseq_email_uuid}`
                 .replace(`{${"storefront_oid"}}`, encodeURIComponent(String(storefront_oid)))
                 .replace(`{${"commseq_email_uuid"}}`, encodeURIComponent(String(commseq_email_uuid)));
+            const localVarUrlObj = url.parse(localVarPath, true);
+            const localVarRequestOptions = Object.assign({ method: 'DELETE' }, options);
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+    if(configuration && configuration.apiVersion) {
+      localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+    }
+
+
+
+            // authentication ultraCartBrowserApiKey required
+            if (configuration && configuration.apiKey) {
+                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
+					? configuration.apiKey("x-ultracart-browser-key")
+					: configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-browser-key"] = localVarApiKeyValue;
+            }
+
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+				const localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+					? configuration.accessToken("ultraCartOauth", ["storefront_write"])
+					: configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
+					? configuration.apiKey("x-ultracart-simple-key")
+					: configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @summary Delete email flowFolder
+         * @param {number} storefront_oid 
+         * @param {string} email_flow_folder_uuid 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        deleteEmailFlowFolder(storefront_oid: number, email_flow_folder_uuid: string, options: any = {}): FetchArgs {
+            // verify required parameter 'storefront_oid' is not null or undefined
+            if (storefront_oid === null || storefront_oid === undefined) {
+                throw new RequiredError('storefront_oid','Required parameter storefront_oid was null or undefined when calling deleteEmailFlowFolder.');
+            }
+            // verify required parameter 'email_flow_folder_uuid' is not null or undefined
+            if (email_flow_folder_uuid === null || email_flow_folder_uuid === undefined) {
+                throw new RequiredError('email_flow_folder_uuid','Required parameter email_flow_folder_uuid was null or undefined when calling deleteEmailFlowFolder.');
+            }
+            const localVarPath = `/storefront/{storefront_oid}/email/flow_folders/{email_flow_folder_uuid}`
+                .replace(`{${"storefront_oid"}}`, encodeURIComponent(String(storefront_oid)))
+                .replace(`{${"email_flow_folder_uuid"}}`, encodeURIComponent(String(email_flow_folder_uuid)));
             const localVarUrlObj = url.parse(localVarPath, true);
             const localVarRequestOptions = Object.assign({ method: 'DELETE' }, options);
             const localVarHeaderParameter = {} as any;
@@ -42170,6 +42729,132 @@ export const StorefrontApiFetchParamCreator = function (configuration?: Configur
             const localVarPath = `/storefront/{storefront_oid}/email/campaigns/{email_campaign_uuid}`
                 .replace(`{${"storefront_oid"}}`, encodeURIComponent(String(storefront_oid)))
                 .replace(`{${"email_campaign_uuid"}}`, encodeURIComponent(String(email_campaign_uuid)));
+            const localVarUrlObj = url.parse(localVarPath, true);
+            const localVarRequestOptions = Object.assign({ method: 'GET' }, options);
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+    if(configuration && configuration.apiVersion) {
+      localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+    }
+
+
+
+            // authentication ultraCartBrowserApiKey required
+            if (configuration && configuration.apiKey) {
+                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
+					? configuration.apiKey("x-ultracart-browser-key")
+					: configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-browser-key"] = localVarApiKeyValue;
+            }
+
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+				const localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+					? configuration.accessToken("ultraCartOauth", ["storefront_read"])
+					: configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
+					? configuration.apiKey("x-ultracart-simple-key")
+					: configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @summary Get email campaign folder
+         * @param {number} storefront_oid 
+         * @param {string} email_campaign_folder_uuid 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getEmailCampaignFolder(storefront_oid: number, email_campaign_folder_uuid: string, options: any = {}): FetchArgs {
+            // verify required parameter 'storefront_oid' is not null or undefined
+            if (storefront_oid === null || storefront_oid === undefined) {
+                throw new RequiredError('storefront_oid','Required parameter storefront_oid was null or undefined when calling getEmailCampaignFolder.');
+            }
+            // verify required parameter 'email_campaign_folder_uuid' is not null or undefined
+            if (email_campaign_folder_uuid === null || email_campaign_folder_uuid === undefined) {
+                throw new RequiredError('email_campaign_folder_uuid','Required parameter email_campaign_folder_uuid was null or undefined when calling getEmailCampaignFolder.');
+            }
+            const localVarPath = `/storefront/{storefront_oid}/email/campaign_folders/{email_campaign_folder_uuid}`
+                .replace(`{${"storefront_oid"}}`, encodeURIComponent(String(storefront_oid)))
+                .replace(`{${"email_campaign_folder_uuid"}}`, encodeURIComponent(String(email_campaign_folder_uuid)));
+            const localVarUrlObj = url.parse(localVarPath, true);
+            const localVarRequestOptions = Object.assign({ method: 'GET' }, options);
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+    if(configuration && configuration.apiVersion) {
+      localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+    }
+
+
+
+            // authentication ultraCartBrowserApiKey required
+            if (configuration && configuration.apiKey) {
+                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
+					? configuration.apiKey("x-ultracart-browser-key")
+					: configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-browser-key"] = localVarApiKeyValue;
+            }
+
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+				const localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+					? configuration.accessToken("ultraCartOauth", ["storefront_read"])
+					: configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
+					? configuration.apiKey("x-ultracart-simple-key")
+					: configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @summary Get email campaign folders
+         * @param {number} storefront_oid 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getEmailCampaignFolders(storefront_oid: number, options: any = {}): FetchArgs {
+            // verify required parameter 'storefront_oid' is not null or undefined
+            if (storefront_oid === null || storefront_oid === undefined) {
+                throw new RequiredError('storefront_oid','Required parameter storefront_oid was null or undefined when calling getEmailCampaignFolders.');
+            }
+            const localVarPath = `/storefront/{storefront_oid}/email/campaign_folders`
+                .replace(`{${"storefront_oid"}}`, encodeURIComponent(String(storefront_oid)));
             const localVarUrlObj = url.parse(localVarPath, true);
             const localVarRequestOptions = Object.assign({ method: 'GET' }, options);
             const localVarHeaderParameter = {} as any;
@@ -43624,6 +44309,132 @@ export const StorefrontApiFetchParamCreator = function (configuration?: Configur
             const localVarPath = `/storefront/{storefront_oid}/email/flows/{email_flow_uuid}`
                 .replace(`{${"storefront_oid"}}`, encodeURIComponent(String(storefront_oid)))
                 .replace(`{${"email_flow_uuid"}}`, encodeURIComponent(String(email_flow_uuid)));
+            const localVarUrlObj = url.parse(localVarPath, true);
+            const localVarRequestOptions = Object.assign({ method: 'GET' }, options);
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+    if(configuration && configuration.apiVersion) {
+      localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+    }
+
+
+
+            // authentication ultraCartBrowserApiKey required
+            if (configuration && configuration.apiKey) {
+                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
+					? configuration.apiKey("x-ultracart-browser-key")
+					: configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-browser-key"] = localVarApiKeyValue;
+            }
+
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+				const localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+					? configuration.accessToken("ultraCartOauth", ["storefront_read"])
+					: configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
+					? configuration.apiKey("x-ultracart-simple-key")
+					: configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @summary Get email flow folder
+         * @param {number} storefront_oid 
+         * @param {string} email_flow_folder_uuid 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getEmailFlowFolder(storefront_oid: number, email_flow_folder_uuid: string, options: any = {}): FetchArgs {
+            // verify required parameter 'storefront_oid' is not null or undefined
+            if (storefront_oid === null || storefront_oid === undefined) {
+                throw new RequiredError('storefront_oid','Required parameter storefront_oid was null or undefined when calling getEmailFlowFolder.');
+            }
+            // verify required parameter 'email_flow_folder_uuid' is not null or undefined
+            if (email_flow_folder_uuid === null || email_flow_folder_uuid === undefined) {
+                throw new RequiredError('email_flow_folder_uuid','Required parameter email_flow_folder_uuid was null or undefined when calling getEmailFlowFolder.');
+            }
+            const localVarPath = `/storefront/{storefront_oid}/email/flow_folders/{email_flow_folder_uuid}`
+                .replace(`{${"storefront_oid"}}`, encodeURIComponent(String(storefront_oid)))
+                .replace(`{${"email_flow_folder_uuid"}}`, encodeURIComponent(String(email_flow_folder_uuid)));
+            const localVarUrlObj = url.parse(localVarPath, true);
+            const localVarRequestOptions = Object.assign({ method: 'GET' }, options);
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+    if(configuration && configuration.apiVersion) {
+      localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+    }
+
+
+
+            // authentication ultraCartBrowserApiKey required
+            if (configuration && configuration.apiKey) {
+                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
+					? configuration.apiKey("x-ultracart-browser-key")
+					: configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-browser-key"] = localVarApiKeyValue;
+            }
+
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+				const localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+					? configuration.accessToken("ultraCartOauth", ["storefront_read"])
+					: configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
+					? configuration.apiKey("x-ultracart-simple-key")
+					: configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @summary Get email flow folders
+         * @param {number} storefront_oid 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getEmailFlowFolders(storefront_oid: number, options: any = {}): FetchArgs {
+            // verify required parameter 'storefront_oid' is not null or undefined
+            if (storefront_oid === null || storefront_oid === undefined) {
+                throw new RequiredError('storefront_oid','Required parameter storefront_oid was null or undefined when calling getEmailFlowFolders.');
+            }
+            const localVarPath = `/storefront/{storefront_oid}/email/flow_folders`
+                .replace(`{${"storefront_oid"}}`, encodeURIComponent(String(storefront_oid)));
             const localVarUrlObj = url.parse(localVarPath, true);
             const localVarRequestOptions = Object.assign({ method: 'GET' }, options);
             const localVarHeaderParameter = {} as any;
@@ -46536,6 +47347,75 @@ export const StorefrontApiFetchParamCreator = function (configuration?: Configur
         },
         /**
          * 
+         * @summary Insert email campaign folder
+         * @param {number} storefront_oid 
+         * @param {EmailCampaignFolder} email_campaign_folder Email campaign folder
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        insertEmailCampaignFolder(storefront_oid: number, email_campaign_folder: EmailCampaignFolder, options: any = {}): FetchArgs {
+            // verify required parameter 'storefront_oid' is not null or undefined
+            if (storefront_oid === null || storefront_oid === undefined) {
+                throw new RequiredError('storefront_oid','Required parameter storefront_oid was null or undefined when calling insertEmailCampaignFolder.');
+            }
+            // verify required parameter 'email_campaign_folder' is not null or undefined
+            if (email_campaign_folder === null || email_campaign_folder === undefined) {
+                throw new RequiredError('email_campaign_folder','Required parameter email_campaign_folder was null or undefined when calling insertEmailCampaignFolder.');
+            }
+            const localVarPath = `/storefront/{storefront_oid}/email/campaign_folders`
+                .replace(`{${"storefront_oid"}}`, encodeURIComponent(String(storefront_oid)));
+            const localVarUrlObj = url.parse(localVarPath, true);
+            const localVarRequestOptions = Object.assign({ method: 'POST' }, options);
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+    if(configuration && configuration.apiVersion) {
+      localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+    }
+
+
+
+            // authentication ultraCartBrowserApiKey required
+            if (configuration && configuration.apiKey) {
+                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
+					? configuration.apiKey("x-ultracart-browser-key")
+					: configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-browser-key"] = localVarApiKeyValue;
+            }
+
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+				const localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+					? configuration.accessToken("ultraCartOauth", ["storefront_write"])
+					: configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
+					? configuration.apiKey("x-ultracart-simple-key")
+					: configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+            const needsSerialization = (<any>"EmailCampaignFolder" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
+            localVarRequestOptions.body =  needsSerialization ? JSON.stringify(email_campaign_folder || {}) : (email_campaign_folder || "");
+
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
          * @summary Insert email commseq
          * @param {number} storefront_oid 
          * @param {EmailCommseq} email_commseq Email commseq
@@ -46735,6 +47615,75 @@ export const StorefrontApiFetchParamCreator = function (configuration?: Configur
             localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
             const needsSerialization = (<any>"EmailFlow" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
             localVarRequestOptions.body =  needsSerialization ? JSON.stringify(email_flow || {}) : (email_flow || "");
+
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @summary Insert email flow folder
+         * @param {number} storefront_oid 
+         * @param {EmailFlowFolder} email_flow_folder Email flow folder
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        insertEmailFlowFolder(storefront_oid: number, email_flow_folder: EmailFlowFolder, options: any = {}): FetchArgs {
+            // verify required parameter 'storefront_oid' is not null or undefined
+            if (storefront_oid === null || storefront_oid === undefined) {
+                throw new RequiredError('storefront_oid','Required parameter storefront_oid was null or undefined when calling insertEmailFlowFolder.');
+            }
+            // verify required parameter 'email_flow_folder' is not null or undefined
+            if (email_flow_folder === null || email_flow_folder === undefined) {
+                throw new RequiredError('email_flow_folder','Required parameter email_flow_folder was null or undefined when calling insertEmailFlowFolder.');
+            }
+            const localVarPath = `/storefront/{storefront_oid}/email/flow_folders`
+                .replace(`{${"storefront_oid"}}`, encodeURIComponent(String(storefront_oid)));
+            const localVarUrlObj = url.parse(localVarPath, true);
+            const localVarRequestOptions = Object.assign({ method: 'POST' }, options);
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+    if(configuration && configuration.apiVersion) {
+      localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+    }
+
+
+
+            // authentication ultraCartBrowserApiKey required
+            if (configuration && configuration.apiKey) {
+                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
+					? configuration.apiKey("x-ultracart-browser-key")
+					: configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-browser-key"] = localVarApiKeyValue;
+            }
+
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+				const localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+					? configuration.accessToken("ultraCartOauth", ["storefront_write"])
+					: configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
+					? configuration.apiKey("x-ultracart-simple-key")
+					: configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+            const needsSerialization = (<any>"EmailFlowFolder" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
+            localVarRequestOptions.body =  needsSerialization ? JSON.stringify(email_flow_folder || {}) : (email_flow_folder || "");
 
             return {
                 url: url.format(localVarUrlObj),
@@ -48354,6 +49303,81 @@ export const StorefrontApiFetchParamCreator = function (configuration?: Configur
         },
         /**
          * 
+         * @summary Update email campaign folder
+         * @param {number} storefront_oid 
+         * @param {string} email_campaign_folder_uuid 
+         * @param {EmailCampaignFolder} email_campaign_folder Email campaign folder
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        updateEmailCampaignFolder(storefront_oid: number, email_campaign_folder_uuid: string, email_campaign_folder: EmailCampaignFolder, options: any = {}): FetchArgs {
+            // verify required parameter 'storefront_oid' is not null or undefined
+            if (storefront_oid === null || storefront_oid === undefined) {
+                throw new RequiredError('storefront_oid','Required parameter storefront_oid was null or undefined when calling updateEmailCampaignFolder.');
+            }
+            // verify required parameter 'email_campaign_folder_uuid' is not null or undefined
+            if (email_campaign_folder_uuid === null || email_campaign_folder_uuid === undefined) {
+                throw new RequiredError('email_campaign_folder_uuid','Required parameter email_campaign_folder_uuid was null or undefined when calling updateEmailCampaignFolder.');
+            }
+            // verify required parameter 'email_campaign_folder' is not null or undefined
+            if (email_campaign_folder === null || email_campaign_folder === undefined) {
+                throw new RequiredError('email_campaign_folder','Required parameter email_campaign_folder was null or undefined when calling updateEmailCampaignFolder.');
+            }
+            const localVarPath = `/storefront/{storefront_oid}/email/campaign_folders/{email_campaign_folder_uuid}`
+                .replace(`{${"storefront_oid"}}`, encodeURIComponent(String(storefront_oid)))
+                .replace(`{${"email_campaign_folder_uuid"}}`, encodeURIComponent(String(email_campaign_folder_uuid)));
+            const localVarUrlObj = url.parse(localVarPath, true);
+            const localVarRequestOptions = Object.assign({ method: 'PUT' }, options);
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+    if(configuration && configuration.apiVersion) {
+      localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+    }
+
+
+
+            // authentication ultraCartBrowserApiKey required
+            if (configuration && configuration.apiKey) {
+                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
+					? configuration.apiKey("x-ultracart-browser-key")
+					: configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-browser-key"] = localVarApiKeyValue;
+            }
+
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+				const localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+					? configuration.accessToken("ultraCartOauth", ["storefront_write"])
+					: configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
+					? configuration.apiKey("x-ultracart-simple-key")
+					: configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+            const needsSerialization = (<any>"EmailCampaignFolder" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
+            localVarRequestOptions.body =  needsSerialization ? JSON.stringify(email_campaign_folder || {}) : (email_campaign_folder || "");
+
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
          * @summary Update email commseq
          * @param {number} storefront_oid 
          * @param {string} commseq_uuid 
@@ -48646,6 +49670,81 @@ export const StorefrontApiFetchParamCreator = function (configuration?: Configur
             localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
             const needsSerialization = (<any>"EmailFlow" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
             localVarRequestOptions.body =  needsSerialization ? JSON.stringify(email_flow || {}) : (email_flow || "");
+
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @summary Update email flow folder
+         * @param {number} storefront_oid 
+         * @param {string} email_flow_folder_uuid 
+         * @param {EmailFlowFolder} email_flow_folder Email flow folder
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        updateEmailFlowFolder(storefront_oid: number, email_flow_folder_uuid: string, email_flow_folder: EmailFlowFolder, options: any = {}): FetchArgs {
+            // verify required parameter 'storefront_oid' is not null or undefined
+            if (storefront_oid === null || storefront_oid === undefined) {
+                throw new RequiredError('storefront_oid','Required parameter storefront_oid was null or undefined when calling updateEmailFlowFolder.');
+            }
+            // verify required parameter 'email_flow_folder_uuid' is not null or undefined
+            if (email_flow_folder_uuid === null || email_flow_folder_uuid === undefined) {
+                throw new RequiredError('email_flow_folder_uuid','Required parameter email_flow_folder_uuid was null or undefined when calling updateEmailFlowFolder.');
+            }
+            // verify required parameter 'email_flow_folder' is not null or undefined
+            if (email_flow_folder === null || email_flow_folder === undefined) {
+                throw new RequiredError('email_flow_folder','Required parameter email_flow_folder was null or undefined when calling updateEmailFlowFolder.');
+            }
+            const localVarPath = `/storefront/{storefront_oid}/email/flow_folders/{email_flow_folder_uuid}`
+                .replace(`{${"storefront_oid"}}`, encodeURIComponent(String(storefront_oid)))
+                .replace(`{${"email_flow_folder_uuid"}}`, encodeURIComponent(String(email_flow_folder_uuid)));
+            const localVarUrlObj = url.parse(localVarPath, true);
+            const localVarRequestOptions = Object.assign({ method: 'PUT' }, options);
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+    if(configuration && configuration.apiVersion) {
+      localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+    }
+
+
+
+            // authentication ultraCartBrowserApiKey required
+            if (configuration && configuration.apiKey) {
+                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
+					? configuration.apiKey("x-ultracart-browser-key")
+					: configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-browser-key"] = localVarApiKeyValue;
+            }
+
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+				const localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+					? configuration.accessToken("ultraCartOauth", ["storefront_write"])
+					: configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
+					? configuration.apiKey("x-ultracart-simple-key")
+					: configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+            const needsSerialization = (<any>"EmailFlowFolder" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
+            localVarRequestOptions.body =  needsSerialization ? JSON.stringify(email_flow_folder || {}) : (email_flow_folder || "");
 
             return {
                 url: url.format(localVarUrlObj),
@@ -49700,6 +50799,26 @@ export const StorefrontApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
+         * @summary Delete email campaignFolder
+         * @param {number} storefront_oid 
+         * @param {string} email_campaign_folder_uuid 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        deleteEmailCampaignFolder(storefront_oid: number, email_campaign_folder_uuid: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<BaseResponse> {
+            const localVarFetchArgs = StorefrontApiFetchParamCreator(configuration).deleteEmailCampaignFolder(storefront_oid, email_campaign_folder_uuid, options);
+            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+                    if (response.status >= 200 && response.status < 300) {
+                        return response.json();
+                    } else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
+         * 
          * @summary Delete communication sequence stats
          * @param {number} storefront_oid 
          * @param {string} commseq_uuid 
@@ -49728,6 +50847,26 @@ export const StorefrontApiFp = function(configuration?: Configuration) {
          */
         deleteEmailEmail(storefront_oid: number, commseq_email_uuid: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<BaseResponse> {
             const localVarFetchArgs = StorefrontApiFetchParamCreator(configuration).deleteEmailEmail(storefront_oid, commseq_email_uuid, options);
+            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+                    if (response.status >= 200 && response.status < 300) {
+                        return response.json();
+                    } else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
+         * 
+         * @summary Delete email flowFolder
+         * @param {number} storefront_oid 
+         * @param {string} email_flow_folder_uuid 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        deleteEmailFlowFolder(storefront_oid: number, email_flow_folder_uuid: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<BaseResponse> {
+            const localVarFetchArgs = StorefrontApiFetchParamCreator(configuration).deleteEmailFlowFolder(storefront_oid, email_flow_folder_uuid, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
                     if (response.status >= 200 && response.status < 300) {
@@ -50002,6 +51141,45 @@ export const StorefrontApiFp = function(configuration?: Configuration) {
          */
         getEmailCampaign(storefront_oid: number, email_campaign_uuid: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<EmailCampaignResponse> {
             const localVarFetchArgs = StorefrontApiFetchParamCreator(configuration).getEmailCampaign(storefront_oid, email_campaign_uuid, options);
+            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+                    if (response.status >= 200 && response.status < 300) {
+                        return response.json();
+                    } else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
+         * 
+         * @summary Get email campaign folder
+         * @param {number} storefront_oid 
+         * @param {string} email_campaign_folder_uuid 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getEmailCampaignFolder(storefront_oid: number, email_campaign_folder_uuid: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<EmailCampaignFolderResponse> {
+            const localVarFetchArgs = StorefrontApiFetchParamCreator(configuration).getEmailCampaignFolder(storefront_oid, email_campaign_folder_uuid, options);
+            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+                    if (response.status >= 200 && response.status < 300) {
+                        return response.json();
+                    } else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
+         * 
+         * @summary Get email campaign folders
+         * @param {number} storefront_oid 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getEmailCampaignFolders(storefront_oid: number, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<EmailCampaignFoldersResponse> {
+            const localVarFetchArgs = StorefrontApiFetchParamCreator(configuration).getEmailCampaignFolders(storefront_oid, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
                     if (response.status >= 200 && response.status < 300) {
@@ -50432,6 +51610,45 @@ export const StorefrontApiFp = function(configuration?: Configuration) {
          */
         getEmailFlow(storefront_oid: number, email_flow_uuid: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<EmailFlowResponse> {
             const localVarFetchArgs = StorefrontApiFetchParamCreator(configuration).getEmailFlow(storefront_oid, email_flow_uuid, options);
+            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+                    if (response.status >= 200 && response.status < 300) {
+                        return response.json();
+                    } else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
+         * 
+         * @summary Get email flow folder
+         * @param {number} storefront_oid 
+         * @param {string} email_flow_folder_uuid 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getEmailFlowFolder(storefront_oid: number, email_flow_folder_uuid: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<EmailFlowFolderResponse> {
+            const localVarFetchArgs = StorefrontApiFetchParamCreator(configuration).getEmailFlowFolder(storefront_oid, email_flow_folder_uuid, options);
+            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+                    if (response.status >= 200 && response.status < 300) {
+                        return response.json();
+                    } else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
+         * 
+         * @summary Get email flow folders
+         * @param {number} storefront_oid 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getEmailFlowFolders(storefront_oid: number, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<EmailFlowFoldersResponse> {
+            const localVarFetchArgs = StorefrontApiFetchParamCreator(configuration).getEmailFlowFolders(storefront_oid, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
                     if (response.status >= 200 && response.status < 300) {
@@ -51334,6 +52551,26 @@ export const StorefrontApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
+         * @summary Insert email campaign folder
+         * @param {number} storefront_oid 
+         * @param {EmailCampaignFolder} email_campaign_folder Email campaign folder
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        insertEmailCampaignFolder(storefront_oid: number, email_campaign_folder: EmailCampaignFolder, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<EmailCampaignFolderResponse> {
+            const localVarFetchArgs = StorefrontApiFetchParamCreator(configuration).insertEmailCampaignFolder(storefront_oid, email_campaign_folder, options);
+            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+                    if (response.status >= 200 && response.status < 300) {
+                        return response.json();
+                    } else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
+         * 
          * @summary Insert email commseq
          * @param {number} storefront_oid 
          * @param {EmailCommseq} email_commseq Email commseq
@@ -51382,6 +52619,26 @@ export const StorefrontApiFp = function(configuration?: Configuration) {
          */
         insertEmailFlow(storefront_oid: number, email_flow: EmailFlow, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<EmailFlowResponse> {
             const localVarFetchArgs = StorefrontApiFetchParamCreator(configuration).insertEmailFlow(storefront_oid, email_flow, options);
+            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+                    if (response.status >= 200 && response.status < 300) {
+                        return response.json();
+                    } else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
+         * 
+         * @summary Insert email flow folder
+         * @param {number} storefront_oid 
+         * @param {EmailFlowFolder} email_flow_folder Email flow folder
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        insertEmailFlowFolder(storefront_oid: number, email_flow_folder: EmailFlowFolder, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<EmailFlowFolderResponse> {
+            const localVarFetchArgs = StorefrontApiFetchParamCreator(configuration).insertEmailFlowFolder(storefront_oid, email_flow_folder, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
                     if (response.status >= 200 && response.status < 300) {
@@ -51872,6 +53129,27 @@ export const StorefrontApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
+         * @summary Update email campaign folder
+         * @param {number} storefront_oid 
+         * @param {string} email_campaign_folder_uuid 
+         * @param {EmailCampaignFolder} email_campaign_folder Email campaign folder
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        updateEmailCampaignFolder(storefront_oid: number, email_campaign_folder_uuid: string, email_campaign_folder: EmailCampaignFolder, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<EmailCampaignFolderResponse> {
+            const localVarFetchArgs = StorefrontApiFetchParamCreator(configuration).updateEmailCampaignFolder(storefront_oid, email_campaign_folder_uuid, email_campaign_folder, options);
+            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+                    if (response.status >= 200 && response.status < 300) {
+                        return response.json();
+                    } else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
+         * 
          * @summary Update email commseq
          * @param {number} storefront_oid 
          * @param {string} commseq_uuid 
@@ -51944,6 +53222,27 @@ export const StorefrontApiFp = function(configuration?: Configuration) {
          */
         updateEmailFlow(storefront_oid: number, email_flow_uuid: string, email_flow: EmailFlow, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<EmailFlowResponse> {
             const localVarFetchArgs = StorefrontApiFetchParamCreator(configuration).updateEmailFlow(storefront_oid, email_flow_uuid, email_flow, options);
+            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+                    if (response.status >= 200 && response.status < 300) {
+                        return response.json();
+                    } else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
+         * 
+         * @summary Update email flow folder
+         * @param {number} storefront_oid 
+         * @param {string} email_flow_folder_uuid 
+         * @param {EmailFlowFolder} email_flow_folder Email flow folder
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        updateEmailFlowFolder(storefront_oid: number, email_flow_folder_uuid: string, email_flow_folder: EmailFlowFolder, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<EmailFlowFolderResponse> {
+            const localVarFetchArgs = StorefrontApiFetchParamCreator(configuration).updateEmailFlowFolder(storefront_oid, email_flow_folder_uuid, email_flow_folder, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
                     if (response.status >= 200 && response.status < 300) {
@@ -52311,6 +53610,17 @@ export const StorefrontApiFactory = function (configuration?: Configuration, fet
         },
         /**
          * 
+         * @summary Delete email campaignFolder
+         * @param {number} storefront_oid 
+         * @param {string} email_campaign_folder_uuid 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        deleteEmailCampaignFolder(storefront_oid: number, email_campaign_folder_uuid: string, options?: any) {
+            return StorefrontApiFp(configuration).deleteEmailCampaignFolder(storefront_oid, email_campaign_folder_uuid, options)(fetch, basePath);
+        },
+        /**
+         * 
          * @summary Delete communication sequence stats
          * @param {number} storefront_oid 
          * @param {string} commseq_uuid 
@@ -52330,6 +53640,17 @@ export const StorefrontApiFactory = function (configuration?: Configuration, fet
          */
         deleteEmailEmail(storefront_oid: number, commseq_email_uuid: string, options?: any) {
             return StorefrontApiFp(configuration).deleteEmailEmail(storefront_oid, commseq_email_uuid, options)(fetch, basePath);
+        },
+        /**
+         * 
+         * @summary Delete email flowFolder
+         * @param {number} storefront_oid 
+         * @param {string} email_flow_folder_uuid 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        deleteEmailFlowFolder(storefront_oid: number, email_flow_folder_uuid: string, options?: any) {
+            return StorefrontApiFp(configuration).deleteEmailFlowFolder(storefront_oid, email_flow_folder_uuid, options)(fetch, basePath);
         },
         /**
          * 
@@ -52478,6 +53799,27 @@ export const StorefrontApiFactory = function (configuration?: Configuration, fet
          */
         getEmailCampaign(storefront_oid: number, email_campaign_uuid: string, options?: any) {
             return StorefrontApiFp(configuration).getEmailCampaign(storefront_oid, email_campaign_uuid, options)(fetch, basePath);
+        },
+        /**
+         * 
+         * @summary Get email campaign folder
+         * @param {number} storefront_oid 
+         * @param {string} email_campaign_folder_uuid 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getEmailCampaignFolder(storefront_oid: number, email_campaign_folder_uuid: string, options?: any) {
+            return StorefrontApiFp(configuration).getEmailCampaignFolder(storefront_oid, email_campaign_folder_uuid, options)(fetch, basePath);
+        },
+        /**
+         * 
+         * @summary Get email campaign folders
+         * @param {number} storefront_oid 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getEmailCampaignFolders(storefront_oid: number, options?: any) {
+            return StorefrontApiFp(configuration).getEmailCampaignFolders(storefront_oid, options)(fetch, basePath);
         },
         /**
          * 
@@ -52719,6 +54061,27 @@ export const StorefrontApiFactory = function (configuration?: Configuration, fet
          */
         getEmailFlow(storefront_oid: number, email_flow_uuid: string, options?: any) {
             return StorefrontApiFp(configuration).getEmailFlow(storefront_oid, email_flow_uuid, options)(fetch, basePath);
+        },
+        /**
+         * 
+         * @summary Get email flow folder
+         * @param {number} storefront_oid 
+         * @param {string} email_flow_folder_uuid 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getEmailFlowFolder(storefront_oid: number, email_flow_folder_uuid: string, options?: any) {
+            return StorefrontApiFp(configuration).getEmailFlowFolder(storefront_oid, email_flow_folder_uuid, options)(fetch, basePath);
+        },
+        /**
+         * 
+         * @summary Get email flow folders
+         * @param {number} storefront_oid 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getEmailFlowFolders(storefront_oid: number, options?: any) {
+            return StorefrontApiFp(configuration).getEmailFlowFolders(storefront_oid, options)(fetch, basePath);
         },
         /**
          * 
@@ -53207,6 +54570,17 @@ export const StorefrontApiFactory = function (configuration?: Configuration, fet
         },
         /**
          * 
+         * @summary Insert email campaign folder
+         * @param {number} storefront_oid 
+         * @param {EmailCampaignFolder} email_campaign_folder Email campaign folder
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        insertEmailCampaignFolder(storefront_oid: number, email_campaign_folder: EmailCampaignFolder, options?: any) {
+            return StorefrontApiFp(configuration).insertEmailCampaignFolder(storefront_oid, email_campaign_folder, options)(fetch, basePath);
+        },
+        /**
+         * 
          * @summary Insert email commseq
          * @param {number} storefront_oid 
          * @param {EmailCommseq} email_commseq Email commseq
@@ -53237,6 +54611,17 @@ export const StorefrontApiFactory = function (configuration?: Configuration, fet
          */
         insertEmailFlow(storefront_oid: number, email_flow: EmailFlow, options?: any) {
             return StorefrontApiFp(configuration).insertEmailFlow(storefront_oid, email_flow, options)(fetch, basePath);
+        },
+        /**
+         * 
+         * @summary Insert email flow folder
+         * @param {number} storefront_oid 
+         * @param {EmailFlowFolder} email_flow_folder Email flow folder
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        insertEmailFlowFolder(storefront_oid: number, email_flow_folder: EmailFlowFolder, options?: any) {
+            return StorefrontApiFp(configuration).insertEmailFlowFolder(storefront_oid, email_flow_folder, options)(fetch, basePath);
         },
         /**
          * 
@@ -53511,6 +54896,18 @@ export const StorefrontApiFactory = function (configuration?: Configuration, fet
         },
         /**
          * 
+         * @summary Update email campaign folder
+         * @param {number} storefront_oid 
+         * @param {string} email_campaign_folder_uuid 
+         * @param {EmailCampaignFolder} email_campaign_folder Email campaign folder
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        updateEmailCampaignFolder(storefront_oid: number, email_campaign_folder_uuid: string, email_campaign_folder: EmailCampaignFolder, options?: any) {
+            return StorefrontApiFp(configuration).updateEmailCampaignFolder(storefront_oid, email_campaign_folder_uuid, email_campaign_folder, options)(fetch, basePath);
+        },
+        /**
+         * 
          * @summary Update email commseq
          * @param {number} storefront_oid 
          * @param {string} commseq_uuid 
@@ -53556,6 +54953,18 @@ export const StorefrontApiFactory = function (configuration?: Configuration, fet
          */
         updateEmailFlow(storefront_oid: number, email_flow_uuid: string, email_flow: EmailFlow, options?: any) {
             return StorefrontApiFp(configuration).updateEmailFlow(storefront_oid, email_flow_uuid, email_flow, options)(fetch, basePath);
+        },
+        /**
+         * 
+         * @summary Update email flow folder
+         * @param {number} storefront_oid 
+         * @param {string} email_flow_folder_uuid 
+         * @param {EmailFlowFolder} email_flow_folder Email flow folder
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        updateEmailFlowFolder(storefront_oid: number, email_flow_folder_uuid: string, email_flow_folder: EmailFlowFolder, options?: any) {
+            return StorefrontApiFp(configuration).updateEmailFlowFolder(storefront_oid, email_flow_folder_uuid, email_flow_folder, options)(fetch, basePath);
         },
         /**
          * 
@@ -53806,6 +55215,17 @@ export interface StorefrontApiInterface {
 
     /**
      * 
+     * @summary Delete email campaignFolder
+     * @param {number} storefront_oid 
+     * @param {string} email_campaign_folder_uuid 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof StorefrontApiInterface
+     */
+    deleteEmailCampaignFolder(storefront_oid: number, email_campaign_folder_uuid: string, options?: any): Promise<BaseResponse>;
+
+    /**
+     * 
      * @summary Delete communication sequence stats
      * @param {number} storefront_oid 
      * @param {string} commseq_uuid 
@@ -53825,6 +55245,17 @@ export interface StorefrontApiInterface {
      * @memberof StorefrontApiInterface
      */
     deleteEmailEmail(storefront_oid: number, commseq_email_uuid: string, options?: any): Promise<BaseResponse>;
+
+    /**
+     * 
+     * @summary Delete email flowFolder
+     * @param {number} storefront_oid 
+     * @param {string} email_flow_folder_uuid 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof StorefrontApiInterface
+     */
+    deleteEmailFlowFolder(storefront_oid: number, email_flow_folder_uuid: string, options?: any): Promise<BaseResponse>;
 
     /**
      * 
@@ -53973,6 +55404,27 @@ export interface StorefrontApiInterface {
      * @memberof StorefrontApiInterface
      */
     getEmailCampaign(storefront_oid: number, email_campaign_uuid: string, options?: any): Promise<EmailCampaignResponse>;
+
+    /**
+     * 
+     * @summary Get email campaign folder
+     * @param {number} storefront_oid 
+     * @param {string} email_campaign_folder_uuid 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof StorefrontApiInterface
+     */
+    getEmailCampaignFolder(storefront_oid: number, email_campaign_folder_uuid: string, options?: any): Promise<EmailCampaignFolderResponse>;
+
+    /**
+     * 
+     * @summary Get email campaign folders
+     * @param {number} storefront_oid 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof StorefrontApiInterface
+     */
+    getEmailCampaignFolders(storefront_oid: number, options?: any): Promise<EmailCampaignFoldersResponse>;
 
     /**
      * 
@@ -54214,6 +55666,27 @@ export interface StorefrontApiInterface {
      * @memberof StorefrontApiInterface
      */
     getEmailFlow(storefront_oid: number, email_flow_uuid: string, options?: any): Promise<EmailFlowResponse>;
+
+    /**
+     * 
+     * @summary Get email flow folder
+     * @param {number} storefront_oid 
+     * @param {string} email_flow_folder_uuid 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof StorefrontApiInterface
+     */
+    getEmailFlowFolder(storefront_oid: number, email_flow_folder_uuid: string, options?: any): Promise<EmailFlowFolderResponse>;
+
+    /**
+     * 
+     * @summary Get email flow folders
+     * @param {number} storefront_oid 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof StorefrontApiInterface
+     */
+    getEmailFlowFolders(storefront_oid: number, options?: any): Promise<EmailFlowFoldersResponse>;
 
     /**
      * 
@@ -54702,6 +56175,17 @@ export interface StorefrontApiInterface {
 
     /**
      * 
+     * @summary Insert email campaign folder
+     * @param {number} storefront_oid 
+     * @param {EmailCampaignFolder} email_campaign_folder Email campaign folder
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof StorefrontApiInterface
+     */
+    insertEmailCampaignFolder(storefront_oid: number, email_campaign_folder: EmailCampaignFolder, options?: any): Promise<EmailCampaignFolderResponse>;
+
+    /**
+     * 
      * @summary Insert email commseq
      * @param {number} storefront_oid 
      * @param {EmailCommseq} email_commseq Email commseq
@@ -54732,6 +56216,17 @@ export interface StorefrontApiInterface {
      * @memberof StorefrontApiInterface
      */
     insertEmailFlow(storefront_oid: number, email_flow: EmailFlow, options?: any): Promise<EmailFlowResponse>;
+
+    /**
+     * 
+     * @summary Insert email flow folder
+     * @param {number} storefront_oid 
+     * @param {EmailFlowFolder} email_flow_folder Email flow folder
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof StorefrontApiInterface
+     */
+    insertEmailFlowFolder(storefront_oid: number, email_flow_folder: EmailFlowFolder, options?: any): Promise<EmailFlowFolderResponse>;
 
     /**
      * 
@@ -55006,6 +56501,18 @@ export interface StorefrontApiInterface {
 
     /**
      * 
+     * @summary Update email campaign folder
+     * @param {number} storefront_oid 
+     * @param {string} email_campaign_folder_uuid 
+     * @param {EmailCampaignFolder} email_campaign_folder Email campaign folder
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof StorefrontApiInterface
+     */
+    updateEmailCampaignFolder(storefront_oid: number, email_campaign_folder_uuid: string, email_campaign_folder: EmailCampaignFolder, options?: any): Promise<EmailCampaignFolderResponse>;
+
+    /**
+     * 
      * @summary Update email commseq
      * @param {number} storefront_oid 
      * @param {string} commseq_uuid 
@@ -55051,6 +56558,18 @@ export interface StorefrontApiInterface {
      * @memberof StorefrontApiInterface
      */
     updateEmailFlow(storefront_oid: number, email_flow_uuid: string, email_flow: EmailFlow, options?: any): Promise<EmailFlowResponse>;
+
+    /**
+     * 
+     * @summary Update email flow folder
+     * @param {number} storefront_oid 
+     * @param {string} email_flow_folder_uuid 
+     * @param {EmailFlowFolder} email_flow_folder Email flow folder
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof StorefrontApiInterface
+     */
+    updateEmailFlowFolder(storefront_oid: number, email_flow_folder_uuid: string, email_flow_folder: EmailFlowFolder, options?: any): Promise<EmailFlowFolderResponse>;
 
     /**
      * 
@@ -55319,6 +56838,19 @@ export class StorefrontApi extends BaseAPI implements StorefrontApiInterface {
 
     /**
      * 
+     * @summary Delete email campaignFolder
+     * @param {number} storefront_oid 
+     * @param {string} email_campaign_folder_uuid 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof StorefrontApi
+     */
+    public deleteEmailCampaignFolder(storefront_oid: number, email_campaign_folder_uuid: string, options?: any) {
+        return StorefrontApiFp(this.configuration).deleteEmailCampaignFolder(storefront_oid, email_campaign_folder_uuid, options)(this.fetch, this.basePath);
+    }
+
+    /**
+     * 
      * @summary Delete communication sequence stats
      * @param {number} storefront_oid 
      * @param {string} commseq_uuid 
@@ -55341,6 +56873,19 @@ export class StorefrontApi extends BaseAPI implements StorefrontApiInterface {
      */
     public deleteEmailEmail(storefront_oid: number, commseq_email_uuid: string, options?: any) {
         return StorefrontApiFp(this.configuration).deleteEmailEmail(storefront_oid, commseq_email_uuid, options)(this.fetch, this.basePath);
+    }
+
+    /**
+     * 
+     * @summary Delete email flowFolder
+     * @param {number} storefront_oid 
+     * @param {string} email_flow_folder_uuid 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof StorefrontApi
+     */
+    public deleteEmailFlowFolder(storefront_oid: number, email_flow_folder_uuid: string, options?: any) {
+        return StorefrontApiFp(this.configuration).deleteEmailFlowFolder(storefront_oid, email_flow_folder_uuid, options)(this.fetch, this.basePath);
     }
 
     /**
@@ -55517,6 +57062,31 @@ export class StorefrontApi extends BaseAPI implements StorefrontApiInterface {
      */
     public getEmailCampaign(storefront_oid: number, email_campaign_uuid: string, options?: any) {
         return StorefrontApiFp(this.configuration).getEmailCampaign(storefront_oid, email_campaign_uuid, options)(this.fetch, this.basePath);
+    }
+
+    /**
+     * 
+     * @summary Get email campaign folder
+     * @param {number} storefront_oid 
+     * @param {string} email_campaign_folder_uuid 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof StorefrontApi
+     */
+    public getEmailCampaignFolder(storefront_oid: number, email_campaign_folder_uuid: string, options?: any) {
+        return StorefrontApiFp(this.configuration).getEmailCampaignFolder(storefront_oid, email_campaign_folder_uuid, options)(this.fetch, this.basePath);
+    }
+
+    /**
+     * 
+     * @summary Get email campaign folders
+     * @param {number} storefront_oid 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof StorefrontApi
+     */
+    public getEmailCampaignFolders(storefront_oid: number, options?: any) {
+        return StorefrontApiFp(this.configuration).getEmailCampaignFolders(storefront_oid, options)(this.fetch, this.basePath);
     }
 
     /**
@@ -55800,6 +57370,31 @@ export class StorefrontApi extends BaseAPI implements StorefrontApiInterface {
      */
     public getEmailFlow(storefront_oid: number, email_flow_uuid: string, options?: any) {
         return StorefrontApiFp(this.configuration).getEmailFlow(storefront_oid, email_flow_uuid, options)(this.fetch, this.basePath);
+    }
+
+    /**
+     * 
+     * @summary Get email flow folder
+     * @param {number} storefront_oid 
+     * @param {string} email_flow_folder_uuid 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof StorefrontApi
+     */
+    public getEmailFlowFolder(storefront_oid: number, email_flow_folder_uuid: string, options?: any) {
+        return StorefrontApiFp(this.configuration).getEmailFlowFolder(storefront_oid, email_flow_folder_uuid, options)(this.fetch, this.basePath);
+    }
+
+    /**
+     * 
+     * @summary Get email flow folders
+     * @param {number} storefront_oid 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof StorefrontApi
+     */
+    public getEmailFlowFolders(storefront_oid: number, options?: any) {
+        return StorefrontApiFp(this.configuration).getEmailFlowFolders(storefront_oid, options)(this.fetch, this.basePath);
     }
 
     /**
@@ -56379,6 +57974,19 @@ export class StorefrontApi extends BaseAPI implements StorefrontApiInterface {
 
     /**
      * 
+     * @summary Insert email campaign folder
+     * @param {number} storefront_oid 
+     * @param {EmailCampaignFolder} email_campaign_folder Email campaign folder
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof StorefrontApi
+     */
+    public insertEmailCampaignFolder(storefront_oid: number, email_campaign_folder: EmailCampaignFolder, options?: any) {
+        return StorefrontApiFp(this.configuration).insertEmailCampaignFolder(storefront_oid, email_campaign_folder, options)(this.fetch, this.basePath);
+    }
+
+    /**
+     * 
      * @summary Insert email commseq
      * @param {number} storefront_oid 
      * @param {EmailCommseq} email_commseq Email commseq
@@ -56414,6 +58022,19 @@ export class StorefrontApi extends BaseAPI implements StorefrontApiInterface {
      */
     public insertEmailFlow(storefront_oid: number, email_flow: EmailFlow, options?: any) {
         return StorefrontApiFp(this.configuration).insertEmailFlow(storefront_oid, email_flow, options)(this.fetch, this.basePath);
+    }
+
+    /**
+     * 
+     * @summary Insert email flow folder
+     * @param {number} storefront_oid 
+     * @param {EmailFlowFolder} email_flow_folder Email flow folder
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof StorefrontApi
+     */
+    public insertEmailFlowFolder(storefront_oid: number, email_flow_folder: EmailFlowFolder, options?: any) {
+        return StorefrontApiFp(this.configuration).insertEmailFlowFolder(storefront_oid, email_flow_folder, options)(this.fetch, this.basePath);
     }
 
     /**
@@ -56735,6 +58356,20 @@ export class StorefrontApi extends BaseAPI implements StorefrontApiInterface {
 
     /**
      * 
+     * @summary Update email campaign folder
+     * @param {number} storefront_oid 
+     * @param {string} email_campaign_folder_uuid 
+     * @param {EmailCampaignFolder} email_campaign_folder Email campaign folder
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof StorefrontApi
+     */
+    public updateEmailCampaignFolder(storefront_oid: number, email_campaign_folder_uuid: string, email_campaign_folder: EmailCampaignFolder, options?: any) {
+        return StorefrontApiFp(this.configuration).updateEmailCampaignFolder(storefront_oid, email_campaign_folder_uuid, email_campaign_folder, options)(this.fetch, this.basePath);
+    }
+
+    /**
+     * 
      * @summary Update email commseq
      * @param {number} storefront_oid 
      * @param {string} commseq_uuid 
@@ -56787,6 +58422,20 @@ export class StorefrontApi extends BaseAPI implements StorefrontApiInterface {
      */
     public updateEmailFlow(storefront_oid: number, email_flow_uuid: string, email_flow: EmailFlow, options?: any) {
         return StorefrontApiFp(this.configuration).updateEmailFlow(storefront_oid, email_flow_uuid, email_flow, options)(this.fetch, this.basePath);
+    }
+
+    /**
+     * 
+     * @summary Update email flow folder
+     * @param {number} storefront_oid 
+     * @param {string} email_flow_folder_uuid 
+     * @param {EmailFlowFolder} email_flow_folder Email flow folder
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof StorefrontApi
+     */
+    public updateEmailFlowFolder(storefront_oid: number, email_flow_folder_uuid: string, email_flow_folder: EmailFlowFolder, options?: any) {
+        return StorefrontApiFp(this.configuration).updateEmailFlowFolder(storefront_oid, email_flow_folder_uuid, email_flow_folder, options)(this.fetch, this.basePath);
     }
 
     /**
