@@ -7027,7 +7027,7 @@ export interface CouponTieredAmountOffItem {
      */
     item?: string;
     /**
-     * The maximum amount of total discount by this coupon.
+     * The maximum number of discounted items.
      * @type {number}
      * @memberof CouponTieredAmountOffItem
      */
@@ -7073,7 +7073,7 @@ export interface CouponTieredPercentOffItems {
      */
     items?: Array<string>;
     /**
-     * The maximum amount of total discount by this coupon.
+     * The (optional) maximum quantity of discounted items.
      * @type {number}
      * @memberof CouponTieredPercentOffItems
      */
@@ -12378,6 +12378,12 @@ export interface EmailPlan {
  * @interface EmailPlanAdditional
  */
 export interface EmailPlanAdditional {
+    /**
+     * 
+     * @type {boolean}
+     * @memberof EmailPlanAdditional
+     */
+    active?: boolean;
     /**
      * 
      * @type {boolean}
@@ -28427,7 +28433,7 @@ export const AutoOrderApiFetchParamCreator = function (configuration?: Configura
     return {
         /**
          * Retrieves a single auto order using the specified auto order oid. 
-         * @summary Retrieve an auto order
+         * @summary Retrieve an auto order by oid
          * @param {number} auto_order_oid The auto order oid to retrieve.
          * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
          * @param {*} [options] Override http request option.
@@ -28484,7 +28490,7 @@ export const AutoOrderApiFetchParamCreator = function (configuration?: Configura
         },
         /**
          * Retrieves a single auto order using the specified reference (original) order id. 
-         * @summary Retrieve an auto order
+         * @summary Retrieve an auto order by code
          * @param {string} auto_order_code The auto order oid to retrieve.
          * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
          * @param {*} [options] Override http request option.
@@ -28541,7 +28547,7 @@ export const AutoOrderApiFetchParamCreator = function (configuration?: Configura
         },
         /**
          * Retrieves a single auto order using the specified reference (original) order id. 
-         * @summary Retrieve an auto order
+         * @summary Retrieve an auto order by order id
          * @param {string} reference_order_id The auto order oid to retrieve.
          * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
          * @param {*} [options] Override http request option.
@@ -28819,7 +28825,7 @@ export const AutoOrderApiFetchParamCreator = function (configuration?: Configura
         },
         /**
          * Retrieves a group of auto orders from the account based on a query object.  You will need to make multiple API calls in order to retrieve the entire result set since this API performs result set pagination. 
-         * @summary Retrieve auto orders
+         * @summary Retrieve auto orders by query
          * @param {AutoOrderQuery} auto_order_query Auto order query
          * @param {number} [_limit] The maximum number of records to return on this one API call. (Maximum 200)
          * @param {number} [_offset] Pagination of the record set.  Offset is a zero based index.
@@ -29039,7 +29045,7 @@ export const AutoOrderApiFp = function(configuration?: Configuration) {
     return {
         /**
          * Retrieves a single auto order using the specified auto order oid. 
-         * @summary Retrieve an auto order
+         * @summary Retrieve an auto order by oid
          * @param {number} auto_order_oid The auto order oid to retrieve.
          * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
          * @param {*} [options] Override http request option.
@@ -29059,7 +29065,7 @@ export const AutoOrderApiFp = function(configuration?: Configuration) {
         },
         /**
          * Retrieves a single auto order using the specified reference (original) order id. 
-         * @summary Retrieve an auto order
+         * @summary Retrieve an auto order by code
          * @param {string} auto_order_code The auto order oid to retrieve.
          * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
          * @param {*} [options] Override http request option.
@@ -29079,7 +29085,7 @@ export const AutoOrderApiFp = function(configuration?: Configuration) {
         },
         /**
          * Retrieves a single auto order using the specified reference (original) order id. 
-         * @summary Retrieve an auto order
+         * @summary Retrieve an auto order by order id
          * @param {string} reference_order_id The auto order oid to retrieve.
          * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
          * @param {*} [options] Override http request option.
@@ -29160,7 +29166,7 @@ export const AutoOrderApiFp = function(configuration?: Configuration) {
         },
         /**
          * Retrieves a group of auto orders from the account based on a query object.  You will need to make multiple API calls in order to retrieve the entire result set since this API performs result set pagination. 
-         * @summary Retrieve auto orders
+         * @summary Retrieve auto orders by query
          * @param {AutoOrderQuery} auto_order_query Auto order query
          * @param {number} [_limit] The maximum number of records to return on this one API call. (Maximum 200)
          * @param {number} [_offset] Pagination of the record set.  Offset is a zero based index.
@@ -29235,7 +29241,7 @@ export const AutoOrderApiFactory = function (configuration?: Configuration, fetc
     return {
         /**
          * Retrieves a single auto order using the specified auto order oid. 
-         * @summary Retrieve an auto order
+         * @summary Retrieve an auto order by oid
          * @param {number} auto_order_oid The auto order oid to retrieve.
          * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
          * @param {*} [options] Override http request option.
@@ -29246,7 +29252,7 @@ export const AutoOrderApiFactory = function (configuration?: Configuration, fetc
         },
         /**
          * Retrieves a single auto order using the specified reference (original) order id. 
-         * @summary Retrieve an auto order
+         * @summary Retrieve an auto order by code
          * @param {string} auto_order_code The auto order oid to retrieve.
          * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
          * @param {*} [options] Override http request option.
@@ -29257,7 +29263,7 @@ export const AutoOrderApiFactory = function (configuration?: Configuration, fetc
         },
         /**
          * Retrieves a single auto order using the specified reference (original) order id. 
-         * @summary Retrieve an auto order
+         * @summary Retrieve an auto order by order id
          * @param {string} reference_order_id The auto order oid to retrieve.
          * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
          * @param {*} [options] Override http request option.
@@ -29311,7 +29317,7 @@ export const AutoOrderApiFactory = function (configuration?: Configuration, fetc
         },
         /**
          * Retrieves a group of auto orders from the account based on a query object.  You will need to make multiple API calls in order to retrieve the entire result set since this API performs result set pagination. 
-         * @summary Retrieve auto orders
+         * @summary Retrieve auto orders by query
          * @param {AutoOrderQuery} auto_order_query Auto order query
          * @param {number} [_limit] The maximum number of records to return on this one API call. (Maximum 200)
          * @param {number} [_offset] Pagination of the record set.  Offset is a zero based index.
@@ -29359,7 +29365,7 @@ export const AutoOrderApiFactory = function (configuration?: Configuration, fetc
 export interface AutoOrderApiInterface {
     /**
      * Retrieves a single auto order using the specified auto order oid. 
-     * @summary Retrieve an auto order
+     * @summary Retrieve an auto order by oid
      * @param {number} auto_order_oid The auto order oid to retrieve.
      * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
      * @param {*} [options] Override http request option.
@@ -29370,7 +29376,7 @@ export interface AutoOrderApiInterface {
 
     /**
      * Retrieves a single auto order using the specified reference (original) order id. 
-     * @summary Retrieve an auto order
+     * @summary Retrieve an auto order by code
      * @param {string} auto_order_code The auto order oid to retrieve.
      * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
      * @param {*} [options] Override http request option.
@@ -29381,7 +29387,7 @@ export interface AutoOrderApiInterface {
 
     /**
      * Retrieves a single auto order using the specified reference (original) order id. 
-     * @summary Retrieve an auto order
+     * @summary Retrieve an auto order by order id
      * @param {string} reference_order_id The auto order oid to retrieve.
      * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
      * @param {*} [options] Override http request option.
@@ -29435,7 +29441,7 @@ export interface AutoOrderApiInterface {
 
     /**
      * Retrieves a group of auto orders from the account based on a query object.  You will need to make multiple API calls in order to retrieve the entire result set since this API performs result set pagination. 
-     * @summary Retrieve auto orders
+     * @summary Retrieve auto orders by query
      * @param {AutoOrderQuery} auto_order_query Auto order query
      * @param {number} [_limit] The maximum number of records to return on this one API call. (Maximum 200)
      * @param {number} [_offset] Pagination of the record set.  Offset is a zero based index.
@@ -29483,7 +29489,7 @@ export interface AutoOrderApiInterface {
 export class AutoOrderApi extends BaseAPI implements AutoOrderApiInterface {
     /**
      * Retrieves a single auto order using the specified auto order oid. 
-     * @summary Retrieve an auto order
+     * @summary Retrieve an auto order by oid
      * @param {number} auto_order_oid The auto order oid to retrieve.
      * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
      * @param {*} [options] Override http request option.
@@ -29496,7 +29502,7 @@ export class AutoOrderApi extends BaseAPI implements AutoOrderApiInterface {
 
     /**
      * Retrieves a single auto order using the specified reference (original) order id. 
-     * @summary Retrieve an auto order
+     * @summary Retrieve an auto order by code
      * @param {string} auto_order_code The auto order oid to retrieve.
      * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
      * @param {*} [options] Override http request option.
@@ -29509,7 +29515,7 @@ export class AutoOrderApi extends BaseAPI implements AutoOrderApiInterface {
 
     /**
      * Retrieves a single auto order using the specified reference (original) order id. 
-     * @summary Retrieve an auto order
+     * @summary Retrieve an auto order by order id
      * @param {string} reference_order_id The auto order oid to retrieve.
      * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
      * @param {*} [options] Override http request option.
@@ -29569,7 +29575,7 @@ export class AutoOrderApi extends BaseAPI implements AutoOrderApiInterface {
 
     /**
      * Retrieves a group of auto orders from the account based on a query object.  You will need to make multiple API calls in order to retrieve the entire result set since this API performs result set pagination. 
-     * @summary Retrieve auto orders
+     * @summary Retrieve auto orders by query
      * @param {AutoOrderQuery} auto_order_query Auto order query
      * @param {number} [_limit] The maximum number of records to return on this one API call. (Maximum 200)
      * @param {number} [_offset] Pagination of the record set.  Offset is a zero based index.
@@ -31348,7 +31354,7 @@ export const CheckoutApiFetchParamCreator = function (configuration?: Configurat
             };
         },
         /**
-         * Setup a browser key authenticated application with checkout permissions.  This REST call must be made with an authentication scheme that is not browser key.  The new application will be linked to the application that makes this call.  If this application is disabled / deleted, then so will the application setup by this call.  The purpose of this call is to allow an OAuth applicaiton, such as the Wordpress plugin, to setup the proper browser based authentication for the REST checkout API to use. 
+         * Setup a browser key authenticated application with checkout permissions.  This REST call must be made with an authentication scheme that is not browser key.  The new application will be linked to the application that makes this call.  If this application is disabled / deleted, then so will the application setup by this call.  The purpose of this call is to allow an OAuth application, such as the Wordpress plugin, to setup the proper browser based authentication for the REST checkout API to use. 
          * @summary Setup Browser Application
          * @param {CheckoutSetupBrowserKeyRequest} browser_key_request Setup browser key request
          * @param {*} [options] Override http request option.
@@ -31862,7 +31868,7 @@ export const CheckoutApiFp = function(configuration?: Configuration) {
             };
         },
         /**
-         * Setup a browser key authenticated application with checkout permissions.  This REST call must be made with an authentication scheme that is not browser key.  The new application will be linked to the application that makes this call.  If this application is disabled / deleted, then so will the application setup by this call.  The purpose of this call is to allow an OAuth applicaiton, such as the Wordpress plugin, to setup the proper browser based authentication for the REST checkout API to use. 
+         * Setup a browser key authenticated application with checkout permissions.  This REST call must be made with an authentication scheme that is not browser key.  The new application will be linked to the application that makes this call.  If this application is disabled / deleted, then so will the application setup by this call.  The purpose of this call is to allow an OAuth application, such as the Wordpress plugin, to setup the proper browser based authentication for the REST checkout API to use. 
          * @summary Setup Browser Application
          * @param {CheckoutSetupBrowserKeyRequest} browser_key_request Setup browser key request
          * @param {*} [options] Override http request option.
@@ -32100,7 +32106,7 @@ export const CheckoutApiFactory = function (configuration?: Configuration, fetch
             return CheckoutApiFp(configuration).relatedItemsForItem(item_id, cart, _expand, options)(fetch, basePath);
         },
         /**
-         * Setup a browser key authenticated application with checkout permissions.  This REST call must be made with an authentication scheme that is not browser key.  The new application will be linked to the application that makes this call.  If this application is disabled / deleted, then so will the application setup by this call.  The purpose of this call is to allow an OAuth applicaiton, such as the Wordpress plugin, to setup the proper browser based authentication for the REST checkout API to use. 
+         * Setup a browser key authenticated application with checkout permissions.  This REST call must be made with an authentication scheme that is not browser key.  The new application will be linked to the application that makes this call.  If this application is disabled / deleted, then so will the application setup by this call.  The purpose of this call is to allow an OAuth application, such as the Wordpress plugin, to setup the proper browser based authentication for the REST checkout API to use. 
          * @summary Setup Browser Application
          * @param {CheckoutSetupBrowserKeyRequest} browser_key_request Setup browser key request
          * @param {*} [options] Override http request option.
@@ -32311,7 +32317,7 @@ export interface CheckoutApiInterface {
     relatedItemsForItem(item_id: string, cart: Cart, _expand?: string, options?: any): Promise<ItemsResponse>;
 
     /**
-     * Setup a browser key authenticated application with checkout permissions.  This REST call must be made with an authentication scheme that is not browser key.  The new application will be linked to the application that makes this call.  If this application is disabled / deleted, then so will the application setup by this call.  The purpose of this call is to allow an OAuth applicaiton, such as the Wordpress plugin, to setup the proper browser based authentication for the REST checkout API to use. 
+     * Setup a browser key authenticated application with checkout permissions.  This REST call must be made with an authentication scheme that is not browser key.  The new application will be linked to the application that makes this call.  If this application is disabled / deleted, then so will the application setup by this call.  The purpose of this call is to allow an OAuth application, such as the Wordpress plugin, to setup the proper browser based authentication for the REST checkout API to use. 
      * @summary Setup Browser Application
      * @param {CheckoutSetupBrowserKeyRequest} browser_key_request Setup browser key request
      * @param {*} [options] Override http request option.
@@ -32554,7 +32560,7 @@ export class CheckoutApi extends BaseAPI implements CheckoutApiInterface {
     }
 
     /**
-     * Setup a browser key authenticated application with checkout permissions.  This REST call must be made with an authentication scheme that is not browser key.  The new application will be linked to the application that makes this call.  If this application is disabled / deleted, then so will the application setup by this call.  The purpose of this call is to allow an OAuth applicaiton, such as the Wordpress plugin, to setup the proper browser based authentication for the REST checkout API to use. 
+     * Setup a browser key authenticated application with checkout permissions.  This REST call must be made with an authentication scheme that is not browser key.  The new application will be linked to the application that makes this call.  If this application is disabled / deleted, then so will the application setup by this call.  The purpose of this call is to allow an OAuth application, such as the Wordpress plugin, to setup the proper browser based authentication for the REST checkout API to use. 
      * @summary Setup Browser Application
      * @param {CheckoutSetupBrowserKeyRequest} browser_key_request Setup browser key request
      * @param {*} [options] Override http request option.
@@ -34995,6 +35001,63 @@ export const CustomerApiFetchParamCreator = function (configuration?: Configurat
             };
         },
         /**
+         * Retrieves a single customer using the specified customer email address. 
+         * @summary Retrieve a customer by Email
+         * @param {string} email The email address of the customer to retrieve.
+         * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getCustomerByEmail(email: string, _expand?: string, options: any = {}): FetchArgs {
+            // verify required parameter 'email' is not null or undefined
+            if (email === null || email === undefined) {
+                throw new RequiredError('email','Required parameter email was null or undefined when calling getCustomerByEmail.');
+            }
+            const localVarPath = `/customer/customers/by_email/{email}`
+                .replace(`{${"email"}}`, encodeURIComponent(String(email)));
+            const localVarUrlObj = url.parse(localVarPath, true);
+            const localVarRequestOptions = Object.assign({ method: 'GET' }, options);
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+    if(configuration && configuration.apiVersion) {
+      localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+    }
+
+
+
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+				const localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+					? configuration.accessToken("ultraCartOauth", ["customer_read"])
+					: configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
+					? configuration.apiKey("x-ultracart-simple-key")
+					: configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+
+            if (_expand !== undefined) {
+                localVarQueryParameter['_expand'] = _expand;
+            }
+
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
          * Retrieves customers from the account.  If no parameters are specified, all customers will be returned.  You will need to make multiple API calls in order to retrieve the entire result set since this API performs result set pagination. 
          * @summary Retrieve customers
          * @param {string} [email] Email
@@ -35659,6 +35722,26 @@ export const CustomerApiFp = function(configuration?: Configuration) {
             };
         },
         /**
+         * Retrieves a single customer using the specified customer email address. 
+         * @summary Retrieve a customer by Email
+         * @param {string} email The email address of the customer to retrieve.
+         * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getCustomerByEmail(email: string, _expand?: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<CustomerResponse> {
+            const localVarFetchArgs = CustomerApiFetchParamCreator(configuration).getCustomerByEmail(email, _expand, options);
+            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+                    if (response.status >= 200 && response.status < 300) {
+                        return response.json();
+                    } else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
          * Retrieves customers from the account.  If no parameters are specified, all customers will be returned.  You will need to make multiple API calls in order to retrieve the entire result set since this API performs result set pagination. 
          * @summary Retrieve customers
          * @param {string} [email] Email
@@ -35879,6 +35962,17 @@ export const CustomerApiFactory = function (configuration?: Configuration, fetch
             return CustomerApiFp(configuration).getCustomer(customer_profile_oid, _expand, options)(fetch, basePath);
         },
         /**
+         * Retrieves a single customer using the specified customer email address. 
+         * @summary Retrieve a customer by Email
+         * @param {string} email The email address of the customer to retrieve.
+         * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getCustomerByEmail(email: string, _expand?: string, options?: any) {
+            return CustomerApiFp(configuration).getCustomerByEmail(email, _expand, options)(fetch, basePath);
+        },
+        /**
          * Retrieves customers from the account.  If no parameters are specified, all customers will be returned.  You will need to make multiple API calls in order to retrieve the entire result set since this API performs result set pagination. 
          * @summary Retrieve customers
          * @param {string} [email] Email
@@ -36025,6 +36119,17 @@ export interface CustomerApiInterface {
      * @memberof CustomerApiInterface
      */
     getCustomer(customer_profile_oid: number, _expand?: string, options?: any): Promise<CustomerResponse>;
+
+    /**
+     * Retrieves a single customer using the specified customer email address. 
+     * @summary Retrieve a customer by Email
+     * @param {string} email The email address of the customer to retrieve.
+     * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof CustomerApiInterface
+     */
+    getCustomerByEmail(email: string, _expand?: string, options?: any): Promise<CustomerResponse>;
 
     /**
      * Retrieves customers from the account.  If no parameters are specified, all customers will be returned.  You will need to make multiple API calls in order to retrieve the entire result set since this API performs result set pagination. 
@@ -36176,6 +36281,19 @@ export class CustomerApi extends BaseAPI implements CustomerApiInterface {
      */
     public getCustomer(customer_profile_oid: number, _expand?: string, options?: any) {
         return CustomerApiFp(this.configuration).getCustomer(customer_profile_oid, _expand, options)(this.fetch, this.basePath);
+    }
+
+    /**
+     * Retrieves a single customer using the specified customer email address. 
+     * @summary Retrieve a customer by Email
+     * @param {string} email The email address of the customer to retrieve.
+     * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof CustomerApi
+     */
+    public getCustomerByEmail(email: string, _expand?: string, options?: any) {
+        return CustomerApiFp(this.configuration).getCustomerByEmail(email, _expand, options)(this.fetch, this.basePath);
     }
 
     /**
@@ -39170,7 +39288,7 @@ export const OrderApiFetchParamCreator = function (configuration?: Configuration
         },
         /**
          * Retrieves a group of orders from the account based on a query object.  If no parameters are specified, the API call will fail with a bad request error.  Always specify some parameters to limit the scope of the orders returned to ones you are truly interested in.  You will need to make multiple API calls in order to retrieve the entire result set since this API performs result set pagination. 
-         * @summary Retrieve orders
+         * @summary Retrieve orders by query
          * @param {OrderQuery} order_query Order query
          * @param {number} [_limit] The maximum number of records to return on this one API call. (Maximum 200)
          * @param {number} [_offset] Pagination of the record set.  Offset is a zero based index.
@@ -39999,7 +40117,7 @@ export const OrderApiFp = function(configuration?: Configuration) {
         },
         /**
          * Retrieves a group of orders from the account based on a query object.  If no parameters are specified, the API call will fail with a bad request error.  Always specify some parameters to limit the scope of the orders returned to ones you are truly interested in.  You will need to make multiple API calls in order to retrieve the entire result set since this API performs result set pagination. 
-         * @summary Retrieve orders
+         * @summary Retrieve orders by query
          * @param {OrderQuery} order_query Order query
          * @param {number} [_limit] The maximum number of records to return on this one API call. (Maximum 200)
          * @param {number} [_offset] Pagination of the record set.  Offset is a zero based index.
@@ -40343,7 +40461,7 @@ export const OrderApiFactory = function (configuration?: Configuration, fetch?: 
         },
         /**
          * Retrieves a group of orders from the account based on a query object.  If no parameters are specified, the API call will fail with a bad request error.  Always specify some parameters to limit the scope of the orders returned to ones you are truly interested in.  You will need to make multiple API calls in order to retrieve the entire result set since this API performs result set pagination. 
-         * @summary Retrieve orders
+         * @summary Retrieve orders by query
          * @param {OrderQuery} order_query Order query
          * @param {number} [_limit] The maximum number of records to return on this one API call. (Maximum 200)
          * @param {number} [_offset] Pagination of the record set.  Offset is a zero based index.
@@ -40606,7 +40724,7 @@ export interface OrderApiInterface {
 
     /**
      * Retrieves a group of orders from the account based on a query object.  If no parameters are specified, the API call will fail with a bad request error.  Always specify some parameters to limit the scope of the orders returned to ones you are truly interested in.  You will need to make multiple API calls in order to retrieve the entire result set since this API performs result set pagination. 
-     * @summary Retrieve orders
+     * @summary Retrieve orders by query
      * @param {OrderQuery} order_query Order query
      * @param {number} [_limit] The maximum number of records to return on this one API call. (Maximum 200)
      * @param {number} [_offset] Pagination of the record set.  Offset is a zero based index.
@@ -40891,7 +41009,7 @@ export class OrderApi extends BaseAPI implements OrderApiInterface {
 
     /**
      * Retrieves a group of orders from the account based on a query object.  If no parameters are specified, the API call will fail with a bad request error.  Always specify some parameters to limit the scope of the orders returned to ones you are truly interested in.  You will need to make multiple API calls in order to retrieve the entire result set since this API performs result set pagination. 
-     * @summary Retrieve orders
+     * @summary Retrieve orders by query
      * @param {OrderQuery} order_query Order query
      * @param {number} [_limit] The maximum number of records to return on this one API call. (Maximum 200)
      * @param {number} [_offset] Pagination of the record set.  Offset is a zero based index.
