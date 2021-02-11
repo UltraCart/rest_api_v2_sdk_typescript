@@ -13772,6 +13772,37 @@ export interface EmailVerifyTokenValidateRequest {
 /**
  *
  * @export
+ * @interface EmailVerifyTokenValidateResponse
+ */
+export interface EmailVerifyTokenValidateResponse {
+    /**
+     *
+     * @type {Error}
+     * @memberof EmailVerifyTokenValidateResponse
+     */
+    error?: Error;
+    /**
+     *
+     * @type {ResponseMetadata}
+     * @memberof EmailVerifyTokenValidateResponse
+     */
+    metadata?: ResponseMetadata;
+    /**
+     * Indicates if API call was successful
+     * @type {boolean}
+     * @memberof EmailVerifyTokenValidateResponse
+     */
+    success?: boolean;
+    /**
+     *
+     * @type {Warning}
+     * @memberof EmailVerifyTokenValidateResponse
+     */
+    warning?: Warning;
+}
+/**
+ *
+ * @export
  * @interface ErrorResponse
  */
 export interface ErrorResponse {
@@ -30747,7 +30778,7 @@ export declare const CustomerApiFp: (configuration?: Configuration) => {
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    validateEmailVerificationToken(validation_request: EmailVerifyTokenValidateRequest, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<EmailVerifyTokenResponse>;
+    validateEmailVerificationToken(validation_request: EmailVerifyTokenValidateRequest, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<EmailVerifyTokenValidateResponse>;
 };
 /**
  * CustomerApi - factory interface
@@ -30897,7 +30928,7 @@ export declare const CustomerApiFactory: (configuration?: Configuration, fetch?:
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    validateEmailVerificationToken(validation_request: EmailVerifyTokenValidateRequest, options?: any): Promise<EmailVerifyTokenResponse>;
+    validateEmailVerificationToken(validation_request: EmailVerifyTokenValidateRequest, options?: any): Promise<EmailVerifyTokenValidateResponse>;
 };
 /**
  * CustomerApi - interface
@@ -31061,7 +31092,7 @@ export interface CustomerApiInterface {
      * @throws {RequiredError}
      * @memberof CustomerApiInterface
      */
-    validateEmailVerificationToken(validation_request: EmailVerifyTokenValidateRequest, options?: any): Promise<EmailVerifyTokenResponse>;
+    validateEmailVerificationToken(validation_request: EmailVerifyTokenValidateRequest, options?: any): Promise<EmailVerifyTokenValidateResponse>;
 }
 /**
  * CustomerApi - object-oriented interface
@@ -31226,7 +31257,7 @@ export declare class CustomerApi extends BaseAPI implements CustomerApiInterface
      * @throws {RequiredError}
      * @memberof CustomerApi
      */
-    validateEmailVerificationToken(validation_request: EmailVerifyTokenValidateRequest, options?: any): Promise<EmailVerifyTokenResponse>;
+    validateEmailVerificationToken(validation_request: EmailVerifyTokenValidateRequest, options?: any): Promise<EmailVerifyTokenValidateResponse>;
 }
 /**
  * FulfillmentApi - fetch parameter creator

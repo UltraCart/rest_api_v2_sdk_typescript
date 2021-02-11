@@ -14091,6 +14091,38 @@ export interface EmailVerifyTokenValidateRequest {
 /**
  * 
  * @export
+ * @interface EmailVerifyTokenValidateResponse
+ */
+export interface EmailVerifyTokenValidateResponse {
+    /**
+     * 
+     * @type {Error}
+     * @memberof EmailVerifyTokenValidateResponse
+     */
+    error?: Error;
+    /**
+     * 
+     * @type {ResponseMetadata}
+     * @memberof EmailVerifyTokenValidateResponse
+     */
+    metadata?: ResponseMetadata;
+    /**
+     * Indicates if API call was successful
+     * @type {boolean}
+     * @memberof EmailVerifyTokenValidateResponse
+     */
+    success?: boolean;
+    /**
+     * 
+     * @type {Warning}
+     * @memberof EmailVerifyTokenValidateResponse
+     */
+    warning?: Warning;
+}
+
+/**
+ * 
+ * @export
  * @interface ErrorResponse
  */
 export interface ErrorResponse {
@@ -36145,7 +36177,7 @@ export const CustomerApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        validateEmailVerificationToken(validation_request: EmailVerifyTokenValidateRequest, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<EmailVerifyTokenResponse> {
+        validateEmailVerificationToken(validation_request: EmailVerifyTokenValidateRequest, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<EmailVerifyTokenValidateResponse> {
             const localVarFetchArgs = CustomerApiFetchParamCreator(configuration).validateEmailVerificationToken(validation_request, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
@@ -36513,7 +36545,7 @@ export interface CustomerApiInterface {
      * @throws {RequiredError}
      * @memberof CustomerApiInterface
      */
-    validateEmailVerificationToken(validation_request: EmailVerifyTokenValidateRequest, options?: any): Promise<EmailVerifyTokenResponse>;
+    validateEmailVerificationToken(validation_request: EmailVerifyTokenValidateRequest, options?: any): Promise<EmailVerifyTokenValidateResponse>;
 
 }
 
