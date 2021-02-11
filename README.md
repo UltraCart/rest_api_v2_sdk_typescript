@@ -1,4 +1,4 @@
-## ultracart_rest_api_v2_typescript@3.1.1
+## ultracart_rest_api_v2_typescript@3.1.2
 
 This generator creates TypeScript/JavaScript client that utilizes [Fetch API](https://fetch.spec.whatwg.org/). The generated Node module can be used in the following environments:
 
@@ -36,7 +36,7 @@ navigate to the folder of your consuming project and run one of the following co
 _published:_
 
 ```
-npm install ultracart_rest_api_v2_typescript@3.1.1 --save
+npm install ultracart_rest_api_v2_typescript@3.1.2 --save
 ```
 
 _unPublished (not recommended):_
@@ -51,6 +51,9 @@ Not every change is committed to every SDK.
 
 | Version | Date | Comments |
 | --: | :-: | --- |
+| 3.1.2 | 02/11/2021 | CustomerApi.getEmailVerificationToken, CustomerApi.validateEmailVerificationToken added to allow for custom email verification.  Also added favorite flag to screen recording object |
+| 3.1.1 | 02/10/2021 | CustomerApi.getCustomerByEmail() method added |
+| 3.1.0 | 02/10/2021 | Minor revision jump.  Added new convenience methods for simple_key use to all api calls.  Updated docs |
 | 3.0.75 | 02/01/2021 | StoreFront Communication plan revision (internal use) |
 | 3.0.71 | 01/28/2021 | BugFix: PHP SDK retry logic NPE |
 | 3.0.70 | 01/26/2021 | Checkout return URL support |

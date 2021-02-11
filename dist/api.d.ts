@@ -13703,6 +13703,75 @@ export interface EmailThirdPartyProvidersResponse {
 /**
  *
  * @export
+ * @interface EmailVerifyTokenRequest
+ */
+export interface EmailVerifyTokenRequest {
+    /**
+     * email
+     * @type {string}
+     * @memberof EmailVerifyTokenRequest
+     */
+    email?: string;
+    /**
+     * password
+     * @type {string}
+     * @memberof EmailVerifyTokenRequest
+     */
+    password?: string;
+}
+/**
+ *
+ * @export
+ * @interface EmailVerifyTokenResponse
+ */
+export interface EmailVerifyTokenResponse {
+    /**
+     *
+     * @type {Error}
+     * @memberof EmailVerifyTokenResponse
+     */
+    error?: Error;
+    /**
+     *
+     * @type {ResponseMetadata}
+     * @memberof EmailVerifyTokenResponse
+     */
+    metadata?: ResponseMetadata;
+    /**
+     * Indicates if API call was successful
+     * @type {boolean}
+     * @memberof EmailVerifyTokenResponse
+     */
+    success?: boolean;
+    /**
+     * token
+     * @type {string}
+     * @memberof EmailVerifyTokenResponse
+     */
+    token?: string;
+    /**
+     *
+     * @type {Warning}
+     * @memberof EmailVerifyTokenResponse
+     */
+    warning?: Warning;
+}
+/**
+ *
+ * @export
+ * @interface EmailVerifyTokenValidateRequest
+ */
+export interface EmailVerifyTokenValidateRequest {
+    /**
+     * token
+     * @type {string}
+     * @memberof EmailVerifyTokenValidateRequest
+     */
+    token?: string;
+}
+/**
+ *
+ * @export
  * @interface ErrorResponse
  */
 export interface ErrorResponse {
@@ -23680,7 +23749,13 @@ export interface ScreenRecording {
      */
     events_json_key?: string;
     /**
-     *
+     * True if the user calling the API has favorited this particular screen recording.
+     * @type {boolean}
+     * @memberof ScreenRecording
+     */
+    favorite?: boolean;
+    /**
+     * Array of user ids that favorited this particular screen recording.
      * @type {Array<number>}
      * @memberof ScreenRecording
      */
@@ -30480,6 +30555,14 @@ export declare const CustomerApiFetchParamCreator: (configuration?: Configuratio
      */
     getEmailLists(options?: any): FetchArgs;
     /**
+     * Create a token that can be used to verify a customer email address.  The implementation of how a customer interacts with this token is left to the merchant.
+     * @summary Create a token that can be used to verify a customer email address
+     * @param {EmailVerifyTokenRequest} token_request Token request
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getEmailVerificationToken(token_request: EmailVerifyTokenRequest, options?: any): FetchArgs;
+    /**
      * Insert a customer on the UltraCart account.
      * @summary Insert a customer
      * @param {Customer} customer Customer to insert
@@ -30507,6 +30590,14 @@ export declare const CustomerApiFetchParamCreator: (configuration?: Configuratio
      * @throws {RequiredError}
      */
     updateCustomerEmailLists(customer_profile_oid: number, list_changes: CustomerEmailListChanges, options?: any): FetchArgs;
+    /**
+     * Validate a token that can be used to verify a customer email address.  The implementation of how a customer interacts with this token is left to the merchant.
+     * @summary Validate a token that can be used to verify a customer email address
+     * @param {EmailVerifyTokenValidateRequest} validation_request Token validation request
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    validateEmailVerificationToken(validation_request: EmailVerifyTokenValidateRequest, options?: any): FetchArgs;
 };
 /**
  * CustomerApi - functional programming interface
@@ -30614,6 +30705,14 @@ export declare const CustomerApiFp: (configuration?: Configuration) => {
      */
     getEmailLists(options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<EmailListsResponse>;
     /**
+     * Create a token that can be used to verify a customer email address.  The implementation of how a customer interacts with this token is left to the merchant.
+     * @summary Create a token that can be used to verify a customer email address
+     * @param {EmailVerifyTokenRequest} token_request Token request
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getEmailVerificationToken(token_request: EmailVerifyTokenRequest, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<EmailVerifyTokenResponse>;
+    /**
      * Insert a customer on the UltraCart account.
      * @summary Insert a customer
      * @param {Customer} customer Customer to insert
@@ -30641,6 +30740,14 @@ export declare const CustomerApiFp: (configuration?: Configuration) => {
      * @throws {RequiredError}
      */
     updateCustomerEmailLists(customer_profile_oid: number, list_changes: CustomerEmailListChanges, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<CustomerEmailListChanges>;
+    /**
+     * Validate a token that can be used to verify a customer email address.  The implementation of how a customer interacts with this token is left to the merchant.
+     * @summary Validate a token that can be used to verify a customer email address
+     * @param {EmailVerifyTokenValidateRequest} validation_request Token validation request
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    validateEmailVerificationToken(validation_request: EmailVerifyTokenValidateRequest, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<EmailVerifyTokenResponse>;
 };
 /**
  * CustomerApi - factory interface
@@ -30748,6 +30855,14 @@ export declare const CustomerApiFactory: (configuration?: Configuration, fetch?:
      */
     getEmailLists(options?: any): Promise<EmailListsResponse>;
     /**
+     * Create a token that can be used to verify a customer email address.  The implementation of how a customer interacts with this token is left to the merchant.
+     * @summary Create a token that can be used to verify a customer email address
+     * @param {EmailVerifyTokenRequest} token_request Token request
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getEmailVerificationToken(token_request: EmailVerifyTokenRequest, options?: any): Promise<EmailVerifyTokenResponse>;
+    /**
      * Insert a customer on the UltraCart account.
      * @summary Insert a customer
      * @param {Customer} customer Customer to insert
@@ -30775,6 +30890,14 @@ export declare const CustomerApiFactory: (configuration?: Configuration, fetch?:
      * @throws {RequiredError}
      */
     updateCustomerEmailLists(customer_profile_oid: number, list_changes: CustomerEmailListChanges, options?: any): Promise<CustomerEmailListChanges>;
+    /**
+     * Validate a token that can be used to verify a customer email address.  The implementation of how a customer interacts with this token is left to the merchant.
+     * @summary Validate a token that can be used to verify a customer email address
+     * @param {EmailVerifyTokenValidateRequest} validation_request Token validation request
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    validateEmailVerificationToken(validation_request: EmailVerifyTokenValidateRequest, options?: any): Promise<EmailVerifyTokenResponse>;
 };
 /**
  * CustomerApi - interface
@@ -30891,6 +31014,15 @@ export interface CustomerApiInterface {
      */
     getEmailLists(options?: any): Promise<EmailListsResponse>;
     /**
+     * Create a token that can be used to verify a customer email address.  The implementation of how a customer interacts with this token is left to the merchant.
+     * @summary Create a token that can be used to verify a customer email address
+     * @param {EmailVerifyTokenRequest} token_request Token request
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof CustomerApiInterface
+     */
+    getEmailVerificationToken(token_request: EmailVerifyTokenRequest, options?: any): Promise<EmailVerifyTokenResponse>;
+    /**
      * Insert a customer on the UltraCart account.
      * @summary Insert a customer
      * @param {Customer} customer Customer to insert
@@ -30921,6 +31053,15 @@ export interface CustomerApiInterface {
      * @memberof CustomerApiInterface
      */
     updateCustomerEmailLists(customer_profile_oid: number, list_changes: CustomerEmailListChanges, options?: any): Promise<CustomerEmailListChanges>;
+    /**
+     * Validate a token that can be used to verify a customer email address.  The implementation of how a customer interacts with this token is left to the merchant.
+     * @summary Validate a token that can be used to verify a customer email address
+     * @param {EmailVerifyTokenValidateRequest} validation_request Token validation request
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof CustomerApiInterface
+     */
+    validateEmailVerificationToken(validation_request: EmailVerifyTokenValidateRequest, options?: any): Promise<EmailVerifyTokenResponse>;
 }
 /**
  * CustomerApi - object-oriented interface
@@ -31038,6 +31179,15 @@ export declare class CustomerApi extends BaseAPI implements CustomerApiInterface
      */
     getEmailLists(options?: any): Promise<EmailListsResponse>;
     /**
+     * Create a token that can be used to verify a customer email address.  The implementation of how a customer interacts with this token is left to the merchant.
+     * @summary Create a token that can be used to verify a customer email address
+     * @param {EmailVerifyTokenRequest} token_request Token request
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof CustomerApi
+     */
+    getEmailVerificationToken(token_request: EmailVerifyTokenRequest, options?: any): Promise<EmailVerifyTokenResponse>;
+    /**
      * Insert a customer on the UltraCart account.
      * @summary Insert a customer
      * @param {Customer} customer Customer to insert
@@ -31068,6 +31218,15 @@ export declare class CustomerApi extends BaseAPI implements CustomerApiInterface
      * @memberof CustomerApi
      */
     updateCustomerEmailLists(customer_profile_oid: number, list_changes: CustomerEmailListChanges, options?: any): Promise<CustomerEmailListChanges>;
+    /**
+     * Validate a token that can be used to verify a customer email address.  The implementation of how a customer interacts with this token is left to the merchant.
+     * @summary Validate a token that can be used to verify a customer email address
+     * @param {EmailVerifyTokenValidateRequest} validation_request Token validation request
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof CustomerApi
+     */
+    validateEmailVerificationToken(validation_request: EmailVerifyTokenValidateRequest, options?: any): Promise<EmailVerifyTokenResponse>;
 }
 /**
  * FulfillmentApi - fetch parameter creator

@@ -14019,6 +14019,78 @@ export interface EmailThirdPartyProvidersResponse {
 /**
  * 
  * @export
+ * @interface EmailVerifyTokenRequest
+ */
+export interface EmailVerifyTokenRequest {
+    /**
+     * email
+     * @type {string}
+     * @memberof EmailVerifyTokenRequest
+     */
+    email?: string;
+    /**
+     * password
+     * @type {string}
+     * @memberof EmailVerifyTokenRequest
+     */
+    password?: string;
+}
+
+/**
+ * 
+ * @export
+ * @interface EmailVerifyTokenResponse
+ */
+export interface EmailVerifyTokenResponse {
+    /**
+     * 
+     * @type {Error}
+     * @memberof EmailVerifyTokenResponse
+     */
+    error?: Error;
+    /**
+     * 
+     * @type {ResponseMetadata}
+     * @memberof EmailVerifyTokenResponse
+     */
+    metadata?: ResponseMetadata;
+    /**
+     * Indicates if API call was successful
+     * @type {boolean}
+     * @memberof EmailVerifyTokenResponse
+     */
+    success?: boolean;
+    /**
+     * token
+     * @type {string}
+     * @memberof EmailVerifyTokenResponse
+     */
+    token?: string;
+    /**
+     * 
+     * @type {Warning}
+     * @memberof EmailVerifyTokenResponse
+     */
+    warning?: Warning;
+}
+
+/**
+ * 
+ * @export
+ * @interface EmailVerifyTokenValidateRequest
+ */
+export interface EmailVerifyTokenValidateRequest {
+    /**
+     * token
+     * @type {string}
+     * @memberof EmailVerifyTokenValidateRequest
+     */
+    token?: string;
+}
+
+/**
+ * 
+ * @export
  * @interface ErrorResponse
  */
 export interface ErrorResponse {
@@ -24194,7 +24266,13 @@ export interface ScreenRecording {
      */
     events_json_key?: string;
     /**
-     * 
+     * True if the user calling the API has favorited this particular screen recording.
+     * @type {boolean}
+     * @memberof ScreenRecording
+     */
+    favorite?: boolean;
+    /**
+     * Array of user ids that favorited this particular screen recording.
      * @type {Array<number>}
      * @memberof ScreenRecording
      */
@@ -35487,6 +35565,61 @@ export const CustomerApiFetchParamCreator = function (configuration?: Configurat
             };
         },
         /**
+         * Create a token that can be used to verify a customer email address.  The implementation of how a customer interacts with this token is left to the merchant. 
+         * @summary Create a token that can be used to verify a customer email address
+         * @param {EmailVerifyTokenRequest} token_request Token request
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getEmailVerificationToken(token_request: EmailVerifyTokenRequest, options: any = {}): FetchArgs {
+            // verify required parameter 'token_request' is not null or undefined
+            if (token_request === null || token_request === undefined) {
+                throw new RequiredError('token_request','Required parameter token_request was null or undefined when calling getEmailVerificationToken.');
+            }
+            const localVarPath = `/customer/customers/email_verify/get_token`;
+            const localVarUrlObj = url.parse(localVarPath, true);
+            const localVarRequestOptions = Object.assign({ method: 'POST' }, options);
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+    if(configuration && configuration.apiVersion) {
+      localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+    }
+
+
+
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+				const localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+					? configuration.accessToken("ultraCartOauth", ["customer_write"])
+					: configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
+					? configuration.apiKey("x-ultracart-simple-key")
+					: configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+            const needsSerialization = (<any>"EmailVerifyTokenRequest" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
+            localVarRequestOptions.body =  needsSerialization ? JSON.stringify(token_request || {}) : (token_request || "");
+
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
          * Insert a customer on the UltraCart account. 
          * @summary Insert a customer
          * @param {Customer} customer Customer to insert
@@ -35667,6 +35800,61 @@ export const CustomerApiFetchParamCreator = function (configuration?: Configurat
             localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
             const needsSerialization = (<any>"CustomerEmailListChanges" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
             localVarRequestOptions.body =  needsSerialization ? JSON.stringify(list_changes || {}) : (list_changes || "");
+
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Validate a token that can be used to verify a customer email address.  The implementation of how a customer interacts with this token is left to the merchant. 
+         * @summary Validate a token that can be used to verify a customer email address
+         * @param {EmailVerifyTokenValidateRequest} validation_request Token validation request
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        validateEmailVerificationToken(validation_request: EmailVerifyTokenValidateRequest, options: any = {}): FetchArgs {
+            // verify required parameter 'validation_request' is not null or undefined
+            if (validation_request === null || validation_request === undefined) {
+                throw new RequiredError('validation_request','Required parameter validation_request was null or undefined when calling validateEmailVerificationToken.');
+            }
+            const localVarPath = `/customer/customers/email_verify/validate_token`;
+            const localVarUrlObj = url.parse(localVarPath, true);
+            const localVarRequestOptions = Object.assign({ method: 'POST' }, options);
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+    if(configuration && configuration.apiVersion) {
+      localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+    }
+
+
+
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+				const localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+					? configuration.accessToken("ultraCartOauth", ["customer_write"])
+					: configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
+					? configuration.apiKey("x-ultracart-simple-key")
+					: configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+            const needsSerialization = (<any>"EmailVerifyTokenValidateRequest" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
+            localVarRequestOptions.body =  needsSerialization ? JSON.stringify(validation_request || {}) : (validation_request || "");
 
             return {
                 url: url.format(localVarUrlObj),
@@ -35871,6 +36059,25 @@ export const CustomerApiFp = function(configuration?: Configuration) {
             };
         },
         /**
+         * Create a token that can be used to verify a customer email address.  The implementation of how a customer interacts with this token is left to the merchant. 
+         * @summary Create a token that can be used to verify a customer email address
+         * @param {EmailVerifyTokenRequest} token_request Token request
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getEmailVerificationToken(token_request: EmailVerifyTokenRequest, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<EmailVerifyTokenResponse> {
+            const localVarFetchArgs = CustomerApiFetchParamCreator(configuration).getEmailVerificationToken(token_request, options);
+            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+                    if (response.status >= 200 && response.status < 300) {
+                        return response.json();
+                    } else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
          * Insert a customer on the UltraCart account. 
          * @summary Insert a customer
          * @param {Customer} customer Customer to insert
@@ -35921,6 +36128,25 @@ export const CustomerApiFp = function(configuration?: Configuration) {
          */
         updateCustomerEmailLists(customer_profile_oid: number, list_changes: CustomerEmailListChanges, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<CustomerEmailListChanges> {
             const localVarFetchArgs = CustomerApiFetchParamCreator(configuration).updateCustomerEmailLists(customer_profile_oid, list_changes, options);
+            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+                    if (response.status >= 200 && response.status < 300) {
+                        return response.json();
+                    } else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
+         * Validate a token that can be used to verify a customer email address.  The implementation of how a customer interacts with this token is left to the merchant. 
+         * @summary Validate a token that can be used to verify a customer email address
+         * @param {EmailVerifyTokenValidateRequest} validation_request Token validation request
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        validateEmailVerificationToken(validation_request: EmailVerifyTokenValidateRequest, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<EmailVerifyTokenResponse> {
+            const localVarFetchArgs = CustomerApiFetchParamCreator(configuration).validateEmailVerificationToken(validation_request, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
                     if (response.status >= 200 && response.status < 300) {
@@ -36057,6 +36283,16 @@ export const CustomerApiFactory = function (configuration?: Configuration, fetch
             return CustomerApiFp(configuration).getEmailLists(options)(fetch, basePath);
         },
         /**
+         * Create a token that can be used to verify a customer email address.  The implementation of how a customer interacts with this token is left to the merchant. 
+         * @summary Create a token that can be used to verify a customer email address
+         * @param {EmailVerifyTokenRequest} token_request Token request
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getEmailVerificationToken(token_request: EmailVerifyTokenRequest, options?: any) {
+            return CustomerApiFp(configuration).getEmailVerificationToken(token_request, options)(fetch, basePath);
+        },
+        /**
          * Insert a customer on the UltraCart account. 
          * @summary Insert a customer
          * @param {Customer} customer Customer to insert
@@ -36089,6 +36325,16 @@ export const CustomerApiFactory = function (configuration?: Configuration, fetch
          */
         updateCustomerEmailLists(customer_profile_oid: number, list_changes: CustomerEmailListChanges, options?: any) {
             return CustomerApiFp(configuration).updateCustomerEmailLists(customer_profile_oid, list_changes, options)(fetch, basePath);
+        },
+        /**
+         * Validate a token that can be used to verify a customer email address.  The implementation of how a customer interacts with this token is left to the merchant. 
+         * @summary Validate a token that can be used to verify a customer email address
+         * @param {EmailVerifyTokenValidateRequest} validation_request Token validation request
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        validateEmailVerificationToken(validation_request: EmailVerifyTokenValidateRequest, options?: any) {
+            return CustomerApiFp(configuration).validateEmailVerificationToken(validation_request, options)(fetch, basePath);
         },
     };
 };
@@ -36216,6 +36462,16 @@ export interface CustomerApiInterface {
     getEmailLists(options?: any): Promise<EmailListsResponse>;
 
     /**
+     * Create a token that can be used to verify a customer email address.  The implementation of how a customer interacts with this token is left to the merchant. 
+     * @summary Create a token that can be used to verify a customer email address
+     * @param {EmailVerifyTokenRequest} token_request Token request
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof CustomerApiInterface
+     */
+    getEmailVerificationToken(token_request: EmailVerifyTokenRequest, options?: any): Promise<EmailVerifyTokenResponse>;
+
+    /**
      * Insert a customer on the UltraCart account. 
      * @summary Insert a customer
      * @param {Customer} customer Customer to insert
@@ -36248,6 +36504,16 @@ export interface CustomerApiInterface {
      * @memberof CustomerApiInterface
      */
     updateCustomerEmailLists(customer_profile_oid: number, list_changes: CustomerEmailListChanges, options?: any): Promise<CustomerEmailListChanges>;
+
+    /**
+     * Validate a token that can be used to verify a customer email address.  The implementation of how a customer interacts with this token is left to the merchant. 
+     * @summary Validate a token that can be used to verify a customer email address
+     * @param {EmailVerifyTokenValidateRequest} validation_request Token validation request
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof CustomerApiInterface
+     */
+    validateEmailVerificationToken(validation_request: EmailVerifyTokenValidateRequest, options?: any): Promise<EmailVerifyTokenResponse>;
 
 }
 
@@ -36391,6 +36657,18 @@ export class CustomerApi extends BaseAPI implements CustomerApiInterface {
     }
 
     /**
+     * Create a token that can be used to verify a customer email address.  The implementation of how a customer interacts with this token is left to the merchant. 
+     * @summary Create a token that can be used to verify a customer email address
+     * @param {EmailVerifyTokenRequest} token_request Token request
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof CustomerApi
+     */
+    public getEmailVerificationToken(token_request: EmailVerifyTokenRequest, options?: any) {
+        return CustomerApiFp(this.configuration).getEmailVerificationToken(token_request, options)(this.fetch, this.basePath);
+    }
+
+    /**
      * Insert a customer on the UltraCart account. 
      * @summary Insert a customer
      * @param {Customer} customer Customer to insert
@@ -36428,6 +36706,18 @@ export class CustomerApi extends BaseAPI implements CustomerApiInterface {
      */
     public updateCustomerEmailLists(customer_profile_oid: number, list_changes: CustomerEmailListChanges, options?: any) {
         return CustomerApiFp(this.configuration).updateCustomerEmailLists(customer_profile_oid, list_changes, options)(this.fetch, this.basePath);
+    }
+
+    /**
+     * Validate a token that can be used to verify a customer email address.  The implementation of how a customer interacts with this token is left to the merchant. 
+     * @summary Validate a token that can be used to verify a customer email address
+     * @param {EmailVerifyTokenValidateRequest} validation_request Token validation request
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof CustomerApi
+     */
+    public validateEmailVerificationToken(validation_request: EmailVerifyTokenValidateRequest, options?: any) {
+        return CustomerApiFp(this.configuration).validateEmailVerificationToken(validation_request, options)(this.fetch, this.basePath);
     }
 
 }
