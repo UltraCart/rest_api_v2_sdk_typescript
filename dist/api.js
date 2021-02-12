@@ -5590,7 +5590,7 @@ var CouponApiFetchParamCreator = function (configuration) {
         /**
          * Update multiple coupon on the UltraCart account.
          * @summary Update multiple coupons
-         * @param {CouponsRequest} coupons_request Coupons to update (synchronous maximum 20 / asynchronous maximum 100)
+         * @param {CouponsRequest} coupons_request Coupons to update (synchronous maximum 50 / asynchronous maximum 100)
          * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
          * @param {boolean} [_placeholders] Whether or not placeholder values should be returned in the result.  Useful for UIs that consume this REST API.
          * @param {boolean} [_async] True if the operation should be run async.  No result returned
@@ -6111,7 +6111,7 @@ var CouponApiFp = function (configuration) {
         /**
          * Update multiple coupon on the UltraCart account.
          * @summary Update multiple coupons
-         * @param {CouponsRequest} coupons_request Coupons to update (synchronous maximum 20 / asynchronous maximum 100)
+         * @param {CouponsRequest} coupons_request Coupons to update (synchronous maximum 50 / asynchronous maximum 100)
          * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
          * @param {boolean} [_placeholders] Whether or not placeholder values should be returned in the result.  Useful for UIs that consume this REST API.
          * @param {boolean} [_async] True if the operation should be run async.  No result returned
@@ -6362,7 +6362,7 @@ var CouponApiFactory = function (configuration, fetch, basePath) {
         /**
          * Update multiple coupon on the UltraCart account.
          * @summary Update multiple coupons
-         * @param {CouponsRequest} coupons_request Coupons to update (synchronous maximum 20 / asynchronous maximum 100)
+         * @param {CouponsRequest} coupons_request Coupons to update (synchronous maximum 50 / asynchronous maximum 100)
          * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
          * @param {boolean} [_placeholders] Whether or not placeholder values should be returned in the result.  Useful for UIs that consume this REST API.
          * @param {boolean} [_async] True if the operation should be run async.  No result returned
@@ -6611,7 +6611,7 @@ var CouponApi = /** @class */ (function (_super) {
     /**
      * Update multiple coupon on the UltraCart account.
      * @summary Update multiple coupons
-     * @param {CouponsRequest} coupons_request Coupons to update (synchronous maximum 20 / asynchronous maximum 100)
+     * @param {CouponsRequest} coupons_request Coupons to update (synchronous maximum 50 / asynchronous maximum 100)
      * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
      * @param {boolean} [_placeholders] Whether or not placeholder values should be returned in the result.  Useful for UIs that consume this REST API.
      * @param {boolean} [_async] True if the operation should be run async.  No result returned

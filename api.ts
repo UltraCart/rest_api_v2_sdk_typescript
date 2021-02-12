@@ -33748,7 +33748,7 @@ export const CouponApiFetchParamCreator = function (configuration?: Configuratio
         /**
          * Update multiple coupon on the UltraCart account. 
          * @summary Update multiple coupons
-         * @param {CouponsRequest} coupons_request Coupons to update (synchronous maximum 20 / asynchronous maximum 100)
+         * @param {CouponsRequest} coupons_request Coupons to update (synchronous maximum 50 / asynchronous maximum 100)
          * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
          * @param {boolean} [_placeholders] Whether or not placeholder values should be returned in the result.  Useful for UIs that consume this REST API.
          * @param {boolean} [_async] True if the operation should be run async.  No result returned
@@ -34235,7 +34235,7 @@ export const CouponApiFp = function(configuration?: Configuration) {
         /**
          * Update multiple coupon on the UltraCart account. 
          * @summary Update multiple coupons
-         * @param {CouponsRequest} coupons_request Coupons to update (synchronous maximum 20 / asynchronous maximum 100)
+         * @param {CouponsRequest} coupons_request Coupons to update (synchronous maximum 50 / asynchronous maximum 100)
          * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
          * @param {boolean} [_placeholders] Whether or not placeholder values should be returned in the result.  Useful for UIs that consume this REST API.
          * @param {boolean} [_async] True if the operation should be run async.  No result returned
@@ -34480,7 +34480,7 @@ export const CouponApiFactory = function (configuration?: Configuration, fetch?:
         /**
          * Update multiple coupon on the UltraCart account. 
          * @summary Update multiple coupons
-         * @param {CouponsRequest} coupons_request Coupons to update (synchronous maximum 20 / asynchronous maximum 100)
+         * @param {CouponsRequest} coupons_request Coupons to update (synchronous maximum 50 / asynchronous maximum 100)
          * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
          * @param {boolean} [_placeholders] Whether or not placeholder values should be returned in the result.  Useful for UIs that consume this REST API.
          * @param {boolean} [_async] True if the operation should be run async.  No result returned
@@ -34707,7 +34707,7 @@ export interface CouponApiInterface {
     /**
      * Update multiple coupon on the UltraCart account. 
      * @summary Update multiple coupons
-     * @param {CouponsRequest} coupons_request Coupons to update (synchronous maximum 20 / asynchronous maximum 100)
+     * @param {CouponsRequest} coupons_request Coupons to update (synchronous maximum 50 / asynchronous maximum 100)
      * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
      * @param {boolean} [_placeholders] Whether or not placeholder values should be returned in the result.  Useful for UIs that consume this REST API.
      * @param {boolean} [_async] True if the operation should be run async.  No result returned
@@ -34968,7 +34968,7 @@ export class CouponApi extends BaseAPI implements CouponApiInterface {
     /**
      * Update multiple coupon on the UltraCart account. 
      * @summary Update multiple coupons
-     * @param {CouponsRequest} coupons_request Coupons to update (synchronous maximum 20 / asynchronous maximum 100)
+     * @param {CouponsRequest} coupons_request Coupons to update (synchronous maximum 50 / asynchronous maximum 100)
      * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
      * @param {boolean} [_placeholders] Whether or not placeholder values should be returned in the result.  Useful for UIs that consume this REST API.
      * @param {boolean} [_async] True if the operation should be run async.  No result returned
