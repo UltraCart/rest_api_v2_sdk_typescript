@@ -24700,6 +24700,43 @@ export interface ScreenRecordingPageView {
 /**
  *
  * @export
+ * @interface ScreenRecordingPageViewDataResponse
+ */
+export interface ScreenRecordingPageViewDataResponse {
+    /**
+     *
+     * @type {Error}
+     * @memberof ScreenRecordingPageViewDataResponse
+     */
+    error?: Error;
+    /**
+     *
+     * @type {string}
+     * @memberof ScreenRecordingPageViewDataResponse
+     */
+    events_json?: string;
+    /**
+     *
+     * @type {ResponseMetadata}
+     * @memberof ScreenRecordingPageViewDataResponse
+     */
+    metadata?: ResponseMetadata;
+    /**
+     * Indicates if API call was successful
+     * @type {boolean}
+     * @memberof ScreenRecordingPageViewDataResponse
+     */
+    success?: boolean;
+    /**
+     *
+     * @type {Warning}
+     * @memberof ScreenRecordingPageViewDataResponse
+     */
+    warning?: Warning;
+}
+/**
+ *
+ * @export
  * @interface ScreenRecordingPageViewEvent
  */
 export interface ScreenRecordingPageViewEvent {
@@ -35371,7 +35408,7 @@ export declare const StorefrontApiFp: (configuration?: Configuration) => {
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getScreenRecordingPageViewData(storefront_oid: number, screen_recording_uuid: string, screen_recording_page_view_uuid: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ScreenRecordingResponse>;
+    getScreenRecordingPageViewData(storefront_oid: number, screen_recording_uuid: string, screen_recording_page_view_uuid: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ScreenRecordingPageViewDataResponse>;
     /**
      *
      * @summary Get screen recording segment
@@ -36687,7 +36724,7 @@ export declare const StorefrontApiFactory: (configuration?: Configuration, fetch
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getScreenRecordingPageViewData(storefront_oid: number, screen_recording_uuid: string, screen_recording_page_view_uuid: string, options?: any): Promise<ScreenRecordingResponse>;
+    getScreenRecordingPageViewData(storefront_oid: number, screen_recording_uuid: string, screen_recording_page_view_uuid: string, options?: any): Promise<ScreenRecordingPageViewDataResponse>;
     /**
      *
      * @summary Get screen recording segment
@@ -38088,7 +38125,7 @@ export interface StorefrontApiInterface {
      * @throws {RequiredError}
      * @memberof StorefrontApiInterface
      */
-    getScreenRecordingPageViewData(storefront_oid: number, screen_recording_uuid: string, screen_recording_page_view_uuid: string, options?: any): Promise<ScreenRecordingResponse>;
+    getScreenRecordingPageViewData(storefront_oid: number, screen_recording_uuid: string, screen_recording_page_view_uuid: string, options?: any): Promise<ScreenRecordingPageViewDataResponse>;
     /**
      *
      * @summary Get screen recording segment
@@ -39549,7 +39586,7 @@ export declare class StorefrontApi extends BaseAPI implements StorefrontApiInter
      * @throws {RequiredError}
      * @memberof StorefrontApi
      */
-    getScreenRecordingPageViewData(storefront_oid: number, screen_recording_uuid: string, screen_recording_page_view_uuid: string, options?: any): Promise<ScreenRecordingResponse>;
+    getScreenRecordingPageViewData(storefront_oid: number, screen_recording_uuid: string, screen_recording_page_view_uuid: string, options?: any): Promise<ScreenRecordingPageViewDataResponse>;
     /**
      *
      * @summary Get screen recording segment

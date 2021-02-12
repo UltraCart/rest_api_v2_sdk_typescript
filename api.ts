@@ -25236,6 +25236,44 @@ export interface ScreenRecordingPageView {
 /**
  * 
  * @export
+ * @interface ScreenRecordingPageViewDataResponse
+ */
+export interface ScreenRecordingPageViewDataResponse {
+    /**
+     * 
+     * @type {Error}
+     * @memberof ScreenRecordingPageViewDataResponse
+     */
+    error?: Error;
+    /**
+     * 
+     * @type {string}
+     * @memberof ScreenRecordingPageViewDataResponse
+     */
+    events_json?: string;
+    /**
+     * 
+     * @type {ResponseMetadata}
+     * @memberof ScreenRecordingPageViewDataResponse
+     */
+    metadata?: ResponseMetadata;
+    /**
+     * Indicates if API call was successful
+     * @type {boolean}
+     * @memberof ScreenRecordingPageViewDataResponse
+     */
+    success?: boolean;
+    /**
+     * 
+     * @type {Warning}
+     * @memberof ScreenRecordingPageViewDataResponse
+     */
+    warning?: Warning;
+}
+
+/**
+ * 
+ * @export
  * @interface ScreenRecordingPageViewEvent
  */
 export interface ScreenRecordingPageViewEvent {
@@ -52716,7 +52754,7 @@ export const StorefrontApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getScreenRecordingPageViewData(storefront_oid: number, screen_recording_uuid: string, screen_recording_page_view_uuid: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ScreenRecordingResponse> {
+        getScreenRecordingPageViewData(storefront_oid: number, screen_recording_uuid: string, screen_recording_page_view_uuid: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ScreenRecordingPageViewDataResponse> {
             const localVarFetchArgs = StorefrontApiFetchParamCreator(configuration).getScreenRecordingPageViewData(storefront_oid, screen_recording_uuid, screen_recording_page_view_uuid, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
@@ -56467,7 +56505,7 @@ export interface StorefrontApiInterface {
      * @throws {RequiredError}
      * @memberof StorefrontApiInterface
      */
-    getScreenRecordingPageViewData(storefront_oid: number, screen_recording_uuid: string, screen_recording_page_view_uuid: string, options?: any): Promise<ScreenRecordingResponse>;
+    getScreenRecordingPageViewData(storefront_oid: number, screen_recording_uuid: string, screen_recording_page_view_uuid: string, options?: any): Promise<ScreenRecordingPageViewDataResponse>;
 
     /**
      * 
