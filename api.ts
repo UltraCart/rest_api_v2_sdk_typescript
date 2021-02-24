@@ -24376,6 +24376,12 @@ export interface ScreenRecording {
      * @type {string}
      * @memberof ScreenRecording
      */
+    merchant_notes?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ScreenRecording
+     */
     order_id?: string;
     /**
      * 
@@ -25133,6 +25139,20 @@ export interface ScreenRecordingFilterValuesEventParams {
      * @memberof ScreenRecordingFilterValuesEventParams
      */
     values_text?: Array<string>;
+}
+
+/**
+ * 
+ * @export
+ * @interface ScreenRecordingMerchantNotesRequest
+ */
+export interface ScreenRecordingMerchantNotesRequest {
+    /**
+     * 
+     * @type {string}
+     * @memberof ScreenRecordingMerchantNotesRequest
+     */
+    merchant_notes?: string;
 }
 
 /**
@@ -50844,6 +50864,73 @@ export const StorefrontApiFetchParamCreator = function (configuration?: Configur
             };
         },
         /**
+         * Update merchant notes on a screen recording 
+         * @summary Update merchant notes on a screen recording
+         * @param {number} storefront_oid 
+         * @param {string} screen_recording_uuid 
+         * @param {ScreenRecordingMerchantNotesRequest} merchant_notes_request Merchant Notes
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        updateScreenRecordingMerchantNotes(storefront_oid: number, screen_recording_uuid: string, merchant_notes_request: ScreenRecordingMerchantNotesRequest, options: any = {}): FetchArgs {
+            // verify required parameter 'storefront_oid' is not null or undefined
+            if (storefront_oid === null || storefront_oid === undefined) {
+                throw new RequiredError('storefront_oid','Required parameter storefront_oid was null or undefined when calling updateScreenRecordingMerchantNotes.');
+            }
+            // verify required parameter 'screen_recording_uuid' is not null or undefined
+            if (screen_recording_uuid === null || screen_recording_uuid === undefined) {
+                throw new RequiredError('screen_recording_uuid','Required parameter screen_recording_uuid was null or undefined when calling updateScreenRecordingMerchantNotes.');
+            }
+            // verify required parameter 'merchant_notes_request' is not null or undefined
+            if (merchant_notes_request === null || merchant_notes_request === undefined) {
+                throw new RequiredError('merchant_notes_request','Required parameter merchant_notes_request was null or undefined when calling updateScreenRecordingMerchantNotes.');
+            }
+            const localVarPath = `/storefront/{storefront_oid}/screen_recordings/{screen_recording_uuid}/merchant_notes`
+                .replace(`{${"storefront_oid"}}`, encodeURIComponent(String(storefront_oid)))
+                .replace(`{${"screen_recording_uuid"}}`, encodeURIComponent(String(screen_recording_uuid)));
+            const localVarUrlObj = url.parse(localVarPath, true);
+            const localVarRequestOptions = Object.assign({ method: 'POST' }, options);
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+    if(configuration && configuration.apiVersion) {
+      localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+    }
+
+
+
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+				const localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+					? configuration.accessToken("ultraCartOauth", ["storefront_read"])
+					: configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
+					? configuration.apiKey("x-ultracart-simple-key")
+					: configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+            const needsSerialization = (<any>"ScreenRecordingMerchantNotesRequest" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
+            localVarRequestOptions.body =  needsSerialization ? JSON.stringify(merchant_notes_request || {}) : (merchant_notes_request || "");
+
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
          * 
          * @summary Update screen recording segment
          * @param {number} storefront_oid 
@@ -53939,6 +54026,27 @@ export const StorefrontApiFp = function(configuration?: Configuration) {
             };
         },
         /**
+         * Update merchant notes on a screen recording 
+         * @summary Update merchant notes on a screen recording
+         * @param {number} storefront_oid 
+         * @param {string} screen_recording_uuid 
+         * @param {ScreenRecordingMerchantNotesRequest} merchant_notes_request Merchant Notes
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        updateScreenRecordingMerchantNotes(storefront_oid: number, screen_recording_uuid: string, merchant_notes_request: ScreenRecordingMerchantNotesRequest, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Response> {
+            const localVarFetchArgs = StorefrontApiFetchParamCreator(configuration).updateScreenRecordingMerchantNotes(storefront_oid, screen_recording_uuid, merchant_notes_request, options);
+            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+                    if (response.status >= 200 && response.status < 300) {
+                        return response;
+                    } else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
          * 
          * @summary Update screen recording segment
          * @param {number} storefront_oid 
@@ -55580,6 +55688,18 @@ export const StorefrontApiFactory = function (configuration?: Configuration, fet
             return StorefrontApiFp(configuration).updateLibraryItem(library_item_oid, library_item, options)(fetch, basePath);
         },
         /**
+         * Update merchant notes on a screen recording 
+         * @summary Update merchant notes on a screen recording
+         * @param {number} storefront_oid 
+         * @param {string} screen_recording_uuid 
+         * @param {ScreenRecordingMerchantNotesRequest} merchant_notes_request Merchant Notes
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        updateScreenRecordingMerchantNotes(storefront_oid: number, screen_recording_uuid: string, merchant_notes_request: ScreenRecordingMerchantNotesRequest, options?: any) {
+            return StorefrontApiFp(configuration).updateScreenRecordingMerchantNotes(storefront_oid, screen_recording_uuid, merchant_notes_request, options)(fetch, basePath);
+        },
+        /**
          * 
          * @summary Update screen recording segment
          * @param {number} storefront_oid 
@@ -57183,6 +57303,18 @@ export interface StorefrontApiInterface {
      * @memberof StorefrontApiInterface
      */
     updateLibraryItem(library_item_oid: number, library_item: LibraryItem, options?: any): Promise<LibraryItemResponse>;
+
+    /**
+     * Update merchant notes on a screen recording 
+     * @summary Update merchant notes on a screen recording
+     * @param {number} storefront_oid 
+     * @param {string} screen_recording_uuid 
+     * @param {ScreenRecordingMerchantNotesRequest} merchant_notes_request Merchant Notes
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof StorefrontApiInterface
+     */
+    updateScreenRecordingMerchantNotes(storefront_oid: number, screen_recording_uuid: string, merchant_notes_request: ScreenRecordingMerchantNotesRequest, options?: any): Promise<{}>;
 
     /**
      * 
@@ -59065,6 +59197,20 @@ export class StorefrontApi extends BaseAPI implements StorefrontApiInterface {
      */
     public updateLibraryItem(library_item_oid: number, library_item: LibraryItem, options?: any) {
         return StorefrontApiFp(this.configuration).updateLibraryItem(library_item_oid, library_item, options)(this.fetch, this.basePath);
+    }
+
+    /**
+     * Update merchant notes on a screen recording 
+     * @summary Update merchant notes on a screen recording
+     * @param {number} storefront_oid 
+     * @param {string} screen_recording_uuid 
+     * @param {ScreenRecordingMerchantNotesRequest} merchant_notes_request Merchant Notes
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof StorefrontApi
+     */
+    public updateScreenRecordingMerchantNotes(storefront_oid: number, screen_recording_uuid: string, merchant_notes_request: ScreenRecordingMerchantNotesRequest, options?: any) {
+        return StorefrontApiFp(this.configuration).updateScreenRecordingMerchantNotes(storefront_oid, screen_recording_uuid, merchant_notes_request, options)(this.fetch, this.basePath);
     }
 
     /**

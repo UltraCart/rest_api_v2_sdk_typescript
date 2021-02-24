@@ -23857,6 +23857,12 @@ export interface ScreenRecording {
      * @type {string}
      * @memberof ScreenRecording
      */
+    merchant_notes?: string;
+    /**
+     *
+     * @type {string}
+     * @memberof ScreenRecording
+     */
     order_id?: string;
     /**
      *
@@ -24599,6 +24605,19 @@ export interface ScreenRecordingFilterValuesEventParams {
      * @memberof ScreenRecordingFilterValuesEventParams
      */
     values_text?: Array<string>;
+}
+/**
+ *
+ * @export
+ * @interface ScreenRecordingMerchantNotesRequest
+ */
+export interface ScreenRecordingMerchantNotesRequest {
+    /**
+     *
+     * @type {string}
+     * @memberof ScreenRecordingMerchantNotesRequest
+     */
+    merchant_notes?: string;
 }
 /**
  *
@@ -34660,6 +34679,16 @@ export declare const StorefrontApiFetchParamCreator: (configuration?: Configurat
      */
     updateLibraryItem(library_item_oid: number, library_item: LibraryItem, options?: any): FetchArgs;
     /**
+     * Update merchant notes on a screen recording
+     * @summary Update merchant notes on a screen recording
+     * @param {number} storefront_oid
+     * @param {string} screen_recording_uuid
+     * @param {ScreenRecordingMerchantNotesRequest} merchant_notes_request Merchant Notes
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    updateScreenRecordingMerchantNotes(storefront_oid: number, screen_recording_uuid: string, merchant_notes_request: ScreenRecordingMerchantNotesRequest, options?: any): FetchArgs;
+    /**
      *
      * @summary Update screen recording segment
      * @param {number} storefront_oid
@@ -35976,6 +36005,16 @@ export declare const StorefrontApiFp: (configuration?: Configuration) => {
      */
     updateLibraryItem(library_item_oid: number, library_item: LibraryItem, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<LibraryItemResponse>;
     /**
+     * Update merchant notes on a screen recording
+     * @summary Update merchant notes on a screen recording
+     * @param {number} storefront_oid
+     * @param {string} screen_recording_uuid
+     * @param {ScreenRecordingMerchantNotesRequest} merchant_notes_request Merchant Notes
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    updateScreenRecordingMerchantNotes(storefront_oid: number, screen_recording_uuid: string, merchant_notes_request: ScreenRecordingMerchantNotesRequest, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Response>;
+    /**
      *
      * @summary Update screen recording segment
      * @param {number} storefront_oid
@@ -37291,6 +37330,16 @@ export declare const StorefrontApiFactory: (configuration?: Configuration, fetch
      * @throws {RequiredError}
      */
     updateLibraryItem(library_item_oid: number, library_item: LibraryItem, options?: any): Promise<LibraryItemResponse>;
+    /**
+     * Update merchant notes on a screen recording
+     * @summary Update merchant notes on a screen recording
+     * @param {number} storefront_oid
+     * @param {string} screen_recording_uuid
+     * @param {ScreenRecordingMerchantNotesRequest} merchant_notes_request Merchant Notes
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    updateScreenRecordingMerchantNotes(storefront_oid: number, screen_recording_uuid: string, merchant_notes_request: ScreenRecordingMerchantNotesRequest, options?: any): Promise<Response>;
     /**
      *
      * @summary Update screen recording segment
@@ -38747,6 +38796,17 @@ export interface StorefrontApiInterface {
      * @memberof StorefrontApiInterface
      */
     updateLibraryItem(library_item_oid: number, library_item: LibraryItem, options?: any): Promise<LibraryItemResponse>;
+    /**
+     * Update merchant notes on a screen recording
+     * @summary Update merchant notes on a screen recording
+     * @param {number} storefront_oid
+     * @param {string} screen_recording_uuid
+     * @param {ScreenRecordingMerchantNotesRequest} merchant_notes_request Merchant Notes
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof StorefrontApiInterface
+     */
+    updateScreenRecordingMerchantNotes(storefront_oid: number, screen_recording_uuid: string, merchant_notes_request: ScreenRecordingMerchantNotesRequest, options?: any): Promise<{}>;
     /**
      *
      * @summary Update screen recording segment
@@ -40208,6 +40268,17 @@ export declare class StorefrontApi extends BaseAPI implements StorefrontApiInter
      * @memberof StorefrontApi
      */
     updateLibraryItem(library_item_oid: number, library_item: LibraryItem, options?: any): Promise<LibraryItemResponse>;
+    /**
+     * Update merchant notes on a screen recording
+     * @summary Update merchant notes on a screen recording
+     * @param {number} storefront_oid
+     * @param {string} screen_recording_uuid
+     * @param {ScreenRecordingMerchantNotesRequest} merchant_notes_request Merchant Notes
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof StorefrontApi
+     */
+    updateScreenRecordingMerchantNotes(storefront_oid: number, screen_recording_uuid: string, merchant_notes_request: ScreenRecordingMerchantNotesRequest, options?: any): Promise<Response>;
     /**
      *
      * @summary Update screen recording segment
