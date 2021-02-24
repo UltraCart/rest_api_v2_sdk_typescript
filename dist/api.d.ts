@@ -15450,6 +15450,12 @@ export interface ItemContent {
  */
 export interface ItemContentAssignment {
     /**
+     * True if this group is the default assignment for this item
+     * @type {boolean}
+     * @memberof ItemContentAssignment
+     */
+    default_assignment?: boolean;
+    /**
      * Page (group) object identifier
      * @type {number}
      * @memberof ItemContentAssignment
@@ -24661,6 +24667,12 @@ export interface ScreenRecordingPageView {
      * @memberof ScreenRecordingPageView
      */
     last_event_timestamp?: string;
+    /**
+     *
+     * @type {boolean}
+     * @memberof ScreenRecordingPageView
+     */
+    missing_events?: boolean;
     /**
      *
      * @type {Array<ScreenRecordingPageViewParameter>}
