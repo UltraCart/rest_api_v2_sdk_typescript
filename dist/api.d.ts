@@ -23956,6 +23956,12 @@ export interface ScreenRecording {
     user_properties?: Array<ScreenRecordingUserProperty>;
     /**
      *
+     * @type {number}
+     * @memberof ScreenRecording
+     */
+    visitor_number?: number;
+    /**
+     *
      * @type {boolean}
      * @memberof ScreenRecording
      */
