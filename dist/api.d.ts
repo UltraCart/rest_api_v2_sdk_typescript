@@ -23955,6 +23955,12 @@ export interface ScreenRecording {
      */
     user_properties?: Array<ScreenRecordingUserProperty>;
     /**
+     * Timestamp this visitor was first seen
+     * @type {string}
+     * @memberof ScreenRecording
+     */
+    visitor_first_seen?: string;
+    /**
      *
      * @type {number}
      * @memberof ScreenRecording
@@ -24141,6 +24147,12 @@ export interface ScreenRecordingFilter {
      * @memberof ScreenRecordingFilter
      */
     user_ip?: ScreenRecordingFilterIpSearch;
+    /**
+     *
+     * @type {number}
+     * @memberof ScreenRecordingFilter
+     */
+    visitor_number?: number;
     /**
      *
      * @type {boolean}
