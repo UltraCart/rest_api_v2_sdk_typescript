@@ -1,4 +1,4 @@
-## ultracart_rest_api_v2_typescript@3.1.12
+## ultracart_rest_api_v2_typescript@3.1.13
 
 This generator creates TypeScript/JavaScript client that utilizes [Fetch API](https://fetch.spec.whatwg.org/). The generated Node module can be used in the following environments:
 
@@ -36,7 +36,7 @@ navigate to the folder of your consuming project and run one of the following co
 _published:_
 
 ```
-npm install ultracart_rest_api_v2_typescript@3.1.12 --save
+npm install ultracart_rest_api_v2_typescript@3.1.13 --save
 ```
 
 _unPublished (not recommended):_
@@ -51,6 +51,7 @@ Not every change is committed to every SDK.
 
 | Version | Date | Comments |
 | --: | :-: | --- |
+| 3.1.13 | 03/02/2021 | new webhook order_payment_failed |
 | 3.1.12 | 02/25/2021 | added screen recording visitor_first_seen property |
 | 3.1.11 | 02/24/2021 | Added Screen recording visitor number |
 | 3.1.10 | 02/24/2021 | Added Screen recording merchant notes |

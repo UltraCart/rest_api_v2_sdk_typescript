@@ -33626,7 +33626,7 @@ export const CouponApiFetchParamCreator = function (configuration?: Configuratio
         /**
          * Insert multiple coupon on the UltraCart account. 
          * @summary Insert multiple coupons
-         * @param {CouponsRequest} coupons_request Coupons to insert (maximum 20)
+         * @param {CouponsRequest} coupons_request Coupons to insert (maximum 50)
          * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
          * @param {boolean} [_placeholders] Whether or not placeholder values should be returned in the result.  Useful for UIs that consume this REST API.
          * @param {*} [options] Override http request option.
@@ -34274,7 +34274,7 @@ export const CouponApiFp = function(configuration?: Configuration) {
         /**
          * Insert multiple coupon on the UltraCart account. 
          * @summary Insert multiple coupons
-         * @param {CouponsRequest} coupons_request Coupons to insert (maximum 20)
+         * @param {CouponsRequest} coupons_request Coupons to insert (maximum 50)
          * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
          * @param {boolean} [_placeholders] Whether or not placeholder values should be returned in the result.  Useful for UIs that consume this REST API.
          * @param {*} [options] Override http request option.
@@ -34555,7 +34555,7 @@ export const CouponApiFactory = function (configuration?: Configuration, fetch?:
         /**
          * Insert multiple coupon on the UltraCart account. 
          * @summary Insert multiple coupons
-         * @param {CouponsRequest} coupons_request Coupons to insert (maximum 20)
+         * @param {CouponsRequest} coupons_request Coupons to insert (maximum 50)
          * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
          * @param {boolean} [_placeholders] Whether or not placeholder values should be returned in the result.  Useful for UIs that consume this REST API.
          * @param {*} [options] Override http request option.
@@ -34782,7 +34782,7 @@ export interface CouponApiInterface {
     /**
      * Insert multiple coupon on the UltraCart account. 
      * @summary Insert multiple coupons
-     * @param {CouponsRequest} coupons_request Coupons to insert (maximum 20)
+     * @param {CouponsRequest} coupons_request Coupons to insert (maximum 50)
      * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
      * @param {boolean} [_placeholders] Whether or not placeholder values should be returned in the result.  Useful for UIs that consume this REST API.
      * @param {*} [options] Override http request option.
@@ -35035,7 +35035,7 @@ export class CouponApi extends BaseAPI implements CouponApiInterface {
     /**
      * Insert multiple coupon on the UltraCart account. 
      * @summary Insert multiple coupons
-     * @param {CouponsRequest} coupons_request Coupons to insert (maximum 20)
+     * @param {CouponsRequest} coupons_request Coupons to insert (maximum 50)
      * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
      * @param {boolean} [_placeholders] Whether or not placeholder values should be returned in the result.  Useful for UIs that consume this REST API.
      * @param {*} [options] Override http request option.
