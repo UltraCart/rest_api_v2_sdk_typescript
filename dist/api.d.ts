@@ -35012,7 +35012,7 @@ export declare const StorefrontApiFp: (configuration?: Configuration) => {
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    deleteScreenRecordingSegment(storefront_oid: number, screen_recording_segment_oid: number, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ScreenRecordingSegmentResponse>;
+    deleteScreenRecordingSegment(storefront_oid: number, screen_recording_segment_oid: number, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Response>;
     /**
      *
      * @summary Duplicate library item.
@@ -36338,7 +36338,7 @@ export declare const StorefrontApiFactory: (configuration?: Configuration, fetch
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    deleteScreenRecordingSegment(storefront_oid: number, screen_recording_segment_oid: number, options?: any): Promise<ScreenRecordingSegmentResponse>;
+    deleteScreenRecordingSegment(storefront_oid: number, screen_recording_segment_oid: number, options?: any): Promise<Response>;
     /**
      *
      * @summary Duplicate library item.
@@ -37685,7 +37685,7 @@ export interface StorefrontApiInterface {
      * @throws {RequiredError}
      * @memberof StorefrontApiInterface
      */
-    deleteScreenRecordingSegment(storefront_oid: number, screen_recording_segment_oid: number, options?: any): Promise<ScreenRecordingSegmentResponse>;
+    deleteScreenRecordingSegment(storefront_oid: number, screen_recording_segment_oid: number, options?: any): Promise<{}>;
     /**
      *
      * @summary Duplicate library item.
@@ -39157,7 +39157,7 @@ export declare class StorefrontApi extends BaseAPI implements StorefrontApiInter
      * @throws {RequiredError}
      * @memberof StorefrontApi
      */
-    deleteScreenRecordingSegment(storefront_oid: number, screen_recording_segment_oid: number, options?: any): Promise<ScreenRecordingSegmentResponse>;
+    deleteScreenRecordingSegment(storefront_oid: number, screen_recording_segment_oid: number, options?: any): Promise<Response>;
     /**
      *
      * @summary Duplicate library item.

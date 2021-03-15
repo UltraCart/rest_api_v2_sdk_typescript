@@ -51741,12 +51741,12 @@ export const StorefrontApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        deleteScreenRecordingSegment(storefront_oid: number, screen_recording_segment_oid: number, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ScreenRecordingSegmentResponse> {
+        deleteScreenRecordingSegment(storefront_oid: number, screen_recording_segment_oid: number, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Response> {
             const localVarFetchArgs = StorefrontApiFetchParamCreator(configuration).deleteScreenRecordingSegment(storefront_oid, screen_recording_segment_oid, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
                     if (response.status >= 200 && response.status < 300) {
-                        return response.json();
+                        return response;
                     } else {
                         throw response;
                     }
@@ -56101,7 +56101,7 @@ export interface StorefrontApiInterface {
      * @throws {RequiredError}
      * @memberof StorefrontApiInterface
      */
-    deleteScreenRecordingSegment(storefront_oid: number, screen_recording_segment_oid: number, options?: any): Promise<ScreenRecordingSegmentResponse>;
+    deleteScreenRecordingSegment(storefront_oid: number, screen_recording_segment_oid: number, options?: any): Promise<{}>;
 
     /**
      * 

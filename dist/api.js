@@ -21205,7 +21205,7 @@ var StorefrontApiFp = function (configuration) {
                 if (basePath === void 0) { basePath = BASE_PATH; }
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(function (response) {
                     if (response.status >= 200 && response.status < 300) {
-                        return response.json();
+                        return response;
                     }
                     else {
                         throw response;
