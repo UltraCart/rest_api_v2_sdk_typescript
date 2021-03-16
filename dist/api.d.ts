@@ -24581,6 +24581,12 @@ export interface ScreenRecordingFilterValues {
     max_values?: number;
     /**
      *
+     * @type {Array<ScreenRecordingFilterValuesPageParam>}
+     * @memberof ScreenRecordingFilterValues
+     */
+    page_params?: Array<ScreenRecordingFilterValuesPageParam>;
+    /**
+     *
      * @type {Array<string>}
      * @memberof ScreenRecordingFilterValues
      */
@@ -24671,6 +24677,25 @@ export interface ScreenRecordingFilterValuesEventParams {
      * @memberof ScreenRecordingFilterValuesEventParams
      */
     values_text?: Array<string>;
+}
+/**
+ *
+ * @export
+ * @interface ScreenRecordingFilterValuesPageParam
+ */
+export interface ScreenRecordingFilterValuesPageParam {
+    /**
+     *
+     * @type {string}
+     * @memberof ScreenRecordingFilterValuesPageParam
+     */
+    name?: string;
+    /**
+     *
+     * @type {Array<string>}
+     * @memberof ScreenRecordingFilterValuesPageParam
+     */
+    values?: Array<string>;
 }
 /**
  *
