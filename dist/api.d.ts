@@ -22411,7 +22411,7 @@ export interface OrderQuery {
      */
     screen_branding_theme_code?: string;
     /**
-     * Date/time that the order was shipping
+     * Date/time that the order was shipped
      * @type {string}
      * @memberof OrderQuery
      */
@@ -22422,6 +22422,18 @@ export interface OrderQuery {
      * @memberof OrderQuery
      */
     shipment_date_end?: string;
+    /**
+     * Date/time that the order should ship on
+     * @type {string}
+     * @memberof OrderQuery
+     */
+    shipped_on_date_begin?: string;
+    /**
+     * Date/time that the order should ship on
+     * @type {string}
+     * @memberof OrderQuery
+     */
+    shipped_on_date_end?: string;
     /**
      * State for United States otherwise region or province for other countries
      * @type {string}
@@ -25846,6 +25858,12 @@ export interface TaxJarConfig {
      * @memberof TaxJarConfig
      */
     send_test_orders?: boolean;
+    /**
+     * Do not send channel partner orders to TaxJar.  Set this to true if your channel partner reports tax on their own.
+     * @type {boolean}
+     * @memberof TaxJarConfig
+     */
+    skip_channel_orders?: boolean;
     /**
      * Use distribution center from address
      * @type {boolean}
@@ -32508,6 +32526,8 @@ export declare const OrderApiFetchParamCreator: (configuration?: Configuration) 
      * @param {string} [Custom_Field_5]
      * @param {string} [Custom_Field_6]
      * @param {string} [Custom_Field_7]
+     * @param {string} [ship_on_date_begin]
+     * @param {string} [ship_on_date_end]
      * @param {number} [_limit] The maximum number of records to return on this one API call. (Maximum 200)
      * @param {number} [_offset] Pagination of the record set.  Offset is a zero based index.
      * @param {string} [_sort] The sort order of the orders.  See Sorting documentation for examples of using multiple values and sorting by ascending and descending.
@@ -32515,7 +32535,7 @@ export declare const OrderApiFetchParamCreator: (configuration?: Configuration) 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getOrders(order_id?: string, payment_method?: string, company?: string, first_name?: string, last_name?: string, city?: string, state_region?: string, postal_code?: string, country_code?: string, phone?: string, email?: string, cc_email?: string, total?: number, screen_branding_theme_code?: string, storefront_host_name?: string, creation_date_begin?: string, creation_date_end?: string, payment_date_begin?: string, payment_date_end?: string, shipment_date_begin?: string, shipment_date_end?: string, rma?: string, purchase_order_number?: string, item_id?: string, current_stage?: string, channel_partner_code?: string, channel_partner_order_id?: string, customer_profile_oid?: number, Refund_Date_Begin?: string, Refund_Date_End?: string, Custom_Field_1?: string, Custom_Field_2?: string, Custom_Field_3?: string, Custom_Field_4?: string, Custom_Field_5?: string, Custom_Field_6?: string, Custom_Field_7?: string, _limit?: number, _offset?: number, _sort?: string, _expand?: string, options?: any): FetchArgs;
+    getOrders(order_id?: string, payment_method?: string, company?: string, first_name?: string, last_name?: string, city?: string, state_region?: string, postal_code?: string, country_code?: string, phone?: string, email?: string, cc_email?: string, total?: number, screen_branding_theme_code?: string, storefront_host_name?: string, creation_date_begin?: string, creation_date_end?: string, payment_date_begin?: string, payment_date_end?: string, shipment_date_begin?: string, shipment_date_end?: string, rma?: string, purchase_order_number?: string, item_id?: string, current_stage?: string, channel_partner_code?: string, channel_partner_order_id?: string, customer_profile_oid?: number, Refund_Date_Begin?: string, Refund_Date_End?: string, Custom_Field_1?: string, Custom_Field_2?: string, Custom_Field_3?: string, Custom_Field_4?: string, Custom_Field_5?: string, Custom_Field_6?: string, Custom_Field_7?: string, ship_on_date_begin?: string, ship_on_date_end?: string, _limit?: number, _offset?: number, _sort?: string, _expand?: string, options?: any): FetchArgs;
     /**
      * Retrieves a group of orders from the account based on an array of order ids.  If more than 500 order ids are specified, the API call will fail with a bad request error.
      * @summary Retrieve order batch
@@ -32735,6 +32755,8 @@ export declare const OrderApiFp: (configuration?: Configuration) => {
      * @param {string} [Custom_Field_5]
      * @param {string} [Custom_Field_6]
      * @param {string} [Custom_Field_7]
+     * @param {string} [ship_on_date_begin]
+     * @param {string} [ship_on_date_end]
      * @param {number} [_limit] The maximum number of records to return on this one API call. (Maximum 200)
      * @param {number} [_offset] Pagination of the record set.  Offset is a zero based index.
      * @param {string} [_sort] The sort order of the orders.  See Sorting documentation for examples of using multiple values and sorting by ascending and descending.
@@ -32742,7 +32764,7 @@ export declare const OrderApiFp: (configuration?: Configuration) => {
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getOrders(order_id?: string, payment_method?: string, company?: string, first_name?: string, last_name?: string, city?: string, state_region?: string, postal_code?: string, country_code?: string, phone?: string, email?: string, cc_email?: string, total?: number, screen_branding_theme_code?: string, storefront_host_name?: string, creation_date_begin?: string, creation_date_end?: string, payment_date_begin?: string, payment_date_end?: string, shipment_date_begin?: string, shipment_date_end?: string, rma?: string, purchase_order_number?: string, item_id?: string, current_stage?: string, channel_partner_code?: string, channel_partner_order_id?: string, customer_profile_oid?: number, Refund_Date_Begin?: string, Refund_Date_End?: string, Custom_Field_1?: string, Custom_Field_2?: string, Custom_Field_3?: string, Custom_Field_4?: string, Custom_Field_5?: string, Custom_Field_6?: string, Custom_Field_7?: string, _limit?: number, _offset?: number, _sort?: string, _expand?: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<OrdersResponse>;
+    getOrders(order_id?: string, payment_method?: string, company?: string, first_name?: string, last_name?: string, city?: string, state_region?: string, postal_code?: string, country_code?: string, phone?: string, email?: string, cc_email?: string, total?: number, screen_branding_theme_code?: string, storefront_host_name?: string, creation_date_begin?: string, creation_date_end?: string, payment_date_begin?: string, payment_date_end?: string, shipment_date_begin?: string, shipment_date_end?: string, rma?: string, purchase_order_number?: string, item_id?: string, current_stage?: string, channel_partner_code?: string, channel_partner_order_id?: string, customer_profile_oid?: number, Refund_Date_Begin?: string, Refund_Date_End?: string, Custom_Field_1?: string, Custom_Field_2?: string, Custom_Field_3?: string, Custom_Field_4?: string, Custom_Field_5?: string, Custom_Field_6?: string, Custom_Field_7?: string, ship_on_date_begin?: string, ship_on_date_end?: string, _limit?: number, _offset?: number, _sort?: string, _expand?: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<OrdersResponse>;
     /**
      * Retrieves a group of orders from the account based on an array of order ids.  If more than 500 order ids are specified, the API call will fail with a bad request error.
      * @summary Retrieve order batch
@@ -32962,6 +32984,8 @@ export declare const OrderApiFactory: (configuration?: Configuration, fetch?: Fe
      * @param {string} [Custom_Field_5]
      * @param {string} [Custom_Field_6]
      * @param {string} [Custom_Field_7]
+     * @param {string} [ship_on_date_begin]
+     * @param {string} [ship_on_date_end]
      * @param {number} [_limit] The maximum number of records to return on this one API call. (Maximum 200)
      * @param {number} [_offset] Pagination of the record set.  Offset is a zero based index.
      * @param {string} [_sort] The sort order of the orders.  See Sorting documentation for examples of using multiple values and sorting by ascending and descending.
@@ -32969,7 +32993,7 @@ export declare const OrderApiFactory: (configuration?: Configuration, fetch?: Fe
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getOrders(order_id?: string, payment_method?: string, company?: string, first_name?: string, last_name?: string, city?: string, state_region?: string, postal_code?: string, country_code?: string, phone?: string, email?: string, cc_email?: string, total?: number, screen_branding_theme_code?: string, storefront_host_name?: string, creation_date_begin?: string, creation_date_end?: string, payment_date_begin?: string, payment_date_end?: string, shipment_date_begin?: string, shipment_date_end?: string, rma?: string, purchase_order_number?: string, item_id?: string, current_stage?: string, channel_partner_code?: string, channel_partner_order_id?: string, customer_profile_oid?: number, Refund_Date_Begin?: string, Refund_Date_End?: string, Custom_Field_1?: string, Custom_Field_2?: string, Custom_Field_3?: string, Custom_Field_4?: string, Custom_Field_5?: string, Custom_Field_6?: string, Custom_Field_7?: string, _limit?: number, _offset?: number, _sort?: string, _expand?: string, options?: any): Promise<OrdersResponse>;
+    getOrders(order_id?: string, payment_method?: string, company?: string, first_name?: string, last_name?: string, city?: string, state_region?: string, postal_code?: string, country_code?: string, phone?: string, email?: string, cc_email?: string, total?: number, screen_branding_theme_code?: string, storefront_host_name?: string, creation_date_begin?: string, creation_date_end?: string, payment_date_begin?: string, payment_date_end?: string, shipment_date_begin?: string, shipment_date_end?: string, rma?: string, purchase_order_number?: string, item_id?: string, current_stage?: string, channel_partner_code?: string, channel_partner_order_id?: string, customer_profile_oid?: number, Refund_Date_Begin?: string, Refund_Date_End?: string, Custom_Field_1?: string, Custom_Field_2?: string, Custom_Field_3?: string, Custom_Field_4?: string, Custom_Field_5?: string, Custom_Field_6?: string, Custom_Field_7?: string, ship_on_date_begin?: string, ship_on_date_end?: string, _limit?: number, _offset?: number, _sort?: string, _expand?: string, options?: any): Promise<OrdersResponse>;
     /**
      * Retrieves a group of orders from the account based on an array of order ids.  If more than 500 order ids are specified, the API call will fail with a bad request error.
      * @summary Retrieve order batch
@@ -33199,6 +33223,8 @@ export interface OrderApiInterface {
      * @param {string} [Custom_Field_5]
      * @param {string} [Custom_Field_6]
      * @param {string} [Custom_Field_7]
+     * @param {string} [ship_on_date_begin]
+     * @param {string} [ship_on_date_end]
      * @param {number} [_limit] The maximum number of records to return on this one API call. (Maximum 200)
      * @param {number} [_offset] Pagination of the record set.  Offset is a zero based index.
      * @param {string} [_sort] The sort order of the orders.  See Sorting documentation for examples of using multiple values and sorting by ascending and descending.
@@ -33207,7 +33233,7 @@ export interface OrderApiInterface {
      * @throws {RequiredError}
      * @memberof OrderApiInterface
      */
-    getOrders(order_id?: string, payment_method?: string, company?: string, first_name?: string, last_name?: string, city?: string, state_region?: string, postal_code?: string, country_code?: string, phone?: string, email?: string, cc_email?: string, total?: number, screen_branding_theme_code?: string, storefront_host_name?: string, creation_date_begin?: string, creation_date_end?: string, payment_date_begin?: string, payment_date_end?: string, shipment_date_begin?: string, shipment_date_end?: string, rma?: string, purchase_order_number?: string, item_id?: string, current_stage?: string, channel_partner_code?: string, channel_partner_order_id?: string, customer_profile_oid?: number, Refund_Date_Begin?: string, Refund_Date_End?: string, Custom_Field_1?: string, Custom_Field_2?: string, Custom_Field_3?: string, Custom_Field_4?: string, Custom_Field_5?: string, Custom_Field_6?: string, Custom_Field_7?: string, _limit?: number, _offset?: number, _sort?: string, _expand?: string, options?: any): Promise<OrdersResponse>;
+    getOrders(order_id?: string, payment_method?: string, company?: string, first_name?: string, last_name?: string, city?: string, state_region?: string, postal_code?: string, country_code?: string, phone?: string, email?: string, cc_email?: string, total?: number, screen_branding_theme_code?: string, storefront_host_name?: string, creation_date_begin?: string, creation_date_end?: string, payment_date_begin?: string, payment_date_end?: string, shipment_date_begin?: string, shipment_date_end?: string, rma?: string, purchase_order_number?: string, item_id?: string, current_stage?: string, channel_partner_code?: string, channel_partner_order_id?: string, customer_profile_oid?: number, Refund_Date_Begin?: string, Refund_Date_End?: string, Custom_Field_1?: string, Custom_Field_2?: string, Custom_Field_3?: string, Custom_Field_4?: string, Custom_Field_5?: string, Custom_Field_6?: string, Custom_Field_7?: string, ship_on_date_begin?: string, ship_on_date_end?: string, _limit?: number, _offset?: number, _sort?: string, _expand?: string, options?: any): Promise<OrdersResponse>;
     /**
      * Retrieves a group of orders from the account based on an array of order ids.  If more than 500 order ids are specified, the API call will fail with a bad request error.
      * @summary Retrieve order batch
@@ -33448,6 +33474,8 @@ export declare class OrderApi extends BaseAPI implements OrderApiInterface {
      * @param {string} [Custom_Field_5]
      * @param {string} [Custom_Field_6]
      * @param {string} [Custom_Field_7]
+     * @param {string} [ship_on_date_begin]
+     * @param {string} [ship_on_date_end]
      * @param {number} [_limit] The maximum number of records to return on this one API call. (Maximum 200)
      * @param {number} [_offset] Pagination of the record set.  Offset is a zero based index.
      * @param {string} [_sort] The sort order of the orders.  See Sorting documentation for examples of using multiple values and sorting by ascending and descending.
@@ -33456,7 +33484,7 @@ export declare class OrderApi extends BaseAPI implements OrderApiInterface {
      * @throws {RequiredError}
      * @memberof OrderApi
      */
-    getOrders(order_id?: string, payment_method?: string, company?: string, first_name?: string, last_name?: string, city?: string, state_region?: string, postal_code?: string, country_code?: string, phone?: string, email?: string, cc_email?: string, total?: number, screen_branding_theme_code?: string, storefront_host_name?: string, creation_date_begin?: string, creation_date_end?: string, payment_date_begin?: string, payment_date_end?: string, shipment_date_begin?: string, shipment_date_end?: string, rma?: string, purchase_order_number?: string, item_id?: string, current_stage?: string, channel_partner_code?: string, channel_partner_order_id?: string, customer_profile_oid?: number, Refund_Date_Begin?: string, Refund_Date_End?: string, Custom_Field_1?: string, Custom_Field_2?: string, Custom_Field_3?: string, Custom_Field_4?: string, Custom_Field_5?: string, Custom_Field_6?: string, Custom_Field_7?: string, _limit?: number, _offset?: number, _sort?: string, _expand?: string, options?: any): Promise<OrdersResponse>;
+    getOrders(order_id?: string, payment_method?: string, company?: string, first_name?: string, last_name?: string, city?: string, state_region?: string, postal_code?: string, country_code?: string, phone?: string, email?: string, cc_email?: string, total?: number, screen_branding_theme_code?: string, storefront_host_name?: string, creation_date_begin?: string, creation_date_end?: string, payment_date_begin?: string, payment_date_end?: string, shipment_date_begin?: string, shipment_date_end?: string, rma?: string, purchase_order_number?: string, item_id?: string, current_stage?: string, channel_partner_code?: string, channel_partner_order_id?: string, customer_profile_oid?: number, Refund_Date_Begin?: string, Refund_Date_End?: string, Custom_Field_1?: string, Custom_Field_2?: string, Custom_Field_3?: string, Custom_Field_4?: string, Custom_Field_5?: string, Custom_Field_6?: string, Custom_Field_7?: string, ship_on_date_begin?: string, ship_on_date_end?: string, _limit?: number, _offset?: number, _sort?: string, _expand?: string, options?: any): Promise<OrdersResponse>;
     /**
      * Retrieves a group of orders from the account based on an array of order ids.  If more than 500 order ids are specified, the API call will fail with a bad request error.
      * @summary Retrieve order batch

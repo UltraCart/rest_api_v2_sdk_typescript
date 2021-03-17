@@ -10385,6 +10385,8 @@ var OrderApiFetchParamCreator = function (configuration) {
          * @param {string} [Custom_Field_5]
          * @param {string} [Custom_Field_6]
          * @param {string} [Custom_Field_7]
+         * @param {string} [ship_on_date_begin]
+         * @param {string} [ship_on_date_end]
          * @param {number} [_limit] The maximum number of records to return on this one API call. (Maximum 200)
          * @param {number} [_offset] Pagination of the record set.  Offset is a zero based index.
          * @param {string} [_sort] The sort order of the orders.  See Sorting documentation for examples of using multiple values and sorting by ascending and descending.
@@ -10392,7 +10394,7 @@ var OrderApiFetchParamCreator = function (configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getOrders: function (order_id, payment_method, company, first_name, last_name, city, state_region, postal_code, country_code, phone, email, cc_email, total, screen_branding_theme_code, storefront_host_name, creation_date_begin, creation_date_end, payment_date_begin, payment_date_end, shipment_date_begin, shipment_date_end, rma, purchase_order_number, item_id, current_stage, channel_partner_code, channel_partner_order_id, customer_profile_oid, Refund_Date_Begin, Refund_Date_End, Custom_Field_1, Custom_Field_2, Custom_Field_3, Custom_Field_4, Custom_Field_5, Custom_Field_6, Custom_Field_7, _limit, _offset, _sort, _expand, options) {
+        getOrders: function (order_id, payment_method, company, first_name, last_name, city, state_region, postal_code, country_code, phone, email, cc_email, total, screen_branding_theme_code, storefront_host_name, creation_date_begin, creation_date_end, payment_date_begin, payment_date_end, shipment_date_begin, shipment_date_end, rma, purchase_order_number, item_id, current_stage, channel_partner_code, channel_partner_order_id, customer_profile_oid, Refund_Date_Begin, Refund_Date_End, Custom_Field_1, Custom_Field_2, Custom_Field_3, Custom_Field_4, Custom_Field_5, Custom_Field_6, Custom_Field_7, ship_on_date_begin, ship_on_date_end, _limit, _offset, _sort, _expand, options) {
             if (options === void 0) { options = {}; }
             var localVarPath = "/order/orders";
             var localVarUrlObj = url.parse(localVarPath, true);
@@ -10527,6 +10529,12 @@ var OrderApiFetchParamCreator = function (configuration) {
             }
             if (Custom_Field_7 !== undefined) {
                 localVarQueryParameter['Custom Field 7'] = Custom_Field_7;
+            }
+            if (ship_on_date_begin !== undefined) {
+                localVarQueryParameter['ship_on_date_begin'] = ship_on_date_begin;
+            }
+            if (ship_on_date_end !== undefined) {
+                localVarQueryParameter['ship_on_date_end'] = ship_on_date_end;
             }
             if (_limit !== undefined) {
                 localVarQueryParameter['_limit'] = _limit;
@@ -11352,6 +11360,8 @@ var OrderApiFp = function (configuration) {
          * @param {string} [Custom_Field_5]
          * @param {string} [Custom_Field_6]
          * @param {string} [Custom_Field_7]
+         * @param {string} [ship_on_date_begin]
+         * @param {string} [ship_on_date_end]
          * @param {number} [_limit] The maximum number of records to return on this one API call. (Maximum 200)
          * @param {number} [_offset] Pagination of the record set.  Offset is a zero based index.
          * @param {string} [_sort] The sort order of the orders.  See Sorting documentation for examples of using multiple values and sorting by ascending and descending.
@@ -11359,8 +11369,8 @@ var OrderApiFp = function (configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getOrders: function (order_id, payment_method, company, first_name, last_name, city, state_region, postal_code, country_code, phone, email, cc_email, total, screen_branding_theme_code, storefront_host_name, creation_date_begin, creation_date_end, payment_date_begin, payment_date_end, shipment_date_begin, shipment_date_end, rma, purchase_order_number, item_id, current_stage, channel_partner_code, channel_partner_order_id, customer_profile_oid, Refund_Date_Begin, Refund_Date_End, Custom_Field_1, Custom_Field_2, Custom_Field_3, Custom_Field_4, Custom_Field_5, Custom_Field_6, Custom_Field_7, _limit, _offset, _sort, _expand, options) {
-            var localVarFetchArgs = exports.OrderApiFetchParamCreator(configuration).getOrders(order_id, payment_method, company, first_name, last_name, city, state_region, postal_code, country_code, phone, email, cc_email, total, screen_branding_theme_code, storefront_host_name, creation_date_begin, creation_date_end, payment_date_begin, payment_date_end, shipment_date_begin, shipment_date_end, rma, purchase_order_number, item_id, current_stage, channel_partner_code, channel_partner_order_id, customer_profile_oid, Refund_Date_Begin, Refund_Date_End, Custom_Field_1, Custom_Field_2, Custom_Field_3, Custom_Field_4, Custom_Field_5, Custom_Field_6, Custom_Field_7, _limit, _offset, _sort, _expand, options);
+        getOrders: function (order_id, payment_method, company, first_name, last_name, city, state_region, postal_code, country_code, phone, email, cc_email, total, screen_branding_theme_code, storefront_host_name, creation_date_begin, creation_date_end, payment_date_begin, payment_date_end, shipment_date_begin, shipment_date_end, rma, purchase_order_number, item_id, current_stage, channel_partner_code, channel_partner_order_id, customer_profile_oid, Refund_Date_Begin, Refund_Date_End, Custom_Field_1, Custom_Field_2, Custom_Field_3, Custom_Field_4, Custom_Field_5, Custom_Field_6, Custom_Field_7, ship_on_date_begin, ship_on_date_end, _limit, _offset, _sort, _expand, options) {
+            var localVarFetchArgs = exports.OrderApiFetchParamCreator(configuration).getOrders(order_id, payment_method, company, first_name, last_name, city, state_region, postal_code, country_code, phone, email, cc_email, total, screen_branding_theme_code, storefront_host_name, creation_date_begin, creation_date_end, payment_date_begin, payment_date_end, shipment_date_begin, shipment_date_end, rma, purchase_order_number, item_id, current_stage, channel_partner_code, channel_partner_order_id, customer_profile_oid, Refund_Date_Begin, Refund_Date_End, Custom_Field_1, Custom_Field_2, Custom_Field_3, Custom_Field_4, Custom_Field_5, Custom_Field_6, Custom_Field_7, ship_on_date_begin, ship_on_date_end, _limit, _offset, _sort, _expand, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -11754,6 +11764,8 @@ var OrderApiFactory = function (configuration, fetch, basePath) {
          * @param {string} [Custom_Field_5]
          * @param {string} [Custom_Field_6]
          * @param {string} [Custom_Field_7]
+         * @param {string} [ship_on_date_begin]
+         * @param {string} [ship_on_date_end]
          * @param {number} [_limit] The maximum number of records to return on this one API call. (Maximum 200)
          * @param {number} [_offset] Pagination of the record set.  Offset is a zero based index.
          * @param {string} [_sort] The sort order of the orders.  See Sorting documentation for examples of using multiple values and sorting by ascending and descending.
@@ -11761,8 +11773,8 @@ var OrderApiFactory = function (configuration, fetch, basePath) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getOrders: function (order_id, payment_method, company, first_name, last_name, city, state_region, postal_code, country_code, phone, email, cc_email, total, screen_branding_theme_code, storefront_host_name, creation_date_begin, creation_date_end, payment_date_begin, payment_date_end, shipment_date_begin, shipment_date_end, rma, purchase_order_number, item_id, current_stage, channel_partner_code, channel_partner_order_id, customer_profile_oid, Refund_Date_Begin, Refund_Date_End, Custom_Field_1, Custom_Field_2, Custom_Field_3, Custom_Field_4, Custom_Field_5, Custom_Field_6, Custom_Field_7, _limit, _offset, _sort, _expand, options) {
-            return exports.OrderApiFp(configuration).getOrders(order_id, payment_method, company, first_name, last_name, city, state_region, postal_code, country_code, phone, email, cc_email, total, screen_branding_theme_code, storefront_host_name, creation_date_begin, creation_date_end, payment_date_begin, payment_date_end, shipment_date_begin, shipment_date_end, rma, purchase_order_number, item_id, current_stage, channel_partner_code, channel_partner_order_id, customer_profile_oid, Refund_Date_Begin, Refund_Date_End, Custom_Field_1, Custom_Field_2, Custom_Field_3, Custom_Field_4, Custom_Field_5, Custom_Field_6, Custom_Field_7, _limit, _offset, _sort, _expand, options)(fetch, basePath);
+        getOrders: function (order_id, payment_method, company, first_name, last_name, city, state_region, postal_code, country_code, phone, email, cc_email, total, screen_branding_theme_code, storefront_host_name, creation_date_begin, creation_date_end, payment_date_begin, payment_date_end, shipment_date_begin, shipment_date_end, rma, purchase_order_number, item_id, current_stage, channel_partner_code, channel_partner_order_id, customer_profile_oid, Refund_Date_Begin, Refund_Date_End, Custom_Field_1, Custom_Field_2, Custom_Field_3, Custom_Field_4, Custom_Field_5, Custom_Field_6, Custom_Field_7, ship_on_date_begin, ship_on_date_end, _limit, _offset, _sort, _expand, options) {
+            return exports.OrderApiFp(configuration).getOrders(order_id, payment_method, company, first_name, last_name, city, state_region, postal_code, country_code, phone, email, cc_email, total, screen_branding_theme_code, storefront_host_name, creation_date_begin, creation_date_end, payment_date_begin, payment_date_end, shipment_date_begin, shipment_date_end, rma, purchase_order_number, item_id, current_stage, channel_partner_code, channel_partner_order_id, customer_profile_oid, Refund_Date_Begin, Refund_Date_End, Custom_Field_1, Custom_Field_2, Custom_Field_3, Custom_Field_4, Custom_Field_5, Custom_Field_6, Custom_Field_7, ship_on_date_begin, ship_on_date_end, _limit, _offset, _sort, _expand, options)(fetch, basePath);
         },
         /**
          * Retrieves a group of orders from the account based on an array of order ids.  If more than 500 order ids are specified, the API call will fail with a bad request error.
@@ -12038,6 +12050,8 @@ var OrderApi = /** @class */ (function (_super) {
      * @param {string} [Custom_Field_5]
      * @param {string} [Custom_Field_6]
      * @param {string} [Custom_Field_7]
+     * @param {string} [ship_on_date_begin]
+     * @param {string} [ship_on_date_end]
      * @param {number} [_limit] The maximum number of records to return on this one API call. (Maximum 200)
      * @param {number} [_offset] Pagination of the record set.  Offset is a zero based index.
      * @param {string} [_sort] The sort order of the orders.  See Sorting documentation for examples of using multiple values and sorting by ascending and descending.
@@ -12046,8 +12060,8 @@ var OrderApi = /** @class */ (function (_super) {
      * @throws {RequiredError}
      * @memberof OrderApi
      */
-    OrderApi.prototype.getOrders = function (order_id, payment_method, company, first_name, last_name, city, state_region, postal_code, country_code, phone, email, cc_email, total, screen_branding_theme_code, storefront_host_name, creation_date_begin, creation_date_end, payment_date_begin, payment_date_end, shipment_date_begin, shipment_date_end, rma, purchase_order_number, item_id, current_stage, channel_partner_code, channel_partner_order_id, customer_profile_oid, Refund_Date_Begin, Refund_Date_End, Custom_Field_1, Custom_Field_2, Custom_Field_3, Custom_Field_4, Custom_Field_5, Custom_Field_6, Custom_Field_7, _limit, _offset, _sort, _expand, options) {
-        return exports.OrderApiFp(this.configuration).getOrders(order_id, payment_method, company, first_name, last_name, city, state_region, postal_code, country_code, phone, email, cc_email, total, screen_branding_theme_code, storefront_host_name, creation_date_begin, creation_date_end, payment_date_begin, payment_date_end, shipment_date_begin, shipment_date_end, rma, purchase_order_number, item_id, current_stage, channel_partner_code, channel_partner_order_id, customer_profile_oid, Refund_Date_Begin, Refund_Date_End, Custom_Field_1, Custom_Field_2, Custom_Field_3, Custom_Field_4, Custom_Field_5, Custom_Field_6, Custom_Field_7, _limit, _offset, _sort, _expand, options)(this.fetch, this.basePath);
+    OrderApi.prototype.getOrders = function (order_id, payment_method, company, first_name, last_name, city, state_region, postal_code, country_code, phone, email, cc_email, total, screen_branding_theme_code, storefront_host_name, creation_date_begin, creation_date_end, payment_date_begin, payment_date_end, shipment_date_begin, shipment_date_end, rma, purchase_order_number, item_id, current_stage, channel_partner_code, channel_partner_order_id, customer_profile_oid, Refund_Date_Begin, Refund_Date_End, Custom_Field_1, Custom_Field_2, Custom_Field_3, Custom_Field_4, Custom_Field_5, Custom_Field_6, Custom_Field_7, ship_on_date_begin, ship_on_date_end, _limit, _offset, _sort, _expand, options) {
+        return exports.OrderApiFp(this.configuration).getOrders(order_id, payment_method, company, first_name, last_name, city, state_region, postal_code, country_code, phone, email, cc_email, total, screen_branding_theme_code, storefront_host_name, creation_date_begin, creation_date_end, payment_date_begin, payment_date_end, shipment_date_begin, shipment_date_end, rma, purchase_order_number, item_id, current_stage, channel_partner_code, channel_partner_order_id, customer_profile_oid, Refund_Date_Begin, Refund_Date_End, Custom_Field_1, Custom_Field_2, Custom_Field_3, Custom_Field_4, Custom_Field_5, Custom_Field_6, Custom_Field_7, ship_on_date_begin, ship_on_date_end, _limit, _offset, _sort, _expand, options)(this.fetch, this.basePath);
     };
     /**
      * Retrieves a group of orders from the account based on an array of order ids.  If more than 500 order ids are specified, the API call will fail with a bad request error.
