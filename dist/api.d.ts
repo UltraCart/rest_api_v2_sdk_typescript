@@ -5259,6 +5259,12 @@ export interface Coupon {
     percent_off_items_with_items_purchase?: CouponPercentOffItemsWithItemsPurchase;
     /**
      *
+     * @type {CouponPercentOffMsrpItems}
+     * @memberof Coupon
+     */
+    percent_off_msrp_items?: CouponPercentOffMsrpItems;
+    /**
+     *
      * @type {CouponPercentOffRetailPriceItems}
      * @memberof Coupon
      */
@@ -6488,6 +6494,37 @@ export interface CouponPercentOffItemsWithItemsPurchase {
      * @memberof CouponPercentOffItemsWithItemsPurchase
      */
     required_purchase_items?: Array<string>;
+}
+/**
+ *
+ * @export
+ * @interface CouponPercentOffMsrpItems
+ */
+export interface CouponPercentOffMsrpItems {
+    /**
+     * The percentage of subtotal discount
+     * @type {number}
+     * @memberof CouponPercentOffMsrpItems
+     */
+    discount_percent?: number;
+    /**
+     * A list of items which cannot be discounted.
+     * @type {Array<string>}
+     * @memberof CouponPercentOffMsrpItems
+     */
+    excluded_items?: Array<string>;
+    /**
+     * An optional list of items which will receive a discount.  If blank, discount applies to all items except excluded items.
+     * @type {Array<string>}
+     * @memberof CouponPercentOffMsrpItems
+     */
+    items?: Array<string>;
+    /**
+     * The (optional) maximum quantity of discounted items.
+     * @type {number}
+     * @memberof CouponPercentOffMsrpItems
+     */
+    limit?: number;
 }
 /**
  *
