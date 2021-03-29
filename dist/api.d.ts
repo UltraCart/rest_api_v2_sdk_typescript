@@ -6514,7 +6514,7 @@ export interface CouponPercentOffMsrpItems {
      */
     excluded_items?: Array<string>;
     /**
-     * An optional list of items which will receive a discount.  If blank, discount applies to all items except excluded items.
+     * An list of items which will receive a discount.
      * @type {Array<string>}
      * @memberof CouponPercentOffMsrpItems
      */
@@ -19097,12 +19097,6 @@ export interface LibraryItemAsset {
 export interface LibraryItemAttribute {
     /**
      *
-     * @type {number}
-     * @memberof LibraryItemAttribute
-     */
-    libraryItemOid?: number;
-    /**
-     *
      * @type {string}
      * @memberof LibraryItemAttribute
      */
@@ -24606,12 +24600,6 @@ export interface ScreenRecordingFilterStringSearch {
 export interface ScreenRecordingFilterValues {
     /**
      *
-     * @type {Array<ScreenRecordingFilterValuesEvent>}
-     * @memberof ScreenRecordingFilterValues
-     */
-    events?: Array<ScreenRecordingFilterValuesEvent>;
-    /**
-     *
      * @type {Array<string>}
      * @memberof ScreenRecordingFilterValues
      */
@@ -24630,10 +24618,10 @@ export interface ScreenRecordingFilterValues {
     max_values?: number;
     /**
      *
-     * @type {Array<ScreenRecordingFilterValuesPageParam>}
+     * @type {Array<ScreenRecordingFilterValuesPageView>}
      * @memberof ScreenRecordingFilterValues
      */
-    page_params?: Array<ScreenRecordingFilterValuesPageParam>;
+    page_views?: Array<ScreenRecordingFilterValuesPageView>;
     /**
      *
      * @type {Array<string>}
@@ -24745,6 +24733,25 @@ export interface ScreenRecordingFilterValuesPageParam {
      * @memberof ScreenRecordingFilterValuesPageParam
      */
     values?: Array<string>;
+}
+/**
+ *
+ * @export
+ * @interface ScreenRecordingFilterValuesPageView
+ */
+export interface ScreenRecordingFilterValuesPageView {
+    /**
+     *
+     * @type {Array<ScreenRecordingFilterValuesEvent>}
+     * @memberof ScreenRecordingFilterValuesPageView
+     */
+    events?: Array<ScreenRecordingFilterValuesEvent>;
+    /**
+     *
+     * @type {Array<ScreenRecordingFilterValuesPageParam>}
+     * @memberof ScreenRecordingFilterValuesPageView
+     */
+    page_params?: Array<ScreenRecordingFilterValuesPageParam>;
 }
 /**
  *
