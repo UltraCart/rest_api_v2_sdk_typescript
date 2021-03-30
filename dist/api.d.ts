@@ -177,10 +177,10 @@ export interface AccountsReceivableRetryConfigResponse {
     emails?: Array<string>;
     /**
      *
-     * @type {Error}
+     * @type {ModelError}
      * @memberof AccountsReceivableRetryConfigResponse
      */
-    error?: Error;
+    error?: ModelError;
     /**
      *
      * @type {boolean}
@@ -362,10 +362,10 @@ export interface AccountsReceivableRetryStatRevenue {
 export interface AccountsReceivableRetryStatsResponse {
     /**
      *
-     * @type {Error}
+     * @type {ModelError}
      * @memberof AccountsReceivableRetryStatsResponse
      */
-    error?: Error;
+    error?: ModelError;
     /**
      *
      * @type {Array<AccountsReceivableRetryStatAccount>}
@@ -643,10 +643,10 @@ export interface AffiliateClicksResponse {
     clicks?: Array<AffiliateClick>;
     /**
      *
-     * @type {Error}
+     * @type {ModelError}
      * @memberof AffiliateClicksResponse
      */
-    error?: Error;
+    error?: ModelError;
     /**
      *
      * @type {ResponseMetadata}
@@ -850,10 +850,10 @@ export interface AffiliateLedgerQuery {
 export interface AffiliateLedgersResponse {
     /**
      *
-     * @type {Error}
+     * @type {ModelError}
      * @memberof AffiliateLedgersResponse
      */
-    error?: Error;
+    error?: ModelError;
     /**
      * ledgers
      * @type {Array<AffiliateLedger>}
@@ -1098,10 +1098,10 @@ export interface ApplyLibraryItemResponse {
     email_template_vm_path?: string;
     /**
      *
-     * @type {Error}
+     * @type {ModelError}
      * @memberof ApplyLibraryItemResponse
      */
-    error?: Error;
+    error?: ModelError;
     /**
      *
      * @type {ResponseMetadata}
@@ -1705,10 +1705,10 @@ export interface AutoOrderResponse {
     auto_order?: AutoOrder;
     /**
      *
-     * @type {Error}
+     * @type {ModelError}
      * @memberof AutoOrderResponse
      */
-    error?: Error;
+    error?: ModelError;
     /**
      *
      * @type {ResponseMetadata}
@@ -1755,10 +1755,10 @@ export interface AutoOrdersResponse {
     auto_orders?: Array<AutoOrder>;
     /**
      *
-     * @type {Error}
+     * @type {ModelError}
      * @memberof AutoOrdersResponse
      */
-    error?: Error;
+    error?: ModelError;
     /**
      *
      * @type {ResponseMetadata}
@@ -1871,10 +1871,10 @@ export interface AvalaraConfig {
 export interface BaseResponse {
     /**
      *
-     * @type {Error}
+     * @type {ModelError}
      * @memberof BaseResponse
      */
-    error?: Error;
+    error?: ModelError;
     /**
      *
      * @type {ResponseMetadata}
@@ -4744,10 +4744,10 @@ export interface ChargebackDisputeResponse {
     chargeback?: ChargebackDispute;
     /**
      *
-     * @type {Error}
+     * @type {ModelError}
      * @memberof ChargebackDisputeResponse
      */
-    error?: Error;
+    error?: ModelError;
     /**
      *
      * @type {ResponseMetadata}
@@ -4781,10 +4781,10 @@ export interface ChargebackDisputesResponse {
     chargebacks?: Array<ChargebackDispute>;
     /**
      *
-     * @type {Error}
+     * @type {ModelError}
      * @memberof ChargebackDisputesResponse
      */
-    error?: Error;
+    error?: ModelError;
     /**
      *
      * @type {ResponseMetadata}
@@ -5654,10 +5654,10 @@ export interface CouponAutoApplyCondition {
 export interface CouponAutoApplyConditions {
     /**
      *
-     * @type {Error}
+     * @type {ModelError}
      * @memberof CouponAutoApplyConditions
      */
-    error?: Error;
+    error?: ModelError;
     /**
      *
      * @type {ResponseMetadata}
@@ -5729,10 +5729,10 @@ export interface CouponBuyOneGetOneLimit {
 export interface CouponCodesRequest {
     /**
      *
-     * @type {Error}
+     * @type {ModelError}
      * @memberof CouponCodesRequest
      */
-    error?: Error;
+    error?: ModelError;
     /**
      * Expiration Date
      * @type {string}
@@ -5784,10 +5784,10 @@ export interface CouponCodesResponse {
     coupon_codes?: Array<string>;
     /**
      *
-     * @type {Error}
+     * @type {ModelError}
      * @memberof CouponCodesResponse
      */
-    error?: Error;
+    error?: ModelError;
     /**
      * Expiration date
      * @type {string}
@@ -5981,10 +5981,10 @@ export interface CouponExistsResponse {
     coupon_code?: string;
     /**
      *
-     * @type {Error}
+     * @type {ModelError}
      * @memberof CouponExistsResponse
      */
-    error?: Error;
+    error?: ModelError;
     /**
      * Exists
      * @type {boolean}
@@ -6316,10 +6316,10 @@ export interface CouponItemSearchResult {
 export interface CouponItemSearchResultsResponse {
     /**
      *
-     * @type {Error}
+     * @type {ModelError}
      * @memberof CouponItemSearchResultsResponse
      */
-    error?: Error;
+    error?: ModelError;
     /**
      *
      * @type {ResponseMetadata}
@@ -6752,10 +6752,10 @@ export interface CouponResponse {
     coupon?: Coupon;
     /**
      *
-     * @type {Error}
+     * @type {ModelError}
      * @memberof CouponResponse
      */
-    error?: Error;
+    error?: ModelError;
     /**
      *
      * @type {ResponseMetadata}
@@ -7054,10 +7054,10 @@ export interface CouponsResponse {
     coupons?: Array<Coupon>;
     /**
      *
-     * @type {Error}
+     * @type {ModelError}
      * @memberof CouponsResponse
      */
-    error?: Error;
+    error?: ModelError;
     /**
      *
      * @type {ResponseMetadata}
@@ -8351,10 +8351,10 @@ export interface CustomerResponse {
     customer?: Customer;
     /**
      *
-     * @type {Error}
+     * @type {ModelError}
      * @memberof CustomerResponse
      */
-    error?: Error;
+    error?: ModelError;
     /**
      *
      * @type {ResponseMetadata}
@@ -8669,10 +8669,10 @@ export interface CustomersResponse {
     customers?: Array<Customer>;
     /**
      *
-     * @type {Error}
+     * @type {ModelError}
      * @memberof CustomersResponse
      */
-    error?: Error;
+    error?: ModelError;
     /**
      *
      * @type {ResponseMetadata}
@@ -8981,10 +8981,10 @@ export interface DistributionCentersResponse {
     distribution_centers?: Array<DistributionCenter>;
     /**
      *
-     * @type {Error}
+     * @type {ModelError}
      * @memberof DistributionCentersResponse
      */
-    error?: Error;
+    error?: ModelError;
     /**
      *
      * @type {ResponseMetadata}
@@ -9213,10 +9213,10 @@ export interface EmailCampaignFolderResponse {
     campaign_folder?: EmailCampaignFolder;
     /**
      *
-     * @type {Error}
+     * @type {ModelError}
      * @memberof EmailCampaignFolderResponse
      */
-    error?: Error;
+    error?: ModelError;
     /**
      *
      * @type {ResponseMetadata}
@@ -9250,10 +9250,10 @@ export interface EmailCampaignFoldersResponse {
     campaign_folders?: Array<EmailCampaignFolder>;
     /**
      *
-     * @type {Error}
+     * @type {ModelError}
      * @memberof EmailCampaignFoldersResponse
      */
-    error?: Error;
+    error?: ModelError;
     /**
      *
      * @type {ResponseMetadata}
@@ -9287,10 +9287,10 @@ export interface EmailCampaignResponse {
     campaign?: EmailCampaign;
     /**
      *
-     * @type {Error}
+     * @type {ModelError}
      * @memberof EmailCampaignResponse
      */
-    error?: Error;
+    error?: ModelError;
     /**
      *
      * @type {ResponseMetadata}
@@ -9324,10 +9324,10 @@ export interface EmailCampaignsResponse {
     campaigns?: Array<EmailCampaign>;
     /**
      *
-     * @type {Error}
+     * @type {ModelError}
      * @memberof EmailCampaignsResponse
      */
-    error?: Error;
+    error?: ModelError;
     /**
      *
      * @type {ResponseMetadata}
@@ -9380,10 +9380,10 @@ export interface EmailClicksResponse {
     clicks?: Array<EmailClick>;
     /**
      *
-     * @type {Error}
+     * @type {ModelError}
      * @memberof EmailClicksResponse
      */
-    error?: Error;
+    error?: ModelError;
     /**
      *
      * @type {ResponseMetadata}
@@ -9605,10 +9605,10 @@ export interface EmailCommseqEmailResponse {
     email?: EmailCommseqEmail;
     /**
      *
-     * @type {Error}
+     * @type {ModelError}
      * @memberof EmailCommseqEmailResponse
      */
-    error?: Error;
+    error?: ModelError;
     /**
      *
      * @type {ResponseMetadata}
@@ -9703,10 +9703,10 @@ export interface EmailCommseqEmailSendTestRequest {
 export interface EmailCommseqEmailSendTestResponse {
     /**
      *
-     * @type {Error}
+     * @type {ModelError}
      * @memberof EmailCommseqEmailSendTestResponse
      */
-    error?: Error;
+    error?: ModelError;
     /**
      *
      * @type {ResponseMetadata}
@@ -9734,10 +9734,10 @@ export interface EmailCommseqEmailSendTestResponse {
 export interface EmailCommseqEmailsRequest {
     /**
      *
-     * @type {Error}
+     * @type {ModelError}
      * @memberof EmailCommseqEmailsRequest
      */
-    error?: Error;
+    error?: ModelError;
     /**
      *
      * @type {Array<string>}
@@ -9777,10 +9777,10 @@ export interface EmailCommseqEmailsResponse {
     emails?: Array<EmailCommseqEmail>;
     /**
      *
-     * @type {Error}
+     * @type {ModelError}
      * @memberof EmailCommseqEmailsResponse
      */
-    error?: Error;
+    error?: ModelError;
     /**
      *
      * @type {ResponseMetadata}
@@ -9881,10 +9881,10 @@ export interface EmailCommseqPostcard {
 export interface EmailCommseqPostcardResponse {
     /**
      *
-     * @type {Error}
+     * @type {ModelError}
      * @memberof EmailCommseqPostcardResponse
      */
-    error?: Error;
+    error?: ModelError;
     /**
      *
      * @type {ResponseMetadata}
@@ -10003,10 +10003,10 @@ export interface EmailCommseqPostcardSendTestResponse {
     backThumbnail?: string;
     /**
      *
-     * @type {Error}
+     * @type {ModelError}
      * @memberof EmailCommseqPostcardSendTestResponse
      */
-    error?: Error;
+    error?: ModelError;
     /**
      *
      * @type {string}
@@ -10059,10 +10059,10 @@ export interface EmailCommseqPostcardsRequest {
 export interface EmailCommseqPostcardsResponse {
     /**
      *
-     * @type {Error}
+     * @type {ModelError}
      * @memberof EmailCommseqPostcardsResponse
      */
-    error?: Error;
+    error?: ModelError;
     /**
      *
      * @type {ResponseMetadata}
@@ -10102,10 +10102,10 @@ export interface EmailCommseqResponse {
     communication_sequence?: EmailCommseq;
     /**
      *
-     * @type {Error}
+     * @type {ModelError}
      * @memberof EmailCommseqResponse
      */
-    error?: Error;
+    error?: ModelError;
     /**
      *
      * @type {ResponseMetadata}
@@ -10362,10 +10362,10 @@ export interface EmailCommseqStat {
 export interface EmailCommseqStatResponse {
     /**
      *
-     * @type {Error}
+     * @type {ModelError}
      * @memberof EmailCommseqStatResponse
      */
-    error?: Error;
+    error?: ModelError;
     /**
      *
      * @type {ResponseMetadata}
@@ -10490,10 +10490,10 @@ export interface EmailCommseqsResponse {
     communication_sequences?: Array<EmailCommseq>;
     /**
      *
-     * @type {Error}
+     * @type {ModelError}
      * @memberof EmailCommseqsResponse
      */
-    error?: Error;
+    error?: ModelError;
     /**
      *
      * @type {ResponseMetadata}
@@ -10582,10 +10582,10 @@ export interface EmailCustomerEditorUrlResponse {
     editor_url?: string;
     /**
      *
-     * @type {Error}
+     * @type {ModelError}
      * @memberof EmailCustomerEditorUrlResponse
      */
-    error?: Error;
+    error?: ModelError;
     /**
      *
      * @type {ResponseMetadata}
@@ -10705,10 +10705,10 @@ export interface EmailDashboardActivityResponse {
     activity?: Array<EmailDashboardActivity>;
     /**
      *
-     * @type {Error}
+     * @type {ModelError}
      * @memberof EmailDashboardActivityResponse
      */
-    error?: Error;
+    error?: ModelError;
     /**
      *
      * @type {ResponseMetadata}
@@ -10736,10 +10736,10 @@ export interface EmailDashboardActivityResponse {
 export interface EmailDashboardStatsResponse {
     /**
      *
-     * @type {Error}
+     * @type {ModelError}
      * @memberof EmailDashboardStatsResponse
      */
-    error?: Error;
+    error?: ModelError;
     /**
      *
      * @type {ResponseMetadata}
@@ -10846,10 +10846,10 @@ export interface EmailDomain {
 export interface EmailEditorTokenResponse {
     /**
      *
-     * @type {Error}
+     * @type {ModelError}
      * @memberof EmailEditorTokenResponse
      */
-    error?: Error;
+    error?: ModelError;
     /**
      *
      * @type {ResponseMetadata}
@@ -11071,10 +11071,10 @@ export interface EmailFlowBackPopulateRequest {
 export interface EmailFlowBackPopulateResponse {
     /**
      *
-     * @type {Error}
+     * @type {ModelError}
      * @memberof EmailFlowBackPopulateResponse
      */
-    error?: Error;
+    error?: ModelError;
     /**
      *
      * @type {ResponseMetadata}
@@ -11139,10 +11139,10 @@ export interface EmailFlowFolder {
 export interface EmailFlowFolderResponse {
     /**
      *
-     * @type {Error}
+     * @type {ModelError}
      * @memberof EmailFlowFolderResponse
      */
-    error?: Error;
+    error?: ModelError;
     /**
      *
      * @type {EmailFlowFolder}
@@ -11176,10 +11176,10 @@ export interface EmailFlowFolderResponse {
 export interface EmailFlowFoldersResponse {
     /**
      *
-     * @type {Error}
+     * @type {ModelError}
      * @memberof EmailFlowFoldersResponse
      */
-    error?: Error;
+    error?: ModelError;
     /**
      *
      * @type {Array<EmailFlowFolder>}
@@ -11213,10 +11213,10 @@ export interface EmailFlowFoldersResponse {
 export interface EmailFlowResponse {
     /**
      *
-     * @type {Error}
+     * @type {ModelError}
      * @memberof EmailFlowResponse
      */
-    error?: Error;
+    error?: ModelError;
     /**
      *
      * @type {EmailFlow}
@@ -11250,10 +11250,10 @@ export interface EmailFlowResponse {
 export interface EmailFlowsResponse {
     /**
      *
-     * @type {Error}
+     * @type {ModelError}
      * @memberof EmailFlowsResponse
      */
-    error?: Error;
+    error?: ModelError;
     /**
      *
      * @type {Array<EmailFlow>}
@@ -11300,10 +11300,10 @@ export interface EmailGlobalSettings {
 export interface EmailGlobalSettingsResponse {
     /**
      *
-     * @type {Error}
+     * @type {ModelError}
      * @memberof EmailGlobalSettingsResponse
      */
-    error?: Error;
+    error?: ModelError;
     /**
      *
      * @type {EmailGlobalSettings}
@@ -11462,10 +11462,10 @@ export interface EmailList {
 export interface EmailListArchiveResponse {
     /**
      *
-     * @type {Error}
+     * @type {ModelError}
      * @memberof EmailListArchiveResponse
      */
-    error?: Error;
+    error?: ModelError;
     /**
      *
      * @type {boolean}
@@ -11567,10 +11567,10 @@ export interface EmailListCustomersResponse {
 export interface EmailListResponse {
     /**
      *
-     * @type {Error}
+     * @type {ModelError}
      * @memberof EmailListResponse
      */
-    error?: Error;
+    error?: ModelError;
     /**
      *
      * @type {EmailList}
@@ -11679,10 +11679,10 @@ export interface EmailListSubscribeResponse {
 export interface EmailListsResponse {
     /**
      *
-     * @type {Error}
+     * @type {ModelError}
      * @memberof EmailListsResponse
      */
-    error?: Error;
+    error?: ModelError;
     /**
      *
      * @type {Array<EmailList>}
@@ -11747,10 +11747,10 @@ export interface EmailOrder {
 export interface EmailOrdersResponse {
     /**
      *
-     * @type {Error}
+     * @type {ModelError}
      * @memberof EmailOrdersResponse
      */
-    error?: Error;
+    error?: ModelError;
     /**
      *
      * @type {ResponseMetadata}
@@ -12022,10 +12022,10 @@ export interface EmailPerformanceDaily {
 export interface EmailPerformanceResponse {
     /**
      *
-     * @type {Error}
+     * @type {ModelError}
      * @memberof EmailPerformanceResponse
      */
-    error?: Error;
+    error?: ModelError;
     /**
      *
      * @type {ResponseMetadata}
@@ -12229,10 +12229,10 @@ export interface EmailPlanAdditional {
 export interface EmailPlanResponse {
     /**
      *
-     * @type {Error}
+     * @type {ModelError}
      * @memberof EmailPlanResponse
      */
-    error?: Error;
+    error?: ModelError;
     /**
      *
      * @type {ResponseMetadata}
@@ -12556,10 +12556,10 @@ export interface EmailSegment {
 export interface EmailSegmentArchiveResponse {
     /**
      *
-     * @type {Error}
+     * @type {ModelError}
      * @memberof EmailSegmentArchiveResponse
      */
-    error?: Error;
+    error?: ModelError;
     /**
      *
      * @type {ResponseMetadata}
@@ -12673,10 +12673,10 @@ export interface EmailSegmentDownloadPrepareResponse {
     email_segment_uuid?: string;
     /**
      *
-     * @type {Error}
+     * @type {ModelError}
      * @memberof EmailSegmentDownloadPrepareResponse
      */
-    error?: Error;
+    error?: ModelError;
     /**
      *
      * @type {ResponseMetadata}
@@ -12716,10 +12716,10 @@ export interface EmailSegmentDownloadPrepareResponse {
 export interface EmailSegmentResponse {
     /**
      *
-     * @type {Error}
+     * @type {ModelError}
      * @memberof EmailSegmentResponse
      */
-    error?: Error;
+    error?: ModelError;
     /**
      *
      * @type {ResponseMetadata}
@@ -12753,10 +12753,10 @@ export interface EmailSegmentResponse {
 export interface EmailSegmentsResponse {
     /**
      *
-     * @type {Error}
+     * @type {ModelError}
      * @memberof EmailSegmentsResponse
      */
-    error?: Error;
+    error?: ModelError;
     /**
      *
      * @type {ResponseMetadata}
@@ -12796,10 +12796,10 @@ export interface EmailSendingDomainResponse {
     domain?: EmailDomain;
     /**
      *
-     * @type {Error}
+     * @type {ModelError}
      * @memberof EmailSendingDomainResponse
      */
-    error?: Error;
+    error?: ModelError;
     /**
      *
      * @type {ResponseMetadata}
@@ -12833,10 +12833,10 @@ export interface EmailSendingDomainsResponse {
     domains?: Array<EmailDomain>;
     /**
      *
-     * @type {Error}
+     * @type {ModelError}
      * @memberof EmailSendingDomainsResponse
      */
-    error?: Error;
+    error?: ModelError;
     /**
      *
      * @type {ResponseMetadata}
@@ -12943,10 +12943,10 @@ export interface EmailSettings {
 export interface EmailSettingsResponse {
     /**
      *
-     * @type {Error}
+     * @type {ModelError}
      * @memberof EmailSettingsResponse
      */
-    error?: Error;
+    error?: ModelError;
     /**
      *
      * @type {ResponseMetadata}
@@ -13234,10 +13234,10 @@ export interface EmailStatPostcardSummaryRequest {
 export interface EmailStatPostcardSummaryResponse {
     /**
      *
-     * @type {Error}
+     * @type {ModelError}
      * @memberof EmailStatPostcardSummaryResponse
      */
-    error?: Error;
+    error?: ModelError;
     /**
      *
      * @type {ResponseMetadata}
@@ -13296,10 +13296,10 @@ export interface EmailStatSummaryRequest {
 export interface EmailStatSummaryResponse {
     /**
      *
-     * @type {Error}
+     * @type {ModelError}
      * @memberof EmailStatSummaryResponse
      */
-    error?: Error;
+    error?: ModelError;
     /**
      *
      * @type {ResponseMetadata}
@@ -13479,10 +13479,10 @@ export interface EmailStepStatRequest {
 export interface EmailStepStatResponse {
     /**
      *
-     * @type {Error}
+     * @type {ModelError}
      * @memberof EmailStepStatResponse
      */
-    error?: Error;
+    error?: ModelError;
     /**
      *
      * @type {ResponseMetadata}
@@ -13615,10 +13615,10 @@ export interface EmailTemplate {
 export interface EmailTemplatesResponse {
     /**
      *
-     * @type {Error}
+     * @type {ModelError}
      * @memberof EmailTemplatesResponse
      */
-    error?: Error;
+    error?: ModelError;
     /**
      *
      * @type {ResponseMetadata}
@@ -13745,10 +13745,10 @@ export interface EmailThirdPartyProvider {
 export interface EmailThirdPartyProvidersResponse {
     /**
      *
-     * @type {Error}
+     * @type {ModelError}
      * @memberof EmailThirdPartyProvidersResponse
      */
-    error?: Error;
+    error?: ModelError;
     /**
      *
      * @type {ResponseMetadata}
@@ -13801,10 +13801,10 @@ export interface EmailVerifyTokenRequest {
 export interface EmailVerifyTokenResponse {
     /**
      *
-     * @type {Error}
+     * @type {ModelError}
      * @memberof EmailVerifyTokenResponse
      */
-    error?: Error;
+    error?: ModelError;
     /**
      *
      * @type {ResponseMetadata}
@@ -13851,10 +13851,10 @@ export interface EmailVerifyTokenValidateRequest {
 export interface EmailVerifyTokenValidateResponse {
     /**
      *
-     * @type {Error}
+     * @type {ModelError}
      * @memberof EmailVerifyTokenValidateResponse
      */
-    error?: Error;
+    error?: ModelError;
     /**
      *
      * @type {ResponseMetadata}
@@ -13882,10 +13882,10 @@ export interface EmailVerifyTokenValidateResponse {
 export interface ErrorResponse {
     /**
      *
-     * @type {Error}
+     * @type {ModelError}
      * @memberof ErrorResponse
      */
-    error?: Error;
+    error?: ModelError;
     /**
      *
      * @type {ResponseMetadata}
@@ -14043,10 +14043,10 @@ export declare namespace Experiment {
 export interface ExperimentResponse {
     /**
      *
-     * @type {Error}
+     * @type {ModelError}
      * @memberof ExperimentResponse
      */
-    error?: Error;
+    error?: ModelError;
     /**
      *
      * @type {Experiment}
@@ -14201,10 +14201,10 @@ export interface ExperimentVariation {
 export interface ExperimentsResponse {
     /**
      *
-     * @type {Error}
+     * @type {ModelError}
      * @memberof ExperimentsResponse
      */
-    error?: Error;
+    error?: ModelError;
     /**
      *
      * @type {Array<Experiment>}
@@ -14350,10 +14350,10 @@ export interface GeocodeRequest {
 export interface GeocodeResponse {
     /**
      *
-     * @type {Error}
+     * @type {ModelError}
      * @memberof GeocodeResponse
      */
-    error?: Error;
+    error?: ModelError;
     /**
      *
      * @type {number}
@@ -14430,10 +14430,10 @@ export interface Group {
 export interface GroupResponse {
     /**
      *
-     * @type {Error}
+     * @type {ModelError}
      * @memberof GroupResponse
      */
-    error?: Error;
+    error?: ModelError;
     /**
      *
      * @type {Group}
@@ -14504,10 +14504,10 @@ export interface GroupUserMembership {
 export interface GroupsResponse {
     /**
      *
-     * @type {Error}
+     * @type {ModelError}
      * @memberof GroupsResponse
      */
-    error?: Error;
+    error?: ModelError;
     /**
      *
      * @type {Array<Group>}
@@ -17484,10 +17484,10 @@ export interface ItemReporting {
 export interface ItemResponse {
     /**
      *
-     * @type {Error}
+     * @type {ModelError}
      * @memberof ItemResponse
      */
-    error?: Error;
+    error?: ModelError;
     /**
      *
      * @type {Item}
@@ -18676,10 +18676,10 @@ export interface ItemsRequest {
 export interface ItemsResponse {
     /**
      *
-     * @type {Error}
+     * @type {ModelError}
      * @memberof ItemsResponse
      */
-    error?: Error;
+    error?: ModelError;
     /**
      * items
      * @type {Array<Item>}
@@ -18769,10 +18769,10 @@ export interface LibraryFilterValues {
 export interface LibraryFilterValuesResponse {
     /**
      *
-     * @type {Error}
+     * @type {ModelError}
      * @memberof LibraryFilterValuesResponse
      */
-    error?: Error;
+    error?: ModelError;
     /**
      *
      * @type {LibraryFilterValues}
@@ -19300,10 +19300,10 @@ export interface LibraryItemQuery {
 export interface LibraryItemResponse {
     /**
      *
-     * @type {Error}
+     * @type {ModelError}
      * @memberof LibraryItemResponse
      */
-    error?: Error;
+    error?: ModelError;
     /**
      *
      * @type {LibraryItem}
@@ -19356,10 +19356,10 @@ export interface LibraryItemScreenshot {
 export interface LibraryItemsResponse {
     /**
      *
-     * @type {Error}
+     * @type {ModelError}
      * @memberof LibraryItemsResponse
      */
-    error?: Error;
+    error?: ModelError;
     /**
      * Library items
      * @type {Array<LibraryItem>}
@@ -19480,10 +19480,10 @@ export interface LookupRequest {
 export interface LookupResponse {
     /**
      *
-     * @type {Error}
+     * @type {ModelError}
      * @memberof LookupResponse
      */
-    error?: Error;
+    error?: ModelError;
     /**
      *
      * @type {ResponseMetadata}
@@ -22146,10 +22146,10 @@ export interface OrderProcessPaymentRequest {
 export interface OrderProcessPaymentResponse {
     /**
      *
-     * @type {Error}
+     * @type {ModelError}
      * @memberof OrderProcessPaymentResponse
      */
-    error?: Error;
+    error?: ModelError;
     /**
      *
      * @type {ResponseMetadata}
@@ -22701,10 +22701,10 @@ export interface OrderReplacementResponse {
 export interface OrderResponse {
     /**
      *
-     * @type {Error}
+     * @type {ModelError}
      * @memberof OrderResponse
      */
-    error?: Error;
+    error?: ModelError;
     /**
      *
      * @type {ResponseMetadata}
@@ -23163,10 +23163,10 @@ export interface OrderTaxes {
 export interface OrderTokenResponse {
     /**
      *
-     * @type {Error}
+     * @type {ModelError}
      * @memberof OrderTokenResponse
      */
-    error?: Error;
+    error?: ModelError;
     /**
      *
      * @type {ResponseMetadata}
@@ -23376,10 +23376,10 @@ export interface OrderTrackingNumberDetails {
 export interface OrdersResponse {
     /**
      *
-     * @type {Error}
+     * @type {ModelError}
      * @memberof OrdersResponse
      */
-    error?: Error;
+    error?: ModelError;
     /**
      *
      * @type {ResponseMetadata}
@@ -23656,10 +23656,10 @@ export interface PricingTierNotification {
 export interface PricingTiersResponse {
     /**
      *
-     * @type {Error}
+     * @type {ModelError}
      * @memberof PricingTiersResponse
      */
-    error?: Error;
+    error?: ModelError;
     /**
      *
      * @type {ResponseMetadata}
@@ -24914,10 +24914,10 @@ export interface ScreenRecordingPageView {
 export interface ScreenRecordingPageViewDataResponse {
     /**
      *
-     * @type {Error}
+     * @type {ModelError}
      * @memberof ScreenRecordingPageViewDataResponse
      */
-    error?: Error;
+    error?: ModelError;
     /**
      *
      * @type {string}
@@ -25033,10 +25033,10 @@ export interface ScreenRecordingQueryRequest {
 export interface ScreenRecordingQueryResponse {
     /**
      *
-     * @type {Error}
+     * @type {ModelError}
      * @memberof ScreenRecordingQueryResponse
      */
-    error?: Error;
+    error?: ModelError;
     /**
      *
      * @type {ScreenRecordingFilter}
@@ -25082,10 +25082,10 @@ export interface ScreenRecordingQueryResponse {
 export interface ScreenRecordingResponse {
     /**
      *
-     * @type {Error}
+     * @type {ModelError}
      * @memberof ScreenRecordingResponse
      */
-    error?: Error;
+    error?: ModelError;
     /**
      *
      * @type {ResponseMetadata}
@@ -25168,10 +25168,10 @@ export interface ScreenRecordingSegment {
 export interface ScreenRecordingSegmentResponse {
     /**
      *
-     * @type {Error}
+     * @type {ModelError}
      * @memberof ScreenRecordingSegmentResponse
      */
-    error?: Error;
+    error?: ModelError;
     /**
      *
      * @type {ResponseMetadata}
@@ -25205,10 +25205,10 @@ export interface ScreenRecordingSegmentResponse {
 export interface ScreenRecordingSegmentsResponse {
     /**
      *
-     * @type {Error}
+     * @type {ModelError}
      * @memberof ScreenRecordingSegmentsResponse
      */
-    error?: Error;
+    error?: ModelError;
     /**
      *
      * @type {ResponseMetadata}
@@ -25255,10 +25255,10 @@ export interface ScreenRecordingSettings {
 export interface ScreenRecordingSettingsResponse {
     /**
      *
-     * @type {Error}
+     * @type {ModelError}
      * @memberof ScreenRecordingSettingsResponse
      */
-    error?: Error;
+    error?: ModelError;
     /**
      *
      * @type {ResponseMetadata}
@@ -25324,10 +25324,10 @@ export interface ScreenRecordingTagsRequest {
 export interface ScreenRecordingTagsResponse {
     /**
      *
-     * @type {Error}
+     * @type {ModelError}
      * @memberof ScreenRecordingTagsResponse
      */
-    error?: Error;
+    error?: ModelError;
     /**
      *
      * @type {ResponseMetadata}
@@ -25455,10 +25455,10 @@ export interface ScreenRecordingUserProperty {
 export interface ScreenshotsResponse {
     /**
      *
-     * @type {Error}
+     * @type {ModelError}
      * @memberof ScreenshotsResponse
      */
-    error?: Error;
+    error?: ModelError;
     /**
      *
      * @type {ResponseMetadata}
@@ -26271,10 +26271,10 @@ export interface TaxProvidersResponse {
     avalara?: TaxProviderAvalara;
     /**
      *
-     * @type {Error}
+     * @type {ModelError}
      * @memberof TaxProvidersResponse
      */
-    error?: Error;
+    error?: ModelError;
     /**
      *
      * @type {ResponseMetadata}
@@ -26525,10 +26525,10 @@ export declare namespace TempMultimedia {
 export interface TempMultimediaResponse {
     /**
      *
-     * @type {Error}
+     * @type {ModelError}
      * @memberof TempMultimediaResponse
      */
-    error?: Error;
+    error?: ModelError;
     /**
      *
      * @type {ResponseMetadata}
@@ -26599,10 +26599,10 @@ export interface ThumbnailParametersRequest {
 export interface ThumbnailParametersResponse {
     /**
      *
-     * @type {Error}
+     * @type {ModelError}
      * @memberof ThumbnailParametersResponse
      */
-    error?: Error;
+    error?: ModelError;
     /**
      *
      * @type {ResponseMetadata}
@@ -26769,10 +26769,10 @@ export interface TransactionEmailListResponse {
     email_names?: Array<string>;
     /**
      *
-     * @type {Error}
+     * @type {ModelError}
      * @memberof TransactionEmailListResponse
      */
-    error?: Error;
+    error?: ModelError;
     /**
      *
      * @type {ResponseMetadata}
@@ -26861,10 +26861,10 @@ export interface TransactionEmailResponse {
     email?: TransactionEmail;
     /**
      *
-     * @type {Error}
+     * @type {ModelError}
      * @memberof TransactionEmailResponse
      */
-    error?: Error;
+    error?: ModelError;
     /**
      *
      * @type {ResponseMetadata}
@@ -26911,10 +26911,10 @@ export interface UploadCouponCodesRequest {
     coupon_codes?: Array<string>;
     /**
      *
-     * @type {Error}
+     * @type {ModelError}
      * @memberof UploadCouponCodesRequest
      */
-    error?: Error;
+    error?: ModelError;
     /**
      *
      * @type {ResponseMetadata}
@@ -26948,10 +26948,10 @@ export interface UploadCouponCodesResponse {
     duplicate_codes?: Array<string>;
     /**
      *
-     * @type {Error}
+     * @type {ModelError}
      * @memberof UploadCouponCodesResponse
      */
-    error?: Error;
+    error?: ModelError;
     /**
      *
      * @type {ResponseMetadata}
@@ -27138,10 +27138,10 @@ export interface UserLogin {
 export interface UserLoginsResponse {
     /**
      *
-     * @type {Error}
+     * @type {ModelError}
      * @memberof UserLoginsResponse
      */
-    error?: Error;
+    error?: ModelError;
     /**
      * Logins
      * @type {Array<UserLogin>}
@@ -27175,10 +27175,10 @@ export interface UserLoginsResponse {
 export interface UserResponse {
     /**
      *
-     * @type {Error}
+     * @type {ModelError}
      * @memberof UserResponse
      */
-    error?: Error;
+    error?: ModelError;
     /**
      *
      * @type {ResponseMetadata}
@@ -27212,10 +27212,10 @@ export interface UserResponse {
 export interface UsersResponse {
     /**
      *
-     * @type {Error}
+     * @type {ModelError}
      * @memberof UsersResponse
      */
-    error?: Error;
+    error?: ModelError;
     /**
      *
      * @type {ResponseMetadata}
@@ -27594,10 +27594,10 @@ export interface WebhookLog {
 export interface WebhookLogResponse {
     /**
      *
-     * @type {Error}
+     * @type {ModelError}
      * @memberof WebhookLogResponse
      */
-    error?: Error;
+    error?: ModelError;
     /**
      *
      * @type {ResponseMetadata}
@@ -27631,10 +27631,10 @@ export interface WebhookLogResponse {
 export interface WebhookLogSummariesResponse {
     /**
      *
-     * @type {Error}
+     * @type {ModelError}
      * @memberof WebhookLogSummariesResponse
      */
-    error?: Error;
+    error?: ModelError;
     /**
      *
      * @type {ResponseMetadata}
@@ -27693,10 +27693,10 @@ export interface WebhookLogSummary {
 export interface WebhookResponse {
     /**
      *
-     * @type {Error}
+     * @type {ModelError}
      * @memberof WebhookResponse
      */
-    error?: Error;
+    error?: ModelError;
     /**
      *
      * @type {ResponseMetadata}
@@ -27761,10 +27761,10 @@ export interface WebhookSampleRequest {
 export interface WebhookSampleRequestResponse {
     /**
      *
-     * @type {Error}
+     * @type {ModelError}
      * @memberof WebhookSampleRequestResponse
      */
-    error?: Error;
+    error?: ModelError;
     /**
      *
      * @type {ResponseMetadata}
@@ -27798,10 +27798,10 @@ export interface WebhookSampleRequestResponse {
 export interface WebhooksResponse {
     /**
      *
-     * @type {Error}
+     * @type {ModelError}
      * @memberof WebhooksResponse
      */
-    error?: Error;
+    error?: ModelError;
     /**
      *
      * @type {ResponseMetadata}
