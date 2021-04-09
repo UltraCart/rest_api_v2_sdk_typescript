@@ -25157,6 +25157,18 @@ export interface ScreenRecordingFilterValues {
     page_views?: Array<ScreenRecordingFilterValuesPageView>;
     /**
      * 
+     * @type {number}
+     * @memberof ScreenRecordingFilterValues
+     */
+    time_on_site_max?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof ScreenRecordingFilterValues
+     */
+    time_on_site_min?: number;
+    /**
+     * 
      * @type {Array<string>}
      * @memberof ScreenRecordingFilterValues
      */
@@ -25289,6 +25301,18 @@ export interface ScreenRecordingFilterValuesPageView {
      * @memberof ScreenRecordingFilterValuesPageView
      */
     page_params?: Array<ScreenRecordingFilterValuesPageParam>;
+    /**
+     * 
+     * @type {number}
+     * @memberof ScreenRecordingFilterValuesPageView
+     */
+    time_on_page_max?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof ScreenRecordingFilterValuesPageView
+     */
+    time_on_page_min?: number;
     /**
      * 
      * @type {Array<string>}
