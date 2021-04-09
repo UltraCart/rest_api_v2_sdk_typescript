@@ -25289,6 +25289,12 @@ export interface ScreenRecordingFilterValuesPageView {
      * @memberof ScreenRecordingFilterValuesPageView
      */
     page_params?: Array<ScreenRecordingFilterValuesPageParam>;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof ScreenRecordingFilterValuesPageView
+     */
+    urls?: Array<string>;
 }
 
 /**
