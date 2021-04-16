@@ -24398,6 +24398,42 @@ export interface ScreenRecording {
      */
     analytics_session_oid?: number;
     /**
+     * Campaign Name
+     * @type {string}
+     * @memberof ScreenRecording
+     */
+    communications_campaign_name?: string;
+    /**
+     * Campaign UUID
+     * @type {string}
+     * @memberof ScreenRecording
+     */
+    communications_campaign_uuid?: string;
+    /**
+     * Email subject
+     * @type {string}
+     * @memberof ScreenRecording
+     */
+    communications_email_subject?: string;
+    /**
+     * Email UUID
+     * @type {string}
+     * @memberof ScreenRecording
+     */
+    communications_email_uuid?: string;
+    /**
+     * Flow Name
+     * @type {string}
+     * @memberof ScreenRecording
+     */
+    communications_flow_name?: string;
+    /**
+     * Flow UUID
+     * @type {string}
+     * @memberof ScreenRecording
+     */
+    communications_flow_uuid?: string;
+    /**
      * 
      * @type {string}
      * @memberof ScreenRecording
@@ -24603,6 +24639,24 @@ export interface ScreenRecording {
  * @interface ScreenRecordingFilter
  */
 export interface ScreenRecordingFilter {
+    /**
+     * 
+     * @type {string}
+     * @memberof ScreenRecordingFilter
+     */
+    communications_campaign_name?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ScreenRecordingFilter
+     */
+    communications_email_subject?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ScreenRecordingFilter
+     */
+    communications_flow_name?: string;
     /**
      * 
      * @type {ScreenRecordingFilterStringSearch}
@@ -25131,6 +25185,24 @@ export interface ScreenRecordingFilterStringSearch {
  * @interface ScreenRecordingFilterValues
  */
 export interface ScreenRecordingFilterValues {
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof ScreenRecordingFilterValues
+     */
+    communications_campaign_names?: Array<string>;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof ScreenRecordingFilterValues
+     */
+    communications_email_subjects?: Array<string>;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof ScreenRecordingFilterValues
+     */
+    communications_flow_names?: Array<string>;
     /**
      * 
      * @type {Array<string>}
