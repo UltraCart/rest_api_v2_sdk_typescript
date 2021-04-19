@@ -24082,6 +24082,18 @@ export interface ScreenRecording {
      */
     user_properties?: Array<ScreenRecordingUserProperty>;
     /**
+     * UTM Campaign
+     * @type {string}
+     * @memberof ScreenRecording
+     */
+    utm_campaign?: string;
+    /**
+     * UTM Source
+     * @type {string}
+     * @memberof ScreenRecording
+     */
+    utm_source?: string;
+    /**
      * Timestamp this visitor was first seen
      * @type {string}
      * @memberof ScreenRecording
@@ -24292,6 +24304,18 @@ export interface ScreenRecordingFilter {
      * @memberof ScreenRecordingFilter
      */
     user_ip?: ScreenRecordingFilterIpSearch;
+    /**
+     *
+     * @type {string}
+     * @memberof ScreenRecordingFilter
+     */
+    utm_campaign?: string;
+    /**
+     *
+     * @type {string}
+     * @memberof ScreenRecordingFilter
+     */
+    utm_source?: string;
     /**
      *
      * @type {number}
@@ -24742,6 +24766,18 @@ export interface ScreenRecordingFilterValues {
      * @memberof ScreenRecordingFilterValues
      */
     user_agent_originals?: Array<string>;
+    /**
+     *
+     * @type {Array<string>}
+     * @memberof ScreenRecordingFilterValues
+     */
+    utm_campaigns?: Array<string>;
+    /**
+     *
+     * @type {Array<string>}
+     * @memberof ScreenRecordingFilterValues
+     */
+    utm_sources?: Array<string>;
 }
 /**
  *
