@@ -9064,7 +9064,7 @@ export interface EmailCampaign {
      * @type {boolean}
      * @memberof EmailCampaign
      */
-    end_once_customer_purchases_anwyere?: boolean;
+    end_once_customer_purchases_anywhere?: boolean;
     /**
      * Campaign folder UUID.  Null for uncategorized
      * @type {string}
