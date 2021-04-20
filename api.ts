@@ -9276,11 +9276,17 @@ export interface EmailCampaign {
      */
     email_communication_sequence_uuid?: string;
     /**
-     * True if the customer should end the flow once they purchase
+     * True if the customer should end the flow once they purchase from this campaign
      * @type {boolean}
      * @memberof EmailCampaign
      */
     end_once_customer_purchases?: boolean;
+    /**
+     * True if the customer should end the flow once they purchase from anywhere
+     * @type {boolean}
+     * @memberof EmailCampaign
+     */
+    end_once_customer_purchases_anwyere?: boolean;
     /**
      * Campaign folder UUID.  Null for uncategorized
      * @type {string}
@@ -11181,11 +11187,17 @@ export interface EmailFlow {
      */
     email_flow_uuid?: string;
     /**
-     * True if the customer should end the flow once they purchase
+     * True if the customer should end the flow once they purchase from an email on this flow
      * @type {boolean}
      * @memberof EmailFlow
      */
     end_once_customer_purchases?: boolean;
+    /**
+     * True if the customer should end the flow once they purchase from any source
+     * @type {boolean}
+     * @memberof EmailFlow
+     */
+    end_once_customer_purchases_anywhere?: boolean;
     /**
      * Number of enrolled customers.
      * @type {number}
