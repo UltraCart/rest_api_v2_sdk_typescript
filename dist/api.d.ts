@@ -25396,6 +25396,36 @@ export interface ScreenRecordingSettings {
      * @memberof ScreenRecordingSettings
      */
     enabled?: boolean;
+    /**
+     *
+     * @type {number}
+     * @memberof ScreenRecordingSettings
+     */
+    sessions_current_billing_period?: number;
+    /**
+     *
+     * @type {number}
+     * @memberof ScreenRecordingSettings
+     */
+    sessions_last_billing_period?: number;
+    /**
+     *
+     * @type {number}
+     * @memberof ScreenRecordingSettings
+     */
+    sessions_trial_billing_period?: number;
+    /**
+     *
+     * @type {string}
+     * @memberof ScreenRecordingSettings
+     */
+    trial_expiration?: string;
+    /**
+     *
+     * @type {boolean}
+     * @memberof ScreenRecordingSettings
+     */
+    trial_expired?: boolean;
 }
 /**
  *
