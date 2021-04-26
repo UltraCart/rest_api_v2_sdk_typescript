@@ -23986,6 +23986,12 @@ export interface ScreenRecording {
      */
     geolocation_state?: string;
     /**
+     * Language ISO code
+     * @type {string}
+     * @memberof ScreenRecording
+     */
+    language_iso_code?: string;
+    /**
      *
      * @type {string}
      * @memberof ScreenRecording
@@ -24208,6 +24214,12 @@ export interface ScreenRecordingFilter {
      * @memberof ScreenRecordingFilter
      */
     geolocation_state?: ScreenRecordingFilterStringSearch;
+    /**
+     *
+     * @type {ScreenRecordingFilterStringSearch}
+     * @memberof ScreenRecordingFilter
+     */
+    language_iso_code?: ScreenRecordingFilterStringSearch;
     /**
      *
      * @type {number}
@@ -24718,6 +24730,12 @@ export interface ScreenRecordingFilterValues {
      * @memberof ScreenRecordingFilterValues
      */
     geolocation_states?: Array<string>;
+    /**
+     *
+     * @type {Array<string>}
+     * @memberof ScreenRecordingFilterValues
+     */
+    language_iso_codes?: Array<string>;
     /**
      *
      * @type {number}
