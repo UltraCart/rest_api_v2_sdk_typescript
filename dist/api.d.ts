@@ -7856,6 +7856,12 @@ export interface CustomerLoyalty {
      */
     ledger_entries?: Array<CustomerLoyaltyLedger>;
     /**
+     * Pending Points
+     * @type {number}
+     * @memberof CustomerLoyalty
+     */
+    pending_points?: number;
+    /**
      * Redemptions
      * @type {Array<CustomerLoyaltyRedemption>}
      * @memberof CustomerLoyalty
