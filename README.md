@@ -1,4 +1,4 @@
-## ultracart_rest_api_v2_typescript@3.1.29
+## ultracart_rest_api_v2_typescript@3.1.31
 
 This generator creates TypeScript/JavaScript client that utilizes [Fetch API](https://fetch.spec.whatwg.org/). The generated Node module can be used in the following environments:
 
@@ -36,7 +36,7 @@ navigate to the folder of your consuming project and run one of the following co
 _published:_
 
 ```
-npm install ultracart_rest_api_v2_typescript@3.1.29 --save
+npm install ultracart_rest_api_v2_typescript@3.1.31 --save
 ```
 
 _unPublished (not recommended):_
@@ -51,6 +51,8 @@ Not every change is committed to every SDK.
 
 | Version | Date | Comments |
 | --: | :-: | --- |
+| 3.1.31 | 05/06/2021 | Added email domian field to screen recordings for filtering  | 
+| 3.1.30 | 04/27/2021 | OrderApi.processPayment now allows a specific amount to be billed  | 
 | 3.1.29 | 04/26/2021 | screen recording language iso code | 
 | 3.1.28 | 04/26/2021 | screen recording statistics on the setting object | 
 | 3.1.27 | 04/20/2021 | bug fix - annotation misspell on new email campaign property |

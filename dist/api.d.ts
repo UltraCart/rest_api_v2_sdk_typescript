@@ -22144,6 +22144,12 @@ export interface OrderPaymentTransactionDetail {
  */
 export interface OrderProcessPaymentRequest {
     /**
+     * Specific amount to bill (optional).  If not specified the total of the order is billed.
+     * @type {number}
+     * @memberof OrderProcessPaymentRequest
+     */
+    amount?: number;
+    /**
      * Card verification number token from hosted fields used during credit card transaction processing (optional)
      * @type {string}
      * @memberof OrderProcessPaymentRequest
@@ -23932,6 +23938,12 @@ export interface ScreenRecording {
      */
     email?: string;
     /**
+     *
+     * @type {string}
+     * @memberof ScreenRecording
+     */
+    email_domain?: string;
+    /**
      * Ending timestamp
      * @type {string}
      * @memberof ScreenRecording
@@ -24172,6 +24184,12 @@ export interface ScreenRecordingFilter {
      * @memberof ScreenRecordingFilter
      */
     email?: ScreenRecordingFilterStringSearch;
+    /**
+     *
+     * @type {string}
+     * @memberof ScreenRecordingFilter
+     */
+    email_domain?: string;
     /**
      *
      * @type {boolean}
@@ -24718,6 +24736,12 @@ export interface ScreenRecordingFilterValues {
      * @memberof ScreenRecordingFilterValues
      */
     communications_flow_names?: Array<string>;
+    /**
+     *
+     * @type {Array<string>}
+     * @memberof ScreenRecordingFilterValues
+     */
+    email_domains?: Array<string>;
     /**
      *
      * @type {Array<string>}
