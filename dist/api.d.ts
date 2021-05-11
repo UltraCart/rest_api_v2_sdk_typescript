@@ -23885,6 +23885,12 @@ export interface ResultSet {
 export interface ScreenRecording {
     /**
      *
+     * @type {ScreenRecordingAdPlatform}
+     * @memberof ScreenRecording
+     */
+    ad_platform?: ScreenRecordingAdPlatform;
+    /**
+     *
      * @type {number}
      * @memberof ScreenRecording
      */
@@ -24163,9 +24169,64 @@ export interface ScreenRecording {
 /**
  *
  * @export
+ * @interface ScreenRecordingAdPlatform
+ */
+export interface ScreenRecordingAdPlatform {
+    /**
+     * Facebook Click Id (Cookie)
+     * @type {string}
+     * @memberof ScreenRecordingAdPlatform
+     */
+    fbc?: string;
+    /**
+     * Facebook Click Id Parameter (Parameter)
+     * @type {string}
+     * @memberof ScreenRecordingAdPlatform
+     */
+    fbclid?: string;
+    /**
+     * Facebook Browser Id (Cookie)
+     * @type {string}
+     * @memberof ScreenRecordingAdPlatform
+     */
+    fbp?: string;
+    /**
+     * Google Analytics CID (Cookie)
+     * @type {string}
+     * @memberof ScreenRecordingAdPlatform
+     */
+    gacid?: string;
+    /**
+     * Google Adwords Click Id (Parameter)
+     * @type {string}
+     * @memberof ScreenRecordingAdPlatform
+     */
+    glcid?: string;
+    /**
+     * Bing Click Id (Parameter
+     * @type {string}
+     * @memberof ScreenRecordingAdPlatform
+     */
+    msclkid?: string;
+}
+/**
+ *
+ * @export
  * @interface ScreenRecordingFilter
  */
 export interface ScreenRecordingFilter {
+    /**
+     *
+     * @type {string}
+     * @memberof ScreenRecordingFilter
+     */
+    affiliate_email?: string;
+    /**
+     *
+     * @type {number}
+     * @memberof ScreenRecordingFilter
+     */
+    affiliate_id?: number;
     /**
      *
      * @type {string}
