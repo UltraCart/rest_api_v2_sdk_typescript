@@ -24566,6 +24566,18 @@ export interface ScreenRecording {
      */
     page_views?: Array<ScreenRecordingPageView>;
     /**
+     * ISO 3 Letter language code that the customer would prefer
+     * @type {string}
+     * @memberof ScreenRecording
+     */
+    preferred_language?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ScreenRecording
+     */
+    referrer_domain?: string;
+    /**
      * 
      * @type {string}
      * @memberof ScreenRecording
@@ -24832,6 +24844,12 @@ export interface ScreenRecordingFilter {
      * @type {number}
      * @memberof ScreenRecordingFilter
      */
+    last_x_days?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof ScreenRecordingFilter
+     */
     max_filter_values?: number;
     /**
      * 
@@ -24857,6 +24875,18 @@ export interface ScreenRecordingFilter {
      * @memberof ScreenRecordingFilter
      */
     placed_order?: boolean;
+    /**
+     * 
+     * @type {ScreenRecordingFilterStringSearch}
+     * @memberof ScreenRecordingFilter
+     */
+    preferred_language?: ScreenRecordingFilterStringSearch;
+    /**
+     * 
+     * @type {string}
+     * @memberof ScreenRecordingFilter
+     */
+    referrer_domain?: string;
     /**
      * 
      * @type {Array<string>}
@@ -25375,6 +25405,18 @@ export interface ScreenRecordingFilterValues {
     page_views?: Array<ScreenRecordingFilterValuesPageView>;
     /**
      * 
+     * @type {Array<string>}
+     * @memberof ScreenRecordingFilterValues
+     */
+    preferred_languages?: Array<string>;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof ScreenRecordingFilterValues
+     */
+    referrer_domains?: Array<string>;
+    /**
+     * 
      * @type {number}
      * @memberof ScreenRecordingFilterValues
      */
@@ -25688,6 +25730,12 @@ export interface ScreenRecordingPageView {
      */
     time_on_page?: number;
     /**
+     * Amount of time for loaded event to fire (milliseconds)
+     * @type {number}
+     * @memberof ScreenRecordingPageView
+     */
+    timing_dom_content_loaded?: number;
+    /**
      * 
      * @type {boolean}
      * @memberof ScreenRecordingPageView
@@ -25763,6 +25811,12 @@ export interface ScreenRecordingPageViewEvent {
      * @memberof ScreenRecordingPageViewEvent
      */
     params?: Array<ScreenRecordingPageViewEventParameter>;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof ScreenRecordingPageViewEvent
+     */
+    prior_page_view?: boolean;
     /**
      * Timestamp of the event
      * @type {string}

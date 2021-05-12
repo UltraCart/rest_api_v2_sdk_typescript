@@ -1,4 +1,4 @@
-## ultracart_rest_api_v2_typescript@3.1.33
+## ultracart_rest_api_v2_typescript@3.1.34
 
 This generator creates TypeScript/JavaScript client that utilizes [Fetch API](https://fetch.spec.whatwg.org/). The generated Node module can be used in the following environments:
 
@@ -36,7 +36,7 @@ navigate to the folder of your consuming project and run one of the following co
 _published:_
 
 ```
-npm install ultracart_rest_api_v2_typescript@3.1.33 --save
+npm install ultracart_rest_api_v2_typescript@3.1.34 --save
 ```
 
 _unPublished (not recommended):_
@@ -51,6 +51,7 @@ Not every change is committed to every SDK.
 
 | Version | Date | Comments |
 | --: | :-: | --- |
+| 3.1.34 | 05/12/2021 | screen recording preferred language, last x days filter, referrer domain | 
 | 3.1.33 | 05/11/2021 | creen recording filter for affiliate id and email | 
 | 3.1.32 | 05/06/2021 | customer profile pending loyalty points  | 
 | 3.1.31 | 05/06/2021 | Added email domian field to screen recordings for filtering  | 
