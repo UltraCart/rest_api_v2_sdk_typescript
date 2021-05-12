@@ -25189,11 +25189,17 @@ export interface ScreenRecordingPageView {
      */
     time_on_page?: number;
     /**
-     * Amount of time for loaded event to fire (milliseconds)
+     * Amount of time for DOMContentLoaded event to fire (milliseconds)
      * @type {number}
      * @memberof ScreenRecordingPageView
      */
     timing_dom_content_loaded?: number;
+    /**
+     * Amount of time for loaded event to fire (milliseconds)
+     * @type {number}
+     * @memberof ScreenRecordingPageView
+     */
+    timing_loaded?: number;
     /**
      *
      * @type {boolean}
