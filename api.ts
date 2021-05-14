@@ -25917,6 +25917,24 @@ export interface ScreenRecordingQueryResponse {
     filter_values?: ScreenRecordingFilterValues;
     /**
      * 
+     * @type {Array<number>}
+     * @memberof ScreenRecordingQueryResponse
+     */
+    histogram_data?: Array<number>;
+    /**
+     * 
+     * @type {string}
+     * @memberof ScreenRecordingQueryResponse
+     */
+    histogram_interval?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ScreenRecordingQueryResponse
+     */
+    histogram_start_dts?: string;
+    /**
+     * 
      * @type {ResponseMetadata}
      * @memberof ScreenRecordingQueryResponse
      */
@@ -26003,6 +26021,24 @@ export interface ScreenRecordingSegment {
      * @memberof ScreenRecordingSegment
      */
     filter?: ScreenRecordingFilter;
+    /**
+     * 
+     * @type {Array<number>}
+     * @memberof ScreenRecordingSegment
+     */
+    histogram_data?: Array<number>;
+    /**
+     * 
+     * @type {string}
+     * @memberof ScreenRecordingSegment
+     */
+    histogram_interval?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ScreenRecordingSegment
+     */
+    histogram_start_dts?: string;
     /**
      * 
      * @type {string}
