@@ -9912,7 +9912,7 @@ exports.OauthApi = OauthApi;
 var OrderApiFetchParamCreator = function (configuration) {
     return {
         /**
-         * Adjusts an order total.  Adjusts individual items appropriately and considers taxes.  Desired total should be provided in the same currency as the order.  Returns true if successful.
+         * Adjusts an order total.  Adjusts individual items appropriately and considers taxes.  Desired total should be provided in the same currency as the order and must be less than the current total and greater than zero.  This call will change the order total.  It returns true if the desired total is achieved.  If the goal seeking algorithm falls short (usually by pennies), this method returns back false.  View the merchant notes for the order for further details.
          * @summary Adjusts an order total
          * @param {string} order_id The order id to cancel.
          * @param {string} desired_total The desired total with no formatting. example 123.45
@@ -11119,7 +11119,7 @@ exports.OrderApiFetchParamCreator = OrderApiFetchParamCreator;
 var OrderApiFp = function (configuration) {
     return {
         /**
-         * Adjusts an order total.  Adjusts individual items appropriately and considers taxes.  Desired total should be provided in the same currency as the order.  Returns true if successful.
+         * Adjusts an order total.  Adjusts individual items appropriately and considers taxes.  Desired total should be provided in the same currency as the order and must be less than the current total and greater than zero.  This call will change the order total.  It returns true if the desired total is achieved.  If the goal seeking algorithm falls short (usually by pennies), this method returns back false.  View the merchant notes for the order for further details.
          * @summary Adjusts an order total
          * @param {string} order_id The order id to cancel.
          * @param {string} desired_total The desired total with no formatting. example 123.45
@@ -11631,7 +11631,7 @@ exports.OrderApiFp = OrderApiFp;
 var OrderApiFactory = function (configuration, fetch, basePath) {
     return {
         /**
-         * Adjusts an order total.  Adjusts individual items appropriately and considers taxes.  Desired total should be provided in the same currency as the order.  Returns true if successful.
+         * Adjusts an order total.  Adjusts individual items appropriately and considers taxes.  Desired total should be provided in the same currency as the order and must be less than the current total and greater than zero.  This call will change the order total.  It returns true if the desired total is achieved.  If the goal seeking algorithm falls short (usually by pennies), this method returns back false.  View the merchant notes for the order for further details.
          * @summary Adjusts an order total
          * @param {string} order_id The order id to cancel.
          * @param {string} desired_total The desired total with no formatting. example 123.45
@@ -11908,7 +11908,7 @@ var OrderApi = /** @class */ (function (_super) {
         return _super !== null && _super.apply(this, arguments) || this;
     }
     /**
-     * Adjusts an order total.  Adjusts individual items appropriately and considers taxes.  Desired total should be provided in the same currency as the order.  Returns true if successful.
+     * Adjusts an order total.  Adjusts individual items appropriately and considers taxes.  Desired total should be provided in the same currency as the order and must be less than the current total and greater than zero.  This call will change the order total.  It returns true if the desired total is achieved.  If the goal seeking algorithm falls short (usually by pennies), this method returns back false.  View the merchant notes for the order for further details.
      * @summary Adjusts an order total
      * @param {string} order_id The order id to cancel.
      * @param {string} desired_total The desired total with no formatting. example 123.45
@@ -13205,6 +13205,60 @@ var StorefrontApiFetchParamCreator = function (configuration) {
             // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
             delete localVarUrlObj.search;
             localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Delete screen recording heatmap
+         * @summary Delete screen recording heatmap
+         * @param {number} storefront_oid
+         * @param {ScreenRecordingHeatmapReset} query Query
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        deleteHeatmap: function (storefront_oid, query, options) {
+            if (options === void 0) { options = {}; }
+            // verify required parameter 'storefront_oid' is not null or undefined
+            if (storefront_oid === null || storefront_oid === undefined) {
+                throw new RequiredError('storefront_oid', 'Required parameter storefront_oid was null or undefined when calling deleteHeatmap.');
+            }
+            // verify required parameter 'query' is not null or undefined
+            if (query === null || query === undefined) {
+                throw new RequiredError('query', 'Required parameter query was null or undefined when calling deleteHeatmap.');
+            }
+            var localVarPath = "/storefront/{storefront_oid}/screen_recordings/heatmap"
+                .replace("{" + "storefront_oid" + "}", encodeURIComponent(String(storefront_oid)));
+            var localVarUrlObj = url.parse(localVarPath, true);
+            var localVarRequestOptions = Object.assign({ method: 'DELETE' }, options);
+            var localVarHeaderParameter = {};
+            var localVarQueryParameter = {};
+            if (configuration && configuration.apiVersion) {
+                localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+            }
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+                var localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+                    ? configuration.accessToken("ultraCartOauth", ["storefront_read"])
+                    : configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                var localVarApiKeyValue = typeof configuration.apiKey === 'function'
+                    ? configuration.apiKey("x-ultracart-simple-key")
+                    : configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+            var needsSerialization = ("ScreenRecordingHeatmapReset" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
+            localVarRequestOptions.body = needsSerialization ? JSON.stringify(query || {}) : (query || "");
             return {
                 url: url.format(localVarUrlObj),
                 options: localVarRequestOptions,
@@ -16607,6 +16661,106 @@ var StorefrontApiFetchParamCreator = function (configuration) {
                     ? configuration.apiKey("x-ultracart-browser-key")
                     : configuration.apiKey;
                 localVarHeaderParameter["x-ultracart-browser-key"] = localVarApiKeyValue;
+            }
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+                var localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+                    ? configuration.accessToken("ultraCartOauth", ["storefront_read"])
+                    : configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                var localVarApiKeyValue = typeof configuration.apiKey === 'function'
+                    ? configuration.apiKey("x-ultracart-simple-key")
+                    : configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Get screen recording heatmap
+         * @summary Get screen recording heatmap
+         * @param {number} storefront_oid
+         * @param {ScreenRecordingHeatmapRequest} query Query
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getHeatmap: function (storefront_oid, query, options) {
+            if (options === void 0) { options = {}; }
+            // verify required parameter 'storefront_oid' is not null or undefined
+            if (storefront_oid === null || storefront_oid === undefined) {
+                throw new RequiredError('storefront_oid', 'Required parameter storefront_oid was null or undefined when calling getHeatmap.');
+            }
+            // verify required parameter 'query' is not null or undefined
+            if (query === null || query === undefined) {
+                throw new RequiredError('query', 'Required parameter query was null or undefined when calling getHeatmap.');
+            }
+            var localVarPath = "/storefront/{storefront_oid}/screen_recordings/heatmap"
+                .replace("{" + "storefront_oid" + "}", encodeURIComponent(String(storefront_oid)));
+            var localVarUrlObj = url.parse(localVarPath, true);
+            var localVarRequestOptions = Object.assign({ method: 'POST' }, options);
+            var localVarHeaderParameter = {};
+            var localVarQueryParameter = {};
+            if (configuration && configuration.apiVersion) {
+                localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+            }
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+                var localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+                    ? configuration.accessToken("ultraCartOauth", ["storefront_read"])
+                    : configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                var localVarApiKeyValue = typeof configuration.apiKey === 'function'
+                    ? configuration.apiKey("x-ultracart-simple-key")
+                    : configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+            var needsSerialization = ("ScreenRecordingHeatmapRequest" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
+            localVarRequestOptions.body = needsSerialization ? JSON.stringify(query || {}) : (query || "");
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Get screen recording heatmap index
+         * @summary Get screen recording heatmap index
+         * @param {number} storefront_oid
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getHeatmapIndex: function (storefront_oid, options) {
+            if (options === void 0) { options = {}; }
+            // verify required parameter 'storefront_oid' is not null or undefined
+            if (storefront_oid === null || storefront_oid === undefined) {
+                throw new RequiredError('storefront_oid', 'Required parameter storefront_oid was null or undefined when calling getHeatmapIndex.');
+            }
+            var localVarPath = "/storefront/{storefront_oid}/screen_recordings/heatmap/index"
+                .replace("{" + "storefront_oid" + "}", encodeURIComponent(String(storefront_oid)));
+            var localVarUrlObj = url.parse(localVarPath, true);
+            var localVarRequestOptions = Object.assign({ method: 'POST' }, options);
+            var localVarHeaderParameter = {};
+            var localVarQueryParameter = {};
+            if (configuration && configuration.apiVersion) {
+                localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
             }
             // authentication ultraCartOauth required
             // oauth required
@@ -21161,6 +21315,29 @@ var StorefrontApiFp = function (configuration) {
             };
         },
         /**
+         * Delete screen recording heatmap
+         * @summary Delete screen recording heatmap
+         * @param {number} storefront_oid
+         * @param {ScreenRecordingHeatmapReset} query Query
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        deleteHeatmap: function (storefront_oid, query, options) {
+            var localVarFetchArgs = exports.StorefrontApiFetchParamCreator(configuration).deleteHeatmap(storefront_oid, query, options);
+            return function (fetch, basePath) {
+                if (fetch === void 0) { fetch = portableFetch; }
+                if (basePath === void 0) { basePath = BASE_PATH; }
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(function (response) {
+                    if (response.status >= 200 && response.status < 300) {
+                        return response;
+                    }
+                    else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
          *
          * @summary Delete library item
          * @param {number} library_item_oid
@@ -22497,6 +22674,51 @@ var StorefrontApiFp = function (configuration) {
          */
         getExperiments: function (storefront_oid, options) {
             var localVarFetchArgs = exports.StorefrontApiFetchParamCreator(configuration).getExperiments(storefront_oid, options);
+            return function (fetch, basePath) {
+                if (fetch === void 0) { fetch = portableFetch; }
+                if (basePath === void 0) { basePath = BASE_PATH; }
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(function (response) {
+                    if (response.status >= 200 && response.status < 300) {
+                        return response.json();
+                    }
+                    else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
+         * Get screen recording heatmap
+         * @summary Get screen recording heatmap
+         * @param {number} storefront_oid
+         * @param {ScreenRecordingHeatmapRequest} query Query
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getHeatmap: function (storefront_oid, query, options) {
+            var localVarFetchArgs = exports.StorefrontApiFetchParamCreator(configuration).getHeatmap(storefront_oid, query, options);
+            return function (fetch, basePath) {
+                if (fetch === void 0) { fetch = portableFetch; }
+                if (basePath === void 0) { basePath = BASE_PATH; }
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(function (response) {
+                    if (response.status >= 200 && response.status < 300) {
+                        return response.json();
+                    }
+                    else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
+         * Get screen recording heatmap index
+         * @summary Get screen recording heatmap index
+         * @param {number} storefront_oid
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getHeatmapIndex: function (storefront_oid, options) {
+            var localVarFetchArgs = exports.StorefrontApiFetchParamCreator(configuration).getHeatmapIndex(storefront_oid, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -24302,6 +24524,17 @@ var StorefrontApiFactory = function (configuration, fetch, basePath) {
             return exports.StorefrontApiFp(configuration).deleteExperiment(storefront_oid, storefront_experiment_oid, options)(fetch, basePath);
         },
         /**
+         * Delete screen recording heatmap
+         * @summary Delete screen recording heatmap
+         * @param {number} storefront_oid
+         * @param {ScreenRecordingHeatmapReset} query Query
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        deleteHeatmap: function (storefront_oid, query, options) {
+            return exports.StorefrontApiFp(configuration).deleteHeatmap(storefront_oid, query, options)(fetch, basePath);
+        },
+        /**
          *
          * @summary Delete library item
          * @param {number} library_item_oid
@@ -24942,6 +25175,27 @@ var StorefrontApiFactory = function (configuration, fetch, basePath) {
          */
         getExperiments: function (storefront_oid, options) {
             return exports.StorefrontApiFp(configuration).getExperiments(storefront_oid, options)(fetch, basePath);
+        },
+        /**
+         * Get screen recording heatmap
+         * @summary Get screen recording heatmap
+         * @param {number} storefront_oid
+         * @param {ScreenRecordingHeatmapRequest} query Query
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getHeatmap: function (storefront_oid, query, options) {
+            return exports.StorefrontApiFp(configuration).getHeatmap(storefront_oid, query, options)(fetch, basePath);
+        },
+        /**
+         * Get screen recording heatmap index
+         * @summary Get screen recording heatmap index
+         * @param {number} storefront_oid
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getHeatmapIndex: function (storefront_oid, options) {
+            return exports.StorefrontApiFp(configuration).getHeatmapIndex(storefront_oid, options)(fetch, basePath);
         },
         /**
          * Obtain a list of property names for a given property type
@@ -25941,6 +26195,18 @@ var StorefrontApi = /** @class */ (function (_super) {
         return exports.StorefrontApiFp(this.configuration).deleteExperiment(storefront_oid, storefront_experiment_oid, options)(this.fetch, this.basePath);
     };
     /**
+     * Delete screen recording heatmap
+     * @summary Delete screen recording heatmap
+     * @param {number} storefront_oid
+     * @param {ScreenRecordingHeatmapReset} query Query
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof StorefrontApi
+     */
+    StorefrontApi.prototype.deleteHeatmap = function (storefront_oid, query, options) {
+        return exports.StorefrontApiFp(this.configuration).deleteHeatmap(storefront_oid, query, options)(this.fetch, this.basePath);
+    };
+    /**
      *
      * @summary Delete library item
      * @param {number} library_item_oid
@@ -26640,6 +26906,29 @@ var StorefrontApi = /** @class */ (function (_super) {
      */
     StorefrontApi.prototype.getExperiments = function (storefront_oid, options) {
         return exports.StorefrontApiFp(this.configuration).getExperiments(storefront_oid, options)(this.fetch, this.basePath);
+    };
+    /**
+     * Get screen recording heatmap
+     * @summary Get screen recording heatmap
+     * @param {number} storefront_oid
+     * @param {ScreenRecordingHeatmapRequest} query Query
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof StorefrontApi
+     */
+    StorefrontApi.prototype.getHeatmap = function (storefront_oid, query, options) {
+        return exports.StorefrontApiFp(this.configuration).getHeatmap(storefront_oid, query, options)(this.fetch, this.basePath);
+    };
+    /**
+     * Get screen recording heatmap index
+     * @summary Get screen recording heatmap index
+     * @param {number} storefront_oid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof StorefrontApi
+     */
+    StorefrontApi.prototype.getHeatmapIndex = function (storefront_oid, options) {
+        return exports.StorefrontApiFp(this.configuration).getHeatmapIndex(storefront_oid, options)(this.fetch, this.basePath);
     };
     /**
      * Obtain a list of property names for a given property type

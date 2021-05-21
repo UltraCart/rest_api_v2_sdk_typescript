@@ -22965,6 +22965,12 @@ export interface OrderSummary {
      * @type {Currency}
      * @memberof OrderSummary
      */
+    actual_payment_processing?: Currency;
+    /**
+     *
+     * @type {Currency}
+     * @memberof OrderSummary
+     */
     actual_shipping?: Currency;
     /**
      *
@@ -24544,6 +24550,12 @@ export interface ScreenRecordingFilterIpSearch {
 export interface ScreenRecordingFilterPageView {
     /**
      *
+     * @type {ScreenRecordingFilterStringSearch}
+     * @memberof ScreenRecordingFilterPageView
+     */
+    domain?: ScreenRecordingFilterStringSearch;
+    /**
+     *
      * @type {Array<ScreenRecordingFilterPageViewEvent>}
      * @memberof ScreenRecordingFilterPageView
      */
@@ -25025,6 +25037,12 @@ export interface ScreenRecordingFilterValuesPageParam {
 export interface ScreenRecordingFilterValuesPageView {
     /**
      *
+     * @type {Array<string>}
+     * @memberof ScreenRecordingFilterValuesPageView
+     */
+    domains?: Array<string>;
+    /**
+     *
      * @type {Array<ScreenRecordingFilterValuesEvent>}
      * @memberof ScreenRecordingFilterValuesPageView
      */
@@ -25053,6 +25071,228 @@ export interface ScreenRecordingFilterValuesPageView {
      * @memberof ScreenRecordingFilterValuesPageView
      */
     urls?: Array<string>;
+}
+/**
+ *
+ * @export
+ * @interface ScreenRecordingHeatmap
+ */
+export interface ScreenRecordingHeatmap {
+    /**
+     *
+     * @type {string}
+     * @memberof ScreenRecordingHeatmap
+     */
+    large_click_url?: string;
+    /**
+     *
+     * @type {string}
+     * @memberof ScreenRecordingHeatmap
+     */
+    large_movement_url?: string;
+    /**
+     *
+     * @type {string}
+     * @memberof ScreenRecordingHeatmap
+     */
+    large_regular_url?: string;
+    /**
+     *
+     * @type {string}
+     * @memberof ScreenRecordingHeatmap
+     */
+    large_scroll_url?: string;
+    /**
+     *
+     * @type {string}
+     * @memberof ScreenRecordingHeatmap
+     */
+    medium_click_url?: string;
+    /**
+     *
+     * @type {string}
+     * @memberof ScreenRecordingHeatmap
+     */
+    medium_movement_url?: string;
+    /**
+     *
+     * @type {string}
+     * @memberof ScreenRecordingHeatmap
+     */
+    medium_regular_url?: string;
+    /**
+     *
+     * @type {string}
+     * @memberof ScreenRecordingHeatmap
+     */
+    medium_scroll_url?: string;
+    /**
+     *
+     * @type {string}
+     * @memberof ScreenRecordingHeatmap
+     */
+    small_click_url?: string;
+    /**
+     *
+     * @type {string}
+     * @memberof ScreenRecordingHeatmap
+     */
+    small_movement_url?: string;
+    /**
+     *
+     * @type {string}
+     * @memberof ScreenRecordingHeatmap
+     */
+    small_regular_url?: string;
+    /**
+     *
+     * @type {string}
+     * @memberof ScreenRecordingHeatmap
+     */
+    small_scroll_url?: string;
+}
+/**
+ *
+ * @export
+ * @interface ScreenRecordingHeatmapIndexResponse
+ */
+export interface ScreenRecordingHeatmapIndexResponse {
+    /**
+     *
+     * @type {ModelError}
+     * @memberof ScreenRecordingHeatmapIndexResponse
+     */
+    error?: ModelError;
+    /**
+     *
+     * @type {Array<ScreenRecordingHeatmapUrl>}
+     * @memberof ScreenRecordingHeatmapIndexResponse
+     */
+    heatmap_urls?: Array<ScreenRecordingHeatmapUrl>;
+    /**
+     *
+     * @type {ResponseMetadata}
+     * @memberof ScreenRecordingHeatmapIndexResponse
+     */
+    metadata?: ResponseMetadata;
+    /**
+     * Indicates if API call was successful
+     * @type {boolean}
+     * @memberof ScreenRecordingHeatmapIndexResponse
+     */
+    success?: boolean;
+    /**
+     *
+     * @type {Warning}
+     * @memberof ScreenRecordingHeatmapIndexResponse
+     */
+    warning?: Warning;
+}
+/**
+ *
+ * @export
+ * @interface ScreenRecordingHeatmapRequest
+ */
+export interface ScreenRecordingHeatmapRequest {
+    /**
+     *
+     * @type {ScreenRecordingFilterRangeDate}
+     * @memberof ScreenRecordingHeatmapRequest
+     */
+    range?: ScreenRecordingFilterRangeDate;
+    /**
+     *
+     * @type {string}
+     * @memberof ScreenRecordingHeatmapRequest
+     */
+    url?: string;
+}
+/**
+ *
+ * @export
+ * @interface ScreenRecordingHeatmapReset
+ */
+export interface ScreenRecordingHeatmapReset {
+    /**
+     *
+     * @type {string}
+     * @memberof ScreenRecordingHeatmapReset
+     */
+    url?: string;
+}
+/**
+ *
+ * @export
+ * @interface ScreenRecordingHeatmapResponse
+ */
+export interface ScreenRecordingHeatmapResponse {
+    /**
+     *
+     * @type {ModelError}
+     * @memberof ScreenRecordingHeatmapResponse
+     */
+    error?: ModelError;
+    /**
+     *
+     * @type {ScreenRecordingHeatmap}
+     * @memberof ScreenRecordingHeatmapResponse
+     */
+    heatmap?: ScreenRecordingHeatmap;
+    /**
+     *
+     * @type {ResponseMetadata}
+     * @memberof ScreenRecordingHeatmapResponse
+     */
+    metadata?: ResponseMetadata;
+    /**
+     * Indicates if API call was successful
+     * @type {boolean}
+     * @memberof ScreenRecordingHeatmapResponse
+     */
+    success?: boolean;
+    /**
+     *
+     * @type {Warning}
+     * @memberof ScreenRecordingHeatmapResponse
+     */
+    warning?: Warning;
+}
+/**
+ *
+ * @export
+ * @interface ScreenRecordingHeatmapUrl
+ */
+export interface ScreenRecordingHeatmapUrl {
+    /**
+     *
+     * @type {Array<number>}
+     * @memberof ScreenRecordingHeatmapUrl
+     */
+    histogram_data?: Array<number>;
+    /**
+     *
+     * @type {string}
+     * @memberof ScreenRecordingHeatmapUrl
+     */
+    histogram_interval?: string;
+    /**
+     *
+     * @type {string}
+     * @memberof ScreenRecordingHeatmapUrl
+     */
+    histogram_start_dts?: string;
+    /**
+     *
+     * @type {number}
+     * @memberof ScreenRecordingHeatmapUrl
+     */
+    session_count?: number;
+    /**
+     *
+     * @type {string}
+     * @memberof ScreenRecordingHeatmapUrl
+     */
+    url?: string;
 }
 /**
  *
@@ -25110,6 +25350,12 @@ export interface ScreenRecordingMultifield {
  * @interface ScreenRecordingPageView
  */
 export interface ScreenRecordingPageView {
+    /**
+     *
+     * @type {string}
+     * @memberof ScreenRecordingPageView
+     */
+    domain?: string;
     /**
      *
      * @type {Array<ScreenRecordingPageViewEvent>}
@@ -32803,7 +33049,7 @@ export declare class OauthApi extends BaseAPI implements OauthApiInterface {
  */
 export declare const OrderApiFetchParamCreator: (configuration?: Configuration) => {
     /**
-     * Adjusts an order total.  Adjusts individual items appropriately and considers taxes.  Desired total should be provided in the same currency as the order.  Returns true if successful.
+     * Adjusts an order total.  Adjusts individual items appropriately and considers taxes.  Desired total should be provided in the same currency as the order and must be less than the current total and greater than zero.  This call will change the order total.  It returns true if the desired total is achieved.  If the goal seeking algorithm falls short (usually by pennies), this method returns back false.  View the merchant notes for the order for further details.
      * @summary Adjusts an order total
      * @param {string} order_id The order id to cancel.
      * @param {string} desired_total The desired total with no formatting. example 123.45
@@ -33032,7 +33278,7 @@ export declare const OrderApiFetchParamCreator: (configuration?: Configuration) 
  */
 export declare const OrderApiFp: (configuration?: Configuration) => {
     /**
-     * Adjusts an order total.  Adjusts individual items appropriately and considers taxes.  Desired total should be provided in the same currency as the order.  Returns true if successful.
+     * Adjusts an order total.  Adjusts individual items appropriately and considers taxes.  Desired total should be provided in the same currency as the order and must be less than the current total and greater than zero.  This call will change the order total.  It returns true if the desired total is achieved.  If the goal seeking algorithm falls short (usually by pennies), this method returns back false.  View the merchant notes for the order for further details.
      * @summary Adjusts an order total
      * @param {string} order_id The order id to cancel.
      * @param {string} desired_total The desired total with no formatting. example 123.45
@@ -33261,7 +33507,7 @@ export declare const OrderApiFp: (configuration?: Configuration) => {
  */
 export declare const OrderApiFactory: (configuration?: Configuration, fetch?: FetchAPI, basePath?: string) => {
     /**
-     * Adjusts an order total.  Adjusts individual items appropriately and considers taxes.  Desired total should be provided in the same currency as the order.  Returns true if successful.
+     * Adjusts an order total.  Adjusts individual items appropriately and considers taxes.  Desired total should be provided in the same currency as the order and must be less than the current total and greater than zero.  This call will change the order total.  It returns true if the desired total is achieved.  If the goal seeking algorithm falls short (usually by pennies), this method returns back false.  View the merchant notes for the order for further details.
      * @summary Adjusts an order total
      * @param {string} order_id The order id to cancel.
      * @param {string} desired_total The desired total with no formatting. example 123.45
@@ -33491,7 +33737,7 @@ export declare const OrderApiFactory: (configuration?: Configuration, fetch?: Fe
  */
 export interface OrderApiInterface {
     /**
-     * Adjusts an order total.  Adjusts individual items appropriately and considers taxes.  Desired total should be provided in the same currency as the order.  Returns true if successful.
+     * Adjusts an order total.  Adjusts individual items appropriately and considers taxes.  Desired total should be provided in the same currency as the order and must be less than the current total and greater than zero.  This call will change the order total.  It returns true if the desired total is achieved.  If the goal seeking algorithm falls short (usually by pennies), this method returns back false.  View the merchant notes for the order for further details.
      * @summary Adjusts an order total
      * @param {string} order_id The order id to cancel.
      * @param {string} desired_total The desired total with no formatting. example 123.45
@@ -33742,7 +33988,7 @@ export interface OrderApiInterface {
  */
 export declare class OrderApi extends BaseAPI implements OrderApiInterface {
     /**
-     * Adjusts an order total.  Adjusts individual items appropriately and considers taxes.  Desired total should be provided in the same currency as the order.  Returns true if successful.
+     * Adjusts an order total.  Adjusts individual items appropriately and considers taxes.  Desired total should be provided in the same currency as the order and must be less than the current total and greater than zero.  This call will change the order total.  It returns true if the desired total is achieved.  If the goal seeking algorithm falls short (usually by pennies), this method returns back false.  View the merchant notes for the order for further details.
      * @summary Adjusts an order total
      * @param {string} order_id The order id to cancel.
      * @param {string} desired_total The desired total with no formatting. example 123.45
@@ -34144,6 +34390,15 @@ export declare const StorefrontApiFetchParamCreator: (configuration?: Configurat
      * @throws {RequiredError}
      */
     deleteExperiment(storefront_oid: number, storefront_experiment_oid: number, options?: any): FetchArgs;
+    /**
+     * Delete screen recording heatmap
+     * @summary Delete screen recording heatmap
+     * @param {number} storefront_oid
+     * @param {ScreenRecordingHeatmapReset} query Query
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    deleteHeatmap(storefront_oid: number, query: ScreenRecordingHeatmapReset, options?: any): FetchArgs;
     /**
      *
      * @summary Delete library item
@@ -34668,6 +34923,23 @@ export declare const StorefrontApiFetchParamCreator: (configuration?: Configurat
      * @throws {RequiredError}
      */
     getExperiments(storefront_oid: number, options?: any): FetchArgs;
+    /**
+     * Get screen recording heatmap
+     * @summary Get screen recording heatmap
+     * @param {number} storefront_oid
+     * @param {ScreenRecordingHeatmapRequest} query Query
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getHeatmap(storefront_oid: number, query: ScreenRecordingHeatmapRequest, options?: any): FetchArgs;
+    /**
+     * Get screen recording heatmap index
+     * @summary Get screen recording heatmap index
+     * @param {number} storefront_oid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getHeatmapIndex(storefront_oid: number, options?: any): FetchArgs;
     /**
      * Obtain a list of property names for a given property type
      * @summary Get histogram property names
@@ -35471,6 +35743,15 @@ export declare const StorefrontApiFp: (configuration?: Configuration) => {
      */
     deleteExperiment(storefront_oid: number, storefront_experiment_oid: number, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Response>;
     /**
+     * Delete screen recording heatmap
+     * @summary Delete screen recording heatmap
+     * @param {number} storefront_oid
+     * @param {ScreenRecordingHeatmapReset} query Query
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    deleteHeatmap(storefront_oid: number, query: ScreenRecordingHeatmapReset, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Response>;
+    /**
      *
      * @summary Delete library item
      * @param {number} library_item_oid
@@ -35994,6 +36275,23 @@ export declare const StorefrontApiFp: (configuration?: Configuration) => {
      * @throws {RequiredError}
      */
     getExperiments(storefront_oid: number, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ExperimentsResponse>;
+    /**
+     * Get screen recording heatmap
+     * @summary Get screen recording heatmap
+     * @param {number} storefront_oid
+     * @param {ScreenRecordingHeatmapRequest} query Query
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getHeatmap(storefront_oid: number, query: ScreenRecordingHeatmapRequest, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ScreenRecordingHeatmapResponse>;
+    /**
+     * Get screen recording heatmap index
+     * @summary Get screen recording heatmap index
+     * @param {number} storefront_oid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getHeatmapIndex(storefront_oid: number, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ScreenRecordingHeatmapIndexResponse>;
     /**
      * Obtain a list of property names for a given property type
      * @summary Get histogram property names
@@ -36797,6 +37095,15 @@ export declare const StorefrontApiFactory: (configuration?: Configuration, fetch
      */
     deleteExperiment(storefront_oid: number, storefront_experiment_oid: number, options?: any): Promise<Response>;
     /**
+     * Delete screen recording heatmap
+     * @summary Delete screen recording heatmap
+     * @param {number} storefront_oid
+     * @param {ScreenRecordingHeatmapReset} query Query
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    deleteHeatmap(storefront_oid: number, query: ScreenRecordingHeatmapReset, options?: any): Promise<Response>;
+    /**
      *
      * @summary Delete library item
      * @param {number} library_item_oid
@@ -37320,6 +37627,23 @@ export declare const StorefrontApiFactory: (configuration?: Configuration, fetch
      * @throws {RequiredError}
      */
     getExperiments(storefront_oid: number, options?: any): Promise<ExperimentsResponse>;
+    /**
+     * Get screen recording heatmap
+     * @summary Get screen recording heatmap
+     * @param {number} storefront_oid
+     * @param {ScreenRecordingHeatmapRequest} query Query
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getHeatmap(storefront_oid: number, query: ScreenRecordingHeatmapRequest, options?: any): Promise<ScreenRecordingHeatmapResponse>;
+    /**
+     * Get screen recording heatmap index
+     * @summary Get screen recording heatmap index
+     * @param {number} storefront_oid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getHeatmapIndex(storefront_oid: number, options?: any): Promise<ScreenRecordingHeatmapIndexResponse>;
     /**
      * Obtain a list of property names for a given property type
      * @summary Get histogram property names
@@ -38141,6 +38465,16 @@ export interface StorefrontApiInterface {
      */
     deleteExperiment(storefront_oid: number, storefront_experiment_oid: number, options?: any): Promise<{}>;
     /**
+     * Delete screen recording heatmap
+     * @summary Delete screen recording heatmap
+     * @param {number} storefront_oid
+     * @param {ScreenRecordingHeatmapReset} query Query
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof StorefrontApiInterface
+     */
+    deleteHeatmap(storefront_oid: number, query: ScreenRecordingHeatmapReset, options?: any): Promise<{}>;
+    /**
      *
      * @summary Delete library item
      * @param {number} library_item_oid
@@ -38723,6 +39057,25 @@ export interface StorefrontApiInterface {
      * @memberof StorefrontApiInterface
      */
     getExperiments(storefront_oid: number, options?: any): Promise<ExperimentsResponse>;
+    /**
+     * Get screen recording heatmap
+     * @summary Get screen recording heatmap
+     * @param {number} storefront_oid
+     * @param {ScreenRecordingHeatmapRequest} query Query
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof StorefrontApiInterface
+     */
+    getHeatmap(storefront_oid: number, query: ScreenRecordingHeatmapRequest, options?: any): Promise<ScreenRecordingHeatmapResponse>;
+    /**
+     * Get screen recording heatmap index
+     * @summary Get screen recording heatmap index
+     * @param {number} storefront_oid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof StorefrontApiInterface
+     */
+    getHeatmapIndex(storefront_oid: number, options?: any): Promise<ScreenRecordingHeatmapIndexResponse>;
     /**
      * Obtain a list of property names for a given property type
      * @summary Get histogram property names
@@ -39613,6 +39966,16 @@ export declare class StorefrontApi extends BaseAPI implements StorefrontApiInter
      */
     deleteExperiment(storefront_oid: number, storefront_experiment_oid: number, options?: any): Promise<Response>;
     /**
+     * Delete screen recording heatmap
+     * @summary Delete screen recording heatmap
+     * @param {number} storefront_oid
+     * @param {ScreenRecordingHeatmapReset} query Query
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof StorefrontApi
+     */
+    deleteHeatmap(storefront_oid: number, query: ScreenRecordingHeatmapReset, options?: any): Promise<Response>;
+    /**
      *
      * @summary Delete library item
      * @param {number} library_item_oid
@@ -40195,6 +40558,25 @@ export declare class StorefrontApi extends BaseAPI implements StorefrontApiInter
      * @memberof StorefrontApi
      */
     getExperiments(storefront_oid: number, options?: any): Promise<ExperimentsResponse>;
+    /**
+     * Get screen recording heatmap
+     * @summary Get screen recording heatmap
+     * @param {number} storefront_oid
+     * @param {ScreenRecordingHeatmapRequest} query Query
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof StorefrontApi
+     */
+    getHeatmap(storefront_oid: number, query: ScreenRecordingHeatmapRequest, options?: any): Promise<ScreenRecordingHeatmapResponse>;
+    /**
+     * Get screen recording heatmap index
+     * @summary Get screen recording heatmap index
+     * @param {number} storefront_oid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof StorefrontApi
+     */
+    getHeatmapIndex(storefront_oid: number, options?: any): Promise<ScreenRecordingHeatmapIndexResponse>;
     /**
      * Obtain a list of property names for a given property type
      * @summary Get histogram property names
