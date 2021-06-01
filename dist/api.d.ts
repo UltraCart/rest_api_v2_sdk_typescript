@@ -6819,6 +6819,12 @@ export interface CouponTierAmount {
      */
     discount_amount?: number;
     /**
+     * Quickbooks accounting code.
+     * @type {string}
+     * @memberof CouponTierAmount
+     */
+    quickbooks_code?: string;
+    /**
      * The amount of subtotal required to receive the discount amount
      * @type {number}
      * @memberof CouponTierAmount
@@ -6857,6 +6863,12 @@ export interface CouponTierPercent {
      */
     discount_percent?: number;
     /**
+     * Quickbooks accounting code.
+     * @type {string}
+     * @memberof CouponTierPercent
+     */
+    quickbooks_code?: string;
+    /**
      * The amount of subtotal required to receive the discount percent
      * @type {number}
      * @memberof CouponTierPercent
@@ -6881,6 +6893,12 @@ export interface CouponTierQuantityAmount {
      * @memberof CouponTierQuantityAmount
      */
     item_quantity?: number;
+    /**
+     * Quickbooks accounting code.
+     * @type {string}
+     * @memberof CouponTierQuantityAmount
+     */
+    quickbooks_code?: string;
 }
 /**
  *
@@ -6900,6 +6918,12 @@ export interface CouponTierQuantityPercent {
      * @memberof CouponTierQuantityPercent
      */
     item_quantity?: number;
+    /**
+     * Quickbooks accounting code.
+     * @type {string}
+     * @memberof CouponTierQuantityPercent
+     */
+    quickbooks_code?: string;
 }
 /**
  *
@@ -6976,6 +7000,12 @@ export interface CouponTieredPercentOffItems {
  * @interface CouponTieredPercentOffShipping
  */
 export interface CouponTieredPercentOffShipping {
+    /**
+     * Quickbooks accounting code.
+     * @type {string}
+     * @memberof CouponTieredPercentOffShipping
+     */
+    quickbooks_code?: string;
     /**
      * One or more shipping methods that may receive this discount
      * @type {Array<string>}
@@ -28168,6 +28198,12 @@ export interface WebhookLog {
      * @memberof WebhookLog
      */
     duration?: number;
+    /**
+     * Number of milliseconds of delay caused by queuing
+     * @type {number}
+     * @memberof WebhookLog
+     */
+    queue_delay?: number;
     /**
      * Request payload (first 100,000 characters)
      * @type {string}
