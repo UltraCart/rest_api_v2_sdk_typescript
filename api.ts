@@ -14973,7 +14973,7 @@ export interface Item {
      * @type {Array<ItemChannelPartnerMapping>}
      * @memberof Item
      */
-    channelPartnerMappings?: Array<ItemChannelPartnerMapping>;
+    channel_partner_item_mappings?: Array<ItemChannelPartnerMapping>;
     /**
      * 
      * @type {ItemChargeback}
@@ -19570,6 +19570,12 @@ export interface LibraryItemAsset {
  * @interface LibraryItemAttribute
  */
 export interface LibraryItemAttribute {
+    /**
+     * 
+     * @type {number}
+     * @memberof LibraryItemAttribute
+     */
+    libraryItemOid?: number;
     /**
      * 
      * @type {string}

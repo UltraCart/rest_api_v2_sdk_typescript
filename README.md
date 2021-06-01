@@ -1,4 +1,4 @@
-## ultracart_rest_api_v2_typescript@3.1.42
+## ultracart_rest_api_v2_typescript@3.1.43
 
 This generator creates TypeScript/JavaScript client that utilizes [Fetch API](https://fetch.spec.whatwg.org/). The generated Node module can be used in the following environments:
 
@@ -36,7 +36,7 @@ navigate to the folder of your consuming project and run one of the following co
 _published:_
 
 ```
-npm install ultracart_rest_api_v2_typescript@3.1.42 --save
+npm install ultracart_rest_api_v2_typescript@3.1.43 --save
 ```
 
 _unPublished (not recommended):_
@@ -51,7 +51,8 @@ Not every change is committed to every SDK.
 
 | Version | Date | Comments |
 | --: | :-: | --- |
-| 3.1.42 | 01/01/2021 | added quickbooks accounting codes at the tiered level for tiered coupons  | 
+| 3.1.43 | 06/01/2021 | one of us cannot spell, not saying who  | 
+| 3.1.42 | 06/01/2021 | added quickbooks accounting codes at the tiered level for tiered coupons  | 
 | 3.1.41 | 05/21/2021 | screen recording heatmap methods | 
 | 3.1.40 | 05/20/2021 | Order.summary.actual_payment_processing field added | 
 | 3.1.39 | 05/19/2021 | full deployment to ensure all language SDKs are up to date | 
