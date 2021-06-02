@@ -18150,6 +18150,18 @@ export interface ItemReviews {
      * @memberof ItemReviews
      */
     reviewable?: boolean;
+    /**
+     * Share reviews with item id.  To set, use the share_reviews_with_merchant_item_oid field.
+     * @type {string}
+     * @memberof ItemReviews
+     */
+    share_reviews_with_merchant_item_id?: string;
+    /**
+     * Share reviews with item oid.  To null out this field, set teh value to zero.
+     * @type {number}
+     * @memberof ItemReviews
+     */
+    share_reviews_with_merchant_item_oid?: number;
 }
 
 /**
@@ -19570,12 +19582,6 @@ export interface LibraryItemAsset {
  * @interface LibraryItemAttribute
  */
 export interface LibraryItemAttribute {
-    /**
-     * 
-     * @type {number}
-     * @memberof LibraryItemAttribute
-     */
-    libraryItemOid?: number;
     /**
      * 
      * @type {string}
