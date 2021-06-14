@@ -15301,6 +15301,12 @@ export interface ItemChannelPartnerMapping {
      */
     channel_partner_oid?: number;
     /**
+     * Cost given to this channel partner
+     * @type {number}
+     * @memberof ItemChannelPartnerMapping
+     */
+    cost?: number;
+    /**
      * From Item ID
      * @type {string}
      * @memberof ItemChannelPartnerMapping
@@ -19648,6 +19654,12 @@ export interface ModelError {
      * @memberof ModelError
      */
     more_info?: string;
+    /**
+     * Object id that the error is associated with
+     * @type {string}
+     * @memberof ModelError
+     */
+    object_id?: string;
     /**
      * An end-user friendly message suitable for display to the customer
      * @type {string}
@@ -25196,6 +25208,19 @@ export interface ScreenRecordingHeatmap {
 /**
  *
  * @export
+ * @interface ScreenRecordingHeatmapIndexRequest
+ */
+export interface ScreenRecordingHeatmapIndexRequest {
+    /**
+     *
+     * @type {string}
+     * @memberof ScreenRecordingHeatmapIndexRequest
+     */
+    url_contains?: string;
+}
+/**
+ *
+ * @export
  * @interface ScreenRecordingHeatmapIndexResponse
  */
 export interface ScreenRecordingHeatmapIndexResponse {
@@ -25323,6 +25348,12 @@ export interface ScreenRecordingHeatmapUrl {
      * @memberof ScreenRecordingHeatmapUrl
      */
     histogram_start_dts?: string;
+    /**
+     *
+     * @type {number}
+     * @memberof ScreenRecordingHeatmapUrl
+     */
+    page_rank?: number;
     /**
      *
      * @type {number}
@@ -34984,10 +35015,14 @@ export declare const StorefrontApiFetchParamCreator: (configuration?: Configurat
      * Get screen recording heatmap index
      * @summary Get screen recording heatmap index
      * @param {number} storefront_oid
+     * @param {ScreenRecordingHeatmapIndexRequest} query Query
+     * @param {number} [_limit] The maximum number of records to return on this one API call. (Default 100, Max 500)
+     * @param {number} [_offset] Pagination of the record set.  Offset is a zero based index.
+     * @param {string} [_sort] The sort order of the items.  See Sorting documentation for examples of using multiple values and sorting by ascending and descending.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getHeatmapIndex(storefront_oid: number, options?: any): FetchArgs;
+    getHeatmapIndex(storefront_oid: number, query: ScreenRecordingHeatmapIndexRequest, _limit?: number, _offset?: number, _sort?: string, options?: any): FetchArgs;
     /**
      * Obtain a list of property names for a given property type
      * @summary Get histogram property names
@@ -36336,10 +36371,14 @@ export declare const StorefrontApiFp: (configuration?: Configuration) => {
      * Get screen recording heatmap index
      * @summary Get screen recording heatmap index
      * @param {number} storefront_oid
+     * @param {ScreenRecordingHeatmapIndexRequest} query Query
+     * @param {number} [_limit] The maximum number of records to return on this one API call. (Default 100, Max 500)
+     * @param {number} [_offset] Pagination of the record set.  Offset is a zero based index.
+     * @param {string} [_sort] The sort order of the items.  See Sorting documentation for examples of using multiple values and sorting by ascending and descending.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getHeatmapIndex(storefront_oid: number, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ScreenRecordingHeatmapIndexResponse>;
+    getHeatmapIndex(storefront_oid: number, query: ScreenRecordingHeatmapIndexRequest, _limit?: number, _offset?: number, _sort?: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ScreenRecordingHeatmapIndexResponse>;
     /**
      * Obtain a list of property names for a given property type
      * @summary Get histogram property names
@@ -37688,10 +37727,14 @@ export declare const StorefrontApiFactory: (configuration?: Configuration, fetch
      * Get screen recording heatmap index
      * @summary Get screen recording heatmap index
      * @param {number} storefront_oid
+     * @param {ScreenRecordingHeatmapIndexRequest} query Query
+     * @param {number} [_limit] The maximum number of records to return on this one API call. (Default 100, Max 500)
+     * @param {number} [_offset] Pagination of the record set.  Offset is a zero based index.
+     * @param {string} [_sort] The sort order of the items.  See Sorting documentation for examples of using multiple values and sorting by ascending and descending.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getHeatmapIndex(storefront_oid: number, options?: any): Promise<ScreenRecordingHeatmapIndexResponse>;
+    getHeatmapIndex(storefront_oid: number, query: ScreenRecordingHeatmapIndexRequest, _limit?: number, _offset?: number, _sort?: string, options?: any): Promise<ScreenRecordingHeatmapIndexResponse>;
     /**
      * Obtain a list of property names for a given property type
      * @summary Get histogram property names
@@ -39119,11 +39162,15 @@ export interface StorefrontApiInterface {
      * Get screen recording heatmap index
      * @summary Get screen recording heatmap index
      * @param {number} storefront_oid
+     * @param {ScreenRecordingHeatmapIndexRequest} query Query
+     * @param {number} [_limit] The maximum number of records to return on this one API call. (Default 100, Max 500)
+     * @param {number} [_offset] Pagination of the record set.  Offset is a zero based index.
+     * @param {string} [_sort] The sort order of the items.  See Sorting documentation for examples of using multiple values and sorting by ascending and descending.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof StorefrontApiInterface
      */
-    getHeatmapIndex(storefront_oid: number, options?: any): Promise<ScreenRecordingHeatmapIndexResponse>;
+    getHeatmapIndex(storefront_oid: number, query: ScreenRecordingHeatmapIndexRequest, _limit?: number, _offset?: number, _sort?: string, options?: any): Promise<ScreenRecordingHeatmapIndexResponse>;
     /**
      * Obtain a list of property names for a given property type
      * @summary Get histogram property names
@@ -40620,11 +40667,15 @@ export declare class StorefrontApi extends BaseAPI implements StorefrontApiInter
      * Get screen recording heatmap index
      * @summary Get screen recording heatmap index
      * @param {number} storefront_oid
+     * @param {ScreenRecordingHeatmapIndexRequest} query Query
+     * @param {number} [_limit] The maximum number of records to return on this one API call. (Default 100, Max 500)
+     * @param {number} [_offset] Pagination of the record set.  Offset is a zero based index.
+     * @param {string} [_sort] The sort order of the items.  See Sorting documentation for examples of using multiple values and sorting by ascending and descending.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof StorefrontApi
      */
-    getHeatmapIndex(storefront_oid: number, options?: any): Promise<ScreenRecordingHeatmapIndexResponse>;
+    getHeatmapIndex(storefront_oid: number, query: ScreenRecordingHeatmapIndexRequest, _limit?: number, _offset?: number, _sort?: string, options?: any): Promise<ScreenRecordingHeatmapIndexResponse>;
     /**
      * Obtain a list of property names for a given property type
      * @summary Get histogram property names

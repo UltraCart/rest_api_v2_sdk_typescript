@@ -15648,6 +15648,12 @@ export interface ItemChannelPartnerMapping {
      */
     channel_partner_oid?: number;
     /**
+     * Cost given to this channel partner
+     * @type {number}
+     * @memberof ItemChannelPartnerMapping
+     */
+    cost?: number;
+    /**
      * From Item ID
      * @type {string}
      * @memberof ItemChannelPartnerMapping
@@ -20088,6 +20094,12 @@ export interface ModelError {
      * @memberof ModelError
      */
     more_info?: string;
+    /**
+     * Object id that the error is associated with
+     * @type {string}
+     * @memberof ModelError
+     */
+    object_id?: string;
     /**
      * An end-user friendly message suitable for display to the customer
      * @type {string}
@@ -25736,6 +25748,20 @@ export interface ScreenRecordingHeatmap {
 /**
  * 
  * @export
+ * @interface ScreenRecordingHeatmapIndexRequest
+ */
+export interface ScreenRecordingHeatmapIndexRequest {
+    /**
+     * 
+     * @type {string}
+     * @memberof ScreenRecordingHeatmapIndexRequest
+     */
+    url_contains?: string;
+}
+
+/**
+ * 
+ * @export
  * @interface ScreenRecordingHeatmapIndexResponse
  */
 export interface ScreenRecordingHeatmapIndexResponse {
@@ -25867,6 +25893,12 @@ export interface ScreenRecordingHeatmapUrl {
      * @memberof ScreenRecordingHeatmapUrl
      */
     histogram_start_dts?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof ScreenRecordingHeatmapUrl
+     */
+    page_rank?: number;
     /**
      * 
      * @type {number}
@@ -47600,13 +47632,21 @@ export const StorefrontApiFetchParamCreator = function (configuration?: Configur
          * Get screen recording heatmap index 
          * @summary Get screen recording heatmap index
          * @param {number} storefront_oid 
+         * @param {ScreenRecordingHeatmapIndexRequest} query Query
+         * @param {number} [_limit] The maximum number of records to return on this one API call. (Default 100, Max 500)
+         * @param {number} [_offset] Pagination of the record set.  Offset is a zero based index.
+         * @param {string} [_sort] The sort order of the items.  See Sorting documentation for examples of using multiple values and sorting by ascending and descending.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getHeatmapIndex(storefront_oid: number, options: any = {}): FetchArgs {
+        getHeatmapIndex(storefront_oid: number, query: ScreenRecordingHeatmapIndexRequest, _limit?: number, _offset?: number, _sort?: string, options: any = {}): FetchArgs {
             // verify required parameter 'storefront_oid' is not null or undefined
             if (storefront_oid === null || storefront_oid === undefined) {
                 throw new RequiredError('storefront_oid','Required parameter storefront_oid was null or undefined when calling getHeatmapIndex.');
+            }
+            // verify required parameter 'query' is not null or undefined
+            if (query === null || query === undefined) {
+                throw new RequiredError('query','Required parameter query was null or undefined when calling getHeatmapIndex.');
             }
             const localVarPath = `/storefront/{storefront_oid}/screen_recordings/heatmap/index`
                 .replace(`{${"storefront_oid"}}`, encodeURIComponent(String(storefront_oid)));
@@ -47638,10 +47678,26 @@ export const StorefrontApiFetchParamCreator = function (configuration?: Configur
                 localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
             }
 
+            if (_limit !== undefined) {
+                localVarQueryParameter['_limit'] = _limit;
+            }
+
+            if (_offset !== undefined) {
+                localVarQueryParameter['_offset'] = _offset;
+            }
+
+            if (_sort !== undefined) {
+                localVarQueryParameter['_sort'] = _sort;
+            }
+
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
             localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
             // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
             delete localVarUrlObj.search;
             localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+            const needsSerialization = (<any>"ScreenRecordingHeatmapIndexRequest" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
+            localVarRequestOptions.body =  needsSerialization ? JSON.stringify(query || {}) : (query || "");
 
             return {
                 url: url.format(localVarUrlObj),
@@ -53880,11 +53936,15 @@ export const StorefrontApiFp = function(configuration?: Configuration) {
          * Get screen recording heatmap index 
          * @summary Get screen recording heatmap index
          * @param {number} storefront_oid 
+         * @param {ScreenRecordingHeatmapIndexRequest} query Query
+         * @param {number} [_limit] The maximum number of records to return on this one API call. (Default 100, Max 500)
+         * @param {number} [_offset] Pagination of the record set.  Offset is a zero based index.
+         * @param {string} [_sort] The sort order of the items.  See Sorting documentation for examples of using multiple values and sorting by ascending and descending.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getHeatmapIndex(storefront_oid: number, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ScreenRecordingHeatmapIndexResponse> {
-            const localVarFetchArgs = StorefrontApiFetchParamCreator(configuration).getHeatmapIndex(storefront_oid, options);
+        getHeatmapIndex(storefront_oid: number, query: ScreenRecordingHeatmapIndexRequest, _limit?: number, _offset?: number, _sort?: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ScreenRecordingHeatmapIndexResponse> {
+            const localVarFetchArgs = StorefrontApiFetchParamCreator(configuration).getHeatmapIndex(storefront_oid, query, _limit, _offset, _sort, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
                     if (response.status >= 200 && response.status < 300) {
@@ -56150,11 +56210,15 @@ export const StorefrontApiFactory = function (configuration?: Configuration, fet
          * Get screen recording heatmap index 
          * @summary Get screen recording heatmap index
          * @param {number} storefront_oid 
+         * @param {ScreenRecordingHeatmapIndexRequest} query Query
+         * @param {number} [_limit] The maximum number of records to return on this one API call. (Default 100, Max 500)
+         * @param {number} [_offset] Pagination of the record set.  Offset is a zero based index.
+         * @param {string} [_sort] The sort order of the items.  See Sorting documentation for examples of using multiple values and sorting by ascending and descending.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getHeatmapIndex(storefront_oid: number, options?: any) {
-            return StorefrontApiFp(configuration).getHeatmapIndex(storefront_oid, options)(fetch, basePath);
+        getHeatmapIndex(storefront_oid: number, query: ScreenRecordingHeatmapIndexRequest, _limit?: number, _offset?: number, _sort?: string, options?: any) {
+            return StorefrontApiFp(configuration).getHeatmapIndex(storefront_oid, query, _limit, _offset, _sort, options)(fetch, basePath);
         },
         /**
          * Obtain a list of property names for a given property type 
@@ -57799,11 +57863,15 @@ export interface StorefrontApiInterface {
      * Get screen recording heatmap index 
      * @summary Get screen recording heatmap index
      * @param {number} storefront_oid 
+     * @param {ScreenRecordingHeatmapIndexRequest} query Query
+     * @param {number} [_limit] The maximum number of records to return on this one API call. (Default 100, Max 500)
+     * @param {number} [_offset] Pagination of the record set.  Offset is a zero based index.
+     * @param {string} [_sort] The sort order of the items.  See Sorting documentation for examples of using multiple values and sorting by ascending and descending.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof StorefrontApiInterface
      */
-    getHeatmapIndex(storefront_oid: number, options?: any): Promise<ScreenRecordingHeatmapIndexResponse>;
+    getHeatmapIndex(storefront_oid: number, query: ScreenRecordingHeatmapIndexRequest, _limit?: number, _offset?: number, _sort?: string, options?: any): Promise<ScreenRecordingHeatmapIndexResponse>;
 
     /**
      * Obtain a list of property names for a given property type 
@@ -59604,12 +59672,16 @@ export class StorefrontApi extends BaseAPI implements StorefrontApiInterface {
      * Get screen recording heatmap index 
      * @summary Get screen recording heatmap index
      * @param {number} storefront_oid 
+     * @param {ScreenRecordingHeatmapIndexRequest} query Query
+     * @param {number} [_limit] The maximum number of records to return on this one API call. (Default 100, Max 500)
+     * @param {number} [_offset] Pagination of the record set.  Offset is a zero based index.
+     * @param {string} [_sort] The sort order of the items.  See Sorting documentation for examples of using multiple values and sorting by ascending and descending.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof StorefrontApi
      */
-    public getHeatmapIndex(storefront_oid: number, options?: any) {
-        return StorefrontApiFp(this.configuration).getHeatmapIndex(storefront_oid, options)(this.fetch, this.basePath);
+    public getHeatmapIndex(storefront_oid: number, query: ScreenRecordingHeatmapIndexRequest, _limit?: number, _offset?: number, _sort?: string, options?: any) {
+        return StorefrontApiFp(this.configuration).getHeatmapIndex(storefront_oid, query, _limit, _offset, _sort, options)(this.fetch, this.basePath);
     }
 
     /**
