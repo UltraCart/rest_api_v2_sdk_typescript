@@ -14603,6 +14603,330 @@ export interface HTTPHeader {
 /**
  *
  * @export
+ * @interface IntegrationLog
+ */
+export interface IntegrationLog {
+    /**
+     *
+     * @type {string}
+     * @memberof IntegrationLog
+     */
+    action?: string;
+    /**
+     *
+     * @type {string}
+     * @memberof IntegrationLog
+     */
+    direction?: string;
+    /**
+     *
+     * @type {string}
+     * @memberof IntegrationLog
+     */
+    email?: string;
+    /**
+     *
+     * @type {Array<IntegrationLogFile>}
+     * @memberof IntegrationLog
+     */
+    files?: Array<IntegrationLogFile>;
+    /**
+     *
+     * @type {number}
+     * @memberof IntegrationLog
+     */
+    integration_log_oid?: number;
+    /**
+     *
+     * @type {string}
+     * @memberof IntegrationLog
+     */
+    item_id?: string;
+    /**
+     *
+     * @type {number}
+     * @memberof IntegrationLog
+     */
+    item_ipn_oid?: number;
+    /**
+     *
+     * @type {string}
+     * @memberof IntegrationLog
+     */
+    log_dts?: string;
+    /**
+     *
+     * @type {string}
+     * @memberof IntegrationLog
+     */
+    log_type?: string;
+    /**
+     *
+     * @type {string}
+     * @memberof IntegrationLog
+     */
+    logger_id?: string;
+    /**
+     *
+     * @type {Array<IntegrationLogLog>}
+     * @memberof IntegrationLog
+     */
+    logs?: Array<IntegrationLogLog>;
+    /**
+     *
+     * @type {Array<string>}
+     * @memberof IntegrationLog
+     */
+    order_ids?: Array<string>;
+    /**
+     *
+     * @type {string}
+     * @memberof IntegrationLog
+     */
+    pk?: string;
+    /**
+     *
+     * @type {string}
+     * @memberof IntegrationLog
+     */
+    sk?: string;
+    /**
+     *
+     * @type {string}
+     * @memberof IntegrationLog
+     */
+    status?: string;
+}
+/**
+ *
+ * @export
+ * @interface IntegrationLogFile
+ */
+export interface IntegrationLogFile {
+    /**
+     *
+     * @type {string}
+     * @memberof IntegrationLogFile
+     */
+    name?: string;
+    /**
+     *
+     * @type {number}
+     * @memberof IntegrationLogFile
+     */
+    size?: number;
+    /**
+     *
+     * @type {string}
+     * @memberof IntegrationLogFile
+     */
+    uuid?: string;
+}
+/**
+ *
+ * @export
+ * @interface IntegrationLogLog
+ */
+export interface IntegrationLogLog {
+    /**
+     *
+     * @type {string}
+     * @memberof IntegrationLogLog
+     */
+    contents?: string;
+    /**
+     *
+     * @type {string}
+     * @memberof IntegrationLogLog
+     */
+    name?: string;
+}
+/**
+ *
+ * @export
+ * @interface IntegrationLogQueryFilterValues
+ */
+export interface IntegrationLogQueryFilterValues {
+    /**
+     *
+     * @type {Array<string>}
+     * @memberof IntegrationLogQueryFilterValues
+     */
+    actions?: Array<string>;
+    /**
+     *
+     * @type {Array<string>}
+     * @memberof IntegrationLogQueryFilterValues
+     */
+    directions?: Array<string>;
+    /**
+     *
+     * @type {Array<string>}
+     * @memberof IntegrationLogQueryFilterValues
+     */
+    emails?: Array<string>;
+    /**
+     *
+     * @type {Array<string>}
+     * @memberof IntegrationLogQueryFilterValues
+     */
+    file_names?: Array<string>;
+    /**
+     *
+     * @type {Array<string>}
+     * @memberof IntegrationLogQueryFilterValues
+     */
+    item_ids?: Array<string>;
+    /**
+     *
+     * @type {Array<number>}
+     * @memberof IntegrationLogQueryFilterValues
+     */
+    item_ipn_oids?: Array<number>;
+    /**
+     *
+     * @type {Array<string>}
+     * @memberof IntegrationLogQueryFilterValues
+     */
+    log_types?: Array<string>;
+    /**
+     *
+     * @type {Array<string>}
+     * @memberof IntegrationLogQueryFilterValues
+     */
+    order_ids?: Array<string>;
+    /**
+     *
+     * @type {Array<string>}
+     * @memberof IntegrationLogQueryFilterValues
+     */
+    statuses?: Array<string>;
+}
+/**
+ *
+ * @export
+ * @interface IntegrationLogQueryRequest
+ */
+export interface IntegrationLogQueryRequest {
+    /**
+     *
+     * @type {string}
+     * @memberof IntegrationLogQueryRequest
+     */
+    action?: string;
+    /**
+     *
+     * @type {string}
+     * @memberof IntegrationLogQueryRequest
+     */
+    direction?: string;
+    /**
+     *
+     * @type {string}
+     * @memberof IntegrationLogQueryRequest
+     */
+    email?: string;
+    /**
+     *
+     * @type {Array<string>}
+     * @memberof IntegrationLogQueryRequest
+     */
+    file_names?: Array<string>;
+    /**
+     *
+     * @type {string}
+     * @memberof IntegrationLogQueryRequest
+     */
+    item_id?: string;
+    /**
+     *
+     * @type {number}
+     * @memberof IntegrationLogQueryRequest
+     */
+    item_ipn_oid?: number;
+    /**
+     * Log date/time begin
+     * @type {string}
+     * @memberof IntegrationLogQueryRequest
+     */
+    log_dts_begin?: string;
+    /**
+     * Log date/time end
+     * @type {string}
+     * @memberof IntegrationLogQueryRequest
+     */
+    log_dts_end?: string;
+    /**
+     *
+     * @type {string}
+     * @memberof IntegrationLogQueryRequest
+     */
+    log_type?: string;
+    /**
+     *
+     * @type {string}
+     * @memberof IntegrationLogQueryRequest
+     */
+    logger_id?: string;
+    /**
+     *
+     * @type {Array<string>}
+     * @memberof IntegrationLogQueryRequest
+     */
+    order_ids?: Array<string>;
+    /**
+     *
+     * @type {string}
+     * @memberof IntegrationLogQueryRequest
+     */
+    status?: string;
+}
+/**
+ *
+ * @export
+ * @interface IntegrationLogQueryResponse
+ */
+export interface IntegrationLogQueryResponse {
+    /**
+     *
+     * @type {ModelError}
+     * @memberof IntegrationLogQueryResponse
+     */
+    error?: ModelError;
+    /**
+     *
+     * @type {IntegrationLogQueryFilterValues}
+     * @memberof IntegrationLogQueryResponse
+     */
+    filter_values?: IntegrationLogQueryFilterValues;
+    /**
+     *
+     * @type {Array<IntegrationLog>}
+     * @memberof IntegrationLogQueryResponse
+     */
+    integration_logs?: Array<IntegrationLog>;
+    /**
+     *
+     * @type {ResponseMetadata}
+     * @memberof IntegrationLogQueryResponse
+     */
+    metadata?: ResponseMetadata;
+    /**
+     * Indicates if API call was successful
+     * @type {boolean}
+     * @memberof IntegrationLogQueryResponse
+     */
+    success?: boolean;
+    /**
+     *
+     * @type {Warning}
+     * @memberof IntegrationLogQueryResponse
+     */
+    warning?: Warning;
+}
+/**
+ *
+ * @export
  * @interface Item
  */
 export interface Item {
@@ -19161,6 +19485,12 @@ export interface LibraryItemAsset {
  * @interface LibraryItemAttribute
  */
 export interface LibraryItemAttribute {
+    /**
+     *
+     * @type {number}
+     * @memberof LibraryItemAttribute
+     */
+    libraryItemOid?: number;
     /**
      *
      * @type {string}
@@ -32473,6 +32803,143 @@ export declare class FulfillmentApi extends BaseAPI implements FulfillmentApiInt
      * @memberof FulfillmentApi
      */
     updateInventory(distribution_center_code: string, inventories: Array<FulfillmentInventory>, options?: any): Promise<Response>;
+}
+/**
+ * IntegrationLogApi - fetch parameter creator
+ * @export
+ */
+export declare const IntegrationLogApiFetchParamCreator: (configuration?: Configuration) => {
+    /**
+     * Retrieve an integration logs from the account based identifiers
+     * @summary Retrieve an integration log
+     * @param {string} pk
+     * @param {string} sk
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getIntegrationLog(pk: string, sk: string, options?: any): FetchArgs;
+    /**
+     * Retrieves a set of integration logs from the account based on a query object.
+     * @summary Retrieve integration logs
+     * @param {IntegrationLogQueryRequest} integration_log_query Integration log query
+     * @param {number} [_limit] The maximum number of records to return on this one API call. (Default 100, Max 500)
+     * @param {number} [_offset] Pagination of the record set.  Offset is a zero based index.
+     * @param {string} [_sort] The sort order of the items.  See Sorting documentation for examples of using multiple values and sorting by ascending and descending.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getIntegrationLogsQuery(integration_log_query: IntegrationLogQueryRequest, _limit?: number, _offset?: number, _sort?: string, options?: any): FetchArgs;
+};
+/**
+ * IntegrationLogApi - functional programming interface
+ * @export
+ */
+export declare const IntegrationLogApiFp: (configuration?: Configuration) => {
+    /**
+     * Retrieve an integration logs from the account based identifiers
+     * @summary Retrieve an integration log
+     * @param {string} pk
+     * @param {string} sk
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getIntegrationLog(pk: string, sk: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<IntegrationLog>;
+    /**
+     * Retrieves a set of integration logs from the account based on a query object.
+     * @summary Retrieve integration logs
+     * @param {IntegrationLogQueryRequest} integration_log_query Integration log query
+     * @param {number} [_limit] The maximum number of records to return on this one API call. (Default 100, Max 500)
+     * @param {number} [_offset] Pagination of the record set.  Offset is a zero based index.
+     * @param {string} [_sort] The sort order of the items.  See Sorting documentation for examples of using multiple values and sorting by ascending and descending.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getIntegrationLogsQuery(integration_log_query: IntegrationLogQueryRequest, _limit?: number, _offset?: number, _sort?: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<IntegrationLogQueryResponse>;
+};
+/**
+ * IntegrationLogApi - factory interface
+ * @export
+ */
+export declare const IntegrationLogApiFactory: (configuration?: Configuration, fetch?: FetchAPI, basePath?: string) => {
+    /**
+     * Retrieve an integration logs from the account based identifiers
+     * @summary Retrieve an integration log
+     * @param {string} pk
+     * @param {string} sk
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getIntegrationLog(pk: string, sk: string, options?: any): Promise<IntegrationLog>;
+    /**
+     * Retrieves a set of integration logs from the account based on a query object.
+     * @summary Retrieve integration logs
+     * @param {IntegrationLogQueryRequest} integration_log_query Integration log query
+     * @param {number} [_limit] The maximum number of records to return on this one API call. (Default 100, Max 500)
+     * @param {number} [_offset] Pagination of the record set.  Offset is a zero based index.
+     * @param {string} [_sort] The sort order of the items.  See Sorting documentation for examples of using multiple values and sorting by ascending and descending.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getIntegrationLogsQuery(integration_log_query: IntegrationLogQueryRequest, _limit?: number, _offset?: number, _sort?: string, options?: any): Promise<IntegrationLogQueryResponse>;
+};
+/**
+ * IntegrationLogApi - interface
+ * @export
+ * @interface IntegrationLogApi
+ */
+export interface IntegrationLogApiInterface {
+    /**
+     * Retrieve an integration logs from the account based identifiers
+     * @summary Retrieve an integration log
+     * @param {string} pk
+     * @param {string} sk
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof IntegrationLogApiInterface
+     */
+    getIntegrationLog(pk: string, sk: string, options?: any): Promise<IntegrationLog>;
+    /**
+     * Retrieves a set of integration logs from the account based on a query object.
+     * @summary Retrieve integration logs
+     * @param {IntegrationLogQueryRequest} integration_log_query Integration log query
+     * @param {number} [_limit] The maximum number of records to return on this one API call. (Default 100, Max 500)
+     * @param {number} [_offset] Pagination of the record set.  Offset is a zero based index.
+     * @param {string} [_sort] The sort order of the items.  See Sorting documentation for examples of using multiple values and sorting by ascending and descending.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof IntegrationLogApiInterface
+     */
+    getIntegrationLogsQuery(integration_log_query: IntegrationLogQueryRequest, _limit?: number, _offset?: number, _sort?: string, options?: any): Promise<IntegrationLogQueryResponse>;
+}
+/**
+ * IntegrationLogApi - object-oriented interface
+ * @export
+ * @class IntegrationLogApi
+ * @extends {BaseAPI}
+ */
+export declare class IntegrationLogApi extends BaseAPI implements IntegrationLogApiInterface {
+    /**
+     * Retrieve an integration logs from the account based identifiers
+     * @summary Retrieve an integration log
+     * @param {string} pk
+     * @param {string} sk
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof IntegrationLogApi
+     */
+    getIntegrationLog(pk: string, sk: string, options?: any): Promise<IntegrationLog>;
+    /**
+     * Retrieves a set of integration logs from the account based on a query object.
+     * @summary Retrieve integration logs
+     * @param {IntegrationLogQueryRequest} integration_log_query Integration log query
+     * @param {number} [_limit] The maximum number of records to return on this one API call. (Default 100, Max 500)
+     * @param {number} [_offset] Pagination of the record set.  Offset is a zero based index.
+     * @param {string} [_sort] The sort order of the items.  See Sorting documentation for examples of using multiple values and sorting by ascending and descending.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof IntegrationLogApi
+     */
+    getIntegrationLogsQuery(integration_log_query: IntegrationLogQueryRequest, _limit?: number, _offset?: number, _sort?: string, options?: any): Promise<IntegrationLogQueryResponse>;
 }
 /**
  * ItemApi - fetch parameter creator

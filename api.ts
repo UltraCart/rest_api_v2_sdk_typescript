@@ -14941,6 +14941,336 @@ export interface HTTPHeader {
 /**
  * 
  * @export
+ * @interface IntegrationLog
+ */
+export interface IntegrationLog {
+    /**
+     * 
+     * @type {string}
+     * @memberof IntegrationLog
+     */
+    action?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof IntegrationLog
+     */
+    direction?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof IntegrationLog
+     */
+    email?: string;
+    /**
+     * 
+     * @type {Array<IntegrationLogFile>}
+     * @memberof IntegrationLog
+     */
+    files?: Array<IntegrationLogFile>;
+    /**
+     * 
+     * @type {number}
+     * @memberof IntegrationLog
+     */
+    integration_log_oid?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof IntegrationLog
+     */
+    item_id?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof IntegrationLog
+     */
+    item_ipn_oid?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof IntegrationLog
+     */
+    log_dts?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof IntegrationLog
+     */
+    log_type?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof IntegrationLog
+     */
+    logger_id?: string;
+    /**
+     * 
+     * @type {Array<IntegrationLogLog>}
+     * @memberof IntegrationLog
+     */
+    logs?: Array<IntegrationLogLog>;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof IntegrationLog
+     */
+    order_ids?: Array<string>;
+    /**
+     * 
+     * @type {string}
+     * @memberof IntegrationLog
+     */
+    pk?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof IntegrationLog
+     */
+    sk?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof IntegrationLog
+     */
+    status?: string;
+}
+
+/**
+ * 
+ * @export
+ * @interface IntegrationLogFile
+ */
+export interface IntegrationLogFile {
+    /**
+     * 
+     * @type {string}
+     * @memberof IntegrationLogFile
+     */
+    name?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof IntegrationLogFile
+     */
+    size?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof IntegrationLogFile
+     */
+    uuid?: string;
+}
+
+/**
+ * 
+ * @export
+ * @interface IntegrationLogLog
+ */
+export interface IntegrationLogLog {
+    /**
+     * 
+     * @type {string}
+     * @memberof IntegrationLogLog
+     */
+    contents?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof IntegrationLogLog
+     */
+    name?: string;
+}
+
+/**
+ * 
+ * @export
+ * @interface IntegrationLogQueryFilterValues
+ */
+export interface IntegrationLogQueryFilterValues {
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof IntegrationLogQueryFilterValues
+     */
+    actions?: Array<string>;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof IntegrationLogQueryFilterValues
+     */
+    directions?: Array<string>;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof IntegrationLogQueryFilterValues
+     */
+    emails?: Array<string>;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof IntegrationLogQueryFilterValues
+     */
+    file_names?: Array<string>;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof IntegrationLogQueryFilterValues
+     */
+    item_ids?: Array<string>;
+    /**
+     * 
+     * @type {Array<number>}
+     * @memberof IntegrationLogQueryFilterValues
+     */
+    item_ipn_oids?: Array<number>;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof IntegrationLogQueryFilterValues
+     */
+    log_types?: Array<string>;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof IntegrationLogQueryFilterValues
+     */
+    order_ids?: Array<string>;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof IntegrationLogQueryFilterValues
+     */
+    statuses?: Array<string>;
+}
+
+/**
+ * 
+ * @export
+ * @interface IntegrationLogQueryRequest
+ */
+export interface IntegrationLogQueryRequest {
+    /**
+     * 
+     * @type {string}
+     * @memberof IntegrationLogQueryRequest
+     */
+    action?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof IntegrationLogQueryRequest
+     */
+    direction?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof IntegrationLogQueryRequest
+     */
+    email?: string;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof IntegrationLogQueryRequest
+     */
+    file_names?: Array<string>;
+    /**
+     * 
+     * @type {string}
+     * @memberof IntegrationLogQueryRequest
+     */
+    item_id?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof IntegrationLogQueryRequest
+     */
+    item_ipn_oid?: number;
+    /**
+     * Log date/time begin
+     * @type {string}
+     * @memberof IntegrationLogQueryRequest
+     */
+    log_dts_begin?: string;
+    /**
+     * Log date/time end
+     * @type {string}
+     * @memberof IntegrationLogQueryRequest
+     */
+    log_dts_end?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof IntegrationLogQueryRequest
+     */
+    log_type?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof IntegrationLogQueryRequest
+     */
+    logger_id?: string;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof IntegrationLogQueryRequest
+     */
+    order_ids?: Array<string>;
+    /**
+     * 
+     * @type {string}
+     * @memberof IntegrationLogQueryRequest
+     */
+    status?: string;
+}
+
+/**
+ * 
+ * @export
+ * @interface IntegrationLogQueryResponse
+ */
+export interface IntegrationLogQueryResponse {
+    /**
+     * 
+     * @type {ModelError}
+     * @memberof IntegrationLogQueryResponse
+     */
+    error?: ModelError;
+    /**
+     * 
+     * @type {IntegrationLogQueryFilterValues}
+     * @memberof IntegrationLogQueryResponse
+     */
+    filter_values?: IntegrationLogQueryFilterValues;
+    /**
+     * 
+     * @type {Array<IntegrationLog>}
+     * @memberof IntegrationLogQueryResponse
+     */
+    integration_logs?: Array<IntegrationLog>;
+    /**
+     * 
+     * @type {ResponseMetadata}
+     * @memberof IntegrationLogQueryResponse
+     */
+    metadata?: ResponseMetadata;
+    /**
+     * Indicates if API call was successful
+     * @type {boolean}
+     * @memberof IntegrationLogQueryResponse
+     */
+    success?: boolean;
+    /**
+     * 
+     * @type {Warning}
+     * @memberof IntegrationLogQueryResponse
+     */
+    warning?: Warning;
+}
+
+/**
+ * 
+ * @export
  * @interface Item
  */
 export interface Item {
@@ -19588,6 +19918,12 @@ export interface LibraryItemAsset {
  * @interface LibraryItemAttribute
  */
 export interface LibraryItemAttribute {
+    /**
+     * 
+     * @type {number}
+     * @memberof LibraryItemAttribute
+     */
+    libraryItemOid?: number;
     /**
      * 
      * @type {string}
@@ -38314,6 +38650,296 @@ export class FulfillmentApi extends BaseAPI implements FulfillmentApiInterface {
      */
     public updateInventory(distribution_center_code: string, inventories: Array<FulfillmentInventory>, options?: any) {
         return FulfillmentApiFp(this.configuration).updateInventory(distribution_center_code, inventories, options)(this.fetch, this.basePath);
+    }
+
+}
+
+/**
+ * IntegrationLogApi - fetch parameter creator
+ * @export
+ */
+export const IntegrationLogApiFetchParamCreator = function (configuration?: Configuration) {
+    return {
+        /**
+         * Retrieve an integration logs from the account based identifiers 
+         * @summary Retrieve an integration log
+         * @param {string} pk 
+         * @param {string} sk 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getIntegrationLog(pk: string, sk: string, options: any = {}): FetchArgs {
+            // verify required parameter 'pk' is not null or undefined
+            if (pk === null || pk === undefined) {
+                throw new RequiredError('pk','Required parameter pk was null or undefined when calling getIntegrationLog.');
+            }
+            // verify required parameter 'sk' is not null or undefined
+            if (sk === null || sk === undefined) {
+                throw new RequiredError('sk','Required parameter sk was null or undefined when calling getIntegrationLog.');
+            }
+            const localVarPath = `/integration_log/query/{pk}/{sk}`
+                .replace(`{${"pk"}}`, encodeURIComponent(String(pk)))
+                .replace(`{${"sk"}}`, encodeURIComponent(String(sk)));
+            const localVarUrlObj = url.parse(localVarPath, true);
+            const localVarRequestOptions = Object.assign({ method: 'GET' }, options);
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+    if(configuration && configuration.apiVersion) {
+      localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+    }
+
+
+
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+				const localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+					? configuration.accessToken("ultraCartOauth", [])
+					: configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
+					? configuration.apiKey("x-ultracart-simple-key")
+					: configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Retrieves a set of integration logs from the account based on a query object. 
+         * @summary Retrieve integration logs
+         * @param {IntegrationLogQueryRequest} integration_log_query Integration log query
+         * @param {number} [_limit] The maximum number of records to return on this one API call. (Default 100, Max 500)
+         * @param {number} [_offset] Pagination of the record set.  Offset is a zero based index.
+         * @param {string} [_sort] The sort order of the items.  See Sorting documentation for examples of using multiple values and sorting by ascending and descending.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getIntegrationLogsQuery(integration_log_query: IntegrationLogQueryRequest, _limit?: number, _offset?: number, _sort?: string, options: any = {}): FetchArgs {
+            // verify required parameter 'integration_log_query' is not null or undefined
+            if (integration_log_query === null || integration_log_query === undefined) {
+                throw new RequiredError('integration_log_query','Required parameter integration_log_query was null or undefined when calling getIntegrationLogsQuery.');
+            }
+            const localVarPath = `/integration_log/query`;
+            const localVarUrlObj = url.parse(localVarPath, true);
+            const localVarRequestOptions = Object.assign({ method: 'POST' }, options);
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+    if(configuration && configuration.apiVersion) {
+      localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+    }
+
+
+
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+				const localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+					? configuration.accessToken("ultraCartOauth", [])
+					: configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
+					? configuration.apiKey("x-ultracart-simple-key")
+					: configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+
+            if (_limit !== undefined) {
+                localVarQueryParameter['_limit'] = _limit;
+            }
+
+            if (_offset !== undefined) {
+                localVarQueryParameter['_offset'] = _offset;
+            }
+
+            if (_sort !== undefined) {
+                localVarQueryParameter['_sort'] = _sort;
+            }
+
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+            const needsSerialization = (<any>"IntegrationLogQueryRequest" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
+            localVarRequestOptions.body =  needsSerialization ? JSON.stringify(integration_log_query || {}) : (integration_log_query || "");
+
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+    }
+};
+
+/**
+ * IntegrationLogApi - functional programming interface
+ * @export
+ */
+export const IntegrationLogApiFp = function(configuration?: Configuration) {
+    return {
+        /**
+         * Retrieve an integration logs from the account based identifiers 
+         * @summary Retrieve an integration log
+         * @param {string} pk 
+         * @param {string} sk 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getIntegrationLog(pk: string, sk: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<IntegrationLog> {
+            const localVarFetchArgs = IntegrationLogApiFetchParamCreator(configuration).getIntegrationLog(pk, sk, options);
+            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+                    if (response.status >= 200 && response.status < 300) {
+                        return response.json();
+                    } else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
+         * Retrieves a set of integration logs from the account based on a query object. 
+         * @summary Retrieve integration logs
+         * @param {IntegrationLogQueryRequest} integration_log_query Integration log query
+         * @param {number} [_limit] The maximum number of records to return on this one API call. (Default 100, Max 500)
+         * @param {number} [_offset] Pagination of the record set.  Offset is a zero based index.
+         * @param {string} [_sort] The sort order of the items.  See Sorting documentation for examples of using multiple values and sorting by ascending and descending.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getIntegrationLogsQuery(integration_log_query: IntegrationLogQueryRequest, _limit?: number, _offset?: number, _sort?: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<IntegrationLogQueryResponse> {
+            const localVarFetchArgs = IntegrationLogApiFetchParamCreator(configuration).getIntegrationLogsQuery(integration_log_query, _limit, _offset, _sort, options);
+            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+                    if (response.status >= 200 && response.status < 300) {
+                        return response.json();
+                    } else {
+                        throw response;
+                    }
+                });
+            };
+        },
+    }
+};
+
+/**
+ * IntegrationLogApi - factory interface
+ * @export
+ */
+export const IntegrationLogApiFactory = function (configuration?: Configuration, fetch?: FetchAPI, basePath?: string) {
+    return {
+        /**
+         * Retrieve an integration logs from the account based identifiers 
+         * @summary Retrieve an integration log
+         * @param {string} pk 
+         * @param {string} sk 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getIntegrationLog(pk: string, sk: string, options?: any) {
+            return IntegrationLogApiFp(configuration).getIntegrationLog(pk, sk, options)(fetch, basePath);
+        },
+        /**
+         * Retrieves a set of integration logs from the account based on a query object. 
+         * @summary Retrieve integration logs
+         * @param {IntegrationLogQueryRequest} integration_log_query Integration log query
+         * @param {number} [_limit] The maximum number of records to return on this one API call. (Default 100, Max 500)
+         * @param {number} [_offset] Pagination of the record set.  Offset is a zero based index.
+         * @param {string} [_sort] The sort order of the items.  See Sorting documentation for examples of using multiple values and sorting by ascending and descending.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getIntegrationLogsQuery(integration_log_query: IntegrationLogQueryRequest, _limit?: number, _offset?: number, _sort?: string, options?: any) {
+            return IntegrationLogApiFp(configuration).getIntegrationLogsQuery(integration_log_query, _limit, _offset, _sort, options)(fetch, basePath);
+        },
+    };
+};
+
+/**
+ * IntegrationLogApi - interface
+ * @export
+ * @interface IntegrationLogApi
+ */
+export interface IntegrationLogApiInterface {
+    /**
+     * Retrieve an integration logs from the account based identifiers 
+     * @summary Retrieve an integration log
+     * @param {string} pk 
+     * @param {string} sk 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof IntegrationLogApiInterface
+     */
+    getIntegrationLog(pk: string, sk: string, options?: any): Promise<IntegrationLog>;
+
+    /**
+     * Retrieves a set of integration logs from the account based on a query object. 
+     * @summary Retrieve integration logs
+     * @param {IntegrationLogQueryRequest} integration_log_query Integration log query
+     * @param {number} [_limit] The maximum number of records to return on this one API call. (Default 100, Max 500)
+     * @param {number} [_offset] Pagination of the record set.  Offset is a zero based index.
+     * @param {string} [_sort] The sort order of the items.  See Sorting documentation for examples of using multiple values and sorting by ascending and descending.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof IntegrationLogApiInterface
+     */
+    getIntegrationLogsQuery(integration_log_query: IntegrationLogQueryRequest, _limit?: number, _offset?: number, _sort?: string, options?: any): Promise<IntegrationLogQueryResponse>;
+
+}
+
+/**
+ * IntegrationLogApi - object-oriented interface
+ * @export
+ * @class IntegrationLogApi
+ * @extends {BaseAPI}
+ */
+export class IntegrationLogApi extends BaseAPI implements IntegrationLogApiInterface {
+    /**
+     * Retrieve an integration logs from the account based identifiers 
+     * @summary Retrieve an integration log
+     * @param {string} pk 
+     * @param {string} sk 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof IntegrationLogApi
+     */
+    public getIntegrationLog(pk: string, sk: string, options?: any) {
+        return IntegrationLogApiFp(this.configuration).getIntegrationLog(pk, sk, options)(this.fetch, this.basePath);
+    }
+
+    /**
+     * Retrieves a set of integration logs from the account based on a query object. 
+     * @summary Retrieve integration logs
+     * @param {IntegrationLogQueryRequest} integration_log_query Integration log query
+     * @param {number} [_limit] The maximum number of records to return on this one API call. (Default 100, Max 500)
+     * @param {number} [_offset] Pagination of the record set.  Offset is a zero based index.
+     * @param {string} [_sort] The sort order of the items.  See Sorting documentation for examples of using multiple values and sorting by ascending and descending.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof IntegrationLogApi
+     */
+    public getIntegrationLogsQuery(integration_log_query: IntegrationLogQueryRequest, _limit?: number, _offset?: number, _sort?: string, options?: any) {
+        return IntegrationLogApiFp(this.configuration).getIntegrationLogsQuery(integration_log_query, _limit, _offset, _sort, options)(this.fetch, this.basePath);
     }
 
 }
