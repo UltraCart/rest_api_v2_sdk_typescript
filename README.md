@@ -1,4 +1,4 @@
-## ultracart_rest_api_v2_typescript@3.1.46
+## ultracart_rest_api_v2_typescript@3.1.47
 
 This generator creates TypeScript/JavaScript client that utilizes [Fetch API](https://fetch.spec.whatwg.org/). The generated Node module can be used in the following environments:
 
@@ -36,7 +36,7 @@ navigate to the folder of your consuming project and run one of the following co
 _published:_
 
 ```
-npm install ultracart_rest_api_v2_typescript@3.1.46 --save
+npm install ultracart_rest_api_v2_typescript@3.1.47 --save
 ```
 
 _unPublished (not recommended):_
@@ -51,6 +51,7 @@ Not every change is committed to every SDK.
 
 | Version | Date | Comments |
 | --: | :-: | --- |
+| 3.1.47 | 06/16/2021 | Integrated Logging Rest API  | 
 | 3.1.46 | 06/14/2021 | Screen recording: server side paginated heat map index with url contains filters, Item: channel partner item mapping unit cost override  | 
 | 3.1.44 | 06/02/2021 | new boolean flag on items object to allow sharing of reviews between items   | 
 | 3.1.43 | 06/01/2021 | fix item serialized name of item serialized name for channel partner item mappings  | 
