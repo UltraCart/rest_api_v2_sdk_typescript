@@ -15271,6 +15271,44 @@ export interface IntegrationLogQueryResponse {
 /**
  * 
  * @export
+ * @interface IntegrationLogResponse
+ */
+export interface IntegrationLogResponse {
+    /**
+     * 
+     * @type {ModelError}
+     * @memberof IntegrationLogResponse
+     */
+    error?: ModelError;
+    /**
+     * 
+     * @type {IntegrationLog}
+     * @memberof IntegrationLogResponse
+     */
+    integration_log?: IntegrationLog;
+    /**
+     * 
+     * @type {ResponseMetadata}
+     * @memberof IntegrationLogResponse
+     */
+    metadata?: ResponseMetadata;
+    /**
+     * Indicates if API call was successful
+     * @type {boolean}
+     * @memberof IntegrationLogResponse
+     */
+    success?: boolean;
+    /**
+     * 
+     * @type {Warning}
+     * @memberof IntegrationLogResponse
+     */
+    warning?: Warning;
+}
+
+/**
+ * 
+ * @export
  * @interface Item
  */
 export interface Item {
@@ -26012,7 +26050,19 @@ export interface ScreenRecordingHeatmap {
      * @type {string}
      * @memberof ScreenRecordingHeatmap
      */
+    large_click_thumbnail_url?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ScreenRecordingHeatmap
+     */
     large_click_url?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ScreenRecordingHeatmap
+     */
+    large_movement_thumbnail_url?: string;
     /**
      * 
      * @type {string}
@@ -26024,7 +26074,19 @@ export interface ScreenRecordingHeatmap {
      * @type {string}
      * @memberof ScreenRecordingHeatmap
      */
+    large_regular_thumbnail_url?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ScreenRecordingHeatmap
+     */
     large_regular_url?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ScreenRecordingHeatmap
+     */
+    large_scroll_thumbnail_url?: string;
     /**
      * 
      * @type {string}
@@ -26036,7 +26098,19 @@ export interface ScreenRecordingHeatmap {
      * @type {string}
      * @memberof ScreenRecordingHeatmap
      */
+    medium_click_thumbnail_url?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ScreenRecordingHeatmap
+     */
     medium_click_url?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ScreenRecordingHeatmap
+     */
+    medium_movement_thumbnail_url?: string;
     /**
      * 
      * @type {string}
@@ -26048,7 +26122,19 @@ export interface ScreenRecordingHeatmap {
      * @type {string}
      * @memberof ScreenRecordingHeatmap
      */
+    medium_regular_thumbnail_url?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ScreenRecordingHeatmap
+     */
     medium_regular_url?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ScreenRecordingHeatmap
+     */
+    medium_scroll_thumbnail_url?: string;
     /**
      * 
      * @type {string}
@@ -26060,7 +26146,19 @@ export interface ScreenRecordingHeatmap {
      * @type {string}
      * @memberof ScreenRecordingHeatmap
      */
+    small_click_thumbnail_url?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ScreenRecordingHeatmap
+     */
     small_click_url?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ScreenRecordingHeatmap
+     */
+    small_movement_thumbnail_url?: string;
     /**
      * 
      * @type {string}
@@ -26072,7 +26170,19 @@ export interface ScreenRecordingHeatmap {
      * @type {string}
      * @memberof ScreenRecordingHeatmap
      */
+    small_regular_thumbnail_url?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ScreenRecordingHeatmap
+     */
     small_regular_url?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ScreenRecordingHeatmap
+     */
+    small_scroll_thumbnail_url?: string;
     /**
      * 
      * @type {string}
@@ -26145,6 +26255,12 @@ export interface ScreenRecordingHeatmapRequest {
      * @memberof ScreenRecordingHeatmapRequest
      */
     range?: ScreenRecordingFilterRangeDate;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof ScreenRecordingHeatmapRequest
+     */
+    screen_sizes?: Array<string>;
     /**
      * 
      * @type {string}
@@ -38805,7 +38921,7 @@ export const IntegrationLogApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getIntegrationLog(pk: string, sk: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<IntegrationLog> {
+        getIntegrationLog(pk: string, sk: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<IntegrationLogResponse> {
             const localVarFetchArgs = IntegrationLogApiFetchParamCreator(configuration).getIntegrationLog(pk, sk, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
@@ -38890,7 +39006,7 @@ export interface IntegrationLogApiInterface {
      * @throws {RequiredError}
      * @memberof IntegrationLogApiInterface
      */
-    getIntegrationLog(pk: string, sk: string, options?: any): Promise<IntegrationLog>;
+    getIntegrationLog(pk: string, sk: string, options?: any): Promise<IntegrationLogResponse>;
 
     /**
      * Retrieves a set of integration logs from the account based on a query object. 
