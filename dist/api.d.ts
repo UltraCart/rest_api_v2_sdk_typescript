@@ -19524,12 +19524,6 @@ export interface LibraryItemAsset {
 export interface LibraryItemAttribute {
     /**
      *
-     * @type {number}
-     * @memberof LibraryItemAttribute
-     */
-    libraryItemOid?: number;
-    /**
-     *
      * @type {string}
      * @memberof LibraryItemAttribute
      */
@@ -32934,6 +32928,16 @@ export declare const IntegrationLogApiFetchParamCreator: (configuration?: Config
      */
     getIntegrationLog(pk: string, sk: string, options?: any): FetchArgs;
     /**
+     * Retrieve an integration log file from the account based identifiers
+     * @summary Retrieve an integration log file
+     * @param {string} pk
+     * @param {string} sk
+     * @param {string} uuid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getIntegrationLogFile(pk: string, sk: string, uuid: string, options?: any): FetchArgs;
+    /**
      * Retrieves a set of integration logs from the account based on a query object.
      * @summary Retrieve integration logs
      * @param {IntegrationLogQueryRequest} integration_log_query Integration log query
@@ -32960,6 +32964,16 @@ export declare const IntegrationLogApiFp: (configuration?: Configuration) => {
      */
     getIntegrationLog(pk: string, sk: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<IntegrationLogResponse>;
     /**
+     * Retrieve an integration log file from the account based identifiers
+     * @summary Retrieve an integration log file
+     * @param {string} pk
+     * @param {string} sk
+     * @param {string} uuid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getIntegrationLogFile(pk: string, sk: string, uuid: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Response>;
+    /**
      * Retrieves a set of integration logs from the account based on a query object.
      * @summary Retrieve integration logs
      * @param {IntegrationLogQueryRequest} integration_log_query Integration log query
@@ -32985,6 +32999,16 @@ export declare const IntegrationLogApiFactory: (configuration?: Configuration, f
      * @throws {RequiredError}
      */
     getIntegrationLog(pk: string, sk: string, options?: any): Promise<IntegrationLogResponse>;
+    /**
+     * Retrieve an integration log file from the account based identifiers
+     * @summary Retrieve an integration log file
+     * @param {string} pk
+     * @param {string} sk
+     * @param {string} uuid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getIntegrationLogFile(pk: string, sk: string, uuid: string, options?: any): Promise<Response>;
     /**
      * Retrieves a set of integration logs from the account based on a query object.
      * @summary Retrieve integration logs
@@ -33013,6 +33037,17 @@ export interface IntegrationLogApiInterface {
      * @memberof IntegrationLogApiInterface
      */
     getIntegrationLog(pk: string, sk: string, options?: any): Promise<IntegrationLogResponse>;
+    /**
+     * Retrieve an integration log file from the account based identifiers
+     * @summary Retrieve an integration log file
+     * @param {string} pk
+     * @param {string} sk
+     * @param {string} uuid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof IntegrationLogApiInterface
+     */
+    getIntegrationLogFile(pk: string, sk: string, uuid: string, options?: any): Promise<{}>;
     /**
      * Retrieves a set of integration logs from the account based on a query object.
      * @summary Retrieve integration logs
@@ -33043,6 +33078,17 @@ export declare class IntegrationLogApi extends BaseAPI implements IntegrationLog
      * @memberof IntegrationLogApi
      */
     getIntegrationLog(pk: string, sk: string, options?: any): Promise<IntegrationLogResponse>;
+    /**
+     * Retrieve an integration log file from the account based identifiers
+     * @summary Retrieve an integration log file
+     * @param {string} pk
+     * @param {string} sk
+     * @param {string} uuid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof IntegrationLogApi
+     */
+    getIntegrationLogFile(pk: string, sk: string, uuid: string, options?: any): Promise<Response>;
     /**
      * Retrieves a set of integration logs from the account based on a query object.
      * @summary Retrieve integration logs

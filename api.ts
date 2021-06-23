@@ -19958,12 +19958,6 @@ export interface LibraryItemAsset {
 export interface LibraryItemAttribute {
     /**
      * 
-     * @type {number}
-     * @memberof LibraryItemAttribute
-     */
-    libraryItemOid?: number;
-    /**
-     * 
      * @type {string}
      * @memberof LibraryItemAttribute
      */
@@ -38811,7 +38805,71 @@ export const IntegrationLogApiFetchParamCreator = function (configuration?: Conf
             // oauth required
             if (configuration && configuration.accessToken) {
 				const localVarAccessTokenValue = typeof configuration.accessToken === 'function'
-					? configuration.accessToken("ultraCartOauth", [])
+					? configuration.accessToken("ultraCartOauth", ["integration_log_read"])
+					: configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
+					? configuration.apiKey("x-ultracart-simple-key")
+					: configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Retrieve an integration log file from the account based identifiers 
+         * @summary Retrieve an integration log file
+         * @param {string} pk 
+         * @param {string} sk 
+         * @param {string} uuid 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getIntegrationLogFile(pk: string, sk: string, uuid: string, options: any = {}): FetchArgs {
+            // verify required parameter 'pk' is not null or undefined
+            if (pk === null || pk === undefined) {
+                throw new RequiredError('pk','Required parameter pk was null or undefined when calling getIntegrationLogFile.');
+            }
+            // verify required parameter 'sk' is not null or undefined
+            if (sk === null || sk === undefined) {
+                throw new RequiredError('sk','Required parameter sk was null or undefined when calling getIntegrationLogFile.');
+            }
+            // verify required parameter 'uuid' is not null or undefined
+            if (uuid === null || uuid === undefined) {
+                throw new RequiredError('uuid','Required parameter uuid was null or undefined when calling getIntegrationLogFile.');
+            }
+            const localVarPath = `/integration_log/query/{pk}/{sk}/{uuid}`
+                .replace(`{${"pk"}}`, encodeURIComponent(String(pk)))
+                .replace(`{${"sk"}}`, encodeURIComponent(String(sk)))
+                .replace(`{${"uuid"}}`, encodeURIComponent(String(uuid)));
+            const localVarUrlObj = url.parse(localVarPath, true);
+            const localVarRequestOptions = Object.assign({ method: 'GET' }, options);
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+    if(configuration && configuration.apiVersion) {
+      localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+    }
+
+
+
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+				const localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+					? configuration.accessToken("ultraCartOauth", ["integration_log_read"])
 					: configuration.accessToken;
                 localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
             }
@@ -38865,7 +38923,7 @@ export const IntegrationLogApiFetchParamCreator = function (configuration?: Conf
             // oauth required
             if (configuration && configuration.accessToken) {
 				const localVarAccessTokenValue = typeof configuration.accessToken === 'function'
-					? configuration.accessToken("ultraCartOauth", [])
+					? configuration.accessToken("ultraCartOauth", ["integration_log_read"])
 					: configuration.accessToken;
                 localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
             }
@@ -38934,6 +38992,27 @@ export const IntegrationLogApiFp = function(configuration?: Configuration) {
             };
         },
         /**
+         * Retrieve an integration log file from the account based identifiers 
+         * @summary Retrieve an integration log file
+         * @param {string} pk 
+         * @param {string} sk 
+         * @param {string} uuid 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getIntegrationLogFile(pk: string, sk: string, uuid: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Response> {
+            const localVarFetchArgs = IntegrationLogApiFetchParamCreator(configuration).getIntegrationLogFile(pk, sk, uuid, options);
+            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+                    if (response.status >= 200 && response.status < 300) {
+                        return response;
+                    } else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
          * Retrieves a set of integration logs from the account based on a query object. 
          * @summary Retrieve integration logs
          * @param {IntegrationLogQueryRequest} integration_log_query Integration log query
@@ -38976,6 +39055,18 @@ export const IntegrationLogApiFactory = function (configuration?: Configuration,
             return IntegrationLogApiFp(configuration).getIntegrationLog(pk, sk, options)(fetch, basePath);
         },
         /**
+         * Retrieve an integration log file from the account based identifiers 
+         * @summary Retrieve an integration log file
+         * @param {string} pk 
+         * @param {string} sk 
+         * @param {string} uuid 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getIntegrationLogFile(pk: string, sk: string, uuid: string, options?: any) {
+            return IntegrationLogApiFp(configuration).getIntegrationLogFile(pk, sk, uuid, options)(fetch, basePath);
+        },
+        /**
          * Retrieves a set of integration logs from the account based on a query object. 
          * @summary Retrieve integration logs
          * @param {IntegrationLogQueryRequest} integration_log_query Integration log query
@@ -39007,6 +39098,18 @@ export interface IntegrationLogApiInterface {
      * @memberof IntegrationLogApiInterface
      */
     getIntegrationLog(pk: string, sk: string, options?: any): Promise<IntegrationLogResponse>;
+
+    /**
+     * Retrieve an integration log file from the account based identifiers 
+     * @summary Retrieve an integration log file
+     * @param {string} pk 
+     * @param {string} sk 
+     * @param {string} uuid 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof IntegrationLogApiInterface
+     */
+    getIntegrationLogFile(pk: string, sk: string, uuid: string, options?: any): Promise<{}>;
 
     /**
      * Retrieves a set of integration logs from the account based on a query object. 
@@ -39041,6 +39144,20 @@ export class IntegrationLogApi extends BaseAPI implements IntegrationLogApiInter
      */
     public getIntegrationLog(pk: string, sk: string, options?: any) {
         return IntegrationLogApiFp(this.configuration).getIntegrationLog(pk, sk, options)(this.fetch, this.basePath);
+    }
+
+    /**
+     * Retrieve an integration log file from the account based identifiers 
+     * @summary Retrieve an integration log file
+     * @param {string} pk 
+     * @param {string} sk 
+     * @param {string} uuid 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof IntegrationLogApi
+     */
+    public getIntegrationLogFile(pk: string, sk: string, uuid: string, options?: any) {
+        return IntegrationLogApiFp(this.configuration).getIntegrationLogFile(pk, sk, uuid, options)(this.fetch, this.basePath);
     }
 
     /**
@@ -40268,7 +40385,7 @@ export const OauthApiFetchParamCreator = function (configuration?: Configuration
             // oauth required
             if (configuration && configuration.accessToken) {
 				const localVarAccessTokenValue = typeof configuration.accessToken === 'function'
-					? configuration.accessToken("ultraCartOauth", ["ultrabooks_write", "auto_order_write", "coupon_read", "affiliate_read", "coupon_write", "tax_read", "fulfillment_write", "tax_write", "item_read", "fulfillment_read", "webhook_write", "chargeback_write", "user_write", "checkout_write", "storefront_read", "webhook_read", "item_write", "auto_order_read", "customer_read", "user_read", "customer_write", "order_read", "affiliate_write", "storefront_write", "ultrabooks_read", "order_write", "chargeback_read", "checkout_read"])
+					? configuration.accessToken("ultraCartOauth", ["ultrabooks_write", "auto_order_write", "coupon_read", "affiliate_read", "coupon_write", "tax_read", "fulfillment_write", "tax_write", "item_read", "fulfillment_read", "webhook_write", "chargeback_write", "user_write", "checkout_write", "storefront_read", "webhook_read", "item_write", "auto_order_read", "customer_read", "user_read", "customer_write", "order_read", "affiliate_write", "storefront_write", "ultrabooks_read", "order_write", "chargeback_read", "integration_log_write", "checkout_read", "integration_log_read"])
 					: configuration.accessToken;
                 localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
             }
@@ -40356,7 +40473,7 @@ export const OauthApiFetchParamCreator = function (configuration?: Configuration
             // oauth required
             if (configuration && configuration.accessToken) {
 				const localVarAccessTokenValue = typeof configuration.accessToken === 'function'
-					? configuration.accessToken("ultraCartOauth", ["ultrabooks_write", "auto_order_write", "coupon_read", "affiliate_read", "coupon_write", "tax_read", "fulfillment_write", "tax_write", "item_read", "fulfillment_read", "webhook_write", "chargeback_write", "user_write", "checkout_write", "storefront_read", "webhook_read", "item_write", "auto_order_read", "customer_read", "user_read", "customer_write", "order_read", "affiliate_write", "storefront_write", "ultrabooks_read", "order_write", "chargeback_read", "checkout_read"])
+					? configuration.accessToken("ultraCartOauth", ["ultrabooks_write", "auto_order_write", "coupon_read", "affiliate_read", "coupon_write", "tax_read", "fulfillment_write", "tax_write", "item_read", "fulfillment_read", "webhook_write", "chargeback_write", "user_write", "checkout_write", "storefront_read", "webhook_read", "item_write", "auto_order_read", "customer_read", "user_read", "customer_write", "order_read", "affiliate_write", "storefront_write", "ultrabooks_read", "order_write", "chargeback_read", "integration_log_write", "checkout_read", "integration_log_read"])
 					: configuration.accessToken;
                 localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
             }
