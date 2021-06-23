@@ -6792,6 +6792,86 @@ var CustomerApiFetchParamCreator = function (configuration) {
             };
         },
         /**
+         * Retrieve values needed for a customer profile editor.
+         * @summary Retrieve values needed for a customer profile editor
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getCustomerEditorValues: function (options) {
+            if (options === void 0) { options = {}; }
+            var localVarPath = "/customer/editor_values";
+            var localVarUrlObj = url.parse(localVarPath, true);
+            var localVarRequestOptions = Object.assign({ method: 'GET' }, options);
+            var localVarHeaderParameter = {};
+            var localVarQueryParameter = {};
+            if (configuration && configuration.apiVersion) {
+                localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+            }
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+                var localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+                    ? configuration.accessToken("ultraCartOauth", ["customer_read"])
+                    : configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                var localVarApiKeyValue = typeof configuration.apiKey === 'function'
+                    ? configuration.apiKey("x-ultracart-simple-key")
+                    : configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Retrieve all email lists across all storefronts
+         * @summary Retrieve all email lists across all storefronts
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getCustomerEmailLists: function (options) {
+            if (options === void 0) { options = {}; }
+            var localVarPath = "/customer/email_lists";
+            var localVarUrlObj = url.parse(localVarPath, true);
+            var localVarRequestOptions = Object.assign({ method: 'GET' }, options);
+            var localVarHeaderParameter = {};
+            var localVarQueryParameter = {};
+            if (configuration && configuration.apiVersion) {
+                localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+            }
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+                var localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+                    ? configuration.accessToken("ultraCartOauth", ["customer_read"])
+                    : configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                var localVarApiKeyValue = typeof configuration.apiKey === 'function'
+                    ? configuration.apiKey("x-ultracart-simple-key")
+                    : configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
          * Retrieves customers from the account.  If no parameters are specified, all customers will be returned.  You will need to make multiple API calls in order to retrieve the entire result set since this API performs result set pagination.
          * @summary Retrieve customers
          * @param {string} [email] Email
@@ -7061,86 +7141,6 @@ var CustomerApiFetchParamCreator = function (configuration) {
             }
             if (_expand !== undefined) {
                 localVarQueryParameter['_expand'] = _expand;
-            }
-            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
-            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
-            delete localVarUrlObj.search;
-            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
-            return {
-                url: url.format(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * Retrieve values needed for a customer profile editor.
-         * @summary Retrieve values needed for a customer profile editor
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        getEditorValues: function (options) {
-            if (options === void 0) { options = {}; }
-            var localVarPath = "/customer/editor_values";
-            var localVarUrlObj = url.parse(localVarPath, true);
-            var localVarRequestOptions = Object.assign({ method: 'GET' }, options);
-            var localVarHeaderParameter = {};
-            var localVarQueryParameter = {};
-            if (configuration && configuration.apiVersion) {
-                localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
-            }
-            // authentication ultraCartOauth required
-            // oauth required
-            if (configuration && configuration.accessToken) {
-                var localVarAccessTokenValue = typeof configuration.accessToken === 'function'
-                    ? configuration.accessToken("ultraCartOauth", ["customer_read"])
-                    : configuration.accessToken;
-                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
-            }
-            // authentication ultraCartSimpleApiKey required
-            if (configuration && configuration.apiKey) {
-                var localVarApiKeyValue = typeof configuration.apiKey === 'function'
-                    ? configuration.apiKey("x-ultracart-simple-key")
-                    : configuration.apiKey;
-                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
-            }
-            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
-            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
-            delete localVarUrlObj.search;
-            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
-            return {
-                url: url.format(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * Retrieve all email lists across all storefronts
-         * @summary Retrieve all email lists across all storefronts
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        getEmailLists: function (options) {
-            if (options === void 0) { options = {}; }
-            var localVarPath = "/customer/email_lists";
-            var localVarUrlObj = url.parse(localVarPath, true);
-            var localVarRequestOptions = Object.assign({ method: 'GET' }, options);
-            var localVarHeaderParameter = {};
-            var localVarQueryParameter = {};
-            if (configuration && configuration.apiVersion) {
-                localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
-            }
-            // authentication ultraCartOauth required
-            // oauth required
-            if (configuration && configuration.accessToken) {
-                var localVarAccessTokenValue = typeof configuration.accessToken === 'function'
-                    ? configuration.accessToken("ultraCartOauth", ["customer_read"])
-                    : configuration.accessToken;
-                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
-            }
-            // authentication ultraCartSimpleApiKey required
-            if (configuration && configuration.apiKey) {
-                var localVarApiKeyValue = typeof configuration.apiKey === 'function'
-                    ? configuration.apiKey("x-ultracart-simple-key")
-                    : configuration.apiKey;
-                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
             }
             localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
             // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
@@ -7489,6 +7489,48 @@ var CustomerApiFp = function (configuration) {
             };
         },
         /**
+         * Retrieve values needed for a customer profile editor.
+         * @summary Retrieve values needed for a customer profile editor
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getCustomerEditorValues: function (options) {
+            var localVarFetchArgs = exports.CustomerApiFetchParamCreator(configuration).getCustomerEditorValues(options);
+            return function (fetch, basePath) {
+                if (fetch === void 0) { fetch = portableFetch; }
+                if (basePath === void 0) { basePath = BASE_PATH; }
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(function (response) {
+                    if (response.status >= 200 && response.status < 300) {
+                        return response.json();
+                    }
+                    else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
+         * Retrieve all email lists across all storefronts
+         * @summary Retrieve all email lists across all storefronts
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getCustomerEmailLists: function (options) {
+            var localVarFetchArgs = exports.CustomerApiFetchParamCreator(configuration).getCustomerEmailLists(options);
+            return function (fetch, basePath) {
+                if (fetch === void 0) { fetch = portableFetch; }
+                if (basePath === void 0) { basePath = BASE_PATH; }
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(function (response) {
+                    if (response.status >= 200 && response.status < 300) {
+                        return response.json();
+                    }
+                    else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
          * Retrieves customers from the account.  If no parameters are specified, all customers will be returned.  You will need to make multiple API calls in order to retrieve the entire result set since this API performs result set pagination.
          * @summary Retrieve customers
          * @param {string} [email] Email
@@ -7577,48 +7619,6 @@ var CustomerApiFp = function (configuration) {
          */
         getCustomersForDataTables: function (_expand, options) {
             var localVarFetchArgs = exports.CustomerApiFetchParamCreator(configuration).getCustomersForDataTables(_expand, options);
-            return function (fetch, basePath) {
-                if (fetch === void 0) { fetch = portableFetch; }
-                if (basePath === void 0) { basePath = BASE_PATH; }
-                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(function (response) {
-                    if (response.status >= 200 && response.status < 300) {
-                        return response.json();
-                    }
-                    else {
-                        throw response;
-                    }
-                });
-            };
-        },
-        /**
-         * Retrieve values needed for a customer profile editor.
-         * @summary Retrieve values needed for a customer profile editor
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        getEditorValues: function (options) {
-            var localVarFetchArgs = exports.CustomerApiFetchParamCreator(configuration).getEditorValues(options);
-            return function (fetch, basePath) {
-                if (fetch === void 0) { fetch = portableFetch; }
-                if (basePath === void 0) { basePath = BASE_PATH; }
-                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(function (response) {
-                    if (response.status >= 200 && response.status < 300) {
-                        return response.json();
-                    }
-                    else {
-                        throw response;
-                    }
-                });
-            };
-        },
-        /**
-         * Retrieve all email lists across all storefronts
-         * @summary Retrieve all email lists across all storefronts
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        getEmailLists: function (options) {
-            var localVarFetchArgs = exports.CustomerApiFetchParamCreator(configuration).getEmailLists(options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -7788,6 +7788,24 @@ var CustomerApiFactory = function (configuration, fetch, basePath) {
             return exports.CustomerApiFp(configuration).getCustomerByEmail(email, _expand, options)(fetch, basePath);
         },
         /**
+         * Retrieve values needed for a customer profile editor.
+         * @summary Retrieve values needed for a customer profile editor
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getCustomerEditorValues: function (options) {
+            return exports.CustomerApiFp(configuration).getCustomerEditorValues(options)(fetch, basePath);
+        },
+        /**
+         * Retrieve all email lists across all storefronts
+         * @summary Retrieve all email lists across all storefronts
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getCustomerEmailLists: function (options) {
+            return exports.CustomerApiFp(configuration).getCustomerEmailLists(options)(fetch, basePath);
+        },
+        /**
          * Retrieves customers from the account.  If no parameters are specified, all customers will be returned.  You will need to make multiple API calls in order to retrieve the entire result set since this API performs result set pagination.
          * @summary Retrieve customers
          * @param {string} [email] Email
@@ -7852,24 +7870,6 @@ var CustomerApiFactory = function (configuration, fetch, basePath) {
          */
         getCustomersForDataTables: function (_expand, options) {
             return exports.CustomerApiFp(configuration).getCustomersForDataTables(_expand, options)(fetch, basePath);
-        },
-        /**
-         * Retrieve values needed for a customer profile editor.
-         * @summary Retrieve values needed for a customer profile editor
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        getEditorValues: function (options) {
-            return exports.CustomerApiFp(configuration).getEditorValues(options)(fetch, basePath);
-        },
-        /**
-         * Retrieve all email lists across all storefronts
-         * @summary Retrieve all email lists across all storefronts
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        getEmailLists: function (options) {
-            return exports.CustomerApiFp(configuration).getEmailLists(options)(fetch, basePath);
         },
         /**
          * Create a token that can be used to verify a customer email address.  The implementation of how a customer interacts with this token is left to the merchant.
@@ -7975,6 +7975,26 @@ var CustomerApi = /** @class */ (function (_super) {
         return exports.CustomerApiFp(this.configuration).getCustomerByEmail(email, _expand, options)(this.fetch, this.basePath);
     };
     /**
+     * Retrieve values needed for a customer profile editor.
+     * @summary Retrieve values needed for a customer profile editor
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof CustomerApi
+     */
+    CustomerApi.prototype.getCustomerEditorValues = function (options) {
+        return exports.CustomerApiFp(this.configuration).getCustomerEditorValues(options)(this.fetch, this.basePath);
+    };
+    /**
+     * Retrieve all email lists across all storefronts
+     * @summary Retrieve all email lists across all storefronts
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof CustomerApi
+     */
+    CustomerApi.prototype.getCustomerEmailLists = function (options) {
+        return exports.CustomerApiFp(this.configuration).getCustomerEmailLists(options)(this.fetch, this.basePath);
+    };
+    /**
      * Retrieves customers from the account.  If no parameters are specified, all customers will be returned.  You will need to make multiple API calls in order to retrieve the entire result set since this API performs result set pagination.
      * @summary Retrieve customers
      * @param {string} [email] Email
@@ -8042,26 +8062,6 @@ var CustomerApi = /** @class */ (function (_super) {
      */
     CustomerApi.prototype.getCustomersForDataTables = function (_expand, options) {
         return exports.CustomerApiFp(this.configuration).getCustomersForDataTables(_expand, options)(this.fetch, this.basePath);
-    };
-    /**
-     * Retrieve values needed for a customer profile editor.
-     * @summary Retrieve values needed for a customer profile editor
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof CustomerApi
-     */
-    CustomerApi.prototype.getEditorValues = function (options) {
-        return exports.CustomerApiFp(this.configuration).getEditorValues(options)(this.fetch, this.basePath);
-    };
-    /**
-     * Retrieve all email lists across all storefronts
-     * @summary Retrieve all email lists across all storefronts
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof CustomerApi
-     */
-    CustomerApi.prototype.getEmailLists = function (options) {
-        return exports.CustomerApiFp(this.configuration).getEmailLists(options)(this.fetch, this.basePath);
     };
     /**
      * Create a token that can be used to verify a customer email address.  The implementation of how a customer interacts with this token is left to the merchant.
@@ -17440,50 +17440,6 @@ var StorefrontApiFetchParamCreator = function (configuration) {
             };
         },
         /**
-         * Retrieves the pricing tiers
-         * @summary Retrieve pricing tiers
-         * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        getPricingTiers: function (_expand, options) {
-            if (options === void 0) { options = {}; }
-            var localVarPath = "/storefront/pricing_tiers";
-            var localVarUrlObj = url.parse(localVarPath, true);
-            var localVarRequestOptions = Object.assign({ method: 'GET' }, options);
-            var localVarHeaderParameter = {};
-            var localVarQueryParameter = {};
-            if (configuration && configuration.apiVersion) {
-                localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
-            }
-            // authentication ultraCartOauth required
-            // oauth required
-            if (configuration && configuration.accessToken) {
-                var localVarAccessTokenValue = typeof configuration.accessToken === 'function'
-                    ? configuration.accessToken("ultraCartOauth", ["item_read"])
-                    : configuration.accessToken;
-                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
-            }
-            // authentication ultraCartSimpleApiKey required
-            if (configuration && configuration.apiKey) {
-                var localVarApiKeyValue = typeof configuration.apiKey === 'function'
-                    ? configuration.apiKey("x-ultracart-simple-key")
-                    : configuration.apiKey;
-                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
-            }
-            if (_expand !== undefined) {
-                localVarQueryParameter['_expand'] = _expand;
-            }
-            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
-            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
-            delete localVarUrlObj.search;
-            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
-            return {
-                url: url.format(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
          * Get screen recording
          * @summary Get screen recording
          * @param {number} storefront_oid
@@ -17924,6 +17880,50 @@ var StorefrontApiFetchParamCreator = function (configuration) {
             }
             if (_sort !== undefined) {
                 localVarQueryParameter['_sort'] = _sort;
+            }
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Retrieves the pricing tiers
+         * @summary Retrieve pricing tiers
+         * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getStoreFrontPricingTiers: function (_expand, options) {
+            if (options === void 0) { options = {}; }
+            var localVarPath = "/storefront/pricing_tiers";
+            var localVarUrlObj = url.parse(localVarPath, true);
+            var localVarRequestOptions = Object.assign({ method: 'GET' }, options);
+            var localVarHeaderParameter = {};
+            var localVarQueryParameter = {};
+            if (configuration && configuration.apiVersion) {
+                localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+            }
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+                var localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+                    ? configuration.accessToken("ultraCartOauth", ["item_read"])
+                    : configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                var localVarApiKeyValue = typeof configuration.apiKey === 'function'
+                    ? configuration.apiKey("x-ultracart-simple-key")
+                    : configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+            if (_expand !== undefined) {
+                localVarQueryParameter['_expand'] = _expand;
             }
             localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
             // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
@@ -23228,28 +23228,6 @@ var StorefrontApiFp = function (configuration) {
             };
         },
         /**
-         * Retrieves the pricing tiers
-         * @summary Retrieve pricing tiers
-         * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        getPricingTiers: function (_expand, options) {
-            var localVarFetchArgs = exports.StorefrontApiFetchParamCreator(configuration).getPricingTiers(_expand, options);
-            return function (fetch, basePath) {
-                if (fetch === void 0) { fetch = portableFetch; }
-                if (basePath === void 0) { basePath = BASE_PATH; }
-                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(function (response) {
-                    if (response.status >= 200 && response.status < 300) {
-                        return response.json();
-                    }
-                    else {
-                        throw response;
-                    }
-                });
-            };
-        },
-        /**
          * Get screen recording
          * @summary Get screen recording
          * @param {number} storefront_oid
@@ -23424,6 +23402,28 @@ var StorefrontApiFp = function (configuration) {
          */
         getScreenRecordingsBySegment: function (storefront_oid, screen_recording_segment_oid, _limit, _offset, _sort, options) {
             var localVarFetchArgs = exports.StorefrontApiFetchParamCreator(configuration).getScreenRecordingsBySegment(storefront_oid, screen_recording_segment_oid, _limit, _offset, _sort, options);
+            return function (fetch, basePath) {
+                if (fetch === void 0) { fetch = portableFetch; }
+                if (basePath === void 0) { basePath = BASE_PATH; }
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(function (response) {
+                    if (response.status >= 200 && response.status < 300) {
+                        return response.json();
+                    }
+                    else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
+         * Retrieves the pricing tiers
+         * @summary Retrieve pricing tiers
+         * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getStoreFrontPricingTiers: function (_expand, options) {
+            var localVarFetchArgs = exports.StorefrontApiFetchParamCreator(configuration).getStoreFrontPricingTiers(_expand, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -25637,16 +25637,6 @@ var StorefrontApiFactory = function (configuration, fetch, basePath) {
             return exports.StorefrontApiFp(configuration).getLibraryItemPublishedVersions(library_item_oid, options)(fetch, basePath);
         },
         /**
-         * Retrieves the pricing tiers
-         * @summary Retrieve pricing tiers
-         * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        getPricingTiers: function (_expand, options) {
-            return exports.StorefrontApiFp(configuration).getPricingTiers(_expand, options)(fetch, basePath);
-        },
-        /**
          * Get screen recording
          * @summary Get screen recording
          * @param {number} storefront_oid
@@ -25737,6 +25727,16 @@ var StorefrontApiFactory = function (configuration, fetch, basePath) {
          */
         getScreenRecordingsBySegment: function (storefront_oid, screen_recording_segment_oid, _limit, _offset, _sort, options) {
             return exports.StorefrontApiFp(configuration).getScreenRecordingsBySegment(storefront_oid, screen_recording_segment_oid, _limit, _offset, _sort, options)(fetch, basePath);
+        },
+        /**
+         * Retrieves the pricing tiers
+         * @summary Retrieve pricing tiers
+         * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getStoreFrontPricingTiers: function (_expand, options) {
+            return exports.StorefrontApiFp(configuration).getStoreFrontPricingTiers(_expand, options)(fetch, basePath);
         },
         /**
          *
@@ -27379,17 +27379,6 @@ var StorefrontApi = /** @class */ (function (_super) {
         return exports.StorefrontApiFp(this.configuration).getLibraryItemPublishedVersions(library_item_oid, options)(this.fetch, this.basePath);
     };
     /**
-     * Retrieves the pricing tiers
-     * @summary Retrieve pricing tiers
-     * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof StorefrontApi
-     */
-    StorefrontApi.prototype.getPricingTiers = function (_expand, options) {
-        return exports.StorefrontApiFp(this.configuration).getPricingTiers(_expand, options)(this.fetch, this.basePath);
-    };
-    /**
      * Get screen recording
      * @summary Get screen recording
      * @param {number} storefront_oid
@@ -27488,6 +27477,17 @@ var StorefrontApi = /** @class */ (function (_super) {
      */
     StorefrontApi.prototype.getScreenRecordingsBySegment = function (storefront_oid, screen_recording_segment_oid, _limit, _offset, _sort, options) {
         return exports.StorefrontApiFp(this.configuration).getScreenRecordingsBySegment(storefront_oid, screen_recording_segment_oid, _limit, _offset, _sort, options)(this.fetch, this.basePath);
+    };
+    /**
+     * Retrieves the pricing tiers
+     * @summary Retrieve pricing tiers
+     * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof StorefrontApi
+     */
+    StorefrontApi.prototype.getStoreFrontPricingTiers = function (_expand, options) {
+        return exports.StorefrontApiFp(this.configuration).getStoreFrontPricingTiers(_expand, options)(this.fetch, this.basePath);
     };
     /**
      *

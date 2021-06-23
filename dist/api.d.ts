@@ -31913,6 +31913,20 @@ export declare const CustomerApiFetchParamCreator: (configuration?: Configuratio
      */
     getCustomerByEmail(email: string, _expand?: string, options?: any): FetchArgs;
     /**
+     * Retrieve values needed for a customer profile editor.
+     * @summary Retrieve values needed for a customer profile editor
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getCustomerEditorValues(options?: any): FetchArgs;
+    /**
+     * Retrieve all email lists across all storefronts
+     * @summary Retrieve all email lists across all storefronts
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getCustomerEmailLists(options?: any): FetchArgs;
+    /**
      * Retrieves customers from the account.  If no parameters are specified, all customers will be returned.  You will need to make multiple API calls in order to retrieve the entire result set since this API performs result set pagination.
      * @summary Retrieve customers
      * @param {string} [email] Email
@@ -31972,20 +31986,6 @@ export declare const CustomerApiFetchParamCreator: (configuration?: Configuratio
      * @throws {RequiredError}
      */
     getCustomersForDataTables(_expand?: string, options?: any): FetchArgs;
-    /**
-     * Retrieve values needed for a customer profile editor.
-     * @summary Retrieve values needed for a customer profile editor
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    getEditorValues(options?: any): FetchArgs;
-    /**
-     * Retrieve all email lists across all storefronts
-     * @summary Retrieve all email lists across all storefronts
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    getEmailLists(options?: any): FetchArgs;
     /**
      * Create a token that can be used to verify a customer email address.  The implementation of how a customer interacts with this token is left to the merchant.
      * @summary Create a token that can be used to verify a customer email address
@@ -32063,6 +32063,20 @@ export declare const CustomerApiFp: (configuration?: Configuration) => {
      */
     getCustomerByEmail(email: string, _expand?: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<CustomerResponse>;
     /**
+     * Retrieve values needed for a customer profile editor.
+     * @summary Retrieve values needed for a customer profile editor
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getCustomerEditorValues(options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<CustomerEditorValues>;
+    /**
+     * Retrieve all email lists across all storefronts
+     * @summary Retrieve all email lists across all storefronts
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getCustomerEmailLists(options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<EmailListsResponse>;
+    /**
      * Retrieves customers from the account.  If no parameters are specified, all customers will be returned.  You will need to make multiple API calls in order to retrieve the entire result set since this API performs result set pagination.
      * @summary Retrieve customers
      * @param {string} [email] Email
@@ -32122,20 +32136,6 @@ export declare const CustomerApiFp: (configuration?: Configuration) => {
      * @throws {RequiredError}
      */
     getCustomersForDataTables(_expand?: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<DataTablesServerSideResponse>;
-    /**
-     * Retrieve values needed for a customer profile editor.
-     * @summary Retrieve values needed for a customer profile editor
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    getEditorValues(options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<CustomerEditorValues>;
-    /**
-     * Retrieve all email lists across all storefronts
-     * @summary Retrieve all email lists across all storefronts
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    getEmailLists(options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<EmailListsResponse>;
     /**
      * Create a token that can be used to verify a customer email address.  The implementation of how a customer interacts with this token is left to the merchant.
      * @summary Create a token that can be used to verify a customer email address
@@ -32213,6 +32213,20 @@ export declare const CustomerApiFactory: (configuration?: Configuration, fetch?:
      */
     getCustomerByEmail(email: string, _expand?: string, options?: any): Promise<CustomerResponse>;
     /**
+     * Retrieve values needed for a customer profile editor.
+     * @summary Retrieve values needed for a customer profile editor
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getCustomerEditorValues(options?: any): Promise<CustomerEditorValues>;
+    /**
+     * Retrieve all email lists across all storefronts
+     * @summary Retrieve all email lists across all storefronts
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getCustomerEmailLists(options?: any): Promise<EmailListsResponse>;
+    /**
      * Retrieves customers from the account.  If no parameters are specified, all customers will be returned.  You will need to make multiple API calls in order to retrieve the entire result set since this API performs result set pagination.
      * @summary Retrieve customers
      * @param {string} [email] Email
@@ -32272,20 +32286,6 @@ export declare const CustomerApiFactory: (configuration?: Configuration, fetch?:
      * @throws {RequiredError}
      */
     getCustomersForDataTables(_expand?: string, options?: any): Promise<DataTablesServerSideResponse>;
-    /**
-     * Retrieve values needed for a customer profile editor.
-     * @summary Retrieve values needed for a customer profile editor
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    getEditorValues(options?: any): Promise<CustomerEditorValues>;
-    /**
-     * Retrieve all email lists across all storefronts
-     * @summary Retrieve all email lists across all storefronts
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    getEmailLists(options?: any): Promise<EmailListsResponse>;
     /**
      * Create a token that can be used to verify a customer email address.  The implementation of how a customer interacts with this token is left to the merchant.
      * @summary Create a token that can be used to verify a customer email address
@@ -32367,6 +32367,22 @@ export interface CustomerApiInterface {
      */
     getCustomerByEmail(email: string, _expand?: string, options?: any): Promise<CustomerResponse>;
     /**
+     * Retrieve values needed for a customer profile editor.
+     * @summary Retrieve values needed for a customer profile editor
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof CustomerApiInterface
+     */
+    getCustomerEditorValues(options?: any): Promise<CustomerEditorValues>;
+    /**
+     * Retrieve all email lists across all storefronts
+     * @summary Retrieve all email lists across all storefronts
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof CustomerApiInterface
+     */
+    getCustomerEmailLists(options?: any): Promise<EmailListsResponse>;
+    /**
      * Retrieves customers from the account.  If no parameters are specified, all customers will be returned.  You will need to make multiple API calls in order to retrieve the entire result set since this API performs result set pagination.
      * @summary Retrieve customers
      * @param {string} [email] Email
@@ -32429,22 +32445,6 @@ export interface CustomerApiInterface {
      * @memberof CustomerApiInterface
      */
     getCustomersForDataTables(_expand?: string, options?: any): Promise<DataTablesServerSideResponse>;
-    /**
-     * Retrieve values needed for a customer profile editor.
-     * @summary Retrieve values needed for a customer profile editor
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof CustomerApiInterface
-     */
-    getEditorValues(options?: any): Promise<CustomerEditorValues>;
-    /**
-     * Retrieve all email lists across all storefronts
-     * @summary Retrieve all email lists across all storefronts
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof CustomerApiInterface
-     */
-    getEmailLists(options?: any): Promise<EmailListsResponse>;
     /**
      * Create a token that can be used to verify a customer email address.  The implementation of how a customer interacts with this token is left to the merchant.
      * @summary Create a token that can be used to verify a customer email address
@@ -32532,6 +32532,22 @@ export declare class CustomerApi extends BaseAPI implements CustomerApiInterface
      */
     getCustomerByEmail(email: string, _expand?: string, options?: any): Promise<CustomerResponse>;
     /**
+     * Retrieve values needed for a customer profile editor.
+     * @summary Retrieve values needed for a customer profile editor
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof CustomerApi
+     */
+    getCustomerEditorValues(options?: any): Promise<CustomerEditorValues>;
+    /**
+     * Retrieve all email lists across all storefronts
+     * @summary Retrieve all email lists across all storefronts
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof CustomerApi
+     */
+    getCustomerEmailLists(options?: any): Promise<EmailListsResponse>;
+    /**
      * Retrieves customers from the account.  If no parameters are specified, all customers will be returned.  You will need to make multiple API calls in order to retrieve the entire result set since this API performs result set pagination.
      * @summary Retrieve customers
      * @param {string} [email] Email
@@ -32594,22 +32610,6 @@ export declare class CustomerApi extends BaseAPI implements CustomerApiInterface
      * @memberof CustomerApi
      */
     getCustomersForDataTables(_expand?: string, options?: any): Promise<DataTablesServerSideResponse>;
-    /**
-     * Retrieve values needed for a customer profile editor.
-     * @summary Retrieve values needed for a customer profile editor
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof CustomerApi
-     */
-    getEditorValues(options?: any): Promise<CustomerEditorValues>;
-    /**
-     * Retrieve all email lists across all storefronts
-     * @summary Retrieve all email lists across all storefronts
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof CustomerApi
-     */
-    getEmailLists(options?: any): Promise<EmailListsResponse>;
     /**
      * Create a token that can be used to verify a customer email address.  The implementation of how a customer interacts with this token is left to the merchant.
      * @summary Create a token that can be used to verify a customer email address
@@ -35695,14 +35695,6 @@ export declare const StorefrontApiFetchParamCreator: (configuration?: Configurat
      */
     getLibraryItemPublishedVersions(library_item_oid: number, options?: any): FetchArgs;
     /**
-     * Retrieves the pricing tiers
-     * @summary Retrieve pricing tiers
-     * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    getPricingTiers(_expand?: string, options?: any): FetchArgs;
-    /**
      * Get screen recording
      * @summary Get screen recording
      * @param {number} storefront_oid
@@ -35778,6 +35770,14 @@ export declare const StorefrontApiFetchParamCreator: (configuration?: Configurat
      * @throws {RequiredError}
      */
     getScreenRecordingsBySegment(storefront_oid: number, screen_recording_segment_oid: number, _limit?: number, _offset?: number, _sort?: string, options?: any): FetchArgs;
+    /**
+     * Retrieves the pricing tiers
+     * @summary Retrieve pricing tiers
+     * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getStoreFrontPricingTiers(_expand?: string, options?: any): FetchArgs;
     /**
      *
      * @summary Get thumbnail parameters
@@ -37051,14 +37051,6 @@ export declare const StorefrontApiFp: (configuration?: Configuration) => {
      */
     getLibraryItemPublishedVersions(library_item_oid: number, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<LibraryItemsResponse>;
     /**
-     * Retrieves the pricing tiers
-     * @summary Retrieve pricing tiers
-     * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    getPricingTiers(_expand?: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<PricingTiersResponse>;
-    /**
      * Get screen recording
      * @summary Get screen recording
      * @param {number} storefront_oid
@@ -37134,6 +37126,14 @@ export declare const StorefrontApiFp: (configuration?: Configuration) => {
      * @throws {RequiredError}
      */
     getScreenRecordingsBySegment(storefront_oid: number, screen_recording_segment_oid: number, _limit?: number, _offset?: number, _sort?: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ScreenRecordingQueryResponse>;
+    /**
+     * Retrieves the pricing tiers
+     * @summary Retrieve pricing tiers
+     * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getStoreFrontPricingTiers(_expand?: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<PricingTiersResponse>;
     /**
      *
      * @summary Get thumbnail parameters
@@ -38407,14 +38407,6 @@ export declare const StorefrontApiFactory: (configuration?: Configuration, fetch
      */
     getLibraryItemPublishedVersions(library_item_oid: number, options?: any): Promise<LibraryItemsResponse>;
     /**
-     * Retrieves the pricing tiers
-     * @summary Retrieve pricing tiers
-     * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    getPricingTiers(_expand?: string, options?: any): Promise<PricingTiersResponse>;
-    /**
      * Get screen recording
      * @summary Get screen recording
      * @param {number} storefront_oid
@@ -38490,6 +38482,14 @@ export declare const StorefrontApiFactory: (configuration?: Configuration, fetch
      * @throws {RequiredError}
      */
     getScreenRecordingsBySegment(storefront_oid: number, screen_recording_segment_oid: number, _limit?: number, _offset?: number, _sort?: string, options?: any): Promise<ScreenRecordingQueryResponse>;
+    /**
+     * Retrieves the pricing tiers
+     * @summary Retrieve pricing tiers
+     * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getStoreFrontPricingTiers(_expand?: string, options?: any): Promise<PricingTiersResponse>;
     /**
      *
      * @summary Get thumbnail parameters
@@ -39848,15 +39848,6 @@ export interface StorefrontApiInterface {
      */
     getLibraryItemPublishedVersions(library_item_oid: number, options?: any): Promise<LibraryItemsResponse>;
     /**
-     * Retrieves the pricing tiers
-     * @summary Retrieve pricing tiers
-     * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof StorefrontApiInterface
-     */
-    getPricingTiers(_expand?: string, options?: any): Promise<PricingTiersResponse>;
-    /**
      * Get screen recording
      * @summary Get screen recording
      * @param {number} storefront_oid
@@ -39940,6 +39931,15 @@ export interface StorefrontApiInterface {
      * @memberof StorefrontApiInterface
      */
     getScreenRecordingsBySegment(storefront_oid: number, screen_recording_segment_oid: number, _limit?: number, _offset?: number, _sort?: string, options?: any): Promise<ScreenRecordingQueryResponse>;
+    /**
+     * Retrieves the pricing tiers
+     * @summary Retrieve pricing tiers
+     * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof StorefrontApiInterface
+     */
+    getStoreFrontPricingTiers(_expand?: string, options?: any): Promise<PricingTiersResponse>;
     /**
      *
      * @summary Get thumbnail parameters
@@ -41353,15 +41353,6 @@ export declare class StorefrontApi extends BaseAPI implements StorefrontApiInter
      */
     getLibraryItemPublishedVersions(library_item_oid: number, options?: any): Promise<LibraryItemsResponse>;
     /**
-     * Retrieves the pricing tiers
-     * @summary Retrieve pricing tiers
-     * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof StorefrontApi
-     */
-    getPricingTiers(_expand?: string, options?: any): Promise<PricingTiersResponse>;
-    /**
      * Get screen recording
      * @summary Get screen recording
      * @param {number} storefront_oid
@@ -41445,6 +41436,15 @@ export declare class StorefrontApi extends BaseAPI implements StorefrontApiInter
      * @memberof StorefrontApi
      */
     getScreenRecordingsBySegment(storefront_oid: number, screen_recording_segment_oid: number, _limit?: number, _offset?: number, _sort?: string, options?: any): Promise<ScreenRecordingQueryResponse>;
+    /**
+     * Retrieves the pricing tiers
+     * @summary Retrieve pricing tiers
+     * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof StorefrontApi
+     */
+    getStoreFrontPricingTiers(_expand?: string, options?: any): Promise<PricingTiersResponse>;
     /**
      *
      * @summary Get thumbnail parameters
