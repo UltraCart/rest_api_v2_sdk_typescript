@@ -39000,12 +39000,12 @@ export const IntegrationLogApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getIntegrationLogFile(pk: string, sk: string, uuid: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Response> {
+        getIntegrationLogFile(pk: string, sk: string, uuid: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<any> {
             const localVarFetchArgs = IntegrationLogApiFetchParamCreator(configuration).getIntegrationLogFile(pk, sk, uuid, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
                     if (response.status >= 200 && response.status < 300) {
-                        return response;
+                        return response.json();
                     } else {
                         throw response;
                     }
@@ -39109,7 +39109,7 @@ export interface IntegrationLogApiInterface {
      * @throws {RequiredError}
      * @memberof IntegrationLogApiInterface
      */
-    getIntegrationLogFile(pk: string, sk: string, uuid: string, options?: any): Promise<{}>;
+    getIntegrationLogFile(pk: string, sk: string, uuid: string, options?: any): Promise<any>;
 
     /**
      * Retrieves a set of integration logs from the account based on a query object. 

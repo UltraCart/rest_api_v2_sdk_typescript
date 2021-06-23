@@ -32972,7 +32972,7 @@ export declare const IntegrationLogApiFp: (configuration?: Configuration) => {
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getIntegrationLogFile(pk: string, sk: string, uuid: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Response>;
+    getIntegrationLogFile(pk: string, sk: string, uuid: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<any>;
     /**
      * Retrieves a set of integration logs from the account based on a query object.
      * @summary Retrieve integration logs
@@ -33008,7 +33008,7 @@ export declare const IntegrationLogApiFactory: (configuration?: Configuration, f
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getIntegrationLogFile(pk: string, sk: string, uuid: string, options?: any): Promise<Response>;
+    getIntegrationLogFile(pk: string, sk: string, uuid: string, options?: any): Promise<any>;
     /**
      * Retrieves a set of integration logs from the account based on a query object.
      * @summary Retrieve integration logs
@@ -33047,7 +33047,7 @@ export interface IntegrationLogApiInterface {
      * @throws {RequiredError}
      * @memberof IntegrationLogApiInterface
      */
-    getIntegrationLogFile(pk: string, sk: string, uuid: string, options?: any): Promise<{}>;
+    getIntegrationLogFile(pk: string, sk: string, uuid: string, options?: any): Promise<any>;
     /**
      * Retrieves a set of integration logs from the account based on a query object.
      * @summary Retrieve integration logs
@@ -33088,7 +33088,7 @@ export declare class IntegrationLogApi extends BaseAPI implements IntegrationLog
      * @throws {RequiredError}
      * @memberof IntegrationLogApi
      */
-    getIntegrationLogFile(pk: string, sk: string, uuid: string, options?: any): Promise<Response>;
+    getIntegrationLogFile(pk: string, sk: string, uuid: string, options?: any): Promise<any>;
     /**
      * Retrieves a set of integration logs from the account based on a query object.
      * @summary Retrieve integration logs
