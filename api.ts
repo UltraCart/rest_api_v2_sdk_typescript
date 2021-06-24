@@ -15047,6 +15047,12 @@ export interface IntegrationLogFile {
      * @type {string}
      * @memberof IntegrationLogFile
      */
+    mime_type?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof IntegrationLogFile
+     */
     name?: string;
     /**
      * 
