@@ -32972,7 +32972,7 @@ export declare const IntegrationLogApiFp: (configuration?: Configuration) => {
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getIntegrationLogFile(pk: string, sk: string, uuid: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<any>;
+    getIntegrationLogFile(pk: string, sk: string, uuid: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Blob>;
     /**
      * Retrieves a set of integration logs from the account based on a query object.
      * @summary Retrieve integration logs
@@ -33008,7 +33008,7 @@ export declare const IntegrationLogApiFactory: (configuration?: Configuration, f
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getIntegrationLogFile(pk: string, sk: string, uuid: string, options?: any): Promise<any>;
+    getIntegrationLogFile(pk: string, sk: string, uuid: string, options?: any): Promise<Blob>;
     /**
      * Retrieves a set of integration logs from the account based on a query object.
      * @summary Retrieve integration logs
@@ -33047,7 +33047,7 @@ export interface IntegrationLogApiInterface {
      * @throws {RequiredError}
      * @memberof IntegrationLogApiInterface
      */
-    getIntegrationLogFile(pk: string, sk: string, uuid: string, options?: any): Promise<any>;
+    getIntegrationLogFile(pk: string, sk: string, uuid: string, options?: any): Promise<Blob>;
     /**
      * Retrieves a set of integration logs from the account based on a query object.
      * @summary Retrieve integration logs
@@ -33088,7 +33088,7 @@ export declare class IntegrationLogApi extends BaseAPI implements IntegrationLog
      * @throws {RequiredError}
      * @memberof IntegrationLogApi
      */
-    getIntegrationLogFile(pk: string, sk: string, uuid: string, options?: any): Promise<any>;
+    getIntegrationLogFile(pk: string, sk: string, uuid: string, options?: any): Promise<Blob>;
     /**
      * Retrieves a set of integration logs from the account based on a query object.
      * @summary Retrieve integration logs
@@ -33193,11 +33193,11 @@ export declare const ItemApiFetchParamCreator: (configuration?: Configuration) =
     /**
      * Uploads an image and returns back meta information about the image as well as the identifier needed for the item update.
      * @summary Upload an image to the temporary multimedia.
-     * @param {any} file File to upload
+     * @param {Blob} file File to upload
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    uploadTemporaryMultimedia(file: any, options?: any): FetchArgs;
+    uploadTemporaryMultimedia(file: Blob, options?: any): FetchArgs;
 };
 /**
  * ItemApi - functional programming interface
@@ -33290,11 +33290,11 @@ export declare const ItemApiFp: (configuration?: Configuration) => {
     /**
      * Uploads an image and returns back meta information about the image as well as the identifier needed for the item update.
      * @summary Upload an image to the temporary multimedia.
-     * @param {any} file File to upload
+     * @param {Blob} file File to upload
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    uploadTemporaryMultimedia(file: any, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<TempMultimediaResponse>;
+    uploadTemporaryMultimedia(file: Blob, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<TempMultimediaResponse>;
 };
 /**
  * ItemApi - factory interface
@@ -33387,11 +33387,11 @@ export declare const ItemApiFactory: (configuration?: Configuration, fetch?: Fet
     /**
      * Uploads an image and returns back meta information about the image as well as the identifier needed for the item update.
      * @summary Upload an image to the temporary multimedia.
-     * @param {any} file File to upload
+     * @param {Blob} file File to upload
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    uploadTemporaryMultimedia(file: any, options?: any): Promise<TempMultimediaResponse>;
+    uploadTemporaryMultimedia(file: Blob, options?: any): Promise<TempMultimediaResponse>;
 };
 /**
  * ItemApi - interface
@@ -33493,12 +33493,12 @@ export interface ItemApiInterface {
     /**
      * Uploads an image and returns back meta information about the image as well as the identifier needed for the item update.
      * @summary Upload an image to the temporary multimedia.
-     * @param {any} file File to upload
+     * @param {Blob} file File to upload
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ItemApiInterface
      */
-    uploadTemporaryMultimedia(file: any, options?: any): Promise<TempMultimediaResponse>;
+    uploadTemporaryMultimedia(file: Blob, options?: any): Promise<TempMultimediaResponse>;
 }
 /**
  * ItemApi - object-oriented interface
@@ -33601,12 +33601,12 @@ export declare class ItemApi extends BaseAPI implements ItemApiInterface {
     /**
      * Uploads an image and returns back meta information about the image as well as the identifier needed for the item update.
      * @summary Upload an image to the temporary multimedia.
-     * @param {any} file File to upload
+     * @param {Blob} file File to upload
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ItemApi
      */
-    uploadTemporaryMultimedia(file: any, options?: any): Promise<TempMultimediaResponse>;
+    uploadTemporaryMultimedia(file: Blob, options?: any): Promise<TempMultimediaResponse>;
 }
 /**
  * OauthApi - fetch parameter creator

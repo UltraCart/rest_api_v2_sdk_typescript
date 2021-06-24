@@ -29816,8 +29816,10 @@ export const AffiliateApiFp = function(configuration?: Configuration) {
             const localVarFetchArgs = AffiliateApiFetchParamCreator(configuration).getClicksByQuery(click_query, _limit, _offset, _expand, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
                     if (response.status >= 200 && response.status < 300) {
-                        return response.json();
+                      return response.json();
+                      
                     } else {
                         throw response;
                     }
@@ -29838,8 +29840,10 @@ export const AffiliateApiFp = function(configuration?: Configuration) {
             const localVarFetchArgs = AffiliateApiFetchParamCreator(configuration).getLedgersByQuery(ledger_query, _limit, _offset, _expand, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
                     if (response.status >= 200 && response.status < 300) {
-                        return response.json();
+                      return response.json();
+                      
                     } else {
                         throw response;
                     }
@@ -30587,8 +30591,10 @@ export const AutoOrderApiFp = function(configuration?: Configuration) {
             const localVarFetchArgs = AutoOrderApiFetchParamCreator(configuration).getAutoOrder(auto_order_oid, _expand, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
                     if (response.status >= 200 && response.status < 300) {
-                        return response.json();
+                      return response.json();
+                      
                     } else {
                         throw response;
                     }
@@ -30607,8 +30613,10 @@ export const AutoOrderApiFp = function(configuration?: Configuration) {
             const localVarFetchArgs = AutoOrderApiFetchParamCreator(configuration).getAutoOrderByCode(auto_order_code, _expand, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
                     if (response.status >= 200 && response.status < 300) {
-                        return response.json();
+                      return response.json();
+                      
                     } else {
                         throw response;
                     }
@@ -30627,8 +30635,10 @@ export const AutoOrderApiFp = function(configuration?: Configuration) {
             const localVarFetchArgs = AutoOrderApiFetchParamCreator(configuration).getAutoOrderByReferenceOrderId(reference_order_id, _expand, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
                     if (response.status >= 200 && response.status < 300) {
-                        return response.json();
+                      return response.json();
+                      
                     } else {
                         throw response;
                     }
@@ -30668,8 +30678,10 @@ export const AutoOrderApiFp = function(configuration?: Configuration) {
             const localVarFetchArgs = AutoOrderApiFetchParamCreator(configuration).getAutoOrders(auto_order_code, original_order_id, first_name, last_name, company, city, state, postal_code, country_code, phone, email, original_order_date_begin, original_order_date_end, next_shipment_date_begin, next_shipment_date_end, card_type, item_id, status, _limit, _offset, _since, _sort, _expand, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
                     if (response.status >= 200 && response.status < 300) {
-                        return response.json();
+                      return response.json();
+                      
                     } else {
                         throw response;
                     }
@@ -30688,8 +30700,10 @@ export const AutoOrderApiFp = function(configuration?: Configuration) {
             const localVarFetchArgs = AutoOrderApiFetchParamCreator(configuration).getAutoOrdersBatch(auto_order_batch, _expand, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
                     if (response.status >= 200 && response.status < 300) {
-                        return response.json();
+                      return response.json();
+                      
                     } else {
                         throw response;
                     }
@@ -30711,8 +30725,10 @@ export const AutoOrderApiFp = function(configuration?: Configuration) {
             const localVarFetchArgs = AutoOrderApiFetchParamCreator(configuration).getAutoOrdersByQuery(auto_order_query, _limit, _offset, _sort, _expand, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
                     if (response.status >= 200 && response.status < 300) {
-                        return response.json();
+                      return response.json();
+                      
                     } else {
                         throw response;
                     }
@@ -30732,8 +30748,10 @@ export const AutoOrderApiFp = function(configuration?: Configuration) {
             const localVarFetchArgs = AutoOrderApiFetchParamCreator(configuration).updateAutoOrder(auto_order, auto_order_oid, _expand, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
                     if (response.status >= 200 && response.status < 300) {
-                        return response.json();
+                      return response.json();
+                      
                     } else {
                         throw response;
                     }
@@ -30754,8 +30772,10 @@ export const AutoOrderApiFp = function(configuration?: Configuration) {
             const localVarFetchArgs = AutoOrderApiFetchParamCreator(configuration).updateAutoOrdersBatch(auto_orders_request, _expand, _placeholders, _async, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
                     if (response.status >= 200 && response.status < 300) {
-                        return response.json();
+                      return response.json();
+                      
                     } else {
                         throw response;
                     }
@@ -31519,8 +31539,10 @@ export const ChargebackApiFp = function(configuration?: Configuration) {
             const localVarFetchArgs = ChargebackApiFetchParamCreator(configuration).deleteChargeback(chargeback_dispute_oid, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
                     if (response.status >= 200 && response.status < 300) {
-                        return response.json();
+                      return response.json();
+                      
                     } else {
                         throw response;
                     }
@@ -31539,8 +31561,10 @@ export const ChargebackApiFp = function(configuration?: Configuration) {
             const localVarFetchArgs = ChargebackApiFetchParamCreator(configuration).getChargebackDispute(chargeback_dispute_oid, _expand, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
                     if (response.status >= 200 && response.status < 300) {
-                        return response.json();
+                      return response.json();
+                      
                     } else {
                         throw response;
                     }
@@ -31569,8 +31593,10 @@ export const ChargebackApiFp = function(configuration?: Configuration) {
             const localVarFetchArgs = ChargebackApiFetchParamCreator(configuration).getChargebackDisputes(order_id, case_number, status, expiration_dts_start, expiration_dts_end, chargeback_dts_start, chargeback_dts_end, _limit, _offset, _since, _sort, _expand, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
                     if (response.status >= 200 && response.status < 300) {
-                        return response.json();
+                      return response.json();
+                      
                     } else {
                         throw response;
                     }
@@ -31589,8 +31615,10 @@ export const ChargebackApiFp = function(configuration?: Configuration) {
             const localVarFetchArgs = ChargebackApiFetchParamCreator(configuration).insertChargeback(chargeback, _expand, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
                     if (response.status >= 200 && response.status < 300) {
-                        return response.json();
+                      return response.json();
+                      
                     } else {
                         throw response;
                     }
@@ -31610,8 +31638,10 @@ export const ChargebackApiFp = function(configuration?: Configuration) {
             const localVarFetchArgs = ChargebackApiFetchParamCreator(configuration).updateChargeback(chargeback, chargeback_dispute_oid, _expand, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
                     if (response.status >= 200 && response.status < 300) {
-                        return response.json();
+                      return response.json();
+                      
                     } else {
                         throw response;
                     }
@@ -33096,8 +33126,10 @@ export const CheckoutApiFp = function(configuration?: Configuration) {
             const localVarFetchArgs = CheckoutApiFetchParamCreator(configuration).cityState(cart, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
                     if (response.status >= 200 && response.status < 300) {
-                        return response.json();
+                      return response.json();
+                      
                     } else {
                         throw response;
                     }
@@ -33115,8 +33147,10 @@ export const CheckoutApiFp = function(configuration?: Configuration) {
             const localVarFetchArgs = CheckoutApiFetchParamCreator(configuration).finalizeOrder(finalize_request, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
                     if (response.status >= 200 && response.status < 300) {
-                        return response.json();
+                      return response.json();
+                      
                     } else {
                         throw response;
                     }
@@ -33134,8 +33168,10 @@ export const CheckoutApiFp = function(configuration?: Configuration) {
             const localVarFetchArgs = CheckoutApiFetchParamCreator(configuration).getAffirmCheckout(cart_id, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
                     if (response.status >= 200 && response.status < 300) {
-                        return response.json();
+                      return response.json();
+                      
                     } else {
                         throw response;
                     }
@@ -33152,8 +33188,10 @@ export const CheckoutApiFp = function(configuration?: Configuration) {
             const localVarFetchArgs = CheckoutApiFetchParamCreator(configuration).getAllowedCountries(options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
                     if (response.status >= 200 && response.status < 300) {
-                        return response.json();
+                      return response.json();
+                      
                     } else {
                         throw response;
                     }
@@ -33171,8 +33209,10 @@ export const CheckoutApiFp = function(configuration?: Configuration) {
             const localVarFetchArgs = CheckoutApiFetchParamCreator(configuration).getCart(_expand, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
                     if (response.status >= 200 && response.status < 300) {
-                        return response.json();
+                      return response.json();
+                      
                     } else {
                         throw response;
                     }
@@ -33191,8 +33231,10 @@ export const CheckoutApiFp = function(configuration?: Configuration) {
             const localVarFetchArgs = CheckoutApiFetchParamCreator(configuration).getCartByCartId(cart_id, _expand, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
                     if (response.status >= 200 && response.status < 300) {
-                        return response.json();
+                      return response.json();
+                      
                     } else {
                         throw response;
                     }
@@ -33211,8 +33253,10 @@ export const CheckoutApiFp = function(configuration?: Configuration) {
             const localVarFetchArgs = CheckoutApiFetchParamCreator(configuration).getCartByReturnCode(return_code, _expand, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
                     if (response.status >= 200 && response.status < 300) {
-                        return response.json();
+                      return response.json();
+                      
                     } else {
                         throw response;
                     }
@@ -33231,8 +33275,10 @@ export const CheckoutApiFp = function(configuration?: Configuration) {
             const localVarFetchArgs = CheckoutApiFetchParamCreator(configuration).getCartByReturnToken(return_token, _expand, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
                     if (response.status >= 200 && response.status < 300) {
-                        return response.json();
+                      return response.json();
+                      
                     } else {
                         throw response;
                     }
@@ -33250,8 +33296,10 @@ export const CheckoutApiFp = function(configuration?: Configuration) {
             const localVarFetchArgs = CheckoutApiFetchParamCreator(configuration).getStateProvincesForCountry(country_code, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
                     if (response.status >= 200 && response.status < 300) {
-                        return response.json();
+                      return response.json();
+                      
                     } else {
                         throw response;
                     }
@@ -33270,8 +33318,10 @@ export const CheckoutApiFp = function(configuration?: Configuration) {
             const localVarFetchArgs = CheckoutApiFetchParamCreator(configuration).handoffCart(handoff_request, _expand, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
                     if (response.status >= 200 && response.status < 300) {
-                        return response.json();
+                      return response.json();
+                      
                     } else {
                         throw response;
                     }
@@ -33290,8 +33340,10 @@ export const CheckoutApiFp = function(configuration?: Configuration) {
             const localVarFetchArgs = CheckoutApiFetchParamCreator(configuration).login(login_request, _expand, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
                     if (response.status >= 200 && response.status < 300) {
-                        return response.json();
+                      return response.json();
+                      
                     } else {
                         throw response;
                     }
@@ -33310,8 +33362,10 @@ export const CheckoutApiFp = function(configuration?: Configuration) {
             const localVarFetchArgs = CheckoutApiFetchParamCreator(configuration).logout(cart, _expand, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
                     if (response.status >= 200 && response.status < 300) {
-                        return response.json();
+                      return response.json();
+                      
                     } else {
                         throw response;
                     }
@@ -33330,8 +33384,10 @@ export const CheckoutApiFp = function(configuration?: Configuration) {
             const localVarFetchArgs = CheckoutApiFetchParamCreator(configuration).register(register_request, _expand, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
                     if (response.status >= 200 && response.status < 300) {
-                        return response.json();
+                      return response.json();
+                      
                     } else {
                         throw response;
                     }
@@ -33350,8 +33406,10 @@ export const CheckoutApiFp = function(configuration?: Configuration) {
             const localVarFetchArgs = CheckoutApiFetchParamCreator(configuration).registerAffiliateClick(register_affiliate_click_request, _expand, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
                     if (response.status >= 200 && response.status < 300) {
-                        return response.json();
+                      return response.json();
+                      
                     } else {
                         throw response;
                     }
@@ -33370,8 +33428,10 @@ export const CheckoutApiFp = function(configuration?: Configuration) {
             const localVarFetchArgs = CheckoutApiFetchParamCreator(configuration).relatedItemsForCart(cart, _expand, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
                     if (response.status >= 200 && response.status < 300) {
-                        return response.json();
+                      return response.json();
+                      
                     } else {
                         throw response;
                     }
@@ -33391,8 +33451,10 @@ export const CheckoutApiFp = function(configuration?: Configuration) {
             const localVarFetchArgs = CheckoutApiFetchParamCreator(configuration).relatedItemsForItem(item_id, cart, _expand, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
                     if (response.status >= 200 && response.status < 300) {
-                        return response.json();
+                      return response.json();
+                      
                     } else {
                         throw response;
                     }
@@ -33410,8 +33472,10 @@ export const CheckoutApiFp = function(configuration?: Configuration) {
             const localVarFetchArgs = CheckoutApiFetchParamCreator(configuration).setupBrowserKey(browser_key_request, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
                     if (response.status >= 200 && response.status < 300) {
-                        return response.json();
+                      return response.json();
+                      
                     } else {
                         throw response;
                     }
@@ -33430,8 +33494,10 @@ export const CheckoutApiFp = function(configuration?: Configuration) {
             const localVarFetchArgs = CheckoutApiFetchParamCreator(configuration).updateCart(cart, _expand, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
                     if (response.status >= 200 && response.status < 300) {
-                        return response.json();
+                      return response.json();
+                      
                     } else {
                         throw response;
                     }
@@ -33450,8 +33516,10 @@ export const CheckoutApiFp = function(configuration?: Configuration) {
             const localVarFetchArgs = CheckoutApiFetchParamCreator(configuration).validateCart(validation_request, _expand, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
                     if (response.status >= 200 && response.status < 300) {
-                        return response.json();
+                      return response.json();
+                      
                     } else {
                         throw response;
                     }
@@ -35318,8 +35386,10 @@ export const CouponApiFp = function(configuration?: Configuration) {
             const localVarFetchArgs = CouponApiFetchParamCreator(configuration).deleteCoupon(coupon_oid, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
                     if (response.status >= 200 && response.status < 300) {
-                        return response;
+                      return response;
+                      
                     } else {
                         throw response;
                     }
@@ -35337,8 +35407,10 @@ export const CouponApiFp = function(configuration?: Configuration) {
             const localVarFetchArgs = CouponApiFetchParamCreator(configuration).deleteCouponsByCode(coupon_delete_request, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
                     if (response.status >= 200 && response.status < 300) {
-                        return response;
+                      return response;
+                      
                     } else {
                         throw response;
                     }
@@ -35356,8 +35428,10 @@ export const CouponApiFp = function(configuration?: Configuration) {
             const localVarFetchArgs = CouponApiFetchParamCreator(configuration).deleteCouponsByOid(coupon_delete_request, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
                     if (response.status >= 200 && response.status < 300) {
-                        return response;
+                      return response;
+                      
                     } else {
                         throw response;
                     }
@@ -35375,8 +35449,10 @@ export const CouponApiFp = function(configuration?: Configuration) {
             const localVarFetchArgs = CouponApiFetchParamCreator(configuration).doesCouponCodeExist(merchant_code, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
                     if (response.status >= 200 && response.status < 300) {
-                        return response.json();
+                      return response.json();
+                      
                     } else {
                         throw response;
                     }
@@ -35395,8 +35471,10 @@ export const CouponApiFp = function(configuration?: Configuration) {
             const localVarFetchArgs = CouponApiFetchParamCreator(configuration).generateCouponCodes(coupon_oid, coupon_codes_request, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
                     if (response.status >= 200 && response.status < 300) {
-                        return response.json();
+                      return response.json();
+                      
                     } else {
                         throw response;
                     }
@@ -35415,8 +35493,10 @@ export const CouponApiFp = function(configuration?: Configuration) {
             const localVarFetchArgs = CouponApiFetchParamCreator(configuration).generateOneTimeCodesByMerchantCode(merchant_code, coupon_codes_request, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
                     if (response.status >= 200 && response.status < 300) {
-                        return response.json();
+                      return response.json();
+                      
                     } else {
                         throw response;
                     }
@@ -35433,8 +35513,10 @@ export const CouponApiFp = function(configuration?: Configuration) {
             const localVarFetchArgs = CouponApiFetchParamCreator(configuration).getAutoApply(options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
                     if (response.status >= 200 && response.status < 300) {
-                        return response.json();
+                      return response.json();
+                      
                     } else {
                         throw response;
                     }
@@ -35453,8 +35535,10 @@ export const CouponApiFp = function(configuration?: Configuration) {
             const localVarFetchArgs = CouponApiFetchParamCreator(configuration).getCoupon(coupon_oid, _expand, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
                     if (response.status >= 200 && response.status < 300) {
-                        return response.json();
+                      return response.json();
+                      
                     } else {
                         throw response;
                     }
@@ -35473,8 +35557,10 @@ export const CouponApiFp = function(configuration?: Configuration) {
             const localVarFetchArgs = CouponApiFetchParamCreator(configuration).getCouponByMerchantCode(merchant_code, _expand, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
                     if (response.status >= 200 && response.status < 300) {
-                        return response.json();
+                      return response.json();
+                      
                     } else {
                         throw response;
                     }
@@ -35504,8 +35590,10 @@ export const CouponApiFp = function(configuration?: Configuration) {
             const localVarFetchArgs = CouponApiFetchParamCreator(configuration).getCoupons(merchant_code, description, coupon_type, start_date_begin, start_date_end, expiration_date_begin, expiration_date_end, affiliate_oid, exclude_expired, _limit, _offset, _sort, _expand, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
                     if (response.status >= 200 && response.status < 300) {
-                        return response.json();
+                      return response.json();
+                      
                     } else {
                         throw response;
                     }
@@ -35527,8 +35615,10 @@ export const CouponApiFp = function(configuration?: Configuration) {
             const localVarFetchArgs = CouponApiFetchParamCreator(configuration).getCouponsByQuery(coupon_query, _limit, _offset, _sort, _expand, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
                     if (response.status >= 200 && response.status < 300) {
-                        return response.json();
+                      return response.json();
+                      
                     } else {
                         throw response;
                     }
@@ -35545,8 +35635,10 @@ export const CouponApiFp = function(configuration?: Configuration) {
             const localVarFetchArgs = CouponApiFetchParamCreator(configuration).getEditorValues(options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
                     if (response.status >= 200 && response.status < 300) {
-                        return response.json();
+                      return response.json();
+                      
                     } else {
                         throw response;
                     }
@@ -35565,8 +35657,10 @@ export const CouponApiFp = function(configuration?: Configuration) {
             const localVarFetchArgs = CouponApiFetchParamCreator(configuration).insertCoupon(coupon, _expand, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
                     if (response.status >= 200 && response.status < 300) {
-                        return response.json();
+                      return response.json();
+                      
                     } else {
                         throw response;
                     }
@@ -35586,8 +35680,10 @@ export const CouponApiFp = function(configuration?: Configuration) {
             const localVarFetchArgs = CouponApiFetchParamCreator(configuration).insertCoupons(coupons_request, _expand, _placeholders, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
                     if (response.status >= 200 && response.status < 300) {
-                        return response.json();
+                      return response.json();
+                      
                     } else {
                         throw response;
                     }
@@ -35606,8 +35702,10 @@ export const CouponApiFp = function(configuration?: Configuration) {
             const localVarFetchArgs = CouponApiFetchParamCreator(configuration).searchItems(s, m, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
                     if (response.status >= 200 && response.status < 300) {
-                        return response.json();
+                      return response.json();
+                      
                     } else {
                         throw response;
                     }
@@ -35625,8 +35723,10 @@ export const CouponApiFp = function(configuration?: Configuration) {
             const localVarFetchArgs = CouponApiFetchParamCreator(configuration).updateAutoApply(conditions, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
                     if (response.status >= 200 && response.status < 300) {
-                        return response;
+                      return response;
+                      
                     } else {
                         throw response;
                     }
@@ -35646,8 +35746,10 @@ export const CouponApiFp = function(configuration?: Configuration) {
             const localVarFetchArgs = CouponApiFetchParamCreator(configuration).updateCoupon(coupon, coupon_oid, _expand, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
                     if (response.status >= 200 && response.status < 300) {
-                        return response.json();
+                      return response.json();
+                      
                     } else {
                         throw response;
                     }
@@ -35668,8 +35770,10 @@ export const CouponApiFp = function(configuration?: Configuration) {
             const localVarFetchArgs = CouponApiFetchParamCreator(configuration).updateCoupons(coupons_request, _expand, _placeholders, _async, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
                     if (response.status >= 200 && response.status < 300) {
-                        return response.json();
+                      return response.json();
+                      
                     } else {
                         throw response;
                     }
@@ -35688,8 +35792,10 @@ export const CouponApiFp = function(configuration?: Configuration) {
             const localVarFetchArgs = CouponApiFetchParamCreator(configuration).uploadCouponCodes(coupon_oid, upload_coupon_codes_request, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
                     if (response.status >= 200 && response.status < 300) {
-                        return response.json();
+                      return response.json();
+                      
                     } else {
                         throw response;
                     }
@@ -37335,8 +37441,10 @@ export const CustomerApiFp = function(configuration?: Configuration) {
             const localVarFetchArgs = CustomerApiFetchParamCreator(configuration).deleteCustomer(customer_profile_oid, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
                     if (response.status >= 200 && response.status < 300) {
-                        return response.json();
+                      return response.json();
+                      
                     } else {
                         throw response;
                     }
@@ -37355,8 +37463,10 @@ export const CustomerApiFp = function(configuration?: Configuration) {
             const localVarFetchArgs = CustomerApiFetchParamCreator(configuration).getCustomer(customer_profile_oid, _expand, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
                     if (response.status >= 200 && response.status < 300) {
-                        return response.json();
+                      return response.json();
+                      
                     } else {
                         throw response;
                     }
@@ -37375,8 +37485,10 @@ export const CustomerApiFp = function(configuration?: Configuration) {
             const localVarFetchArgs = CustomerApiFetchParamCreator(configuration).getCustomerByEmail(email, _expand, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
                     if (response.status >= 200 && response.status < 300) {
-                        return response.json();
+                      return response.json();
+                      
                     } else {
                         throw response;
                     }
@@ -37393,8 +37505,10 @@ export const CustomerApiFp = function(configuration?: Configuration) {
             const localVarFetchArgs = CustomerApiFetchParamCreator(configuration).getCustomerEditorValues(options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
                     if (response.status >= 200 && response.status < 300) {
-                        return response.json();
+                      return response.json();
+                      
                     } else {
                         throw response;
                     }
@@ -37411,8 +37525,10 @@ export const CustomerApiFp = function(configuration?: Configuration) {
             const localVarFetchArgs = CustomerApiFetchParamCreator(configuration).getCustomerEmailLists(options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
                     if (response.status >= 200 && response.status < 300) {
-                        return response.json();
+                      return response.json();
+                      
                     } else {
                         throw response;
                     }
@@ -37461,8 +37577,10 @@ export const CustomerApiFp = function(configuration?: Configuration) {
             const localVarFetchArgs = CustomerApiFetchParamCreator(configuration).getCustomers(email, qb_class, quickbooks_code, last_modified_dts_start, last_modified_dts_end, signup_dts_start, signup_dts_end, billing_first_name, billing_last_name, billing_company, billing_city, billing_state, billing_postal_code, billing_country_code, billing_day_phone, billing_evening_phone, shipping_first_name, shipping_last_name, shipping_company, shipping_city, shipping_state, shipping_postal_code, shipping_country_code, shipping_day_phone, shipping_evening_phone, pricing_tier_oid, pricing_tier_name, _limit, _offset, _since, _sort, _expand, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
                     if (response.status >= 200 && response.status < 300) {
-                        return response.json();
+                      return response.json();
+                      
                     } else {
                         throw response;
                     }
@@ -37485,8 +37603,10 @@ export const CustomerApiFp = function(configuration?: Configuration) {
             const localVarFetchArgs = CustomerApiFetchParamCreator(configuration).getCustomersByQuery(customer_query, _limit, _offset, _since, _sort, _expand, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
                     if (response.status >= 200 && response.status < 300) {
-                        return response.json();
+                      return response.json();
+                      
                     } else {
                         throw response;
                     }
@@ -37504,8 +37624,10 @@ export const CustomerApiFp = function(configuration?: Configuration) {
             const localVarFetchArgs = CustomerApiFetchParamCreator(configuration).getCustomersForDataTables(_expand, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
                     if (response.status >= 200 && response.status < 300) {
-                        return response.json();
+                      return response.json();
+                      
                     } else {
                         throw response;
                     }
@@ -37523,8 +37645,10 @@ export const CustomerApiFp = function(configuration?: Configuration) {
             const localVarFetchArgs = CustomerApiFetchParamCreator(configuration).getEmailVerificationToken(token_request, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
                     if (response.status >= 200 && response.status < 300) {
-                        return response.json();
+                      return response.json();
+                      
                     } else {
                         throw response;
                     }
@@ -37543,8 +37667,10 @@ export const CustomerApiFp = function(configuration?: Configuration) {
             const localVarFetchArgs = CustomerApiFetchParamCreator(configuration).insertCustomer(customer, _expand, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
                     if (response.status >= 200 && response.status < 300) {
-                        return response.json();
+                      return response.json();
+                      
                     } else {
                         throw response;
                     }
@@ -37564,8 +37690,10 @@ export const CustomerApiFp = function(configuration?: Configuration) {
             const localVarFetchArgs = CustomerApiFetchParamCreator(configuration).updateCustomer(customer, customer_profile_oid, _expand, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
                     if (response.status >= 200 && response.status < 300) {
-                        return response.json();
+                      return response.json();
+                      
                     } else {
                         throw response;
                     }
@@ -37584,8 +37712,10 @@ export const CustomerApiFp = function(configuration?: Configuration) {
             const localVarFetchArgs = CustomerApiFetchParamCreator(configuration).updateCustomerEmailLists(customer_profile_oid, list_changes, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
                     if (response.status >= 200 && response.status < 300) {
-                        return response.json();
+                      return response.json();
+                      
                     } else {
                         throw response;
                     }
@@ -37603,8 +37733,10 @@ export const CustomerApiFp = function(configuration?: Configuration) {
             const localVarFetchArgs = CustomerApiFetchParamCreator(configuration).validateEmailVerificationToken(validation_request, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
                     if (response.status >= 200 && response.status < 300) {
-                        return response.json();
+                      return response.json();
+                      
                     } else {
                         throw response;
                     }
@@ -38484,8 +38616,10 @@ export const FulfillmentApiFp = function(configuration?: Configuration) {
             const localVarFetchArgs = FulfillmentApiFetchParamCreator(configuration).acknowledgeOrders(distribution_center_code, orderIds, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
                     if (response.status >= 200 && response.status < 300) {
-                        return response;
+                      return response;
+                      
                     } else {
                         throw response;
                     }
@@ -38503,8 +38637,10 @@ export const FulfillmentApiFp = function(configuration?: Configuration) {
             const localVarFetchArgs = FulfillmentApiFetchParamCreator(configuration).getDistributionCenterOrders(distribution_center_code, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
                     if (response.status >= 200 && response.status < 300) {
-                        return response.json();
+                      return response.json();
+                      
                     } else {
                         throw response;
                     }
@@ -38521,8 +38657,10 @@ export const FulfillmentApiFp = function(configuration?: Configuration) {
             const localVarFetchArgs = FulfillmentApiFetchParamCreator(configuration).getDistributionCenters(options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
                     if (response.status >= 200 && response.status < 300) {
-                        return response.json();
+                      return response.json();
+                      
                     } else {
                         throw response;
                     }
@@ -38541,8 +38679,10 @@ export const FulfillmentApiFp = function(configuration?: Configuration) {
             const localVarFetchArgs = FulfillmentApiFetchParamCreator(configuration).shipOrders(distribution_center_code, shipments, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
                     if (response.status >= 200 && response.status < 300) {
-                        return response;
+                      return response;
+                      
                     } else {
                         throw response;
                     }
@@ -38561,8 +38701,10 @@ export const FulfillmentApiFp = function(configuration?: Configuration) {
             const localVarFetchArgs = FulfillmentApiFetchParamCreator(configuration).updateInventory(distribution_center_code, inventories, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
                     if (response.status >= 200 && response.status < 300) {
-                        return response;
+                      return response;
+                      
                     } else {
                         throw response;
                     }
@@ -38983,8 +39125,10 @@ export const IntegrationLogApiFp = function(configuration?: Configuration) {
             const localVarFetchArgs = IntegrationLogApiFetchParamCreator(configuration).getIntegrationLog(pk, sk, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
                     if (response.status >= 200 && response.status < 300) {
-                        return response.json();
+                      return response.json();
+                      
                     } else {
                         throw response;
                     }
@@ -39000,12 +39144,14 @@ export const IntegrationLogApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getIntegrationLogFile(pk: string, sk: string, uuid: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<any> {
+        getIntegrationLogFile(pk: string, sk: string, uuid: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Blob> {
             const localVarFetchArgs = IntegrationLogApiFetchParamCreator(configuration).getIntegrationLogFile(pk, sk, uuid, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
                     if (response.status >= 200 && response.status < 300) {
-                        return response.json();
+                      
+                      return response.blob();
                     } else {
                         throw response;
                     }
@@ -39026,8 +39172,10 @@ export const IntegrationLogApiFp = function(configuration?: Configuration) {
             const localVarFetchArgs = IntegrationLogApiFetchParamCreator(configuration).getIntegrationLogsQuery(integration_log_query, _limit, _offset, _sort, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
                     if (response.status >= 200 && response.status < 300) {
-                        return response.json();
+                      return response.json();
+                      
                     } else {
                         throw response;
                     }
@@ -39109,7 +39257,7 @@ export interface IntegrationLogApiInterface {
      * @throws {RequiredError}
      * @memberof IntegrationLogApiInterface
      */
-    getIntegrationLogFile(pk: string, sk: string, uuid: string, options?: any): Promise<any>;
+    getIntegrationLogFile(pk: string, sk: string, uuid: string, options?: any): Promise<Blob>;
 
     /**
      * Retrieves a set of integration logs from the account based on a query object. 
@@ -39705,11 +39853,11 @@ export const ItemApiFetchParamCreator = function (configuration?: Configuration)
         /**
          * Uploads an image and returns back meta information about the image as well as the identifier needed for the item update. 
          * @summary Upload an image to the temporary multimedia.
-         * @param {any} file File to upload
+         * @param {Blob} file File to upload
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        uploadTemporaryMultimedia(file: any, options: any = {}): FetchArgs {
+        uploadTemporaryMultimedia(file: Blob, options: any = {}): FetchArgs {
             // verify required parameter 'file' is not null or undefined
             if (file === null || file === undefined) {
                 throw new RequiredError('file','Required parameter file was null or undefined when calling uploadTemporaryMultimedia.');
@@ -39781,8 +39929,10 @@ export const ItemApiFp = function(configuration?: Configuration) {
             const localVarFetchArgs = ItemApiFetchParamCreator(configuration).deleteItem(merchant_item_oid, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
                     if (response.status >= 200 && response.status < 300) {
-                        return response;
+                      return response;
+                      
                     } else {
                         throw response;
                     }
@@ -39802,8 +39952,10 @@ export const ItemApiFp = function(configuration?: Configuration) {
             const localVarFetchArgs = ItemApiFetchParamCreator(configuration).getItem(merchant_item_oid, _expand, _placeholders, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
                     if (response.status >= 200 && response.status < 300) {
-                        return response.json();
+                      return response.json();
+                      
                     } else {
                         throw response;
                     }
@@ -39823,8 +39975,10 @@ export const ItemApiFp = function(configuration?: Configuration) {
             const localVarFetchArgs = ItemApiFetchParamCreator(configuration).getItemByMerchantItemId(merchant_item_id, _expand, _placeholders, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
                     if (response.status >= 200 && response.status < 300) {
-                        return response.json();
+                      return response.json();
+                      
                     } else {
                         throw response;
                     }
@@ -39849,8 +40003,10 @@ export const ItemApiFp = function(configuration?: Configuration) {
             const localVarFetchArgs = ItemApiFetchParamCreator(configuration).getItems(parent_category_id, parent_category_path, _limit, _offset, _since, _sort, _expand, _placeholders, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
                     if (response.status >= 200 && response.status < 300) {
-                        return response.json();
+                      return response.json();
+                      
                     } else {
                         throw response;
                     }
@@ -39868,8 +40024,10 @@ export const ItemApiFp = function(configuration?: Configuration) {
             const localVarFetchArgs = ItemApiFetchParamCreator(configuration).getPricingTiers(_expand, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
                     if (response.status >= 200 && response.status < 300) {
-                        return response.json();
+                      return response.json();
+                      
                     } else {
                         throw response;
                     }
@@ -39889,8 +40047,10 @@ export const ItemApiFp = function(configuration?: Configuration) {
             const localVarFetchArgs = ItemApiFetchParamCreator(configuration).insertItem(item, _expand, _placeholders, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
                     if (response.status >= 200 && response.status < 300) {
-                        return response.json();
+                      return response.json();
+                      
                     } else {
                         throw response;
                     }
@@ -39911,8 +40071,10 @@ export const ItemApiFp = function(configuration?: Configuration) {
             const localVarFetchArgs = ItemApiFetchParamCreator(configuration).updateItem(item, merchant_item_oid, _expand, _placeholders, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
                     if (response.status >= 200 && response.status < 300) {
-                        return response.json();
+                      return response.json();
+                      
                     } else {
                         throw response;
                     }
@@ -39933,8 +40095,10 @@ export const ItemApiFp = function(configuration?: Configuration) {
             const localVarFetchArgs = ItemApiFetchParamCreator(configuration).updateItems(items_request, _expand, _placeholders, _async, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
                     if (response.status >= 200 && response.status < 300) {
-                        return response.json();
+                      return response.json();
+                      
                     } else {
                         throw response;
                     }
@@ -39944,16 +40108,18 @@ export const ItemApiFp = function(configuration?: Configuration) {
         /**
          * Uploads an image and returns back meta information about the image as well as the identifier needed for the item update. 
          * @summary Upload an image to the temporary multimedia.
-         * @param {any} file File to upload
+         * @param {Blob} file File to upload
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        uploadTemporaryMultimedia(file: any, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<TempMultimediaResponse> {
+        uploadTemporaryMultimedia(file: Blob, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<TempMultimediaResponse> {
             const localVarFetchArgs = ItemApiFetchParamCreator(configuration).uploadTemporaryMultimedia(file, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
                     if (response.status >= 200 && response.status < 300) {
-                        return response.json();
+                      return response.json();
+                      
                     } else {
                         throw response;
                     }
@@ -40071,11 +40237,11 @@ export const ItemApiFactory = function (configuration?: Configuration, fetch?: F
         /**
          * Uploads an image and returns back meta information about the image as well as the identifier needed for the item update. 
          * @summary Upload an image to the temporary multimedia.
-         * @param {any} file File to upload
+         * @param {Blob} file File to upload
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        uploadTemporaryMultimedia(file: any, options?: any) {
+        uploadTemporaryMultimedia(file: Blob, options?: any) {
             return ItemApiFp(configuration).uploadTemporaryMultimedia(file, options)(fetch, basePath);
         },
     };
@@ -40189,12 +40355,12 @@ export interface ItemApiInterface {
     /**
      * Uploads an image and returns back meta information about the image as well as the identifier needed for the item update. 
      * @summary Upload an image to the temporary multimedia.
-     * @param {any} file File to upload
+     * @param {Blob} file File to upload
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ItemApiInterface
      */
-    uploadTemporaryMultimedia(file: any, options?: any): Promise<TempMultimediaResponse>;
+    uploadTemporaryMultimedia(file: Blob, options?: any): Promise<TempMultimediaResponse>;
 
 }
 
@@ -40323,12 +40489,12 @@ export class ItemApi extends BaseAPI implements ItemApiInterface {
     /**
      * Uploads an image and returns back meta information about the image as well as the identifier needed for the item update. 
      * @summary Upload an image to the temporary multimedia.
-     * @param {any} file File to upload
+     * @param {Blob} file File to upload
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ItemApi
      */
-    public uploadTemporaryMultimedia(file: any, options?: any) {
+    public uploadTemporaryMultimedia(file: Blob, options?: any) {
         return ItemApiFp(this.configuration).uploadTemporaryMultimedia(file, options)(this.fetch, this.basePath);
     }
 
@@ -40531,8 +40697,10 @@ export const OauthApiFp = function(configuration?: Configuration) {
             const localVarFetchArgs = OauthApiFetchParamCreator(configuration).oauthAccessToken(client_id, grant_type, code, redirect_uri, refresh_token, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
                     if (response.status >= 200 && response.status < 300) {
-                        return response.json();
+                      return response.json();
+                      
                     } else {
                         throw response;
                     }
@@ -40551,8 +40719,10 @@ export const OauthApiFp = function(configuration?: Configuration) {
             const localVarFetchArgs = OauthApiFetchParamCreator(configuration).oauthRevoke(client_id, token, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
                     if (response.status >= 200 && response.status < 300) {
-                        return response.json();
+                      return response.json();
+                      
                     } else {
                         throw response;
                     }
@@ -42082,8 +42252,10 @@ export const OrderApiFp = function(configuration?: Configuration) {
             const localVarFetchArgs = OrderApiFetchParamCreator(configuration).adjustOrderTotal(order_id, desired_total, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
                     if (response.status >= 200 && response.status < 300) {
-                        return response.json();
+                      return response.json();
+                      
                     } else {
                         throw response;
                     }
@@ -42101,8 +42273,10 @@ export const OrderApiFp = function(configuration?: Configuration) {
             const localVarFetchArgs = OrderApiFetchParamCreator(configuration).cancelOrder(order_id, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
                     if (response.status >= 200 && response.status < 300) {
-                        return response.json();
+                      return response.json();
+                      
                     } else {
                         throw response;
                     }
@@ -42120,8 +42294,10 @@ export const OrderApiFp = function(configuration?: Configuration) {
             const localVarFetchArgs = OrderApiFetchParamCreator(configuration).deleteOrder(order_id, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
                     if (response.status >= 200 && response.status < 300) {
-                        return response;
+                      return response;
+                      
                     } else {
                         throw response;
                     }
@@ -42140,8 +42316,10 @@ export const OrderApiFp = function(configuration?: Configuration) {
             const localVarFetchArgs = OrderApiFetchParamCreator(configuration).format(order_id, format_options, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
                     if (response.status >= 200 && response.status < 300) {
-                        return response.json();
+                      return response.json();
+                      
                     } else {
                         throw response;
                     }
@@ -42159,8 +42337,10 @@ export const OrderApiFp = function(configuration?: Configuration) {
             const localVarFetchArgs = OrderApiFetchParamCreator(configuration).generateOrderToken(order_id, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
                     if (response.status >= 200 && response.status < 300) {
-                        return response.json();
+                      return response.json();
+                      
                     } else {
                         throw response;
                     }
@@ -42177,8 +42357,10 @@ export const OrderApiFp = function(configuration?: Configuration) {
             const localVarFetchArgs = OrderApiFetchParamCreator(configuration).getAccountsReceivableRetryConfig(options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
                     if (response.status >= 200 && response.status < 300) {
-                        return response.json();
+                      return response.json();
+                      
                     } else {
                         throw response;
                     }
@@ -42197,8 +42379,10 @@ export const OrderApiFp = function(configuration?: Configuration) {
             const localVarFetchArgs = OrderApiFetchParamCreator(configuration).getAccountsReceivableRetryStats(from, to, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
                     if (response.status >= 200 && response.status < 300) {
-                        return response.json();
+                      return response.json();
+                      
                     } else {
                         throw response;
                     }
@@ -42217,8 +42401,10 @@ export const OrderApiFp = function(configuration?: Configuration) {
             const localVarFetchArgs = OrderApiFetchParamCreator(configuration).getOrder(order_id, _expand, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
                     if (response.status >= 200 && response.status < 300) {
-                        return response.json();
+                      return response.json();
+                      
                     } else {
                         throw response;
                     }
@@ -42237,8 +42423,10 @@ export const OrderApiFp = function(configuration?: Configuration) {
             const localVarFetchArgs = OrderApiFetchParamCreator(configuration).getOrderByToken(order_by_token_query, _expand, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
                     if (response.status >= 200 && response.status < 300) {
-                        return response.json();
+                      return response.json();
+                      
                     } else {
                         throw response;
                     }
@@ -42298,8 +42486,10 @@ export const OrderApiFp = function(configuration?: Configuration) {
             const localVarFetchArgs = OrderApiFetchParamCreator(configuration).getOrders(order_id, payment_method, company, first_name, last_name, city, state_region, postal_code, country_code, phone, email, cc_email, total, screen_branding_theme_code, storefront_host_name, creation_date_begin, creation_date_end, payment_date_begin, payment_date_end, shipment_date_begin, shipment_date_end, rma, purchase_order_number, item_id, current_stage, channel_partner_code, channel_partner_order_id, customer_profile_oid, Refund_Date_Begin, Refund_Date_End, Custom_Field_1, Custom_Field_2, Custom_Field_3, Custom_Field_4, Custom_Field_5, Custom_Field_6, Custom_Field_7, ship_on_date_begin, ship_on_date_end, _limit, _offset, _sort, _expand, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
                     if (response.status >= 200 && response.status < 300) {
-                        return response.json();
+                      return response.json();
+                      
                     } else {
                         throw response;
                     }
@@ -42318,8 +42508,10 @@ export const OrderApiFp = function(configuration?: Configuration) {
             const localVarFetchArgs = OrderApiFetchParamCreator(configuration).getOrdersBatch(order_batch, _expand, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
                     if (response.status >= 200 && response.status < 300) {
-                        return response.json();
+                      return response.json();
+                      
                     } else {
                         throw response;
                     }
@@ -42341,8 +42533,10 @@ export const OrderApiFp = function(configuration?: Configuration) {
             const localVarFetchArgs = OrderApiFetchParamCreator(configuration).getOrdersByQuery(order_query, _limit, _offset, _sort, _expand, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
                     if (response.status >= 200 && response.status < 300) {
-                        return response.json();
+                      return response.json();
+                      
                     } else {
                         throw response;
                     }
@@ -42361,8 +42555,10 @@ export const OrderApiFp = function(configuration?: Configuration) {
             const localVarFetchArgs = OrderApiFetchParamCreator(configuration).insertOrder(order, _expand, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
                     if (response.status >= 200 && response.status < 300) {
-                        return response.json();
+                      return response.json();
+                      
                     } else {
                         throw response;
                     }
@@ -42381,8 +42577,10 @@ export const OrderApiFp = function(configuration?: Configuration) {
             const localVarFetchArgs = OrderApiFetchParamCreator(configuration).processPayment(order_id, process_payment_request, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
                     if (response.status >= 200 && response.status < 300) {
-                        return response.json();
+                      return response.json();
+                      
                     } else {
                         throw response;
                     }
@@ -42407,8 +42605,10 @@ export const OrderApiFp = function(configuration?: Configuration) {
             const localVarFetchArgs = OrderApiFetchParamCreator(configuration).refundOrder(order, order_id, reject_after_refund, skip_customer_notification, auto_order_cancel, manual_refund, reverse_affiliate_transactions, _expand, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
                     if (response.status >= 200 && response.status < 300) {
-                        return response.json();
+                      return response.json();
+                      
                     } else {
                         throw response;
                     }
@@ -42427,8 +42627,10 @@ export const OrderApiFp = function(configuration?: Configuration) {
             const localVarFetchArgs = OrderApiFetchParamCreator(configuration).replacement(order_id, replacement, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
                     if (response.status >= 200 && response.status < 300) {
-                        return response.json();
+                      return response.json();
+                      
                     } else {
                         throw response;
                     }
@@ -42446,8 +42648,10 @@ export const OrderApiFp = function(configuration?: Configuration) {
             const localVarFetchArgs = OrderApiFetchParamCreator(configuration).resendReceipt(order_id, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
                     if (response.status >= 200 && response.status < 300) {
-                        return response.json();
+                      return response.json();
+                      
                     } else {
                         throw response;
                     }
@@ -42465,8 +42669,10 @@ export const OrderApiFp = function(configuration?: Configuration) {
             const localVarFetchArgs = OrderApiFetchParamCreator(configuration).resendShipmentConfirmation(order_id, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
                     if (response.status >= 200 && response.status < 300) {
-                        return response.json();
+                      return response.json();
+                      
                     } else {
                         throw response;
                     }
@@ -42484,8 +42690,10 @@ export const OrderApiFp = function(configuration?: Configuration) {
             const localVarFetchArgs = OrderApiFetchParamCreator(configuration).updateAccountsReceivableRetryConfig(retry_config, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
                     if (response.status >= 200 && response.status < 300) {
-                        return response.json();
+                      return response.json();
+                      
                     } else {
                         throw response;
                     }
@@ -42505,8 +42713,10 @@ export const OrderApiFp = function(configuration?: Configuration) {
             const localVarFetchArgs = OrderApiFetchParamCreator(configuration).updateOrder(order, order_id, _expand, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
                     if (response.status >= 200 && response.status < 300) {
-                        return response.json();
+                      return response.json();
+                      
                     } else {
                         throw response;
                     }
@@ -53248,8 +53458,10 @@ export const StorefrontApiFp = function(configuration?: Configuration) {
             const localVarFetchArgs = StorefrontApiFetchParamCreator(configuration).addToLibrary(add_library_request, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
                     if (response.status >= 200 && response.status < 300) {
-                        return response.json();
+                      return response.json();
+                      
                     } else {
                         throw response;
                     }
@@ -53267,8 +53479,10 @@ export const StorefrontApiFp = function(configuration?: Configuration) {
             const localVarFetchArgs = StorefrontApiFetchParamCreator(configuration).applyToStoreFront(apply_library_request, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
                     if (response.status >= 200 && response.status < 300) {
-                        return response.json();
+                      return response.json();
+                      
                     } else {
                         throw response;
                     }
@@ -53287,8 +53501,10 @@ export const StorefrontApiFp = function(configuration?: Configuration) {
             const localVarFetchArgs = StorefrontApiFetchParamCreator(configuration).archiveEmailList(storefront_oid, email_list_uuid, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
                     if (response.status >= 200 && response.status < 300) {
-                        return response.json();
+                      return response.json();
+                      
                     } else {
                         throw response;
                     }
@@ -53307,8 +53523,10 @@ export const StorefrontApiFp = function(configuration?: Configuration) {
             const localVarFetchArgs = StorefrontApiFetchParamCreator(configuration).archiveEmailSegment(storefront_oid, email_segment_uuid, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
                     if (response.status >= 200 && response.status < 300) {
-                        return response.json();
+                      return response.json();
+                      
                     } else {
                         throw response;
                     }
@@ -53328,8 +53546,10 @@ export const StorefrontApiFp = function(configuration?: Configuration) {
             const localVarFetchArgs = StorefrontApiFetchParamCreator(configuration).backPopulateEmailFlow(storefront_oid, email_flow_uuid, back_populate_request, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
                     if (response.status >= 200 && response.status < 300) {
-                        return response.json();
+                      return response.json();
+                      
                     } else {
                         throw response;
                     }
@@ -53349,8 +53569,10 @@ export const StorefrontApiFp = function(configuration?: Configuration) {
             const localVarFetchArgs = StorefrontApiFetchParamCreator(configuration).checkDownloadEmailSegment(storefront_oid, email_segment_uuid, email_segment_rebuild_uuid, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
                     if (response.status >= 200 && response.status < 300) {
-                        return response.json();
+                      return response.json();
+                      
                     } else {
                         throw response;
                     }
@@ -53370,8 +53592,10 @@ export const StorefrontApiFp = function(configuration?: Configuration) {
             const localVarFetchArgs = StorefrontApiFetchParamCreator(configuration).cloneEmailCampaign(storefront_oid, email_campaign_uuid, target_storefront_oid, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
                     if (response.status >= 200 && response.status < 300) {
-                        return response.json();
+                      return response.json();
+                      
                     } else {
                         throw response;
                     }
@@ -53391,8 +53615,10 @@ export const StorefrontApiFp = function(configuration?: Configuration) {
             const localVarFetchArgs = StorefrontApiFetchParamCreator(configuration).cloneEmailFlow(storefront_oid, email_flow_uuid, target_storefront_oid, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
                     if (response.status >= 200 && response.status < 300) {
-                        return response.json();
+                      return response.json();
+                      
                     } else {
                         throw response;
                     }
@@ -53410,8 +53636,10 @@ export const StorefrontApiFp = function(configuration?: Configuration) {
             const localVarFetchArgs = StorefrontApiFetchParamCreator(configuration).createEmailSendingDomain(domain, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
                     if (response.status >= 200 && response.status < 300) {
-                        return response.json();
+                      return response.json();
+                      
                     } else {
                         throw response;
                     }
@@ -53430,8 +53658,10 @@ export const StorefrontApiFp = function(configuration?: Configuration) {
             const localVarFetchArgs = StorefrontApiFetchParamCreator(configuration).deleteEmailCampaignFolder(storefront_oid, email_campaign_folder_uuid, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
                     if (response.status >= 200 && response.status < 300) {
-                        return response.json();
+                      return response.json();
+                      
                     } else {
                         throw response;
                     }
@@ -53450,8 +53680,10 @@ export const StorefrontApiFp = function(configuration?: Configuration) {
             const localVarFetchArgs = StorefrontApiFetchParamCreator(configuration).deleteEmailCommseqStat(storefront_oid, commseq_uuid, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
                     if (response.status >= 200 && response.status < 300) {
-                        return response;
+                      return response;
+                      
                     } else {
                         throw response;
                     }
@@ -53470,8 +53702,10 @@ export const StorefrontApiFp = function(configuration?: Configuration) {
             const localVarFetchArgs = StorefrontApiFetchParamCreator(configuration).deleteEmailEmail(storefront_oid, commseq_email_uuid, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
                     if (response.status >= 200 && response.status < 300) {
-                        return response.json();
+                      return response.json();
+                      
                     } else {
                         throw response;
                     }
@@ -53490,8 +53724,10 @@ export const StorefrontApiFp = function(configuration?: Configuration) {
             const localVarFetchArgs = StorefrontApiFetchParamCreator(configuration).deleteEmailFlowFolder(storefront_oid, email_flow_folder_uuid, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
                     if (response.status >= 200 && response.status < 300) {
-                        return response.json();
+                      return response.json();
+                      
                     } else {
                         throw response;
                     }
@@ -53511,8 +53747,10 @@ export const StorefrontApiFp = function(configuration?: Configuration) {
             const localVarFetchArgs = StorefrontApiFetchParamCreator(configuration).deleteEmailListCustomer(storefront_oid, email_list_uuid, email_customer_uuid, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
                     if (response.status >= 200 && response.status < 300) {
-                        return response.json();
+                      return response.json();
+                      
                     } else {
                         throw response;
                     }
@@ -53531,8 +53769,10 @@ export const StorefrontApiFp = function(configuration?: Configuration) {
             const localVarFetchArgs = StorefrontApiFetchParamCreator(configuration).deleteEmailPostcard(storefront_oid, commseq_postcard_uuid, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
                     if (response.status >= 200 && response.status < 300) {
-                        return response.json();
+                      return response.json();
+                      
                     } else {
                         throw response;
                     }
@@ -53550,8 +53790,10 @@ export const StorefrontApiFp = function(configuration?: Configuration) {
             const localVarFetchArgs = StorefrontApiFetchParamCreator(configuration).deleteEmailSendingDomain(domain, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
                     if (response.status >= 200 && response.status < 300) {
-                        return response.json();
+                      return response.json();
+                      
                     } else {
                         throw response;
                     }
@@ -53570,8 +53812,10 @@ export const StorefrontApiFp = function(configuration?: Configuration) {
             const localVarFetchArgs = StorefrontApiFetchParamCreator(configuration).deleteExperiment(storefront_oid, storefront_experiment_oid, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
                     if (response.status >= 200 && response.status < 300) {
-                        return response;
+                      return response;
+                      
                     } else {
                         throw response;
                     }
@@ -53590,8 +53834,10 @@ export const StorefrontApiFp = function(configuration?: Configuration) {
             const localVarFetchArgs = StorefrontApiFetchParamCreator(configuration).deleteHeatmap(storefront_oid, query, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
                     if (response.status >= 200 && response.status < 300) {
-                        return response;
+                      return response;
+                      
                     } else {
                         throw response;
                     }
@@ -53609,8 +53855,10 @@ export const StorefrontApiFp = function(configuration?: Configuration) {
             const localVarFetchArgs = StorefrontApiFetchParamCreator(configuration).deleteLibraryItem(library_item_oid, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
                     if (response.status >= 200 && response.status < 300) {
-                        return response;
+                      return response;
+                      
                     } else {
                         throw response;
                     }
@@ -53628,8 +53876,10 @@ export const StorefrontApiFp = function(configuration?: Configuration) {
             const localVarFetchArgs = StorefrontApiFetchParamCreator(configuration).deleteLibraryItemPublishedVersions(library_item_oid, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
                     if (response.status >= 200 && response.status < 300) {
-                        return response;
+                      return response;
+                      
                     } else {
                         throw response;
                     }
@@ -53648,8 +53898,10 @@ export const StorefrontApiFp = function(configuration?: Configuration) {
             const localVarFetchArgs = StorefrontApiFetchParamCreator(configuration).deleteScreenRecordingSegment(storefront_oid, screen_recording_segment_oid, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
                     if (response.status >= 200 && response.status < 300) {
-                        return response;
+                      return response;
+                      
                     } else {
                         throw response;
                     }
@@ -53667,8 +53919,10 @@ export const StorefrontApiFp = function(configuration?: Configuration) {
             const localVarFetchArgs = StorefrontApiFetchParamCreator(configuration).duplicateLibraryItem(library_item_oid, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
                     if (response.status >= 200 && response.status < 300) {
-                        return response.json();
+                      return response.json();
+                      
                     } else {
                         throw response;
                     }
@@ -53687,8 +53941,10 @@ export const StorefrontApiFp = function(configuration?: Configuration) {
             const localVarFetchArgs = StorefrontApiFetchParamCreator(configuration).favoriteScreenRecording(storefront_oid, screen_recording_uuid, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
                     if (response.status >= 200 && response.status < 300) {
-                        return response;
+                      return response;
+                      
                     } else {
                         throw response;
                     }
@@ -53707,8 +53963,10 @@ export const StorefrontApiFp = function(configuration?: Configuration) {
             const localVarFetchArgs = StorefrontApiFetchParamCreator(configuration).geocodeAddress(storefront_oid, geocode_request, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
                     if (response.status >= 200 && response.status < 300) {
-                        return response.json();
+                      return response.json();
+                      
                     } else {
                         throw response;
                     }
@@ -53726,8 +53984,10 @@ export const StorefrontApiFp = function(configuration?: Configuration) {
             const localVarFetchArgs = StorefrontApiFetchParamCreator(configuration).getCountries(storefront_oid, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
                     if (response.status >= 200 && response.status < 300) {
-                        return response.json();
+                      return response.json();
+                      
                     } else {
                         throw response;
                     }
@@ -53745,8 +54005,10 @@ export const StorefrontApiFp = function(configuration?: Configuration) {
             const localVarFetchArgs = StorefrontApiFetchParamCreator(configuration).getEditorToken(storefront_oid, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
                     if (response.status >= 200 && response.status < 300) {
-                        return response.json();
+                      return response.json();
+                      
                     } else {
                         throw response;
                     }
@@ -53764,8 +54026,10 @@ export const StorefrontApiFp = function(configuration?: Configuration) {
             const localVarFetchArgs = StorefrontApiFetchParamCreator(configuration).getEmailBaseTemplates(storefront_oid, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
                     if (response.status >= 200 && response.status < 300) {
-                        return response.json();
+                      return response.json();
+                      
                     } else {
                         throw response;
                     }
@@ -53784,8 +54048,10 @@ export const StorefrontApiFp = function(configuration?: Configuration) {
             const localVarFetchArgs = StorefrontApiFetchParamCreator(configuration).getEmailCampaign(storefront_oid, email_campaign_uuid, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
                     if (response.status >= 200 && response.status < 300) {
-                        return response.json();
+                      return response.json();
+                      
                     } else {
                         throw response;
                     }
@@ -53804,8 +54070,10 @@ export const StorefrontApiFp = function(configuration?: Configuration) {
             const localVarFetchArgs = StorefrontApiFetchParamCreator(configuration).getEmailCampaignFolder(storefront_oid, email_campaign_folder_uuid, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
                     if (response.status >= 200 && response.status < 300) {
-                        return response.json();
+                      return response.json();
+                      
                     } else {
                         throw response;
                     }
@@ -53823,8 +54091,10 @@ export const StorefrontApiFp = function(configuration?: Configuration) {
             const localVarFetchArgs = StorefrontApiFetchParamCreator(configuration).getEmailCampaignFolders(storefront_oid, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
                     if (response.status >= 200 && response.status < 300) {
-                        return response.json();
+                      return response.json();
+                      
                     } else {
                         throw response;
                     }
@@ -53843,8 +54113,10 @@ export const StorefrontApiFp = function(configuration?: Configuration) {
             const localVarFetchArgs = StorefrontApiFetchParamCreator(configuration).getEmailCampaignScreenshots(storefront_oid, email_campaign_uuid, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
                     if (response.status >= 200 && response.status < 300) {
-                        return response.json();
+                      return response.json();
+                      
                     } else {
                         throw response;
                     }
@@ -53862,8 +54134,10 @@ export const StorefrontApiFp = function(configuration?: Configuration) {
             const localVarFetchArgs = StorefrontApiFetchParamCreator(configuration).getEmailCampaigns(storefront_oid, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
                     if (response.status >= 200 && response.status < 300) {
-                        return response.json();
+                      return response.json();
+                      
                     } else {
                         throw response;
                     }
@@ -53882,8 +54156,10 @@ export const StorefrontApiFp = function(configuration?: Configuration) {
             const localVarFetchArgs = StorefrontApiFetchParamCreator(configuration).getEmailCampaignsWithStats(storefront_oid, stat_days, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
                     if (response.status >= 200 && response.status < 300) {
-                        return response.json();
+                      return response.json();
+                      
                     } else {
                         throw response;
                     }
@@ -53902,8 +54178,10 @@ export const StorefrontApiFp = function(configuration?: Configuration) {
             const localVarFetchArgs = StorefrontApiFetchParamCreator(configuration).getEmailCommseq(storefront_oid, commseq_uuid, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
                     if (response.status >= 200 && response.status < 300) {
-                        return response.json();
+                      return response.json();
+                      
                     } else {
                         throw response;
                     }
@@ -53923,8 +54201,10 @@ export const StorefrontApiFp = function(configuration?: Configuration) {
             const localVarFetchArgs = StorefrontApiFetchParamCreator(configuration).getEmailCommseqEmailStats(storefront_oid, commseq_uuid, statsRequest, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
                     if (response.status >= 200 && response.status < 300) {
-                        return response.json();
+                      return response.json();
+                      
                     } else {
                         throw response;
                     }
@@ -53944,8 +54224,10 @@ export const StorefrontApiFp = function(configuration?: Configuration) {
             const localVarFetchArgs = StorefrontApiFetchParamCreator(configuration).getEmailCommseqPostcardStats(storefront_oid, commseq_uuid, statsRequest, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
                     if (response.status >= 200 && response.status < 300) {
-                        return response.json();
+                      return response.json();
+                      
                     } else {
                         throw response;
                     }
@@ -53964,8 +54246,10 @@ export const StorefrontApiFp = function(configuration?: Configuration) {
             const localVarFetchArgs = StorefrontApiFetchParamCreator(configuration).getEmailCommseqStatOverall(storefront_oid, commseq_uuid, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
                     if (response.status >= 200 && response.status < 300) {
-                        return response.json();
+                      return response.json();
+                      
                     } else {
                         throw response;
                     }
@@ -53985,8 +54269,10 @@ export const StorefrontApiFp = function(configuration?: Configuration) {
             const localVarFetchArgs = StorefrontApiFetchParamCreator(configuration).getEmailCommseqStepStats(storefront_oid, commseq_uuid, statsRequest, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
                     if (response.status >= 200 && response.status < 300) {
-                        return response.json();
+                      return response.json();
+                      
                     } else {
                         throw response;
                     }
@@ -54006,8 +54292,10 @@ export const StorefrontApiFp = function(configuration?: Configuration) {
             const localVarFetchArgs = StorefrontApiFetchParamCreator(configuration).getEmailCommseqStepWaiting(storefront_oid, commseq_uuid, waitingRequest, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
                     if (response.status >= 200 && response.status < 300) {
-                        return response.json();
+                      return response.json();
+                      
                     } else {
                         throw response;
                     }
@@ -54025,8 +54313,10 @@ export const StorefrontApiFp = function(configuration?: Configuration) {
             const localVarFetchArgs = StorefrontApiFetchParamCreator(configuration).getEmailCommseqs(storefront_oid, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
                     if (response.status >= 200 && response.status < 300) {
-                        return response.json();
+                      return response.json();
+                      
                     } else {
                         throw response;
                     }
@@ -54045,8 +54335,10 @@ export const StorefrontApiFp = function(configuration?: Configuration) {
             const localVarFetchArgs = StorefrontApiFetchParamCreator(configuration).getEmailCustomerEditorUrl(storefront_oid, email_customer_uuid, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
                     if (response.status >= 200 && response.status < 300) {
-                        return response.json();
+                      return response.json();
+                      
                     } else {
                         throw response;
                     }
@@ -54067,8 +54359,10 @@ export const StorefrontApiFp = function(configuration?: Configuration) {
             const localVarFetchArgs = StorefrontApiFetchParamCreator(configuration).getEmailCustomers(storefront_oid, pageNumber, pageSize, searchEmailPrefix, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
                     if (response.status >= 200 && response.status < 300) {
-                        return response.json();
+                      return response.json();
+                      
                     } else {
                         throw response;
                     }
@@ -54087,8 +54381,10 @@ export const StorefrontApiFp = function(configuration?: Configuration) {
             const localVarFetchArgs = StorefrontApiFetchParamCreator(configuration).getEmailDashboardActivity(storefront_oid, last_records, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
                     if (response.status >= 200 && response.status < 300) {
-                        return response.json();
+                      return response.json();
+                      
                     } else {
                         throw response;
                     }
@@ -54107,8 +54403,10 @@ export const StorefrontApiFp = function(configuration?: Configuration) {
             const localVarFetchArgs = StorefrontApiFetchParamCreator(configuration).getEmailDashboardStats(storefront_oid, days, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
                     if (response.status >= 200 && response.status < 300) {
-                        return response.json();
+                      return response.json();
+                      
                     } else {
                         throw response;
                     }
@@ -54127,8 +54425,10 @@ export const StorefrontApiFp = function(configuration?: Configuration) {
             const localVarFetchArgs = StorefrontApiFetchParamCreator(configuration).getEmailEmail(storefront_oid, commseq_email_uuid, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
                     if (response.status >= 200 && response.status < 300) {
-                        return response.json();
+                      return response.json();
+                      
                     } else {
                         throw response;
                     }
@@ -54150,8 +54450,10 @@ export const StorefrontApiFp = function(configuration?: Configuration) {
             const localVarFetchArgs = StorefrontApiFetchParamCreator(configuration).getEmailEmailClicks(storefront_oid, commseq_uuid, commseq_step_uuid, commseq_email_uuid, days, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
                     if (response.status >= 200 && response.status < 300) {
-                        return response.json();
+                      return response.json();
+                      
                     } else {
                         throw response;
                     }
@@ -54171,8 +54473,10 @@ export const StorefrontApiFp = function(configuration?: Configuration) {
             const localVarFetchArgs = StorefrontApiFetchParamCreator(configuration).getEmailEmailCustomerEditorUrl(storefront_oid, commseq_email_uuid, order_id, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
                     if (response.status >= 200 && response.status < 300) {
-                        return response.json();
+                      return response.json();
+                      
                     } else {
                         throw response;
                     }
@@ -54194,8 +54498,10 @@ export const StorefrontApiFp = function(configuration?: Configuration) {
             const localVarFetchArgs = StorefrontApiFetchParamCreator(configuration).getEmailEmailOrders(storefront_oid, commseq_uuid, commseq_step_uuid, commseq_email_uuid, days, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
                     if (response.status >= 200 && response.status < 300) {
-                        return response.json();
+                      return response.json();
+                      
                     } else {
                         throw response;
                     }
@@ -54213,8 +54519,10 @@ export const StorefrontApiFp = function(configuration?: Configuration) {
             const localVarFetchArgs = StorefrontApiFetchParamCreator(configuration).getEmailEmails(storefront_oid, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
                     if (response.status >= 200 && response.status < 300) {
-                        return response.json();
+                      return response.json();
+                      
                     } else {
                         throw response;
                     }
@@ -54233,8 +54541,10 @@ export const StorefrontApiFp = function(configuration?: Configuration) {
             const localVarFetchArgs = StorefrontApiFetchParamCreator(configuration).getEmailEmailsMultiple(storefront_oid, email_commseq_emails_request, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
                     if (response.status >= 200 && response.status < 300) {
-                        return response.json();
+                      return response.json();
+                      
                     } else {
                         throw response;
                     }
@@ -54253,8 +54563,10 @@ export const StorefrontApiFp = function(configuration?: Configuration) {
             const localVarFetchArgs = StorefrontApiFetchParamCreator(configuration).getEmailFlow(storefront_oid, email_flow_uuid, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
                     if (response.status >= 200 && response.status < 300) {
-                        return response.json();
+                      return response.json();
+                      
                     } else {
                         throw response;
                     }
@@ -54273,8 +54585,10 @@ export const StorefrontApiFp = function(configuration?: Configuration) {
             const localVarFetchArgs = StorefrontApiFetchParamCreator(configuration).getEmailFlowFolder(storefront_oid, email_flow_folder_uuid, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
                     if (response.status >= 200 && response.status < 300) {
-                        return response.json();
+                      return response.json();
+                      
                     } else {
                         throw response;
                     }
@@ -54292,8 +54606,10 @@ export const StorefrontApiFp = function(configuration?: Configuration) {
             const localVarFetchArgs = StorefrontApiFetchParamCreator(configuration).getEmailFlowFolders(storefront_oid, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
                     if (response.status >= 200 && response.status < 300) {
-                        return response.json();
+                      return response.json();
+                      
                     } else {
                         throw response;
                     }
@@ -54312,8 +54628,10 @@ export const StorefrontApiFp = function(configuration?: Configuration) {
             const localVarFetchArgs = StorefrontApiFetchParamCreator(configuration).getEmailFlowScreenshots(storefront_oid, email_flow_uuid, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
                     if (response.status >= 200 && response.status < 300) {
-                        return response.json();
+                      return response.json();
+                      
                     } else {
                         throw response;
                     }
@@ -54331,8 +54649,10 @@ export const StorefrontApiFp = function(configuration?: Configuration) {
             const localVarFetchArgs = StorefrontApiFetchParamCreator(configuration).getEmailFlows(storefront_oid, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
                     if (response.status >= 200 && response.status < 300) {
-                        return response.json();
+                      return response.json();
+                      
                     } else {
                         throw response;
                     }
@@ -54349,8 +54669,10 @@ export const StorefrontApiFp = function(configuration?: Configuration) {
             const localVarFetchArgs = StorefrontApiFetchParamCreator(configuration).getEmailGlobalSettings(options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
                     if (response.status >= 200 && response.status < 300) {
-                        return response.json();
+                      return response.json();
+                      
                     } else {
                         throw response;
                     }
@@ -54369,8 +54691,10 @@ export const StorefrontApiFp = function(configuration?: Configuration) {
             const localVarFetchArgs = StorefrontApiFetchParamCreator(configuration).getEmailList(storefront_oid, email_list_uuid, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
                     if (response.status >= 200 && response.status < 300) {
-                        return response.json();
+                      return response.json();
+                      
                     } else {
                         throw response;
                     }
@@ -54390,8 +54714,10 @@ export const StorefrontApiFp = function(configuration?: Configuration) {
             const localVarFetchArgs = StorefrontApiFetchParamCreator(configuration).getEmailListCustomerEditorUrl(storefront_oid, email_list_uuid, email_customer_uuid, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
                     if (response.status >= 200 && response.status < 300) {
-                        return response.json();
+                      return response.json();
+                      
                     } else {
                         throw response;
                     }
@@ -54412,8 +54738,10 @@ export const StorefrontApiFp = function(configuration?: Configuration) {
             const localVarFetchArgs = StorefrontApiFetchParamCreator(configuration).getEmailListCustomers(storefront_oid, email_list_uuid, pageNumber, pageSize, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
                     if (response.status >= 200 && response.status < 300) {
-                        return response.json();
+                      return response.json();
+                      
                     } else {
                         throw response;
                     }
@@ -54431,8 +54759,10 @@ export const StorefrontApiFp = function(configuration?: Configuration) {
             const localVarFetchArgs = StorefrontApiFetchParamCreator(configuration).getEmailLists(storefront_oid, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
                     if (response.status >= 200 && response.status < 300) {
-                        return response.json();
+                      return response.json();
+                      
                     } else {
                         throw response;
                     }
@@ -54450,8 +54780,10 @@ export const StorefrontApiFp = function(configuration?: Configuration) {
             const localVarFetchArgs = StorefrontApiFetchParamCreator(configuration).getEmailPerformance(storefront_oid, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
                     if (response.status >= 200 && response.status < 300) {
-                        return response.json();
+                      return response.json();
+                      
                     } else {
                         throw response;
                     }
@@ -54469,8 +54801,10 @@ export const StorefrontApiFp = function(configuration?: Configuration) {
             const localVarFetchArgs = StorefrontApiFetchParamCreator(configuration).getEmailPlan(storefront_oid, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
                     if (response.status >= 200 && response.status < 300) {
-                        return response.json();
+                      return response.json();
+                      
                     } else {
                         throw response;
                     }
@@ -54489,8 +54823,10 @@ export const StorefrontApiFp = function(configuration?: Configuration) {
             const localVarFetchArgs = StorefrontApiFetchParamCreator(configuration).getEmailPostcard(storefront_oid, commseq_postcard_uuid, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
                     if (response.status >= 200 && response.status < 300) {
-                        return response.json();
+                      return response.json();
+                      
                     } else {
                         throw response;
                     }
@@ -54508,8 +54844,10 @@ export const StorefrontApiFp = function(configuration?: Configuration) {
             const localVarFetchArgs = StorefrontApiFetchParamCreator(configuration).getEmailPostcards(storefront_oid, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
                     if (response.status >= 200 && response.status < 300) {
-                        return response.json();
+                      return response.json();
+                      
                     } else {
                         throw response;
                     }
@@ -54528,8 +54866,10 @@ export const StorefrontApiFp = function(configuration?: Configuration) {
             const localVarFetchArgs = StorefrontApiFetchParamCreator(configuration).getEmailPostcardsMultiple(storefront_oid, email_commseq_postcards_request, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
                     if (response.status >= 200 && response.status < 300) {
-                        return response.json();
+                      return response.json();
+                      
                     } else {
                         throw response;
                     }
@@ -54548,8 +54888,10 @@ export const StorefrontApiFp = function(configuration?: Configuration) {
             const localVarFetchArgs = StorefrontApiFetchParamCreator(configuration).getEmailSegment(storefront_oid, email_segment_uuid, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
                     if (response.status >= 200 && response.status < 300) {
-                        return response.json();
+                      return response.json();
+                      
                     } else {
                         throw response;
                     }
@@ -54569,8 +54911,10 @@ export const StorefrontApiFp = function(configuration?: Configuration) {
             const localVarFetchArgs = StorefrontApiFetchParamCreator(configuration).getEmailSegmentCustomerEditorUrl(storefront_oid, email_segment_uuid, email_customer_uuid, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
                     if (response.status >= 200 && response.status < 300) {
-                        return response.json();
+                      return response.json();
+                      
                     } else {
                         throw response;
                     }
@@ -54591,8 +54935,10 @@ export const StorefrontApiFp = function(configuration?: Configuration) {
             const localVarFetchArgs = StorefrontApiFetchParamCreator(configuration).getEmailSegmentCustomers(storefront_oid, email_segment_uuid, pageNumber, pageSize, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
                     if (response.status >= 200 && response.status < 300) {
-                        return response.json();
+                      return response.json();
+                      
                     } else {
                         throw response;
                     }
@@ -54610,8 +54956,10 @@ export const StorefrontApiFp = function(configuration?: Configuration) {
             const localVarFetchArgs = StorefrontApiFetchParamCreator(configuration).getEmailSegments(storefront_oid, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
                     if (response.status >= 200 && response.status < 300) {
-                        return response.json();
+                      return response.json();
+                      
                     } else {
                         throw response;
                     }
@@ -54629,8 +54977,10 @@ export const StorefrontApiFp = function(configuration?: Configuration) {
             const localVarFetchArgs = StorefrontApiFetchParamCreator(configuration).getEmailSendingDomain(domain, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
                     if (response.status >= 200 && response.status < 300) {
-                        return response.json();
+                      return response.json();
+                      
                     } else {
                         throw response;
                     }
@@ -54648,8 +54998,10 @@ export const StorefrontApiFp = function(configuration?: Configuration) {
             const localVarFetchArgs = StorefrontApiFetchParamCreator(configuration).getEmailSendingDomainStatus(domain, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
                     if (response.status >= 200 && response.status < 300) {
-                        return response.json();
+                      return response.json();
+                      
                     } else {
                         throw response;
                     }
@@ -54666,8 +55018,10 @@ export const StorefrontApiFp = function(configuration?: Configuration) {
             const localVarFetchArgs = StorefrontApiFetchParamCreator(configuration).getEmailSendingDomains(options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
                     if (response.status >= 200 && response.status < 300) {
-                        return response.json();
+                      return response.json();
+                      
                     } else {
                         throw response;
                     }
@@ -54685,8 +55039,10 @@ export const StorefrontApiFp = function(configuration?: Configuration) {
             const localVarFetchArgs = StorefrontApiFetchParamCreator(configuration).getEmailSettings(storefront_oid, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
                     if (response.status >= 200 && response.status < 300) {
-                        return response.json();
+                      return response.json();
+                      
                     } else {
                         throw response;
                     }
@@ -54705,8 +55061,10 @@ export const StorefrontApiFp = function(configuration?: Configuration) {
             const localVarFetchArgs = StorefrontApiFetchParamCreator(configuration).getEmailTemplate(storefront_oid, email_template_oid, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
                     if (response.status >= 200 && response.status < 300) {
-                        return response.json();
+                      return response.json();
+                      
                     } else {
                         throw response;
                     }
@@ -54725,8 +55083,10 @@ export const StorefrontApiFp = function(configuration?: Configuration) {
             const localVarFetchArgs = StorefrontApiFetchParamCreator(configuration).getEmailTemplates(storefront_oid, trigger_type, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
                     if (response.status >= 200 && response.status < 300) {
-                        return response.json();
+                      return response.json();
+                      
                     } else {
                         throw response;
                     }
@@ -54744,8 +55104,10 @@ export const StorefrontApiFp = function(configuration?: Configuration) {
             const localVarFetchArgs = StorefrontApiFetchParamCreator(configuration).getEmailThirdPartyProviders(storefront_oid, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
                     if (response.status >= 200 && response.status < 300) {
-                        return response.json();
+                      return response.json();
+                      
                     } else {
                         throw response;
                     }
@@ -54763,8 +55125,10 @@ export const StorefrontApiFp = function(configuration?: Configuration) {
             const localVarFetchArgs = StorefrontApiFetchParamCreator(configuration).getExperiments(storefront_oid, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
                     if (response.status >= 200 && response.status < 300) {
-                        return response.json();
+                      return response.json();
+                      
                     } else {
                         throw response;
                     }
@@ -54783,8 +55147,10 @@ export const StorefrontApiFp = function(configuration?: Configuration) {
             const localVarFetchArgs = StorefrontApiFetchParamCreator(configuration).getHeatmap(storefront_oid, query, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
                     if (response.status >= 200 && response.status < 300) {
-                        return response.json();
+                      return response.json();
+                      
                     } else {
                         throw response;
                     }
@@ -54806,8 +55172,10 @@ export const StorefrontApiFp = function(configuration?: Configuration) {
             const localVarFetchArgs = StorefrontApiFetchParamCreator(configuration).getHeatmapIndex(storefront_oid, query, _limit, _offset, _sort, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
                     if (response.status >= 200 && response.status < 300) {
-                        return response.json();
+                      return response.json();
+                      
                     } else {
                         throw response;
                     }
@@ -54826,8 +55194,10 @@ export const StorefrontApiFp = function(configuration?: Configuration) {
             const localVarFetchArgs = StorefrontApiFetchParamCreator(configuration).getHistogramPropertyNames(storefront_oid, property_type, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
                     if (response.status >= 200 && response.status < 300) {
-                        return response.json();
+                      return response.json();
+                      
                     } else {
                         throw response;
                     }
@@ -54848,8 +55218,10 @@ export const StorefrontApiFp = function(configuration?: Configuration) {
             const localVarFetchArgs = StorefrontApiFetchParamCreator(configuration).getHistogramPropertyValues(storefront_oid, property_name, property_type, limit, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
                     if (response.status >= 200 && response.status < 300) {
-                        return response.json();
+                      return response.json();
+                      
                     } else {
                         throw response;
                     }
@@ -54866,8 +55238,10 @@ export const StorefrontApiFp = function(configuration?: Configuration) {
             const localVarFetchArgs = StorefrontApiFetchParamCreator(configuration).getLibraryFilterValues(options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
                     if (response.status >= 200 && response.status < 300) {
-                        return response.json();
+                      return response.json();
+                      
                     } else {
                         throw response;
                     }
@@ -54885,8 +55259,10 @@ export const StorefrontApiFp = function(configuration?: Configuration) {
             const localVarFetchArgs = StorefrontApiFetchParamCreator(configuration).getLibraryItem(library_item_oid, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
                     if (response.status >= 200 && response.status < 300) {
-                        return response.json();
+                      return response.json();
+                      
                     } else {
                         throw response;
                     }
@@ -54904,8 +55280,10 @@ export const StorefrontApiFp = function(configuration?: Configuration) {
             const localVarFetchArgs = StorefrontApiFetchParamCreator(configuration).getLibraryItemPublishedVersions(library_item_oid, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
                     if (response.status >= 200 && response.status < 300) {
-                        return response.json();
+                      return response.json();
+                      
                     } else {
                         throw response;
                     }
@@ -54924,8 +55302,10 @@ export const StorefrontApiFp = function(configuration?: Configuration) {
             const localVarFetchArgs = StorefrontApiFetchParamCreator(configuration).getScreenRecording(storefront_oid, screen_recording_uuid, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
                     if (response.status >= 200 && response.status < 300) {
-                        return response.json();
+                      return response.json();
+                      
                     } else {
                         throw response;
                     }
@@ -54945,8 +55325,10 @@ export const StorefrontApiFp = function(configuration?: Configuration) {
             const localVarFetchArgs = StorefrontApiFetchParamCreator(configuration).getScreenRecordingPageViewData(storefront_oid, screen_recording_uuid, screen_recording_page_view_uuid, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
                     if (response.status >= 200 && response.status < 300) {
-                        return response.json();
+                      return response.json();
+                      
                     } else {
                         throw response;
                     }
@@ -54965,8 +55347,10 @@ export const StorefrontApiFp = function(configuration?: Configuration) {
             const localVarFetchArgs = StorefrontApiFetchParamCreator(configuration).getScreenRecordingSegment(storefront_oid, screen_recording_segment_oid, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
                     if (response.status >= 200 && response.status < 300) {
-                        return response.json();
+                      return response.json();
+                      
                     } else {
                         throw response;
                     }
@@ -54984,8 +55368,10 @@ export const StorefrontApiFp = function(configuration?: Configuration) {
             const localVarFetchArgs = StorefrontApiFetchParamCreator(configuration).getScreenRecordingSegments(storefront_oid, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
                     if (response.status >= 200 && response.status < 300) {
-                        return response.json();
+                      return response.json();
+                      
                     } else {
                         throw response;
                     }
@@ -55003,8 +55389,10 @@ export const StorefrontApiFp = function(configuration?: Configuration) {
             const localVarFetchArgs = StorefrontApiFetchParamCreator(configuration).getScreenRecordingSettings(storefront_oid, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
                     if (response.status >= 200 && response.status < 300) {
-                        return response.json();
+                      return response.json();
+                      
                     } else {
                         throw response;
                     }
@@ -55022,8 +55410,10 @@ export const StorefrontApiFp = function(configuration?: Configuration) {
             const localVarFetchArgs = StorefrontApiFetchParamCreator(configuration).getScreenRecordingTags(storefront_oid, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
                     if (response.status >= 200 && response.status < 300) {
-                        return response.json();
+                      return response.json();
+                      
                     } else {
                         throw response;
                     }
@@ -55045,8 +55435,10 @@ export const StorefrontApiFp = function(configuration?: Configuration) {
             const localVarFetchArgs = StorefrontApiFetchParamCreator(configuration).getScreenRecordingsByQuery(storefront_oid, query, _limit, _offset, _sort, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
                     if (response.status >= 200 && response.status < 300) {
-                        return response.json();
+                      return response.json();
+                      
                     } else {
                         throw response;
                     }
@@ -55068,8 +55460,10 @@ export const StorefrontApiFp = function(configuration?: Configuration) {
             const localVarFetchArgs = StorefrontApiFetchParamCreator(configuration).getScreenRecordingsBySegment(storefront_oid, screen_recording_segment_oid, _limit, _offset, _sort, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
                     if (response.status >= 200 && response.status < 300) {
-                        return response.json();
+                      return response.json();
+                      
                     } else {
                         throw response;
                     }
@@ -55087,8 +55481,10 @@ export const StorefrontApiFp = function(configuration?: Configuration) {
             const localVarFetchArgs = StorefrontApiFetchParamCreator(configuration).getStoreFrontPricingTiers(_expand, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
                     if (response.status >= 200 && response.status < 300) {
-                        return response.json();
+                      return response.json();
+                      
                     } else {
                         throw response;
                     }
@@ -55106,8 +55502,10 @@ export const StorefrontApiFp = function(configuration?: Configuration) {
             const localVarFetchArgs = StorefrontApiFetchParamCreator(configuration).getThumbnailParameters(thumbnail_parameters, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
                     if (response.status >= 200 && response.status < 300) {
-                        return response.json();
+                      return response.json();
+                      
                     } else {
                         throw response;
                     }
@@ -55126,8 +55524,10 @@ export const StorefrontApiFp = function(configuration?: Configuration) {
             const localVarFetchArgs = StorefrontApiFetchParamCreator(configuration).getTransactionEmail(storefront_oid, email_id, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
                     if (response.status >= 200 && response.status < 300) {
-                        return response.json();
+                      return response.json();
+                      
                     } else {
                         throw response;
                     }
@@ -55145,8 +55545,10 @@ export const StorefrontApiFp = function(configuration?: Configuration) {
             const localVarFetchArgs = StorefrontApiFetchParamCreator(configuration).getTransactionEmailList(storefront_oid, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
                     if (response.status >= 200 && response.status < 300) {
-                        return response.json();
+                      return response.json();
+                      
                     } else {
                         throw response;
                     }
@@ -55165,8 +55567,10 @@ export const StorefrontApiFp = function(configuration?: Configuration) {
             const localVarFetchArgs = StorefrontApiFetchParamCreator(configuration).getTransactionEmailScreenshots(storefront_oid, email_id, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
                     if (response.status >= 200 && response.status < 300) {
-                        return response.json();
+                      return response.json();
+                      
                     } else {
                         throw response;
                     }
@@ -55185,8 +55589,10 @@ export const StorefrontApiFp = function(configuration?: Configuration) {
             const localVarFetchArgs = StorefrontApiFetchParamCreator(configuration).globalUnsubscribe(storefront_oid, unsubscribe, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
                     if (response.status >= 200 && response.status < 300) {
-                        return response.json();
+                      return response.json();
+                      
                     } else {
                         throw response;
                     }
@@ -55205,8 +55611,10 @@ export const StorefrontApiFp = function(configuration?: Configuration) {
             const localVarFetchArgs = StorefrontApiFetchParamCreator(configuration).importEmailThirdPartyProviderList(storefront_oid, import_request, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
                     if (response.status >= 200 && response.status < 300) {
-                        return response;
+                      return response;
+                      
                     } else {
                         throw response;
                     }
@@ -55225,8 +55633,10 @@ export const StorefrontApiFp = function(configuration?: Configuration) {
             const localVarFetchArgs = StorefrontApiFetchParamCreator(configuration).insertEmailCampaign(storefront_oid, email_campaign, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
                     if (response.status >= 200 && response.status < 300) {
-                        return response.json();
+                      return response.json();
+                      
                     } else {
                         throw response;
                     }
@@ -55245,8 +55655,10 @@ export const StorefrontApiFp = function(configuration?: Configuration) {
             const localVarFetchArgs = StorefrontApiFetchParamCreator(configuration).insertEmailCampaignFolder(storefront_oid, email_campaign_folder, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
                     if (response.status >= 200 && response.status < 300) {
-                        return response.json();
+                      return response.json();
+                      
                     } else {
                         throw response;
                     }
@@ -55265,8 +55677,10 @@ export const StorefrontApiFp = function(configuration?: Configuration) {
             const localVarFetchArgs = StorefrontApiFetchParamCreator(configuration).insertEmailCommseq(storefront_oid, email_commseq, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
                     if (response.status >= 200 && response.status < 300) {
-                        return response.json();
+                      return response.json();
+                      
                     } else {
                         throw response;
                     }
@@ -55285,8 +55699,10 @@ export const StorefrontApiFp = function(configuration?: Configuration) {
             const localVarFetchArgs = StorefrontApiFetchParamCreator(configuration).insertEmailEmail(storefront_oid, email_commseq_email, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
                     if (response.status >= 200 && response.status < 300) {
-                        return response.json();
+                      return response.json();
+                      
                     } else {
                         throw response;
                     }
@@ -55305,8 +55721,10 @@ export const StorefrontApiFp = function(configuration?: Configuration) {
             const localVarFetchArgs = StorefrontApiFetchParamCreator(configuration).insertEmailFlow(storefront_oid, email_flow, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
                     if (response.status >= 200 && response.status < 300) {
-                        return response.json();
+                      return response.json();
+                      
                     } else {
                         throw response;
                     }
@@ -55325,8 +55743,10 @@ export const StorefrontApiFp = function(configuration?: Configuration) {
             const localVarFetchArgs = StorefrontApiFetchParamCreator(configuration).insertEmailFlowFolder(storefront_oid, email_flow_folder, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
                     if (response.status >= 200 && response.status < 300) {
-                        return response.json();
+                      return response.json();
+                      
                     } else {
                         throw response;
                     }
@@ -55345,8 +55765,10 @@ export const StorefrontApiFp = function(configuration?: Configuration) {
             const localVarFetchArgs = StorefrontApiFetchParamCreator(configuration).insertEmailList(storefront_oid, email_list, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
                     if (response.status >= 200 && response.status < 300) {
-                        return response.json();
+                      return response.json();
+                      
                     } else {
                         throw response;
                     }
@@ -55365,8 +55787,10 @@ export const StorefrontApiFp = function(configuration?: Configuration) {
             const localVarFetchArgs = StorefrontApiFetchParamCreator(configuration).insertEmailPostcard(storefront_oid, email_commseq_postcard, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
                     if (response.status >= 200 && response.status < 300) {
-                        return response.json();
+                      return response.json();
+                      
                     } else {
                         throw response;
                     }
@@ -55385,8 +55809,10 @@ export const StorefrontApiFp = function(configuration?: Configuration) {
             const localVarFetchArgs = StorefrontApiFetchParamCreator(configuration).insertEmailSegment(storefront_oid, email_segment, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
                     if (response.status >= 200 && response.status < 300) {
-                        return response.json();
+                      return response.json();
+                      
                     } else {
                         throw response;
                     }
@@ -55405,8 +55831,10 @@ export const StorefrontApiFp = function(configuration?: Configuration) {
             const localVarFetchArgs = StorefrontApiFetchParamCreator(configuration).insertScreenRecordingSegment(storefront_oid, segment, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
                     if (response.status >= 200 && response.status < 300) {
-                        return response.json();
+                      return response.json();
+                      
                     } else {
                         throw response;
                     }
@@ -55425,8 +55853,10 @@ export const StorefrontApiFp = function(configuration?: Configuration) {
             const localVarFetchArgs = StorefrontApiFetchParamCreator(configuration).prepareDownloadEmailSegment(storefront_oid, email_segment_uuid, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
                     if (response.status >= 200 && response.status < 300) {
-                        return response.json();
+                      return response.json();
+                      
                     } else {
                         throw response;
                     }
@@ -55445,8 +55875,10 @@ export const StorefrontApiFp = function(configuration?: Configuration) {
             const localVarFetchArgs = StorefrontApiFetchParamCreator(configuration).publishLibraryItem(library_item_oid, publish_library_request, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
                     if (response.status >= 200 && response.status < 300) {
-                        return response.json();
+                      return response.json();
+                      
                     } else {
                         throw response;
                     }
@@ -55465,8 +55897,10 @@ export const StorefrontApiFp = function(configuration?: Configuration) {
             const localVarFetchArgs = StorefrontApiFetchParamCreator(configuration).purchaseLibraryItem(library_item_oid, storefront_oid, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
                     if (response.status >= 200 && response.status < 300) {
-                        return response.json();
+                      return response.json();
+                      
                     } else {
                         throw response;
                     }
@@ -55486,8 +55920,10 @@ export const StorefrontApiFp = function(configuration?: Configuration) {
             const localVarFetchArgs = StorefrontApiFetchParamCreator(configuration).releaseEmailCommseqStepWaiting(storefront_oid, commseq_uuid, commseq_step_uuid, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
                     if (response.status >= 200 && response.status < 300) {
-                        return response;
+                      return response;
+                      
                     } else {
                         throw response;
                     }
@@ -55507,8 +55943,10 @@ export const StorefrontApiFp = function(configuration?: Configuration) {
             const localVarFetchArgs = StorefrontApiFetchParamCreator(configuration).review(storefront_oid, commseq_email_uuid, email_commseq_email_review_request, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
                     if (response.status >= 200 && response.status < 300) {
-                        return response.json();
+                      return response.json();
+                      
                     } else {
                         throw response;
                     }
@@ -55530,8 +55968,10 @@ export const StorefrontApiFp = function(configuration?: Configuration) {
             const localVarFetchArgs = StorefrontApiFetchParamCreator(configuration).search(category, matches, storefront_oid, max_hits, subcategory, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
                     if (response.status >= 200 && response.status < 300) {
-                        return response.json();
+                      return response.json();
+                      
                     } else {
                         throw response;
                     }
@@ -55549,8 +55989,10 @@ export const StorefrontApiFp = function(configuration?: Configuration) {
             const localVarFetchArgs = StorefrontApiFetchParamCreator(configuration).search2(lookup_request, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
                     if (response.status >= 200 && response.status < 300) {
-                        return response.json();
+                      return response.json();
+                      
                     } else {
                         throw response;
                     }
@@ -55570,8 +56012,10 @@ export const StorefrontApiFp = function(configuration?: Configuration) {
             const localVarFetchArgs = StorefrontApiFetchParamCreator(configuration).searchEmailListCustomers(storefront_oid, email_list_uuid, startsWith, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
                     if (response.status >= 200 && response.status < 300) {
-                        return response.json();
+                      return response.json();
+                      
                     } else {
                         throw response;
                     }
@@ -55591,8 +56035,10 @@ export const StorefrontApiFp = function(configuration?: Configuration) {
             const localVarFetchArgs = StorefrontApiFetchParamCreator(configuration).searchEmailSegmentCustomers(storefront_oid, email_segment_uuid, startsWith, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
                     if (response.status >= 200 && response.status < 300) {
-                        return response.json();
+                      return response.json();
+                      
                     } else {
                         throw response;
                     }
@@ -55613,8 +56059,10 @@ export const StorefrontApiFp = function(configuration?: Configuration) {
             const localVarFetchArgs = StorefrontApiFetchParamCreator(configuration).searchLibraryItems(item_query, _limit, _offset, _sort, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
                     if (response.status >= 200 && response.status < 300) {
-                        return response.json();
+                      return response.json();
+                      
                     } else {
                         throw response;
                     }
@@ -55635,8 +56083,10 @@ export const StorefrontApiFp = function(configuration?: Configuration) {
             const localVarFetchArgs = StorefrontApiFetchParamCreator(configuration).searchPublishedItems(item_query, _limit, _offset, _sort, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
                     if (response.status >= 200 && response.status < 300) {
-                        return response.json();
+                      return response.json();
+                      
                     } else {
                         throw response;
                     }
@@ -55657,8 +56107,10 @@ export const StorefrontApiFp = function(configuration?: Configuration) {
             const localVarFetchArgs = StorefrontApiFetchParamCreator(configuration).searchReviewItems(item_query, _limit, _offset, _sort, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
                     if (response.status >= 200 && response.status < 300) {
-                        return response.json();
+                      return response.json();
+                      
                     } else {
                         throw response;
                     }
@@ -55679,8 +56131,10 @@ export const StorefrontApiFp = function(configuration?: Configuration) {
             const localVarFetchArgs = StorefrontApiFetchParamCreator(configuration).searchSharedItems(item_query, _limit, _offset, _sort, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
                     if (response.status >= 200 && response.status < 300) {
-                        return response.json();
+                      return response.json();
+                      
                     } else {
                         throw response;
                     }
@@ -55700,8 +56154,10 @@ export const StorefrontApiFp = function(configuration?: Configuration) {
             const localVarFetchArgs = StorefrontApiFetchParamCreator(configuration).sendEmailTest(storefront_oid, commseq_email_uuid, email_commseq_email_test_request, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
                     if (response.status >= 200 && response.status < 300) {
-                        return response.json();
+                      return response.json();
+                      
                     } else {
                         throw response;
                     }
@@ -55721,8 +56177,10 @@ export const StorefrontApiFp = function(configuration?: Configuration) {
             const localVarFetchArgs = StorefrontApiFetchParamCreator(configuration).sendPostcardTest(storefront_oid, commseq_postcard_uuid, email_commseq_postcard_test_request, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
                     if (response.status >= 200 && response.status < 300) {
-                        return response.json();
+                      return response.json();
+                      
                     } else {
                         throw response;
                     }
@@ -55741,8 +56199,10 @@ export const StorefrontApiFp = function(configuration?: Configuration) {
             const localVarFetchArgs = StorefrontApiFetchParamCreator(configuration).startEmailCampaign(storefront_oid, email_campaign_uuid, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
                     if (response.status >= 200 && response.status < 300) {
-                        return response.json();
+                      return response.json();
+                      
                     } else {
                         throw response;
                     }
@@ -55762,8 +56222,10 @@ export const StorefrontApiFp = function(configuration?: Configuration) {
             const localVarFetchArgs = StorefrontApiFetchParamCreator(configuration).subscribeToEmailList(storefront_oid, email_list_uuid, customers, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
                     if (response.status >= 200 && response.status < 300) {
-                        return response.json();
+                      return response.json();
+                      
                     } else {
                         throw response;
                     }
@@ -55782,8 +56244,10 @@ export const StorefrontApiFp = function(configuration?: Configuration) {
             const localVarFetchArgs = StorefrontApiFetchParamCreator(configuration).unfavoriteScreenRecording(storefront_oid, screen_recording_uuid, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
                     if (response.status >= 200 && response.status < 300) {
-                        return response;
+                      return response;
+                      
                     } else {
                         throw response;
                     }
@@ -55803,8 +56267,10 @@ export const StorefrontApiFp = function(configuration?: Configuration) {
             const localVarFetchArgs = StorefrontApiFetchParamCreator(configuration).updateEmailCampaign(storefront_oid, email_campaign_uuid, email_campaign, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
                     if (response.status >= 200 && response.status < 300) {
-                        return response.json();
+                      return response.json();
+                      
                     } else {
                         throw response;
                     }
@@ -55824,8 +56290,10 @@ export const StorefrontApiFp = function(configuration?: Configuration) {
             const localVarFetchArgs = StorefrontApiFetchParamCreator(configuration).updateEmailCampaignFolder(storefront_oid, email_campaign_folder_uuid, email_campaign_folder, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
                     if (response.status >= 200 && response.status < 300) {
-                        return response.json();
+                      return response.json();
+                      
                     } else {
                         throw response;
                     }
@@ -55845,8 +56313,10 @@ export const StorefrontApiFp = function(configuration?: Configuration) {
             const localVarFetchArgs = StorefrontApiFetchParamCreator(configuration).updateEmailCommseq(storefront_oid, commseq_uuid, email_commseq, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
                     if (response.status >= 200 && response.status < 300) {
-                        return response.json();
+                      return response.json();
+                      
                     } else {
                         throw response;
                     }
@@ -55866,8 +56336,10 @@ export const StorefrontApiFp = function(configuration?: Configuration) {
             const localVarFetchArgs = StorefrontApiFetchParamCreator(configuration).updateEmailCustomer(storefront_oid, email_customer_uuid, email_customer, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
                     if (response.status >= 200 && response.status < 300) {
-                        return response;
+                      return response;
+                      
                     } else {
                         throw response;
                     }
@@ -55887,8 +56359,10 @@ export const StorefrontApiFp = function(configuration?: Configuration) {
             const localVarFetchArgs = StorefrontApiFetchParamCreator(configuration).updateEmailEmail(storefront_oid, commseq_email_uuid, email_commseq_email, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
                     if (response.status >= 200 && response.status < 300) {
-                        return response.json();
+                      return response.json();
+                      
                     } else {
                         throw response;
                     }
@@ -55908,8 +56382,10 @@ export const StorefrontApiFp = function(configuration?: Configuration) {
             const localVarFetchArgs = StorefrontApiFetchParamCreator(configuration).updateEmailFlow(storefront_oid, email_flow_uuid, email_flow, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
                     if (response.status >= 200 && response.status < 300) {
-                        return response.json();
+                      return response.json();
+                      
                     } else {
                         throw response;
                     }
@@ -55929,8 +56405,10 @@ export const StorefrontApiFp = function(configuration?: Configuration) {
             const localVarFetchArgs = StorefrontApiFetchParamCreator(configuration).updateEmailFlowFolder(storefront_oid, email_flow_folder_uuid, email_flow_folder, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
                     if (response.status >= 200 && response.status < 300) {
-                        return response.json();
+                      return response.json();
+                      
                     } else {
                         throw response;
                     }
@@ -55948,8 +56426,10 @@ export const StorefrontApiFp = function(configuration?: Configuration) {
             const localVarFetchArgs = StorefrontApiFetchParamCreator(configuration).updateEmailGlobalSettings(global_settings, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
                     if (response.status >= 200 && response.status < 300) {
-                        return response.json();
+                      return response.json();
+                      
                     } else {
                         throw response;
                     }
@@ -55969,8 +56449,10 @@ export const StorefrontApiFp = function(configuration?: Configuration) {
             const localVarFetchArgs = StorefrontApiFetchParamCreator(configuration).updateEmailList(storefront_oid, email_list_uuid, email_list, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
                     if (response.status >= 200 && response.status < 300) {
-                        return response.json();
+                      return response.json();
+                      
                     } else {
                         throw response;
                     }
@@ -55989,8 +56471,10 @@ export const StorefrontApiFp = function(configuration?: Configuration) {
             const localVarFetchArgs = StorefrontApiFetchParamCreator(configuration).updateEmailPlan(storefront_oid, settings, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
                     if (response.status >= 200 && response.status < 300) {
-                        return response.json();
+                      return response.json();
+                      
                     } else {
                         throw response;
                     }
@@ -56010,8 +56494,10 @@ export const StorefrontApiFp = function(configuration?: Configuration) {
             const localVarFetchArgs = StorefrontApiFetchParamCreator(configuration).updateEmailPostcard(storefront_oid, commseq_postcard_uuid, email_commseq_postcard, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
                     if (response.status >= 200 && response.status < 300) {
-                        return response.json();
+                      return response.json();
+                      
                     } else {
                         throw response;
                     }
@@ -56031,8 +56517,10 @@ export const StorefrontApiFp = function(configuration?: Configuration) {
             const localVarFetchArgs = StorefrontApiFetchParamCreator(configuration).updateEmailSegment(storefront_oid, email_segment_uuid, email_segment, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
                     if (response.status >= 200 && response.status < 300) {
-                        return response.json();
+                      return response.json();
+                      
                     } else {
                         throw response;
                     }
@@ -56051,8 +56539,10 @@ export const StorefrontApiFp = function(configuration?: Configuration) {
             const localVarFetchArgs = StorefrontApiFetchParamCreator(configuration).updateEmailSettings(storefront_oid, settings, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
                     if (response.status >= 200 && response.status < 300) {
-                        return response.json();
+                      return response.json();
+                      
                     } else {
                         throw response;
                     }
@@ -56072,8 +56562,10 @@ export const StorefrontApiFp = function(configuration?: Configuration) {
             const localVarFetchArgs = StorefrontApiFetchParamCreator(configuration).updateExperiment(storefront_oid, storefront_experiment_oid, experiment, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
                     if (response.status >= 200 && response.status < 300) {
-                        return response.json();
+                      return response.json();
+                      
                     } else {
                         throw response;
                     }
@@ -56092,8 +56584,10 @@ export const StorefrontApiFp = function(configuration?: Configuration) {
             const localVarFetchArgs = StorefrontApiFetchParamCreator(configuration).updateLibraryItem(library_item_oid, library_item, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
                     if (response.status >= 200 && response.status < 300) {
-                        return response.json();
+                      return response.json();
+                      
                     } else {
                         throw response;
                     }
@@ -56113,8 +56607,10 @@ export const StorefrontApiFp = function(configuration?: Configuration) {
             const localVarFetchArgs = StorefrontApiFetchParamCreator(configuration).updateScreenRecordingMerchantNotes(storefront_oid, screen_recording_uuid, merchant_notes_request, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
                     if (response.status >= 200 && response.status < 300) {
-                        return response;
+                      return response;
+                      
                     } else {
                         throw response;
                     }
@@ -56134,8 +56630,10 @@ export const StorefrontApiFp = function(configuration?: Configuration) {
             const localVarFetchArgs = StorefrontApiFetchParamCreator(configuration).updateScreenRecordingSegment(storefront_oid, screen_recording_segment_oid, segment, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
                     if (response.status >= 200 && response.status < 300) {
-                        return response.json();
+                      return response.json();
+                      
                     } else {
                         throw response;
                     }
@@ -56154,8 +56652,10 @@ export const StorefrontApiFp = function(configuration?: Configuration) {
             const localVarFetchArgs = StorefrontApiFetchParamCreator(configuration).updateScreenRecordingSettings(storefront_oid, settings, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
                     if (response.status >= 200 && response.status < 300) {
-                        return response.json();
+                      return response.json();
+                      
                     } else {
                         throw response;
                     }
@@ -56175,8 +56675,10 @@ export const StorefrontApiFp = function(configuration?: Configuration) {
             const localVarFetchArgs = StorefrontApiFetchParamCreator(configuration).updateScreenRecordingTags(storefront_oid, screen_recording_uuid, tags, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
                     if (response.status >= 200 && response.status < 300) {
-                        return response;
+                      return response;
+                      
                     } else {
                         throw response;
                     }
@@ -56196,8 +56698,10 @@ export const StorefrontApiFp = function(configuration?: Configuration) {
             const localVarFetchArgs = StorefrontApiFetchParamCreator(configuration).updateTransactionEmail(storefront_oid, email_id, transaction_email, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
                     if (response.status >= 200 && response.status < 300) {
-                        return response.json();
+                      return response.json();
+                      
                     } else {
                         throw response;
                     }
@@ -63005,8 +63509,10 @@ export const TaxApiFp = function(configuration?: Configuration) {
             const localVarFetchArgs = TaxApiFetchParamCreator(configuration).deleteTaxProviderSelfCity(city, tax_city, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
                     if (response.status >= 200 && response.status < 300) {
-                        return response;
+                      return response;
+                      
                     } else {
                         throw response;
                     }
@@ -63025,8 +63531,10 @@ export const TaxApiFp = function(configuration?: Configuration) {
             const localVarFetchArgs = TaxApiFetchParamCreator(configuration).deleteTaxProviderSelfCountry(countryCode, tax_country, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
                     if (response.status >= 200 && response.status < 300) {
-                        return response;
+                      return response;
+                      
                     } else {
                         throw response;
                     }
@@ -63045,8 +63553,10 @@ export const TaxApiFp = function(configuration?: Configuration) {
             const localVarFetchArgs = TaxApiFetchParamCreator(configuration).deleteTaxProviderSelfCounty(county, tax_county, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
                     if (response.status >= 200 && response.status < 300) {
-                        return response;
+                      return response;
+                      
                     } else {
                         throw response;
                     }
@@ -63065,8 +63575,10 @@ export const TaxApiFp = function(configuration?: Configuration) {
             const localVarFetchArgs = TaxApiFetchParamCreator(configuration).deleteTaxProviderSelfPostalCode(postal_code, tax_postal_code, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
                     if (response.status >= 200 && response.status < 300) {
-                        return response;
+                      return response;
+                      
                     } else {
                         throw response;
                     }
@@ -63085,8 +63597,10 @@ export const TaxApiFp = function(configuration?: Configuration) {
             const localVarFetchArgs = TaxApiFetchParamCreator(configuration).deleteTaxProviderSelfState(stateCode, tax_state, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
                     if (response.status >= 200 && response.status < 300) {
-                        return response;
+                      return response;
+                      
                     } else {
                         throw response;
                     }
@@ -63103,8 +63617,10 @@ export const TaxApiFp = function(configuration?: Configuration) {
             const localVarFetchArgs = TaxApiFetchParamCreator(configuration).getTaxProviderAvalara(options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
                     if (response.status >= 200 && response.status < 300) {
-                        return response.json();
+                      return response.json();
+                      
                     } else {
                         throw response;
                     }
@@ -63122,8 +63638,10 @@ export const TaxApiFp = function(configuration?: Configuration) {
             const localVarFetchArgs = TaxApiFetchParamCreator(configuration).getTaxProviderAvalaraCompanies(tax_provider_avalara, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
                     if (response.status >= 200 && response.status < 300) {
-                        return response.json();
+                      return response.json();
+                      
                     } else {
                         throw response;
                     }
@@ -63140,8 +63658,10 @@ export const TaxApiFp = function(configuration?: Configuration) {
             const localVarFetchArgs = TaxApiFetchParamCreator(configuration).getTaxProviderAvalaraTest(options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
                     if (response.status >= 200 && response.status < 300) {
-                        return response.json();
+                      return response.json();
+                      
                     } else {
                         throw response;
                     }
@@ -63158,8 +63678,10 @@ export const TaxApiFp = function(configuration?: Configuration) {
             const localVarFetchArgs = TaxApiFetchParamCreator(configuration).getTaxProviderSelf(options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
                     if (response.status >= 200 && response.status < 300) {
-                        return response.json();
+                      return response.json();
+                      
                     } else {
                         throw response;
                     }
@@ -63176,8 +63698,10 @@ export const TaxApiFp = function(configuration?: Configuration) {
             const localVarFetchArgs = TaxApiFetchParamCreator(configuration).getTaxProviderSelfCountries(options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
                     if (response.status >= 200 && response.status < 300) {
-                        return response.json();
+                      return response.json();
+                      
                     } else {
                         throw response;
                     }
@@ -63195,8 +63719,10 @@ export const TaxApiFp = function(configuration?: Configuration) {
             const localVarFetchArgs = TaxApiFetchParamCreator(configuration).getTaxProviderSelfRegionsByCountryCode(countryCode, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
                     if (response.status >= 200 && response.status < 300) {
-                        return response.json();
+                      return response.json();
+                      
                     } else {
                         throw response;
                     }
@@ -63213,8 +63739,10 @@ export const TaxApiFp = function(configuration?: Configuration) {
             const localVarFetchArgs = TaxApiFetchParamCreator(configuration).getTaxProviderSovos(options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
                     if (response.status >= 200 && response.status < 300) {
-                        return response.json();
+                      return response.json();
+                      
                     } else {
                         throw response;
                     }
@@ -63231,8 +63759,10 @@ export const TaxApiFp = function(configuration?: Configuration) {
             const localVarFetchArgs = TaxApiFetchParamCreator(configuration).getTaxProviderSovosTest(options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
                     if (response.status >= 200 && response.status < 300) {
-                        return response.json();
+                      return response.json();
+                      
                     } else {
                         throw response;
                     }
@@ -63249,8 +63779,10 @@ export const TaxApiFp = function(configuration?: Configuration) {
             const localVarFetchArgs = TaxApiFetchParamCreator(configuration).getTaxProviderTaxJar(options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
                     if (response.status >= 200 && response.status < 300) {
-                        return response.json();
+                      return response.json();
+                      
                     } else {
                         throw response;
                     }
@@ -63267,8 +63799,10 @@ export const TaxApiFp = function(configuration?: Configuration) {
             const localVarFetchArgs = TaxApiFetchParamCreator(configuration).getTaxProviderTaxJarTest(options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
                     if (response.status >= 200 && response.status < 300) {
-                        return response.json();
+                      return response.json();
+                      
                     } else {
                         throw response;
                     }
@@ -63285,8 +63819,10 @@ export const TaxApiFp = function(configuration?: Configuration) {
             const localVarFetchArgs = TaxApiFetchParamCreator(configuration).getTaxProviderUltraCart(options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
                     if (response.status >= 200 && response.status < 300) {
-                        return response.json();
+                      return response.json();
+                      
                     } else {
                         throw response;
                     }
@@ -63306,8 +63842,10 @@ export const TaxApiFp = function(configuration?: Configuration) {
             const localVarFetchArgs = TaxApiFetchParamCreator(configuration).getTaxProviders(_limit, _offset, _expand, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
                     if (response.status >= 200 && response.status < 300) {
-                        return response.json();
+                      return response.json();
+                      
                     } else {
                         throw response;
                     }
@@ -63325,8 +63863,10 @@ export const TaxApiFp = function(configuration?: Configuration) {
             const localVarFetchArgs = TaxApiFetchParamCreator(configuration).setActiveTaxProvider(providerName, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
                     if (response.status >= 200 && response.status < 300) {
-                        return response.json();
+                      return response.json();
+                      
                     } else {
                         throw response;
                     }
@@ -63344,8 +63884,10 @@ export const TaxApiFp = function(configuration?: Configuration) {
             const localVarFetchArgs = TaxApiFetchParamCreator(configuration).updateTaxProviderAvalara(tax_provider_avalara, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
                     if (response.status >= 200 && response.status < 300) {
-                        return response.json();
+                      return response.json();
+                      
                     } else {
                         throw response;
                     }
@@ -63363,8 +63905,10 @@ export const TaxApiFp = function(configuration?: Configuration) {
             const localVarFetchArgs = TaxApiFetchParamCreator(configuration).updateTaxProviderSelf(tax_provider_self, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
                     if (response.status >= 200 && response.status < 300) {
-                        return response.json();
+                      return response.json();
+                      
                     } else {
                         throw response;
                     }
@@ -63383,8 +63927,10 @@ export const TaxApiFp = function(configuration?: Configuration) {
             const localVarFetchArgs = TaxApiFetchParamCreator(configuration).updateTaxProviderSelfCity(city, tax_city, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
                     if (response.status >= 200 && response.status < 300) {
-                        return response.json();
+                      return response.json();
+                      
                     } else {
                         throw response;
                     }
@@ -63403,8 +63949,10 @@ export const TaxApiFp = function(configuration?: Configuration) {
             const localVarFetchArgs = TaxApiFetchParamCreator(configuration).updateTaxProviderSelfCountry(countryCode, tax_country, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
                     if (response.status >= 200 && response.status < 300) {
-                        return response.json();
+                      return response.json();
+                      
                     } else {
                         throw response;
                     }
@@ -63423,8 +63971,10 @@ export const TaxApiFp = function(configuration?: Configuration) {
             const localVarFetchArgs = TaxApiFetchParamCreator(configuration).updateTaxProviderSelfCounty(county, tax_county, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
                     if (response.status >= 200 && response.status < 300) {
-                        return response.json();
+                      return response.json();
+                      
                     } else {
                         throw response;
                     }
@@ -63443,8 +63993,10 @@ export const TaxApiFp = function(configuration?: Configuration) {
             const localVarFetchArgs = TaxApiFetchParamCreator(configuration).updateTaxProviderSelfPostalCode(postal_code, tax_postal_code, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
                     if (response.status >= 200 && response.status < 300) {
-                        return response.json();
+                      return response.json();
+                      
                     } else {
                         throw response;
                     }
@@ -63463,8 +64015,10 @@ export const TaxApiFp = function(configuration?: Configuration) {
             const localVarFetchArgs = TaxApiFetchParamCreator(configuration).updateTaxProviderSelfState(stateCode, tax_state, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
                     if (response.status >= 200 && response.status < 300) {
-                        return response.json();
+                      return response.json();
+                      
                     } else {
                         throw response;
                     }
@@ -63482,8 +64036,10 @@ export const TaxApiFp = function(configuration?: Configuration) {
             const localVarFetchArgs = TaxApiFetchParamCreator(configuration).updateTaxProviderSovos(tax_provider_sovos, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
                     if (response.status >= 200 && response.status < 300) {
-                        return response.json();
+                      return response.json();
+                      
                     } else {
                         throw response;
                     }
@@ -63501,8 +64057,10 @@ export const TaxApiFp = function(configuration?: Configuration) {
             const localVarFetchArgs = TaxApiFetchParamCreator(configuration).updateTaxProviderTaxJar(tax_provider_taxJar, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
                     if (response.status >= 200 && response.status < 300) {
-                        return response.json();
+                      return response.json();
+                      
                     } else {
                         throw response;
                     }
@@ -63520,8 +64078,10 @@ export const TaxApiFp = function(configuration?: Configuration) {
             const localVarFetchArgs = TaxApiFetchParamCreator(configuration).updateTaxProviderUltraCart(tax_provider_ultracart, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
                     if (response.status >= 200 && response.status < 300) {
-                        return response.json();
+                      return response.json();
+                      
                     } else {
                         throw response;
                     }
@@ -65072,8 +65632,10 @@ export const UserApiFp = function(configuration?: Configuration) {
             const localVarFetchArgs = UserApiFetchParamCreator(configuration).deleteGroup(group_oid, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
                     if (response.status >= 200 && response.status < 300) {
-                        return response;
+                      return response;
+                      
                     } else {
                         throw response;
                     }
@@ -65091,8 +65653,10 @@ export const UserApiFp = function(configuration?: Configuration) {
             const localVarFetchArgs = UserApiFetchParamCreator(configuration).deleteUser(user_id, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
                     if (response.status >= 200 && response.status < 300) {
-                        return response;
+                      return response;
+                      
                     } else {
                         throw response;
                     }
@@ -65110,8 +65674,10 @@ export const UserApiFp = function(configuration?: Configuration) {
             const localVarFetchArgs = UserApiFetchParamCreator(configuration).getGroup(group_oid, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
                     if (response.status >= 200 && response.status < 300) {
-                        return response;
+                      return response;
+                      
                     } else {
                         throw response;
                     }
@@ -65128,8 +65694,10 @@ export const UserApiFp = function(configuration?: Configuration) {
             const localVarFetchArgs = UserApiFetchParamCreator(configuration).getGroups(options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
                     if (response.status >= 200 && response.status < 300) {
-                        return response.json();
+                      return response.json();
+                      
                     } else {
                         throw response;
                     }
@@ -65147,8 +65715,10 @@ export const UserApiFp = function(configuration?: Configuration) {
             const localVarFetchArgs = UserApiFetchParamCreator(configuration).getUser(user_id, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
                     if (response.status >= 200 && response.status < 300) {
-                        return response.json();
+                      return response.json();
+                      
                     } else {
                         throw response;
                     }
@@ -65166,8 +65736,10 @@ export const UserApiFp = function(configuration?: Configuration) {
             const localVarFetchArgs = UserApiFetchParamCreator(configuration).getUserLogins(user_id, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
                     if (response.status >= 200 && response.status < 300) {
-                        return response.json();
+                      return response.json();
+                      
                     } else {
                         throw response;
                     }
@@ -65184,8 +65756,10 @@ export const UserApiFp = function(configuration?: Configuration) {
             const localVarFetchArgs = UserApiFetchParamCreator(configuration).getUsers(options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
                     if (response.status >= 200 && response.status < 300) {
-                        return response.json();
+                      return response.json();
+                      
                     } else {
                         throw response;
                     }
@@ -65203,8 +65777,10 @@ export const UserApiFp = function(configuration?: Configuration) {
             const localVarFetchArgs = UserApiFetchParamCreator(configuration).insertGroup(group, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
                     if (response.status >= 200 && response.status < 300) {
-                        return response.json();
+                      return response.json();
+                      
                     } else {
                         throw response;
                     }
@@ -65222,8 +65798,10 @@ export const UserApiFp = function(configuration?: Configuration) {
             const localVarFetchArgs = UserApiFetchParamCreator(configuration).insertUser(user, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
                     if (response.status >= 200 && response.status < 300) {
-                        return response.json();
+                      return response.json();
+                      
                     } else {
                         throw response;
                     }
@@ -65242,8 +65820,10 @@ export const UserApiFp = function(configuration?: Configuration) {
             const localVarFetchArgs = UserApiFetchParamCreator(configuration).updateGroup(group, group_oid, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
                     if (response.status >= 200 && response.status < 300) {
-                        return response.json();
+                      return response.json();
+                      
                     } else {
                         throw response;
                     }
@@ -65262,8 +65842,10 @@ export const UserApiFp = function(configuration?: Configuration) {
             const localVarFetchArgs = UserApiFetchParamCreator(configuration).updateUser(user, user_id, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
                     if (response.status >= 200 && response.status < 300) {
-                        return response.json();
+                      return response.json();
+                      
                     } else {
                         throw response;
                     }
@@ -66159,8 +66741,10 @@ export const WebhookApiFp = function(configuration?: Configuration) {
             const localVarFetchArgs = WebhookApiFetchParamCreator(configuration).deleteWebhook(webhookOid, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
                     if (response.status >= 200 && response.status < 300) {
-                        return response;
+                      return response;
+                      
                     } else {
                         throw response;
                     }
@@ -66178,8 +66762,10 @@ export const WebhookApiFp = function(configuration?: Configuration) {
             const localVarFetchArgs = WebhookApiFetchParamCreator(configuration).deleteWebhookByUrl(webhook, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
                     if (response.status >= 200 && response.status < 300) {
-                        return response.json();
+                      return response.json();
+                      
                     } else {
                         throw response;
                     }
@@ -66198,8 +66784,10 @@ export const WebhookApiFp = function(configuration?: Configuration) {
             const localVarFetchArgs = WebhookApiFetchParamCreator(configuration).getWebhookLog(webhookOid, requestId, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
                     if (response.status >= 200 && response.status < 300) {
-                        return response.json();
+                      return response.json();
+                      
                     } else {
                         throw response;
                     }
@@ -66220,8 +66808,10 @@ export const WebhookApiFp = function(configuration?: Configuration) {
             const localVarFetchArgs = WebhookApiFetchParamCreator(configuration).getWebhookLogSummaries(webhookOid, _limit, _offset, _since, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
                     if (response.status >= 200 && response.status < 300) {
-                        return response.json();
+                      return response.json();
+                      
                     } else {
                         throw response;
                     }
@@ -66242,8 +66832,10 @@ export const WebhookApiFp = function(configuration?: Configuration) {
             const localVarFetchArgs = WebhookApiFetchParamCreator(configuration).getWebhooks(_limit, _offset, _sort, _placeholders, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
                     if (response.status >= 200 && response.status < 300) {
-                        return response.json();
+                      return response.json();
+                      
                     } else {
                         throw response;
                     }
@@ -66262,8 +66854,10 @@ export const WebhookApiFp = function(configuration?: Configuration) {
             const localVarFetchArgs = WebhookApiFetchParamCreator(configuration).insertWebhook(webhook, _placeholders, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
                     if (response.status >= 200 && response.status < 300) {
-                        return response.json();
+                      return response.json();
+                      
                     } else {
                         throw response;
                     }
@@ -66282,8 +66876,10 @@ export const WebhookApiFp = function(configuration?: Configuration) {
             const localVarFetchArgs = WebhookApiFetchParamCreator(configuration).resendEvent(webhookOid, eventName, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
                     if (response.status >= 200 && response.status < 300) {
-                        return response.json();
+                      return response.json();
+                      
                     } else {
                         throw response;
                     }
@@ -66303,8 +66899,10 @@ export const WebhookApiFp = function(configuration?: Configuration) {
             const localVarFetchArgs = WebhookApiFetchParamCreator(configuration).updateWebhook(webhook, webhookOid, _placeholders, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
                     if (response.status >= 200 && response.status < 300) {
-                        return response.json();
+                      return response.json();
+                      
                     } else {
                         throw response;
                     }

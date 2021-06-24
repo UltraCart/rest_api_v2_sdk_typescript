@@ -8859,7 +8859,7 @@ var IntegrationLogApiFp = function (configuration) {
                 if (basePath === void 0) { basePath = BASE_PATH; }
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(function (response) {
                     if (response.status >= 200 && response.status < 300) {
-                        return response.json();
+                        return response.blob();
                     }
                     else {
                         throw response;
@@ -9450,7 +9450,7 @@ var ItemApiFetchParamCreator = function (configuration) {
         /**
          * Uploads an image and returns back meta information about the image as well as the identifier needed for the item update.
          * @summary Upload an image to the temporary multimedia.
-         * @param {any} file File to upload
+         * @param {Blob} file File to upload
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -9705,7 +9705,7 @@ var ItemApiFp = function (configuration) {
         /**
          * Uploads an image and returns back meta information about the image as well as the identifier needed for the item update.
          * @summary Upload an image to the temporary multimedia.
-         * @param {any} file File to upload
+         * @param {Blob} file File to upload
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -9835,7 +9835,7 @@ var ItemApiFactory = function (configuration, fetch, basePath) {
         /**
          * Uploads an image and returns back meta information about the image as well as the identifier needed for the item update.
          * @summary Upload an image to the temporary multimedia.
-         * @param {any} file File to upload
+         * @param {Blob} file File to upload
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -9966,7 +9966,7 @@ var ItemApi = /** @class */ (function (_super) {
     /**
      * Uploads an image and returns back meta information about the image as well as the identifier needed for the item update.
      * @summary Upload an image to the temporary multimedia.
-     * @param {any} file File to upload
+     * @param {Blob} file File to upload
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ItemApi
