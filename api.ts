@@ -15006,6 +15006,12 @@ export interface IntegrationLog {
     logger_id?: string;
     /**
      * 
+     * @type {string}
+     * @memberof IntegrationLog
+     */
+    logger_name?: string;
+    /**
+     * 
      * @type {Array<IntegrationLogLog>}
      * @memberof IntegrationLog
      */
@@ -15141,6 +15147,12 @@ export interface IntegrationLogQueryFilterValues {
      * @type {Array<string>}
      * @memberof IntegrationLogQueryFilterValues
      */
+    logger_names?: Array<string>;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof IntegrationLogQueryFilterValues
+     */
     order_ids?: Array<string>;
     /**
      * 
@@ -15216,6 +15228,12 @@ export interface IntegrationLogQueryRequest {
      * @memberof IntegrationLogQueryRequest
      */
     logger_id?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof IntegrationLogQueryRequest
+     */
+    logger_name?: string;
     /**
      * 
      * @type {Array<string>}
