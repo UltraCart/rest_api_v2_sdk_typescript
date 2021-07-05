@@ -1612,7 +1612,7 @@ export interface AutoOrderQuery {
      */
     first_name?: string;
     /**
-     * Item ID
+     * Item ID.  Deprecated query field.  This incorrectly meant the original order contained this item id.
      * @type {string}
      * @memberof AutoOrderQuery
      */
@@ -1623,6 +1623,12 @@ export interface AutoOrderQuery {
      * @memberof AutoOrderQuery
      */
     last_name?: string;
+    /**
+     * Next Item ID that is supposed to ship.  This is calculated based upon the schedule associated with the original item id.
+     * @type {string}
+     * @memberof AutoOrderQuery
+     */
+    next_item_id?: string;
     /**
      * Next shipment date begin
      * @type {string}
@@ -1635,6 +1641,12 @@ export interface AutoOrderQuery {
      * @memberof AutoOrderQuery
      */
     next_shipment_date_end?: string;
+    /**
+     * Original Item ID purchased on auto order.
+     * @type {string}
+     * @memberof AutoOrderQuery
+     */
+    original_item_id?: string;
     /**
      * Original order date begin
      * @type {string}
@@ -14680,6 +14692,12 @@ export interface IntegrationLog {
     logs?: Array<IntegrationLogLog>;
     /**
      *
+     * @type {boolean}
+     * @memberof IntegrationLog
+     */
+    omit_log_map?: boolean;
+    /**
+     *
      * @type {Array<string>}
      * @memberof IntegrationLog
      */
@@ -14702,6 +14720,12 @@ export interface IntegrationLog {
      * @memberof IntegrationLog
      */
     status?: string;
+    /**
+     *
+     * @type {number}
+     * @memberof IntegrationLog
+     */
+    status_code?: number;
 }
 /**
  *
