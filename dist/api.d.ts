@@ -14661,7 +14661,7 @@ export interface IntegrationLog {
      */
     item_ipn_oid?: number;
     /**
-     *
+     * Date/time the integration log was created
      * @type {string}
      * @memberof IntegrationLog
      */
@@ -14819,6 +14819,18 @@ export interface IntegrationLogQueryFilterValues {
      * @memberof IntegrationLogQueryFilterValues
      */
     item_ipn_oids?: Array<number>;
+    /**
+     * Maximum date/time log date/time
+     * @type {string}
+     * @memberof IntegrationLogQueryFilterValues
+     */
+    log_dts_max?: string;
+    /**
+     * Minimum date/time log date/time
+     * @type {string}
+     * @memberof IntegrationLogQueryFilterValues
+     */
+    log_dts_min?: string;
     /**
      *
      * @type {Array<string>}
