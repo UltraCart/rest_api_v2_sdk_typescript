@@ -26980,11 +26980,23 @@ export interface ScreenRecordingSegmentsResponse {
  */
 export interface ScreenRecordingSettings {
     /**
+     * Cost per one thousand sessions
+     * @type {number}
+     * @memberof ScreenRecordingSettings
+     */
+    cost_per_thousand?: number;
+    /**
      * 
      * @type {boolean}
      * @memberof ScreenRecordingSettings
      */
     enabled?: boolean;
+    /**
+     * How long screen recording data is retained
+     * @type {string}
+     * @memberof ScreenRecordingSettings
+     */
+    retention_interval?: string;
     /**
      * 
      * @type {number}
