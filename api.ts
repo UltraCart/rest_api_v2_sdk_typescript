@@ -7379,6 +7379,12 @@ export interface Customer {
      */
     allow_cod?: boolean;
     /**
+     * Allow Drop Shipping
+     * @type {boolean}
+     * @memberof Customer
+     */
+    allow_drop_shipping?: boolean;
+    /**
      * Allow purchase orders by this customer
      * @type {boolean}
      * @memberof Customer
