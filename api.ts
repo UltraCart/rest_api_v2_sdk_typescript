@@ -25042,6 +25042,12 @@ export interface ScreenRecording {
      */
     merchant_notes?: string;
     /**
+     * True if external page view was not tracked
+     * @type {boolean}
+     * @memberof ScreenRecording
+     */
+    missing_external_tracking?: boolean;
+    /**
      * 
      * @type {string}
      * @memberof ScreenRecording
@@ -26737,6 +26743,12 @@ export interface ScreenRecordingQueryRequest {
 export interface ScreenRecordingQueryResponse {
     /**
      * 
+     * @type {boolean}
+     * @memberof ScreenRecordingQueryResponse
+     */
+    checkout_only?: boolean;
+    /**
+     * 
      * @type {ModelError}
      * @memberof ScreenRecordingQueryResponse
      */
@@ -26803,6 +26815,12 @@ export interface ScreenRecordingQueryResponse {
  * @interface ScreenRecordingResponse
  */
 export interface ScreenRecordingResponse {
+    /**
+     * 
+     * @type {boolean}
+     * @memberof ScreenRecordingResponse
+     */
+    checkout_only?: boolean;
     /**
      * 
      * @type {ModelError}
