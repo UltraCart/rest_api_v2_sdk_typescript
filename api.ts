@@ -38472,6 +38472,64 @@ export const FulfillmentApiFetchParamCreator = function (configuration?: Configu
             };
         },
         /**
+         * The packing slip PDF that is returned is base 64 encoded 
+         * @summary Generate a packing slip for this order for the given distribution center.
+         * @param {string} distribution_center_code Distribution center code
+         * @param {string} order_id Order ID
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        generatePackingSlip(distribution_center_code: string, order_id: string, options: any = {}): FetchArgs {
+            // verify required parameter 'distribution_center_code' is not null or undefined
+            if (distribution_center_code === null || distribution_center_code === undefined) {
+                throw new RequiredError('distribution_center_code','Required parameter distribution_center_code was null or undefined when calling generatePackingSlip.');
+            }
+            // verify required parameter 'order_id' is not null or undefined
+            if (order_id === null || order_id === undefined) {
+                throw new RequiredError('order_id','Required parameter order_id was null or undefined when calling generatePackingSlip.');
+            }
+            const localVarPath = `/fulfillment/distribution_centers/{distribution_center_code}/orders/{order_id}`
+                .replace(`{${"distribution_center_code"}}`, encodeURIComponent(String(distribution_center_code)))
+                .replace(`{${"order_id"}}`, encodeURIComponent(String(order_id)));
+            const localVarUrlObj = url.parse(localVarPath, true);
+            const localVarRequestOptions = Object.assign({ method: 'GET' }, options);
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+    if(configuration && configuration.apiVersion) {
+      localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+    }
+
+
+
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+				const localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+					? configuration.accessToken("ultraCartOauth", ["fulfillment_read"])
+					: configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
+					? configuration.apiKey("x-ultracart-simple-key")
+					: configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
          * Retrieves up to 100 orders that are queued up in this distribution center.  You must acknowledge them before additional new orders will be returned.  There is NO record chunking.  You'll get the same 100 records again and again until you acknowledge orders.  The orders that are returned contain only items for this distribution center and are by default completely expanded with billing, buysafe, channel_partner, checkout, coupons, customer_profile, edi, gift, gift_certificate, internal, items, payment, shipping, summary, taxes. 
          * @summary Retrieve orders queued up for this distribution center.
          * @param {string} distribution_center_code Distribution center code
@@ -38723,6 +38781,28 @@ export const FulfillmentApiFp = function(configuration?: Configuration) {
             };
         },
         /**
+         * The packing slip PDF that is returned is base 64 encoded 
+         * @summary Generate a packing slip for this order for the given distribution center.
+         * @param {string} distribution_center_code Distribution center code
+         * @param {string} order_id Order ID
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        generatePackingSlip(distribution_center_code: string, order_id: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<OrdersResponse> {
+            const localVarFetchArgs = FulfillmentApiFetchParamCreator(configuration).generatePackingSlip(distribution_center_code, order_id, options);
+            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
+                    if (response.status >= 200 && response.status < 300) {
+                      return response.json();
+                      
+                    } else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
          * Retrieves up to 100 orders that are queued up in this distribution center.  You must acknowledge them before additional new orders will be returned.  There is NO record chunking.  You'll get the same 100 records again and again until you acknowledge orders.  The orders that are returned contain only items for this distribution center and are by default completely expanded with billing, buysafe, channel_partner, checkout, coupons, customer_profile, edi, gift, gift_certificate, internal, items, payment, shipping, summary, taxes. 
          * @summary Retrieve orders queued up for this distribution center.
          * @param {string} distribution_center_code Distribution center code
@@ -38828,6 +38908,17 @@ export const FulfillmentApiFactory = function (configuration?: Configuration, fe
             return FulfillmentApiFp(configuration).acknowledgeOrders(distribution_center_code, orderIds, options)(fetch, basePath);
         },
         /**
+         * The packing slip PDF that is returned is base 64 encoded 
+         * @summary Generate a packing slip for this order for the given distribution center.
+         * @param {string} distribution_center_code Distribution center code
+         * @param {string} order_id Order ID
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        generatePackingSlip(distribution_center_code: string, order_id: string, options?: any) {
+            return FulfillmentApiFp(configuration).generatePackingSlip(distribution_center_code, order_id, options)(fetch, basePath);
+        },
+        /**
          * Retrieves up to 100 orders that are queued up in this distribution center.  You must acknowledge them before additional new orders will be returned.  There is NO record chunking.  You'll get the same 100 records again and again until you acknowledge orders.  The orders that are returned contain only items for this distribution center and are by default completely expanded with billing, buysafe, channel_partner, checkout, coupons, customer_profile, edi, gift, gift_certificate, internal, items, payment, shipping, summary, taxes. 
          * @summary Retrieve orders queued up for this distribution center.
          * @param {string} distribution_center_code Distribution center code
@@ -38887,6 +38978,17 @@ export interface FulfillmentApiInterface {
      * @memberof FulfillmentApiInterface
      */
     acknowledgeOrders(distribution_center_code: string, orderIds: Array<string>, options?: any): Promise<{}>;
+
+    /**
+     * The packing slip PDF that is returned is base 64 encoded 
+     * @summary Generate a packing slip for this order for the given distribution center.
+     * @param {string} distribution_center_code Distribution center code
+     * @param {string} order_id Order ID
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof FulfillmentApiInterface
+     */
+    generatePackingSlip(distribution_center_code: string, order_id: string, options?: any): Promise<OrdersResponse>;
 
     /**
      * Retrieves up to 100 orders that are queued up in this distribution center.  You must acknowledge them before additional new orders will be returned.  There is NO record chunking.  You'll get the same 100 records again and again until you acknowledge orders.  The orders that are returned contain only items for this distribution center and are by default completely expanded with billing, buysafe, channel_partner, checkout, coupons, customer_profile, edi, gift, gift_certificate, internal, items, payment, shipping, summary, taxes. 
@@ -38949,6 +39051,19 @@ export class FulfillmentApi extends BaseAPI implements FulfillmentApiInterface {
      */
     public acknowledgeOrders(distribution_center_code: string, orderIds: Array<string>, options?: any) {
         return FulfillmentApiFp(this.configuration).acknowledgeOrders(distribution_center_code, orderIds, options)(this.fetch, this.basePath);
+    }
+
+    /**
+     * The packing slip PDF that is returned is base 64 encoded 
+     * @summary Generate a packing slip for this order for the given distribution center.
+     * @param {string} distribution_center_code Distribution center code
+     * @param {string} order_id Order ID
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof FulfillmentApi
+     */
+    public generatePackingSlip(distribution_center_code: string, order_id: string, options?: any) {
+        return FulfillmentApiFp(this.configuration).generatePackingSlip(distribution_center_code, order_id, options)(this.fetch, this.basePath);
     }
 
     /**
@@ -41215,6 +41330,116 @@ export const OrderApiFetchParamCreator = function (configuration?: Configuration
             };
         },
         /**
+         * The packing slip PDF that is returned is base 64 encoded 
+         * @summary Generate a packing slip for this order for the given distribution center.
+         * @param {string} order_id Order ID
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        generatePackingSlipAllDC(order_id: string, options: any = {}): FetchArgs {
+            // verify required parameter 'order_id' is not null or undefined
+            if (order_id === null || order_id === undefined) {
+                throw new RequiredError('order_id','Required parameter order_id was null or undefined when calling generatePackingSlipAllDC.');
+            }
+            const localVarPath = `/order/orders/{order_id}/packing_slip`
+                .replace(`{${"order_id"}}`, encodeURIComponent(String(order_id)));
+            const localVarUrlObj = url.parse(localVarPath, true);
+            const localVarRequestOptions = Object.assign({ method: 'GET' }, options);
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+    if(configuration && configuration.apiVersion) {
+      localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+    }
+
+
+
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+				const localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+					? configuration.accessToken("ultraCartOauth", ["fulfillment_read"])
+					: configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
+					? configuration.apiKey("x-ultracart-simple-key")
+					: configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * The packing slip PDF that is returned is base 64 encoded 
+         * @summary Generate a packing slip for this order for the given distribution center.
+         * @param {string} distribution_center_code Distribution center code
+         * @param {string} order_id Order ID
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        generatePackingSlipSpecificDC(distribution_center_code: string, order_id: string, options: any = {}): FetchArgs {
+            // verify required parameter 'distribution_center_code' is not null or undefined
+            if (distribution_center_code === null || distribution_center_code === undefined) {
+                throw new RequiredError('distribution_center_code','Required parameter distribution_center_code was null or undefined when calling generatePackingSlipSpecificDC.');
+            }
+            // verify required parameter 'order_id' is not null or undefined
+            if (order_id === null || order_id === undefined) {
+                throw new RequiredError('order_id','Required parameter order_id was null or undefined when calling generatePackingSlipSpecificDC.');
+            }
+            const localVarPath = `/order/orders/{order_id}/packing_slip/{distribution_center_code}`
+                .replace(`{${"distribution_center_code"}}`, encodeURIComponent(String(distribution_center_code)))
+                .replace(`{${"order_id"}}`, encodeURIComponent(String(order_id)));
+            const localVarUrlObj = url.parse(localVarPath, true);
+            const localVarRequestOptions = Object.assign({ method: 'GET' }, options);
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+    if(configuration && configuration.apiVersion) {
+      localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+    }
+
+
+
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+				const localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+					? configuration.accessToken("ultraCartOauth", ["fulfillment_read"])
+					: configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
+					? configuration.apiKey("x-ultracart-simple-key")
+					: configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
          * Retrieve A/R Retry Configuration. This is primarily an internal API call.  It is doubtful you would ever need to use it. 
          * @summary Retrieve A/R Retry Configuration
          * @param {*} [options] Override http request option.
@@ -42444,6 +42669,49 @@ export const OrderApiFp = function(configuration?: Configuration) {
             };
         },
         /**
+         * The packing slip PDF that is returned is base 64 encoded 
+         * @summary Generate a packing slip for this order for the given distribution center.
+         * @param {string} order_id Order ID
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        generatePackingSlipAllDC(order_id: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<OrdersResponse> {
+            const localVarFetchArgs = OrderApiFetchParamCreator(configuration).generatePackingSlipAllDC(order_id, options);
+            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
+                    if (response.status >= 200 && response.status < 300) {
+                      return response.json();
+                      
+                    } else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
+         * The packing slip PDF that is returned is base 64 encoded 
+         * @summary Generate a packing slip for this order for the given distribution center.
+         * @param {string} distribution_center_code Distribution center code
+         * @param {string} order_id Order ID
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        generatePackingSlipSpecificDC(distribution_center_code: string, order_id: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<OrdersResponse> {
+            const localVarFetchArgs = OrderApiFetchParamCreator(configuration).generatePackingSlipSpecificDC(distribution_center_code, order_id, options);
+            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
+                    if (response.status >= 200 && response.status < 300) {
+                      return response.json();
+                      
+                    } else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
          * Retrieve A/R Retry Configuration. This is primarily an internal API call.  It is doubtful you would ever need to use it. 
          * @summary Retrieve A/R Retry Configuration
          * @param {*} [options] Override http request option.
@@ -42881,6 +43149,27 @@ export const OrderApiFactory = function (configuration?: Configuration, fetch?: 
             return OrderApiFp(configuration).generateOrderToken(order_id, options)(fetch, basePath);
         },
         /**
+         * The packing slip PDF that is returned is base 64 encoded 
+         * @summary Generate a packing slip for this order for the given distribution center.
+         * @param {string} order_id Order ID
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        generatePackingSlipAllDC(order_id: string, options?: any) {
+            return OrderApiFp(configuration).generatePackingSlipAllDC(order_id, options)(fetch, basePath);
+        },
+        /**
+         * The packing slip PDF that is returned is base 64 encoded 
+         * @summary Generate a packing slip for this order for the given distribution center.
+         * @param {string} distribution_center_code Distribution center code
+         * @param {string} order_id Order ID
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        generatePackingSlipSpecificDC(distribution_center_code: string, order_id: string, options?: any) {
+            return OrderApiFp(configuration).generatePackingSlipSpecificDC(distribution_center_code, order_id, options)(fetch, basePath);
+        },
+        /**
          * Retrieve A/R Retry Configuration. This is primarily an internal API call.  It is doubtful you would ever need to use it. 
          * @summary Retrieve A/R Retry Configuration
          * @param {*} [options] Override http request option.
@@ -43151,6 +43440,27 @@ export interface OrderApiInterface {
      * @memberof OrderApiInterface
      */
     generateOrderToken(order_id: string, options?: any): Promise<OrderTokenResponse>;
+
+    /**
+     * The packing slip PDF that is returned is base 64 encoded 
+     * @summary Generate a packing slip for this order for the given distribution center.
+     * @param {string} order_id Order ID
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof OrderApiInterface
+     */
+    generatePackingSlipAllDC(order_id: string, options?: any): Promise<OrdersResponse>;
+
+    /**
+     * The packing slip PDF that is returned is base 64 encoded 
+     * @summary Generate a packing slip for this order for the given distribution center.
+     * @param {string} distribution_center_code Distribution center code
+     * @param {string} order_id Order ID
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof OrderApiInterface
+     */
+    generatePackingSlipSpecificDC(distribution_center_code: string, order_id: string, options?: any): Promise<OrdersResponse>;
 
     /**
      * Retrieve A/R Retry Configuration. This is primarily an internal API call.  It is doubtful you would ever need to use it. 
@@ -43432,6 +43742,31 @@ export class OrderApi extends BaseAPI implements OrderApiInterface {
      */
     public generateOrderToken(order_id: string, options?: any) {
         return OrderApiFp(this.configuration).generateOrderToken(order_id, options)(this.fetch, this.basePath);
+    }
+
+    /**
+     * The packing slip PDF that is returned is base 64 encoded 
+     * @summary Generate a packing slip for this order for the given distribution center.
+     * @param {string} order_id Order ID
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof OrderApi
+     */
+    public generatePackingSlipAllDC(order_id: string, options?: any) {
+        return OrderApiFp(this.configuration).generatePackingSlipAllDC(order_id, options)(this.fetch, this.basePath);
+    }
+
+    /**
+     * The packing slip PDF that is returned is base 64 encoded 
+     * @summary Generate a packing slip for this order for the given distribution center.
+     * @param {string} distribution_center_code Distribution center code
+     * @param {string} order_id Order ID
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof OrderApi
+     */
+    public generatePackingSlipSpecificDC(distribution_center_code: string, order_id: string, options?: any) {
+        return OrderApiFp(this.configuration).generatePackingSlipSpecificDC(distribution_center_code, order_id, options)(this.fetch, this.basePath);
     }
 
     /**

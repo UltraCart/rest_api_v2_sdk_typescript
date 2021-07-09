@@ -32771,6 +32771,15 @@ export declare const FulfillmentApiFetchParamCreator: (configuration?: Configura
      */
     acknowledgeOrders(distribution_center_code: string, orderIds: Array<string>, options?: any): FetchArgs;
     /**
+     * The packing slip PDF that is returned is base 64 encoded
+     * @summary Generate a packing slip for this order for the given distribution center.
+     * @param {string} distribution_center_code Distribution center code
+     * @param {string} order_id Order ID
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    generatePackingSlip(distribution_center_code: string, order_id: string, options?: any): FetchArgs;
+    /**
      * Retrieves up to 100 orders that are queued up in this distribution center.  You must acknowledge them before additional new orders will be returned.  There is NO record chunking.  You'll get the same 100 records again and again until you acknowledge orders.  The orders that are returned contain only items for this distribution center and are by default completely expanded with billing, buysafe, channel_partner, checkout, coupons, customer_profile, edi, gift, gift_certificate, internal, items, payment, shipping, summary, taxes.
      * @summary Retrieve orders queued up for this distribution center.
      * @param {string} distribution_center_code Distribution center code
@@ -32819,6 +32828,15 @@ export declare const FulfillmentApiFp: (configuration?: Configuration) => {
      */
     acknowledgeOrders(distribution_center_code: string, orderIds: Array<string>, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Response>;
     /**
+     * The packing slip PDF that is returned is base 64 encoded
+     * @summary Generate a packing slip for this order for the given distribution center.
+     * @param {string} distribution_center_code Distribution center code
+     * @param {string} order_id Order ID
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    generatePackingSlip(distribution_center_code: string, order_id: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<OrdersResponse>;
+    /**
      * Retrieves up to 100 orders that are queued up in this distribution center.  You must acknowledge them before additional new orders will be returned.  There is NO record chunking.  You'll get the same 100 records again and again until you acknowledge orders.  The orders that are returned contain only items for this distribution center and are by default completely expanded with billing, buysafe, channel_partner, checkout, coupons, customer_profile, edi, gift, gift_certificate, internal, items, payment, shipping, summary, taxes.
      * @summary Retrieve orders queued up for this distribution center.
      * @param {string} distribution_center_code Distribution center code
@@ -32866,6 +32884,15 @@ export declare const FulfillmentApiFactory: (configuration?: Configuration, fetc
      * @throws {RequiredError}
      */
     acknowledgeOrders(distribution_center_code: string, orderIds: Array<string>, options?: any): Promise<Response>;
+    /**
+     * The packing slip PDF that is returned is base 64 encoded
+     * @summary Generate a packing slip for this order for the given distribution center.
+     * @param {string} distribution_center_code Distribution center code
+     * @param {string} order_id Order ID
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    generatePackingSlip(distribution_center_code: string, order_id: string, options?: any): Promise<OrdersResponse>;
     /**
      * Retrieves up to 100 orders that are queued up in this distribution center.  You must acknowledge them before additional new orders will be returned.  There is NO record chunking.  You'll get the same 100 records again and again until you acknowledge orders.  The orders that are returned contain only items for this distribution center and are by default completely expanded with billing, buysafe, channel_partner, checkout, coupons, customer_profile, edi, gift, gift_certificate, internal, items, payment, shipping, summary, taxes.
      * @summary Retrieve orders queued up for this distribution center.
@@ -32916,6 +32943,16 @@ export interface FulfillmentApiInterface {
      * @memberof FulfillmentApiInterface
      */
     acknowledgeOrders(distribution_center_code: string, orderIds: Array<string>, options?: any): Promise<{}>;
+    /**
+     * The packing slip PDF that is returned is base 64 encoded
+     * @summary Generate a packing slip for this order for the given distribution center.
+     * @param {string} distribution_center_code Distribution center code
+     * @param {string} order_id Order ID
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof FulfillmentApiInterface
+     */
+    generatePackingSlip(distribution_center_code: string, order_id: string, options?: any): Promise<OrdersResponse>;
     /**
      * Retrieves up to 100 orders that are queued up in this distribution center.  You must acknowledge them before additional new orders will be returned.  There is NO record chunking.  You'll get the same 100 records again and again until you acknowledge orders.  The orders that are returned contain only items for this distribution center and are by default completely expanded with billing, buysafe, channel_partner, checkout, coupons, customer_profile, edi, gift, gift_certificate, internal, items, payment, shipping, summary, taxes.
      * @summary Retrieve orders queued up for this distribution center.
@@ -32971,6 +33008,16 @@ export declare class FulfillmentApi extends BaseAPI implements FulfillmentApiInt
      * @memberof FulfillmentApi
      */
     acknowledgeOrders(distribution_center_code: string, orderIds: Array<string>, options?: any): Promise<Response>;
+    /**
+     * The packing slip PDF that is returned is base 64 encoded
+     * @summary Generate a packing slip for this order for the given distribution center.
+     * @param {string} distribution_center_code Distribution center code
+     * @param {string} order_id Order ID
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof FulfillmentApi
+     */
+    generatePackingSlip(distribution_center_code: string, order_id: string, options?: any): Promise<OrdersResponse>;
     /**
      * Retrieves up to 100 orders that are queued up in this distribution center.  You must acknowledge them before additional new orders will be returned.  There is NO record chunking.  You'll get the same 100 records again and again until you acknowledge orders.  The orders that are returned contain only items for this distribution center and are by default completely expanded with billing, buysafe, channel_partner, checkout, coupons, customer_profile, edi, gift, gift_certificate, internal, items, payment, shipping, summary, taxes.
      * @summary Retrieve orders queued up for this distribution center.
@@ -33894,6 +33941,23 @@ export declare const OrderApiFetchParamCreator: (configuration?: Configuration) 
      */
     generateOrderToken(order_id: string, options?: any): FetchArgs;
     /**
+     * The packing slip PDF that is returned is base 64 encoded
+     * @summary Generate a packing slip for this order for the given distribution center.
+     * @param {string} order_id Order ID
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    generatePackingSlipAllDC(order_id: string, options?: any): FetchArgs;
+    /**
+     * The packing slip PDF that is returned is base 64 encoded
+     * @summary Generate a packing slip for this order for the given distribution center.
+     * @param {string} distribution_center_code Distribution center code
+     * @param {string} order_id Order ID
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    generatePackingSlipSpecificDC(distribution_center_code: string, order_id: string, options?: any): FetchArgs;
+    /**
      * Retrieve A/R Retry Configuration. This is primarily an internal API call.  It is doubtful you would ever need to use it.
      * @summary Retrieve A/R Retry Configuration
      * @param {*} [options] Override http request option.
@@ -34123,6 +34187,23 @@ export declare const OrderApiFp: (configuration?: Configuration) => {
      */
     generateOrderToken(order_id: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<OrderTokenResponse>;
     /**
+     * The packing slip PDF that is returned is base 64 encoded
+     * @summary Generate a packing slip for this order for the given distribution center.
+     * @param {string} order_id Order ID
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    generatePackingSlipAllDC(order_id: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<OrdersResponse>;
+    /**
+     * The packing slip PDF that is returned is base 64 encoded
+     * @summary Generate a packing slip for this order for the given distribution center.
+     * @param {string} distribution_center_code Distribution center code
+     * @param {string} order_id Order ID
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    generatePackingSlipSpecificDC(distribution_center_code: string, order_id: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<OrdersResponse>;
+    /**
      * Retrieve A/R Retry Configuration. This is primarily an internal API call.  It is doubtful you would ever need to use it.
      * @summary Retrieve A/R Retry Configuration
      * @param {*} [options] Override http request option.
@@ -34351,6 +34432,23 @@ export declare const OrderApiFactory: (configuration?: Configuration, fetch?: Fe
      * @throws {RequiredError}
      */
     generateOrderToken(order_id: string, options?: any): Promise<OrderTokenResponse>;
+    /**
+     * The packing slip PDF that is returned is base 64 encoded
+     * @summary Generate a packing slip for this order for the given distribution center.
+     * @param {string} order_id Order ID
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    generatePackingSlipAllDC(order_id: string, options?: any): Promise<OrdersResponse>;
+    /**
+     * The packing slip PDF that is returned is base 64 encoded
+     * @summary Generate a packing slip for this order for the given distribution center.
+     * @param {string} distribution_center_code Distribution center code
+     * @param {string} order_id Order ID
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    generatePackingSlipSpecificDC(distribution_center_code: string, order_id: string, options?: any): Promise<OrdersResponse>;
     /**
      * Retrieve A/R Retry Configuration. This is primarily an internal API call.  It is doubtful you would ever need to use it.
      * @summary Retrieve A/R Retry Configuration
@@ -34586,6 +34684,25 @@ export interface OrderApiInterface {
      * @memberof OrderApiInterface
      */
     generateOrderToken(order_id: string, options?: any): Promise<OrderTokenResponse>;
+    /**
+     * The packing slip PDF that is returned is base 64 encoded
+     * @summary Generate a packing slip for this order for the given distribution center.
+     * @param {string} order_id Order ID
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof OrderApiInterface
+     */
+    generatePackingSlipAllDC(order_id: string, options?: any): Promise<OrdersResponse>;
+    /**
+     * The packing slip PDF that is returned is base 64 encoded
+     * @summary Generate a packing slip for this order for the given distribution center.
+     * @param {string} distribution_center_code Distribution center code
+     * @param {string} order_id Order ID
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof OrderApiInterface
+     */
+    generatePackingSlipSpecificDC(distribution_center_code: string, order_id: string, options?: any): Promise<OrdersResponse>;
     /**
      * Retrieve A/R Retry Configuration. This is primarily an internal API call.  It is doubtful you would ever need to use it.
      * @summary Retrieve A/R Retry Configuration
@@ -34837,6 +34954,25 @@ export declare class OrderApi extends BaseAPI implements OrderApiInterface {
      * @memberof OrderApi
      */
     generateOrderToken(order_id: string, options?: any): Promise<OrderTokenResponse>;
+    /**
+     * The packing slip PDF that is returned is base 64 encoded
+     * @summary Generate a packing slip for this order for the given distribution center.
+     * @param {string} order_id Order ID
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof OrderApi
+     */
+    generatePackingSlipAllDC(order_id: string, options?: any): Promise<OrdersResponse>;
+    /**
+     * The packing slip PDF that is returned is base 64 encoded
+     * @summary Generate a packing slip for this order for the given distribution center.
+     * @param {string} distribution_center_code Distribution center code
+     * @param {string} order_id Order ID
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof OrderApi
+     */
+    generatePackingSlipSpecificDC(distribution_center_code: string, order_id: string, options?: any): Promise<OrdersResponse>;
     /**
      * Retrieve A/R Retry Configuration. This is primarily an internal API call.  It is doubtful you would ever need to use it.
      * @summary Retrieve A/R Retry Configuration
