@@ -21527,6 +21527,12 @@ export interface OrderCoupon {
      * @memberof OrderCoupon
      */
     coupon_code?: string;
+    /**
+     * True if this coupon is hidde from the customer
+     * @type {boolean}
+     * @memberof OrderCoupon
+     */
+    hdie_from_customer?: boolean;
 }
 
 /**
@@ -41337,7 +41343,7 @@ export const OrderApiFetchParamCreator = function (configuration?: Configuration
         },
         /**
          * The packing slip PDF that is returned is base 64 encoded 
-         * @summary Generate a packing slip for this order for the given distribution center.
+         * @summary Generate a packing slip for this order across all distribution centers.
          * @param {string} order_id Order ID
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -42676,7 +42682,7 @@ export const OrderApiFp = function(configuration?: Configuration) {
         },
         /**
          * The packing slip PDF that is returned is base 64 encoded 
-         * @summary Generate a packing slip for this order for the given distribution center.
+         * @summary Generate a packing slip for this order across all distribution centers.
          * @param {string} order_id Order ID
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -43156,7 +43162,7 @@ export const OrderApiFactory = function (configuration?: Configuration, fetch?: 
         },
         /**
          * The packing slip PDF that is returned is base 64 encoded 
-         * @summary Generate a packing slip for this order for the given distribution center.
+         * @summary Generate a packing slip for this order across all distribution centers.
          * @param {string} order_id Order ID
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -43449,7 +43455,7 @@ export interface OrderApiInterface {
 
     /**
      * The packing slip PDF that is returned is base 64 encoded 
-     * @summary Generate a packing slip for this order for the given distribution center.
+     * @summary Generate a packing slip for this order across all distribution centers.
      * @param {string} order_id Order ID
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -43752,7 +43758,7 @@ export class OrderApi extends BaseAPI implements OrderApiInterface {
 
     /**
      * The packing slip PDF that is returned is base 64 encoded 
-     * @summary Generate a packing slip for this order for the given distribution center.
+     * @summary Generate a packing slip for this order across all distribution centers.
      * @param {string} order_id Order ID
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}

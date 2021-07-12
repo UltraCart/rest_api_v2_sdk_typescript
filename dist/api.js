@@ -10613,7 +10613,7 @@ var OrderApiFetchParamCreator = function (configuration) {
         },
         /**
          * The packing slip PDF that is returned is base 64 encoded
-         * @summary Generate a packing slip for this order for the given distribution center.
+         * @summary Generate a packing slip for this order across all distribution centers.
          * @param {string} order_id Order ID
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -11786,7 +11786,7 @@ var OrderApiFp = function (configuration) {
         },
         /**
          * The packing slip PDF that is returned is base 64 encoded
-         * @summary Generate a packing slip for this order for the given distribution center.
+         * @summary Generate a packing slip for this order across all distribution centers.
          * @param {string} order_id Order ID
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -12283,7 +12283,7 @@ var OrderApiFactory = function (configuration, fetch, basePath) {
         },
         /**
          * The packing slip PDF that is returned is base 64 encoded
-         * @summary Generate a packing slip for this order for the given distribution center.
+         * @summary Generate a packing slip for this order across all distribution centers.
          * @param {string} order_id Order ID
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -12586,7 +12586,7 @@ var OrderApi = /** @class */ (function (_super) {
     };
     /**
      * The packing slip PDF that is returned is base 64 encoded
-     * @summary Generate a packing slip for this order for the given distribution center.
+     * @summary Generate a packing slip for this order across all distribution centers.
      * @param {string} order_id Order ID
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}

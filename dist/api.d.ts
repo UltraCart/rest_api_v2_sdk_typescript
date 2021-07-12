@@ -21063,6 +21063,12 @@ export interface OrderCoupon {
      * @memberof OrderCoupon
      */
     coupon_code?: string;
+    /**
+     * True if this coupon is hidde from the customer
+     * @type {boolean}
+     * @memberof OrderCoupon
+     */
+    hdie_from_customer?: boolean;
 }
 /**
  *
@@ -33948,7 +33954,7 @@ export declare const OrderApiFetchParamCreator: (configuration?: Configuration) 
     generateOrderToken(order_id: string, options?: any): FetchArgs;
     /**
      * The packing slip PDF that is returned is base 64 encoded
-     * @summary Generate a packing slip for this order for the given distribution center.
+     * @summary Generate a packing slip for this order across all distribution centers.
      * @param {string} order_id Order ID
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -34194,7 +34200,7 @@ export declare const OrderApiFp: (configuration?: Configuration) => {
     generateOrderToken(order_id: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<OrderTokenResponse>;
     /**
      * The packing slip PDF that is returned is base 64 encoded
-     * @summary Generate a packing slip for this order for the given distribution center.
+     * @summary Generate a packing slip for this order across all distribution centers.
      * @param {string} order_id Order ID
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -34440,7 +34446,7 @@ export declare const OrderApiFactory: (configuration?: Configuration, fetch?: Fe
     generateOrderToken(order_id: string, options?: any): Promise<OrderTokenResponse>;
     /**
      * The packing slip PDF that is returned is base 64 encoded
-     * @summary Generate a packing slip for this order for the given distribution center.
+     * @summary Generate a packing slip for this order across all distribution centers.
      * @param {string} order_id Order ID
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -34692,7 +34698,7 @@ export interface OrderApiInterface {
     generateOrderToken(order_id: string, options?: any): Promise<OrderTokenResponse>;
     /**
      * The packing slip PDF that is returned is base 64 encoded
-     * @summary Generate a packing slip for this order for the given distribution center.
+     * @summary Generate a packing slip for this order across all distribution centers.
      * @param {string} order_id Order ID
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -34962,7 +34968,7 @@ export declare class OrderApi extends BaseAPI implements OrderApiInterface {
     generateOrderToken(order_id: string, options?: any): Promise<OrderTokenResponse>;
     /**
      * The packing slip PDF that is returned is base 64 encoded
-     * @summary Generate a packing slip for this order for the given distribution center.
+     * @summary Generate a packing slip for this order across all distribution centers.
      * @param {string} order_id Order ID
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
