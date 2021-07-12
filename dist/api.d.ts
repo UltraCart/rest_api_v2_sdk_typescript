@@ -5222,6 +5222,12 @@ export interface Coupon {
      */
     free_shipping_with_subtotal?: CouponFreeShippingWithSubtotal;
     /**
+     * Hide coupon from customer during checkout.  Often used when coupons are automatic discounting mechanisms.
+     * @type {boolean}
+     * @memberof Coupon
+     */
+    hide_from_customer?: boolean;
+    /**
      * Merchant code of coupon up to 20 characters.
      * @type {string}
      * @memberof Coupon
