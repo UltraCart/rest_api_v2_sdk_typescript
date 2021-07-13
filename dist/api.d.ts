@@ -10545,6 +10545,68 @@ export declare namespace EmailCommseqStep {
 /**
  *
  * @export
+ * @interface EmailCommseqStepLog
+ */
+export interface EmailCommseqStepLog {
+    /**
+     * Email
+     * @type {string}
+     * @memberof EmailCommseqStepLog
+     */
+    email?: string;
+    /**
+     * Log text
+     * @type {string}
+     * @memberof EmailCommseqStepLog
+     */
+    log?: string;
+    /**
+     * Log date/time
+     * @type {string}
+     * @memberof EmailCommseqStepLog
+     */
+    log_dts?: string;
+}
+/**
+ *
+ * @export
+ * @interface EmailCommseqStepLogsResponse
+ */
+export interface EmailCommseqStepLogsResponse {
+    /**
+     *
+     * @type {ModelError}
+     * @memberof EmailCommseqStepLogsResponse
+     */
+    error?: ModelError;
+    /**
+     *
+     * @type {Array<EmailCommseqStepLog>}
+     * @memberof EmailCommseqStepLogsResponse
+     */
+    logs?: Array<EmailCommseqStepLog>;
+    /**
+     *
+     * @type {ResponseMetadata}
+     * @memberof EmailCommseqStepLogsResponse
+     */
+    metadata?: ResponseMetadata;
+    /**
+     * Indicates if API call was successful
+     * @type {boolean}
+     * @memberof EmailCommseqStepLogsResponse
+     */
+    success?: boolean;
+    /**
+     *
+     * @type {Warning}
+     * @memberof EmailCommseqStepLogsResponse
+     */
+    warning?: Warning;
+}
+/**
+ *
+ * @export
  * @interface EmailCommseqsResponse
  */
 export interface EmailCommseqsResponse {
@@ -35583,6 +35645,16 @@ export declare const StorefrontApiFetchParamCreator: (configuration?: Configurat
     getEmailDashboardStats(storefront_oid: number, days?: number, options?: any): FetchArgs;
     /**
      *
+     * @summary Get email dispatch logs
+     * @param {number} storefront_oid
+     * @param {string} commseq_uuid
+     * @param {string} commseq_step_uuid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getEmailDispatchLogs(storefront_oid: number, commseq_uuid: string, commseq_step_uuid: string, options?: any): FetchArgs;
+    /**
+     *
      * @summary Get email email
      * @param {number} storefront_oid
      * @param {string} commseq_email_uuid
@@ -36939,6 +37011,16 @@ export declare const StorefrontApiFp: (configuration?: Configuration) => {
     getEmailDashboardStats(storefront_oid: number, days?: number, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<EmailDashboardStatsResponse>;
     /**
      *
+     * @summary Get email dispatch logs
+     * @param {number} storefront_oid
+     * @param {string} commseq_uuid
+     * @param {string} commseq_step_uuid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getEmailDispatchLogs(storefront_oid: number, commseq_uuid: string, commseq_step_uuid: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<EmailCommseqStepLogsResponse>;
+    /**
+     *
      * @summary Get email email
      * @param {number} storefront_oid
      * @param {string} commseq_email_uuid
@@ -38293,6 +38375,16 @@ export declare const StorefrontApiFactory: (configuration?: Configuration, fetch
      * @throws {RequiredError}
      */
     getEmailDashboardStats(storefront_oid: number, days?: number, options?: any): Promise<EmailDashboardStatsResponse>;
+    /**
+     *
+     * @summary Get email dispatch logs
+     * @param {number} storefront_oid
+     * @param {string} commseq_uuid
+     * @param {string} commseq_step_uuid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getEmailDispatchLogs(storefront_oid: number, commseq_uuid: string, commseq_step_uuid: string, options?: any): Promise<EmailCommseqStepLogsResponse>;
     /**
      *
      * @summary Get email email
@@ -39694,6 +39786,17 @@ export interface StorefrontApiInterface {
      * @memberof StorefrontApiInterface
      */
     getEmailDashboardStats(storefront_oid: number, days?: number, options?: any): Promise<EmailDashboardStatsResponse>;
+    /**
+     *
+     * @summary Get email dispatch logs
+     * @param {number} storefront_oid
+     * @param {string} commseq_uuid
+     * @param {string} commseq_step_uuid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof StorefrontApiInterface
+     */
+    getEmailDispatchLogs(storefront_oid: number, commseq_uuid: string, commseq_step_uuid: string, options?: any): Promise<EmailCommseqStepLogsResponse>;
     /**
      *
      * @summary Get email email
@@ -41199,6 +41302,17 @@ export declare class StorefrontApi extends BaseAPI implements StorefrontApiInter
      * @memberof StorefrontApi
      */
     getEmailDashboardStats(storefront_oid: number, days?: number, options?: any): Promise<EmailDashboardStatsResponse>;
+    /**
+     *
+     * @summary Get email dispatch logs
+     * @param {number} storefront_oid
+     * @param {string} commseq_uuid
+     * @param {string} commseq_step_uuid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof StorefrontApi
+     */
+    getEmailDispatchLogs(storefront_oid: number, commseq_uuid: string, commseq_step_uuid: string, options?: any): Promise<EmailCommseqStepLogsResponse>;
     /**
      *
      * @summary Get email email

@@ -10793,6 +10793,70 @@ export namespace EmailCommseqStep {
 /**
  * 
  * @export
+ * @interface EmailCommseqStepLog
+ */
+export interface EmailCommseqStepLog {
+    /**
+     * Email
+     * @type {string}
+     * @memberof EmailCommseqStepLog
+     */
+    email?: string;
+    /**
+     * Log text
+     * @type {string}
+     * @memberof EmailCommseqStepLog
+     */
+    log?: string;
+    /**
+     * Log date/time
+     * @type {string}
+     * @memberof EmailCommseqStepLog
+     */
+    log_dts?: string;
+}
+
+/**
+ * 
+ * @export
+ * @interface EmailCommseqStepLogsResponse
+ */
+export interface EmailCommseqStepLogsResponse {
+    /**
+     * 
+     * @type {ModelError}
+     * @memberof EmailCommseqStepLogsResponse
+     */
+    error?: ModelError;
+    /**
+     * 
+     * @type {Array<EmailCommseqStepLog>}
+     * @memberof EmailCommseqStepLogsResponse
+     */
+    logs?: Array<EmailCommseqStepLog>;
+    /**
+     * 
+     * @type {ResponseMetadata}
+     * @memberof EmailCommseqStepLogsResponse
+     */
+    metadata?: ResponseMetadata;
+    /**
+     * Indicates if API call was successful
+     * @type {boolean}
+     * @memberof EmailCommseqStepLogsResponse
+     */
+    success?: boolean;
+    /**
+     * 
+     * @type {Warning}
+     * @memberof EmailCommseqStepLogsResponse
+     */
+    warning?: Warning;
+}
+
+/**
+ * 
+ * @export
  * @interface EmailCommseqsResponse
  */
 export interface EmailCommseqsResponse {
@@ -46928,6 +46992,78 @@ export const StorefrontApiFetchParamCreator = function (configuration?: Configur
         },
         /**
          * 
+         * @summary Get email dispatch logs
+         * @param {number} storefront_oid 
+         * @param {string} commseq_uuid 
+         * @param {string} commseq_step_uuid 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getEmailDispatchLogs(storefront_oid: number, commseq_uuid: string, commseq_step_uuid: string, options: any = {}): FetchArgs {
+            // verify required parameter 'storefront_oid' is not null or undefined
+            if (storefront_oid === null || storefront_oid === undefined) {
+                throw new RequiredError('storefront_oid','Required parameter storefront_oid was null or undefined when calling getEmailDispatchLogs.');
+            }
+            // verify required parameter 'commseq_uuid' is not null or undefined
+            if (commseq_uuid === null || commseq_uuid === undefined) {
+                throw new RequiredError('commseq_uuid','Required parameter commseq_uuid was null or undefined when calling getEmailDispatchLogs.');
+            }
+            // verify required parameter 'commseq_step_uuid' is not null or undefined
+            if (commseq_step_uuid === null || commseq_step_uuid === undefined) {
+                throw new RequiredError('commseq_step_uuid','Required parameter commseq_step_uuid was null or undefined when calling getEmailDispatchLogs.');
+            }
+            const localVarPath = `/storefront/{storefront_oid}/email/commseqs/{commseq_uuid}/steps/{commseq_step_uuid}/logs`
+                .replace(`{${"storefront_oid"}}`, encodeURIComponent(String(storefront_oid)))
+                .replace(`{${"commseq_uuid"}}`, encodeURIComponent(String(commseq_uuid)))
+                .replace(`{${"commseq_step_uuid"}}`, encodeURIComponent(String(commseq_step_uuid)));
+            const localVarUrlObj = url.parse(localVarPath, true);
+            const localVarRequestOptions = Object.assign({ method: 'GET' }, options);
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+    if(configuration && configuration.apiVersion) {
+      localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+    }
+
+
+
+            // authentication ultraCartBrowserApiKey required
+            if (configuration && configuration.apiKey) {
+                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
+					? configuration.apiKey("x-ultracart-browser-key")
+					: configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-browser-key"] = localVarApiKeyValue;
+            }
+
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+				const localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+					? configuration.accessToken("ultraCartOauth", ["storefront_read"])
+					: configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
+					? configuration.apiKey("x-ultracart-simple-key")
+					: configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
          * @summary Get email email
          * @param {number} storefront_oid 
          * @param {string} commseq_email_uuid 
@@ -54858,6 +54994,29 @@ export const StorefrontApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
+         * @summary Get email dispatch logs
+         * @param {number} storefront_oid 
+         * @param {string} commseq_uuid 
+         * @param {string} commseq_step_uuid 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getEmailDispatchLogs(storefront_oid: number, commseq_uuid: string, commseq_step_uuid: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<EmailCommseqStepLogsResponse> {
+            const localVarFetchArgs = StorefrontApiFetchParamCreator(configuration).getEmailDispatchLogs(storefront_oid, commseq_uuid, commseq_step_uuid, options);
+            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
+                    if (response.status >= 200 && response.status < 300) {
+                      return response.json();
+                      
+                    } else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
+         * 
          * @summary Get email email
          * @param {number} storefront_oid 
          * @param {string} commseq_email_uuid 
@@ -57644,6 +57803,18 @@ export const StorefrontApiFactory = function (configuration?: Configuration, fet
         },
         /**
          * 
+         * @summary Get email dispatch logs
+         * @param {number} storefront_oid 
+         * @param {string} commseq_uuid 
+         * @param {string} commseq_step_uuid 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getEmailDispatchLogs(storefront_oid: number, commseq_uuid: string, commseq_step_uuid: string, options?: any) {
+            return StorefrontApiFp(configuration).getEmailDispatchLogs(storefront_oid, commseq_uuid, commseq_step_uuid, options)(fetch, basePath);
+        },
+        /**
+         * 
          * @summary Get email email
          * @param {number} storefront_oid 
          * @param {string} commseq_email_uuid 
@@ -59294,6 +59465,18 @@ export interface StorefrontApiInterface {
      * @memberof StorefrontApiInterface
      */
     getEmailDashboardStats(storefront_oid: number, days?: number, options?: any): Promise<EmailDashboardStatsResponse>;
+
+    /**
+     * 
+     * @summary Get email dispatch logs
+     * @param {number} storefront_oid 
+     * @param {string} commseq_uuid 
+     * @param {string} commseq_step_uuid 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof StorefrontApiInterface
+     */
+    getEmailDispatchLogs(storefront_oid: number, commseq_uuid: string, commseq_step_uuid: string, options?: any): Promise<EmailCommseqStepLogsResponse>;
 
     /**
      * 
@@ -61034,6 +61217,20 @@ export class StorefrontApi extends BaseAPI implements StorefrontApiInterface {
      */
     public getEmailDashboardStats(storefront_oid: number, days?: number, options?: any) {
         return StorefrontApiFp(this.configuration).getEmailDashboardStats(storefront_oid, days, options)(this.fetch, this.basePath);
+    }
+
+    /**
+     * 
+     * @summary Get email dispatch logs
+     * @param {number} storefront_oid 
+     * @param {string} commseq_uuid 
+     * @param {string} commseq_step_uuid 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof StorefrontApi
+     */
+    public getEmailDispatchLogs(storefront_oid: number, commseq_uuid: string, commseq_step_uuid: string, options?: any) {
+        return StorefrontApiFp(this.configuration).getEmailDispatchLogs(storefront_oid, commseq_uuid, commseq_step_uuid, options)(this.fetch, this.basePath);
     }
 
     /**
