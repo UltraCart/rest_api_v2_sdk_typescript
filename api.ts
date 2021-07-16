@@ -26744,6 +26744,12 @@ export interface ScreenRecordingPageViewEvent {
      */
     prior_page_view?: boolean;
     /**
+     * 
+     * @type {string}
+     * @memberof ScreenRecordingPageViewEvent
+     */
+    sub_text?: string;
+    /**
      * Timestamp of the event
      * @type {string}
      * @memberof ScreenRecordingPageViewEvent
