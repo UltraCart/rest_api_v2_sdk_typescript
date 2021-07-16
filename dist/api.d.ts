@@ -26857,6 +26857,25 @@ export interface SingleSignOnAuthorizeRequest {
 /**
  *
  * @export
+ * @interface SingleSignOnAuthorizeResponse
+ */
+export interface SingleSignOnAuthorizeResponse {
+    /**
+     * Expiration date/time after which the single sign-on login operation will have timed out
+     * @type {string}
+     * @memberof SingleSignOnAuthorizeResponse
+     */
+    expiration_dts?: string;
+    /**
+     * The URL that you should redirect the customer's browser to.  This URL will begin the login process.
+     * @type {string}
+     * @memberof SingleSignOnAuthorizeResponse
+     */
+    login_url?: string;
+}
+/**
+ *
+ * @export
  * @interface SingleSignOnTokenRequest
  */
 export interface SingleSignOnTokenRequest {
@@ -26872,6 +26891,31 @@ export interface SingleSignOnTokenRequest {
      * @memberof SingleSignOnTokenRequest
      */
     grant_type?: string;
+}
+/**
+ *
+ * @export
+ * @interface SingleSignOnTokenResponse
+ */
+export interface SingleSignOnTokenResponse {
+    /**
+     * Expiration date/time after which time the key is no longer valid
+     * @type {string}
+     * @memberof SingleSignOnTokenResponse
+     */
+    expiration_dts?: string;
+    /**
+     * IP address of the user which we recommend you lock the simple key's usage to.
+     * @type {string}
+     * @memberof SingleSignOnTokenResponse
+     */
+    ip_address?: string;
+    /**
+     * The simple key that can then be used to make SDK calls on the users behalf.
+     * @type {string}
+     * @memberof SingleSignOnTokenResponse
+     */
+    simple_key?: string;
 }
 /**
  *
@@ -35343,7 +35387,7 @@ export declare const SsoApiFp: (configuration?: Configuration) => {
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    ssoAuthorize(authorization_request: SingleSignOnAuthorizeRequest, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ItemsResponse>;
+    ssoAuthorize(authorization_request: SingleSignOnAuthorizeRequest, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<SingleSignOnAuthorizeResponse>;
     /**
      * This is the equivalent of logging out of the single sign on session
      * @summary Revoke single sign on session
@@ -35358,7 +35402,7 @@ export declare const SsoApiFp: (configuration?: Configuration) => {
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    ssoToken(token_request: SingleSignOnTokenRequest, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ItemsResponse>;
+    ssoToken(token_request: SingleSignOnTokenRequest, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<SingleSignOnTokenResponse>;
 };
 /**
  * SsoApi - factory interface
@@ -35379,7 +35423,7 @@ export declare const SsoApiFactory: (configuration?: Configuration, fetch?: Fetc
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    ssoAuthorize(authorization_request: SingleSignOnAuthorizeRequest, options?: any): Promise<ItemsResponse>;
+    ssoAuthorize(authorization_request: SingleSignOnAuthorizeRequest, options?: any): Promise<SingleSignOnAuthorizeResponse>;
     /**
      * This is the equivalent of logging out of the single sign on session
      * @summary Revoke single sign on session
@@ -35394,7 +35438,7 @@ export declare const SsoApiFactory: (configuration?: Configuration, fetch?: Fetc
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    ssoToken(token_request: SingleSignOnTokenRequest, options?: any): Promise<ItemsResponse>;
+    ssoToken(token_request: SingleSignOnTokenRequest, options?: any): Promise<SingleSignOnTokenResponse>;
 };
 /**
  * SsoApi - interface
@@ -35418,7 +35462,7 @@ export interface SsoApiInterface {
      * @throws {RequiredError}
      * @memberof SsoApiInterface
      */
-    ssoAuthorize(authorization_request: SingleSignOnAuthorizeRequest, options?: any): Promise<ItemsResponse>;
+    ssoAuthorize(authorization_request: SingleSignOnAuthorizeRequest, options?: any): Promise<SingleSignOnAuthorizeResponse>;
     /**
      * This is the equivalent of logging out of the single sign on session
      * @summary Revoke single sign on session
@@ -35435,7 +35479,7 @@ export interface SsoApiInterface {
      * @throws {RequiredError}
      * @memberof SsoApiInterface
      */
-    ssoToken(token_request: SingleSignOnTokenRequest, options?: any): Promise<ItemsResponse>;
+    ssoToken(token_request: SingleSignOnTokenRequest, options?: any): Promise<SingleSignOnTokenResponse>;
 }
 /**
  * SsoApi - object-oriented interface
@@ -35460,7 +35504,7 @@ export declare class SsoApi extends BaseAPI implements SsoApiInterface {
      * @throws {RequiredError}
      * @memberof SsoApi
      */
-    ssoAuthorize(authorization_request: SingleSignOnAuthorizeRequest, options?: any): Promise<ItemsResponse>;
+    ssoAuthorize(authorization_request: SingleSignOnAuthorizeRequest, options?: any): Promise<SingleSignOnAuthorizeResponse>;
     /**
      * This is the equivalent of logging out of the single sign on session
      * @summary Revoke single sign on session
@@ -35477,7 +35521,7 @@ export declare class SsoApi extends BaseAPI implements SsoApiInterface {
      * @throws {RequiredError}
      * @memberof SsoApi
      */
-    ssoToken(token_request: SingleSignOnTokenRequest, options?: any): Promise<ItemsResponse>;
+    ssoToken(token_request: SingleSignOnTokenRequest, options?: any): Promise<SingleSignOnTokenResponse>;
 }
 /**
  * StorefrontApi - fetch parameter creator
