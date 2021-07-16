@@ -27412,6 +27412,46 @@ export interface SimpleValue {
 /**
  * 
  * @export
+ * @interface SingleSignOnAuthorizeRequest
+ */
+export interface SingleSignOnAuthorizeRequest {
+    /**
+     * The URL that the customer should be redirected to after they have approved a single sign on session.
+     * @type {string}
+     * @memberof SingleSignOnAuthorizeRequest
+     */
+    redirect_uri?: string;
+    /**
+     * An optional state variable that you provide.  It will be returned to you on the redirect.  You can inspect the state to validate the request is legitimate.  We recommend using this field.
+     * @type {string}
+     * @memberof SingleSignOnAuthorizeRequest
+     */
+    state?: string;
+}
+
+/**
+ * 
+ * @export
+ * @interface SingleSignOnTokenRequest
+ */
+export interface SingleSignOnTokenRequest {
+    /**
+     * The code received on the redirect URI after the customer approved the single sign on request.
+     * @type {string}
+     * @memberof SingleSignOnTokenRequest
+     */
+    code?: string;
+    /**
+     * Grant type.  The value should be simple_key.
+     * @type {string}
+     * @memberof SingleSignOnTokenRequest
+     */
+    grant_type?: string;
+}
+
+/**
+ * 
+ * @export
  * @interface SovosConfig
  */
 export interface SovosConfig {
@@ -44084,6 +44124,456 @@ export class OrderApi extends BaseAPI implements OrderApiInterface {
      */
     public updateOrder(order: Order, order_id: string, _expand?: string, options?: any) {
         return OrderApiFp(this.configuration).updateOrder(order, order_id, _expand, options)(this.fetch, this.basePath);
+    }
+
+}
+
+/**
+ * SsoApi - fetch parameter creator
+ * @export
+ */
+export const SsoApiFetchParamCreator = function (configuration?: Configuration) {
+    return {
+        /**
+         * This is the equivalent of logging out of the single sign on session 
+         * @summary Get single sign on session user
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getSsoSessionUser(options: any = {}): FetchArgs {
+            const localVarPath = `/sso/session/user`;
+            const localVarUrlObj = url.parse(localVarPath, true);
+            const localVarRequestOptions = Object.assign({ method: 'GET' }, options);
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+    if(configuration && configuration.apiVersion) {
+      localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+    }
+
+
+
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+				const localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+					? configuration.accessToken("ultraCartOauth", [])
+					: configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
+					? configuration.apiKey("x-ultracart-simple-key")
+					: configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Starts the process of authorizing a single sign on session. 
+         * @summary Authorize a single sign on session
+         * @param {SingleSignOnAuthorizeRequest} authorization_request Authorization request
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        ssoAuthorize(authorization_request: SingleSignOnAuthorizeRequest, options: any = {}): FetchArgs {
+            // verify required parameter 'authorization_request' is not null or undefined
+            if (authorization_request === null || authorization_request === undefined) {
+                throw new RequiredError('authorization_request','Required parameter authorization_request was null or undefined when calling ssoAuthorize.');
+            }
+            const localVarPath = `/sso/authorize`;
+            const localVarUrlObj = url.parse(localVarPath, true);
+            const localVarRequestOptions = Object.assign({ method: 'PUT' }, options);
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+    if(configuration && configuration.apiVersion) {
+      localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+    }
+
+
+
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+				const localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+					? configuration.accessToken("ultraCartOauth", [])
+					: configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
+					? configuration.apiKey("x-ultracart-simple-key")
+					: configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+
+            localVarHeaderParameter['Content-Type'] = 'application/json; charset=UTF-8';
+
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+            const needsSerialization = (<any>"SingleSignOnAuthorizeRequest" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
+            localVarRequestOptions.body =  needsSerialization ? JSON.stringify(authorization_request || {}) : (authorization_request || "");
+
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * This is the equivalent of logging out of the single sign on session 
+         * @summary Revoke single sign on session
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        ssoSessionRevoke(options: any = {}): FetchArgs {
+            const localVarPath = `/sso/session/revoke`;
+            const localVarUrlObj = url.parse(localVarPath, true);
+            const localVarRequestOptions = Object.assign({ method: 'DELETE' }, options);
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+    if(configuration && configuration.apiVersion) {
+      localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+    }
+
+
+
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+				const localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+					? configuration.accessToken("ultraCartOauth", [])
+					: configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
+					? configuration.apiKey("x-ultracart-simple-key")
+					: configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Called by your application after receiving the code back on the redirect URI to obtain a simple key token to make API calls with 
+         * @summary Exchange a single sign on code for a simple key token
+         * @param {SingleSignOnTokenRequest} token_request Token request
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        ssoToken(token_request: SingleSignOnTokenRequest, options: any = {}): FetchArgs {
+            // verify required parameter 'token_request' is not null or undefined
+            if (token_request === null || token_request === undefined) {
+                throw new RequiredError('token_request','Required parameter token_request was null or undefined when calling ssoToken.');
+            }
+            const localVarPath = `/sso/token`;
+            const localVarUrlObj = url.parse(localVarPath, true);
+            const localVarRequestOptions = Object.assign({ method: 'PUT' }, options);
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+    if(configuration && configuration.apiVersion) {
+      localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+    }
+
+
+
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+				const localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+					? configuration.accessToken("ultraCartOauth", [])
+					: configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
+					? configuration.apiKey("x-ultracart-simple-key")
+					: configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+
+            localVarHeaderParameter['Content-Type'] = 'application/json; charset=UTF-8';
+
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+            const needsSerialization = (<any>"SingleSignOnTokenRequest" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
+            localVarRequestOptions.body =  needsSerialization ? JSON.stringify(token_request || {}) : (token_request || "");
+
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+    }
+};
+
+/**
+ * SsoApi - functional programming interface
+ * @export
+ */
+export const SsoApiFp = function(configuration?: Configuration) {
+    return {
+        /**
+         * This is the equivalent of logging out of the single sign on session 
+         * @summary Get single sign on session user
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getSsoSessionUser(options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<User> {
+            const localVarFetchArgs = SsoApiFetchParamCreator(configuration).getSsoSessionUser(options);
+            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
+                    if (response.status >= 200 && response.status < 300) {
+                      return response.json();
+                      
+                    } else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
+         * Starts the process of authorizing a single sign on session. 
+         * @summary Authorize a single sign on session
+         * @param {SingleSignOnAuthorizeRequest} authorization_request Authorization request
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        ssoAuthorize(authorization_request: SingleSignOnAuthorizeRequest, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ItemsResponse> {
+            const localVarFetchArgs = SsoApiFetchParamCreator(configuration).ssoAuthorize(authorization_request, options);
+            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
+                    if (response.status >= 200 && response.status < 300) {
+                      return response.json();
+                      
+                    } else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
+         * This is the equivalent of logging out of the single sign on session 
+         * @summary Revoke single sign on session
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        ssoSessionRevoke(options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Response> {
+            const localVarFetchArgs = SsoApiFetchParamCreator(configuration).ssoSessionRevoke(options);
+            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
+                    if (response.status >= 200 && response.status < 300) {
+                      return response;
+                      
+                    } else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
+         * Called by your application after receiving the code back on the redirect URI to obtain a simple key token to make API calls with 
+         * @summary Exchange a single sign on code for a simple key token
+         * @param {SingleSignOnTokenRequest} token_request Token request
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        ssoToken(token_request: SingleSignOnTokenRequest, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ItemsResponse> {
+            const localVarFetchArgs = SsoApiFetchParamCreator(configuration).ssoToken(token_request, options);
+            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
+                    if (response.status >= 200 && response.status < 300) {
+                      return response.json();
+                      
+                    } else {
+                        throw response;
+                    }
+                });
+            };
+        },
+    }
+};
+
+/**
+ * SsoApi - factory interface
+ * @export
+ */
+export const SsoApiFactory = function (configuration?: Configuration, fetch?: FetchAPI, basePath?: string) {
+    return {
+        /**
+         * This is the equivalent of logging out of the single sign on session 
+         * @summary Get single sign on session user
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getSsoSessionUser(options?: any) {
+            return SsoApiFp(configuration).getSsoSessionUser(options)(fetch, basePath);
+        },
+        /**
+         * Starts the process of authorizing a single sign on session. 
+         * @summary Authorize a single sign on session
+         * @param {SingleSignOnAuthorizeRequest} authorization_request Authorization request
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        ssoAuthorize(authorization_request: SingleSignOnAuthorizeRequest, options?: any) {
+            return SsoApiFp(configuration).ssoAuthorize(authorization_request, options)(fetch, basePath);
+        },
+        /**
+         * This is the equivalent of logging out of the single sign on session 
+         * @summary Revoke single sign on session
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        ssoSessionRevoke(options?: any) {
+            return SsoApiFp(configuration).ssoSessionRevoke(options)(fetch, basePath);
+        },
+        /**
+         * Called by your application after receiving the code back on the redirect URI to obtain a simple key token to make API calls with 
+         * @summary Exchange a single sign on code for a simple key token
+         * @param {SingleSignOnTokenRequest} token_request Token request
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        ssoToken(token_request: SingleSignOnTokenRequest, options?: any) {
+            return SsoApiFp(configuration).ssoToken(token_request, options)(fetch, basePath);
+        },
+    };
+};
+
+/**
+ * SsoApi - interface
+ * @export
+ * @interface SsoApi
+ */
+export interface SsoApiInterface {
+    /**
+     * This is the equivalent of logging out of the single sign on session 
+     * @summary Get single sign on session user
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SsoApiInterface
+     */
+    getSsoSessionUser(options?: any): Promise<User>;
+
+    /**
+     * Starts the process of authorizing a single sign on session. 
+     * @summary Authorize a single sign on session
+     * @param {SingleSignOnAuthorizeRequest} authorization_request Authorization request
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SsoApiInterface
+     */
+    ssoAuthorize(authorization_request: SingleSignOnAuthorizeRequest, options?: any): Promise<ItemsResponse>;
+
+    /**
+     * This is the equivalent of logging out of the single sign on session 
+     * @summary Revoke single sign on session
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SsoApiInterface
+     */
+    ssoSessionRevoke(options?: any): Promise<{}>;
+
+    /**
+     * Called by your application after receiving the code back on the redirect URI to obtain a simple key token to make API calls with 
+     * @summary Exchange a single sign on code for a simple key token
+     * @param {SingleSignOnTokenRequest} token_request Token request
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SsoApiInterface
+     */
+    ssoToken(token_request: SingleSignOnTokenRequest, options?: any): Promise<ItemsResponse>;
+
+}
+
+/**
+ * SsoApi - object-oriented interface
+ * @export
+ * @class SsoApi
+ * @extends {BaseAPI}
+ */
+export class SsoApi extends BaseAPI implements SsoApiInterface {
+    /**
+     * This is the equivalent of logging out of the single sign on session 
+     * @summary Get single sign on session user
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SsoApi
+     */
+    public getSsoSessionUser(options?: any) {
+        return SsoApiFp(this.configuration).getSsoSessionUser(options)(this.fetch, this.basePath);
+    }
+
+    /**
+     * Starts the process of authorizing a single sign on session. 
+     * @summary Authorize a single sign on session
+     * @param {SingleSignOnAuthorizeRequest} authorization_request Authorization request
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SsoApi
+     */
+    public ssoAuthorize(authorization_request: SingleSignOnAuthorizeRequest, options?: any) {
+        return SsoApiFp(this.configuration).ssoAuthorize(authorization_request, options)(this.fetch, this.basePath);
+    }
+
+    /**
+     * This is the equivalent of logging out of the single sign on session 
+     * @summary Revoke single sign on session
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SsoApi
+     */
+    public ssoSessionRevoke(options?: any) {
+        return SsoApiFp(this.configuration).ssoSessionRevoke(options)(this.fetch, this.basePath);
+    }
+
+    /**
+     * Called by your application after receiving the code back on the redirect URI to obtain a simple key token to make API calls with 
+     * @summary Exchange a single sign on code for a simple key token
+     * @param {SingleSignOnTokenRequest} token_request Token request
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SsoApi
+     */
+    public ssoToken(token_request: SingleSignOnTokenRequest, options?: any) {
+        return SsoApiFp(this.configuration).ssoToken(token_request, options)(this.fetch, this.basePath);
     }
 
 }

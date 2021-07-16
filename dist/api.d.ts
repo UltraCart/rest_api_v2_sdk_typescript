@@ -26832,6 +26832,44 @@ export interface SimpleValue {
 /**
  *
  * @export
+ * @interface SingleSignOnAuthorizeRequest
+ */
+export interface SingleSignOnAuthorizeRequest {
+    /**
+     * The URL that the customer should be redirected to after they have approved a single sign on session.
+     * @type {string}
+     * @memberof SingleSignOnAuthorizeRequest
+     */
+    redirect_uri?: string;
+    /**
+     * An optional state variable that you provide.  It will be returned to you on the redirect.  You can inspect the state to validate the request is legitimate.  We recommend using this field.
+     * @type {string}
+     * @memberof SingleSignOnAuthorizeRequest
+     */
+    state?: string;
+}
+/**
+ *
+ * @export
+ * @interface SingleSignOnTokenRequest
+ */
+export interface SingleSignOnTokenRequest {
+    /**
+     * The code received on the redirect URI after the customer approved the single sign on request.
+     * @type {string}
+     * @memberof SingleSignOnTokenRequest
+     */
+    code?: string;
+    /**
+     * Grant type.  The value should be simple_key.
+     * @type {string}
+     * @memberof SingleSignOnTokenRequest
+     */
+    grant_type?: string;
+}
+/**
+ *
+ * @export
  * @interface SovosConfig
  */
 export interface SovosConfig {
@@ -35243,6 +35281,197 @@ export declare class OrderApi extends BaseAPI implements OrderApiInterface {
      * @memberof OrderApi
      */
     updateOrder(order: Order, order_id: string, _expand?: string, options?: any): Promise<OrderResponse>;
+}
+/**
+ * SsoApi - fetch parameter creator
+ * @export
+ */
+export declare const SsoApiFetchParamCreator: (configuration?: Configuration) => {
+    /**
+     * This is the equivalent of logging out of the single sign on session
+     * @summary Get single sign on session user
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getSsoSessionUser(options?: any): FetchArgs;
+    /**
+     * Starts the process of authorizing a single sign on session.
+     * @summary Authorize a single sign on session
+     * @param {SingleSignOnAuthorizeRequest} authorization_request Authorization request
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    ssoAuthorize(authorization_request: SingleSignOnAuthorizeRequest, options?: any): FetchArgs;
+    /**
+     * This is the equivalent of logging out of the single sign on session
+     * @summary Revoke single sign on session
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    ssoSessionRevoke(options?: any): FetchArgs;
+    /**
+     * Called by your application after receiving the code back on the redirect URI to obtain a simple key token to make API calls with
+     * @summary Exchange a single sign on code for a simple key token
+     * @param {SingleSignOnTokenRequest} token_request Token request
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    ssoToken(token_request: SingleSignOnTokenRequest, options?: any): FetchArgs;
+};
+/**
+ * SsoApi - functional programming interface
+ * @export
+ */
+export declare const SsoApiFp: (configuration?: Configuration) => {
+    /**
+     * This is the equivalent of logging out of the single sign on session
+     * @summary Get single sign on session user
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getSsoSessionUser(options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<User>;
+    /**
+     * Starts the process of authorizing a single sign on session.
+     * @summary Authorize a single sign on session
+     * @param {SingleSignOnAuthorizeRequest} authorization_request Authorization request
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    ssoAuthorize(authorization_request: SingleSignOnAuthorizeRequest, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ItemsResponse>;
+    /**
+     * This is the equivalent of logging out of the single sign on session
+     * @summary Revoke single sign on session
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    ssoSessionRevoke(options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Response>;
+    /**
+     * Called by your application after receiving the code back on the redirect URI to obtain a simple key token to make API calls with
+     * @summary Exchange a single sign on code for a simple key token
+     * @param {SingleSignOnTokenRequest} token_request Token request
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    ssoToken(token_request: SingleSignOnTokenRequest, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ItemsResponse>;
+};
+/**
+ * SsoApi - factory interface
+ * @export
+ */
+export declare const SsoApiFactory: (configuration?: Configuration, fetch?: FetchAPI, basePath?: string) => {
+    /**
+     * This is the equivalent of logging out of the single sign on session
+     * @summary Get single sign on session user
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getSsoSessionUser(options?: any): Promise<User>;
+    /**
+     * Starts the process of authorizing a single sign on session.
+     * @summary Authorize a single sign on session
+     * @param {SingleSignOnAuthorizeRequest} authorization_request Authorization request
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    ssoAuthorize(authorization_request: SingleSignOnAuthorizeRequest, options?: any): Promise<ItemsResponse>;
+    /**
+     * This is the equivalent of logging out of the single sign on session
+     * @summary Revoke single sign on session
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    ssoSessionRevoke(options?: any): Promise<Response>;
+    /**
+     * Called by your application after receiving the code back on the redirect URI to obtain a simple key token to make API calls with
+     * @summary Exchange a single sign on code for a simple key token
+     * @param {SingleSignOnTokenRequest} token_request Token request
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    ssoToken(token_request: SingleSignOnTokenRequest, options?: any): Promise<ItemsResponse>;
+};
+/**
+ * SsoApi - interface
+ * @export
+ * @interface SsoApi
+ */
+export interface SsoApiInterface {
+    /**
+     * This is the equivalent of logging out of the single sign on session
+     * @summary Get single sign on session user
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SsoApiInterface
+     */
+    getSsoSessionUser(options?: any): Promise<User>;
+    /**
+     * Starts the process of authorizing a single sign on session.
+     * @summary Authorize a single sign on session
+     * @param {SingleSignOnAuthorizeRequest} authorization_request Authorization request
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SsoApiInterface
+     */
+    ssoAuthorize(authorization_request: SingleSignOnAuthorizeRequest, options?: any): Promise<ItemsResponse>;
+    /**
+     * This is the equivalent of logging out of the single sign on session
+     * @summary Revoke single sign on session
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SsoApiInterface
+     */
+    ssoSessionRevoke(options?: any): Promise<{}>;
+    /**
+     * Called by your application after receiving the code back on the redirect URI to obtain a simple key token to make API calls with
+     * @summary Exchange a single sign on code for a simple key token
+     * @param {SingleSignOnTokenRequest} token_request Token request
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SsoApiInterface
+     */
+    ssoToken(token_request: SingleSignOnTokenRequest, options?: any): Promise<ItemsResponse>;
+}
+/**
+ * SsoApi - object-oriented interface
+ * @export
+ * @class SsoApi
+ * @extends {BaseAPI}
+ */
+export declare class SsoApi extends BaseAPI implements SsoApiInterface {
+    /**
+     * This is the equivalent of logging out of the single sign on session
+     * @summary Get single sign on session user
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SsoApi
+     */
+    getSsoSessionUser(options?: any): Promise<User>;
+    /**
+     * Starts the process of authorizing a single sign on session.
+     * @summary Authorize a single sign on session
+     * @param {SingleSignOnAuthorizeRequest} authorization_request Authorization request
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SsoApi
+     */
+    ssoAuthorize(authorization_request: SingleSignOnAuthorizeRequest, options?: any): Promise<ItemsResponse>;
+    /**
+     * This is the equivalent of logging out of the single sign on session
+     * @summary Revoke single sign on session
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SsoApi
+     */
+    ssoSessionRevoke(options?: any): Promise<Response>;
+    /**
+     * Called by your application after receiving the code back on the redirect URI to obtain a simple key token to make API calls with
+     * @summary Exchange a single sign on code for a simple key token
+     * @param {SingleSignOnTokenRequest} token_request Token request
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SsoApi
+     */
+    ssoToken(token_request: SingleSignOnTokenRequest, options?: any): Promise<ItemsResponse>;
 }
 /**
  * StorefrontApi - fetch parameter creator
