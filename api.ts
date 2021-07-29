@@ -15483,6 +15483,126 @@ export interface IntegrationLogResponse {
 /**
  * 
  * @export
+ * @interface IntegrationLogSummary
+ */
+export interface IntegrationLogSummary {
+    /**
+     * 
+     * @type {number}
+     * @memberof IntegrationLogSummary
+     */
+    critical?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof IntegrationLogSummary
+     */
+    error?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof IntegrationLogSummary
+     */
+    events?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof IntegrationLogSummary
+     */
+    log_type?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof IntegrationLogSummary
+     */
+    logger_id?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof IntegrationLogSummary
+     */
+    logger_name?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof IntegrationLogSummary
+     */
+    success?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof IntegrationLogSummary
+     */
+    view_url?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof IntegrationLogSummary
+     */
+    warning?: number;
+}
+
+/**
+ * 
+ * @export
+ * @interface IntegrationLogSummaryQueryRequest
+ */
+export interface IntegrationLogSummaryQueryRequest {
+    /**
+     * Log date/time begin
+     * @type {string}
+     * @memberof IntegrationLogSummaryQueryRequest
+     */
+    log_dts_begin?: string;
+    /**
+     * Log date/time end
+     * @type {string}
+     * @memberof IntegrationLogSummaryQueryRequest
+     */
+    log_dts_end?: string;
+}
+
+/**
+ * 
+ * @export
+ * @interface IntegrationLogSummaryQueryResponse
+ */
+export interface IntegrationLogSummaryQueryResponse {
+    /**
+     * 
+     * @type {ModelError}
+     * @memberof IntegrationLogSummaryQueryResponse
+     */
+    error?: ModelError;
+    /**
+     * 
+     * @type {Array<IntegrationLogSummary>}
+     * @memberof IntegrationLogSummaryQueryResponse
+     */
+    integration_log_summaries?: Array<IntegrationLogSummary>;
+    /**
+     * 
+     * @type {ResponseMetadata}
+     * @memberof IntegrationLogSummaryQueryResponse
+     */
+    metadata?: ResponseMetadata;
+    /**
+     * Indicates if API call was successful
+     * @type {boolean}
+     * @memberof IntegrationLogSummaryQueryResponse
+     */
+    success?: boolean;
+    /**
+     * 
+     * @type {Warning}
+     * @memberof IntegrationLogSummaryQueryResponse
+     */
+    warning?: Warning;
+}
+
+/**
+ * 
+ * @export
  * @interface Item
  */
 export interface Item {
@@ -26601,6 +26721,44 @@ export namespace RotatingTransactionGateway {
 /**
  * 
  * @export
+ * @interface RotatingTransactionGatewaysResponse
+ */
+export interface RotatingTransactionGatewaysResponse {
+    /**
+     * 
+     * @type {ModelError}
+     * @memberof RotatingTransactionGatewaysResponse
+     */
+    error?: ModelError;
+    /**
+     * 
+     * @type {ResponseMetadata}
+     * @memberof RotatingTransactionGatewaysResponse
+     */
+    metadata?: ResponseMetadata;
+    /**
+     * 
+     * @type {Array<RotatingTransactionGateway>}
+     * @memberof RotatingTransactionGatewaysResponse
+     */
+    rotating_gateways?: Array<RotatingTransactionGateway>;
+    /**
+     * Indicates if API call was successful
+     * @type {boolean}
+     * @memberof RotatingTransactionGatewaysResponse
+     */
+    success?: boolean;
+    /**
+     * 
+     * @type {Warning}
+     * @memberof RotatingTransactionGatewaysResponse
+     */
+    warning?: Warning;
+}
+
+/**
+ * 
+ * @export
  * @interface RtgCurrency
  */
 export interface RtgCurrency {
@@ -26668,6 +26826,166 @@ export interface RtgDayOfWeekRestriction {
      * @memberof RtgDayOfWeekRestriction
      */
     selected?: boolean;
+}
+
+/**
+ * 
+ * @export
+ * @interface RtgSummary
+ */
+export interface RtgSummary {
+    /**
+     * 
+     * @type {Array<RtgSummaryGateway>}
+     * @memberof RtgSummary
+     */
+    gateways?: Array<RtgSummaryGateway>;
+    /**
+     * 
+     * @type {string}
+     * @memberof RtgSummary
+     */
+    info_message?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof RtgSummary
+     */
+    migration_rtg_code?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof RtgSummary
+     */
+    migration_single_gateway_name?: string;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof RtgSummary
+     */
+    show_delay_auto_orders?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof RtgSummary
+     */
+    show_migration?: boolean;
+    /**
+     * 
+     * @type {string}
+     * @memberof RtgSummary
+     */
+    warning?: string;
+}
+
+/**
+ * 
+ * @export
+ * @interface RtgSummaryGateway
+ */
+export interface RtgSummaryGateway {
+    /**
+     * 
+     * @type {string}
+     * @memberof RtgSummaryGateway
+     */
+    cascade_code?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof RtgSummaryGateway
+     */
+    code?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof RtgSummaryGateway
+     */
+    delay_auto_orders?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof RtgSummaryGateway
+     */
+    name?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof RtgSummaryGateway
+     */
+    reserve_percentage?: number;
+    /**
+     * An optional date specifying the date up to which your gateway has released all reserve funds.  This aids in profitability reporting.
+     * @type {string}
+     * @memberof RtgSummaryGateway
+     */
+    reserves_released_through?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof RtgSummaryGateway
+     */
+    rotating_transaction_gateway_oid?: number;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof RtgSummaryGateway
+     */
+    show_ultracart_payments_verification?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof RtgSummaryGateway
+     */
+    show_ultracart_payments_verified?: boolean;
+    /**
+     * 
+     * @type {string}
+     * @memberof RtgSummaryGateway
+     */
+    status?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof RtgSummaryGateway
+     */
+    supports_auth?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof RtgSummaryGateway
+     */
+    supports_refund?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof RtgSummaryGateway
+     */
+    third_party?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof RtgSummaryGateway
+     */
+    traffic_percentage?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof RtgSummaryGateway
+     */
+    warning?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof RtgSummaryGateway
+     */
+    wepay_account_update_uri?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof RtgSummaryGateway
+     */
+    wepay_console_hostname?: string;
 }
 
 /**
@@ -37620,7 +37938,7 @@ export const ConfigurationApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getPaymentsRotatingTransactionGateways(options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<RotatingTransactionGateway> {
+        getPaymentsRotatingTransactionGateways(options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<RotatingTransactionGatewaysResponse> {
             const localVarFetchArgs = ConfigurationApiFetchParamCreator(configuration).getPaymentsRotatingTransactionGateways(options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
@@ -37640,7 +37958,7 @@ export const ConfigurationApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getPaymentsRtgSummaries(options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<RotatingTransactionGateway> {
+        getPaymentsRtgSummaries(options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<RtgSummary> {
             const localVarFetchArgs = ConfigurationApiFetchParamCreator(configuration).getPaymentsRtgSummaries(options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
@@ -38043,7 +38361,7 @@ export interface ConfigurationApiInterface {
      * @throws {RequiredError}
      * @memberof ConfigurationApiInterface
      */
-    getPaymentsRotatingTransactionGateways(options?: any): Promise<RotatingTransactionGateway>;
+    getPaymentsRotatingTransactionGateways(options?: any): Promise<RotatingTransactionGatewaysResponse>;
 
     /**
      * Retrieve a summary of rotating transaction gateways 
@@ -38052,7 +38370,7 @@ export interface ConfigurationApiInterface {
      * @throws {RequiredError}
      * @memberof ConfigurationApiInterface
      */
-    getPaymentsRtgSummaries(options?: any): Promise<RotatingTransactionGateway>;
+    getPaymentsRtgSummaries(options?: any): Promise<RtgSummary>;
 
     /**
      * Retrieve a list of transaction gateways 
@@ -43273,6 +43591,61 @@ export const IntegrationLogApiFetchParamCreator = function (configuration?: Conf
             };
         },
         /**
+         * Retrieves a set of integration log summaries from the account based on a query object. 
+         * @summary Retrieve integration log summaries
+         * @param {IntegrationLogSummaryQueryRequest} integration_log_summaries_query Integration log summaries query
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getIntegrationLogSummariesQuery(integration_log_summaries_query: IntegrationLogSummaryQueryRequest, options: any = {}): FetchArgs {
+            // verify required parameter 'integration_log_summaries_query' is not null or undefined
+            if (integration_log_summaries_query === null || integration_log_summaries_query === undefined) {
+                throw new RequiredError('integration_log_summaries_query','Required parameter integration_log_summaries_query was null or undefined when calling getIntegrationLogSummariesQuery.');
+            }
+            const localVarPath = `/integration_log/summary/query`;
+            const localVarUrlObj = url.parse(localVarPath, true);
+            const localVarRequestOptions = Object.assign({ method: 'POST' }, options);
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+    if(configuration && configuration.apiVersion) {
+      localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+    }
+
+
+
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+				const localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+					? configuration.accessToken("ultraCartOauth", ["integration_log_read"])
+					: configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
+					? configuration.apiKey("x-ultracart-simple-key")
+					: configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+            const needsSerialization = (<any>"IntegrationLogSummaryQueryRequest" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
+            localVarRequestOptions.body =  needsSerialization ? JSON.stringify(integration_log_summaries_query || {}) : (integration_log_summaries_query || "");
+
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
          * Retrieves a set of integration logs from the account based on a query object. 
          * @summary Retrieve integration logs
          * @param {IntegrationLogQueryRequest} integration_log_query Integration log query
@@ -43397,6 +43770,27 @@ export const IntegrationLogApiFp = function(configuration?: Configuration) {
             };
         },
         /**
+         * Retrieves a set of integration log summaries from the account based on a query object. 
+         * @summary Retrieve integration log summaries
+         * @param {IntegrationLogSummaryQueryRequest} integration_log_summaries_query Integration log summaries query
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getIntegrationLogSummariesQuery(integration_log_summaries_query: IntegrationLogSummaryQueryRequest, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<IntegrationLogSummaryQueryResponse> {
+            const localVarFetchArgs = IntegrationLogApiFetchParamCreator(configuration).getIntegrationLogSummariesQuery(integration_log_summaries_query, options);
+            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
+                    if (response.status >= 200 && response.status < 300) {
+                      return response.json();
+                      
+                    } else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
          * Retrieves a set of integration logs from the account based on a query object. 
          * @summary Retrieve integration logs
          * @param {IntegrationLogQueryRequest} integration_log_query Integration log query
@@ -43453,6 +43847,16 @@ export const IntegrationLogApiFactory = function (configuration?: Configuration,
             return IntegrationLogApiFp(configuration).getIntegrationLogFile(pk, sk, uuid, options)(fetch, basePath);
         },
         /**
+         * Retrieves a set of integration log summaries from the account based on a query object. 
+         * @summary Retrieve integration log summaries
+         * @param {IntegrationLogSummaryQueryRequest} integration_log_summaries_query Integration log summaries query
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getIntegrationLogSummariesQuery(integration_log_summaries_query: IntegrationLogSummaryQueryRequest, options?: any) {
+            return IntegrationLogApiFp(configuration).getIntegrationLogSummariesQuery(integration_log_summaries_query, options)(fetch, basePath);
+        },
+        /**
          * Retrieves a set of integration logs from the account based on a query object. 
          * @summary Retrieve integration logs
          * @param {IntegrationLogQueryRequest} integration_log_query Integration log query
@@ -43496,6 +43900,16 @@ export interface IntegrationLogApiInterface {
      * @memberof IntegrationLogApiInterface
      */
     getIntegrationLogFile(pk: string, sk: string, uuid: string, options?: any): Promise<Blob>;
+
+    /**
+     * Retrieves a set of integration log summaries from the account based on a query object. 
+     * @summary Retrieve integration log summaries
+     * @param {IntegrationLogSummaryQueryRequest} integration_log_summaries_query Integration log summaries query
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof IntegrationLogApiInterface
+     */
+    getIntegrationLogSummariesQuery(integration_log_summaries_query: IntegrationLogSummaryQueryRequest, options?: any): Promise<IntegrationLogSummaryQueryResponse>;
 
     /**
      * Retrieves a set of integration logs from the account based on a query object. 
@@ -43544,6 +43958,18 @@ export class IntegrationLogApi extends BaseAPI implements IntegrationLogApiInter
      */
     public getIntegrationLogFile(pk: string, sk: string, uuid: string, options?: any) {
         return IntegrationLogApiFp(this.configuration).getIntegrationLogFile(pk, sk, uuid, options)(this.fetch, this.basePath);
+    }
+
+    /**
+     * Retrieves a set of integration log summaries from the account based on a query object. 
+     * @summary Retrieve integration log summaries
+     * @param {IntegrationLogSummaryQueryRequest} integration_log_summaries_query Integration log summaries query
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof IntegrationLogApi
+     */
+    public getIntegrationLogSummariesQuery(integration_log_summaries_query: IntegrationLogSummaryQueryRequest, options?: any) {
+        return IntegrationLogApiFp(this.configuration).getIntegrationLogSummariesQuery(integration_log_summaries_query, options)(this.fetch, this.basePath);
     }
 
     /**

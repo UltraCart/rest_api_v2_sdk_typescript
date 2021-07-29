@@ -10290,6 +10290,54 @@ var IntegrationLogApiFetchParamCreator = function (configuration) {
             };
         },
         /**
+         * Retrieves a set of integration log summaries from the account based on a query object.
+         * @summary Retrieve integration log summaries
+         * @param {IntegrationLogSummaryQueryRequest} integration_log_summaries_query Integration log summaries query
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getIntegrationLogSummariesQuery: function (integration_log_summaries_query, options) {
+            if (options === void 0) { options = {}; }
+            // verify required parameter 'integration_log_summaries_query' is not null or undefined
+            if (integration_log_summaries_query === null || integration_log_summaries_query === undefined) {
+                throw new RequiredError('integration_log_summaries_query', 'Required parameter integration_log_summaries_query was null or undefined when calling getIntegrationLogSummariesQuery.');
+            }
+            var localVarPath = "/integration_log/summary/query";
+            var localVarUrlObj = url.parse(localVarPath, true);
+            var localVarRequestOptions = Object.assign({ method: 'POST' }, options);
+            var localVarHeaderParameter = {};
+            var localVarQueryParameter = {};
+            if (configuration && configuration.apiVersion) {
+                localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+            }
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+                var localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+                    ? configuration.accessToken("ultraCartOauth", ["integration_log_read"])
+                    : configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                var localVarApiKeyValue = typeof configuration.apiKey === 'function'
+                    ? configuration.apiKey("x-ultracart-simple-key")
+                    : configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+            var needsSerialization = ("IntegrationLogSummaryQueryRequest" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
+            localVarRequestOptions.body = needsSerialization ? JSON.stringify(integration_log_summaries_query || {}) : (integration_log_summaries_query || "");
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
          * Retrieves a set of integration logs from the account based on a query object.
          * @summary Retrieve integration logs
          * @param {IntegrationLogQueryRequest} integration_log_query Integration log query
@@ -10406,6 +10454,28 @@ var IntegrationLogApiFp = function (configuration) {
             };
         },
         /**
+         * Retrieves a set of integration log summaries from the account based on a query object.
+         * @summary Retrieve integration log summaries
+         * @param {IntegrationLogSummaryQueryRequest} integration_log_summaries_query Integration log summaries query
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getIntegrationLogSummariesQuery: function (integration_log_summaries_query, options) {
+            var localVarFetchArgs = exports.IntegrationLogApiFetchParamCreator(configuration).getIntegrationLogSummariesQuery(integration_log_summaries_query, options);
+            return function (fetch, basePath) {
+                if (fetch === void 0) { fetch = portableFetch; }
+                if (basePath === void 0) { basePath = BASE_PATH; }
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(function (response) {
+                    if (response.status >= 200 && response.status < 300) {
+                        return response.json();
+                    }
+                    else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
          * Retrieves a set of integration logs from the account based on a query object.
          * @summary Retrieve integration logs
          * @param {IntegrationLogQueryRequest} integration_log_query Integration log query
@@ -10463,6 +10533,16 @@ var IntegrationLogApiFactory = function (configuration, fetch, basePath) {
             return exports.IntegrationLogApiFp(configuration).getIntegrationLogFile(pk, sk, uuid, options)(fetch, basePath);
         },
         /**
+         * Retrieves a set of integration log summaries from the account based on a query object.
+         * @summary Retrieve integration log summaries
+         * @param {IntegrationLogSummaryQueryRequest} integration_log_summaries_query Integration log summaries query
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getIntegrationLogSummariesQuery: function (integration_log_summaries_query, options) {
+            return exports.IntegrationLogApiFp(configuration).getIntegrationLogSummariesQuery(integration_log_summaries_query, options)(fetch, basePath);
+        },
+        /**
          * Retrieves a set of integration logs from the account based on a query object.
          * @summary Retrieve integration logs
          * @param {IntegrationLogQueryRequest} integration_log_query Integration log query
@@ -10513,6 +10593,17 @@ var IntegrationLogApi = /** @class */ (function (_super) {
      */
     IntegrationLogApi.prototype.getIntegrationLogFile = function (pk, sk, uuid, options) {
         return exports.IntegrationLogApiFp(this.configuration).getIntegrationLogFile(pk, sk, uuid, options)(this.fetch, this.basePath);
+    };
+    /**
+     * Retrieves a set of integration log summaries from the account based on a query object.
+     * @summary Retrieve integration log summaries
+     * @param {IntegrationLogSummaryQueryRequest} integration_log_summaries_query Integration log summaries query
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof IntegrationLogApi
+     */
+    IntegrationLogApi.prototype.getIntegrationLogSummariesQuery = function (integration_log_summaries_query, options) {
+        return exports.IntegrationLogApiFp(this.configuration).getIntegrationLogSummariesQuery(integration_log_summaries_query, options)(this.fetch, this.basePath);
     };
     /**
      * Retrieves a set of integration logs from the account based on a query object.
