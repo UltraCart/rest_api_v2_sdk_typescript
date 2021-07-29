@@ -26721,6 +26721,44 @@ export namespace RotatingTransactionGateway {
 /**
  * 
  * @export
+ * @interface RotatingTransactionGatewayResponse
+ */
+export interface RotatingTransactionGatewayResponse {
+    /**
+     * 
+     * @type {ModelError}
+     * @memberof RotatingTransactionGatewayResponse
+     */
+    error?: ModelError;
+    /**
+     * 
+     * @type {ResponseMetadata}
+     * @memberof RotatingTransactionGatewayResponse
+     */
+    metadata?: ResponseMetadata;
+    /**
+     * 
+     * @type {RotatingTransactionGateway}
+     * @memberof RotatingTransactionGatewayResponse
+     */
+    rotating_gateway?: RotatingTransactionGateway;
+    /**
+     * Indicates if API call was successful
+     * @type {boolean}
+     * @memberof RotatingTransactionGatewayResponse
+     */
+    success?: boolean;
+    /**
+     * 
+     * @type {Warning}
+     * @memberof RotatingTransactionGatewayResponse
+     */
+    warning?: Warning;
+}
+
+/**
+ * 
+ * @export
  * @interface RotatingTransactionGatewaysResponse
  */
 export interface RotatingTransactionGatewaysResponse {
@@ -26831,56 +26869,6 @@ export interface RtgDayOfWeekRestriction {
 /**
  * 
  * @export
- * @interface RtgSummary
- */
-export interface RtgSummary {
-    /**
-     * 
-     * @type {Array<RtgSummaryGateway>}
-     * @memberof RtgSummary
-     */
-    gateways?: Array<RtgSummaryGateway>;
-    /**
-     * 
-     * @type {string}
-     * @memberof RtgSummary
-     */
-    info_message?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof RtgSummary
-     */
-    migration_rtg_code?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof RtgSummary
-     */
-    migration_single_gateway_name?: string;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof RtgSummary
-     */
-    show_delay_auto_orders?: boolean;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof RtgSummary
-     */
-    show_migration?: boolean;
-    /**
-     * 
-     * @type {string}
-     * @memberof RtgSummary
-     */
-    warning?: string;
-}
-
-/**
- * 
- * @export
  * @interface RtgSummaryGateway
  */
 export interface RtgSummaryGateway {
@@ -26986,6 +26974,56 @@ export interface RtgSummaryGateway {
      * @memberof RtgSummaryGateway
      */
     wepay_console_hostname?: string;
+}
+
+/**
+ * 
+ * @export
+ * @interface RtgSummaryResponse
+ */
+export interface RtgSummaryResponse {
+    /**
+     * 
+     * @type {Array<RtgSummaryGateway>}
+     * @memberof RtgSummaryResponse
+     */
+    gateways?: Array<RtgSummaryGateway>;
+    /**
+     * 
+     * @type {string}
+     * @memberof RtgSummaryResponse
+     */
+    info_message?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof RtgSummaryResponse
+     */
+    migration_rtg_code?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof RtgSummaryResponse
+     */
+    migration_single_gateway_name?: string;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof RtgSummaryResponse
+     */
+    show_delay_auto_orders?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof RtgSummaryResponse
+     */
+    show_migration?: boolean;
+    /**
+     * 
+     * @type {string}
+     * @memberof RtgSummaryResponse
+     */
+    warning?: string;
 }
 
 /**
@@ -37876,7 +37914,7 @@ export const ConfigurationApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getPaymentsConfiguration(options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<PaymentsConfiguration> {
+        getPaymentsConfiguration(options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<PaymentsConfigurationResponse> {
             const localVarFetchArgs = ConfigurationApiFetchParamCreator(configuration).getPaymentsConfiguration(options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
@@ -37897,7 +37935,7 @@ export const ConfigurationApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getPaymentsRotatingGateway(rtg_oid: number, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<RotatingTransactionGateway> {
+        getPaymentsRotatingGateway(rtg_oid: number, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<RotatingTransactionGatewayResponse> {
             const localVarFetchArgs = ConfigurationApiFetchParamCreator(configuration).getPaymentsRotatingGateway(rtg_oid, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
@@ -37918,7 +37956,7 @@ export const ConfigurationApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getPaymentsRotatingGatewayByCode(code: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<RotatingTransactionGateway> {
+        getPaymentsRotatingGatewayByCode(code: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<RotatingTransactionGatewayResponse> {
             const localVarFetchArgs = ConfigurationApiFetchParamCreator(configuration).getPaymentsRotatingGatewayByCode(code, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
@@ -37958,7 +37996,7 @@ export const ConfigurationApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getPaymentsRtgSummaries(options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<RtgSummary> {
+        getPaymentsRtgSummaries(options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<RtgSummaryResponse> {
             const localVarFetchArgs = ConfigurationApiFetchParamCreator(configuration).getPaymentsRtgSummaries(options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
@@ -37999,7 +38037,7 @@ export const ConfigurationApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        insertRotatingTransactionGateway(rotating_transaction_gateway: RotatingTransactionGateway, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<RotatingTransactionGateway> {
+        insertRotatingTransactionGateway(rotating_transaction_gateway: RotatingTransactionGateway, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<RotatingTransactionGatewayResponse> {
             const localVarFetchArgs = ConfigurationApiFetchParamCreator(configuration).insertRotatingTransactionGateway(rotating_transaction_gateway, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
@@ -38020,7 +38058,7 @@ export const ConfigurationApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        migrateToRotatingTransactionGateway(code: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<RotatingTransactionGateway> {
+        migrateToRotatingTransactionGateway(code: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<RotatingTransactionGatewayResponse> {
             const localVarFetchArgs = ConfigurationApiFetchParamCreator(configuration).migrateToRotatingTransactionGateway(code, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
@@ -38332,7 +38370,7 @@ export interface ConfigurationApiInterface {
      * @throws {RequiredError}
      * @memberof ConfigurationApiInterface
      */
-    getPaymentsConfiguration(options?: any): Promise<PaymentsConfiguration>;
+    getPaymentsConfiguration(options?: any): Promise<PaymentsConfigurationResponse>;
 
     /**
      * Retrieve a rotating transaction gateway 
@@ -38342,7 +38380,7 @@ export interface ConfigurationApiInterface {
      * @throws {RequiredError}
      * @memberof ConfigurationApiInterface
      */
-    getPaymentsRotatingGateway(rtg_oid: number, options?: any): Promise<RotatingTransactionGateway>;
+    getPaymentsRotatingGateway(rtg_oid: number, options?: any): Promise<RotatingTransactionGatewayResponse>;
 
     /**
      * Retrieve a rotating transaction gateway by code 
@@ -38352,7 +38390,7 @@ export interface ConfigurationApiInterface {
      * @throws {RequiredError}
      * @memberof ConfigurationApiInterface
      */
-    getPaymentsRotatingGatewayByCode(code: string, options?: any): Promise<RotatingTransactionGateway>;
+    getPaymentsRotatingGatewayByCode(code: string, options?: any): Promise<RotatingTransactionGatewayResponse>;
 
     /**
      * Retrieve a list of rotating transaction gateways 
@@ -38370,7 +38408,7 @@ export interface ConfigurationApiInterface {
      * @throws {RequiredError}
      * @memberof ConfigurationApiInterface
      */
-    getPaymentsRtgSummaries(options?: any): Promise<RtgSummary>;
+    getPaymentsRtgSummaries(options?: any): Promise<RtgSummaryResponse>;
 
     /**
      * Retrieve a list of transaction gateways 
@@ -38389,7 +38427,7 @@ export interface ConfigurationApiInterface {
      * @throws {RequiredError}
      * @memberof ConfigurationApiInterface
      */
-    insertRotatingTransactionGateway(rotating_transaction_gateway: RotatingTransactionGateway, options?: any): Promise<RotatingTransactionGateway>;
+    insertRotatingTransactionGateway(rotating_transaction_gateway: RotatingTransactionGateway, options?: any): Promise<RotatingTransactionGatewayResponse>;
 
     /**
      * Migrate a normal transaction gateway to a rotating transaction gateway 
@@ -38399,7 +38437,7 @@ export interface ConfigurationApiInterface {
      * @throws {RequiredError}
      * @memberof ConfigurationApiInterface
      */
-    migrateToRotatingTransactionGateway(code: string, options?: any): Promise<RotatingTransactionGateway>;
+    migrateToRotatingTransactionGateway(code: string, options?: any): Promise<RotatingTransactionGatewayResponse>;
 
     /**
      * Begin the processing of connecting with Stripe. 
