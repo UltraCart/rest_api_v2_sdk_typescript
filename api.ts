@@ -9003,6 +9003,44 @@ export interface DataTablesServerSideResponse {
 /**
  * 
  * @export
+ * @interface DelayAutoOrdersResponse
+ */
+export interface DelayAutoOrdersResponse {
+    /**
+     * 
+     * @type {ModelError}
+     * @memberof DelayAutoOrdersResponse
+     */
+    error?: ModelError;
+    /**
+     * 
+     * @type {string}
+     * @memberof DelayAutoOrdersResponse
+     */
+    message?: string;
+    /**
+     * 
+     * @type {ResponseMetadata}
+     * @memberof DelayAutoOrdersResponse
+     */
+    metadata?: ResponseMetadata;
+    /**
+     * Indicates if API call was successful
+     * @type {boolean}
+     * @memberof DelayAutoOrdersResponse
+     */
+    success?: boolean;
+    /**
+     * 
+     * @type {Warning}
+     * @memberof DelayAutoOrdersResponse
+     */
+    warning?: Warning;
+}
+
+/**
+ * 
+ * @export
  * @interface Distance
  */
 export interface Distance {
@@ -24512,6 +24550,1306 @@ export interface OrdersResponse {
 /**
  * 
  * @export
+ * @interface PaymentsConfiguration
+ */
+export interface PaymentsConfiguration {
+    /**
+     * 
+     * @type {PaymentsConfigurationAffirm}
+     * @memberof PaymentsConfiguration
+     */
+    affirm?: PaymentsConfigurationAffirm;
+    /**
+     * 
+     * @type {PaymentsConfigurationAmazon}
+     * @memberof PaymentsConfiguration
+     */
+    amazon?: PaymentsConfigurationAmazon;
+    /**
+     * 
+     * @type {PaymentsConfigurationCash}
+     * @memberof PaymentsConfiguration
+     */
+    cash?: PaymentsConfigurationCash;
+    /**
+     * 
+     * @type {PaymentsConfigurationCheck}
+     * @memberof PaymentsConfiguration
+     */
+    check?: PaymentsConfigurationCheck;
+    /**
+     * 
+     * @type {PaymentsConfigurationCOD}
+     * @memberof PaymentsConfiguration
+     */
+    cod?: PaymentsConfigurationCOD;
+    /**
+     * 
+     * @type {PaymentsConfigurationCreditCard}
+     * @memberof PaymentsConfiguration
+     */
+    creditCard?: PaymentsConfigurationCreditCard;
+    /**
+     * 
+     * @type {PaymentsConfigurationLoanHero}
+     * @memberof PaymentsConfiguration
+     */
+    loanHero?: PaymentsConfigurationLoanHero;
+    /**
+     * 
+     * @type {PaymentsConfigurationPayPal}
+     * @memberof PaymentsConfiguration
+     */
+    payPal?: PaymentsConfigurationPayPal;
+    /**
+     * 
+     * @type {PaymentsConfigurationPurchaseOrder}
+     * @memberof PaymentsConfiguration
+     */
+    purchaseOrder?: PaymentsConfigurationPurchaseOrder;
+    /**
+     * 
+     * @type {PaymentsConfigurationQuoteRequest}
+     * @memberof PaymentsConfiguration
+     */
+    quoteRequest?: PaymentsConfigurationQuoteRequest;
+    /**
+     * 
+     * @type {PaymentsConfigurationSezzle}
+     * @memberof PaymentsConfiguration
+     */
+    sezzle?: PaymentsConfigurationSezzle;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof PaymentsConfiguration
+     */
+    showAccountingCode?: boolean;
+    /**
+     * 
+     * @type {string}
+     * @memberof PaymentsConfiguration
+     */
+    switchToSubTab?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PaymentsConfiguration
+     */
+    switchToTab?: string;
+    /**
+     * 
+     * @type {PaymentsConfigurationWePay}
+     * @memberof PaymentsConfiguration
+     */
+    wePay?: PaymentsConfigurationWePay;
+    /**
+     * 
+     * @type {PaymentsConfigurationWireTransfer}
+     * @memberof PaymentsConfiguration
+     */
+    wireTransfer?: PaymentsConfigurationWireTransfer;
+}
+
+/**
+ * 
+ * @export
+ * @interface PaymentsConfigurationAffirm
+ */
+export interface PaymentsConfigurationAffirm {
+    /**
+     * 
+     * @type {boolean}
+     * @memberof PaymentsConfigurationAffirm
+     */
+    acceptAffirm?: boolean;
+    /**
+     * 
+     * @type {string}
+     * @memberof PaymentsConfigurationAffirm
+     */
+    affirmAccountingCode?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PaymentsConfigurationAffirm
+     */
+    affirmDepositToAccount?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PaymentsConfigurationAffirm
+     */
+    affirmEnvironment?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PaymentsConfigurationAffirm
+     */
+    affirmFinancialProductKey?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PaymentsConfigurationAffirm
+     */
+    affirmPrivateApiKey?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PaymentsConfigurationAffirm
+     */
+    affirmPublicApiKey?: string;
+    /**
+     * 
+     * @type {PaymentsConfigurationRestrictions}
+     * @memberof PaymentsConfigurationAffirm
+     */
+    restrictions?: PaymentsConfigurationRestrictions;
+}
+
+/**
+ * 
+ * @export
+ * @interface PaymentsConfigurationAmazon
+ */
+export interface PaymentsConfigurationAmazon {
+    /**
+     * 
+     * @type {boolean}
+     * @memberof PaymentsConfigurationAmazon
+     */
+    acceptAmazon?: boolean;
+    /**
+     * 
+     * @type {string}
+     * @memberof PaymentsConfigurationAmazon
+     */
+    amazonAccessKeyId?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PaymentsConfigurationAmazon
+     */
+    amazonAccountingCode?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PaymentsConfigurationAmazon
+     */
+    amazonDepositToAccount?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PaymentsConfigurationAmazon
+     */
+    amazonMerchantId?: string;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof PaymentsConfigurationAmazon
+     */
+    amazonSandbox?: boolean;
+    /**
+     * 
+     * @type {string}
+     * @memberof PaymentsConfigurationAmazon
+     */
+    amazonSecretAccessKey?: string;
+    /**
+     * 
+     * @type {PaymentsConfigurationRestrictions}
+     * @memberof PaymentsConfigurationAmazon
+     */
+    restrictions?: PaymentsConfigurationRestrictions;
+}
+
+/**
+ * 
+ * @export
+ * @interface PaymentsConfigurationCOD
+ */
+export interface PaymentsConfigurationCOD {
+    /**
+     * 
+     * @type {boolean}
+     * @memberof PaymentsConfigurationCOD
+     */
+    acceptCod?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof PaymentsConfigurationCOD
+     */
+    codApprovedCustomersOnly?: boolean;
+    /**
+     * 
+     * @type {string}
+     * @memberof PaymentsConfigurationCOD
+     */
+    codSurchargeAccountingCode?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PaymentsConfigurationCOD
+     */
+    codSurchargeFee?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PaymentsConfigurationCOD
+     */
+    codSurchargePerc?: string;
+    /**
+     * 
+     * @type {PaymentsConfigurationRestrictions}
+     * @memberof PaymentsConfigurationCOD
+     */
+    restrictions?: PaymentsConfigurationRestrictions;
+}
+
+/**
+ * 
+ * @export
+ * @interface PaymentsConfigurationCash
+ */
+export interface PaymentsConfigurationCash {
+    /**
+     * 
+     * @type {boolean}
+     * @memberof PaymentsConfigurationCash
+     */
+    acceptCash?: boolean;
+    /**
+     * 
+     * @type {PaymentsConfigurationRestrictions}
+     * @memberof PaymentsConfigurationCash
+     */
+    restrictions?: PaymentsConfigurationRestrictions;
+}
+
+/**
+ * 
+ * @export
+ * @interface PaymentsConfigurationCheck
+ */
+export interface PaymentsConfigurationCheck {
+    /**
+     * 
+     * @type {boolean}
+     * @memberof PaymentsConfigurationCheck
+     */
+    acceptCheckOrders?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof PaymentsConfigurationCheck
+     */
+    acceptECheck?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof PaymentsConfigurationCheck
+     */
+    acceptMoneyOrders?: boolean;
+    /**
+     * 
+     * @type {string}
+     * @memberof PaymentsConfigurationCheck
+     */
+    checkAccountingCode?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PaymentsConfigurationCheck
+     */
+    checkDepositToAccount?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PaymentsConfigurationCheck
+     */
+    checksPayableTo?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PaymentsConfigurationCheck
+     */
+    eCheckAccountingCode?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PaymentsConfigurationCheck
+     */
+    eCheckDepositToAccount?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PaymentsConfigurationCheck
+     */
+    mailToAddress1?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PaymentsConfigurationCheck
+     */
+    mailToAddress2?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PaymentsConfigurationCheck
+     */
+    mailToCity?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PaymentsConfigurationCheck
+     */
+    mailToCountry?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PaymentsConfigurationCheck
+     */
+    mailToName?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PaymentsConfigurationCheck
+     */
+    mailToState?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PaymentsConfigurationCheck
+     */
+    mailToZip?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PaymentsConfigurationCheck
+     */
+    moneyOrderAccountingCode?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PaymentsConfigurationCheck
+     */
+    moneyOrderDepositToAccount?: string;
+    /**
+     * 
+     * @type {PaymentsConfigurationRestrictions}
+     * @memberof PaymentsConfigurationCheck
+     */
+    restrictions?: PaymentsConfigurationRestrictions;
+}
+
+/**
+ * 
+ * @export
+ * @interface PaymentsConfigurationCreditCard
+ */
+export interface PaymentsConfigurationCreditCard {
+    /**
+     * 
+     * @type {boolean}
+     * @memberof PaymentsConfigurationCreditCard
+     */
+    acceptCreditCards?: boolean;
+    /**
+     * 
+     * @type {string}
+     * @memberof PaymentsConfigurationCreditCard
+     */
+    billedBy?: string;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof PaymentsConfigurationCreditCard
+     */
+    chargeDuringCheckout?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof PaymentsConfigurationCreditCard
+     */
+    collectCvv2?: boolean;
+    /**
+     * 
+     * @type {string}
+     * @memberof PaymentsConfigurationCreditCard
+     */
+    configuredGatewaysDetails?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PaymentsConfigurationCreditCard
+     */
+    failedAttempts?: string;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof PaymentsConfigurationCreditCard
+     */
+    hideConnectSingleGateway?: boolean;
+    /**
+     * 
+     * @type {string}
+     * @memberof PaymentsConfigurationCreditCard
+     */
+    immediateFinalizeDomains?: string;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof PaymentsConfigurationCreditCard
+     */
+    sendCustomerBillingUpdateOnDecline?: boolean;
+}
+
+/**
+ * 
+ * @export
+ * @interface PaymentsConfigurationLoanHero
+ */
+export interface PaymentsConfigurationLoanHero {
+    /**
+     * 
+     * @type {boolean}
+     * @memberof PaymentsConfigurationLoanHero
+     */
+    acceptLoanHero?: boolean;
+    /**
+     * 
+     * @type {string}
+     * @memberof PaymentsConfigurationLoanHero
+     */
+    loanHeroAccountingCode?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PaymentsConfigurationLoanHero
+     */
+    loanHeroDepositToAccount?: string;
+    /**
+     * 
+     * @type {PaymentsConfigurationRestrictions}
+     * @memberof PaymentsConfigurationLoanHero
+     */
+    restrictions?: PaymentsConfigurationRestrictions;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof PaymentsConfigurationLoanHero
+     */
+    showLoanHero?: boolean;
+}
+
+/**
+ * 
+ * @export
+ * @interface PaymentsConfigurationPayPal
+ */
+export interface PaymentsConfigurationPayPal {
+    /**
+     * 
+     * @type {boolean}
+     * @memberof PaymentsConfigurationPayPal
+     */
+    acceptPayPal?: boolean;
+    /**
+     * 
+     * @type {string}
+     * @memberof PaymentsConfigurationPayPal
+     */
+    paypalAccountingCode?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PaymentsConfigurationPayPal
+     */
+    paypalApiPassword?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PaymentsConfigurationPayPal
+     */
+    paypalApiUserName?: string;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof PaymentsConfigurationPayPal
+     */
+    paypalCertificateOnFile?: boolean;
+    /**
+     * 
+     * @type {string}
+     * @memberof PaymentsConfigurationPayPal
+     */
+    paypalDepositToAccount?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PaymentsConfigurationPayPal
+     */
+    paypalEmail?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PaymentsConfigurationPayPal
+     */
+    paypalEnvironment?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PaymentsConfigurationPayPal
+     */
+    paypalHeaderImageUrl?: string;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof PaymentsConfigurationPayPal
+     */
+    paypalHideBillMeLater?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof PaymentsConfigurationPayPal
+     */
+    paypalHideExpressCheckoutOnViewCart?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof PaymentsConfigurationPayPal
+     */
+    paypalHideForUnshippedOrders?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof PaymentsConfigurationPayPal
+     */
+    paypalHoldInAR?: boolean;
+    /**
+     * 
+     * @type {string}
+     * @memberof PaymentsConfigurationPayPal
+     */
+    paypalLandingPage?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PaymentsConfigurationPayPal
+     */
+    paypalMode?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PaymentsConfigurationPayPal
+     */
+    paypalPrivateKeyPassword?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PaymentsConfigurationPayPal
+     */
+    paypalProcessingFee?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PaymentsConfigurationPayPal
+     */
+    paypalProcessingPerc?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PaymentsConfigurationPayPal
+     */
+    paypalSendRecurring?: string;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof PaymentsConfigurationPayPal
+     */
+    paypalShowCardLogosNotDirectlySupported?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof PaymentsConfigurationPayPal
+     */
+    paypalShowSignature?: boolean;
+    /**
+     * 
+     * @type {string}
+     * @memberof PaymentsConfigurationPayPal
+     */
+    paypalSignature?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PaymentsConfigurationPayPal
+     */
+    paypalSolutionType?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PaymentsConfigurationPayPal
+     */
+    paypalSummaryEmail?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PaymentsConfigurationPayPal
+     */
+    paypalSummaryMode?: string;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof PaymentsConfigurationPayPal
+     */
+    paypalZeroDollarPenny?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof PaymentsConfigurationPayPal
+     */
+    pushPayPal?: boolean;
+    /**
+     * 
+     * @type {PaymentsConfigurationRestrictions}
+     * @memberof PaymentsConfigurationPayPal
+     */
+    restrictions?: PaymentsConfigurationRestrictions;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof PaymentsConfigurationPayPal
+     */
+    shortPayPalMarketingText?: boolean;
+}
+
+/**
+ * 
+ * @export
+ * @interface PaymentsConfigurationPurchaseOrder
+ */
+export interface PaymentsConfigurationPurchaseOrder {
+    /**
+     * 
+     * @type {boolean}
+     * @memberof PaymentsConfigurationPurchaseOrder
+     */
+    acceptPurchaseOrders?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof PaymentsConfigurationPurchaseOrder
+     */
+    purchaseOrderApprovedCustomersOnly?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof PaymentsConfigurationPurchaseOrder
+     */
+    purchaseOrderPreventDuplicateNumber?: boolean;
+    /**
+     * 
+     * @type {PaymentsConfigurationRestrictions}
+     * @memberof PaymentsConfigurationPurchaseOrder
+     */
+    restrictions?: PaymentsConfigurationRestrictions;
+}
+
+/**
+ * 
+ * @export
+ * @interface PaymentsConfigurationQuoteRequest
+ */
+export interface PaymentsConfigurationQuoteRequest {
+    /**
+     * 
+     * @type {boolean}
+     * @memberof PaymentsConfigurationQuoteRequest
+     */
+    acceptQuoteRequests?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof PaymentsConfigurationQuoteRequest
+     */
+    quoteRequestApprovedCustomersOnly?: boolean;
+    /**
+     * 
+     * @type {PaymentsConfigurationRestrictions}
+     * @memberof PaymentsConfigurationQuoteRequest
+     */
+    restrictions?: PaymentsConfigurationRestrictions;
+}
+
+/**
+ * 
+ * @export
+ * @interface PaymentsConfigurationResponse
+ */
+export interface PaymentsConfigurationResponse {
+    /**
+     * 
+     * @type {ModelError}
+     * @memberof PaymentsConfigurationResponse
+     */
+    error?: ModelError;
+    /**
+     * 
+     * @type {ResponseMetadata}
+     * @memberof PaymentsConfigurationResponse
+     */
+    metadata?: ResponseMetadata;
+    /**
+     * 
+     * @type {PaymentsConfiguration}
+     * @memberof PaymentsConfigurationResponse
+     */
+    payments_configuration?: PaymentsConfiguration;
+    /**
+     * Indicates if API call was successful
+     * @type {boolean}
+     * @memberof PaymentsConfigurationResponse
+     */
+    success?: boolean;
+    /**
+     * 
+     * @type {Warning}
+     * @memberof PaymentsConfigurationResponse
+     */
+    warning?: Warning;
+}
+
+/**
+ * 
+ * @export
+ * @interface PaymentsConfigurationRestrictions
+ */
+export interface PaymentsConfigurationRestrictions {
+    /**
+     * 
+     * @type {string}
+     * @memberof PaymentsConfigurationRestrictions
+     */
+    maximumSubtotal?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PaymentsConfigurationRestrictions
+     */
+    minimumSubtotal?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PaymentsConfigurationRestrictions
+     */
+    paymentMethod?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PaymentsConfigurationRestrictions
+     */
+    restrictionAlaskaHawaii?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PaymentsConfigurationRestrictions
+     */
+    restrictionApoFpo?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PaymentsConfigurationRestrictions
+     */
+    restrictionCanada?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PaymentsConfigurationRestrictions
+     */
+    restrictionContinentalUS?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PaymentsConfigurationRestrictions
+     */
+    restrictionDomesticOnly?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PaymentsConfigurationRestrictions
+     */
+    restrictionInternationalOnly?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PaymentsConfigurationRestrictions
+     */
+    restrictionPoBox?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PaymentsConfigurationRestrictions
+     */
+    restrictionPuertoRico?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PaymentsConfigurationRestrictions
+     */
+    restrictionUSTerritories?: string;
+}
+
+/**
+ * 
+ * @export
+ * @interface PaymentsConfigurationSezzle
+ */
+export interface PaymentsConfigurationSezzle {
+    /**
+     * 
+     * @type {boolean}
+     * @memberof PaymentsConfigurationSezzle
+     */
+    acceptSezzle?: boolean;
+    /**
+     * 
+     * @type {PaymentsConfigurationRestrictions}
+     * @memberof PaymentsConfigurationSezzle
+     */
+    restrictions?: PaymentsConfigurationRestrictions;
+    /**
+     * 
+     * @type {string}
+     * @memberof PaymentsConfigurationSezzle
+     */
+    sezzleAccountingCode?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PaymentsConfigurationSezzle
+     */
+    sezzleBusinessId?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PaymentsConfigurationSezzle
+     */
+    sezzleDepositToAccount?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PaymentsConfigurationSezzle
+     */
+    sezzleEnvironment?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PaymentsConfigurationSezzle
+     */
+    sezzlePrivateApiKey?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PaymentsConfigurationSezzle
+     */
+    sezzlePublicApiKey?: string;
+}
+
+/**
+ * 
+ * @export
+ * @interface PaymentsConfigurationWePay
+ */
+export interface PaymentsConfigurationWePay {
+    /**
+     * 
+     * @type {boolean}
+     * @memberof PaymentsConfigurationWePay
+     */
+    acceptWepay?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof PaymentsConfigurationWePay
+     */
+    hideCreditCardsNonUltraCartPayments?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof PaymentsConfigurationWePay
+     */
+    hideSurchargeContent?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof PaymentsConfigurationWePay
+     */
+    removePayPalPro?: boolean;
+    /**
+     * 
+     * @type {PaymentsConfigurationRestrictions}
+     * @memberof PaymentsConfigurationWePay
+     */
+    restrictions?: PaymentsConfigurationRestrictions;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof PaymentsConfigurationWePay
+     */
+    shortPayPalMarketingText?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof PaymentsConfigurationWePay
+     */
+    showUltraCartPaymentsDisabled?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof PaymentsConfigurationWePay
+     */
+    showUltraCartPaymentsIntro?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof PaymentsConfigurationWePay
+     */
+    showUltraCartPaymentsVerification?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof PaymentsConfigurationWePay
+     */
+    showUltraCartPaymentsVerified?: boolean;
+    /**
+     * 
+     * @type {string}
+     * @memberof PaymentsConfigurationWePay
+     */
+    wepayAccountUpdateUri?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PaymentsConfigurationWePay
+     */
+    wepayAddress1?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PaymentsConfigurationWePay
+     */
+    wepayAddress2?: string;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof PaymentsConfigurationWePay
+     */
+    wepayCanadaAcceptDebitCards?: boolean;
+    /**
+     * 
+     * @type {string}
+     * @memberof PaymentsConfigurationWePay
+     */
+    wepayCity?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PaymentsConfigurationWePay
+     */
+    wepayCompany?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PaymentsConfigurationWePay
+     */
+    wepayCompanyDescription?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PaymentsConfigurationWePay
+     */
+    wepayConsoleHostname?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PaymentsConfigurationWePay
+     */
+    wepayCountry?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PaymentsConfigurationWePay
+     */
+    wepayCurrency?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PaymentsConfigurationWePay
+     */
+    wepayExpectedRevenue?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PaymentsConfigurationWePay
+     */
+    wepayIndustry?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PaymentsConfigurationWePay
+     */
+    wepayOwnerEmail?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PaymentsConfigurationWePay
+     */
+    wepayOwnerName?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PaymentsConfigurationWePay
+     */
+    wepayOwnerPhone?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PaymentsConfigurationWePay
+     */
+    wepayState?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PaymentsConfigurationWePay
+     */
+    wepayWebsiteUrl?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PaymentsConfigurationWePay
+     */
+    wepayZip?: string;
+}
+
+/**
+ * 
+ * @export
+ * @interface PaymentsConfigurationWireTransfer
+ */
+export interface PaymentsConfigurationWireTransfer {
+    /**
+     * 
+     * @type {boolean}
+     * @memberof PaymentsConfigurationWireTransfer
+     */
+    acceptWireTransfer?: boolean;
+    /**
+     * 
+     * @type {PaymentsConfigurationRestrictions}
+     * @memberof PaymentsConfigurationWireTransfer
+     */
+    restrictions?: PaymentsConfigurationRestrictions;
+    /**
+     * 
+     * @type {string}
+     * @memberof PaymentsConfigurationWireTransfer
+     */
+    wireTransferAccountingCode?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PaymentsConfigurationWireTransfer
+     */
+    wireTransferAccountNumber?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PaymentsConfigurationWireTransfer
+     */
+    wireTransferBankAddress?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PaymentsConfigurationWireTransfer
+     */
+    wireTransferDepositToAccount?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PaymentsConfigurationWireTransfer
+     */
+    wireTransferIntermediateRoutingNumber?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PaymentsConfigurationWireTransfer
+     */
+    wireTransferRoutingNumber?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PaymentsConfigurationWireTransfer
+     */
+    wireTransferSurchargeAccountingCode?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PaymentsConfigurationWireTransfer
+     */
+    wireTransferSurchargeFee?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PaymentsConfigurationWireTransfer
+     */
+    wireTransferSurchargePerc?: string;
+}
+
+/**
+ * 
+ * @export
+ * @interface PaymentsThemeTransactionType
+ */
+export interface PaymentsThemeTransactionType {
+    /**
+     * External human readable identifier for a theme
+     * @type {string}
+     * @memberof PaymentsThemeTransactionType
+     */
+    code?: string;
+    /**
+     * The credit card transaction type for this theme
+     * @type {string}
+     * @memberof PaymentsThemeTransactionType
+     */
+    credit_card_transaction_type?: PaymentsThemeTransactionType.CreditCardTransactionTypeEnum;
+    /**
+     * Internal identifier for a theme
+     * @type {number}
+     * @memberof PaymentsThemeTransactionType
+     */
+    screen_branding_theme_oid?: number;
+}
+
+/**
+ * @export
+ * @namespace PaymentsThemeTransactionType
+ */
+export namespace PaymentsThemeTransactionType {
+    /**
+     * @export
+     * @enum {string}
+     */
+    export enum CreditCardTransactionTypeEnum {
+        AndCapture = <any> 'auth and capture',
+        ThenCapture = <any> 'auth then capture',
+        Only = <any> 'auth only'
+    }
+}
+
+/**
+ * 
+ * @export
+ * @interface PaymentsWepayEnroll
+ */
+export interface PaymentsWepayEnroll {
+    /**
+     * 
+     * @type {string}
+     * @memberof PaymentsWepayEnroll
+     */
+    address1?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PaymentsWepayEnroll
+     */
+    address2?: string;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof PaymentsWepayEnroll
+     */
+    canada_accept_debit_cards?: boolean;
+    /**
+     * 
+     * @type {string}
+     * @memberof PaymentsWepayEnroll
+     */
+    city?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PaymentsWepayEnroll
+     */
+    company?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PaymentsWepayEnroll
+     */
+    company_description?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PaymentsWepayEnroll
+     */
+    country?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PaymentsWepayEnroll
+     */
+    expected_revenue?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PaymentsWepayEnroll
+     */
+    industry?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PaymentsWepayEnroll
+     */
+    owner_email?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PaymentsWepayEnroll
+     */
+    owner_name?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PaymentsWepayEnroll
+     */
+    owner_phone?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PaymentsWepayEnroll
+     */
+    state?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PaymentsWepayEnroll
+     */
+    webiste_url?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PaymentsWepayEnroll
+     */
+    zip?: string;
+}
+
+/**
+ * 
+ * @export
  * @interface Permission
  */
 export interface Permission {
@@ -24965,6 +26303,413 @@ export interface ResultSet {
      * @memberof ResultSet
      */
     total_records?: number;
+}
+
+/**
+ * 
+ * @export
+ * @interface RotatingTransactionGateway
+ */
+export interface RotatingTransactionGateway {
+    /**
+     * An array of all currencies known to the UltraCart system and a boolean indicating whether this gateway supports that currency.
+     * @type {Array<RtgCurrency>}
+     * @memberof RotatingTransactionGateway
+     */
+    additional_native_currency_codes?: Array<RtgCurrency>;
+    /**
+     * Advanced feature for canceling an auto order unless the transaction gateway response contains a field with this name.  If specified, this field must exist and the value must equal a value in the auto_order_cancel_unless_response_values array
+     * @type {string}
+     * @memberof RotatingTransactionGateway
+     */
+    auto_order_cancel_unless_response_name?: string;
+    /**
+     * Advanced feature for canceling an auto order unless the transaction gateway response contains a field with the name specified in auto_order_cancel_unless_response_name.  If specified, this field must exist and the value must equal a value in this array.  If nothing matches, the auto order is canceled.
+     * @type {Array<string>}
+     * @memberof RotatingTransactionGateway
+     */
+    auto_order_cancel_unless_response_values?: Array<string>;
+    /**
+     * The base currency code for your gateway.  For example, USD.
+     * @type {string}
+     * @memberof RotatingTransactionGateway
+     */
+    base_currency_code?: string;
+    /**
+     * Optional field specifying a different rotating gateway to use if this gateway fails to process the transaction.
+     * @type {string}
+     * @memberof RotatingTransactionGateway
+     */
+    cascade_code?: string;
+    /**
+     * A list of other rotating transaction gateways that can be used as a lookup to assign actions based on failures of this gateway
+     * @type {Array<string>}
+     * @memberof RotatingTransactionGateway
+     */
+    cascade_codes?: Array<string>;
+    /**
+     * The code for the next rotating gateway that should be used when this gateway reaches a daily limit
+     * @type {string}
+     * @memberof RotatingTransactionGateway
+     */
+    cascade_daily_auto_order_code?: string;
+    /**
+     * Optional field providing an alternate Charge Appears As value for this rotating gateway
+     * @type {string}
+     * @memberof RotatingTransactionGateway
+     */
+    charge_appears_on_statement_as?: string;
+    /**
+     * A human friendly short code used to recognize and differentiate this rotating gateway with other rotating gateways
+     * @type {string}
+     * @memberof RotatingTransactionGateway
+     */
+    code?: string;
+    /**
+     * The current daily dollar amount this gateway has processed.  Providing this will allow UltraCart to track the monthly amount going forward.
+     * @type {number}
+     * @memberof RotatingTransactionGateway
+     */
+    current_daily?: number;
+    /**
+     * The current daily dollar amount of auto orders (recurring) this gateway has processed.  Providing this will allow UltraCart to track the monthly amount going forward.
+     * @type {number}
+     * @memberof RotatingTransactionGateway
+     */
+    current_daily_auto_order?: number;
+    /**
+     * The current monthly dollar amount this gateway has processed.  Providing this will allow UltraCart to track the monthly amount going forward.
+     * @type {number}
+     * @memberof RotatingTransactionGateway
+     */
+    current_monthly?: number;
+    /**
+     * The customer service email address for this gateway
+     * @type {string}
+     * @memberof RotatingTransactionGateway
+     */
+    customer_service_email?: string;
+    /**
+     * The customer service phone number for this gateway
+     * @type {string}
+     * @memberof RotatingTransactionGateway
+     */
+    customer_service_phone?: string;
+    /**
+     * Array containing all 31 (possible) days and any optional restrictions for one or more days.
+     * @type {Array<RtgDayOfMonthRestriction>}
+     * @memberof RotatingTransactionGateway
+     */
+    day_of_month_restrictions?: Array<RtgDayOfMonthRestriction>;
+    /**
+     * Array containing all seven days of the week and any optional restrictions for one or more days
+     * @type {Array<RtgDayOfWeekRestriction>}
+     * @memberof RotatingTransactionGateway
+     */
+    day_of_week_restrictions?: Array<RtgDayOfWeekRestriction>;
+    /**
+     * If non-zero, this gateway will be deactivated after reaching this amount of consecutive failures.
+     * @type {number}
+     * @memberof RotatingTransactionGateway
+     */
+    deactivate_after_failures?: number;
+    /**
+     * Optional field to specify an absolute date when this gateway should stop accepting transactions
+     * @type {string}
+     * @memberof RotatingTransactionGateway
+     */
+    end_date?: string;
+    /**
+     * An array of all transaction gateways, not just the one currently configured for this rotating gateway. This allows for easy switching to another gateway.  The enabled property on the transaction gateway indicates which one is actually being used.
+     * @type {Array<TransactionGateway>}
+     * @memberof RotatingTransactionGateway
+     */
+    gateways?: Array<TransactionGateway>;
+    /**
+     * The maximum daily dollar amount this gateway may process
+     * @type {number}
+     * @memberof RotatingTransactionGateway
+     */
+    maximum_daily?: number;
+    /**
+     * The maximum daily dollar amount of auto orders (recurring) this gateway may process
+     * @type {number}
+     * @memberof RotatingTransactionGateway
+     */
+    maximum_daily_auto_order?: number;
+    /**
+     * The maximum monthly dollar amount this gateway may process.
+     * @type {number}
+     * @memberof RotatingTransactionGateway
+     */
+    maximum_monthly?: number;
+    /**
+     * The date and time when this gateway daily limit for auto orders will reset
+     * @type {string}
+     * @memberof RotatingTransactionGateway
+     */
+    next_daily_auto_order_reset?: string;
+    /**
+     * The date and time when this gateway daily limit will reset
+     * @type {string}
+     * @memberof RotatingTransactionGateway
+     */
+    next_daily_reset?: string;
+    /**
+     * The date and time when this gateway monthly limit will reset
+     * @type {string}
+     * @memberof RotatingTransactionGateway
+     */
+    next_monthly_reset?: string;
+    /**
+     * This optional field is combined with order_total_comparison to determine if an order should be processed thorugh this gateway.
+     * @type {number}
+     * @memberof RotatingTransactionGateway
+     */
+    order_total?: number;
+    /**
+     * The math operator used to determine if the order total is allowed to process through this gateway.
+     * @type {string}
+     * @memberof RotatingTransactionGateway
+     */
+    order_total_comparison?: RotatingTransactionGateway.OrderTotalComparisonEnum;
+    /**
+     * If specified auto orders (rebills) are routed to this rotating gateway.  This may be needed because rebills lack a credit card cvv.
+     * @type {string}
+     * @memberof RotatingTransactionGateway
+     */
+    rebill_auto_orders_against_this_rtg_code?: string;
+    /**
+     * The number of days that your gateway holds any reserves.  This aids in profitability reporting.
+     * @type {number}
+     * @memberof RotatingTransactionGateway
+     */
+    reserve_days?: number;
+    /**
+     * The percentage of an order which your gateway is holding in reserve.  This aids in profitability reporting.
+     * @type {number}
+     * @memberof RotatingTransactionGateway
+     */
+    reserve_percentage?: number;
+    /**
+     * If true, reserves are refunded when an order is refunded.  This aids in profitability reporting.
+     * @type {boolean}
+     * @memberof RotatingTransactionGateway
+     */
+    reserve_refunded?: boolean;
+    /**
+     * An optional date specifying the date up to which your gateway has released all reserve funds.  This aids in profitability reporting.
+     * @type {string}
+     * @memberof RotatingTransactionGateway
+     */
+    reserves_released_through?: string;
+    /**
+     * Internal identifier used to store and retrieve this gateway information
+     * @type {number}
+     * @memberof RotatingTransactionGateway
+     */
+    rotating_transaction_gateway_oid?: number;
+    /**
+     * The name of the currently selected transaction gateway used by this rotating gateway
+     * @type {string}
+     * @memberof RotatingTransactionGateway
+     */
+    selected_gateway_name?: string;
+    /**
+     * A boolean used by the builtin UltraCart UI to determine if cascading rtg codes should be shown
+     * @type {boolean}
+     * @memberof RotatingTransactionGateway
+     */
+    show_cascade_codes?: boolean;
+    /**
+     * A flag to help the UltraCart UI to know whether to show merchant account profiles or not.
+     * @type {boolean}
+     * @memberof RotatingTransactionGateway
+     */
+    show_merchant_account_profiles?: boolean;
+    /**
+     * Optional field to specify an absolute date when this gateway should begin accepting transactions
+     * @type {string}
+     * @memberof RotatingTransactionGateway
+     */
+    start_date?: string;
+    /**
+     * A field used to take a gateway offline without removing/deleting the configuration. Inactive marks the gateway as completely unusable.  Standby takes the gateway offline and will not be used unless all other active gateways fail.
+     * @type {string}
+     * @memberof RotatingTransactionGateway
+     */
+    status?: RotatingTransactionGateway.StatusEnum;
+    /**
+     * Optional restrictions by theme/storefront
+     * @type {Array<RtgThemeRestriction>}
+     * @memberof RotatingTransactionGateway
+     */
+    theme_restrictions?: Array<RtgThemeRestriction>;
+    /**
+     * Required field between 0 and 1 that dictates the percentage of traffic that should flow through this gateway
+     * @type {number}
+     * @memberof RotatingTransactionGateway
+     */
+    traffic_percentage?: number;
+    /**
+     * If specified, limits the total daily dollar amount of trial orders
+     * @type {number}
+     * @memberof RotatingTransactionGateway
+     */
+    trial_daily_amount?: number;
+    /**
+     * If specified, limits the total month count of trial orders
+     * @type {number}
+     * @memberof RotatingTransactionGateway
+     */
+    trial_daily_limit?: number;
+    /**
+     * If specified, limits the total month dollar amount of trial orders
+     * @type {number}
+     * @memberof RotatingTransactionGateway
+     */
+    trial_monthly_limit?: number;
+}
+
+/**
+ * @export
+ * @namespace RotatingTransactionGateway
+ */
+export namespace RotatingTransactionGateway {
+    /**
+     * @export
+     * @enum {string}
+     */
+    export enum OrderTotalComparisonEnum {
+        LessThan = <any> '<',
+        LessThanOrEqualTo = <any> '<=',
+        Equal = <any> '=',
+        GreaterThan = <any> '>',
+        GreaterThanOrEqualTo = <any> '>='
+    }
+    /**
+     * @export
+     * @enum {string}
+     */
+    export enum StatusEnum {
+        Active = <any> 'active',
+        Inactive = <any> 'inactive',
+        Standby = <any> 'standby'
+    }
+}
+
+/**
+ * 
+ * @export
+ * @interface RtgCurrency
+ */
+export interface RtgCurrency {
+    /**
+     * Standard three letter currency code, for example USD
+     * @type {string}
+     * @memberof RtgCurrency
+     */
+    currency_code?: string;
+    /**
+     * Human friendly description of currency
+     * @type {string}
+     * @memberof RtgCurrency
+     */
+    description?: string;
+    /**
+     * true if this rotating gateway supports this currency
+     * @type {boolean}
+     * @memberof RtgCurrency
+     */
+    selected?: boolean;
+}
+
+/**
+ * 
+ * @export
+ * @interface RtgDayOfMonthRestriction
+ */
+export interface RtgDayOfMonthRestriction {
+    /**
+     * The day of the month. 1 equals the first day of the month, 31 is the last possible value.
+     * @type {number}
+     * @memberof RtgDayOfMonthRestriction
+     */
+    day_of_month?: number;
+    /**
+     * True if this rotating gateway is allowed to operate on this day of month.  If no days are selected, all days are allowed.
+     * @type {boolean}
+     * @memberof RtgDayOfMonthRestriction
+     */
+    selected?: boolean;
+}
+
+/**
+ * 
+ * @export
+ * @interface RtgDayOfWeekRestriction
+ */
+export interface RtgDayOfWeekRestriction {
+    /**
+     * Human readable day of week abbreviation
+     * @type {string}
+     * @memberof RtgDayOfWeekRestriction
+     */
+    abbreviation?: string;
+    /**
+     * 1=Sun,2=Mon,3=Tue,4=Wed,5=Thu,6=Fri,7=Sat
+     * @type {number}
+     * @memberof RtgDayOfWeekRestriction
+     */
+    day_of_week?: number;
+    /**
+     * True if this rotating gateway is allowed to operate on this day of week.  If no days are selected, all days are allowed.
+     * @type {boolean}
+     * @memberof RtgDayOfWeekRestriction
+     */
+    selected?: boolean;
+}
+
+/**
+ * 
+ * @export
+ * @interface RtgThemeRestriction
+ */
+export interface RtgThemeRestriction {
+    /**
+     * Any restriction for this theme
+     * @type {string}
+     * @memberof RtgThemeRestriction
+     */
+    restriction?: RtgThemeRestriction.RestrictionEnum;
+    /**
+     * The server name for this theme.  This will not be populated for legacy (ancient) themes
+     * @type {string}
+     * @memberof RtgThemeRestriction
+     */
+    storefront_host_name?: string;
+    /**
+     * Human friendly short code for this theme
+     * @type {string}
+     * @memberof RtgThemeRestriction
+     */
+    theme_code?: string;
+}
+
+/**
+ * @export
+ * @namespace RtgThemeRestriction
+ */
+export namespace RtgThemeRestriction {
+    /**
+     * @export
+     * @enum {string}
+     */
+    export enum RestrictionEnum {
+        Invalid = <any> 'invalid',
+        Valid = <any> 'valid',
+        ValidOnly = <any> 'validOnly'
+    }
 }
 
 /**
@@ -27594,6 +29339,44 @@ export interface StepWaiting {
 /**
  * 
  * @export
+ * @interface StripeConnectResponse
+ */
+export interface StripeConnectResponse {
+    /**
+     * 
+     * @type {string}
+     * @memberof StripeConnectResponse
+     */
+    connect_url?: string;
+    /**
+     * 
+     * @type {ModelError}
+     * @memberof StripeConnectResponse
+     */
+    error?: ModelError;
+    /**
+     * 
+     * @type {ResponseMetadata}
+     * @memberof StripeConnectResponse
+     */
+    metadata?: ResponseMetadata;
+    /**
+     * Indicates if API call was successful
+     * @type {boolean}
+     * @memberof StripeConnectResponse
+     */
+    success?: boolean;
+    /**
+     * 
+     * @type {Warning}
+     * @memberof StripeConnectResponse
+     */
+    warning?: Warning;
+}
+
+/**
+ * 
+ * @export
  * @interface TaxCity
  */
 export interface TaxCity {
@@ -28898,6 +30681,478 @@ export interface TransactionEmailResponse {
      * 
      * @type {Warning}
      * @memberof TransactionEmailResponse
+     */
+    warning?: Warning;
+}
+
+/**
+ * 
+ * @export
+ * @interface TransactionGateway
+ */
+export interface TransactionGateway {
+    /**
+     * Additional html to display for this transaction gateway.  This html will include instructions and connection links
+     * @type {string}
+     * @memberof TransactionGateway
+     */
+    arbitrary_html?: string;
+    /**
+     * Additional comments
+     * @type {string}
+     * @memberof TransactionGateway
+     */
+    comment?: string;
+    /**
+     * True if this gateway supports credit cards
+     * @type {boolean}
+     * @memberof TransactionGateway
+     */
+    credit_card_capable?: boolean;
+    /**
+     * True if this gateway supports eChecks
+     * @type {boolean}
+     * @memberof TransactionGateway
+     */
+    echeck_capable?: boolean;
+    /**
+     * True if this gateway supports eChecks
+     * @type {string}
+     * @memberof TransactionGateway
+     */
+    echeck_supported?: string;
+    /**
+     * True if this transaction gateway is the currently active gateway.
+     * @type {boolean}
+     * @memberof TransactionGateway
+     */
+    enabled?: boolean;
+    /**
+     * Cryptographic public certificate allowing UltraCart to communicate securely with this gateway.
+     * @type {string}
+     * @memberof TransactionGateway
+     */
+    gateway_cert_pem?: string;
+    /**
+     * The label for the gateway certificate pem.   The actual value stored may vary by gateway, so the label will vary too.
+     * @type {string}
+     * @memberof TransactionGateway
+     */
+    gateway_cert_pem_label?: string;
+    /**
+     * Gateway Email
+     * @type {string}
+     * @memberof TransactionGateway
+     */
+    gateway_email?: string;
+    /**
+     * The label for the gateway email.   The actual value stored may vary by gateway, so the label will vary too.
+     * @type {string}
+     * @memberof TransactionGateway
+     */
+    gateway_email_label?: string;
+    /**
+     * Gateway Environment to indicate sandbox versus production environments
+     * @type {string}
+     * @memberof TransactionGateway
+     */
+    gateway_environment?: string;
+    /**
+     * The label for the gateway environment.  The actual value stored may vary by gateway, so the label will vary too.
+     * @type {string}
+     * @memberof TransactionGateway
+     */
+    gateway_environment_label?: string;
+    /**
+     * Used to populate drop down lists for the gateway environment.  Varies by gateway.
+     * @type {Array<string>}
+     * @memberof TransactionGateway
+     */
+    gateway_environments?: Array<string>;
+    /**
+     * Optional Look and feel setting for Verified-by-VISA.  Only needed if you are using 3DS
+     * @type {string}
+     * @memberof TransactionGateway
+     */
+    gateway_header_back_color?: string;
+    /**
+     * Optional Look and feel setting for Verified-by-VISA.  Only needed if you are using 3DS
+     * @type {string}
+     * @memberof TransactionGateway
+     */
+    gateway_header_border_color?: string;
+    /**
+     * Optional Look and feel setting for Verified-by-VISA.  Only needed if you are using 3DS
+     * @type {string}
+     * @memberof TransactionGateway
+     */
+    gateway_header_image_url?: string;
+    /**
+     * Gateway Key
+     * @type {string}
+     * @memberof TransactionGateway
+     */
+    gateway_key?: string;
+    /**
+     * The label for the gateway key.   The actual value stored may vary by gateway, so the label will vary too.
+     * @type {string}
+     * @memberof TransactionGateway
+     */
+    gateway_key_label?: string;
+    /**
+     * Cryptographic private key allowing UltraCart to communicate securely with this gateway.
+     * @type {string}
+     * @memberof TransactionGateway
+     */
+    gateway_key_pem?: string;
+    /**
+     * The label for the gateway key pem.   The actual value stored may vary by gateway, so the label will vary too.
+     * @type {string}
+     * @memberof TransactionGateway
+     */
+    gateway_key_pem_label?: string;
+    /**
+     * Optional Look and feel setting for Verified-by-VISA.  Only needed if you are using 3DS
+     * @type {string}
+     * @memberof TransactionGateway
+     */
+    gateway_landing_page?: string;
+    /**
+     * Gateway Merchant ID
+     * @type {string}
+     * @memberof TransactionGateway
+     */
+    gateway_merchant_id?: string;
+    /**
+     * The label for the gateway merchant id.  The actual value stored may vary by gateway, so the label will vary too.
+     * @type {string}
+     * @memberof TransactionGateway
+     */
+    gateway_merchant_id_label?: string;
+    /**
+     * Gateway Mode
+     * @type {string}
+     * @memberof TransactionGateway
+     */
+    gateway_mode?: string;
+    /**
+     * The label for the gateway mode.   The actual value stored may vary by gateway, so the label will vary too.
+     * @type {string}
+     * @memberof TransactionGateway
+     */
+    gateway_mode_label?: string;
+    /**
+     * Used to populate drop down lists for gateway modes
+     * @type {Array<string>}
+     * @memberof TransactionGateway
+     */
+    gateway_modes?: Array<string>;
+    /**
+     * Gateway Page Style
+     * @type {string}
+     * @memberof TransactionGateway
+     */
+    gateway_page_style?: string;
+    /**
+     * Gateway page style label
+     * @type {string}
+     * @memberof TransactionGateway
+     */
+    gateway_page_style_label?: string;
+    /**
+     * Used to populate drop down lists for gateway page style
+     * @type {Array<string>}
+     * @memberof TransactionGateway
+     */
+    gateway_page_styles?: Array<string>;
+    /**
+     * Gateway Partner
+     * @type {string}
+     * @memberof TransactionGateway
+     */
+    gateway_partner?: string;
+    /**
+     * The label for the gateway partner.   The actual value stored may vary by gateway, so the label will vary too.
+     * @type {string}
+     * @memberof TransactionGateway
+     */
+    gateway_partner_label?: string;
+    /**
+     * Gateway Password
+     * @type {string}
+     * @memberof TransactionGateway
+     */
+    gateway_password?: string;
+    /**
+     * The label for the gateway password.   The actual value stored may vary by gateway, so the label will vary too.
+     * @type {string}
+     * @memberof TransactionGateway
+     */
+    gateway_password_label?: string;
+    /**
+     * Optional Look and feel setting for Verified-by-VISA.  Only needed if you are using 3DS
+     * @type {string}
+     * @memberof TransactionGateway
+     */
+    gateway_payflow_color?: string;
+    /**
+     * Gateway private key password
+     * @type {string}
+     * @memberof TransactionGateway
+     */
+    gateway_private_key_password?: string;
+    /**
+     * The label for the gateway private key password.  The actual value stored may vary by gateway, so the label will vary too.
+     * @type {string}
+     * @memberof TransactionGateway
+     */
+    gateway_private_key_password_label?: string;
+    /**
+     * Optional Look and feel setting for Verified-by-VISA.  Only needed if you are using 3DS
+     * @type {string}
+     * @memberof TransactionGateway
+     */
+    gateway_solution_type?: string;
+    /**
+     * The label for the gateway solution type.  The actual value stored may vary by gateway, so the label will vary too.
+     * @type {string}
+     * @memberof TransactionGateway
+     */
+    gateway_solution_type_label?: string;
+    /**
+     * Used to populate drop down lists for gateway solution types
+     * @type {Array<string>}
+     * @memberof TransactionGateway
+     */
+    gateway_solution_types?: Array<string>;
+    /**
+     * Gateway URL
+     * @type {string}
+     * @memberof TransactionGateway
+     */
+    gateway_url?: string;
+    /**
+     * The label for the gateway url.   The actual value stored may vary by gateway, so the label will vary too.
+     * @type {string}
+     * @memberof TransactionGateway
+     */
+    gateway_url_label?: string;
+    /**
+     * Gateway Username
+     * @type {string}
+     * @memberof TransactionGateway
+     */
+    gateway_username?: string;
+    /**
+     * The label for the gateway username.  The actual value stored may vary by gateway, so the label will vary too.
+     * @type {string}
+     * @memberof TransactionGateway
+     */
+    gateway_username_label?: string;
+    /**
+     * If a merchant has multiple card processing accounts, this is the one to use for American Express cards.
+     * @type {string}
+     * @memberof TransactionGateway
+     */
+    merchant_account_profile_amex?: string;
+    /**
+     * If a merchant has multiple card processing accounts, this is the one to use for Diners Club cards.
+     * @type {string}
+     * @memberof TransactionGateway
+     */
+    merchant_account_profile_diners_club?: string;
+    /**
+     * If a merchant has multiple card processing accounts, this is the one to use for Discover cards.
+     * @type {string}
+     * @memberof TransactionGateway
+     */
+    merchant_account_profile_discover?: string;
+    /**
+     * If a merchant has multiple card processing accounts, this is the one to use for JCB cards.
+     * @type {string}
+     * @memberof TransactionGateway
+     */
+    merchant_account_profile_jcb?: string;
+    /**
+     * If a merchant has multiple card processing accounts, this is the one to use for MasterCard cards.
+     * @type {string}
+     * @memberof TransactionGateway
+     */
+    merchant_account_profile_mastercard?: string;
+    /**
+     * If a merchant has multiple card processing accounts, this is the one to use for VISA cards.
+     * @type {string}
+     * @memberof TransactionGateway
+     */
+    merchant_account_profile_visa?: string;
+    /**
+     * UltraCart Merchant ID
+     * @type {string}
+     * @memberof TransactionGateway
+     */
+    merchant_id?: string;
+    /**
+     * True if this gateway provides details for multiple currency transactions
+     * @type {boolean}
+     * @memberof TransactionGateway
+     */
+    multi_currency_details?: boolean;
+    /**
+     * Name of this transaction gateway
+     * @type {string}
+     * @memberof TransactionGateway
+     */
+    name?: string;
+    /**
+     * True if this gateway supports refunds
+     * @type {boolean}
+     * @memberof TransactionGateway
+     */
+    refund_supported?: boolean;
+    /**
+     * If true, e-Check transaction will require either a Tax ID or a Driver License
+     * @type {boolean}
+     * @memberof TransactionGateway
+     */
+    require_echeck_tax_id_or_drivers_license?: boolean;
+    /**
+     * True if this gateway supported Verified-by-VISA 3D Secure
+     * @type {boolean}
+     * @memberof TransactionGateway
+     */
+    support_vbv_3ds?: boolean;
+    /**
+     * If true, this gateway will attempt to process American Express transactions.  If false, the customer will not be allowed to use this type of Credit Card.
+     * @type {boolean}
+     * @memberof TransactionGateway
+     */
+    supports_amex?: boolean;
+    /**
+     * If true, this gateway will attempt to process Diners Club transactions.  If false, the customer will not be allowed to use this type of Credit Card.
+     * @type {boolean}
+     * @memberof TransactionGateway
+     */
+    supports_diners_club?: boolean;
+    /**
+     * If true, this gateway will attempt to process Discover transactions.  If false, the customer will not be allowed to use this type of Credit Card.
+     * @type {boolean}
+     * @memberof TransactionGateway
+     */
+    supports_discover?: boolean;
+    /**
+     * If true, this gateway will attempt to process e-Check transactions.  If false, the customer will not be allowed to use e-Checks.
+     * @type {boolean}
+     * @memberof TransactionGateway
+     */
+    supports_echeck?: boolean;
+    /**
+     * if true, this gateway will attempt to process electronic gift cards.
+     * @type {boolean}
+     * @memberof TransactionGateway
+     */
+    supports_electronic_gift_card?: boolean;
+    /**
+     * If true, this gateway will attempt to process JCB transactions.  If false, the customer will not be allowed to use this type of Credit Card.
+     * @type {boolean}
+     * @memberof TransactionGateway
+     */
+    supports_jcb?: boolean;
+    /**
+     * If true, this gateway will attempt to process MasterCard transactions.  If false, the customer will not be allowed to use this type of Credit Card.
+     * @type {boolean}
+     * @memberof TransactionGateway
+     */
+    supports_mastercard?: boolean;
+    /**
+     * If true, this gateway will attempt to process VISA transactions.  If false, the customer will not be allowed to use this type of Credit Card.
+     * @type {boolean}
+     * @memberof TransactionGateway
+     */
+    supports_visa?: boolean;
+    /**
+     * True if this gateway supports third parties
+     * @type {boolean}
+     * @memberof TransactionGateway
+     */
+    third_party?: boolean;
+}
+
+/**
+ * 
+ * @export
+ * @interface TransactionGatewaysRequest
+ */
+export interface TransactionGatewaysRequest {
+    /**
+     * The default transaction type for this merchant account
+     * @type {string}
+     * @memberof TransactionGatewaysRequest
+     */
+    default_credit_card_transaction_type?: TransactionGatewaysRequest.DefaultCreditCardTransactionTypeEnum;
+    /**
+     * 
+     * @type {Array<TransactionGateway>}
+     * @memberof TransactionGatewaysRequest
+     */
+    gateways?: Array<TransactionGateway>;
+    /**
+     * A list of the storefronts and themes for this merchant account and what type of transaction should be attempted
+     * @type {Array<PaymentsThemeTransactionType>}
+     * @memberof TransactionGatewaysRequest
+     */
+    theme_credit_card_transaction_types?: Array<PaymentsThemeTransactionType>;
+}
+
+/**
+ * @export
+ * @namespace TransactionGatewaysRequest
+ */
+export namespace TransactionGatewaysRequest {
+    /**
+     * @export
+     * @enum {string}
+     */
+    export enum DefaultCreditCardTransactionTypeEnum {
+        AndCapture = <any> 'auth and capture',
+        ThenCapture = <any> 'auth then capture',
+        Only = <any> 'auth only'
+    }
+}
+
+/**
+ * 
+ * @export
+ * @interface TransactionGatewaysResponse
+ */
+export interface TransactionGatewaysResponse {
+    /**
+     * 
+     * @type {ModelError}
+     * @memberof TransactionGatewaysResponse
+     */
+    error?: ModelError;
+    /**
+     * 
+     * @type {Array<TransactionGateway>}
+     * @memberof TransactionGatewaysResponse
+     */
+    gateways?: Array<TransactionGateway>;
+    /**
+     * 
+     * @type {ResponseMetadata}
+     * @memberof TransactionGatewaysResponse
+     */
+    metadata?: ResponseMetadata;
+    /**
+     * Indicates if API call was successful
+     * @type {boolean}
+     * @memberof TransactionGatewaysResponse
+     */
+    success?: boolean;
+    /**
+     * 
+     * @type {Warning}
+     * @memberof TransactionGatewaysResponse
      */
     warning?: Warning;
 }
@@ -34459,6 +36714,1610 @@ export class CheckoutApi extends BaseAPI implements CheckoutApiInterface {
      */
     public validateCart(validation_request: CartValidationRequest, _expand?: string, options?: any) {
         return CheckoutApiFp(this.configuration).validateCart(validation_request, _expand, options)(this.fetch, this.basePath);
+    }
+
+}
+
+/**
+ * ConfigurationApi - fetch parameter creator
+ * @export
+ */
+export const ConfigurationApiFetchParamCreator = function (configuration?: Configuration) {
+    return {
+        /**
+         * Delay auto order processing for a day for this rotating transaction gateway 
+         * @summary Delay auto order processing for a day for this rotating transaction gateway
+         * @param {number} rtg_oid The rtg_oid to delay.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        delayAutoOrders(rtg_oid: number, options: any = {}): FetchArgs {
+            // verify required parameter 'rtg_oid' is not null or undefined
+            if (rtg_oid === null || rtg_oid === undefined) {
+                throw new RequiredError('rtg_oid','Required parameter rtg_oid was null or undefined when calling delayAutoOrders.');
+            }
+            const localVarPath = `/configuration/checkout/payments/rtg/{rtg_oid}/delayAutoOrders`
+                .replace(`{${"rtg_oid"}}`, encodeURIComponent(String(rtg_oid)));
+            const localVarUrlObj = url.parse(localVarPath, true);
+            const localVarRequestOptions = Object.assign({ method: 'POST' }, options);
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+    if(configuration && configuration.apiVersion) {
+      localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+    }
+
+
+
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+				const localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+					? configuration.accessToken("ultraCartOauth", ["configuration_write"])
+					: configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
+					? configuration.apiKey("x-ultracart-simple-key")
+					: configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Delete a rotating transaction gateway 
+         * @summary Delete a rotating transaction gateway
+         * @param {number} rtg_oid The rtg_oid to delete.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        deleteRotatingTransactionGateway(rtg_oid: number, options: any = {}): FetchArgs {
+            // verify required parameter 'rtg_oid' is not null or undefined
+            if (rtg_oid === null || rtg_oid === undefined) {
+                throw new RequiredError('rtg_oid','Required parameter rtg_oid was null or undefined when calling deleteRotatingTransactionGateway.');
+            }
+            const localVarPath = `/configuration/checkout/payments/rtg/{rtg_oid}`
+                .replace(`{${"rtg_oid"}}`, encodeURIComponent(String(rtg_oid)));
+            const localVarUrlObj = url.parse(localVarPath, true);
+            const localVarRequestOptions = Object.assign({ method: 'DELETE' }, options);
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+    if(configuration && configuration.apiVersion) {
+      localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+    }
+
+
+
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+				const localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+					? configuration.accessToken("ultraCartOauth", ["configuration_write"])
+					: configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
+					? configuration.apiKey("x-ultracart-simple-key")
+					: configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Retrieves payments configuration for this account. 
+         * @summary Retrieve payments configuration
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getPaymentsConfiguration(options: any = {}): FetchArgs {
+            const localVarPath = `/configuration/checkout/payments`;
+            const localVarUrlObj = url.parse(localVarPath, true);
+            const localVarRequestOptions = Object.assign({ method: 'GET' }, options);
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+    if(configuration && configuration.apiVersion) {
+      localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+    }
+
+
+
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+				const localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+					? configuration.accessToken("ultraCartOauth", ["configuration_read"])
+					: configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
+					? configuration.apiKey("x-ultracart-simple-key")
+					: configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Retrieve a rotating transaction gateway 
+         * @summary Retrieve a rotating transaction gateway
+         * @param {number} rtg_oid The rtg_oid for the desired record.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getPaymentsRotatingGateway(rtg_oid: number, options: any = {}): FetchArgs {
+            // verify required parameter 'rtg_oid' is not null or undefined
+            if (rtg_oid === null || rtg_oid === undefined) {
+                throw new RequiredError('rtg_oid','Required parameter rtg_oid was null or undefined when calling getPaymentsRotatingGateway.');
+            }
+            const localVarPath = `/configuration/checkout/payments/rtg/{rtg_oid}`
+                .replace(`{${"rtg_oid"}}`, encodeURIComponent(String(rtg_oid)));
+            const localVarUrlObj = url.parse(localVarPath, true);
+            const localVarRequestOptions = Object.assign({ method: 'GET' }, options);
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+    if(configuration && configuration.apiVersion) {
+      localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+    }
+
+
+
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+				const localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+					? configuration.accessToken("ultraCartOauth", ["configuration_read"])
+					: configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
+					? configuration.apiKey("x-ultracart-simple-key")
+					: configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Retrieve a rotating transaction gateway by code 
+         * @summary Retrieve a rotating transaction gateway by code
+         * @param {string} code The code for the desired rotating transaction gateway.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getPaymentsRotatingGatewayByCode(code: string, options: any = {}): FetchArgs {
+            // verify required parameter 'code' is not null or undefined
+            if (code === null || code === undefined) {
+                throw new RequiredError('code','Required parameter code was null or undefined when calling getPaymentsRotatingGatewayByCode.');
+            }
+            const localVarPath = `/configuration/checkout/payments/rtg/byCode/{code}`
+                .replace(`{${"code"}}`, encodeURIComponent(String(code)));
+            const localVarUrlObj = url.parse(localVarPath, true);
+            const localVarRequestOptions = Object.assign({ method: 'GET' }, options);
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+    if(configuration && configuration.apiVersion) {
+      localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+    }
+
+
+
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+				const localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+					? configuration.accessToken("ultraCartOauth", ["configuration_read"])
+					: configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
+					? configuration.apiKey("x-ultracart-simple-key")
+					: configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Retrieve a list of rotating transaction gateways 
+         * @summary Retrieve a list of rotating transaction gateways
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getPaymentsRotatingTransactionGateways(options: any = {}): FetchArgs {
+            const localVarPath = `/configuration/checkout/payments/rtg`;
+            const localVarUrlObj = url.parse(localVarPath, true);
+            const localVarRequestOptions = Object.assign({ method: 'GET' }, options);
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+    if(configuration && configuration.apiVersion) {
+      localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+    }
+
+
+
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+				const localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+					? configuration.accessToken("ultraCartOauth", ["configuration_read"])
+					: configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
+					? configuration.apiKey("x-ultracart-simple-key")
+					: configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Retrieve a summary of rotating transaction gateways 
+         * @summary Retrieve a summary of rotating transaction gateways
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getPaymentsRtgSummaries(options: any = {}): FetchArgs {
+            const localVarPath = `/configuration/checkout/payments/rtg/summaries`;
+            const localVarUrlObj = url.parse(localVarPath, true);
+            const localVarRequestOptions = Object.assign({ method: 'GET' }, options);
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+    if(configuration && configuration.apiVersion) {
+      localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+    }
+
+
+
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+				const localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+					? configuration.accessToken("ultraCartOauth", ["configuration_read"])
+					: configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
+					? configuration.apiKey("x-ultracart-simple-key")
+					: configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Retrieve a list of transaction gateways 
+         * @summary Retrieve a list of transaction gateways
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getPaymentsTransactionGateways(options: any = {}): FetchArgs {
+            const localVarPath = `/configuration/checkout/payments/tg`;
+            const localVarUrlObj = url.parse(localVarPath, true);
+            const localVarRequestOptions = Object.assign({ method: 'GET' }, options);
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+    if(configuration && configuration.apiVersion) {
+      localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+    }
+
+
+
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+				const localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+					? configuration.accessToken("ultraCartOauth", ["configuration_read"])
+					: configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
+					? configuration.apiKey("x-ultracart-simple-key")
+					: configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Insert a rotating transaction gateway 
+         * @summary Insert a rotating transaction gateway
+         * @param {RotatingTransactionGateway} rotating_transaction_gateway Rotating transaction gateway
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        insertRotatingTransactionGateway(rotating_transaction_gateway: RotatingTransactionGateway, options: any = {}): FetchArgs {
+            // verify required parameter 'rotating_transaction_gateway' is not null or undefined
+            if (rotating_transaction_gateway === null || rotating_transaction_gateway === undefined) {
+                throw new RequiredError('rotating_transaction_gateway','Required parameter rotating_transaction_gateway was null or undefined when calling insertRotatingTransactionGateway.');
+            }
+            const localVarPath = `/configuration/checkout/payments/rtg/`;
+            const localVarUrlObj = url.parse(localVarPath, true);
+            const localVarRequestOptions = Object.assign({ method: 'POST' }, options);
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+    if(configuration && configuration.apiVersion) {
+      localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+    }
+
+
+
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+				const localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+					? configuration.accessToken("ultraCartOauth", ["configuration_write"])
+					: configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
+					? configuration.apiKey("x-ultracart-simple-key")
+					: configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+
+            localVarHeaderParameter['Content-Type'] = 'application/json; charset=UTF-8';
+
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+            const needsSerialization = (<any>"RotatingTransactionGateway" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
+            localVarRequestOptions.body =  needsSerialization ? JSON.stringify(rotating_transaction_gateway || {}) : (rotating_transaction_gateway || "");
+
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Migrate a normal transaction gateway to a rotating transaction gateway 
+         * @summary Migrate a normal transaction gateway to a rotating transaction gateway
+         * @param {string} code The short code for the new rotating transaction gateway
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        migrateToRotatingTransactionGateway(code: string, options: any = {}): FetchArgs {
+            // verify required parameter 'code' is not null or undefined
+            if (code === null || code === undefined) {
+                throw new RequiredError('code','Required parameter code was null or undefined when calling migrateToRotatingTransactionGateway.');
+            }
+            const localVarPath = `/configuration/checkout/payments/tg/migrateToRtgWithCodeOf/{code}`
+                .replace(`{${"code"}}`, encodeURIComponent(String(code)));
+            const localVarUrlObj = url.parse(localVarPath, true);
+            const localVarRequestOptions = Object.assign({ method: 'POST' }, options);
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+    if(configuration && configuration.apiVersion) {
+      localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+    }
+
+
+
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+				const localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+					? configuration.accessToken("ultraCartOauth", ["configuration_write"])
+					: configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
+					? configuration.apiKey("x-ultracart-simple-key")
+					: configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Begin the processing of connecting with Stripe. 
+         * @summary Begin the processing of connecting with Stripe
+         * @param {number} rtg_oid The rtg_oid to be connected to stripe.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        stripeConnect(rtg_oid: number, options: any = {}): FetchArgs {
+            // verify required parameter 'rtg_oid' is not null or undefined
+            if (rtg_oid === null || rtg_oid === undefined) {
+                throw new RequiredError('rtg_oid','Required parameter rtg_oid was null or undefined when calling stripeConnect.');
+            }
+            const localVarPath = `/configuration/checkout/payments/rtg/{rtg_oid}/stripeConnect`
+                .replace(`{${"rtg_oid"}}`, encodeURIComponent(String(rtg_oid)));
+            const localVarUrlObj = url.parse(localVarPath, true);
+            const localVarRequestOptions = Object.assign({ method: 'POST' }, options);
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+    if(configuration && configuration.apiVersion) {
+      localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+    }
+
+
+
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+				const localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+					? configuration.accessToken("ultraCartOauth", ["configuration_write"])
+					: configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
+					? configuration.apiKey("x-ultracart-simple-key")
+					: configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Updates payments configuration on the UltraCart account. 
+         * @summary Updates payments configuration
+         * @param {PaymentsConfiguration} payments_configuration Payments configuration
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        updatePaymentsConfiguration(payments_configuration: PaymentsConfiguration, options: any = {}): FetchArgs {
+            // verify required parameter 'payments_configuration' is not null or undefined
+            if (payments_configuration === null || payments_configuration === undefined) {
+                throw new RequiredError('payments_configuration','Required parameter payments_configuration was null or undefined when calling updatePaymentsConfiguration.');
+            }
+            const localVarPath = `/configuration/checkout/payments`;
+            const localVarUrlObj = url.parse(localVarPath, true);
+            const localVarRequestOptions = Object.assign({ method: 'PUT' }, options);
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+    if(configuration && configuration.apiVersion) {
+      localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+    }
+
+
+
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+				const localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+					? configuration.accessToken("ultraCartOauth", ["configuration_write"])
+					: configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
+					? configuration.apiKey("x-ultracart-simple-key")
+					: configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+
+            localVarHeaderParameter['Content-Type'] = 'application/json; charset=UTF-8';
+
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+            const needsSerialization = (<any>"PaymentsConfiguration" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
+            localVarRequestOptions.body =  needsSerialization ? JSON.stringify(payments_configuration || {}) : (payments_configuration || "");
+
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Updates payments transaction gateway on the UltraCart account. 
+         * @summary Updates payments transaction gateway
+         * @param {TransactionGatewaysRequest} update_gateway_request Transaction gateways
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        updatePaymentsTransactionGateway(update_gateway_request: TransactionGatewaysRequest, options: any = {}): FetchArgs {
+            // verify required parameter 'update_gateway_request' is not null or undefined
+            if (update_gateway_request === null || update_gateway_request === undefined) {
+                throw new RequiredError('update_gateway_request','Required parameter update_gateway_request was null or undefined when calling updatePaymentsTransactionGateway.');
+            }
+            const localVarPath = `/configuration/checkout/payments/tg`;
+            const localVarUrlObj = url.parse(localVarPath, true);
+            const localVarRequestOptions = Object.assign({ method: 'PUT' }, options);
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+    if(configuration && configuration.apiVersion) {
+      localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+    }
+
+
+
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+				const localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+					? configuration.accessToken("ultraCartOauth", ["configuration_write"])
+					: configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
+					? configuration.apiKey("x-ultracart-simple-key")
+					: configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+
+            localVarHeaderParameter['Content-Type'] = 'application/json; charset=UTF-8';
+
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+            const needsSerialization = (<any>"TransactionGatewaysRequest" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
+            localVarRequestOptions.body =  needsSerialization ? JSON.stringify(update_gateway_request || {}) : (update_gateway_request || "");
+
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Update a rotating transaction gateway 
+         * @summary Update a rotating transaction gateway
+         * @param {number} rtg_oid The rtg_oid to update.
+         * @param {RotatingTransactionGateway} rotating_transaction_gateway Rotating transaction gateway
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        updateRotatingTransactionGateway(rtg_oid: number, rotating_transaction_gateway: RotatingTransactionGateway, options: any = {}): FetchArgs {
+            // verify required parameter 'rtg_oid' is not null or undefined
+            if (rtg_oid === null || rtg_oid === undefined) {
+                throw new RequiredError('rtg_oid','Required parameter rtg_oid was null or undefined when calling updateRotatingTransactionGateway.');
+            }
+            // verify required parameter 'rotating_transaction_gateway' is not null or undefined
+            if (rotating_transaction_gateway === null || rotating_transaction_gateway === undefined) {
+                throw new RequiredError('rotating_transaction_gateway','Required parameter rotating_transaction_gateway was null or undefined when calling updateRotatingTransactionGateway.');
+            }
+            const localVarPath = `/configuration/checkout/payments/rtg/{rtg_oid}`
+                .replace(`{${"rtg_oid"}}`, encodeURIComponent(String(rtg_oid)));
+            const localVarUrlObj = url.parse(localVarPath, true);
+            const localVarRequestOptions = Object.assign({ method: 'PUT' }, options);
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+    if(configuration && configuration.apiVersion) {
+      localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+    }
+
+
+
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+				const localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+					? configuration.accessToken("ultraCartOauth", ["configuration_write"])
+					: configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
+					? configuration.apiKey("x-ultracart-simple-key")
+					: configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+
+            localVarHeaderParameter['Content-Type'] = 'application/json; charset=UTF-8';
+
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+            const needsSerialization = (<any>"RotatingTransactionGateway" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
+            localVarRequestOptions.body =  needsSerialization ? JSON.stringify(rotating_transaction_gateway || {}) : (rotating_transaction_gateway || "");
+
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Enroll with WePay on the UltraCart account. 
+         * @summary Enroll with WePay
+         * @param {PaymentsWepayEnroll} wepay_enroll Wepay enrollment information
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        wepayEnroll(wepay_enroll: PaymentsWepayEnroll, options: any = {}): FetchArgs {
+            // verify required parameter 'wepay_enroll' is not null or undefined
+            if (wepay_enroll === null || wepay_enroll === undefined) {
+                throw new RequiredError('wepay_enroll','Required parameter wepay_enroll was null or undefined when calling wepayEnroll.');
+            }
+            const localVarPath = `/configuration/checkout/wepayEnroll`;
+            const localVarUrlObj = url.parse(localVarPath, true);
+            const localVarRequestOptions = Object.assign({ method: 'PUT' }, options);
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+    if(configuration && configuration.apiVersion) {
+      localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+    }
+
+
+
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+				const localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+					? configuration.accessToken("ultraCartOauth", ["configuration_write"])
+					: configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
+					? configuration.apiKey("x-ultracart-simple-key")
+					: configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+
+            localVarHeaderParameter['Content-Type'] = 'application/json; charset=UTF-8';
+
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+            const needsSerialization = (<any>"PaymentsWepayEnroll" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
+            localVarRequestOptions.body =  needsSerialization ? JSON.stringify(wepay_enroll || {}) : (wepay_enroll || "");
+
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+    }
+};
+
+/**
+ * ConfigurationApi - functional programming interface
+ * @export
+ */
+export const ConfigurationApiFp = function(configuration?: Configuration) {
+    return {
+        /**
+         * Delay auto order processing for a day for this rotating transaction gateway 
+         * @summary Delay auto order processing for a day for this rotating transaction gateway
+         * @param {number} rtg_oid The rtg_oid to delay.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        delayAutoOrders(rtg_oid: number, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<DelayAutoOrdersResponse> {
+            const localVarFetchArgs = ConfigurationApiFetchParamCreator(configuration).delayAutoOrders(rtg_oid, options);
+            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
+                    if (response.status >= 200 && response.status < 300) {
+                      return response.json();
+                      
+                    } else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
+         * Delete a rotating transaction gateway 
+         * @summary Delete a rotating transaction gateway
+         * @param {number} rtg_oid The rtg_oid to delete.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        deleteRotatingTransactionGateway(rtg_oid: number, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<BaseResponse> {
+            const localVarFetchArgs = ConfigurationApiFetchParamCreator(configuration).deleteRotatingTransactionGateway(rtg_oid, options);
+            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
+                    if (response.status >= 200 && response.status < 300) {
+                      return response.json();
+                      
+                    } else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
+         * Retrieves payments configuration for this account. 
+         * @summary Retrieve payments configuration
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getPaymentsConfiguration(options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<PaymentsConfiguration> {
+            const localVarFetchArgs = ConfigurationApiFetchParamCreator(configuration).getPaymentsConfiguration(options);
+            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
+                    if (response.status >= 200 && response.status < 300) {
+                      return response.json();
+                      
+                    } else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
+         * Retrieve a rotating transaction gateway 
+         * @summary Retrieve a rotating transaction gateway
+         * @param {number} rtg_oid The rtg_oid for the desired record.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getPaymentsRotatingGateway(rtg_oid: number, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<RotatingTransactionGateway> {
+            const localVarFetchArgs = ConfigurationApiFetchParamCreator(configuration).getPaymentsRotatingGateway(rtg_oid, options);
+            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
+                    if (response.status >= 200 && response.status < 300) {
+                      return response.json();
+                      
+                    } else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
+         * Retrieve a rotating transaction gateway by code 
+         * @summary Retrieve a rotating transaction gateway by code
+         * @param {string} code The code for the desired rotating transaction gateway.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getPaymentsRotatingGatewayByCode(code: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<RotatingTransactionGateway> {
+            const localVarFetchArgs = ConfigurationApiFetchParamCreator(configuration).getPaymentsRotatingGatewayByCode(code, options);
+            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
+                    if (response.status >= 200 && response.status < 300) {
+                      return response.json();
+                      
+                    } else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
+         * Retrieve a list of rotating transaction gateways 
+         * @summary Retrieve a list of rotating transaction gateways
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getPaymentsRotatingTransactionGateways(options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<RotatingTransactionGateway> {
+            const localVarFetchArgs = ConfigurationApiFetchParamCreator(configuration).getPaymentsRotatingTransactionGateways(options);
+            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
+                    if (response.status >= 200 && response.status < 300) {
+                      return response.json();
+                      
+                    } else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
+         * Retrieve a summary of rotating transaction gateways 
+         * @summary Retrieve a summary of rotating transaction gateways
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getPaymentsRtgSummaries(options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<RotatingTransactionGateway> {
+            const localVarFetchArgs = ConfigurationApiFetchParamCreator(configuration).getPaymentsRtgSummaries(options);
+            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
+                    if (response.status >= 200 && response.status < 300) {
+                      return response.json();
+                      
+                    } else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
+         * Retrieve a list of transaction gateways 
+         * @summary Retrieve a list of transaction gateways
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getPaymentsTransactionGateways(options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<TransactionGatewaysResponse> {
+            const localVarFetchArgs = ConfigurationApiFetchParamCreator(configuration).getPaymentsTransactionGateways(options);
+            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
+                    if (response.status >= 200 && response.status < 300) {
+                      return response.json();
+                      
+                    } else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
+         * Insert a rotating transaction gateway 
+         * @summary Insert a rotating transaction gateway
+         * @param {RotatingTransactionGateway} rotating_transaction_gateway Rotating transaction gateway
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        insertRotatingTransactionGateway(rotating_transaction_gateway: RotatingTransactionGateway, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<RotatingTransactionGateway> {
+            const localVarFetchArgs = ConfigurationApiFetchParamCreator(configuration).insertRotatingTransactionGateway(rotating_transaction_gateway, options);
+            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
+                    if (response.status >= 200 && response.status < 300) {
+                      return response.json();
+                      
+                    } else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
+         * Migrate a normal transaction gateway to a rotating transaction gateway 
+         * @summary Migrate a normal transaction gateway to a rotating transaction gateway
+         * @param {string} code The short code for the new rotating transaction gateway
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        migrateToRotatingTransactionGateway(code: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<RotatingTransactionGateway> {
+            const localVarFetchArgs = ConfigurationApiFetchParamCreator(configuration).migrateToRotatingTransactionGateway(code, options);
+            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
+                    if (response.status >= 200 && response.status < 300) {
+                      return response.json();
+                      
+                    } else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
+         * Begin the processing of connecting with Stripe. 
+         * @summary Begin the processing of connecting with Stripe
+         * @param {number} rtg_oid The rtg_oid to be connected to stripe.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        stripeConnect(rtg_oid: number, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<StripeConnectResponse> {
+            const localVarFetchArgs = ConfigurationApiFetchParamCreator(configuration).stripeConnect(rtg_oid, options);
+            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
+                    if (response.status >= 200 && response.status < 300) {
+                      return response.json();
+                      
+                    } else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
+         * Updates payments configuration on the UltraCart account. 
+         * @summary Updates payments configuration
+         * @param {PaymentsConfiguration} payments_configuration Payments configuration
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        updatePaymentsConfiguration(payments_configuration: PaymentsConfiguration, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<PaymentsConfigurationResponse> {
+            const localVarFetchArgs = ConfigurationApiFetchParamCreator(configuration).updatePaymentsConfiguration(payments_configuration, options);
+            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
+                    if (response.status >= 200 && response.status < 300) {
+                      return response.json();
+                      
+                    } else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
+         * Updates payments transaction gateway on the UltraCart account. 
+         * @summary Updates payments transaction gateway
+         * @param {TransactionGatewaysRequest} update_gateway_request Transaction gateways
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        updatePaymentsTransactionGateway(update_gateway_request: TransactionGatewaysRequest, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<TransactionGatewaysResponse> {
+            const localVarFetchArgs = ConfigurationApiFetchParamCreator(configuration).updatePaymentsTransactionGateway(update_gateway_request, options);
+            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
+                    if (response.status >= 200 && response.status < 300) {
+                      return response.json();
+                      
+                    } else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
+         * Update a rotating transaction gateway 
+         * @summary Update a rotating transaction gateway
+         * @param {number} rtg_oid The rtg_oid to update.
+         * @param {RotatingTransactionGateway} rotating_transaction_gateway Rotating transaction gateway
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        updateRotatingTransactionGateway(rtg_oid: number, rotating_transaction_gateway: RotatingTransactionGateway, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<RotatingTransactionGateway> {
+            const localVarFetchArgs = ConfigurationApiFetchParamCreator(configuration).updateRotatingTransactionGateway(rtg_oid, rotating_transaction_gateway, options);
+            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
+                    if (response.status >= 200 && response.status < 300) {
+                      return response.json();
+                      
+                    } else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
+         * Enroll with WePay on the UltraCart account. 
+         * @summary Enroll with WePay
+         * @param {PaymentsWepayEnroll} wepay_enroll Wepay enrollment information
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        wepayEnroll(wepay_enroll: PaymentsWepayEnroll, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<PaymentsConfigurationResponse> {
+            const localVarFetchArgs = ConfigurationApiFetchParamCreator(configuration).wepayEnroll(wepay_enroll, options);
+            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
+                    if (response.status >= 200 && response.status < 300) {
+                      return response.json();
+                      
+                    } else {
+                        throw response;
+                    }
+                });
+            };
+        },
+    }
+};
+
+/**
+ * ConfigurationApi - factory interface
+ * @export
+ */
+export const ConfigurationApiFactory = function (configuration?: Configuration, fetch?: FetchAPI, basePath?: string) {
+    return {
+        /**
+         * Delay auto order processing for a day for this rotating transaction gateway 
+         * @summary Delay auto order processing for a day for this rotating transaction gateway
+         * @param {number} rtg_oid The rtg_oid to delay.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        delayAutoOrders(rtg_oid: number, options?: any) {
+            return ConfigurationApiFp(configuration).delayAutoOrders(rtg_oid, options)(fetch, basePath);
+        },
+        /**
+         * Delete a rotating transaction gateway 
+         * @summary Delete a rotating transaction gateway
+         * @param {number} rtg_oid The rtg_oid to delete.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        deleteRotatingTransactionGateway(rtg_oid: number, options?: any) {
+            return ConfigurationApiFp(configuration).deleteRotatingTransactionGateway(rtg_oid, options)(fetch, basePath);
+        },
+        /**
+         * Retrieves payments configuration for this account. 
+         * @summary Retrieve payments configuration
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getPaymentsConfiguration(options?: any) {
+            return ConfigurationApiFp(configuration).getPaymentsConfiguration(options)(fetch, basePath);
+        },
+        /**
+         * Retrieve a rotating transaction gateway 
+         * @summary Retrieve a rotating transaction gateway
+         * @param {number} rtg_oid The rtg_oid for the desired record.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getPaymentsRotatingGateway(rtg_oid: number, options?: any) {
+            return ConfigurationApiFp(configuration).getPaymentsRotatingGateway(rtg_oid, options)(fetch, basePath);
+        },
+        /**
+         * Retrieve a rotating transaction gateway by code 
+         * @summary Retrieve a rotating transaction gateway by code
+         * @param {string} code The code for the desired rotating transaction gateway.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getPaymentsRotatingGatewayByCode(code: string, options?: any) {
+            return ConfigurationApiFp(configuration).getPaymentsRotatingGatewayByCode(code, options)(fetch, basePath);
+        },
+        /**
+         * Retrieve a list of rotating transaction gateways 
+         * @summary Retrieve a list of rotating transaction gateways
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getPaymentsRotatingTransactionGateways(options?: any) {
+            return ConfigurationApiFp(configuration).getPaymentsRotatingTransactionGateways(options)(fetch, basePath);
+        },
+        /**
+         * Retrieve a summary of rotating transaction gateways 
+         * @summary Retrieve a summary of rotating transaction gateways
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getPaymentsRtgSummaries(options?: any) {
+            return ConfigurationApiFp(configuration).getPaymentsRtgSummaries(options)(fetch, basePath);
+        },
+        /**
+         * Retrieve a list of transaction gateways 
+         * @summary Retrieve a list of transaction gateways
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getPaymentsTransactionGateways(options?: any) {
+            return ConfigurationApiFp(configuration).getPaymentsTransactionGateways(options)(fetch, basePath);
+        },
+        /**
+         * Insert a rotating transaction gateway 
+         * @summary Insert a rotating transaction gateway
+         * @param {RotatingTransactionGateway} rotating_transaction_gateway Rotating transaction gateway
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        insertRotatingTransactionGateway(rotating_transaction_gateway: RotatingTransactionGateway, options?: any) {
+            return ConfigurationApiFp(configuration).insertRotatingTransactionGateway(rotating_transaction_gateway, options)(fetch, basePath);
+        },
+        /**
+         * Migrate a normal transaction gateway to a rotating transaction gateway 
+         * @summary Migrate a normal transaction gateway to a rotating transaction gateway
+         * @param {string} code The short code for the new rotating transaction gateway
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        migrateToRotatingTransactionGateway(code: string, options?: any) {
+            return ConfigurationApiFp(configuration).migrateToRotatingTransactionGateway(code, options)(fetch, basePath);
+        },
+        /**
+         * Begin the processing of connecting with Stripe. 
+         * @summary Begin the processing of connecting with Stripe
+         * @param {number} rtg_oid The rtg_oid to be connected to stripe.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        stripeConnect(rtg_oid: number, options?: any) {
+            return ConfigurationApiFp(configuration).stripeConnect(rtg_oid, options)(fetch, basePath);
+        },
+        /**
+         * Updates payments configuration on the UltraCart account. 
+         * @summary Updates payments configuration
+         * @param {PaymentsConfiguration} payments_configuration Payments configuration
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        updatePaymentsConfiguration(payments_configuration: PaymentsConfiguration, options?: any) {
+            return ConfigurationApiFp(configuration).updatePaymentsConfiguration(payments_configuration, options)(fetch, basePath);
+        },
+        /**
+         * Updates payments transaction gateway on the UltraCart account. 
+         * @summary Updates payments transaction gateway
+         * @param {TransactionGatewaysRequest} update_gateway_request Transaction gateways
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        updatePaymentsTransactionGateway(update_gateway_request: TransactionGatewaysRequest, options?: any) {
+            return ConfigurationApiFp(configuration).updatePaymentsTransactionGateway(update_gateway_request, options)(fetch, basePath);
+        },
+        /**
+         * Update a rotating transaction gateway 
+         * @summary Update a rotating transaction gateway
+         * @param {number} rtg_oid The rtg_oid to update.
+         * @param {RotatingTransactionGateway} rotating_transaction_gateway Rotating transaction gateway
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        updateRotatingTransactionGateway(rtg_oid: number, rotating_transaction_gateway: RotatingTransactionGateway, options?: any) {
+            return ConfigurationApiFp(configuration).updateRotatingTransactionGateway(rtg_oid, rotating_transaction_gateway, options)(fetch, basePath);
+        },
+        /**
+         * Enroll with WePay on the UltraCart account. 
+         * @summary Enroll with WePay
+         * @param {PaymentsWepayEnroll} wepay_enroll Wepay enrollment information
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        wepayEnroll(wepay_enroll: PaymentsWepayEnroll, options?: any) {
+            return ConfigurationApiFp(configuration).wepayEnroll(wepay_enroll, options)(fetch, basePath);
+        },
+    };
+};
+
+/**
+ * ConfigurationApi - interface
+ * @export
+ * @interface ConfigurationApi
+ */
+export interface ConfigurationApiInterface {
+    /**
+     * Delay auto order processing for a day for this rotating transaction gateway 
+     * @summary Delay auto order processing for a day for this rotating transaction gateway
+     * @param {number} rtg_oid The rtg_oid to delay.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConfigurationApiInterface
+     */
+    delayAutoOrders(rtg_oid: number, options?: any): Promise<DelayAutoOrdersResponse>;
+
+    /**
+     * Delete a rotating transaction gateway 
+     * @summary Delete a rotating transaction gateway
+     * @param {number} rtg_oid The rtg_oid to delete.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConfigurationApiInterface
+     */
+    deleteRotatingTransactionGateway(rtg_oid: number, options?: any): Promise<BaseResponse>;
+
+    /**
+     * Retrieves payments configuration for this account. 
+     * @summary Retrieve payments configuration
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConfigurationApiInterface
+     */
+    getPaymentsConfiguration(options?: any): Promise<PaymentsConfiguration>;
+
+    /**
+     * Retrieve a rotating transaction gateway 
+     * @summary Retrieve a rotating transaction gateway
+     * @param {number} rtg_oid The rtg_oid for the desired record.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConfigurationApiInterface
+     */
+    getPaymentsRotatingGateway(rtg_oid: number, options?: any): Promise<RotatingTransactionGateway>;
+
+    /**
+     * Retrieve a rotating transaction gateway by code 
+     * @summary Retrieve a rotating transaction gateway by code
+     * @param {string} code The code for the desired rotating transaction gateway.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConfigurationApiInterface
+     */
+    getPaymentsRotatingGatewayByCode(code: string, options?: any): Promise<RotatingTransactionGateway>;
+
+    /**
+     * Retrieve a list of rotating transaction gateways 
+     * @summary Retrieve a list of rotating transaction gateways
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConfigurationApiInterface
+     */
+    getPaymentsRotatingTransactionGateways(options?: any): Promise<RotatingTransactionGateway>;
+
+    /**
+     * Retrieve a summary of rotating transaction gateways 
+     * @summary Retrieve a summary of rotating transaction gateways
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConfigurationApiInterface
+     */
+    getPaymentsRtgSummaries(options?: any): Promise<RotatingTransactionGateway>;
+
+    /**
+     * Retrieve a list of transaction gateways 
+     * @summary Retrieve a list of transaction gateways
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConfigurationApiInterface
+     */
+    getPaymentsTransactionGateways(options?: any): Promise<TransactionGatewaysResponse>;
+
+    /**
+     * Insert a rotating transaction gateway 
+     * @summary Insert a rotating transaction gateway
+     * @param {RotatingTransactionGateway} rotating_transaction_gateway Rotating transaction gateway
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConfigurationApiInterface
+     */
+    insertRotatingTransactionGateway(rotating_transaction_gateway: RotatingTransactionGateway, options?: any): Promise<RotatingTransactionGateway>;
+
+    /**
+     * Migrate a normal transaction gateway to a rotating transaction gateway 
+     * @summary Migrate a normal transaction gateway to a rotating transaction gateway
+     * @param {string} code The short code for the new rotating transaction gateway
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConfigurationApiInterface
+     */
+    migrateToRotatingTransactionGateway(code: string, options?: any): Promise<RotatingTransactionGateway>;
+
+    /**
+     * Begin the processing of connecting with Stripe. 
+     * @summary Begin the processing of connecting with Stripe
+     * @param {number} rtg_oid The rtg_oid to be connected to stripe.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConfigurationApiInterface
+     */
+    stripeConnect(rtg_oid: number, options?: any): Promise<StripeConnectResponse>;
+
+    /**
+     * Updates payments configuration on the UltraCart account. 
+     * @summary Updates payments configuration
+     * @param {PaymentsConfiguration} payments_configuration Payments configuration
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConfigurationApiInterface
+     */
+    updatePaymentsConfiguration(payments_configuration: PaymentsConfiguration, options?: any): Promise<PaymentsConfigurationResponse>;
+
+    /**
+     * Updates payments transaction gateway on the UltraCart account. 
+     * @summary Updates payments transaction gateway
+     * @param {TransactionGatewaysRequest} update_gateway_request Transaction gateways
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConfigurationApiInterface
+     */
+    updatePaymentsTransactionGateway(update_gateway_request: TransactionGatewaysRequest, options?: any): Promise<TransactionGatewaysResponse>;
+
+    /**
+     * Update a rotating transaction gateway 
+     * @summary Update a rotating transaction gateway
+     * @param {number} rtg_oid The rtg_oid to update.
+     * @param {RotatingTransactionGateway} rotating_transaction_gateway Rotating transaction gateway
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConfigurationApiInterface
+     */
+    updateRotatingTransactionGateway(rtg_oid: number, rotating_transaction_gateway: RotatingTransactionGateway, options?: any): Promise<RotatingTransactionGateway>;
+
+    /**
+     * Enroll with WePay on the UltraCart account. 
+     * @summary Enroll with WePay
+     * @param {PaymentsWepayEnroll} wepay_enroll Wepay enrollment information
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConfigurationApiInterface
+     */
+    wepayEnroll(wepay_enroll: PaymentsWepayEnroll, options?: any): Promise<PaymentsConfigurationResponse>;
+
+}
+
+/**
+ * ConfigurationApi - object-oriented interface
+ * @export
+ * @class ConfigurationApi
+ * @extends {BaseAPI}
+ */
+export class ConfigurationApi extends BaseAPI implements ConfigurationApiInterface {
+    /**
+     * Delay auto order processing for a day for this rotating transaction gateway 
+     * @summary Delay auto order processing for a day for this rotating transaction gateway
+     * @param {number} rtg_oid The rtg_oid to delay.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConfigurationApi
+     */
+    public delayAutoOrders(rtg_oid: number, options?: any) {
+        return ConfigurationApiFp(this.configuration).delayAutoOrders(rtg_oid, options)(this.fetch, this.basePath);
+    }
+
+    /**
+     * Delete a rotating transaction gateway 
+     * @summary Delete a rotating transaction gateway
+     * @param {number} rtg_oid The rtg_oid to delete.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConfigurationApi
+     */
+    public deleteRotatingTransactionGateway(rtg_oid: number, options?: any) {
+        return ConfigurationApiFp(this.configuration).deleteRotatingTransactionGateway(rtg_oid, options)(this.fetch, this.basePath);
+    }
+
+    /**
+     * Retrieves payments configuration for this account. 
+     * @summary Retrieve payments configuration
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConfigurationApi
+     */
+    public getPaymentsConfiguration(options?: any) {
+        return ConfigurationApiFp(this.configuration).getPaymentsConfiguration(options)(this.fetch, this.basePath);
+    }
+
+    /**
+     * Retrieve a rotating transaction gateway 
+     * @summary Retrieve a rotating transaction gateway
+     * @param {number} rtg_oid The rtg_oid for the desired record.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConfigurationApi
+     */
+    public getPaymentsRotatingGateway(rtg_oid: number, options?: any) {
+        return ConfigurationApiFp(this.configuration).getPaymentsRotatingGateway(rtg_oid, options)(this.fetch, this.basePath);
+    }
+
+    /**
+     * Retrieve a rotating transaction gateway by code 
+     * @summary Retrieve a rotating transaction gateway by code
+     * @param {string} code The code for the desired rotating transaction gateway.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConfigurationApi
+     */
+    public getPaymentsRotatingGatewayByCode(code: string, options?: any) {
+        return ConfigurationApiFp(this.configuration).getPaymentsRotatingGatewayByCode(code, options)(this.fetch, this.basePath);
+    }
+
+    /**
+     * Retrieve a list of rotating transaction gateways 
+     * @summary Retrieve a list of rotating transaction gateways
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConfigurationApi
+     */
+    public getPaymentsRotatingTransactionGateways(options?: any) {
+        return ConfigurationApiFp(this.configuration).getPaymentsRotatingTransactionGateways(options)(this.fetch, this.basePath);
+    }
+
+    /**
+     * Retrieve a summary of rotating transaction gateways 
+     * @summary Retrieve a summary of rotating transaction gateways
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConfigurationApi
+     */
+    public getPaymentsRtgSummaries(options?: any) {
+        return ConfigurationApiFp(this.configuration).getPaymentsRtgSummaries(options)(this.fetch, this.basePath);
+    }
+
+    /**
+     * Retrieve a list of transaction gateways 
+     * @summary Retrieve a list of transaction gateways
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConfigurationApi
+     */
+    public getPaymentsTransactionGateways(options?: any) {
+        return ConfigurationApiFp(this.configuration).getPaymentsTransactionGateways(options)(this.fetch, this.basePath);
+    }
+
+    /**
+     * Insert a rotating transaction gateway 
+     * @summary Insert a rotating transaction gateway
+     * @param {RotatingTransactionGateway} rotating_transaction_gateway Rotating transaction gateway
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConfigurationApi
+     */
+    public insertRotatingTransactionGateway(rotating_transaction_gateway: RotatingTransactionGateway, options?: any) {
+        return ConfigurationApiFp(this.configuration).insertRotatingTransactionGateway(rotating_transaction_gateway, options)(this.fetch, this.basePath);
+    }
+
+    /**
+     * Migrate a normal transaction gateway to a rotating transaction gateway 
+     * @summary Migrate a normal transaction gateway to a rotating transaction gateway
+     * @param {string} code The short code for the new rotating transaction gateway
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConfigurationApi
+     */
+    public migrateToRotatingTransactionGateway(code: string, options?: any) {
+        return ConfigurationApiFp(this.configuration).migrateToRotatingTransactionGateway(code, options)(this.fetch, this.basePath);
+    }
+
+    /**
+     * Begin the processing of connecting with Stripe. 
+     * @summary Begin the processing of connecting with Stripe
+     * @param {number} rtg_oid The rtg_oid to be connected to stripe.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConfigurationApi
+     */
+    public stripeConnect(rtg_oid: number, options?: any) {
+        return ConfigurationApiFp(this.configuration).stripeConnect(rtg_oid, options)(this.fetch, this.basePath);
+    }
+
+    /**
+     * Updates payments configuration on the UltraCart account. 
+     * @summary Updates payments configuration
+     * @param {PaymentsConfiguration} payments_configuration Payments configuration
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConfigurationApi
+     */
+    public updatePaymentsConfiguration(payments_configuration: PaymentsConfiguration, options?: any) {
+        return ConfigurationApiFp(this.configuration).updatePaymentsConfiguration(payments_configuration, options)(this.fetch, this.basePath);
+    }
+
+    /**
+     * Updates payments transaction gateway on the UltraCart account. 
+     * @summary Updates payments transaction gateway
+     * @param {TransactionGatewaysRequest} update_gateway_request Transaction gateways
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConfigurationApi
+     */
+    public updatePaymentsTransactionGateway(update_gateway_request: TransactionGatewaysRequest, options?: any) {
+        return ConfigurationApiFp(this.configuration).updatePaymentsTransactionGateway(update_gateway_request, options)(this.fetch, this.basePath);
+    }
+
+    /**
+     * Update a rotating transaction gateway 
+     * @summary Update a rotating transaction gateway
+     * @param {number} rtg_oid The rtg_oid to update.
+     * @param {RotatingTransactionGateway} rotating_transaction_gateway Rotating transaction gateway
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConfigurationApi
+     */
+    public updateRotatingTransactionGateway(rtg_oid: number, rotating_transaction_gateway: RotatingTransactionGateway, options?: any) {
+        return ConfigurationApiFp(this.configuration).updateRotatingTransactionGateway(rtg_oid, rotating_transaction_gateway, options)(this.fetch, this.basePath);
+    }
+
+    /**
+     * Enroll with WePay on the UltraCart account. 
+     * @summary Enroll with WePay
+     * @param {PaymentsWepayEnroll} wepay_enroll Wepay enrollment information
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConfigurationApi
+     */
+    public wepayEnroll(wepay_enroll: PaymentsWepayEnroll, options?: any) {
+        return ConfigurationApiFp(this.configuration).wepayEnroll(wepay_enroll, options)(this.fetch, this.basePath);
     }
 
 }
@@ -40930,7 +44789,7 @@ export const OauthApiFetchParamCreator = function (configuration?: Configuration
             // oauth required
             if (configuration && configuration.accessToken) {
 				const localVarAccessTokenValue = typeof configuration.accessToken === 'function'
-					? configuration.accessToken("ultraCartOauth", ["ultrabooks_write", "auto_order_write", "coupon_read", "affiliate_read", "coupon_write", "tax_read", "fulfillment_write", "tax_write", "item_read", "fulfillment_read", "webhook_write", "chargeback_write", "user_write", "checkout_write", "storefront_read", "webhook_read", "item_write", "auto_order_read", "customer_read", "user_read", "customer_write", "order_read", "affiliate_write", "storefront_write", "ultrabooks_read", "order_write", "chargeback_read", "integration_log_write", "checkout_read", "integration_log_read"])
+					? configuration.accessToken("ultraCartOauth", ["ultrabooks_write", "auto_order_write", "coupon_read", "affiliate_read", "coupon_write", "tax_read", "fulfillment_write", "tax_write", "item_read", "fulfillment_read", "webhook_write", "chargeback_write", "user_write", "checkout_write", "storefront_read", "webhook_read", "item_write", "auto_order_read", "customer_read", "user_read", "configuration_read", "customer_write", "order_read", "affiliate_write", "storefront_write", "ultrabooks_read", "order_write", "chargeback_read", "integration_log_write", "configuration_write", "checkout_read", "integration_log_read"])
 					: configuration.accessToken;
                 localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
             }
@@ -41018,7 +44877,7 @@ export const OauthApiFetchParamCreator = function (configuration?: Configuration
             // oauth required
             if (configuration && configuration.accessToken) {
 				const localVarAccessTokenValue = typeof configuration.accessToken === 'function'
-					? configuration.accessToken("ultraCartOauth", ["ultrabooks_write", "auto_order_write", "coupon_read", "affiliate_read", "coupon_write", "tax_read", "fulfillment_write", "tax_write", "item_read", "fulfillment_read", "webhook_write", "chargeback_write", "user_write", "checkout_write", "storefront_read", "webhook_read", "item_write", "auto_order_read", "customer_read", "user_read", "customer_write", "order_read", "affiliate_write", "storefront_write", "ultrabooks_read", "order_write", "chargeback_read", "integration_log_write", "checkout_read", "integration_log_read"])
+					? configuration.accessToken("ultraCartOauth", ["ultrabooks_write", "auto_order_write", "coupon_read", "affiliate_read", "coupon_write", "tax_read", "fulfillment_write", "tax_write", "item_read", "fulfillment_read", "webhook_write", "chargeback_write", "user_write", "checkout_write", "storefront_read", "webhook_read", "item_write", "auto_order_read", "customer_read", "user_read", "configuration_read", "customer_write", "order_read", "affiliate_write", "storefront_write", "ultrabooks_read", "order_write", "chargeback_read", "integration_log_write", "configuration_write", "checkout_read", "integration_log_read"])
 					: configuration.accessToken;
                 localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
             }
