@@ -38161,7 +38161,7 @@ export const ConfigurationApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        updateRotatingTransactionGateway(rtg_oid: number, rotating_transaction_gateway: RotatingTransactionGateway, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<RotatingTransactionGateway> {
+        updateRotatingTransactionGateway(rtg_oid: number, rotating_transaction_gateway: RotatingTransactionGateway, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<RotatingTransactionGatewayResponse> {
             const localVarFetchArgs = ConfigurationApiFetchParamCreator(configuration).updateRotatingTransactionGateway(rtg_oid, rotating_transaction_gateway, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
@@ -38496,7 +38496,7 @@ export interface ConfigurationApiInterface {
      * @throws {RequiredError}
      * @memberof ConfigurationApiInterface
      */
-    updateRotatingTransactionGateway(rtg_oid: number, rotating_transaction_gateway: RotatingTransactionGateway, options?: any): Promise<RotatingTransactionGateway>;
+    updateRotatingTransactionGateway(rtg_oid: number, rotating_transaction_gateway: RotatingTransactionGateway, options?: any): Promise<RotatingTransactionGatewayResponse>;
 
     /**
      * Enroll with WePay on the UltraCart account. 

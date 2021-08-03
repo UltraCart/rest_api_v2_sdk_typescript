@@ -33994,7 +33994,7 @@ export declare const ConfigurationApiFp: (configuration?: Configuration) => {
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    updateRotatingTransactionGateway(rtg_oid: number, rotating_transaction_gateway: RotatingTransactionGateway, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<RotatingTransactionGateway>;
+    updateRotatingTransactionGateway(rtg_oid: number, rotating_transaction_gateway: RotatingTransactionGateway, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<RotatingTransactionGatewayResponse>;
     /**
      * Enroll with WePay on the UltraCart account.
      * @summary Enroll with WePay
@@ -34117,7 +34117,7 @@ export declare const ConfigurationApiFactory: (configuration?: Configuration, fe
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    updateRotatingTransactionGateway(rtg_oid: number, rotating_transaction_gateway: RotatingTransactionGateway, options?: any): Promise<RotatingTransactionGateway>;
+    updateRotatingTransactionGateway(rtg_oid: number, rotating_transaction_gateway: RotatingTransactionGateway, options?: any): Promise<RotatingTransactionGatewayResponse>;
     /**
      * Enroll with WePay on the UltraCart account.
      * @summary Enroll with WePay
@@ -34255,7 +34255,7 @@ export interface ConfigurationApiInterface {
      * @throws {RequiredError}
      * @memberof ConfigurationApiInterface
      */
-    updateRotatingTransactionGateway(rtg_oid: number, rotating_transaction_gateway: RotatingTransactionGateway, options?: any): Promise<RotatingTransactionGateway>;
+    updateRotatingTransactionGateway(rtg_oid: number, rotating_transaction_gateway: RotatingTransactionGateway, options?: any): Promise<RotatingTransactionGatewayResponse>;
     /**
      * Enroll with WePay on the UltraCart account.
      * @summary Enroll with WePay
@@ -34395,7 +34395,7 @@ export declare class ConfigurationApi extends BaseAPI implements ConfigurationAp
      * @throws {RequiredError}
      * @memberof ConfigurationApi
      */
-    updateRotatingTransactionGateway(rtg_oid: number, rotating_transaction_gateway: RotatingTransactionGateway, options?: any): Promise<RotatingTransactionGateway>;
+    updateRotatingTransactionGateway(rtg_oid: number, rotating_transaction_gateway: RotatingTransactionGateway, options?: any): Promise<RotatingTransactionGatewayResponse>;
     /**
      * Enroll with WePay on the UltraCart account.
      * @summary Enroll with WePay
