@@ -21608,6 +21608,12 @@ export interface OrderChannelPartner {
      */
     channel_partner_order_id?: string;
     /**
+     * Set to true to ignore invalid shipping method being specified.  Only applicable on inserting orders.
+     * @type {boolean}
+     * @memberof OrderChannelPartner
+     */
+    ignore_invalid_shipping_method?: boolean;
+    /**
      * Indicates this order should be placed in Account Receivable for later payment processing
      * @type {boolean}
      * @memberof OrderChannelPartner
