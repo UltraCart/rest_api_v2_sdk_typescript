@@ -23950,6 +23950,12 @@ export interface OrderTrackingNumberDetail {
      */
     city?: string;
     /**
+     * ISO 8601 timestamp that the event occurred
+     * @type {string}
+     * @memberof OrderTrackingNumberDetail
+     */
+    event_dts?: string;
+    /**
      *
      * @type {string}
      * @memberof OrderTrackingNumberDetail
@@ -23961,6 +23967,12 @@ export interface OrderTrackingNumberDetail {
      * @memberof OrderTrackingNumberDetail
      */
     event_local_time?: string;
+    /**
+     * Timezone the event occurred in.  Use this in conjunction with event_dts to format a local date/time.
+     * @type {string}
+     * @memberof OrderTrackingNumberDetail
+     */
+    event_timezone_id?: string;
     /**
      *
      * @type {string}
