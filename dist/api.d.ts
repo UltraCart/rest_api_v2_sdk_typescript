@@ -26138,19 +26138,25 @@ export interface RotatingTransactionGateway {
      */
     traffic_percentage?: number;
     /**
-     * If specified, limits the total daily dollar amount of trial orders
+     * If specified, limits the total daily count of trial orders
      * @type {number}
      * @memberof RotatingTransactionGateway
      */
     trial_daily_amount?: number;
     /**
-     * If specified, limits the total month count of trial orders
+     * If specified, limits the total daily dollar amount of trial orders
      * @type {number}
      * @memberof RotatingTransactionGateway
      */
     trial_daily_limit?: number;
     /**
      * If specified, limits the total month dollar amount of trial orders
+     * @type {number}
+     * @memberof RotatingTransactionGateway
+     */
+    trial_monthly_amount?: number;
+    /**
+     * If specified, limits the total month count of trial orders
      * @type {number}
      * @memberof RotatingTransactionGateway
      */
