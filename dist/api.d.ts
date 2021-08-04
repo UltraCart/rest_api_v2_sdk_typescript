@@ -11583,6 +11583,12 @@ export interface EmailList {
      */
     email_list_uuid?: string;
     /**
+     * List/Segment folder UUID
+     * @type {string}
+     * @memberof EmailList
+     */
+    esp_list_segment_folder_uuid?: string;
+    /**
      * Count of members in this list
      * @type {number}
      * @memberof EmailList
@@ -11764,6 +11770,117 @@ export interface EmailListResponse {
      *
      * @type {Warning}
      * @memberof EmailListResponse
+     */
+    warning?: Warning;
+}
+/**
+ *
+ * @export
+ * @interface EmailListSegmentFolder
+ */
+export interface EmailListSegmentFolder {
+    /**
+     * Email list segment folder UUID
+     * @type {string}
+     * @memberof EmailListSegmentFolder
+     */
+    esp_list_segment_folder_uuid?: string;
+    /**
+     * Merchant ID
+     * @type {string}
+     * @memberof EmailListSegmentFolder
+     */
+    merchant_id?: string;
+    /**
+     * Name of email campaign folder
+     * @type {string}
+     * @memberof EmailListSegmentFolder
+     */
+    name?: string;
+    /**
+     * Storefront oid
+     * @type {number}
+     * @memberof EmailListSegmentFolder
+     */
+    storefront_oid?: number;
+    /**
+     * System generated folder
+     * @type {boolean}
+     * @memberof EmailListSegmentFolder
+     */
+    system_generated?: boolean;
+}
+/**
+ *
+ * @export
+ * @interface EmailListSegmentFolderResponse
+ */
+export interface EmailListSegmentFolderResponse {
+    /**
+     *
+     * @type {ModelError}
+     * @memberof EmailListSegmentFolderResponse
+     */
+    error?: ModelError;
+    /**
+     *
+     * @type {EmailListSegmentFolder}
+     * @memberof EmailListSegmentFolderResponse
+     */
+    list_segment_folder?: EmailListSegmentFolder;
+    /**
+     *
+     * @type {ResponseMetadata}
+     * @memberof EmailListSegmentFolderResponse
+     */
+    metadata?: ResponseMetadata;
+    /**
+     * Indicates if API call was successful
+     * @type {boolean}
+     * @memberof EmailListSegmentFolderResponse
+     */
+    success?: boolean;
+    /**
+     *
+     * @type {Warning}
+     * @memberof EmailListSegmentFolderResponse
+     */
+    warning?: Warning;
+}
+/**
+ *
+ * @export
+ * @interface EmailListSegmentFoldersResponse
+ */
+export interface EmailListSegmentFoldersResponse {
+    /**
+     *
+     * @type {ModelError}
+     * @memberof EmailListSegmentFoldersResponse
+     */
+    error?: ModelError;
+    /**
+     *
+     * @type {Array<EmailListSegmentFolder>}
+     * @memberof EmailListSegmentFoldersResponse
+     */
+    list_segment_folders?: Array<EmailListSegmentFolder>;
+    /**
+     *
+     * @type {ResponseMetadata}
+     * @memberof EmailListSegmentFoldersResponse
+     */
+    metadata?: ResponseMetadata;
+    /**
+     * Indicates if API call was successful
+     * @type {boolean}
+     * @memberof EmailListSegmentFoldersResponse
+     */
+    success?: boolean;
+    /**
+     *
+     * @type {Warning}
+     * @memberof EmailListSegmentFoldersResponse
      */
     warning?: Warning;
 }
@@ -12664,6 +12781,12 @@ export interface EmailSegment {
      * @memberof EmailSegment
      */
     email_segment_uuid?: string;
+    /**
+     * List/Segment folder UUID
+     * @type {string}
+     * @memberof EmailSegment
+     */
+    esp_list_segment_folder_uuid?: string;
     /**
      * True if you want to sync to a facebook custom audience
      * @type {boolean}
@@ -24600,12 +24723,6 @@ export interface PaymentsConfigurationCreditCard {
      * @memberof PaymentsConfigurationCreditCard
      */
     hideConnectSingleGateway?: boolean;
-    /**
-     *
-     * @type {string}
-     * @memberof PaymentsConfigurationCreditCard
-     */
-    immediateFinalizeDomains?: string;
     /**
      *
      * @type {boolean}
@@ -38944,6 +39061,15 @@ export declare const StorefrontApiFetchParamCreator: (configuration?: Configurat
     deleteEmailListCustomer(storefront_oid: number, email_list_uuid: string, email_customer_uuid: string, options?: any): FetchArgs;
     /**
      *
+     * @summary Delete email ListSegmentFolder
+     * @param {number} storefront_oid
+     * @param {string} email_list_segment_folder_uuid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    deleteEmailListSegmentFolder(storefront_oid: number, email_list_segment_folder_uuid: string, options?: any): FetchArgs;
+    /**
+     *
      * @summary Delete email postcard
      * @param {number} storefront_oid
      * @param {string} commseq_postcard_uuid
@@ -39358,6 +39484,23 @@ export declare const StorefrontApiFetchParamCreator: (configuration?: Configurat
      * @throws {RequiredError}
      */
     getEmailListCustomers(storefront_oid: number, email_list_uuid: string, pageNumber?: number, pageSize?: number, options?: any): FetchArgs;
+    /**
+     *
+     * @summary Get email campaign folder
+     * @param {number} storefront_oid
+     * @param {string} email_list_segment_folder_uuid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getEmailListSegmentFolder(storefront_oid: number, email_list_segment_folder_uuid: string, options?: any): FetchArgs;
+    /**
+     *
+     * @summary Get email campaign folders
+     * @param {number} storefront_oid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getEmailListSegmentFolders(storefront_oid: number, options?: any): FetchArgs;
     /**
      *
      * @summary Get email lists
@@ -39776,6 +39919,15 @@ export declare const StorefrontApiFetchParamCreator: (configuration?: Configurat
     insertEmailList(storefront_oid: number, email_list: EmailList, options?: any): FetchArgs;
     /**
      *
+     * @summary Insert email campaign folder
+     * @param {number} storefront_oid
+     * @param {EmailListSegmentFolder} email_list_segment_folder Email campaign folder
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    insertEmailListSegmentFolder(storefront_oid: number, email_list_segment_folder: EmailListSegmentFolder, options?: any): FetchArgs;
+    /**
+     *
      * @summary Insert email postcard
      * @param {number} storefront_oid
      * @param {EmailCommseqPostcard} email_commseq_postcard Email postcard
@@ -40070,6 +40222,16 @@ export declare const StorefrontApiFetchParamCreator: (configuration?: Configurat
     updateEmailList(storefront_oid: number, email_list_uuid: string, email_list: EmailList, options?: any): FetchArgs;
     /**
      *
+     * @summary Update email campaign folder
+     * @param {number} storefront_oid
+     * @param {string} email_list_segment_folder_uuid
+     * @param {EmailListSegmentFolder} email_list_segment_folder Email campaign folder
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    updateEmailListSegmentFolder(storefront_oid: number, email_list_segment_folder_uuid: string, email_list_segment_folder: EmailListSegmentFolder, options?: any): FetchArgs;
+    /**
+     *
      * @summary Update email plan
      * @param {number} storefront_oid
      * @param {EmailPlan} settings plan request
@@ -40308,6 +40470,15 @@ export declare const StorefrontApiFp: (configuration?: Configuration) => {
      * @throws {RequiredError}
      */
     deleteEmailListCustomer(storefront_oid: number, email_list_uuid: string, email_customer_uuid: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<BaseResponse>;
+    /**
+     *
+     * @summary Delete email ListSegmentFolder
+     * @param {number} storefront_oid
+     * @param {string} email_list_segment_folder_uuid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    deleteEmailListSegmentFolder(storefront_oid: number, email_list_segment_folder_uuid: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<BaseResponse>;
     /**
      *
      * @summary Delete email postcard
@@ -40726,6 +40897,23 @@ export declare const StorefrontApiFp: (configuration?: Configuration) => {
     getEmailListCustomers(storefront_oid: number, email_list_uuid: string, pageNumber?: number, pageSize?: number, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<EmailListCustomersResponse>;
     /**
      *
+     * @summary Get email campaign folder
+     * @param {number} storefront_oid
+     * @param {string} email_list_segment_folder_uuid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getEmailListSegmentFolder(storefront_oid: number, email_list_segment_folder_uuid: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<EmailListSegmentFolderResponse>;
+    /**
+     *
+     * @summary Get email campaign folders
+     * @param {number} storefront_oid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getEmailListSegmentFolders(storefront_oid: number, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<EmailListSegmentFoldersResponse>;
+    /**
+     *
      * @summary Get email lists
      * @param {number} storefront_oid
      * @param {*} [options] Override http request option.
@@ -41142,6 +41330,15 @@ export declare const StorefrontApiFp: (configuration?: Configuration) => {
     insertEmailList(storefront_oid: number, email_list: EmailList, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<EmailListResponse>;
     /**
      *
+     * @summary Insert email campaign folder
+     * @param {number} storefront_oid
+     * @param {EmailListSegmentFolder} email_list_segment_folder Email campaign folder
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    insertEmailListSegmentFolder(storefront_oid: number, email_list_segment_folder: EmailListSegmentFolder, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<EmailListSegmentFolderResponse>;
+    /**
+     *
      * @summary Insert email postcard
      * @param {number} storefront_oid
      * @param {EmailCommseqPostcard} email_commseq_postcard Email postcard
@@ -41436,6 +41633,16 @@ export declare const StorefrontApiFp: (configuration?: Configuration) => {
     updateEmailList(storefront_oid: number, email_list_uuid: string, email_list: EmailList, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<EmailListResponse>;
     /**
      *
+     * @summary Update email campaign folder
+     * @param {number} storefront_oid
+     * @param {string} email_list_segment_folder_uuid
+     * @param {EmailListSegmentFolder} email_list_segment_folder Email campaign folder
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    updateEmailListSegmentFolder(storefront_oid: number, email_list_segment_folder_uuid: string, email_list_segment_folder: EmailListSegmentFolder, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<EmailListSegmentFolderResponse>;
+    /**
+     *
      * @summary Update email plan
      * @param {number} storefront_oid
      * @param {EmailPlan} settings plan request
@@ -41674,6 +41881,15 @@ export declare const StorefrontApiFactory: (configuration?: Configuration, fetch
      * @throws {RequiredError}
      */
     deleteEmailListCustomer(storefront_oid: number, email_list_uuid: string, email_customer_uuid: string, options?: any): Promise<BaseResponse>;
+    /**
+     *
+     * @summary Delete email ListSegmentFolder
+     * @param {number} storefront_oid
+     * @param {string} email_list_segment_folder_uuid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    deleteEmailListSegmentFolder(storefront_oid: number, email_list_segment_folder_uuid: string, options?: any): Promise<BaseResponse>;
     /**
      *
      * @summary Delete email postcard
@@ -42092,6 +42308,23 @@ export declare const StorefrontApiFactory: (configuration?: Configuration, fetch
     getEmailListCustomers(storefront_oid: number, email_list_uuid: string, pageNumber?: number, pageSize?: number, options?: any): Promise<EmailListCustomersResponse>;
     /**
      *
+     * @summary Get email campaign folder
+     * @param {number} storefront_oid
+     * @param {string} email_list_segment_folder_uuid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getEmailListSegmentFolder(storefront_oid: number, email_list_segment_folder_uuid: string, options?: any): Promise<EmailListSegmentFolderResponse>;
+    /**
+     *
+     * @summary Get email campaign folders
+     * @param {number} storefront_oid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getEmailListSegmentFolders(storefront_oid: number, options?: any): Promise<EmailListSegmentFoldersResponse>;
+    /**
+     *
      * @summary Get email lists
      * @param {number} storefront_oid
      * @param {*} [options] Override http request option.
@@ -42508,6 +42741,15 @@ export declare const StorefrontApiFactory: (configuration?: Configuration, fetch
     insertEmailList(storefront_oid: number, email_list: EmailList, options?: any): Promise<EmailListResponse>;
     /**
      *
+     * @summary Insert email campaign folder
+     * @param {number} storefront_oid
+     * @param {EmailListSegmentFolder} email_list_segment_folder Email campaign folder
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    insertEmailListSegmentFolder(storefront_oid: number, email_list_segment_folder: EmailListSegmentFolder, options?: any): Promise<EmailListSegmentFolderResponse>;
+    /**
+     *
      * @summary Insert email postcard
      * @param {number} storefront_oid
      * @param {EmailCommseqPostcard} email_commseq_postcard Email postcard
@@ -42802,6 +43044,16 @@ export declare const StorefrontApiFactory: (configuration?: Configuration, fetch
     updateEmailList(storefront_oid: number, email_list_uuid: string, email_list: EmailList, options?: any): Promise<EmailListResponse>;
     /**
      *
+     * @summary Update email campaign folder
+     * @param {number} storefront_oid
+     * @param {string} email_list_segment_folder_uuid
+     * @param {EmailListSegmentFolder} email_list_segment_folder Email campaign folder
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    updateEmailListSegmentFolder(storefront_oid: number, email_list_segment_folder_uuid: string, email_list_segment_folder: EmailListSegmentFolder, options?: any): Promise<EmailListSegmentFolderResponse>;
+    /**
+     *
      * @summary Update email plan
      * @param {number} storefront_oid
      * @param {EmailPlan} settings plan request
@@ -43055,6 +43307,16 @@ export interface StorefrontApiInterface {
      * @memberof StorefrontApiInterface
      */
     deleteEmailListCustomer(storefront_oid: number, email_list_uuid: string, email_customer_uuid: string, options?: any): Promise<BaseResponse>;
+    /**
+     *
+     * @summary Delete email ListSegmentFolder
+     * @param {number} storefront_oid
+     * @param {string} email_list_segment_folder_uuid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof StorefrontApiInterface
+     */
+    deleteEmailListSegmentFolder(storefront_oid: number, email_list_segment_folder_uuid: string, options?: any): Promise<BaseResponse>;
     /**
      *
      * @summary Delete email postcard
@@ -43517,6 +43779,25 @@ export interface StorefrontApiInterface {
      * @memberof StorefrontApiInterface
      */
     getEmailListCustomers(storefront_oid: number, email_list_uuid: string, pageNumber?: number, pageSize?: number, options?: any): Promise<EmailListCustomersResponse>;
+    /**
+     *
+     * @summary Get email campaign folder
+     * @param {number} storefront_oid
+     * @param {string} email_list_segment_folder_uuid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof StorefrontApiInterface
+     */
+    getEmailListSegmentFolder(storefront_oid: number, email_list_segment_folder_uuid: string, options?: any): Promise<EmailListSegmentFolderResponse>;
+    /**
+     *
+     * @summary Get email campaign folders
+     * @param {number} storefront_oid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof StorefrontApiInterface
+     */
+    getEmailListSegmentFolders(storefront_oid: number, options?: any): Promise<EmailListSegmentFoldersResponse>;
     /**
      *
      * @summary Get email lists
@@ -43982,6 +44263,16 @@ export interface StorefrontApiInterface {
     insertEmailList(storefront_oid: number, email_list: EmailList, options?: any): Promise<EmailListResponse>;
     /**
      *
+     * @summary Insert email campaign folder
+     * @param {number} storefront_oid
+     * @param {EmailListSegmentFolder} email_list_segment_folder Email campaign folder
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof StorefrontApiInterface
+     */
+    insertEmailListSegmentFolder(storefront_oid: number, email_list_segment_folder: EmailListSegmentFolder, options?: any): Promise<EmailListSegmentFolderResponse>;
+    /**
+     *
      * @summary Insert email postcard
      * @param {number} storefront_oid
      * @param {EmailCommseqPostcard} email_commseq_postcard Email postcard
@@ -44306,6 +44597,17 @@ export interface StorefrontApiInterface {
     updateEmailList(storefront_oid: number, email_list_uuid: string, email_list: EmailList, options?: any): Promise<EmailListResponse>;
     /**
      *
+     * @summary Update email campaign folder
+     * @param {number} storefront_oid
+     * @param {string} email_list_segment_folder_uuid
+     * @param {EmailListSegmentFolder} email_list_segment_folder Email campaign folder
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof StorefrontApiInterface
+     */
+    updateEmailListSegmentFolder(storefront_oid: number, email_list_segment_folder_uuid: string, email_list_segment_folder: EmailListSegmentFolder, options?: any): Promise<EmailListSegmentFolderResponse>;
+    /**
+     *
      * @summary Update email plan
      * @param {number} storefront_oid
      * @param {EmailPlan} settings plan request
@@ -44571,6 +44873,16 @@ export declare class StorefrontApi extends BaseAPI implements StorefrontApiInter
      * @memberof StorefrontApi
      */
     deleteEmailListCustomer(storefront_oid: number, email_list_uuid: string, email_customer_uuid: string, options?: any): Promise<BaseResponse>;
+    /**
+     *
+     * @summary Delete email ListSegmentFolder
+     * @param {number} storefront_oid
+     * @param {string} email_list_segment_folder_uuid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof StorefrontApi
+     */
+    deleteEmailListSegmentFolder(storefront_oid: number, email_list_segment_folder_uuid: string, options?: any): Promise<BaseResponse>;
     /**
      *
      * @summary Delete email postcard
@@ -45033,6 +45345,25 @@ export declare class StorefrontApi extends BaseAPI implements StorefrontApiInter
      * @memberof StorefrontApi
      */
     getEmailListCustomers(storefront_oid: number, email_list_uuid: string, pageNumber?: number, pageSize?: number, options?: any): Promise<EmailListCustomersResponse>;
+    /**
+     *
+     * @summary Get email campaign folder
+     * @param {number} storefront_oid
+     * @param {string} email_list_segment_folder_uuid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof StorefrontApi
+     */
+    getEmailListSegmentFolder(storefront_oid: number, email_list_segment_folder_uuid: string, options?: any): Promise<EmailListSegmentFolderResponse>;
+    /**
+     *
+     * @summary Get email campaign folders
+     * @param {number} storefront_oid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof StorefrontApi
+     */
+    getEmailListSegmentFolders(storefront_oid: number, options?: any): Promise<EmailListSegmentFoldersResponse>;
     /**
      *
      * @summary Get email lists
@@ -45498,6 +45829,16 @@ export declare class StorefrontApi extends BaseAPI implements StorefrontApiInter
     insertEmailList(storefront_oid: number, email_list: EmailList, options?: any): Promise<EmailListResponse>;
     /**
      *
+     * @summary Insert email campaign folder
+     * @param {number} storefront_oid
+     * @param {EmailListSegmentFolder} email_list_segment_folder Email campaign folder
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof StorefrontApi
+     */
+    insertEmailListSegmentFolder(storefront_oid: number, email_list_segment_folder: EmailListSegmentFolder, options?: any): Promise<EmailListSegmentFolderResponse>;
+    /**
+     *
      * @summary Insert email postcard
      * @param {number} storefront_oid
      * @param {EmailCommseqPostcard} email_commseq_postcard Email postcard
@@ -45820,6 +46161,17 @@ export declare class StorefrontApi extends BaseAPI implements StorefrontApiInter
      * @memberof StorefrontApi
      */
     updateEmailList(storefront_oid: number, email_list_uuid: string, email_list: EmailList, options?: any): Promise<EmailListResponse>;
+    /**
+     *
+     * @summary Update email campaign folder
+     * @param {number} storefront_oid
+     * @param {string} email_list_segment_folder_uuid
+     * @param {EmailListSegmentFolder} email_list_segment_folder Email campaign folder
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof StorefrontApi
+     */
+    updateEmailListSegmentFolder(storefront_oid: number, email_list_segment_folder_uuid: string, email_list_segment_folder: EmailListSegmentFolder, options?: any): Promise<EmailListSegmentFolderResponse>;
     /**
      *
      * @summary Update email plan
