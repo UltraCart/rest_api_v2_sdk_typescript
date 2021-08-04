@@ -24855,10 +24855,22 @@ export interface PaymentsConfiguration {
     creditCard?: PaymentsConfigurationCreditCard;
     /**
      * 
+     * @type {PaymentsConfigurationEcheck}
+     * @memberof PaymentsConfiguration
+     */
+    eCheck?: PaymentsConfigurationEcheck;
+    /**
+     * 
      * @type {PaymentsConfigurationLoanHero}
      * @memberof PaymentsConfiguration
      */
     loanHero?: PaymentsConfigurationLoanHero;
+    /**
+     * 
+     * @type {PaymentsConfigurationMoneyOrder}
+     * @memberof PaymentsConfiguration
+     */
+    moneyOrder?: PaymentsConfigurationMoneyOrder;
     /**
      * 
      * @type {PaymentsConfigurationPayPal}
@@ -25105,18 +25117,6 @@ export interface PaymentsConfigurationCheck {
     acceptCheckOrders?: boolean;
     /**
      * 
-     * @type {boolean}
-     * @memberof PaymentsConfigurationCheck
-     */
-    acceptECheck?: boolean;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof PaymentsConfigurationCheck
-     */
-    acceptMoneyOrders?: boolean;
-    /**
-     * 
      * @type {string}
      * @memberof PaymentsConfigurationCheck
      */
@@ -25133,18 +25133,6 @@ export interface PaymentsConfigurationCheck {
      * @memberof PaymentsConfigurationCheck
      */
     checksPayableTo?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof PaymentsConfigurationCheck
-     */
-    eCheckAccountingCode?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof PaymentsConfigurationCheck
-     */
-    eCheckDepositToAccount?: string;
     /**
      * 
      * @type {string}
@@ -25266,6 +25254,38 @@ export interface PaymentsConfigurationCreditCard {
 /**
  * 
  * @export
+ * @interface PaymentsConfigurationEcheck
+ */
+export interface PaymentsConfigurationEcheck {
+    /**
+     * 
+     * @type {boolean}
+     * @memberof PaymentsConfigurationEcheck
+     */
+    acceptECheck?: boolean;
+    /**
+     * 
+     * @type {string}
+     * @memberof PaymentsConfigurationEcheck
+     */
+    eCheckAccountingCode?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PaymentsConfigurationEcheck
+     */
+    eCheckDepositToAccount?: string;
+    /**
+     * 
+     * @type {PaymentsConfigurationRestrictions}
+     * @memberof PaymentsConfigurationEcheck
+     */
+    restrictions?: PaymentsConfigurationRestrictions;
+}
+
+/**
+ * 
+ * @export
  * @interface PaymentsConfigurationLoanHero
  */
 export interface PaymentsConfigurationLoanHero {
@@ -25299,6 +25319,26 @@ export interface PaymentsConfigurationLoanHero {
      * @memberof PaymentsConfigurationLoanHero
      */
     showLoanHero?: boolean;
+}
+
+/**
+ * 
+ * @export
+ * @interface PaymentsConfigurationMoneyOrder
+ */
+export interface PaymentsConfigurationMoneyOrder {
+    /**
+     * 
+     * @type {boolean}
+     * @memberof PaymentsConfigurationMoneyOrder
+     */
+    acceptMoneyOrders?: boolean;
+    /**
+     * 
+     * @type {PaymentsConfigurationRestrictions}
+     * @memberof PaymentsConfigurationMoneyOrder
+     */
+    restrictions?: PaymentsConfigurationRestrictions;
 }
 
 /**
