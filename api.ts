@@ -24852,43 +24852,43 @@ export interface PaymentsConfiguration {
      * @type {PaymentsConfigurationCreditCard}
      * @memberof PaymentsConfiguration
      */
-    creditCard?: PaymentsConfigurationCreditCard;
+    credit_card?: PaymentsConfigurationCreditCard;
     /**
      * 
      * @type {PaymentsConfigurationEcheck}
      * @memberof PaymentsConfiguration
      */
-    eCheck?: PaymentsConfigurationEcheck;
+    echeck?: PaymentsConfigurationEcheck;
     /**
      * 
      * @type {PaymentsConfigurationLoanHero}
      * @memberof PaymentsConfiguration
      */
-    loanHero?: PaymentsConfigurationLoanHero;
+    loan_hero?: PaymentsConfigurationLoanHero;
     /**
      * 
      * @type {PaymentsConfigurationMoneyOrder}
      * @memberof PaymentsConfiguration
      */
-    moneyOrder?: PaymentsConfigurationMoneyOrder;
+    money_order?: PaymentsConfigurationMoneyOrder;
     /**
      * 
      * @type {PaymentsConfigurationPayPal}
      * @memberof PaymentsConfiguration
      */
-    payPal?: PaymentsConfigurationPayPal;
+    paypal?: PaymentsConfigurationPayPal;
     /**
      * 
      * @type {PaymentsConfigurationPurchaseOrder}
      * @memberof PaymentsConfiguration
      */
-    purchaseOrder?: PaymentsConfigurationPurchaseOrder;
+    purchase_order?: PaymentsConfigurationPurchaseOrder;
     /**
      * 
      * @type {PaymentsConfigurationQuoteRequest}
      * @memberof PaymentsConfiguration
      */
-    quoteRequest?: PaymentsConfigurationQuoteRequest;
+    quote_request?: PaymentsConfigurationQuoteRequest;
     /**
      * 
      * @type {PaymentsConfigurationSezzle}
@@ -24896,11 +24896,11 @@ export interface PaymentsConfiguration {
      */
     sezzle?: PaymentsConfigurationSezzle;
     /**
-     * 
+     * Internal flag used to determine if accounting codes should be shown on the screen or not.  This flag is true if the merchant has a Quickbooks integration configured.
      * @type {boolean}
      * @memberof PaymentsConfiguration
      */
-    showAccountingCode?: boolean;
+    show_accounting_code?: boolean;
     /**
      * 
      * @type {string}
@@ -24918,13 +24918,13 @@ export interface PaymentsConfiguration {
      * @type {PaymentsConfigurationWePay}
      * @memberof PaymentsConfiguration
      */
-    wePay?: PaymentsConfigurationWePay;
+    ultracart_payments_wepay?: PaymentsConfigurationWePay;
     /**
      * 
      * @type {PaymentsConfigurationWireTransfer}
      * @memberof PaymentsConfiguration
      */
-    wireTransfer?: PaymentsConfigurationWireTransfer;
+    wire_transfer?: PaymentsConfigurationWireTransfer;
 }
 
 /**
@@ -24934,53 +24934,68 @@ export interface PaymentsConfiguration {
  */
 export interface PaymentsConfigurationAffirm {
     /**
-     * 
+     * Master flag indicating this merchant accepts Affirm payments
      * @type {boolean}
      * @memberof PaymentsConfigurationAffirm
      */
-    acceptAffirm?: boolean;
+    accept_affirm?: boolean;
     /**
-     * 
+     * Optional Quickbooks code for this payment method
      * @type {string}
      * @memberof PaymentsConfigurationAffirm
      */
-    affirmAccountingCode?: string;
+    accounting_code?: string;
     /**
-     * 
+     * Optional Quickbooks Deposit to Account value
      * @type {string}
      * @memberof PaymentsConfigurationAffirm
      */
-    affirmDepositToAccount?: string;
+    deposit_to_account?: string;
     /**
-     * 
+     * Environment
      * @type {string}
      * @memberof PaymentsConfigurationAffirm
      */
-    affirmEnvironment?: string;
+    environment?: PaymentsConfigurationAffirm.EnvironmentEnum;
     /**
-     * 
+     * Financial product key
      * @type {string}
      * @memberof PaymentsConfigurationAffirm
      */
-    affirmFinancialProductKey?: string;
+    financial_product_key?: string;
     /**
-     * 
+     * Private API key
      * @type {string}
      * @memberof PaymentsConfigurationAffirm
      */
-    affirmPrivateApiKey?: string;
+    private_api_key?: string;
     /**
-     * 
+     * Public API key
      * @type {string}
      * @memberof PaymentsConfigurationAffirm
      */
-    affirmPublicApiKey?: string;
+    public_api_key?: string;
     /**
      * 
      * @type {PaymentsConfigurationRestrictions}
      * @memberof PaymentsConfigurationAffirm
      */
     restrictions?: PaymentsConfigurationRestrictions;
+}
+
+/**
+ * @export
+ * @namespace PaymentsConfigurationAffirm
+ */
+export namespace PaymentsConfigurationAffirm {
+    /**
+     * @export
+     * @enum {string}
+     */
+    export enum EnvironmentEnum {
+        Live = <any> 'Live',
+        Sandbox = <any> 'Sandbox'
+    }
 }
 
 /**
@@ -24990,53 +25005,53 @@ export interface PaymentsConfigurationAffirm {
  */
 export interface PaymentsConfigurationAmazon {
     /**
-     * 
+     * Master flag to determine if this merchant accepts Pay by Amazon
      * @type {boolean}
      * @memberof PaymentsConfigurationAmazon
      */
-    acceptAmazon?: boolean;
+    accept_amazon?: boolean;
     /**
-     * 
+     * Amazon access key ID
      * @type {string}
      * @memberof PaymentsConfigurationAmazon
      */
-    amazonAccessKeyId?: string;
+    access_key_id?: string;
     /**
-     * 
+     * Optional accounting code for use with Quickbooks integrations
      * @type {string}
      * @memberof PaymentsConfigurationAmazon
      */
-    amazonAccountingCode?: string;
+    accounting_code?: string;
     /**
-     * 
+     * Amazon merchant ID
      * @type {string}
      * @memberof PaymentsConfigurationAmazon
      */
-    amazonDepositToAccount?: string;
+    amazon_merchant_id?: string;
     /**
-     * 
+     * Optional deposit to account field for use with Quickbooks integrations
      * @type {string}
      * @memberof PaymentsConfigurationAmazon
      */
-    amazonMerchantId?: string;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof PaymentsConfigurationAmazon
-     */
-    amazonSandbox?: boolean;
-    /**
-     * 
-     * @type {string}
-     * @memberof PaymentsConfigurationAmazon
-     */
-    amazonSecretAccessKey?: string;
+    deposit_to_account?: string;
     /**
      * 
      * @type {PaymentsConfigurationRestrictions}
      * @memberof PaymentsConfigurationAmazon
      */
     restrictions?: PaymentsConfigurationRestrictions;
+    /**
+     * True if transactions should run against the Amazon sandbox.  Useful for testing not configurations
+     * @type {boolean}
+     * @memberof PaymentsConfigurationAmazon
+     */
+    sandbox?: boolean;
+    /**
+     * Amazon secret access key
+     * @type {string}
+     * @memberof PaymentsConfigurationAmazon
+     */
+    secret_access_key?: string;
 }
 
 /**
@@ -25046,41 +25061,41 @@ export interface PaymentsConfigurationAmazon {
  */
 export interface PaymentsConfigurationCOD {
     /**
-     * 
+     * Master flag indicating this merchant accepts COD
      * @type {boolean}
      * @memberof PaymentsConfigurationCOD
      */
-    acceptCod?: boolean;
+    accept_cod?: boolean;
     /**
-     * 
+     * If true, only approved customers may pay with COD
      * @type {boolean}
      * @memberof PaymentsConfigurationCOD
      */
-    codApprovedCustomersOnly?: boolean;
-    /**
-     * 
-     * @type {string}
-     * @memberof PaymentsConfigurationCOD
-     */
-    codSurchargeAccountingCode?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof PaymentsConfigurationCOD
-     */
-    codSurchargeFee?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof PaymentsConfigurationCOD
-     */
-    codSurchargePerc?: string;
+    approved_customers_only?: boolean;
     /**
      * 
      * @type {PaymentsConfigurationRestrictions}
      * @memberof PaymentsConfigurationCOD
      */
     restrictions?: PaymentsConfigurationRestrictions;
+    /**
+     * Optional field, if surcharge is set, this is the accounting code the surcharge is tagged with when sent to Quickbooks
+     * @type {string}
+     * @memberof PaymentsConfigurationCOD
+     */
+    surcharge_accounting_code?: string;
+    /**
+     * Additional cost for using COD
+     * @type {string}
+     * @memberof PaymentsConfigurationCOD
+     */
+    surcharge_fee?: string;
+    /**
+     * Additional percentage cost for using COD
+     * @type {string}
+     * @memberof PaymentsConfigurationCOD
+     */
+    surcharge_percentage?: string;
 }
 
 /**
@@ -25090,11 +25105,11 @@ export interface PaymentsConfigurationCOD {
  */
 export interface PaymentsConfigurationCash {
     /**
-     * 
+     * Master flag indicating this merchant accepts cash
      * @type {boolean}
      * @memberof PaymentsConfigurationCash
      */
-    acceptCash?: boolean;
+    accept_cash?: boolean;
     /**
      * 
      * @type {PaymentsConfigurationRestrictions}
@@ -25110,89 +25125,83 @@ export interface PaymentsConfigurationCash {
  */
 export interface PaymentsConfigurationCheck {
     /**
-     * 
+     * Master flag indicating this merchant accepts paper checks
      * @type {boolean}
      * @memberof PaymentsConfigurationCheck
      */
-    acceptCheckOrders?: boolean;
+    accept_check_orders?: boolean;
     /**
-     * 
+     * Optional Quickbooks accounting code
      * @type {string}
      * @memberof PaymentsConfigurationCheck
      */
-    checkAccountingCode?: string;
+    accounting_code?: string;
     /**
-     * 
+     * This is who the customer makes the check out to
      * @type {string}
      * @memberof PaymentsConfigurationCheck
      */
-    checkDepositToAccount?: string;
+    checks_payable_to?: string;
     /**
-     * 
+     * Optional Quickbooks deposit to account
      * @type {string}
      * @memberof PaymentsConfigurationCheck
      */
-    checksPayableTo?: string;
+    deposit_to_account?: string;
     /**
-     * 
+     * MailTo address line 1
      * @type {string}
      * @memberof PaymentsConfigurationCheck
      */
-    mailToAddress1?: string;
+    mail_to_address1?: string;
     /**
-     * 
+     * MailTo address line 2
      * @type {string}
      * @memberof PaymentsConfigurationCheck
      */
-    mailToAddress2?: string;
+    mail_to_address2?: string;
     /**
-     * 
+     * MailTo city
      * @type {string}
      * @memberof PaymentsConfigurationCheck
      */
-    mailToCity?: string;
+    mail_to_city?: string;
     /**
-     * 
+     * MailTo country
      * @type {string}
      * @memberof PaymentsConfigurationCheck
      */
-    mailToCountry?: string;
+    mail_to_country?: string;
     /**
-     * 
+     * MailTo name
      * @type {string}
      * @memberof PaymentsConfigurationCheck
      */
-    mailToName?: string;
+    mail_to_name?: string;
     /**
-     * 
+     * MailTo postal code
      * @type {string}
      * @memberof PaymentsConfigurationCheck
      */
-    mailToState?: string;
+    mail_to_postal_code?: string;
     /**
-     * 
+     * MailTo store
      * @type {string}
      * @memberof PaymentsConfigurationCheck
      */
-    mailToZip?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof PaymentsConfigurationCheck
-     */
-    moneyOrderAccountingCode?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof PaymentsConfigurationCheck
-     */
-    moneyOrderDepositToAccount?: string;
+    mail_to_store?: string;
     /**
      * 
      * @type {PaymentsConfigurationRestrictions}
      * @memberof PaymentsConfigurationCheck
      */
     restrictions?: PaymentsConfigurationRestrictions;
+    /**
+     * Test methods for this payment method
+     * @type {any}
+     * @memberof PaymentsConfigurationCheck
+     */
+    test_methods?: any;
 }
 
 /**
@@ -25202,53 +25211,71 @@ export interface PaymentsConfigurationCheck {
  */
 export interface PaymentsConfigurationCreditCard {
     /**
-     * 
+     * Master flag indicating whether this merchant accepts credit card payments
      * @type {boolean}
      * @memberof PaymentsConfigurationCreditCard
      */
-    acceptCreditCards?: boolean;
+    accept_credit_card?: boolean;
     /**
-     * 
+     * Description that appears on customer statements
      * @type {string}
      * @memberof PaymentsConfigurationCreditCard
      */
-    billedBy?: string;
+    billed_by?: string;
     /**
-     * 
+     * If false, order will be accepted and placed into Accounts Receivable without charging card first
      * @type {boolean}
      * @memberof PaymentsConfigurationCreditCard
      */
-    chargeDuringCheckout?: boolean;
+    charge_during_checkout?: boolean;
     /**
-     * 
+     * UltraCart will require customer to enter cvv if this is true
      * @type {boolean}
      * @memberof PaymentsConfigurationCreditCard
      */
-    collectCvv2?: boolean;
+    collect_cvv2?: boolean;
     /**
-     * 
+     * Human readable description of the credit card gateway currently configured
      * @type {string}
      * @memberof PaymentsConfigurationCreditCard
      */
-    configuredGatewaysDetails?: string;
+    configured_gateway_details?: string;
     /**
-     * 
+     * The number of failed attempts before the order is placed into Accounts Receivable for manual intervention
      * @type {string}
      * @memberof PaymentsConfigurationCreditCard
      */
-    failedAttempts?: string;
+    failed_attempts?: string;
     /**
-     * 
+     * This internal flag aids the UI in determining which buttons to show.
      * @type {boolean}
      * @memberof PaymentsConfigurationCreditCard
      */
-    hideConnectSingleGateway?: boolean;
+    hide_connect_single_gateway?: boolean;
     /**
-     * 
+     * Restrictions for this payment method
+     * @type {any}
+     * @memberof PaymentsConfigurationCreditCard
+     */
+    restrictions?: any;
+    /**
+     * UltraCart will send customers emails to update their credit card if the card is declined
      * @type {boolean}
      * @memberof PaymentsConfigurationCreditCard
      */
-    sendCustomerBillingUpdateOnDecline?: boolean;
+    send_customer_billing_update_on_decline?: boolean;
+    /**
+     * A list of credit cards the merchant wishes to accept.
+     * @type {any}
+     * @memberof PaymentsConfigurationCreditCard
+     */
+    supported_cards?: any;
+    /**
+     * An array of test methods for placing test orders.  The cards defined here may be real or fake, but any order placed with them will be marked as Test orders
+     * @type {any}
+     * @memberof PaymentsConfigurationCreditCard
+     */
+    test_methods?: any;
 }
 
 /**
@@ -25258,23 +25285,23 @@ export interface PaymentsConfigurationCreditCard {
  */
 export interface PaymentsConfigurationEcheck {
     /**
-     * 
+     * Master flag indicating this merchant accepts eChecks
      * @type {boolean}
      * @memberof PaymentsConfigurationEcheck
      */
-    acceptECheck?: boolean;
+    accept_echeck?: boolean;
     /**
-     * 
+     * Optional Quickbooks accounting code
      * @type {string}
      * @memberof PaymentsConfigurationEcheck
      */
-    eCheckAccountingCode?: string;
+    accounting_code?: string;
     /**
-     * 
+     * Optional Quickbooks deposit to account
      * @type {string}
      * @memberof PaymentsConfigurationEcheck
      */
-    eCheckDepositToAccount?: string;
+    deposit_to_account?: string;
     /**
      * 
      * @type {PaymentsConfigurationRestrictions}
@@ -25290,23 +25317,23 @@ export interface PaymentsConfigurationEcheck {
  */
 export interface PaymentsConfigurationLoanHero {
     /**
-     * 
+     * Master flag indicating this merchant accepts Loan Hero
      * @type {boolean}
      * @memberof PaymentsConfigurationLoanHero
      */
-    acceptLoanHero?: boolean;
+    accept_loan_hero?: boolean;
     /**
-     * 
+     * Optional Quickbooks accounting code
      * @type {string}
      * @memberof PaymentsConfigurationLoanHero
      */
-    loanHeroAccountingCode?: string;
+    accounting_code?: string;
     /**
-     * 
+     * Optional Quickbooks deposit to account
      * @type {string}
      * @memberof PaymentsConfigurationLoanHero
      */
-    loanHeroDepositToAccount?: string;
+    deposit_to_account?: string;
     /**
      * 
      * @type {PaymentsConfigurationRestrictions}
@@ -25314,11 +25341,11 @@ export interface PaymentsConfigurationLoanHero {
      */
     restrictions?: PaymentsConfigurationRestrictions;
     /**
-     * 
+     * Internal field to aid UI
      * @type {boolean}
      * @memberof PaymentsConfigurationLoanHero
      */
-    showLoanHero?: boolean;
+    show_loan_hero?: boolean;
 }
 
 /**
@@ -25328,11 +25355,23 @@ export interface PaymentsConfigurationLoanHero {
  */
 export interface PaymentsConfigurationMoneyOrder {
     /**
-     * 
+     * Master flag for this merchant accepting money orders
      * @type {boolean}
      * @memberof PaymentsConfigurationMoneyOrder
      */
-    acceptMoneyOrders?: boolean;
+    accept_money_orders?: boolean;
+    /**
+     * Optional Quickbooks accounting code
+     * @type {string}
+     * @memberof PaymentsConfigurationMoneyOrder
+     */
+    accounting_code?: string;
+    /**
+     * Optional Quickbooks deposit to account
+     * @type {string}
+     * @memberof PaymentsConfigurationMoneyOrder
+     */
+    deposit_to_account?: string;
     /**
      * 
      * @type {PaymentsConfigurationRestrictions}
@@ -25348,167 +25387,119 @@ export interface PaymentsConfigurationMoneyOrder {
  */
 export interface PaymentsConfigurationPayPal {
     /**
-     * 
+     * Master flag that determine if PayPal is an active payment for this account
      * @type {boolean}
      * @memberof PaymentsConfigurationPayPal
      */
-    acceptPayPal?: boolean;
+    accept_paypal?: boolean;
     /**
-     * 
+     * Optional accounting code that is set to Quickbooks when an order uses this payment method.
      * @type {string}
      * @memberof PaymentsConfigurationPayPal
      */
-    paypalAccountingCode?: string;
+    accounting_code?: string;
     /**
-     * 
+     * PayPal API password
      * @type {string}
      * @memberof PaymentsConfigurationPayPal
      */
-    paypalApiPassword?: string;
+    api_password?: string;
     /**
-     * 
+     * PayPal API username
      * @type {string}
      * @memberof PaymentsConfigurationPayPal
      */
-    paypalApiUserName?: string;
+    api_username?: string;
     /**
-     * 
+     * (Legacy) true if there is a PayPal certificate already on file. Used to manage the internal UI
      * @type {boolean}
      * @memberof PaymentsConfigurationPayPal
      */
-    paypalCertificateOnFile?: boolean;
+    certificate_on_file?: boolean;
     /**
-     * 
+     * The account to deposit funds
      * @type {string}
      * @memberof PaymentsConfigurationPayPal
      */
-    paypalDepositToAccount?: string;
+    deposit_to_account?: string;
     /**
-     * 
+     * The main PayPal email address
      * @type {string}
      * @memberof PaymentsConfigurationPayPal
      */
-    paypalEmail?: string;
+    email?: string;
     /**
-     * 
+     * PayPal configuration, live or sandbox
      * @type {string}
      * @memberof PaymentsConfigurationPayPal
      */
-    paypalEnvironment?: string;
+    environment?: PaymentsConfigurationPayPal.EnvironmentEnum;
     /**
-     * 
+     * The URL for the PayPal header
      * @type {string}
      * @memberof PaymentsConfigurationPayPal
      */
-    paypalHeaderImageUrl?: string;
+    header_image_url?: string;
     /**
-     * 
+     * True if the Bill Me Later button should be hidden during checkout
      * @type {boolean}
      * @memberof PaymentsConfigurationPayPal
      */
-    paypalHideBillMeLater?: boolean;
+    hide_bill_me_later?: boolean;
     /**
-     * 
+     * True if the PayPal express checkout button should be hidden on the view cart page.  This will force the customer to enter address information before being able to checkout with PayPal
      * @type {boolean}
      * @memberof PaymentsConfigurationPayPal
      */
-    paypalHideExpressCheckoutOnViewCart?: boolean;
+    hide_express_checkout_on_view_cart?: boolean;
     /**
-     * 
+     * True if PayPal should be hidden for orders with no shippable product, such as digital orders
      * @type {boolean}
      * @memberof PaymentsConfigurationPayPal
      */
-    paypalHideForUnshippedOrders?: boolean;
+    hide_for_unshipped_orders?: boolean;
     /**
-     * 
+     * If true, PayPal orders are held in Accounts Receivable for review
      * @type {boolean}
      * @memberof PaymentsConfigurationPayPal
      */
-    paypalHoldInAR?: boolean;
+    hold_in_ar?: boolean;
     /**
-     * 
+     * PayPal landing page
      * @type {string}
      * @memberof PaymentsConfigurationPayPal
      */
-    paypalLandingPage?: string;
+    landing_page?: PaymentsConfigurationPayPal.LandingPageEnum;
     /**
-     * 
+     * The PayPal mode
      * @type {string}
      * @memberof PaymentsConfigurationPayPal
      */
-    paypalMode?: string;
+    mode?: PaymentsConfigurationPayPal.ModeEnum;
     /**
-     * 
+     * PayPal API private key password
      * @type {string}
      * @memberof PaymentsConfigurationPayPal
      */
-    paypalPrivateKeyPassword?: string;
+    private_key_password?: string;
     /**
-     * 
+     * Optional additional fee to charge if PayPal is used.  It is rare for this to be used.
      * @type {string}
      * @memberof PaymentsConfigurationPayPal
      */
-    paypalProcessingFee?: string;
+    processing_fee?: string;
     /**
-     * 
+     * The processing percentage charged by PayPal
      * @type {string}
      * @memberof PaymentsConfigurationPayPal
      */
-    paypalProcessingPerc?: string;
+    processing_percentage?: string;
     /**
-     * 
-     * @type {string}
-     * @memberof PaymentsConfigurationPayPal
-     */
-    paypalSendRecurring?: string;
-    /**
-     * 
+     * True if the internal UI should recommend opening a PayPal account
      * @type {boolean}
      * @memberof PaymentsConfigurationPayPal
      */
-    paypalShowCardLogosNotDirectlySupported?: boolean;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof PaymentsConfigurationPayPal
-     */
-    paypalShowSignature?: boolean;
-    /**
-     * 
-     * @type {string}
-     * @memberof PaymentsConfigurationPayPal
-     */
-    paypalSignature?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof PaymentsConfigurationPayPal
-     */
-    paypalSolutionType?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof PaymentsConfigurationPayPal
-     */
-    paypalSummaryEmail?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof PaymentsConfigurationPayPal
-     */
-    paypalSummaryMode?: string;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof PaymentsConfigurationPayPal
-     */
-    paypalZeroDollarPenny?: boolean;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof PaymentsConfigurationPayPal
-     */
-    pushPayPal?: boolean;
+    push_paypal?: boolean;
     /**
      * 
      * @type {PaymentsConfigurationRestrictions}
@@ -25516,11 +25507,98 @@ export interface PaymentsConfigurationPayPal {
      */
     restrictions?: PaymentsConfigurationRestrictions;
     /**
-     * 
+     * True if UltraCart should send recurring orders to PayPal.  There are restrictions to what PayPal will accept for recurring orders.  Be careful.
      * @type {boolean}
      * @memberof PaymentsConfigurationPayPal
      */
-    shortPayPalMarketingText?: boolean;
+    send_recurring?: boolean;
+    /**
+     * Short marketing text
+     * @type {boolean}
+     * @memberof PaymentsConfigurationPayPal
+     */
+    short_paypal_marketing_text?: boolean;
+    /**
+     * internal ui flag
+     * @type {boolean}
+     * @memberof PaymentsConfigurationPayPal
+     */
+    show_card_logos_not_directly_supported?: boolean;
+    /**
+     * Internal flag used to manage UI
+     * @type {boolean}
+     * @memberof PaymentsConfigurationPayPal
+     */
+    show_signature?: boolean;
+    /**
+     * PayPal signature
+     * @type {string}
+     * @memberof PaymentsConfigurationPayPal
+     */
+    signature?: string;
+    /**
+     * PayPal solution type
+     * @type {string}
+     * @memberof PaymentsConfigurationPayPal
+     */
+    solution_type?: PaymentsConfigurationPayPal.SolutionTypeEnum;
+    /**
+     * The email where PayPal summaries should be sent
+     * @type {string}
+     * @memberof PaymentsConfigurationPayPal
+     */
+    summary_email?: string;
+    /**
+     * Description of what mode PayPal is operating
+     * @type {string}
+     * @memberof PaymentsConfigurationPayPal
+     */
+    summary_mode?: string;
+    /**
+     * Send free items to PayPal as one cent items and subtract this penny from shipping.  PayPal does not allow the sale of free items.
+     * @type {boolean}
+     * @memberof PaymentsConfigurationPayPal
+     */
+    zero_dollar_penny?: boolean;
+}
+
+/**
+ * @export
+ * @namespace PaymentsConfigurationPayPal
+ */
+export namespace PaymentsConfigurationPayPal {
+    /**
+     * @export
+     * @enum {string}
+     */
+    export enum EnvironmentEnum {
+        Live = <any> 'Live',
+        Sandbox = <any> 'Sandbox'
+    }
+    /**
+     * @export
+     * @enum {string}
+     */
+    export enum LandingPageEnum {
+        Billing = <any> 'Billing',
+        Login = <any> 'Login'
+    }
+    /**
+     * @export
+     * @enum {string}
+     */
+    export enum ModeEnum {
+        WPPECO = <any> 'WPPECO',
+        WPPECDP = <any> 'WPPECDP'
+    }
+    /**
+     * @export
+     * @enum {string}
+     */
+    export enum SolutionTypeEnum {
+        Sole = <any> 'Sole',
+        Mark = <any> 'Mark'
+    }
 }
 
 /**
@@ -25530,23 +25608,23 @@ export interface PaymentsConfigurationPayPal {
  */
 export interface PaymentsConfigurationPurchaseOrder {
     /**
-     * 
+     * Master flag indicating this merchant accepts purchase orders
      * @type {boolean}
      * @memberof PaymentsConfigurationPurchaseOrder
      */
-    acceptPurchaseOrders?: boolean;
+    accept_purchase_orders?: boolean;
     /**
-     * 
+     * If true, only approved customers may pay with a purchase order
      * @type {boolean}
      * @memberof PaymentsConfigurationPurchaseOrder
      */
-    purchaseOrderApprovedCustomersOnly?: boolean;
+    approved_customers_only?: boolean;
     /**
-     * 
+     * If true, customers may not use duplicate PO numbers for any order
      * @type {boolean}
      * @memberof PaymentsConfigurationPurchaseOrder
      */
-    purchaseOrderPreventDuplicateNumber?: boolean;
+    prevent_duplicate_number?: boolean;
     /**
      * 
      * @type {PaymentsConfigurationRestrictions}
@@ -25562,17 +25640,17 @@ export interface PaymentsConfigurationPurchaseOrder {
  */
 export interface PaymentsConfigurationQuoteRequest {
     /**
-     * 
+     * Master flag indicating this merchant accepts quote requests
      * @type {boolean}
      * @memberof PaymentsConfigurationQuoteRequest
      */
-    acceptQuoteRequests?: boolean;
+    accept_quote_requests?: boolean;
     /**
-     * 
+     * If true, only approved customers may use quote requests
      * @type {boolean}
      * @memberof PaymentsConfigurationQuoteRequest
      */
-    quoteRequestApprovedCustomersOnly?: boolean;
+    approved_customers_only?: boolean;
     /**
      * 
      * @type {PaymentsConfigurationRestrictions}
@@ -25626,77 +25704,77 @@ export interface PaymentsConfigurationResponse {
  */
 export interface PaymentsConfigurationRestrictions {
     /**
-     * 
+     * Maximum subtotal
      * @type {string}
      * @memberof PaymentsConfigurationRestrictions
      */
-    maximumSubtotal?: string;
+    maximum_subtotal?: string;
     /**
-     * 
+     * Minimum subtotal
      * @type {string}
      * @memberof PaymentsConfigurationRestrictions
      */
-    minimumSubtotal?: string;
+    minimum_subtotal?: string;
     /**
-     * 
+     * Payment method
      * @type {string}
      * @memberof PaymentsConfigurationRestrictions
      */
-    paymentMethod?: string;
+    payment_method?: string;
     /**
-     * 
+     * Alaska and Hawaii restriction
      * @type {string}
      * @memberof PaymentsConfigurationRestrictions
      */
-    restrictionAlaskaHawaii?: string;
+    restriction_alaska_hawaii?: string;
     /**
-     * 
+     * APO/FPO restriction
      * @type {string}
      * @memberof PaymentsConfigurationRestrictions
      */
-    restrictionApoFpo?: string;
+    restriction_apo_fpo?: string;
     /**
-     * 
+     * Canada restriction
      * @type {string}
      * @memberof PaymentsConfigurationRestrictions
      */
-    restrictionCanada?: string;
+    restriction_canada?: string;
     /**
-     * 
+     * Continental US restriction
      * @type {string}
      * @memberof PaymentsConfigurationRestrictions
      */
-    restrictionContinentalUS?: string;
+    restriction_continental_us?: string;
     /**
-     * 
+     * Domestic only restriction
      * @type {string}
      * @memberof PaymentsConfigurationRestrictions
      */
-    restrictionDomesticOnly?: string;
+    restriction_domestic_only?: string;
     /**
-     * 
+     * International only restriction
      * @type {string}
      * @memberof PaymentsConfigurationRestrictions
      */
-    restrictionInternationalOnly?: string;
+    restriction_international_only?: string;
     /**
-     * 
+     * PO Box restriction
      * @type {string}
      * @memberof PaymentsConfigurationRestrictions
      */
-    restrictionPoBox?: string;
+    restriction_po_box?: string;
     /**
-     * 
+     * Puerto Rico restriction
      * @type {string}
      * @memberof PaymentsConfigurationRestrictions
      */
-    restrictionPuertoRico?: string;
+    restriction_puerto_rico?: string;
     /**
-     * 
+     * US Territories restriction
      * @type {string}
      * @memberof PaymentsConfigurationRestrictions
      */
-    restrictionUSTerritories?: string;
+    restriction_us_territories?: string;
 }
 
 /**
@@ -25706,53 +25784,74 @@ export interface PaymentsConfigurationRestrictions {
  */
 export interface PaymentsConfigurationSezzle {
     /**
-     * 
+     * Master flag for this merchant accepting Sezzle payments
      * @type {boolean}
      * @memberof PaymentsConfigurationSezzle
      */
-    acceptSezzle?: boolean;
+    accept_sezzle?: boolean;
+    /**
+     * Optional Quickbooks code for this payment method
+     * @type {string}
+     * @memberof PaymentsConfigurationSezzle
+     */
+    accounting_code?: string;
+    /**
+     * Business ID
+     * @type {string}
+     * @memberof PaymentsConfigurationSezzle
+     */
+    business_id?: string;
+    /**
+     * Optional Quickbooks Deposit to Account value
+     * @type {string}
+     * @memberof PaymentsConfigurationSezzle
+     */
+    deposit_to_account?: string;
+    /**
+     * Sezzle environment
+     * @type {string}
+     * @memberof PaymentsConfigurationSezzle
+     */
+    environment?: PaymentsConfigurationSezzle.EnvironmentEnum;
+    /**
+     * List of environments possible
+     * @type {any}
+     * @memberof PaymentsConfigurationSezzle
+     */
+    environments?: any;
+    /**
+     * Private API key
+     * @type {string}
+     * @memberof PaymentsConfigurationSezzle
+     */
+    private_api_key?: string;
+    /**
+     * Public API key
+     * @type {string}
+     * @memberof PaymentsConfigurationSezzle
+     */
+    public_api_key?: string;
     /**
      * 
      * @type {PaymentsConfigurationRestrictions}
      * @memberof PaymentsConfigurationSezzle
      */
     restrictions?: PaymentsConfigurationRestrictions;
+}
+
+/**
+ * @export
+ * @namespace PaymentsConfigurationSezzle
+ */
+export namespace PaymentsConfigurationSezzle {
     /**
-     * 
-     * @type {string}
-     * @memberof PaymentsConfigurationSezzle
+     * @export
+     * @enum {string}
      */
-    sezzleAccountingCode?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof PaymentsConfigurationSezzle
-     */
-    sezzleBusinessId?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof PaymentsConfigurationSezzle
-     */
-    sezzleDepositToAccount?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof PaymentsConfigurationSezzle
-     */
-    sezzleEnvironment?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof PaymentsConfigurationSezzle
-     */
-    sezzlePrivateApiKey?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof PaymentsConfigurationSezzle
-     */
-    sezzlePublicApiKey?: string;
+    export enum EnvironmentEnum {
+        Live = <any> 'Live',
+        Sandbox = <any> 'Sandbox'
+    }
 }
 
 /**
@@ -25762,23 +25861,119 @@ export interface PaymentsConfigurationSezzle {
  */
 export interface PaymentsConfigurationWePay {
     /**
-     * 
+     * Master flag indicating this merchant accepts UltraCart Payments WePay
      * @type {boolean}
      * @memberof PaymentsConfigurationWePay
      */
-    acceptWepay?: boolean;
+    accept_wepay?: boolean;
     /**
-     * 
-     * @type {boolean}
+     * URI for updating the WePay account
+     * @type {string}
      * @memberof PaymentsConfigurationWePay
      */
-    hideCreditCardsNonUltraCartPayments?: boolean;
+    account_update_uri?: string;
     /**
-     * 
+     * Address line 1
+     * @type {string}
+     * @memberof PaymentsConfigurationWePay
+     */
+    address1?: string;
+    /**
+     * Address line 2
+     * @type {string}
+     * @memberof PaymentsConfigurationWePay
+     */
+    address2?: string;
+    /**
+     * For Canadian merchants, true if they wish to accept debit cards
      * @type {boolean}
      * @memberof PaymentsConfigurationWePay
      */
-    hideSurchargeContent?: boolean;
+    canada_accept_debit_cards?: boolean;
+    /**
+     * City
+     * @type {string}
+     * @memberof PaymentsConfigurationWePay
+     */
+    city?: string;
+    /**
+     * Company
+     * @type {string}
+     * @memberof PaymentsConfigurationWePay
+     */
+    company?: string;
+    /**
+     * Company description
+     * @type {string}
+     * @memberof PaymentsConfigurationWePay
+     */
+    company_description?: string;
+    /**
+     * Console hostname
+     * @type {string}
+     * @memberof PaymentsConfigurationWePay
+     */
+    console_hostname?: string;
+    /**
+     * Country
+     * @type {string}
+     * @memberof PaymentsConfigurationWePay
+     */
+    country?: string;
+    /**
+     * Base currency for transactions
+     * @type {string}
+     * @memberof PaymentsConfigurationWePay
+     */
+    currency?: string;
+    /**
+     * Expected Revenue
+     * @type {string}
+     * @memberof PaymentsConfigurationWePay
+     */
+    expected_revenue?: string;
+    /**
+     * Internal flag to aid UI
+     * @type {boolean}
+     * @memberof PaymentsConfigurationWePay
+     */
+    hide_credit_card_non_ultracart_payments?: boolean;
+    /**
+     * Internal flag to aid UI
+     * @type {boolean}
+     * @memberof PaymentsConfigurationWePay
+     */
+    hide_surcharge_amount?: boolean;
+    /**
+     * Industry
+     * @type {string}
+     * @memberof PaymentsConfigurationWePay
+     */
+    industry?: string;
+    /**
+     * Owner email
+     * @type {string}
+     * @memberof PaymentsConfigurationWePay
+     */
+    owner_email?: string;
+    /**
+     * Owner name
+     * @type {string}
+     * @memberof PaymentsConfigurationWePay
+     */
+    owner_name?: string;
+    /**
+     * Owner phone
+     * @type {string}
+     * @memberof PaymentsConfigurationWePay
+     */
+    owner_phone?: string;
+    /**
+     * Postal code
+     * @type {string}
+     * @memberof PaymentsConfigurationWePay
+     */
+    postal_code?: string;
     /**
      * 
      * @type {boolean}
@@ -25792,143 +25987,47 @@ export interface PaymentsConfigurationWePay {
      */
     restrictions?: PaymentsConfigurationRestrictions;
     /**
-     * 
+     * Internal UI aid
      * @type {boolean}
      * @memberof PaymentsConfigurationWePay
      */
-    shortPayPalMarketingText?: boolean;
+    short_paypal_marketing_text?: boolean;
     /**
-     * 
+     * Internal flag to aid UI
      * @type {boolean}
      * @memberof PaymentsConfigurationWePay
      */
-    showUltraCartPaymentsDisabled?: boolean;
+    show_ultracart_payments_disabled?: boolean;
     /**
-     * 
+     * Internal flag to aid UI
      * @type {boolean}
      * @memberof PaymentsConfigurationWePay
      */
-    showUltraCartPaymentsIntro?: boolean;
+    show_ultracart_payments_intro?: boolean;
     /**
-     * 
+     * Internal flag to aid UI
      * @type {boolean}
      * @memberof PaymentsConfigurationWePay
      */
-    showUltraCartPaymentsVerification?: boolean;
+    show_ultracart_payments_verification?: boolean;
     /**
-     * 
+     * Internal flag to aid UI
      * @type {boolean}
      * @memberof PaymentsConfigurationWePay
      */
-    showUltraCartPaymentsVerified?: boolean;
+    show_ultracart_payments_verified?: boolean;
     /**
-     * 
+     * State
      * @type {string}
      * @memberof PaymentsConfigurationWePay
      */
-    wepayAccountUpdateUri?: string;
+    state?: string;
     /**
-     * 
+     * Website URL
      * @type {string}
      * @memberof PaymentsConfigurationWePay
      */
-    wepayAddress1?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof PaymentsConfigurationWePay
-     */
-    wepayAddress2?: string;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof PaymentsConfigurationWePay
-     */
-    wepayCanadaAcceptDebitCards?: boolean;
-    /**
-     * 
-     * @type {string}
-     * @memberof PaymentsConfigurationWePay
-     */
-    wepayCity?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof PaymentsConfigurationWePay
-     */
-    wepayCompany?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof PaymentsConfigurationWePay
-     */
-    wepayCompanyDescription?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof PaymentsConfigurationWePay
-     */
-    wepayConsoleHostname?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof PaymentsConfigurationWePay
-     */
-    wepayCountry?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof PaymentsConfigurationWePay
-     */
-    wepayCurrency?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof PaymentsConfigurationWePay
-     */
-    wepayExpectedRevenue?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof PaymentsConfigurationWePay
-     */
-    wepayIndustry?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof PaymentsConfigurationWePay
-     */
-    wepayOwnerEmail?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof PaymentsConfigurationWePay
-     */
-    wepayOwnerName?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof PaymentsConfigurationWePay
-     */
-    wepayOwnerPhone?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof PaymentsConfigurationWePay
-     */
-    wepayState?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof PaymentsConfigurationWePay
-     */
-    wepayWebsiteUrl?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof PaymentsConfigurationWePay
-     */
-    wepayZip?: string;
+    website_url?: string;
 }
 
 /**
@@ -25938,11 +26037,41 @@ export interface PaymentsConfigurationWePay {
  */
 export interface PaymentsConfigurationWireTransfer {
     /**
-     * 
+     * Master flag indicating this merchant accepts wire transfers
      * @type {boolean}
      * @memberof PaymentsConfigurationWireTransfer
      */
-    acceptWireTransfer?: boolean;
+    accept_wire_transfer?: boolean;
+    /**
+     * account_number
+     * @type {string}
+     * @memberof PaymentsConfigurationWireTransfer
+     */
+    account_number?: string;
+    /**
+     * Optional Quickbooks accounting code
+     * @type {string}
+     * @memberof PaymentsConfigurationWireTransfer
+     */
+    accounting_code?: string;
+    /**
+     * Bank address
+     * @type {string}
+     * @memberof PaymentsConfigurationWireTransfer
+     */
+    bank_address?: string;
+    /**
+     * Optional Quickbooks deposit to account
+     * @type {string}
+     * @memberof PaymentsConfigurationWireTransfer
+     */
+    deposit_to_account?: string;
+    /**
+     * Intermediate routing number
+     * @type {string}
+     * @memberof PaymentsConfigurationWireTransfer
+     */
+    intermediate_routing_number?: string;
     /**
      * 
      * @type {PaymentsConfigurationRestrictions}
@@ -25950,59 +26079,29 @@ export interface PaymentsConfigurationWireTransfer {
      */
     restrictions?: PaymentsConfigurationRestrictions;
     /**
-     * 
+     * Routing number
      * @type {string}
      * @memberof PaymentsConfigurationWireTransfer
      */
-    wireTransferAccountingCode?: string;
+    routing_number?: string;
     /**
-     * 
+     * If a surcharge is present and this merchant is integrated with Quickbooks, this is the accounting code for the surcharge amount
      * @type {string}
      * @memberof PaymentsConfigurationWireTransfer
      */
-    wireTransferAccountNumber?: string;
+    surcharge_accounting_code?: string;
     /**
-     * 
+     * surcharge_fee
      * @type {string}
      * @memberof PaymentsConfigurationWireTransfer
      */
-    wireTransferBankAddress?: string;
+    surcharge_fee?: string;
     /**
-     * 
+     * surcharge_percentage
      * @type {string}
      * @memberof PaymentsConfigurationWireTransfer
      */
-    wireTransferDepositToAccount?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof PaymentsConfigurationWireTransfer
-     */
-    wireTransferIntermediateRoutingNumber?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof PaymentsConfigurationWireTransfer
-     */
-    wireTransferRoutingNumber?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof PaymentsConfigurationWireTransfer
-     */
-    wireTransferSurchargeAccountingCode?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof PaymentsConfigurationWireTransfer
-     */
-    wireTransferSurchargeFee?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof PaymentsConfigurationWireTransfer
-     */
-    wireTransferSurchargePerc?: string;
+    surcharge_percentage?: string;
 }
 
 /**
