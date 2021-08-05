@@ -25198,10 +25198,10 @@ export interface PaymentsConfigurationCheck {
     restrictions?: PaymentsConfigurationRestrictions;
     /**
      * Test methods for this payment method
-     * @type {any}
+     * @type {Array<PaymentsConfigurationTestMethod>}
      * @memberof PaymentsConfigurationCheck
      */
-    test_methods?: any;
+    test_methods?: Array<PaymentsConfigurationTestMethod>;
 }
 
 /**
@@ -25254,10 +25254,10 @@ export interface PaymentsConfigurationCreditCard {
     hide_connect_single_gateway?: boolean;
     /**
      * Restrictions for this payment method
-     * @type {any}
+     * @type {Array<PaymentsConfigurationRestrictions>}
      * @memberof PaymentsConfigurationCreditCard
      */
-    restrictions?: any;
+    restrictions?: Array<PaymentsConfigurationRestrictions>;
     /**
      * UltraCart will send customers emails to update their credit card if the card is declined
      * @type {boolean}
@@ -25266,16 +25266,103 @@ export interface PaymentsConfigurationCreditCard {
     send_customer_billing_update_on_decline?: boolean;
     /**
      * A list of credit cards the merchant wishes to accept.
-     * @type {any}
+     * @type {Array<PaymentsConfigurationCreditCardType>}
      * @memberof PaymentsConfigurationCreditCard
      */
-    supported_cards?: any;
+    supported_cards?: Array<PaymentsConfigurationCreditCardType>;
     /**
      * An array of test methods for placing test orders.  The cards defined here may be real or fake, but any order placed with them will be marked as Test orders
-     * @type {any}
+     * @type {Array<PaymentsConfigurationTestMethod>}
      * @memberof PaymentsConfigurationCreditCard
      */
-    test_methods?: any;
+    test_methods?: Array<PaymentsConfigurationTestMethod>;
+}
+
+/**
+ * 
+ * @export
+ * @interface PaymentsConfigurationCreditCardType
+ */
+export interface PaymentsConfigurationCreditCardType {
+    /**
+     * Optional field used for Quickbooks integrations to match this credit card with the corresponding payment type in Quickbooks
+     * @type {string}
+     * @memberof PaymentsConfigurationCreditCardType
+     */
+    accounting_code?: string;
+    /**
+     * Internally used icon information for this card type
+     * @type {string}
+     * @memberof PaymentsConfigurationCreditCardType
+     */
+    card_type_icon?: string;
+    /**
+     * Credit card type
+     * @type {string}
+     * @memberof PaymentsConfigurationCreditCardType
+     */
+    credit_card?: PaymentsConfigurationCreditCardType.CreditCardEnum;
+    /**
+     * The name of the account to deposit funds
+     * @type {string}
+     * @memberof PaymentsConfigurationCreditCardType
+     */
+    deposit_to_account?: string;
+    /**
+     * If true, this card type will be accepted during checkout
+     * @type {boolean}
+     * @memberof PaymentsConfigurationCreditCardType
+     */
+    enabled?: boolean;
+    /**
+     * Optional additional fee applied to order for this card
+     * @type {string}
+     * @memberof PaymentsConfigurationCreditCardType
+     */
+    processing_fee?: string;
+    /**
+     * Optional additional fee applied to order for this card
+     * @type {string}
+     * @memberof PaymentsConfigurationCreditCardType
+     */
+    processing_percentage?: string;
+    /**
+     * Optional field. If integrated with Quickbooks, this code will be used when informing Quickbooks about any surcharges applied to orders
+     * @type {string}
+     * @memberof PaymentsConfigurationCreditCardType
+     */
+    surcharge_accounting_code?: string;
+    /**
+     * An optional additional fee to charge the customer for using this card.
+     * @type {string}
+     * @memberof PaymentsConfigurationCreditCardType
+     */
+    transaction_fee?: string;
+    /**
+     * An optional transaction percentage to charge the customer for using this card
+     * @type {string}
+     * @memberof PaymentsConfigurationCreditCardType
+     */
+    transaction_percentage?: string;
+}
+
+/**
+ * @export
+ * @namespace PaymentsConfigurationCreditCardType
+ */
+export namespace PaymentsConfigurationCreditCardType {
+    /**
+     * @export
+     * @enum {string}
+     */
+    export enum CreditCardEnum {
+        AMEX = <any> 'AMEX',
+        Visa = <any> 'Visa',
+        DinersClub = <any> 'Diners Club',
+        Discover = <any> 'Discover',
+        JCB = <any> 'JCB',
+        MasterCard = <any> 'MasterCard'
+    }
 }
 
 /**
@@ -25704,6 +25791,12 @@ export interface PaymentsConfigurationResponse {
  */
 export interface PaymentsConfigurationRestrictions {
     /**
+     * 
+     * @type {Array<string>}
+     * @memberof PaymentsConfigurationRestrictions
+     */
+    descriptions?: Array<string>;
+    /**
      * Maximum subtotal
      * @type {string}
      * @memberof PaymentsConfigurationRestrictions
@@ -25775,6 +25868,38 @@ export interface PaymentsConfigurationRestrictions {
      * @memberof PaymentsConfigurationRestrictions
      */
     restriction_us_territories?: string;
+    /**
+     * 
+     * @type {Array<PaymentsConfigurationRestrictionsTheme>}
+     * @memberof PaymentsConfigurationRestrictions
+     */
+    themes?: Array<PaymentsConfigurationRestrictionsTheme>;
+}
+
+/**
+ * 
+ * @export
+ * @interface PaymentsConfigurationRestrictionsTheme
+ */
+export interface PaymentsConfigurationRestrictionsTheme {
+    /**
+     * 
+     * @type {string}
+     * @memberof PaymentsConfigurationRestrictionsTheme
+     */
+    code?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PaymentsConfigurationRestrictionsTheme
+     */
+    restriction?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PaymentsConfigurationRestrictionsTheme
+     */
+    storeFrontHostName?: string;
 }
 
 /**
@@ -25815,10 +25940,10 @@ export interface PaymentsConfigurationSezzle {
     environment?: PaymentsConfigurationSezzle.EnvironmentEnum;
     /**
      * List of environments possible
-     * @type {any}
+     * @type {Array<string>}
      * @memberof PaymentsConfigurationSezzle
      */
-    environments?: any;
+    environments?: Array<string>;
     /**
      * Private API key
      * @type {string}
@@ -25851,6 +25976,97 @@ export namespace PaymentsConfigurationSezzle {
     export enum EnvironmentEnum {
         Live = <any> 'Live',
         Sandbox = <any> 'Sandbox'
+    }
+}
+
+/**
+ * 
+ * @export
+ * @interface PaymentsConfigurationTestMethod
+ */
+export interface PaymentsConfigurationTestMethod {
+    /**
+     * Bank account number
+     * @type {string}
+     * @memberof PaymentsConfigurationTestMethod
+     */
+    bank_account_number?: string;
+    /**
+     * Bank routing number
+     * @type {string}
+     * @memberof PaymentsConfigurationTestMethod
+     */
+    bank_routing_number?: string;
+    /**
+     * Credit card number
+     * @type {string}
+     * @memberof PaymentsConfigurationTestMethod
+     */
+    credit_card_number?: string;
+    /**
+     * The existing credit card number
+     * @type {string}
+     * @memberof PaymentsConfigurationTestMethod
+     */
+    credit_card_number_existing?: string;
+    /**
+     * Description
+     * @type {string}
+     * @memberof PaymentsConfigurationTestMethod
+     */
+    description?: string;
+    /**
+     * Payment action
+     * @type {string}
+     * @memberof PaymentsConfigurationTestMethod
+     */
+    payment_action?: PaymentsConfigurationTestMethod.PaymentActionEnum;
+    /**
+     * Payment method
+     * @type {string}
+     * @memberof PaymentsConfigurationTestMethod
+     */
+    payment_method?: string;
+    /**
+     * Payment method test oid
+     * @type {number}
+     * @memberof PaymentsConfigurationTestMethod
+     */
+    payment_method_test_oid?: number;
+    /**
+     * Skip affiliate transaction
+     * @type {boolean}
+     * @memberof PaymentsConfigurationTestMethod
+     */
+    skip_affiliate_transaction?: boolean;
+    /**
+     * If true, skips recording any conversion pixels to avoid sending test orders to your analysis sites
+     * @type {boolean}
+     * @memberof PaymentsConfigurationTestMethod
+     */
+    skip_conversion_pixels?: boolean;
+    /**
+     * Skip fraud filter
+     * @type {boolean}
+     * @memberof PaymentsConfigurationTestMethod
+     */
+    skip_fraud_filter?: boolean;
+}
+
+/**
+ * @export
+ * @namespace PaymentsConfigurationTestMethod
+ */
+export namespace PaymentsConfigurationTestMethod {
+    /**
+     * @export
+     * @enum {string}
+     */
+    export enum PaymentActionEnum {
+        SkipPayment = <any> 'skip payment',
+        SkipPmtRej = <any> 'skip pmt rej',
+        SkipPmtCo = <any> 'skip pmt co',
+        HoldInAr = <any> 'hold in ar'
     }
 }
 
