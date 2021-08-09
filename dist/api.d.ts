@@ -24709,10 +24709,10 @@ export interface PaymentsConfigurationCreditCard {
     configured_gateway_details?: string;
     /**
      * The number of failed attempts before the order is placed into Accounts Receivable for manual intervention
-     * @type {string}
+     * @type {number}
      * @memberof PaymentsConfigurationCreditCard
      */
-    failed_attempts?: string;
+    failed_attempts?: number;
     /**
      * This internal flag aids the UI in determining which buttons to show.
      * @type {boolean}
@@ -25254,16 +25254,16 @@ export interface PaymentsConfigurationRestrictions {
     descriptions?: Array<string>;
     /**
      * Maximum subtotal
-     * @type {string}
+     * @type {number}
      * @memberof PaymentsConfigurationRestrictions
      */
-    maximum_subtotal?: string;
+    maximum_subtotal?: number;
     /**
      * Minimum subtotal
-     * @type {string}
+     * @type {number}
      * @memberof PaymentsConfigurationRestrictions
      */
-    minimum_subtotal?: string;
+    minimum_subtotal?: number;
     /**
      * Payment method
      * @type {string}
