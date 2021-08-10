@@ -14171,6 +14171,55 @@ export interface EmailVerifyTokenValidateResponse {
 /**
  *
  * @export
+ * @interface EmailWebhookEditorValuesResponse
+ */
+export interface EmailWebhookEditorValuesResponse {
+    /**
+     *
+     * @type {Array<string>}
+     * @memberof EmailWebhookEditorValuesResponse
+     */
+    available_expansions?: Array<string>;
+    /**
+     *
+     * @type {Array<string>}
+     * @memberof EmailWebhookEditorValuesResponse
+     */
+    available_tokens?: Array<string>;
+    /**
+     *
+     * @type {ModelError}
+     * @memberof EmailWebhookEditorValuesResponse
+     */
+    error?: ModelError;
+    /**
+     *
+     * @type {ResponseMetadata}
+     * @memberof EmailWebhookEditorValuesResponse
+     */
+    metadata?: ResponseMetadata;
+    /**
+     *
+     * @type {string}
+     * @memberof EmailWebhookEditorValuesResponse
+     */
+    rest_object_type?: string;
+    /**
+     * Indicates if API call was successful
+     * @type {boolean}
+     * @memberof EmailWebhookEditorValuesResponse
+     */
+    success?: boolean;
+    /**
+     *
+     * @type {Warning}
+     * @memberof EmailWebhookEditorValuesResponse
+     */
+    warning?: Warning;
+}
+/**
+ *
+ * @export
  * @interface ErrorResponse
  */
 export interface ErrorResponse {
@@ -24782,16 +24831,16 @@ export interface PaymentsConfigurationCreditCardType {
     enabled?: boolean;
     /**
      * Optional additional fee applied to order for this card
-     * @type {string}
+     * @type {number}
      * @memberof PaymentsConfigurationCreditCardType
      */
-    processing_fee?: string;
+    processing_fee?: number;
     /**
      * Optional additional fee applied to order for this card
-     * @type {string}
+     * @type {number}
      * @memberof PaymentsConfigurationCreditCardType
      */
-    processing_percentage?: string;
+    processing_percentage?: number;
     /**
      * Optional field. If integrated with Quickbooks, this code will be used when informing Quickbooks about any surcharges applied to orders
      * @type {string}
@@ -24800,16 +24849,16 @@ export interface PaymentsConfigurationCreditCardType {
     surcharge_accounting_code?: string;
     /**
      * An optional additional fee to charge the customer for using this card.
-     * @type {string}
+     * @type {number}
      * @memberof PaymentsConfigurationCreditCardType
      */
-    transaction_fee?: string;
+    transaction_fee?: number;
     /**
      * An optional transaction percentage to charge the customer for using this card
-     * @type {string}
+     * @type {number}
      * @memberof PaymentsConfigurationCreditCardType
      */
-    transaction_percentage?: string;
+    transaction_percentage?: number;
 }
 /**
  * @export
@@ -39635,6 +39684,15 @@ export declare const StorefrontApiFetchParamCreator: (configuration?: Configurat
     getEmailCommseqStepWaiting(storefront_oid: number, commseq_uuid: string, waitingRequest: EmailStepWaitingRequest, options?: any): FetchArgs;
     /**
      *
+     * @summary Get email webhook editor values
+     * @param {number} storefront_oid
+     * @param {string} commseq_uuid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getEmailCommseqWebhookEditorValues(storefront_oid: number, commseq_uuid: string, options?: any): FetchArgs;
+    /**
+     *
      * @summary Get email commseqs
      * @param {number} storefront_oid
      * @param {*} [options] Override http request option.
@@ -41046,6 +41104,15 @@ export declare const StorefrontApiFp: (configuration?: Configuration) => {
     getEmailCommseqStepWaiting(storefront_oid: number, commseq_uuid: string, waitingRequest: EmailStepWaitingRequest, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<EmailStepWaitingResponse>;
     /**
      *
+     * @summary Get email webhook editor values
+     * @param {number} storefront_oid
+     * @param {string} commseq_uuid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getEmailCommseqWebhookEditorValues(storefront_oid: number, commseq_uuid: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<EmailWebhookEditorValuesResponse>;
+    /**
+     *
      * @summary Get email commseqs
      * @param {number} storefront_oid
      * @param {*} [options] Override http request option.
@@ -42455,6 +42522,15 @@ export declare const StorefrontApiFactory: (configuration?: Configuration, fetch
      * @throws {RequiredError}
      */
     getEmailCommseqStepWaiting(storefront_oid: number, commseq_uuid: string, waitingRequest: EmailStepWaitingRequest, options?: any): Promise<EmailStepWaitingResponse>;
+    /**
+     *
+     * @summary Get email webhook editor values
+     * @param {number} storefront_oid
+     * @param {string} commseq_uuid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getEmailCommseqWebhookEditorValues(storefront_oid: number, commseq_uuid: string, options?: any): Promise<EmailWebhookEditorValuesResponse>;
     /**
      *
      * @summary Get email commseqs
@@ -43907,6 +43983,16 @@ export interface StorefrontApiInterface {
      * @memberof StorefrontApiInterface
      */
     getEmailCommseqStepWaiting(storefront_oid: number, commseq_uuid: string, waitingRequest: EmailStepWaitingRequest, options?: any): Promise<EmailStepWaitingResponse>;
+    /**
+     *
+     * @summary Get email webhook editor values
+     * @param {number} storefront_oid
+     * @param {string} commseq_uuid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof StorefrontApiInterface
+     */
+    getEmailCommseqWebhookEditorValues(storefront_oid: number, commseq_uuid: string, options?: any): Promise<EmailWebhookEditorValuesResponse>;
     /**
      *
      * @summary Get email commseqs
@@ -45473,6 +45559,16 @@ export declare class StorefrontApi extends BaseAPI implements StorefrontApiInter
      * @memberof StorefrontApi
      */
     getEmailCommseqStepWaiting(storefront_oid: number, commseq_uuid: string, waitingRequest: EmailStepWaitingRequest, options?: any): Promise<EmailStepWaitingResponse>;
+    /**
+     *
+     * @summary Get email webhook editor values
+     * @param {number} storefront_oid
+     * @param {string} commseq_uuid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof StorefrontApi
+     */
+    getEmailCommseqWebhookEditorValues(storefront_oid: number, commseq_uuid: string, options?: any): Promise<EmailWebhookEditorValuesResponse>;
     /**
      *
      * @summary Get email commseqs

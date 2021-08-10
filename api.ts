@@ -14499,6 +14499,56 @@ export interface EmailVerifyTokenValidateResponse {
 /**
  * 
  * @export
+ * @interface EmailWebhookEditorValuesResponse
+ */
+export interface EmailWebhookEditorValuesResponse {
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof EmailWebhookEditorValuesResponse
+     */
+    available_expansions?: Array<string>;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof EmailWebhookEditorValuesResponse
+     */
+    available_tokens?: Array<string>;
+    /**
+     * 
+     * @type {ModelError}
+     * @memberof EmailWebhookEditorValuesResponse
+     */
+    error?: ModelError;
+    /**
+     * 
+     * @type {ResponseMetadata}
+     * @memberof EmailWebhookEditorValuesResponse
+     */
+    metadata?: ResponseMetadata;
+    /**
+     * 
+     * @type {string}
+     * @memberof EmailWebhookEditorValuesResponse
+     */
+    rest_object_type?: string;
+    /**
+     * Indicates if API call was successful
+     * @type {boolean}
+     * @memberof EmailWebhookEditorValuesResponse
+     */
+    success?: boolean;
+    /**
+     * 
+     * @type {Warning}
+     * @memberof EmailWebhookEditorValuesResponse
+     */
+    warning?: Warning;
+}
+
+/**
+ * 
+ * @export
  * @interface ErrorResponse
  */
 export interface ErrorResponse {
@@ -25316,16 +25366,16 @@ export interface PaymentsConfigurationCreditCardType {
     enabled?: boolean;
     /**
      * Optional additional fee applied to order for this card
-     * @type {string}
+     * @type {number}
      * @memberof PaymentsConfigurationCreditCardType
      */
-    processing_fee?: string;
+    processing_fee?: number;
     /**
      * Optional additional fee applied to order for this card
-     * @type {string}
+     * @type {number}
      * @memberof PaymentsConfigurationCreditCardType
      */
-    processing_percentage?: string;
+    processing_percentage?: number;
     /**
      * Optional field. If integrated with Quickbooks, this code will be used when informing Quickbooks about any surcharges applied to orders
      * @type {string}
@@ -25334,16 +25384,16 @@ export interface PaymentsConfigurationCreditCardType {
     surcharge_accounting_code?: string;
     /**
      * An optional additional fee to charge the customer for using this card.
-     * @type {string}
+     * @type {number}
      * @memberof PaymentsConfigurationCreditCardType
      */
-    transaction_fee?: string;
+    transaction_fee?: number;
     /**
      * An optional transaction percentage to charge the customer for using this card
-     * @type {string}
+     * @type {number}
      * @memberof PaymentsConfigurationCreditCardType
      */
-    transaction_percentage?: string;
+    transaction_percentage?: number;
 }
 
 /**
@@ -52091,6 +52141,72 @@ export const StorefrontApiFetchParamCreator = function (configuration?: Configur
         },
         /**
          * 
+         * @summary Get email webhook editor values
+         * @param {number} storefront_oid 
+         * @param {string} commseq_uuid 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getEmailCommseqWebhookEditorValues(storefront_oid: number, commseq_uuid: string, options: any = {}): FetchArgs {
+            // verify required parameter 'storefront_oid' is not null or undefined
+            if (storefront_oid === null || storefront_oid === undefined) {
+                throw new RequiredError('storefront_oid','Required parameter storefront_oid was null or undefined when calling getEmailCommseqWebhookEditorValues.');
+            }
+            // verify required parameter 'commseq_uuid' is not null or undefined
+            if (commseq_uuid === null || commseq_uuid === undefined) {
+                throw new RequiredError('commseq_uuid','Required parameter commseq_uuid was null or undefined when calling getEmailCommseqWebhookEditorValues.');
+            }
+            const localVarPath = `/storefront/{storefront_oid}/email/commseqs/{commseq_uuid}/webhookEditorValues`
+                .replace(`{${"storefront_oid"}}`, encodeURIComponent(String(storefront_oid)))
+                .replace(`{${"commseq_uuid"}}`, encodeURIComponent(String(commseq_uuid)));
+            const localVarUrlObj = url.parse(localVarPath, true);
+            const localVarRequestOptions = Object.assign({ method: 'GET' }, options);
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+    if(configuration && configuration.apiVersion) {
+      localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+    }
+
+
+
+            // authentication ultraCartBrowserApiKey required
+            if (configuration && configuration.apiKey) {
+                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
+					? configuration.apiKey("x-ultracart-browser-key")
+					: configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-browser-key"] = localVarApiKeyValue;
+            }
+
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+				const localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+					? configuration.accessToken("ultraCartOauth", ["storefront_read"])
+					: configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
+					? configuration.apiKey("x-ultracart-simple-key")
+					: configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
          * @summary Get email commseqs
          * @param {number} storefront_oid 
          * @param {*} [options] Override http request option.
@@ -60605,6 +60721,28 @@ export const StorefrontApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
+         * @summary Get email webhook editor values
+         * @param {number} storefront_oid 
+         * @param {string} commseq_uuid 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getEmailCommseqWebhookEditorValues(storefront_oid: number, commseq_uuid: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<EmailWebhookEditorValuesResponse> {
+            const localVarFetchArgs = StorefrontApiFetchParamCreator(configuration).getEmailCommseqWebhookEditorValues(storefront_oid, commseq_uuid, options);
+            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
+                    if (response.status >= 200 && response.status < 300) {
+                      return response.json();
+                      
+                    } else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
+         * 
          * @summary Get email commseqs
          * @param {number} storefront_oid 
          * @param {*} [options] Override http request option.
@@ -63568,6 +63706,17 @@ export const StorefrontApiFactory = function (configuration?: Configuration, fet
         },
         /**
          * 
+         * @summary Get email webhook editor values
+         * @param {number} storefront_oid 
+         * @param {string} commseq_uuid 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getEmailCommseqWebhookEditorValues(storefront_oid: number, commseq_uuid: string, options?: any) {
+            return StorefrontApiFp(configuration).getEmailCommseqWebhookEditorValues(storefront_oid, commseq_uuid, options)(fetch, basePath);
+        },
+        /**
+         * 
          * @summary Get email commseqs
          * @param {number} storefront_oid 
          * @param {*} [options] Override http request option.
@@ -65285,6 +65434,17 @@ export interface StorefrontApiInterface {
      * @memberof StorefrontApiInterface
      */
     getEmailCommseqStepWaiting(storefront_oid: number, commseq_uuid: string, waitingRequest: EmailStepWaitingRequest, options?: any): Promise<EmailStepWaitingResponse>;
+
+    /**
+     * 
+     * @summary Get email webhook editor values
+     * @param {number} storefront_oid 
+     * @param {string} commseq_uuid 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof StorefrontApiInterface
+     */
+    getEmailCommseqWebhookEditorValues(storefront_oid: number, commseq_uuid: string, options?: any): Promise<EmailWebhookEditorValuesResponse>;
 
     /**
      * 
@@ -67084,6 +67244,19 @@ export class StorefrontApi extends BaseAPI implements StorefrontApiInterface {
      */
     public getEmailCommseqStepWaiting(storefront_oid: number, commseq_uuid: string, waitingRequest: EmailStepWaitingRequest, options?: any) {
         return StorefrontApiFp(this.configuration).getEmailCommseqStepWaiting(storefront_oid, commseq_uuid, waitingRequest, options)(this.fetch, this.basePath);
+    }
+
+    /**
+     * 
+     * @summary Get email webhook editor values
+     * @param {number} storefront_oid 
+     * @param {string} commseq_uuid 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof StorefrontApi
+     */
+    public getEmailCommseqWebhookEditorValues(storefront_oid: number, commseq_uuid: string, options?: any) {
+        return StorefrontApiFp(this.configuration).getEmailCommseqWebhookEditorValues(storefront_oid, commseq_uuid, options)(this.fetch, this.basePath);
     }
 
     /**
