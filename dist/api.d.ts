@@ -21330,7 +21330,7 @@ export interface OrderChannelPartner {
      */
     skip_payment_processing?: boolean;
     /**
-     * Instructs UltraCart to skip shipping department and mark this order as fully complete.  Set this flag if you have already shipped product for this order.
+     * Instructs UltraCart to skip shipping department and mark this order as fully complete.  This flag defaults to true.  Set this flag to false to shipped product for this order.
      * @type {boolean}
      * @memberof OrderChannelPartner
      */
@@ -24605,16 +24605,16 @@ export interface PaymentsConfigurationCOD {
     surcharge_accounting_code?: string;
     /**
      * Additional cost for using COD
-     * @type {string}
+     * @type {number}
      * @memberof PaymentsConfigurationCOD
      */
-    surcharge_fee?: string;
+    surcharge_fee?: number;
     /**
      * Additional percentage cost for using COD
-     * @type {string}
+     * @type {number}
      * @memberof PaymentsConfigurationCOD
      */
-    surcharge_percentage?: string;
+    surcharge_percentage?: number;
 }
 /**
  *
@@ -25081,16 +25081,16 @@ export interface PaymentsConfigurationPayPal {
     private_key_password?: string;
     /**
      * Optional additional fee to charge if PayPal is used.  It is rare for this to be used.
-     * @type {string}
+     * @type {number}
      * @memberof PaymentsConfigurationPayPal
      */
-    processing_fee?: string;
+    processing_fee?: number;
     /**
      * The processing percentage charged by PayPal
-     * @type {string}
+     * @type {number}
      * @memberof PaymentsConfigurationPayPal
      */
-    processing_percentage?: string;
+    processing_percentage?: number;
     /**
      * True if the internal UI should recommend opening a PayPal account
      * @type {boolean}
@@ -25806,16 +25806,16 @@ export interface PaymentsConfigurationWireTransfer {
     surcharge_accounting_code?: string;
     /**
      * surcharge_fee
-     * @type {string}
+     * @type {number}
      * @memberof PaymentsConfigurationWireTransfer
      */
-    surcharge_fee?: string;
+    surcharge_fee?: number;
     /**
      * surcharge_percentage
-     * @type {string}
+     * @type {number}
      * @memberof PaymentsConfigurationWireTransfer
      */
-    surcharge_percentage?: string;
+    surcharge_percentage?: number;
 }
 /**
  *
