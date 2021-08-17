@@ -21355,7 +21355,7 @@ export interface OrderChannelPartner {
      */
     channel_partner_oid?: number;
     /**
-     * The order ID assigned by the channel partner for this order
+     * The order ID assigned by the channel partner for this order.
      * @type {string}
      * @memberof OrderChannelPartner
      */
@@ -24818,12 +24818,6 @@ export interface PaymentsConfigurationCreditCard {
      */
     hide_connect_single_gateway?: boolean;
     /**
-     * Restrictions for this payment method
-     * @type {Array<PaymentsConfigurationRestrictions>}
-     * @memberof PaymentsConfigurationCreditCard
-     */
-    restrictions?: Array<PaymentsConfigurationRestrictions>;
-    /**
      * UltraCart will send customers emails to update their credit card if the card is declined
      * @type {boolean}
      * @memberof PaymentsConfigurationCreditCard
@@ -24890,6 +24884,12 @@ export interface PaymentsConfigurationCreditCardType {
      * @memberof PaymentsConfigurationCreditCardType
      */
     processing_percentage?: number;
+    /**
+     *
+     * @type {PaymentsConfigurationRestrictions}
+     * @memberof PaymentsConfigurationCreditCardType
+     */
+    restrictions?: PaymentsConfigurationRestrictions;
     /**
      * Optional field. If integrated with Quickbooks, this code will be used when informing Quickbooks about any surcharges applied to orders
      * @type {string}
@@ -25373,61 +25373,148 @@ export interface PaymentsConfigurationRestrictions {
      * @type {string}
      * @memberof PaymentsConfigurationRestrictions
      */
-    restriction_alaska_hawaii?: string;
+    restriction_alaska_hawaii?: PaymentsConfigurationRestrictions.RestrictionAlaskaHawaiiEnum;
     /**
      * APO/FPO restriction
      * @type {string}
      * @memberof PaymentsConfigurationRestrictions
      */
-    restriction_apo_fpo?: string;
+    restriction_apo_fpo?: PaymentsConfigurationRestrictions.RestrictionApoFpoEnum;
     /**
      * Canada restriction
      * @type {string}
      * @memberof PaymentsConfigurationRestrictions
      */
-    restriction_canada?: string;
+    restriction_canada?: PaymentsConfigurationRestrictions.RestrictionCanadaEnum;
     /**
      * Continental US restriction
      * @type {string}
      * @memberof PaymentsConfigurationRestrictions
      */
-    restriction_continental_us?: string;
+    restriction_continental_us?: PaymentsConfigurationRestrictions.RestrictionContinentalUsEnum;
     /**
      * Domestic only restriction
      * @type {string}
      * @memberof PaymentsConfigurationRestrictions
      */
-    restriction_domestic_only?: string;
+    restriction_domestic_only?: PaymentsConfigurationRestrictions.RestrictionDomesticOnlyEnum;
     /**
      * International only restriction
      * @type {string}
      * @memberof PaymentsConfigurationRestrictions
      */
-    restriction_international_only?: string;
+    restriction_international_only?: PaymentsConfigurationRestrictions.RestrictionInternationalOnlyEnum;
     /**
      * PO Box restriction
      * @type {string}
      * @memberof PaymentsConfigurationRestrictions
      */
-    restriction_po_box?: string;
+    restriction_po_box?: PaymentsConfigurationRestrictions.RestrictionPoBoxEnum;
     /**
      * Puerto Rico restriction
      * @type {string}
      * @memberof PaymentsConfigurationRestrictions
      */
-    restriction_puerto_rico?: string;
+    restriction_puerto_rico?: PaymentsConfigurationRestrictions.RestrictionPuertoRicoEnum;
     /**
      * US Territories restriction
      * @type {string}
      * @memberof PaymentsConfigurationRestrictions
      */
-    restriction_us_territories?: string;
+    restriction_us_territories?: PaymentsConfigurationRestrictions.RestrictionUsTerritoriesEnum;
     /**
      *
      * @type {Array<PaymentsConfigurationRestrictionsTheme>}
      * @memberof PaymentsConfigurationRestrictions
      */
     themes?: Array<PaymentsConfigurationRestrictionsTheme>;
+}
+/**
+ * @export
+ * @namespace PaymentsConfigurationRestrictions
+ */
+export declare namespace PaymentsConfigurationRestrictions {
+    /**
+     * @export
+     * @enum {string}
+     */
+    enum RestrictionAlaskaHawaiiEnum {
+        Invalid,
+        InvalidOnly,
+        Valid
+    }
+    /**
+     * @export
+     * @enum {string}
+     */
+    enum RestrictionApoFpoEnum {
+        Invalid,
+        InvalidOnly,
+        Valid
+    }
+    /**
+     * @export
+     * @enum {string}
+     */
+    enum RestrictionCanadaEnum {
+        Invalid,
+        InvalidOnly,
+        Valid
+    }
+    /**
+     * @export
+     * @enum {string}
+     */
+    enum RestrictionContinentalUsEnum {
+        Invalid,
+        InvalidOnly,
+        Valid
+    }
+    /**
+     * @export
+     * @enum {string}
+     */
+    enum RestrictionDomesticOnlyEnum {
+        Invalid,
+        InvalidOnly,
+        Valid
+    }
+    /**
+     * @export
+     * @enum {string}
+     */
+    enum RestrictionInternationalOnlyEnum {
+        Invalid,
+        InvalidOnly,
+        Valid
+    }
+    /**
+     * @export
+     * @enum {string}
+     */
+    enum RestrictionPoBoxEnum {
+        Invalid,
+        InvalidOnly,
+        Valid
+    }
+    /**
+     * @export
+     * @enum {string}
+     */
+    enum RestrictionPuertoRicoEnum {
+        Invalid,
+        InvalidOnly,
+        Valid
+    }
+    /**
+     * @export
+     * @enum {string}
+     */
+    enum RestrictionUsTerritoriesEnum {
+        Invalid,
+        InvalidOnly,
+        Valid
+    }
 }
 /**
  *
