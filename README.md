@@ -1,4 +1,4 @@
-## ultracart_rest_api_v2_typescript@3.5.2
+## ultracart_rest_api_v2_typescript@3.5.3
 
 This generator creates TypeScript/JavaScript client that utilizes [Fetch API](https://fetch.spec.whatwg.org/). The generated Node module can be used in the following environments:
 
@@ -36,7 +36,7 @@ navigate to the folder of your consuming project and run one of the following co
 _published:_
 
 ```
-npm install ultracart_rest_api_v2_typescript@3.5.2 --save
+npm install ultracart_rest_api_v2_typescript@3.5.3 --save
 ```
 
 _unPublished (not recommended):_
@@ -51,6 +51,7 @@ Not every change is committed to every SDK.
 
 | Version | Date | Comments |
 | --: | :-: | --- |
+| 3.5.3 | 08/18/2021 | configuration api - added credit card rate to UltraCart Payments object | 
 | 3.5.1 | 08/11/2021 | email webhook test method | 
 | 3.5.0 | 08/11/2021 | RestOrderChannelPartner.store_completed was incorrectly defaulting to true | 
 | 3.4.13 | 08/10/2021 | configuration api - changed some field types form string to number | 

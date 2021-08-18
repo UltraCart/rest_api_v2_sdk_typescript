@@ -25772,6 +25772,12 @@ export interface PaymentsConfigurationWePay {
      */
     country?: string;
     /**
+     * WePay credit card rate
+     * @type {string}
+     * @memberof PaymentsConfigurationWePay
+     */
+    credit_card_rate?: string;
+    /**
      * Base currency for transactions
      * @type {string}
      * @memberof PaymentsConfigurationWePay
