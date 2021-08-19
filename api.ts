@@ -5490,10 +5490,10 @@ export interface Coupon {
     super_coupon?: boolean;
     /**
      * 
-     * @type {CouponTieredAmountOffItem}
+     * @type {CouponTieredAmountOffItems}
      * @memberof Coupon
      */
-    tiered_amount_off_item?: CouponTieredAmountOffItem;
+    tiered_amount_off_items?: CouponTieredAmountOffItems;
     /**
      * 
      * @type {CouponTieredAmountOffSubtotal}
@@ -7129,25 +7129,25 @@ export interface CouponTierQuantityPercent {
 /**
  * 
  * @export
- * @interface CouponTieredAmountOffItem
+ * @interface CouponTieredAmountOffItems
  */
-export interface CouponTieredAmountOffItem {
+export interface CouponTieredAmountOffItems {
     /**
-     * The item being discounted by this coupon.
-     * @type {string}
-     * @memberof CouponTieredAmountOffItem
+     * The items being discounted by this coupon.
+     * @type {Array<string>}
+     * @memberof CouponTieredAmountOffItems
      */
-    item?: string;
+    items?: Array<string>;
     /**
      * The maximum number of discounted items.
      * @type {number}
-     * @memberof CouponTieredAmountOffItem
+     * @memberof CouponTieredAmountOffItems
      */
     limit?: number;
     /**
      * A list of discount tiers.
      * @type {Array<CouponTierQuantityAmount>}
-     * @memberof CouponTieredAmountOffItem
+     * @memberof CouponTieredAmountOffItems
      */
     tiers?: Array<CouponTierQuantityAmount>;
 }
