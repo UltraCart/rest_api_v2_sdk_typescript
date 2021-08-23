@@ -22834,6 +22834,12 @@ export interface OrderItem {
      */
     total_refunded?: Currency;
     /**
+     * Tracking number, if null or missing, use order level tracking number(s). Used if there are multiple shipments for one order
+     * @type {string}
+     * @memberof OrderItem
+     */
+    tracking_number?: string;
+    /**
      * Date/time that this item was transmitted to the distribution center
      * @type {string}
      * @memberof OrderItem
