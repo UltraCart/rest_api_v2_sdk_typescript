@@ -24920,11 +24920,11 @@ export declare namespace PaymentsConfigurationCreditCardType {
      */
     enum CreditCardEnum {
         AMEX,
-        Visa,
         DinersClub,
         Discover,
+        MasterCard,
         JCB,
-        MasterCard
+        VISA
     }
 }
 /**
@@ -27681,6 +27681,12 @@ export interface ScreenRecordingFilter {
      * @type {Array<string>}
      * @memberof ScreenRecordingFilter
      */
+    return_filter_values?: Array<string>;
+    /**
+     *
+     * @type {Array<string>}
+     * @memberof ScreenRecordingFilter
+     */
     screen_recording_uuids?: Array<string>;
     /**
      *
@@ -27889,6 +27895,12 @@ export interface ScreenRecordingFilterPageView {
      * @memberof ScreenRecordingFilterPageView
      */
     referrer_raw?: ScreenRecordingFilterStringSearch;
+    /**
+     *
+     * @type {Array<string>}
+     * @memberof ScreenRecordingFilterPageView
+     */
+    return_filter_values?: Array<string>;
     /**
      *
      * @type {ScreenRecordingFilterRangeInteger}

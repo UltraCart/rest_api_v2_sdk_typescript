@@ -839,11 +839,11 @@ var PaymentsConfigurationCreditCardType;
     var CreditCardEnum;
     (function (CreditCardEnum) {
         CreditCardEnum[CreditCardEnum["AMEX"] = 'AMEX'] = "AMEX";
-        CreditCardEnum[CreditCardEnum["Visa"] = 'Visa'] = "Visa";
         CreditCardEnum[CreditCardEnum["DinersClub"] = 'Diners Club'] = "DinersClub";
         CreditCardEnum[CreditCardEnum["Discover"] = 'Discover'] = "Discover";
-        CreditCardEnum[CreditCardEnum["JCB"] = 'JCB'] = "JCB";
         CreditCardEnum[CreditCardEnum["MasterCard"] = 'MasterCard'] = "MasterCard";
+        CreditCardEnum[CreditCardEnum["JCB"] = 'JCB'] = "JCB";
+        CreditCardEnum[CreditCardEnum["VISA"] = 'VISA'] = "VISA";
     })(CreditCardEnum = PaymentsConfigurationCreditCardType.CreditCardEnum || (PaymentsConfigurationCreditCardType.CreditCardEnum = {}));
 })(PaymentsConfigurationCreditCardType = exports.PaymentsConfigurationCreditCardType || (exports.PaymentsConfigurationCreditCardType = {}));
 /**
