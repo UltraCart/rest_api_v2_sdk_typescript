@@ -22702,6 +22702,12 @@ export interface OrderPayment {
      */
     hold_for_fraud_review?: boolean;
     /**
+     *
+     * @type {OrderPaymentInsurance}
+     * @memberof OrderPayment
+     */
+    insurance?: OrderPaymentInsurance;
+    /**
      * Date/time that the payment was successfully processed, for new orders, this field is only considered if channel_partner.skip_payment_processing is true
      * @type {string}
      * @memberof OrderPayment
@@ -22799,6 +22805,7 @@ export declare namespace OrderPayment {
         CreditCard,
         EBay,
         ECheck,
+        Insurance,
         LoanHero,
         MoneyOrder,
         PayPal,
@@ -23015,6 +23022,25 @@ export declare namespace OrderPaymentECheck {
         Personal,
         Business
     }
+}
+/**
+ *
+ * @export
+ * @interface OrderPaymentInsurance
+ */
+export interface OrderPaymentInsurance {
+    /**
+     * application id
+     * @type {string}
+     * @memberof OrderPaymentInsurance
+     */
+    application_id?: string;
+    /**
+     * claim id
+     * @type {string}
+     * @memberof OrderPaymentInsurance
+     */
+    claim_id?: string;
 }
 /**
  *
@@ -24439,6 +24465,12 @@ export interface PaymentsConfiguration {
     echeck?: PaymentsConfigurationEcheck;
     /**
      *
+     * @type {PaymentsConfigurationInsurance}
+     * @memberof PaymentsConfiguration
+     */
+    insurance?: PaymentsConfigurationInsurance;
+    /**
+     *
      * @type {PaymentsConfigurationLoanHero}
      * @memberof PaymentsConfiguration
      */
@@ -24961,6 +24993,25 @@ export interface PaymentsConfigurationEcheck {
      *
      * @type {PaymentsConfigurationRestrictions}
      * @memberof PaymentsConfigurationEcheck
+     */
+    restrictions?: PaymentsConfigurationRestrictions;
+}
+/**
+ *
+ * @export
+ * @interface PaymentsConfigurationInsurance
+ */
+export interface PaymentsConfigurationInsurance {
+    /**
+     * Master flag indicating this merchant accepts insurance
+     * @type {boolean}
+     * @memberof PaymentsConfigurationInsurance
+     */
+    accept_insurance?: boolean;
+    /**
+     *
+     * @type {PaymentsConfigurationRestrictions}
+     * @memberof PaymentsConfigurationInsurance
      */
     restrictions?: PaymentsConfigurationRestrictions;
 }
@@ -27564,16 +27615,34 @@ export interface ScreenRecordingFilter {
     communications_campaign_name?: string;
     /**
      *
+     * @type {boolean}
+     * @memberof ScreenRecordingFilter
+     */
+    communications_campaign_name_filter?: boolean;
+    /**
+     *
      * @type {string}
      * @memberof ScreenRecordingFilter
      */
     communications_email_subject?: string;
     /**
      *
+     * @type {boolean}
+     * @memberof ScreenRecordingFilter
+     */
+    communications_email_subject_filter?: boolean;
+    /**
+     *
      * @type {string}
      * @memberof ScreenRecordingFilter
      */
     communications_flow_name?: string;
+    /**
+     *
+     * @type {boolean}
+     * @memberof ScreenRecordingFilter
+     */
+    communications_flow_name_filter?: boolean;
     /**
      *
      * @type {ScreenRecordingFilterStringSearch}
@@ -27586,6 +27655,12 @@ export interface ScreenRecordingFilter {
      * @memberof ScreenRecordingFilter
      */
     email_domain?: string;
+    /**
+     *
+     * @type {boolean}
+     * @memberof ScreenRecordingFilter
+     */
+    email_domain_filter?: boolean;
     /**
      *
      * @type {boolean}
@@ -27624,16 +27699,34 @@ export interface ScreenRecordingFilter {
     geolocation_country?: ScreenRecordingFilterStringSearch;
     /**
      *
+     * @type {boolean}
+     * @memberof ScreenRecordingFilter
+     */
+    geolocation_country_filter?: boolean;
+    /**
+     *
      * @type {ScreenRecordingFilterStringSearch}
      * @memberof ScreenRecordingFilter
      */
     geolocation_state?: ScreenRecordingFilterStringSearch;
     /**
      *
+     * @type {boolean}
+     * @memberof ScreenRecordingFilter
+     */
+    geolocation_state_filter?: boolean;
+    /**
+     *
      * @type {ScreenRecordingFilterStringSearch}
      * @memberof ScreenRecordingFilter
      */
     language_iso_code?: ScreenRecordingFilterStringSearch;
+    /**
+     *
+     * @type {boolean}
+     * @memberof ScreenRecordingFilter
+     */
+    language_iso_code_filter?: boolean;
     /**
      *
      * @type {number}
@@ -27678,16 +27771,22 @@ export interface ScreenRecordingFilter {
     preferred_language?: ScreenRecordingFilterStringSearch;
     /**
      *
+     * @type {boolean}
+     * @memberof ScreenRecordingFilter
+     */
+    preferred_language_filter?: boolean;
+    /**
+     *
      * @type {string}
      * @memberof ScreenRecordingFilter
      */
     referrer_domain?: string;
     /**
      *
-     * @type {Array<string>}
+     * @type {boolean}
      * @memberof ScreenRecordingFilter
      */
-    return_filter_values?: Array<string>;
+    referrer_domain_filter?: boolean;
     /**
      *
      * @type {Array<string>}
@@ -27706,6 +27805,12 @@ export interface ScreenRecordingFilter {
      * @memberof ScreenRecordingFilter
      */
     skip_filter_values?: boolean;
+    /**
+     *
+     * @type {boolean}
+     * @memberof ScreenRecordingFilter
+     */
+    skip_histogram?: boolean;
     /**
      *
      * @type {boolean}
@@ -27732,10 +27837,46 @@ export interface ScreenRecordingFilter {
     time_on_site?: ScreenRecordingFilterRangeInteger;
     /**
      *
+     * @type {boolean}
+     * @memberof ScreenRecordingFilter
+     */
+    time_on_site_max_filter?: boolean;
+    /**
+     *
+     * @type {boolean}
+     * @memberof ScreenRecordingFilter
+     */
+    time_on_site_min_filter?: boolean;
+    /**
+     *
+     * @type {boolean}
+     * @memberof ScreenRecordingFilter
+     */
+    url_filter?: boolean;
+    /**
+     *
      * @type {string}
      * @memberof ScreenRecordingFilter
      */
     user_agent_device_name?: string;
+    /**
+     *
+     * @type {boolean}
+     * @memberof ScreenRecordingFilter
+     */
+    user_agent_device_name_filter?: boolean;
+    /**
+     *
+     * @type {boolean}
+     * @memberof ScreenRecordingFilter
+     */
+    user_agent_device_os_name_filter?: boolean;
+    /**
+     *
+     * @type {boolean}
+     * @memberof ScreenRecordingFilter
+     */
+    user_agent_device_os_version_filter?: boolean;
     /**
      *
      * @type {string}
@@ -27744,10 +27885,22 @@ export interface ScreenRecordingFilter {
     user_agent_name?: string;
     /**
      *
+     * @type {boolean}
+     * @memberof ScreenRecordingFilter
+     */
+    user_agent_name_filter?: boolean;
+    /**
+     *
      * @type {ScreenRecordingFilterStringSearch}
      * @memberof ScreenRecordingFilter
      */
     user_agent_original?: ScreenRecordingFilterStringSearch;
+    /**
+     *
+     * @type {boolean}
+     * @memberof ScreenRecordingFilter
+     */
+    user_agent_original_filter?: boolean;
     /**
      *
      * @type {string}
@@ -27774,10 +27927,22 @@ export interface ScreenRecordingFilter {
     utm_campaign?: string;
     /**
      *
+     * @type {boolean}
+     * @memberof ScreenRecordingFilter
+     */
+    utm_campaign_filter?: boolean;
+    /**
+     *
      * @type {string}
      * @memberof ScreenRecordingFilter
      */
     utm_source?: string;
+    /**
+     *
+     * @type {boolean}
+     * @memberof ScreenRecordingFilter
+     */
+    utm_source_filter?: boolean;
     /**
      *
      * @type {number}
@@ -27873,10 +28038,46 @@ export interface ScreenRecordingFilterPageView {
     domain?: ScreenRecordingFilterStringSearch;
     /**
      *
+     * @type {boolean}
+     * @memberof ScreenRecordingFilterPageView
+     */
+    domain_filter?: boolean;
+    /**
+     *
+     * @type {boolean}
+     * @memberof ScreenRecordingFilterPageView
+     */
+    event_name_filter?: boolean;
+    /**
+     *
+     * @type {boolean}
+     * @memberof ScreenRecordingFilterPageView
+     */
+    event_param_name_filter?: boolean;
+    /**
+     *
+     * @type {boolean}
+     * @memberof ScreenRecordingFilterPageView
+     */
+    event_param_value_filter?: boolean;
+    /**
+     *
      * @type {Array<ScreenRecordingFilterPageViewEvent>}
      * @memberof ScreenRecordingFilterPageView
      */
     events?: Array<ScreenRecordingFilterPageViewEvent>;
+    /**
+     *
+     * @type {boolean}
+     * @memberof ScreenRecordingFilterPageView
+     */
+    param_name_filter?: boolean;
+    /**
+     *
+     * @type {boolean}
+     * @memberof ScreenRecordingFilterPageView
+     */
+    param_value_filter?: boolean;
     /**
      *
      * @type {Array<ScreenRecordingFilterPageViewParam>}
@@ -27903,22 +28104,34 @@ export interface ScreenRecordingFilterPageView {
     referrer_raw?: ScreenRecordingFilterStringSearch;
     /**
      *
-     * @type {Array<string>}
-     * @memberof ScreenRecordingFilterPageView
-     */
-    return_filter_values?: Array<string>;
-    /**
-     *
      * @type {ScreenRecordingFilterRangeInteger}
      * @memberof ScreenRecordingFilterPageView
      */
     time_on_page?: ScreenRecordingFilterRangeInteger;
     /**
      *
+     * @type {boolean}
+     * @memberof ScreenRecordingFilterPageView
+     */
+    time_on_page_max_filter?: boolean;
+    /**
+     *
+     * @type {boolean}
+     * @memberof ScreenRecordingFilterPageView
+     */
+    time_on_page_min_filter?: boolean;
+    /**
+     *
      * @type {ScreenRecordingFilterStringSearch}
      * @memberof ScreenRecordingFilterPageView
      */
     url?: ScreenRecordingFilterStringSearch;
+    /**
+     *
+     * @type {boolean}
+     * @memberof ScreenRecordingFilterPageView
+     */
+    url_filter?: boolean;
 }
 /**
  *

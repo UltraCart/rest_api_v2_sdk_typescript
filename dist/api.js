@@ -694,6 +694,7 @@ var OrderPayment;
         PaymentMethodEnum[PaymentMethodEnum["CreditCard"] = 'Credit Card'] = "CreditCard";
         PaymentMethodEnum[PaymentMethodEnum["EBay"] = 'eBay'] = "EBay";
         PaymentMethodEnum[PaymentMethodEnum["ECheck"] = 'eCheck'] = "ECheck";
+        PaymentMethodEnum[PaymentMethodEnum["Insurance"] = 'Insurance'] = "Insurance";
         PaymentMethodEnum[PaymentMethodEnum["LoanHero"] = 'LoanHero'] = "LoanHero";
         PaymentMethodEnum[PaymentMethodEnum["MoneyOrder"] = 'Money Order'] = "MoneyOrder";
         PaymentMethodEnum[PaymentMethodEnum["PayPal"] = 'PayPal'] = "PayPal";
