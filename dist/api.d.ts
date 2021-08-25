@@ -24513,18 +24513,6 @@ export interface PaymentsConfiguration {
     show_accounting_code?: boolean;
     /**
      *
-     * @type {string}
-     * @memberof PaymentsConfiguration
-     */
-    switchToSubTab?: string;
-    /**
-     *
-     * @type {string}
-     * @memberof PaymentsConfiguration
-     */
-    switchToTab?: string;
-    /**
-     *
      * @type {PaymentsConfigurationWePay}
      * @memberof PaymentsConfiguration
      */
@@ -25888,12 +25876,6 @@ export interface PaymentsConfigurationWePay {
      * @memberof PaymentsConfigurationWePay
      */
     postal_code?: string;
-    /**
-     *
-     * @type {boolean}
-     * @memberof PaymentsConfigurationWePay
-     */
-    removePayPalPro?: boolean;
     /**
      *
      * @type {PaymentsConfigurationRestrictions}
