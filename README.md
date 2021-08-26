@@ -1,4 +1,4 @@
-## ultracart_rest_api_v2_typescript@3.6.5
+## ultracart_rest_api_v2_typescript@3.6.6
 
 This generator creates TypeScript/JavaScript client that utilizes [Fetch API](https://fetch.spec.whatwg.org/). The generated Node module can be used in the following environments:
 
@@ -36,7 +36,7 @@ navigate to the folder of your consuming project and run one of the following co
 _published:_
 
 ```
-npm install ultracart_rest_api_v2_typescript@3.6.5 --save
+npm install ultracart_rest_api_v2_typescript@3.6.6 --save
 ```
 
 _unPublished (not recommended):_
@@ -51,6 +51,7 @@ Not every change is committed to every SDK.
 
 | Version | Date | Comments |
 | --: | :-: | --- |
+| 3.6.6 | 08/26/2021 | configuration api - more field changes for UI | 
 | 3.6.5 | 08/25/2021 | configuration api - removed some internal fields from sdk | 
 | 3.6.4 | 08/24/2021 | configuration api - new payment method named insurance | 
 | 3.6.1 | 08/23/2021 | configuration api - enum problems, also added order.item.tracking_number to support line item tracking numbers | 

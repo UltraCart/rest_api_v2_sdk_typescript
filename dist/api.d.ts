@@ -24630,23 +24630,37 @@ export interface PaymentsConfigurationAmazon {
      */
     deposit_to_account?: string;
     /**
+     * Environment
+     * @type {string}
+     * @memberof PaymentsConfigurationAmazon
+     */
+    environment?: PaymentsConfigurationAmazon.EnvironmentEnum;
+    /**
      *
      * @type {PaymentsConfigurationRestrictions}
      * @memberof PaymentsConfigurationAmazon
      */
     restrictions?: PaymentsConfigurationRestrictions;
     /**
-     * True if transactions should run against the Amazon sandbox.  Useful for testing not configurations
-     * @type {boolean}
-     * @memberof PaymentsConfigurationAmazon
-     */
-    sandbox?: boolean;
-    /**
      * Amazon secret access key
      * @type {string}
      * @memberof PaymentsConfigurationAmazon
      */
     secret_access_key?: string;
+}
+/**
+ * @export
+ * @namespace PaymentsConfigurationAmazon
+ */
+export declare namespace PaymentsConfigurationAmazon {
+    /**
+     * @export
+     * @enum {string}
+     */
+    enum EnvironmentEnum {
+        Live,
+        Sandbox
+    }
 }
 /**
  *
@@ -25622,12 +25636,6 @@ export interface PaymentsConfigurationSezzle {
      * @memberof PaymentsConfigurationSezzle
      */
     environment?: PaymentsConfigurationSezzle.EnvironmentEnum;
-    /**
-     * List of environments possible
-     * @type {Array<string>}
-     * @memberof PaymentsConfigurationSezzle
-     */
-    environments?: Array<string>;
     /**
      * Private API key
      * @type {string}
