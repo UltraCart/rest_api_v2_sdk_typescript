@@ -1322,7 +1322,7 @@ var AffiliateApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         getClicksByQuery: function (click_query, _limit, _offset, _expand, options) {
-            var localVarFetchArgs = exports.AffiliateApiFetchParamCreator(configuration).getClicksByQuery(click_query, _limit, _offset, _expand, options);
+            var localVarFetchArgs = (0, exports.AffiliateApiFetchParamCreator)(configuration).getClicksByQuery(click_query, _limit, _offset, _expand, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -1347,7 +1347,7 @@ var AffiliateApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         getLedgersByQuery: function (ledger_query, _limit, _offset, _expand, options) {
-            var localVarFetchArgs = exports.AffiliateApiFetchParamCreator(configuration).getLedgersByQuery(ledger_query, _limit, _offset, _expand, options);
+            var localVarFetchArgs = (0, exports.AffiliateApiFetchParamCreator)(configuration).getLedgersByQuery(ledger_query, _limit, _offset, _expand, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -1381,7 +1381,7 @@ var AffiliateApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         getClicksByQuery: function (click_query, _limit, _offset, _expand, options) {
-            return exports.AffiliateApiFp(configuration).getClicksByQuery(click_query, _limit, _offset, _expand, options)(fetch, basePath);
+            return (0, exports.AffiliateApiFp)(configuration).getClicksByQuery(click_query, _limit, _offset, _expand, options)(fetch, basePath);
         },
         /**
          * Retrieves a group of ledger entries from the account based on a query object.  If no parameters are specified, the API call will fail with a bad request error.  Always specify some parameters to limit the scope of the ledgers returned to ones you are truly interested in.  You will need to make multiple API calls in order to retrieve the entire result set since this API performs result set pagination.
@@ -1394,7 +1394,7 @@ var AffiliateApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         getLedgersByQuery: function (ledger_query, _limit, _offset, _expand, options) {
-            return exports.AffiliateApiFp(configuration).getLedgersByQuery(ledger_query, _limit, _offset, _expand, options)(fetch, basePath);
+            return (0, exports.AffiliateApiFp)(configuration).getLedgersByQuery(ledger_query, _limit, _offset, _expand, options)(fetch, basePath);
         },
     };
 };
@@ -1422,7 +1422,7 @@ var AffiliateApi = /** @class */ (function (_super) {
      * @memberof AffiliateApi
      */
     AffiliateApi.prototype.getClicksByQuery = function (click_query, _limit, _offset, _expand, options) {
-        return exports.AffiliateApiFp(this.configuration).getClicksByQuery(click_query, _limit, _offset, _expand, options)(this.fetch, this.basePath);
+        return (0, exports.AffiliateApiFp)(this.configuration).getClicksByQuery(click_query, _limit, _offset, _expand, options)(this.fetch, this.basePath);
     };
     /**
      * Retrieves a group of ledger entries from the account based on a query object.  If no parameters are specified, the API call will fail with a bad request error.  Always specify some parameters to limit the scope of the ledgers returned to ones you are truly interested in.  You will need to make multiple API calls in order to retrieve the entire result set since this API performs result set pagination.
@@ -1436,7 +1436,7 @@ var AffiliateApi = /** @class */ (function (_super) {
      * @memberof AffiliateApi
      */
     AffiliateApi.prototype.getLedgersByQuery = function (ledger_query, _limit, _offset, _expand, options) {
-        return exports.AffiliateApiFp(this.configuration).getLedgersByQuery(ledger_query, _limit, _offset, _expand, options)(this.fetch, this.basePath);
+        return (0, exports.AffiliateApiFp)(this.configuration).getLedgersByQuery(ledger_query, _limit, _offset, _expand, options)(this.fetch, this.basePath);
     };
     return AffiliateApi;
 }(BaseAPI));
@@ -1981,7 +1981,7 @@ var AutoOrderApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         getAutoOrder: function (auto_order_oid, _expand, options) {
-            var localVarFetchArgs = exports.AutoOrderApiFetchParamCreator(configuration).getAutoOrder(auto_order_oid, _expand, options);
+            var localVarFetchArgs = (0, exports.AutoOrderApiFetchParamCreator)(configuration).getAutoOrder(auto_order_oid, _expand, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -2004,7 +2004,7 @@ var AutoOrderApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         getAutoOrderByCode: function (auto_order_code, _expand, options) {
-            var localVarFetchArgs = exports.AutoOrderApiFetchParamCreator(configuration).getAutoOrderByCode(auto_order_code, _expand, options);
+            var localVarFetchArgs = (0, exports.AutoOrderApiFetchParamCreator)(configuration).getAutoOrderByCode(auto_order_code, _expand, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -2027,7 +2027,7 @@ var AutoOrderApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         getAutoOrderByReferenceOrderId: function (reference_order_id, _expand, options) {
-            var localVarFetchArgs = exports.AutoOrderApiFetchParamCreator(configuration).getAutoOrderByReferenceOrderId(reference_order_id, _expand, options);
+            var localVarFetchArgs = (0, exports.AutoOrderApiFetchParamCreator)(configuration).getAutoOrderByReferenceOrderId(reference_order_id, _expand, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -2071,7 +2071,7 @@ var AutoOrderApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         getAutoOrders: function (auto_order_code, original_order_id, first_name, last_name, company, city, state, postal_code, country_code, phone, email, original_order_date_begin, original_order_date_end, next_shipment_date_begin, next_shipment_date_end, card_type, item_id, status, _limit, _offset, _since, _sort, _expand, options) {
-            var localVarFetchArgs = exports.AutoOrderApiFetchParamCreator(configuration).getAutoOrders(auto_order_code, original_order_id, first_name, last_name, company, city, state, postal_code, country_code, phone, email, original_order_date_begin, original_order_date_end, next_shipment_date_begin, next_shipment_date_end, card_type, item_id, status, _limit, _offset, _since, _sort, _expand, options);
+            var localVarFetchArgs = (0, exports.AutoOrderApiFetchParamCreator)(configuration).getAutoOrders(auto_order_code, original_order_id, first_name, last_name, company, city, state, postal_code, country_code, phone, email, original_order_date_begin, original_order_date_end, next_shipment_date_begin, next_shipment_date_end, card_type, item_id, status, _limit, _offset, _since, _sort, _expand, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -2094,7 +2094,7 @@ var AutoOrderApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         getAutoOrdersBatch: function (auto_order_batch, _expand, options) {
-            var localVarFetchArgs = exports.AutoOrderApiFetchParamCreator(configuration).getAutoOrdersBatch(auto_order_batch, _expand, options);
+            var localVarFetchArgs = (0, exports.AutoOrderApiFetchParamCreator)(configuration).getAutoOrdersBatch(auto_order_batch, _expand, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -2120,7 +2120,7 @@ var AutoOrderApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         getAutoOrdersByQuery: function (auto_order_query, _limit, _offset, _sort, _expand, options) {
-            var localVarFetchArgs = exports.AutoOrderApiFetchParamCreator(configuration).getAutoOrdersByQuery(auto_order_query, _limit, _offset, _sort, _expand, options);
+            var localVarFetchArgs = (0, exports.AutoOrderApiFetchParamCreator)(configuration).getAutoOrdersByQuery(auto_order_query, _limit, _offset, _sort, _expand, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -2144,7 +2144,7 @@ var AutoOrderApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         updateAutoOrder: function (auto_order, auto_order_oid, _expand, options) {
-            var localVarFetchArgs = exports.AutoOrderApiFetchParamCreator(configuration).updateAutoOrder(auto_order, auto_order_oid, _expand, options);
+            var localVarFetchArgs = (0, exports.AutoOrderApiFetchParamCreator)(configuration).updateAutoOrder(auto_order, auto_order_oid, _expand, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -2169,7 +2169,7 @@ var AutoOrderApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         updateAutoOrdersBatch: function (auto_orders_request, _expand, _placeholders, _async, options) {
-            var localVarFetchArgs = exports.AutoOrderApiFetchParamCreator(configuration).updateAutoOrdersBatch(auto_orders_request, _expand, _placeholders, _async, options);
+            var localVarFetchArgs = (0, exports.AutoOrderApiFetchParamCreator)(configuration).updateAutoOrdersBatch(auto_orders_request, _expand, _placeholders, _async, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -2201,7 +2201,7 @@ var AutoOrderApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         getAutoOrder: function (auto_order_oid, _expand, options) {
-            return exports.AutoOrderApiFp(configuration).getAutoOrder(auto_order_oid, _expand, options)(fetch, basePath);
+            return (0, exports.AutoOrderApiFp)(configuration).getAutoOrder(auto_order_oid, _expand, options)(fetch, basePath);
         },
         /**
          * Retrieves a single auto order using the specified reference (original) order id.
@@ -2212,7 +2212,7 @@ var AutoOrderApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         getAutoOrderByCode: function (auto_order_code, _expand, options) {
-            return exports.AutoOrderApiFp(configuration).getAutoOrderByCode(auto_order_code, _expand, options)(fetch, basePath);
+            return (0, exports.AutoOrderApiFp)(configuration).getAutoOrderByCode(auto_order_code, _expand, options)(fetch, basePath);
         },
         /**
          * Retrieves a single auto order using the specified reference (original) order id.
@@ -2223,7 +2223,7 @@ var AutoOrderApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         getAutoOrderByReferenceOrderId: function (reference_order_id, _expand, options) {
-            return exports.AutoOrderApiFp(configuration).getAutoOrderByReferenceOrderId(reference_order_id, _expand, options)(fetch, basePath);
+            return (0, exports.AutoOrderApiFp)(configuration).getAutoOrderByReferenceOrderId(reference_order_id, _expand, options)(fetch, basePath);
         },
         /**
          * Retrieves auto orders from the account.  If no parameters are specified, all auto orders will be returned.  You will need to make multiple API calls in order to retrieve the entire result set since this API performs result set pagination.
@@ -2255,7 +2255,7 @@ var AutoOrderApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         getAutoOrders: function (auto_order_code, original_order_id, first_name, last_name, company, city, state, postal_code, country_code, phone, email, original_order_date_begin, original_order_date_end, next_shipment_date_begin, next_shipment_date_end, card_type, item_id, status, _limit, _offset, _since, _sort, _expand, options) {
-            return exports.AutoOrderApiFp(configuration).getAutoOrders(auto_order_code, original_order_id, first_name, last_name, company, city, state, postal_code, country_code, phone, email, original_order_date_begin, original_order_date_end, next_shipment_date_begin, next_shipment_date_end, card_type, item_id, status, _limit, _offset, _since, _sort, _expand, options)(fetch, basePath);
+            return (0, exports.AutoOrderApiFp)(configuration).getAutoOrders(auto_order_code, original_order_id, first_name, last_name, company, city, state, postal_code, country_code, phone, email, original_order_date_begin, original_order_date_end, next_shipment_date_begin, next_shipment_date_end, card_type, item_id, status, _limit, _offset, _since, _sort, _expand, options)(fetch, basePath);
         },
         /**
          * Retrieves a group of auto orders from the account based on an array of auto order oids.  If more than 200 auto order ids are specified, the API call will fail with a bad request error.
@@ -2266,7 +2266,7 @@ var AutoOrderApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         getAutoOrdersBatch: function (auto_order_batch, _expand, options) {
-            return exports.AutoOrderApiFp(configuration).getAutoOrdersBatch(auto_order_batch, _expand, options)(fetch, basePath);
+            return (0, exports.AutoOrderApiFp)(configuration).getAutoOrdersBatch(auto_order_batch, _expand, options)(fetch, basePath);
         },
         /**
          * Retrieves a group of auto orders from the account based on a query object.  You will need to make multiple API calls in order to retrieve the entire result set since this API performs result set pagination.
@@ -2280,7 +2280,7 @@ var AutoOrderApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         getAutoOrdersByQuery: function (auto_order_query, _limit, _offset, _sort, _expand, options) {
-            return exports.AutoOrderApiFp(configuration).getAutoOrdersByQuery(auto_order_query, _limit, _offset, _sort, _expand, options)(fetch, basePath);
+            return (0, exports.AutoOrderApiFp)(configuration).getAutoOrdersByQuery(auto_order_query, _limit, _offset, _sort, _expand, options)(fetch, basePath);
         },
         /**
          * Update an auto order on the UltraCart account.
@@ -2292,7 +2292,7 @@ var AutoOrderApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         updateAutoOrder: function (auto_order, auto_order_oid, _expand, options) {
-            return exports.AutoOrderApiFp(configuration).updateAutoOrder(auto_order, auto_order_oid, _expand, options)(fetch, basePath);
+            return (0, exports.AutoOrderApiFp)(configuration).updateAutoOrder(auto_order, auto_order_oid, _expand, options)(fetch, basePath);
         },
         /**
          * Update multiple auto orders on the UltraCart account.
@@ -2305,7 +2305,7 @@ var AutoOrderApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         updateAutoOrdersBatch: function (auto_orders_request, _expand, _placeholders, _async, options) {
-            return exports.AutoOrderApiFp(configuration).updateAutoOrdersBatch(auto_orders_request, _expand, _placeholders, _async, options)(fetch, basePath);
+            return (0, exports.AutoOrderApiFp)(configuration).updateAutoOrdersBatch(auto_orders_request, _expand, _placeholders, _async, options)(fetch, basePath);
         },
     };
 };
@@ -2331,7 +2331,7 @@ var AutoOrderApi = /** @class */ (function (_super) {
      * @memberof AutoOrderApi
      */
     AutoOrderApi.prototype.getAutoOrder = function (auto_order_oid, _expand, options) {
-        return exports.AutoOrderApiFp(this.configuration).getAutoOrder(auto_order_oid, _expand, options)(this.fetch, this.basePath);
+        return (0, exports.AutoOrderApiFp)(this.configuration).getAutoOrder(auto_order_oid, _expand, options)(this.fetch, this.basePath);
     };
     /**
      * Retrieves a single auto order using the specified reference (original) order id.
@@ -2343,7 +2343,7 @@ var AutoOrderApi = /** @class */ (function (_super) {
      * @memberof AutoOrderApi
      */
     AutoOrderApi.prototype.getAutoOrderByCode = function (auto_order_code, _expand, options) {
-        return exports.AutoOrderApiFp(this.configuration).getAutoOrderByCode(auto_order_code, _expand, options)(this.fetch, this.basePath);
+        return (0, exports.AutoOrderApiFp)(this.configuration).getAutoOrderByCode(auto_order_code, _expand, options)(this.fetch, this.basePath);
     };
     /**
      * Retrieves a single auto order using the specified reference (original) order id.
@@ -2355,7 +2355,7 @@ var AutoOrderApi = /** @class */ (function (_super) {
      * @memberof AutoOrderApi
      */
     AutoOrderApi.prototype.getAutoOrderByReferenceOrderId = function (reference_order_id, _expand, options) {
-        return exports.AutoOrderApiFp(this.configuration).getAutoOrderByReferenceOrderId(reference_order_id, _expand, options)(this.fetch, this.basePath);
+        return (0, exports.AutoOrderApiFp)(this.configuration).getAutoOrderByReferenceOrderId(reference_order_id, _expand, options)(this.fetch, this.basePath);
     };
     /**
      * Retrieves auto orders from the account.  If no parameters are specified, all auto orders will be returned.  You will need to make multiple API calls in order to retrieve the entire result set since this API performs result set pagination.
@@ -2388,7 +2388,7 @@ var AutoOrderApi = /** @class */ (function (_super) {
      * @memberof AutoOrderApi
      */
     AutoOrderApi.prototype.getAutoOrders = function (auto_order_code, original_order_id, first_name, last_name, company, city, state, postal_code, country_code, phone, email, original_order_date_begin, original_order_date_end, next_shipment_date_begin, next_shipment_date_end, card_type, item_id, status, _limit, _offset, _since, _sort, _expand, options) {
-        return exports.AutoOrderApiFp(this.configuration).getAutoOrders(auto_order_code, original_order_id, first_name, last_name, company, city, state, postal_code, country_code, phone, email, original_order_date_begin, original_order_date_end, next_shipment_date_begin, next_shipment_date_end, card_type, item_id, status, _limit, _offset, _since, _sort, _expand, options)(this.fetch, this.basePath);
+        return (0, exports.AutoOrderApiFp)(this.configuration).getAutoOrders(auto_order_code, original_order_id, first_name, last_name, company, city, state, postal_code, country_code, phone, email, original_order_date_begin, original_order_date_end, next_shipment_date_begin, next_shipment_date_end, card_type, item_id, status, _limit, _offset, _since, _sort, _expand, options)(this.fetch, this.basePath);
     };
     /**
      * Retrieves a group of auto orders from the account based on an array of auto order oids.  If more than 200 auto order ids are specified, the API call will fail with a bad request error.
@@ -2400,7 +2400,7 @@ var AutoOrderApi = /** @class */ (function (_super) {
      * @memberof AutoOrderApi
      */
     AutoOrderApi.prototype.getAutoOrdersBatch = function (auto_order_batch, _expand, options) {
-        return exports.AutoOrderApiFp(this.configuration).getAutoOrdersBatch(auto_order_batch, _expand, options)(this.fetch, this.basePath);
+        return (0, exports.AutoOrderApiFp)(this.configuration).getAutoOrdersBatch(auto_order_batch, _expand, options)(this.fetch, this.basePath);
     };
     /**
      * Retrieves a group of auto orders from the account based on a query object.  You will need to make multiple API calls in order to retrieve the entire result set since this API performs result set pagination.
@@ -2415,7 +2415,7 @@ var AutoOrderApi = /** @class */ (function (_super) {
      * @memberof AutoOrderApi
      */
     AutoOrderApi.prototype.getAutoOrdersByQuery = function (auto_order_query, _limit, _offset, _sort, _expand, options) {
-        return exports.AutoOrderApiFp(this.configuration).getAutoOrdersByQuery(auto_order_query, _limit, _offset, _sort, _expand, options)(this.fetch, this.basePath);
+        return (0, exports.AutoOrderApiFp)(this.configuration).getAutoOrdersByQuery(auto_order_query, _limit, _offset, _sort, _expand, options)(this.fetch, this.basePath);
     };
     /**
      * Update an auto order on the UltraCart account.
@@ -2428,7 +2428,7 @@ var AutoOrderApi = /** @class */ (function (_super) {
      * @memberof AutoOrderApi
      */
     AutoOrderApi.prototype.updateAutoOrder = function (auto_order, auto_order_oid, _expand, options) {
-        return exports.AutoOrderApiFp(this.configuration).updateAutoOrder(auto_order, auto_order_oid, _expand, options)(this.fetch, this.basePath);
+        return (0, exports.AutoOrderApiFp)(this.configuration).updateAutoOrder(auto_order, auto_order_oid, _expand, options)(this.fetch, this.basePath);
     };
     /**
      * Update multiple auto orders on the UltraCart account.
@@ -2442,7 +2442,7 @@ var AutoOrderApi = /** @class */ (function (_super) {
      * @memberof AutoOrderApi
      */
     AutoOrderApi.prototype.updateAutoOrdersBatch = function (auto_orders_request, _expand, _placeholders, _async, options) {
-        return exports.AutoOrderApiFp(this.configuration).updateAutoOrdersBatch(auto_orders_request, _expand, _placeholders, _async, options)(this.fetch, this.basePath);
+        return (0, exports.AutoOrderApiFp)(this.configuration).updateAutoOrdersBatch(auto_orders_request, _expand, _placeholders, _async, options)(this.fetch, this.basePath);
     };
     return AutoOrderApi;
 }(BaseAPI));
@@ -2764,7 +2764,7 @@ var ChargebackApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         deleteChargeback: function (chargeback_dispute_oid, options) {
-            var localVarFetchArgs = exports.ChargebackApiFetchParamCreator(configuration).deleteChargeback(chargeback_dispute_oid, options);
+            var localVarFetchArgs = (0, exports.ChargebackApiFetchParamCreator)(configuration).deleteChargeback(chargeback_dispute_oid, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -2787,7 +2787,7 @@ var ChargebackApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         getChargebackDispute: function (chargeback_dispute_oid, _expand, options) {
-            var localVarFetchArgs = exports.ChargebackApiFetchParamCreator(configuration).getChargebackDispute(chargeback_dispute_oid, _expand, options);
+            var localVarFetchArgs = (0, exports.ChargebackApiFetchParamCreator)(configuration).getChargebackDispute(chargeback_dispute_oid, _expand, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -2820,7 +2820,7 @@ var ChargebackApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         getChargebackDisputes: function (order_id, case_number, status, expiration_dts_start, expiration_dts_end, chargeback_dts_start, chargeback_dts_end, _limit, _offset, _since, _sort, _expand, options) {
-            var localVarFetchArgs = exports.ChargebackApiFetchParamCreator(configuration).getChargebackDisputes(order_id, case_number, status, expiration_dts_start, expiration_dts_end, chargeback_dts_start, chargeback_dts_end, _limit, _offset, _since, _sort, _expand, options);
+            var localVarFetchArgs = (0, exports.ChargebackApiFetchParamCreator)(configuration).getChargebackDisputes(order_id, case_number, status, expiration_dts_start, expiration_dts_end, chargeback_dts_start, chargeback_dts_end, _limit, _offset, _since, _sort, _expand, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -2843,7 +2843,7 @@ var ChargebackApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         insertChargeback: function (chargeback, _expand, options) {
-            var localVarFetchArgs = exports.ChargebackApiFetchParamCreator(configuration).insertChargeback(chargeback, _expand, options);
+            var localVarFetchArgs = (0, exports.ChargebackApiFetchParamCreator)(configuration).insertChargeback(chargeback, _expand, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -2867,7 +2867,7 @@ var ChargebackApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         updateChargeback: function (chargeback, chargeback_dispute_oid, _expand, options) {
-            var localVarFetchArgs = exports.ChargebackApiFetchParamCreator(configuration).updateChargeback(chargeback, chargeback_dispute_oid, _expand, options);
+            var localVarFetchArgs = (0, exports.ChargebackApiFetchParamCreator)(configuration).updateChargeback(chargeback, chargeback_dispute_oid, _expand, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -2898,7 +2898,7 @@ var ChargebackApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         deleteChargeback: function (chargeback_dispute_oid, options) {
-            return exports.ChargebackApiFp(configuration).deleteChargeback(chargeback_dispute_oid, options)(fetch, basePath);
+            return (0, exports.ChargebackApiFp)(configuration).deleteChargeback(chargeback_dispute_oid, options)(fetch, basePath);
         },
         /**
          * Retrieves a single chargeback using the specified chargeback dispute oid.
@@ -2909,7 +2909,7 @@ var ChargebackApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         getChargebackDispute: function (chargeback_dispute_oid, _expand, options) {
-            return exports.ChargebackApiFp(configuration).getChargebackDispute(chargeback_dispute_oid, _expand, options)(fetch, basePath);
+            return (0, exports.ChargebackApiFp)(configuration).getChargebackDispute(chargeback_dispute_oid, _expand, options)(fetch, basePath);
         },
         /**
          * Retrieves chargebacks from the account.  If no parameters are specified, all chargebacks will be returned.  You will need to make multiple API calls in order to retrieve the entire result set since this API performs result set pagination.
@@ -2930,7 +2930,7 @@ var ChargebackApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         getChargebackDisputes: function (order_id, case_number, status, expiration_dts_start, expiration_dts_end, chargeback_dts_start, chargeback_dts_end, _limit, _offset, _since, _sort, _expand, options) {
-            return exports.ChargebackApiFp(configuration).getChargebackDisputes(order_id, case_number, status, expiration_dts_start, expiration_dts_end, chargeback_dts_start, chargeback_dts_end, _limit, _offset, _since, _sort, _expand, options)(fetch, basePath);
+            return (0, exports.ChargebackApiFp)(configuration).getChargebackDisputes(order_id, case_number, status, expiration_dts_start, expiration_dts_end, chargeback_dts_start, chargeback_dts_end, _limit, _offset, _since, _sort, _expand, options)(fetch, basePath);
         },
         /**
          * Insert a chargeback on the UltraCart account.
@@ -2941,7 +2941,7 @@ var ChargebackApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         insertChargeback: function (chargeback, _expand, options) {
-            return exports.ChargebackApiFp(configuration).insertChargeback(chargeback, _expand, options)(fetch, basePath);
+            return (0, exports.ChargebackApiFp)(configuration).insertChargeback(chargeback, _expand, options)(fetch, basePath);
         },
         /**
          * Update a chargeback on the UltraCart account.
@@ -2953,7 +2953,7 @@ var ChargebackApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         updateChargeback: function (chargeback, chargeback_dispute_oid, _expand, options) {
-            return exports.ChargebackApiFp(configuration).updateChargeback(chargeback, chargeback_dispute_oid, _expand, options)(fetch, basePath);
+            return (0, exports.ChargebackApiFp)(configuration).updateChargeback(chargeback, chargeback_dispute_oid, _expand, options)(fetch, basePath);
         },
     };
 };
@@ -2978,7 +2978,7 @@ var ChargebackApi = /** @class */ (function (_super) {
      * @memberof ChargebackApi
      */
     ChargebackApi.prototype.deleteChargeback = function (chargeback_dispute_oid, options) {
-        return exports.ChargebackApiFp(this.configuration).deleteChargeback(chargeback_dispute_oid, options)(this.fetch, this.basePath);
+        return (0, exports.ChargebackApiFp)(this.configuration).deleteChargeback(chargeback_dispute_oid, options)(this.fetch, this.basePath);
     };
     /**
      * Retrieves a single chargeback using the specified chargeback dispute oid.
@@ -2990,7 +2990,7 @@ var ChargebackApi = /** @class */ (function (_super) {
      * @memberof ChargebackApi
      */
     ChargebackApi.prototype.getChargebackDispute = function (chargeback_dispute_oid, _expand, options) {
-        return exports.ChargebackApiFp(this.configuration).getChargebackDispute(chargeback_dispute_oid, _expand, options)(this.fetch, this.basePath);
+        return (0, exports.ChargebackApiFp)(this.configuration).getChargebackDispute(chargeback_dispute_oid, _expand, options)(this.fetch, this.basePath);
     };
     /**
      * Retrieves chargebacks from the account.  If no parameters are specified, all chargebacks will be returned.  You will need to make multiple API calls in order to retrieve the entire result set since this API performs result set pagination.
@@ -3012,7 +3012,7 @@ var ChargebackApi = /** @class */ (function (_super) {
      * @memberof ChargebackApi
      */
     ChargebackApi.prototype.getChargebackDisputes = function (order_id, case_number, status, expiration_dts_start, expiration_dts_end, chargeback_dts_start, chargeback_dts_end, _limit, _offset, _since, _sort, _expand, options) {
-        return exports.ChargebackApiFp(this.configuration).getChargebackDisputes(order_id, case_number, status, expiration_dts_start, expiration_dts_end, chargeback_dts_start, chargeback_dts_end, _limit, _offset, _since, _sort, _expand, options)(this.fetch, this.basePath);
+        return (0, exports.ChargebackApiFp)(this.configuration).getChargebackDisputes(order_id, case_number, status, expiration_dts_start, expiration_dts_end, chargeback_dts_start, chargeback_dts_end, _limit, _offset, _since, _sort, _expand, options)(this.fetch, this.basePath);
     };
     /**
      * Insert a chargeback on the UltraCart account.
@@ -3024,7 +3024,7 @@ var ChargebackApi = /** @class */ (function (_super) {
      * @memberof ChargebackApi
      */
     ChargebackApi.prototype.insertChargeback = function (chargeback, _expand, options) {
-        return exports.ChargebackApiFp(this.configuration).insertChargeback(chargeback, _expand, options)(this.fetch, this.basePath);
+        return (0, exports.ChargebackApiFp)(this.configuration).insertChargeback(chargeback, _expand, options)(this.fetch, this.basePath);
     };
     /**
      * Update a chargeback on the UltraCart account.
@@ -3037,7 +3037,7 @@ var ChargebackApi = /** @class */ (function (_super) {
      * @memberof ChargebackApi
      */
     ChargebackApi.prototype.updateChargeback = function (chargeback, chargeback_dispute_oid, _expand, options) {
-        return exports.ChargebackApiFp(this.configuration).updateChargeback(chargeback, chargeback_dispute_oid, _expand, options)(this.fetch, this.basePath);
+        return (0, exports.ChargebackApiFp)(this.configuration).updateChargeback(chargeback, chargeback_dispute_oid, _expand, options)(this.fetch, this.basePath);
     };
     return ChargebackApi;
 }(BaseAPI));
@@ -4126,7 +4126,7 @@ var CheckoutApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         cityState: function (cart, options) {
-            var localVarFetchArgs = exports.CheckoutApiFetchParamCreator(configuration).cityState(cart, options);
+            var localVarFetchArgs = (0, exports.CheckoutApiFetchParamCreator)(configuration).cityState(cart, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -4148,7 +4148,7 @@ var CheckoutApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         finalizeOrder: function (finalize_request, options) {
-            var localVarFetchArgs = exports.CheckoutApiFetchParamCreator(configuration).finalizeOrder(finalize_request, options);
+            var localVarFetchArgs = (0, exports.CheckoutApiFetchParamCreator)(configuration).finalizeOrder(finalize_request, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -4170,7 +4170,7 @@ var CheckoutApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         getAffirmCheckout: function (cart_id, options) {
-            var localVarFetchArgs = exports.CheckoutApiFetchParamCreator(configuration).getAffirmCheckout(cart_id, options);
+            var localVarFetchArgs = (0, exports.CheckoutApiFetchParamCreator)(configuration).getAffirmCheckout(cart_id, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -4191,7 +4191,7 @@ var CheckoutApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         getAllowedCountries: function (options) {
-            var localVarFetchArgs = exports.CheckoutApiFetchParamCreator(configuration).getAllowedCountries(options);
+            var localVarFetchArgs = (0, exports.CheckoutApiFetchParamCreator)(configuration).getAllowedCountries(options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -4213,7 +4213,7 @@ var CheckoutApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         getCart: function (_expand, options) {
-            var localVarFetchArgs = exports.CheckoutApiFetchParamCreator(configuration).getCart(_expand, options);
+            var localVarFetchArgs = (0, exports.CheckoutApiFetchParamCreator)(configuration).getCart(_expand, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -4236,7 +4236,7 @@ var CheckoutApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         getCartByCartId: function (cart_id, _expand, options) {
-            var localVarFetchArgs = exports.CheckoutApiFetchParamCreator(configuration).getCartByCartId(cart_id, _expand, options);
+            var localVarFetchArgs = (0, exports.CheckoutApiFetchParamCreator)(configuration).getCartByCartId(cart_id, _expand, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -4259,7 +4259,7 @@ var CheckoutApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         getCartByReturnCode: function (return_code, _expand, options) {
-            var localVarFetchArgs = exports.CheckoutApiFetchParamCreator(configuration).getCartByReturnCode(return_code, _expand, options);
+            var localVarFetchArgs = (0, exports.CheckoutApiFetchParamCreator)(configuration).getCartByReturnCode(return_code, _expand, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -4282,7 +4282,7 @@ var CheckoutApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         getCartByReturnToken: function (return_token, _expand, options) {
-            var localVarFetchArgs = exports.CheckoutApiFetchParamCreator(configuration).getCartByReturnToken(return_token, _expand, options);
+            var localVarFetchArgs = (0, exports.CheckoutApiFetchParamCreator)(configuration).getCartByReturnToken(return_token, _expand, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -4304,7 +4304,7 @@ var CheckoutApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         getStateProvincesForCountry: function (country_code, options) {
-            var localVarFetchArgs = exports.CheckoutApiFetchParamCreator(configuration).getStateProvincesForCountry(country_code, options);
+            var localVarFetchArgs = (0, exports.CheckoutApiFetchParamCreator)(configuration).getStateProvincesForCountry(country_code, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -4327,7 +4327,7 @@ var CheckoutApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         handoffCart: function (handoff_request, _expand, options) {
-            var localVarFetchArgs = exports.CheckoutApiFetchParamCreator(configuration).handoffCart(handoff_request, _expand, options);
+            var localVarFetchArgs = (0, exports.CheckoutApiFetchParamCreator)(configuration).handoffCart(handoff_request, _expand, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -4350,7 +4350,7 @@ var CheckoutApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         login: function (login_request, _expand, options) {
-            var localVarFetchArgs = exports.CheckoutApiFetchParamCreator(configuration).login(login_request, _expand, options);
+            var localVarFetchArgs = (0, exports.CheckoutApiFetchParamCreator)(configuration).login(login_request, _expand, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -4373,7 +4373,7 @@ var CheckoutApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         logout: function (cart, _expand, options) {
-            var localVarFetchArgs = exports.CheckoutApiFetchParamCreator(configuration).logout(cart, _expand, options);
+            var localVarFetchArgs = (0, exports.CheckoutApiFetchParamCreator)(configuration).logout(cart, _expand, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -4396,7 +4396,7 @@ var CheckoutApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         register: function (register_request, _expand, options) {
-            var localVarFetchArgs = exports.CheckoutApiFetchParamCreator(configuration).register(register_request, _expand, options);
+            var localVarFetchArgs = (0, exports.CheckoutApiFetchParamCreator)(configuration).register(register_request, _expand, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -4419,7 +4419,7 @@ var CheckoutApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         registerAffiliateClick: function (register_affiliate_click_request, _expand, options) {
-            var localVarFetchArgs = exports.CheckoutApiFetchParamCreator(configuration).registerAffiliateClick(register_affiliate_click_request, _expand, options);
+            var localVarFetchArgs = (0, exports.CheckoutApiFetchParamCreator)(configuration).registerAffiliateClick(register_affiliate_click_request, _expand, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -4442,7 +4442,7 @@ var CheckoutApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         relatedItemsForCart: function (cart, _expand, options) {
-            var localVarFetchArgs = exports.CheckoutApiFetchParamCreator(configuration).relatedItemsForCart(cart, _expand, options);
+            var localVarFetchArgs = (0, exports.CheckoutApiFetchParamCreator)(configuration).relatedItemsForCart(cart, _expand, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -4466,7 +4466,7 @@ var CheckoutApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         relatedItemsForItem: function (item_id, cart, _expand, options) {
-            var localVarFetchArgs = exports.CheckoutApiFetchParamCreator(configuration).relatedItemsForItem(item_id, cart, _expand, options);
+            var localVarFetchArgs = (0, exports.CheckoutApiFetchParamCreator)(configuration).relatedItemsForItem(item_id, cart, _expand, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -4488,7 +4488,7 @@ var CheckoutApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         setupBrowserKey: function (browser_key_request, options) {
-            var localVarFetchArgs = exports.CheckoutApiFetchParamCreator(configuration).setupBrowserKey(browser_key_request, options);
+            var localVarFetchArgs = (0, exports.CheckoutApiFetchParamCreator)(configuration).setupBrowserKey(browser_key_request, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -4511,7 +4511,7 @@ var CheckoutApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         updateCart: function (cart, _expand, options) {
-            var localVarFetchArgs = exports.CheckoutApiFetchParamCreator(configuration).updateCart(cart, _expand, options);
+            var localVarFetchArgs = (0, exports.CheckoutApiFetchParamCreator)(configuration).updateCart(cart, _expand, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -4534,7 +4534,7 @@ var CheckoutApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         validateCart: function (validation_request, _expand, options) {
-            var localVarFetchArgs = exports.CheckoutApiFetchParamCreator(configuration).validateCart(validation_request, _expand, options);
+            var localVarFetchArgs = (0, exports.CheckoutApiFetchParamCreator)(configuration).validateCart(validation_request, _expand, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -4565,7 +4565,7 @@ var CheckoutApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         cityState: function (cart, options) {
-            return exports.CheckoutApiFp(configuration).cityState(cart, options)(fetch, basePath);
+            return (0, exports.CheckoutApiFp)(configuration).cityState(cart, options)(fetch, basePath);
         },
         /**
          * Finalize the cart into an order.  This method can not be called with browser key authentication.  It is ONLY meant for server side code to call.
@@ -4575,7 +4575,7 @@ var CheckoutApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         finalizeOrder: function (finalize_request, options) {
-            return exports.CheckoutApiFp(configuration).finalizeOrder(finalize_request, options)(fetch, basePath);
+            return (0, exports.CheckoutApiFp)(configuration).finalizeOrder(finalize_request, options)(fetch, basePath);
         },
         /**
          * Get a Affirm checkout object for the specified cart_id parameter.
@@ -4585,7 +4585,7 @@ var CheckoutApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         getAffirmCheckout: function (cart_id, options) {
-            return exports.CheckoutApiFp(configuration).getAffirmCheckout(cart_id, options)(fetch, basePath);
+            return (0, exports.CheckoutApiFp)(configuration).getAffirmCheckout(cart_id, options)(fetch, basePath);
         },
         /**
          * Lookup the allowed countries for this merchant id
@@ -4594,7 +4594,7 @@ var CheckoutApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         getAllowedCountries: function (options) {
-            return exports.CheckoutApiFp(configuration).getAllowedCountries(options)(fetch, basePath);
+            return (0, exports.CheckoutApiFp)(configuration).getAllowedCountries(options)(fetch, basePath);
         },
         /**
          * If the cookie is set on the browser making the request then it will return their active cart.  Otherwise it will create a new cart.
@@ -4604,7 +4604,7 @@ var CheckoutApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         getCart: function (_expand, options) {
-            return exports.CheckoutApiFp(configuration).getCart(_expand, options)(fetch, basePath);
+            return (0, exports.CheckoutApiFp)(configuration).getCart(_expand, options)(fetch, basePath);
         },
         /**
          * Get a cart specified by the cart_id parameter.
@@ -4615,7 +4615,7 @@ var CheckoutApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         getCartByCartId: function (cart_id, _expand, options) {
-            return exports.CheckoutApiFp(configuration).getCartByCartId(cart_id, _expand, options)(fetch, basePath);
+            return (0, exports.CheckoutApiFp)(configuration).getCartByCartId(cart_id, _expand, options)(fetch, basePath);
         },
         /**
          * Get a cart specified by the return code parameter.
@@ -4626,7 +4626,7 @@ var CheckoutApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         getCartByReturnCode: function (return_code, _expand, options) {
-            return exports.CheckoutApiFp(configuration).getCartByReturnCode(return_code, _expand, options)(fetch, basePath);
+            return (0, exports.CheckoutApiFp)(configuration).getCartByReturnCode(return_code, _expand, options)(fetch, basePath);
         },
         /**
          * Get a cart specified by the encrypted return token parameter.
@@ -4637,7 +4637,7 @@ var CheckoutApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         getCartByReturnToken: function (return_token, _expand, options) {
-            return exports.CheckoutApiFp(configuration).getCartByReturnToken(return_token, _expand, options)(fetch, basePath);
+            return (0, exports.CheckoutApiFp)(configuration).getCartByReturnToken(return_token, _expand, options)(fetch, basePath);
         },
         /**
          * Lookup a state/province list for a given country code
@@ -4647,7 +4647,7 @@ var CheckoutApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         getStateProvincesForCountry: function (country_code, options) {
-            return exports.CheckoutApiFp(configuration).getStateProvincesForCountry(country_code, options)(fetch, basePath);
+            return (0, exports.CheckoutApiFp)(configuration).getStateProvincesForCountry(country_code, options)(fetch, basePath);
         },
         /**
          * Handoff the browser to UltraCart for view cart on StoreFront, transfer to PayPal, transfer to Affirm, transfer to Sezzle or finalization of the order (including upsell processing).
@@ -4658,7 +4658,7 @@ var CheckoutApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         handoffCart: function (handoff_request, _expand, options) {
-            return exports.CheckoutApiFp(configuration).handoffCart(handoff_request, _expand, options)(fetch, basePath);
+            return (0, exports.CheckoutApiFp)(configuration).handoffCart(handoff_request, _expand, options)(fetch, basePath);
         },
         /**
          * Login in to the customer profile specified by cart.billing.email and password
@@ -4669,7 +4669,7 @@ var CheckoutApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         login: function (login_request, _expand, options) {
-            return exports.CheckoutApiFp(configuration).login(login_request, _expand, options)(fetch, basePath);
+            return (0, exports.CheckoutApiFp)(configuration).login(login_request, _expand, options)(fetch, basePath);
         },
         /**
          * Log the cart out of the current profile.  No error will occur if they are not logged in.
@@ -4680,7 +4680,7 @@ var CheckoutApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         logout: function (cart, _expand, options) {
-            return exports.CheckoutApiFp(configuration).logout(cart, _expand, options)(fetch, basePath);
+            return (0, exports.CheckoutApiFp)(configuration).logout(cart, _expand, options)(fetch, basePath);
         },
         /**
          * Register a new customer profile.  Requires the cart.billing object to be populated along with the password.
@@ -4691,7 +4691,7 @@ var CheckoutApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         register: function (register_request, _expand, options) {
-            return exports.CheckoutApiFp(configuration).register(register_request, _expand, options)(fetch, basePath);
+            return (0, exports.CheckoutApiFp)(configuration).register(register_request, _expand, options)(fetch, basePath);
         },
         /**
          * Register an affiliate click.  Used by custom checkouts that are completely API based and do not perform checkout handoff.
@@ -4702,7 +4702,7 @@ var CheckoutApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         registerAffiliateClick: function (register_affiliate_click_request, _expand, options) {
-            return exports.CheckoutApiFp(configuration).registerAffiliateClick(register_affiliate_click_request, _expand, options)(fetch, basePath);
+            return (0, exports.CheckoutApiFp)(configuration).registerAffiliateClick(register_affiliate_click_request, _expand, options)(fetch, basePath);
         },
         /**
          * Retrieve all the related items for the cart contents.  Expansion is limited to content, content.assignments, content.attributes, content.multimedia, content.multimedia.thumbnails, options, pricing, and pricing.tiers.
@@ -4713,7 +4713,7 @@ var CheckoutApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         relatedItemsForCart: function (cart, _expand, options) {
-            return exports.CheckoutApiFp(configuration).relatedItemsForCart(cart, _expand, options)(fetch, basePath);
+            return (0, exports.CheckoutApiFp)(configuration).relatedItemsForCart(cart, _expand, options)(fetch, basePath);
         },
         /**
          * Retrieve all the related items for the cart contents.  Expansion is limited to content, content.assignments, content.attributes, content.multimedia, content.multimedia.thumbnails, options, pricing, and pricing.tiers.
@@ -4725,7 +4725,7 @@ var CheckoutApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         relatedItemsForItem: function (item_id, cart, _expand, options) {
-            return exports.CheckoutApiFp(configuration).relatedItemsForItem(item_id, cart, _expand, options)(fetch, basePath);
+            return (0, exports.CheckoutApiFp)(configuration).relatedItemsForItem(item_id, cart, _expand, options)(fetch, basePath);
         },
         /**
          * Setup a browser key authenticated application with checkout permissions.  This REST call must be made with an authentication scheme that is not browser key.  The new application will be linked to the application that makes this call.  If this application is disabled / deleted, then so will the application setup by this call.  The purpose of this call is to allow an OAuth application, such as the Wordpress plugin, to setup the proper browser based authentication for the REST checkout API to use.
@@ -4735,7 +4735,7 @@ var CheckoutApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         setupBrowserKey: function (browser_key_request, options) {
-            return exports.CheckoutApiFp(configuration).setupBrowserKey(browser_key_request, options)(fetch, basePath);
+            return (0, exports.CheckoutApiFp)(configuration).setupBrowserKey(browser_key_request, options)(fetch, basePath);
         },
         /**
          * Update the cart.
@@ -4746,7 +4746,7 @@ var CheckoutApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         updateCart: function (cart, _expand, options) {
-            return exports.CheckoutApiFp(configuration).updateCart(cart, _expand, options)(fetch, basePath);
+            return (0, exports.CheckoutApiFp)(configuration).updateCart(cart, _expand, options)(fetch, basePath);
         },
         /**
          * Validate the cart for errors.  Specific checks can be passed and multiple validations can occur throughout your checkout flow.
@@ -4757,7 +4757,7 @@ var CheckoutApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         validateCart: function (validation_request, _expand, options) {
-            return exports.CheckoutApiFp(configuration).validateCart(validation_request, _expand, options)(fetch, basePath);
+            return (0, exports.CheckoutApiFp)(configuration).validateCart(validation_request, _expand, options)(fetch, basePath);
         },
     };
 };
@@ -4782,7 +4782,7 @@ var CheckoutApi = /** @class */ (function (_super) {
      * @memberof CheckoutApi
      */
     CheckoutApi.prototype.cityState = function (cart, options) {
-        return exports.CheckoutApiFp(this.configuration).cityState(cart, options)(this.fetch, this.basePath);
+        return (0, exports.CheckoutApiFp)(this.configuration).cityState(cart, options)(this.fetch, this.basePath);
     };
     /**
      * Finalize the cart into an order.  This method can not be called with browser key authentication.  It is ONLY meant for server side code to call.
@@ -4793,7 +4793,7 @@ var CheckoutApi = /** @class */ (function (_super) {
      * @memberof CheckoutApi
      */
     CheckoutApi.prototype.finalizeOrder = function (finalize_request, options) {
-        return exports.CheckoutApiFp(this.configuration).finalizeOrder(finalize_request, options)(this.fetch, this.basePath);
+        return (0, exports.CheckoutApiFp)(this.configuration).finalizeOrder(finalize_request, options)(this.fetch, this.basePath);
     };
     /**
      * Get a Affirm checkout object for the specified cart_id parameter.
@@ -4804,7 +4804,7 @@ var CheckoutApi = /** @class */ (function (_super) {
      * @memberof CheckoutApi
      */
     CheckoutApi.prototype.getAffirmCheckout = function (cart_id, options) {
-        return exports.CheckoutApiFp(this.configuration).getAffirmCheckout(cart_id, options)(this.fetch, this.basePath);
+        return (0, exports.CheckoutApiFp)(this.configuration).getAffirmCheckout(cart_id, options)(this.fetch, this.basePath);
     };
     /**
      * Lookup the allowed countries for this merchant id
@@ -4814,7 +4814,7 @@ var CheckoutApi = /** @class */ (function (_super) {
      * @memberof CheckoutApi
      */
     CheckoutApi.prototype.getAllowedCountries = function (options) {
-        return exports.CheckoutApiFp(this.configuration).getAllowedCountries(options)(this.fetch, this.basePath);
+        return (0, exports.CheckoutApiFp)(this.configuration).getAllowedCountries(options)(this.fetch, this.basePath);
     };
     /**
      * If the cookie is set on the browser making the request then it will return their active cart.  Otherwise it will create a new cart.
@@ -4825,7 +4825,7 @@ var CheckoutApi = /** @class */ (function (_super) {
      * @memberof CheckoutApi
      */
     CheckoutApi.prototype.getCart = function (_expand, options) {
-        return exports.CheckoutApiFp(this.configuration).getCart(_expand, options)(this.fetch, this.basePath);
+        return (0, exports.CheckoutApiFp)(this.configuration).getCart(_expand, options)(this.fetch, this.basePath);
     };
     /**
      * Get a cart specified by the cart_id parameter.
@@ -4837,7 +4837,7 @@ var CheckoutApi = /** @class */ (function (_super) {
      * @memberof CheckoutApi
      */
     CheckoutApi.prototype.getCartByCartId = function (cart_id, _expand, options) {
-        return exports.CheckoutApiFp(this.configuration).getCartByCartId(cart_id, _expand, options)(this.fetch, this.basePath);
+        return (0, exports.CheckoutApiFp)(this.configuration).getCartByCartId(cart_id, _expand, options)(this.fetch, this.basePath);
     };
     /**
      * Get a cart specified by the return code parameter.
@@ -4849,7 +4849,7 @@ var CheckoutApi = /** @class */ (function (_super) {
      * @memberof CheckoutApi
      */
     CheckoutApi.prototype.getCartByReturnCode = function (return_code, _expand, options) {
-        return exports.CheckoutApiFp(this.configuration).getCartByReturnCode(return_code, _expand, options)(this.fetch, this.basePath);
+        return (0, exports.CheckoutApiFp)(this.configuration).getCartByReturnCode(return_code, _expand, options)(this.fetch, this.basePath);
     };
     /**
      * Get a cart specified by the encrypted return token parameter.
@@ -4861,7 +4861,7 @@ var CheckoutApi = /** @class */ (function (_super) {
      * @memberof CheckoutApi
      */
     CheckoutApi.prototype.getCartByReturnToken = function (return_token, _expand, options) {
-        return exports.CheckoutApiFp(this.configuration).getCartByReturnToken(return_token, _expand, options)(this.fetch, this.basePath);
+        return (0, exports.CheckoutApiFp)(this.configuration).getCartByReturnToken(return_token, _expand, options)(this.fetch, this.basePath);
     };
     /**
      * Lookup a state/province list for a given country code
@@ -4872,7 +4872,7 @@ var CheckoutApi = /** @class */ (function (_super) {
      * @memberof CheckoutApi
      */
     CheckoutApi.prototype.getStateProvincesForCountry = function (country_code, options) {
-        return exports.CheckoutApiFp(this.configuration).getStateProvincesForCountry(country_code, options)(this.fetch, this.basePath);
+        return (0, exports.CheckoutApiFp)(this.configuration).getStateProvincesForCountry(country_code, options)(this.fetch, this.basePath);
     };
     /**
      * Handoff the browser to UltraCart for view cart on StoreFront, transfer to PayPal, transfer to Affirm, transfer to Sezzle or finalization of the order (including upsell processing).
@@ -4884,7 +4884,7 @@ var CheckoutApi = /** @class */ (function (_super) {
      * @memberof CheckoutApi
      */
     CheckoutApi.prototype.handoffCart = function (handoff_request, _expand, options) {
-        return exports.CheckoutApiFp(this.configuration).handoffCart(handoff_request, _expand, options)(this.fetch, this.basePath);
+        return (0, exports.CheckoutApiFp)(this.configuration).handoffCart(handoff_request, _expand, options)(this.fetch, this.basePath);
     };
     /**
      * Login in to the customer profile specified by cart.billing.email and password
@@ -4896,7 +4896,7 @@ var CheckoutApi = /** @class */ (function (_super) {
      * @memberof CheckoutApi
      */
     CheckoutApi.prototype.login = function (login_request, _expand, options) {
-        return exports.CheckoutApiFp(this.configuration).login(login_request, _expand, options)(this.fetch, this.basePath);
+        return (0, exports.CheckoutApiFp)(this.configuration).login(login_request, _expand, options)(this.fetch, this.basePath);
     };
     /**
      * Log the cart out of the current profile.  No error will occur if they are not logged in.
@@ -4908,7 +4908,7 @@ var CheckoutApi = /** @class */ (function (_super) {
      * @memberof CheckoutApi
      */
     CheckoutApi.prototype.logout = function (cart, _expand, options) {
-        return exports.CheckoutApiFp(this.configuration).logout(cart, _expand, options)(this.fetch, this.basePath);
+        return (0, exports.CheckoutApiFp)(this.configuration).logout(cart, _expand, options)(this.fetch, this.basePath);
     };
     /**
      * Register a new customer profile.  Requires the cart.billing object to be populated along with the password.
@@ -4920,7 +4920,7 @@ var CheckoutApi = /** @class */ (function (_super) {
      * @memberof CheckoutApi
      */
     CheckoutApi.prototype.register = function (register_request, _expand, options) {
-        return exports.CheckoutApiFp(this.configuration).register(register_request, _expand, options)(this.fetch, this.basePath);
+        return (0, exports.CheckoutApiFp)(this.configuration).register(register_request, _expand, options)(this.fetch, this.basePath);
     };
     /**
      * Register an affiliate click.  Used by custom checkouts that are completely API based and do not perform checkout handoff.
@@ -4932,7 +4932,7 @@ var CheckoutApi = /** @class */ (function (_super) {
      * @memberof CheckoutApi
      */
     CheckoutApi.prototype.registerAffiliateClick = function (register_affiliate_click_request, _expand, options) {
-        return exports.CheckoutApiFp(this.configuration).registerAffiliateClick(register_affiliate_click_request, _expand, options)(this.fetch, this.basePath);
+        return (0, exports.CheckoutApiFp)(this.configuration).registerAffiliateClick(register_affiliate_click_request, _expand, options)(this.fetch, this.basePath);
     };
     /**
      * Retrieve all the related items for the cart contents.  Expansion is limited to content, content.assignments, content.attributes, content.multimedia, content.multimedia.thumbnails, options, pricing, and pricing.tiers.
@@ -4944,7 +4944,7 @@ var CheckoutApi = /** @class */ (function (_super) {
      * @memberof CheckoutApi
      */
     CheckoutApi.prototype.relatedItemsForCart = function (cart, _expand, options) {
-        return exports.CheckoutApiFp(this.configuration).relatedItemsForCart(cart, _expand, options)(this.fetch, this.basePath);
+        return (0, exports.CheckoutApiFp)(this.configuration).relatedItemsForCart(cart, _expand, options)(this.fetch, this.basePath);
     };
     /**
      * Retrieve all the related items for the cart contents.  Expansion is limited to content, content.assignments, content.attributes, content.multimedia, content.multimedia.thumbnails, options, pricing, and pricing.tiers.
@@ -4957,7 +4957,7 @@ var CheckoutApi = /** @class */ (function (_super) {
      * @memberof CheckoutApi
      */
     CheckoutApi.prototype.relatedItemsForItem = function (item_id, cart, _expand, options) {
-        return exports.CheckoutApiFp(this.configuration).relatedItemsForItem(item_id, cart, _expand, options)(this.fetch, this.basePath);
+        return (0, exports.CheckoutApiFp)(this.configuration).relatedItemsForItem(item_id, cart, _expand, options)(this.fetch, this.basePath);
     };
     /**
      * Setup a browser key authenticated application with checkout permissions.  This REST call must be made with an authentication scheme that is not browser key.  The new application will be linked to the application that makes this call.  If this application is disabled / deleted, then so will the application setup by this call.  The purpose of this call is to allow an OAuth application, such as the Wordpress plugin, to setup the proper browser based authentication for the REST checkout API to use.
@@ -4968,7 +4968,7 @@ var CheckoutApi = /** @class */ (function (_super) {
      * @memberof CheckoutApi
      */
     CheckoutApi.prototype.setupBrowserKey = function (browser_key_request, options) {
-        return exports.CheckoutApiFp(this.configuration).setupBrowserKey(browser_key_request, options)(this.fetch, this.basePath);
+        return (0, exports.CheckoutApiFp)(this.configuration).setupBrowserKey(browser_key_request, options)(this.fetch, this.basePath);
     };
     /**
      * Update the cart.
@@ -4980,7 +4980,7 @@ var CheckoutApi = /** @class */ (function (_super) {
      * @memberof CheckoutApi
      */
     CheckoutApi.prototype.updateCart = function (cart, _expand, options) {
-        return exports.CheckoutApiFp(this.configuration).updateCart(cart, _expand, options)(this.fetch, this.basePath);
+        return (0, exports.CheckoutApiFp)(this.configuration).updateCart(cart, _expand, options)(this.fetch, this.basePath);
     };
     /**
      * Validate the cart for errors.  Specific checks can be passed and multiple validations can occur throughout your checkout flow.
@@ -4992,7 +4992,7 @@ var CheckoutApi = /** @class */ (function (_super) {
      * @memberof CheckoutApi
      */
     CheckoutApi.prototype.validateCart = function (validation_request, _expand, options) {
-        return exports.CheckoutApiFp(this.configuration).validateCart(validation_request, _expand, options)(this.fetch, this.basePath);
+        return (0, exports.CheckoutApiFp)(this.configuration).validateCart(validation_request, _expand, options)(this.fetch, this.basePath);
     };
     return CheckoutApi;
 }(BaseAPI));
@@ -5702,7 +5702,7 @@ var ConfigurationApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         delayAutoOrders: function (rtg_oid, options) {
-            var localVarFetchArgs = exports.ConfigurationApiFetchParamCreator(configuration).delayAutoOrders(rtg_oid, options);
+            var localVarFetchArgs = (0, exports.ConfigurationApiFetchParamCreator)(configuration).delayAutoOrders(rtg_oid, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -5724,7 +5724,7 @@ var ConfigurationApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         deleteRotatingTransactionGateway: function (rtg_oid, options) {
-            var localVarFetchArgs = exports.ConfigurationApiFetchParamCreator(configuration).deleteRotatingTransactionGateway(rtg_oid, options);
+            var localVarFetchArgs = (0, exports.ConfigurationApiFetchParamCreator)(configuration).deleteRotatingTransactionGateway(rtg_oid, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -5745,7 +5745,7 @@ var ConfigurationApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         getPaymentsConfiguration: function (options) {
-            var localVarFetchArgs = exports.ConfigurationApiFetchParamCreator(configuration).getPaymentsConfiguration(options);
+            var localVarFetchArgs = (0, exports.ConfigurationApiFetchParamCreator)(configuration).getPaymentsConfiguration(options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -5767,7 +5767,7 @@ var ConfigurationApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         getPaymentsRotatingGateway: function (rtg_oid, options) {
-            var localVarFetchArgs = exports.ConfigurationApiFetchParamCreator(configuration).getPaymentsRotatingGateway(rtg_oid, options);
+            var localVarFetchArgs = (0, exports.ConfigurationApiFetchParamCreator)(configuration).getPaymentsRotatingGateway(rtg_oid, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -5789,7 +5789,7 @@ var ConfigurationApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         getPaymentsRotatingGatewayByCode: function (code, options) {
-            var localVarFetchArgs = exports.ConfigurationApiFetchParamCreator(configuration).getPaymentsRotatingGatewayByCode(code, options);
+            var localVarFetchArgs = (0, exports.ConfigurationApiFetchParamCreator)(configuration).getPaymentsRotatingGatewayByCode(code, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -5810,7 +5810,7 @@ var ConfigurationApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         getPaymentsRotatingTransactionGateways: function (options) {
-            var localVarFetchArgs = exports.ConfigurationApiFetchParamCreator(configuration).getPaymentsRotatingTransactionGateways(options);
+            var localVarFetchArgs = (0, exports.ConfigurationApiFetchParamCreator)(configuration).getPaymentsRotatingTransactionGateways(options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -5831,7 +5831,7 @@ var ConfigurationApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         getPaymentsRtgSummaries: function (options) {
-            var localVarFetchArgs = exports.ConfigurationApiFetchParamCreator(configuration).getPaymentsRtgSummaries(options);
+            var localVarFetchArgs = (0, exports.ConfigurationApiFetchParamCreator)(configuration).getPaymentsRtgSummaries(options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -5852,7 +5852,7 @@ var ConfigurationApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         getPaymentsTransactionGateways: function (options) {
-            var localVarFetchArgs = exports.ConfigurationApiFetchParamCreator(configuration).getPaymentsTransactionGateways(options);
+            var localVarFetchArgs = (0, exports.ConfigurationApiFetchParamCreator)(configuration).getPaymentsTransactionGateways(options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -5874,7 +5874,7 @@ var ConfigurationApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         insertRotatingTransactionGateway: function (rotating_transaction_gateway, options) {
-            var localVarFetchArgs = exports.ConfigurationApiFetchParamCreator(configuration).insertRotatingTransactionGateway(rotating_transaction_gateway, options);
+            var localVarFetchArgs = (0, exports.ConfigurationApiFetchParamCreator)(configuration).insertRotatingTransactionGateway(rotating_transaction_gateway, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -5896,7 +5896,7 @@ var ConfigurationApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         migrateToRotatingTransactionGateway: function (code, options) {
-            var localVarFetchArgs = exports.ConfigurationApiFetchParamCreator(configuration).migrateToRotatingTransactionGateway(code, options);
+            var localVarFetchArgs = (0, exports.ConfigurationApiFetchParamCreator)(configuration).migrateToRotatingTransactionGateway(code, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -5918,7 +5918,7 @@ var ConfigurationApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         stripeConnect: function (rtg_oid, options) {
-            var localVarFetchArgs = exports.ConfigurationApiFetchParamCreator(configuration).stripeConnect(rtg_oid, options);
+            var localVarFetchArgs = (0, exports.ConfigurationApiFetchParamCreator)(configuration).stripeConnect(rtg_oid, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -5940,7 +5940,7 @@ var ConfigurationApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         updatePaymentsConfiguration: function (payments_configuration, options) {
-            var localVarFetchArgs = exports.ConfigurationApiFetchParamCreator(configuration).updatePaymentsConfiguration(payments_configuration, options);
+            var localVarFetchArgs = (0, exports.ConfigurationApiFetchParamCreator)(configuration).updatePaymentsConfiguration(payments_configuration, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -5962,7 +5962,7 @@ var ConfigurationApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         updatePaymentsTransactionGateway: function (update_gateway_request, options) {
-            var localVarFetchArgs = exports.ConfigurationApiFetchParamCreator(configuration).updatePaymentsTransactionGateway(update_gateway_request, options);
+            var localVarFetchArgs = (0, exports.ConfigurationApiFetchParamCreator)(configuration).updatePaymentsTransactionGateway(update_gateway_request, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -5985,7 +5985,7 @@ var ConfigurationApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         updateRotatingTransactionGateway: function (rtg_oid, rotating_transaction_gateway, options) {
-            var localVarFetchArgs = exports.ConfigurationApiFetchParamCreator(configuration).updateRotatingTransactionGateway(rtg_oid, rotating_transaction_gateway, options);
+            var localVarFetchArgs = (0, exports.ConfigurationApiFetchParamCreator)(configuration).updateRotatingTransactionGateway(rtg_oid, rotating_transaction_gateway, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -6007,7 +6007,7 @@ var ConfigurationApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         wepayEnroll: function (wepay_enroll, options) {
-            var localVarFetchArgs = exports.ConfigurationApiFetchParamCreator(configuration).wepayEnroll(wepay_enroll, options);
+            var localVarFetchArgs = (0, exports.ConfigurationApiFetchParamCreator)(configuration).wepayEnroll(wepay_enroll, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -6038,7 +6038,7 @@ var ConfigurationApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         delayAutoOrders: function (rtg_oid, options) {
-            return exports.ConfigurationApiFp(configuration).delayAutoOrders(rtg_oid, options)(fetch, basePath);
+            return (0, exports.ConfigurationApiFp)(configuration).delayAutoOrders(rtg_oid, options)(fetch, basePath);
         },
         /**
          * Delete a rotating transaction gateway
@@ -6048,7 +6048,7 @@ var ConfigurationApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         deleteRotatingTransactionGateway: function (rtg_oid, options) {
-            return exports.ConfigurationApiFp(configuration).deleteRotatingTransactionGateway(rtg_oid, options)(fetch, basePath);
+            return (0, exports.ConfigurationApiFp)(configuration).deleteRotatingTransactionGateway(rtg_oid, options)(fetch, basePath);
         },
         /**
          * Retrieves payments configuration for this account.
@@ -6057,7 +6057,7 @@ var ConfigurationApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         getPaymentsConfiguration: function (options) {
-            return exports.ConfigurationApiFp(configuration).getPaymentsConfiguration(options)(fetch, basePath);
+            return (0, exports.ConfigurationApiFp)(configuration).getPaymentsConfiguration(options)(fetch, basePath);
         },
         /**
          * Retrieve a rotating transaction gateway
@@ -6067,7 +6067,7 @@ var ConfigurationApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         getPaymentsRotatingGateway: function (rtg_oid, options) {
-            return exports.ConfigurationApiFp(configuration).getPaymentsRotatingGateway(rtg_oid, options)(fetch, basePath);
+            return (0, exports.ConfigurationApiFp)(configuration).getPaymentsRotatingGateway(rtg_oid, options)(fetch, basePath);
         },
         /**
          * Retrieve a rotating transaction gateway by code
@@ -6077,7 +6077,7 @@ var ConfigurationApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         getPaymentsRotatingGatewayByCode: function (code, options) {
-            return exports.ConfigurationApiFp(configuration).getPaymentsRotatingGatewayByCode(code, options)(fetch, basePath);
+            return (0, exports.ConfigurationApiFp)(configuration).getPaymentsRotatingGatewayByCode(code, options)(fetch, basePath);
         },
         /**
          * Retrieve a list of rotating transaction gateways
@@ -6086,7 +6086,7 @@ var ConfigurationApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         getPaymentsRotatingTransactionGateways: function (options) {
-            return exports.ConfigurationApiFp(configuration).getPaymentsRotatingTransactionGateways(options)(fetch, basePath);
+            return (0, exports.ConfigurationApiFp)(configuration).getPaymentsRotatingTransactionGateways(options)(fetch, basePath);
         },
         /**
          * Retrieve a summary of rotating transaction gateways
@@ -6095,7 +6095,7 @@ var ConfigurationApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         getPaymentsRtgSummaries: function (options) {
-            return exports.ConfigurationApiFp(configuration).getPaymentsRtgSummaries(options)(fetch, basePath);
+            return (0, exports.ConfigurationApiFp)(configuration).getPaymentsRtgSummaries(options)(fetch, basePath);
         },
         /**
          * Retrieve a list of transaction gateways
@@ -6104,7 +6104,7 @@ var ConfigurationApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         getPaymentsTransactionGateways: function (options) {
-            return exports.ConfigurationApiFp(configuration).getPaymentsTransactionGateways(options)(fetch, basePath);
+            return (0, exports.ConfigurationApiFp)(configuration).getPaymentsTransactionGateways(options)(fetch, basePath);
         },
         /**
          * Insert a rotating transaction gateway
@@ -6114,7 +6114,7 @@ var ConfigurationApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         insertRotatingTransactionGateway: function (rotating_transaction_gateway, options) {
-            return exports.ConfigurationApiFp(configuration).insertRotatingTransactionGateway(rotating_transaction_gateway, options)(fetch, basePath);
+            return (0, exports.ConfigurationApiFp)(configuration).insertRotatingTransactionGateway(rotating_transaction_gateway, options)(fetch, basePath);
         },
         /**
          * Migrate a normal transaction gateway to a rotating transaction gateway
@@ -6124,7 +6124,7 @@ var ConfigurationApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         migrateToRotatingTransactionGateway: function (code, options) {
-            return exports.ConfigurationApiFp(configuration).migrateToRotatingTransactionGateway(code, options)(fetch, basePath);
+            return (0, exports.ConfigurationApiFp)(configuration).migrateToRotatingTransactionGateway(code, options)(fetch, basePath);
         },
         /**
          * Begin the processing of connecting with Stripe.
@@ -6134,7 +6134,7 @@ var ConfigurationApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         stripeConnect: function (rtg_oid, options) {
-            return exports.ConfigurationApiFp(configuration).stripeConnect(rtg_oid, options)(fetch, basePath);
+            return (0, exports.ConfigurationApiFp)(configuration).stripeConnect(rtg_oid, options)(fetch, basePath);
         },
         /**
          * Updates payments configuration on the UltraCart account.
@@ -6144,7 +6144,7 @@ var ConfigurationApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         updatePaymentsConfiguration: function (payments_configuration, options) {
-            return exports.ConfigurationApiFp(configuration).updatePaymentsConfiguration(payments_configuration, options)(fetch, basePath);
+            return (0, exports.ConfigurationApiFp)(configuration).updatePaymentsConfiguration(payments_configuration, options)(fetch, basePath);
         },
         /**
          * Updates payments transaction gateway on the UltraCart account.
@@ -6154,7 +6154,7 @@ var ConfigurationApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         updatePaymentsTransactionGateway: function (update_gateway_request, options) {
-            return exports.ConfigurationApiFp(configuration).updatePaymentsTransactionGateway(update_gateway_request, options)(fetch, basePath);
+            return (0, exports.ConfigurationApiFp)(configuration).updatePaymentsTransactionGateway(update_gateway_request, options)(fetch, basePath);
         },
         /**
          * Update a rotating transaction gateway
@@ -6165,7 +6165,7 @@ var ConfigurationApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         updateRotatingTransactionGateway: function (rtg_oid, rotating_transaction_gateway, options) {
-            return exports.ConfigurationApiFp(configuration).updateRotatingTransactionGateway(rtg_oid, rotating_transaction_gateway, options)(fetch, basePath);
+            return (0, exports.ConfigurationApiFp)(configuration).updateRotatingTransactionGateway(rtg_oid, rotating_transaction_gateway, options)(fetch, basePath);
         },
         /**
          * Enroll with WePay on the UltraCart account.
@@ -6175,7 +6175,7 @@ var ConfigurationApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         wepayEnroll: function (wepay_enroll, options) {
-            return exports.ConfigurationApiFp(configuration).wepayEnroll(wepay_enroll, options)(fetch, basePath);
+            return (0, exports.ConfigurationApiFp)(configuration).wepayEnroll(wepay_enroll, options)(fetch, basePath);
         },
     };
 };
@@ -6200,7 +6200,7 @@ var ConfigurationApi = /** @class */ (function (_super) {
      * @memberof ConfigurationApi
      */
     ConfigurationApi.prototype.delayAutoOrders = function (rtg_oid, options) {
-        return exports.ConfigurationApiFp(this.configuration).delayAutoOrders(rtg_oid, options)(this.fetch, this.basePath);
+        return (0, exports.ConfigurationApiFp)(this.configuration).delayAutoOrders(rtg_oid, options)(this.fetch, this.basePath);
     };
     /**
      * Delete a rotating transaction gateway
@@ -6211,7 +6211,7 @@ var ConfigurationApi = /** @class */ (function (_super) {
      * @memberof ConfigurationApi
      */
     ConfigurationApi.prototype.deleteRotatingTransactionGateway = function (rtg_oid, options) {
-        return exports.ConfigurationApiFp(this.configuration).deleteRotatingTransactionGateway(rtg_oid, options)(this.fetch, this.basePath);
+        return (0, exports.ConfigurationApiFp)(this.configuration).deleteRotatingTransactionGateway(rtg_oid, options)(this.fetch, this.basePath);
     };
     /**
      * Retrieves payments configuration for this account.
@@ -6221,7 +6221,7 @@ var ConfigurationApi = /** @class */ (function (_super) {
      * @memberof ConfigurationApi
      */
     ConfigurationApi.prototype.getPaymentsConfiguration = function (options) {
-        return exports.ConfigurationApiFp(this.configuration).getPaymentsConfiguration(options)(this.fetch, this.basePath);
+        return (0, exports.ConfigurationApiFp)(this.configuration).getPaymentsConfiguration(options)(this.fetch, this.basePath);
     };
     /**
      * Retrieve a rotating transaction gateway
@@ -6232,7 +6232,7 @@ var ConfigurationApi = /** @class */ (function (_super) {
      * @memberof ConfigurationApi
      */
     ConfigurationApi.prototype.getPaymentsRotatingGateway = function (rtg_oid, options) {
-        return exports.ConfigurationApiFp(this.configuration).getPaymentsRotatingGateway(rtg_oid, options)(this.fetch, this.basePath);
+        return (0, exports.ConfigurationApiFp)(this.configuration).getPaymentsRotatingGateway(rtg_oid, options)(this.fetch, this.basePath);
     };
     /**
      * Retrieve a rotating transaction gateway by code
@@ -6243,7 +6243,7 @@ var ConfigurationApi = /** @class */ (function (_super) {
      * @memberof ConfigurationApi
      */
     ConfigurationApi.prototype.getPaymentsRotatingGatewayByCode = function (code, options) {
-        return exports.ConfigurationApiFp(this.configuration).getPaymentsRotatingGatewayByCode(code, options)(this.fetch, this.basePath);
+        return (0, exports.ConfigurationApiFp)(this.configuration).getPaymentsRotatingGatewayByCode(code, options)(this.fetch, this.basePath);
     };
     /**
      * Retrieve a list of rotating transaction gateways
@@ -6253,7 +6253,7 @@ var ConfigurationApi = /** @class */ (function (_super) {
      * @memberof ConfigurationApi
      */
     ConfigurationApi.prototype.getPaymentsRotatingTransactionGateways = function (options) {
-        return exports.ConfigurationApiFp(this.configuration).getPaymentsRotatingTransactionGateways(options)(this.fetch, this.basePath);
+        return (0, exports.ConfigurationApiFp)(this.configuration).getPaymentsRotatingTransactionGateways(options)(this.fetch, this.basePath);
     };
     /**
      * Retrieve a summary of rotating transaction gateways
@@ -6263,7 +6263,7 @@ var ConfigurationApi = /** @class */ (function (_super) {
      * @memberof ConfigurationApi
      */
     ConfigurationApi.prototype.getPaymentsRtgSummaries = function (options) {
-        return exports.ConfigurationApiFp(this.configuration).getPaymentsRtgSummaries(options)(this.fetch, this.basePath);
+        return (0, exports.ConfigurationApiFp)(this.configuration).getPaymentsRtgSummaries(options)(this.fetch, this.basePath);
     };
     /**
      * Retrieve a list of transaction gateways
@@ -6273,7 +6273,7 @@ var ConfigurationApi = /** @class */ (function (_super) {
      * @memberof ConfigurationApi
      */
     ConfigurationApi.prototype.getPaymentsTransactionGateways = function (options) {
-        return exports.ConfigurationApiFp(this.configuration).getPaymentsTransactionGateways(options)(this.fetch, this.basePath);
+        return (0, exports.ConfigurationApiFp)(this.configuration).getPaymentsTransactionGateways(options)(this.fetch, this.basePath);
     };
     /**
      * Insert a rotating transaction gateway
@@ -6284,7 +6284,7 @@ var ConfigurationApi = /** @class */ (function (_super) {
      * @memberof ConfigurationApi
      */
     ConfigurationApi.prototype.insertRotatingTransactionGateway = function (rotating_transaction_gateway, options) {
-        return exports.ConfigurationApiFp(this.configuration).insertRotatingTransactionGateway(rotating_transaction_gateway, options)(this.fetch, this.basePath);
+        return (0, exports.ConfigurationApiFp)(this.configuration).insertRotatingTransactionGateway(rotating_transaction_gateway, options)(this.fetch, this.basePath);
     };
     /**
      * Migrate a normal transaction gateway to a rotating transaction gateway
@@ -6295,7 +6295,7 @@ var ConfigurationApi = /** @class */ (function (_super) {
      * @memberof ConfigurationApi
      */
     ConfigurationApi.prototype.migrateToRotatingTransactionGateway = function (code, options) {
-        return exports.ConfigurationApiFp(this.configuration).migrateToRotatingTransactionGateway(code, options)(this.fetch, this.basePath);
+        return (0, exports.ConfigurationApiFp)(this.configuration).migrateToRotatingTransactionGateway(code, options)(this.fetch, this.basePath);
     };
     /**
      * Begin the processing of connecting with Stripe.
@@ -6306,7 +6306,7 @@ var ConfigurationApi = /** @class */ (function (_super) {
      * @memberof ConfigurationApi
      */
     ConfigurationApi.prototype.stripeConnect = function (rtg_oid, options) {
-        return exports.ConfigurationApiFp(this.configuration).stripeConnect(rtg_oid, options)(this.fetch, this.basePath);
+        return (0, exports.ConfigurationApiFp)(this.configuration).stripeConnect(rtg_oid, options)(this.fetch, this.basePath);
     };
     /**
      * Updates payments configuration on the UltraCart account.
@@ -6317,7 +6317,7 @@ var ConfigurationApi = /** @class */ (function (_super) {
      * @memberof ConfigurationApi
      */
     ConfigurationApi.prototype.updatePaymentsConfiguration = function (payments_configuration, options) {
-        return exports.ConfigurationApiFp(this.configuration).updatePaymentsConfiguration(payments_configuration, options)(this.fetch, this.basePath);
+        return (0, exports.ConfigurationApiFp)(this.configuration).updatePaymentsConfiguration(payments_configuration, options)(this.fetch, this.basePath);
     };
     /**
      * Updates payments transaction gateway on the UltraCart account.
@@ -6328,7 +6328,7 @@ var ConfigurationApi = /** @class */ (function (_super) {
      * @memberof ConfigurationApi
      */
     ConfigurationApi.prototype.updatePaymentsTransactionGateway = function (update_gateway_request, options) {
-        return exports.ConfigurationApiFp(this.configuration).updatePaymentsTransactionGateway(update_gateway_request, options)(this.fetch, this.basePath);
+        return (0, exports.ConfigurationApiFp)(this.configuration).updatePaymentsTransactionGateway(update_gateway_request, options)(this.fetch, this.basePath);
     };
     /**
      * Update a rotating transaction gateway
@@ -6340,7 +6340,7 @@ var ConfigurationApi = /** @class */ (function (_super) {
      * @memberof ConfigurationApi
      */
     ConfigurationApi.prototype.updateRotatingTransactionGateway = function (rtg_oid, rotating_transaction_gateway, options) {
-        return exports.ConfigurationApiFp(this.configuration).updateRotatingTransactionGateway(rtg_oid, rotating_transaction_gateway, options)(this.fetch, this.basePath);
+        return (0, exports.ConfigurationApiFp)(this.configuration).updateRotatingTransactionGateway(rtg_oid, rotating_transaction_gateway, options)(this.fetch, this.basePath);
     };
     /**
      * Enroll with WePay on the UltraCart account.
@@ -6351,7 +6351,7 @@ var ConfigurationApi = /** @class */ (function (_super) {
      * @memberof ConfigurationApi
      */
     ConfigurationApi.prototype.wepayEnroll = function (wepay_enroll, options) {
-        return exports.ConfigurationApiFp(this.configuration).wepayEnroll(wepay_enroll, options)(this.fetch, this.basePath);
+        return (0, exports.ConfigurationApiFp)(this.configuration).wepayEnroll(wepay_enroll, options)(this.fetch, this.basePath);
     };
     return ConfigurationApi;
 }(BaseAPI));
@@ -7387,7 +7387,7 @@ var CouponApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         deleteCoupon: function (coupon_oid, options) {
-            var localVarFetchArgs = exports.CouponApiFetchParamCreator(configuration).deleteCoupon(coupon_oid, options);
+            var localVarFetchArgs = (0, exports.CouponApiFetchParamCreator)(configuration).deleteCoupon(coupon_oid, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -7409,7 +7409,7 @@ var CouponApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         deleteCouponsByCode: function (coupon_delete_request, options) {
-            var localVarFetchArgs = exports.CouponApiFetchParamCreator(configuration).deleteCouponsByCode(coupon_delete_request, options);
+            var localVarFetchArgs = (0, exports.CouponApiFetchParamCreator)(configuration).deleteCouponsByCode(coupon_delete_request, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -7431,7 +7431,7 @@ var CouponApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         deleteCouponsByOid: function (coupon_delete_request, options) {
-            var localVarFetchArgs = exports.CouponApiFetchParamCreator(configuration).deleteCouponsByOid(coupon_delete_request, options);
+            var localVarFetchArgs = (0, exports.CouponApiFetchParamCreator)(configuration).deleteCouponsByOid(coupon_delete_request, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -7453,7 +7453,7 @@ var CouponApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         doesCouponCodeExist: function (merchant_code, options) {
-            var localVarFetchArgs = exports.CouponApiFetchParamCreator(configuration).doesCouponCodeExist(merchant_code, options);
+            var localVarFetchArgs = (0, exports.CouponApiFetchParamCreator)(configuration).doesCouponCodeExist(merchant_code, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -7476,7 +7476,7 @@ var CouponApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         generateCouponCodes: function (coupon_oid, coupon_codes_request, options) {
-            var localVarFetchArgs = exports.CouponApiFetchParamCreator(configuration).generateCouponCodes(coupon_oid, coupon_codes_request, options);
+            var localVarFetchArgs = (0, exports.CouponApiFetchParamCreator)(configuration).generateCouponCodes(coupon_oid, coupon_codes_request, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -7499,7 +7499,7 @@ var CouponApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         generateOneTimeCodesByMerchantCode: function (merchant_code, coupon_codes_request, options) {
-            var localVarFetchArgs = exports.CouponApiFetchParamCreator(configuration).generateOneTimeCodesByMerchantCode(merchant_code, coupon_codes_request, options);
+            var localVarFetchArgs = (0, exports.CouponApiFetchParamCreator)(configuration).generateOneTimeCodesByMerchantCode(merchant_code, coupon_codes_request, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -7520,7 +7520,7 @@ var CouponApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         getAutoApply: function (options) {
-            var localVarFetchArgs = exports.CouponApiFetchParamCreator(configuration).getAutoApply(options);
+            var localVarFetchArgs = (0, exports.CouponApiFetchParamCreator)(configuration).getAutoApply(options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -7543,7 +7543,7 @@ var CouponApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         getCoupon: function (coupon_oid, _expand, options) {
-            var localVarFetchArgs = exports.CouponApiFetchParamCreator(configuration).getCoupon(coupon_oid, _expand, options);
+            var localVarFetchArgs = (0, exports.CouponApiFetchParamCreator)(configuration).getCoupon(coupon_oid, _expand, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -7566,7 +7566,7 @@ var CouponApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         getCouponByMerchantCode: function (merchant_code, _expand, options) {
-            var localVarFetchArgs = exports.CouponApiFetchParamCreator(configuration).getCouponByMerchantCode(merchant_code, _expand, options);
+            var localVarFetchArgs = (0, exports.CouponApiFetchParamCreator)(configuration).getCouponByMerchantCode(merchant_code, _expand, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -7600,7 +7600,7 @@ var CouponApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         getCoupons: function (merchant_code, description, coupon_type, start_date_begin, start_date_end, expiration_date_begin, expiration_date_end, affiliate_oid, exclude_expired, _limit, _offset, _sort, _expand, options) {
-            var localVarFetchArgs = exports.CouponApiFetchParamCreator(configuration).getCoupons(merchant_code, description, coupon_type, start_date_begin, start_date_end, expiration_date_begin, expiration_date_end, affiliate_oid, exclude_expired, _limit, _offset, _sort, _expand, options);
+            var localVarFetchArgs = (0, exports.CouponApiFetchParamCreator)(configuration).getCoupons(merchant_code, description, coupon_type, start_date_begin, start_date_end, expiration_date_begin, expiration_date_end, affiliate_oid, exclude_expired, _limit, _offset, _sort, _expand, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -7626,7 +7626,7 @@ var CouponApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         getCouponsByQuery: function (coupon_query, _limit, _offset, _sort, _expand, options) {
-            var localVarFetchArgs = exports.CouponApiFetchParamCreator(configuration).getCouponsByQuery(coupon_query, _limit, _offset, _sort, _expand, options);
+            var localVarFetchArgs = (0, exports.CouponApiFetchParamCreator)(configuration).getCouponsByQuery(coupon_query, _limit, _offset, _sort, _expand, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -7647,7 +7647,7 @@ var CouponApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         getEditorValues: function (options) {
-            var localVarFetchArgs = exports.CouponApiFetchParamCreator(configuration).getEditorValues(options);
+            var localVarFetchArgs = (0, exports.CouponApiFetchParamCreator)(configuration).getEditorValues(options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -7670,7 +7670,7 @@ var CouponApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         insertCoupon: function (coupon, _expand, options) {
-            var localVarFetchArgs = exports.CouponApiFetchParamCreator(configuration).insertCoupon(coupon, _expand, options);
+            var localVarFetchArgs = (0, exports.CouponApiFetchParamCreator)(configuration).insertCoupon(coupon, _expand, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -7694,7 +7694,7 @@ var CouponApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         insertCoupons: function (coupons_request, _expand, _placeholders, options) {
-            var localVarFetchArgs = exports.CouponApiFetchParamCreator(configuration).insertCoupons(coupons_request, _expand, _placeholders, options);
+            var localVarFetchArgs = (0, exports.CouponApiFetchParamCreator)(configuration).insertCoupons(coupons_request, _expand, _placeholders, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -7717,7 +7717,7 @@ var CouponApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         searchItems: function (s, m, options) {
-            var localVarFetchArgs = exports.CouponApiFetchParamCreator(configuration).searchItems(s, m, options);
+            var localVarFetchArgs = (0, exports.CouponApiFetchParamCreator)(configuration).searchItems(s, m, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -7739,7 +7739,7 @@ var CouponApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         updateAutoApply: function (conditions, options) {
-            var localVarFetchArgs = exports.CouponApiFetchParamCreator(configuration).updateAutoApply(conditions, options);
+            var localVarFetchArgs = (0, exports.CouponApiFetchParamCreator)(configuration).updateAutoApply(conditions, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -7763,7 +7763,7 @@ var CouponApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         updateCoupon: function (coupon, coupon_oid, _expand, options) {
-            var localVarFetchArgs = exports.CouponApiFetchParamCreator(configuration).updateCoupon(coupon, coupon_oid, _expand, options);
+            var localVarFetchArgs = (0, exports.CouponApiFetchParamCreator)(configuration).updateCoupon(coupon, coupon_oid, _expand, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -7788,7 +7788,7 @@ var CouponApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         updateCoupons: function (coupons_request, _expand, _placeholders, _async, options) {
-            var localVarFetchArgs = exports.CouponApiFetchParamCreator(configuration).updateCoupons(coupons_request, _expand, _placeholders, _async, options);
+            var localVarFetchArgs = (0, exports.CouponApiFetchParamCreator)(configuration).updateCoupons(coupons_request, _expand, _placeholders, _async, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -7811,7 +7811,7 @@ var CouponApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         uploadCouponCodes: function (coupon_oid, upload_coupon_codes_request, options) {
-            var localVarFetchArgs = exports.CouponApiFetchParamCreator(configuration).uploadCouponCodes(coupon_oid, upload_coupon_codes_request, options);
+            var localVarFetchArgs = (0, exports.CouponApiFetchParamCreator)(configuration).uploadCouponCodes(coupon_oid, upload_coupon_codes_request, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -7842,7 +7842,7 @@ var CouponApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         deleteCoupon: function (coupon_oid, options) {
-            return exports.CouponApiFp(configuration).deleteCoupon(coupon_oid, options)(fetch, basePath);
+            return (0, exports.CouponApiFp)(configuration).deleteCoupon(coupon_oid, options)(fetch, basePath);
         },
         /**
          * Delete coupons on the UltraCart account.
@@ -7852,7 +7852,7 @@ var CouponApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         deleteCouponsByCode: function (coupon_delete_request, options) {
-            return exports.CouponApiFp(configuration).deleteCouponsByCode(coupon_delete_request, options)(fetch, basePath);
+            return (0, exports.CouponApiFp)(configuration).deleteCouponsByCode(coupon_delete_request, options)(fetch, basePath);
         },
         /**
          * Delete coupons on the UltraCart account.
@@ -7862,7 +7862,7 @@ var CouponApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         deleteCouponsByOid: function (coupon_delete_request, options) {
-            return exports.CouponApiFp(configuration).deleteCouponsByOid(coupon_delete_request, options)(fetch, basePath);
+            return (0, exports.CouponApiFp)(configuration).deleteCouponsByOid(coupon_delete_request, options)(fetch, basePath);
         },
         /**
          * Determines if a coupon merchant code already exists.
@@ -7872,7 +7872,7 @@ var CouponApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         doesCouponCodeExist: function (merchant_code, options) {
-            return exports.CouponApiFp(configuration).doesCouponCodeExist(merchant_code, options)(fetch, basePath);
+            return (0, exports.CouponApiFp)(configuration).doesCouponCodeExist(merchant_code, options)(fetch, basePath);
         },
         /**
          * Generate one time codes for a coupon
@@ -7883,7 +7883,7 @@ var CouponApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         generateCouponCodes: function (coupon_oid, coupon_codes_request, options) {
-            return exports.CouponApiFp(configuration).generateCouponCodes(coupon_oid, coupon_codes_request, options)(fetch, basePath);
+            return (0, exports.CouponApiFp)(configuration).generateCouponCodes(coupon_oid, coupon_codes_request, options)(fetch, basePath);
         },
         /**
          * Generate one time codes by merchant code
@@ -7894,7 +7894,7 @@ var CouponApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         generateOneTimeCodesByMerchantCode: function (merchant_code, coupon_codes_request, options) {
-            return exports.CouponApiFp(configuration).generateOneTimeCodesByMerchantCode(merchant_code, coupon_codes_request, options)(fetch, basePath);
+            return (0, exports.CouponApiFp)(configuration).generateOneTimeCodesByMerchantCode(merchant_code, coupon_codes_request, options)(fetch, basePath);
         },
         /**
          * Retrieve auto apply rules and conditions
@@ -7903,7 +7903,7 @@ var CouponApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         getAutoApply: function (options) {
-            return exports.CouponApiFp(configuration).getAutoApply(options)(fetch, basePath);
+            return (0, exports.CouponApiFp)(configuration).getAutoApply(options)(fetch, basePath);
         },
         /**
          * Retrieves a single coupon using the specified coupon profile oid.
@@ -7914,7 +7914,7 @@ var CouponApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         getCoupon: function (coupon_oid, _expand, options) {
-            return exports.CouponApiFp(configuration).getCoupon(coupon_oid, _expand, options)(fetch, basePath);
+            return (0, exports.CouponApiFp)(configuration).getCoupon(coupon_oid, _expand, options)(fetch, basePath);
         },
         /**
          * Retrieves a single coupon using the specified merchant code.
@@ -7925,7 +7925,7 @@ var CouponApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         getCouponByMerchantCode: function (merchant_code, _expand, options) {
-            return exports.CouponApiFp(configuration).getCouponByMerchantCode(merchant_code, _expand, options)(fetch, basePath);
+            return (0, exports.CouponApiFp)(configuration).getCouponByMerchantCode(merchant_code, _expand, options)(fetch, basePath);
         },
         /**
          * Retrieves coupons for this account.  If no parameters are specified, all coupons will be returned.  You will need to make multiple API calls in order to retrieve the entire result set since this API performs result set pagination.
@@ -7947,7 +7947,7 @@ var CouponApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         getCoupons: function (merchant_code, description, coupon_type, start_date_begin, start_date_end, expiration_date_begin, expiration_date_end, affiliate_oid, exclude_expired, _limit, _offset, _sort, _expand, options) {
-            return exports.CouponApiFp(configuration).getCoupons(merchant_code, description, coupon_type, start_date_begin, start_date_end, expiration_date_begin, expiration_date_end, affiliate_oid, exclude_expired, _limit, _offset, _sort, _expand, options)(fetch, basePath);
+            return (0, exports.CouponApiFp)(configuration).getCoupons(merchant_code, description, coupon_type, start_date_begin, start_date_end, expiration_date_begin, expiration_date_end, affiliate_oid, exclude_expired, _limit, _offset, _sort, _expand, options)(fetch, basePath);
         },
         /**
          * Retrieves coupons from the account.  If no parameters are specified, all coupons will be returned.  You will need to make multiple API calls in order to retrieve the entire result set since this API performs result set pagination.
@@ -7961,7 +7961,7 @@ var CouponApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         getCouponsByQuery: function (coupon_query, _limit, _offset, _sort, _expand, options) {
-            return exports.CouponApiFp(configuration).getCouponsByQuery(coupon_query, _limit, _offset, _sort, _expand, options)(fetch, basePath);
+            return (0, exports.CouponApiFp)(configuration).getCouponsByQuery(coupon_query, _limit, _offset, _sort, _expand, options)(fetch, basePath);
         },
         /**
          * Retrieve values needed for a coupon editor
@@ -7970,7 +7970,7 @@ var CouponApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         getEditorValues: function (options) {
-            return exports.CouponApiFp(configuration).getEditorValues(options)(fetch, basePath);
+            return (0, exports.CouponApiFp)(configuration).getEditorValues(options)(fetch, basePath);
         },
         /**
          * Insert a coupon on the UltraCart account.
@@ -7981,7 +7981,7 @@ var CouponApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         insertCoupon: function (coupon, _expand, options) {
-            return exports.CouponApiFp(configuration).insertCoupon(coupon, _expand, options)(fetch, basePath);
+            return (0, exports.CouponApiFp)(configuration).insertCoupon(coupon, _expand, options)(fetch, basePath);
         },
         /**
          * Insert multiple coupon on the UltraCart account.
@@ -7993,7 +7993,7 @@ var CouponApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         insertCoupons: function (coupons_request, _expand, _placeholders, options) {
-            return exports.CouponApiFp(configuration).insertCoupons(coupons_request, _expand, _placeholders, options)(fetch, basePath);
+            return (0, exports.CouponApiFp)(configuration).insertCoupons(coupons_request, _expand, _placeholders, options)(fetch, basePath);
         },
         /**
          * Searches for items to display within a coupon editor and assign to coupons
@@ -8004,7 +8004,7 @@ var CouponApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         searchItems: function (s, m, options) {
-            return exports.CouponApiFp(configuration).searchItems(s, m, options)(fetch, basePath);
+            return (0, exports.CouponApiFp)(configuration).searchItems(s, m, options)(fetch, basePath);
         },
         /**
          * Update auto apply rules and conditions
@@ -8014,7 +8014,7 @@ var CouponApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         updateAutoApply: function (conditions, options) {
-            return exports.CouponApiFp(configuration).updateAutoApply(conditions, options)(fetch, basePath);
+            return (0, exports.CouponApiFp)(configuration).updateAutoApply(conditions, options)(fetch, basePath);
         },
         /**
          * Update a coupon on the UltraCart account.
@@ -8026,7 +8026,7 @@ var CouponApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         updateCoupon: function (coupon, coupon_oid, _expand, options) {
-            return exports.CouponApiFp(configuration).updateCoupon(coupon, coupon_oid, _expand, options)(fetch, basePath);
+            return (0, exports.CouponApiFp)(configuration).updateCoupon(coupon, coupon_oid, _expand, options)(fetch, basePath);
         },
         /**
          * Update multiple coupon on the UltraCart account.
@@ -8039,7 +8039,7 @@ var CouponApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         updateCoupons: function (coupons_request, _expand, _placeholders, _async, options) {
-            return exports.CouponApiFp(configuration).updateCoupons(coupons_request, _expand, _placeholders, _async, options)(fetch, basePath);
+            return (0, exports.CouponApiFp)(configuration).updateCoupons(coupons_request, _expand, _placeholders, _async, options)(fetch, basePath);
         },
         /**
          * Upload one-time codes for a coupon
@@ -8050,7 +8050,7 @@ var CouponApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         uploadCouponCodes: function (coupon_oid, upload_coupon_codes_request, options) {
-            return exports.CouponApiFp(configuration).uploadCouponCodes(coupon_oid, upload_coupon_codes_request, options)(fetch, basePath);
+            return (0, exports.CouponApiFp)(configuration).uploadCouponCodes(coupon_oid, upload_coupon_codes_request, options)(fetch, basePath);
         },
     };
 };
@@ -8075,7 +8075,7 @@ var CouponApi = /** @class */ (function (_super) {
      * @memberof CouponApi
      */
     CouponApi.prototype.deleteCoupon = function (coupon_oid, options) {
-        return exports.CouponApiFp(this.configuration).deleteCoupon(coupon_oid, options)(this.fetch, this.basePath);
+        return (0, exports.CouponApiFp)(this.configuration).deleteCoupon(coupon_oid, options)(this.fetch, this.basePath);
     };
     /**
      * Delete coupons on the UltraCart account.
@@ -8086,7 +8086,7 @@ var CouponApi = /** @class */ (function (_super) {
      * @memberof CouponApi
      */
     CouponApi.prototype.deleteCouponsByCode = function (coupon_delete_request, options) {
-        return exports.CouponApiFp(this.configuration).deleteCouponsByCode(coupon_delete_request, options)(this.fetch, this.basePath);
+        return (0, exports.CouponApiFp)(this.configuration).deleteCouponsByCode(coupon_delete_request, options)(this.fetch, this.basePath);
     };
     /**
      * Delete coupons on the UltraCart account.
@@ -8097,7 +8097,7 @@ var CouponApi = /** @class */ (function (_super) {
      * @memberof CouponApi
      */
     CouponApi.prototype.deleteCouponsByOid = function (coupon_delete_request, options) {
-        return exports.CouponApiFp(this.configuration).deleteCouponsByOid(coupon_delete_request, options)(this.fetch, this.basePath);
+        return (0, exports.CouponApiFp)(this.configuration).deleteCouponsByOid(coupon_delete_request, options)(this.fetch, this.basePath);
     };
     /**
      * Determines if a coupon merchant code already exists.
@@ -8108,7 +8108,7 @@ var CouponApi = /** @class */ (function (_super) {
      * @memberof CouponApi
      */
     CouponApi.prototype.doesCouponCodeExist = function (merchant_code, options) {
-        return exports.CouponApiFp(this.configuration).doesCouponCodeExist(merchant_code, options)(this.fetch, this.basePath);
+        return (0, exports.CouponApiFp)(this.configuration).doesCouponCodeExist(merchant_code, options)(this.fetch, this.basePath);
     };
     /**
      * Generate one time codes for a coupon
@@ -8120,7 +8120,7 @@ var CouponApi = /** @class */ (function (_super) {
      * @memberof CouponApi
      */
     CouponApi.prototype.generateCouponCodes = function (coupon_oid, coupon_codes_request, options) {
-        return exports.CouponApiFp(this.configuration).generateCouponCodes(coupon_oid, coupon_codes_request, options)(this.fetch, this.basePath);
+        return (0, exports.CouponApiFp)(this.configuration).generateCouponCodes(coupon_oid, coupon_codes_request, options)(this.fetch, this.basePath);
     };
     /**
      * Generate one time codes by merchant code
@@ -8132,7 +8132,7 @@ var CouponApi = /** @class */ (function (_super) {
      * @memberof CouponApi
      */
     CouponApi.prototype.generateOneTimeCodesByMerchantCode = function (merchant_code, coupon_codes_request, options) {
-        return exports.CouponApiFp(this.configuration).generateOneTimeCodesByMerchantCode(merchant_code, coupon_codes_request, options)(this.fetch, this.basePath);
+        return (0, exports.CouponApiFp)(this.configuration).generateOneTimeCodesByMerchantCode(merchant_code, coupon_codes_request, options)(this.fetch, this.basePath);
     };
     /**
      * Retrieve auto apply rules and conditions
@@ -8142,7 +8142,7 @@ var CouponApi = /** @class */ (function (_super) {
      * @memberof CouponApi
      */
     CouponApi.prototype.getAutoApply = function (options) {
-        return exports.CouponApiFp(this.configuration).getAutoApply(options)(this.fetch, this.basePath);
+        return (0, exports.CouponApiFp)(this.configuration).getAutoApply(options)(this.fetch, this.basePath);
     };
     /**
      * Retrieves a single coupon using the specified coupon profile oid.
@@ -8154,7 +8154,7 @@ var CouponApi = /** @class */ (function (_super) {
      * @memberof CouponApi
      */
     CouponApi.prototype.getCoupon = function (coupon_oid, _expand, options) {
-        return exports.CouponApiFp(this.configuration).getCoupon(coupon_oid, _expand, options)(this.fetch, this.basePath);
+        return (0, exports.CouponApiFp)(this.configuration).getCoupon(coupon_oid, _expand, options)(this.fetch, this.basePath);
     };
     /**
      * Retrieves a single coupon using the specified merchant code.
@@ -8166,7 +8166,7 @@ var CouponApi = /** @class */ (function (_super) {
      * @memberof CouponApi
      */
     CouponApi.prototype.getCouponByMerchantCode = function (merchant_code, _expand, options) {
-        return exports.CouponApiFp(this.configuration).getCouponByMerchantCode(merchant_code, _expand, options)(this.fetch, this.basePath);
+        return (0, exports.CouponApiFp)(this.configuration).getCouponByMerchantCode(merchant_code, _expand, options)(this.fetch, this.basePath);
     };
     /**
      * Retrieves coupons for this account.  If no parameters are specified, all coupons will be returned.  You will need to make multiple API calls in order to retrieve the entire result set since this API performs result set pagination.
@@ -8189,7 +8189,7 @@ var CouponApi = /** @class */ (function (_super) {
      * @memberof CouponApi
      */
     CouponApi.prototype.getCoupons = function (merchant_code, description, coupon_type, start_date_begin, start_date_end, expiration_date_begin, expiration_date_end, affiliate_oid, exclude_expired, _limit, _offset, _sort, _expand, options) {
-        return exports.CouponApiFp(this.configuration).getCoupons(merchant_code, description, coupon_type, start_date_begin, start_date_end, expiration_date_begin, expiration_date_end, affiliate_oid, exclude_expired, _limit, _offset, _sort, _expand, options)(this.fetch, this.basePath);
+        return (0, exports.CouponApiFp)(this.configuration).getCoupons(merchant_code, description, coupon_type, start_date_begin, start_date_end, expiration_date_begin, expiration_date_end, affiliate_oid, exclude_expired, _limit, _offset, _sort, _expand, options)(this.fetch, this.basePath);
     };
     /**
      * Retrieves coupons from the account.  If no parameters are specified, all coupons will be returned.  You will need to make multiple API calls in order to retrieve the entire result set since this API performs result set pagination.
@@ -8204,7 +8204,7 @@ var CouponApi = /** @class */ (function (_super) {
      * @memberof CouponApi
      */
     CouponApi.prototype.getCouponsByQuery = function (coupon_query, _limit, _offset, _sort, _expand, options) {
-        return exports.CouponApiFp(this.configuration).getCouponsByQuery(coupon_query, _limit, _offset, _sort, _expand, options)(this.fetch, this.basePath);
+        return (0, exports.CouponApiFp)(this.configuration).getCouponsByQuery(coupon_query, _limit, _offset, _sort, _expand, options)(this.fetch, this.basePath);
     };
     /**
      * Retrieve values needed for a coupon editor
@@ -8214,7 +8214,7 @@ var CouponApi = /** @class */ (function (_super) {
      * @memberof CouponApi
      */
     CouponApi.prototype.getEditorValues = function (options) {
-        return exports.CouponApiFp(this.configuration).getEditorValues(options)(this.fetch, this.basePath);
+        return (0, exports.CouponApiFp)(this.configuration).getEditorValues(options)(this.fetch, this.basePath);
     };
     /**
      * Insert a coupon on the UltraCart account.
@@ -8226,7 +8226,7 @@ var CouponApi = /** @class */ (function (_super) {
      * @memberof CouponApi
      */
     CouponApi.prototype.insertCoupon = function (coupon, _expand, options) {
-        return exports.CouponApiFp(this.configuration).insertCoupon(coupon, _expand, options)(this.fetch, this.basePath);
+        return (0, exports.CouponApiFp)(this.configuration).insertCoupon(coupon, _expand, options)(this.fetch, this.basePath);
     };
     /**
      * Insert multiple coupon on the UltraCart account.
@@ -8239,7 +8239,7 @@ var CouponApi = /** @class */ (function (_super) {
      * @memberof CouponApi
      */
     CouponApi.prototype.insertCoupons = function (coupons_request, _expand, _placeholders, options) {
-        return exports.CouponApiFp(this.configuration).insertCoupons(coupons_request, _expand, _placeholders, options)(this.fetch, this.basePath);
+        return (0, exports.CouponApiFp)(this.configuration).insertCoupons(coupons_request, _expand, _placeholders, options)(this.fetch, this.basePath);
     };
     /**
      * Searches for items to display within a coupon editor and assign to coupons
@@ -8251,7 +8251,7 @@ var CouponApi = /** @class */ (function (_super) {
      * @memberof CouponApi
      */
     CouponApi.prototype.searchItems = function (s, m, options) {
-        return exports.CouponApiFp(this.configuration).searchItems(s, m, options)(this.fetch, this.basePath);
+        return (0, exports.CouponApiFp)(this.configuration).searchItems(s, m, options)(this.fetch, this.basePath);
     };
     /**
      * Update auto apply rules and conditions
@@ -8262,7 +8262,7 @@ var CouponApi = /** @class */ (function (_super) {
      * @memberof CouponApi
      */
     CouponApi.prototype.updateAutoApply = function (conditions, options) {
-        return exports.CouponApiFp(this.configuration).updateAutoApply(conditions, options)(this.fetch, this.basePath);
+        return (0, exports.CouponApiFp)(this.configuration).updateAutoApply(conditions, options)(this.fetch, this.basePath);
     };
     /**
      * Update a coupon on the UltraCart account.
@@ -8275,7 +8275,7 @@ var CouponApi = /** @class */ (function (_super) {
      * @memberof CouponApi
      */
     CouponApi.prototype.updateCoupon = function (coupon, coupon_oid, _expand, options) {
-        return exports.CouponApiFp(this.configuration).updateCoupon(coupon, coupon_oid, _expand, options)(this.fetch, this.basePath);
+        return (0, exports.CouponApiFp)(this.configuration).updateCoupon(coupon, coupon_oid, _expand, options)(this.fetch, this.basePath);
     };
     /**
      * Update multiple coupon on the UltraCart account.
@@ -8289,7 +8289,7 @@ var CouponApi = /** @class */ (function (_super) {
      * @memberof CouponApi
      */
     CouponApi.prototype.updateCoupons = function (coupons_request, _expand, _placeholders, _async, options) {
-        return exports.CouponApiFp(this.configuration).updateCoupons(coupons_request, _expand, _placeholders, _async, options)(this.fetch, this.basePath);
+        return (0, exports.CouponApiFp)(this.configuration).updateCoupons(coupons_request, _expand, _placeholders, _async, options)(this.fetch, this.basePath);
     };
     /**
      * Upload one-time codes for a coupon
@@ -8301,7 +8301,7 @@ var CouponApi = /** @class */ (function (_super) {
      * @memberof CouponApi
      */
     CouponApi.prototype.uploadCouponCodes = function (coupon_oid, upload_coupon_codes_request, options) {
-        return exports.CouponApiFp(this.configuration).uploadCouponCodes(coupon_oid, upload_coupon_codes_request, options)(this.fetch, this.basePath);
+        return (0, exports.CouponApiFp)(this.configuration).uploadCouponCodes(coupon_oid, upload_coupon_codes_request, options)(this.fetch, this.basePath);
     };
     return CouponApi;
 }(BaseAPI));
@@ -9095,7 +9095,7 @@ var CustomerApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         deleteCustomer: function (customer_profile_oid, options) {
-            var localVarFetchArgs = exports.CustomerApiFetchParamCreator(configuration).deleteCustomer(customer_profile_oid, options);
+            var localVarFetchArgs = (0, exports.CustomerApiFetchParamCreator)(configuration).deleteCustomer(customer_profile_oid, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -9118,7 +9118,7 @@ var CustomerApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         getCustomer: function (customer_profile_oid, _expand, options) {
-            var localVarFetchArgs = exports.CustomerApiFetchParamCreator(configuration).getCustomer(customer_profile_oid, _expand, options);
+            var localVarFetchArgs = (0, exports.CustomerApiFetchParamCreator)(configuration).getCustomer(customer_profile_oid, _expand, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -9141,7 +9141,7 @@ var CustomerApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         getCustomerByEmail: function (email, _expand, options) {
-            var localVarFetchArgs = exports.CustomerApiFetchParamCreator(configuration).getCustomerByEmail(email, _expand, options);
+            var localVarFetchArgs = (0, exports.CustomerApiFetchParamCreator)(configuration).getCustomerByEmail(email, _expand, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -9162,7 +9162,7 @@ var CustomerApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         getCustomerEditorValues: function (options) {
-            var localVarFetchArgs = exports.CustomerApiFetchParamCreator(configuration).getCustomerEditorValues(options);
+            var localVarFetchArgs = (0, exports.CustomerApiFetchParamCreator)(configuration).getCustomerEditorValues(options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -9183,7 +9183,7 @@ var CustomerApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         getCustomerEmailLists: function (options) {
-            var localVarFetchArgs = exports.CustomerApiFetchParamCreator(configuration).getCustomerEmailLists(options);
+            var localVarFetchArgs = (0, exports.CustomerApiFetchParamCreator)(configuration).getCustomerEmailLists(options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -9236,7 +9236,7 @@ var CustomerApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         getCustomers: function (email, qb_class, quickbooks_code, last_modified_dts_start, last_modified_dts_end, signup_dts_start, signup_dts_end, billing_first_name, billing_last_name, billing_company, billing_city, billing_state, billing_postal_code, billing_country_code, billing_day_phone, billing_evening_phone, shipping_first_name, shipping_last_name, shipping_company, shipping_city, shipping_state, shipping_postal_code, shipping_country_code, shipping_day_phone, shipping_evening_phone, pricing_tier_oid, pricing_tier_name, _limit, _offset, _since, _sort, _expand, options) {
-            var localVarFetchArgs = exports.CustomerApiFetchParamCreator(configuration).getCustomers(email, qb_class, quickbooks_code, last_modified_dts_start, last_modified_dts_end, signup_dts_start, signup_dts_end, billing_first_name, billing_last_name, billing_company, billing_city, billing_state, billing_postal_code, billing_country_code, billing_day_phone, billing_evening_phone, shipping_first_name, shipping_last_name, shipping_company, shipping_city, shipping_state, shipping_postal_code, shipping_country_code, shipping_day_phone, shipping_evening_phone, pricing_tier_oid, pricing_tier_name, _limit, _offset, _since, _sort, _expand, options);
+            var localVarFetchArgs = (0, exports.CustomerApiFetchParamCreator)(configuration).getCustomers(email, qb_class, quickbooks_code, last_modified_dts_start, last_modified_dts_end, signup_dts_start, signup_dts_end, billing_first_name, billing_last_name, billing_company, billing_city, billing_state, billing_postal_code, billing_country_code, billing_day_phone, billing_evening_phone, shipping_first_name, shipping_last_name, shipping_company, shipping_city, shipping_state, shipping_postal_code, shipping_country_code, shipping_day_phone, shipping_evening_phone, pricing_tier_oid, pricing_tier_name, _limit, _offset, _since, _sort, _expand, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -9263,7 +9263,7 @@ var CustomerApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         getCustomersByQuery: function (customer_query, _limit, _offset, _since, _sort, _expand, options) {
-            var localVarFetchArgs = exports.CustomerApiFetchParamCreator(configuration).getCustomersByQuery(customer_query, _limit, _offset, _since, _sort, _expand, options);
+            var localVarFetchArgs = (0, exports.CustomerApiFetchParamCreator)(configuration).getCustomersByQuery(customer_query, _limit, _offset, _since, _sort, _expand, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -9285,7 +9285,7 @@ var CustomerApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         getCustomersForDataTables: function (_expand, options) {
-            var localVarFetchArgs = exports.CustomerApiFetchParamCreator(configuration).getCustomersForDataTables(_expand, options);
+            var localVarFetchArgs = (0, exports.CustomerApiFetchParamCreator)(configuration).getCustomersForDataTables(_expand, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -9307,7 +9307,7 @@ var CustomerApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         getEmailVerificationToken: function (token_request, options) {
-            var localVarFetchArgs = exports.CustomerApiFetchParamCreator(configuration).getEmailVerificationToken(token_request, options);
+            var localVarFetchArgs = (0, exports.CustomerApiFetchParamCreator)(configuration).getEmailVerificationToken(token_request, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -9330,7 +9330,7 @@ var CustomerApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         insertCustomer: function (customer, _expand, options) {
-            var localVarFetchArgs = exports.CustomerApiFetchParamCreator(configuration).insertCustomer(customer, _expand, options);
+            var localVarFetchArgs = (0, exports.CustomerApiFetchParamCreator)(configuration).insertCustomer(customer, _expand, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -9354,7 +9354,7 @@ var CustomerApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         updateCustomer: function (customer, customer_profile_oid, _expand, options) {
-            var localVarFetchArgs = exports.CustomerApiFetchParamCreator(configuration).updateCustomer(customer, customer_profile_oid, _expand, options);
+            var localVarFetchArgs = (0, exports.CustomerApiFetchParamCreator)(configuration).updateCustomer(customer, customer_profile_oid, _expand, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -9377,7 +9377,7 @@ var CustomerApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         updateCustomerEmailLists: function (customer_profile_oid, list_changes, options) {
-            var localVarFetchArgs = exports.CustomerApiFetchParamCreator(configuration).updateCustomerEmailLists(customer_profile_oid, list_changes, options);
+            var localVarFetchArgs = (0, exports.CustomerApiFetchParamCreator)(configuration).updateCustomerEmailLists(customer_profile_oid, list_changes, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -9399,7 +9399,7 @@ var CustomerApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         validateEmailVerificationToken: function (validation_request, options) {
-            var localVarFetchArgs = exports.CustomerApiFetchParamCreator(configuration).validateEmailVerificationToken(validation_request, options);
+            var localVarFetchArgs = (0, exports.CustomerApiFetchParamCreator)(configuration).validateEmailVerificationToken(validation_request, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -9430,7 +9430,7 @@ var CustomerApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         deleteCustomer: function (customer_profile_oid, options) {
-            return exports.CustomerApiFp(configuration).deleteCustomer(customer_profile_oid, options)(fetch, basePath);
+            return (0, exports.CustomerApiFp)(configuration).deleteCustomer(customer_profile_oid, options)(fetch, basePath);
         },
         /**
          * Retrieves a single customer using the specified customer profile oid.
@@ -9441,7 +9441,7 @@ var CustomerApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         getCustomer: function (customer_profile_oid, _expand, options) {
-            return exports.CustomerApiFp(configuration).getCustomer(customer_profile_oid, _expand, options)(fetch, basePath);
+            return (0, exports.CustomerApiFp)(configuration).getCustomer(customer_profile_oid, _expand, options)(fetch, basePath);
         },
         /**
          * Retrieves a single customer using the specified customer email address.
@@ -9452,7 +9452,7 @@ var CustomerApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         getCustomerByEmail: function (email, _expand, options) {
-            return exports.CustomerApiFp(configuration).getCustomerByEmail(email, _expand, options)(fetch, basePath);
+            return (0, exports.CustomerApiFp)(configuration).getCustomerByEmail(email, _expand, options)(fetch, basePath);
         },
         /**
          * Retrieve values needed for a customer profile editor.
@@ -9461,7 +9461,7 @@ var CustomerApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         getCustomerEditorValues: function (options) {
-            return exports.CustomerApiFp(configuration).getCustomerEditorValues(options)(fetch, basePath);
+            return (0, exports.CustomerApiFp)(configuration).getCustomerEditorValues(options)(fetch, basePath);
         },
         /**
          * Retrieve all email lists across all storefronts
@@ -9470,7 +9470,7 @@ var CustomerApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         getCustomerEmailLists: function (options) {
-            return exports.CustomerApiFp(configuration).getCustomerEmailLists(options)(fetch, basePath);
+            return (0, exports.CustomerApiFp)(configuration).getCustomerEmailLists(options)(fetch, basePath);
         },
         /**
          * Retrieves customers from the account.  If no parameters are specified, all customers will be returned.  You will need to make multiple API calls in order to retrieve the entire result set since this API performs result set pagination.
@@ -9511,7 +9511,7 @@ var CustomerApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         getCustomers: function (email, qb_class, quickbooks_code, last_modified_dts_start, last_modified_dts_end, signup_dts_start, signup_dts_end, billing_first_name, billing_last_name, billing_company, billing_city, billing_state, billing_postal_code, billing_country_code, billing_day_phone, billing_evening_phone, shipping_first_name, shipping_last_name, shipping_company, shipping_city, shipping_state, shipping_postal_code, shipping_country_code, shipping_day_phone, shipping_evening_phone, pricing_tier_oid, pricing_tier_name, _limit, _offset, _since, _sort, _expand, options) {
-            return exports.CustomerApiFp(configuration).getCustomers(email, qb_class, quickbooks_code, last_modified_dts_start, last_modified_dts_end, signup_dts_start, signup_dts_end, billing_first_name, billing_last_name, billing_company, billing_city, billing_state, billing_postal_code, billing_country_code, billing_day_phone, billing_evening_phone, shipping_first_name, shipping_last_name, shipping_company, shipping_city, shipping_state, shipping_postal_code, shipping_country_code, shipping_day_phone, shipping_evening_phone, pricing_tier_oid, pricing_tier_name, _limit, _offset, _since, _sort, _expand, options)(fetch, basePath);
+            return (0, exports.CustomerApiFp)(configuration).getCustomers(email, qb_class, quickbooks_code, last_modified_dts_start, last_modified_dts_end, signup_dts_start, signup_dts_end, billing_first_name, billing_last_name, billing_company, billing_city, billing_state, billing_postal_code, billing_country_code, billing_day_phone, billing_evening_phone, shipping_first_name, shipping_last_name, shipping_company, shipping_city, shipping_state, shipping_postal_code, shipping_country_code, shipping_day_phone, shipping_evening_phone, pricing_tier_oid, pricing_tier_name, _limit, _offset, _since, _sort, _expand, options)(fetch, basePath);
         },
         /**
          * Retrieves customers from the account.  If no parameters are specified, all customers will be returned.  You will need to make multiple API calls in order to retrieve the entire result set since this API performs result set pagination.
@@ -9526,7 +9526,7 @@ var CustomerApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         getCustomersByQuery: function (customer_query, _limit, _offset, _since, _sort, _expand, options) {
-            return exports.CustomerApiFp(configuration).getCustomersByQuery(customer_query, _limit, _offset, _since, _sort, _expand, options)(fetch, basePath);
+            return (0, exports.CustomerApiFp)(configuration).getCustomersByQuery(customer_query, _limit, _offset, _since, _sort, _expand, options)(fetch, basePath);
         },
         /**
          * Retrieves customers from the account.  If no searches are specified, all customers will be returned.
@@ -9536,7 +9536,7 @@ var CustomerApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         getCustomersForDataTables: function (_expand, options) {
-            return exports.CustomerApiFp(configuration).getCustomersForDataTables(_expand, options)(fetch, basePath);
+            return (0, exports.CustomerApiFp)(configuration).getCustomersForDataTables(_expand, options)(fetch, basePath);
         },
         /**
          * Create a token that can be used to verify a customer email address.  The implementation of how a customer interacts with this token is left to the merchant.
@@ -9546,7 +9546,7 @@ var CustomerApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         getEmailVerificationToken: function (token_request, options) {
-            return exports.CustomerApiFp(configuration).getEmailVerificationToken(token_request, options)(fetch, basePath);
+            return (0, exports.CustomerApiFp)(configuration).getEmailVerificationToken(token_request, options)(fetch, basePath);
         },
         /**
          * Insert a customer on the UltraCart account.
@@ -9557,7 +9557,7 @@ var CustomerApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         insertCustomer: function (customer, _expand, options) {
-            return exports.CustomerApiFp(configuration).insertCustomer(customer, _expand, options)(fetch, basePath);
+            return (0, exports.CustomerApiFp)(configuration).insertCustomer(customer, _expand, options)(fetch, basePath);
         },
         /**
          * Update a customer on the UltraCart account.
@@ -9569,7 +9569,7 @@ var CustomerApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         updateCustomer: function (customer, customer_profile_oid, _expand, options) {
-            return exports.CustomerApiFp(configuration).updateCustomer(customer, customer_profile_oid, _expand, options)(fetch, basePath);
+            return (0, exports.CustomerApiFp)(configuration).updateCustomer(customer, customer_profile_oid, _expand, options)(fetch, basePath);
         },
         /**
          * Update email list subscriptions for a customer
@@ -9580,7 +9580,7 @@ var CustomerApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         updateCustomerEmailLists: function (customer_profile_oid, list_changes, options) {
-            return exports.CustomerApiFp(configuration).updateCustomerEmailLists(customer_profile_oid, list_changes, options)(fetch, basePath);
+            return (0, exports.CustomerApiFp)(configuration).updateCustomerEmailLists(customer_profile_oid, list_changes, options)(fetch, basePath);
         },
         /**
          * Validate a token that can be used to verify a customer email address.  The implementation of how a customer interacts with this token is left to the merchant.
@@ -9590,7 +9590,7 @@ var CustomerApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         validateEmailVerificationToken: function (validation_request, options) {
-            return exports.CustomerApiFp(configuration).validateEmailVerificationToken(validation_request, options)(fetch, basePath);
+            return (0, exports.CustomerApiFp)(configuration).validateEmailVerificationToken(validation_request, options)(fetch, basePath);
         },
     };
 };
@@ -9615,7 +9615,7 @@ var CustomerApi = /** @class */ (function (_super) {
      * @memberof CustomerApi
      */
     CustomerApi.prototype.deleteCustomer = function (customer_profile_oid, options) {
-        return exports.CustomerApiFp(this.configuration).deleteCustomer(customer_profile_oid, options)(this.fetch, this.basePath);
+        return (0, exports.CustomerApiFp)(this.configuration).deleteCustomer(customer_profile_oid, options)(this.fetch, this.basePath);
     };
     /**
      * Retrieves a single customer using the specified customer profile oid.
@@ -9627,7 +9627,7 @@ var CustomerApi = /** @class */ (function (_super) {
      * @memberof CustomerApi
      */
     CustomerApi.prototype.getCustomer = function (customer_profile_oid, _expand, options) {
-        return exports.CustomerApiFp(this.configuration).getCustomer(customer_profile_oid, _expand, options)(this.fetch, this.basePath);
+        return (0, exports.CustomerApiFp)(this.configuration).getCustomer(customer_profile_oid, _expand, options)(this.fetch, this.basePath);
     };
     /**
      * Retrieves a single customer using the specified customer email address.
@@ -9639,7 +9639,7 @@ var CustomerApi = /** @class */ (function (_super) {
      * @memberof CustomerApi
      */
     CustomerApi.prototype.getCustomerByEmail = function (email, _expand, options) {
-        return exports.CustomerApiFp(this.configuration).getCustomerByEmail(email, _expand, options)(this.fetch, this.basePath);
+        return (0, exports.CustomerApiFp)(this.configuration).getCustomerByEmail(email, _expand, options)(this.fetch, this.basePath);
     };
     /**
      * Retrieve values needed for a customer profile editor.
@@ -9649,7 +9649,7 @@ var CustomerApi = /** @class */ (function (_super) {
      * @memberof CustomerApi
      */
     CustomerApi.prototype.getCustomerEditorValues = function (options) {
-        return exports.CustomerApiFp(this.configuration).getCustomerEditorValues(options)(this.fetch, this.basePath);
+        return (0, exports.CustomerApiFp)(this.configuration).getCustomerEditorValues(options)(this.fetch, this.basePath);
     };
     /**
      * Retrieve all email lists across all storefronts
@@ -9659,7 +9659,7 @@ var CustomerApi = /** @class */ (function (_super) {
      * @memberof CustomerApi
      */
     CustomerApi.prototype.getCustomerEmailLists = function (options) {
-        return exports.CustomerApiFp(this.configuration).getCustomerEmailLists(options)(this.fetch, this.basePath);
+        return (0, exports.CustomerApiFp)(this.configuration).getCustomerEmailLists(options)(this.fetch, this.basePath);
     };
     /**
      * Retrieves customers from the account.  If no parameters are specified, all customers will be returned.  You will need to make multiple API calls in order to retrieve the entire result set since this API performs result set pagination.
@@ -9701,7 +9701,7 @@ var CustomerApi = /** @class */ (function (_super) {
      * @memberof CustomerApi
      */
     CustomerApi.prototype.getCustomers = function (email, qb_class, quickbooks_code, last_modified_dts_start, last_modified_dts_end, signup_dts_start, signup_dts_end, billing_first_name, billing_last_name, billing_company, billing_city, billing_state, billing_postal_code, billing_country_code, billing_day_phone, billing_evening_phone, shipping_first_name, shipping_last_name, shipping_company, shipping_city, shipping_state, shipping_postal_code, shipping_country_code, shipping_day_phone, shipping_evening_phone, pricing_tier_oid, pricing_tier_name, _limit, _offset, _since, _sort, _expand, options) {
-        return exports.CustomerApiFp(this.configuration).getCustomers(email, qb_class, quickbooks_code, last_modified_dts_start, last_modified_dts_end, signup_dts_start, signup_dts_end, billing_first_name, billing_last_name, billing_company, billing_city, billing_state, billing_postal_code, billing_country_code, billing_day_phone, billing_evening_phone, shipping_first_name, shipping_last_name, shipping_company, shipping_city, shipping_state, shipping_postal_code, shipping_country_code, shipping_day_phone, shipping_evening_phone, pricing_tier_oid, pricing_tier_name, _limit, _offset, _since, _sort, _expand, options)(this.fetch, this.basePath);
+        return (0, exports.CustomerApiFp)(this.configuration).getCustomers(email, qb_class, quickbooks_code, last_modified_dts_start, last_modified_dts_end, signup_dts_start, signup_dts_end, billing_first_name, billing_last_name, billing_company, billing_city, billing_state, billing_postal_code, billing_country_code, billing_day_phone, billing_evening_phone, shipping_first_name, shipping_last_name, shipping_company, shipping_city, shipping_state, shipping_postal_code, shipping_country_code, shipping_day_phone, shipping_evening_phone, pricing_tier_oid, pricing_tier_name, _limit, _offset, _since, _sort, _expand, options)(this.fetch, this.basePath);
     };
     /**
      * Retrieves customers from the account.  If no parameters are specified, all customers will be returned.  You will need to make multiple API calls in order to retrieve the entire result set since this API performs result set pagination.
@@ -9717,7 +9717,7 @@ var CustomerApi = /** @class */ (function (_super) {
      * @memberof CustomerApi
      */
     CustomerApi.prototype.getCustomersByQuery = function (customer_query, _limit, _offset, _since, _sort, _expand, options) {
-        return exports.CustomerApiFp(this.configuration).getCustomersByQuery(customer_query, _limit, _offset, _since, _sort, _expand, options)(this.fetch, this.basePath);
+        return (0, exports.CustomerApiFp)(this.configuration).getCustomersByQuery(customer_query, _limit, _offset, _since, _sort, _expand, options)(this.fetch, this.basePath);
     };
     /**
      * Retrieves customers from the account.  If no searches are specified, all customers will be returned.
@@ -9728,7 +9728,7 @@ var CustomerApi = /** @class */ (function (_super) {
      * @memberof CustomerApi
      */
     CustomerApi.prototype.getCustomersForDataTables = function (_expand, options) {
-        return exports.CustomerApiFp(this.configuration).getCustomersForDataTables(_expand, options)(this.fetch, this.basePath);
+        return (0, exports.CustomerApiFp)(this.configuration).getCustomersForDataTables(_expand, options)(this.fetch, this.basePath);
     };
     /**
      * Create a token that can be used to verify a customer email address.  The implementation of how a customer interacts with this token is left to the merchant.
@@ -9739,7 +9739,7 @@ var CustomerApi = /** @class */ (function (_super) {
      * @memberof CustomerApi
      */
     CustomerApi.prototype.getEmailVerificationToken = function (token_request, options) {
-        return exports.CustomerApiFp(this.configuration).getEmailVerificationToken(token_request, options)(this.fetch, this.basePath);
+        return (0, exports.CustomerApiFp)(this.configuration).getEmailVerificationToken(token_request, options)(this.fetch, this.basePath);
     };
     /**
      * Insert a customer on the UltraCart account.
@@ -9751,7 +9751,7 @@ var CustomerApi = /** @class */ (function (_super) {
      * @memberof CustomerApi
      */
     CustomerApi.prototype.insertCustomer = function (customer, _expand, options) {
-        return exports.CustomerApiFp(this.configuration).insertCustomer(customer, _expand, options)(this.fetch, this.basePath);
+        return (0, exports.CustomerApiFp)(this.configuration).insertCustomer(customer, _expand, options)(this.fetch, this.basePath);
     };
     /**
      * Update a customer on the UltraCart account.
@@ -9764,7 +9764,7 @@ var CustomerApi = /** @class */ (function (_super) {
      * @memberof CustomerApi
      */
     CustomerApi.prototype.updateCustomer = function (customer, customer_profile_oid, _expand, options) {
-        return exports.CustomerApiFp(this.configuration).updateCustomer(customer, customer_profile_oid, _expand, options)(this.fetch, this.basePath);
+        return (0, exports.CustomerApiFp)(this.configuration).updateCustomer(customer, customer_profile_oid, _expand, options)(this.fetch, this.basePath);
     };
     /**
      * Update email list subscriptions for a customer
@@ -9776,7 +9776,7 @@ var CustomerApi = /** @class */ (function (_super) {
      * @memberof CustomerApi
      */
     CustomerApi.prototype.updateCustomerEmailLists = function (customer_profile_oid, list_changes, options) {
-        return exports.CustomerApiFp(this.configuration).updateCustomerEmailLists(customer_profile_oid, list_changes, options)(this.fetch, this.basePath);
+        return (0, exports.CustomerApiFp)(this.configuration).updateCustomerEmailLists(customer_profile_oid, list_changes, options)(this.fetch, this.basePath);
     };
     /**
      * Validate a token that can be used to verify a customer email address.  The implementation of how a customer interacts with this token is left to the merchant.
@@ -9787,7 +9787,7 @@ var CustomerApi = /** @class */ (function (_super) {
      * @memberof CustomerApi
      */
     CustomerApi.prototype.validateEmailVerificationToken = function (validation_request, options) {
-        return exports.CustomerApiFp(this.configuration).validateEmailVerificationToken(validation_request, options)(this.fetch, this.basePath);
+        return (0, exports.CustomerApiFp)(this.configuration).validateEmailVerificationToken(validation_request, options)(this.fetch, this.basePath);
     };
     return CustomerApi;
 }(BaseAPI));
@@ -10116,7 +10116,7 @@ var FulfillmentApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         acknowledgeOrders: function (distribution_center_code, orderIds, options) {
-            var localVarFetchArgs = exports.FulfillmentApiFetchParamCreator(configuration).acknowledgeOrders(distribution_center_code, orderIds, options);
+            var localVarFetchArgs = (0, exports.FulfillmentApiFetchParamCreator)(configuration).acknowledgeOrders(distribution_center_code, orderIds, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -10139,7 +10139,7 @@ var FulfillmentApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         generatePackingSlip: function (distribution_center_code, order_id, options) {
-            var localVarFetchArgs = exports.FulfillmentApiFetchParamCreator(configuration).generatePackingSlip(distribution_center_code, order_id, options);
+            var localVarFetchArgs = (0, exports.FulfillmentApiFetchParamCreator)(configuration).generatePackingSlip(distribution_center_code, order_id, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -10161,7 +10161,7 @@ var FulfillmentApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         getDistributionCenterOrders: function (distribution_center_code, options) {
-            var localVarFetchArgs = exports.FulfillmentApiFetchParamCreator(configuration).getDistributionCenterOrders(distribution_center_code, options);
+            var localVarFetchArgs = (0, exports.FulfillmentApiFetchParamCreator)(configuration).getDistributionCenterOrders(distribution_center_code, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -10182,7 +10182,7 @@ var FulfillmentApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         getDistributionCenters: function (options) {
-            var localVarFetchArgs = exports.FulfillmentApiFetchParamCreator(configuration).getDistributionCenters(options);
+            var localVarFetchArgs = (0, exports.FulfillmentApiFetchParamCreator)(configuration).getDistributionCenters(options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -10205,7 +10205,7 @@ var FulfillmentApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         shipOrders: function (distribution_center_code, shipments, options) {
-            var localVarFetchArgs = exports.FulfillmentApiFetchParamCreator(configuration).shipOrders(distribution_center_code, shipments, options);
+            var localVarFetchArgs = (0, exports.FulfillmentApiFetchParamCreator)(configuration).shipOrders(distribution_center_code, shipments, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -10228,7 +10228,7 @@ var FulfillmentApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         updateInventory: function (distribution_center_code, inventories, options) {
-            var localVarFetchArgs = exports.FulfillmentApiFetchParamCreator(configuration).updateInventory(distribution_center_code, inventories, options);
+            var localVarFetchArgs = (0, exports.FulfillmentApiFetchParamCreator)(configuration).updateInventory(distribution_center_code, inventories, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -10260,7 +10260,7 @@ var FulfillmentApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         acknowledgeOrders: function (distribution_center_code, orderIds, options) {
-            return exports.FulfillmentApiFp(configuration).acknowledgeOrders(distribution_center_code, orderIds, options)(fetch, basePath);
+            return (0, exports.FulfillmentApiFp)(configuration).acknowledgeOrders(distribution_center_code, orderIds, options)(fetch, basePath);
         },
         /**
          * The packing slip PDF that is returned is base 64 encoded
@@ -10271,7 +10271,7 @@ var FulfillmentApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         generatePackingSlip: function (distribution_center_code, order_id, options) {
-            return exports.FulfillmentApiFp(configuration).generatePackingSlip(distribution_center_code, order_id, options)(fetch, basePath);
+            return (0, exports.FulfillmentApiFp)(configuration).generatePackingSlip(distribution_center_code, order_id, options)(fetch, basePath);
         },
         /**
          * Retrieves up to 100 orders that are queued up in this distribution center.  You must acknowledge them before additional new orders will be returned.  There is NO record chunking.  You'll get the same 100 records again and again until you acknowledge orders.  The orders that are returned contain only items for this distribution center and are by default completely expanded with billing, buysafe, channel_partner, checkout, coupons, customer_profile, edi, gift, gift_certificate, internal, items, payment, shipping, summary, taxes.
@@ -10281,7 +10281,7 @@ var FulfillmentApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         getDistributionCenterOrders: function (distribution_center_code, options) {
-            return exports.FulfillmentApiFp(configuration).getDistributionCenterOrders(distribution_center_code, options)(fetch, basePath);
+            return (0, exports.FulfillmentApiFp)(configuration).getDistributionCenterOrders(distribution_center_code, options)(fetch, basePath);
         },
         /**
          * Retrieves the distribution centers that this user has access to.
@@ -10290,7 +10290,7 @@ var FulfillmentApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         getDistributionCenters: function (options) {
-            return exports.FulfillmentApiFp(configuration).getDistributionCenters(options)(fetch, basePath);
+            return (0, exports.FulfillmentApiFp)(configuration).getDistributionCenters(options)(fetch, basePath);
         },
         /**
          * Store the tracking information and mark the order shipped for this distribution center.
@@ -10301,7 +10301,7 @@ var FulfillmentApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         shipOrders: function (distribution_center_code, shipments, options) {
-            return exports.FulfillmentApiFp(configuration).shipOrders(distribution_center_code, shipments, options)(fetch, basePath);
+            return (0, exports.FulfillmentApiFp)(configuration).shipOrders(distribution_center_code, shipments, options)(fetch, basePath);
         },
         /**
          * Update the inventory for items associated with this distribution center
@@ -10312,7 +10312,7 @@ var FulfillmentApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         updateInventory: function (distribution_center_code, inventories, options) {
-            return exports.FulfillmentApiFp(configuration).updateInventory(distribution_center_code, inventories, options)(fetch, basePath);
+            return (0, exports.FulfillmentApiFp)(configuration).updateInventory(distribution_center_code, inventories, options)(fetch, basePath);
         },
     };
 };
@@ -10338,7 +10338,7 @@ var FulfillmentApi = /** @class */ (function (_super) {
      * @memberof FulfillmentApi
      */
     FulfillmentApi.prototype.acknowledgeOrders = function (distribution_center_code, orderIds, options) {
-        return exports.FulfillmentApiFp(this.configuration).acknowledgeOrders(distribution_center_code, orderIds, options)(this.fetch, this.basePath);
+        return (0, exports.FulfillmentApiFp)(this.configuration).acknowledgeOrders(distribution_center_code, orderIds, options)(this.fetch, this.basePath);
     };
     /**
      * The packing slip PDF that is returned is base 64 encoded
@@ -10350,7 +10350,7 @@ var FulfillmentApi = /** @class */ (function (_super) {
      * @memberof FulfillmentApi
      */
     FulfillmentApi.prototype.generatePackingSlip = function (distribution_center_code, order_id, options) {
-        return exports.FulfillmentApiFp(this.configuration).generatePackingSlip(distribution_center_code, order_id, options)(this.fetch, this.basePath);
+        return (0, exports.FulfillmentApiFp)(this.configuration).generatePackingSlip(distribution_center_code, order_id, options)(this.fetch, this.basePath);
     };
     /**
      * Retrieves up to 100 orders that are queued up in this distribution center.  You must acknowledge them before additional new orders will be returned.  There is NO record chunking.  You'll get the same 100 records again and again until you acknowledge orders.  The orders that are returned contain only items for this distribution center and are by default completely expanded with billing, buysafe, channel_partner, checkout, coupons, customer_profile, edi, gift, gift_certificate, internal, items, payment, shipping, summary, taxes.
@@ -10361,7 +10361,7 @@ var FulfillmentApi = /** @class */ (function (_super) {
      * @memberof FulfillmentApi
      */
     FulfillmentApi.prototype.getDistributionCenterOrders = function (distribution_center_code, options) {
-        return exports.FulfillmentApiFp(this.configuration).getDistributionCenterOrders(distribution_center_code, options)(this.fetch, this.basePath);
+        return (0, exports.FulfillmentApiFp)(this.configuration).getDistributionCenterOrders(distribution_center_code, options)(this.fetch, this.basePath);
     };
     /**
      * Retrieves the distribution centers that this user has access to.
@@ -10371,7 +10371,7 @@ var FulfillmentApi = /** @class */ (function (_super) {
      * @memberof FulfillmentApi
      */
     FulfillmentApi.prototype.getDistributionCenters = function (options) {
-        return exports.FulfillmentApiFp(this.configuration).getDistributionCenters(options)(this.fetch, this.basePath);
+        return (0, exports.FulfillmentApiFp)(this.configuration).getDistributionCenters(options)(this.fetch, this.basePath);
     };
     /**
      * Store the tracking information and mark the order shipped for this distribution center.
@@ -10383,7 +10383,7 @@ var FulfillmentApi = /** @class */ (function (_super) {
      * @memberof FulfillmentApi
      */
     FulfillmentApi.prototype.shipOrders = function (distribution_center_code, shipments, options) {
-        return exports.FulfillmentApiFp(this.configuration).shipOrders(distribution_center_code, shipments, options)(this.fetch, this.basePath);
+        return (0, exports.FulfillmentApiFp)(this.configuration).shipOrders(distribution_center_code, shipments, options)(this.fetch, this.basePath);
     };
     /**
      * Update the inventory for items associated with this distribution center
@@ -10395,7 +10395,7 @@ var FulfillmentApi = /** @class */ (function (_super) {
      * @memberof FulfillmentApi
      */
     FulfillmentApi.prototype.updateInventory = function (distribution_center_code, inventories, options) {
-        return exports.FulfillmentApiFp(this.configuration).updateInventory(distribution_center_code, inventories, options)(this.fetch, this.basePath);
+        return (0, exports.FulfillmentApiFp)(this.configuration).updateInventory(distribution_center_code, inventories, options)(this.fetch, this.basePath);
     };
     return FulfillmentApi;
 }(BaseAPI));
@@ -10642,7 +10642,7 @@ var IntegrationLogApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         getIntegrationLog: function (pk, sk, options) {
-            var localVarFetchArgs = exports.IntegrationLogApiFetchParamCreator(configuration).getIntegrationLog(pk, sk, options);
+            var localVarFetchArgs = (0, exports.IntegrationLogApiFetchParamCreator)(configuration).getIntegrationLog(pk, sk, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -10666,7 +10666,7 @@ var IntegrationLogApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         getIntegrationLogFile: function (pk, sk, uuid, options) {
-            var localVarFetchArgs = exports.IntegrationLogApiFetchParamCreator(configuration).getIntegrationLogFile(pk, sk, uuid, options);
+            var localVarFetchArgs = (0, exports.IntegrationLogApiFetchParamCreator)(configuration).getIntegrationLogFile(pk, sk, uuid, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -10688,7 +10688,7 @@ var IntegrationLogApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         getIntegrationLogSummariesQuery: function (integration_log_summaries_query, options) {
-            var localVarFetchArgs = exports.IntegrationLogApiFetchParamCreator(configuration).getIntegrationLogSummariesQuery(integration_log_summaries_query, options);
+            var localVarFetchArgs = (0, exports.IntegrationLogApiFetchParamCreator)(configuration).getIntegrationLogSummariesQuery(integration_log_summaries_query, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -10713,7 +10713,7 @@ var IntegrationLogApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         getIntegrationLogsQuery: function (integration_log_query, _limit, _offset, _sort, options) {
-            var localVarFetchArgs = exports.IntegrationLogApiFetchParamCreator(configuration).getIntegrationLogsQuery(integration_log_query, _limit, _offset, _sort, options);
+            var localVarFetchArgs = (0, exports.IntegrationLogApiFetchParamCreator)(configuration).getIntegrationLogsQuery(integration_log_query, _limit, _offset, _sort, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -10745,7 +10745,7 @@ var IntegrationLogApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         getIntegrationLog: function (pk, sk, options) {
-            return exports.IntegrationLogApiFp(configuration).getIntegrationLog(pk, sk, options)(fetch, basePath);
+            return (0, exports.IntegrationLogApiFp)(configuration).getIntegrationLog(pk, sk, options)(fetch, basePath);
         },
         /**
          * Retrieve an integration log file from the account based identifiers
@@ -10757,7 +10757,7 @@ var IntegrationLogApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         getIntegrationLogFile: function (pk, sk, uuid, options) {
-            return exports.IntegrationLogApiFp(configuration).getIntegrationLogFile(pk, sk, uuid, options)(fetch, basePath);
+            return (0, exports.IntegrationLogApiFp)(configuration).getIntegrationLogFile(pk, sk, uuid, options)(fetch, basePath);
         },
         /**
          * Retrieves a set of integration log summaries from the account based on a query object.
@@ -10767,7 +10767,7 @@ var IntegrationLogApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         getIntegrationLogSummariesQuery: function (integration_log_summaries_query, options) {
-            return exports.IntegrationLogApiFp(configuration).getIntegrationLogSummariesQuery(integration_log_summaries_query, options)(fetch, basePath);
+            return (0, exports.IntegrationLogApiFp)(configuration).getIntegrationLogSummariesQuery(integration_log_summaries_query, options)(fetch, basePath);
         },
         /**
          * Retrieves a set of integration logs from the account based on a query object.
@@ -10780,7 +10780,7 @@ var IntegrationLogApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         getIntegrationLogsQuery: function (integration_log_query, _limit, _offset, _sort, options) {
-            return exports.IntegrationLogApiFp(configuration).getIntegrationLogsQuery(integration_log_query, _limit, _offset, _sort, options)(fetch, basePath);
+            return (0, exports.IntegrationLogApiFp)(configuration).getIntegrationLogsQuery(integration_log_query, _limit, _offset, _sort, options)(fetch, basePath);
         },
     };
 };
@@ -10806,7 +10806,7 @@ var IntegrationLogApi = /** @class */ (function (_super) {
      * @memberof IntegrationLogApi
      */
     IntegrationLogApi.prototype.getIntegrationLog = function (pk, sk, options) {
-        return exports.IntegrationLogApiFp(this.configuration).getIntegrationLog(pk, sk, options)(this.fetch, this.basePath);
+        return (0, exports.IntegrationLogApiFp)(this.configuration).getIntegrationLog(pk, sk, options)(this.fetch, this.basePath);
     };
     /**
      * Retrieve an integration log file from the account based identifiers
@@ -10819,7 +10819,7 @@ var IntegrationLogApi = /** @class */ (function (_super) {
      * @memberof IntegrationLogApi
      */
     IntegrationLogApi.prototype.getIntegrationLogFile = function (pk, sk, uuid, options) {
-        return exports.IntegrationLogApiFp(this.configuration).getIntegrationLogFile(pk, sk, uuid, options)(this.fetch, this.basePath);
+        return (0, exports.IntegrationLogApiFp)(this.configuration).getIntegrationLogFile(pk, sk, uuid, options)(this.fetch, this.basePath);
     };
     /**
      * Retrieves a set of integration log summaries from the account based on a query object.
@@ -10830,7 +10830,7 @@ var IntegrationLogApi = /** @class */ (function (_super) {
      * @memberof IntegrationLogApi
      */
     IntegrationLogApi.prototype.getIntegrationLogSummariesQuery = function (integration_log_summaries_query, options) {
-        return exports.IntegrationLogApiFp(this.configuration).getIntegrationLogSummariesQuery(integration_log_summaries_query, options)(this.fetch, this.basePath);
+        return (0, exports.IntegrationLogApiFp)(this.configuration).getIntegrationLogSummariesQuery(integration_log_summaries_query, options)(this.fetch, this.basePath);
     };
     /**
      * Retrieves a set of integration logs from the account based on a query object.
@@ -10844,7 +10844,7 @@ var IntegrationLogApi = /** @class */ (function (_super) {
      * @memberof IntegrationLogApi
      */
     IntegrationLogApi.prototype.getIntegrationLogsQuery = function (integration_log_query, _limit, _offset, _sort, options) {
-        return exports.IntegrationLogApiFp(this.configuration).getIntegrationLogsQuery(integration_log_query, _limit, _offset, _sort, options)(this.fetch, this.basePath);
+        return (0, exports.IntegrationLogApiFp)(this.configuration).getIntegrationLogsQuery(integration_log_query, _limit, _offset, _sort, options)(this.fetch, this.basePath);
     };
     return IntegrationLogApi;
 }(BaseAPI));
@@ -11371,7 +11371,7 @@ var ItemApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         deleteItem: function (merchant_item_oid, options) {
-            var localVarFetchArgs = exports.ItemApiFetchParamCreator(configuration).deleteItem(merchant_item_oid, options);
+            var localVarFetchArgs = (0, exports.ItemApiFetchParamCreator)(configuration).deleteItem(merchant_item_oid, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -11395,7 +11395,7 @@ var ItemApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         getItem: function (merchant_item_oid, _expand, _placeholders, options) {
-            var localVarFetchArgs = exports.ItemApiFetchParamCreator(configuration).getItem(merchant_item_oid, _expand, _placeholders, options);
+            var localVarFetchArgs = (0, exports.ItemApiFetchParamCreator)(configuration).getItem(merchant_item_oid, _expand, _placeholders, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -11419,7 +11419,7 @@ var ItemApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         getItemByMerchantItemId: function (merchant_item_id, _expand, _placeholders, options) {
-            var localVarFetchArgs = exports.ItemApiFetchParamCreator(configuration).getItemByMerchantItemId(merchant_item_id, _expand, _placeholders, options);
+            var localVarFetchArgs = (0, exports.ItemApiFetchParamCreator)(configuration).getItemByMerchantItemId(merchant_item_id, _expand, _placeholders, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -11448,7 +11448,7 @@ var ItemApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         getItems: function (parent_category_id, parent_category_path, _limit, _offset, _since, _sort, _expand, _placeholders, options) {
-            var localVarFetchArgs = exports.ItemApiFetchParamCreator(configuration).getItems(parent_category_id, parent_category_path, _limit, _offset, _since, _sort, _expand, _placeholders, options);
+            var localVarFetchArgs = (0, exports.ItemApiFetchParamCreator)(configuration).getItems(parent_category_id, parent_category_path, _limit, _offset, _since, _sort, _expand, _placeholders, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -11470,7 +11470,7 @@ var ItemApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         getPricingTiers: function (_expand, options) {
-            var localVarFetchArgs = exports.ItemApiFetchParamCreator(configuration).getPricingTiers(_expand, options);
+            var localVarFetchArgs = (0, exports.ItemApiFetchParamCreator)(configuration).getPricingTiers(_expand, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -11494,7 +11494,7 @@ var ItemApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         insertItem: function (item, _expand, _placeholders, options) {
-            var localVarFetchArgs = exports.ItemApiFetchParamCreator(configuration).insertItem(item, _expand, _placeholders, options);
+            var localVarFetchArgs = (0, exports.ItemApiFetchParamCreator)(configuration).insertItem(item, _expand, _placeholders, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -11519,7 +11519,7 @@ var ItemApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         updateItem: function (item, merchant_item_oid, _expand, _placeholders, options) {
-            var localVarFetchArgs = exports.ItemApiFetchParamCreator(configuration).updateItem(item, merchant_item_oid, _expand, _placeholders, options);
+            var localVarFetchArgs = (0, exports.ItemApiFetchParamCreator)(configuration).updateItem(item, merchant_item_oid, _expand, _placeholders, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -11544,7 +11544,7 @@ var ItemApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         updateItems: function (items_request, _expand, _placeholders, _async, options) {
-            var localVarFetchArgs = exports.ItemApiFetchParamCreator(configuration).updateItems(items_request, _expand, _placeholders, _async, options);
+            var localVarFetchArgs = (0, exports.ItemApiFetchParamCreator)(configuration).updateItems(items_request, _expand, _placeholders, _async, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -11566,7 +11566,7 @@ var ItemApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         uploadTemporaryMultimedia: function (file, options) {
-            var localVarFetchArgs = exports.ItemApiFetchParamCreator(configuration).uploadTemporaryMultimedia(file, options);
+            var localVarFetchArgs = (0, exports.ItemApiFetchParamCreator)(configuration).uploadTemporaryMultimedia(file, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -11597,7 +11597,7 @@ var ItemApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         deleteItem: function (merchant_item_oid, options) {
-            return exports.ItemApiFp(configuration).deleteItem(merchant_item_oid, options)(fetch, basePath);
+            return (0, exports.ItemApiFp)(configuration).deleteItem(merchant_item_oid, options)(fetch, basePath);
         },
         /**
          * Retrieves a single item using the specified item oid.
@@ -11609,7 +11609,7 @@ var ItemApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         getItem: function (merchant_item_oid, _expand, _placeholders, options) {
-            return exports.ItemApiFp(configuration).getItem(merchant_item_oid, _expand, _placeholders, options)(fetch, basePath);
+            return (0, exports.ItemApiFp)(configuration).getItem(merchant_item_oid, _expand, _placeholders, options)(fetch, basePath);
         },
         /**
          * Retrieves a single item using the specified item id.
@@ -11621,7 +11621,7 @@ var ItemApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         getItemByMerchantItemId: function (merchant_item_id, _expand, _placeholders, options) {
-            return exports.ItemApiFp(configuration).getItemByMerchantItemId(merchant_item_id, _expand, _placeholders, options)(fetch, basePath);
+            return (0, exports.ItemApiFp)(configuration).getItemByMerchantItemId(merchant_item_id, _expand, _placeholders, options)(fetch, basePath);
         },
         /**
          * Retrieves a group of items from the account.  If no parameters are specified, all items will be returned.  You will need to make multiple API calls in order to retrieve the entire result set since this API performs result set pagination.
@@ -11638,7 +11638,7 @@ var ItemApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         getItems: function (parent_category_id, parent_category_path, _limit, _offset, _since, _sort, _expand, _placeholders, options) {
-            return exports.ItemApiFp(configuration).getItems(parent_category_id, parent_category_path, _limit, _offset, _since, _sort, _expand, _placeholders, options)(fetch, basePath);
+            return (0, exports.ItemApiFp)(configuration).getItems(parent_category_id, parent_category_path, _limit, _offset, _since, _sort, _expand, _placeholders, options)(fetch, basePath);
         },
         /**
          * Retrieves the pricing tiers
@@ -11648,7 +11648,7 @@ var ItemApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         getPricingTiers: function (_expand, options) {
-            return exports.ItemApiFp(configuration).getPricingTiers(_expand, options)(fetch, basePath);
+            return (0, exports.ItemApiFp)(configuration).getPricingTiers(_expand, options)(fetch, basePath);
         },
         /**
          * Create a new item on the UltraCart account.
@@ -11660,7 +11660,7 @@ var ItemApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         insertItem: function (item, _expand, _placeholders, options) {
-            return exports.ItemApiFp(configuration).insertItem(item, _expand, _placeholders, options)(fetch, basePath);
+            return (0, exports.ItemApiFp)(configuration).insertItem(item, _expand, _placeholders, options)(fetch, basePath);
         },
         /**
          * Update a new item on the UltraCart account.
@@ -11673,7 +11673,7 @@ var ItemApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         updateItem: function (item, merchant_item_oid, _expand, _placeholders, options) {
-            return exports.ItemApiFp(configuration).updateItem(item, merchant_item_oid, _expand, _placeholders, options)(fetch, basePath);
+            return (0, exports.ItemApiFp)(configuration).updateItem(item, merchant_item_oid, _expand, _placeholders, options)(fetch, basePath);
         },
         /**
          * Update multiple item on the UltraCart account.
@@ -11686,7 +11686,7 @@ var ItemApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         updateItems: function (items_request, _expand, _placeholders, _async, options) {
-            return exports.ItemApiFp(configuration).updateItems(items_request, _expand, _placeholders, _async, options)(fetch, basePath);
+            return (0, exports.ItemApiFp)(configuration).updateItems(items_request, _expand, _placeholders, _async, options)(fetch, basePath);
         },
         /**
          * Uploads an image and returns back meta information about the image as well as the identifier needed for the item update.
@@ -11696,7 +11696,7 @@ var ItemApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         uploadTemporaryMultimedia: function (file, options) {
-            return exports.ItemApiFp(configuration).uploadTemporaryMultimedia(file, options)(fetch, basePath);
+            return (0, exports.ItemApiFp)(configuration).uploadTemporaryMultimedia(file, options)(fetch, basePath);
         },
     };
 };
@@ -11721,7 +11721,7 @@ var ItemApi = /** @class */ (function (_super) {
      * @memberof ItemApi
      */
     ItemApi.prototype.deleteItem = function (merchant_item_oid, options) {
-        return exports.ItemApiFp(this.configuration).deleteItem(merchant_item_oid, options)(this.fetch, this.basePath);
+        return (0, exports.ItemApiFp)(this.configuration).deleteItem(merchant_item_oid, options)(this.fetch, this.basePath);
     };
     /**
      * Retrieves a single item using the specified item oid.
@@ -11734,7 +11734,7 @@ var ItemApi = /** @class */ (function (_super) {
      * @memberof ItemApi
      */
     ItemApi.prototype.getItem = function (merchant_item_oid, _expand, _placeholders, options) {
-        return exports.ItemApiFp(this.configuration).getItem(merchant_item_oid, _expand, _placeholders, options)(this.fetch, this.basePath);
+        return (0, exports.ItemApiFp)(this.configuration).getItem(merchant_item_oid, _expand, _placeholders, options)(this.fetch, this.basePath);
     };
     /**
      * Retrieves a single item using the specified item id.
@@ -11747,7 +11747,7 @@ var ItemApi = /** @class */ (function (_super) {
      * @memberof ItemApi
      */
     ItemApi.prototype.getItemByMerchantItemId = function (merchant_item_id, _expand, _placeholders, options) {
-        return exports.ItemApiFp(this.configuration).getItemByMerchantItemId(merchant_item_id, _expand, _placeholders, options)(this.fetch, this.basePath);
+        return (0, exports.ItemApiFp)(this.configuration).getItemByMerchantItemId(merchant_item_id, _expand, _placeholders, options)(this.fetch, this.basePath);
     };
     /**
      * Retrieves a group of items from the account.  If no parameters are specified, all items will be returned.  You will need to make multiple API calls in order to retrieve the entire result set since this API performs result set pagination.
@@ -11765,7 +11765,7 @@ var ItemApi = /** @class */ (function (_super) {
      * @memberof ItemApi
      */
     ItemApi.prototype.getItems = function (parent_category_id, parent_category_path, _limit, _offset, _since, _sort, _expand, _placeholders, options) {
-        return exports.ItemApiFp(this.configuration).getItems(parent_category_id, parent_category_path, _limit, _offset, _since, _sort, _expand, _placeholders, options)(this.fetch, this.basePath);
+        return (0, exports.ItemApiFp)(this.configuration).getItems(parent_category_id, parent_category_path, _limit, _offset, _since, _sort, _expand, _placeholders, options)(this.fetch, this.basePath);
     };
     /**
      * Retrieves the pricing tiers
@@ -11776,7 +11776,7 @@ var ItemApi = /** @class */ (function (_super) {
      * @memberof ItemApi
      */
     ItemApi.prototype.getPricingTiers = function (_expand, options) {
-        return exports.ItemApiFp(this.configuration).getPricingTiers(_expand, options)(this.fetch, this.basePath);
+        return (0, exports.ItemApiFp)(this.configuration).getPricingTiers(_expand, options)(this.fetch, this.basePath);
     };
     /**
      * Create a new item on the UltraCart account.
@@ -11789,7 +11789,7 @@ var ItemApi = /** @class */ (function (_super) {
      * @memberof ItemApi
      */
     ItemApi.prototype.insertItem = function (item, _expand, _placeholders, options) {
-        return exports.ItemApiFp(this.configuration).insertItem(item, _expand, _placeholders, options)(this.fetch, this.basePath);
+        return (0, exports.ItemApiFp)(this.configuration).insertItem(item, _expand, _placeholders, options)(this.fetch, this.basePath);
     };
     /**
      * Update a new item on the UltraCart account.
@@ -11803,7 +11803,7 @@ var ItemApi = /** @class */ (function (_super) {
      * @memberof ItemApi
      */
     ItemApi.prototype.updateItem = function (item, merchant_item_oid, _expand, _placeholders, options) {
-        return exports.ItemApiFp(this.configuration).updateItem(item, merchant_item_oid, _expand, _placeholders, options)(this.fetch, this.basePath);
+        return (0, exports.ItemApiFp)(this.configuration).updateItem(item, merchant_item_oid, _expand, _placeholders, options)(this.fetch, this.basePath);
     };
     /**
      * Update multiple item on the UltraCart account.
@@ -11817,7 +11817,7 @@ var ItemApi = /** @class */ (function (_super) {
      * @memberof ItemApi
      */
     ItemApi.prototype.updateItems = function (items_request, _expand, _placeholders, _async, options) {
-        return exports.ItemApiFp(this.configuration).updateItems(items_request, _expand, _placeholders, _async, options)(this.fetch, this.basePath);
+        return (0, exports.ItemApiFp)(this.configuration).updateItems(items_request, _expand, _placeholders, _async, options)(this.fetch, this.basePath);
     };
     /**
      * Uploads an image and returns back meta information about the image as well as the identifier needed for the item update.
@@ -11828,7 +11828,7 @@ var ItemApi = /** @class */ (function (_super) {
      * @memberof ItemApi
      */
     ItemApi.prototype.uploadTemporaryMultimedia = function (file, options) {
-        return exports.ItemApiFp(this.configuration).uploadTemporaryMultimedia(file, options)(this.fetch, this.basePath);
+        return (0, exports.ItemApiFp)(this.configuration).uploadTemporaryMultimedia(file, options)(this.fetch, this.basePath);
     };
     return ItemApi;
 }(BaseAPI));
@@ -12004,7 +12004,7 @@ var OauthApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         oauthAccessToken: function (client_id, grant_type, code, redirect_uri, refresh_token, options) {
-            var localVarFetchArgs = exports.OauthApiFetchParamCreator(configuration).oauthAccessToken(client_id, grant_type, code, redirect_uri, refresh_token, options);
+            var localVarFetchArgs = (0, exports.OauthApiFetchParamCreator)(configuration).oauthAccessToken(client_id, grant_type, code, redirect_uri, refresh_token, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -12027,7 +12027,7 @@ var OauthApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         oauthRevoke: function (client_id, token, options) {
-            var localVarFetchArgs = exports.OauthApiFetchParamCreator(configuration).oauthRevoke(client_id, token, options);
+            var localVarFetchArgs = (0, exports.OauthApiFetchParamCreator)(configuration).oauthRevoke(client_id, token, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -12062,7 +12062,7 @@ var OauthApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         oauthAccessToken: function (client_id, grant_type, code, redirect_uri, refresh_token, options) {
-            return exports.OauthApiFp(configuration).oauthAccessToken(client_id, grant_type, code, redirect_uri, refresh_token, options)(fetch, basePath);
+            return (0, exports.OauthApiFp)(configuration).oauthAccessToken(client_id, grant_type, code, redirect_uri, refresh_token, options)(fetch, basePath);
         },
         /**
          * Revokes the OAuth application associated with the specified client_id and token.
@@ -12073,7 +12073,7 @@ var OauthApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         oauthRevoke: function (client_id, token, options) {
-            return exports.OauthApiFp(configuration).oauthRevoke(client_id, token, options)(fetch, basePath);
+            return (0, exports.OauthApiFp)(configuration).oauthRevoke(client_id, token, options)(fetch, basePath);
         },
     };
 };
@@ -12102,7 +12102,7 @@ var OauthApi = /** @class */ (function (_super) {
      * @memberof OauthApi
      */
     OauthApi.prototype.oauthAccessToken = function (client_id, grant_type, code, redirect_uri, refresh_token, options) {
-        return exports.OauthApiFp(this.configuration).oauthAccessToken(client_id, grant_type, code, redirect_uri, refresh_token, options)(this.fetch, this.basePath);
+        return (0, exports.OauthApiFp)(this.configuration).oauthAccessToken(client_id, grant_type, code, redirect_uri, refresh_token, options)(this.fetch, this.basePath);
     };
     /**
      * Revokes the OAuth application associated with the specified client_id and token.
@@ -12114,7 +12114,7 @@ var OauthApi = /** @class */ (function (_super) {
      * @memberof OauthApi
      */
     OauthApi.prototype.oauthRevoke = function (client_id, token, options) {
-        return exports.OauthApiFp(this.configuration).oauthRevoke(client_id, token, options)(this.fetch, this.basePath);
+        return (0, exports.OauthApiFp)(this.configuration).oauthRevoke(client_id, token, options)(this.fetch, this.basePath);
     };
     return OauthApi;
 }(BaseAPI));
@@ -13439,7 +13439,7 @@ var OrderApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         adjustOrderTotal: function (order_id, desired_total, options) {
-            var localVarFetchArgs = exports.OrderApiFetchParamCreator(configuration).adjustOrderTotal(order_id, desired_total, options);
+            var localVarFetchArgs = (0, exports.OrderApiFetchParamCreator)(configuration).adjustOrderTotal(order_id, desired_total, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -13461,7 +13461,7 @@ var OrderApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         cancelOrder: function (order_id, options) {
-            var localVarFetchArgs = exports.OrderApiFetchParamCreator(configuration).cancelOrder(order_id, options);
+            var localVarFetchArgs = (0, exports.OrderApiFetchParamCreator)(configuration).cancelOrder(order_id, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -13483,7 +13483,7 @@ var OrderApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         deleteOrder: function (order_id, options) {
-            var localVarFetchArgs = exports.OrderApiFetchParamCreator(configuration).deleteOrder(order_id, options);
+            var localVarFetchArgs = (0, exports.OrderApiFetchParamCreator)(configuration).deleteOrder(order_id, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -13506,7 +13506,7 @@ var OrderApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         format: function (order_id, format_options, options) {
-            var localVarFetchArgs = exports.OrderApiFetchParamCreator(configuration).format(order_id, format_options, options);
+            var localVarFetchArgs = (0, exports.OrderApiFetchParamCreator)(configuration).format(order_id, format_options, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -13528,7 +13528,7 @@ var OrderApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         generateOrderToken: function (order_id, options) {
-            var localVarFetchArgs = exports.OrderApiFetchParamCreator(configuration).generateOrderToken(order_id, options);
+            var localVarFetchArgs = (0, exports.OrderApiFetchParamCreator)(configuration).generateOrderToken(order_id, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -13550,7 +13550,7 @@ var OrderApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         generatePackingSlipAllDC: function (order_id, options) {
-            var localVarFetchArgs = exports.OrderApiFetchParamCreator(configuration).generatePackingSlipAllDC(order_id, options);
+            var localVarFetchArgs = (0, exports.OrderApiFetchParamCreator)(configuration).generatePackingSlipAllDC(order_id, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -13573,7 +13573,7 @@ var OrderApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         generatePackingSlipSpecificDC: function (distribution_center_code, order_id, options) {
-            var localVarFetchArgs = exports.OrderApiFetchParamCreator(configuration).generatePackingSlipSpecificDC(distribution_center_code, order_id, options);
+            var localVarFetchArgs = (0, exports.OrderApiFetchParamCreator)(configuration).generatePackingSlipSpecificDC(distribution_center_code, order_id, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -13594,7 +13594,7 @@ var OrderApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         getAccountsReceivableRetryConfig: function (options) {
-            var localVarFetchArgs = exports.OrderApiFetchParamCreator(configuration).getAccountsReceivableRetryConfig(options);
+            var localVarFetchArgs = (0, exports.OrderApiFetchParamCreator)(configuration).getAccountsReceivableRetryConfig(options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -13617,7 +13617,7 @@ var OrderApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         getAccountsReceivableRetryStats: function (from, to, options) {
-            var localVarFetchArgs = exports.OrderApiFetchParamCreator(configuration).getAccountsReceivableRetryStats(from, to, options);
+            var localVarFetchArgs = (0, exports.OrderApiFetchParamCreator)(configuration).getAccountsReceivableRetryStats(from, to, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -13640,7 +13640,7 @@ var OrderApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         getOrder: function (order_id, _expand, options) {
-            var localVarFetchArgs = exports.OrderApiFetchParamCreator(configuration).getOrder(order_id, _expand, options);
+            var localVarFetchArgs = (0, exports.OrderApiFetchParamCreator)(configuration).getOrder(order_id, _expand, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -13663,7 +13663,7 @@ var OrderApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         getOrderByToken: function (order_by_token_query, _expand, options) {
-            var localVarFetchArgs = exports.OrderApiFetchParamCreator(configuration).getOrderByToken(order_by_token_query, _expand, options);
+            var localVarFetchArgs = (0, exports.OrderApiFetchParamCreator)(configuration).getOrderByToken(order_by_token_query, _expand, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -13727,7 +13727,7 @@ var OrderApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         getOrders: function (order_id, payment_method, company, first_name, last_name, city, state_region, postal_code, country_code, phone, email, cc_email, total, screen_branding_theme_code, storefront_host_name, creation_date_begin, creation_date_end, payment_date_begin, payment_date_end, shipment_date_begin, shipment_date_end, rma, purchase_order_number, item_id, current_stage, channel_partner_code, channel_partner_order_id, customer_profile_oid, Refund_Date_Begin, Refund_Date_End, Custom_Field_1, Custom_Field_2, Custom_Field_3, Custom_Field_4, Custom_Field_5, Custom_Field_6, Custom_Field_7, ship_on_date_begin, ship_on_date_end, _limit, _offset, _sort, _expand, options) {
-            var localVarFetchArgs = exports.OrderApiFetchParamCreator(configuration).getOrders(order_id, payment_method, company, first_name, last_name, city, state_region, postal_code, country_code, phone, email, cc_email, total, screen_branding_theme_code, storefront_host_name, creation_date_begin, creation_date_end, payment_date_begin, payment_date_end, shipment_date_begin, shipment_date_end, rma, purchase_order_number, item_id, current_stage, channel_partner_code, channel_partner_order_id, customer_profile_oid, Refund_Date_Begin, Refund_Date_End, Custom_Field_1, Custom_Field_2, Custom_Field_3, Custom_Field_4, Custom_Field_5, Custom_Field_6, Custom_Field_7, ship_on_date_begin, ship_on_date_end, _limit, _offset, _sort, _expand, options);
+            var localVarFetchArgs = (0, exports.OrderApiFetchParamCreator)(configuration).getOrders(order_id, payment_method, company, first_name, last_name, city, state_region, postal_code, country_code, phone, email, cc_email, total, screen_branding_theme_code, storefront_host_name, creation_date_begin, creation_date_end, payment_date_begin, payment_date_end, shipment_date_begin, shipment_date_end, rma, purchase_order_number, item_id, current_stage, channel_partner_code, channel_partner_order_id, customer_profile_oid, Refund_Date_Begin, Refund_Date_End, Custom_Field_1, Custom_Field_2, Custom_Field_3, Custom_Field_4, Custom_Field_5, Custom_Field_6, Custom_Field_7, ship_on_date_begin, ship_on_date_end, _limit, _offset, _sort, _expand, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -13750,7 +13750,7 @@ var OrderApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         getOrdersBatch: function (order_batch, _expand, options) {
-            var localVarFetchArgs = exports.OrderApiFetchParamCreator(configuration).getOrdersBatch(order_batch, _expand, options);
+            var localVarFetchArgs = (0, exports.OrderApiFetchParamCreator)(configuration).getOrdersBatch(order_batch, _expand, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -13776,7 +13776,7 @@ var OrderApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         getOrdersByQuery: function (order_query, _limit, _offset, _sort, _expand, options) {
-            var localVarFetchArgs = exports.OrderApiFetchParamCreator(configuration).getOrdersByQuery(order_query, _limit, _offset, _sort, _expand, options);
+            var localVarFetchArgs = (0, exports.OrderApiFetchParamCreator)(configuration).getOrdersByQuery(order_query, _limit, _offset, _sort, _expand, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -13799,7 +13799,7 @@ var OrderApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         insertOrder: function (order, _expand, options) {
-            var localVarFetchArgs = exports.OrderApiFetchParamCreator(configuration).insertOrder(order, _expand, options);
+            var localVarFetchArgs = (0, exports.OrderApiFetchParamCreator)(configuration).insertOrder(order, _expand, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -13822,7 +13822,7 @@ var OrderApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         processPayment: function (order_id, process_payment_request, options) {
-            var localVarFetchArgs = exports.OrderApiFetchParamCreator(configuration).processPayment(order_id, process_payment_request, options);
+            var localVarFetchArgs = (0, exports.OrderApiFetchParamCreator)(configuration).processPayment(order_id, process_payment_request, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -13851,7 +13851,7 @@ var OrderApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         refundOrder: function (order, order_id, reject_after_refund, skip_customer_notification, auto_order_cancel, manual_refund, reverse_affiliate_transactions, _expand, options) {
-            var localVarFetchArgs = exports.OrderApiFetchParamCreator(configuration).refundOrder(order, order_id, reject_after_refund, skip_customer_notification, auto_order_cancel, manual_refund, reverse_affiliate_transactions, _expand, options);
+            var localVarFetchArgs = (0, exports.OrderApiFetchParamCreator)(configuration).refundOrder(order, order_id, reject_after_refund, skip_customer_notification, auto_order_cancel, manual_refund, reverse_affiliate_transactions, _expand, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -13874,7 +13874,7 @@ var OrderApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         replacement: function (order_id, replacement, options) {
-            var localVarFetchArgs = exports.OrderApiFetchParamCreator(configuration).replacement(order_id, replacement, options);
+            var localVarFetchArgs = (0, exports.OrderApiFetchParamCreator)(configuration).replacement(order_id, replacement, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -13896,7 +13896,7 @@ var OrderApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         resendReceipt: function (order_id, options) {
-            var localVarFetchArgs = exports.OrderApiFetchParamCreator(configuration).resendReceipt(order_id, options);
+            var localVarFetchArgs = (0, exports.OrderApiFetchParamCreator)(configuration).resendReceipt(order_id, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -13918,7 +13918,7 @@ var OrderApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         resendShipmentConfirmation: function (order_id, options) {
-            var localVarFetchArgs = exports.OrderApiFetchParamCreator(configuration).resendShipmentConfirmation(order_id, options);
+            var localVarFetchArgs = (0, exports.OrderApiFetchParamCreator)(configuration).resendShipmentConfirmation(order_id, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -13940,7 +13940,7 @@ var OrderApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         updateAccountsReceivableRetryConfig: function (retry_config, options) {
-            var localVarFetchArgs = exports.OrderApiFetchParamCreator(configuration).updateAccountsReceivableRetryConfig(retry_config, options);
+            var localVarFetchArgs = (0, exports.OrderApiFetchParamCreator)(configuration).updateAccountsReceivableRetryConfig(retry_config, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -13964,7 +13964,7 @@ var OrderApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         updateOrder: function (order, order_id, _expand, options) {
-            var localVarFetchArgs = exports.OrderApiFetchParamCreator(configuration).updateOrder(order, order_id, _expand, options);
+            var localVarFetchArgs = (0, exports.OrderApiFetchParamCreator)(configuration).updateOrder(order, order_id, _expand, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -13996,7 +13996,7 @@ var OrderApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         adjustOrderTotal: function (order_id, desired_total, options) {
-            return exports.OrderApiFp(configuration).adjustOrderTotal(order_id, desired_total, options)(fetch, basePath);
+            return (0, exports.OrderApiFp)(configuration).adjustOrderTotal(order_id, desired_total, options)(fetch, basePath);
         },
         /**
          * Cancel an order on the UltraCart account.  If the success flag is false, then consult the error message for why it failed.
@@ -14006,7 +14006,7 @@ var OrderApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         cancelOrder: function (order_id, options) {
-            return exports.OrderApiFp(configuration).cancelOrder(order_id, options)(fetch, basePath);
+            return (0, exports.OrderApiFp)(configuration).cancelOrder(order_id, options)(fetch, basePath);
         },
         /**
          * Delete an order on the UltraCart account.
@@ -14016,7 +14016,7 @@ var OrderApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         deleteOrder: function (order_id, options) {
-            return exports.OrderApiFp(configuration).deleteOrder(order_id, options)(fetch, basePath);
+            return (0, exports.OrderApiFp)(configuration).deleteOrder(order_id, options)(fetch, basePath);
         },
         /**
          * Format the order for display at text or html
@@ -14027,7 +14027,7 @@ var OrderApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         format: function (order_id, format_options, options) {
-            return exports.OrderApiFp(configuration).format(order_id, format_options, options)(fetch, basePath);
+            return (0, exports.OrderApiFp)(configuration).format(order_id, format_options, options)(fetch, basePath);
         },
         /**
          * Retrieves a single order token for a given order id.  The token can be used with the getOrderByToken API.
@@ -14037,7 +14037,7 @@ var OrderApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         generateOrderToken: function (order_id, options) {
-            return exports.OrderApiFp(configuration).generateOrderToken(order_id, options)(fetch, basePath);
+            return (0, exports.OrderApiFp)(configuration).generateOrderToken(order_id, options)(fetch, basePath);
         },
         /**
          * The packing slip PDF that is returned is base 64 encoded
@@ -14047,7 +14047,7 @@ var OrderApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         generatePackingSlipAllDC: function (order_id, options) {
-            return exports.OrderApiFp(configuration).generatePackingSlipAllDC(order_id, options)(fetch, basePath);
+            return (0, exports.OrderApiFp)(configuration).generatePackingSlipAllDC(order_id, options)(fetch, basePath);
         },
         /**
          * The packing slip PDF that is returned is base 64 encoded
@@ -14058,7 +14058,7 @@ var OrderApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         generatePackingSlipSpecificDC: function (distribution_center_code, order_id, options) {
-            return exports.OrderApiFp(configuration).generatePackingSlipSpecificDC(distribution_center_code, order_id, options)(fetch, basePath);
+            return (0, exports.OrderApiFp)(configuration).generatePackingSlipSpecificDC(distribution_center_code, order_id, options)(fetch, basePath);
         },
         /**
          * Retrieve A/R Retry Configuration. This is primarily an internal API call.  It is doubtful you would ever need to use it.
@@ -14067,7 +14067,7 @@ var OrderApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         getAccountsReceivableRetryConfig: function (options) {
-            return exports.OrderApiFp(configuration).getAccountsReceivableRetryConfig(options)(fetch, basePath);
+            return (0, exports.OrderApiFp)(configuration).getAccountsReceivableRetryConfig(options)(fetch, basePath);
         },
         /**
          * Retrieve A/R Retry Statistics. This is primarily an internal API call.  It is doubtful you would ever need to use it.
@@ -14078,7 +14078,7 @@ var OrderApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         getAccountsReceivableRetryStats: function (from, to, options) {
-            return exports.OrderApiFp(configuration).getAccountsReceivableRetryStats(from, to, options)(fetch, basePath);
+            return (0, exports.OrderApiFp)(configuration).getAccountsReceivableRetryStats(from, to, options)(fetch, basePath);
         },
         /**
          * Retrieves a single order using the specified order id.
@@ -14089,7 +14089,7 @@ var OrderApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         getOrder: function (order_id, _expand, options) {
-            return exports.OrderApiFp(configuration).getOrder(order_id, _expand, options)(fetch, basePath);
+            return (0, exports.OrderApiFp)(configuration).getOrder(order_id, _expand, options)(fetch, basePath);
         },
         /**
          * Retrieves a single order using the specified order token.
@@ -14100,7 +14100,7 @@ var OrderApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         getOrderByToken: function (order_by_token_query, _expand, options) {
-            return exports.OrderApiFp(configuration).getOrderByToken(order_by_token_query, _expand, options)(fetch, basePath);
+            return (0, exports.OrderApiFp)(configuration).getOrderByToken(order_by_token_query, _expand, options)(fetch, basePath);
         },
         /**
          * Retrieves a group of orders from the account.  If no parameters are specified, the API call will fail with a bad request error.  Always specify some parameters to limit the scope of the orders returned to ones you are truly interested in.  You will need to make multiple API calls in order to retrieve the entire result set since this API performs result set pagination.
@@ -14152,7 +14152,7 @@ var OrderApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         getOrders: function (order_id, payment_method, company, first_name, last_name, city, state_region, postal_code, country_code, phone, email, cc_email, total, screen_branding_theme_code, storefront_host_name, creation_date_begin, creation_date_end, payment_date_begin, payment_date_end, shipment_date_begin, shipment_date_end, rma, purchase_order_number, item_id, current_stage, channel_partner_code, channel_partner_order_id, customer_profile_oid, Refund_Date_Begin, Refund_Date_End, Custom_Field_1, Custom_Field_2, Custom_Field_3, Custom_Field_4, Custom_Field_5, Custom_Field_6, Custom_Field_7, ship_on_date_begin, ship_on_date_end, _limit, _offset, _sort, _expand, options) {
-            return exports.OrderApiFp(configuration).getOrders(order_id, payment_method, company, first_name, last_name, city, state_region, postal_code, country_code, phone, email, cc_email, total, screen_branding_theme_code, storefront_host_name, creation_date_begin, creation_date_end, payment_date_begin, payment_date_end, shipment_date_begin, shipment_date_end, rma, purchase_order_number, item_id, current_stage, channel_partner_code, channel_partner_order_id, customer_profile_oid, Refund_Date_Begin, Refund_Date_End, Custom_Field_1, Custom_Field_2, Custom_Field_3, Custom_Field_4, Custom_Field_5, Custom_Field_6, Custom_Field_7, ship_on_date_begin, ship_on_date_end, _limit, _offset, _sort, _expand, options)(fetch, basePath);
+            return (0, exports.OrderApiFp)(configuration).getOrders(order_id, payment_method, company, first_name, last_name, city, state_region, postal_code, country_code, phone, email, cc_email, total, screen_branding_theme_code, storefront_host_name, creation_date_begin, creation_date_end, payment_date_begin, payment_date_end, shipment_date_begin, shipment_date_end, rma, purchase_order_number, item_id, current_stage, channel_partner_code, channel_partner_order_id, customer_profile_oid, Refund_Date_Begin, Refund_Date_End, Custom_Field_1, Custom_Field_2, Custom_Field_3, Custom_Field_4, Custom_Field_5, Custom_Field_6, Custom_Field_7, ship_on_date_begin, ship_on_date_end, _limit, _offset, _sort, _expand, options)(fetch, basePath);
         },
         /**
          * Retrieves a group of orders from the account based on an array of order ids.  If more than 500 order ids are specified, the API call will fail with a bad request error.
@@ -14163,7 +14163,7 @@ var OrderApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         getOrdersBatch: function (order_batch, _expand, options) {
-            return exports.OrderApiFp(configuration).getOrdersBatch(order_batch, _expand, options)(fetch, basePath);
+            return (0, exports.OrderApiFp)(configuration).getOrdersBatch(order_batch, _expand, options)(fetch, basePath);
         },
         /**
          * Retrieves a group of orders from the account based on a query object.  If no parameters are specified, the API call will fail with a bad request error.  Always specify some parameters to limit the scope of the orders returned to ones you are truly interested in.  You will need to make multiple API calls in order to retrieve the entire result set since this API performs result set pagination.
@@ -14177,7 +14177,7 @@ var OrderApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         getOrdersByQuery: function (order_query, _limit, _offset, _sort, _expand, options) {
-            return exports.OrderApiFp(configuration).getOrdersByQuery(order_query, _limit, _offset, _sort, _expand, options)(fetch, basePath);
+            return (0, exports.OrderApiFp)(configuration).getOrdersByQuery(order_query, _limit, _offset, _sort, _expand, options)(fetch, basePath);
         },
         /**
          * Inserts a new order on the UltraCart account.  This is probably NOT the method you want.  This is for channel orders.  For regular orders the customer is entering, use the CheckoutApi.  It has many, many more features, checks, and validations.
@@ -14188,7 +14188,7 @@ var OrderApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         insertOrder: function (order, _expand, options) {
-            return exports.OrderApiFp(configuration).insertOrder(order, _expand, options)(fetch, basePath);
+            return (0, exports.OrderApiFp)(configuration).insertOrder(order, _expand, options)(fetch, basePath);
         },
         /**
          * Process payment on order
@@ -14199,7 +14199,7 @@ var OrderApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         processPayment: function (order_id, process_payment_request, options) {
-            return exports.OrderApiFp(configuration).processPayment(order_id, process_payment_request, options)(fetch, basePath);
+            return (0, exports.OrderApiFp)(configuration).processPayment(order_id, process_payment_request, options)(fetch, basePath);
         },
         /**
          * Perform a refund operation on an order and then update the order if successful
@@ -14216,7 +14216,7 @@ var OrderApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         refundOrder: function (order, order_id, reject_after_refund, skip_customer_notification, auto_order_cancel, manual_refund, reverse_affiliate_transactions, _expand, options) {
-            return exports.OrderApiFp(configuration).refundOrder(order, order_id, reject_after_refund, skip_customer_notification, auto_order_cancel, manual_refund, reverse_affiliate_transactions, _expand, options)(fetch, basePath);
+            return (0, exports.OrderApiFp)(configuration).refundOrder(order, order_id, reject_after_refund, skip_customer_notification, auto_order_cancel, manual_refund, reverse_affiliate_transactions, _expand, options)(fetch, basePath);
         },
         /**
          * Create a replacement order based upon a previous order
@@ -14227,7 +14227,7 @@ var OrderApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         replacement: function (order_id, replacement, options) {
-            return exports.OrderApiFp(configuration).replacement(order_id, replacement, options)(fetch, basePath);
+            return (0, exports.OrderApiFp)(configuration).replacement(order_id, replacement, options)(fetch, basePath);
         },
         /**
          * Resend the receipt for an order on the UltraCart account.
@@ -14237,7 +14237,7 @@ var OrderApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         resendReceipt: function (order_id, options) {
-            return exports.OrderApiFp(configuration).resendReceipt(order_id, options)(fetch, basePath);
+            return (0, exports.OrderApiFp)(configuration).resendReceipt(order_id, options)(fetch, basePath);
         },
         /**
          * Resend shipment confirmation for an order on the UltraCart account.
@@ -14247,7 +14247,7 @@ var OrderApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         resendShipmentConfirmation: function (order_id, options) {
-            return exports.OrderApiFp(configuration).resendShipmentConfirmation(order_id, options)(fetch, basePath);
+            return (0, exports.OrderApiFp)(configuration).resendShipmentConfirmation(order_id, options)(fetch, basePath);
         },
         /**
          * Update A/R Retry Configuration.  This is primarily an internal API call.  It is doubtful you would ever need to use it.
@@ -14257,7 +14257,7 @@ var OrderApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         updateAccountsReceivableRetryConfig: function (retry_config, options) {
-            return exports.OrderApiFp(configuration).updateAccountsReceivableRetryConfig(retry_config, options)(fetch, basePath);
+            return (0, exports.OrderApiFp)(configuration).updateAccountsReceivableRetryConfig(retry_config, options)(fetch, basePath);
         },
         /**
          * Update a new order on the UltraCart account.  This is probably NOT the method you want.  It is rare to update a completed order.  This will not trigger charges, emails, or any other automation.
@@ -14269,7 +14269,7 @@ var OrderApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         updateOrder: function (order, order_id, _expand, options) {
-            return exports.OrderApiFp(configuration).updateOrder(order, order_id, _expand, options)(fetch, basePath);
+            return (0, exports.OrderApiFp)(configuration).updateOrder(order, order_id, _expand, options)(fetch, basePath);
         },
     };
 };
@@ -14295,7 +14295,7 @@ var OrderApi = /** @class */ (function (_super) {
      * @memberof OrderApi
      */
     OrderApi.prototype.adjustOrderTotal = function (order_id, desired_total, options) {
-        return exports.OrderApiFp(this.configuration).adjustOrderTotal(order_id, desired_total, options)(this.fetch, this.basePath);
+        return (0, exports.OrderApiFp)(this.configuration).adjustOrderTotal(order_id, desired_total, options)(this.fetch, this.basePath);
     };
     /**
      * Cancel an order on the UltraCart account.  If the success flag is false, then consult the error message for why it failed.
@@ -14306,7 +14306,7 @@ var OrderApi = /** @class */ (function (_super) {
      * @memberof OrderApi
      */
     OrderApi.prototype.cancelOrder = function (order_id, options) {
-        return exports.OrderApiFp(this.configuration).cancelOrder(order_id, options)(this.fetch, this.basePath);
+        return (0, exports.OrderApiFp)(this.configuration).cancelOrder(order_id, options)(this.fetch, this.basePath);
     };
     /**
      * Delete an order on the UltraCart account.
@@ -14317,7 +14317,7 @@ var OrderApi = /** @class */ (function (_super) {
      * @memberof OrderApi
      */
     OrderApi.prototype.deleteOrder = function (order_id, options) {
-        return exports.OrderApiFp(this.configuration).deleteOrder(order_id, options)(this.fetch, this.basePath);
+        return (0, exports.OrderApiFp)(this.configuration).deleteOrder(order_id, options)(this.fetch, this.basePath);
     };
     /**
      * Format the order for display at text or html
@@ -14329,7 +14329,7 @@ var OrderApi = /** @class */ (function (_super) {
      * @memberof OrderApi
      */
     OrderApi.prototype.format = function (order_id, format_options, options) {
-        return exports.OrderApiFp(this.configuration).format(order_id, format_options, options)(this.fetch, this.basePath);
+        return (0, exports.OrderApiFp)(this.configuration).format(order_id, format_options, options)(this.fetch, this.basePath);
     };
     /**
      * Retrieves a single order token for a given order id.  The token can be used with the getOrderByToken API.
@@ -14340,7 +14340,7 @@ var OrderApi = /** @class */ (function (_super) {
      * @memberof OrderApi
      */
     OrderApi.prototype.generateOrderToken = function (order_id, options) {
-        return exports.OrderApiFp(this.configuration).generateOrderToken(order_id, options)(this.fetch, this.basePath);
+        return (0, exports.OrderApiFp)(this.configuration).generateOrderToken(order_id, options)(this.fetch, this.basePath);
     };
     /**
      * The packing slip PDF that is returned is base 64 encoded
@@ -14351,7 +14351,7 @@ var OrderApi = /** @class */ (function (_super) {
      * @memberof OrderApi
      */
     OrderApi.prototype.generatePackingSlipAllDC = function (order_id, options) {
-        return exports.OrderApiFp(this.configuration).generatePackingSlipAllDC(order_id, options)(this.fetch, this.basePath);
+        return (0, exports.OrderApiFp)(this.configuration).generatePackingSlipAllDC(order_id, options)(this.fetch, this.basePath);
     };
     /**
      * The packing slip PDF that is returned is base 64 encoded
@@ -14363,7 +14363,7 @@ var OrderApi = /** @class */ (function (_super) {
      * @memberof OrderApi
      */
     OrderApi.prototype.generatePackingSlipSpecificDC = function (distribution_center_code, order_id, options) {
-        return exports.OrderApiFp(this.configuration).generatePackingSlipSpecificDC(distribution_center_code, order_id, options)(this.fetch, this.basePath);
+        return (0, exports.OrderApiFp)(this.configuration).generatePackingSlipSpecificDC(distribution_center_code, order_id, options)(this.fetch, this.basePath);
     };
     /**
      * Retrieve A/R Retry Configuration. This is primarily an internal API call.  It is doubtful you would ever need to use it.
@@ -14373,7 +14373,7 @@ var OrderApi = /** @class */ (function (_super) {
      * @memberof OrderApi
      */
     OrderApi.prototype.getAccountsReceivableRetryConfig = function (options) {
-        return exports.OrderApiFp(this.configuration).getAccountsReceivableRetryConfig(options)(this.fetch, this.basePath);
+        return (0, exports.OrderApiFp)(this.configuration).getAccountsReceivableRetryConfig(options)(this.fetch, this.basePath);
     };
     /**
      * Retrieve A/R Retry Statistics. This is primarily an internal API call.  It is doubtful you would ever need to use it.
@@ -14385,7 +14385,7 @@ var OrderApi = /** @class */ (function (_super) {
      * @memberof OrderApi
      */
     OrderApi.prototype.getAccountsReceivableRetryStats = function (from, to, options) {
-        return exports.OrderApiFp(this.configuration).getAccountsReceivableRetryStats(from, to, options)(this.fetch, this.basePath);
+        return (0, exports.OrderApiFp)(this.configuration).getAccountsReceivableRetryStats(from, to, options)(this.fetch, this.basePath);
     };
     /**
      * Retrieves a single order using the specified order id.
@@ -14397,7 +14397,7 @@ var OrderApi = /** @class */ (function (_super) {
      * @memberof OrderApi
      */
     OrderApi.prototype.getOrder = function (order_id, _expand, options) {
-        return exports.OrderApiFp(this.configuration).getOrder(order_id, _expand, options)(this.fetch, this.basePath);
+        return (0, exports.OrderApiFp)(this.configuration).getOrder(order_id, _expand, options)(this.fetch, this.basePath);
     };
     /**
      * Retrieves a single order using the specified order token.
@@ -14409,7 +14409,7 @@ var OrderApi = /** @class */ (function (_super) {
      * @memberof OrderApi
      */
     OrderApi.prototype.getOrderByToken = function (order_by_token_query, _expand, options) {
-        return exports.OrderApiFp(this.configuration).getOrderByToken(order_by_token_query, _expand, options)(this.fetch, this.basePath);
+        return (0, exports.OrderApiFp)(this.configuration).getOrderByToken(order_by_token_query, _expand, options)(this.fetch, this.basePath);
     };
     /**
      * Retrieves a group of orders from the account.  If no parameters are specified, the API call will fail with a bad request error.  Always specify some parameters to limit the scope of the orders returned to ones you are truly interested in.  You will need to make multiple API calls in order to retrieve the entire result set since this API performs result set pagination.
@@ -14462,7 +14462,7 @@ var OrderApi = /** @class */ (function (_super) {
      * @memberof OrderApi
      */
     OrderApi.prototype.getOrders = function (order_id, payment_method, company, first_name, last_name, city, state_region, postal_code, country_code, phone, email, cc_email, total, screen_branding_theme_code, storefront_host_name, creation_date_begin, creation_date_end, payment_date_begin, payment_date_end, shipment_date_begin, shipment_date_end, rma, purchase_order_number, item_id, current_stage, channel_partner_code, channel_partner_order_id, customer_profile_oid, Refund_Date_Begin, Refund_Date_End, Custom_Field_1, Custom_Field_2, Custom_Field_3, Custom_Field_4, Custom_Field_5, Custom_Field_6, Custom_Field_7, ship_on_date_begin, ship_on_date_end, _limit, _offset, _sort, _expand, options) {
-        return exports.OrderApiFp(this.configuration).getOrders(order_id, payment_method, company, first_name, last_name, city, state_region, postal_code, country_code, phone, email, cc_email, total, screen_branding_theme_code, storefront_host_name, creation_date_begin, creation_date_end, payment_date_begin, payment_date_end, shipment_date_begin, shipment_date_end, rma, purchase_order_number, item_id, current_stage, channel_partner_code, channel_partner_order_id, customer_profile_oid, Refund_Date_Begin, Refund_Date_End, Custom_Field_1, Custom_Field_2, Custom_Field_3, Custom_Field_4, Custom_Field_5, Custom_Field_6, Custom_Field_7, ship_on_date_begin, ship_on_date_end, _limit, _offset, _sort, _expand, options)(this.fetch, this.basePath);
+        return (0, exports.OrderApiFp)(this.configuration).getOrders(order_id, payment_method, company, first_name, last_name, city, state_region, postal_code, country_code, phone, email, cc_email, total, screen_branding_theme_code, storefront_host_name, creation_date_begin, creation_date_end, payment_date_begin, payment_date_end, shipment_date_begin, shipment_date_end, rma, purchase_order_number, item_id, current_stage, channel_partner_code, channel_partner_order_id, customer_profile_oid, Refund_Date_Begin, Refund_Date_End, Custom_Field_1, Custom_Field_2, Custom_Field_3, Custom_Field_4, Custom_Field_5, Custom_Field_6, Custom_Field_7, ship_on_date_begin, ship_on_date_end, _limit, _offset, _sort, _expand, options)(this.fetch, this.basePath);
     };
     /**
      * Retrieves a group of orders from the account based on an array of order ids.  If more than 500 order ids are specified, the API call will fail with a bad request error.
@@ -14474,7 +14474,7 @@ var OrderApi = /** @class */ (function (_super) {
      * @memberof OrderApi
      */
     OrderApi.prototype.getOrdersBatch = function (order_batch, _expand, options) {
-        return exports.OrderApiFp(this.configuration).getOrdersBatch(order_batch, _expand, options)(this.fetch, this.basePath);
+        return (0, exports.OrderApiFp)(this.configuration).getOrdersBatch(order_batch, _expand, options)(this.fetch, this.basePath);
     };
     /**
      * Retrieves a group of orders from the account based on a query object.  If no parameters are specified, the API call will fail with a bad request error.  Always specify some parameters to limit the scope of the orders returned to ones you are truly interested in.  You will need to make multiple API calls in order to retrieve the entire result set since this API performs result set pagination.
@@ -14489,7 +14489,7 @@ var OrderApi = /** @class */ (function (_super) {
      * @memberof OrderApi
      */
     OrderApi.prototype.getOrdersByQuery = function (order_query, _limit, _offset, _sort, _expand, options) {
-        return exports.OrderApiFp(this.configuration).getOrdersByQuery(order_query, _limit, _offset, _sort, _expand, options)(this.fetch, this.basePath);
+        return (0, exports.OrderApiFp)(this.configuration).getOrdersByQuery(order_query, _limit, _offset, _sort, _expand, options)(this.fetch, this.basePath);
     };
     /**
      * Inserts a new order on the UltraCart account.  This is probably NOT the method you want.  This is for channel orders.  For regular orders the customer is entering, use the CheckoutApi.  It has many, many more features, checks, and validations.
@@ -14501,7 +14501,7 @@ var OrderApi = /** @class */ (function (_super) {
      * @memberof OrderApi
      */
     OrderApi.prototype.insertOrder = function (order, _expand, options) {
-        return exports.OrderApiFp(this.configuration).insertOrder(order, _expand, options)(this.fetch, this.basePath);
+        return (0, exports.OrderApiFp)(this.configuration).insertOrder(order, _expand, options)(this.fetch, this.basePath);
     };
     /**
      * Process payment on order
@@ -14513,7 +14513,7 @@ var OrderApi = /** @class */ (function (_super) {
      * @memberof OrderApi
      */
     OrderApi.prototype.processPayment = function (order_id, process_payment_request, options) {
-        return exports.OrderApiFp(this.configuration).processPayment(order_id, process_payment_request, options)(this.fetch, this.basePath);
+        return (0, exports.OrderApiFp)(this.configuration).processPayment(order_id, process_payment_request, options)(this.fetch, this.basePath);
     };
     /**
      * Perform a refund operation on an order and then update the order if successful
@@ -14531,7 +14531,7 @@ var OrderApi = /** @class */ (function (_super) {
      * @memberof OrderApi
      */
     OrderApi.prototype.refundOrder = function (order, order_id, reject_after_refund, skip_customer_notification, auto_order_cancel, manual_refund, reverse_affiliate_transactions, _expand, options) {
-        return exports.OrderApiFp(this.configuration).refundOrder(order, order_id, reject_after_refund, skip_customer_notification, auto_order_cancel, manual_refund, reverse_affiliate_transactions, _expand, options)(this.fetch, this.basePath);
+        return (0, exports.OrderApiFp)(this.configuration).refundOrder(order, order_id, reject_after_refund, skip_customer_notification, auto_order_cancel, manual_refund, reverse_affiliate_transactions, _expand, options)(this.fetch, this.basePath);
     };
     /**
      * Create a replacement order based upon a previous order
@@ -14543,7 +14543,7 @@ var OrderApi = /** @class */ (function (_super) {
      * @memberof OrderApi
      */
     OrderApi.prototype.replacement = function (order_id, replacement, options) {
-        return exports.OrderApiFp(this.configuration).replacement(order_id, replacement, options)(this.fetch, this.basePath);
+        return (0, exports.OrderApiFp)(this.configuration).replacement(order_id, replacement, options)(this.fetch, this.basePath);
     };
     /**
      * Resend the receipt for an order on the UltraCart account.
@@ -14554,7 +14554,7 @@ var OrderApi = /** @class */ (function (_super) {
      * @memberof OrderApi
      */
     OrderApi.prototype.resendReceipt = function (order_id, options) {
-        return exports.OrderApiFp(this.configuration).resendReceipt(order_id, options)(this.fetch, this.basePath);
+        return (0, exports.OrderApiFp)(this.configuration).resendReceipt(order_id, options)(this.fetch, this.basePath);
     };
     /**
      * Resend shipment confirmation for an order on the UltraCart account.
@@ -14565,7 +14565,7 @@ var OrderApi = /** @class */ (function (_super) {
      * @memberof OrderApi
      */
     OrderApi.prototype.resendShipmentConfirmation = function (order_id, options) {
-        return exports.OrderApiFp(this.configuration).resendShipmentConfirmation(order_id, options)(this.fetch, this.basePath);
+        return (0, exports.OrderApiFp)(this.configuration).resendShipmentConfirmation(order_id, options)(this.fetch, this.basePath);
     };
     /**
      * Update A/R Retry Configuration.  This is primarily an internal API call.  It is doubtful you would ever need to use it.
@@ -14576,7 +14576,7 @@ var OrderApi = /** @class */ (function (_super) {
      * @memberof OrderApi
      */
     OrderApi.prototype.updateAccountsReceivableRetryConfig = function (retry_config, options) {
-        return exports.OrderApiFp(this.configuration).updateAccountsReceivableRetryConfig(retry_config, options)(this.fetch, this.basePath);
+        return (0, exports.OrderApiFp)(this.configuration).updateAccountsReceivableRetryConfig(retry_config, options)(this.fetch, this.basePath);
     };
     /**
      * Update a new order on the UltraCart account.  This is probably NOT the method you want.  It is rare to update a completed order.  This will not trigger charges, emails, or any other automation.
@@ -14589,7 +14589,7 @@ var OrderApi = /** @class */ (function (_super) {
      * @memberof OrderApi
      */
     OrderApi.prototype.updateOrder = function (order, order_id, _expand, options) {
-        return exports.OrderApiFp(this.configuration).updateOrder(order, order_id, _expand, options)(this.fetch, this.basePath);
+        return (0, exports.OrderApiFp)(this.configuration).updateOrder(order, order_id, _expand, options)(this.fetch, this.basePath);
     };
     return OrderApi;
 }(BaseAPI));
@@ -14792,7 +14792,7 @@ var SsoApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         getSsoSessionUser: function (options) {
-            var localVarFetchArgs = exports.SsoApiFetchParamCreator(configuration).getSsoSessionUser(options);
+            var localVarFetchArgs = (0, exports.SsoApiFetchParamCreator)(configuration).getSsoSessionUser(options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -14814,7 +14814,7 @@ var SsoApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         ssoAuthorize: function (authorization_request, options) {
-            var localVarFetchArgs = exports.SsoApiFetchParamCreator(configuration).ssoAuthorize(authorization_request, options);
+            var localVarFetchArgs = (0, exports.SsoApiFetchParamCreator)(configuration).ssoAuthorize(authorization_request, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -14835,7 +14835,7 @@ var SsoApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         ssoSessionRevoke: function (options) {
-            var localVarFetchArgs = exports.SsoApiFetchParamCreator(configuration).ssoSessionRevoke(options);
+            var localVarFetchArgs = (0, exports.SsoApiFetchParamCreator)(configuration).ssoSessionRevoke(options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -14857,7 +14857,7 @@ var SsoApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         ssoToken: function (token_request, options) {
-            var localVarFetchArgs = exports.SsoApiFetchParamCreator(configuration).ssoToken(token_request, options);
+            var localVarFetchArgs = (0, exports.SsoApiFetchParamCreator)(configuration).ssoToken(token_request, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -14887,7 +14887,7 @@ var SsoApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         getSsoSessionUser: function (options) {
-            return exports.SsoApiFp(configuration).getSsoSessionUser(options)(fetch, basePath);
+            return (0, exports.SsoApiFp)(configuration).getSsoSessionUser(options)(fetch, basePath);
         },
         /**
          * Starts the process of authorizing a single sign on session.
@@ -14897,7 +14897,7 @@ var SsoApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         ssoAuthorize: function (authorization_request, options) {
-            return exports.SsoApiFp(configuration).ssoAuthorize(authorization_request, options)(fetch, basePath);
+            return (0, exports.SsoApiFp)(configuration).ssoAuthorize(authorization_request, options)(fetch, basePath);
         },
         /**
          * This is the equivalent of logging out of the single sign on session
@@ -14906,7 +14906,7 @@ var SsoApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         ssoSessionRevoke: function (options) {
-            return exports.SsoApiFp(configuration).ssoSessionRevoke(options)(fetch, basePath);
+            return (0, exports.SsoApiFp)(configuration).ssoSessionRevoke(options)(fetch, basePath);
         },
         /**
          * Called by your application after receiving the code back on the redirect URI to obtain a simple key token to make API calls with
@@ -14916,7 +14916,7 @@ var SsoApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         ssoToken: function (token_request, options) {
-            return exports.SsoApiFp(configuration).ssoToken(token_request, options)(fetch, basePath);
+            return (0, exports.SsoApiFp)(configuration).ssoToken(token_request, options)(fetch, basePath);
         },
     };
 };
@@ -14940,7 +14940,7 @@ var SsoApi = /** @class */ (function (_super) {
      * @memberof SsoApi
      */
     SsoApi.prototype.getSsoSessionUser = function (options) {
-        return exports.SsoApiFp(this.configuration).getSsoSessionUser(options)(this.fetch, this.basePath);
+        return (0, exports.SsoApiFp)(this.configuration).getSsoSessionUser(options)(this.fetch, this.basePath);
     };
     /**
      * Starts the process of authorizing a single sign on session.
@@ -14951,7 +14951,7 @@ var SsoApi = /** @class */ (function (_super) {
      * @memberof SsoApi
      */
     SsoApi.prototype.ssoAuthorize = function (authorization_request, options) {
-        return exports.SsoApiFp(this.configuration).ssoAuthorize(authorization_request, options)(this.fetch, this.basePath);
+        return (0, exports.SsoApiFp)(this.configuration).ssoAuthorize(authorization_request, options)(this.fetch, this.basePath);
     };
     /**
      * This is the equivalent of logging out of the single sign on session
@@ -14961,7 +14961,7 @@ var SsoApi = /** @class */ (function (_super) {
      * @memberof SsoApi
      */
     SsoApi.prototype.ssoSessionRevoke = function (options) {
-        return exports.SsoApiFp(this.configuration).ssoSessionRevoke(options)(this.fetch, this.basePath);
+        return (0, exports.SsoApiFp)(this.configuration).ssoSessionRevoke(options)(this.fetch, this.basePath);
     };
     /**
      * Called by your application after receiving the code back on the redirect URI to obtain a simple key token to make API calls with
@@ -14972,7 +14972,7 @@ var SsoApi = /** @class */ (function (_super) {
      * @memberof SsoApi
      */
     SsoApi.prototype.ssoToken = function (token_request, options) {
-        return exports.SsoApiFp(this.configuration).ssoToken(token_request, options)(this.fetch, this.basePath);
+        return (0, exports.SsoApiFp)(this.configuration).ssoToken(token_request, options)(this.fetch, this.basePath);
     };
     return SsoApi;
 }(BaseAPI));
@@ -24218,7 +24218,7 @@ var StorefrontApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         addToLibrary: function (add_library_request, options) {
-            var localVarFetchArgs = exports.StorefrontApiFetchParamCreator(configuration).addToLibrary(add_library_request, options);
+            var localVarFetchArgs = (0, exports.StorefrontApiFetchParamCreator)(configuration).addToLibrary(add_library_request, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -24240,7 +24240,7 @@ var StorefrontApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         applyToStoreFront: function (apply_library_request, options) {
-            var localVarFetchArgs = exports.StorefrontApiFetchParamCreator(configuration).applyToStoreFront(apply_library_request, options);
+            var localVarFetchArgs = (0, exports.StorefrontApiFetchParamCreator)(configuration).applyToStoreFront(apply_library_request, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -24263,7 +24263,7 @@ var StorefrontApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         archiveEmailList: function (storefront_oid, email_list_uuid, options) {
-            var localVarFetchArgs = exports.StorefrontApiFetchParamCreator(configuration).archiveEmailList(storefront_oid, email_list_uuid, options);
+            var localVarFetchArgs = (0, exports.StorefrontApiFetchParamCreator)(configuration).archiveEmailList(storefront_oid, email_list_uuid, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -24286,7 +24286,7 @@ var StorefrontApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         archiveEmailSegment: function (storefront_oid, email_segment_uuid, options) {
-            var localVarFetchArgs = exports.StorefrontApiFetchParamCreator(configuration).archiveEmailSegment(storefront_oid, email_segment_uuid, options);
+            var localVarFetchArgs = (0, exports.StorefrontApiFetchParamCreator)(configuration).archiveEmailSegment(storefront_oid, email_segment_uuid, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -24310,7 +24310,7 @@ var StorefrontApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         backPopulateEmailFlow: function (storefront_oid, email_flow_uuid, back_populate_request, options) {
-            var localVarFetchArgs = exports.StorefrontApiFetchParamCreator(configuration).backPopulateEmailFlow(storefront_oid, email_flow_uuid, back_populate_request, options);
+            var localVarFetchArgs = (0, exports.StorefrontApiFetchParamCreator)(configuration).backPopulateEmailFlow(storefront_oid, email_flow_uuid, back_populate_request, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -24334,7 +24334,7 @@ var StorefrontApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         checkDownloadEmailSegment: function (storefront_oid, email_segment_uuid, email_segment_rebuild_uuid, options) {
-            var localVarFetchArgs = exports.StorefrontApiFetchParamCreator(configuration).checkDownloadEmailSegment(storefront_oid, email_segment_uuid, email_segment_rebuild_uuid, options);
+            var localVarFetchArgs = (0, exports.StorefrontApiFetchParamCreator)(configuration).checkDownloadEmailSegment(storefront_oid, email_segment_uuid, email_segment_rebuild_uuid, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -24358,7 +24358,7 @@ var StorefrontApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         cloneEmailCampaign: function (storefront_oid, email_campaign_uuid, target_storefront_oid, options) {
-            var localVarFetchArgs = exports.StorefrontApiFetchParamCreator(configuration).cloneEmailCampaign(storefront_oid, email_campaign_uuid, target_storefront_oid, options);
+            var localVarFetchArgs = (0, exports.StorefrontApiFetchParamCreator)(configuration).cloneEmailCampaign(storefront_oid, email_campaign_uuid, target_storefront_oid, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -24382,7 +24382,7 @@ var StorefrontApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         cloneEmailFlow: function (storefront_oid, email_flow_uuid, target_storefront_oid, options) {
-            var localVarFetchArgs = exports.StorefrontApiFetchParamCreator(configuration).cloneEmailFlow(storefront_oid, email_flow_uuid, target_storefront_oid, options);
+            var localVarFetchArgs = (0, exports.StorefrontApiFetchParamCreator)(configuration).cloneEmailFlow(storefront_oid, email_flow_uuid, target_storefront_oid, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -24404,7 +24404,7 @@ var StorefrontApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         createEmailSendingDomain: function (domain, options) {
-            var localVarFetchArgs = exports.StorefrontApiFetchParamCreator(configuration).createEmailSendingDomain(domain, options);
+            var localVarFetchArgs = (0, exports.StorefrontApiFetchParamCreator)(configuration).createEmailSendingDomain(domain, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -24427,7 +24427,7 @@ var StorefrontApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         deleteEmailCampaignFolder: function (storefront_oid, email_campaign_folder_uuid, options) {
-            var localVarFetchArgs = exports.StorefrontApiFetchParamCreator(configuration).deleteEmailCampaignFolder(storefront_oid, email_campaign_folder_uuid, options);
+            var localVarFetchArgs = (0, exports.StorefrontApiFetchParamCreator)(configuration).deleteEmailCampaignFolder(storefront_oid, email_campaign_folder_uuid, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -24450,7 +24450,7 @@ var StorefrontApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         deleteEmailCommseqStat: function (storefront_oid, commseq_uuid, options) {
-            var localVarFetchArgs = exports.StorefrontApiFetchParamCreator(configuration).deleteEmailCommseqStat(storefront_oid, commseq_uuid, options);
+            var localVarFetchArgs = (0, exports.StorefrontApiFetchParamCreator)(configuration).deleteEmailCommseqStat(storefront_oid, commseq_uuid, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -24473,7 +24473,7 @@ var StorefrontApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         deleteEmailEmail: function (storefront_oid, commseq_email_uuid, options) {
-            var localVarFetchArgs = exports.StorefrontApiFetchParamCreator(configuration).deleteEmailEmail(storefront_oid, commseq_email_uuid, options);
+            var localVarFetchArgs = (0, exports.StorefrontApiFetchParamCreator)(configuration).deleteEmailEmail(storefront_oid, commseq_email_uuid, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -24496,7 +24496,7 @@ var StorefrontApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         deleteEmailFlowFolder: function (storefront_oid, email_flow_folder_uuid, options) {
-            var localVarFetchArgs = exports.StorefrontApiFetchParamCreator(configuration).deleteEmailFlowFolder(storefront_oid, email_flow_folder_uuid, options);
+            var localVarFetchArgs = (0, exports.StorefrontApiFetchParamCreator)(configuration).deleteEmailFlowFolder(storefront_oid, email_flow_folder_uuid, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -24520,7 +24520,7 @@ var StorefrontApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         deleteEmailListCustomer: function (storefront_oid, email_list_uuid, email_customer_uuid, options) {
-            var localVarFetchArgs = exports.StorefrontApiFetchParamCreator(configuration).deleteEmailListCustomer(storefront_oid, email_list_uuid, email_customer_uuid, options);
+            var localVarFetchArgs = (0, exports.StorefrontApiFetchParamCreator)(configuration).deleteEmailListCustomer(storefront_oid, email_list_uuid, email_customer_uuid, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -24543,7 +24543,7 @@ var StorefrontApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         deleteEmailListSegmentFolder: function (storefront_oid, email_list_segment_folder_uuid, options) {
-            var localVarFetchArgs = exports.StorefrontApiFetchParamCreator(configuration).deleteEmailListSegmentFolder(storefront_oid, email_list_segment_folder_uuid, options);
+            var localVarFetchArgs = (0, exports.StorefrontApiFetchParamCreator)(configuration).deleteEmailListSegmentFolder(storefront_oid, email_list_segment_folder_uuid, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -24566,7 +24566,7 @@ var StorefrontApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         deleteEmailPostcard: function (storefront_oid, commseq_postcard_uuid, options) {
-            var localVarFetchArgs = exports.StorefrontApiFetchParamCreator(configuration).deleteEmailPostcard(storefront_oid, commseq_postcard_uuid, options);
+            var localVarFetchArgs = (0, exports.StorefrontApiFetchParamCreator)(configuration).deleteEmailPostcard(storefront_oid, commseq_postcard_uuid, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -24588,7 +24588,7 @@ var StorefrontApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         deleteEmailSendingDomain: function (domain, options) {
-            var localVarFetchArgs = exports.StorefrontApiFetchParamCreator(configuration).deleteEmailSendingDomain(domain, options);
+            var localVarFetchArgs = (0, exports.StorefrontApiFetchParamCreator)(configuration).deleteEmailSendingDomain(domain, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -24611,7 +24611,7 @@ var StorefrontApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         deleteExperiment: function (storefront_oid, storefront_experiment_oid, options) {
-            var localVarFetchArgs = exports.StorefrontApiFetchParamCreator(configuration).deleteExperiment(storefront_oid, storefront_experiment_oid, options);
+            var localVarFetchArgs = (0, exports.StorefrontApiFetchParamCreator)(configuration).deleteExperiment(storefront_oid, storefront_experiment_oid, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -24634,7 +24634,7 @@ var StorefrontApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         deleteHeatmap: function (storefront_oid, query, options) {
-            var localVarFetchArgs = exports.StorefrontApiFetchParamCreator(configuration).deleteHeatmap(storefront_oid, query, options);
+            var localVarFetchArgs = (0, exports.StorefrontApiFetchParamCreator)(configuration).deleteHeatmap(storefront_oid, query, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -24656,7 +24656,7 @@ var StorefrontApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         deleteLibraryItem: function (library_item_oid, options) {
-            var localVarFetchArgs = exports.StorefrontApiFetchParamCreator(configuration).deleteLibraryItem(library_item_oid, options);
+            var localVarFetchArgs = (0, exports.StorefrontApiFetchParamCreator)(configuration).deleteLibraryItem(library_item_oid, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -24678,7 +24678,7 @@ var StorefrontApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         deleteLibraryItemPublishedVersions: function (library_item_oid, options) {
-            var localVarFetchArgs = exports.StorefrontApiFetchParamCreator(configuration).deleteLibraryItemPublishedVersions(library_item_oid, options);
+            var localVarFetchArgs = (0, exports.StorefrontApiFetchParamCreator)(configuration).deleteLibraryItemPublishedVersions(library_item_oid, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -24701,7 +24701,7 @@ var StorefrontApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         deleteScreenRecordingSegment: function (storefront_oid, screen_recording_segment_oid, options) {
-            var localVarFetchArgs = exports.StorefrontApiFetchParamCreator(configuration).deleteScreenRecordingSegment(storefront_oid, screen_recording_segment_oid, options);
+            var localVarFetchArgs = (0, exports.StorefrontApiFetchParamCreator)(configuration).deleteScreenRecordingSegment(storefront_oid, screen_recording_segment_oid, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -24723,7 +24723,7 @@ var StorefrontApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         duplicateLibraryItem: function (library_item_oid, options) {
-            var localVarFetchArgs = exports.StorefrontApiFetchParamCreator(configuration).duplicateLibraryItem(library_item_oid, options);
+            var localVarFetchArgs = (0, exports.StorefrontApiFetchParamCreator)(configuration).duplicateLibraryItem(library_item_oid, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -24746,7 +24746,7 @@ var StorefrontApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         favoriteScreenRecording: function (storefront_oid, screen_recording_uuid, options) {
-            var localVarFetchArgs = exports.StorefrontApiFetchParamCreator(configuration).favoriteScreenRecording(storefront_oid, screen_recording_uuid, options);
+            var localVarFetchArgs = (0, exports.StorefrontApiFetchParamCreator)(configuration).favoriteScreenRecording(storefront_oid, screen_recording_uuid, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -24769,7 +24769,7 @@ var StorefrontApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         geocodeAddress: function (storefront_oid, geocode_request, options) {
-            var localVarFetchArgs = exports.StorefrontApiFetchParamCreator(configuration).geocodeAddress(storefront_oid, geocode_request, options);
+            var localVarFetchArgs = (0, exports.StorefrontApiFetchParamCreator)(configuration).geocodeAddress(storefront_oid, geocode_request, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -24791,7 +24791,7 @@ var StorefrontApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         getCountries: function (storefront_oid, options) {
-            var localVarFetchArgs = exports.StorefrontApiFetchParamCreator(configuration).getCountries(storefront_oid, options);
+            var localVarFetchArgs = (0, exports.StorefrontApiFetchParamCreator)(configuration).getCountries(storefront_oid, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -24813,7 +24813,7 @@ var StorefrontApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         getEditorToken: function (storefront_oid, options) {
-            var localVarFetchArgs = exports.StorefrontApiFetchParamCreator(configuration).getEditorToken(storefront_oid, options);
+            var localVarFetchArgs = (0, exports.StorefrontApiFetchParamCreator)(configuration).getEditorToken(storefront_oid, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -24835,7 +24835,7 @@ var StorefrontApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         getEmailBaseTemplates: function (storefront_oid, options) {
-            var localVarFetchArgs = exports.StorefrontApiFetchParamCreator(configuration).getEmailBaseTemplates(storefront_oid, options);
+            var localVarFetchArgs = (0, exports.StorefrontApiFetchParamCreator)(configuration).getEmailBaseTemplates(storefront_oid, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -24858,7 +24858,7 @@ var StorefrontApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         getEmailCampaign: function (storefront_oid, email_campaign_uuid, options) {
-            var localVarFetchArgs = exports.StorefrontApiFetchParamCreator(configuration).getEmailCampaign(storefront_oid, email_campaign_uuid, options);
+            var localVarFetchArgs = (0, exports.StorefrontApiFetchParamCreator)(configuration).getEmailCampaign(storefront_oid, email_campaign_uuid, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -24881,7 +24881,7 @@ var StorefrontApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         getEmailCampaignFolder: function (storefront_oid, email_campaign_folder_uuid, options) {
-            var localVarFetchArgs = exports.StorefrontApiFetchParamCreator(configuration).getEmailCampaignFolder(storefront_oid, email_campaign_folder_uuid, options);
+            var localVarFetchArgs = (0, exports.StorefrontApiFetchParamCreator)(configuration).getEmailCampaignFolder(storefront_oid, email_campaign_folder_uuid, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -24903,7 +24903,7 @@ var StorefrontApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         getEmailCampaignFolders: function (storefront_oid, options) {
-            var localVarFetchArgs = exports.StorefrontApiFetchParamCreator(configuration).getEmailCampaignFolders(storefront_oid, options);
+            var localVarFetchArgs = (0, exports.StorefrontApiFetchParamCreator)(configuration).getEmailCampaignFolders(storefront_oid, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -24926,7 +24926,7 @@ var StorefrontApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         getEmailCampaignScreenshots: function (storefront_oid, email_campaign_uuid, options) {
-            var localVarFetchArgs = exports.StorefrontApiFetchParamCreator(configuration).getEmailCampaignScreenshots(storefront_oid, email_campaign_uuid, options);
+            var localVarFetchArgs = (0, exports.StorefrontApiFetchParamCreator)(configuration).getEmailCampaignScreenshots(storefront_oid, email_campaign_uuid, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -24948,7 +24948,7 @@ var StorefrontApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         getEmailCampaigns: function (storefront_oid, options) {
-            var localVarFetchArgs = exports.StorefrontApiFetchParamCreator(configuration).getEmailCampaigns(storefront_oid, options);
+            var localVarFetchArgs = (0, exports.StorefrontApiFetchParamCreator)(configuration).getEmailCampaigns(storefront_oid, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -24971,7 +24971,7 @@ var StorefrontApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         getEmailCampaignsWithStats: function (storefront_oid, stat_days, options) {
-            var localVarFetchArgs = exports.StorefrontApiFetchParamCreator(configuration).getEmailCampaignsWithStats(storefront_oid, stat_days, options);
+            var localVarFetchArgs = (0, exports.StorefrontApiFetchParamCreator)(configuration).getEmailCampaignsWithStats(storefront_oid, stat_days, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -24994,7 +24994,7 @@ var StorefrontApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         getEmailCommseq: function (storefront_oid, commseq_uuid, options) {
-            var localVarFetchArgs = exports.StorefrontApiFetchParamCreator(configuration).getEmailCommseq(storefront_oid, commseq_uuid, options);
+            var localVarFetchArgs = (0, exports.StorefrontApiFetchParamCreator)(configuration).getEmailCommseq(storefront_oid, commseq_uuid, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -25018,7 +25018,7 @@ var StorefrontApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         getEmailCommseqEmailStats: function (storefront_oid, commseq_uuid, statsRequest, options) {
-            var localVarFetchArgs = exports.StorefrontApiFetchParamCreator(configuration).getEmailCommseqEmailStats(storefront_oid, commseq_uuid, statsRequest, options);
+            var localVarFetchArgs = (0, exports.StorefrontApiFetchParamCreator)(configuration).getEmailCommseqEmailStats(storefront_oid, commseq_uuid, statsRequest, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -25042,7 +25042,7 @@ var StorefrontApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         getEmailCommseqPostcardStats: function (storefront_oid, commseq_uuid, statsRequest, options) {
-            var localVarFetchArgs = exports.StorefrontApiFetchParamCreator(configuration).getEmailCommseqPostcardStats(storefront_oid, commseq_uuid, statsRequest, options);
+            var localVarFetchArgs = (0, exports.StorefrontApiFetchParamCreator)(configuration).getEmailCommseqPostcardStats(storefront_oid, commseq_uuid, statsRequest, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -25065,7 +25065,7 @@ var StorefrontApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         getEmailCommseqStatOverall: function (storefront_oid, commseq_uuid, options) {
-            var localVarFetchArgs = exports.StorefrontApiFetchParamCreator(configuration).getEmailCommseqStatOverall(storefront_oid, commseq_uuid, options);
+            var localVarFetchArgs = (0, exports.StorefrontApiFetchParamCreator)(configuration).getEmailCommseqStatOverall(storefront_oid, commseq_uuid, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -25089,7 +25089,7 @@ var StorefrontApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         getEmailCommseqStepStats: function (storefront_oid, commseq_uuid, statsRequest, options) {
-            var localVarFetchArgs = exports.StorefrontApiFetchParamCreator(configuration).getEmailCommseqStepStats(storefront_oid, commseq_uuid, statsRequest, options);
+            var localVarFetchArgs = (0, exports.StorefrontApiFetchParamCreator)(configuration).getEmailCommseqStepStats(storefront_oid, commseq_uuid, statsRequest, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -25113,7 +25113,7 @@ var StorefrontApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         getEmailCommseqStepWaiting: function (storefront_oid, commseq_uuid, waitingRequest, options) {
-            var localVarFetchArgs = exports.StorefrontApiFetchParamCreator(configuration).getEmailCommseqStepWaiting(storefront_oid, commseq_uuid, waitingRequest, options);
+            var localVarFetchArgs = (0, exports.StorefrontApiFetchParamCreator)(configuration).getEmailCommseqStepWaiting(storefront_oid, commseq_uuid, waitingRequest, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -25136,7 +25136,7 @@ var StorefrontApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         getEmailCommseqWebhookEditorValues: function (storefront_oid, commseq_uuid, options) {
-            var localVarFetchArgs = exports.StorefrontApiFetchParamCreator(configuration).getEmailCommseqWebhookEditorValues(storefront_oid, commseq_uuid, options);
+            var localVarFetchArgs = (0, exports.StorefrontApiFetchParamCreator)(configuration).getEmailCommseqWebhookEditorValues(storefront_oid, commseq_uuid, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -25158,7 +25158,7 @@ var StorefrontApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         getEmailCommseqs: function (storefront_oid, options) {
-            var localVarFetchArgs = exports.StorefrontApiFetchParamCreator(configuration).getEmailCommseqs(storefront_oid, options);
+            var localVarFetchArgs = (0, exports.StorefrontApiFetchParamCreator)(configuration).getEmailCommseqs(storefront_oid, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -25181,7 +25181,7 @@ var StorefrontApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         getEmailCustomerEditorUrl: function (storefront_oid, email_customer_uuid, options) {
-            var localVarFetchArgs = exports.StorefrontApiFetchParamCreator(configuration).getEmailCustomerEditorUrl(storefront_oid, email_customer_uuid, options);
+            var localVarFetchArgs = (0, exports.StorefrontApiFetchParamCreator)(configuration).getEmailCustomerEditorUrl(storefront_oid, email_customer_uuid, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -25206,7 +25206,7 @@ var StorefrontApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         getEmailCustomers: function (storefront_oid, pageNumber, pageSize, searchEmailPrefix, options) {
-            var localVarFetchArgs = exports.StorefrontApiFetchParamCreator(configuration).getEmailCustomers(storefront_oid, pageNumber, pageSize, searchEmailPrefix, options);
+            var localVarFetchArgs = (0, exports.StorefrontApiFetchParamCreator)(configuration).getEmailCustomers(storefront_oid, pageNumber, pageSize, searchEmailPrefix, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -25229,7 +25229,7 @@ var StorefrontApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         getEmailDashboardActivity: function (storefront_oid, last_records, options) {
-            var localVarFetchArgs = exports.StorefrontApiFetchParamCreator(configuration).getEmailDashboardActivity(storefront_oid, last_records, options);
+            var localVarFetchArgs = (0, exports.StorefrontApiFetchParamCreator)(configuration).getEmailDashboardActivity(storefront_oid, last_records, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -25252,7 +25252,7 @@ var StorefrontApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         getEmailDashboardStats: function (storefront_oid, days, options) {
-            var localVarFetchArgs = exports.StorefrontApiFetchParamCreator(configuration).getEmailDashboardStats(storefront_oid, days, options);
+            var localVarFetchArgs = (0, exports.StorefrontApiFetchParamCreator)(configuration).getEmailDashboardStats(storefront_oid, days, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -25276,7 +25276,7 @@ var StorefrontApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         getEmailDispatchLogs: function (storefront_oid, commseq_uuid, commseq_step_uuid, options) {
-            var localVarFetchArgs = exports.StorefrontApiFetchParamCreator(configuration).getEmailDispatchLogs(storefront_oid, commseq_uuid, commseq_step_uuid, options);
+            var localVarFetchArgs = (0, exports.StorefrontApiFetchParamCreator)(configuration).getEmailDispatchLogs(storefront_oid, commseq_uuid, commseq_step_uuid, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -25299,7 +25299,7 @@ var StorefrontApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         getEmailEmail: function (storefront_oid, commseq_email_uuid, options) {
-            var localVarFetchArgs = exports.StorefrontApiFetchParamCreator(configuration).getEmailEmail(storefront_oid, commseq_email_uuid, options);
+            var localVarFetchArgs = (0, exports.StorefrontApiFetchParamCreator)(configuration).getEmailEmail(storefront_oid, commseq_email_uuid, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -25325,7 +25325,7 @@ var StorefrontApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         getEmailEmailClicks: function (storefront_oid, commseq_uuid, commseq_step_uuid, commseq_email_uuid, days, options) {
-            var localVarFetchArgs = exports.StorefrontApiFetchParamCreator(configuration).getEmailEmailClicks(storefront_oid, commseq_uuid, commseq_step_uuid, commseq_email_uuid, days, options);
+            var localVarFetchArgs = (0, exports.StorefrontApiFetchParamCreator)(configuration).getEmailEmailClicks(storefront_oid, commseq_uuid, commseq_step_uuid, commseq_email_uuid, days, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -25349,7 +25349,7 @@ var StorefrontApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         getEmailEmailCustomerEditorUrl: function (storefront_oid, commseq_email_uuid, order_id, options) {
-            var localVarFetchArgs = exports.StorefrontApiFetchParamCreator(configuration).getEmailEmailCustomerEditorUrl(storefront_oid, commseq_email_uuid, order_id, options);
+            var localVarFetchArgs = (0, exports.StorefrontApiFetchParamCreator)(configuration).getEmailEmailCustomerEditorUrl(storefront_oid, commseq_email_uuid, order_id, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -25375,7 +25375,7 @@ var StorefrontApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         getEmailEmailOrders: function (storefront_oid, commseq_uuid, commseq_step_uuid, commseq_email_uuid, days, options) {
-            var localVarFetchArgs = exports.StorefrontApiFetchParamCreator(configuration).getEmailEmailOrders(storefront_oid, commseq_uuid, commseq_step_uuid, commseq_email_uuid, days, options);
+            var localVarFetchArgs = (0, exports.StorefrontApiFetchParamCreator)(configuration).getEmailEmailOrders(storefront_oid, commseq_uuid, commseq_step_uuid, commseq_email_uuid, days, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -25397,7 +25397,7 @@ var StorefrontApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         getEmailEmails: function (storefront_oid, options) {
-            var localVarFetchArgs = exports.StorefrontApiFetchParamCreator(configuration).getEmailEmails(storefront_oid, options);
+            var localVarFetchArgs = (0, exports.StorefrontApiFetchParamCreator)(configuration).getEmailEmails(storefront_oid, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -25420,7 +25420,7 @@ var StorefrontApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         getEmailEmailsMultiple: function (storefront_oid, email_commseq_emails_request, options) {
-            var localVarFetchArgs = exports.StorefrontApiFetchParamCreator(configuration).getEmailEmailsMultiple(storefront_oid, email_commseq_emails_request, options);
+            var localVarFetchArgs = (0, exports.StorefrontApiFetchParamCreator)(configuration).getEmailEmailsMultiple(storefront_oid, email_commseq_emails_request, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -25443,7 +25443,7 @@ var StorefrontApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         getEmailFlow: function (storefront_oid, email_flow_uuid, options) {
-            var localVarFetchArgs = exports.StorefrontApiFetchParamCreator(configuration).getEmailFlow(storefront_oid, email_flow_uuid, options);
+            var localVarFetchArgs = (0, exports.StorefrontApiFetchParamCreator)(configuration).getEmailFlow(storefront_oid, email_flow_uuid, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -25466,7 +25466,7 @@ var StorefrontApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         getEmailFlowFolder: function (storefront_oid, email_flow_folder_uuid, options) {
-            var localVarFetchArgs = exports.StorefrontApiFetchParamCreator(configuration).getEmailFlowFolder(storefront_oid, email_flow_folder_uuid, options);
+            var localVarFetchArgs = (0, exports.StorefrontApiFetchParamCreator)(configuration).getEmailFlowFolder(storefront_oid, email_flow_folder_uuid, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -25488,7 +25488,7 @@ var StorefrontApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         getEmailFlowFolders: function (storefront_oid, options) {
-            var localVarFetchArgs = exports.StorefrontApiFetchParamCreator(configuration).getEmailFlowFolders(storefront_oid, options);
+            var localVarFetchArgs = (0, exports.StorefrontApiFetchParamCreator)(configuration).getEmailFlowFolders(storefront_oid, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -25511,7 +25511,7 @@ var StorefrontApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         getEmailFlowScreenshots: function (storefront_oid, email_flow_uuid, options) {
-            var localVarFetchArgs = exports.StorefrontApiFetchParamCreator(configuration).getEmailFlowScreenshots(storefront_oid, email_flow_uuid, options);
+            var localVarFetchArgs = (0, exports.StorefrontApiFetchParamCreator)(configuration).getEmailFlowScreenshots(storefront_oid, email_flow_uuid, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -25533,7 +25533,7 @@ var StorefrontApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         getEmailFlows: function (storefront_oid, options) {
-            var localVarFetchArgs = exports.StorefrontApiFetchParamCreator(configuration).getEmailFlows(storefront_oid, options);
+            var localVarFetchArgs = (0, exports.StorefrontApiFetchParamCreator)(configuration).getEmailFlows(storefront_oid, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -25554,7 +25554,7 @@ var StorefrontApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         getEmailGlobalSettings: function (options) {
-            var localVarFetchArgs = exports.StorefrontApiFetchParamCreator(configuration).getEmailGlobalSettings(options);
+            var localVarFetchArgs = (0, exports.StorefrontApiFetchParamCreator)(configuration).getEmailGlobalSettings(options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -25577,7 +25577,7 @@ var StorefrontApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         getEmailList: function (storefront_oid, email_list_uuid, options) {
-            var localVarFetchArgs = exports.StorefrontApiFetchParamCreator(configuration).getEmailList(storefront_oid, email_list_uuid, options);
+            var localVarFetchArgs = (0, exports.StorefrontApiFetchParamCreator)(configuration).getEmailList(storefront_oid, email_list_uuid, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -25601,7 +25601,7 @@ var StorefrontApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         getEmailListCustomerEditorUrl: function (storefront_oid, email_list_uuid, email_customer_uuid, options) {
-            var localVarFetchArgs = exports.StorefrontApiFetchParamCreator(configuration).getEmailListCustomerEditorUrl(storefront_oid, email_list_uuid, email_customer_uuid, options);
+            var localVarFetchArgs = (0, exports.StorefrontApiFetchParamCreator)(configuration).getEmailListCustomerEditorUrl(storefront_oid, email_list_uuid, email_customer_uuid, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -25626,7 +25626,7 @@ var StorefrontApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         getEmailListCustomers: function (storefront_oid, email_list_uuid, pageNumber, pageSize, options) {
-            var localVarFetchArgs = exports.StorefrontApiFetchParamCreator(configuration).getEmailListCustomers(storefront_oid, email_list_uuid, pageNumber, pageSize, options);
+            var localVarFetchArgs = (0, exports.StorefrontApiFetchParamCreator)(configuration).getEmailListCustomers(storefront_oid, email_list_uuid, pageNumber, pageSize, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -25649,7 +25649,7 @@ var StorefrontApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         getEmailListSegmentFolder: function (storefront_oid, email_list_segment_folder_uuid, options) {
-            var localVarFetchArgs = exports.StorefrontApiFetchParamCreator(configuration).getEmailListSegmentFolder(storefront_oid, email_list_segment_folder_uuid, options);
+            var localVarFetchArgs = (0, exports.StorefrontApiFetchParamCreator)(configuration).getEmailListSegmentFolder(storefront_oid, email_list_segment_folder_uuid, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -25671,7 +25671,7 @@ var StorefrontApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         getEmailListSegmentFolders: function (storefront_oid, options) {
-            var localVarFetchArgs = exports.StorefrontApiFetchParamCreator(configuration).getEmailListSegmentFolders(storefront_oid, options);
+            var localVarFetchArgs = (0, exports.StorefrontApiFetchParamCreator)(configuration).getEmailListSegmentFolders(storefront_oid, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -25693,7 +25693,7 @@ var StorefrontApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         getEmailLists: function (storefront_oid, options) {
-            var localVarFetchArgs = exports.StorefrontApiFetchParamCreator(configuration).getEmailLists(storefront_oid, options);
+            var localVarFetchArgs = (0, exports.StorefrontApiFetchParamCreator)(configuration).getEmailLists(storefront_oid, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -25715,7 +25715,7 @@ var StorefrontApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         getEmailPerformance: function (storefront_oid, options) {
-            var localVarFetchArgs = exports.StorefrontApiFetchParamCreator(configuration).getEmailPerformance(storefront_oid, options);
+            var localVarFetchArgs = (0, exports.StorefrontApiFetchParamCreator)(configuration).getEmailPerformance(storefront_oid, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -25737,7 +25737,7 @@ var StorefrontApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         getEmailPlan: function (storefront_oid, options) {
-            var localVarFetchArgs = exports.StorefrontApiFetchParamCreator(configuration).getEmailPlan(storefront_oid, options);
+            var localVarFetchArgs = (0, exports.StorefrontApiFetchParamCreator)(configuration).getEmailPlan(storefront_oid, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -25760,7 +25760,7 @@ var StorefrontApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         getEmailPostcard: function (storefront_oid, commseq_postcard_uuid, options) {
-            var localVarFetchArgs = exports.StorefrontApiFetchParamCreator(configuration).getEmailPostcard(storefront_oid, commseq_postcard_uuid, options);
+            var localVarFetchArgs = (0, exports.StorefrontApiFetchParamCreator)(configuration).getEmailPostcard(storefront_oid, commseq_postcard_uuid, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -25782,7 +25782,7 @@ var StorefrontApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         getEmailPostcards: function (storefront_oid, options) {
-            var localVarFetchArgs = exports.StorefrontApiFetchParamCreator(configuration).getEmailPostcards(storefront_oid, options);
+            var localVarFetchArgs = (0, exports.StorefrontApiFetchParamCreator)(configuration).getEmailPostcards(storefront_oid, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -25805,7 +25805,7 @@ var StorefrontApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         getEmailPostcardsMultiple: function (storefront_oid, email_commseq_postcards_request, options) {
-            var localVarFetchArgs = exports.StorefrontApiFetchParamCreator(configuration).getEmailPostcardsMultiple(storefront_oid, email_commseq_postcards_request, options);
+            var localVarFetchArgs = (0, exports.StorefrontApiFetchParamCreator)(configuration).getEmailPostcardsMultiple(storefront_oid, email_commseq_postcards_request, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -25828,7 +25828,7 @@ var StorefrontApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         getEmailSegment: function (storefront_oid, email_segment_uuid, options) {
-            var localVarFetchArgs = exports.StorefrontApiFetchParamCreator(configuration).getEmailSegment(storefront_oid, email_segment_uuid, options);
+            var localVarFetchArgs = (0, exports.StorefrontApiFetchParamCreator)(configuration).getEmailSegment(storefront_oid, email_segment_uuid, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -25852,7 +25852,7 @@ var StorefrontApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         getEmailSegmentCustomerEditorUrl: function (storefront_oid, email_segment_uuid, email_customer_uuid, options) {
-            var localVarFetchArgs = exports.StorefrontApiFetchParamCreator(configuration).getEmailSegmentCustomerEditorUrl(storefront_oid, email_segment_uuid, email_customer_uuid, options);
+            var localVarFetchArgs = (0, exports.StorefrontApiFetchParamCreator)(configuration).getEmailSegmentCustomerEditorUrl(storefront_oid, email_segment_uuid, email_customer_uuid, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -25877,7 +25877,7 @@ var StorefrontApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         getEmailSegmentCustomers: function (storefront_oid, email_segment_uuid, pageNumber, pageSize, options) {
-            var localVarFetchArgs = exports.StorefrontApiFetchParamCreator(configuration).getEmailSegmentCustomers(storefront_oid, email_segment_uuid, pageNumber, pageSize, options);
+            var localVarFetchArgs = (0, exports.StorefrontApiFetchParamCreator)(configuration).getEmailSegmentCustomers(storefront_oid, email_segment_uuid, pageNumber, pageSize, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -25899,7 +25899,7 @@ var StorefrontApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         getEmailSegments: function (storefront_oid, options) {
-            var localVarFetchArgs = exports.StorefrontApiFetchParamCreator(configuration).getEmailSegments(storefront_oid, options);
+            var localVarFetchArgs = (0, exports.StorefrontApiFetchParamCreator)(configuration).getEmailSegments(storefront_oid, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -25921,7 +25921,7 @@ var StorefrontApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         getEmailSendingDomain: function (domain, options) {
-            var localVarFetchArgs = exports.StorefrontApiFetchParamCreator(configuration).getEmailSendingDomain(domain, options);
+            var localVarFetchArgs = (0, exports.StorefrontApiFetchParamCreator)(configuration).getEmailSendingDomain(domain, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -25943,7 +25943,7 @@ var StorefrontApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         getEmailSendingDomainStatus: function (domain, options) {
-            var localVarFetchArgs = exports.StorefrontApiFetchParamCreator(configuration).getEmailSendingDomainStatus(domain, options);
+            var localVarFetchArgs = (0, exports.StorefrontApiFetchParamCreator)(configuration).getEmailSendingDomainStatus(domain, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -25964,7 +25964,7 @@ var StorefrontApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         getEmailSendingDomains: function (options) {
-            var localVarFetchArgs = exports.StorefrontApiFetchParamCreator(configuration).getEmailSendingDomains(options);
+            var localVarFetchArgs = (0, exports.StorefrontApiFetchParamCreator)(configuration).getEmailSendingDomains(options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -25986,7 +25986,7 @@ var StorefrontApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         getEmailSettings: function (storefront_oid, options) {
-            var localVarFetchArgs = exports.StorefrontApiFetchParamCreator(configuration).getEmailSettings(storefront_oid, options);
+            var localVarFetchArgs = (0, exports.StorefrontApiFetchParamCreator)(configuration).getEmailSettings(storefront_oid, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -26009,7 +26009,7 @@ var StorefrontApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         getEmailTemplate: function (storefront_oid, email_template_oid, options) {
-            var localVarFetchArgs = exports.StorefrontApiFetchParamCreator(configuration).getEmailTemplate(storefront_oid, email_template_oid, options);
+            var localVarFetchArgs = (0, exports.StorefrontApiFetchParamCreator)(configuration).getEmailTemplate(storefront_oid, email_template_oid, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -26032,7 +26032,7 @@ var StorefrontApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         getEmailTemplates: function (storefront_oid, trigger_type, options) {
-            var localVarFetchArgs = exports.StorefrontApiFetchParamCreator(configuration).getEmailTemplates(storefront_oid, trigger_type, options);
+            var localVarFetchArgs = (0, exports.StorefrontApiFetchParamCreator)(configuration).getEmailTemplates(storefront_oid, trigger_type, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -26054,7 +26054,7 @@ var StorefrontApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         getEmailThirdPartyProviders: function (storefront_oid, options) {
-            var localVarFetchArgs = exports.StorefrontApiFetchParamCreator(configuration).getEmailThirdPartyProviders(storefront_oid, options);
+            var localVarFetchArgs = (0, exports.StorefrontApiFetchParamCreator)(configuration).getEmailThirdPartyProviders(storefront_oid, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -26076,7 +26076,7 @@ var StorefrontApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         getExperiments: function (storefront_oid, options) {
-            var localVarFetchArgs = exports.StorefrontApiFetchParamCreator(configuration).getExperiments(storefront_oid, options);
+            var localVarFetchArgs = (0, exports.StorefrontApiFetchParamCreator)(configuration).getExperiments(storefront_oid, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -26099,7 +26099,7 @@ var StorefrontApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         getHeatmap: function (storefront_oid, query, options) {
-            var localVarFetchArgs = exports.StorefrontApiFetchParamCreator(configuration).getHeatmap(storefront_oid, query, options);
+            var localVarFetchArgs = (0, exports.StorefrontApiFetchParamCreator)(configuration).getHeatmap(storefront_oid, query, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -26125,7 +26125,7 @@ var StorefrontApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         getHeatmapIndex: function (storefront_oid, query, _limit, _offset, _sort, options) {
-            var localVarFetchArgs = exports.StorefrontApiFetchParamCreator(configuration).getHeatmapIndex(storefront_oid, query, _limit, _offset, _sort, options);
+            var localVarFetchArgs = (0, exports.StorefrontApiFetchParamCreator)(configuration).getHeatmapIndex(storefront_oid, query, _limit, _offset, _sort, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -26148,7 +26148,7 @@ var StorefrontApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         getHistogramPropertyNames: function (storefront_oid, property_type, options) {
-            var localVarFetchArgs = exports.StorefrontApiFetchParamCreator(configuration).getHistogramPropertyNames(storefront_oid, property_type, options);
+            var localVarFetchArgs = (0, exports.StorefrontApiFetchParamCreator)(configuration).getHistogramPropertyNames(storefront_oid, property_type, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -26173,7 +26173,7 @@ var StorefrontApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         getHistogramPropertyValues: function (storefront_oid, property_name, property_type, limit, options) {
-            var localVarFetchArgs = exports.StorefrontApiFetchParamCreator(configuration).getHistogramPropertyValues(storefront_oid, property_name, property_type, limit, options);
+            var localVarFetchArgs = (0, exports.StorefrontApiFetchParamCreator)(configuration).getHistogramPropertyValues(storefront_oid, property_name, property_type, limit, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -26194,7 +26194,7 @@ var StorefrontApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         getLibraryFilterValues: function (options) {
-            var localVarFetchArgs = exports.StorefrontApiFetchParamCreator(configuration).getLibraryFilterValues(options);
+            var localVarFetchArgs = (0, exports.StorefrontApiFetchParamCreator)(configuration).getLibraryFilterValues(options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -26216,7 +26216,7 @@ var StorefrontApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         getLibraryItem: function (library_item_oid, options) {
-            var localVarFetchArgs = exports.StorefrontApiFetchParamCreator(configuration).getLibraryItem(library_item_oid, options);
+            var localVarFetchArgs = (0, exports.StorefrontApiFetchParamCreator)(configuration).getLibraryItem(library_item_oid, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -26238,7 +26238,7 @@ var StorefrontApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         getLibraryItemPublishedVersions: function (library_item_oid, options) {
-            var localVarFetchArgs = exports.StorefrontApiFetchParamCreator(configuration).getLibraryItemPublishedVersions(library_item_oid, options);
+            var localVarFetchArgs = (0, exports.StorefrontApiFetchParamCreator)(configuration).getLibraryItemPublishedVersions(library_item_oid, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -26261,7 +26261,7 @@ var StorefrontApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         getScreenRecording: function (storefront_oid, screen_recording_uuid, options) {
-            var localVarFetchArgs = exports.StorefrontApiFetchParamCreator(configuration).getScreenRecording(storefront_oid, screen_recording_uuid, options);
+            var localVarFetchArgs = (0, exports.StorefrontApiFetchParamCreator)(configuration).getScreenRecording(storefront_oid, screen_recording_uuid, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -26285,7 +26285,7 @@ var StorefrontApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         getScreenRecordingPageViewData: function (storefront_oid, screen_recording_uuid, screen_recording_page_view_uuid, options) {
-            var localVarFetchArgs = exports.StorefrontApiFetchParamCreator(configuration).getScreenRecordingPageViewData(storefront_oid, screen_recording_uuid, screen_recording_page_view_uuid, options);
+            var localVarFetchArgs = (0, exports.StorefrontApiFetchParamCreator)(configuration).getScreenRecordingPageViewData(storefront_oid, screen_recording_uuid, screen_recording_page_view_uuid, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -26308,7 +26308,7 @@ var StorefrontApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         getScreenRecordingSegment: function (storefront_oid, screen_recording_segment_oid, options) {
-            var localVarFetchArgs = exports.StorefrontApiFetchParamCreator(configuration).getScreenRecordingSegment(storefront_oid, screen_recording_segment_oid, options);
+            var localVarFetchArgs = (0, exports.StorefrontApiFetchParamCreator)(configuration).getScreenRecordingSegment(storefront_oid, screen_recording_segment_oid, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -26330,7 +26330,7 @@ var StorefrontApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         getScreenRecordingSegments: function (storefront_oid, options) {
-            var localVarFetchArgs = exports.StorefrontApiFetchParamCreator(configuration).getScreenRecordingSegments(storefront_oid, options);
+            var localVarFetchArgs = (0, exports.StorefrontApiFetchParamCreator)(configuration).getScreenRecordingSegments(storefront_oid, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -26352,7 +26352,7 @@ var StorefrontApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         getScreenRecordingSettings: function (storefront_oid, options) {
-            var localVarFetchArgs = exports.StorefrontApiFetchParamCreator(configuration).getScreenRecordingSettings(storefront_oid, options);
+            var localVarFetchArgs = (0, exports.StorefrontApiFetchParamCreator)(configuration).getScreenRecordingSettings(storefront_oid, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -26374,7 +26374,7 @@ var StorefrontApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         getScreenRecordingTags: function (storefront_oid, options) {
-            var localVarFetchArgs = exports.StorefrontApiFetchParamCreator(configuration).getScreenRecordingTags(storefront_oid, options);
+            var localVarFetchArgs = (0, exports.StorefrontApiFetchParamCreator)(configuration).getScreenRecordingTags(storefront_oid, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -26400,7 +26400,7 @@ var StorefrontApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         getScreenRecordingsByQuery: function (storefront_oid, query, _limit, _offset, _sort, options) {
-            var localVarFetchArgs = exports.StorefrontApiFetchParamCreator(configuration).getScreenRecordingsByQuery(storefront_oid, query, _limit, _offset, _sort, options);
+            var localVarFetchArgs = (0, exports.StorefrontApiFetchParamCreator)(configuration).getScreenRecordingsByQuery(storefront_oid, query, _limit, _offset, _sort, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -26426,7 +26426,7 @@ var StorefrontApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         getScreenRecordingsBySegment: function (storefront_oid, screen_recording_segment_oid, _limit, _offset, _sort, options) {
-            var localVarFetchArgs = exports.StorefrontApiFetchParamCreator(configuration).getScreenRecordingsBySegment(storefront_oid, screen_recording_segment_oid, _limit, _offset, _sort, options);
+            var localVarFetchArgs = (0, exports.StorefrontApiFetchParamCreator)(configuration).getScreenRecordingsBySegment(storefront_oid, screen_recording_segment_oid, _limit, _offset, _sort, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -26448,7 +26448,7 @@ var StorefrontApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         getStoreFrontPricingTiers: function (_expand, options) {
-            var localVarFetchArgs = exports.StorefrontApiFetchParamCreator(configuration).getStoreFrontPricingTiers(_expand, options);
+            var localVarFetchArgs = (0, exports.StorefrontApiFetchParamCreator)(configuration).getStoreFrontPricingTiers(_expand, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -26470,7 +26470,7 @@ var StorefrontApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         getThumbnailParameters: function (thumbnail_parameters, options) {
-            var localVarFetchArgs = exports.StorefrontApiFetchParamCreator(configuration).getThumbnailParameters(thumbnail_parameters, options);
+            var localVarFetchArgs = (0, exports.StorefrontApiFetchParamCreator)(configuration).getThumbnailParameters(thumbnail_parameters, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -26493,7 +26493,7 @@ var StorefrontApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         getTransactionEmail: function (storefront_oid, email_id, options) {
-            var localVarFetchArgs = exports.StorefrontApiFetchParamCreator(configuration).getTransactionEmail(storefront_oid, email_id, options);
+            var localVarFetchArgs = (0, exports.StorefrontApiFetchParamCreator)(configuration).getTransactionEmail(storefront_oid, email_id, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -26515,7 +26515,7 @@ var StorefrontApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         getTransactionEmailList: function (storefront_oid, options) {
-            var localVarFetchArgs = exports.StorefrontApiFetchParamCreator(configuration).getTransactionEmailList(storefront_oid, options);
+            var localVarFetchArgs = (0, exports.StorefrontApiFetchParamCreator)(configuration).getTransactionEmailList(storefront_oid, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -26538,7 +26538,7 @@ var StorefrontApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         getTransactionEmailScreenshots: function (storefront_oid, email_id, options) {
-            var localVarFetchArgs = exports.StorefrontApiFetchParamCreator(configuration).getTransactionEmailScreenshots(storefront_oid, email_id, options);
+            var localVarFetchArgs = (0, exports.StorefrontApiFetchParamCreator)(configuration).getTransactionEmailScreenshots(storefront_oid, email_id, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -26561,7 +26561,7 @@ var StorefrontApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         globalUnsubscribe: function (storefront_oid, unsubscribe, options) {
-            var localVarFetchArgs = exports.StorefrontApiFetchParamCreator(configuration).globalUnsubscribe(storefront_oid, unsubscribe, options);
+            var localVarFetchArgs = (0, exports.StorefrontApiFetchParamCreator)(configuration).globalUnsubscribe(storefront_oid, unsubscribe, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -26584,7 +26584,7 @@ var StorefrontApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         importEmailThirdPartyProviderList: function (storefront_oid, import_request, options) {
-            var localVarFetchArgs = exports.StorefrontApiFetchParamCreator(configuration).importEmailThirdPartyProviderList(storefront_oid, import_request, options);
+            var localVarFetchArgs = (0, exports.StorefrontApiFetchParamCreator)(configuration).importEmailThirdPartyProviderList(storefront_oid, import_request, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -26607,7 +26607,7 @@ var StorefrontApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         insertEmailCampaign: function (storefront_oid, email_campaign, options) {
-            var localVarFetchArgs = exports.StorefrontApiFetchParamCreator(configuration).insertEmailCampaign(storefront_oid, email_campaign, options);
+            var localVarFetchArgs = (0, exports.StorefrontApiFetchParamCreator)(configuration).insertEmailCampaign(storefront_oid, email_campaign, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -26630,7 +26630,7 @@ var StorefrontApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         insertEmailCampaignFolder: function (storefront_oid, email_campaign_folder, options) {
-            var localVarFetchArgs = exports.StorefrontApiFetchParamCreator(configuration).insertEmailCampaignFolder(storefront_oid, email_campaign_folder, options);
+            var localVarFetchArgs = (0, exports.StorefrontApiFetchParamCreator)(configuration).insertEmailCampaignFolder(storefront_oid, email_campaign_folder, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -26653,7 +26653,7 @@ var StorefrontApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         insertEmailCommseq: function (storefront_oid, email_commseq, options) {
-            var localVarFetchArgs = exports.StorefrontApiFetchParamCreator(configuration).insertEmailCommseq(storefront_oid, email_commseq, options);
+            var localVarFetchArgs = (0, exports.StorefrontApiFetchParamCreator)(configuration).insertEmailCommseq(storefront_oid, email_commseq, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -26676,7 +26676,7 @@ var StorefrontApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         insertEmailEmail: function (storefront_oid, email_commseq_email, options) {
-            var localVarFetchArgs = exports.StorefrontApiFetchParamCreator(configuration).insertEmailEmail(storefront_oid, email_commseq_email, options);
+            var localVarFetchArgs = (0, exports.StorefrontApiFetchParamCreator)(configuration).insertEmailEmail(storefront_oid, email_commseq_email, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -26699,7 +26699,7 @@ var StorefrontApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         insertEmailFlow: function (storefront_oid, email_flow, options) {
-            var localVarFetchArgs = exports.StorefrontApiFetchParamCreator(configuration).insertEmailFlow(storefront_oid, email_flow, options);
+            var localVarFetchArgs = (0, exports.StorefrontApiFetchParamCreator)(configuration).insertEmailFlow(storefront_oid, email_flow, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -26722,7 +26722,7 @@ var StorefrontApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         insertEmailFlowFolder: function (storefront_oid, email_flow_folder, options) {
-            var localVarFetchArgs = exports.StorefrontApiFetchParamCreator(configuration).insertEmailFlowFolder(storefront_oid, email_flow_folder, options);
+            var localVarFetchArgs = (0, exports.StorefrontApiFetchParamCreator)(configuration).insertEmailFlowFolder(storefront_oid, email_flow_folder, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -26745,7 +26745,7 @@ var StorefrontApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         insertEmailList: function (storefront_oid, email_list, options) {
-            var localVarFetchArgs = exports.StorefrontApiFetchParamCreator(configuration).insertEmailList(storefront_oid, email_list, options);
+            var localVarFetchArgs = (0, exports.StorefrontApiFetchParamCreator)(configuration).insertEmailList(storefront_oid, email_list, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -26768,7 +26768,7 @@ var StorefrontApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         insertEmailListSegmentFolder: function (storefront_oid, email_list_segment_folder, options) {
-            var localVarFetchArgs = exports.StorefrontApiFetchParamCreator(configuration).insertEmailListSegmentFolder(storefront_oid, email_list_segment_folder, options);
+            var localVarFetchArgs = (0, exports.StorefrontApiFetchParamCreator)(configuration).insertEmailListSegmentFolder(storefront_oid, email_list_segment_folder, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -26791,7 +26791,7 @@ var StorefrontApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         insertEmailPostcard: function (storefront_oid, email_commseq_postcard, options) {
-            var localVarFetchArgs = exports.StorefrontApiFetchParamCreator(configuration).insertEmailPostcard(storefront_oid, email_commseq_postcard, options);
+            var localVarFetchArgs = (0, exports.StorefrontApiFetchParamCreator)(configuration).insertEmailPostcard(storefront_oid, email_commseq_postcard, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -26814,7 +26814,7 @@ var StorefrontApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         insertEmailSegment: function (storefront_oid, email_segment, options) {
-            var localVarFetchArgs = exports.StorefrontApiFetchParamCreator(configuration).insertEmailSegment(storefront_oid, email_segment, options);
+            var localVarFetchArgs = (0, exports.StorefrontApiFetchParamCreator)(configuration).insertEmailSegment(storefront_oid, email_segment, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -26837,7 +26837,7 @@ var StorefrontApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         insertScreenRecordingSegment: function (storefront_oid, segment, options) {
-            var localVarFetchArgs = exports.StorefrontApiFetchParamCreator(configuration).insertScreenRecordingSegment(storefront_oid, segment, options);
+            var localVarFetchArgs = (0, exports.StorefrontApiFetchParamCreator)(configuration).insertScreenRecordingSegment(storefront_oid, segment, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -26860,7 +26860,7 @@ var StorefrontApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         prepareDownloadEmailSegment: function (storefront_oid, email_segment_uuid, options) {
-            var localVarFetchArgs = exports.StorefrontApiFetchParamCreator(configuration).prepareDownloadEmailSegment(storefront_oid, email_segment_uuid, options);
+            var localVarFetchArgs = (0, exports.StorefrontApiFetchParamCreator)(configuration).prepareDownloadEmailSegment(storefront_oid, email_segment_uuid, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -26883,7 +26883,7 @@ var StorefrontApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         publishLibraryItem: function (library_item_oid, publish_library_request, options) {
-            var localVarFetchArgs = exports.StorefrontApiFetchParamCreator(configuration).publishLibraryItem(library_item_oid, publish_library_request, options);
+            var localVarFetchArgs = (0, exports.StorefrontApiFetchParamCreator)(configuration).publishLibraryItem(library_item_oid, publish_library_request, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -26906,7 +26906,7 @@ var StorefrontApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         purchaseLibraryItem: function (library_item_oid, storefront_oid, options) {
-            var localVarFetchArgs = exports.StorefrontApiFetchParamCreator(configuration).purchaseLibraryItem(library_item_oid, storefront_oid, options);
+            var localVarFetchArgs = (0, exports.StorefrontApiFetchParamCreator)(configuration).purchaseLibraryItem(library_item_oid, storefront_oid, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -26930,7 +26930,7 @@ var StorefrontApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         releaseEmailCommseqStepWaiting: function (storefront_oid, commseq_uuid, commseq_step_uuid, options) {
-            var localVarFetchArgs = exports.StorefrontApiFetchParamCreator(configuration).releaseEmailCommseqStepWaiting(storefront_oid, commseq_uuid, commseq_step_uuid, options);
+            var localVarFetchArgs = (0, exports.StorefrontApiFetchParamCreator)(configuration).releaseEmailCommseqStepWaiting(storefront_oid, commseq_uuid, commseq_step_uuid, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -26954,7 +26954,7 @@ var StorefrontApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         review: function (storefront_oid, commseq_email_uuid, email_commseq_email_review_request, options) {
-            var localVarFetchArgs = exports.StorefrontApiFetchParamCreator(configuration).review(storefront_oid, commseq_email_uuid, email_commseq_email_review_request, options);
+            var localVarFetchArgs = (0, exports.StorefrontApiFetchParamCreator)(configuration).review(storefront_oid, commseq_email_uuid, email_commseq_email_review_request, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -26980,7 +26980,7 @@ var StorefrontApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         search: function (category, matches, storefront_oid, max_hits, subcategory, options) {
-            var localVarFetchArgs = exports.StorefrontApiFetchParamCreator(configuration).search(category, matches, storefront_oid, max_hits, subcategory, options);
+            var localVarFetchArgs = (0, exports.StorefrontApiFetchParamCreator)(configuration).search(category, matches, storefront_oid, max_hits, subcategory, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -27002,7 +27002,7 @@ var StorefrontApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         search2: function (lookup_request, options) {
-            var localVarFetchArgs = exports.StorefrontApiFetchParamCreator(configuration).search2(lookup_request, options);
+            var localVarFetchArgs = (0, exports.StorefrontApiFetchParamCreator)(configuration).search2(lookup_request, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -27026,7 +27026,7 @@ var StorefrontApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         searchEmailListCustomers: function (storefront_oid, email_list_uuid, startsWith, options) {
-            var localVarFetchArgs = exports.StorefrontApiFetchParamCreator(configuration).searchEmailListCustomers(storefront_oid, email_list_uuid, startsWith, options);
+            var localVarFetchArgs = (0, exports.StorefrontApiFetchParamCreator)(configuration).searchEmailListCustomers(storefront_oid, email_list_uuid, startsWith, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -27050,7 +27050,7 @@ var StorefrontApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         searchEmailSegmentCustomers: function (storefront_oid, email_segment_uuid, startsWith, options) {
-            var localVarFetchArgs = exports.StorefrontApiFetchParamCreator(configuration).searchEmailSegmentCustomers(storefront_oid, email_segment_uuid, startsWith, options);
+            var localVarFetchArgs = (0, exports.StorefrontApiFetchParamCreator)(configuration).searchEmailSegmentCustomers(storefront_oid, email_segment_uuid, startsWith, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -27075,7 +27075,7 @@ var StorefrontApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         searchLibraryItems: function (item_query, _limit, _offset, _sort, options) {
-            var localVarFetchArgs = exports.StorefrontApiFetchParamCreator(configuration).searchLibraryItems(item_query, _limit, _offset, _sort, options);
+            var localVarFetchArgs = (0, exports.StorefrontApiFetchParamCreator)(configuration).searchLibraryItems(item_query, _limit, _offset, _sort, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -27100,7 +27100,7 @@ var StorefrontApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         searchPublishedItems: function (item_query, _limit, _offset, _sort, options) {
-            var localVarFetchArgs = exports.StorefrontApiFetchParamCreator(configuration).searchPublishedItems(item_query, _limit, _offset, _sort, options);
+            var localVarFetchArgs = (0, exports.StorefrontApiFetchParamCreator)(configuration).searchPublishedItems(item_query, _limit, _offset, _sort, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -27125,7 +27125,7 @@ var StorefrontApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         searchReviewItems: function (item_query, _limit, _offset, _sort, options) {
-            var localVarFetchArgs = exports.StorefrontApiFetchParamCreator(configuration).searchReviewItems(item_query, _limit, _offset, _sort, options);
+            var localVarFetchArgs = (0, exports.StorefrontApiFetchParamCreator)(configuration).searchReviewItems(item_query, _limit, _offset, _sort, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -27150,7 +27150,7 @@ var StorefrontApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         searchSharedItems: function (item_query, _limit, _offset, _sort, options) {
-            var localVarFetchArgs = exports.StorefrontApiFetchParamCreator(configuration).searchSharedItems(item_query, _limit, _offset, _sort, options);
+            var localVarFetchArgs = (0, exports.StorefrontApiFetchParamCreator)(configuration).searchSharedItems(item_query, _limit, _offset, _sort, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -27174,7 +27174,7 @@ var StorefrontApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         sendEmailTest: function (storefront_oid, commseq_email_uuid, email_commseq_email_test_request, options) {
-            var localVarFetchArgs = exports.StorefrontApiFetchParamCreator(configuration).sendEmailTest(storefront_oid, commseq_email_uuid, email_commseq_email_test_request, options);
+            var localVarFetchArgs = (0, exports.StorefrontApiFetchParamCreator)(configuration).sendEmailTest(storefront_oid, commseq_email_uuid, email_commseq_email_test_request, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -27198,7 +27198,7 @@ var StorefrontApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         sendPostcardTest: function (storefront_oid, commseq_postcard_uuid, email_commseq_postcard_test_request, options) {
-            var localVarFetchArgs = exports.StorefrontApiFetchParamCreator(configuration).sendPostcardTest(storefront_oid, commseq_postcard_uuid, email_commseq_postcard_test_request, options);
+            var localVarFetchArgs = (0, exports.StorefrontApiFetchParamCreator)(configuration).sendPostcardTest(storefront_oid, commseq_postcard_uuid, email_commseq_postcard_test_request, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -27221,7 +27221,7 @@ var StorefrontApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         sendWebhookTest: function (storefront_oid, email_commseq_webhook_test_request, options) {
-            var localVarFetchArgs = exports.StorefrontApiFetchParamCreator(configuration).sendWebhookTest(storefront_oid, email_commseq_webhook_test_request, options);
+            var localVarFetchArgs = (0, exports.StorefrontApiFetchParamCreator)(configuration).sendWebhookTest(storefront_oid, email_commseq_webhook_test_request, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -27244,7 +27244,7 @@ var StorefrontApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         startEmailCampaign: function (storefront_oid, email_campaign_uuid, options) {
-            var localVarFetchArgs = exports.StorefrontApiFetchParamCreator(configuration).startEmailCampaign(storefront_oid, email_campaign_uuid, options);
+            var localVarFetchArgs = (0, exports.StorefrontApiFetchParamCreator)(configuration).startEmailCampaign(storefront_oid, email_campaign_uuid, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -27268,7 +27268,7 @@ var StorefrontApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         subscribeToEmailList: function (storefront_oid, email_list_uuid, customers, options) {
-            var localVarFetchArgs = exports.StorefrontApiFetchParamCreator(configuration).subscribeToEmailList(storefront_oid, email_list_uuid, customers, options);
+            var localVarFetchArgs = (0, exports.StorefrontApiFetchParamCreator)(configuration).subscribeToEmailList(storefront_oid, email_list_uuid, customers, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -27291,7 +27291,7 @@ var StorefrontApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         unfavoriteScreenRecording: function (storefront_oid, screen_recording_uuid, options) {
-            var localVarFetchArgs = exports.StorefrontApiFetchParamCreator(configuration).unfavoriteScreenRecording(storefront_oid, screen_recording_uuid, options);
+            var localVarFetchArgs = (0, exports.StorefrontApiFetchParamCreator)(configuration).unfavoriteScreenRecording(storefront_oid, screen_recording_uuid, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -27315,7 +27315,7 @@ var StorefrontApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         updateEmailCampaign: function (storefront_oid, email_campaign_uuid, email_campaign, options) {
-            var localVarFetchArgs = exports.StorefrontApiFetchParamCreator(configuration).updateEmailCampaign(storefront_oid, email_campaign_uuid, email_campaign, options);
+            var localVarFetchArgs = (0, exports.StorefrontApiFetchParamCreator)(configuration).updateEmailCampaign(storefront_oid, email_campaign_uuid, email_campaign, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -27339,7 +27339,7 @@ var StorefrontApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         updateEmailCampaignFolder: function (storefront_oid, email_campaign_folder_uuid, email_campaign_folder, options) {
-            var localVarFetchArgs = exports.StorefrontApiFetchParamCreator(configuration).updateEmailCampaignFolder(storefront_oid, email_campaign_folder_uuid, email_campaign_folder, options);
+            var localVarFetchArgs = (0, exports.StorefrontApiFetchParamCreator)(configuration).updateEmailCampaignFolder(storefront_oid, email_campaign_folder_uuid, email_campaign_folder, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -27363,7 +27363,7 @@ var StorefrontApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         updateEmailCommseq: function (storefront_oid, commseq_uuid, email_commseq, options) {
-            var localVarFetchArgs = exports.StorefrontApiFetchParamCreator(configuration).updateEmailCommseq(storefront_oid, commseq_uuid, email_commseq, options);
+            var localVarFetchArgs = (0, exports.StorefrontApiFetchParamCreator)(configuration).updateEmailCommseq(storefront_oid, commseq_uuid, email_commseq, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -27387,7 +27387,7 @@ var StorefrontApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         updateEmailCustomer: function (storefront_oid, email_customer_uuid, email_customer, options) {
-            var localVarFetchArgs = exports.StorefrontApiFetchParamCreator(configuration).updateEmailCustomer(storefront_oid, email_customer_uuid, email_customer, options);
+            var localVarFetchArgs = (0, exports.StorefrontApiFetchParamCreator)(configuration).updateEmailCustomer(storefront_oid, email_customer_uuid, email_customer, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -27411,7 +27411,7 @@ var StorefrontApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         updateEmailEmail: function (storefront_oid, commseq_email_uuid, email_commseq_email, options) {
-            var localVarFetchArgs = exports.StorefrontApiFetchParamCreator(configuration).updateEmailEmail(storefront_oid, commseq_email_uuid, email_commseq_email, options);
+            var localVarFetchArgs = (0, exports.StorefrontApiFetchParamCreator)(configuration).updateEmailEmail(storefront_oid, commseq_email_uuid, email_commseq_email, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -27435,7 +27435,7 @@ var StorefrontApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         updateEmailFlow: function (storefront_oid, email_flow_uuid, email_flow, options) {
-            var localVarFetchArgs = exports.StorefrontApiFetchParamCreator(configuration).updateEmailFlow(storefront_oid, email_flow_uuid, email_flow, options);
+            var localVarFetchArgs = (0, exports.StorefrontApiFetchParamCreator)(configuration).updateEmailFlow(storefront_oid, email_flow_uuid, email_flow, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -27459,7 +27459,7 @@ var StorefrontApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         updateEmailFlowFolder: function (storefront_oid, email_flow_folder_uuid, email_flow_folder, options) {
-            var localVarFetchArgs = exports.StorefrontApiFetchParamCreator(configuration).updateEmailFlowFolder(storefront_oid, email_flow_folder_uuid, email_flow_folder, options);
+            var localVarFetchArgs = (0, exports.StorefrontApiFetchParamCreator)(configuration).updateEmailFlowFolder(storefront_oid, email_flow_folder_uuid, email_flow_folder, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -27481,7 +27481,7 @@ var StorefrontApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         updateEmailGlobalSettings: function (global_settings, options) {
-            var localVarFetchArgs = exports.StorefrontApiFetchParamCreator(configuration).updateEmailGlobalSettings(global_settings, options);
+            var localVarFetchArgs = (0, exports.StorefrontApiFetchParamCreator)(configuration).updateEmailGlobalSettings(global_settings, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -27505,7 +27505,7 @@ var StorefrontApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         updateEmailList: function (storefront_oid, email_list_uuid, email_list, options) {
-            var localVarFetchArgs = exports.StorefrontApiFetchParamCreator(configuration).updateEmailList(storefront_oid, email_list_uuid, email_list, options);
+            var localVarFetchArgs = (0, exports.StorefrontApiFetchParamCreator)(configuration).updateEmailList(storefront_oid, email_list_uuid, email_list, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -27529,7 +27529,7 @@ var StorefrontApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         updateEmailListSegmentFolder: function (storefront_oid, email_list_segment_folder_uuid, email_list_segment_folder, options) {
-            var localVarFetchArgs = exports.StorefrontApiFetchParamCreator(configuration).updateEmailListSegmentFolder(storefront_oid, email_list_segment_folder_uuid, email_list_segment_folder, options);
+            var localVarFetchArgs = (0, exports.StorefrontApiFetchParamCreator)(configuration).updateEmailListSegmentFolder(storefront_oid, email_list_segment_folder_uuid, email_list_segment_folder, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -27552,7 +27552,7 @@ var StorefrontApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         updateEmailPlan: function (storefront_oid, settings, options) {
-            var localVarFetchArgs = exports.StorefrontApiFetchParamCreator(configuration).updateEmailPlan(storefront_oid, settings, options);
+            var localVarFetchArgs = (0, exports.StorefrontApiFetchParamCreator)(configuration).updateEmailPlan(storefront_oid, settings, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -27576,7 +27576,7 @@ var StorefrontApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         updateEmailPostcard: function (storefront_oid, commseq_postcard_uuid, email_commseq_postcard, options) {
-            var localVarFetchArgs = exports.StorefrontApiFetchParamCreator(configuration).updateEmailPostcard(storefront_oid, commseq_postcard_uuid, email_commseq_postcard, options);
+            var localVarFetchArgs = (0, exports.StorefrontApiFetchParamCreator)(configuration).updateEmailPostcard(storefront_oid, commseq_postcard_uuid, email_commseq_postcard, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -27600,7 +27600,7 @@ var StorefrontApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         updateEmailSegment: function (storefront_oid, email_segment_uuid, email_segment, options) {
-            var localVarFetchArgs = exports.StorefrontApiFetchParamCreator(configuration).updateEmailSegment(storefront_oid, email_segment_uuid, email_segment, options);
+            var localVarFetchArgs = (0, exports.StorefrontApiFetchParamCreator)(configuration).updateEmailSegment(storefront_oid, email_segment_uuid, email_segment, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -27623,7 +27623,7 @@ var StorefrontApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         updateEmailSettings: function (storefront_oid, settings, options) {
-            var localVarFetchArgs = exports.StorefrontApiFetchParamCreator(configuration).updateEmailSettings(storefront_oid, settings, options);
+            var localVarFetchArgs = (0, exports.StorefrontApiFetchParamCreator)(configuration).updateEmailSettings(storefront_oid, settings, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -27647,7 +27647,7 @@ var StorefrontApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         updateExperiment: function (storefront_oid, storefront_experiment_oid, experiment, options) {
-            var localVarFetchArgs = exports.StorefrontApiFetchParamCreator(configuration).updateExperiment(storefront_oid, storefront_experiment_oid, experiment, options);
+            var localVarFetchArgs = (0, exports.StorefrontApiFetchParamCreator)(configuration).updateExperiment(storefront_oid, storefront_experiment_oid, experiment, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -27670,7 +27670,7 @@ var StorefrontApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         updateLibraryItem: function (library_item_oid, library_item, options) {
-            var localVarFetchArgs = exports.StorefrontApiFetchParamCreator(configuration).updateLibraryItem(library_item_oid, library_item, options);
+            var localVarFetchArgs = (0, exports.StorefrontApiFetchParamCreator)(configuration).updateLibraryItem(library_item_oid, library_item, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -27694,7 +27694,7 @@ var StorefrontApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         updateScreenRecordingMerchantNotes: function (storefront_oid, screen_recording_uuid, merchant_notes_request, options) {
-            var localVarFetchArgs = exports.StorefrontApiFetchParamCreator(configuration).updateScreenRecordingMerchantNotes(storefront_oid, screen_recording_uuid, merchant_notes_request, options);
+            var localVarFetchArgs = (0, exports.StorefrontApiFetchParamCreator)(configuration).updateScreenRecordingMerchantNotes(storefront_oid, screen_recording_uuid, merchant_notes_request, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -27718,7 +27718,7 @@ var StorefrontApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         updateScreenRecordingSegment: function (storefront_oid, screen_recording_segment_oid, segment, options) {
-            var localVarFetchArgs = exports.StorefrontApiFetchParamCreator(configuration).updateScreenRecordingSegment(storefront_oid, screen_recording_segment_oid, segment, options);
+            var localVarFetchArgs = (0, exports.StorefrontApiFetchParamCreator)(configuration).updateScreenRecordingSegment(storefront_oid, screen_recording_segment_oid, segment, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -27741,7 +27741,7 @@ var StorefrontApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         updateScreenRecordingSettings: function (storefront_oid, settings, options) {
-            var localVarFetchArgs = exports.StorefrontApiFetchParamCreator(configuration).updateScreenRecordingSettings(storefront_oid, settings, options);
+            var localVarFetchArgs = (0, exports.StorefrontApiFetchParamCreator)(configuration).updateScreenRecordingSettings(storefront_oid, settings, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -27765,7 +27765,7 @@ var StorefrontApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         updateScreenRecordingTags: function (storefront_oid, screen_recording_uuid, tags, options) {
-            var localVarFetchArgs = exports.StorefrontApiFetchParamCreator(configuration).updateScreenRecordingTags(storefront_oid, screen_recording_uuid, tags, options);
+            var localVarFetchArgs = (0, exports.StorefrontApiFetchParamCreator)(configuration).updateScreenRecordingTags(storefront_oid, screen_recording_uuid, tags, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -27789,7 +27789,7 @@ var StorefrontApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         updateTransactionEmail: function (storefront_oid, email_id, transaction_email, options) {
-            var localVarFetchArgs = exports.StorefrontApiFetchParamCreator(configuration).updateTransactionEmail(storefront_oid, email_id, transaction_email, options);
+            var localVarFetchArgs = (0, exports.StorefrontApiFetchParamCreator)(configuration).updateTransactionEmail(storefront_oid, email_id, transaction_email, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -27820,7 +27820,7 @@ var StorefrontApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         addToLibrary: function (add_library_request, options) {
-            return exports.StorefrontApiFp(configuration).addToLibrary(add_library_request, options)(fetch, basePath);
+            return (0, exports.StorefrontApiFp)(configuration).addToLibrary(add_library_request, options)(fetch, basePath);
         },
         /**
          *
@@ -27830,7 +27830,7 @@ var StorefrontApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         applyToStoreFront: function (apply_library_request, options) {
-            return exports.StorefrontApiFp(configuration).applyToStoreFront(apply_library_request, options)(fetch, basePath);
+            return (0, exports.StorefrontApiFp)(configuration).applyToStoreFront(apply_library_request, options)(fetch, basePath);
         },
         /**
          *
@@ -27841,7 +27841,7 @@ var StorefrontApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         archiveEmailList: function (storefront_oid, email_list_uuid, options) {
-            return exports.StorefrontApiFp(configuration).archiveEmailList(storefront_oid, email_list_uuid, options)(fetch, basePath);
+            return (0, exports.StorefrontApiFp)(configuration).archiveEmailList(storefront_oid, email_list_uuid, options)(fetch, basePath);
         },
         /**
          *
@@ -27852,7 +27852,7 @@ var StorefrontApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         archiveEmailSegment: function (storefront_oid, email_segment_uuid, options) {
-            return exports.StorefrontApiFp(configuration).archiveEmailSegment(storefront_oid, email_segment_uuid, options)(fetch, basePath);
+            return (0, exports.StorefrontApiFp)(configuration).archiveEmailSegment(storefront_oid, email_segment_uuid, options)(fetch, basePath);
         },
         /**
          *
@@ -27864,7 +27864,7 @@ var StorefrontApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         backPopulateEmailFlow: function (storefront_oid, email_flow_uuid, back_populate_request, options) {
-            return exports.StorefrontApiFp(configuration).backPopulateEmailFlow(storefront_oid, email_flow_uuid, back_populate_request, options)(fetch, basePath);
+            return (0, exports.StorefrontApiFp)(configuration).backPopulateEmailFlow(storefront_oid, email_flow_uuid, back_populate_request, options)(fetch, basePath);
         },
         /**
          *
@@ -27876,7 +27876,7 @@ var StorefrontApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         checkDownloadEmailSegment: function (storefront_oid, email_segment_uuid, email_segment_rebuild_uuid, options) {
-            return exports.StorefrontApiFp(configuration).checkDownloadEmailSegment(storefront_oid, email_segment_uuid, email_segment_rebuild_uuid, options)(fetch, basePath);
+            return (0, exports.StorefrontApiFp)(configuration).checkDownloadEmailSegment(storefront_oid, email_segment_uuid, email_segment_rebuild_uuid, options)(fetch, basePath);
         },
         /**
          *
@@ -27888,7 +27888,7 @@ var StorefrontApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         cloneEmailCampaign: function (storefront_oid, email_campaign_uuid, target_storefront_oid, options) {
-            return exports.StorefrontApiFp(configuration).cloneEmailCampaign(storefront_oid, email_campaign_uuid, target_storefront_oid, options)(fetch, basePath);
+            return (0, exports.StorefrontApiFp)(configuration).cloneEmailCampaign(storefront_oid, email_campaign_uuid, target_storefront_oid, options)(fetch, basePath);
         },
         /**
          *
@@ -27900,7 +27900,7 @@ var StorefrontApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         cloneEmailFlow: function (storefront_oid, email_flow_uuid, target_storefront_oid, options) {
-            return exports.StorefrontApiFp(configuration).cloneEmailFlow(storefront_oid, email_flow_uuid, target_storefront_oid, options)(fetch, basePath);
+            return (0, exports.StorefrontApiFp)(configuration).cloneEmailFlow(storefront_oid, email_flow_uuid, target_storefront_oid, options)(fetch, basePath);
         },
         /**
          *
@@ -27910,7 +27910,7 @@ var StorefrontApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         createEmailSendingDomain: function (domain, options) {
-            return exports.StorefrontApiFp(configuration).createEmailSendingDomain(domain, options)(fetch, basePath);
+            return (0, exports.StorefrontApiFp)(configuration).createEmailSendingDomain(domain, options)(fetch, basePath);
         },
         /**
          *
@@ -27921,7 +27921,7 @@ var StorefrontApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         deleteEmailCampaignFolder: function (storefront_oid, email_campaign_folder_uuid, options) {
-            return exports.StorefrontApiFp(configuration).deleteEmailCampaignFolder(storefront_oid, email_campaign_folder_uuid, options)(fetch, basePath);
+            return (0, exports.StorefrontApiFp)(configuration).deleteEmailCampaignFolder(storefront_oid, email_campaign_folder_uuid, options)(fetch, basePath);
         },
         /**
          *
@@ -27932,7 +27932,7 @@ var StorefrontApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         deleteEmailCommseqStat: function (storefront_oid, commseq_uuid, options) {
-            return exports.StorefrontApiFp(configuration).deleteEmailCommseqStat(storefront_oid, commseq_uuid, options)(fetch, basePath);
+            return (0, exports.StorefrontApiFp)(configuration).deleteEmailCommseqStat(storefront_oid, commseq_uuid, options)(fetch, basePath);
         },
         /**
          *
@@ -27943,7 +27943,7 @@ var StorefrontApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         deleteEmailEmail: function (storefront_oid, commseq_email_uuid, options) {
-            return exports.StorefrontApiFp(configuration).deleteEmailEmail(storefront_oid, commseq_email_uuid, options)(fetch, basePath);
+            return (0, exports.StorefrontApiFp)(configuration).deleteEmailEmail(storefront_oid, commseq_email_uuid, options)(fetch, basePath);
         },
         /**
          *
@@ -27954,7 +27954,7 @@ var StorefrontApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         deleteEmailFlowFolder: function (storefront_oid, email_flow_folder_uuid, options) {
-            return exports.StorefrontApiFp(configuration).deleteEmailFlowFolder(storefront_oid, email_flow_folder_uuid, options)(fetch, basePath);
+            return (0, exports.StorefrontApiFp)(configuration).deleteEmailFlowFolder(storefront_oid, email_flow_folder_uuid, options)(fetch, basePath);
         },
         /**
          *
@@ -27966,7 +27966,7 @@ var StorefrontApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         deleteEmailListCustomer: function (storefront_oid, email_list_uuid, email_customer_uuid, options) {
-            return exports.StorefrontApiFp(configuration).deleteEmailListCustomer(storefront_oid, email_list_uuid, email_customer_uuid, options)(fetch, basePath);
+            return (0, exports.StorefrontApiFp)(configuration).deleteEmailListCustomer(storefront_oid, email_list_uuid, email_customer_uuid, options)(fetch, basePath);
         },
         /**
          *
@@ -27977,7 +27977,7 @@ var StorefrontApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         deleteEmailListSegmentFolder: function (storefront_oid, email_list_segment_folder_uuid, options) {
-            return exports.StorefrontApiFp(configuration).deleteEmailListSegmentFolder(storefront_oid, email_list_segment_folder_uuid, options)(fetch, basePath);
+            return (0, exports.StorefrontApiFp)(configuration).deleteEmailListSegmentFolder(storefront_oid, email_list_segment_folder_uuid, options)(fetch, basePath);
         },
         /**
          *
@@ -27988,7 +27988,7 @@ var StorefrontApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         deleteEmailPostcard: function (storefront_oid, commseq_postcard_uuid, options) {
-            return exports.StorefrontApiFp(configuration).deleteEmailPostcard(storefront_oid, commseq_postcard_uuid, options)(fetch, basePath);
+            return (0, exports.StorefrontApiFp)(configuration).deleteEmailPostcard(storefront_oid, commseq_postcard_uuid, options)(fetch, basePath);
         },
         /**
          *
@@ -27998,7 +27998,7 @@ var StorefrontApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         deleteEmailSendingDomain: function (domain, options) {
-            return exports.StorefrontApiFp(configuration).deleteEmailSendingDomain(domain, options)(fetch, basePath);
+            return (0, exports.StorefrontApiFp)(configuration).deleteEmailSendingDomain(domain, options)(fetch, basePath);
         },
         /**
          *
@@ -28009,7 +28009,7 @@ var StorefrontApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         deleteExperiment: function (storefront_oid, storefront_experiment_oid, options) {
-            return exports.StorefrontApiFp(configuration).deleteExperiment(storefront_oid, storefront_experiment_oid, options)(fetch, basePath);
+            return (0, exports.StorefrontApiFp)(configuration).deleteExperiment(storefront_oid, storefront_experiment_oid, options)(fetch, basePath);
         },
         /**
          * Delete screen recording heatmap
@@ -28020,7 +28020,7 @@ var StorefrontApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         deleteHeatmap: function (storefront_oid, query, options) {
-            return exports.StorefrontApiFp(configuration).deleteHeatmap(storefront_oid, query, options)(fetch, basePath);
+            return (0, exports.StorefrontApiFp)(configuration).deleteHeatmap(storefront_oid, query, options)(fetch, basePath);
         },
         /**
          *
@@ -28030,7 +28030,7 @@ var StorefrontApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         deleteLibraryItem: function (library_item_oid, options) {
-            return exports.StorefrontApiFp(configuration).deleteLibraryItem(library_item_oid, options)(fetch, basePath);
+            return (0, exports.StorefrontApiFp)(configuration).deleteLibraryItem(library_item_oid, options)(fetch, basePath);
         },
         /**
          *
@@ -28040,7 +28040,7 @@ var StorefrontApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         deleteLibraryItemPublishedVersions: function (library_item_oid, options) {
-            return exports.StorefrontApiFp(configuration).deleteLibraryItemPublishedVersions(library_item_oid, options)(fetch, basePath);
+            return (0, exports.StorefrontApiFp)(configuration).deleteLibraryItemPublishedVersions(library_item_oid, options)(fetch, basePath);
         },
         /**
          *
@@ -28051,7 +28051,7 @@ var StorefrontApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         deleteScreenRecordingSegment: function (storefront_oid, screen_recording_segment_oid, options) {
-            return exports.StorefrontApiFp(configuration).deleteScreenRecordingSegment(storefront_oid, screen_recording_segment_oid, options)(fetch, basePath);
+            return (0, exports.StorefrontApiFp)(configuration).deleteScreenRecordingSegment(storefront_oid, screen_recording_segment_oid, options)(fetch, basePath);
         },
         /**
          *
@@ -28061,7 +28061,7 @@ var StorefrontApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         duplicateLibraryItem: function (library_item_oid, options) {
-            return exports.StorefrontApiFp(configuration).duplicateLibraryItem(library_item_oid, options)(fetch, basePath);
+            return (0, exports.StorefrontApiFp)(configuration).duplicateLibraryItem(library_item_oid, options)(fetch, basePath);
         },
         /**
          * Update favorite flag on screen recording
@@ -28072,7 +28072,7 @@ var StorefrontApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         favoriteScreenRecording: function (storefront_oid, screen_recording_uuid, options) {
-            return exports.StorefrontApiFp(configuration).favoriteScreenRecording(storefront_oid, screen_recording_uuid, options)(fetch, basePath);
+            return (0, exports.StorefrontApiFp)(configuration).favoriteScreenRecording(storefront_oid, screen_recording_uuid, options)(fetch, basePath);
         },
         /**
          *
@@ -28083,7 +28083,7 @@ var StorefrontApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         geocodeAddress: function (storefront_oid, geocode_request, options) {
-            return exports.StorefrontApiFp(configuration).geocodeAddress(storefront_oid, geocode_request, options)(fetch, basePath);
+            return (0, exports.StorefrontApiFp)(configuration).geocodeAddress(storefront_oid, geocode_request, options)(fetch, basePath);
         },
         /**
          * Obtain a list of all the countries
@@ -28093,7 +28093,7 @@ var StorefrontApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         getCountries: function (storefront_oid, options) {
-            return exports.StorefrontApiFp(configuration).getCountries(storefront_oid, options)(fetch, basePath);
+            return (0, exports.StorefrontApiFp)(configuration).getCountries(storefront_oid, options)(fetch, basePath);
         },
         /**
          * Fetches a temporary authentication token for the editor
@@ -28103,7 +28103,7 @@ var StorefrontApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         getEditorToken: function (storefront_oid, options) {
-            return exports.StorefrontApiFp(configuration).getEditorToken(storefront_oid, options)(fetch, basePath);
+            return (0, exports.StorefrontApiFp)(configuration).getEditorToken(storefront_oid, options)(fetch, basePath);
         },
         /**
          *
@@ -28113,7 +28113,7 @@ var StorefrontApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         getEmailBaseTemplates: function (storefront_oid, options) {
-            return exports.StorefrontApiFp(configuration).getEmailBaseTemplates(storefront_oid, options)(fetch, basePath);
+            return (0, exports.StorefrontApiFp)(configuration).getEmailBaseTemplates(storefront_oid, options)(fetch, basePath);
         },
         /**
          *
@@ -28124,7 +28124,7 @@ var StorefrontApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         getEmailCampaign: function (storefront_oid, email_campaign_uuid, options) {
-            return exports.StorefrontApiFp(configuration).getEmailCampaign(storefront_oid, email_campaign_uuid, options)(fetch, basePath);
+            return (0, exports.StorefrontApiFp)(configuration).getEmailCampaign(storefront_oid, email_campaign_uuid, options)(fetch, basePath);
         },
         /**
          *
@@ -28135,7 +28135,7 @@ var StorefrontApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         getEmailCampaignFolder: function (storefront_oid, email_campaign_folder_uuid, options) {
-            return exports.StorefrontApiFp(configuration).getEmailCampaignFolder(storefront_oid, email_campaign_folder_uuid, options)(fetch, basePath);
+            return (0, exports.StorefrontApiFp)(configuration).getEmailCampaignFolder(storefront_oid, email_campaign_folder_uuid, options)(fetch, basePath);
         },
         /**
          *
@@ -28145,7 +28145,7 @@ var StorefrontApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         getEmailCampaignFolders: function (storefront_oid, options) {
-            return exports.StorefrontApiFp(configuration).getEmailCampaignFolders(storefront_oid, options)(fetch, basePath);
+            return (0, exports.StorefrontApiFp)(configuration).getEmailCampaignFolders(storefront_oid, options)(fetch, basePath);
         },
         /**
          *
@@ -28156,7 +28156,7 @@ var StorefrontApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         getEmailCampaignScreenshots: function (storefront_oid, email_campaign_uuid, options) {
-            return exports.StorefrontApiFp(configuration).getEmailCampaignScreenshots(storefront_oid, email_campaign_uuid, options)(fetch, basePath);
+            return (0, exports.StorefrontApiFp)(configuration).getEmailCampaignScreenshots(storefront_oid, email_campaign_uuid, options)(fetch, basePath);
         },
         /**
          *
@@ -28166,7 +28166,7 @@ var StorefrontApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         getEmailCampaigns: function (storefront_oid, options) {
-            return exports.StorefrontApiFp(configuration).getEmailCampaigns(storefront_oid, options)(fetch, basePath);
+            return (0, exports.StorefrontApiFp)(configuration).getEmailCampaigns(storefront_oid, options)(fetch, basePath);
         },
         /**
          *
@@ -28177,7 +28177,7 @@ var StorefrontApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         getEmailCampaignsWithStats: function (storefront_oid, stat_days, options) {
-            return exports.StorefrontApiFp(configuration).getEmailCampaignsWithStats(storefront_oid, stat_days, options)(fetch, basePath);
+            return (0, exports.StorefrontApiFp)(configuration).getEmailCampaignsWithStats(storefront_oid, stat_days, options)(fetch, basePath);
         },
         /**
          *
@@ -28188,7 +28188,7 @@ var StorefrontApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         getEmailCommseq: function (storefront_oid, commseq_uuid, options) {
-            return exports.StorefrontApiFp(configuration).getEmailCommseq(storefront_oid, commseq_uuid, options)(fetch, basePath);
+            return (0, exports.StorefrontApiFp)(configuration).getEmailCommseq(storefront_oid, commseq_uuid, options)(fetch, basePath);
         },
         /**
          *
@@ -28200,7 +28200,7 @@ var StorefrontApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         getEmailCommseqEmailStats: function (storefront_oid, commseq_uuid, statsRequest, options) {
-            return exports.StorefrontApiFp(configuration).getEmailCommseqEmailStats(storefront_oid, commseq_uuid, statsRequest, options)(fetch, basePath);
+            return (0, exports.StorefrontApiFp)(configuration).getEmailCommseqEmailStats(storefront_oid, commseq_uuid, statsRequest, options)(fetch, basePath);
         },
         /**
          *
@@ -28212,7 +28212,7 @@ var StorefrontApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         getEmailCommseqPostcardStats: function (storefront_oid, commseq_uuid, statsRequest, options) {
-            return exports.StorefrontApiFp(configuration).getEmailCommseqPostcardStats(storefront_oid, commseq_uuid, statsRequest, options)(fetch, basePath);
+            return (0, exports.StorefrontApiFp)(configuration).getEmailCommseqPostcardStats(storefront_oid, commseq_uuid, statsRequest, options)(fetch, basePath);
         },
         /**
          *
@@ -28223,7 +28223,7 @@ var StorefrontApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         getEmailCommseqStatOverall: function (storefront_oid, commseq_uuid, options) {
-            return exports.StorefrontApiFp(configuration).getEmailCommseqStatOverall(storefront_oid, commseq_uuid, options)(fetch, basePath);
+            return (0, exports.StorefrontApiFp)(configuration).getEmailCommseqStatOverall(storefront_oid, commseq_uuid, options)(fetch, basePath);
         },
         /**
          *
@@ -28235,7 +28235,7 @@ var StorefrontApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         getEmailCommseqStepStats: function (storefront_oid, commseq_uuid, statsRequest, options) {
-            return exports.StorefrontApiFp(configuration).getEmailCommseqStepStats(storefront_oid, commseq_uuid, statsRequest, options)(fetch, basePath);
+            return (0, exports.StorefrontApiFp)(configuration).getEmailCommseqStepStats(storefront_oid, commseq_uuid, statsRequest, options)(fetch, basePath);
         },
         /**
          *
@@ -28247,7 +28247,7 @@ var StorefrontApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         getEmailCommseqStepWaiting: function (storefront_oid, commseq_uuid, waitingRequest, options) {
-            return exports.StorefrontApiFp(configuration).getEmailCommseqStepWaiting(storefront_oid, commseq_uuid, waitingRequest, options)(fetch, basePath);
+            return (0, exports.StorefrontApiFp)(configuration).getEmailCommseqStepWaiting(storefront_oid, commseq_uuid, waitingRequest, options)(fetch, basePath);
         },
         /**
          *
@@ -28258,7 +28258,7 @@ var StorefrontApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         getEmailCommseqWebhookEditorValues: function (storefront_oid, commseq_uuid, options) {
-            return exports.StorefrontApiFp(configuration).getEmailCommseqWebhookEditorValues(storefront_oid, commseq_uuid, options)(fetch, basePath);
+            return (0, exports.StorefrontApiFp)(configuration).getEmailCommseqWebhookEditorValues(storefront_oid, commseq_uuid, options)(fetch, basePath);
         },
         /**
          *
@@ -28268,7 +28268,7 @@ var StorefrontApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         getEmailCommseqs: function (storefront_oid, options) {
-            return exports.StorefrontApiFp(configuration).getEmailCommseqs(storefront_oid, options)(fetch, basePath);
+            return (0, exports.StorefrontApiFp)(configuration).getEmailCommseqs(storefront_oid, options)(fetch, basePath);
         },
         /**
          *
@@ -28279,7 +28279,7 @@ var StorefrontApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         getEmailCustomerEditorUrl: function (storefront_oid, email_customer_uuid, options) {
-            return exports.StorefrontApiFp(configuration).getEmailCustomerEditorUrl(storefront_oid, email_customer_uuid, options)(fetch, basePath);
+            return (0, exports.StorefrontApiFp)(configuration).getEmailCustomerEditorUrl(storefront_oid, email_customer_uuid, options)(fetch, basePath);
         },
         /**
          *
@@ -28292,7 +28292,7 @@ var StorefrontApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         getEmailCustomers: function (storefront_oid, pageNumber, pageSize, searchEmailPrefix, options) {
-            return exports.StorefrontApiFp(configuration).getEmailCustomers(storefront_oid, pageNumber, pageSize, searchEmailPrefix, options)(fetch, basePath);
+            return (0, exports.StorefrontApiFp)(configuration).getEmailCustomers(storefront_oid, pageNumber, pageSize, searchEmailPrefix, options)(fetch, basePath);
         },
         /**
          *
@@ -28303,7 +28303,7 @@ var StorefrontApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         getEmailDashboardActivity: function (storefront_oid, last_records, options) {
-            return exports.StorefrontApiFp(configuration).getEmailDashboardActivity(storefront_oid, last_records, options)(fetch, basePath);
+            return (0, exports.StorefrontApiFp)(configuration).getEmailDashboardActivity(storefront_oid, last_records, options)(fetch, basePath);
         },
         /**
          *
@@ -28314,7 +28314,7 @@ var StorefrontApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         getEmailDashboardStats: function (storefront_oid, days, options) {
-            return exports.StorefrontApiFp(configuration).getEmailDashboardStats(storefront_oid, days, options)(fetch, basePath);
+            return (0, exports.StorefrontApiFp)(configuration).getEmailDashboardStats(storefront_oid, days, options)(fetch, basePath);
         },
         /**
          *
@@ -28326,7 +28326,7 @@ var StorefrontApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         getEmailDispatchLogs: function (storefront_oid, commseq_uuid, commseq_step_uuid, options) {
-            return exports.StorefrontApiFp(configuration).getEmailDispatchLogs(storefront_oid, commseq_uuid, commseq_step_uuid, options)(fetch, basePath);
+            return (0, exports.StorefrontApiFp)(configuration).getEmailDispatchLogs(storefront_oid, commseq_uuid, commseq_step_uuid, options)(fetch, basePath);
         },
         /**
          *
@@ -28337,7 +28337,7 @@ var StorefrontApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         getEmailEmail: function (storefront_oid, commseq_email_uuid, options) {
-            return exports.StorefrontApiFp(configuration).getEmailEmail(storefront_oid, commseq_email_uuid, options)(fetch, basePath);
+            return (0, exports.StorefrontApiFp)(configuration).getEmailEmail(storefront_oid, commseq_email_uuid, options)(fetch, basePath);
         },
         /**
          *
@@ -28351,7 +28351,7 @@ var StorefrontApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         getEmailEmailClicks: function (storefront_oid, commseq_uuid, commseq_step_uuid, commseq_email_uuid, days, options) {
-            return exports.StorefrontApiFp(configuration).getEmailEmailClicks(storefront_oid, commseq_uuid, commseq_step_uuid, commseq_email_uuid, days, options)(fetch, basePath);
+            return (0, exports.StorefrontApiFp)(configuration).getEmailEmailClicks(storefront_oid, commseq_uuid, commseq_step_uuid, commseq_email_uuid, days, options)(fetch, basePath);
         },
         /**
          *
@@ -28363,7 +28363,7 @@ var StorefrontApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         getEmailEmailCustomerEditorUrl: function (storefront_oid, commseq_email_uuid, order_id, options) {
-            return exports.StorefrontApiFp(configuration).getEmailEmailCustomerEditorUrl(storefront_oid, commseq_email_uuid, order_id, options)(fetch, basePath);
+            return (0, exports.StorefrontApiFp)(configuration).getEmailEmailCustomerEditorUrl(storefront_oid, commseq_email_uuid, order_id, options)(fetch, basePath);
         },
         /**
          *
@@ -28377,7 +28377,7 @@ var StorefrontApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         getEmailEmailOrders: function (storefront_oid, commseq_uuid, commseq_step_uuid, commseq_email_uuid, days, options) {
-            return exports.StorefrontApiFp(configuration).getEmailEmailOrders(storefront_oid, commseq_uuid, commseq_step_uuid, commseq_email_uuid, days, options)(fetch, basePath);
+            return (0, exports.StorefrontApiFp)(configuration).getEmailEmailOrders(storefront_oid, commseq_uuid, commseq_step_uuid, commseq_email_uuid, days, options)(fetch, basePath);
         },
         /**
          *
@@ -28387,7 +28387,7 @@ var StorefrontApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         getEmailEmails: function (storefront_oid, options) {
-            return exports.StorefrontApiFp(configuration).getEmailEmails(storefront_oid, options)(fetch, basePath);
+            return (0, exports.StorefrontApiFp)(configuration).getEmailEmails(storefront_oid, options)(fetch, basePath);
         },
         /**
          *
@@ -28398,7 +28398,7 @@ var StorefrontApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         getEmailEmailsMultiple: function (storefront_oid, email_commseq_emails_request, options) {
-            return exports.StorefrontApiFp(configuration).getEmailEmailsMultiple(storefront_oid, email_commseq_emails_request, options)(fetch, basePath);
+            return (0, exports.StorefrontApiFp)(configuration).getEmailEmailsMultiple(storefront_oid, email_commseq_emails_request, options)(fetch, basePath);
         },
         /**
          *
@@ -28409,7 +28409,7 @@ var StorefrontApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         getEmailFlow: function (storefront_oid, email_flow_uuid, options) {
-            return exports.StorefrontApiFp(configuration).getEmailFlow(storefront_oid, email_flow_uuid, options)(fetch, basePath);
+            return (0, exports.StorefrontApiFp)(configuration).getEmailFlow(storefront_oid, email_flow_uuid, options)(fetch, basePath);
         },
         /**
          *
@@ -28420,7 +28420,7 @@ var StorefrontApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         getEmailFlowFolder: function (storefront_oid, email_flow_folder_uuid, options) {
-            return exports.StorefrontApiFp(configuration).getEmailFlowFolder(storefront_oid, email_flow_folder_uuid, options)(fetch, basePath);
+            return (0, exports.StorefrontApiFp)(configuration).getEmailFlowFolder(storefront_oid, email_flow_folder_uuid, options)(fetch, basePath);
         },
         /**
          *
@@ -28430,7 +28430,7 @@ var StorefrontApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         getEmailFlowFolders: function (storefront_oid, options) {
-            return exports.StorefrontApiFp(configuration).getEmailFlowFolders(storefront_oid, options)(fetch, basePath);
+            return (0, exports.StorefrontApiFp)(configuration).getEmailFlowFolders(storefront_oid, options)(fetch, basePath);
         },
         /**
          *
@@ -28441,7 +28441,7 @@ var StorefrontApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         getEmailFlowScreenshots: function (storefront_oid, email_flow_uuid, options) {
-            return exports.StorefrontApiFp(configuration).getEmailFlowScreenshots(storefront_oid, email_flow_uuid, options)(fetch, basePath);
+            return (0, exports.StorefrontApiFp)(configuration).getEmailFlowScreenshots(storefront_oid, email_flow_uuid, options)(fetch, basePath);
         },
         /**
          *
@@ -28451,7 +28451,7 @@ var StorefrontApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         getEmailFlows: function (storefront_oid, options) {
-            return exports.StorefrontApiFp(configuration).getEmailFlows(storefront_oid, options)(fetch, basePath);
+            return (0, exports.StorefrontApiFp)(configuration).getEmailFlows(storefront_oid, options)(fetch, basePath);
         },
         /**
          *
@@ -28460,7 +28460,7 @@ var StorefrontApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         getEmailGlobalSettings: function (options) {
-            return exports.StorefrontApiFp(configuration).getEmailGlobalSettings(options)(fetch, basePath);
+            return (0, exports.StorefrontApiFp)(configuration).getEmailGlobalSettings(options)(fetch, basePath);
         },
         /**
          *
@@ -28471,7 +28471,7 @@ var StorefrontApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         getEmailList: function (storefront_oid, email_list_uuid, options) {
-            return exports.StorefrontApiFp(configuration).getEmailList(storefront_oid, email_list_uuid, options)(fetch, basePath);
+            return (0, exports.StorefrontApiFp)(configuration).getEmailList(storefront_oid, email_list_uuid, options)(fetch, basePath);
         },
         /**
          *
@@ -28483,7 +28483,7 @@ var StorefrontApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         getEmailListCustomerEditorUrl: function (storefront_oid, email_list_uuid, email_customer_uuid, options) {
-            return exports.StorefrontApiFp(configuration).getEmailListCustomerEditorUrl(storefront_oid, email_list_uuid, email_customer_uuid, options)(fetch, basePath);
+            return (0, exports.StorefrontApiFp)(configuration).getEmailListCustomerEditorUrl(storefront_oid, email_list_uuid, email_customer_uuid, options)(fetch, basePath);
         },
         /**
          *
@@ -28496,7 +28496,7 @@ var StorefrontApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         getEmailListCustomers: function (storefront_oid, email_list_uuid, pageNumber, pageSize, options) {
-            return exports.StorefrontApiFp(configuration).getEmailListCustomers(storefront_oid, email_list_uuid, pageNumber, pageSize, options)(fetch, basePath);
+            return (0, exports.StorefrontApiFp)(configuration).getEmailListCustomers(storefront_oid, email_list_uuid, pageNumber, pageSize, options)(fetch, basePath);
         },
         /**
          *
@@ -28507,7 +28507,7 @@ var StorefrontApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         getEmailListSegmentFolder: function (storefront_oid, email_list_segment_folder_uuid, options) {
-            return exports.StorefrontApiFp(configuration).getEmailListSegmentFolder(storefront_oid, email_list_segment_folder_uuid, options)(fetch, basePath);
+            return (0, exports.StorefrontApiFp)(configuration).getEmailListSegmentFolder(storefront_oid, email_list_segment_folder_uuid, options)(fetch, basePath);
         },
         /**
          *
@@ -28517,7 +28517,7 @@ var StorefrontApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         getEmailListSegmentFolders: function (storefront_oid, options) {
-            return exports.StorefrontApiFp(configuration).getEmailListSegmentFolders(storefront_oid, options)(fetch, basePath);
+            return (0, exports.StorefrontApiFp)(configuration).getEmailListSegmentFolders(storefront_oid, options)(fetch, basePath);
         },
         /**
          *
@@ -28527,7 +28527,7 @@ var StorefrontApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         getEmailLists: function (storefront_oid, options) {
-            return exports.StorefrontApiFp(configuration).getEmailLists(storefront_oid, options)(fetch, basePath);
+            return (0, exports.StorefrontApiFp)(configuration).getEmailLists(storefront_oid, options)(fetch, basePath);
         },
         /**
          *
@@ -28537,7 +28537,7 @@ var StorefrontApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         getEmailPerformance: function (storefront_oid, options) {
-            return exports.StorefrontApiFp(configuration).getEmailPerformance(storefront_oid, options)(fetch, basePath);
+            return (0, exports.StorefrontApiFp)(configuration).getEmailPerformance(storefront_oid, options)(fetch, basePath);
         },
         /**
          *
@@ -28547,7 +28547,7 @@ var StorefrontApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         getEmailPlan: function (storefront_oid, options) {
-            return exports.StorefrontApiFp(configuration).getEmailPlan(storefront_oid, options)(fetch, basePath);
+            return (0, exports.StorefrontApiFp)(configuration).getEmailPlan(storefront_oid, options)(fetch, basePath);
         },
         /**
          *
@@ -28558,7 +28558,7 @@ var StorefrontApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         getEmailPostcard: function (storefront_oid, commseq_postcard_uuid, options) {
-            return exports.StorefrontApiFp(configuration).getEmailPostcard(storefront_oid, commseq_postcard_uuid, options)(fetch, basePath);
+            return (0, exports.StorefrontApiFp)(configuration).getEmailPostcard(storefront_oid, commseq_postcard_uuid, options)(fetch, basePath);
         },
         /**
          *
@@ -28568,7 +28568,7 @@ var StorefrontApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         getEmailPostcards: function (storefront_oid, options) {
-            return exports.StorefrontApiFp(configuration).getEmailPostcards(storefront_oid, options)(fetch, basePath);
+            return (0, exports.StorefrontApiFp)(configuration).getEmailPostcards(storefront_oid, options)(fetch, basePath);
         },
         /**
          *
@@ -28579,7 +28579,7 @@ var StorefrontApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         getEmailPostcardsMultiple: function (storefront_oid, email_commseq_postcards_request, options) {
-            return exports.StorefrontApiFp(configuration).getEmailPostcardsMultiple(storefront_oid, email_commseq_postcards_request, options)(fetch, basePath);
+            return (0, exports.StorefrontApiFp)(configuration).getEmailPostcardsMultiple(storefront_oid, email_commseq_postcards_request, options)(fetch, basePath);
         },
         /**
          *
@@ -28590,7 +28590,7 @@ var StorefrontApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         getEmailSegment: function (storefront_oid, email_segment_uuid, options) {
-            return exports.StorefrontApiFp(configuration).getEmailSegment(storefront_oid, email_segment_uuid, options)(fetch, basePath);
+            return (0, exports.StorefrontApiFp)(configuration).getEmailSegment(storefront_oid, email_segment_uuid, options)(fetch, basePath);
         },
         /**
          *
@@ -28602,7 +28602,7 @@ var StorefrontApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         getEmailSegmentCustomerEditorUrl: function (storefront_oid, email_segment_uuid, email_customer_uuid, options) {
-            return exports.StorefrontApiFp(configuration).getEmailSegmentCustomerEditorUrl(storefront_oid, email_segment_uuid, email_customer_uuid, options)(fetch, basePath);
+            return (0, exports.StorefrontApiFp)(configuration).getEmailSegmentCustomerEditorUrl(storefront_oid, email_segment_uuid, email_customer_uuid, options)(fetch, basePath);
         },
         /**
          *
@@ -28615,7 +28615,7 @@ var StorefrontApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         getEmailSegmentCustomers: function (storefront_oid, email_segment_uuid, pageNumber, pageSize, options) {
-            return exports.StorefrontApiFp(configuration).getEmailSegmentCustomers(storefront_oid, email_segment_uuid, pageNumber, pageSize, options)(fetch, basePath);
+            return (0, exports.StorefrontApiFp)(configuration).getEmailSegmentCustomers(storefront_oid, email_segment_uuid, pageNumber, pageSize, options)(fetch, basePath);
         },
         /**
          *
@@ -28625,7 +28625,7 @@ var StorefrontApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         getEmailSegments: function (storefront_oid, options) {
-            return exports.StorefrontApiFp(configuration).getEmailSegments(storefront_oid, options)(fetch, basePath);
+            return (0, exports.StorefrontApiFp)(configuration).getEmailSegments(storefront_oid, options)(fetch, basePath);
         },
         /**
          *
@@ -28635,7 +28635,7 @@ var StorefrontApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         getEmailSendingDomain: function (domain, options) {
-            return exports.StorefrontApiFp(configuration).getEmailSendingDomain(domain, options)(fetch, basePath);
+            return (0, exports.StorefrontApiFp)(configuration).getEmailSendingDomain(domain, options)(fetch, basePath);
         },
         /**
          *
@@ -28645,7 +28645,7 @@ var StorefrontApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         getEmailSendingDomainStatus: function (domain, options) {
-            return exports.StorefrontApiFp(configuration).getEmailSendingDomainStatus(domain, options)(fetch, basePath);
+            return (0, exports.StorefrontApiFp)(configuration).getEmailSendingDomainStatus(domain, options)(fetch, basePath);
         },
         /**
          *
@@ -28654,7 +28654,7 @@ var StorefrontApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         getEmailSendingDomains: function (options) {
-            return exports.StorefrontApiFp(configuration).getEmailSendingDomains(options)(fetch, basePath);
+            return (0, exports.StorefrontApiFp)(configuration).getEmailSendingDomains(options)(fetch, basePath);
         },
         /**
          *
@@ -28664,7 +28664,7 @@ var StorefrontApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         getEmailSettings: function (storefront_oid, options) {
-            return exports.StorefrontApiFp(configuration).getEmailSettings(storefront_oid, options)(fetch, basePath);
+            return (0, exports.StorefrontApiFp)(configuration).getEmailSettings(storefront_oid, options)(fetch, basePath);
         },
         /**
          *
@@ -28675,7 +28675,7 @@ var StorefrontApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         getEmailTemplate: function (storefront_oid, email_template_oid, options) {
-            return exports.StorefrontApiFp(configuration).getEmailTemplate(storefront_oid, email_template_oid, options)(fetch, basePath);
+            return (0, exports.StorefrontApiFp)(configuration).getEmailTemplate(storefront_oid, email_template_oid, options)(fetch, basePath);
         },
         /**
          *
@@ -28686,7 +28686,7 @@ var StorefrontApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         getEmailTemplates: function (storefront_oid, trigger_type, options) {
-            return exports.StorefrontApiFp(configuration).getEmailTemplates(storefront_oid, trigger_type, options)(fetch, basePath);
+            return (0, exports.StorefrontApiFp)(configuration).getEmailTemplates(storefront_oid, trigger_type, options)(fetch, basePath);
         },
         /**
          *
@@ -28696,7 +28696,7 @@ var StorefrontApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         getEmailThirdPartyProviders: function (storefront_oid, options) {
-            return exports.StorefrontApiFp(configuration).getEmailThirdPartyProviders(storefront_oid, options)(fetch, basePath);
+            return (0, exports.StorefrontApiFp)(configuration).getEmailThirdPartyProviders(storefront_oid, options)(fetch, basePath);
         },
         /**
          *
@@ -28706,7 +28706,7 @@ var StorefrontApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         getExperiments: function (storefront_oid, options) {
-            return exports.StorefrontApiFp(configuration).getExperiments(storefront_oid, options)(fetch, basePath);
+            return (0, exports.StorefrontApiFp)(configuration).getExperiments(storefront_oid, options)(fetch, basePath);
         },
         /**
          * Get screen recording heatmap
@@ -28717,7 +28717,7 @@ var StorefrontApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         getHeatmap: function (storefront_oid, query, options) {
-            return exports.StorefrontApiFp(configuration).getHeatmap(storefront_oid, query, options)(fetch, basePath);
+            return (0, exports.StorefrontApiFp)(configuration).getHeatmap(storefront_oid, query, options)(fetch, basePath);
         },
         /**
          * Get screen recording heatmap index
@@ -28731,7 +28731,7 @@ var StorefrontApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         getHeatmapIndex: function (storefront_oid, query, _limit, _offset, _sort, options) {
-            return exports.StorefrontApiFp(configuration).getHeatmapIndex(storefront_oid, query, _limit, _offset, _sort, options)(fetch, basePath);
+            return (0, exports.StorefrontApiFp)(configuration).getHeatmapIndex(storefront_oid, query, _limit, _offset, _sort, options)(fetch, basePath);
         },
         /**
          * Obtain a list of property names for a given property type
@@ -28742,7 +28742,7 @@ var StorefrontApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         getHistogramPropertyNames: function (storefront_oid, property_type, options) {
-            return exports.StorefrontApiFp(configuration).getHistogramPropertyNames(storefront_oid, property_type, options)(fetch, basePath);
+            return (0, exports.StorefrontApiFp)(configuration).getHistogramPropertyNames(storefront_oid, property_type, options)(fetch, basePath);
         },
         /**
          * Obtain a list of property values for a given property name and type
@@ -28755,7 +28755,7 @@ var StorefrontApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         getHistogramPropertyValues: function (storefront_oid, property_name, property_type, limit, options) {
-            return exports.StorefrontApiFp(configuration).getHistogramPropertyValues(storefront_oid, property_name, property_type, limit, options)(fetch, basePath);
+            return (0, exports.StorefrontApiFp)(configuration).getHistogramPropertyValues(storefront_oid, property_name, property_type, limit, options)(fetch, basePath);
         },
         /**
          *
@@ -28764,7 +28764,7 @@ var StorefrontApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         getLibraryFilterValues: function (options) {
-            return exports.StorefrontApiFp(configuration).getLibraryFilterValues(options)(fetch, basePath);
+            return (0, exports.StorefrontApiFp)(configuration).getLibraryFilterValues(options)(fetch, basePath);
         },
         /**
          *
@@ -28774,7 +28774,7 @@ var StorefrontApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         getLibraryItem: function (library_item_oid, options) {
-            return exports.StorefrontApiFp(configuration).getLibraryItem(library_item_oid, options)(fetch, basePath);
+            return (0, exports.StorefrontApiFp)(configuration).getLibraryItem(library_item_oid, options)(fetch, basePath);
         },
         /**
          *
@@ -28784,7 +28784,7 @@ var StorefrontApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         getLibraryItemPublishedVersions: function (library_item_oid, options) {
-            return exports.StorefrontApiFp(configuration).getLibraryItemPublishedVersions(library_item_oid, options)(fetch, basePath);
+            return (0, exports.StorefrontApiFp)(configuration).getLibraryItemPublishedVersions(library_item_oid, options)(fetch, basePath);
         },
         /**
          * Get screen recording
@@ -28795,7 +28795,7 @@ var StorefrontApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         getScreenRecording: function (storefront_oid, screen_recording_uuid, options) {
-            return exports.StorefrontApiFp(configuration).getScreenRecording(storefront_oid, screen_recording_uuid, options)(fetch, basePath);
+            return (0, exports.StorefrontApiFp)(configuration).getScreenRecording(storefront_oid, screen_recording_uuid, options)(fetch, basePath);
         },
         /**
          * Get screen recording page view data
@@ -28807,7 +28807,7 @@ var StorefrontApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         getScreenRecordingPageViewData: function (storefront_oid, screen_recording_uuid, screen_recording_page_view_uuid, options) {
-            return exports.StorefrontApiFp(configuration).getScreenRecordingPageViewData(storefront_oid, screen_recording_uuid, screen_recording_page_view_uuid, options)(fetch, basePath);
+            return (0, exports.StorefrontApiFp)(configuration).getScreenRecordingPageViewData(storefront_oid, screen_recording_uuid, screen_recording_page_view_uuid, options)(fetch, basePath);
         },
         /**
          *
@@ -28818,7 +28818,7 @@ var StorefrontApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         getScreenRecordingSegment: function (storefront_oid, screen_recording_segment_oid, options) {
-            return exports.StorefrontApiFp(configuration).getScreenRecordingSegment(storefront_oid, screen_recording_segment_oid, options)(fetch, basePath);
+            return (0, exports.StorefrontApiFp)(configuration).getScreenRecordingSegment(storefront_oid, screen_recording_segment_oid, options)(fetch, basePath);
         },
         /**
          *
@@ -28828,7 +28828,7 @@ var StorefrontApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         getScreenRecordingSegments: function (storefront_oid, options) {
-            return exports.StorefrontApiFp(configuration).getScreenRecordingSegments(storefront_oid, options)(fetch, basePath);
+            return (0, exports.StorefrontApiFp)(configuration).getScreenRecordingSegments(storefront_oid, options)(fetch, basePath);
         },
         /**
          *
@@ -28838,7 +28838,7 @@ var StorefrontApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         getScreenRecordingSettings: function (storefront_oid, options) {
-            return exports.StorefrontApiFp(configuration).getScreenRecordingSettings(storefront_oid, options)(fetch, basePath);
+            return (0, exports.StorefrontApiFp)(configuration).getScreenRecordingSettings(storefront_oid, options)(fetch, basePath);
         },
         /**
          * Get tags used by screen recording
@@ -28848,7 +28848,7 @@ var StorefrontApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         getScreenRecordingTags: function (storefront_oid, options) {
-            return exports.StorefrontApiFp(configuration).getScreenRecordingTags(storefront_oid, options)(fetch, basePath);
+            return (0, exports.StorefrontApiFp)(configuration).getScreenRecordingTags(storefront_oid, options)(fetch, basePath);
         },
         /**
          * Query screen recordings
@@ -28862,7 +28862,7 @@ var StorefrontApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         getScreenRecordingsByQuery: function (storefront_oid, query, _limit, _offset, _sort, options) {
-            return exports.StorefrontApiFp(configuration).getScreenRecordingsByQuery(storefront_oid, query, _limit, _offset, _sort, options)(fetch, basePath);
+            return (0, exports.StorefrontApiFp)(configuration).getScreenRecordingsByQuery(storefront_oid, query, _limit, _offset, _sort, options)(fetch, basePath);
         },
         /**
          * Get screen recordings by segment
@@ -28876,7 +28876,7 @@ var StorefrontApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         getScreenRecordingsBySegment: function (storefront_oid, screen_recording_segment_oid, _limit, _offset, _sort, options) {
-            return exports.StorefrontApiFp(configuration).getScreenRecordingsBySegment(storefront_oid, screen_recording_segment_oid, _limit, _offset, _sort, options)(fetch, basePath);
+            return (0, exports.StorefrontApiFp)(configuration).getScreenRecordingsBySegment(storefront_oid, screen_recording_segment_oid, _limit, _offset, _sort, options)(fetch, basePath);
         },
         /**
          * Retrieves the pricing tiers
@@ -28886,7 +28886,7 @@ var StorefrontApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         getStoreFrontPricingTiers: function (_expand, options) {
-            return exports.StorefrontApiFp(configuration).getStoreFrontPricingTiers(_expand, options)(fetch, basePath);
+            return (0, exports.StorefrontApiFp)(configuration).getStoreFrontPricingTiers(_expand, options)(fetch, basePath);
         },
         /**
          *
@@ -28896,7 +28896,7 @@ var StorefrontApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         getThumbnailParameters: function (thumbnail_parameters, options) {
-            return exports.StorefrontApiFp(configuration).getThumbnailParameters(thumbnail_parameters, options)(fetch, basePath);
+            return (0, exports.StorefrontApiFp)(configuration).getThumbnailParameters(thumbnail_parameters, options)(fetch, basePath);
         },
         /**
          * Fetch a transactional email
@@ -28907,7 +28907,7 @@ var StorefrontApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         getTransactionEmail: function (storefront_oid, email_id, options) {
-            return exports.StorefrontApiFp(configuration).getTransactionEmail(storefront_oid, email_id, options)(fetch, basePath);
+            return (0, exports.StorefrontApiFp)(configuration).getTransactionEmail(storefront_oid, email_id, options)(fetch, basePath);
         },
         /**
          * Obtain a list of all transactional emails and return back just their names
@@ -28917,7 +28917,7 @@ var StorefrontApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         getTransactionEmailList: function (storefront_oid, options) {
-            return exports.StorefrontApiFp(configuration).getTransactionEmailList(storefront_oid, options)(fetch, basePath);
+            return (0, exports.StorefrontApiFp)(configuration).getTransactionEmailList(storefront_oid, options)(fetch, basePath);
         },
         /**
          *
@@ -28928,7 +28928,7 @@ var StorefrontApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         getTransactionEmailScreenshots: function (storefront_oid, email_id, options) {
-            return exports.StorefrontApiFp(configuration).getTransactionEmailScreenshots(storefront_oid, email_id, options)(fetch, basePath);
+            return (0, exports.StorefrontApiFp)(configuration).getTransactionEmailScreenshots(storefront_oid, email_id, options)(fetch, basePath);
         },
         /**
          *
@@ -28939,7 +28939,7 @@ var StorefrontApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         globalUnsubscribe: function (storefront_oid, unsubscribe, options) {
-            return exports.StorefrontApiFp(configuration).globalUnsubscribe(storefront_oid, unsubscribe, options)(fetch, basePath);
+            return (0, exports.StorefrontApiFp)(configuration).globalUnsubscribe(storefront_oid, unsubscribe, options)(fetch, basePath);
         },
         /**
          *
@@ -28950,7 +28950,7 @@ var StorefrontApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         importEmailThirdPartyProviderList: function (storefront_oid, import_request, options) {
-            return exports.StorefrontApiFp(configuration).importEmailThirdPartyProviderList(storefront_oid, import_request, options)(fetch, basePath);
+            return (0, exports.StorefrontApiFp)(configuration).importEmailThirdPartyProviderList(storefront_oid, import_request, options)(fetch, basePath);
         },
         /**
          *
@@ -28961,7 +28961,7 @@ var StorefrontApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         insertEmailCampaign: function (storefront_oid, email_campaign, options) {
-            return exports.StorefrontApiFp(configuration).insertEmailCampaign(storefront_oid, email_campaign, options)(fetch, basePath);
+            return (0, exports.StorefrontApiFp)(configuration).insertEmailCampaign(storefront_oid, email_campaign, options)(fetch, basePath);
         },
         /**
          *
@@ -28972,7 +28972,7 @@ var StorefrontApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         insertEmailCampaignFolder: function (storefront_oid, email_campaign_folder, options) {
-            return exports.StorefrontApiFp(configuration).insertEmailCampaignFolder(storefront_oid, email_campaign_folder, options)(fetch, basePath);
+            return (0, exports.StorefrontApiFp)(configuration).insertEmailCampaignFolder(storefront_oid, email_campaign_folder, options)(fetch, basePath);
         },
         /**
          *
@@ -28983,7 +28983,7 @@ var StorefrontApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         insertEmailCommseq: function (storefront_oid, email_commseq, options) {
-            return exports.StorefrontApiFp(configuration).insertEmailCommseq(storefront_oid, email_commseq, options)(fetch, basePath);
+            return (0, exports.StorefrontApiFp)(configuration).insertEmailCommseq(storefront_oid, email_commseq, options)(fetch, basePath);
         },
         /**
          *
@@ -28994,7 +28994,7 @@ var StorefrontApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         insertEmailEmail: function (storefront_oid, email_commseq_email, options) {
-            return exports.StorefrontApiFp(configuration).insertEmailEmail(storefront_oid, email_commseq_email, options)(fetch, basePath);
+            return (0, exports.StorefrontApiFp)(configuration).insertEmailEmail(storefront_oid, email_commseq_email, options)(fetch, basePath);
         },
         /**
          *
@@ -29005,7 +29005,7 @@ var StorefrontApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         insertEmailFlow: function (storefront_oid, email_flow, options) {
-            return exports.StorefrontApiFp(configuration).insertEmailFlow(storefront_oid, email_flow, options)(fetch, basePath);
+            return (0, exports.StorefrontApiFp)(configuration).insertEmailFlow(storefront_oid, email_flow, options)(fetch, basePath);
         },
         /**
          *
@@ -29016,7 +29016,7 @@ var StorefrontApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         insertEmailFlowFolder: function (storefront_oid, email_flow_folder, options) {
-            return exports.StorefrontApiFp(configuration).insertEmailFlowFolder(storefront_oid, email_flow_folder, options)(fetch, basePath);
+            return (0, exports.StorefrontApiFp)(configuration).insertEmailFlowFolder(storefront_oid, email_flow_folder, options)(fetch, basePath);
         },
         /**
          *
@@ -29027,7 +29027,7 @@ var StorefrontApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         insertEmailList: function (storefront_oid, email_list, options) {
-            return exports.StorefrontApiFp(configuration).insertEmailList(storefront_oid, email_list, options)(fetch, basePath);
+            return (0, exports.StorefrontApiFp)(configuration).insertEmailList(storefront_oid, email_list, options)(fetch, basePath);
         },
         /**
          *
@@ -29038,7 +29038,7 @@ var StorefrontApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         insertEmailListSegmentFolder: function (storefront_oid, email_list_segment_folder, options) {
-            return exports.StorefrontApiFp(configuration).insertEmailListSegmentFolder(storefront_oid, email_list_segment_folder, options)(fetch, basePath);
+            return (0, exports.StorefrontApiFp)(configuration).insertEmailListSegmentFolder(storefront_oid, email_list_segment_folder, options)(fetch, basePath);
         },
         /**
          *
@@ -29049,7 +29049,7 @@ var StorefrontApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         insertEmailPostcard: function (storefront_oid, email_commseq_postcard, options) {
-            return exports.StorefrontApiFp(configuration).insertEmailPostcard(storefront_oid, email_commseq_postcard, options)(fetch, basePath);
+            return (0, exports.StorefrontApiFp)(configuration).insertEmailPostcard(storefront_oid, email_commseq_postcard, options)(fetch, basePath);
         },
         /**
          *
@@ -29060,7 +29060,7 @@ var StorefrontApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         insertEmailSegment: function (storefront_oid, email_segment, options) {
-            return exports.StorefrontApiFp(configuration).insertEmailSegment(storefront_oid, email_segment, options)(fetch, basePath);
+            return (0, exports.StorefrontApiFp)(configuration).insertEmailSegment(storefront_oid, email_segment, options)(fetch, basePath);
         },
         /**
          *
@@ -29071,7 +29071,7 @@ var StorefrontApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         insertScreenRecordingSegment: function (storefront_oid, segment, options) {
-            return exports.StorefrontApiFp(configuration).insertScreenRecordingSegment(storefront_oid, segment, options)(fetch, basePath);
+            return (0, exports.StorefrontApiFp)(configuration).insertScreenRecordingSegment(storefront_oid, segment, options)(fetch, basePath);
         },
         /**
          *
@@ -29082,7 +29082,7 @@ var StorefrontApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         prepareDownloadEmailSegment: function (storefront_oid, email_segment_uuid, options) {
-            return exports.StorefrontApiFp(configuration).prepareDownloadEmailSegment(storefront_oid, email_segment_uuid, options)(fetch, basePath);
+            return (0, exports.StorefrontApiFp)(configuration).prepareDownloadEmailSegment(storefront_oid, email_segment_uuid, options)(fetch, basePath);
         },
         /**
          *
@@ -29093,7 +29093,7 @@ var StorefrontApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         publishLibraryItem: function (library_item_oid, publish_library_request, options) {
-            return exports.StorefrontApiFp(configuration).publishLibraryItem(library_item_oid, publish_library_request, options)(fetch, basePath);
+            return (0, exports.StorefrontApiFp)(configuration).publishLibraryItem(library_item_oid, publish_library_request, options)(fetch, basePath);
         },
         /**
          *
@@ -29104,7 +29104,7 @@ var StorefrontApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         purchaseLibraryItem: function (library_item_oid, storefront_oid, options) {
-            return exports.StorefrontApiFp(configuration).purchaseLibraryItem(library_item_oid, storefront_oid, options)(fetch, basePath);
+            return (0, exports.StorefrontApiFp)(configuration).purchaseLibraryItem(library_item_oid, storefront_oid, options)(fetch, basePath);
         },
         /**
          *
@@ -29116,7 +29116,7 @@ var StorefrontApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         releaseEmailCommseqStepWaiting: function (storefront_oid, commseq_uuid, commseq_step_uuid, options) {
-            return exports.StorefrontApiFp(configuration).releaseEmailCommseqStepWaiting(storefront_oid, commseq_uuid, commseq_step_uuid, options)(fetch, basePath);
+            return (0, exports.StorefrontApiFp)(configuration).releaseEmailCommseqStepWaiting(storefront_oid, commseq_uuid, commseq_step_uuid, options)(fetch, basePath);
         },
         /**
          *
@@ -29128,7 +29128,7 @@ var StorefrontApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         review: function (storefront_oid, commseq_email_uuid, email_commseq_email_review_request, options) {
-            return exports.StorefrontApiFp(configuration).review(storefront_oid, commseq_email_uuid, email_commseq_email_review_request, options)(fetch, basePath);
+            return (0, exports.StorefrontApiFp)(configuration).review(storefront_oid, commseq_email_uuid, email_commseq_email_review_request, options)(fetch, basePath);
         },
         /**
          *
@@ -29142,7 +29142,7 @@ var StorefrontApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         search: function (category, matches, storefront_oid, max_hits, subcategory, options) {
-            return exports.StorefrontApiFp(configuration).search(category, matches, storefront_oid, max_hits, subcategory, options)(fetch, basePath);
+            return (0, exports.StorefrontApiFp)(configuration).search(category, matches, storefront_oid, max_hits, subcategory, options)(fetch, basePath);
         },
         /**
          *
@@ -29152,7 +29152,7 @@ var StorefrontApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         search2: function (lookup_request, options) {
-            return exports.StorefrontApiFp(configuration).search2(lookup_request, options)(fetch, basePath);
+            return (0, exports.StorefrontApiFp)(configuration).search2(lookup_request, options)(fetch, basePath);
         },
         /**
          *
@@ -29164,7 +29164,7 @@ var StorefrontApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         searchEmailListCustomers: function (storefront_oid, email_list_uuid, startsWith, options) {
-            return exports.StorefrontApiFp(configuration).searchEmailListCustomers(storefront_oid, email_list_uuid, startsWith, options)(fetch, basePath);
+            return (0, exports.StorefrontApiFp)(configuration).searchEmailListCustomers(storefront_oid, email_list_uuid, startsWith, options)(fetch, basePath);
         },
         /**
          *
@@ -29176,7 +29176,7 @@ var StorefrontApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         searchEmailSegmentCustomers: function (storefront_oid, email_segment_uuid, startsWith, options) {
-            return exports.StorefrontApiFp(configuration).searchEmailSegmentCustomers(storefront_oid, email_segment_uuid, startsWith, options)(fetch, basePath);
+            return (0, exports.StorefrontApiFp)(configuration).searchEmailSegmentCustomers(storefront_oid, email_segment_uuid, startsWith, options)(fetch, basePath);
         },
         /**
          * Retrieves a library items based on a query object.  If no parameters are specified, the API call will default to the merchant id only.  You will need to make multiple API calls in order to retrieve the entire result set since this API performs result set pagination.
@@ -29189,7 +29189,7 @@ var StorefrontApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         searchLibraryItems: function (item_query, _limit, _offset, _sort, options) {
-            return exports.StorefrontApiFp(configuration).searchLibraryItems(item_query, _limit, _offset, _sort, options)(fetch, basePath);
+            return (0, exports.StorefrontApiFp)(configuration).searchLibraryItems(item_query, _limit, _offset, _sort, options)(fetch, basePath);
         },
         /**
          * Retrieves a library items based on a query object.  If no parameters are specified, the API call will default to the merchant id only.  You will need to make multiple API calls in order to retrieve the entire result set since this API performs result set pagination.
@@ -29202,7 +29202,7 @@ var StorefrontApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         searchPublishedItems: function (item_query, _limit, _offset, _sort, options) {
-            return exports.StorefrontApiFp(configuration).searchPublishedItems(item_query, _limit, _offset, _sort, options)(fetch, basePath);
+            return (0, exports.StorefrontApiFp)(configuration).searchPublishedItems(item_query, _limit, _offset, _sort, options)(fetch, basePath);
         },
         /**
          * Retrieves a library items based on a query object.  If no parameters are specified, the API call will default to the merchant id only.  You will need to make multiple API calls in order to retrieve the entire result set since this API performs result set pagination.
@@ -29215,7 +29215,7 @@ var StorefrontApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         searchReviewItems: function (item_query, _limit, _offset, _sort, options) {
-            return exports.StorefrontApiFp(configuration).searchReviewItems(item_query, _limit, _offset, _sort, options)(fetch, basePath);
+            return (0, exports.StorefrontApiFp)(configuration).searchReviewItems(item_query, _limit, _offset, _sort, options)(fetch, basePath);
         },
         /**
          * Retrieves a library items based on a query object.  If no parameters are specified, the API call will default to the merchant id only.  You will need to make multiple API calls in order to retrieve the entire result set since this API performs result set pagination.
@@ -29228,7 +29228,7 @@ var StorefrontApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         searchSharedItems: function (item_query, _limit, _offset, _sort, options) {
-            return exports.StorefrontApiFp(configuration).searchSharedItems(item_query, _limit, _offset, _sort, options)(fetch, basePath);
+            return (0, exports.StorefrontApiFp)(configuration).searchSharedItems(item_query, _limit, _offset, _sort, options)(fetch, basePath);
         },
         /**
          *
@@ -29240,7 +29240,7 @@ var StorefrontApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         sendEmailTest: function (storefront_oid, commseq_email_uuid, email_commseq_email_test_request, options) {
-            return exports.StorefrontApiFp(configuration).sendEmailTest(storefront_oid, commseq_email_uuid, email_commseq_email_test_request, options)(fetch, basePath);
+            return (0, exports.StorefrontApiFp)(configuration).sendEmailTest(storefront_oid, commseq_email_uuid, email_commseq_email_test_request, options)(fetch, basePath);
         },
         /**
          *
@@ -29252,7 +29252,7 @@ var StorefrontApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         sendPostcardTest: function (storefront_oid, commseq_postcard_uuid, email_commseq_postcard_test_request, options) {
-            return exports.StorefrontApiFp(configuration).sendPostcardTest(storefront_oid, commseq_postcard_uuid, email_commseq_postcard_test_request, options)(fetch, basePath);
+            return (0, exports.StorefrontApiFp)(configuration).sendPostcardTest(storefront_oid, commseq_postcard_uuid, email_commseq_postcard_test_request, options)(fetch, basePath);
         },
         /**
          *
@@ -29263,7 +29263,7 @@ var StorefrontApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         sendWebhookTest: function (storefront_oid, email_commseq_webhook_test_request, options) {
-            return exports.StorefrontApiFp(configuration).sendWebhookTest(storefront_oid, email_commseq_webhook_test_request, options)(fetch, basePath);
+            return (0, exports.StorefrontApiFp)(configuration).sendWebhookTest(storefront_oid, email_commseq_webhook_test_request, options)(fetch, basePath);
         },
         /**
          *
@@ -29274,7 +29274,7 @@ var StorefrontApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         startEmailCampaign: function (storefront_oid, email_campaign_uuid, options) {
-            return exports.StorefrontApiFp(configuration).startEmailCampaign(storefront_oid, email_campaign_uuid, options)(fetch, basePath);
+            return (0, exports.StorefrontApiFp)(configuration).startEmailCampaign(storefront_oid, email_campaign_uuid, options)(fetch, basePath);
         },
         /**
          *
@@ -29286,7 +29286,7 @@ var StorefrontApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         subscribeToEmailList: function (storefront_oid, email_list_uuid, customers, options) {
-            return exports.StorefrontApiFp(configuration).subscribeToEmailList(storefront_oid, email_list_uuid, customers, options)(fetch, basePath);
+            return (0, exports.StorefrontApiFp)(configuration).subscribeToEmailList(storefront_oid, email_list_uuid, customers, options)(fetch, basePath);
         },
         /**
          * Remove favorite flag on screen recording
@@ -29297,7 +29297,7 @@ var StorefrontApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         unfavoriteScreenRecording: function (storefront_oid, screen_recording_uuid, options) {
-            return exports.StorefrontApiFp(configuration).unfavoriteScreenRecording(storefront_oid, screen_recording_uuid, options)(fetch, basePath);
+            return (0, exports.StorefrontApiFp)(configuration).unfavoriteScreenRecording(storefront_oid, screen_recording_uuid, options)(fetch, basePath);
         },
         /**
          *
@@ -29309,7 +29309,7 @@ var StorefrontApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         updateEmailCampaign: function (storefront_oid, email_campaign_uuid, email_campaign, options) {
-            return exports.StorefrontApiFp(configuration).updateEmailCampaign(storefront_oid, email_campaign_uuid, email_campaign, options)(fetch, basePath);
+            return (0, exports.StorefrontApiFp)(configuration).updateEmailCampaign(storefront_oid, email_campaign_uuid, email_campaign, options)(fetch, basePath);
         },
         /**
          *
@@ -29321,7 +29321,7 @@ var StorefrontApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         updateEmailCampaignFolder: function (storefront_oid, email_campaign_folder_uuid, email_campaign_folder, options) {
-            return exports.StorefrontApiFp(configuration).updateEmailCampaignFolder(storefront_oid, email_campaign_folder_uuid, email_campaign_folder, options)(fetch, basePath);
+            return (0, exports.StorefrontApiFp)(configuration).updateEmailCampaignFolder(storefront_oid, email_campaign_folder_uuid, email_campaign_folder, options)(fetch, basePath);
         },
         /**
          *
@@ -29333,7 +29333,7 @@ var StorefrontApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         updateEmailCommseq: function (storefront_oid, commseq_uuid, email_commseq, options) {
-            return exports.StorefrontApiFp(configuration).updateEmailCommseq(storefront_oid, commseq_uuid, email_commseq, options)(fetch, basePath);
+            return (0, exports.StorefrontApiFp)(configuration).updateEmailCommseq(storefront_oid, commseq_uuid, email_commseq, options)(fetch, basePath);
         },
         /**
          *
@@ -29345,7 +29345,7 @@ var StorefrontApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         updateEmailCustomer: function (storefront_oid, email_customer_uuid, email_customer, options) {
-            return exports.StorefrontApiFp(configuration).updateEmailCustomer(storefront_oid, email_customer_uuid, email_customer, options)(fetch, basePath);
+            return (0, exports.StorefrontApiFp)(configuration).updateEmailCustomer(storefront_oid, email_customer_uuid, email_customer, options)(fetch, basePath);
         },
         /**
          *
@@ -29357,7 +29357,7 @@ var StorefrontApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         updateEmailEmail: function (storefront_oid, commseq_email_uuid, email_commseq_email, options) {
-            return exports.StorefrontApiFp(configuration).updateEmailEmail(storefront_oid, commseq_email_uuid, email_commseq_email, options)(fetch, basePath);
+            return (0, exports.StorefrontApiFp)(configuration).updateEmailEmail(storefront_oid, commseq_email_uuid, email_commseq_email, options)(fetch, basePath);
         },
         /**
          *
@@ -29369,7 +29369,7 @@ var StorefrontApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         updateEmailFlow: function (storefront_oid, email_flow_uuid, email_flow, options) {
-            return exports.StorefrontApiFp(configuration).updateEmailFlow(storefront_oid, email_flow_uuid, email_flow, options)(fetch, basePath);
+            return (0, exports.StorefrontApiFp)(configuration).updateEmailFlow(storefront_oid, email_flow_uuid, email_flow, options)(fetch, basePath);
         },
         /**
          *
@@ -29381,7 +29381,7 @@ var StorefrontApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         updateEmailFlowFolder: function (storefront_oid, email_flow_folder_uuid, email_flow_folder, options) {
-            return exports.StorefrontApiFp(configuration).updateEmailFlowFolder(storefront_oid, email_flow_folder_uuid, email_flow_folder, options)(fetch, basePath);
+            return (0, exports.StorefrontApiFp)(configuration).updateEmailFlowFolder(storefront_oid, email_flow_folder_uuid, email_flow_folder, options)(fetch, basePath);
         },
         /**
          *
@@ -29391,7 +29391,7 @@ var StorefrontApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         updateEmailGlobalSettings: function (global_settings, options) {
-            return exports.StorefrontApiFp(configuration).updateEmailGlobalSettings(global_settings, options)(fetch, basePath);
+            return (0, exports.StorefrontApiFp)(configuration).updateEmailGlobalSettings(global_settings, options)(fetch, basePath);
         },
         /**
          *
@@ -29403,7 +29403,7 @@ var StorefrontApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         updateEmailList: function (storefront_oid, email_list_uuid, email_list, options) {
-            return exports.StorefrontApiFp(configuration).updateEmailList(storefront_oid, email_list_uuid, email_list, options)(fetch, basePath);
+            return (0, exports.StorefrontApiFp)(configuration).updateEmailList(storefront_oid, email_list_uuid, email_list, options)(fetch, basePath);
         },
         /**
          *
@@ -29415,7 +29415,7 @@ var StorefrontApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         updateEmailListSegmentFolder: function (storefront_oid, email_list_segment_folder_uuid, email_list_segment_folder, options) {
-            return exports.StorefrontApiFp(configuration).updateEmailListSegmentFolder(storefront_oid, email_list_segment_folder_uuid, email_list_segment_folder, options)(fetch, basePath);
+            return (0, exports.StorefrontApiFp)(configuration).updateEmailListSegmentFolder(storefront_oid, email_list_segment_folder_uuid, email_list_segment_folder, options)(fetch, basePath);
         },
         /**
          *
@@ -29426,7 +29426,7 @@ var StorefrontApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         updateEmailPlan: function (storefront_oid, settings, options) {
-            return exports.StorefrontApiFp(configuration).updateEmailPlan(storefront_oid, settings, options)(fetch, basePath);
+            return (0, exports.StorefrontApiFp)(configuration).updateEmailPlan(storefront_oid, settings, options)(fetch, basePath);
         },
         /**
          *
@@ -29438,7 +29438,7 @@ var StorefrontApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         updateEmailPostcard: function (storefront_oid, commseq_postcard_uuid, email_commseq_postcard, options) {
-            return exports.StorefrontApiFp(configuration).updateEmailPostcard(storefront_oid, commseq_postcard_uuid, email_commseq_postcard, options)(fetch, basePath);
+            return (0, exports.StorefrontApiFp)(configuration).updateEmailPostcard(storefront_oid, commseq_postcard_uuid, email_commseq_postcard, options)(fetch, basePath);
         },
         /**
          *
@@ -29450,7 +29450,7 @@ var StorefrontApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         updateEmailSegment: function (storefront_oid, email_segment_uuid, email_segment, options) {
-            return exports.StorefrontApiFp(configuration).updateEmailSegment(storefront_oid, email_segment_uuid, email_segment, options)(fetch, basePath);
+            return (0, exports.StorefrontApiFp)(configuration).updateEmailSegment(storefront_oid, email_segment_uuid, email_segment, options)(fetch, basePath);
         },
         /**
          *
@@ -29461,7 +29461,7 @@ var StorefrontApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         updateEmailSettings: function (storefront_oid, settings, options) {
-            return exports.StorefrontApiFp(configuration).updateEmailSettings(storefront_oid, settings, options)(fetch, basePath);
+            return (0, exports.StorefrontApiFp)(configuration).updateEmailSettings(storefront_oid, settings, options)(fetch, basePath);
         },
         /**
          *
@@ -29473,7 +29473,7 @@ var StorefrontApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         updateExperiment: function (storefront_oid, storefront_experiment_oid, experiment, options) {
-            return exports.StorefrontApiFp(configuration).updateExperiment(storefront_oid, storefront_experiment_oid, experiment, options)(fetch, basePath);
+            return (0, exports.StorefrontApiFp)(configuration).updateExperiment(storefront_oid, storefront_experiment_oid, experiment, options)(fetch, basePath);
         },
         /**
          *
@@ -29484,7 +29484,7 @@ var StorefrontApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         updateLibraryItem: function (library_item_oid, library_item, options) {
-            return exports.StorefrontApiFp(configuration).updateLibraryItem(library_item_oid, library_item, options)(fetch, basePath);
+            return (0, exports.StorefrontApiFp)(configuration).updateLibraryItem(library_item_oid, library_item, options)(fetch, basePath);
         },
         /**
          * Update merchant notes on a screen recording
@@ -29496,7 +29496,7 @@ var StorefrontApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         updateScreenRecordingMerchantNotes: function (storefront_oid, screen_recording_uuid, merchant_notes_request, options) {
-            return exports.StorefrontApiFp(configuration).updateScreenRecordingMerchantNotes(storefront_oid, screen_recording_uuid, merchant_notes_request, options)(fetch, basePath);
+            return (0, exports.StorefrontApiFp)(configuration).updateScreenRecordingMerchantNotes(storefront_oid, screen_recording_uuid, merchant_notes_request, options)(fetch, basePath);
         },
         /**
          *
@@ -29508,7 +29508,7 @@ var StorefrontApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         updateScreenRecordingSegment: function (storefront_oid, screen_recording_segment_oid, segment, options) {
-            return exports.StorefrontApiFp(configuration).updateScreenRecordingSegment(storefront_oid, screen_recording_segment_oid, segment, options)(fetch, basePath);
+            return (0, exports.StorefrontApiFp)(configuration).updateScreenRecordingSegment(storefront_oid, screen_recording_segment_oid, segment, options)(fetch, basePath);
         },
         /**
          *
@@ -29519,7 +29519,7 @@ var StorefrontApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         updateScreenRecordingSettings: function (storefront_oid, settings, options) {
-            return exports.StorefrontApiFp(configuration).updateScreenRecordingSettings(storefront_oid, settings, options)(fetch, basePath);
+            return (0, exports.StorefrontApiFp)(configuration).updateScreenRecordingSettings(storefront_oid, settings, options)(fetch, basePath);
         },
         /**
          * Update tags on a screen recording
@@ -29531,7 +29531,7 @@ var StorefrontApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         updateScreenRecordingTags: function (storefront_oid, screen_recording_uuid, tags, options) {
-            return exports.StorefrontApiFp(configuration).updateScreenRecordingTags(storefront_oid, screen_recording_uuid, tags, options)(fetch, basePath);
+            return (0, exports.StorefrontApiFp)(configuration).updateScreenRecordingTags(storefront_oid, screen_recording_uuid, tags, options)(fetch, basePath);
         },
         /**
          * Updates a transactional email
@@ -29543,7 +29543,7 @@ var StorefrontApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         updateTransactionEmail: function (storefront_oid, email_id, transaction_email, options) {
-            return exports.StorefrontApiFp(configuration).updateTransactionEmail(storefront_oid, email_id, transaction_email, options)(fetch, basePath);
+            return (0, exports.StorefrontApiFp)(configuration).updateTransactionEmail(storefront_oid, email_id, transaction_email, options)(fetch, basePath);
         },
     };
 };
@@ -29568,7 +29568,7 @@ var StorefrontApi = /** @class */ (function (_super) {
      * @memberof StorefrontApi
      */
     StorefrontApi.prototype.addToLibrary = function (add_library_request, options) {
-        return exports.StorefrontApiFp(this.configuration).addToLibrary(add_library_request, options)(this.fetch, this.basePath);
+        return (0, exports.StorefrontApiFp)(this.configuration).addToLibrary(add_library_request, options)(this.fetch, this.basePath);
     };
     /**
      *
@@ -29579,7 +29579,7 @@ var StorefrontApi = /** @class */ (function (_super) {
      * @memberof StorefrontApi
      */
     StorefrontApi.prototype.applyToStoreFront = function (apply_library_request, options) {
-        return exports.StorefrontApiFp(this.configuration).applyToStoreFront(apply_library_request, options)(this.fetch, this.basePath);
+        return (0, exports.StorefrontApiFp)(this.configuration).applyToStoreFront(apply_library_request, options)(this.fetch, this.basePath);
     };
     /**
      *
@@ -29591,7 +29591,7 @@ var StorefrontApi = /** @class */ (function (_super) {
      * @memberof StorefrontApi
      */
     StorefrontApi.prototype.archiveEmailList = function (storefront_oid, email_list_uuid, options) {
-        return exports.StorefrontApiFp(this.configuration).archiveEmailList(storefront_oid, email_list_uuid, options)(this.fetch, this.basePath);
+        return (0, exports.StorefrontApiFp)(this.configuration).archiveEmailList(storefront_oid, email_list_uuid, options)(this.fetch, this.basePath);
     };
     /**
      *
@@ -29603,7 +29603,7 @@ var StorefrontApi = /** @class */ (function (_super) {
      * @memberof StorefrontApi
      */
     StorefrontApi.prototype.archiveEmailSegment = function (storefront_oid, email_segment_uuid, options) {
-        return exports.StorefrontApiFp(this.configuration).archiveEmailSegment(storefront_oid, email_segment_uuid, options)(this.fetch, this.basePath);
+        return (0, exports.StorefrontApiFp)(this.configuration).archiveEmailSegment(storefront_oid, email_segment_uuid, options)(this.fetch, this.basePath);
     };
     /**
      *
@@ -29616,7 +29616,7 @@ var StorefrontApi = /** @class */ (function (_super) {
      * @memberof StorefrontApi
      */
     StorefrontApi.prototype.backPopulateEmailFlow = function (storefront_oid, email_flow_uuid, back_populate_request, options) {
-        return exports.StorefrontApiFp(this.configuration).backPopulateEmailFlow(storefront_oid, email_flow_uuid, back_populate_request, options)(this.fetch, this.basePath);
+        return (0, exports.StorefrontApiFp)(this.configuration).backPopulateEmailFlow(storefront_oid, email_flow_uuid, back_populate_request, options)(this.fetch, this.basePath);
     };
     /**
      *
@@ -29629,7 +29629,7 @@ var StorefrontApi = /** @class */ (function (_super) {
      * @memberof StorefrontApi
      */
     StorefrontApi.prototype.checkDownloadEmailSegment = function (storefront_oid, email_segment_uuid, email_segment_rebuild_uuid, options) {
-        return exports.StorefrontApiFp(this.configuration).checkDownloadEmailSegment(storefront_oid, email_segment_uuid, email_segment_rebuild_uuid, options)(this.fetch, this.basePath);
+        return (0, exports.StorefrontApiFp)(this.configuration).checkDownloadEmailSegment(storefront_oid, email_segment_uuid, email_segment_rebuild_uuid, options)(this.fetch, this.basePath);
     };
     /**
      *
@@ -29642,7 +29642,7 @@ var StorefrontApi = /** @class */ (function (_super) {
      * @memberof StorefrontApi
      */
     StorefrontApi.prototype.cloneEmailCampaign = function (storefront_oid, email_campaign_uuid, target_storefront_oid, options) {
-        return exports.StorefrontApiFp(this.configuration).cloneEmailCampaign(storefront_oid, email_campaign_uuid, target_storefront_oid, options)(this.fetch, this.basePath);
+        return (0, exports.StorefrontApiFp)(this.configuration).cloneEmailCampaign(storefront_oid, email_campaign_uuid, target_storefront_oid, options)(this.fetch, this.basePath);
     };
     /**
      *
@@ -29655,7 +29655,7 @@ var StorefrontApi = /** @class */ (function (_super) {
      * @memberof StorefrontApi
      */
     StorefrontApi.prototype.cloneEmailFlow = function (storefront_oid, email_flow_uuid, target_storefront_oid, options) {
-        return exports.StorefrontApiFp(this.configuration).cloneEmailFlow(storefront_oid, email_flow_uuid, target_storefront_oid, options)(this.fetch, this.basePath);
+        return (0, exports.StorefrontApiFp)(this.configuration).cloneEmailFlow(storefront_oid, email_flow_uuid, target_storefront_oid, options)(this.fetch, this.basePath);
     };
     /**
      *
@@ -29666,7 +29666,7 @@ var StorefrontApi = /** @class */ (function (_super) {
      * @memberof StorefrontApi
      */
     StorefrontApi.prototype.createEmailSendingDomain = function (domain, options) {
-        return exports.StorefrontApiFp(this.configuration).createEmailSendingDomain(domain, options)(this.fetch, this.basePath);
+        return (0, exports.StorefrontApiFp)(this.configuration).createEmailSendingDomain(domain, options)(this.fetch, this.basePath);
     };
     /**
      *
@@ -29678,7 +29678,7 @@ var StorefrontApi = /** @class */ (function (_super) {
      * @memberof StorefrontApi
      */
     StorefrontApi.prototype.deleteEmailCampaignFolder = function (storefront_oid, email_campaign_folder_uuid, options) {
-        return exports.StorefrontApiFp(this.configuration).deleteEmailCampaignFolder(storefront_oid, email_campaign_folder_uuid, options)(this.fetch, this.basePath);
+        return (0, exports.StorefrontApiFp)(this.configuration).deleteEmailCampaignFolder(storefront_oid, email_campaign_folder_uuid, options)(this.fetch, this.basePath);
     };
     /**
      *
@@ -29690,7 +29690,7 @@ var StorefrontApi = /** @class */ (function (_super) {
      * @memberof StorefrontApi
      */
     StorefrontApi.prototype.deleteEmailCommseqStat = function (storefront_oid, commseq_uuid, options) {
-        return exports.StorefrontApiFp(this.configuration).deleteEmailCommseqStat(storefront_oid, commseq_uuid, options)(this.fetch, this.basePath);
+        return (0, exports.StorefrontApiFp)(this.configuration).deleteEmailCommseqStat(storefront_oid, commseq_uuid, options)(this.fetch, this.basePath);
     };
     /**
      *
@@ -29702,7 +29702,7 @@ var StorefrontApi = /** @class */ (function (_super) {
      * @memberof StorefrontApi
      */
     StorefrontApi.prototype.deleteEmailEmail = function (storefront_oid, commseq_email_uuid, options) {
-        return exports.StorefrontApiFp(this.configuration).deleteEmailEmail(storefront_oid, commseq_email_uuid, options)(this.fetch, this.basePath);
+        return (0, exports.StorefrontApiFp)(this.configuration).deleteEmailEmail(storefront_oid, commseq_email_uuid, options)(this.fetch, this.basePath);
     };
     /**
      *
@@ -29714,7 +29714,7 @@ var StorefrontApi = /** @class */ (function (_super) {
      * @memberof StorefrontApi
      */
     StorefrontApi.prototype.deleteEmailFlowFolder = function (storefront_oid, email_flow_folder_uuid, options) {
-        return exports.StorefrontApiFp(this.configuration).deleteEmailFlowFolder(storefront_oid, email_flow_folder_uuid, options)(this.fetch, this.basePath);
+        return (0, exports.StorefrontApiFp)(this.configuration).deleteEmailFlowFolder(storefront_oid, email_flow_folder_uuid, options)(this.fetch, this.basePath);
     };
     /**
      *
@@ -29727,7 +29727,7 @@ var StorefrontApi = /** @class */ (function (_super) {
      * @memberof StorefrontApi
      */
     StorefrontApi.prototype.deleteEmailListCustomer = function (storefront_oid, email_list_uuid, email_customer_uuid, options) {
-        return exports.StorefrontApiFp(this.configuration).deleteEmailListCustomer(storefront_oid, email_list_uuid, email_customer_uuid, options)(this.fetch, this.basePath);
+        return (0, exports.StorefrontApiFp)(this.configuration).deleteEmailListCustomer(storefront_oid, email_list_uuid, email_customer_uuid, options)(this.fetch, this.basePath);
     };
     /**
      *
@@ -29739,7 +29739,7 @@ var StorefrontApi = /** @class */ (function (_super) {
      * @memberof StorefrontApi
      */
     StorefrontApi.prototype.deleteEmailListSegmentFolder = function (storefront_oid, email_list_segment_folder_uuid, options) {
-        return exports.StorefrontApiFp(this.configuration).deleteEmailListSegmentFolder(storefront_oid, email_list_segment_folder_uuid, options)(this.fetch, this.basePath);
+        return (0, exports.StorefrontApiFp)(this.configuration).deleteEmailListSegmentFolder(storefront_oid, email_list_segment_folder_uuid, options)(this.fetch, this.basePath);
     };
     /**
      *
@@ -29751,7 +29751,7 @@ var StorefrontApi = /** @class */ (function (_super) {
      * @memberof StorefrontApi
      */
     StorefrontApi.prototype.deleteEmailPostcard = function (storefront_oid, commseq_postcard_uuid, options) {
-        return exports.StorefrontApiFp(this.configuration).deleteEmailPostcard(storefront_oid, commseq_postcard_uuid, options)(this.fetch, this.basePath);
+        return (0, exports.StorefrontApiFp)(this.configuration).deleteEmailPostcard(storefront_oid, commseq_postcard_uuid, options)(this.fetch, this.basePath);
     };
     /**
      *
@@ -29762,7 +29762,7 @@ var StorefrontApi = /** @class */ (function (_super) {
      * @memberof StorefrontApi
      */
     StorefrontApi.prototype.deleteEmailSendingDomain = function (domain, options) {
-        return exports.StorefrontApiFp(this.configuration).deleteEmailSendingDomain(domain, options)(this.fetch, this.basePath);
+        return (0, exports.StorefrontApiFp)(this.configuration).deleteEmailSendingDomain(domain, options)(this.fetch, this.basePath);
     };
     /**
      *
@@ -29774,7 +29774,7 @@ var StorefrontApi = /** @class */ (function (_super) {
      * @memberof StorefrontApi
      */
     StorefrontApi.prototype.deleteExperiment = function (storefront_oid, storefront_experiment_oid, options) {
-        return exports.StorefrontApiFp(this.configuration).deleteExperiment(storefront_oid, storefront_experiment_oid, options)(this.fetch, this.basePath);
+        return (0, exports.StorefrontApiFp)(this.configuration).deleteExperiment(storefront_oid, storefront_experiment_oid, options)(this.fetch, this.basePath);
     };
     /**
      * Delete screen recording heatmap
@@ -29786,7 +29786,7 @@ var StorefrontApi = /** @class */ (function (_super) {
      * @memberof StorefrontApi
      */
     StorefrontApi.prototype.deleteHeatmap = function (storefront_oid, query, options) {
-        return exports.StorefrontApiFp(this.configuration).deleteHeatmap(storefront_oid, query, options)(this.fetch, this.basePath);
+        return (0, exports.StorefrontApiFp)(this.configuration).deleteHeatmap(storefront_oid, query, options)(this.fetch, this.basePath);
     };
     /**
      *
@@ -29797,7 +29797,7 @@ var StorefrontApi = /** @class */ (function (_super) {
      * @memberof StorefrontApi
      */
     StorefrontApi.prototype.deleteLibraryItem = function (library_item_oid, options) {
-        return exports.StorefrontApiFp(this.configuration).deleteLibraryItem(library_item_oid, options)(this.fetch, this.basePath);
+        return (0, exports.StorefrontApiFp)(this.configuration).deleteLibraryItem(library_item_oid, options)(this.fetch, this.basePath);
     };
     /**
      *
@@ -29808,7 +29808,7 @@ var StorefrontApi = /** @class */ (function (_super) {
      * @memberof StorefrontApi
      */
     StorefrontApi.prototype.deleteLibraryItemPublishedVersions = function (library_item_oid, options) {
-        return exports.StorefrontApiFp(this.configuration).deleteLibraryItemPublishedVersions(library_item_oid, options)(this.fetch, this.basePath);
+        return (0, exports.StorefrontApiFp)(this.configuration).deleteLibraryItemPublishedVersions(library_item_oid, options)(this.fetch, this.basePath);
     };
     /**
      *
@@ -29820,7 +29820,7 @@ var StorefrontApi = /** @class */ (function (_super) {
      * @memberof StorefrontApi
      */
     StorefrontApi.prototype.deleteScreenRecordingSegment = function (storefront_oid, screen_recording_segment_oid, options) {
-        return exports.StorefrontApiFp(this.configuration).deleteScreenRecordingSegment(storefront_oid, screen_recording_segment_oid, options)(this.fetch, this.basePath);
+        return (0, exports.StorefrontApiFp)(this.configuration).deleteScreenRecordingSegment(storefront_oid, screen_recording_segment_oid, options)(this.fetch, this.basePath);
     };
     /**
      *
@@ -29831,7 +29831,7 @@ var StorefrontApi = /** @class */ (function (_super) {
      * @memberof StorefrontApi
      */
     StorefrontApi.prototype.duplicateLibraryItem = function (library_item_oid, options) {
-        return exports.StorefrontApiFp(this.configuration).duplicateLibraryItem(library_item_oid, options)(this.fetch, this.basePath);
+        return (0, exports.StorefrontApiFp)(this.configuration).duplicateLibraryItem(library_item_oid, options)(this.fetch, this.basePath);
     };
     /**
      * Update favorite flag on screen recording
@@ -29843,7 +29843,7 @@ var StorefrontApi = /** @class */ (function (_super) {
      * @memberof StorefrontApi
      */
     StorefrontApi.prototype.favoriteScreenRecording = function (storefront_oid, screen_recording_uuid, options) {
-        return exports.StorefrontApiFp(this.configuration).favoriteScreenRecording(storefront_oid, screen_recording_uuid, options)(this.fetch, this.basePath);
+        return (0, exports.StorefrontApiFp)(this.configuration).favoriteScreenRecording(storefront_oid, screen_recording_uuid, options)(this.fetch, this.basePath);
     };
     /**
      *
@@ -29855,7 +29855,7 @@ var StorefrontApi = /** @class */ (function (_super) {
      * @memberof StorefrontApi
      */
     StorefrontApi.prototype.geocodeAddress = function (storefront_oid, geocode_request, options) {
-        return exports.StorefrontApiFp(this.configuration).geocodeAddress(storefront_oid, geocode_request, options)(this.fetch, this.basePath);
+        return (0, exports.StorefrontApiFp)(this.configuration).geocodeAddress(storefront_oid, geocode_request, options)(this.fetch, this.basePath);
     };
     /**
      * Obtain a list of all the countries
@@ -29866,7 +29866,7 @@ var StorefrontApi = /** @class */ (function (_super) {
      * @memberof StorefrontApi
      */
     StorefrontApi.prototype.getCountries = function (storefront_oid, options) {
-        return exports.StorefrontApiFp(this.configuration).getCountries(storefront_oid, options)(this.fetch, this.basePath);
+        return (0, exports.StorefrontApiFp)(this.configuration).getCountries(storefront_oid, options)(this.fetch, this.basePath);
     };
     /**
      * Fetches a temporary authentication token for the editor
@@ -29877,7 +29877,7 @@ var StorefrontApi = /** @class */ (function (_super) {
      * @memberof StorefrontApi
      */
     StorefrontApi.prototype.getEditorToken = function (storefront_oid, options) {
-        return exports.StorefrontApiFp(this.configuration).getEditorToken(storefront_oid, options)(this.fetch, this.basePath);
+        return (0, exports.StorefrontApiFp)(this.configuration).getEditorToken(storefront_oid, options)(this.fetch, this.basePath);
     };
     /**
      *
@@ -29888,7 +29888,7 @@ var StorefrontApi = /** @class */ (function (_super) {
      * @memberof StorefrontApi
      */
     StorefrontApi.prototype.getEmailBaseTemplates = function (storefront_oid, options) {
-        return exports.StorefrontApiFp(this.configuration).getEmailBaseTemplates(storefront_oid, options)(this.fetch, this.basePath);
+        return (0, exports.StorefrontApiFp)(this.configuration).getEmailBaseTemplates(storefront_oid, options)(this.fetch, this.basePath);
     };
     /**
      *
@@ -29900,7 +29900,7 @@ var StorefrontApi = /** @class */ (function (_super) {
      * @memberof StorefrontApi
      */
     StorefrontApi.prototype.getEmailCampaign = function (storefront_oid, email_campaign_uuid, options) {
-        return exports.StorefrontApiFp(this.configuration).getEmailCampaign(storefront_oid, email_campaign_uuid, options)(this.fetch, this.basePath);
+        return (0, exports.StorefrontApiFp)(this.configuration).getEmailCampaign(storefront_oid, email_campaign_uuid, options)(this.fetch, this.basePath);
     };
     /**
      *
@@ -29912,7 +29912,7 @@ var StorefrontApi = /** @class */ (function (_super) {
      * @memberof StorefrontApi
      */
     StorefrontApi.prototype.getEmailCampaignFolder = function (storefront_oid, email_campaign_folder_uuid, options) {
-        return exports.StorefrontApiFp(this.configuration).getEmailCampaignFolder(storefront_oid, email_campaign_folder_uuid, options)(this.fetch, this.basePath);
+        return (0, exports.StorefrontApiFp)(this.configuration).getEmailCampaignFolder(storefront_oid, email_campaign_folder_uuid, options)(this.fetch, this.basePath);
     };
     /**
      *
@@ -29923,7 +29923,7 @@ var StorefrontApi = /** @class */ (function (_super) {
      * @memberof StorefrontApi
      */
     StorefrontApi.prototype.getEmailCampaignFolders = function (storefront_oid, options) {
-        return exports.StorefrontApiFp(this.configuration).getEmailCampaignFolders(storefront_oid, options)(this.fetch, this.basePath);
+        return (0, exports.StorefrontApiFp)(this.configuration).getEmailCampaignFolders(storefront_oid, options)(this.fetch, this.basePath);
     };
     /**
      *
@@ -29935,7 +29935,7 @@ var StorefrontApi = /** @class */ (function (_super) {
      * @memberof StorefrontApi
      */
     StorefrontApi.prototype.getEmailCampaignScreenshots = function (storefront_oid, email_campaign_uuid, options) {
-        return exports.StorefrontApiFp(this.configuration).getEmailCampaignScreenshots(storefront_oid, email_campaign_uuid, options)(this.fetch, this.basePath);
+        return (0, exports.StorefrontApiFp)(this.configuration).getEmailCampaignScreenshots(storefront_oid, email_campaign_uuid, options)(this.fetch, this.basePath);
     };
     /**
      *
@@ -29946,7 +29946,7 @@ var StorefrontApi = /** @class */ (function (_super) {
      * @memberof StorefrontApi
      */
     StorefrontApi.prototype.getEmailCampaigns = function (storefront_oid, options) {
-        return exports.StorefrontApiFp(this.configuration).getEmailCampaigns(storefront_oid, options)(this.fetch, this.basePath);
+        return (0, exports.StorefrontApiFp)(this.configuration).getEmailCampaigns(storefront_oid, options)(this.fetch, this.basePath);
     };
     /**
      *
@@ -29958,7 +29958,7 @@ var StorefrontApi = /** @class */ (function (_super) {
      * @memberof StorefrontApi
      */
     StorefrontApi.prototype.getEmailCampaignsWithStats = function (storefront_oid, stat_days, options) {
-        return exports.StorefrontApiFp(this.configuration).getEmailCampaignsWithStats(storefront_oid, stat_days, options)(this.fetch, this.basePath);
+        return (0, exports.StorefrontApiFp)(this.configuration).getEmailCampaignsWithStats(storefront_oid, stat_days, options)(this.fetch, this.basePath);
     };
     /**
      *
@@ -29970,7 +29970,7 @@ var StorefrontApi = /** @class */ (function (_super) {
      * @memberof StorefrontApi
      */
     StorefrontApi.prototype.getEmailCommseq = function (storefront_oid, commseq_uuid, options) {
-        return exports.StorefrontApiFp(this.configuration).getEmailCommseq(storefront_oid, commseq_uuid, options)(this.fetch, this.basePath);
+        return (0, exports.StorefrontApiFp)(this.configuration).getEmailCommseq(storefront_oid, commseq_uuid, options)(this.fetch, this.basePath);
     };
     /**
      *
@@ -29983,7 +29983,7 @@ var StorefrontApi = /** @class */ (function (_super) {
      * @memberof StorefrontApi
      */
     StorefrontApi.prototype.getEmailCommseqEmailStats = function (storefront_oid, commseq_uuid, statsRequest, options) {
-        return exports.StorefrontApiFp(this.configuration).getEmailCommseqEmailStats(storefront_oid, commseq_uuid, statsRequest, options)(this.fetch, this.basePath);
+        return (0, exports.StorefrontApiFp)(this.configuration).getEmailCommseqEmailStats(storefront_oid, commseq_uuid, statsRequest, options)(this.fetch, this.basePath);
     };
     /**
      *
@@ -29996,7 +29996,7 @@ var StorefrontApi = /** @class */ (function (_super) {
      * @memberof StorefrontApi
      */
     StorefrontApi.prototype.getEmailCommseqPostcardStats = function (storefront_oid, commseq_uuid, statsRequest, options) {
-        return exports.StorefrontApiFp(this.configuration).getEmailCommseqPostcardStats(storefront_oid, commseq_uuid, statsRequest, options)(this.fetch, this.basePath);
+        return (0, exports.StorefrontApiFp)(this.configuration).getEmailCommseqPostcardStats(storefront_oid, commseq_uuid, statsRequest, options)(this.fetch, this.basePath);
     };
     /**
      *
@@ -30008,7 +30008,7 @@ var StorefrontApi = /** @class */ (function (_super) {
      * @memberof StorefrontApi
      */
     StorefrontApi.prototype.getEmailCommseqStatOverall = function (storefront_oid, commseq_uuid, options) {
-        return exports.StorefrontApiFp(this.configuration).getEmailCommseqStatOverall(storefront_oid, commseq_uuid, options)(this.fetch, this.basePath);
+        return (0, exports.StorefrontApiFp)(this.configuration).getEmailCommseqStatOverall(storefront_oid, commseq_uuid, options)(this.fetch, this.basePath);
     };
     /**
      *
@@ -30021,7 +30021,7 @@ var StorefrontApi = /** @class */ (function (_super) {
      * @memberof StorefrontApi
      */
     StorefrontApi.prototype.getEmailCommseqStepStats = function (storefront_oid, commseq_uuid, statsRequest, options) {
-        return exports.StorefrontApiFp(this.configuration).getEmailCommseqStepStats(storefront_oid, commseq_uuid, statsRequest, options)(this.fetch, this.basePath);
+        return (0, exports.StorefrontApiFp)(this.configuration).getEmailCommseqStepStats(storefront_oid, commseq_uuid, statsRequest, options)(this.fetch, this.basePath);
     };
     /**
      *
@@ -30034,7 +30034,7 @@ var StorefrontApi = /** @class */ (function (_super) {
      * @memberof StorefrontApi
      */
     StorefrontApi.prototype.getEmailCommseqStepWaiting = function (storefront_oid, commseq_uuid, waitingRequest, options) {
-        return exports.StorefrontApiFp(this.configuration).getEmailCommseqStepWaiting(storefront_oid, commseq_uuid, waitingRequest, options)(this.fetch, this.basePath);
+        return (0, exports.StorefrontApiFp)(this.configuration).getEmailCommseqStepWaiting(storefront_oid, commseq_uuid, waitingRequest, options)(this.fetch, this.basePath);
     };
     /**
      *
@@ -30046,7 +30046,7 @@ var StorefrontApi = /** @class */ (function (_super) {
      * @memberof StorefrontApi
      */
     StorefrontApi.prototype.getEmailCommseqWebhookEditorValues = function (storefront_oid, commseq_uuid, options) {
-        return exports.StorefrontApiFp(this.configuration).getEmailCommseqWebhookEditorValues(storefront_oid, commseq_uuid, options)(this.fetch, this.basePath);
+        return (0, exports.StorefrontApiFp)(this.configuration).getEmailCommseqWebhookEditorValues(storefront_oid, commseq_uuid, options)(this.fetch, this.basePath);
     };
     /**
      *
@@ -30057,7 +30057,7 @@ var StorefrontApi = /** @class */ (function (_super) {
      * @memberof StorefrontApi
      */
     StorefrontApi.prototype.getEmailCommseqs = function (storefront_oid, options) {
-        return exports.StorefrontApiFp(this.configuration).getEmailCommseqs(storefront_oid, options)(this.fetch, this.basePath);
+        return (0, exports.StorefrontApiFp)(this.configuration).getEmailCommseqs(storefront_oid, options)(this.fetch, this.basePath);
     };
     /**
      *
@@ -30069,7 +30069,7 @@ var StorefrontApi = /** @class */ (function (_super) {
      * @memberof StorefrontApi
      */
     StorefrontApi.prototype.getEmailCustomerEditorUrl = function (storefront_oid, email_customer_uuid, options) {
-        return exports.StorefrontApiFp(this.configuration).getEmailCustomerEditorUrl(storefront_oid, email_customer_uuid, options)(this.fetch, this.basePath);
+        return (0, exports.StorefrontApiFp)(this.configuration).getEmailCustomerEditorUrl(storefront_oid, email_customer_uuid, options)(this.fetch, this.basePath);
     };
     /**
      *
@@ -30083,7 +30083,7 @@ var StorefrontApi = /** @class */ (function (_super) {
      * @memberof StorefrontApi
      */
     StorefrontApi.prototype.getEmailCustomers = function (storefront_oid, pageNumber, pageSize, searchEmailPrefix, options) {
-        return exports.StorefrontApiFp(this.configuration).getEmailCustomers(storefront_oid, pageNumber, pageSize, searchEmailPrefix, options)(this.fetch, this.basePath);
+        return (0, exports.StorefrontApiFp)(this.configuration).getEmailCustomers(storefront_oid, pageNumber, pageSize, searchEmailPrefix, options)(this.fetch, this.basePath);
     };
     /**
      *
@@ -30095,7 +30095,7 @@ var StorefrontApi = /** @class */ (function (_super) {
      * @memberof StorefrontApi
      */
     StorefrontApi.prototype.getEmailDashboardActivity = function (storefront_oid, last_records, options) {
-        return exports.StorefrontApiFp(this.configuration).getEmailDashboardActivity(storefront_oid, last_records, options)(this.fetch, this.basePath);
+        return (0, exports.StorefrontApiFp)(this.configuration).getEmailDashboardActivity(storefront_oid, last_records, options)(this.fetch, this.basePath);
     };
     /**
      *
@@ -30107,7 +30107,7 @@ var StorefrontApi = /** @class */ (function (_super) {
      * @memberof StorefrontApi
      */
     StorefrontApi.prototype.getEmailDashboardStats = function (storefront_oid, days, options) {
-        return exports.StorefrontApiFp(this.configuration).getEmailDashboardStats(storefront_oid, days, options)(this.fetch, this.basePath);
+        return (0, exports.StorefrontApiFp)(this.configuration).getEmailDashboardStats(storefront_oid, days, options)(this.fetch, this.basePath);
     };
     /**
      *
@@ -30120,7 +30120,7 @@ var StorefrontApi = /** @class */ (function (_super) {
      * @memberof StorefrontApi
      */
     StorefrontApi.prototype.getEmailDispatchLogs = function (storefront_oid, commseq_uuid, commseq_step_uuid, options) {
-        return exports.StorefrontApiFp(this.configuration).getEmailDispatchLogs(storefront_oid, commseq_uuid, commseq_step_uuid, options)(this.fetch, this.basePath);
+        return (0, exports.StorefrontApiFp)(this.configuration).getEmailDispatchLogs(storefront_oid, commseq_uuid, commseq_step_uuid, options)(this.fetch, this.basePath);
     };
     /**
      *
@@ -30132,7 +30132,7 @@ var StorefrontApi = /** @class */ (function (_super) {
      * @memberof StorefrontApi
      */
     StorefrontApi.prototype.getEmailEmail = function (storefront_oid, commseq_email_uuid, options) {
-        return exports.StorefrontApiFp(this.configuration).getEmailEmail(storefront_oid, commseq_email_uuid, options)(this.fetch, this.basePath);
+        return (0, exports.StorefrontApiFp)(this.configuration).getEmailEmail(storefront_oid, commseq_email_uuid, options)(this.fetch, this.basePath);
     };
     /**
      *
@@ -30147,7 +30147,7 @@ var StorefrontApi = /** @class */ (function (_super) {
      * @memberof StorefrontApi
      */
     StorefrontApi.prototype.getEmailEmailClicks = function (storefront_oid, commseq_uuid, commseq_step_uuid, commseq_email_uuid, days, options) {
-        return exports.StorefrontApiFp(this.configuration).getEmailEmailClicks(storefront_oid, commseq_uuid, commseq_step_uuid, commseq_email_uuid, days, options)(this.fetch, this.basePath);
+        return (0, exports.StorefrontApiFp)(this.configuration).getEmailEmailClicks(storefront_oid, commseq_uuid, commseq_step_uuid, commseq_email_uuid, days, options)(this.fetch, this.basePath);
     };
     /**
      *
@@ -30160,7 +30160,7 @@ var StorefrontApi = /** @class */ (function (_super) {
      * @memberof StorefrontApi
      */
     StorefrontApi.prototype.getEmailEmailCustomerEditorUrl = function (storefront_oid, commseq_email_uuid, order_id, options) {
-        return exports.StorefrontApiFp(this.configuration).getEmailEmailCustomerEditorUrl(storefront_oid, commseq_email_uuid, order_id, options)(this.fetch, this.basePath);
+        return (0, exports.StorefrontApiFp)(this.configuration).getEmailEmailCustomerEditorUrl(storefront_oid, commseq_email_uuid, order_id, options)(this.fetch, this.basePath);
     };
     /**
      *
@@ -30175,7 +30175,7 @@ var StorefrontApi = /** @class */ (function (_super) {
      * @memberof StorefrontApi
      */
     StorefrontApi.prototype.getEmailEmailOrders = function (storefront_oid, commseq_uuid, commseq_step_uuid, commseq_email_uuid, days, options) {
-        return exports.StorefrontApiFp(this.configuration).getEmailEmailOrders(storefront_oid, commseq_uuid, commseq_step_uuid, commseq_email_uuid, days, options)(this.fetch, this.basePath);
+        return (0, exports.StorefrontApiFp)(this.configuration).getEmailEmailOrders(storefront_oid, commseq_uuid, commseq_step_uuid, commseq_email_uuid, days, options)(this.fetch, this.basePath);
     };
     /**
      *
@@ -30186,7 +30186,7 @@ var StorefrontApi = /** @class */ (function (_super) {
      * @memberof StorefrontApi
      */
     StorefrontApi.prototype.getEmailEmails = function (storefront_oid, options) {
-        return exports.StorefrontApiFp(this.configuration).getEmailEmails(storefront_oid, options)(this.fetch, this.basePath);
+        return (0, exports.StorefrontApiFp)(this.configuration).getEmailEmails(storefront_oid, options)(this.fetch, this.basePath);
     };
     /**
      *
@@ -30198,7 +30198,7 @@ var StorefrontApi = /** @class */ (function (_super) {
      * @memberof StorefrontApi
      */
     StorefrontApi.prototype.getEmailEmailsMultiple = function (storefront_oid, email_commseq_emails_request, options) {
-        return exports.StorefrontApiFp(this.configuration).getEmailEmailsMultiple(storefront_oid, email_commseq_emails_request, options)(this.fetch, this.basePath);
+        return (0, exports.StorefrontApiFp)(this.configuration).getEmailEmailsMultiple(storefront_oid, email_commseq_emails_request, options)(this.fetch, this.basePath);
     };
     /**
      *
@@ -30210,7 +30210,7 @@ var StorefrontApi = /** @class */ (function (_super) {
      * @memberof StorefrontApi
      */
     StorefrontApi.prototype.getEmailFlow = function (storefront_oid, email_flow_uuid, options) {
-        return exports.StorefrontApiFp(this.configuration).getEmailFlow(storefront_oid, email_flow_uuid, options)(this.fetch, this.basePath);
+        return (0, exports.StorefrontApiFp)(this.configuration).getEmailFlow(storefront_oid, email_flow_uuid, options)(this.fetch, this.basePath);
     };
     /**
      *
@@ -30222,7 +30222,7 @@ var StorefrontApi = /** @class */ (function (_super) {
      * @memberof StorefrontApi
      */
     StorefrontApi.prototype.getEmailFlowFolder = function (storefront_oid, email_flow_folder_uuid, options) {
-        return exports.StorefrontApiFp(this.configuration).getEmailFlowFolder(storefront_oid, email_flow_folder_uuid, options)(this.fetch, this.basePath);
+        return (0, exports.StorefrontApiFp)(this.configuration).getEmailFlowFolder(storefront_oid, email_flow_folder_uuid, options)(this.fetch, this.basePath);
     };
     /**
      *
@@ -30233,7 +30233,7 @@ var StorefrontApi = /** @class */ (function (_super) {
      * @memberof StorefrontApi
      */
     StorefrontApi.prototype.getEmailFlowFolders = function (storefront_oid, options) {
-        return exports.StorefrontApiFp(this.configuration).getEmailFlowFolders(storefront_oid, options)(this.fetch, this.basePath);
+        return (0, exports.StorefrontApiFp)(this.configuration).getEmailFlowFolders(storefront_oid, options)(this.fetch, this.basePath);
     };
     /**
      *
@@ -30245,7 +30245,7 @@ var StorefrontApi = /** @class */ (function (_super) {
      * @memberof StorefrontApi
      */
     StorefrontApi.prototype.getEmailFlowScreenshots = function (storefront_oid, email_flow_uuid, options) {
-        return exports.StorefrontApiFp(this.configuration).getEmailFlowScreenshots(storefront_oid, email_flow_uuid, options)(this.fetch, this.basePath);
+        return (0, exports.StorefrontApiFp)(this.configuration).getEmailFlowScreenshots(storefront_oid, email_flow_uuid, options)(this.fetch, this.basePath);
     };
     /**
      *
@@ -30256,7 +30256,7 @@ var StorefrontApi = /** @class */ (function (_super) {
      * @memberof StorefrontApi
      */
     StorefrontApi.prototype.getEmailFlows = function (storefront_oid, options) {
-        return exports.StorefrontApiFp(this.configuration).getEmailFlows(storefront_oid, options)(this.fetch, this.basePath);
+        return (0, exports.StorefrontApiFp)(this.configuration).getEmailFlows(storefront_oid, options)(this.fetch, this.basePath);
     };
     /**
      *
@@ -30266,7 +30266,7 @@ var StorefrontApi = /** @class */ (function (_super) {
      * @memberof StorefrontApi
      */
     StorefrontApi.prototype.getEmailGlobalSettings = function (options) {
-        return exports.StorefrontApiFp(this.configuration).getEmailGlobalSettings(options)(this.fetch, this.basePath);
+        return (0, exports.StorefrontApiFp)(this.configuration).getEmailGlobalSettings(options)(this.fetch, this.basePath);
     };
     /**
      *
@@ -30278,7 +30278,7 @@ var StorefrontApi = /** @class */ (function (_super) {
      * @memberof StorefrontApi
      */
     StorefrontApi.prototype.getEmailList = function (storefront_oid, email_list_uuid, options) {
-        return exports.StorefrontApiFp(this.configuration).getEmailList(storefront_oid, email_list_uuid, options)(this.fetch, this.basePath);
+        return (0, exports.StorefrontApiFp)(this.configuration).getEmailList(storefront_oid, email_list_uuid, options)(this.fetch, this.basePath);
     };
     /**
      *
@@ -30291,7 +30291,7 @@ var StorefrontApi = /** @class */ (function (_super) {
      * @memberof StorefrontApi
      */
     StorefrontApi.prototype.getEmailListCustomerEditorUrl = function (storefront_oid, email_list_uuid, email_customer_uuid, options) {
-        return exports.StorefrontApiFp(this.configuration).getEmailListCustomerEditorUrl(storefront_oid, email_list_uuid, email_customer_uuid, options)(this.fetch, this.basePath);
+        return (0, exports.StorefrontApiFp)(this.configuration).getEmailListCustomerEditorUrl(storefront_oid, email_list_uuid, email_customer_uuid, options)(this.fetch, this.basePath);
     };
     /**
      *
@@ -30305,7 +30305,7 @@ var StorefrontApi = /** @class */ (function (_super) {
      * @memberof StorefrontApi
      */
     StorefrontApi.prototype.getEmailListCustomers = function (storefront_oid, email_list_uuid, pageNumber, pageSize, options) {
-        return exports.StorefrontApiFp(this.configuration).getEmailListCustomers(storefront_oid, email_list_uuid, pageNumber, pageSize, options)(this.fetch, this.basePath);
+        return (0, exports.StorefrontApiFp)(this.configuration).getEmailListCustomers(storefront_oid, email_list_uuid, pageNumber, pageSize, options)(this.fetch, this.basePath);
     };
     /**
      *
@@ -30317,7 +30317,7 @@ var StorefrontApi = /** @class */ (function (_super) {
      * @memberof StorefrontApi
      */
     StorefrontApi.prototype.getEmailListSegmentFolder = function (storefront_oid, email_list_segment_folder_uuid, options) {
-        return exports.StorefrontApiFp(this.configuration).getEmailListSegmentFolder(storefront_oid, email_list_segment_folder_uuid, options)(this.fetch, this.basePath);
+        return (0, exports.StorefrontApiFp)(this.configuration).getEmailListSegmentFolder(storefront_oid, email_list_segment_folder_uuid, options)(this.fetch, this.basePath);
     };
     /**
      *
@@ -30328,7 +30328,7 @@ var StorefrontApi = /** @class */ (function (_super) {
      * @memberof StorefrontApi
      */
     StorefrontApi.prototype.getEmailListSegmentFolders = function (storefront_oid, options) {
-        return exports.StorefrontApiFp(this.configuration).getEmailListSegmentFolders(storefront_oid, options)(this.fetch, this.basePath);
+        return (0, exports.StorefrontApiFp)(this.configuration).getEmailListSegmentFolders(storefront_oid, options)(this.fetch, this.basePath);
     };
     /**
      *
@@ -30339,7 +30339,7 @@ var StorefrontApi = /** @class */ (function (_super) {
      * @memberof StorefrontApi
      */
     StorefrontApi.prototype.getEmailLists = function (storefront_oid, options) {
-        return exports.StorefrontApiFp(this.configuration).getEmailLists(storefront_oid, options)(this.fetch, this.basePath);
+        return (0, exports.StorefrontApiFp)(this.configuration).getEmailLists(storefront_oid, options)(this.fetch, this.basePath);
     };
     /**
      *
@@ -30350,7 +30350,7 @@ var StorefrontApi = /** @class */ (function (_super) {
      * @memberof StorefrontApi
      */
     StorefrontApi.prototype.getEmailPerformance = function (storefront_oid, options) {
-        return exports.StorefrontApiFp(this.configuration).getEmailPerformance(storefront_oid, options)(this.fetch, this.basePath);
+        return (0, exports.StorefrontApiFp)(this.configuration).getEmailPerformance(storefront_oid, options)(this.fetch, this.basePath);
     };
     /**
      *
@@ -30361,7 +30361,7 @@ var StorefrontApi = /** @class */ (function (_super) {
      * @memberof StorefrontApi
      */
     StorefrontApi.prototype.getEmailPlan = function (storefront_oid, options) {
-        return exports.StorefrontApiFp(this.configuration).getEmailPlan(storefront_oid, options)(this.fetch, this.basePath);
+        return (0, exports.StorefrontApiFp)(this.configuration).getEmailPlan(storefront_oid, options)(this.fetch, this.basePath);
     };
     /**
      *
@@ -30373,7 +30373,7 @@ var StorefrontApi = /** @class */ (function (_super) {
      * @memberof StorefrontApi
      */
     StorefrontApi.prototype.getEmailPostcard = function (storefront_oid, commseq_postcard_uuid, options) {
-        return exports.StorefrontApiFp(this.configuration).getEmailPostcard(storefront_oid, commseq_postcard_uuid, options)(this.fetch, this.basePath);
+        return (0, exports.StorefrontApiFp)(this.configuration).getEmailPostcard(storefront_oid, commseq_postcard_uuid, options)(this.fetch, this.basePath);
     };
     /**
      *
@@ -30384,7 +30384,7 @@ var StorefrontApi = /** @class */ (function (_super) {
      * @memberof StorefrontApi
      */
     StorefrontApi.prototype.getEmailPostcards = function (storefront_oid, options) {
-        return exports.StorefrontApiFp(this.configuration).getEmailPostcards(storefront_oid, options)(this.fetch, this.basePath);
+        return (0, exports.StorefrontApiFp)(this.configuration).getEmailPostcards(storefront_oid, options)(this.fetch, this.basePath);
     };
     /**
      *
@@ -30396,7 +30396,7 @@ var StorefrontApi = /** @class */ (function (_super) {
      * @memberof StorefrontApi
      */
     StorefrontApi.prototype.getEmailPostcardsMultiple = function (storefront_oid, email_commseq_postcards_request, options) {
-        return exports.StorefrontApiFp(this.configuration).getEmailPostcardsMultiple(storefront_oid, email_commseq_postcards_request, options)(this.fetch, this.basePath);
+        return (0, exports.StorefrontApiFp)(this.configuration).getEmailPostcardsMultiple(storefront_oid, email_commseq_postcards_request, options)(this.fetch, this.basePath);
     };
     /**
      *
@@ -30408,7 +30408,7 @@ var StorefrontApi = /** @class */ (function (_super) {
      * @memberof StorefrontApi
      */
     StorefrontApi.prototype.getEmailSegment = function (storefront_oid, email_segment_uuid, options) {
-        return exports.StorefrontApiFp(this.configuration).getEmailSegment(storefront_oid, email_segment_uuid, options)(this.fetch, this.basePath);
+        return (0, exports.StorefrontApiFp)(this.configuration).getEmailSegment(storefront_oid, email_segment_uuid, options)(this.fetch, this.basePath);
     };
     /**
      *
@@ -30421,7 +30421,7 @@ var StorefrontApi = /** @class */ (function (_super) {
      * @memberof StorefrontApi
      */
     StorefrontApi.prototype.getEmailSegmentCustomerEditorUrl = function (storefront_oid, email_segment_uuid, email_customer_uuid, options) {
-        return exports.StorefrontApiFp(this.configuration).getEmailSegmentCustomerEditorUrl(storefront_oid, email_segment_uuid, email_customer_uuid, options)(this.fetch, this.basePath);
+        return (0, exports.StorefrontApiFp)(this.configuration).getEmailSegmentCustomerEditorUrl(storefront_oid, email_segment_uuid, email_customer_uuid, options)(this.fetch, this.basePath);
     };
     /**
      *
@@ -30435,7 +30435,7 @@ var StorefrontApi = /** @class */ (function (_super) {
      * @memberof StorefrontApi
      */
     StorefrontApi.prototype.getEmailSegmentCustomers = function (storefront_oid, email_segment_uuid, pageNumber, pageSize, options) {
-        return exports.StorefrontApiFp(this.configuration).getEmailSegmentCustomers(storefront_oid, email_segment_uuid, pageNumber, pageSize, options)(this.fetch, this.basePath);
+        return (0, exports.StorefrontApiFp)(this.configuration).getEmailSegmentCustomers(storefront_oid, email_segment_uuid, pageNumber, pageSize, options)(this.fetch, this.basePath);
     };
     /**
      *
@@ -30446,7 +30446,7 @@ var StorefrontApi = /** @class */ (function (_super) {
      * @memberof StorefrontApi
      */
     StorefrontApi.prototype.getEmailSegments = function (storefront_oid, options) {
-        return exports.StorefrontApiFp(this.configuration).getEmailSegments(storefront_oid, options)(this.fetch, this.basePath);
+        return (0, exports.StorefrontApiFp)(this.configuration).getEmailSegments(storefront_oid, options)(this.fetch, this.basePath);
     };
     /**
      *
@@ -30457,7 +30457,7 @@ var StorefrontApi = /** @class */ (function (_super) {
      * @memberof StorefrontApi
      */
     StorefrontApi.prototype.getEmailSendingDomain = function (domain, options) {
-        return exports.StorefrontApiFp(this.configuration).getEmailSendingDomain(domain, options)(this.fetch, this.basePath);
+        return (0, exports.StorefrontApiFp)(this.configuration).getEmailSendingDomain(domain, options)(this.fetch, this.basePath);
     };
     /**
      *
@@ -30468,7 +30468,7 @@ var StorefrontApi = /** @class */ (function (_super) {
      * @memberof StorefrontApi
      */
     StorefrontApi.prototype.getEmailSendingDomainStatus = function (domain, options) {
-        return exports.StorefrontApiFp(this.configuration).getEmailSendingDomainStatus(domain, options)(this.fetch, this.basePath);
+        return (0, exports.StorefrontApiFp)(this.configuration).getEmailSendingDomainStatus(domain, options)(this.fetch, this.basePath);
     };
     /**
      *
@@ -30478,7 +30478,7 @@ var StorefrontApi = /** @class */ (function (_super) {
      * @memberof StorefrontApi
      */
     StorefrontApi.prototype.getEmailSendingDomains = function (options) {
-        return exports.StorefrontApiFp(this.configuration).getEmailSendingDomains(options)(this.fetch, this.basePath);
+        return (0, exports.StorefrontApiFp)(this.configuration).getEmailSendingDomains(options)(this.fetch, this.basePath);
     };
     /**
      *
@@ -30489,7 +30489,7 @@ var StorefrontApi = /** @class */ (function (_super) {
      * @memberof StorefrontApi
      */
     StorefrontApi.prototype.getEmailSettings = function (storefront_oid, options) {
-        return exports.StorefrontApiFp(this.configuration).getEmailSettings(storefront_oid, options)(this.fetch, this.basePath);
+        return (0, exports.StorefrontApiFp)(this.configuration).getEmailSettings(storefront_oid, options)(this.fetch, this.basePath);
     };
     /**
      *
@@ -30501,7 +30501,7 @@ var StorefrontApi = /** @class */ (function (_super) {
      * @memberof StorefrontApi
      */
     StorefrontApi.prototype.getEmailTemplate = function (storefront_oid, email_template_oid, options) {
-        return exports.StorefrontApiFp(this.configuration).getEmailTemplate(storefront_oid, email_template_oid, options)(this.fetch, this.basePath);
+        return (0, exports.StorefrontApiFp)(this.configuration).getEmailTemplate(storefront_oid, email_template_oid, options)(this.fetch, this.basePath);
     };
     /**
      *
@@ -30513,7 +30513,7 @@ var StorefrontApi = /** @class */ (function (_super) {
      * @memberof StorefrontApi
      */
     StorefrontApi.prototype.getEmailTemplates = function (storefront_oid, trigger_type, options) {
-        return exports.StorefrontApiFp(this.configuration).getEmailTemplates(storefront_oid, trigger_type, options)(this.fetch, this.basePath);
+        return (0, exports.StorefrontApiFp)(this.configuration).getEmailTemplates(storefront_oid, trigger_type, options)(this.fetch, this.basePath);
     };
     /**
      *
@@ -30524,7 +30524,7 @@ var StorefrontApi = /** @class */ (function (_super) {
      * @memberof StorefrontApi
      */
     StorefrontApi.prototype.getEmailThirdPartyProviders = function (storefront_oid, options) {
-        return exports.StorefrontApiFp(this.configuration).getEmailThirdPartyProviders(storefront_oid, options)(this.fetch, this.basePath);
+        return (0, exports.StorefrontApiFp)(this.configuration).getEmailThirdPartyProviders(storefront_oid, options)(this.fetch, this.basePath);
     };
     /**
      *
@@ -30535,7 +30535,7 @@ var StorefrontApi = /** @class */ (function (_super) {
      * @memberof StorefrontApi
      */
     StorefrontApi.prototype.getExperiments = function (storefront_oid, options) {
-        return exports.StorefrontApiFp(this.configuration).getExperiments(storefront_oid, options)(this.fetch, this.basePath);
+        return (0, exports.StorefrontApiFp)(this.configuration).getExperiments(storefront_oid, options)(this.fetch, this.basePath);
     };
     /**
      * Get screen recording heatmap
@@ -30547,7 +30547,7 @@ var StorefrontApi = /** @class */ (function (_super) {
      * @memberof StorefrontApi
      */
     StorefrontApi.prototype.getHeatmap = function (storefront_oid, query, options) {
-        return exports.StorefrontApiFp(this.configuration).getHeatmap(storefront_oid, query, options)(this.fetch, this.basePath);
+        return (0, exports.StorefrontApiFp)(this.configuration).getHeatmap(storefront_oid, query, options)(this.fetch, this.basePath);
     };
     /**
      * Get screen recording heatmap index
@@ -30562,7 +30562,7 @@ var StorefrontApi = /** @class */ (function (_super) {
      * @memberof StorefrontApi
      */
     StorefrontApi.prototype.getHeatmapIndex = function (storefront_oid, query, _limit, _offset, _sort, options) {
-        return exports.StorefrontApiFp(this.configuration).getHeatmapIndex(storefront_oid, query, _limit, _offset, _sort, options)(this.fetch, this.basePath);
+        return (0, exports.StorefrontApiFp)(this.configuration).getHeatmapIndex(storefront_oid, query, _limit, _offset, _sort, options)(this.fetch, this.basePath);
     };
     /**
      * Obtain a list of property names for a given property type
@@ -30574,7 +30574,7 @@ var StorefrontApi = /** @class */ (function (_super) {
      * @memberof StorefrontApi
      */
     StorefrontApi.prototype.getHistogramPropertyNames = function (storefront_oid, property_type, options) {
-        return exports.StorefrontApiFp(this.configuration).getHistogramPropertyNames(storefront_oid, property_type, options)(this.fetch, this.basePath);
+        return (0, exports.StorefrontApiFp)(this.configuration).getHistogramPropertyNames(storefront_oid, property_type, options)(this.fetch, this.basePath);
     };
     /**
      * Obtain a list of property values for a given property name and type
@@ -30588,7 +30588,7 @@ var StorefrontApi = /** @class */ (function (_super) {
      * @memberof StorefrontApi
      */
     StorefrontApi.prototype.getHistogramPropertyValues = function (storefront_oid, property_name, property_type, limit, options) {
-        return exports.StorefrontApiFp(this.configuration).getHistogramPropertyValues(storefront_oid, property_name, property_type, limit, options)(this.fetch, this.basePath);
+        return (0, exports.StorefrontApiFp)(this.configuration).getHistogramPropertyValues(storefront_oid, property_name, property_type, limit, options)(this.fetch, this.basePath);
     };
     /**
      *
@@ -30598,7 +30598,7 @@ var StorefrontApi = /** @class */ (function (_super) {
      * @memberof StorefrontApi
      */
     StorefrontApi.prototype.getLibraryFilterValues = function (options) {
-        return exports.StorefrontApiFp(this.configuration).getLibraryFilterValues(options)(this.fetch, this.basePath);
+        return (0, exports.StorefrontApiFp)(this.configuration).getLibraryFilterValues(options)(this.fetch, this.basePath);
     };
     /**
      *
@@ -30609,7 +30609,7 @@ var StorefrontApi = /** @class */ (function (_super) {
      * @memberof StorefrontApi
      */
     StorefrontApi.prototype.getLibraryItem = function (library_item_oid, options) {
-        return exports.StorefrontApiFp(this.configuration).getLibraryItem(library_item_oid, options)(this.fetch, this.basePath);
+        return (0, exports.StorefrontApiFp)(this.configuration).getLibraryItem(library_item_oid, options)(this.fetch, this.basePath);
     };
     /**
      *
@@ -30620,7 +30620,7 @@ var StorefrontApi = /** @class */ (function (_super) {
      * @memberof StorefrontApi
      */
     StorefrontApi.prototype.getLibraryItemPublishedVersions = function (library_item_oid, options) {
-        return exports.StorefrontApiFp(this.configuration).getLibraryItemPublishedVersions(library_item_oid, options)(this.fetch, this.basePath);
+        return (0, exports.StorefrontApiFp)(this.configuration).getLibraryItemPublishedVersions(library_item_oid, options)(this.fetch, this.basePath);
     };
     /**
      * Get screen recording
@@ -30632,7 +30632,7 @@ var StorefrontApi = /** @class */ (function (_super) {
      * @memberof StorefrontApi
      */
     StorefrontApi.prototype.getScreenRecording = function (storefront_oid, screen_recording_uuid, options) {
-        return exports.StorefrontApiFp(this.configuration).getScreenRecording(storefront_oid, screen_recording_uuid, options)(this.fetch, this.basePath);
+        return (0, exports.StorefrontApiFp)(this.configuration).getScreenRecording(storefront_oid, screen_recording_uuid, options)(this.fetch, this.basePath);
     };
     /**
      * Get screen recording page view data
@@ -30645,7 +30645,7 @@ var StorefrontApi = /** @class */ (function (_super) {
      * @memberof StorefrontApi
      */
     StorefrontApi.prototype.getScreenRecordingPageViewData = function (storefront_oid, screen_recording_uuid, screen_recording_page_view_uuid, options) {
-        return exports.StorefrontApiFp(this.configuration).getScreenRecordingPageViewData(storefront_oid, screen_recording_uuid, screen_recording_page_view_uuid, options)(this.fetch, this.basePath);
+        return (0, exports.StorefrontApiFp)(this.configuration).getScreenRecordingPageViewData(storefront_oid, screen_recording_uuid, screen_recording_page_view_uuid, options)(this.fetch, this.basePath);
     };
     /**
      *
@@ -30657,7 +30657,7 @@ var StorefrontApi = /** @class */ (function (_super) {
      * @memberof StorefrontApi
      */
     StorefrontApi.prototype.getScreenRecordingSegment = function (storefront_oid, screen_recording_segment_oid, options) {
-        return exports.StorefrontApiFp(this.configuration).getScreenRecordingSegment(storefront_oid, screen_recording_segment_oid, options)(this.fetch, this.basePath);
+        return (0, exports.StorefrontApiFp)(this.configuration).getScreenRecordingSegment(storefront_oid, screen_recording_segment_oid, options)(this.fetch, this.basePath);
     };
     /**
      *
@@ -30668,7 +30668,7 @@ var StorefrontApi = /** @class */ (function (_super) {
      * @memberof StorefrontApi
      */
     StorefrontApi.prototype.getScreenRecordingSegments = function (storefront_oid, options) {
-        return exports.StorefrontApiFp(this.configuration).getScreenRecordingSegments(storefront_oid, options)(this.fetch, this.basePath);
+        return (0, exports.StorefrontApiFp)(this.configuration).getScreenRecordingSegments(storefront_oid, options)(this.fetch, this.basePath);
     };
     /**
      *
@@ -30679,7 +30679,7 @@ var StorefrontApi = /** @class */ (function (_super) {
      * @memberof StorefrontApi
      */
     StorefrontApi.prototype.getScreenRecordingSettings = function (storefront_oid, options) {
-        return exports.StorefrontApiFp(this.configuration).getScreenRecordingSettings(storefront_oid, options)(this.fetch, this.basePath);
+        return (0, exports.StorefrontApiFp)(this.configuration).getScreenRecordingSettings(storefront_oid, options)(this.fetch, this.basePath);
     };
     /**
      * Get tags used by screen recording
@@ -30690,7 +30690,7 @@ var StorefrontApi = /** @class */ (function (_super) {
      * @memberof StorefrontApi
      */
     StorefrontApi.prototype.getScreenRecordingTags = function (storefront_oid, options) {
-        return exports.StorefrontApiFp(this.configuration).getScreenRecordingTags(storefront_oid, options)(this.fetch, this.basePath);
+        return (0, exports.StorefrontApiFp)(this.configuration).getScreenRecordingTags(storefront_oid, options)(this.fetch, this.basePath);
     };
     /**
      * Query screen recordings
@@ -30705,7 +30705,7 @@ var StorefrontApi = /** @class */ (function (_super) {
      * @memberof StorefrontApi
      */
     StorefrontApi.prototype.getScreenRecordingsByQuery = function (storefront_oid, query, _limit, _offset, _sort, options) {
-        return exports.StorefrontApiFp(this.configuration).getScreenRecordingsByQuery(storefront_oid, query, _limit, _offset, _sort, options)(this.fetch, this.basePath);
+        return (0, exports.StorefrontApiFp)(this.configuration).getScreenRecordingsByQuery(storefront_oid, query, _limit, _offset, _sort, options)(this.fetch, this.basePath);
     };
     /**
      * Get screen recordings by segment
@@ -30720,7 +30720,7 @@ var StorefrontApi = /** @class */ (function (_super) {
      * @memberof StorefrontApi
      */
     StorefrontApi.prototype.getScreenRecordingsBySegment = function (storefront_oid, screen_recording_segment_oid, _limit, _offset, _sort, options) {
-        return exports.StorefrontApiFp(this.configuration).getScreenRecordingsBySegment(storefront_oid, screen_recording_segment_oid, _limit, _offset, _sort, options)(this.fetch, this.basePath);
+        return (0, exports.StorefrontApiFp)(this.configuration).getScreenRecordingsBySegment(storefront_oid, screen_recording_segment_oid, _limit, _offset, _sort, options)(this.fetch, this.basePath);
     };
     /**
      * Retrieves the pricing tiers
@@ -30731,7 +30731,7 @@ var StorefrontApi = /** @class */ (function (_super) {
      * @memberof StorefrontApi
      */
     StorefrontApi.prototype.getStoreFrontPricingTiers = function (_expand, options) {
-        return exports.StorefrontApiFp(this.configuration).getStoreFrontPricingTiers(_expand, options)(this.fetch, this.basePath);
+        return (0, exports.StorefrontApiFp)(this.configuration).getStoreFrontPricingTiers(_expand, options)(this.fetch, this.basePath);
     };
     /**
      *
@@ -30742,7 +30742,7 @@ var StorefrontApi = /** @class */ (function (_super) {
      * @memberof StorefrontApi
      */
     StorefrontApi.prototype.getThumbnailParameters = function (thumbnail_parameters, options) {
-        return exports.StorefrontApiFp(this.configuration).getThumbnailParameters(thumbnail_parameters, options)(this.fetch, this.basePath);
+        return (0, exports.StorefrontApiFp)(this.configuration).getThumbnailParameters(thumbnail_parameters, options)(this.fetch, this.basePath);
     };
     /**
      * Fetch a transactional email
@@ -30754,7 +30754,7 @@ var StorefrontApi = /** @class */ (function (_super) {
      * @memberof StorefrontApi
      */
     StorefrontApi.prototype.getTransactionEmail = function (storefront_oid, email_id, options) {
-        return exports.StorefrontApiFp(this.configuration).getTransactionEmail(storefront_oid, email_id, options)(this.fetch, this.basePath);
+        return (0, exports.StorefrontApiFp)(this.configuration).getTransactionEmail(storefront_oid, email_id, options)(this.fetch, this.basePath);
     };
     /**
      * Obtain a list of all transactional emails and return back just their names
@@ -30765,7 +30765,7 @@ var StorefrontApi = /** @class */ (function (_super) {
      * @memberof StorefrontApi
      */
     StorefrontApi.prototype.getTransactionEmailList = function (storefront_oid, options) {
-        return exports.StorefrontApiFp(this.configuration).getTransactionEmailList(storefront_oid, options)(this.fetch, this.basePath);
+        return (0, exports.StorefrontApiFp)(this.configuration).getTransactionEmailList(storefront_oid, options)(this.fetch, this.basePath);
     };
     /**
      *
@@ -30777,7 +30777,7 @@ var StorefrontApi = /** @class */ (function (_super) {
      * @memberof StorefrontApi
      */
     StorefrontApi.prototype.getTransactionEmailScreenshots = function (storefront_oid, email_id, options) {
-        return exports.StorefrontApiFp(this.configuration).getTransactionEmailScreenshots(storefront_oid, email_id, options)(this.fetch, this.basePath);
+        return (0, exports.StorefrontApiFp)(this.configuration).getTransactionEmailScreenshots(storefront_oid, email_id, options)(this.fetch, this.basePath);
     };
     /**
      *
@@ -30789,7 +30789,7 @@ var StorefrontApi = /** @class */ (function (_super) {
      * @memberof StorefrontApi
      */
     StorefrontApi.prototype.globalUnsubscribe = function (storefront_oid, unsubscribe, options) {
-        return exports.StorefrontApiFp(this.configuration).globalUnsubscribe(storefront_oid, unsubscribe, options)(this.fetch, this.basePath);
+        return (0, exports.StorefrontApiFp)(this.configuration).globalUnsubscribe(storefront_oid, unsubscribe, options)(this.fetch, this.basePath);
     };
     /**
      *
@@ -30801,7 +30801,7 @@ var StorefrontApi = /** @class */ (function (_super) {
      * @memberof StorefrontApi
      */
     StorefrontApi.prototype.importEmailThirdPartyProviderList = function (storefront_oid, import_request, options) {
-        return exports.StorefrontApiFp(this.configuration).importEmailThirdPartyProviderList(storefront_oid, import_request, options)(this.fetch, this.basePath);
+        return (0, exports.StorefrontApiFp)(this.configuration).importEmailThirdPartyProviderList(storefront_oid, import_request, options)(this.fetch, this.basePath);
     };
     /**
      *
@@ -30813,7 +30813,7 @@ var StorefrontApi = /** @class */ (function (_super) {
      * @memberof StorefrontApi
      */
     StorefrontApi.prototype.insertEmailCampaign = function (storefront_oid, email_campaign, options) {
-        return exports.StorefrontApiFp(this.configuration).insertEmailCampaign(storefront_oid, email_campaign, options)(this.fetch, this.basePath);
+        return (0, exports.StorefrontApiFp)(this.configuration).insertEmailCampaign(storefront_oid, email_campaign, options)(this.fetch, this.basePath);
     };
     /**
      *
@@ -30825,7 +30825,7 @@ var StorefrontApi = /** @class */ (function (_super) {
      * @memberof StorefrontApi
      */
     StorefrontApi.prototype.insertEmailCampaignFolder = function (storefront_oid, email_campaign_folder, options) {
-        return exports.StorefrontApiFp(this.configuration).insertEmailCampaignFolder(storefront_oid, email_campaign_folder, options)(this.fetch, this.basePath);
+        return (0, exports.StorefrontApiFp)(this.configuration).insertEmailCampaignFolder(storefront_oid, email_campaign_folder, options)(this.fetch, this.basePath);
     };
     /**
      *
@@ -30837,7 +30837,7 @@ var StorefrontApi = /** @class */ (function (_super) {
      * @memberof StorefrontApi
      */
     StorefrontApi.prototype.insertEmailCommseq = function (storefront_oid, email_commseq, options) {
-        return exports.StorefrontApiFp(this.configuration).insertEmailCommseq(storefront_oid, email_commseq, options)(this.fetch, this.basePath);
+        return (0, exports.StorefrontApiFp)(this.configuration).insertEmailCommseq(storefront_oid, email_commseq, options)(this.fetch, this.basePath);
     };
     /**
      *
@@ -30849,7 +30849,7 @@ var StorefrontApi = /** @class */ (function (_super) {
      * @memberof StorefrontApi
      */
     StorefrontApi.prototype.insertEmailEmail = function (storefront_oid, email_commseq_email, options) {
-        return exports.StorefrontApiFp(this.configuration).insertEmailEmail(storefront_oid, email_commseq_email, options)(this.fetch, this.basePath);
+        return (0, exports.StorefrontApiFp)(this.configuration).insertEmailEmail(storefront_oid, email_commseq_email, options)(this.fetch, this.basePath);
     };
     /**
      *
@@ -30861,7 +30861,7 @@ var StorefrontApi = /** @class */ (function (_super) {
      * @memberof StorefrontApi
      */
     StorefrontApi.prototype.insertEmailFlow = function (storefront_oid, email_flow, options) {
-        return exports.StorefrontApiFp(this.configuration).insertEmailFlow(storefront_oid, email_flow, options)(this.fetch, this.basePath);
+        return (0, exports.StorefrontApiFp)(this.configuration).insertEmailFlow(storefront_oid, email_flow, options)(this.fetch, this.basePath);
     };
     /**
      *
@@ -30873,7 +30873,7 @@ var StorefrontApi = /** @class */ (function (_super) {
      * @memberof StorefrontApi
      */
     StorefrontApi.prototype.insertEmailFlowFolder = function (storefront_oid, email_flow_folder, options) {
-        return exports.StorefrontApiFp(this.configuration).insertEmailFlowFolder(storefront_oid, email_flow_folder, options)(this.fetch, this.basePath);
+        return (0, exports.StorefrontApiFp)(this.configuration).insertEmailFlowFolder(storefront_oid, email_flow_folder, options)(this.fetch, this.basePath);
     };
     /**
      *
@@ -30885,7 +30885,7 @@ var StorefrontApi = /** @class */ (function (_super) {
      * @memberof StorefrontApi
      */
     StorefrontApi.prototype.insertEmailList = function (storefront_oid, email_list, options) {
-        return exports.StorefrontApiFp(this.configuration).insertEmailList(storefront_oid, email_list, options)(this.fetch, this.basePath);
+        return (0, exports.StorefrontApiFp)(this.configuration).insertEmailList(storefront_oid, email_list, options)(this.fetch, this.basePath);
     };
     /**
      *
@@ -30897,7 +30897,7 @@ var StorefrontApi = /** @class */ (function (_super) {
      * @memberof StorefrontApi
      */
     StorefrontApi.prototype.insertEmailListSegmentFolder = function (storefront_oid, email_list_segment_folder, options) {
-        return exports.StorefrontApiFp(this.configuration).insertEmailListSegmentFolder(storefront_oid, email_list_segment_folder, options)(this.fetch, this.basePath);
+        return (0, exports.StorefrontApiFp)(this.configuration).insertEmailListSegmentFolder(storefront_oid, email_list_segment_folder, options)(this.fetch, this.basePath);
     };
     /**
      *
@@ -30909,7 +30909,7 @@ var StorefrontApi = /** @class */ (function (_super) {
      * @memberof StorefrontApi
      */
     StorefrontApi.prototype.insertEmailPostcard = function (storefront_oid, email_commseq_postcard, options) {
-        return exports.StorefrontApiFp(this.configuration).insertEmailPostcard(storefront_oid, email_commseq_postcard, options)(this.fetch, this.basePath);
+        return (0, exports.StorefrontApiFp)(this.configuration).insertEmailPostcard(storefront_oid, email_commseq_postcard, options)(this.fetch, this.basePath);
     };
     /**
      *
@@ -30921,7 +30921,7 @@ var StorefrontApi = /** @class */ (function (_super) {
      * @memberof StorefrontApi
      */
     StorefrontApi.prototype.insertEmailSegment = function (storefront_oid, email_segment, options) {
-        return exports.StorefrontApiFp(this.configuration).insertEmailSegment(storefront_oid, email_segment, options)(this.fetch, this.basePath);
+        return (0, exports.StorefrontApiFp)(this.configuration).insertEmailSegment(storefront_oid, email_segment, options)(this.fetch, this.basePath);
     };
     /**
      *
@@ -30933,7 +30933,7 @@ var StorefrontApi = /** @class */ (function (_super) {
      * @memberof StorefrontApi
      */
     StorefrontApi.prototype.insertScreenRecordingSegment = function (storefront_oid, segment, options) {
-        return exports.StorefrontApiFp(this.configuration).insertScreenRecordingSegment(storefront_oid, segment, options)(this.fetch, this.basePath);
+        return (0, exports.StorefrontApiFp)(this.configuration).insertScreenRecordingSegment(storefront_oid, segment, options)(this.fetch, this.basePath);
     };
     /**
      *
@@ -30945,7 +30945,7 @@ var StorefrontApi = /** @class */ (function (_super) {
      * @memberof StorefrontApi
      */
     StorefrontApi.prototype.prepareDownloadEmailSegment = function (storefront_oid, email_segment_uuid, options) {
-        return exports.StorefrontApiFp(this.configuration).prepareDownloadEmailSegment(storefront_oid, email_segment_uuid, options)(this.fetch, this.basePath);
+        return (0, exports.StorefrontApiFp)(this.configuration).prepareDownloadEmailSegment(storefront_oid, email_segment_uuid, options)(this.fetch, this.basePath);
     };
     /**
      *
@@ -30957,7 +30957,7 @@ var StorefrontApi = /** @class */ (function (_super) {
      * @memberof StorefrontApi
      */
     StorefrontApi.prototype.publishLibraryItem = function (library_item_oid, publish_library_request, options) {
-        return exports.StorefrontApiFp(this.configuration).publishLibraryItem(library_item_oid, publish_library_request, options)(this.fetch, this.basePath);
+        return (0, exports.StorefrontApiFp)(this.configuration).publishLibraryItem(library_item_oid, publish_library_request, options)(this.fetch, this.basePath);
     };
     /**
      *
@@ -30969,7 +30969,7 @@ var StorefrontApi = /** @class */ (function (_super) {
      * @memberof StorefrontApi
      */
     StorefrontApi.prototype.purchaseLibraryItem = function (library_item_oid, storefront_oid, options) {
-        return exports.StorefrontApiFp(this.configuration).purchaseLibraryItem(library_item_oid, storefront_oid, options)(this.fetch, this.basePath);
+        return (0, exports.StorefrontApiFp)(this.configuration).purchaseLibraryItem(library_item_oid, storefront_oid, options)(this.fetch, this.basePath);
     };
     /**
      *
@@ -30982,7 +30982,7 @@ var StorefrontApi = /** @class */ (function (_super) {
      * @memberof StorefrontApi
      */
     StorefrontApi.prototype.releaseEmailCommseqStepWaiting = function (storefront_oid, commseq_uuid, commseq_step_uuid, options) {
-        return exports.StorefrontApiFp(this.configuration).releaseEmailCommseqStepWaiting(storefront_oid, commseq_uuid, commseq_step_uuid, options)(this.fetch, this.basePath);
+        return (0, exports.StorefrontApiFp)(this.configuration).releaseEmailCommseqStepWaiting(storefront_oid, commseq_uuid, commseq_step_uuid, options)(this.fetch, this.basePath);
     };
     /**
      *
@@ -30995,7 +30995,7 @@ var StorefrontApi = /** @class */ (function (_super) {
      * @memberof StorefrontApi
      */
     StorefrontApi.prototype.review = function (storefront_oid, commseq_email_uuid, email_commseq_email_review_request, options) {
-        return exports.StorefrontApiFp(this.configuration).review(storefront_oid, commseq_email_uuid, email_commseq_email_review_request, options)(this.fetch, this.basePath);
+        return (0, exports.StorefrontApiFp)(this.configuration).review(storefront_oid, commseq_email_uuid, email_commseq_email_review_request, options)(this.fetch, this.basePath);
     };
     /**
      *
@@ -31010,7 +31010,7 @@ var StorefrontApi = /** @class */ (function (_super) {
      * @memberof StorefrontApi
      */
     StorefrontApi.prototype.search = function (category, matches, storefront_oid, max_hits, subcategory, options) {
-        return exports.StorefrontApiFp(this.configuration).search(category, matches, storefront_oid, max_hits, subcategory, options)(this.fetch, this.basePath);
+        return (0, exports.StorefrontApiFp)(this.configuration).search(category, matches, storefront_oid, max_hits, subcategory, options)(this.fetch, this.basePath);
     };
     /**
      *
@@ -31021,7 +31021,7 @@ var StorefrontApi = /** @class */ (function (_super) {
      * @memberof StorefrontApi
      */
     StorefrontApi.prototype.search2 = function (lookup_request, options) {
-        return exports.StorefrontApiFp(this.configuration).search2(lookup_request, options)(this.fetch, this.basePath);
+        return (0, exports.StorefrontApiFp)(this.configuration).search2(lookup_request, options)(this.fetch, this.basePath);
     };
     /**
      *
@@ -31034,7 +31034,7 @@ var StorefrontApi = /** @class */ (function (_super) {
      * @memberof StorefrontApi
      */
     StorefrontApi.prototype.searchEmailListCustomers = function (storefront_oid, email_list_uuid, startsWith, options) {
-        return exports.StorefrontApiFp(this.configuration).searchEmailListCustomers(storefront_oid, email_list_uuid, startsWith, options)(this.fetch, this.basePath);
+        return (0, exports.StorefrontApiFp)(this.configuration).searchEmailListCustomers(storefront_oid, email_list_uuid, startsWith, options)(this.fetch, this.basePath);
     };
     /**
      *
@@ -31047,7 +31047,7 @@ var StorefrontApi = /** @class */ (function (_super) {
      * @memberof StorefrontApi
      */
     StorefrontApi.prototype.searchEmailSegmentCustomers = function (storefront_oid, email_segment_uuid, startsWith, options) {
-        return exports.StorefrontApiFp(this.configuration).searchEmailSegmentCustomers(storefront_oid, email_segment_uuid, startsWith, options)(this.fetch, this.basePath);
+        return (0, exports.StorefrontApiFp)(this.configuration).searchEmailSegmentCustomers(storefront_oid, email_segment_uuid, startsWith, options)(this.fetch, this.basePath);
     };
     /**
      * Retrieves a library items based on a query object.  If no parameters are specified, the API call will default to the merchant id only.  You will need to make multiple API calls in order to retrieve the entire result set since this API performs result set pagination.
@@ -31061,7 +31061,7 @@ var StorefrontApi = /** @class */ (function (_super) {
      * @memberof StorefrontApi
      */
     StorefrontApi.prototype.searchLibraryItems = function (item_query, _limit, _offset, _sort, options) {
-        return exports.StorefrontApiFp(this.configuration).searchLibraryItems(item_query, _limit, _offset, _sort, options)(this.fetch, this.basePath);
+        return (0, exports.StorefrontApiFp)(this.configuration).searchLibraryItems(item_query, _limit, _offset, _sort, options)(this.fetch, this.basePath);
     };
     /**
      * Retrieves a library items based on a query object.  If no parameters are specified, the API call will default to the merchant id only.  You will need to make multiple API calls in order to retrieve the entire result set since this API performs result set pagination.
@@ -31075,7 +31075,7 @@ var StorefrontApi = /** @class */ (function (_super) {
      * @memberof StorefrontApi
      */
     StorefrontApi.prototype.searchPublishedItems = function (item_query, _limit, _offset, _sort, options) {
-        return exports.StorefrontApiFp(this.configuration).searchPublishedItems(item_query, _limit, _offset, _sort, options)(this.fetch, this.basePath);
+        return (0, exports.StorefrontApiFp)(this.configuration).searchPublishedItems(item_query, _limit, _offset, _sort, options)(this.fetch, this.basePath);
     };
     /**
      * Retrieves a library items based on a query object.  If no parameters are specified, the API call will default to the merchant id only.  You will need to make multiple API calls in order to retrieve the entire result set since this API performs result set pagination.
@@ -31089,7 +31089,7 @@ var StorefrontApi = /** @class */ (function (_super) {
      * @memberof StorefrontApi
      */
     StorefrontApi.prototype.searchReviewItems = function (item_query, _limit, _offset, _sort, options) {
-        return exports.StorefrontApiFp(this.configuration).searchReviewItems(item_query, _limit, _offset, _sort, options)(this.fetch, this.basePath);
+        return (0, exports.StorefrontApiFp)(this.configuration).searchReviewItems(item_query, _limit, _offset, _sort, options)(this.fetch, this.basePath);
     };
     /**
      * Retrieves a library items based on a query object.  If no parameters are specified, the API call will default to the merchant id only.  You will need to make multiple API calls in order to retrieve the entire result set since this API performs result set pagination.
@@ -31103,7 +31103,7 @@ var StorefrontApi = /** @class */ (function (_super) {
      * @memberof StorefrontApi
      */
     StorefrontApi.prototype.searchSharedItems = function (item_query, _limit, _offset, _sort, options) {
-        return exports.StorefrontApiFp(this.configuration).searchSharedItems(item_query, _limit, _offset, _sort, options)(this.fetch, this.basePath);
+        return (0, exports.StorefrontApiFp)(this.configuration).searchSharedItems(item_query, _limit, _offset, _sort, options)(this.fetch, this.basePath);
     };
     /**
      *
@@ -31116,7 +31116,7 @@ var StorefrontApi = /** @class */ (function (_super) {
      * @memberof StorefrontApi
      */
     StorefrontApi.prototype.sendEmailTest = function (storefront_oid, commseq_email_uuid, email_commseq_email_test_request, options) {
-        return exports.StorefrontApiFp(this.configuration).sendEmailTest(storefront_oid, commseq_email_uuid, email_commseq_email_test_request, options)(this.fetch, this.basePath);
+        return (0, exports.StorefrontApiFp)(this.configuration).sendEmailTest(storefront_oid, commseq_email_uuid, email_commseq_email_test_request, options)(this.fetch, this.basePath);
     };
     /**
      *
@@ -31129,7 +31129,7 @@ var StorefrontApi = /** @class */ (function (_super) {
      * @memberof StorefrontApi
      */
     StorefrontApi.prototype.sendPostcardTest = function (storefront_oid, commseq_postcard_uuid, email_commseq_postcard_test_request, options) {
-        return exports.StorefrontApiFp(this.configuration).sendPostcardTest(storefront_oid, commseq_postcard_uuid, email_commseq_postcard_test_request, options)(this.fetch, this.basePath);
+        return (0, exports.StorefrontApiFp)(this.configuration).sendPostcardTest(storefront_oid, commseq_postcard_uuid, email_commseq_postcard_test_request, options)(this.fetch, this.basePath);
     };
     /**
      *
@@ -31141,7 +31141,7 @@ var StorefrontApi = /** @class */ (function (_super) {
      * @memberof StorefrontApi
      */
     StorefrontApi.prototype.sendWebhookTest = function (storefront_oid, email_commseq_webhook_test_request, options) {
-        return exports.StorefrontApiFp(this.configuration).sendWebhookTest(storefront_oid, email_commseq_webhook_test_request, options)(this.fetch, this.basePath);
+        return (0, exports.StorefrontApiFp)(this.configuration).sendWebhookTest(storefront_oid, email_commseq_webhook_test_request, options)(this.fetch, this.basePath);
     };
     /**
      *
@@ -31153,7 +31153,7 @@ var StorefrontApi = /** @class */ (function (_super) {
      * @memberof StorefrontApi
      */
     StorefrontApi.prototype.startEmailCampaign = function (storefront_oid, email_campaign_uuid, options) {
-        return exports.StorefrontApiFp(this.configuration).startEmailCampaign(storefront_oid, email_campaign_uuid, options)(this.fetch, this.basePath);
+        return (0, exports.StorefrontApiFp)(this.configuration).startEmailCampaign(storefront_oid, email_campaign_uuid, options)(this.fetch, this.basePath);
     };
     /**
      *
@@ -31166,7 +31166,7 @@ var StorefrontApi = /** @class */ (function (_super) {
      * @memberof StorefrontApi
      */
     StorefrontApi.prototype.subscribeToEmailList = function (storefront_oid, email_list_uuid, customers, options) {
-        return exports.StorefrontApiFp(this.configuration).subscribeToEmailList(storefront_oid, email_list_uuid, customers, options)(this.fetch, this.basePath);
+        return (0, exports.StorefrontApiFp)(this.configuration).subscribeToEmailList(storefront_oid, email_list_uuid, customers, options)(this.fetch, this.basePath);
     };
     /**
      * Remove favorite flag on screen recording
@@ -31178,7 +31178,7 @@ var StorefrontApi = /** @class */ (function (_super) {
      * @memberof StorefrontApi
      */
     StorefrontApi.prototype.unfavoriteScreenRecording = function (storefront_oid, screen_recording_uuid, options) {
-        return exports.StorefrontApiFp(this.configuration).unfavoriteScreenRecording(storefront_oid, screen_recording_uuid, options)(this.fetch, this.basePath);
+        return (0, exports.StorefrontApiFp)(this.configuration).unfavoriteScreenRecording(storefront_oid, screen_recording_uuid, options)(this.fetch, this.basePath);
     };
     /**
      *
@@ -31191,7 +31191,7 @@ var StorefrontApi = /** @class */ (function (_super) {
      * @memberof StorefrontApi
      */
     StorefrontApi.prototype.updateEmailCampaign = function (storefront_oid, email_campaign_uuid, email_campaign, options) {
-        return exports.StorefrontApiFp(this.configuration).updateEmailCampaign(storefront_oid, email_campaign_uuid, email_campaign, options)(this.fetch, this.basePath);
+        return (0, exports.StorefrontApiFp)(this.configuration).updateEmailCampaign(storefront_oid, email_campaign_uuid, email_campaign, options)(this.fetch, this.basePath);
     };
     /**
      *
@@ -31204,7 +31204,7 @@ var StorefrontApi = /** @class */ (function (_super) {
      * @memberof StorefrontApi
      */
     StorefrontApi.prototype.updateEmailCampaignFolder = function (storefront_oid, email_campaign_folder_uuid, email_campaign_folder, options) {
-        return exports.StorefrontApiFp(this.configuration).updateEmailCampaignFolder(storefront_oid, email_campaign_folder_uuid, email_campaign_folder, options)(this.fetch, this.basePath);
+        return (0, exports.StorefrontApiFp)(this.configuration).updateEmailCampaignFolder(storefront_oid, email_campaign_folder_uuid, email_campaign_folder, options)(this.fetch, this.basePath);
     };
     /**
      *
@@ -31217,7 +31217,7 @@ var StorefrontApi = /** @class */ (function (_super) {
      * @memberof StorefrontApi
      */
     StorefrontApi.prototype.updateEmailCommseq = function (storefront_oid, commseq_uuid, email_commseq, options) {
-        return exports.StorefrontApiFp(this.configuration).updateEmailCommseq(storefront_oid, commseq_uuid, email_commseq, options)(this.fetch, this.basePath);
+        return (0, exports.StorefrontApiFp)(this.configuration).updateEmailCommseq(storefront_oid, commseq_uuid, email_commseq, options)(this.fetch, this.basePath);
     };
     /**
      *
@@ -31230,7 +31230,7 @@ var StorefrontApi = /** @class */ (function (_super) {
      * @memberof StorefrontApi
      */
     StorefrontApi.prototype.updateEmailCustomer = function (storefront_oid, email_customer_uuid, email_customer, options) {
-        return exports.StorefrontApiFp(this.configuration).updateEmailCustomer(storefront_oid, email_customer_uuid, email_customer, options)(this.fetch, this.basePath);
+        return (0, exports.StorefrontApiFp)(this.configuration).updateEmailCustomer(storefront_oid, email_customer_uuid, email_customer, options)(this.fetch, this.basePath);
     };
     /**
      *
@@ -31243,7 +31243,7 @@ var StorefrontApi = /** @class */ (function (_super) {
      * @memberof StorefrontApi
      */
     StorefrontApi.prototype.updateEmailEmail = function (storefront_oid, commseq_email_uuid, email_commseq_email, options) {
-        return exports.StorefrontApiFp(this.configuration).updateEmailEmail(storefront_oid, commseq_email_uuid, email_commseq_email, options)(this.fetch, this.basePath);
+        return (0, exports.StorefrontApiFp)(this.configuration).updateEmailEmail(storefront_oid, commseq_email_uuid, email_commseq_email, options)(this.fetch, this.basePath);
     };
     /**
      *
@@ -31256,7 +31256,7 @@ var StorefrontApi = /** @class */ (function (_super) {
      * @memberof StorefrontApi
      */
     StorefrontApi.prototype.updateEmailFlow = function (storefront_oid, email_flow_uuid, email_flow, options) {
-        return exports.StorefrontApiFp(this.configuration).updateEmailFlow(storefront_oid, email_flow_uuid, email_flow, options)(this.fetch, this.basePath);
+        return (0, exports.StorefrontApiFp)(this.configuration).updateEmailFlow(storefront_oid, email_flow_uuid, email_flow, options)(this.fetch, this.basePath);
     };
     /**
      *
@@ -31269,7 +31269,7 @@ var StorefrontApi = /** @class */ (function (_super) {
      * @memberof StorefrontApi
      */
     StorefrontApi.prototype.updateEmailFlowFolder = function (storefront_oid, email_flow_folder_uuid, email_flow_folder, options) {
-        return exports.StorefrontApiFp(this.configuration).updateEmailFlowFolder(storefront_oid, email_flow_folder_uuid, email_flow_folder, options)(this.fetch, this.basePath);
+        return (0, exports.StorefrontApiFp)(this.configuration).updateEmailFlowFolder(storefront_oid, email_flow_folder_uuid, email_flow_folder, options)(this.fetch, this.basePath);
     };
     /**
      *
@@ -31280,7 +31280,7 @@ var StorefrontApi = /** @class */ (function (_super) {
      * @memberof StorefrontApi
      */
     StorefrontApi.prototype.updateEmailGlobalSettings = function (global_settings, options) {
-        return exports.StorefrontApiFp(this.configuration).updateEmailGlobalSettings(global_settings, options)(this.fetch, this.basePath);
+        return (0, exports.StorefrontApiFp)(this.configuration).updateEmailGlobalSettings(global_settings, options)(this.fetch, this.basePath);
     };
     /**
      *
@@ -31293,7 +31293,7 @@ var StorefrontApi = /** @class */ (function (_super) {
      * @memberof StorefrontApi
      */
     StorefrontApi.prototype.updateEmailList = function (storefront_oid, email_list_uuid, email_list, options) {
-        return exports.StorefrontApiFp(this.configuration).updateEmailList(storefront_oid, email_list_uuid, email_list, options)(this.fetch, this.basePath);
+        return (0, exports.StorefrontApiFp)(this.configuration).updateEmailList(storefront_oid, email_list_uuid, email_list, options)(this.fetch, this.basePath);
     };
     /**
      *
@@ -31306,7 +31306,7 @@ var StorefrontApi = /** @class */ (function (_super) {
      * @memberof StorefrontApi
      */
     StorefrontApi.prototype.updateEmailListSegmentFolder = function (storefront_oid, email_list_segment_folder_uuid, email_list_segment_folder, options) {
-        return exports.StorefrontApiFp(this.configuration).updateEmailListSegmentFolder(storefront_oid, email_list_segment_folder_uuid, email_list_segment_folder, options)(this.fetch, this.basePath);
+        return (0, exports.StorefrontApiFp)(this.configuration).updateEmailListSegmentFolder(storefront_oid, email_list_segment_folder_uuid, email_list_segment_folder, options)(this.fetch, this.basePath);
     };
     /**
      *
@@ -31318,7 +31318,7 @@ var StorefrontApi = /** @class */ (function (_super) {
      * @memberof StorefrontApi
      */
     StorefrontApi.prototype.updateEmailPlan = function (storefront_oid, settings, options) {
-        return exports.StorefrontApiFp(this.configuration).updateEmailPlan(storefront_oid, settings, options)(this.fetch, this.basePath);
+        return (0, exports.StorefrontApiFp)(this.configuration).updateEmailPlan(storefront_oid, settings, options)(this.fetch, this.basePath);
     };
     /**
      *
@@ -31331,7 +31331,7 @@ var StorefrontApi = /** @class */ (function (_super) {
      * @memberof StorefrontApi
      */
     StorefrontApi.prototype.updateEmailPostcard = function (storefront_oid, commseq_postcard_uuid, email_commseq_postcard, options) {
-        return exports.StorefrontApiFp(this.configuration).updateEmailPostcard(storefront_oid, commseq_postcard_uuid, email_commseq_postcard, options)(this.fetch, this.basePath);
+        return (0, exports.StorefrontApiFp)(this.configuration).updateEmailPostcard(storefront_oid, commseq_postcard_uuid, email_commseq_postcard, options)(this.fetch, this.basePath);
     };
     /**
      *
@@ -31344,7 +31344,7 @@ var StorefrontApi = /** @class */ (function (_super) {
      * @memberof StorefrontApi
      */
     StorefrontApi.prototype.updateEmailSegment = function (storefront_oid, email_segment_uuid, email_segment, options) {
-        return exports.StorefrontApiFp(this.configuration).updateEmailSegment(storefront_oid, email_segment_uuid, email_segment, options)(this.fetch, this.basePath);
+        return (0, exports.StorefrontApiFp)(this.configuration).updateEmailSegment(storefront_oid, email_segment_uuid, email_segment, options)(this.fetch, this.basePath);
     };
     /**
      *
@@ -31356,7 +31356,7 @@ var StorefrontApi = /** @class */ (function (_super) {
      * @memberof StorefrontApi
      */
     StorefrontApi.prototype.updateEmailSettings = function (storefront_oid, settings, options) {
-        return exports.StorefrontApiFp(this.configuration).updateEmailSettings(storefront_oid, settings, options)(this.fetch, this.basePath);
+        return (0, exports.StorefrontApiFp)(this.configuration).updateEmailSettings(storefront_oid, settings, options)(this.fetch, this.basePath);
     };
     /**
      *
@@ -31369,7 +31369,7 @@ var StorefrontApi = /** @class */ (function (_super) {
      * @memberof StorefrontApi
      */
     StorefrontApi.prototype.updateExperiment = function (storefront_oid, storefront_experiment_oid, experiment, options) {
-        return exports.StorefrontApiFp(this.configuration).updateExperiment(storefront_oid, storefront_experiment_oid, experiment, options)(this.fetch, this.basePath);
+        return (0, exports.StorefrontApiFp)(this.configuration).updateExperiment(storefront_oid, storefront_experiment_oid, experiment, options)(this.fetch, this.basePath);
     };
     /**
      *
@@ -31381,7 +31381,7 @@ var StorefrontApi = /** @class */ (function (_super) {
      * @memberof StorefrontApi
      */
     StorefrontApi.prototype.updateLibraryItem = function (library_item_oid, library_item, options) {
-        return exports.StorefrontApiFp(this.configuration).updateLibraryItem(library_item_oid, library_item, options)(this.fetch, this.basePath);
+        return (0, exports.StorefrontApiFp)(this.configuration).updateLibraryItem(library_item_oid, library_item, options)(this.fetch, this.basePath);
     };
     /**
      * Update merchant notes on a screen recording
@@ -31394,7 +31394,7 @@ var StorefrontApi = /** @class */ (function (_super) {
      * @memberof StorefrontApi
      */
     StorefrontApi.prototype.updateScreenRecordingMerchantNotes = function (storefront_oid, screen_recording_uuid, merchant_notes_request, options) {
-        return exports.StorefrontApiFp(this.configuration).updateScreenRecordingMerchantNotes(storefront_oid, screen_recording_uuid, merchant_notes_request, options)(this.fetch, this.basePath);
+        return (0, exports.StorefrontApiFp)(this.configuration).updateScreenRecordingMerchantNotes(storefront_oid, screen_recording_uuid, merchant_notes_request, options)(this.fetch, this.basePath);
     };
     /**
      *
@@ -31407,7 +31407,7 @@ var StorefrontApi = /** @class */ (function (_super) {
      * @memberof StorefrontApi
      */
     StorefrontApi.prototype.updateScreenRecordingSegment = function (storefront_oid, screen_recording_segment_oid, segment, options) {
-        return exports.StorefrontApiFp(this.configuration).updateScreenRecordingSegment(storefront_oid, screen_recording_segment_oid, segment, options)(this.fetch, this.basePath);
+        return (0, exports.StorefrontApiFp)(this.configuration).updateScreenRecordingSegment(storefront_oid, screen_recording_segment_oid, segment, options)(this.fetch, this.basePath);
     };
     /**
      *
@@ -31419,7 +31419,7 @@ var StorefrontApi = /** @class */ (function (_super) {
      * @memberof StorefrontApi
      */
     StorefrontApi.prototype.updateScreenRecordingSettings = function (storefront_oid, settings, options) {
-        return exports.StorefrontApiFp(this.configuration).updateScreenRecordingSettings(storefront_oid, settings, options)(this.fetch, this.basePath);
+        return (0, exports.StorefrontApiFp)(this.configuration).updateScreenRecordingSettings(storefront_oid, settings, options)(this.fetch, this.basePath);
     };
     /**
      * Update tags on a screen recording
@@ -31432,7 +31432,7 @@ var StorefrontApi = /** @class */ (function (_super) {
      * @memberof StorefrontApi
      */
     StorefrontApi.prototype.updateScreenRecordingTags = function (storefront_oid, screen_recording_uuid, tags, options) {
-        return exports.StorefrontApiFp(this.configuration).updateScreenRecordingTags(storefront_oid, screen_recording_uuid, tags, options)(this.fetch, this.basePath);
+        return (0, exports.StorefrontApiFp)(this.configuration).updateScreenRecordingTags(storefront_oid, screen_recording_uuid, tags, options)(this.fetch, this.basePath);
     };
     /**
      * Updates a transactional email
@@ -31445,7 +31445,7 @@ var StorefrontApi = /** @class */ (function (_super) {
      * @memberof StorefrontApi
      */
     StorefrontApi.prototype.updateTransactionEmail = function (storefront_oid, email_id, transaction_email, options) {
-        return exports.StorefrontApiFp(this.configuration).updateTransactionEmail(storefront_oid, email_id, transaction_email, options)(this.fetch, this.basePath);
+        return (0, exports.StorefrontApiFp)(this.configuration).updateTransactionEmail(storefront_oid, email_id, transaction_email, options)(this.fetch, this.basePath);
     };
     return StorefrontApi;
 }(BaseAPI));
@@ -32806,7 +32806,7 @@ var TaxApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         deleteTaxProviderSelfCity: function (city, tax_city, options) {
-            var localVarFetchArgs = exports.TaxApiFetchParamCreator(configuration).deleteTaxProviderSelfCity(city, tax_city, options);
+            var localVarFetchArgs = (0, exports.TaxApiFetchParamCreator)(configuration).deleteTaxProviderSelfCity(city, tax_city, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -32829,7 +32829,7 @@ var TaxApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         deleteTaxProviderSelfCountry: function (countryCode, tax_country, options) {
-            var localVarFetchArgs = exports.TaxApiFetchParamCreator(configuration).deleteTaxProviderSelfCountry(countryCode, tax_country, options);
+            var localVarFetchArgs = (0, exports.TaxApiFetchParamCreator)(configuration).deleteTaxProviderSelfCountry(countryCode, tax_country, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -32852,7 +32852,7 @@ var TaxApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         deleteTaxProviderSelfCounty: function (county, tax_county, options) {
-            var localVarFetchArgs = exports.TaxApiFetchParamCreator(configuration).deleteTaxProviderSelfCounty(county, tax_county, options);
+            var localVarFetchArgs = (0, exports.TaxApiFetchParamCreator)(configuration).deleteTaxProviderSelfCounty(county, tax_county, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -32875,7 +32875,7 @@ var TaxApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         deleteTaxProviderSelfPostalCode: function (postal_code, tax_postal_code, options) {
-            var localVarFetchArgs = exports.TaxApiFetchParamCreator(configuration).deleteTaxProviderSelfPostalCode(postal_code, tax_postal_code, options);
+            var localVarFetchArgs = (0, exports.TaxApiFetchParamCreator)(configuration).deleteTaxProviderSelfPostalCode(postal_code, tax_postal_code, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -32898,7 +32898,7 @@ var TaxApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         deleteTaxProviderSelfState: function (stateCode, tax_state, options) {
-            var localVarFetchArgs = exports.TaxApiFetchParamCreator(configuration).deleteTaxProviderSelfState(stateCode, tax_state, options);
+            var localVarFetchArgs = (0, exports.TaxApiFetchParamCreator)(configuration).deleteTaxProviderSelfState(stateCode, tax_state, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -32919,7 +32919,7 @@ var TaxApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         getTaxProviderAvalara: function (options) {
-            var localVarFetchArgs = exports.TaxApiFetchParamCreator(configuration).getTaxProviderAvalara(options);
+            var localVarFetchArgs = (0, exports.TaxApiFetchParamCreator)(configuration).getTaxProviderAvalara(options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -32941,7 +32941,7 @@ var TaxApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         getTaxProviderAvalaraCompanies: function (tax_provider_avalara, options) {
-            var localVarFetchArgs = exports.TaxApiFetchParamCreator(configuration).getTaxProviderAvalaraCompanies(tax_provider_avalara, options);
+            var localVarFetchArgs = (0, exports.TaxApiFetchParamCreator)(configuration).getTaxProviderAvalaraCompanies(tax_provider_avalara, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -32962,7 +32962,7 @@ var TaxApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         getTaxProviderAvalaraTest: function (options) {
-            var localVarFetchArgs = exports.TaxApiFetchParamCreator(configuration).getTaxProviderAvalaraTest(options);
+            var localVarFetchArgs = (0, exports.TaxApiFetchParamCreator)(configuration).getTaxProviderAvalaraTest(options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -32983,7 +32983,7 @@ var TaxApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         getTaxProviderSelf: function (options) {
-            var localVarFetchArgs = exports.TaxApiFetchParamCreator(configuration).getTaxProviderSelf(options);
+            var localVarFetchArgs = (0, exports.TaxApiFetchParamCreator)(configuration).getTaxProviderSelf(options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -33004,7 +33004,7 @@ var TaxApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         getTaxProviderSelfCountries: function (options) {
-            var localVarFetchArgs = exports.TaxApiFetchParamCreator(configuration).getTaxProviderSelfCountries(options);
+            var localVarFetchArgs = (0, exports.TaxApiFetchParamCreator)(configuration).getTaxProviderSelfCountries(options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -33026,7 +33026,7 @@ var TaxApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         getTaxProviderSelfRegionsByCountryCode: function (countryCode, options) {
-            var localVarFetchArgs = exports.TaxApiFetchParamCreator(configuration).getTaxProviderSelfRegionsByCountryCode(countryCode, options);
+            var localVarFetchArgs = (0, exports.TaxApiFetchParamCreator)(configuration).getTaxProviderSelfRegionsByCountryCode(countryCode, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -33047,7 +33047,7 @@ var TaxApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         getTaxProviderSovos: function (options) {
-            var localVarFetchArgs = exports.TaxApiFetchParamCreator(configuration).getTaxProviderSovos(options);
+            var localVarFetchArgs = (0, exports.TaxApiFetchParamCreator)(configuration).getTaxProviderSovos(options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -33068,7 +33068,7 @@ var TaxApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         getTaxProviderSovosTest: function (options) {
-            var localVarFetchArgs = exports.TaxApiFetchParamCreator(configuration).getTaxProviderSovosTest(options);
+            var localVarFetchArgs = (0, exports.TaxApiFetchParamCreator)(configuration).getTaxProviderSovosTest(options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -33089,7 +33089,7 @@ var TaxApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         getTaxProviderTaxJar: function (options) {
-            var localVarFetchArgs = exports.TaxApiFetchParamCreator(configuration).getTaxProviderTaxJar(options);
+            var localVarFetchArgs = (0, exports.TaxApiFetchParamCreator)(configuration).getTaxProviderTaxJar(options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -33110,7 +33110,7 @@ var TaxApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         getTaxProviderTaxJarTest: function (options) {
-            var localVarFetchArgs = exports.TaxApiFetchParamCreator(configuration).getTaxProviderTaxJarTest(options);
+            var localVarFetchArgs = (0, exports.TaxApiFetchParamCreator)(configuration).getTaxProviderTaxJarTest(options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -33131,7 +33131,7 @@ var TaxApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         getTaxProviderUltraCart: function (options) {
-            var localVarFetchArgs = exports.TaxApiFetchParamCreator(configuration).getTaxProviderUltraCart(options);
+            var localVarFetchArgs = (0, exports.TaxApiFetchParamCreator)(configuration).getTaxProviderUltraCart(options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -33155,7 +33155,7 @@ var TaxApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         getTaxProviders: function (_limit, _offset, _expand, options) {
-            var localVarFetchArgs = exports.TaxApiFetchParamCreator(configuration).getTaxProviders(_limit, _offset, _expand, options);
+            var localVarFetchArgs = (0, exports.TaxApiFetchParamCreator)(configuration).getTaxProviders(_limit, _offset, _expand, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -33177,7 +33177,7 @@ var TaxApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         setActiveTaxProvider: function (providerName, options) {
-            var localVarFetchArgs = exports.TaxApiFetchParamCreator(configuration).setActiveTaxProvider(providerName, options);
+            var localVarFetchArgs = (0, exports.TaxApiFetchParamCreator)(configuration).setActiveTaxProvider(providerName, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -33199,7 +33199,7 @@ var TaxApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         updateTaxProviderAvalara: function (tax_provider_avalara, options) {
-            var localVarFetchArgs = exports.TaxApiFetchParamCreator(configuration).updateTaxProviderAvalara(tax_provider_avalara, options);
+            var localVarFetchArgs = (0, exports.TaxApiFetchParamCreator)(configuration).updateTaxProviderAvalara(tax_provider_avalara, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -33221,7 +33221,7 @@ var TaxApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         updateTaxProviderSelf: function (tax_provider_self, options) {
-            var localVarFetchArgs = exports.TaxApiFetchParamCreator(configuration).updateTaxProviderSelf(tax_provider_self, options);
+            var localVarFetchArgs = (0, exports.TaxApiFetchParamCreator)(configuration).updateTaxProviderSelf(tax_provider_self, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -33244,7 +33244,7 @@ var TaxApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         updateTaxProviderSelfCity: function (city, tax_city, options) {
-            var localVarFetchArgs = exports.TaxApiFetchParamCreator(configuration).updateTaxProviderSelfCity(city, tax_city, options);
+            var localVarFetchArgs = (0, exports.TaxApiFetchParamCreator)(configuration).updateTaxProviderSelfCity(city, tax_city, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -33267,7 +33267,7 @@ var TaxApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         updateTaxProviderSelfCountry: function (countryCode, tax_country, options) {
-            var localVarFetchArgs = exports.TaxApiFetchParamCreator(configuration).updateTaxProviderSelfCountry(countryCode, tax_country, options);
+            var localVarFetchArgs = (0, exports.TaxApiFetchParamCreator)(configuration).updateTaxProviderSelfCountry(countryCode, tax_country, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -33290,7 +33290,7 @@ var TaxApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         updateTaxProviderSelfCounty: function (county, tax_county, options) {
-            var localVarFetchArgs = exports.TaxApiFetchParamCreator(configuration).updateTaxProviderSelfCounty(county, tax_county, options);
+            var localVarFetchArgs = (0, exports.TaxApiFetchParamCreator)(configuration).updateTaxProviderSelfCounty(county, tax_county, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -33313,7 +33313,7 @@ var TaxApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         updateTaxProviderSelfPostalCode: function (postal_code, tax_postal_code, options) {
-            var localVarFetchArgs = exports.TaxApiFetchParamCreator(configuration).updateTaxProviderSelfPostalCode(postal_code, tax_postal_code, options);
+            var localVarFetchArgs = (0, exports.TaxApiFetchParamCreator)(configuration).updateTaxProviderSelfPostalCode(postal_code, tax_postal_code, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -33336,7 +33336,7 @@ var TaxApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         updateTaxProviderSelfState: function (stateCode, tax_state, options) {
-            var localVarFetchArgs = exports.TaxApiFetchParamCreator(configuration).updateTaxProviderSelfState(stateCode, tax_state, options);
+            var localVarFetchArgs = (0, exports.TaxApiFetchParamCreator)(configuration).updateTaxProviderSelfState(stateCode, tax_state, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -33358,7 +33358,7 @@ var TaxApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         updateTaxProviderSovos: function (tax_provider_sovos, options) {
-            var localVarFetchArgs = exports.TaxApiFetchParamCreator(configuration).updateTaxProviderSovos(tax_provider_sovos, options);
+            var localVarFetchArgs = (0, exports.TaxApiFetchParamCreator)(configuration).updateTaxProviderSovos(tax_provider_sovos, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -33380,7 +33380,7 @@ var TaxApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         updateTaxProviderTaxJar: function (tax_provider_taxJar, options) {
-            var localVarFetchArgs = exports.TaxApiFetchParamCreator(configuration).updateTaxProviderTaxJar(tax_provider_taxJar, options);
+            var localVarFetchArgs = (0, exports.TaxApiFetchParamCreator)(configuration).updateTaxProviderTaxJar(tax_provider_taxJar, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -33402,7 +33402,7 @@ var TaxApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         updateTaxProviderUltraCart: function (tax_provider_ultracart, options) {
-            var localVarFetchArgs = exports.TaxApiFetchParamCreator(configuration).updateTaxProviderUltraCart(tax_provider_ultracart, options);
+            var localVarFetchArgs = (0, exports.TaxApiFetchParamCreator)(configuration).updateTaxProviderUltraCart(tax_provider_ultracart, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -33434,7 +33434,7 @@ var TaxApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         deleteTaxProviderSelfCity: function (city, tax_city, options) {
-            return exports.TaxApiFp(configuration).deleteTaxProviderSelfCity(city, tax_city, options)(fetch, basePath);
+            return (0, exports.TaxApiFp)(configuration).deleteTaxProviderSelfCity(city, tax_city, options)(fetch, basePath);
         },
         /**
          * Deletes a Self tax provider country.
@@ -33445,7 +33445,7 @@ var TaxApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         deleteTaxProviderSelfCountry: function (countryCode, tax_country, options) {
-            return exports.TaxApiFp(configuration).deleteTaxProviderSelfCountry(countryCode, tax_country, options)(fetch, basePath);
+            return (0, exports.TaxApiFp)(configuration).deleteTaxProviderSelfCountry(countryCode, tax_country, options)(fetch, basePath);
         },
         /**
          * Deletes a Self tax provider county.
@@ -33456,7 +33456,7 @@ var TaxApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         deleteTaxProviderSelfCounty: function (county, tax_county, options) {
-            return exports.TaxApiFp(configuration).deleteTaxProviderSelfCounty(county, tax_county, options)(fetch, basePath);
+            return (0, exports.TaxApiFp)(configuration).deleteTaxProviderSelfCounty(county, tax_county, options)(fetch, basePath);
         },
         /**
          * Deletes a Self tax provider postalCode.
@@ -33467,7 +33467,7 @@ var TaxApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         deleteTaxProviderSelfPostalCode: function (postal_code, tax_postal_code, options) {
-            return exports.TaxApiFp(configuration).deleteTaxProviderSelfPostalCode(postal_code, tax_postal_code, options)(fetch, basePath);
+            return (0, exports.TaxApiFp)(configuration).deleteTaxProviderSelfPostalCode(postal_code, tax_postal_code, options)(fetch, basePath);
         },
         /**
          * Deletes a Self tax provider state.
@@ -33478,7 +33478,7 @@ var TaxApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         deleteTaxProviderSelfState: function (stateCode, tax_state, options) {
-            return exports.TaxApiFp(configuration).deleteTaxProviderSelfState(stateCode, tax_state, options)(fetch, basePath);
+            return (0, exports.TaxApiFp)(configuration).deleteTaxProviderSelfState(stateCode, tax_state, options)(fetch, basePath);
         },
         /**
          * Retrieves the Avalara tax provider.
@@ -33487,7 +33487,7 @@ var TaxApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         getTaxProviderAvalara: function (options) {
-            return exports.TaxApiFp(configuration).getTaxProviderAvalara(options)(fetch, basePath);
+            return (0, exports.TaxApiFp)(configuration).getTaxProviderAvalara(options)(fetch, basePath);
         },
         /**
          * Returns Avalara Tax companies configured by the merchant
@@ -33497,7 +33497,7 @@ var TaxApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         getTaxProviderAvalaraCompanies: function (tax_provider_avalara, options) {
-            return exports.TaxApiFp(configuration).getTaxProviderAvalaraCompanies(tax_provider_avalara, options)(fetch, basePath);
+            return (0, exports.TaxApiFp)(configuration).getTaxProviderAvalaraCompanies(tax_provider_avalara, options)(fetch, basePath);
         },
         /**
          * Attempts to connect to Avalara and returns back the response.
@@ -33506,7 +33506,7 @@ var TaxApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         getTaxProviderAvalaraTest: function (options) {
-            return exports.TaxApiFp(configuration).getTaxProviderAvalaraTest(options)(fetch, basePath);
+            return (0, exports.TaxApiFp)(configuration).getTaxProviderAvalaraTest(options)(fetch, basePath);
         },
         /**
          * Retrieves the Self tax provider.
@@ -33515,7 +33515,7 @@ var TaxApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         getTaxProviderSelf: function (options) {
-            return exports.TaxApiFp(configuration).getTaxProviderSelf(options)(fetch, basePath);
+            return (0, exports.TaxApiFp)(configuration).getTaxProviderSelf(options)(fetch, basePath);
         },
         /**
          * Retrieves the Self tax provider countries.
@@ -33524,7 +33524,7 @@ var TaxApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         getTaxProviderSelfCountries: function (options) {
-            return exports.TaxApiFp(configuration).getTaxProviderSelfCountries(options)(fetch, basePath);
+            return (0, exports.TaxApiFp)(configuration).getTaxProviderSelfCountries(options)(fetch, basePath);
         },
         /**
          * Retrieves the Self tax provider regions for a given country code.
@@ -33534,7 +33534,7 @@ var TaxApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         getTaxProviderSelfRegionsByCountryCode: function (countryCode, options) {
-            return exports.TaxApiFp(configuration).getTaxProviderSelfRegionsByCountryCode(countryCode, options)(fetch, basePath);
+            return (0, exports.TaxApiFp)(configuration).getTaxProviderSelfRegionsByCountryCode(countryCode, options)(fetch, basePath);
         },
         /**
          * Retrieves the Sovos tax provider.
@@ -33543,7 +33543,7 @@ var TaxApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         getTaxProviderSovos: function (options) {
-            return exports.TaxApiFp(configuration).getTaxProviderSovos(options)(fetch, basePath);
+            return (0, exports.TaxApiFp)(configuration).getTaxProviderSovos(options)(fetch, basePath);
         },
         /**
          * Attempts to connect to Sovos and returns back the response.
@@ -33552,7 +33552,7 @@ var TaxApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         getTaxProviderSovosTest: function (options) {
-            return exports.TaxApiFp(configuration).getTaxProviderSovosTest(options)(fetch, basePath);
+            return (0, exports.TaxApiFp)(configuration).getTaxProviderSovosTest(options)(fetch, basePath);
         },
         /**
          * Retrieves the TaxJar tax provider.
@@ -33561,7 +33561,7 @@ var TaxApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         getTaxProviderTaxJar: function (options) {
-            return exports.TaxApiFp(configuration).getTaxProviderTaxJar(options)(fetch, basePath);
+            return (0, exports.TaxApiFp)(configuration).getTaxProviderTaxJar(options)(fetch, basePath);
         },
         /**
          * Attempts to connect to TaxJar and returns back the response.
@@ -33570,7 +33570,7 @@ var TaxApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         getTaxProviderTaxJarTest: function (options) {
-            return exports.TaxApiFp(configuration).getTaxProviderTaxJarTest(options)(fetch, basePath);
+            return (0, exports.TaxApiFp)(configuration).getTaxProviderTaxJarTest(options)(fetch, basePath);
         },
         /**
          * Retrieves the UltraCart tax provider.
@@ -33579,7 +33579,7 @@ var TaxApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         getTaxProviderUltraCart: function (options) {
-            return exports.TaxApiFp(configuration).getTaxProviderUltraCart(options)(fetch, basePath);
+            return (0, exports.TaxApiFp)(configuration).getTaxProviderUltraCart(options)(fetch, basePath);
         },
         /**
          * Retrieves tax methods for this account.
@@ -33591,7 +33591,7 @@ var TaxApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         getTaxProviders: function (_limit, _offset, _expand, options) {
-            return exports.TaxApiFp(configuration).getTaxProviders(_limit, _offset, _expand, options)(fetch, basePath);
+            return (0, exports.TaxApiFp)(configuration).getTaxProviders(_limit, _offset, _expand, options)(fetch, basePath);
         },
         /**
          * Toggle a tax provider to active.
@@ -33601,7 +33601,7 @@ var TaxApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         setActiveTaxProvider: function (providerName, options) {
-            return exports.TaxApiFp(configuration).setActiveTaxProvider(providerName, options)(fetch, basePath);
+            return (0, exports.TaxApiFp)(configuration).setActiveTaxProvider(providerName, options)(fetch, basePath);
         },
         /**
          * Update the Avalara tax provider.
@@ -33611,7 +33611,7 @@ var TaxApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         updateTaxProviderAvalara: function (tax_provider_avalara, options) {
-            return exports.TaxApiFp(configuration).updateTaxProviderAvalara(tax_provider_avalara, options)(fetch, basePath);
+            return (0, exports.TaxApiFp)(configuration).updateTaxProviderAvalara(tax_provider_avalara, options)(fetch, basePath);
         },
         /**
          * Update the Self tax provider.
@@ -33621,7 +33621,7 @@ var TaxApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         updateTaxProviderSelf: function (tax_provider_self, options) {
-            return exports.TaxApiFp(configuration).updateTaxProviderSelf(tax_provider_self, options)(fetch, basePath);
+            return (0, exports.TaxApiFp)(configuration).updateTaxProviderSelf(tax_provider_self, options)(fetch, basePath);
         },
         /**
          * Updates a Self tax provider city.
@@ -33632,7 +33632,7 @@ var TaxApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         updateTaxProviderSelfCity: function (city, tax_city, options) {
-            return exports.TaxApiFp(configuration).updateTaxProviderSelfCity(city, tax_city, options)(fetch, basePath);
+            return (0, exports.TaxApiFp)(configuration).updateTaxProviderSelfCity(city, tax_city, options)(fetch, basePath);
         },
         /**
          * Updates a Self tax provider country.
@@ -33643,7 +33643,7 @@ var TaxApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         updateTaxProviderSelfCountry: function (countryCode, tax_country, options) {
-            return exports.TaxApiFp(configuration).updateTaxProviderSelfCountry(countryCode, tax_country, options)(fetch, basePath);
+            return (0, exports.TaxApiFp)(configuration).updateTaxProviderSelfCountry(countryCode, tax_country, options)(fetch, basePath);
         },
         /**
          * Updates a Self tax provider county.
@@ -33654,7 +33654,7 @@ var TaxApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         updateTaxProviderSelfCounty: function (county, tax_county, options) {
-            return exports.TaxApiFp(configuration).updateTaxProviderSelfCounty(county, tax_county, options)(fetch, basePath);
+            return (0, exports.TaxApiFp)(configuration).updateTaxProviderSelfCounty(county, tax_county, options)(fetch, basePath);
         },
         /**
          * Updates a Self tax provider postalCode.
@@ -33665,7 +33665,7 @@ var TaxApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         updateTaxProviderSelfPostalCode: function (postal_code, tax_postal_code, options) {
-            return exports.TaxApiFp(configuration).updateTaxProviderSelfPostalCode(postal_code, tax_postal_code, options)(fetch, basePath);
+            return (0, exports.TaxApiFp)(configuration).updateTaxProviderSelfPostalCode(postal_code, tax_postal_code, options)(fetch, basePath);
         },
         /**
          * Updates a Self tax provider state.
@@ -33676,7 +33676,7 @@ var TaxApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         updateTaxProviderSelfState: function (stateCode, tax_state, options) {
-            return exports.TaxApiFp(configuration).updateTaxProviderSelfState(stateCode, tax_state, options)(fetch, basePath);
+            return (0, exports.TaxApiFp)(configuration).updateTaxProviderSelfState(stateCode, tax_state, options)(fetch, basePath);
         },
         /**
          * Update the Sovos tax provider.
@@ -33686,7 +33686,7 @@ var TaxApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         updateTaxProviderSovos: function (tax_provider_sovos, options) {
-            return exports.TaxApiFp(configuration).updateTaxProviderSovos(tax_provider_sovos, options)(fetch, basePath);
+            return (0, exports.TaxApiFp)(configuration).updateTaxProviderSovos(tax_provider_sovos, options)(fetch, basePath);
         },
         /**
          * Update the TaxJar tax provider.
@@ -33696,7 +33696,7 @@ var TaxApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         updateTaxProviderTaxJar: function (tax_provider_taxJar, options) {
-            return exports.TaxApiFp(configuration).updateTaxProviderTaxJar(tax_provider_taxJar, options)(fetch, basePath);
+            return (0, exports.TaxApiFp)(configuration).updateTaxProviderTaxJar(tax_provider_taxJar, options)(fetch, basePath);
         },
         /**
          * Update the UltraCart tax provider.
@@ -33706,7 +33706,7 @@ var TaxApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         updateTaxProviderUltraCart: function (tax_provider_ultracart, options) {
-            return exports.TaxApiFp(configuration).updateTaxProviderUltraCart(tax_provider_ultracart, options)(fetch, basePath);
+            return (0, exports.TaxApiFp)(configuration).updateTaxProviderUltraCart(tax_provider_ultracart, options)(fetch, basePath);
         },
     };
 };
@@ -33732,7 +33732,7 @@ var TaxApi = /** @class */ (function (_super) {
      * @memberof TaxApi
      */
     TaxApi.prototype.deleteTaxProviderSelfCity = function (city, tax_city, options) {
-        return exports.TaxApiFp(this.configuration).deleteTaxProviderSelfCity(city, tax_city, options)(this.fetch, this.basePath);
+        return (0, exports.TaxApiFp)(this.configuration).deleteTaxProviderSelfCity(city, tax_city, options)(this.fetch, this.basePath);
     };
     /**
      * Deletes a Self tax provider country.
@@ -33744,7 +33744,7 @@ var TaxApi = /** @class */ (function (_super) {
      * @memberof TaxApi
      */
     TaxApi.prototype.deleteTaxProviderSelfCountry = function (countryCode, tax_country, options) {
-        return exports.TaxApiFp(this.configuration).deleteTaxProviderSelfCountry(countryCode, tax_country, options)(this.fetch, this.basePath);
+        return (0, exports.TaxApiFp)(this.configuration).deleteTaxProviderSelfCountry(countryCode, tax_country, options)(this.fetch, this.basePath);
     };
     /**
      * Deletes a Self tax provider county.
@@ -33756,7 +33756,7 @@ var TaxApi = /** @class */ (function (_super) {
      * @memberof TaxApi
      */
     TaxApi.prototype.deleteTaxProviderSelfCounty = function (county, tax_county, options) {
-        return exports.TaxApiFp(this.configuration).deleteTaxProviderSelfCounty(county, tax_county, options)(this.fetch, this.basePath);
+        return (0, exports.TaxApiFp)(this.configuration).deleteTaxProviderSelfCounty(county, tax_county, options)(this.fetch, this.basePath);
     };
     /**
      * Deletes a Self tax provider postalCode.
@@ -33768,7 +33768,7 @@ var TaxApi = /** @class */ (function (_super) {
      * @memberof TaxApi
      */
     TaxApi.prototype.deleteTaxProviderSelfPostalCode = function (postal_code, tax_postal_code, options) {
-        return exports.TaxApiFp(this.configuration).deleteTaxProviderSelfPostalCode(postal_code, tax_postal_code, options)(this.fetch, this.basePath);
+        return (0, exports.TaxApiFp)(this.configuration).deleteTaxProviderSelfPostalCode(postal_code, tax_postal_code, options)(this.fetch, this.basePath);
     };
     /**
      * Deletes a Self tax provider state.
@@ -33780,7 +33780,7 @@ var TaxApi = /** @class */ (function (_super) {
      * @memberof TaxApi
      */
     TaxApi.prototype.deleteTaxProviderSelfState = function (stateCode, tax_state, options) {
-        return exports.TaxApiFp(this.configuration).deleteTaxProviderSelfState(stateCode, tax_state, options)(this.fetch, this.basePath);
+        return (0, exports.TaxApiFp)(this.configuration).deleteTaxProviderSelfState(stateCode, tax_state, options)(this.fetch, this.basePath);
     };
     /**
      * Retrieves the Avalara tax provider.
@@ -33790,7 +33790,7 @@ var TaxApi = /** @class */ (function (_super) {
      * @memberof TaxApi
      */
     TaxApi.prototype.getTaxProviderAvalara = function (options) {
-        return exports.TaxApiFp(this.configuration).getTaxProviderAvalara(options)(this.fetch, this.basePath);
+        return (0, exports.TaxApiFp)(this.configuration).getTaxProviderAvalara(options)(this.fetch, this.basePath);
     };
     /**
      * Returns Avalara Tax companies configured by the merchant
@@ -33801,7 +33801,7 @@ var TaxApi = /** @class */ (function (_super) {
      * @memberof TaxApi
      */
     TaxApi.prototype.getTaxProviderAvalaraCompanies = function (tax_provider_avalara, options) {
-        return exports.TaxApiFp(this.configuration).getTaxProviderAvalaraCompanies(tax_provider_avalara, options)(this.fetch, this.basePath);
+        return (0, exports.TaxApiFp)(this.configuration).getTaxProviderAvalaraCompanies(tax_provider_avalara, options)(this.fetch, this.basePath);
     };
     /**
      * Attempts to connect to Avalara and returns back the response.
@@ -33811,7 +33811,7 @@ var TaxApi = /** @class */ (function (_super) {
      * @memberof TaxApi
      */
     TaxApi.prototype.getTaxProviderAvalaraTest = function (options) {
-        return exports.TaxApiFp(this.configuration).getTaxProviderAvalaraTest(options)(this.fetch, this.basePath);
+        return (0, exports.TaxApiFp)(this.configuration).getTaxProviderAvalaraTest(options)(this.fetch, this.basePath);
     };
     /**
      * Retrieves the Self tax provider.
@@ -33821,7 +33821,7 @@ var TaxApi = /** @class */ (function (_super) {
      * @memberof TaxApi
      */
     TaxApi.prototype.getTaxProviderSelf = function (options) {
-        return exports.TaxApiFp(this.configuration).getTaxProviderSelf(options)(this.fetch, this.basePath);
+        return (0, exports.TaxApiFp)(this.configuration).getTaxProviderSelf(options)(this.fetch, this.basePath);
     };
     /**
      * Retrieves the Self tax provider countries.
@@ -33831,7 +33831,7 @@ var TaxApi = /** @class */ (function (_super) {
      * @memberof TaxApi
      */
     TaxApi.prototype.getTaxProviderSelfCountries = function (options) {
-        return exports.TaxApiFp(this.configuration).getTaxProviderSelfCountries(options)(this.fetch, this.basePath);
+        return (0, exports.TaxApiFp)(this.configuration).getTaxProviderSelfCountries(options)(this.fetch, this.basePath);
     };
     /**
      * Retrieves the Self tax provider regions for a given country code.
@@ -33842,7 +33842,7 @@ var TaxApi = /** @class */ (function (_super) {
      * @memberof TaxApi
      */
     TaxApi.prototype.getTaxProviderSelfRegionsByCountryCode = function (countryCode, options) {
-        return exports.TaxApiFp(this.configuration).getTaxProviderSelfRegionsByCountryCode(countryCode, options)(this.fetch, this.basePath);
+        return (0, exports.TaxApiFp)(this.configuration).getTaxProviderSelfRegionsByCountryCode(countryCode, options)(this.fetch, this.basePath);
     };
     /**
      * Retrieves the Sovos tax provider.
@@ -33852,7 +33852,7 @@ var TaxApi = /** @class */ (function (_super) {
      * @memberof TaxApi
      */
     TaxApi.prototype.getTaxProviderSovos = function (options) {
-        return exports.TaxApiFp(this.configuration).getTaxProviderSovos(options)(this.fetch, this.basePath);
+        return (0, exports.TaxApiFp)(this.configuration).getTaxProviderSovos(options)(this.fetch, this.basePath);
     };
     /**
      * Attempts to connect to Sovos and returns back the response.
@@ -33862,7 +33862,7 @@ var TaxApi = /** @class */ (function (_super) {
      * @memberof TaxApi
      */
     TaxApi.prototype.getTaxProviderSovosTest = function (options) {
-        return exports.TaxApiFp(this.configuration).getTaxProviderSovosTest(options)(this.fetch, this.basePath);
+        return (0, exports.TaxApiFp)(this.configuration).getTaxProviderSovosTest(options)(this.fetch, this.basePath);
     };
     /**
      * Retrieves the TaxJar tax provider.
@@ -33872,7 +33872,7 @@ var TaxApi = /** @class */ (function (_super) {
      * @memberof TaxApi
      */
     TaxApi.prototype.getTaxProviderTaxJar = function (options) {
-        return exports.TaxApiFp(this.configuration).getTaxProviderTaxJar(options)(this.fetch, this.basePath);
+        return (0, exports.TaxApiFp)(this.configuration).getTaxProviderTaxJar(options)(this.fetch, this.basePath);
     };
     /**
      * Attempts to connect to TaxJar and returns back the response.
@@ -33882,7 +33882,7 @@ var TaxApi = /** @class */ (function (_super) {
      * @memberof TaxApi
      */
     TaxApi.prototype.getTaxProviderTaxJarTest = function (options) {
-        return exports.TaxApiFp(this.configuration).getTaxProviderTaxJarTest(options)(this.fetch, this.basePath);
+        return (0, exports.TaxApiFp)(this.configuration).getTaxProviderTaxJarTest(options)(this.fetch, this.basePath);
     };
     /**
      * Retrieves the UltraCart tax provider.
@@ -33892,7 +33892,7 @@ var TaxApi = /** @class */ (function (_super) {
      * @memberof TaxApi
      */
     TaxApi.prototype.getTaxProviderUltraCart = function (options) {
-        return exports.TaxApiFp(this.configuration).getTaxProviderUltraCart(options)(this.fetch, this.basePath);
+        return (0, exports.TaxApiFp)(this.configuration).getTaxProviderUltraCart(options)(this.fetch, this.basePath);
     };
     /**
      * Retrieves tax methods for this account.
@@ -33905,7 +33905,7 @@ var TaxApi = /** @class */ (function (_super) {
      * @memberof TaxApi
      */
     TaxApi.prototype.getTaxProviders = function (_limit, _offset, _expand, options) {
-        return exports.TaxApiFp(this.configuration).getTaxProviders(_limit, _offset, _expand, options)(this.fetch, this.basePath);
+        return (0, exports.TaxApiFp)(this.configuration).getTaxProviders(_limit, _offset, _expand, options)(this.fetch, this.basePath);
     };
     /**
      * Toggle a tax provider to active.
@@ -33916,7 +33916,7 @@ var TaxApi = /** @class */ (function (_super) {
      * @memberof TaxApi
      */
     TaxApi.prototype.setActiveTaxProvider = function (providerName, options) {
-        return exports.TaxApiFp(this.configuration).setActiveTaxProvider(providerName, options)(this.fetch, this.basePath);
+        return (0, exports.TaxApiFp)(this.configuration).setActiveTaxProvider(providerName, options)(this.fetch, this.basePath);
     };
     /**
      * Update the Avalara tax provider.
@@ -33927,7 +33927,7 @@ var TaxApi = /** @class */ (function (_super) {
      * @memberof TaxApi
      */
     TaxApi.prototype.updateTaxProviderAvalara = function (tax_provider_avalara, options) {
-        return exports.TaxApiFp(this.configuration).updateTaxProviderAvalara(tax_provider_avalara, options)(this.fetch, this.basePath);
+        return (0, exports.TaxApiFp)(this.configuration).updateTaxProviderAvalara(tax_provider_avalara, options)(this.fetch, this.basePath);
     };
     /**
      * Update the Self tax provider.
@@ -33938,7 +33938,7 @@ var TaxApi = /** @class */ (function (_super) {
      * @memberof TaxApi
      */
     TaxApi.prototype.updateTaxProviderSelf = function (tax_provider_self, options) {
-        return exports.TaxApiFp(this.configuration).updateTaxProviderSelf(tax_provider_self, options)(this.fetch, this.basePath);
+        return (0, exports.TaxApiFp)(this.configuration).updateTaxProviderSelf(tax_provider_self, options)(this.fetch, this.basePath);
     };
     /**
      * Updates a Self tax provider city.
@@ -33950,7 +33950,7 @@ var TaxApi = /** @class */ (function (_super) {
      * @memberof TaxApi
      */
     TaxApi.prototype.updateTaxProviderSelfCity = function (city, tax_city, options) {
-        return exports.TaxApiFp(this.configuration).updateTaxProviderSelfCity(city, tax_city, options)(this.fetch, this.basePath);
+        return (0, exports.TaxApiFp)(this.configuration).updateTaxProviderSelfCity(city, tax_city, options)(this.fetch, this.basePath);
     };
     /**
      * Updates a Self tax provider country.
@@ -33962,7 +33962,7 @@ var TaxApi = /** @class */ (function (_super) {
      * @memberof TaxApi
      */
     TaxApi.prototype.updateTaxProviderSelfCountry = function (countryCode, tax_country, options) {
-        return exports.TaxApiFp(this.configuration).updateTaxProviderSelfCountry(countryCode, tax_country, options)(this.fetch, this.basePath);
+        return (0, exports.TaxApiFp)(this.configuration).updateTaxProviderSelfCountry(countryCode, tax_country, options)(this.fetch, this.basePath);
     };
     /**
      * Updates a Self tax provider county.
@@ -33974,7 +33974,7 @@ var TaxApi = /** @class */ (function (_super) {
      * @memberof TaxApi
      */
     TaxApi.prototype.updateTaxProviderSelfCounty = function (county, tax_county, options) {
-        return exports.TaxApiFp(this.configuration).updateTaxProviderSelfCounty(county, tax_county, options)(this.fetch, this.basePath);
+        return (0, exports.TaxApiFp)(this.configuration).updateTaxProviderSelfCounty(county, tax_county, options)(this.fetch, this.basePath);
     };
     /**
      * Updates a Self tax provider postalCode.
@@ -33986,7 +33986,7 @@ var TaxApi = /** @class */ (function (_super) {
      * @memberof TaxApi
      */
     TaxApi.prototype.updateTaxProviderSelfPostalCode = function (postal_code, tax_postal_code, options) {
-        return exports.TaxApiFp(this.configuration).updateTaxProviderSelfPostalCode(postal_code, tax_postal_code, options)(this.fetch, this.basePath);
+        return (0, exports.TaxApiFp)(this.configuration).updateTaxProviderSelfPostalCode(postal_code, tax_postal_code, options)(this.fetch, this.basePath);
     };
     /**
      * Updates a Self tax provider state.
@@ -33998,7 +33998,7 @@ var TaxApi = /** @class */ (function (_super) {
      * @memberof TaxApi
      */
     TaxApi.prototype.updateTaxProviderSelfState = function (stateCode, tax_state, options) {
-        return exports.TaxApiFp(this.configuration).updateTaxProviderSelfState(stateCode, tax_state, options)(this.fetch, this.basePath);
+        return (0, exports.TaxApiFp)(this.configuration).updateTaxProviderSelfState(stateCode, tax_state, options)(this.fetch, this.basePath);
     };
     /**
      * Update the Sovos tax provider.
@@ -34009,7 +34009,7 @@ var TaxApi = /** @class */ (function (_super) {
      * @memberof TaxApi
      */
     TaxApi.prototype.updateTaxProviderSovos = function (tax_provider_sovos, options) {
-        return exports.TaxApiFp(this.configuration).updateTaxProviderSovos(tax_provider_sovos, options)(this.fetch, this.basePath);
+        return (0, exports.TaxApiFp)(this.configuration).updateTaxProviderSovos(tax_provider_sovos, options)(this.fetch, this.basePath);
     };
     /**
      * Update the TaxJar tax provider.
@@ -34020,7 +34020,7 @@ var TaxApi = /** @class */ (function (_super) {
      * @memberof TaxApi
      */
     TaxApi.prototype.updateTaxProviderTaxJar = function (tax_provider_taxJar, options) {
-        return exports.TaxApiFp(this.configuration).updateTaxProviderTaxJar(tax_provider_taxJar, options)(this.fetch, this.basePath);
+        return (0, exports.TaxApiFp)(this.configuration).updateTaxProviderTaxJar(tax_provider_taxJar, options)(this.fetch, this.basePath);
     };
     /**
      * Update the UltraCart tax provider.
@@ -34031,7 +34031,7 @@ var TaxApi = /** @class */ (function (_super) {
      * @memberof TaxApi
      */
     TaxApi.prototype.updateTaxProviderUltraCart = function (tax_provider_ultracart, options) {
-        return exports.TaxApiFp(this.configuration).updateTaxProviderUltraCart(tax_provider_ultracart, options)(this.fetch, this.basePath);
+        return (0, exports.TaxApiFp)(this.configuration).updateTaxProviderUltraCart(tax_provider_ultracart, options)(this.fetch, this.basePath);
     };
     return TaxApi;
 }(BaseAPI));
@@ -34573,7 +34573,7 @@ var UserApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         deleteGroup: function (group_oid, options) {
-            var localVarFetchArgs = exports.UserApiFetchParamCreator(configuration).deleteGroup(group_oid, options);
+            var localVarFetchArgs = (0, exports.UserApiFetchParamCreator)(configuration).deleteGroup(group_oid, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -34595,7 +34595,7 @@ var UserApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         deleteUser: function (user_id, options) {
-            var localVarFetchArgs = exports.UserApiFetchParamCreator(configuration).deleteUser(user_id, options);
+            var localVarFetchArgs = (0, exports.UserApiFetchParamCreator)(configuration).deleteUser(user_id, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -34617,7 +34617,7 @@ var UserApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         getGroup: function (group_oid, options) {
-            var localVarFetchArgs = exports.UserApiFetchParamCreator(configuration).getGroup(group_oid, options);
+            var localVarFetchArgs = (0, exports.UserApiFetchParamCreator)(configuration).getGroup(group_oid, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -34638,7 +34638,7 @@ var UserApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         getGroups: function (options) {
-            var localVarFetchArgs = exports.UserApiFetchParamCreator(configuration).getGroups(options);
+            var localVarFetchArgs = (0, exports.UserApiFetchParamCreator)(configuration).getGroups(options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -34660,7 +34660,7 @@ var UserApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         getUser: function (user_id, options) {
-            var localVarFetchArgs = exports.UserApiFetchParamCreator(configuration).getUser(user_id, options);
+            var localVarFetchArgs = (0, exports.UserApiFetchParamCreator)(configuration).getUser(user_id, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -34682,7 +34682,7 @@ var UserApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         getUserLogins: function (user_id, options) {
-            var localVarFetchArgs = exports.UserApiFetchParamCreator(configuration).getUserLogins(user_id, options);
+            var localVarFetchArgs = (0, exports.UserApiFetchParamCreator)(configuration).getUserLogins(user_id, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -34703,7 +34703,7 @@ var UserApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         getUsers: function (options) {
-            var localVarFetchArgs = exports.UserApiFetchParamCreator(configuration).getUsers(options);
+            var localVarFetchArgs = (0, exports.UserApiFetchParamCreator)(configuration).getUsers(options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -34725,7 +34725,7 @@ var UserApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         insertGroup: function (group, options) {
-            var localVarFetchArgs = exports.UserApiFetchParamCreator(configuration).insertGroup(group, options);
+            var localVarFetchArgs = (0, exports.UserApiFetchParamCreator)(configuration).insertGroup(group, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -34747,7 +34747,7 @@ var UserApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         insertUser: function (user, options) {
-            var localVarFetchArgs = exports.UserApiFetchParamCreator(configuration).insertUser(user, options);
+            var localVarFetchArgs = (0, exports.UserApiFetchParamCreator)(configuration).insertUser(user, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -34770,7 +34770,7 @@ var UserApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         updateGroup: function (group, group_oid, options) {
-            var localVarFetchArgs = exports.UserApiFetchParamCreator(configuration).updateGroup(group, group_oid, options);
+            var localVarFetchArgs = (0, exports.UserApiFetchParamCreator)(configuration).updateGroup(group, group_oid, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -34793,7 +34793,7 @@ var UserApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         updateUser: function (user, user_id, options) {
-            var localVarFetchArgs = exports.UserApiFetchParamCreator(configuration).updateUser(user, user_id, options);
+            var localVarFetchArgs = (0, exports.UserApiFetchParamCreator)(configuration).updateUser(user, user_id, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -34824,7 +34824,7 @@ var UserApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         deleteGroup: function (group_oid, options) {
-            return exports.UserApiFp(configuration).deleteGroup(group_oid, options)(fetch, basePath);
+            return (0, exports.UserApiFp)(configuration).deleteGroup(group_oid, options)(fetch, basePath);
         },
         /**
          * Delete a user on the UltraCart account.
@@ -34834,7 +34834,7 @@ var UserApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         deleteUser: function (user_id, options) {
-            return exports.UserApiFp(configuration).deleteUser(user_id, options)(fetch, basePath);
+            return (0, exports.UserApiFp)(configuration).deleteUser(user_id, options)(fetch, basePath);
         },
         /**
          * Retrieves a single group using the specified group id.
@@ -34844,7 +34844,7 @@ var UserApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         getGroup: function (group_oid, options) {
-            return exports.UserApiFp(configuration).getGroup(group_oid, options)(fetch, basePath);
+            return (0, exports.UserApiFp)(configuration).getGroup(group_oid, options)(fetch, basePath);
         },
         /**
          *
@@ -34853,7 +34853,7 @@ var UserApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         getGroups: function (options) {
-            return exports.UserApiFp(configuration).getGroups(options)(fetch, basePath);
+            return (0, exports.UserApiFp)(configuration).getGroups(options)(fetch, basePath);
         },
         /**
          * Retrieves a single user using the specified user id.
@@ -34863,7 +34863,7 @@ var UserApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         getUser: function (user_id, options) {
-            return exports.UserApiFp(configuration).getUser(user_id, options)(fetch, basePath);
+            return (0, exports.UserApiFp)(configuration).getUser(user_id, options)(fetch, basePath);
         },
         /**
          * Retrieves logins for a single user using the specified user id.
@@ -34873,7 +34873,7 @@ var UserApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         getUserLogins: function (user_id, options) {
-            return exports.UserApiFp(configuration).getUserLogins(user_id, options)(fetch, basePath);
+            return (0, exports.UserApiFp)(configuration).getUserLogins(user_id, options)(fetch, basePath);
         },
         /**
          *
@@ -34882,7 +34882,7 @@ var UserApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         getUsers: function (options) {
-            return exports.UserApiFp(configuration).getUsers(options)(fetch, basePath);
+            return (0, exports.UserApiFp)(configuration).getUsers(options)(fetch, basePath);
         },
         /**
          * Insert a group on the UltraCart account.
@@ -34892,7 +34892,7 @@ var UserApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         insertGroup: function (group, options) {
-            return exports.UserApiFp(configuration).insertGroup(group, options)(fetch, basePath);
+            return (0, exports.UserApiFp)(configuration).insertGroup(group, options)(fetch, basePath);
         },
         /**
          * Insert a user on the UltraCart account.
@@ -34902,7 +34902,7 @@ var UserApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         insertUser: function (user, options) {
-            return exports.UserApiFp(configuration).insertUser(user, options)(fetch, basePath);
+            return (0, exports.UserApiFp)(configuration).insertUser(user, options)(fetch, basePath);
         },
         /**
          * Update a group on the UltraCart account.
@@ -34913,7 +34913,7 @@ var UserApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         updateGroup: function (group, group_oid, options) {
-            return exports.UserApiFp(configuration).updateGroup(group, group_oid, options)(fetch, basePath);
+            return (0, exports.UserApiFp)(configuration).updateGroup(group, group_oid, options)(fetch, basePath);
         },
         /**
          * Update a user on the UltraCart account.
@@ -34924,7 +34924,7 @@ var UserApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         updateUser: function (user, user_id, options) {
-            return exports.UserApiFp(configuration).updateUser(user, user_id, options)(fetch, basePath);
+            return (0, exports.UserApiFp)(configuration).updateUser(user, user_id, options)(fetch, basePath);
         },
     };
 };
@@ -34949,7 +34949,7 @@ var UserApi = /** @class */ (function (_super) {
      * @memberof UserApi
      */
     UserApi.prototype.deleteGroup = function (group_oid, options) {
-        return exports.UserApiFp(this.configuration).deleteGroup(group_oid, options)(this.fetch, this.basePath);
+        return (0, exports.UserApiFp)(this.configuration).deleteGroup(group_oid, options)(this.fetch, this.basePath);
     };
     /**
      * Delete a user on the UltraCart account.
@@ -34960,7 +34960,7 @@ var UserApi = /** @class */ (function (_super) {
      * @memberof UserApi
      */
     UserApi.prototype.deleteUser = function (user_id, options) {
-        return exports.UserApiFp(this.configuration).deleteUser(user_id, options)(this.fetch, this.basePath);
+        return (0, exports.UserApiFp)(this.configuration).deleteUser(user_id, options)(this.fetch, this.basePath);
     };
     /**
      * Retrieves a single group using the specified group id.
@@ -34971,7 +34971,7 @@ var UserApi = /** @class */ (function (_super) {
      * @memberof UserApi
      */
     UserApi.prototype.getGroup = function (group_oid, options) {
-        return exports.UserApiFp(this.configuration).getGroup(group_oid, options)(this.fetch, this.basePath);
+        return (0, exports.UserApiFp)(this.configuration).getGroup(group_oid, options)(this.fetch, this.basePath);
     };
     /**
      *
@@ -34981,7 +34981,7 @@ var UserApi = /** @class */ (function (_super) {
      * @memberof UserApi
      */
     UserApi.prototype.getGroups = function (options) {
-        return exports.UserApiFp(this.configuration).getGroups(options)(this.fetch, this.basePath);
+        return (0, exports.UserApiFp)(this.configuration).getGroups(options)(this.fetch, this.basePath);
     };
     /**
      * Retrieves a single user using the specified user id.
@@ -34992,7 +34992,7 @@ var UserApi = /** @class */ (function (_super) {
      * @memberof UserApi
      */
     UserApi.prototype.getUser = function (user_id, options) {
-        return exports.UserApiFp(this.configuration).getUser(user_id, options)(this.fetch, this.basePath);
+        return (0, exports.UserApiFp)(this.configuration).getUser(user_id, options)(this.fetch, this.basePath);
     };
     /**
      * Retrieves logins for a single user using the specified user id.
@@ -35003,7 +35003,7 @@ var UserApi = /** @class */ (function (_super) {
      * @memberof UserApi
      */
     UserApi.prototype.getUserLogins = function (user_id, options) {
-        return exports.UserApiFp(this.configuration).getUserLogins(user_id, options)(this.fetch, this.basePath);
+        return (0, exports.UserApiFp)(this.configuration).getUserLogins(user_id, options)(this.fetch, this.basePath);
     };
     /**
      *
@@ -35013,7 +35013,7 @@ var UserApi = /** @class */ (function (_super) {
      * @memberof UserApi
      */
     UserApi.prototype.getUsers = function (options) {
-        return exports.UserApiFp(this.configuration).getUsers(options)(this.fetch, this.basePath);
+        return (0, exports.UserApiFp)(this.configuration).getUsers(options)(this.fetch, this.basePath);
     };
     /**
      * Insert a group on the UltraCart account.
@@ -35024,7 +35024,7 @@ var UserApi = /** @class */ (function (_super) {
      * @memberof UserApi
      */
     UserApi.prototype.insertGroup = function (group, options) {
-        return exports.UserApiFp(this.configuration).insertGroup(group, options)(this.fetch, this.basePath);
+        return (0, exports.UserApiFp)(this.configuration).insertGroup(group, options)(this.fetch, this.basePath);
     };
     /**
      * Insert a user on the UltraCart account.
@@ -35035,7 +35035,7 @@ var UserApi = /** @class */ (function (_super) {
      * @memberof UserApi
      */
     UserApi.prototype.insertUser = function (user, options) {
-        return exports.UserApiFp(this.configuration).insertUser(user, options)(this.fetch, this.basePath);
+        return (0, exports.UserApiFp)(this.configuration).insertUser(user, options)(this.fetch, this.basePath);
     };
     /**
      * Update a group on the UltraCart account.
@@ -35047,7 +35047,7 @@ var UserApi = /** @class */ (function (_super) {
      * @memberof UserApi
      */
     UserApi.prototype.updateGroup = function (group, group_oid, options) {
-        return exports.UserApiFp(this.configuration).updateGroup(group, group_oid, options)(this.fetch, this.basePath);
+        return (0, exports.UserApiFp)(this.configuration).updateGroup(group, group_oid, options)(this.fetch, this.basePath);
     };
     /**
      * Update a user on the UltraCart account.
@@ -35059,7 +35059,7 @@ var UserApi = /** @class */ (function (_super) {
      * @memberof UserApi
      */
     UserApi.prototype.updateUser = function (user, user_id, options) {
-        return exports.UserApiFp(this.configuration).updateUser(user, user_id, options)(this.fetch, this.basePath);
+        return (0, exports.UserApiFp)(this.configuration).updateUser(user, user_id, options)(this.fetch, this.basePath);
     };
     return UserApi;
 }(BaseAPI));
@@ -35509,7 +35509,7 @@ var WebhookApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         deleteWebhook: function (webhookOid, options) {
-            var localVarFetchArgs = exports.WebhookApiFetchParamCreator(configuration).deleteWebhook(webhookOid, options);
+            var localVarFetchArgs = (0, exports.WebhookApiFetchParamCreator)(configuration).deleteWebhook(webhookOid, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -35531,7 +35531,7 @@ var WebhookApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         deleteWebhookByUrl: function (webhook, options) {
-            var localVarFetchArgs = exports.WebhookApiFetchParamCreator(configuration).deleteWebhookByUrl(webhook, options);
+            var localVarFetchArgs = (0, exports.WebhookApiFetchParamCreator)(configuration).deleteWebhookByUrl(webhook, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -35554,7 +35554,7 @@ var WebhookApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         getWebhookLog: function (webhookOid, requestId, options) {
-            var localVarFetchArgs = exports.WebhookApiFetchParamCreator(configuration).getWebhookLog(webhookOid, requestId, options);
+            var localVarFetchArgs = (0, exports.WebhookApiFetchParamCreator)(configuration).getWebhookLog(webhookOid, requestId, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -35579,7 +35579,7 @@ var WebhookApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         getWebhookLogSummaries: function (webhookOid, _limit, _offset, _since, options) {
-            var localVarFetchArgs = exports.WebhookApiFetchParamCreator(configuration).getWebhookLogSummaries(webhookOid, _limit, _offset, _since, options);
+            var localVarFetchArgs = (0, exports.WebhookApiFetchParamCreator)(configuration).getWebhookLogSummaries(webhookOid, _limit, _offset, _since, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -35604,7 +35604,7 @@ var WebhookApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         getWebhooks: function (_limit, _offset, _sort, _placeholders, options) {
-            var localVarFetchArgs = exports.WebhookApiFetchParamCreator(configuration).getWebhooks(_limit, _offset, _sort, _placeholders, options);
+            var localVarFetchArgs = (0, exports.WebhookApiFetchParamCreator)(configuration).getWebhooks(_limit, _offset, _sort, _placeholders, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -35627,7 +35627,7 @@ var WebhookApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         insertWebhook: function (webhook, _placeholders, options) {
-            var localVarFetchArgs = exports.WebhookApiFetchParamCreator(configuration).insertWebhook(webhook, _placeholders, options);
+            var localVarFetchArgs = (0, exports.WebhookApiFetchParamCreator)(configuration).insertWebhook(webhook, _placeholders, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -35650,7 +35650,7 @@ var WebhookApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         resendEvent: function (webhookOid, eventName, options) {
-            var localVarFetchArgs = exports.WebhookApiFetchParamCreator(configuration).resendEvent(webhookOid, eventName, options);
+            var localVarFetchArgs = (0, exports.WebhookApiFetchParamCreator)(configuration).resendEvent(webhookOid, eventName, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -35674,7 +35674,7 @@ var WebhookApiFp = function (configuration) {
          * @throws {RequiredError}
          */
         updateWebhook: function (webhook, webhookOid, _placeholders, options) {
-            var localVarFetchArgs = exports.WebhookApiFetchParamCreator(configuration).updateWebhook(webhook, webhookOid, _placeholders, options);
+            var localVarFetchArgs = (0, exports.WebhookApiFetchParamCreator)(configuration).updateWebhook(webhook, webhookOid, _placeholders, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -35705,7 +35705,7 @@ var WebhookApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         deleteWebhook: function (webhookOid, options) {
-            return exports.WebhookApiFp(configuration).deleteWebhook(webhookOid, options)(fetch, basePath);
+            return (0, exports.WebhookApiFp)(configuration).deleteWebhook(webhookOid, options)(fetch, basePath);
         },
         /**
          * Delete a webhook based upon the URL on the webhook_url matching an existing webhook.
@@ -35715,7 +35715,7 @@ var WebhookApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         deleteWebhookByUrl: function (webhook, options) {
-            return exports.WebhookApiFp(configuration).deleteWebhookByUrl(webhook, options)(fetch, basePath);
+            return (0, exports.WebhookApiFp)(configuration).deleteWebhookByUrl(webhook, options)(fetch, basePath);
         },
         /**
          * Retrieves an individual log for a webhook given the webhook oid the request id.
@@ -35726,7 +35726,7 @@ var WebhookApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         getWebhookLog: function (webhookOid, requestId, options) {
-            return exports.WebhookApiFp(configuration).getWebhookLog(webhookOid, requestId, options)(fetch, basePath);
+            return (0, exports.WebhookApiFp)(configuration).getWebhookLog(webhookOid, requestId, options)(fetch, basePath);
         },
         /**
          * Retrieves the log summary information for a given webhook.  This is useful for displaying all the various logs that can be viewed.
@@ -35739,7 +35739,7 @@ var WebhookApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         getWebhookLogSummaries: function (webhookOid, _limit, _offset, _since, options) {
-            return exports.WebhookApiFp(configuration).getWebhookLogSummaries(webhookOid, _limit, _offset, _since, options)(fetch, basePath);
+            return (0, exports.WebhookApiFp)(configuration).getWebhookLogSummaries(webhookOid, _limit, _offset, _since, options)(fetch, basePath);
         },
         /**
          * Retrieves the webhooks associated with this application.
@@ -35752,7 +35752,7 @@ var WebhookApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         getWebhooks: function (_limit, _offset, _sort, _placeholders, options) {
-            return exports.WebhookApiFp(configuration).getWebhooks(_limit, _offset, _sort, _placeholders, options)(fetch, basePath);
+            return (0, exports.WebhookApiFp)(configuration).getWebhooks(_limit, _offset, _sort, _placeholders, options)(fetch, basePath);
         },
         /**
          * Adds a new webhook on the account.  If you add a new webhook with the authentication_type set to basic, but do not specify the basic_username and basic_password, UltraCart will automatically generate random ones and return them.  This allows your application to have simpler logic on the setup of a secure webhook.
@@ -35763,7 +35763,7 @@ var WebhookApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         insertWebhook: function (webhook, _placeholders, options) {
-            return exports.WebhookApiFp(configuration).insertWebhook(webhook, _placeholders, options)(fetch, basePath);
+            return (0, exports.WebhookApiFp)(configuration).insertWebhook(webhook, _placeholders, options)(fetch, basePath);
         },
         /**
          * This method will resend events to the webhook endpoint.  This method can be used for example to send all the existing items on an account to a webhook.
@@ -35774,7 +35774,7 @@ var WebhookApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         resendEvent: function (webhookOid, eventName, options) {
-            return exports.WebhookApiFp(configuration).resendEvent(webhookOid, eventName, options)(fetch, basePath);
+            return (0, exports.WebhookApiFp)(configuration).resendEvent(webhookOid, eventName, options)(fetch, basePath);
         },
         /**
          * Update a webhook on the account
@@ -35786,7 +35786,7 @@ var WebhookApiFactory = function (configuration, fetch, basePath) {
          * @throws {RequiredError}
          */
         updateWebhook: function (webhook, webhookOid, _placeholders, options) {
-            return exports.WebhookApiFp(configuration).updateWebhook(webhook, webhookOid, _placeholders, options)(fetch, basePath);
+            return (0, exports.WebhookApiFp)(configuration).updateWebhook(webhook, webhookOid, _placeholders, options)(fetch, basePath);
         },
     };
 };
@@ -35811,7 +35811,7 @@ var WebhookApi = /** @class */ (function (_super) {
      * @memberof WebhookApi
      */
     WebhookApi.prototype.deleteWebhook = function (webhookOid, options) {
-        return exports.WebhookApiFp(this.configuration).deleteWebhook(webhookOid, options)(this.fetch, this.basePath);
+        return (0, exports.WebhookApiFp)(this.configuration).deleteWebhook(webhookOid, options)(this.fetch, this.basePath);
     };
     /**
      * Delete a webhook based upon the URL on the webhook_url matching an existing webhook.
@@ -35822,7 +35822,7 @@ var WebhookApi = /** @class */ (function (_super) {
      * @memberof WebhookApi
      */
     WebhookApi.prototype.deleteWebhookByUrl = function (webhook, options) {
-        return exports.WebhookApiFp(this.configuration).deleteWebhookByUrl(webhook, options)(this.fetch, this.basePath);
+        return (0, exports.WebhookApiFp)(this.configuration).deleteWebhookByUrl(webhook, options)(this.fetch, this.basePath);
     };
     /**
      * Retrieves an individual log for a webhook given the webhook oid the request id.
@@ -35834,7 +35834,7 @@ var WebhookApi = /** @class */ (function (_super) {
      * @memberof WebhookApi
      */
     WebhookApi.prototype.getWebhookLog = function (webhookOid, requestId, options) {
-        return exports.WebhookApiFp(this.configuration).getWebhookLog(webhookOid, requestId, options)(this.fetch, this.basePath);
+        return (0, exports.WebhookApiFp)(this.configuration).getWebhookLog(webhookOid, requestId, options)(this.fetch, this.basePath);
     };
     /**
      * Retrieves the log summary information for a given webhook.  This is useful for displaying all the various logs that can be viewed.
@@ -35848,7 +35848,7 @@ var WebhookApi = /** @class */ (function (_super) {
      * @memberof WebhookApi
      */
     WebhookApi.prototype.getWebhookLogSummaries = function (webhookOid, _limit, _offset, _since, options) {
-        return exports.WebhookApiFp(this.configuration).getWebhookLogSummaries(webhookOid, _limit, _offset, _since, options)(this.fetch, this.basePath);
+        return (0, exports.WebhookApiFp)(this.configuration).getWebhookLogSummaries(webhookOid, _limit, _offset, _since, options)(this.fetch, this.basePath);
     };
     /**
      * Retrieves the webhooks associated with this application.
@@ -35862,7 +35862,7 @@ var WebhookApi = /** @class */ (function (_super) {
      * @memberof WebhookApi
      */
     WebhookApi.prototype.getWebhooks = function (_limit, _offset, _sort, _placeholders, options) {
-        return exports.WebhookApiFp(this.configuration).getWebhooks(_limit, _offset, _sort, _placeholders, options)(this.fetch, this.basePath);
+        return (0, exports.WebhookApiFp)(this.configuration).getWebhooks(_limit, _offset, _sort, _placeholders, options)(this.fetch, this.basePath);
     };
     /**
      * Adds a new webhook on the account.  If you add a new webhook with the authentication_type set to basic, but do not specify the basic_username and basic_password, UltraCart will automatically generate random ones and return them.  This allows your application to have simpler logic on the setup of a secure webhook.
@@ -35874,7 +35874,7 @@ var WebhookApi = /** @class */ (function (_super) {
      * @memberof WebhookApi
      */
     WebhookApi.prototype.insertWebhook = function (webhook, _placeholders, options) {
-        return exports.WebhookApiFp(this.configuration).insertWebhook(webhook, _placeholders, options)(this.fetch, this.basePath);
+        return (0, exports.WebhookApiFp)(this.configuration).insertWebhook(webhook, _placeholders, options)(this.fetch, this.basePath);
     };
     /**
      * This method will resend events to the webhook endpoint.  This method can be used for example to send all the existing items on an account to a webhook.
@@ -35886,7 +35886,7 @@ var WebhookApi = /** @class */ (function (_super) {
      * @memberof WebhookApi
      */
     WebhookApi.prototype.resendEvent = function (webhookOid, eventName, options) {
-        return exports.WebhookApiFp(this.configuration).resendEvent(webhookOid, eventName, options)(this.fetch, this.basePath);
+        return (0, exports.WebhookApiFp)(this.configuration).resendEvent(webhookOid, eventName, options)(this.fetch, this.basePath);
     };
     /**
      * Update a webhook on the account
@@ -35899,7 +35899,7 @@ var WebhookApi = /** @class */ (function (_super) {
      * @memberof WebhookApi
      */
     WebhookApi.prototype.updateWebhook = function (webhook, webhookOid, _placeholders, options) {
-        return exports.WebhookApiFp(this.configuration).updateWebhook(webhook, webhookOid, _placeholders, options)(this.fetch, this.basePath);
+        return (0, exports.WebhookApiFp)(this.configuration).updateWebhook(webhook, webhookOid, _placeholders, options)(this.fetch, this.basePath);
     };
     return WebhookApi;
 }(BaseAPI));

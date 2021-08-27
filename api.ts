@@ -7766,6 +7766,18 @@ export interface CustomerAffiliate {
      * @memberof CustomerAffiliate
      */
     email?: string;
+    /**
+     * First name
+     * @type {string}
+     * @memberof CustomerAffiliate
+     */
+    first_name?: string;
+    /**
+     * Last name
+     * @type {string}
+     * @memberof CustomerAffiliate
+     */
+    last_name?: string;
 }
 
 /**
