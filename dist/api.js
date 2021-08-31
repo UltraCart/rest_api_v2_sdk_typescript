@@ -6810,6 +6810,7 @@ var CouponApiFetchParamCreator = function (configuration) {
          * @param {string} [expiration_date_end] Expiration date end
          * @param {number} [affiliate_oid] Affiliate oid
          * @param {boolean} [exclude_expired] Exclude expired
+         * @param {string} [merchant_code_or_description] Merchant code or description
          * @param {number} [_limit] The maximum number of records to return on this one API call. (Max 200)
          * @param {number} [_offset] Pagination of the record set.  Offset is a zero based index.
          * @param {string} [_sort] The sort order of the coupons.  See Sorting documentation for examples of using multiple values and sorting by ascending and descending.
@@ -6817,7 +6818,7 @@ var CouponApiFetchParamCreator = function (configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getCoupons: function (merchant_code, description, coupon_type, start_date_begin, start_date_end, expiration_date_begin, expiration_date_end, affiliate_oid, exclude_expired, _limit, _offset, _sort, _expand, options) {
+        getCoupons: function (merchant_code, description, coupon_type, start_date_begin, start_date_end, expiration_date_begin, expiration_date_end, affiliate_oid, exclude_expired, merchant_code_or_description, _limit, _offset, _sort, _expand, options) {
             if (options === void 0) { options = {}; }
             var localVarPath = "/coupon/coupons";
             var localVarUrlObj = url.parse(localVarPath, true);
@@ -6868,6 +6869,9 @@ var CouponApiFetchParamCreator = function (configuration) {
             }
             if (exclude_expired !== undefined) {
                 localVarQueryParameter['exclude_expired'] = exclude_expired;
+            }
+            if (merchant_code_or_description !== undefined) {
+                localVarQueryParameter['merchant_code_or_description'] = merchant_code_or_description;
             }
             if (_limit !== undefined) {
                 localVarQueryParameter['_limit'] = _limit;
@@ -7592,6 +7596,7 @@ var CouponApiFp = function (configuration) {
          * @param {string} [expiration_date_end] Expiration date end
          * @param {number} [affiliate_oid] Affiliate oid
          * @param {boolean} [exclude_expired] Exclude expired
+         * @param {string} [merchant_code_or_description] Merchant code or description
          * @param {number} [_limit] The maximum number of records to return on this one API call. (Max 200)
          * @param {number} [_offset] Pagination of the record set.  Offset is a zero based index.
          * @param {string} [_sort] The sort order of the coupons.  See Sorting documentation for examples of using multiple values and sorting by ascending and descending.
@@ -7599,8 +7604,8 @@ var CouponApiFp = function (configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getCoupons: function (merchant_code, description, coupon_type, start_date_begin, start_date_end, expiration_date_begin, expiration_date_end, affiliate_oid, exclude_expired, _limit, _offset, _sort, _expand, options) {
-            var localVarFetchArgs = (0, exports.CouponApiFetchParamCreator)(configuration).getCoupons(merchant_code, description, coupon_type, start_date_begin, start_date_end, expiration_date_begin, expiration_date_end, affiliate_oid, exclude_expired, _limit, _offset, _sort, _expand, options);
+        getCoupons: function (merchant_code, description, coupon_type, start_date_begin, start_date_end, expiration_date_begin, expiration_date_end, affiliate_oid, exclude_expired, merchant_code_or_description, _limit, _offset, _sort, _expand, options) {
+            var localVarFetchArgs = (0, exports.CouponApiFetchParamCreator)(configuration).getCoupons(merchant_code, description, coupon_type, start_date_begin, start_date_end, expiration_date_begin, expiration_date_end, affiliate_oid, exclude_expired, merchant_code_or_description, _limit, _offset, _sort, _expand, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -7939,6 +7944,7 @@ var CouponApiFactory = function (configuration, fetch, basePath) {
          * @param {string} [expiration_date_end] Expiration date end
          * @param {number} [affiliate_oid] Affiliate oid
          * @param {boolean} [exclude_expired] Exclude expired
+         * @param {string} [merchant_code_or_description] Merchant code or description
          * @param {number} [_limit] The maximum number of records to return on this one API call. (Max 200)
          * @param {number} [_offset] Pagination of the record set.  Offset is a zero based index.
          * @param {string} [_sort] The sort order of the coupons.  See Sorting documentation for examples of using multiple values and sorting by ascending and descending.
@@ -7946,8 +7952,8 @@ var CouponApiFactory = function (configuration, fetch, basePath) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getCoupons: function (merchant_code, description, coupon_type, start_date_begin, start_date_end, expiration_date_begin, expiration_date_end, affiliate_oid, exclude_expired, _limit, _offset, _sort, _expand, options) {
-            return (0, exports.CouponApiFp)(configuration).getCoupons(merchant_code, description, coupon_type, start_date_begin, start_date_end, expiration_date_begin, expiration_date_end, affiliate_oid, exclude_expired, _limit, _offset, _sort, _expand, options)(fetch, basePath);
+        getCoupons: function (merchant_code, description, coupon_type, start_date_begin, start_date_end, expiration_date_begin, expiration_date_end, affiliate_oid, exclude_expired, merchant_code_or_description, _limit, _offset, _sort, _expand, options) {
+            return (0, exports.CouponApiFp)(configuration).getCoupons(merchant_code, description, coupon_type, start_date_begin, start_date_end, expiration_date_begin, expiration_date_end, affiliate_oid, exclude_expired, merchant_code_or_description, _limit, _offset, _sort, _expand, options)(fetch, basePath);
         },
         /**
          * Retrieves coupons from the account.  If no parameters are specified, all coupons will be returned.  You will need to make multiple API calls in order to retrieve the entire result set since this API performs result set pagination.
@@ -8180,6 +8186,7 @@ var CouponApi = /** @class */ (function (_super) {
      * @param {string} [expiration_date_end] Expiration date end
      * @param {number} [affiliate_oid] Affiliate oid
      * @param {boolean} [exclude_expired] Exclude expired
+     * @param {string} [merchant_code_or_description] Merchant code or description
      * @param {number} [_limit] The maximum number of records to return on this one API call. (Max 200)
      * @param {number} [_offset] Pagination of the record set.  Offset is a zero based index.
      * @param {string} [_sort] The sort order of the coupons.  See Sorting documentation for examples of using multiple values and sorting by ascending and descending.
@@ -8188,8 +8195,8 @@ var CouponApi = /** @class */ (function (_super) {
      * @throws {RequiredError}
      * @memberof CouponApi
      */
-    CouponApi.prototype.getCoupons = function (merchant_code, description, coupon_type, start_date_begin, start_date_end, expiration_date_begin, expiration_date_end, affiliate_oid, exclude_expired, _limit, _offset, _sort, _expand, options) {
-        return (0, exports.CouponApiFp)(this.configuration).getCoupons(merchant_code, description, coupon_type, start_date_begin, start_date_end, expiration_date_begin, expiration_date_end, affiliate_oid, exclude_expired, _limit, _offset, _sort, _expand, options)(this.fetch, this.basePath);
+    CouponApi.prototype.getCoupons = function (merchant_code, description, coupon_type, start_date_begin, start_date_end, expiration_date_begin, expiration_date_end, affiliate_oid, exclude_expired, merchant_code_or_description, _limit, _offset, _sort, _expand, options) {
+        return (0, exports.CouponApiFp)(this.configuration).getCoupons(merchant_code, description, coupon_type, start_date_begin, start_date_end, expiration_date_begin, expiration_date_end, affiliate_oid, exclude_expired, merchant_code_or_description, _limit, _offset, _sort, _expand, options)(this.fetch, this.basePath);
     };
     /**
      * Retrieves coupons from the account.  If no parameters are specified, all coupons will be returned.  You will need to make multiple API calls in order to retrieve the entire result set since this API performs result set pagination.
