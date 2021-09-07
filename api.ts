@@ -8039,6 +8039,12 @@ export interface CustomerEditorValues {
      */
     sales_rep_codes?: Array<string>;
     /**
+     * state_optional_countries
+     * @type {Array<Country>}
+     * @memberof CustomerEditorValues
+     */
+    state_optional_countries?: Array<Country>;
+    /**
      * terms
      * @type {Array<string>}
      * @memberof CustomerEditorValues

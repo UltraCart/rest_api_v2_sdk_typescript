@@ -1,4 +1,4 @@
-## ultracart_rest_api_v2_typescript@3.6.8
+## ultracart_rest_api_v2_typescript@3.6.9
 
 This generator creates TypeScript/JavaScript client that utilizes [Fetch API](https://fetch.spec.whatwg.org/). The generated Node module can be used in the following environments:
 
@@ -36,7 +36,7 @@ navigate to the folder of your consuming project and run one of the following co
 _published:_
 
 ```
-npm install ultracart_rest_api_v2_typescript@3.6.8 --save
+npm install ultracart_rest_api_v2_typescript@3.6.9 --save
 ```
 
 _unPublished (not recommended):_
@@ -51,6 +51,7 @@ Not every change is committed to every SDK.
 
 | Version | Date | Comments |
 | --: | :-: | --- |
+| 3.6.9 | 09/07/2021 | customer profile editor values have new list of state optional countries  | 
 | 3.6.8 | 08/31/2021 | coupon query field to allow merchant code and description to be searched  | 
 | 3.6.7 | 08/27/2021 | customer profile affiliate information now contains affiliate first and last name | 
 | 3.6.6 | 08/26/2021 | configuration api - more field changes for UI | 
