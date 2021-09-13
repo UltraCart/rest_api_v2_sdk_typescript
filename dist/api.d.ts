@@ -35404,7 +35404,6 @@ export declare const CouponApiFetchParamCreator: (configuration?: Configuration)
      * @param {string} [expiration_date_end] Expiration date end
      * @param {number} [affiliate_oid] Affiliate oid
      * @param {boolean} [exclude_expired] Exclude expired
-     * @param {string} [merchant_code_or_description] Merchant code or description
      * @param {number} [_limit] The maximum number of records to return on this one API call. (Max 200)
      * @param {number} [_offset] Pagination of the record set.  Offset is a zero based index.
      * @param {string} [_sort] The sort order of the coupons.  See Sorting documentation for examples of using multiple values and sorting by ascending and descending.
@@ -35412,7 +35411,7 @@ export declare const CouponApiFetchParamCreator: (configuration?: Configuration)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getCoupons(merchant_code?: string, description?: string, coupon_type?: string, start_date_begin?: string, start_date_end?: string, expiration_date_begin?: string, expiration_date_end?: string, affiliate_oid?: number, exclude_expired?: boolean, merchant_code_or_description?: string, _limit?: number, _offset?: number, _sort?: string, _expand?: string, options?: any): FetchArgs;
+    getCoupons(merchant_code?: string, description?: string, coupon_type?: string, start_date_begin?: string, start_date_end?: string, expiration_date_begin?: string, expiration_date_end?: string, affiliate_oid?: number, exclude_expired?: boolean, _limit?: number, _offset?: number, _sort?: string, _expand?: string, options?: any): FetchArgs;
     /**
      * Retrieves coupons from the account.  If no parameters are specified, all coupons will be returned.  You will need to make multiple API calls in order to retrieve the entire result set since this API performs result set pagination.
      * @summary Retrieve coupons by query
@@ -35591,7 +35590,6 @@ export declare const CouponApiFp: (configuration?: Configuration) => {
      * @param {string} [expiration_date_end] Expiration date end
      * @param {number} [affiliate_oid] Affiliate oid
      * @param {boolean} [exclude_expired] Exclude expired
-     * @param {string} [merchant_code_or_description] Merchant code or description
      * @param {number} [_limit] The maximum number of records to return on this one API call. (Max 200)
      * @param {number} [_offset] Pagination of the record set.  Offset is a zero based index.
      * @param {string} [_sort] The sort order of the coupons.  See Sorting documentation for examples of using multiple values and sorting by ascending and descending.
@@ -35599,7 +35597,7 @@ export declare const CouponApiFp: (configuration?: Configuration) => {
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getCoupons(merchant_code?: string, description?: string, coupon_type?: string, start_date_begin?: string, start_date_end?: string, expiration_date_begin?: string, expiration_date_end?: string, affiliate_oid?: number, exclude_expired?: boolean, merchant_code_or_description?: string, _limit?: number, _offset?: number, _sort?: string, _expand?: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<CouponsResponse>;
+    getCoupons(merchant_code?: string, description?: string, coupon_type?: string, start_date_begin?: string, start_date_end?: string, expiration_date_begin?: string, expiration_date_end?: string, affiliate_oid?: number, exclude_expired?: boolean, _limit?: number, _offset?: number, _sort?: string, _expand?: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<CouponsResponse>;
     /**
      * Retrieves coupons from the account.  If no parameters are specified, all coupons will be returned.  You will need to make multiple API calls in order to retrieve the entire result set since this API performs result set pagination.
      * @summary Retrieve coupons by query
@@ -35778,7 +35776,6 @@ export declare const CouponApiFactory: (configuration?: Configuration, fetch?: F
      * @param {string} [expiration_date_end] Expiration date end
      * @param {number} [affiliate_oid] Affiliate oid
      * @param {boolean} [exclude_expired] Exclude expired
-     * @param {string} [merchant_code_or_description] Merchant code or description
      * @param {number} [_limit] The maximum number of records to return on this one API call. (Max 200)
      * @param {number} [_offset] Pagination of the record set.  Offset is a zero based index.
      * @param {string} [_sort] The sort order of the coupons.  See Sorting documentation for examples of using multiple values and sorting by ascending and descending.
@@ -35786,7 +35783,7 @@ export declare const CouponApiFactory: (configuration?: Configuration, fetch?: F
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getCoupons(merchant_code?: string, description?: string, coupon_type?: string, start_date_begin?: string, start_date_end?: string, expiration_date_begin?: string, expiration_date_end?: string, affiliate_oid?: number, exclude_expired?: boolean, merchant_code_or_description?: string, _limit?: number, _offset?: number, _sort?: string, _expand?: string, options?: any): Promise<CouponsResponse>;
+    getCoupons(merchant_code?: string, description?: string, coupon_type?: string, start_date_begin?: string, start_date_end?: string, expiration_date_begin?: string, expiration_date_end?: string, affiliate_oid?: number, exclude_expired?: boolean, _limit?: number, _offset?: number, _sort?: string, _expand?: string, options?: any): Promise<CouponsResponse>;
     /**
      * Retrieves coupons from the account.  If no parameters are specified, all coupons will be returned.  You will need to make multiple API calls in order to retrieve the entire result set since this API performs result set pagination.
      * @summary Retrieve coupons by query
@@ -35975,7 +35972,6 @@ export interface CouponApiInterface {
      * @param {string} [expiration_date_end] Expiration date end
      * @param {number} [affiliate_oid] Affiliate oid
      * @param {boolean} [exclude_expired] Exclude expired
-     * @param {string} [merchant_code_or_description] Merchant code or description
      * @param {number} [_limit] The maximum number of records to return on this one API call. (Max 200)
      * @param {number} [_offset] Pagination of the record set.  Offset is a zero based index.
      * @param {string} [_sort] The sort order of the coupons.  See Sorting documentation for examples of using multiple values and sorting by ascending and descending.
@@ -35984,7 +35980,7 @@ export interface CouponApiInterface {
      * @throws {RequiredError}
      * @memberof CouponApiInterface
      */
-    getCoupons(merchant_code?: string, description?: string, coupon_type?: string, start_date_begin?: string, start_date_end?: string, expiration_date_begin?: string, expiration_date_end?: string, affiliate_oid?: number, exclude_expired?: boolean, merchant_code_or_description?: string, _limit?: number, _offset?: number, _sort?: string, _expand?: string, options?: any): Promise<CouponsResponse>;
+    getCoupons(merchant_code?: string, description?: string, coupon_type?: string, start_date_begin?: string, start_date_end?: string, expiration_date_begin?: string, expiration_date_end?: string, affiliate_oid?: number, exclude_expired?: boolean, _limit?: number, _offset?: number, _sort?: string, _expand?: string, options?: any): Promise<CouponsResponse>;
     /**
      * Retrieves coupons from the account.  If no parameters are specified, all coupons will be returned.  You will need to make multiple API calls in order to retrieve the entire result set since this API performs result set pagination.
      * @summary Retrieve coupons by query
@@ -36183,7 +36179,6 @@ export declare class CouponApi extends BaseAPI implements CouponApiInterface {
      * @param {string} [expiration_date_end] Expiration date end
      * @param {number} [affiliate_oid] Affiliate oid
      * @param {boolean} [exclude_expired] Exclude expired
-     * @param {string} [merchant_code_or_description] Merchant code or description
      * @param {number} [_limit] The maximum number of records to return on this one API call. (Max 200)
      * @param {number} [_offset] Pagination of the record set.  Offset is a zero based index.
      * @param {string} [_sort] The sort order of the coupons.  See Sorting documentation for examples of using multiple values and sorting by ascending and descending.
@@ -36192,7 +36187,7 @@ export declare class CouponApi extends BaseAPI implements CouponApiInterface {
      * @throws {RequiredError}
      * @memberof CouponApi
      */
-    getCoupons(merchant_code?: string, description?: string, coupon_type?: string, start_date_begin?: string, start_date_end?: string, expiration_date_begin?: string, expiration_date_end?: string, affiliate_oid?: number, exclude_expired?: boolean, merchant_code_or_description?: string, _limit?: number, _offset?: number, _sort?: string, _expand?: string, options?: any): Promise<CouponsResponse>;
+    getCoupons(merchant_code?: string, description?: string, coupon_type?: string, start_date_begin?: string, start_date_end?: string, expiration_date_begin?: string, expiration_date_end?: string, affiliate_oid?: number, exclude_expired?: boolean, _limit?: number, _offset?: number, _sort?: string, _expand?: string, options?: any): Promise<CouponsResponse>;
     /**
      * Retrieves coupons from the account.  If no parameters are specified, all coupons will be returned.  You will need to make multiple API calls in order to retrieve the entire result set since this API performs result set pagination.
      * @summary Retrieve coupons by query
