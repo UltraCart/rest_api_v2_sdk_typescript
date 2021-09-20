@@ -24324,6 +24324,12 @@ export interface OrderTrackingNumberDetails {
      * @type {string}
      * @memberof OrderTrackingNumberDetails
      */
+    easypost_tracker_id?: string;
+    /**
+     *
+     * @type {string}
+     * @memberof OrderTrackingNumberDetails
+     */
     expected_delivery_date?: string;
     /**
      *
