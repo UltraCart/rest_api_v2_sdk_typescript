@@ -1,4 +1,4 @@
-## ultracart_rest_api_v2_typescript@3.6.11
+## ultracart_rest_api_v2_typescript@3.6.12
 
 This generator creates TypeScript/JavaScript client that utilizes [Fetch API](https://fetch.spec.whatwg.org/). The generated Node module can be used in the following environments:
 
@@ -36,7 +36,7 @@ navigate to the folder of your consuming project and run one of the following co
 _published:_
 
 ```
-npm install ultracart_rest_api_v2_typescript@3.6.11 --save
+npm install ultracart_rest_api_v2_typescript@3.6.12 --save
 ```
 
 _unPublished (not recommended):_
@@ -51,6 +51,7 @@ Not every change is committed to every SDK.
 
 | Version | Date | Comments |
 | --: | :-: | --- |
+| 3.6.12 | 09/20/2021 | fix method for getCouponsByQuery to be POST instead of GET since it uses a JSON body  | 
 | 3.6.11 | 09/13/2021 | fix for CouponApi, broke due to inadvertent parameter inclusion   | 
 | 3.6.10 | 09/09/2021 | added constants for Google Shopping payment method (still in development)  | 
 | 3.6.9 | 09/07/2021 | customer profile editor values have new list of state optional countries  | 

@@ -40252,7 +40252,7 @@ export const CouponApiFetchParamCreator = function (configuration?: Configuratio
             }
             const localVarPath = `/coupon/coupons/query`;
             const localVarUrlObj = url.parse(localVarPath, true);
-            const localVarRequestOptions = Object.assign({ method: 'GET' }, options);
+            const localVarRequestOptions = Object.assign({ method: 'POST' }, options);
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 

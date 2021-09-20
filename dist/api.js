@@ -6911,7 +6911,7 @@ var CouponApiFetchParamCreator = function (configuration) {
             }
             var localVarPath = "/coupon/coupons/query";
             var localVarUrlObj = url.parse(localVarPath, true);
-            var localVarRequestOptions = Object.assign({ method: 'GET' }, options);
+            var localVarRequestOptions = Object.assign({ method: 'POST' }, options);
             var localVarHeaderParameter = {};
             var localVarQueryParameter = {};
             if (configuration && configuration.apiVersion) {
