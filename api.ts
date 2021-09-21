@@ -25370,12 +25370,6 @@ export interface PaymentsConfigurationCheck {
      * @memberof PaymentsConfigurationCheck
      */
     restrictions?: PaymentsConfigurationRestrictions;
-    /**
-     * Test methods for this payment method
-     * @type {Array<PaymentsConfigurationTestMethod>}
-     * @memberof PaymentsConfigurationCheck
-     */
-    test_methods?: Array<PaymentsConfigurationTestMethod>;
 }
 
 /**
@@ -25569,6 +25563,12 @@ export interface PaymentsConfigurationEcheck {
      * @memberof PaymentsConfigurationEcheck
      */
     restrictions?: PaymentsConfigurationRestrictions;
+    /**
+     * Test methods for this payment method
+     * @type {Array<PaymentsConfigurationTestMethod>}
+     * @memberof PaymentsConfigurationEcheck
+     */
+    test_methods?: Array<PaymentsConfigurationTestMethod>;
 }
 
 /**
