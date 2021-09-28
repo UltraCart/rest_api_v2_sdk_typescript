@@ -22917,7 +22917,7 @@ export interface OrderPaymentCreditCard {
      */
     card_number?: string;
     /**
-     * Card number token from hosted fields used to update the cart number
+     * Card number token from hosted fields used to update the card number
      * @type {string}
      * @memberof OrderPaymentCreditCard
      */
@@ -23066,6 +23066,12 @@ export interface OrderPaymentInsurance {
      * @memberof OrderPaymentInsurance
      */
     claim_id?: string;
+    /**
+     * refund claim id
+     * @type {string}
+     * @memberof OrderPaymentInsurance
+     */
+    refund_claim_id?: string;
 }
 /**
  *
