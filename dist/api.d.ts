@@ -16349,6 +16349,12 @@ export interface ItemCheckout {
      */
     terms?: string;
     /**
+     * Terms only apply if the item is on auto order
+     * @type {boolean}
+     * @memberof ItemCheckout
+     */
+    terms_if_auto_order?: boolean;
+    /**
      * Terms translated text instance identifier
      * @type {number}
      * @memberof ItemCheckout
