@@ -16756,6 +16756,12 @@ export interface ItemContent {
      */
     exclude_from_search?: boolean;
     /**
+     * Exclude from the sitemap for the StoreFront
+     * @type {boolean}
+     * @memberof ItemContent
+     */
+    exclude_from_sitemap?: boolean;
+    /**
      * Exclude from the top sellers list in the StoreFront
      * @type {boolean}
      * @memberof ItemContent
