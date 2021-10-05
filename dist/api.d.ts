@@ -15591,6 +15591,12 @@ export interface Item {
      */
     enrollment123?: ItemEnrollment123;
     /**
+     * Fulfillment Add-ons
+     * @type {Array<ItemFulfillmentAddon>}
+     * @memberof Item
+     */
+    fulfillment_addons?: Array<ItemFulfillmentAddon>;
+    /**
      *
      * @type {ItemGiftCertificate}
      * @memberof Item
@@ -17332,6 +17338,37 @@ export interface ItemEnrollment123 {
      * @memberof ItemEnrollment123
      */
     enrollment123_product_code?: string;
+}
+/**
+ *
+ * @export
+ * @interface ItemFulfillmentAddon
+ */
+export interface ItemFulfillmentAddon {
+    /**
+     * Add Item Id
+     * @type {string}
+     * @memberof ItemFulfillmentAddon
+     */
+    add_item_id?: string;
+    /**
+     * Add Item object identifier
+     * @type {number}
+     * @memberof ItemFulfillmentAddon
+     */
+    add_item_oid?: number;
+    /**
+     * Quantity
+     * @type {boolean}
+     * @memberof ItemFulfillmentAddon
+     */
+    once_per_order?: boolean;
+    /**
+     * Quantity
+     * @type {number}
+     * @memberof ItemFulfillmentAddon
+     */
+    quantity?: number;
 }
 /**
  *
