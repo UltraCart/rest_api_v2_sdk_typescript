@@ -375,6 +375,8 @@ var ItemAutoOrderStep;
     (function (TypeEnum) {
         TypeEnum[TypeEnum["Item"] = 'item'] = "Item";
         TypeEnum[TypeEnum["Pause"] = 'pause'] = "Pause";
+        TypeEnum[TypeEnum["Loop"] = 'loop'] = "Loop";
+        TypeEnum[TypeEnum["KitOnly"] = 'kit only'] = "KitOnly";
     })(TypeEnum = ItemAutoOrderStep.TypeEnum || (ItemAutoOrderStep.TypeEnum = {}));
 })(ItemAutoOrderStep = exports.ItemAutoOrderStep || (exports.ItemAutoOrderStep = {}));
 /**
@@ -803,7 +805,6 @@ var OrderQuery;
         PaymentMethodEnum[PaymentMethodEnum["COD"] = 'COD'] = "COD";
         PaymentMethodEnum[PaymentMethodEnum["CreditCard"] = 'Credit Card'] = "CreditCard";
         PaymentMethodEnum[PaymentMethodEnum["ECheck"] = 'eCheck'] = "ECheck";
-        PaymentMethodEnum[PaymentMethodEnum["GoogleShopping"] = 'Google Shopping'] = "GoogleShopping";
         PaymentMethodEnum[PaymentMethodEnum["LoanHero"] = 'LoanHero'] = "LoanHero";
         PaymentMethodEnum[PaymentMethodEnum["MoneyOrder"] = 'Money Order'] = "MoneyOrder";
         PaymentMethodEnum[PaymentMethodEnum["PayPal"] = 'PayPal'] = "PayPal";

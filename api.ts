@@ -485,7 +485,7 @@ export interface AddLibraryItemRequest {
      */
     cjson?: string;
     /**
-     * flow, campaign, cjson, email, transactional_email or upsell
+     * flow, campaign, cjson, email, transactional_email, postcard or upsell
      * @type {string}
      * @memberof AddLibraryItemRequest
      */
@@ -533,7 +533,7 @@ export interface AddLibraryItemRequest {
      */
     upsell_offer_oid?: number;
     /**
-     * UUID of communication flow, campaign, email, or null if this item is something else. transactional_email do not have a uuid because they are singleton objects within a storefront and easily identifiable by name
+     * UUID of communication flow, campaign, email, postcard, or null if this item is something else. transactional_email do not have a uuid because they are singleton objects within a storefront and easily identifiable by name
      * @type {string}
      * @memberof AddLibraryItemRequest
      */
@@ -709,6 +709,12 @@ export interface AffiliateLedger {
      */
     affiliate_click_oid?: number;
     /**
+     * Affiliate ledger object ID associated with this ledger
+     * @type {number}
+     * @memberof AffiliateLedger
+     */
+    affiliate_ledger_oid?: number;
+    /**
      * Unique object identifier for the link that this click is associated with
      * @type {number}
      * @memberof AffiliateLedger
@@ -770,10 +776,10 @@ export interface AffiliateLedger {
     sub_id?: string;
     /**
      * Tier number that this transaction earned
-     * @type {string}
+     * @type {number}
      * @memberof AffiliateLedger
      */
-    tier_number?: string;
+    tier_number?: number;
     /**
      * Transaction amount
      * @type {number}
@@ -800,10 +806,10 @@ export interface AffiliateLedger {
     transaction_memo?: string;
     /**
      * Percentage associated with this transaction
-     * @type {string}
+     * @type {number}
      * @memberof AffiliateLedger
      */
-    transaction_percentage?: string;
+    transaction_percentage?: number;
     /**
      * Transaction state
      * @type {string}
@@ -1097,6 +1103,12 @@ export interface ApplyLibraryItemRequest {
      */
     library_item_oid?: number;
     /**
+     * The postcard uuid you wish to apply to a given StoreFront.
+     * @type {string}
+     * @memberof ApplyLibraryItemRequest
+     */
+    postcard_uuid?: string;
+    /**
      * StoreFront oid where content originates necessary for tracking down relative assets
      * @type {number}
      * @memberof ApplyLibraryItemRequest
@@ -1123,7 +1135,7 @@ export interface ApplyLibraryItemResponse {
      */
     cjson?: string;
     /**
-     * flow, campaign, cjson, upsell, transactional_email or email
+     * flow, campaign, cjson, upsell, postcard, transactional_email or email
      * @type {string}
      * @memberof ApplyLibraryItemResponse
      */
@@ -14865,6 +14877,12 @@ export interface ExperimentVariation {
      */
     conversion_rate?: number;
     /**
+     * Array of daily statistics for this variation
+     * @type {Array<ExperimentVariationStat>}
+     * @memberof ExperimentVariation
+     */
+    daily_statistics?: Array<ExperimentVariationStat>;
+    /**
      * Total number of seconds spent on the site for this variation
      * @type {number}
      * @memberof ExperimentVariation
@@ -14888,6 +14906,12 @@ export interface ExperimentVariation {
      * @memberof ExperimentVariation
      */
     order_count?: number;
+    /**
+     * Total order item count for this variation
+     * @type {number}
+     * @memberof ExperimentVariation
+     */
+    order_item_count?: number;
     /**
      * Percentage of the traffic the variation originally started out with
      * @type {number}
@@ -14942,6 +14966,80 @@ export interface ExperimentVariation {
      * @memberof ExperimentVariation
      */
     winner?: boolean;
+}
+
+/**
+ * 
+ * @export
+ * @interface ExperimentVariationStat
+ */
+export interface ExperimentVariationStat {
+    /**
+     * Total add to cart count for this variation
+     * @type {number}
+     * @memberof ExperimentVariationStat
+     */
+    add_to_cart_count?: number;
+    /**
+     * Total bounce count for this variation
+     * @type {number}
+     * @memberof ExperimentVariationStat
+     */
+    bounce_count?: number;
+    /**
+     * Total number of seconds spent on the site for this variation
+     * @type {number}
+     * @memberof ExperimentVariationStat
+     */
+    duration_seconds_sum?: number;
+    /**
+     * Total event count for this variation
+     * @type {number}
+     * @memberof ExperimentVariationStat
+     */
+    event_count?: number;
+    /**
+     * Total initiate checkout count for this variation
+     * @type {number}
+     * @memberof ExperimentVariationStat
+     */
+    initiate_checkout_count?: number;
+    /**
+     * Total order count for this variation
+     * @type {number}
+     * @memberof ExperimentVariationStat
+     */
+    order_count?: number;
+    /**
+     * Total order item count for this variation
+     * @type {number}
+     * @memberof ExperimentVariationStat
+     */
+    order_item_count?: number;
+    /**
+     * Total page view count for this variation
+     * @type {number}
+     * @memberof ExperimentVariationStat
+     */
+    page_view_count?: number;
+    /**
+     * Total revenue for this variation
+     * @type {number}
+     * @memberof ExperimentVariationStat
+     */
+    revenue?: number;
+    /**
+     * Total sessions for this variation
+     * @type {number}
+     * @memberof ExperimentVariationStat
+     */
+    session_count?: number;
+    /**
+     * Date/time that the statistic was created
+     * @type {string}
+     * @memberof ExperimentVariationStat
+     */
+    stat_dts?: string;
 }
 
 /**
@@ -16399,7 +16497,7 @@ export interface ItemAutoOrderStep {
      */
     subscribe_email_list_oid?: number;
     /**
-     * Type of step (item or pause)
+     * Type of step (item, kit only, loop or pause)
      * @type {string}
      * @memberof ItemAutoOrderStep
      */
@@ -16417,7 +16515,9 @@ export namespace ItemAutoOrderStep {
      */
     export enum TypeEnum {
         Item = <any> 'item',
-        Pause = <any> 'pause'
+        Pause = <any> 'pause',
+        Loop = <any> 'loop',
+        KitOnly = <any> 'kit only'
     }
 }
 
@@ -22908,12 +23008,6 @@ export interface OrderItem {
      */
     total_refunded?: Currency;
     /**
-     * Tracking number, if null or missing, use order level tracking number(s). Used if there are multiple shipments for one order
-     * @type {string}
-     * @memberof OrderItem
-     */
-    tracking_number?: string;
-    /**
      * Date/time that this item was transmitted to the distribution center
      * @type {string}
      * @memberof OrderItem
@@ -24067,7 +24161,6 @@ export namespace OrderQuery {
         COD = <any> 'COD',
         CreditCard = <any> 'Credit Card',
         ECheck = <any> 'eCheck',
-        GoogleShopping = <any> 'Google Shopping',
         LoanHero = <any> 'LoanHero',
         MoneyOrder = <any> 'Money Order',
         PayPal = <any> 'PayPal',
