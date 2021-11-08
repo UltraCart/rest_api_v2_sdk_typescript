@@ -19266,6 +19266,12 @@ export interface ItemShippingDistributionCenter {
      */
     available_to_allocate?: number;
     /**
+     * Cost of goods sold override at the distribution center level
+     * @type {number}
+     * @memberof ItemShippingDistributionCenter
+     */
+    cogs?: number;
+    /**
      * Desired inventory level
      * @type {number}
      * @memberof ItemShippingDistributionCenter
