@@ -32620,6 +32620,120 @@ export interface TransactionGatewaysResponse {
 /**
  * 
  * @export
+ * @interface Twilio
+ */
+export interface Twilio {
+    /**
+     * 
+     * @type {string}
+     * @memberof Twilio
+     */
+    account_sid?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof Twilio
+     */
+    auth_token?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof Twilio
+     */
+    esp_twilio_uuid?: string;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof Twilio
+     */
+    phone_numbers?: Array<string>;
+}
+
+/**
+ * 
+ * @export
+ * @interface TwilioResponse
+ */
+export interface TwilioResponse {
+    /**
+     * 
+     * @type {string}
+     * @memberof TwilioResponse
+     */
+    diagnostics?: string;
+    /**
+     * 
+     * @type {ModelError}
+     * @memberof TwilioResponse
+     */
+    error?: ModelError;
+    /**
+     * 
+     * @type {ResponseMetadata}
+     * @memberof TwilioResponse
+     */
+    metadata?: ResponseMetadata;
+    /**
+     * Indicates if API call was successful
+     * @type {boolean}
+     * @memberof TwilioResponse
+     */
+    success?: boolean;
+    /**
+     * 
+     * @type {Twilio}
+     * @memberof TwilioResponse
+     */
+    twilio?: Twilio;
+    /**
+     * 
+     * @type {Warning}
+     * @memberof TwilioResponse
+     */
+    warning?: Warning;
+}
+
+/**
+ * 
+ * @export
+ * @interface TwiliosResponse
+ */
+export interface TwiliosResponse {
+    /**
+     * 
+     * @type {ModelError}
+     * @memberof TwiliosResponse
+     */
+    error?: ModelError;
+    /**
+     * 
+     * @type {ResponseMetadata}
+     * @memberof TwiliosResponse
+     */
+    metadata?: ResponseMetadata;
+    /**
+     * Indicates if API call was successful
+     * @type {boolean}
+     * @memberof TwiliosResponse
+     */
+    success?: boolean;
+    /**
+     * 
+     * @type {Array<Twilio>}
+     * @memberof TwiliosResponse
+     */
+    twilios?: Array<Twilio>;
+    /**
+     * 
+     * @type {Warning}
+     * @memberof TwiliosResponse
+     */
+    warning?: Warning;
+}
+
+/**
+ * 
+ * @export
  * @interface UltraCartConfig
  */
 export interface UltraCartConfig {
@@ -50672,6 +50786,69 @@ export const StorefrontApiFetchParamCreator = function (configuration?: Configur
         },
         /**
          * 
+         * @summary Create Twilio account
+         * @param {Twilio} twilio Twilio
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        createTwilioAccount(twilio: Twilio, options: any = {}): FetchArgs {
+            // verify required parameter 'twilio' is not null or undefined
+            if (twilio === null || twilio === undefined) {
+                throw new RequiredError('twilio','Required parameter twilio was null or undefined when calling createTwilioAccount.');
+            }
+            const localVarPath = `/storefront/twilio/accounts`;
+            const localVarUrlObj = url.parse(localVarPath, true);
+            const localVarRequestOptions = Object.assign({ method: 'POST' }, options);
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+    if(configuration && configuration.apiVersion) {
+      localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+    }
+
+
+
+            // authentication ultraCartBrowserApiKey required
+            if (configuration && configuration.apiKey) {
+                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
+					? configuration.apiKey("x-ultracart-browser-key")
+					: configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-browser-key"] = localVarApiKeyValue;
+            }
+
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+				const localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+					? configuration.accessToken("ultraCartOauth", ["storefront_write"])
+					: configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
+					? configuration.apiKey("x-ultracart-simple-key")
+					: configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+            const needsSerialization = (<any>"Twilio" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
+            localVarRequestOptions.body =  needsSerialization ? JSON.stringify(twilio || {}) : (twilio || "");
+
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
          * @summary Delete email campaignFolder
          * @param {number} storefront_oid 
          * @param {string} email_campaign_folder_uuid 
@@ -51465,6 +51642,66 @@ export const StorefrontApiFetchParamCreator = function (configuration?: Configur
             const localVarPath = `/storefront/{storefront_oid}/screen_recordings/segments/{screen_recording_segment_oid}`
                 .replace(`{${"storefront_oid"}}`, encodeURIComponent(String(storefront_oid)))
                 .replace(`{${"screen_recording_segment_oid"}}`, encodeURIComponent(String(screen_recording_segment_oid)));
+            const localVarUrlObj = url.parse(localVarPath, true);
+            const localVarRequestOptions = Object.assign({ method: 'DELETE' }, options);
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+    if(configuration && configuration.apiVersion) {
+      localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+    }
+
+
+
+            // authentication ultraCartBrowserApiKey required
+            if (configuration && configuration.apiKey) {
+                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
+					? configuration.apiKey("x-ultracart-browser-key")
+					: configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-browser-key"] = localVarApiKeyValue;
+            }
+
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+				const localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+					? configuration.accessToken("ultraCartOauth", ["storefront_write"])
+					: configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
+					? configuration.apiKey("x-ultracart-simple-key")
+					: configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @summary delete Twilio account
+         * @param {string} esp_twilio_uuid 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        deleteTwilioAccount(esp_twilio_uuid: string, options: any = {}): FetchArgs {
+            // verify required parameter 'esp_twilio_uuid' is not null or undefined
+            if (esp_twilio_uuid === null || esp_twilio_uuid === undefined) {
+                throw new RequiredError('esp_twilio_uuid','Required parameter esp_twilio_uuid was null or undefined when calling deleteTwilioAccount.');
+            }
+            const localVarPath = `/storefront/twilio/accounts/{esp_twilio_uuid}`
+                .replace(`{${"esp_twilio_uuid"}}`, encodeURIComponent(String(esp_twilio_uuid)));
             const localVarUrlObj = url.parse(localVarPath, true);
             const localVarRequestOptions = Object.assign({ method: 'DELETE' }, options);
             const localVarHeaderParameter = {} as any;
@@ -56710,6 +56947,120 @@ export const StorefrontApiFetchParamCreator = function (configuration?: Configur
         },
         /**
          * 
+         * @summary Get Twilio account
+         * @param {string} esp_twilio_uuid 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getTwilioAccount(esp_twilio_uuid: string, options: any = {}): FetchArgs {
+            // verify required parameter 'esp_twilio_uuid' is not null or undefined
+            if (esp_twilio_uuid === null || esp_twilio_uuid === undefined) {
+                throw new RequiredError('esp_twilio_uuid','Required parameter esp_twilio_uuid was null or undefined when calling getTwilioAccount.');
+            }
+            const localVarPath = `/storefront/twilio/accounts/{esp_twilio_uuid}`
+                .replace(`{${"esp_twilio_uuid"}}`, encodeURIComponent(String(esp_twilio_uuid)));
+            const localVarUrlObj = url.parse(localVarPath, true);
+            const localVarRequestOptions = Object.assign({ method: 'GET' }, options);
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+    if(configuration && configuration.apiVersion) {
+      localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+    }
+
+
+
+            // authentication ultraCartBrowserApiKey required
+            if (configuration && configuration.apiKey) {
+                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
+					? configuration.apiKey("x-ultracart-browser-key")
+					: configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-browser-key"] = localVarApiKeyValue;
+            }
+
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+				const localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+					? configuration.accessToken("ultraCartOauth", ["storefront_read"])
+					: configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
+					? configuration.apiKey("x-ultracart-simple-key")
+					: configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @summary Get all Twilio accounts
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getTwilioAccounts(options: any = {}): FetchArgs {
+            const localVarPath = `/storefront/twilio/accounts`;
+            const localVarUrlObj = url.parse(localVarPath, true);
+            const localVarRequestOptions = Object.assign({ method: 'GET' }, options);
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+    if(configuration && configuration.apiVersion) {
+      localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+    }
+
+
+
+            // authentication ultraCartBrowserApiKey required
+            if (configuration && configuration.apiKey) {
+                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
+					? configuration.apiKey("x-ultracart-browser-key")
+					: configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-browser-key"] = localVarApiKeyValue;
+            }
+
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+				const localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+					? configuration.accessToken("ultraCartOauth", ["storefront_read"])
+					: configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
+					? configuration.apiKey("x-ultracart-simple-key")
+					: configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
          * @summary Globally unsubscribe a customer
          * @param {number} storefront_oid 
          * @param {EmailGlobalUnsubscribeRequest} unsubscribe Unsubscribe
@@ -60457,6 +60808,75 @@ export const StorefrontApiFetchParamCreator = function (configuration?: Configur
                 options: localVarRequestOptions,
             };
         },
+        /**
+         * 
+         * @summary Update Twilio account
+         * @param {string} esp_twilio_uuid 
+         * @param {Twilio} twilio Twilio
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        updateTwilioAccount(esp_twilio_uuid: string, twilio: Twilio, options: any = {}): FetchArgs {
+            // verify required parameter 'esp_twilio_uuid' is not null or undefined
+            if (esp_twilio_uuid === null || esp_twilio_uuid === undefined) {
+                throw new RequiredError('esp_twilio_uuid','Required parameter esp_twilio_uuid was null or undefined when calling updateTwilioAccount.');
+            }
+            // verify required parameter 'twilio' is not null or undefined
+            if (twilio === null || twilio === undefined) {
+                throw new RequiredError('twilio','Required parameter twilio was null or undefined when calling updateTwilioAccount.');
+            }
+            const localVarPath = `/storefront/twilio/accounts/{esp_twilio_uuid}`
+                .replace(`{${"esp_twilio_uuid"}}`, encodeURIComponent(String(esp_twilio_uuid)));
+            const localVarUrlObj = url.parse(localVarPath, true);
+            const localVarRequestOptions = Object.assign({ method: 'PUT' }, options);
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+    if(configuration && configuration.apiVersion) {
+      localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+    }
+
+
+
+            // authentication ultraCartBrowserApiKey required
+            if (configuration && configuration.apiKey) {
+                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
+					? configuration.apiKey("x-ultracart-browser-key")
+					: configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-browser-key"] = localVarApiKeyValue;
+            }
+
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+				const localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+					? configuration.accessToken("ultraCartOauth", ["storefront_write"])
+					: configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
+					? configuration.apiKey("x-ultracart-simple-key")
+					: configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+            const needsSerialization = (<any>"Twilio" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
+            localVarRequestOptions.body =  needsSerialization ? JSON.stringify(twilio || {}) : (twilio || "");
+
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
     }
 };
 
@@ -60653,6 +61073,27 @@ export const StorefrontApiFp = function(configuration?: Configuration) {
          */
         createEmailSendingDomain(domain: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<EmailSendingDomainResponse> {
             const localVarFetchArgs = StorefrontApiFetchParamCreator(configuration).createEmailSendingDomain(domain, options);
+            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
+                    if (response.status >= 200 && response.status < 300) {
+                      return response.json();
+                      
+                    } else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
+         * 
+         * @summary Create Twilio account
+         * @param {Twilio} twilio Twilio
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        createTwilioAccount(twilio: Twilio, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<TwilioResponse> {
+            const localVarFetchArgs = StorefrontApiFetchParamCreator(configuration).createTwilioAccount(twilio, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
 
@@ -60942,6 +61383,27 @@ export const StorefrontApiFp = function(configuration?: Configuration) {
 
                     if (response.status >= 200 && response.status < 300) {
                       return response;
+                      
+                    } else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
+         * 
+         * @summary delete Twilio account
+         * @param {string} esp_twilio_uuid 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        deleteTwilioAccount(esp_twilio_uuid: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<BaseResponse> {
+            const localVarFetchArgs = StorefrontApiFetchParamCreator(configuration).deleteTwilioAccount(esp_twilio_uuid, options);
+            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
+                    if (response.status >= 200 && response.status < 300) {
+                      return response.json();
                       
                     } else {
                         throw response;
@@ -62708,6 +63170,47 @@ export const StorefrontApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
+         * @summary Get Twilio account
+         * @param {string} esp_twilio_uuid 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getTwilioAccount(esp_twilio_uuid: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<TwilioResponse> {
+            const localVarFetchArgs = StorefrontApiFetchParamCreator(configuration).getTwilioAccount(esp_twilio_uuid, options);
+            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
+                    if (response.status >= 200 && response.status < 300) {
+                      return response.json();
+                      
+                    } else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
+         * 
+         * @summary Get all Twilio accounts
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getTwilioAccounts(options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<TwiliosResponse> {
+            const localVarFetchArgs = StorefrontApiFetchParamCreator(configuration).getTwilioAccounts(options);
+            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
+                    if (response.status >= 200 && response.status < 300) {
+                      return response.json();
+                      
+                    } else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
+         * 
          * @summary Globally unsubscribe a customer
          * @param {number} storefront_oid 
          * @param {EmailGlobalUnsubscribeRequest} unsubscribe Unsubscribe
@@ -63904,6 +64407,28 @@ export const StorefrontApiFp = function(configuration?: Configuration) {
                 });
             };
         },
+        /**
+         * 
+         * @summary Update Twilio account
+         * @param {string} esp_twilio_uuid 
+         * @param {Twilio} twilio Twilio
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        updateTwilioAccount(esp_twilio_uuid: string, twilio: Twilio, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<TwilioResponse> {
+            const localVarFetchArgs = StorefrontApiFetchParamCreator(configuration).updateTwilioAccount(esp_twilio_uuid, twilio, options);
+            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
+                    if (response.status >= 200 && response.status < 300) {
+                      return response.json();
+                      
+                    } else {
+                        throw response;
+                    }
+                });
+            };
+        },
     }
 };
 
@@ -64012,6 +64537,16 @@ export const StorefrontApiFactory = function (configuration?: Configuration, fet
          */
         createEmailSendingDomain(domain: string, options?: any) {
             return StorefrontApiFp(configuration).createEmailSendingDomain(domain, options)(fetch, basePath);
+        },
+        /**
+         * 
+         * @summary Create Twilio account
+         * @param {Twilio} twilio Twilio
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        createTwilioAccount(twilio: Twilio, options?: any) {
+            return StorefrontApiFp(configuration).createTwilioAccount(twilio, options)(fetch, basePath);
         },
         /**
          * 
@@ -64153,6 +64688,16 @@ export const StorefrontApiFactory = function (configuration?: Configuration, fet
          */
         deleteScreenRecordingSegment(storefront_oid: number, screen_recording_segment_oid: number, options?: any) {
             return StorefrontApiFp(configuration).deleteScreenRecordingSegment(storefront_oid, screen_recording_segment_oid, options)(fetch, basePath);
+        },
+        /**
+         * 
+         * @summary delete Twilio account
+         * @param {string} esp_twilio_uuid 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        deleteTwilioAccount(esp_twilio_uuid: string, options?: any) {
+            return StorefrontApiFp(configuration).deleteTwilioAccount(esp_twilio_uuid, options)(fetch, basePath);
         },
         /**
          * 
@@ -65033,6 +65578,25 @@ export const StorefrontApiFactory = function (configuration?: Configuration, fet
         },
         /**
          * 
+         * @summary Get Twilio account
+         * @param {string} esp_twilio_uuid 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getTwilioAccount(esp_twilio_uuid: string, options?: any) {
+            return StorefrontApiFp(configuration).getTwilioAccount(esp_twilio_uuid, options)(fetch, basePath);
+        },
+        /**
+         * 
+         * @summary Get all Twilio accounts
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getTwilioAccounts(options?: any) {
+            return StorefrontApiFp(configuration).getTwilioAccounts(options)(fetch, basePath);
+        },
+        /**
+         * 
          * @summary Globally unsubscribe a customer
          * @param {number} storefront_oid 
          * @param {EmailGlobalUnsubscribeRequest} unsubscribe Unsubscribe
@@ -65646,6 +66210,17 @@ export const StorefrontApiFactory = function (configuration?: Configuration, fet
         updateTransactionEmail(storefront_oid: number, email_id: string, transaction_email: TransactionEmail, options?: any) {
             return StorefrontApiFp(configuration).updateTransactionEmail(storefront_oid, email_id, transaction_email, options)(fetch, basePath);
         },
+        /**
+         * 
+         * @summary Update Twilio account
+         * @param {string} esp_twilio_uuid 
+         * @param {Twilio} twilio Twilio
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        updateTwilioAccount(esp_twilio_uuid: string, twilio: Twilio, options?: any) {
+            return StorefrontApiFp(configuration).updateTwilioAccount(esp_twilio_uuid, twilio, options)(fetch, basePath);
+        },
     };
 };
 
@@ -65754,6 +66329,16 @@ export interface StorefrontApiInterface {
      * @memberof StorefrontApiInterface
      */
     createEmailSendingDomain(domain: string, options?: any): Promise<EmailSendingDomainResponse>;
+
+    /**
+     * 
+     * @summary Create Twilio account
+     * @param {Twilio} twilio Twilio
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof StorefrontApiInterface
+     */
+    createTwilioAccount(twilio: Twilio, options?: any): Promise<TwilioResponse>;
 
     /**
      * 
@@ -65895,6 +66480,16 @@ export interface StorefrontApiInterface {
      * @memberof StorefrontApiInterface
      */
     deleteScreenRecordingSegment(storefront_oid: number, screen_recording_segment_oid: number, options?: any): Promise<{}>;
+
+    /**
+     * 
+     * @summary delete Twilio account
+     * @param {string} esp_twilio_uuid 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof StorefrontApiInterface
+     */
+    deleteTwilioAccount(esp_twilio_uuid: string, options?: any): Promise<BaseResponse>;
 
     /**
      * 
@@ -66775,6 +67370,25 @@ export interface StorefrontApiInterface {
 
     /**
      * 
+     * @summary Get Twilio account
+     * @param {string} esp_twilio_uuid 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof StorefrontApiInterface
+     */
+    getTwilioAccount(esp_twilio_uuid: string, options?: any): Promise<TwilioResponse>;
+
+    /**
+     * 
+     * @summary Get all Twilio accounts
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof StorefrontApiInterface
+     */
+    getTwilioAccounts(options?: any): Promise<TwiliosResponse>;
+
+    /**
+     * 
      * @summary Globally unsubscribe a customer
      * @param {number} storefront_oid 
      * @param {EmailGlobalUnsubscribeRequest} unsubscribe Unsubscribe
@@ -67388,6 +68002,17 @@ export interface StorefrontApiInterface {
      */
     updateTransactionEmail(storefront_oid: number, email_id: string, transaction_email: TransactionEmail, options?: any): Promise<TransactionEmailResponse>;
 
+    /**
+     * 
+     * @summary Update Twilio account
+     * @param {string} esp_twilio_uuid 
+     * @param {Twilio} twilio Twilio
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof StorefrontApiInterface
+     */
+    updateTwilioAccount(esp_twilio_uuid: string, twilio: Twilio, options?: any): Promise<TwilioResponse>;
+
 }
 
 /**
@@ -67513,6 +68138,18 @@ export class StorefrontApi extends BaseAPI implements StorefrontApiInterface {
      */
     public createEmailSendingDomain(domain: string, options?: any) {
         return StorefrontApiFp(this.configuration).createEmailSendingDomain(domain, options)(this.fetch, this.basePath);
+    }
+
+    /**
+     * 
+     * @summary Create Twilio account
+     * @param {Twilio} twilio Twilio
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof StorefrontApi
+     */
+    public createTwilioAccount(twilio: Twilio, options?: any) {
+        return StorefrontApiFp(this.configuration).createTwilioAccount(twilio, options)(this.fetch, this.basePath);
     }
 
     /**
@@ -67680,6 +68317,18 @@ export class StorefrontApi extends BaseAPI implements StorefrontApiInterface {
      */
     public deleteScreenRecordingSegment(storefront_oid: number, screen_recording_segment_oid: number, options?: any) {
         return StorefrontApiFp(this.configuration).deleteScreenRecordingSegment(storefront_oid, screen_recording_segment_oid, options)(this.fetch, this.basePath);
+    }
+
+    /**
+     * 
+     * @summary delete Twilio account
+     * @param {string} esp_twilio_uuid 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof StorefrontApi
+     */
+    public deleteTwilioAccount(esp_twilio_uuid: string, options?: any) {
+        return StorefrontApiFp(this.configuration).deleteTwilioAccount(esp_twilio_uuid, options)(this.fetch, this.basePath);
     }
 
     /**
@@ -68721,6 +69370,29 @@ export class StorefrontApi extends BaseAPI implements StorefrontApiInterface {
 
     /**
      * 
+     * @summary Get Twilio account
+     * @param {string} esp_twilio_uuid 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof StorefrontApi
+     */
+    public getTwilioAccount(esp_twilio_uuid: string, options?: any) {
+        return StorefrontApiFp(this.configuration).getTwilioAccount(esp_twilio_uuid, options)(this.fetch, this.basePath);
+    }
+
+    /**
+     * 
+     * @summary Get all Twilio accounts
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof StorefrontApi
+     */
+    public getTwilioAccounts(options?: any) {
+        return StorefrontApiFp(this.configuration).getTwilioAccounts(options)(this.fetch, this.basePath);
+    }
+
+    /**
+     * 
      * @summary Globally unsubscribe a customer
      * @param {number} storefront_oid 
      * @param {EmailGlobalUnsubscribeRequest} unsubscribe Unsubscribe
@@ -69438,6 +70110,19 @@ export class StorefrontApi extends BaseAPI implements StorefrontApiInterface {
      */
     public updateTransactionEmail(storefront_oid: number, email_id: string, transaction_email: TransactionEmail, options?: any) {
         return StorefrontApiFp(this.configuration).updateTransactionEmail(storefront_oid, email_id, transaction_email, options)(this.fetch, this.basePath);
+    }
+
+    /**
+     * 
+     * @summary Update Twilio account
+     * @param {string} esp_twilio_uuid 
+     * @param {Twilio} twilio Twilio
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof StorefrontApi
+     */
+    public updateTwilioAccount(esp_twilio_uuid: string, twilio: Twilio, options?: any) {
+        return StorefrontApiFp(this.configuration).updateTwilioAccount(esp_twilio_uuid, twilio, options)(this.fetch, this.basePath);
     }
 
 }

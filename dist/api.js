@@ -1465,7 +1465,7 @@ var AutoOrderApiFetchParamCreator = function (configuration) {
                 throw new RequiredError('auto_order_oid', 'Required parameter auto_order_oid was null or undefined when calling getAutoOrder.');
             }
             var localVarPath = "/auto_order/auto_orders/{auto_order_oid}"
-                .replace("{" + "auto_order_oid" + "}", encodeURIComponent(String(auto_order_oid)));
+                .replace("{".concat("auto_order_oid", "}"), encodeURIComponent(String(auto_order_oid)));
             var localVarUrlObj = url.parse(localVarPath, true);
             var localVarRequestOptions = Object.assign({ method: 'GET' }, options);
             var localVarHeaderParameter = {};
@@ -1515,7 +1515,7 @@ var AutoOrderApiFetchParamCreator = function (configuration) {
                 throw new RequiredError('auto_order_code', 'Required parameter auto_order_code was null or undefined when calling getAutoOrderByCode.');
             }
             var localVarPath = "/auto_order/auto_orders/code/{auto_order_code}"
-                .replace("{" + "auto_order_code" + "}", encodeURIComponent(String(auto_order_code)));
+                .replace("{".concat("auto_order_code", "}"), encodeURIComponent(String(auto_order_code)));
             var localVarUrlObj = url.parse(localVarPath, true);
             var localVarRequestOptions = Object.assign({ method: 'GET' }, options);
             var localVarHeaderParameter = {};
@@ -1565,7 +1565,7 @@ var AutoOrderApiFetchParamCreator = function (configuration) {
                 throw new RequiredError('reference_order_id', 'Required parameter reference_order_id was null or undefined when calling getAutoOrderByReferenceOrderId.');
             }
             var localVarPath = "/auto_order/auto_orders/reference_order_id/{reference_order_id}"
-                .replace("{" + "reference_order_id" + "}", encodeURIComponent(String(reference_order_id)));
+                .replace("{".concat("reference_order_id", "}"), encodeURIComponent(String(reference_order_id)));
             var localVarUrlObj = url.parse(localVarPath, true);
             var localVarRequestOptions = Object.assign({ method: 'GET' }, options);
             var localVarHeaderParameter = {};
@@ -1868,7 +1868,7 @@ var AutoOrderApiFetchParamCreator = function (configuration) {
                 throw new RequiredError('auto_order_oid', 'Required parameter auto_order_oid was null or undefined when calling updateAutoOrder.');
             }
             var localVarPath = "/auto_order/auto_orders/{auto_order_oid}"
-                .replace("{" + "auto_order_oid" + "}", encodeURIComponent(String(auto_order_oid)));
+                .replace("{".concat("auto_order_oid", "}"), encodeURIComponent(String(auto_order_oid)));
             var localVarUrlObj = url.parse(localVarPath, true);
             var localVarRequestOptions = Object.assign({ method: 'PUT' }, options);
             var localVarHeaderParameter = {};
@@ -2470,7 +2470,7 @@ var ChargebackApiFetchParamCreator = function (configuration) {
                 throw new RequiredError('chargeback_dispute_oid', 'Required parameter chargeback_dispute_oid was null or undefined when calling deleteChargeback.');
             }
             var localVarPath = "/chargeback/chargebacks/{chargeback_dispute_oid}"
-                .replace("{" + "chargeback_dispute_oid" + "}", encodeURIComponent(String(chargeback_dispute_oid)));
+                .replace("{".concat("chargeback_dispute_oid", "}"), encodeURIComponent(String(chargeback_dispute_oid)));
             var localVarUrlObj = url.parse(localVarPath, true);
             var localVarRequestOptions = Object.assign({ method: 'DELETE' }, options);
             var localVarHeaderParameter = {};
@@ -2517,7 +2517,7 @@ var ChargebackApiFetchParamCreator = function (configuration) {
                 throw new RequiredError('chargeback_dispute_oid', 'Required parameter chargeback_dispute_oid was null or undefined when calling getChargebackDispute.');
             }
             var localVarPath = "/chargeback/chargebacks/{chargeback_dispute_oid}"
-                .replace("{" + "chargeback_dispute_oid" + "}", encodeURIComponent(String(chargeback_dispute_oid)));
+                .replace("{".concat("chargeback_dispute_oid", "}"), encodeURIComponent(String(chargeback_dispute_oid)));
             var localVarUrlObj = url.parse(localVarPath, true);
             var localVarRequestOptions = Object.assign({ method: 'GET' }, options);
             var localVarHeaderParameter = {};
@@ -2712,7 +2712,7 @@ var ChargebackApiFetchParamCreator = function (configuration) {
                 throw new RequiredError('chargeback_dispute_oid', 'Required parameter chargeback_dispute_oid was null or undefined when calling updateChargeback.');
             }
             var localVarPath = "/chargeback/chargebacks/{chargeback_dispute_oid}"
-                .replace("{" + "chargeback_dispute_oid" + "}", encodeURIComponent(String(chargeback_dispute_oid)));
+                .replace("{".concat("chargeback_dispute_oid", "}"), encodeURIComponent(String(chargeback_dispute_oid)));
             var localVarUrlObj = url.parse(localVarPath, true);
             var localVarRequestOptions = Object.assign({ method: 'PUT' }, options);
             var localVarHeaderParameter = {};
@@ -3168,7 +3168,7 @@ var CheckoutApiFetchParamCreator = function (configuration) {
                 throw new RequiredError('cart_id', 'Required parameter cart_id was null or undefined when calling getAffirmCheckout.');
             }
             var localVarPath = "/checkout/cart/{cart_id}/affirmCheckout"
-                .replace("{" + "cart_id" + "}", encodeURIComponent(String(cart_id)));
+                .replace("{".concat("cart_id", "}"), encodeURIComponent(String(cart_id)));
             var localVarUrlObj = url.parse(localVarPath, true);
             var localVarRequestOptions = Object.assign({ method: 'GET' }, options);
             var localVarHeaderParameter = {};
@@ -3320,7 +3320,7 @@ var CheckoutApiFetchParamCreator = function (configuration) {
                 throw new RequiredError('cart_id', 'Required parameter cart_id was null or undefined when calling getCartByCartId.');
             }
             var localVarPath = "/checkout/cart/{cart_id}"
-                .replace("{" + "cart_id" + "}", encodeURIComponent(String(cart_id)));
+                .replace("{".concat("cart_id", "}"), encodeURIComponent(String(cart_id)));
             var localVarUrlObj = url.parse(localVarPath, true);
             var localVarRequestOptions = Object.assign({ method: 'GET' }, options);
             var localVarHeaderParameter = {};
@@ -3377,7 +3377,7 @@ var CheckoutApiFetchParamCreator = function (configuration) {
                 throw new RequiredError('return_code', 'Required parameter return_code was null or undefined when calling getCartByReturnCode.');
             }
             var localVarPath = "/checkout/return/{return_code}"
-                .replace("{" + "return_code" + "}", encodeURIComponent(String(return_code)));
+                .replace("{".concat("return_code", "}"), encodeURIComponent(String(return_code)));
             var localVarUrlObj = url.parse(localVarPath, true);
             var localVarRequestOptions = Object.assign({ method: 'GET' }, options);
             var localVarHeaderParameter = {};
@@ -3488,7 +3488,7 @@ var CheckoutApiFetchParamCreator = function (configuration) {
                 throw new RequiredError('country_code', 'Required parameter country_code was null or undefined when calling getStateProvincesForCountry.');
             }
             var localVarPath = "/checkout/stateProvincesForCountry/{country_code}"
-                .replace("{" + "country_code" + "}", encodeURIComponent(String(country_code)));
+                .replace("{".concat("country_code", "}"), encodeURIComponent(String(country_code)));
             var localVarUrlObj = url.parse(localVarPath, true);
             var localVarRequestOptions = Object.assign({ method: 'POST' }, options);
             var localVarHeaderParameter = {};
@@ -3901,7 +3901,7 @@ var CheckoutApiFetchParamCreator = function (configuration) {
                 throw new RequiredError('cart', 'Required parameter cart was null or undefined when calling relatedItemsForItem.');
             }
             var localVarPath = "/checkout/relatedItems/{item_id}"
-                .replace("{" + "item_id" + "}", encodeURIComponent(String(item_id)));
+                .replace("{".concat("item_id", "}"), encodeURIComponent(String(item_id)));
             var localVarUrlObj = url.parse(localVarPath, true);
             var localVarRequestOptions = Object.assign({ method: 'POST' }, options);
             var localVarHeaderParameter = {};
@@ -5020,7 +5020,7 @@ var ConfigurationApiFetchParamCreator = function (configuration) {
                 throw new RequiredError('rtg_oid', 'Required parameter rtg_oid was null or undefined when calling delayAutoOrders.');
             }
             var localVarPath = "/configuration/checkout/payments/rtg/{rtg_oid}/delayAutoOrders"
-                .replace("{" + "rtg_oid" + "}", encodeURIComponent(String(rtg_oid)));
+                .replace("{".concat("rtg_oid", "}"), encodeURIComponent(String(rtg_oid)));
             var localVarUrlObj = url.parse(localVarPath, true);
             var localVarRequestOptions = Object.assign({ method: 'POST' }, options);
             var localVarHeaderParameter = {};
@@ -5066,7 +5066,7 @@ var ConfigurationApiFetchParamCreator = function (configuration) {
                 throw new RequiredError('rtg_oid', 'Required parameter rtg_oid was null or undefined when calling deleteRotatingTransactionGateway.');
             }
             var localVarPath = "/configuration/checkout/payments/rtg/{rtg_oid}"
-                .replace("{" + "rtg_oid" + "}", encodeURIComponent(String(rtg_oid)));
+                .replace("{".concat("rtg_oid", "}"), encodeURIComponent(String(rtg_oid)));
             var localVarUrlObj = url.parse(localVarPath, true);
             var localVarRequestOptions = Object.assign({ method: 'DELETE' }, options);
             var localVarHeaderParameter = {};
@@ -5152,7 +5152,7 @@ var ConfigurationApiFetchParamCreator = function (configuration) {
                 throw new RequiredError('rtg_oid', 'Required parameter rtg_oid was null or undefined when calling getPaymentsRotatingGateway.');
             }
             var localVarPath = "/configuration/checkout/payments/rtg/{rtg_oid}"
-                .replace("{" + "rtg_oid" + "}", encodeURIComponent(String(rtg_oid)));
+                .replace("{".concat("rtg_oid", "}"), encodeURIComponent(String(rtg_oid)));
             var localVarUrlObj = url.parse(localVarPath, true);
             var localVarRequestOptions = Object.assign({ method: 'GET' }, options);
             var localVarHeaderParameter = {};
@@ -5198,7 +5198,7 @@ var ConfigurationApiFetchParamCreator = function (configuration) {
                 throw new RequiredError('code', 'Required parameter code was null or undefined when calling getPaymentsRotatingGatewayByCode.');
             }
             var localVarPath = "/configuration/checkout/payments/rtg/byCode/{code}"
-                .replace("{" + "code" + "}", encodeURIComponent(String(code)));
+                .replace("{".concat("code", "}"), encodeURIComponent(String(code)));
             var localVarUrlObj = url.parse(localVarPath, true);
             var localVarRequestOptions = Object.assign({ method: 'GET' }, options);
             var localVarHeaderParameter = {};
@@ -5412,7 +5412,7 @@ var ConfigurationApiFetchParamCreator = function (configuration) {
                 throw new RequiredError('code', 'Required parameter code was null or undefined when calling migrateToRotatingTransactionGateway.');
             }
             var localVarPath = "/configuration/checkout/payments/tg/migrateToRtgWithCodeOf/{code}"
-                .replace("{" + "code" + "}", encodeURIComponent(String(code)));
+                .replace("{".concat("code", "}"), encodeURIComponent(String(code)));
             var localVarUrlObj = url.parse(localVarPath, true);
             var localVarRequestOptions = Object.assign({ method: 'POST' }, options);
             var localVarHeaderParameter = {};
@@ -5458,7 +5458,7 @@ var ConfigurationApiFetchParamCreator = function (configuration) {
                 throw new RequiredError('rtg_oid', 'Required parameter rtg_oid was null or undefined when calling stripeConnect.');
             }
             var localVarPath = "/configuration/checkout/payments/rtg/{rtg_oid}/stripeConnect"
-                .replace("{" + "rtg_oid" + "}", encodeURIComponent(String(rtg_oid)));
+                .replace("{".concat("rtg_oid", "}"), encodeURIComponent(String(rtg_oid)));
             var localVarUrlObj = url.parse(localVarPath, true);
             var localVarRequestOptions = Object.assign({ method: 'POST' }, options);
             var localVarHeaderParameter = {};
@@ -5605,7 +5605,7 @@ var ConfigurationApiFetchParamCreator = function (configuration) {
                 throw new RequiredError('rotating_transaction_gateway', 'Required parameter rotating_transaction_gateway was null or undefined when calling updateRotatingTransactionGateway.');
             }
             var localVarPath = "/configuration/checkout/payments/rtg/{rtg_oid}"
-                .replace("{" + "rtg_oid" + "}", encodeURIComponent(String(rtg_oid)));
+                .replace("{".concat("rtg_oid", "}"), encodeURIComponent(String(rtg_oid)));
             var localVarUrlObj = url.parse(localVarPath, true);
             var localVarRequestOptions = Object.assign({ method: 'PUT' }, options);
             var localVarHeaderParameter = {};
@@ -6379,7 +6379,7 @@ var CouponApiFetchParamCreator = function (configuration) {
                 throw new RequiredError('coupon_oid', 'Required parameter coupon_oid was null or undefined when calling deleteCoupon.');
             }
             var localVarPath = "/coupon/coupons/{coupon_oid}"
-                .replace("{" + "coupon_oid" + "}", encodeURIComponent(String(coupon_oid)));
+                .replace("{".concat("coupon_oid", "}"), encodeURIComponent(String(coupon_oid)));
             var localVarUrlObj = url.parse(localVarPath, true);
             var localVarRequestOptions = Object.assign({ method: 'DELETE' }, options);
             var localVarHeaderParameter = {};
@@ -6521,7 +6521,7 @@ var CouponApiFetchParamCreator = function (configuration) {
                 throw new RequiredError('merchant_code', 'Required parameter merchant_code was null or undefined when calling doesCouponCodeExist.');
             }
             var localVarPath = "/coupon/coupons/merchant_code/{merchant_code}/exists"
-                .replace("{" + "merchant_code" + "}", encodeURIComponent(String(merchant_code)));
+                .replace("{".concat("merchant_code", "}"), encodeURIComponent(String(merchant_code)));
             var localVarUrlObj = url.parse(localVarPath, true);
             var localVarRequestOptions = Object.assign({ method: 'GET' }, options);
             var localVarHeaderParameter = {};
@@ -6572,7 +6572,7 @@ var CouponApiFetchParamCreator = function (configuration) {
                 throw new RequiredError('coupon_codes_request', 'Required parameter coupon_codes_request was null or undefined when calling generateCouponCodes.');
             }
             var localVarPath = "/coupon/coupons/{coupon_oid}/generate_codes"
-                .replace("{" + "coupon_oid" + "}", encodeURIComponent(String(coupon_oid)));
+                .replace("{".concat("coupon_oid", "}"), encodeURIComponent(String(coupon_oid)));
             var localVarUrlObj = url.parse(localVarPath, true);
             var localVarRequestOptions = Object.assign({ method: 'POST' }, options);
             var localVarHeaderParameter = {};
@@ -6626,7 +6626,7 @@ var CouponApiFetchParamCreator = function (configuration) {
                 throw new RequiredError('coupon_codes_request', 'Required parameter coupon_codes_request was null or undefined when calling generateOneTimeCodesByMerchantCode.');
             }
             var localVarPath = "/coupon/coupons/merchant_code/{merchant_code}/generate_codes"
-                .replace("{" + "merchant_code" + "}", encodeURIComponent(String(merchant_code)));
+                .replace("{".concat("merchant_code", "}"), encodeURIComponent(String(merchant_code)));
             var localVarUrlObj = url.parse(localVarPath, true);
             var localVarRequestOptions = Object.assign({ method: 'POST' }, options);
             var localVarHeaderParameter = {};
@@ -6716,7 +6716,7 @@ var CouponApiFetchParamCreator = function (configuration) {
                 throw new RequiredError('coupon_oid', 'Required parameter coupon_oid was null or undefined when calling getCoupon.');
             }
             var localVarPath = "/coupon/coupons/{coupon_oid}"
-                .replace("{" + "coupon_oid" + "}", encodeURIComponent(String(coupon_oid)));
+                .replace("{".concat("coupon_oid", "}"), encodeURIComponent(String(coupon_oid)));
             var localVarUrlObj = url.parse(localVarPath, true);
             var localVarRequestOptions = Object.assign({ method: 'GET' }, options);
             var localVarHeaderParameter = {};
@@ -6766,7 +6766,7 @@ var CouponApiFetchParamCreator = function (configuration) {
                 throw new RequiredError('merchant_code', 'Required parameter merchant_code was null or undefined when calling getCouponByMerchantCode.');
             }
             var localVarPath = "/coupon/coupons/merchant_code/{merchant_code}"
-                .replace("{" + "merchant_code" + "}", encodeURIComponent(String(merchant_code)));
+                .replace("{".concat("merchant_code", "}"), encodeURIComponent(String(merchant_code)));
             var localVarUrlObj = url.parse(localVarPath, true);
             var localVarRequestOptions = Object.assign({ method: 'GET' }, options);
             var localVarHeaderParameter = {};
@@ -7221,7 +7221,7 @@ var CouponApiFetchParamCreator = function (configuration) {
                 throw new RequiredError('coupon_oid', 'Required parameter coupon_oid was null or undefined when calling updateCoupon.');
             }
             var localVarPath = "/coupon/coupons/{coupon_oid}"
-                .replace("{" + "coupon_oid" + "}", encodeURIComponent(String(coupon_oid)));
+                .replace("{".concat("coupon_oid", "}"), encodeURIComponent(String(coupon_oid)));
             var localVarUrlObj = url.parse(localVarPath, true);
             var localVarRequestOptions = Object.assign({ method: 'PUT' }, options);
             var localVarHeaderParameter = {};
@@ -7338,7 +7338,7 @@ var CouponApiFetchParamCreator = function (configuration) {
                 throw new RequiredError('upload_coupon_codes_request', 'Required parameter upload_coupon_codes_request was null or undefined when calling uploadCouponCodes.');
             }
             var localVarPath = "/coupon/coupons/{coupon_oid}/upload_codes"
-                .replace("{" + "coupon_oid" + "}", encodeURIComponent(String(coupon_oid)));
+                .replace("{".concat("coupon_oid", "}"), encodeURIComponent(String(coupon_oid)));
             var localVarUrlObj = url.parse(localVarPath, true);
             var localVarRequestOptions = Object.assign({ method: 'POST' }, options);
             var localVarHeaderParameter = {};
@@ -8329,7 +8329,7 @@ var CustomerApiFetchParamCreator = function (configuration) {
                 throw new RequiredError('customer_profile_oid', 'Required parameter customer_profile_oid was null or undefined when calling deleteCustomer.');
             }
             var localVarPath = "/customer/customers/{customer_profile_oid}"
-                .replace("{" + "customer_profile_oid" + "}", encodeURIComponent(String(customer_profile_oid)));
+                .replace("{".concat("customer_profile_oid", "}"), encodeURIComponent(String(customer_profile_oid)));
             var localVarUrlObj = url.parse(localVarPath, true);
             var localVarRequestOptions = Object.assign({ method: 'DELETE' }, options);
             var localVarHeaderParameter = {};
@@ -8376,7 +8376,7 @@ var CustomerApiFetchParamCreator = function (configuration) {
                 throw new RequiredError('customer_profile_oid', 'Required parameter customer_profile_oid was null or undefined when calling getCustomer.');
             }
             var localVarPath = "/customer/customers/{customer_profile_oid}"
-                .replace("{" + "customer_profile_oid" + "}", encodeURIComponent(String(customer_profile_oid)));
+                .replace("{".concat("customer_profile_oid", "}"), encodeURIComponent(String(customer_profile_oid)));
             var localVarUrlObj = url.parse(localVarPath, true);
             var localVarRequestOptions = Object.assign({ method: 'GET' }, options);
             var localVarHeaderParameter = {};
@@ -8426,7 +8426,7 @@ var CustomerApiFetchParamCreator = function (configuration) {
                 throw new RequiredError('email', 'Required parameter email was null or undefined when calling getCustomerByEmail.');
             }
             var localVarPath = "/customer/customers/by_email/{email}"
-                .replace("{" + "email" + "}", encodeURIComponent(String(email)));
+                .replace("{".concat("email", "}"), encodeURIComponent(String(email)));
             var localVarUrlObj = url.parse(localVarPath, true);
             var localVarRequestOptions = Object.assign({ method: 'GET' }, options);
             var localVarHeaderParameter = {};
@@ -8941,7 +8941,7 @@ var CustomerApiFetchParamCreator = function (configuration) {
                 throw new RequiredError('customer_profile_oid', 'Required parameter customer_profile_oid was null or undefined when calling updateCustomer.');
             }
             var localVarPath = "/customer/customers/{customer_profile_oid}"
-                .replace("{" + "customer_profile_oid" + "}", encodeURIComponent(String(customer_profile_oid)));
+                .replace("{".concat("customer_profile_oid", "}"), encodeURIComponent(String(customer_profile_oid)));
             var localVarUrlObj = url.parse(localVarPath, true);
             var localVarRequestOptions = Object.assign({ method: 'PUT' }, options);
             var localVarHeaderParameter = {};
@@ -8998,7 +8998,7 @@ var CustomerApiFetchParamCreator = function (configuration) {
                 throw new RequiredError('list_changes', 'Required parameter list_changes was null or undefined when calling updateCustomerEmailLists.');
             }
             var localVarPath = "/customer/customers/{customer_profile_oid}/email_lists"
-                .replace("{" + "customer_profile_oid" + "}", encodeURIComponent(String(customer_profile_oid)));
+                .replace("{".concat("customer_profile_oid", "}"), encodeURIComponent(String(customer_profile_oid)));
             var localVarUrlObj = url.parse(localVarPath, true);
             var localVarRequestOptions = Object.assign({ method: 'POST' }, options);
             var localVarHeaderParameter = {};
@@ -9820,7 +9820,7 @@ var FulfillmentApiFetchParamCreator = function (configuration) {
                 throw new RequiredError('orderIds', 'Required parameter orderIds was null or undefined when calling acknowledgeOrders.');
             }
             var localVarPath = "/fulfillment/distribution_centers/{distribution_center_code}/acknowledgements"
-                .replace("{" + "distribution_center_code" + "}", encodeURIComponent(String(distribution_center_code)));
+                .replace("{".concat("distribution_center_code", "}"), encodeURIComponent(String(distribution_center_code)));
             var localVarUrlObj = url.parse(localVarPath, true);
             var localVarRequestOptions = Object.assign({ method: 'PUT' }, options);
             var localVarHeaderParameter = {};
@@ -9874,8 +9874,8 @@ var FulfillmentApiFetchParamCreator = function (configuration) {
                 throw new RequiredError('order_id', 'Required parameter order_id was null or undefined when calling generatePackingSlip.');
             }
             var localVarPath = "/fulfillment/distribution_centers/{distribution_center_code}/orders/{order_id}"
-                .replace("{" + "distribution_center_code" + "}", encodeURIComponent(String(distribution_center_code)))
-                .replace("{" + "order_id" + "}", encodeURIComponent(String(order_id)));
+                .replace("{".concat("distribution_center_code", "}"), encodeURIComponent(String(distribution_center_code)))
+                .replace("{".concat("order_id", "}"), encodeURIComponent(String(order_id)));
             var localVarUrlObj = url.parse(localVarPath, true);
             var localVarRequestOptions = Object.assign({ method: 'GET' }, options);
             var localVarHeaderParameter = {};
@@ -9921,7 +9921,7 @@ var FulfillmentApiFetchParamCreator = function (configuration) {
                 throw new RequiredError('distribution_center_code', 'Required parameter distribution_center_code was null or undefined when calling getDistributionCenterOrders.');
             }
             var localVarPath = "/fulfillment/distribution_centers/{distribution_center_code}/orders"
-                .replace("{" + "distribution_center_code" + "}", encodeURIComponent(String(distribution_center_code)));
+                .replace("{".concat("distribution_center_code", "}"), encodeURIComponent(String(distribution_center_code)));
             var localVarUrlObj = url.parse(localVarPath, true);
             var localVarRequestOptions = Object.assign({ method: 'GET' }, options);
             var localVarHeaderParameter = {};
@@ -10012,7 +10012,7 @@ var FulfillmentApiFetchParamCreator = function (configuration) {
                 throw new RequiredError('shipments', 'Required parameter shipments was null or undefined when calling shipOrders.');
             }
             var localVarPath = "/fulfillment/distribution_centers/{distribution_center_code}/shipments"
-                .replace("{" + "distribution_center_code" + "}", encodeURIComponent(String(distribution_center_code)));
+                .replace("{".concat("distribution_center_code", "}"), encodeURIComponent(String(distribution_center_code)));
             var localVarUrlObj = url.parse(localVarPath, true);
             var localVarRequestOptions = Object.assign({ method: 'POST' }, options);
             var localVarHeaderParameter = {};
@@ -10066,7 +10066,7 @@ var FulfillmentApiFetchParamCreator = function (configuration) {
                 throw new RequiredError('inventories', 'Required parameter inventories was null or undefined when calling updateInventory.');
             }
             var localVarPath = "/fulfillment/distribution_centers/{distribution_center_code}/inventory"
-                .replace("{" + "distribution_center_code" + "}", encodeURIComponent(String(distribution_center_code)));
+                .replace("{".concat("distribution_center_code", "}"), encodeURIComponent(String(distribution_center_code)));
             var localVarUrlObj = url.parse(localVarPath, true);
             var localVarRequestOptions = Object.assign({ method: 'POST' }, options);
             var localVarHeaderParameter = {};
@@ -10428,8 +10428,8 @@ var IntegrationLogApiFetchParamCreator = function (configuration) {
                 throw new RequiredError('sk', 'Required parameter sk was null or undefined when calling getIntegrationLog.');
             }
             var localVarPath = "/integration_log/query/{pk}/{sk}"
-                .replace("{" + "pk" + "}", encodeURIComponent(String(pk)))
-                .replace("{" + "sk" + "}", encodeURIComponent(String(sk)));
+                .replace("{".concat("pk", "}"), encodeURIComponent(String(pk)))
+                .replace("{".concat("sk", "}"), encodeURIComponent(String(sk)));
             var localVarUrlObj = url.parse(localVarPath, true);
             var localVarRequestOptions = Object.assign({ method: 'GET' }, options);
             var localVarHeaderParameter = {};
@@ -10485,9 +10485,9 @@ var IntegrationLogApiFetchParamCreator = function (configuration) {
                 throw new RequiredError('uuid', 'Required parameter uuid was null or undefined when calling getIntegrationLogFile.');
             }
             var localVarPath = "/integration_log/query/{pk}/{sk}/{uuid}"
-                .replace("{" + "pk" + "}", encodeURIComponent(String(pk)))
-                .replace("{" + "sk" + "}", encodeURIComponent(String(sk)))
-                .replace("{" + "uuid" + "}", encodeURIComponent(String(uuid)));
+                .replace("{".concat("pk", "}"), encodeURIComponent(String(pk)))
+                .replace("{".concat("sk", "}"), encodeURIComponent(String(sk)))
+                .replace("{".concat("uuid", "}"), encodeURIComponent(String(uuid)));
             var localVarUrlObj = url.parse(localVarPath, true);
             var localVarRequestOptions = Object.assign({ method: 'GET' }, options);
             var localVarHeaderParameter = {};
@@ -10872,7 +10872,7 @@ var ItemApiFetchParamCreator = function (configuration) {
                 throw new RequiredError('merchant_item_oid', 'Required parameter merchant_item_oid was null or undefined when calling deleteItem.');
             }
             var localVarPath = "/item/items/{merchant_item_oid}"
-                .replace("{" + "merchant_item_oid" + "}", encodeURIComponent(String(merchant_item_oid)));
+                .replace("{".concat("merchant_item_oid", "}"), encodeURIComponent(String(merchant_item_oid)));
             var localVarUrlObj = url.parse(localVarPath, true);
             var localVarRequestOptions = Object.assign({ method: 'DELETE' }, options);
             var localVarHeaderParameter = {};
@@ -10920,7 +10920,7 @@ var ItemApiFetchParamCreator = function (configuration) {
                 throw new RequiredError('merchant_item_oid', 'Required parameter merchant_item_oid was null or undefined when calling getItem.');
             }
             var localVarPath = "/item/items/{merchant_item_oid}"
-                .replace("{" + "merchant_item_oid" + "}", encodeURIComponent(String(merchant_item_oid)));
+                .replace("{".concat("merchant_item_oid", "}"), encodeURIComponent(String(merchant_item_oid)));
             var localVarUrlObj = url.parse(localVarPath, true);
             var localVarRequestOptions = Object.assign({ method: 'GET' }, options);
             var localVarHeaderParameter = {};
@@ -10974,7 +10974,7 @@ var ItemApiFetchParamCreator = function (configuration) {
                 throw new RequiredError('merchant_item_id', 'Required parameter merchant_item_id was null or undefined when calling getItemByMerchantItemId.');
             }
             var localVarPath = "/item/items/merchant_item_id/{merchant_item_id}"
-                .replace("{" + "merchant_item_id" + "}", encodeURIComponent(String(merchant_item_id)));
+                .replace("{".concat("merchant_item_id", "}"), encodeURIComponent(String(merchant_item_id)));
             var localVarUrlObj = url.parse(localVarPath, true);
             var localVarRequestOptions = Object.assign({ method: 'GET' }, options);
             var localVarHeaderParameter = {};
@@ -11205,7 +11205,7 @@ var ItemApiFetchParamCreator = function (configuration) {
                 throw new RequiredError('merchant_item_oid', 'Required parameter merchant_item_oid was null or undefined when calling updateItem.');
             }
             var localVarPath = "/item/items/{merchant_item_oid}"
-                .replace("{" + "merchant_item_oid" + "}", encodeURIComponent(String(merchant_item_oid)));
+                .replace("{".concat("merchant_item_oid", "}"), encodeURIComponent(String(merchant_item_oid)));
             var localVarUrlObj = url.parse(localVarPath, true);
             var localVarRequestOptions = Object.assign({ method: 'PUT' }, options);
             var localVarHeaderParameter = {};
@@ -12147,8 +12147,8 @@ var OrderApiFetchParamCreator = function (configuration) {
                 throw new RequiredError('desired_total', 'Required parameter desired_total was null or undefined when calling adjustOrderTotal.');
             }
             var localVarPath = "/order/orders/{order_id}/adjust_order_total/{desired_total}"
-                .replace("{" + "order_id" + "}", encodeURIComponent(String(order_id)))
-                .replace("{" + "desired_total" + "}", encodeURIComponent(String(desired_total)));
+                .replace("{".concat("order_id", "}"), encodeURIComponent(String(order_id)))
+                .replace("{".concat("desired_total", "}"), encodeURIComponent(String(desired_total)));
             var localVarUrlObj = url.parse(localVarPath, true);
             var localVarRequestOptions = Object.assign({ method: 'POST' }, options);
             var localVarHeaderParameter = {};
@@ -12194,7 +12194,7 @@ var OrderApiFetchParamCreator = function (configuration) {
                 throw new RequiredError('order_id', 'Required parameter order_id was null or undefined when calling cancelOrder.');
             }
             var localVarPath = "/order/orders/{order_id}/cancel"
-                .replace("{" + "order_id" + "}", encodeURIComponent(String(order_id)));
+                .replace("{".concat("order_id", "}"), encodeURIComponent(String(order_id)));
             var localVarUrlObj = url.parse(localVarPath, true);
             var localVarRequestOptions = Object.assign({ method: 'POST' }, options);
             var localVarHeaderParameter = {};
@@ -12240,7 +12240,7 @@ var OrderApiFetchParamCreator = function (configuration) {
                 throw new RequiredError('order_id', 'Required parameter order_id was null or undefined when calling deleteOrder.');
             }
             var localVarPath = "/order/orders/{order_id}"
-                .replace("{" + "order_id" + "}", encodeURIComponent(String(order_id)));
+                .replace("{".concat("order_id", "}"), encodeURIComponent(String(order_id)));
             var localVarUrlObj = url.parse(localVarPath, true);
             var localVarRequestOptions = Object.assign({ method: 'DELETE' }, options);
             var localVarHeaderParameter = {};
@@ -12291,7 +12291,7 @@ var OrderApiFetchParamCreator = function (configuration) {
                 throw new RequiredError('format_options', 'Required parameter format_options was null or undefined when calling format.');
             }
             var localVarPath = "/order/orders/{order_id}/format"
-                .replace("{" + "order_id" + "}", encodeURIComponent(String(order_id)));
+                .replace("{".concat("order_id", "}"), encodeURIComponent(String(order_id)));
             var localVarUrlObj = url.parse(localVarPath, true);
             var localVarRequestOptions = Object.assign({ method: 'POST' }, options);
             var localVarHeaderParameter = {};
@@ -12340,7 +12340,7 @@ var OrderApiFetchParamCreator = function (configuration) {
                 throw new RequiredError('order_id', 'Required parameter order_id was null or undefined when calling generateOrderToken.');
             }
             var localVarPath = "/order/orders/token/{order_id}"
-                .replace("{" + "order_id" + "}", encodeURIComponent(String(order_id)));
+                .replace("{".concat("order_id", "}"), encodeURIComponent(String(order_id)));
             var localVarUrlObj = url.parse(localVarPath, true);
             var localVarRequestOptions = Object.assign({ method: 'GET' }, options);
             var localVarHeaderParameter = {};
@@ -12386,7 +12386,7 @@ var OrderApiFetchParamCreator = function (configuration) {
                 throw new RequiredError('order_id', 'Required parameter order_id was null or undefined when calling generatePackingSlipAllDC.');
             }
             var localVarPath = "/order/orders/{order_id}/packing_slip"
-                .replace("{" + "order_id" + "}", encodeURIComponent(String(order_id)));
+                .replace("{".concat("order_id", "}"), encodeURIComponent(String(order_id)));
             var localVarUrlObj = url.parse(localVarPath, true);
             var localVarRequestOptions = Object.assign({ method: 'GET' }, options);
             var localVarHeaderParameter = {};
@@ -12437,8 +12437,8 @@ var OrderApiFetchParamCreator = function (configuration) {
                 throw new RequiredError('order_id', 'Required parameter order_id was null or undefined when calling generatePackingSlipSpecificDC.');
             }
             var localVarPath = "/order/orders/{order_id}/packing_slip/{distribution_center_code}"
-                .replace("{" + "distribution_center_code" + "}", encodeURIComponent(String(distribution_center_code)))
-                .replace("{" + "order_id" + "}", encodeURIComponent(String(order_id)));
+                .replace("{".concat("distribution_center_code", "}"), encodeURIComponent(String(distribution_center_code)))
+                .replace("{".concat("order_id", "}"), encodeURIComponent(String(order_id)));
             var localVarUrlObj = url.parse(localVarPath, true);
             var localVarRequestOptions = Object.assign({ method: 'GET' }, options);
             var localVarHeaderParameter = {};
@@ -12573,7 +12573,7 @@ var OrderApiFetchParamCreator = function (configuration) {
                 throw new RequiredError('order_id', 'Required parameter order_id was null or undefined when calling getOrder.');
             }
             var localVarPath = "/order/orders/{order_id}"
-                .replace("{" + "order_id" + "}", encodeURIComponent(String(order_id)));
+                .replace("{".concat("order_id", "}"), encodeURIComponent(String(order_id)));
             var localVarUrlObj = url.parse(localVarPath, true);
             var localVarRequestOptions = Object.assign({ method: 'GET' }, options);
             var localVarHeaderParameter = {};
@@ -13059,7 +13059,7 @@ var OrderApiFetchParamCreator = function (configuration) {
                 throw new RequiredError('process_payment_request', 'Required parameter process_payment_request was null or undefined when calling processPayment.');
             }
             var localVarPath = "/order/orders/{order_id}/process_payment"
-                .replace("{" + "order_id" + "}", encodeURIComponent(String(order_id)));
+                .replace("{".concat("order_id", "}"), encodeURIComponent(String(order_id)));
             var localVarUrlObj = url.parse(localVarPath, true);
             var localVarRequestOptions = Object.assign({ method: 'POST' }, options);
             var localVarHeaderParameter = {};
@@ -13119,7 +13119,7 @@ var OrderApiFetchParamCreator = function (configuration) {
                 throw new RequiredError('order_id', 'Required parameter order_id was null or undefined when calling refundOrder.');
             }
             var localVarPath = "/order/orders/{order_id}/refund"
-                .replace("{" + "order_id" + "}", encodeURIComponent(String(order_id)));
+                .replace("{".concat("order_id", "}"), encodeURIComponent(String(order_id)));
             var localVarUrlObj = url.parse(localVarPath, true);
             var localVarRequestOptions = Object.assign({ method: 'PUT' }, options);
             var localVarHeaderParameter = {};
@@ -13191,7 +13191,7 @@ var OrderApiFetchParamCreator = function (configuration) {
                 throw new RequiredError('replacement', 'Required parameter replacement was null or undefined when calling replacement.');
             }
             var localVarPath = "/order/orders/{order_id}/replacement"
-                .replace("{" + "order_id" + "}", encodeURIComponent(String(order_id)));
+                .replace("{".concat("order_id", "}"), encodeURIComponent(String(order_id)));
             var localVarUrlObj = url.parse(localVarPath, true);
             var localVarRequestOptions = Object.assign({ method: 'POST' }, options);
             var localVarHeaderParameter = {};
@@ -13240,7 +13240,7 @@ var OrderApiFetchParamCreator = function (configuration) {
                 throw new RequiredError('order_id', 'Required parameter order_id was null or undefined when calling resendReceipt.');
             }
             var localVarPath = "/order/orders/{order_id}/resend_receipt"
-                .replace("{" + "order_id" + "}", encodeURIComponent(String(order_id)));
+                .replace("{".concat("order_id", "}"), encodeURIComponent(String(order_id)));
             var localVarUrlObj = url.parse(localVarPath, true);
             var localVarRequestOptions = Object.assign({ method: 'POST' }, options);
             var localVarHeaderParameter = {};
@@ -13286,7 +13286,7 @@ var OrderApiFetchParamCreator = function (configuration) {
                 throw new RequiredError('order_id', 'Required parameter order_id was null or undefined when calling resendShipmentConfirmation.');
             }
             var localVarPath = "/order/orders/{order_id}/resend_shipment_confirmation"
-                .replace("{" + "order_id" + "}", encodeURIComponent(String(order_id)));
+                .replace("{".concat("order_id", "}"), encodeURIComponent(String(order_id)));
             var localVarUrlObj = url.parse(localVarPath, true);
             var localVarRequestOptions = Object.assign({ method: 'POST' }, options);
             var localVarHeaderParameter = {};
@@ -13386,7 +13386,7 @@ var OrderApiFetchParamCreator = function (configuration) {
                 throw new RequiredError('order_id', 'Required parameter order_id was null or undefined when calling updateOrder.');
             }
             var localVarPath = "/order/orders/{order_id}"
-                .replace("{" + "order_id" + "}", encodeURIComponent(String(order_id)));
+                .replace("{".concat("order_id", "}"), encodeURIComponent(String(order_id)));
             var localVarUrlObj = url.parse(localVarPath, true);
             var localVarRequestOptions = Object.assign({ method: 'PUT' }, options);
             var localVarHeaderParameter = {};
@@ -15115,8 +15115,8 @@ var StorefrontApiFetchParamCreator = function (configuration) {
                 throw new RequiredError('email_list_uuid', 'Required parameter email_list_uuid was null or undefined when calling archiveEmailList.');
             }
             var localVarPath = "/storefront/{storefront_oid}/email/lists/{email_list_uuid}/archive"
-                .replace("{" + "storefront_oid" + "}", encodeURIComponent(String(storefront_oid)))
-                .replace("{" + "email_list_uuid" + "}", encodeURIComponent(String(email_list_uuid)));
+                .replace("{".concat("storefront_oid", "}"), encodeURIComponent(String(storefront_oid)))
+                .replace("{".concat("email_list_uuid", "}"), encodeURIComponent(String(email_list_uuid)));
             var localVarUrlObj = url.parse(localVarPath, true);
             var localVarRequestOptions = Object.assign({ method: 'POST' }, options);
             var localVarHeaderParameter = {};
@@ -15174,8 +15174,8 @@ var StorefrontApiFetchParamCreator = function (configuration) {
                 throw new RequiredError('email_segment_uuid', 'Required parameter email_segment_uuid was null or undefined when calling archiveEmailSegment.');
             }
             var localVarPath = "/storefront/{storefront_oid}/email/segments/{email_segment_uuid}/archive"
-                .replace("{" + "storefront_oid" + "}", encodeURIComponent(String(storefront_oid)))
-                .replace("{" + "email_segment_uuid" + "}", encodeURIComponent(String(email_segment_uuid)));
+                .replace("{".concat("storefront_oid", "}"), encodeURIComponent(String(storefront_oid)))
+                .replace("{".concat("email_segment_uuid", "}"), encodeURIComponent(String(email_segment_uuid)));
             var localVarUrlObj = url.parse(localVarPath, true);
             var localVarRequestOptions = Object.assign({ method: 'POST' }, options);
             var localVarHeaderParameter = {};
@@ -15238,8 +15238,8 @@ var StorefrontApiFetchParamCreator = function (configuration) {
                 throw new RequiredError('back_populate_request', 'Required parameter back_populate_request was null or undefined when calling backPopulateEmailFlow.');
             }
             var localVarPath = "/storefront/{storefront_oid}/email/flows/{email_flow_uuid}/backfill"
-                .replace("{" + "storefront_oid" + "}", encodeURIComponent(String(storefront_oid)))
-                .replace("{" + "email_flow_uuid" + "}", encodeURIComponent(String(email_flow_uuid)));
+                .replace("{".concat("storefront_oid", "}"), encodeURIComponent(String(storefront_oid)))
+                .replace("{".concat("email_flow_uuid", "}"), encodeURIComponent(String(email_flow_uuid)));
             var localVarUrlObj = url.parse(localVarPath, true);
             var localVarRequestOptions = Object.assign({ method: 'POST' }, options);
             var localVarHeaderParameter = {};
@@ -15305,9 +15305,9 @@ var StorefrontApiFetchParamCreator = function (configuration) {
                 throw new RequiredError('email_segment_rebuild_uuid', 'Required parameter email_segment_rebuild_uuid was null or undefined when calling checkDownloadEmailSegment.');
             }
             var localVarPath = "/storefront/{storefront_oid}/email/segments/{email_segment_uuid}/downloadPrepare/{email_segment_rebuild_uuid}"
-                .replace("{" + "storefront_oid" + "}", encodeURIComponent(String(storefront_oid)))
-                .replace("{" + "email_segment_uuid" + "}", encodeURIComponent(String(email_segment_uuid)))
-                .replace("{" + "email_segment_rebuild_uuid" + "}", encodeURIComponent(String(email_segment_rebuild_uuid)));
+                .replace("{".concat("storefront_oid", "}"), encodeURIComponent(String(storefront_oid)))
+                .replace("{".concat("email_segment_uuid", "}"), encodeURIComponent(String(email_segment_uuid)))
+                .replace("{".concat("email_segment_rebuild_uuid", "}"), encodeURIComponent(String(email_segment_rebuild_uuid)));
             var localVarUrlObj = url.parse(localVarPath, true);
             var localVarRequestOptions = Object.assign({ method: 'POST' }, options);
             var localVarHeaderParameter = {};
@@ -15366,8 +15366,8 @@ var StorefrontApiFetchParamCreator = function (configuration) {
                 throw new RequiredError('email_campaign_uuid', 'Required parameter email_campaign_uuid was null or undefined when calling cloneEmailCampaign.');
             }
             var localVarPath = "/storefront/{storefront_oid}/email/campaigns/{email_campaign_uuid}/clone"
-                .replace("{" + "storefront_oid" + "}", encodeURIComponent(String(storefront_oid)))
-                .replace("{" + "email_campaign_uuid" + "}", encodeURIComponent(String(email_campaign_uuid)));
+                .replace("{".concat("storefront_oid", "}"), encodeURIComponent(String(storefront_oid)))
+                .replace("{".concat("email_campaign_uuid", "}"), encodeURIComponent(String(email_campaign_uuid)));
             var localVarUrlObj = url.parse(localVarPath, true);
             var localVarRequestOptions = Object.assign({ method: 'POST' }, options);
             var localVarHeaderParameter = {};
@@ -15429,8 +15429,8 @@ var StorefrontApiFetchParamCreator = function (configuration) {
                 throw new RequiredError('email_flow_uuid', 'Required parameter email_flow_uuid was null or undefined when calling cloneEmailFlow.');
             }
             var localVarPath = "/storefront/{storefront_oid}/email/flows/{email_flow_uuid}/clone"
-                .replace("{" + "storefront_oid" + "}", encodeURIComponent(String(storefront_oid)))
-                .replace("{" + "email_flow_uuid" + "}", encodeURIComponent(String(email_flow_uuid)));
+                .replace("{".concat("storefront_oid", "}"), encodeURIComponent(String(storefront_oid)))
+                .replace("{".concat("email_flow_uuid", "}"), encodeURIComponent(String(email_flow_uuid)));
             var localVarUrlObj = url.parse(localVarPath, true);
             var localVarRequestOptions = Object.assign({ method: 'POST' }, options);
             var localVarHeaderParameter = {};
@@ -15486,7 +15486,7 @@ var StorefrontApiFetchParamCreator = function (configuration) {
                 throw new RequiredError('domain', 'Required parameter domain was null or undefined when calling createEmailSendingDomain.');
             }
             var localVarPath = "/storefront/email/sending_domains/{domain}/create"
-                .replace("{" + "domain" + "}", encodeURIComponent(String(domain)));
+                .replace("{".concat("domain", "}"), encodeURIComponent(String(domain)));
             var localVarUrlObj = url.parse(localVarPath, true);
             var localVarRequestOptions = Object.assign({ method: 'POST' }, options);
             var localVarHeaderParameter = {};
@@ -15527,6 +15527,61 @@ var StorefrontApiFetchParamCreator = function (configuration) {
         },
         /**
          *
+         * @summary Create Twilio account
+         * @param {Twilio} twilio Twilio
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        createTwilioAccount: function (twilio, options) {
+            if (options === void 0) { options = {}; }
+            // verify required parameter 'twilio' is not null or undefined
+            if (twilio === null || twilio === undefined) {
+                throw new RequiredError('twilio', 'Required parameter twilio was null or undefined when calling createTwilioAccount.');
+            }
+            var localVarPath = "/storefront/twilio/accounts";
+            var localVarUrlObj = url.parse(localVarPath, true);
+            var localVarRequestOptions = Object.assign({ method: 'POST' }, options);
+            var localVarHeaderParameter = {};
+            var localVarQueryParameter = {};
+            if (configuration && configuration.apiVersion) {
+                localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+            }
+            // authentication ultraCartBrowserApiKey required
+            if (configuration && configuration.apiKey) {
+                var localVarApiKeyValue = typeof configuration.apiKey === 'function'
+                    ? configuration.apiKey("x-ultracart-browser-key")
+                    : configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-browser-key"] = localVarApiKeyValue;
+            }
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+                var localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+                    ? configuration.accessToken("ultraCartOauth", ["storefront_write"])
+                    : configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                var localVarApiKeyValue = typeof configuration.apiKey === 'function'
+                    ? configuration.apiKey("x-ultracart-simple-key")
+                    : configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+            var needsSerialization = ("Twilio" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
+            localVarRequestOptions.body = needsSerialization ? JSON.stringify(twilio || {}) : (twilio || "");
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         *
          * @summary Delete email campaignFolder
          * @param {number} storefront_oid
          * @param {string} email_campaign_folder_uuid
@@ -15544,8 +15599,8 @@ var StorefrontApiFetchParamCreator = function (configuration) {
                 throw new RequiredError('email_campaign_folder_uuid', 'Required parameter email_campaign_folder_uuid was null or undefined when calling deleteEmailCampaignFolder.');
             }
             var localVarPath = "/storefront/{storefront_oid}/email/campaign_folders/{email_campaign_folder_uuid}"
-                .replace("{" + "storefront_oid" + "}", encodeURIComponent(String(storefront_oid)))
-                .replace("{" + "email_campaign_folder_uuid" + "}", encodeURIComponent(String(email_campaign_folder_uuid)));
+                .replace("{".concat("storefront_oid", "}"), encodeURIComponent(String(storefront_oid)))
+                .replace("{".concat("email_campaign_folder_uuid", "}"), encodeURIComponent(String(email_campaign_folder_uuid)));
             var localVarUrlObj = url.parse(localVarPath, true);
             var localVarRequestOptions = Object.assign({ method: 'DELETE' }, options);
             var localVarHeaderParameter = {};
@@ -15603,8 +15658,8 @@ var StorefrontApiFetchParamCreator = function (configuration) {
                 throw new RequiredError('commseq_uuid', 'Required parameter commseq_uuid was null or undefined when calling deleteEmailCommseqStat.');
             }
             var localVarPath = "/storefront/{storefront_oid}/email/commseqs/{commseq_uuid}/stat"
-                .replace("{" + "storefront_oid" + "}", encodeURIComponent(String(storefront_oid)))
-                .replace("{" + "commseq_uuid" + "}", encodeURIComponent(String(commseq_uuid)));
+                .replace("{".concat("storefront_oid", "}"), encodeURIComponent(String(storefront_oid)))
+                .replace("{".concat("commseq_uuid", "}"), encodeURIComponent(String(commseq_uuid)));
             var localVarUrlObj = url.parse(localVarPath, true);
             var localVarRequestOptions = Object.assign({ method: 'DELETE' }, options);
             var localVarHeaderParameter = {};
@@ -15662,8 +15717,8 @@ var StorefrontApiFetchParamCreator = function (configuration) {
                 throw new RequiredError('commseq_email_uuid', 'Required parameter commseq_email_uuid was null or undefined when calling deleteEmailEmail.');
             }
             var localVarPath = "/storefront/{storefront_oid}/email/emails/{commseq_email_uuid}"
-                .replace("{" + "storefront_oid" + "}", encodeURIComponent(String(storefront_oid)))
-                .replace("{" + "commseq_email_uuid" + "}", encodeURIComponent(String(commseq_email_uuid)));
+                .replace("{".concat("storefront_oid", "}"), encodeURIComponent(String(storefront_oid)))
+                .replace("{".concat("commseq_email_uuid", "}"), encodeURIComponent(String(commseq_email_uuid)));
             var localVarUrlObj = url.parse(localVarPath, true);
             var localVarRequestOptions = Object.assign({ method: 'DELETE' }, options);
             var localVarHeaderParameter = {};
@@ -15721,8 +15776,8 @@ var StorefrontApiFetchParamCreator = function (configuration) {
                 throw new RequiredError('email_flow_folder_uuid', 'Required parameter email_flow_folder_uuid was null or undefined when calling deleteEmailFlowFolder.');
             }
             var localVarPath = "/storefront/{storefront_oid}/email/flow_folders/{email_flow_folder_uuid}"
-                .replace("{" + "storefront_oid" + "}", encodeURIComponent(String(storefront_oid)))
-                .replace("{" + "email_flow_folder_uuid" + "}", encodeURIComponent(String(email_flow_folder_uuid)));
+                .replace("{".concat("storefront_oid", "}"), encodeURIComponent(String(storefront_oid)))
+                .replace("{".concat("email_flow_folder_uuid", "}"), encodeURIComponent(String(email_flow_folder_uuid)));
             var localVarUrlObj = url.parse(localVarPath, true);
             var localVarRequestOptions = Object.assign({ method: 'DELETE' }, options);
             var localVarHeaderParameter = {};
@@ -15785,9 +15840,9 @@ var StorefrontApiFetchParamCreator = function (configuration) {
                 throw new RequiredError('email_customer_uuid', 'Required parameter email_customer_uuid was null or undefined when calling deleteEmailListCustomer.');
             }
             var localVarPath = "/storefront/{storefront_oid}/email/lists/{email_list_uuid}/customers/{email_customer_uuid}"
-                .replace("{" + "storefront_oid" + "}", encodeURIComponent(String(storefront_oid)))
-                .replace("{" + "email_list_uuid" + "}", encodeURIComponent(String(email_list_uuid)))
-                .replace("{" + "email_customer_uuid" + "}", encodeURIComponent(String(email_customer_uuid)));
+                .replace("{".concat("storefront_oid", "}"), encodeURIComponent(String(storefront_oid)))
+                .replace("{".concat("email_list_uuid", "}"), encodeURIComponent(String(email_list_uuid)))
+                .replace("{".concat("email_customer_uuid", "}"), encodeURIComponent(String(email_customer_uuid)));
             var localVarUrlObj = url.parse(localVarPath, true);
             var localVarRequestOptions = Object.assign({ method: 'DELETE' }, options);
             var localVarHeaderParameter = {};
@@ -15845,8 +15900,8 @@ var StorefrontApiFetchParamCreator = function (configuration) {
                 throw new RequiredError('email_list_segment_folder_uuid', 'Required parameter email_list_segment_folder_uuid was null or undefined when calling deleteEmailListSegmentFolder.');
             }
             var localVarPath = "/storefront/{storefront_oid}/email/list_segment_folders/{email_list_segment_folder_uuid}"
-                .replace("{" + "storefront_oid" + "}", encodeURIComponent(String(storefront_oid)))
-                .replace("{" + "email_list_segment_folder_uuid" + "}", encodeURIComponent(String(email_list_segment_folder_uuid)));
+                .replace("{".concat("storefront_oid", "}"), encodeURIComponent(String(storefront_oid)))
+                .replace("{".concat("email_list_segment_folder_uuid", "}"), encodeURIComponent(String(email_list_segment_folder_uuid)));
             var localVarUrlObj = url.parse(localVarPath, true);
             var localVarRequestOptions = Object.assign({ method: 'DELETE' }, options);
             var localVarHeaderParameter = {};
@@ -15904,8 +15959,8 @@ var StorefrontApiFetchParamCreator = function (configuration) {
                 throw new RequiredError('commseq_postcard_uuid', 'Required parameter commseq_postcard_uuid was null or undefined when calling deleteEmailPostcard.');
             }
             var localVarPath = "/storefront/{storefront_oid}/email/postcards/{commseq_postcard_uuid}"
-                .replace("{" + "storefront_oid" + "}", encodeURIComponent(String(storefront_oid)))
-                .replace("{" + "commseq_postcard_uuid" + "}", encodeURIComponent(String(commseq_postcard_uuid)));
+                .replace("{".concat("storefront_oid", "}"), encodeURIComponent(String(storefront_oid)))
+                .replace("{".concat("commseq_postcard_uuid", "}"), encodeURIComponent(String(commseq_postcard_uuid)));
             var localVarUrlObj = url.parse(localVarPath, true);
             var localVarRequestOptions = Object.assign({ method: 'DELETE' }, options);
             var localVarHeaderParameter = {};
@@ -15958,7 +16013,7 @@ var StorefrontApiFetchParamCreator = function (configuration) {
                 throw new RequiredError('domain', 'Required parameter domain was null or undefined when calling deleteEmailSendingDomain.');
             }
             var localVarPath = "/storefront/email/sending_domains/{domain}"
-                .replace("{" + "domain" + "}", encodeURIComponent(String(domain)));
+                .replace("{".concat("domain", "}"), encodeURIComponent(String(domain)));
             var localVarUrlObj = url.parse(localVarPath, true);
             var localVarRequestOptions = Object.assign({ method: 'DELETE' }, options);
             var localVarHeaderParameter = {};
@@ -16016,8 +16071,8 @@ var StorefrontApiFetchParamCreator = function (configuration) {
                 throw new RequiredError('storefront_experiment_oid', 'Required parameter storefront_experiment_oid was null or undefined when calling deleteExperiment.');
             }
             var localVarPath = "/storefront/{storefront_oid}/experiments/{storefront_experiment_oid}"
-                .replace("{" + "storefront_oid" + "}", encodeURIComponent(String(storefront_oid)))
-                .replace("{" + "storefront_experiment_oid" + "}", encodeURIComponent(String(storefront_experiment_oid)));
+                .replace("{".concat("storefront_oid", "}"), encodeURIComponent(String(storefront_oid)))
+                .replace("{".concat("storefront_experiment_oid", "}"), encodeURIComponent(String(storefront_experiment_oid)));
             var localVarUrlObj = url.parse(localVarPath, true);
             var localVarRequestOptions = Object.assign({ method: 'DELETE' }, options);
             var localVarHeaderParameter = {};
@@ -16075,7 +16130,7 @@ var StorefrontApiFetchParamCreator = function (configuration) {
                 throw new RequiredError('query', 'Required parameter query was null or undefined when calling deleteHeatmap.');
             }
             var localVarPath = "/storefront/{storefront_oid}/screen_recordings/heatmap"
-                .replace("{" + "storefront_oid" + "}", encodeURIComponent(String(storefront_oid)));
+                .replace("{".concat("storefront_oid", "}"), encodeURIComponent(String(storefront_oid)));
             var localVarUrlObj = url.parse(localVarPath, true);
             var localVarRequestOptions = Object.assign({ method: 'DELETE' }, options);
             var localVarHeaderParameter = {};
@@ -16124,7 +16179,7 @@ var StorefrontApiFetchParamCreator = function (configuration) {
                 throw new RequiredError('library_item_oid', 'Required parameter library_item_oid was null or undefined when calling deleteLibraryItem.');
             }
             var localVarPath = "/storefront/code_library/{library_item_oid}"
-                .replace("{" + "library_item_oid" + "}", encodeURIComponent(String(library_item_oid)));
+                .replace("{".concat("library_item_oid", "}"), encodeURIComponent(String(library_item_oid)));
             var localVarUrlObj = url.parse(localVarPath, true);
             var localVarRequestOptions = Object.assign({ method: 'DELETE' }, options);
             var localVarHeaderParameter = {};
@@ -16177,7 +16232,7 @@ var StorefrontApiFetchParamCreator = function (configuration) {
                 throw new RequiredError('library_item_oid', 'Required parameter library_item_oid was null or undefined when calling deleteLibraryItemPublishedVersions.');
             }
             var localVarPath = "/storefront/code_library/{library_item_oid}/published_versions"
-                .replace("{" + "library_item_oid" + "}", encodeURIComponent(String(library_item_oid)));
+                .replace("{".concat("library_item_oid", "}"), encodeURIComponent(String(library_item_oid)));
             var localVarUrlObj = url.parse(localVarPath, true);
             var localVarRequestOptions = Object.assign({ method: 'DELETE' }, options);
             var localVarHeaderParameter = {};
@@ -16235,8 +16290,61 @@ var StorefrontApiFetchParamCreator = function (configuration) {
                 throw new RequiredError('screen_recording_segment_oid', 'Required parameter screen_recording_segment_oid was null or undefined when calling deleteScreenRecordingSegment.');
             }
             var localVarPath = "/storefront/{storefront_oid}/screen_recordings/segments/{screen_recording_segment_oid}"
-                .replace("{" + "storefront_oid" + "}", encodeURIComponent(String(storefront_oid)))
-                .replace("{" + "screen_recording_segment_oid" + "}", encodeURIComponent(String(screen_recording_segment_oid)));
+                .replace("{".concat("storefront_oid", "}"), encodeURIComponent(String(storefront_oid)))
+                .replace("{".concat("screen_recording_segment_oid", "}"), encodeURIComponent(String(screen_recording_segment_oid)));
+            var localVarUrlObj = url.parse(localVarPath, true);
+            var localVarRequestOptions = Object.assign({ method: 'DELETE' }, options);
+            var localVarHeaderParameter = {};
+            var localVarQueryParameter = {};
+            if (configuration && configuration.apiVersion) {
+                localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+            }
+            // authentication ultraCartBrowserApiKey required
+            if (configuration && configuration.apiKey) {
+                var localVarApiKeyValue = typeof configuration.apiKey === 'function'
+                    ? configuration.apiKey("x-ultracart-browser-key")
+                    : configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-browser-key"] = localVarApiKeyValue;
+            }
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+                var localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+                    ? configuration.accessToken("ultraCartOauth", ["storefront_write"])
+                    : configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                var localVarApiKeyValue = typeof configuration.apiKey === 'function'
+                    ? configuration.apiKey("x-ultracart-simple-key")
+                    : configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         *
+         * @summary delete Twilio account
+         * @param {string} esp_twilio_uuid
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        deleteTwilioAccount: function (esp_twilio_uuid, options) {
+            if (options === void 0) { options = {}; }
+            // verify required parameter 'esp_twilio_uuid' is not null or undefined
+            if (esp_twilio_uuid === null || esp_twilio_uuid === undefined) {
+                throw new RequiredError('esp_twilio_uuid', 'Required parameter esp_twilio_uuid was null or undefined when calling deleteTwilioAccount.');
+            }
+            var localVarPath = "/storefront/twilio/accounts/{esp_twilio_uuid}"
+                .replace("{".concat("esp_twilio_uuid", "}"), encodeURIComponent(String(esp_twilio_uuid)));
             var localVarUrlObj = url.parse(localVarPath, true);
             var localVarRequestOptions = Object.assign({ method: 'DELETE' }, options);
             var localVarHeaderParameter = {};
@@ -16289,7 +16397,7 @@ var StorefrontApiFetchParamCreator = function (configuration) {
                 throw new RequiredError('library_item_oid', 'Required parameter library_item_oid was null or undefined when calling duplicateLibraryItem.');
             }
             var localVarPath = "/storefront/code_library/{library_item_oid}/duplicate"
-                .replace("{" + "library_item_oid" + "}", encodeURIComponent(String(library_item_oid)));
+                .replace("{".concat("library_item_oid", "}"), encodeURIComponent(String(library_item_oid)));
             var localVarUrlObj = url.parse(localVarPath, true);
             var localVarRequestOptions = Object.assign({ method: 'POST' }, options);
             var localVarHeaderParameter = {};
@@ -16347,8 +16455,8 @@ var StorefrontApiFetchParamCreator = function (configuration) {
                 throw new RequiredError('screen_recording_uuid', 'Required parameter screen_recording_uuid was null or undefined when calling favoriteScreenRecording.');
             }
             var localVarPath = "/storefront/{storefront_oid}/screen_recordings/{screen_recording_uuid}/favorite"
-                .replace("{" + "storefront_oid" + "}", encodeURIComponent(String(storefront_oid)))
-                .replace("{" + "screen_recording_uuid" + "}", encodeURIComponent(String(screen_recording_uuid)));
+                .replace("{".concat("storefront_oid", "}"), encodeURIComponent(String(storefront_oid)))
+                .replace("{".concat("screen_recording_uuid", "}"), encodeURIComponent(String(screen_recording_uuid)));
             var localVarUrlObj = url.parse(localVarPath, true);
             var localVarRequestOptions = Object.assign({ method: 'POST' }, options);
             var localVarHeaderParameter = {};
@@ -16399,7 +16507,7 @@ var StorefrontApiFetchParamCreator = function (configuration) {
                 throw new RequiredError('geocode_request', 'Required parameter geocode_request was null or undefined when calling geocodeAddress.');
             }
             var localVarPath = "/storefront/{storefront_oid}/email/geocode"
-                .replace("{" + "storefront_oid" + "}", encodeURIComponent(String(storefront_oid)));
+                .replace("{".concat("storefront_oid", "}"), encodeURIComponent(String(storefront_oid)));
             var localVarUrlObj = url.parse(localVarPath, true);
             var localVarRequestOptions = Object.assign({ method: 'POST' }, options);
             var localVarHeaderParameter = {};
@@ -16455,7 +16563,7 @@ var StorefrontApiFetchParamCreator = function (configuration) {
                 throw new RequiredError('storefront_oid', 'Required parameter storefront_oid was null or undefined when calling getCountries.');
             }
             var localVarPath = "/storefront/{storefront_oid}/email/countries"
-                .replace("{" + "storefront_oid" + "}", encodeURIComponent(String(storefront_oid)));
+                .replace("{".concat("storefront_oid", "}"), encodeURIComponent(String(storefront_oid)));
             var localVarUrlObj = url.parse(localVarPath, true);
             var localVarRequestOptions = Object.assign({ method: 'GET' }, options);
             var localVarHeaderParameter = {};
@@ -16508,7 +16616,7 @@ var StorefrontApiFetchParamCreator = function (configuration) {
                 throw new RequiredError('storefront_oid', 'Required parameter storefront_oid was null or undefined when calling getEditorToken.');
             }
             var localVarPath = "/storefront/{storefront_oid}/editor_token"
-                .replace("{" + "storefront_oid" + "}", encodeURIComponent(String(storefront_oid)));
+                .replace("{".concat("storefront_oid", "}"), encodeURIComponent(String(storefront_oid)));
             var localVarUrlObj = url.parse(localVarPath, true);
             var localVarRequestOptions = Object.assign({ method: 'GET' }, options);
             var localVarHeaderParameter = {};
@@ -16561,7 +16669,7 @@ var StorefrontApiFetchParamCreator = function (configuration) {
                 throw new RequiredError('storefront_oid', 'Required parameter storefront_oid was null or undefined when calling getEmailBaseTemplates.');
             }
             var localVarPath = "/storefront/{storefront_oid}/email/baseTemplates"
-                .replace("{" + "storefront_oid" + "}", encodeURIComponent(String(storefront_oid)));
+                .replace("{".concat("storefront_oid", "}"), encodeURIComponent(String(storefront_oid)));
             var localVarUrlObj = url.parse(localVarPath, true);
             var localVarRequestOptions = Object.assign({ method: 'GET' }, options);
             var localVarHeaderParameter = {};
@@ -16619,8 +16727,8 @@ var StorefrontApiFetchParamCreator = function (configuration) {
                 throw new RequiredError('email_campaign_uuid', 'Required parameter email_campaign_uuid was null or undefined when calling getEmailCampaign.');
             }
             var localVarPath = "/storefront/{storefront_oid}/email/campaigns/{email_campaign_uuid}"
-                .replace("{" + "storefront_oid" + "}", encodeURIComponent(String(storefront_oid)))
-                .replace("{" + "email_campaign_uuid" + "}", encodeURIComponent(String(email_campaign_uuid)));
+                .replace("{".concat("storefront_oid", "}"), encodeURIComponent(String(storefront_oid)))
+                .replace("{".concat("email_campaign_uuid", "}"), encodeURIComponent(String(email_campaign_uuid)));
             var localVarUrlObj = url.parse(localVarPath, true);
             var localVarRequestOptions = Object.assign({ method: 'GET' }, options);
             var localVarHeaderParameter = {};
@@ -16678,8 +16786,8 @@ var StorefrontApiFetchParamCreator = function (configuration) {
                 throw new RequiredError('email_campaign_folder_uuid', 'Required parameter email_campaign_folder_uuid was null or undefined when calling getEmailCampaignFolder.');
             }
             var localVarPath = "/storefront/{storefront_oid}/email/campaign_folders/{email_campaign_folder_uuid}"
-                .replace("{" + "storefront_oid" + "}", encodeURIComponent(String(storefront_oid)))
-                .replace("{" + "email_campaign_folder_uuid" + "}", encodeURIComponent(String(email_campaign_folder_uuid)));
+                .replace("{".concat("storefront_oid", "}"), encodeURIComponent(String(storefront_oid)))
+                .replace("{".concat("email_campaign_folder_uuid", "}"), encodeURIComponent(String(email_campaign_folder_uuid)));
             var localVarUrlObj = url.parse(localVarPath, true);
             var localVarRequestOptions = Object.assign({ method: 'GET' }, options);
             var localVarHeaderParameter = {};
@@ -16732,7 +16840,7 @@ var StorefrontApiFetchParamCreator = function (configuration) {
                 throw new RequiredError('storefront_oid', 'Required parameter storefront_oid was null or undefined when calling getEmailCampaignFolders.');
             }
             var localVarPath = "/storefront/{storefront_oid}/email/campaign_folders"
-                .replace("{" + "storefront_oid" + "}", encodeURIComponent(String(storefront_oid)));
+                .replace("{".concat("storefront_oid", "}"), encodeURIComponent(String(storefront_oid)));
             var localVarUrlObj = url.parse(localVarPath, true);
             var localVarRequestOptions = Object.assign({ method: 'GET' }, options);
             var localVarHeaderParameter = {};
@@ -16790,8 +16898,8 @@ var StorefrontApiFetchParamCreator = function (configuration) {
                 throw new RequiredError('email_campaign_uuid', 'Required parameter email_campaign_uuid was null or undefined when calling getEmailCampaignScreenshots.');
             }
             var localVarPath = "/storefront/{storefront_oid}/email/campaigns/{email_campaign_uuid}/screenshots"
-                .replace("{" + "storefront_oid" + "}", encodeURIComponent(String(storefront_oid)))
-                .replace("{" + "email_campaign_uuid" + "}", encodeURIComponent(String(email_campaign_uuid)));
+                .replace("{".concat("storefront_oid", "}"), encodeURIComponent(String(storefront_oid)))
+                .replace("{".concat("email_campaign_uuid", "}"), encodeURIComponent(String(email_campaign_uuid)));
             var localVarUrlObj = url.parse(localVarPath, true);
             var localVarRequestOptions = Object.assign({ method: 'GET' }, options);
             var localVarHeaderParameter = {};
@@ -16844,7 +16952,7 @@ var StorefrontApiFetchParamCreator = function (configuration) {
                 throw new RequiredError('storefront_oid', 'Required parameter storefront_oid was null or undefined when calling getEmailCampaigns.');
             }
             var localVarPath = "/storefront/{storefront_oid}/email/campaigns"
-                .replace("{" + "storefront_oid" + "}", encodeURIComponent(String(storefront_oid)));
+                .replace("{".concat("storefront_oid", "}"), encodeURIComponent(String(storefront_oid)));
             var localVarUrlObj = url.parse(localVarPath, true);
             var localVarRequestOptions = Object.assign({ method: 'GET' }, options);
             var localVarHeaderParameter = {};
@@ -16902,8 +17010,8 @@ var StorefrontApiFetchParamCreator = function (configuration) {
                 throw new RequiredError('stat_days', 'Required parameter stat_days was null or undefined when calling getEmailCampaignsWithStats.');
             }
             var localVarPath = "/storefront/{storefront_oid}/email/campaignsWithStats/{stat_days}"
-                .replace("{" + "storefront_oid" + "}", encodeURIComponent(String(storefront_oid)))
-                .replace("{" + "stat_days" + "}", encodeURIComponent(String(stat_days)));
+                .replace("{".concat("storefront_oid", "}"), encodeURIComponent(String(storefront_oid)))
+                .replace("{".concat("stat_days", "}"), encodeURIComponent(String(stat_days)));
             var localVarUrlObj = url.parse(localVarPath, true);
             var localVarRequestOptions = Object.assign({ method: 'GET' }, options);
             var localVarHeaderParameter = {};
@@ -16961,8 +17069,8 @@ var StorefrontApiFetchParamCreator = function (configuration) {
                 throw new RequiredError('commseq_uuid', 'Required parameter commseq_uuid was null or undefined when calling getEmailCommseq.');
             }
             var localVarPath = "/storefront/{storefront_oid}/email/commseqs/{commseq_uuid}"
-                .replace("{" + "storefront_oid" + "}", encodeURIComponent(String(storefront_oid)))
-                .replace("{" + "commseq_uuid" + "}", encodeURIComponent(String(commseq_uuid)));
+                .replace("{".concat("storefront_oid", "}"), encodeURIComponent(String(storefront_oid)))
+                .replace("{".concat("commseq_uuid", "}"), encodeURIComponent(String(commseq_uuid)));
             var localVarUrlObj = url.parse(localVarPath, true);
             var localVarRequestOptions = Object.assign({ method: 'GET' }, options);
             var localVarHeaderParameter = {};
@@ -17025,8 +17133,8 @@ var StorefrontApiFetchParamCreator = function (configuration) {
                 throw new RequiredError('statsRequest', 'Required parameter statsRequest was null or undefined when calling getEmailCommseqEmailStats.');
             }
             var localVarPath = "/storefront/{storefront_oid}/email/commseqs/{commseq_uuid}/emailStats"
-                .replace("{" + "storefront_oid" + "}", encodeURIComponent(String(storefront_oid)))
-                .replace("{" + "commseq_uuid" + "}", encodeURIComponent(String(commseq_uuid)));
+                .replace("{".concat("storefront_oid", "}"), encodeURIComponent(String(storefront_oid)))
+                .replace("{".concat("commseq_uuid", "}"), encodeURIComponent(String(commseq_uuid)));
             var localVarUrlObj = url.parse(localVarPath, true);
             var localVarRequestOptions = Object.assign({ method: 'POST' }, options);
             var localVarHeaderParameter = {};
@@ -17092,8 +17200,8 @@ var StorefrontApiFetchParamCreator = function (configuration) {
                 throw new RequiredError('statsRequest', 'Required parameter statsRequest was null or undefined when calling getEmailCommseqPostcardStats.');
             }
             var localVarPath = "/storefront/{storefront_oid}/email/commseqs/{commseq_uuid}/postcardStats"
-                .replace("{" + "storefront_oid" + "}", encodeURIComponent(String(storefront_oid)))
-                .replace("{" + "commseq_uuid" + "}", encodeURIComponent(String(commseq_uuid)));
+                .replace("{".concat("storefront_oid", "}"), encodeURIComponent(String(storefront_oid)))
+                .replace("{".concat("commseq_uuid", "}"), encodeURIComponent(String(commseq_uuid)));
             var localVarUrlObj = url.parse(localVarPath, true);
             var localVarRequestOptions = Object.assign({ method: 'POST' }, options);
             var localVarHeaderParameter = {};
@@ -17154,8 +17262,8 @@ var StorefrontApiFetchParamCreator = function (configuration) {
                 throw new RequiredError('commseq_uuid', 'Required parameter commseq_uuid was null or undefined when calling getEmailCommseqStatOverall.');
             }
             var localVarPath = "/storefront/{storefront_oid}/email/commseqs/{commseq_uuid}/stat"
-                .replace("{" + "storefront_oid" + "}", encodeURIComponent(String(storefront_oid)))
-                .replace("{" + "commseq_uuid" + "}", encodeURIComponent(String(commseq_uuid)));
+                .replace("{".concat("storefront_oid", "}"), encodeURIComponent(String(storefront_oid)))
+                .replace("{".concat("commseq_uuid", "}"), encodeURIComponent(String(commseq_uuid)));
             var localVarUrlObj = url.parse(localVarPath, true);
             var localVarRequestOptions = Object.assign({ method: 'GET' }, options);
             var localVarHeaderParameter = {};
@@ -17218,8 +17326,8 @@ var StorefrontApiFetchParamCreator = function (configuration) {
                 throw new RequiredError('statsRequest', 'Required parameter statsRequest was null or undefined when calling getEmailCommseqStepStats.');
             }
             var localVarPath = "/storefront/{storefront_oid}/email/commseqs/{commseq_uuid}/stepStats"
-                .replace("{" + "storefront_oid" + "}", encodeURIComponent(String(storefront_oid)))
-                .replace("{" + "commseq_uuid" + "}", encodeURIComponent(String(commseq_uuid)));
+                .replace("{".concat("storefront_oid", "}"), encodeURIComponent(String(storefront_oid)))
+                .replace("{".concat("commseq_uuid", "}"), encodeURIComponent(String(commseq_uuid)));
             var localVarUrlObj = url.parse(localVarPath, true);
             var localVarRequestOptions = Object.assign({ method: 'POST' }, options);
             var localVarHeaderParameter = {};
@@ -17285,8 +17393,8 @@ var StorefrontApiFetchParamCreator = function (configuration) {
                 throw new RequiredError('waitingRequest', 'Required parameter waitingRequest was null or undefined when calling getEmailCommseqStepWaiting.');
             }
             var localVarPath = "/storefront/{storefront_oid}/email/commseqs/{commseq_uuid}/waiting"
-                .replace("{" + "storefront_oid" + "}", encodeURIComponent(String(storefront_oid)))
-                .replace("{" + "commseq_uuid" + "}", encodeURIComponent(String(commseq_uuid)));
+                .replace("{".concat("storefront_oid", "}"), encodeURIComponent(String(storefront_oid)))
+                .replace("{".concat("commseq_uuid", "}"), encodeURIComponent(String(commseq_uuid)));
             var localVarUrlObj = url.parse(localVarPath, true);
             var localVarRequestOptions = Object.assign({ method: 'POST' }, options);
             var localVarHeaderParameter = {};
@@ -17347,8 +17455,8 @@ var StorefrontApiFetchParamCreator = function (configuration) {
                 throw new RequiredError('commseq_uuid', 'Required parameter commseq_uuid was null or undefined when calling getEmailCommseqWebhookEditorValues.');
             }
             var localVarPath = "/storefront/{storefront_oid}/email/commseqs/{commseq_uuid}/webhookEditorValues"
-                .replace("{" + "storefront_oid" + "}", encodeURIComponent(String(storefront_oid)))
-                .replace("{" + "commseq_uuid" + "}", encodeURIComponent(String(commseq_uuid)));
+                .replace("{".concat("storefront_oid", "}"), encodeURIComponent(String(storefront_oid)))
+                .replace("{".concat("commseq_uuid", "}"), encodeURIComponent(String(commseq_uuid)));
             var localVarUrlObj = url.parse(localVarPath, true);
             var localVarRequestOptions = Object.assign({ method: 'GET' }, options);
             var localVarHeaderParameter = {};
@@ -17401,7 +17509,7 @@ var StorefrontApiFetchParamCreator = function (configuration) {
                 throw new RequiredError('storefront_oid', 'Required parameter storefront_oid was null or undefined when calling getEmailCommseqs.');
             }
             var localVarPath = "/storefront/{storefront_oid}/email/commseqs"
-                .replace("{" + "storefront_oid" + "}", encodeURIComponent(String(storefront_oid)));
+                .replace("{".concat("storefront_oid", "}"), encodeURIComponent(String(storefront_oid)));
             var localVarUrlObj = url.parse(localVarPath, true);
             var localVarRequestOptions = Object.assign({ method: 'GET' }, options);
             var localVarHeaderParameter = {};
@@ -17459,8 +17567,8 @@ var StorefrontApiFetchParamCreator = function (configuration) {
                 throw new RequiredError('email_customer_uuid', 'Required parameter email_customer_uuid was null or undefined when calling getEmailCustomerEditorUrl.');
             }
             var localVarPath = "/storefront/{storefront_oid}/email/customers/{email_customer_uuid}/editor_url"
-                .replace("{" + "storefront_oid" + "}", encodeURIComponent(String(storefront_oid)))
-                .replace("{" + "email_customer_uuid" + "}", encodeURIComponent(String(email_customer_uuid)));
+                .replace("{".concat("storefront_oid", "}"), encodeURIComponent(String(storefront_oid)))
+                .replace("{".concat("email_customer_uuid", "}"), encodeURIComponent(String(email_customer_uuid)));
             var localVarUrlObj = url.parse(localVarPath, true);
             var localVarRequestOptions = Object.assign({ method: 'GET' }, options);
             var localVarHeaderParameter = {};
@@ -17516,7 +17624,7 @@ var StorefrontApiFetchParamCreator = function (configuration) {
                 throw new RequiredError('storefront_oid', 'Required parameter storefront_oid was null or undefined when calling getEmailCustomers.');
             }
             var localVarPath = "/storefront/{storefront_oid}/email/customers"
-                .replace("{" + "storefront_oid" + "}", encodeURIComponent(String(storefront_oid)));
+                .replace("{".concat("storefront_oid", "}"), encodeURIComponent(String(storefront_oid)));
             var localVarUrlObj = url.parse(localVarPath, true);
             var localVarRequestOptions = Object.assign({ method: 'GET' }, options);
             var localVarHeaderParameter = {};
@@ -17579,7 +17687,7 @@ var StorefrontApiFetchParamCreator = function (configuration) {
                 throw new RequiredError('storefront_oid', 'Required parameter storefront_oid was null or undefined when calling getEmailDashboardActivity.');
             }
             var localVarPath = "/storefront/{storefront_oid}/email/dashboard_activity"
-                .replace("{" + "storefront_oid" + "}", encodeURIComponent(String(storefront_oid)));
+                .replace("{".concat("storefront_oid", "}"), encodeURIComponent(String(storefront_oid)));
             var localVarUrlObj = url.parse(localVarPath, true);
             var localVarRequestOptions = Object.assign({ method: 'GET' }, options);
             var localVarHeaderParameter = {};
@@ -17636,7 +17744,7 @@ var StorefrontApiFetchParamCreator = function (configuration) {
                 throw new RequiredError('storefront_oid', 'Required parameter storefront_oid was null or undefined when calling getEmailDashboardStats.');
             }
             var localVarPath = "/storefront/{storefront_oid}/email/dashboard_stats"
-                .replace("{" + "storefront_oid" + "}", encodeURIComponent(String(storefront_oid)));
+                .replace("{".concat("storefront_oid", "}"), encodeURIComponent(String(storefront_oid)));
             var localVarUrlObj = url.parse(localVarPath, true);
             var localVarRequestOptions = Object.assign({ method: 'GET' }, options);
             var localVarHeaderParameter = {};
@@ -17702,9 +17810,9 @@ var StorefrontApiFetchParamCreator = function (configuration) {
                 throw new RequiredError('commseq_step_uuid', 'Required parameter commseq_step_uuid was null or undefined when calling getEmailDispatchLogs.');
             }
             var localVarPath = "/storefront/{storefront_oid}/email/commseqs/{commseq_uuid}/steps/{commseq_step_uuid}/logs"
-                .replace("{" + "storefront_oid" + "}", encodeURIComponent(String(storefront_oid)))
-                .replace("{" + "commseq_uuid" + "}", encodeURIComponent(String(commseq_uuid)))
-                .replace("{" + "commseq_step_uuid" + "}", encodeURIComponent(String(commseq_step_uuid)));
+                .replace("{".concat("storefront_oid", "}"), encodeURIComponent(String(storefront_oid)))
+                .replace("{".concat("commseq_uuid", "}"), encodeURIComponent(String(commseq_uuid)))
+                .replace("{".concat("commseq_step_uuid", "}"), encodeURIComponent(String(commseq_step_uuid)));
             var localVarUrlObj = url.parse(localVarPath, true);
             var localVarRequestOptions = Object.assign({ method: 'GET' }, options);
             var localVarHeaderParameter = {};
@@ -17762,8 +17870,8 @@ var StorefrontApiFetchParamCreator = function (configuration) {
                 throw new RequiredError('commseq_email_uuid', 'Required parameter commseq_email_uuid was null or undefined when calling getEmailEmail.');
             }
             var localVarPath = "/storefront/{storefront_oid}/email/emails/{commseq_email_uuid}"
-                .replace("{" + "storefront_oid" + "}", encodeURIComponent(String(storefront_oid)))
-                .replace("{" + "commseq_email_uuid" + "}", encodeURIComponent(String(commseq_email_uuid)));
+                .replace("{".concat("storefront_oid", "}"), encodeURIComponent(String(storefront_oid)))
+                .replace("{".concat("commseq_email_uuid", "}"), encodeURIComponent(String(commseq_email_uuid)));
             var localVarUrlObj = url.parse(localVarPath, true);
             var localVarRequestOptions = Object.assign({ method: 'GET' }, options);
             var localVarHeaderParameter = {};
@@ -17832,10 +17940,10 @@ var StorefrontApiFetchParamCreator = function (configuration) {
                 throw new RequiredError('commseq_email_uuid', 'Required parameter commseq_email_uuid was null or undefined when calling getEmailEmailClicks.');
             }
             var localVarPath = "/storefront/{storefront_oid}/email/commseqs/{commseq_uuid}/steps/{commseq_step_uuid}/emails/{commseq_email_uuid}/clicks"
-                .replace("{" + "storefront_oid" + "}", encodeURIComponent(String(storefront_oid)))
-                .replace("{" + "commseq_uuid" + "}", encodeURIComponent(String(commseq_uuid)))
-                .replace("{" + "commseq_step_uuid" + "}", encodeURIComponent(String(commseq_step_uuid)))
-                .replace("{" + "commseq_email_uuid" + "}", encodeURIComponent(String(commseq_email_uuid)));
+                .replace("{".concat("storefront_oid", "}"), encodeURIComponent(String(storefront_oid)))
+                .replace("{".concat("commseq_uuid", "}"), encodeURIComponent(String(commseq_uuid)))
+                .replace("{".concat("commseq_step_uuid", "}"), encodeURIComponent(String(commseq_step_uuid)))
+                .replace("{".concat("commseq_email_uuid", "}"), encodeURIComponent(String(commseq_email_uuid)));
             var localVarUrlObj = url.parse(localVarPath, true);
             var localVarRequestOptions = Object.assign({ method: 'GET' }, options);
             var localVarHeaderParameter = {};
@@ -17901,9 +18009,9 @@ var StorefrontApiFetchParamCreator = function (configuration) {
                 throw new RequiredError('order_id', 'Required parameter order_id was null or undefined when calling getEmailEmailCustomerEditorUrl.');
             }
             var localVarPath = "/storefront/{storefront_oid}/email/emails/{commseq_email_uuid}/orders/{order_id}/editor_url"
-                .replace("{" + "storefront_oid" + "}", encodeURIComponent(String(storefront_oid)))
-                .replace("{" + "commseq_email_uuid" + "}", encodeURIComponent(String(commseq_email_uuid)))
-                .replace("{" + "order_id" + "}", encodeURIComponent(String(order_id)));
+                .replace("{".concat("storefront_oid", "}"), encodeURIComponent(String(storefront_oid)))
+                .replace("{".concat("commseq_email_uuid", "}"), encodeURIComponent(String(commseq_email_uuid)))
+                .replace("{".concat("order_id", "}"), encodeURIComponent(String(order_id)));
             var localVarUrlObj = url.parse(localVarPath, true);
             var localVarRequestOptions = Object.assign({ method: 'GET' }, options);
             var localVarHeaderParameter = {};
@@ -17972,10 +18080,10 @@ var StorefrontApiFetchParamCreator = function (configuration) {
                 throw new RequiredError('commseq_email_uuid', 'Required parameter commseq_email_uuid was null or undefined when calling getEmailEmailOrders.');
             }
             var localVarPath = "/storefront/{storefront_oid}/email/commseqs/{commseq_uuid}/steps/{commseq_step_uuid}/emails/{commseq_email_uuid}/orders"
-                .replace("{" + "storefront_oid" + "}", encodeURIComponent(String(storefront_oid)))
-                .replace("{" + "commseq_uuid" + "}", encodeURIComponent(String(commseq_uuid)))
-                .replace("{" + "commseq_step_uuid" + "}", encodeURIComponent(String(commseq_step_uuid)))
-                .replace("{" + "commseq_email_uuid" + "}", encodeURIComponent(String(commseq_email_uuid)));
+                .replace("{".concat("storefront_oid", "}"), encodeURIComponent(String(storefront_oid)))
+                .replace("{".concat("commseq_uuid", "}"), encodeURIComponent(String(commseq_uuid)))
+                .replace("{".concat("commseq_step_uuid", "}"), encodeURIComponent(String(commseq_step_uuid)))
+                .replace("{".concat("commseq_email_uuid", "}"), encodeURIComponent(String(commseq_email_uuid)));
             var localVarUrlObj = url.parse(localVarPath, true);
             var localVarRequestOptions = Object.assign({ method: 'GET' }, options);
             var localVarHeaderParameter = {};
@@ -18031,7 +18139,7 @@ var StorefrontApiFetchParamCreator = function (configuration) {
                 throw new RequiredError('storefront_oid', 'Required parameter storefront_oid was null or undefined when calling getEmailEmails.');
             }
             var localVarPath = "/storefront/{storefront_oid}/email/emails"
-                .replace("{" + "storefront_oid" + "}", encodeURIComponent(String(storefront_oid)));
+                .replace("{".concat("storefront_oid", "}"), encodeURIComponent(String(storefront_oid)));
             var localVarUrlObj = url.parse(localVarPath, true);
             var localVarRequestOptions = Object.assign({ method: 'GET' }, options);
             var localVarHeaderParameter = {};
@@ -18089,7 +18197,7 @@ var StorefrontApiFetchParamCreator = function (configuration) {
                 throw new RequiredError('email_commseq_emails_request', 'Required parameter email_commseq_emails_request was null or undefined when calling getEmailEmailsMultiple.');
             }
             var localVarPath = "/storefront/{storefront_oid}/email/emails/multiple"
-                .replace("{" + "storefront_oid" + "}", encodeURIComponent(String(storefront_oid)));
+                .replace("{".concat("storefront_oid", "}"), encodeURIComponent(String(storefront_oid)));
             var localVarUrlObj = url.parse(localVarPath, true);
             var localVarRequestOptions = Object.assign({ method: 'POST' }, options);
             var localVarHeaderParameter = {};
@@ -18150,8 +18258,8 @@ var StorefrontApiFetchParamCreator = function (configuration) {
                 throw new RequiredError('email_flow_uuid', 'Required parameter email_flow_uuid was null or undefined when calling getEmailFlow.');
             }
             var localVarPath = "/storefront/{storefront_oid}/email/flows/{email_flow_uuid}"
-                .replace("{" + "storefront_oid" + "}", encodeURIComponent(String(storefront_oid)))
-                .replace("{" + "email_flow_uuid" + "}", encodeURIComponent(String(email_flow_uuid)));
+                .replace("{".concat("storefront_oid", "}"), encodeURIComponent(String(storefront_oid)))
+                .replace("{".concat("email_flow_uuid", "}"), encodeURIComponent(String(email_flow_uuid)));
             var localVarUrlObj = url.parse(localVarPath, true);
             var localVarRequestOptions = Object.assign({ method: 'GET' }, options);
             var localVarHeaderParameter = {};
@@ -18209,8 +18317,8 @@ var StorefrontApiFetchParamCreator = function (configuration) {
                 throw new RequiredError('email_flow_folder_uuid', 'Required parameter email_flow_folder_uuid was null or undefined when calling getEmailFlowFolder.');
             }
             var localVarPath = "/storefront/{storefront_oid}/email/flow_folders/{email_flow_folder_uuid}"
-                .replace("{" + "storefront_oid" + "}", encodeURIComponent(String(storefront_oid)))
-                .replace("{" + "email_flow_folder_uuid" + "}", encodeURIComponent(String(email_flow_folder_uuid)));
+                .replace("{".concat("storefront_oid", "}"), encodeURIComponent(String(storefront_oid)))
+                .replace("{".concat("email_flow_folder_uuid", "}"), encodeURIComponent(String(email_flow_folder_uuid)));
             var localVarUrlObj = url.parse(localVarPath, true);
             var localVarRequestOptions = Object.assign({ method: 'GET' }, options);
             var localVarHeaderParameter = {};
@@ -18263,7 +18371,7 @@ var StorefrontApiFetchParamCreator = function (configuration) {
                 throw new RequiredError('storefront_oid', 'Required parameter storefront_oid was null or undefined when calling getEmailFlowFolders.');
             }
             var localVarPath = "/storefront/{storefront_oid}/email/flow_folders"
-                .replace("{" + "storefront_oid" + "}", encodeURIComponent(String(storefront_oid)));
+                .replace("{".concat("storefront_oid", "}"), encodeURIComponent(String(storefront_oid)));
             var localVarUrlObj = url.parse(localVarPath, true);
             var localVarRequestOptions = Object.assign({ method: 'GET' }, options);
             var localVarHeaderParameter = {};
@@ -18321,8 +18429,8 @@ var StorefrontApiFetchParamCreator = function (configuration) {
                 throw new RequiredError('email_flow_uuid', 'Required parameter email_flow_uuid was null or undefined when calling getEmailFlowScreenshots.');
             }
             var localVarPath = "/storefront/{storefront_oid}/email/flows/{email_flow_uuid}/screenshots"
-                .replace("{" + "storefront_oid" + "}", encodeURIComponent(String(storefront_oid)))
-                .replace("{" + "email_flow_uuid" + "}", encodeURIComponent(String(email_flow_uuid)));
+                .replace("{".concat("storefront_oid", "}"), encodeURIComponent(String(storefront_oid)))
+                .replace("{".concat("email_flow_uuid", "}"), encodeURIComponent(String(email_flow_uuid)));
             var localVarUrlObj = url.parse(localVarPath, true);
             var localVarRequestOptions = Object.assign({ method: 'GET' }, options);
             var localVarHeaderParameter = {};
@@ -18375,7 +18483,7 @@ var StorefrontApiFetchParamCreator = function (configuration) {
                 throw new RequiredError('storefront_oid', 'Required parameter storefront_oid was null or undefined when calling getEmailFlows.');
             }
             var localVarPath = "/storefront/{storefront_oid}/email/flows"
-                .replace("{" + "storefront_oid" + "}", encodeURIComponent(String(storefront_oid)));
+                .replace("{".concat("storefront_oid", "}"), encodeURIComponent(String(storefront_oid)));
             var localVarUrlObj = url.parse(localVarPath, true);
             var localVarRequestOptions = Object.assign({ method: 'GET' }, options);
             var localVarHeaderParameter = {};
@@ -18480,8 +18588,8 @@ var StorefrontApiFetchParamCreator = function (configuration) {
                 throw new RequiredError('email_list_uuid', 'Required parameter email_list_uuid was null or undefined when calling getEmailList.');
             }
             var localVarPath = "/storefront/{storefront_oid}/email/lists/{email_list_uuid}"
-                .replace("{" + "storefront_oid" + "}", encodeURIComponent(String(storefront_oid)))
-                .replace("{" + "email_list_uuid" + "}", encodeURIComponent(String(email_list_uuid)));
+                .replace("{".concat("storefront_oid", "}"), encodeURIComponent(String(storefront_oid)))
+                .replace("{".concat("email_list_uuid", "}"), encodeURIComponent(String(email_list_uuid)));
             var localVarUrlObj = url.parse(localVarPath, true);
             var localVarRequestOptions = Object.assign({ method: 'GET' }, options);
             var localVarHeaderParameter = {};
@@ -18544,9 +18652,9 @@ var StorefrontApiFetchParamCreator = function (configuration) {
                 throw new RequiredError('email_customer_uuid', 'Required parameter email_customer_uuid was null or undefined when calling getEmailListCustomerEditorUrl.');
             }
             var localVarPath = "/storefront/{storefront_oid}/email/lists/{email_list_uuid}/customers/{email_customer_uuid}/editor_url"
-                .replace("{" + "storefront_oid" + "}", encodeURIComponent(String(storefront_oid)))
-                .replace("{" + "email_list_uuid" + "}", encodeURIComponent(String(email_list_uuid)))
-                .replace("{" + "email_customer_uuid" + "}", encodeURIComponent(String(email_customer_uuid)));
+                .replace("{".concat("storefront_oid", "}"), encodeURIComponent(String(storefront_oid)))
+                .replace("{".concat("email_list_uuid", "}"), encodeURIComponent(String(email_list_uuid)))
+                .replace("{".concat("email_customer_uuid", "}"), encodeURIComponent(String(email_customer_uuid)));
             var localVarUrlObj = url.parse(localVarPath, true);
             var localVarRequestOptions = Object.assign({ method: 'GET' }, options);
             var localVarHeaderParameter = {};
@@ -18606,8 +18714,8 @@ var StorefrontApiFetchParamCreator = function (configuration) {
                 throw new RequiredError('email_list_uuid', 'Required parameter email_list_uuid was null or undefined when calling getEmailListCustomers.');
             }
             var localVarPath = "/storefront/{storefront_oid}/email/lists/{email_list_uuid}/customers"
-                .replace("{" + "storefront_oid" + "}", encodeURIComponent(String(storefront_oid)))
-                .replace("{" + "email_list_uuid" + "}", encodeURIComponent(String(email_list_uuid)));
+                .replace("{".concat("storefront_oid", "}"), encodeURIComponent(String(storefront_oid)))
+                .replace("{".concat("email_list_uuid", "}"), encodeURIComponent(String(email_list_uuid)));
             var localVarUrlObj = url.parse(localVarPath, true);
             var localVarRequestOptions = Object.assign({ method: 'GET' }, options);
             var localVarHeaderParameter = {};
@@ -18671,8 +18779,8 @@ var StorefrontApiFetchParamCreator = function (configuration) {
                 throw new RequiredError('email_list_segment_folder_uuid', 'Required parameter email_list_segment_folder_uuid was null or undefined when calling getEmailListSegmentFolder.');
             }
             var localVarPath = "/storefront/{storefront_oid}/email/list_segment_folders/{email_list_segment_folder_uuid}"
-                .replace("{" + "storefront_oid" + "}", encodeURIComponent(String(storefront_oid)))
-                .replace("{" + "email_list_segment_folder_uuid" + "}", encodeURIComponent(String(email_list_segment_folder_uuid)));
+                .replace("{".concat("storefront_oid", "}"), encodeURIComponent(String(storefront_oid)))
+                .replace("{".concat("email_list_segment_folder_uuid", "}"), encodeURIComponent(String(email_list_segment_folder_uuid)));
             var localVarUrlObj = url.parse(localVarPath, true);
             var localVarRequestOptions = Object.assign({ method: 'GET' }, options);
             var localVarHeaderParameter = {};
@@ -18725,7 +18833,7 @@ var StorefrontApiFetchParamCreator = function (configuration) {
                 throw new RequiredError('storefront_oid', 'Required parameter storefront_oid was null or undefined when calling getEmailListSegmentFolders.');
             }
             var localVarPath = "/storefront/{storefront_oid}/email/list_segment_folders"
-                .replace("{" + "storefront_oid" + "}", encodeURIComponent(String(storefront_oid)));
+                .replace("{".concat("storefront_oid", "}"), encodeURIComponent(String(storefront_oid)));
             var localVarUrlObj = url.parse(localVarPath, true);
             var localVarRequestOptions = Object.assign({ method: 'GET' }, options);
             var localVarHeaderParameter = {};
@@ -18778,7 +18886,7 @@ var StorefrontApiFetchParamCreator = function (configuration) {
                 throw new RequiredError('storefront_oid', 'Required parameter storefront_oid was null or undefined when calling getEmailLists.');
             }
             var localVarPath = "/storefront/{storefront_oid}/email/lists"
-                .replace("{" + "storefront_oid" + "}", encodeURIComponent(String(storefront_oid)));
+                .replace("{".concat("storefront_oid", "}"), encodeURIComponent(String(storefront_oid)));
             var localVarUrlObj = url.parse(localVarPath, true);
             var localVarRequestOptions = Object.assign({ method: 'GET' }, options);
             var localVarHeaderParameter = {};
@@ -18831,7 +18939,7 @@ var StorefrontApiFetchParamCreator = function (configuration) {
                 throw new RequiredError('storefront_oid', 'Required parameter storefront_oid was null or undefined when calling getEmailPerformance.');
             }
             var localVarPath = "/storefront/{storefront_oid}/email/performance"
-                .replace("{" + "storefront_oid" + "}", encodeURIComponent(String(storefront_oid)));
+                .replace("{".concat("storefront_oid", "}"), encodeURIComponent(String(storefront_oid)));
             var localVarUrlObj = url.parse(localVarPath, true);
             var localVarRequestOptions = Object.assign({ method: 'GET' }, options);
             var localVarHeaderParameter = {};
@@ -18884,7 +18992,7 @@ var StorefrontApiFetchParamCreator = function (configuration) {
                 throw new RequiredError('storefront_oid', 'Required parameter storefront_oid was null or undefined when calling getEmailPlan.');
             }
             var localVarPath = "/storefront/{storefront_oid}/email/plan"
-                .replace("{" + "storefront_oid" + "}", encodeURIComponent(String(storefront_oid)));
+                .replace("{".concat("storefront_oid", "}"), encodeURIComponent(String(storefront_oid)));
             var localVarUrlObj = url.parse(localVarPath, true);
             var localVarRequestOptions = Object.assign({ method: 'GET' }, options);
             var localVarHeaderParameter = {};
@@ -18942,8 +19050,8 @@ var StorefrontApiFetchParamCreator = function (configuration) {
                 throw new RequiredError('commseq_postcard_uuid', 'Required parameter commseq_postcard_uuid was null or undefined when calling getEmailPostcard.');
             }
             var localVarPath = "/storefront/{storefront_oid}/email/postcards/{commseq_postcard_uuid}"
-                .replace("{" + "storefront_oid" + "}", encodeURIComponent(String(storefront_oid)))
-                .replace("{" + "commseq_postcard_uuid" + "}", encodeURIComponent(String(commseq_postcard_uuid)));
+                .replace("{".concat("storefront_oid", "}"), encodeURIComponent(String(storefront_oid)))
+                .replace("{".concat("commseq_postcard_uuid", "}"), encodeURIComponent(String(commseq_postcard_uuid)));
             var localVarUrlObj = url.parse(localVarPath, true);
             var localVarRequestOptions = Object.assign({ method: 'GET' }, options);
             var localVarHeaderParameter = {};
@@ -18996,7 +19104,7 @@ var StorefrontApiFetchParamCreator = function (configuration) {
                 throw new RequiredError('storefront_oid', 'Required parameter storefront_oid was null or undefined when calling getEmailPostcards.');
             }
             var localVarPath = "/storefront/{storefront_oid}/email/postcards"
-                .replace("{" + "storefront_oid" + "}", encodeURIComponent(String(storefront_oid)));
+                .replace("{".concat("storefront_oid", "}"), encodeURIComponent(String(storefront_oid)));
             var localVarUrlObj = url.parse(localVarPath, true);
             var localVarRequestOptions = Object.assign({ method: 'GET' }, options);
             var localVarHeaderParameter = {};
@@ -19054,7 +19162,7 @@ var StorefrontApiFetchParamCreator = function (configuration) {
                 throw new RequiredError('email_commseq_postcards_request', 'Required parameter email_commseq_postcards_request was null or undefined when calling getEmailPostcardsMultiple.');
             }
             var localVarPath = "/storefront/{storefront_oid}/email/postcards/multiple"
-                .replace("{" + "storefront_oid" + "}", encodeURIComponent(String(storefront_oid)));
+                .replace("{".concat("storefront_oid", "}"), encodeURIComponent(String(storefront_oid)));
             var localVarUrlObj = url.parse(localVarPath, true);
             var localVarRequestOptions = Object.assign({ method: 'POST' }, options);
             var localVarHeaderParameter = {};
@@ -19115,8 +19223,8 @@ var StorefrontApiFetchParamCreator = function (configuration) {
                 throw new RequiredError('email_segment_uuid', 'Required parameter email_segment_uuid was null or undefined when calling getEmailSegment.');
             }
             var localVarPath = "/storefront/{storefront_oid}/email/segments/{email_segment_uuid}"
-                .replace("{" + "storefront_oid" + "}", encodeURIComponent(String(storefront_oid)))
-                .replace("{" + "email_segment_uuid" + "}", encodeURIComponent(String(email_segment_uuid)));
+                .replace("{".concat("storefront_oid", "}"), encodeURIComponent(String(storefront_oid)))
+                .replace("{".concat("email_segment_uuid", "}"), encodeURIComponent(String(email_segment_uuid)));
             var localVarUrlObj = url.parse(localVarPath, true);
             var localVarRequestOptions = Object.assign({ method: 'GET' }, options);
             var localVarHeaderParameter = {};
@@ -19179,9 +19287,9 @@ var StorefrontApiFetchParamCreator = function (configuration) {
                 throw new RequiredError('email_customer_uuid', 'Required parameter email_customer_uuid was null or undefined when calling getEmailSegmentCustomerEditorUrl.');
             }
             var localVarPath = "/storefront/{storefront_oid}/email/segments/{email_segment_uuid}/customers/{email_customer_uuid}/editor_url"
-                .replace("{" + "storefront_oid" + "}", encodeURIComponent(String(storefront_oid)))
-                .replace("{" + "email_segment_uuid" + "}", encodeURIComponent(String(email_segment_uuid)))
-                .replace("{" + "email_customer_uuid" + "}", encodeURIComponent(String(email_customer_uuid)));
+                .replace("{".concat("storefront_oid", "}"), encodeURIComponent(String(storefront_oid)))
+                .replace("{".concat("email_segment_uuid", "}"), encodeURIComponent(String(email_segment_uuid)))
+                .replace("{".concat("email_customer_uuid", "}"), encodeURIComponent(String(email_customer_uuid)));
             var localVarUrlObj = url.parse(localVarPath, true);
             var localVarRequestOptions = Object.assign({ method: 'GET' }, options);
             var localVarHeaderParameter = {};
@@ -19241,8 +19349,8 @@ var StorefrontApiFetchParamCreator = function (configuration) {
                 throw new RequiredError('email_segment_uuid', 'Required parameter email_segment_uuid was null or undefined when calling getEmailSegmentCustomers.');
             }
             var localVarPath = "/storefront/{storefront_oid}/email/segments/{email_segment_uuid}/customers"
-                .replace("{" + "storefront_oid" + "}", encodeURIComponent(String(storefront_oid)))
-                .replace("{" + "email_segment_uuid" + "}", encodeURIComponent(String(email_segment_uuid)));
+                .replace("{".concat("storefront_oid", "}"), encodeURIComponent(String(storefront_oid)))
+                .replace("{".concat("email_segment_uuid", "}"), encodeURIComponent(String(email_segment_uuid)));
             var localVarUrlObj = url.parse(localVarPath, true);
             var localVarRequestOptions = Object.assign({ method: 'GET' }, options);
             var localVarHeaderParameter = {};
@@ -19301,7 +19409,7 @@ var StorefrontApiFetchParamCreator = function (configuration) {
                 throw new RequiredError('storefront_oid', 'Required parameter storefront_oid was null or undefined when calling getEmailSegments.');
             }
             var localVarPath = "/storefront/{storefront_oid}/email/segments"
-                .replace("{" + "storefront_oid" + "}", encodeURIComponent(String(storefront_oid)));
+                .replace("{".concat("storefront_oid", "}"), encodeURIComponent(String(storefront_oid)));
             var localVarUrlObj = url.parse(localVarPath, true);
             var localVarRequestOptions = Object.assign({ method: 'GET' }, options);
             var localVarHeaderParameter = {};
@@ -19354,7 +19462,7 @@ var StorefrontApiFetchParamCreator = function (configuration) {
                 throw new RequiredError('domain', 'Required parameter domain was null or undefined when calling getEmailSendingDomain.');
             }
             var localVarPath = "/storefront/email/sending_domain/{domain}"
-                .replace("{" + "domain" + "}", encodeURIComponent(String(domain)));
+                .replace("{".concat("domain", "}"), encodeURIComponent(String(domain)));
             var localVarUrlObj = url.parse(localVarPath, true);
             var localVarRequestOptions = Object.assign({ method: 'GET' }, options);
             var localVarHeaderParameter = {};
@@ -19407,7 +19515,7 @@ var StorefrontApiFetchParamCreator = function (configuration) {
                 throw new RequiredError('domain', 'Required parameter domain was null or undefined when calling getEmailSendingDomainStatus.');
             }
             var localVarPath = "/storefront/email/sending_domains/{domain}/status"
-                .replace("{" + "domain" + "}", encodeURIComponent(String(domain)));
+                .replace("{".concat("domain", "}"), encodeURIComponent(String(domain)));
             var localVarUrlObj = url.parse(localVarPath, true);
             var localVarRequestOptions = Object.assign({ method: 'POST' }, options);
             var localVarHeaderParameter = {};
@@ -19507,7 +19615,7 @@ var StorefrontApiFetchParamCreator = function (configuration) {
                 throw new RequiredError('storefront_oid', 'Required parameter storefront_oid was null or undefined when calling getEmailSettings.');
             }
             var localVarPath = "/storefront/{storefront_oid}/email/settings"
-                .replace("{" + "storefront_oid" + "}", encodeURIComponent(String(storefront_oid)));
+                .replace("{".concat("storefront_oid", "}"), encodeURIComponent(String(storefront_oid)));
             var localVarUrlObj = url.parse(localVarPath, true);
             var localVarRequestOptions = Object.assign({ method: 'GET' }, options);
             var localVarHeaderParameter = {};
@@ -19565,8 +19673,8 @@ var StorefrontApiFetchParamCreator = function (configuration) {
                 throw new RequiredError('email_template_oid', 'Required parameter email_template_oid was null or undefined when calling getEmailTemplate.');
             }
             var localVarPath = "/storefront/{storefront_oid}/email/templates/{email_template_oid}"
-                .replace("{" + "storefront_oid" + "}", encodeURIComponent(String(storefront_oid)))
-                .replace("{" + "email_template_oid" + "}", encodeURIComponent(String(email_template_oid)));
+                .replace("{".concat("storefront_oid", "}"), encodeURIComponent(String(storefront_oid)))
+                .replace("{".concat("email_template_oid", "}"), encodeURIComponent(String(email_template_oid)));
             var localVarUrlObj = url.parse(localVarPath, true);
             var localVarRequestOptions = Object.assign({ method: 'GET' }, options);
             var localVarHeaderParameter = {};
@@ -19620,7 +19728,7 @@ var StorefrontApiFetchParamCreator = function (configuration) {
                 throw new RequiredError('storefront_oid', 'Required parameter storefront_oid was null or undefined when calling getEmailTemplates.');
             }
             var localVarPath = "/storefront/{storefront_oid}/email/templates"
-                .replace("{" + "storefront_oid" + "}", encodeURIComponent(String(storefront_oid)));
+                .replace("{".concat("storefront_oid", "}"), encodeURIComponent(String(storefront_oid)));
             var localVarUrlObj = url.parse(localVarPath, true);
             var localVarRequestOptions = Object.assign({ method: 'GET' }, options);
             var localVarHeaderParameter = {};
@@ -19676,7 +19784,7 @@ var StorefrontApiFetchParamCreator = function (configuration) {
                 throw new RequiredError('storefront_oid', 'Required parameter storefront_oid was null or undefined when calling getEmailThirdPartyProviders.');
             }
             var localVarPath = "/storefront/{storefront_oid}/email/third_party_providers"
-                .replace("{" + "storefront_oid" + "}", encodeURIComponent(String(storefront_oid)));
+                .replace("{".concat("storefront_oid", "}"), encodeURIComponent(String(storefront_oid)));
             var localVarUrlObj = url.parse(localVarPath, true);
             var localVarRequestOptions = Object.assign({ method: 'GET' }, options);
             var localVarHeaderParameter = {};
@@ -19729,7 +19837,7 @@ var StorefrontApiFetchParamCreator = function (configuration) {
                 throw new RequiredError('storefront_oid', 'Required parameter storefront_oid was null or undefined when calling getExperiments.');
             }
             var localVarPath = "/storefront/{storefront_oid}/experiments"
-                .replace("{" + "storefront_oid" + "}", encodeURIComponent(String(storefront_oid)));
+                .replace("{".concat("storefront_oid", "}"), encodeURIComponent(String(storefront_oid)));
             var localVarUrlObj = url.parse(localVarPath, true);
             var localVarRequestOptions = Object.assign({ method: 'GET' }, options);
             var localVarHeaderParameter = {};
@@ -19787,7 +19895,7 @@ var StorefrontApiFetchParamCreator = function (configuration) {
                 throw new RequiredError('query', 'Required parameter query was null or undefined when calling getHeatmap.');
             }
             var localVarPath = "/storefront/{storefront_oid}/screen_recordings/heatmap"
-                .replace("{" + "storefront_oid" + "}", encodeURIComponent(String(storefront_oid)));
+                .replace("{".concat("storefront_oid", "}"), encodeURIComponent(String(storefront_oid)));
             var localVarUrlObj = url.parse(localVarPath, true);
             var localVarRequestOptions = Object.assign({ method: 'POST' }, options);
             var localVarHeaderParameter = {};
@@ -19844,7 +19952,7 @@ var StorefrontApiFetchParamCreator = function (configuration) {
                 throw new RequiredError('query', 'Required parameter query was null or undefined when calling getHeatmapIndex.');
             }
             var localVarPath = "/storefront/{storefront_oid}/screen_recordings/heatmap/index"
-                .replace("{" + "storefront_oid" + "}", encodeURIComponent(String(storefront_oid)));
+                .replace("{".concat("storefront_oid", "}"), encodeURIComponent(String(storefront_oid)));
             var localVarUrlObj = url.parse(localVarPath, true);
             var localVarRequestOptions = Object.assign({ method: 'POST' }, options);
             var localVarHeaderParameter = {};
@@ -19903,7 +20011,7 @@ var StorefrontApiFetchParamCreator = function (configuration) {
                 throw new RequiredError('storefront_oid', 'Required parameter storefront_oid was null or undefined when calling getHistogramPropertyNames.');
             }
             var localVarPath = "/storefront/{storefront_oid}/email/histogram/property_names"
-                .replace("{" + "storefront_oid" + "}", encodeURIComponent(String(storefront_oid)));
+                .replace("{".concat("storefront_oid", "}"), encodeURIComponent(String(storefront_oid)));
             var localVarUrlObj = url.parse(localVarPath, true);
             var localVarRequestOptions = Object.assign({ method: 'GET' }, options);
             var localVarHeaderParameter = {};
@@ -19962,7 +20070,7 @@ var StorefrontApiFetchParamCreator = function (configuration) {
                 throw new RequiredError('storefront_oid', 'Required parameter storefront_oid was null or undefined when calling getHistogramPropertyValues.');
             }
             var localVarPath = "/storefront/{storefront_oid}/email/histogram/property_values"
-                .replace("{" + "storefront_oid" + "}", encodeURIComponent(String(storefront_oid)));
+                .replace("{".concat("storefront_oid", "}"), encodeURIComponent(String(storefront_oid)));
             var localVarUrlObj = url.parse(localVarPath, true);
             var localVarRequestOptions = Object.assign({ method: 'GET' }, options);
             var localVarHeaderParameter = {};
@@ -20071,7 +20179,7 @@ var StorefrontApiFetchParamCreator = function (configuration) {
                 throw new RequiredError('library_item_oid', 'Required parameter library_item_oid was null or undefined when calling getLibraryItem.');
             }
             var localVarPath = "/storefront/code_library/{library_item_oid}"
-                .replace("{" + "library_item_oid" + "}", encodeURIComponent(String(library_item_oid)));
+                .replace("{".concat("library_item_oid", "}"), encodeURIComponent(String(library_item_oid)));
             var localVarUrlObj = url.parse(localVarPath, true);
             var localVarRequestOptions = Object.assign({ method: 'GET' }, options);
             var localVarHeaderParameter = {};
@@ -20124,7 +20232,7 @@ var StorefrontApiFetchParamCreator = function (configuration) {
                 throw new RequiredError('library_item_oid', 'Required parameter library_item_oid was null or undefined when calling getLibraryItemPublishedVersions.');
             }
             var localVarPath = "/storefront/code_library/{library_item_oid}/published_versions"
-                .replace("{" + "library_item_oid" + "}", encodeURIComponent(String(library_item_oid)));
+                .replace("{".concat("library_item_oid", "}"), encodeURIComponent(String(library_item_oid)));
             var localVarUrlObj = url.parse(localVarPath, true);
             var localVarRequestOptions = Object.assign({ method: 'GET' }, options);
             var localVarHeaderParameter = {};
@@ -20182,8 +20290,8 @@ var StorefrontApiFetchParamCreator = function (configuration) {
                 throw new RequiredError('screen_recording_uuid', 'Required parameter screen_recording_uuid was null or undefined when calling getScreenRecording.');
             }
             var localVarPath = "/storefront/{storefront_oid}/screen_recordings/{screen_recording_uuid}"
-                .replace("{" + "storefront_oid" + "}", encodeURIComponent(String(storefront_oid)))
-                .replace("{" + "screen_recording_uuid" + "}", encodeURIComponent(String(screen_recording_uuid)));
+                .replace("{".concat("storefront_oid", "}"), encodeURIComponent(String(storefront_oid)))
+                .replace("{".concat("screen_recording_uuid", "}"), encodeURIComponent(String(screen_recording_uuid)));
             var localVarUrlObj = url.parse(localVarPath, true);
             var localVarRequestOptions = Object.assign({ method: 'GET' }, options);
             var localVarHeaderParameter = {};
@@ -20239,9 +20347,9 @@ var StorefrontApiFetchParamCreator = function (configuration) {
                 throw new RequiredError('screen_recording_page_view_uuid', 'Required parameter screen_recording_page_view_uuid was null or undefined when calling getScreenRecordingPageViewData.');
             }
             var localVarPath = "/storefront/{storefront_oid}/screen_recordings/{screen_recording_uuid}/page_view_data/{screen_recording_page_view_uuid}"
-                .replace("{" + "storefront_oid" + "}", encodeURIComponent(String(storefront_oid)))
-                .replace("{" + "screen_recording_uuid" + "}", encodeURIComponent(String(screen_recording_uuid)))
-                .replace("{" + "screen_recording_page_view_uuid" + "}", encodeURIComponent(String(screen_recording_page_view_uuid)));
+                .replace("{".concat("storefront_oid", "}"), encodeURIComponent(String(storefront_oid)))
+                .replace("{".concat("screen_recording_uuid", "}"), encodeURIComponent(String(screen_recording_uuid)))
+                .replace("{".concat("screen_recording_page_view_uuid", "}"), encodeURIComponent(String(screen_recording_page_view_uuid)));
             var localVarUrlObj = url.parse(localVarPath, true);
             var localVarRequestOptions = Object.assign({ method: 'GET' }, options);
             var localVarHeaderParameter = {};
@@ -20292,8 +20400,8 @@ var StorefrontApiFetchParamCreator = function (configuration) {
                 throw new RequiredError('screen_recording_segment_oid', 'Required parameter screen_recording_segment_oid was null or undefined when calling getScreenRecordingSegment.');
             }
             var localVarPath = "/storefront/{storefront_oid}/screen_recordings/segments/{screen_recording_segment_oid}"
-                .replace("{" + "storefront_oid" + "}", encodeURIComponent(String(storefront_oid)))
-                .replace("{" + "screen_recording_segment_oid" + "}", encodeURIComponent(String(screen_recording_segment_oid)));
+                .replace("{".concat("storefront_oid", "}"), encodeURIComponent(String(storefront_oid)))
+                .replace("{".concat("screen_recording_segment_oid", "}"), encodeURIComponent(String(screen_recording_segment_oid)));
             var localVarUrlObj = url.parse(localVarPath, true);
             var localVarRequestOptions = Object.assign({ method: 'GET' }, options);
             var localVarHeaderParameter = {};
@@ -20346,7 +20454,7 @@ var StorefrontApiFetchParamCreator = function (configuration) {
                 throw new RequiredError('storefront_oid', 'Required parameter storefront_oid was null or undefined when calling getScreenRecordingSegments.');
             }
             var localVarPath = "/storefront/{storefront_oid}/screen_recordings/segments"
-                .replace("{" + "storefront_oid" + "}", encodeURIComponent(String(storefront_oid)));
+                .replace("{".concat("storefront_oid", "}"), encodeURIComponent(String(storefront_oid)));
             var localVarUrlObj = url.parse(localVarPath, true);
             var localVarRequestOptions = Object.assign({ method: 'GET' }, options);
             var localVarHeaderParameter = {};
@@ -20399,7 +20507,7 @@ var StorefrontApiFetchParamCreator = function (configuration) {
                 throw new RequiredError('storefront_oid', 'Required parameter storefront_oid was null or undefined when calling getScreenRecordingSettings.');
             }
             var localVarPath = "/storefront/{storefront_oid}/screen_recordings/settings"
-                .replace("{" + "storefront_oid" + "}", encodeURIComponent(String(storefront_oid)));
+                .replace("{".concat("storefront_oid", "}"), encodeURIComponent(String(storefront_oid)));
             var localVarUrlObj = url.parse(localVarPath, true);
             var localVarRequestOptions = Object.assign({ method: 'GET' }, options);
             var localVarHeaderParameter = {};
@@ -20452,7 +20560,7 @@ var StorefrontApiFetchParamCreator = function (configuration) {
                 throw new RequiredError('storefront_oid', 'Required parameter storefront_oid was null or undefined when calling getScreenRecordingTags.');
             }
             var localVarPath = "/storefront/{storefront_oid}/screen_recordings/tags"
-                .replace("{" + "storefront_oid" + "}", encodeURIComponent(String(storefront_oid)));
+                .replace("{".concat("storefront_oid", "}"), encodeURIComponent(String(storefront_oid)));
             var localVarUrlObj = url.parse(localVarPath, true);
             var localVarRequestOptions = Object.assign({ method: 'POST' }, options);
             var localVarHeaderParameter = {};
@@ -20506,7 +20614,7 @@ var StorefrontApiFetchParamCreator = function (configuration) {
                 throw new RequiredError('query', 'Required parameter query was null or undefined when calling getScreenRecordingsByQuery.');
             }
             var localVarPath = "/storefront/{storefront_oid}/screen_recordings/query"
-                .replace("{" + "storefront_oid" + "}", encodeURIComponent(String(storefront_oid)));
+                .replace("{".concat("storefront_oid", "}"), encodeURIComponent(String(storefront_oid)));
             var localVarUrlObj = url.parse(localVarPath, true);
             var localVarRequestOptions = Object.assign({ method: 'POST' }, options);
             var localVarHeaderParameter = {};
@@ -20572,8 +20680,8 @@ var StorefrontApiFetchParamCreator = function (configuration) {
                 throw new RequiredError('screen_recording_segment_oid', 'Required parameter screen_recording_segment_oid was null or undefined when calling getScreenRecordingsBySegment.');
             }
             var localVarPath = "/storefront/{storefront_oid}/screen_recordings/segments/{screen_recording_segment_oid}/query"
-                .replace("{" + "storefront_oid" + "}", encodeURIComponent(String(storefront_oid)))
-                .replace("{" + "screen_recording_segment_oid" + "}", encodeURIComponent(String(screen_recording_segment_oid)));
+                .replace("{".concat("storefront_oid", "}"), encodeURIComponent(String(storefront_oid)))
+                .replace("{".concat("screen_recording_segment_oid", "}"), encodeURIComponent(String(screen_recording_segment_oid)));
             var localVarUrlObj = url.parse(localVarPath, true);
             var localVarRequestOptions = Object.assign({ method: 'POST' }, options);
             var localVarHeaderParameter = {};
@@ -20732,8 +20840,8 @@ var StorefrontApiFetchParamCreator = function (configuration) {
                 throw new RequiredError('email_id', 'Required parameter email_id was null or undefined when calling getTransactionEmail.');
             }
             var localVarPath = "/storefront/{storefront_oid}/transaction_email/list/{email_id}"
-                .replace("{" + "storefront_oid" + "}", encodeURIComponent(String(storefront_oid)))
-                .replace("{" + "email_id" + "}", encodeURIComponent(String(email_id)));
+                .replace("{".concat("storefront_oid", "}"), encodeURIComponent(String(storefront_oid)))
+                .replace("{".concat("email_id", "}"), encodeURIComponent(String(email_id)));
             var localVarUrlObj = url.parse(localVarPath, true);
             var localVarRequestOptions = Object.assign({ method: 'GET' }, options);
             var localVarHeaderParameter = {};
@@ -20786,7 +20894,7 @@ var StorefrontApiFetchParamCreator = function (configuration) {
                 throw new RequiredError('storefront_oid', 'Required parameter storefront_oid was null or undefined when calling getTransactionEmailList.');
             }
             var localVarPath = "/storefront/{storefront_oid}/transaction_email/list"
-                .replace("{" + "storefront_oid" + "}", encodeURIComponent(String(storefront_oid)));
+                .replace("{".concat("storefront_oid", "}"), encodeURIComponent(String(storefront_oid)));
             var localVarUrlObj = url.parse(localVarPath, true);
             var localVarRequestOptions = Object.assign({ method: 'GET' }, options);
             var localVarHeaderParameter = {};
@@ -20844,8 +20952,108 @@ var StorefrontApiFetchParamCreator = function (configuration) {
                 throw new RequiredError('email_id', 'Required parameter email_id was null or undefined when calling getTransactionEmailScreenshots.');
             }
             var localVarPath = "/storefront/{storefront_oid}/transaction_email/list/{email_id}/screenshots"
-                .replace("{" + "storefront_oid" + "}", encodeURIComponent(String(storefront_oid)))
-                .replace("{" + "email_id" + "}", encodeURIComponent(String(email_id)));
+                .replace("{".concat("storefront_oid", "}"), encodeURIComponent(String(storefront_oid)))
+                .replace("{".concat("email_id", "}"), encodeURIComponent(String(email_id)));
+            var localVarUrlObj = url.parse(localVarPath, true);
+            var localVarRequestOptions = Object.assign({ method: 'GET' }, options);
+            var localVarHeaderParameter = {};
+            var localVarQueryParameter = {};
+            if (configuration && configuration.apiVersion) {
+                localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+            }
+            // authentication ultraCartBrowserApiKey required
+            if (configuration && configuration.apiKey) {
+                var localVarApiKeyValue = typeof configuration.apiKey === 'function'
+                    ? configuration.apiKey("x-ultracart-browser-key")
+                    : configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-browser-key"] = localVarApiKeyValue;
+            }
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+                var localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+                    ? configuration.accessToken("ultraCartOauth", ["storefront_read"])
+                    : configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                var localVarApiKeyValue = typeof configuration.apiKey === 'function'
+                    ? configuration.apiKey("x-ultracart-simple-key")
+                    : configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         *
+         * @summary Get Twilio account
+         * @param {string} esp_twilio_uuid
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getTwilioAccount: function (esp_twilio_uuid, options) {
+            if (options === void 0) { options = {}; }
+            // verify required parameter 'esp_twilio_uuid' is not null or undefined
+            if (esp_twilio_uuid === null || esp_twilio_uuid === undefined) {
+                throw new RequiredError('esp_twilio_uuid', 'Required parameter esp_twilio_uuid was null or undefined when calling getTwilioAccount.');
+            }
+            var localVarPath = "/storefront/twilio/accounts/{esp_twilio_uuid}"
+                .replace("{".concat("esp_twilio_uuid", "}"), encodeURIComponent(String(esp_twilio_uuid)));
+            var localVarUrlObj = url.parse(localVarPath, true);
+            var localVarRequestOptions = Object.assign({ method: 'GET' }, options);
+            var localVarHeaderParameter = {};
+            var localVarQueryParameter = {};
+            if (configuration && configuration.apiVersion) {
+                localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+            }
+            // authentication ultraCartBrowserApiKey required
+            if (configuration && configuration.apiKey) {
+                var localVarApiKeyValue = typeof configuration.apiKey === 'function'
+                    ? configuration.apiKey("x-ultracart-browser-key")
+                    : configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-browser-key"] = localVarApiKeyValue;
+            }
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+                var localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+                    ? configuration.accessToken("ultraCartOauth", ["storefront_read"])
+                    : configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                var localVarApiKeyValue = typeof configuration.apiKey === 'function'
+                    ? configuration.apiKey("x-ultracart-simple-key")
+                    : configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         *
+         * @summary Get all Twilio accounts
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getTwilioAccounts: function (options) {
+            if (options === void 0) { options = {}; }
+            var localVarPath = "/storefront/twilio/accounts";
             var localVarUrlObj = url.parse(localVarPath, true);
             var localVarRequestOptions = Object.assign({ method: 'GET' }, options);
             var localVarHeaderParameter = {};
@@ -20903,7 +21111,7 @@ var StorefrontApiFetchParamCreator = function (configuration) {
                 throw new RequiredError('unsubscribe', 'Required parameter unsubscribe was null or undefined when calling globalUnsubscribe.');
             }
             var localVarPath = "/storefront/{storefront_oid}/email/globalUnsubscribe"
-                .replace("{" + "storefront_oid" + "}", encodeURIComponent(String(storefront_oid)));
+                .replace("{".concat("storefront_oid", "}"), encodeURIComponent(String(storefront_oid)));
             var localVarUrlObj = url.parse(localVarPath, true);
             var localVarRequestOptions = Object.assign({ method: 'POST' }, options);
             var localVarHeaderParameter = {};
@@ -20964,7 +21172,7 @@ var StorefrontApiFetchParamCreator = function (configuration) {
                 throw new RequiredError('import_request', 'Required parameter import_request was null or undefined when calling importEmailThirdPartyProviderList.');
             }
             var localVarPath = "/storefront/{storefront_oid}/email/third_party_providers/import"
-                .replace("{" + "storefront_oid" + "}", encodeURIComponent(String(storefront_oid)));
+                .replace("{".concat("storefront_oid", "}"), encodeURIComponent(String(storefront_oid)));
             var localVarUrlObj = url.parse(localVarPath, true);
             var localVarRequestOptions = Object.assign({ method: 'POST' }, options);
             var localVarHeaderParameter = {};
@@ -21025,7 +21233,7 @@ var StorefrontApiFetchParamCreator = function (configuration) {
                 throw new RequiredError('email_campaign', 'Required parameter email_campaign was null or undefined when calling insertEmailCampaign.');
             }
             var localVarPath = "/storefront/{storefront_oid}/email/campaigns"
-                .replace("{" + "storefront_oid" + "}", encodeURIComponent(String(storefront_oid)));
+                .replace("{".concat("storefront_oid", "}"), encodeURIComponent(String(storefront_oid)));
             var localVarUrlObj = url.parse(localVarPath, true);
             var localVarRequestOptions = Object.assign({ method: 'POST' }, options);
             var localVarHeaderParameter = {};
@@ -21086,7 +21294,7 @@ var StorefrontApiFetchParamCreator = function (configuration) {
                 throw new RequiredError('email_campaign_folder', 'Required parameter email_campaign_folder was null or undefined when calling insertEmailCampaignFolder.');
             }
             var localVarPath = "/storefront/{storefront_oid}/email/campaign_folders"
-                .replace("{" + "storefront_oid" + "}", encodeURIComponent(String(storefront_oid)));
+                .replace("{".concat("storefront_oid", "}"), encodeURIComponent(String(storefront_oid)));
             var localVarUrlObj = url.parse(localVarPath, true);
             var localVarRequestOptions = Object.assign({ method: 'POST' }, options);
             var localVarHeaderParameter = {};
@@ -21147,7 +21355,7 @@ var StorefrontApiFetchParamCreator = function (configuration) {
                 throw new RequiredError('email_commseq', 'Required parameter email_commseq was null or undefined when calling insertEmailCommseq.');
             }
             var localVarPath = "/storefront/{storefront_oid}/email/commseqs"
-                .replace("{" + "storefront_oid" + "}", encodeURIComponent(String(storefront_oid)));
+                .replace("{".concat("storefront_oid", "}"), encodeURIComponent(String(storefront_oid)));
             var localVarUrlObj = url.parse(localVarPath, true);
             var localVarRequestOptions = Object.assign({ method: 'POST' }, options);
             var localVarHeaderParameter = {};
@@ -21208,7 +21416,7 @@ var StorefrontApiFetchParamCreator = function (configuration) {
                 throw new RequiredError('email_commseq_email', 'Required parameter email_commseq_email was null or undefined when calling insertEmailEmail.');
             }
             var localVarPath = "/storefront/{storefront_oid}/email/emails"
-                .replace("{" + "storefront_oid" + "}", encodeURIComponent(String(storefront_oid)));
+                .replace("{".concat("storefront_oid", "}"), encodeURIComponent(String(storefront_oid)));
             var localVarUrlObj = url.parse(localVarPath, true);
             var localVarRequestOptions = Object.assign({ method: 'POST' }, options);
             var localVarHeaderParameter = {};
@@ -21269,7 +21477,7 @@ var StorefrontApiFetchParamCreator = function (configuration) {
                 throw new RequiredError('email_flow', 'Required parameter email_flow was null or undefined when calling insertEmailFlow.');
             }
             var localVarPath = "/storefront/{storefront_oid}/email/flows"
-                .replace("{" + "storefront_oid" + "}", encodeURIComponent(String(storefront_oid)));
+                .replace("{".concat("storefront_oid", "}"), encodeURIComponent(String(storefront_oid)));
             var localVarUrlObj = url.parse(localVarPath, true);
             var localVarRequestOptions = Object.assign({ method: 'POST' }, options);
             var localVarHeaderParameter = {};
@@ -21330,7 +21538,7 @@ var StorefrontApiFetchParamCreator = function (configuration) {
                 throw new RequiredError('email_flow_folder', 'Required parameter email_flow_folder was null or undefined when calling insertEmailFlowFolder.');
             }
             var localVarPath = "/storefront/{storefront_oid}/email/flow_folders"
-                .replace("{" + "storefront_oid" + "}", encodeURIComponent(String(storefront_oid)));
+                .replace("{".concat("storefront_oid", "}"), encodeURIComponent(String(storefront_oid)));
             var localVarUrlObj = url.parse(localVarPath, true);
             var localVarRequestOptions = Object.assign({ method: 'POST' }, options);
             var localVarHeaderParameter = {};
@@ -21391,7 +21599,7 @@ var StorefrontApiFetchParamCreator = function (configuration) {
                 throw new RequiredError('email_list', 'Required parameter email_list was null or undefined when calling insertEmailList.');
             }
             var localVarPath = "/storefront/{storefront_oid}/email/lists"
-                .replace("{" + "storefront_oid" + "}", encodeURIComponent(String(storefront_oid)));
+                .replace("{".concat("storefront_oid", "}"), encodeURIComponent(String(storefront_oid)));
             var localVarUrlObj = url.parse(localVarPath, true);
             var localVarRequestOptions = Object.assign({ method: 'POST' }, options);
             var localVarHeaderParameter = {};
@@ -21452,7 +21660,7 @@ var StorefrontApiFetchParamCreator = function (configuration) {
                 throw new RequiredError('email_list_segment_folder', 'Required parameter email_list_segment_folder was null or undefined when calling insertEmailListSegmentFolder.');
             }
             var localVarPath = "/storefront/{storefront_oid}/email/list_segment_folders"
-                .replace("{" + "storefront_oid" + "}", encodeURIComponent(String(storefront_oid)));
+                .replace("{".concat("storefront_oid", "}"), encodeURIComponent(String(storefront_oid)));
             var localVarUrlObj = url.parse(localVarPath, true);
             var localVarRequestOptions = Object.assign({ method: 'POST' }, options);
             var localVarHeaderParameter = {};
@@ -21513,7 +21721,7 @@ var StorefrontApiFetchParamCreator = function (configuration) {
                 throw new RequiredError('email_commseq_postcard', 'Required parameter email_commseq_postcard was null or undefined when calling insertEmailPostcard.');
             }
             var localVarPath = "/storefront/{storefront_oid}/email/postcards"
-                .replace("{" + "storefront_oid" + "}", encodeURIComponent(String(storefront_oid)));
+                .replace("{".concat("storefront_oid", "}"), encodeURIComponent(String(storefront_oid)));
             var localVarUrlObj = url.parse(localVarPath, true);
             var localVarRequestOptions = Object.assign({ method: 'POST' }, options);
             var localVarHeaderParameter = {};
@@ -21574,7 +21782,7 @@ var StorefrontApiFetchParamCreator = function (configuration) {
                 throw new RequiredError('email_segment', 'Required parameter email_segment was null or undefined when calling insertEmailSegment.');
             }
             var localVarPath = "/storefront/{storefront_oid}/email/segments"
-                .replace("{" + "storefront_oid" + "}", encodeURIComponent(String(storefront_oid)));
+                .replace("{".concat("storefront_oid", "}"), encodeURIComponent(String(storefront_oid)));
             var localVarUrlObj = url.parse(localVarPath, true);
             var localVarRequestOptions = Object.assign({ method: 'POST' }, options);
             var localVarHeaderParameter = {};
@@ -21635,7 +21843,7 @@ var StorefrontApiFetchParamCreator = function (configuration) {
                 throw new RequiredError('segment', 'Required parameter segment was null or undefined when calling insertScreenRecordingSegment.');
             }
             var localVarPath = "/storefront/{storefront_oid}/screen_recordings/segments"
-                .replace("{" + "storefront_oid" + "}", encodeURIComponent(String(storefront_oid)));
+                .replace("{".concat("storefront_oid", "}"), encodeURIComponent(String(storefront_oid)));
             var localVarUrlObj = url.parse(localVarPath, true);
             var localVarRequestOptions = Object.assign({ method: 'POST' }, options);
             var localVarHeaderParameter = {};
@@ -21696,8 +21904,8 @@ var StorefrontApiFetchParamCreator = function (configuration) {
                 throw new RequiredError('email_segment_uuid', 'Required parameter email_segment_uuid was null or undefined when calling prepareDownloadEmailSegment.');
             }
             var localVarPath = "/storefront/{storefront_oid}/email/segments/{email_segment_uuid}/downloadPrepare"
-                .replace("{" + "storefront_oid" + "}", encodeURIComponent(String(storefront_oid)))
-                .replace("{" + "email_segment_uuid" + "}", encodeURIComponent(String(email_segment_uuid)));
+                .replace("{".concat("storefront_oid", "}"), encodeURIComponent(String(storefront_oid)))
+                .replace("{".concat("email_segment_uuid", "}"), encodeURIComponent(String(email_segment_uuid)));
             var localVarUrlObj = url.parse(localVarPath, true);
             var localVarRequestOptions = Object.assign({ method: 'POST' }, options);
             var localVarHeaderParameter = {};
@@ -21755,7 +21963,7 @@ var StorefrontApiFetchParamCreator = function (configuration) {
                 throw new RequiredError('publish_library_request', 'Required parameter publish_library_request was null or undefined when calling publishLibraryItem.');
             }
             var localVarPath = "/storefront/code_library/{library_item_oid}/publish"
-                .replace("{" + "library_item_oid" + "}", encodeURIComponent(String(library_item_oid)));
+                .replace("{".concat("library_item_oid", "}"), encodeURIComponent(String(library_item_oid)));
             var localVarUrlObj = url.parse(localVarPath, true);
             var localVarRequestOptions = Object.assign({ method: 'POST' }, options);
             var localVarHeaderParameter = {};
@@ -21812,7 +22020,7 @@ var StorefrontApiFetchParamCreator = function (configuration) {
                 throw new RequiredError('library_item_oid', 'Required parameter library_item_oid was null or undefined when calling purchaseLibraryItem.');
             }
             var localVarPath = "/storefront/code_library/{library_item_oid}/purchase"
-                .replace("{" + "library_item_oid" + "}", encodeURIComponent(String(library_item_oid)));
+                .replace("{".concat("library_item_oid", "}"), encodeURIComponent(String(library_item_oid)));
             var localVarUrlObj = url.parse(localVarPath, true);
             var localVarRequestOptions = Object.assign({ method: 'POST' }, options);
             var localVarHeaderParameter = {};
@@ -21878,9 +22086,9 @@ var StorefrontApiFetchParamCreator = function (configuration) {
                 throw new RequiredError('commseq_step_uuid', 'Required parameter commseq_step_uuid was null or undefined when calling releaseEmailCommseqStepWaiting.');
             }
             var localVarPath = "/storefront/{storefront_oid}/email/commseqs/{commseq_uuid}/waiting/{commseq_step_uuid}"
-                .replace("{" + "storefront_oid" + "}", encodeURIComponent(String(storefront_oid)))
-                .replace("{" + "commseq_uuid" + "}", encodeURIComponent(String(commseq_uuid)))
-                .replace("{" + "commseq_step_uuid" + "}", encodeURIComponent(String(commseq_step_uuid)));
+                .replace("{".concat("storefront_oid", "}"), encodeURIComponent(String(storefront_oid)))
+                .replace("{".concat("commseq_uuid", "}"), encodeURIComponent(String(commseq_uuid)))
+                .replace("{".concat("commseq_step_uuid", "}"), encodeURIComponent(String(commseq_step_uuid)));
             var localVarUrlObj = url.parse(localVarPath, true);
             var localVarRequestOptions = Object.assign({ method: 'POST' }, options);
             var localVarHeaderParameter = {};
@@ -21943,8 +22151,8 @@ var StorefrontApiFetchParamCreator = function (configuration) {
                 throw new RequiredError('email_commseq_email_review_request', 'Required parameter email_commseq_email_review_request was null or undefined when calling review.');
             }
             var localVarPath = "/storefront/{storefront_oid}/email/emails/{commseq_email_uuid}/review"
-                .replace("{" + "storefront_oid" + "}", encodeURIComponent(String(storefront_oid)))
-                .replace("{" + "commseq_email_uuid" + "}", encodeURIComponent(String(commseq_email_uuid)));
+                .replace("{".concat("storefront_oid", "}"), encodeURIComponent(String(storefront_oid)))
+                .replace("{".concat("commseq_email_uuid", "}"), encodeURIComponent(String(commseq_email_uuid)));
             var localVarUrlObj = url.parse(localVarPath, true);
             var localVarRequestOptions = Object.assign({ method: 'POST' }, options);
             var localVarHeaderParameter = {};
@@ -22128,8 +22336,8 @@ var StorefrontApiFetchParamCreator = function (configuration) {
                 throw new RequiredError('email_list_uuid', 'Required parameter email_list_uuid was null or undefined when calling searchEmailListCustomers.');
             }
             var localVarPath = "/storefront/{storefront_oid}/email/lists/{email_list_uuid}/search"
-                .replace("{" + "storefront_oid" + "}", encodeURIComponent(String(storefront_oid)))
-                .replace("{" + "email_list_uuid" + "}", encodeURIComponent(String(email_list_uuid)));
+                .replace("{".concat("storefront_oid", "}"), encodeURIComponent(String(storefront_oid)))
+                .replace("{".concat("email_list_uuid", "}"), encodeURIComponent(String(email_list_uuid)));
             var localVarUrlObj = url.parse(localVarPath, true);
             var localVarRequestOptions = Object.assign({ method: 'GET' }, options);
             var localVarHeaderParameter = {};
@@ -22191,8 +22399,8 @@ var StorefrontApiFetchParamCreator = function (configuration) {
                 throw new RequiredError('email_segment_uuid', 'Required parameter email_segment_uuid was null or undefined when calling searchEmailSegmentCustomers.');
             }
             var localVarPath = "/storefront/{storefront_oid}/email/segments/{email_segment_uuid}/search"
-                .replace("{" + "storefront_oid" + "}", encodeURIComponent(String(storefront_oid)))
-                .replace("{" + "email_segment_uuid" + "}", encodeURIComponent(String(email_segment_uuid)));
+                .replace("{".concat("storefront_oid", "}"), encodeURIComponent(String(storefront_oid)))
+                .replace("{".concat("email_segment_uuid", "}"), encodeURIComponent(String(email_segment_uuid)));
             var localVarUrlObj = url.parse(localVarPath, true);
             var localVarRequestOptions = Object.assign({ method: 'GET' }, options);
             var localVarHeaderParameter = {};
@@ -22498,8 +22706,8 @@ var StorefrontApiFetchParamCreator = function (configuration) {
                 throw new RequiredError('email_commseq_email_test_request', 'Required parameter email_commseq_email_test_request was null or undefined when calling sendEmailTest.');
             }
             var localVarPath = "/storefront/{storefront_oid}/email/emails/{commseq_email_uuid}/test"
-                .replace("{" + "storefront_oid" + "}", encodeURIComponent(String(storefront_oid)))
-                .replace("{" + "commseq_email_uuid" + "}", encodeURIComponent(String(commseq_email_uuid)));
+                .replace("{".concat("storefront_oid", "}"), encodeURIComponent(String(storefront_oid)))
+                .replace("{".concat("commseq_email_uuid", "}"), encodeURIComponent(String(commseq_email_uuid)));
             var localVarUrlObj = url.parse(localVarPath, true);
             var localVarRequestOptions = Object.assign({ method: 'POST' }, options);
             var localVarHeaderParameter = {};
@@ -22565,8 +22773,8 @@ var StorefrontApiFetchParamCreator = function (configuration) {
                 throw new RequiredError('email_commseq_postcard_test_request', 'Required parameter email_commseq_postcard_test_request was null or undefined when calling sendPostcardTest.');
             }
             var localVarPath = "/storefront/{storefront_oid}/email/postcards/{commseq_postcard_uuid}/test"
-                .replace("{" + "storefront_oid" + "}", encodeURIComponent(String(storefront_oid)))
-                .replace("{" + "commseq_postcard_uuid" + "}", encodeURIComponent(String(commseq_postcard_uuid)));
+                .replace("{".concat("storefront_oid", "}"), encodeURIComponent(String(storefront_oid)))
+                .replace("{".concat("commseq_postcard_uuid", "}"), encodeURIComponent(String(commseq_postcard_uuid)));
             var localVarUrlObj = url.parse(localVarPath, true);
             var localVarRequestOptions = Object.assign({ method: 'POST' }, options);
             var localVarHeaderParameter = {};
@@ -22627,7 +22835,7 @@ var StorefrontApiFetchParamCreator = function (configuration) {
                 throw new RequiredError('email_commseq_webhook_test_request', 'Required parameter email_commseq_webhook_test_request was null or undefined when calling sendWebhookTest.');
             }
             var localVarPath = "/storefront/{storefront_oid}/email/webhooks/test"
-                .replace("{" + "storefront_oid" + "}", encodeURIComponent(String(storefront_oid)));
+                .replace("{".concat("storefront_oid", "}"), encodeURIComponent(String(storefront_oid)));
             var localVarUrlObj = url.parse(localVarPath, true);
             var localVarRequestOptions = Object.assign({ method: 'POST' }, options);
             var localVarHeaderParameter = {};
@@ -22688,8 +22896,8 @@ var StorefrontApiFetchParamCreator = function (configuration) {
                 throw new RequiredError('email_campaign_uuid', 'Required parameter email_campaign_uuid was null or undefined when calling startEmailCampaign.');
             }
             var localVarPath = "/storefront/{storefront_oid}/email/campaigns/{email_campaign_uuid}/start"
-                .replace("{" + "storefront_oid" + "}", encodeURIComponent(String(storefront_oid)))
-                .replace("{" + "email_campaign_uuid" + "}", encodeURIComponent(String(email_campaign_uuid)));
+                .replace("{".concat("storefront_oid", "}"), encodeURIComponent(String(storefront_oid)))
+                .replace("{".concat("email_campaign_uuid", "}"), encodeURIComponent(String(email_campaign_uuid)));
             var localVarUrlObj = url.parse(localVarPath, true);
             var localVarRequestOptions = Object.assign({ method: 'PUT' }, options);
             var localVarHeaderParameter = {};
@@ -22752,8 +22960,8 @@ var StorefrontApiFetchParamCreator = function (configuration) {
                 throw new RequiredError('customers', 'Required parameter customers was null or undefined when calling subscribeToEmailList.');
             }
             var localVarPath = "/storefront/{storefront_oid}/email/lists/{email_list_uuid}/subscribe"
-                .replace("{" + "storefront_oid" + "}", encodeURIComponent(String(storefront_oid)))
-                .replace("{" + "email_list_uuid" + "}", encodeURIComponent(String(email_list_uuid)));
+                .replace("{".concat("storefront_oid", "}"), encodeURIComponent(String(storefront_oid)))
+                .replace("{".concat("email_list_uuid", "}"), encodeURIComponent(String(email_list_uuid)));
             var localVarUrlObj = url.parse(localVarPath, true);
             var localVarRequestOptions = Object.assign({ method: 'POST' }, options);
             var localVarHeaderParameter = {};
@@ -22814,8 +23022,8 @@ var StorefrontApiFetchParamCreator = function (configuration) {
                 throw new RequiredError('screen_recording_uuid', 'Required parameter screen_recording_uuid was null or undefined when calling unfavoriteScreenRecording.');
             }
             var localVarPath = "/storefront/{storefront_oid}/screen_recordings/{screen_recording_uuid}/favorite"
-                .replace("{" + "storefront_oid" + "}", encodeURIComponent(String(storefront_oid)))
-                .replace("{" + "screen_recording_uuid" + "}", encodeURIComponent(String(screen_recording_uuid)));
+                .replace("{".concat("storefront_oid", "}"), encodeURIComponent(String(storefront_oid)))
+                .replace("{".concat("screen_recording_uuid", "}"), encodeURIComponent(String(screen_recording_uuid)));
             var localVarUrlObj = url.parse(localVarPath, true);
             var localVarRequestOptions = Object.assign({ method: 'DELETE' }, options);
             var localVarHeaderParameter = {};
@@ -22871,8 +23079,8 @@ var StorefrontApiFetchParamCreator = function (configuration) {
                 throw new RequiredError('email_campaign', 'Required parameter email_campaign was null or undefined when calling updateEmailCampaign.');
             }
             var localVarPath = "/storefront/{storefront_oid}/email/campaigns/{email_campaign_uuid}"
-                .replace("{" + "storefront_oid" + "}", encodeURIComponent(String(storefront_oid)))
-                .replace("{" + "email_campaign_uuid" + "}", encodeURIComponent(String(email_campaign_uuid)));
+                .replace("{".concat("storefront_oid", "}"), encodeURIComponent(String(storefront_oid)))
+                .replace("{".concat("email_campaign_uuid", "}"), encodeURIComponent(String(email_campaign_uuid)));
             var localVarUrlObj = url.parse(localVarPath, true);
             var localVarRequestOptions = Object.assign({ method: 'PUT' }, options);
             var localVarHeaderParameter = {};
@@ -22938,8 +23146,8 @@ var StorefrontApiFetchParamCreator = function (configuration) {
                 throw new RequiredError('email_campaign_folder', 'Required parameter email_campaign_folder was null or undefined when calling updateEmailCampaignFolder.');
             }
             var localVarPath = "/storefront/{storefront_oid}/email/campaign_folders/{email_campaign_folder_uuid}"
-                .replace("{" + "storefront_oid" + "}", encodeURIComponent(String(storefront_oid)))
-                .replace("{" + "email_campaign_folder_uuid" + "}", encodeURIComponent(String(email_campaign_folder_uuid)));
+                .replace("{".concat("storefront_oid", "}"), encodeURIComponent(String(storefront_oid)))
+                .replace("{".concat("email_campaign_folder_uuid", "}"), encodeURIComponent(String(email_campaign_folder_uuid)));
             var localVarUrlObj = url.parse(localVarPath, true);
             var localVarRequestOptions = Object.assign({ method: 'PUT' }, options);
             var localVarHeaderParameter = {};
@@ -23005,8 +23213,8 @@ var StorefrontApiFetchParamCreator = function (configuration) {
                 throw new RequiredError('email_commseq', 'Required parameter email_commseq was null or undefined when calling updateEmailCommseq.');
             }
             var localVarPath = "/storefront/{storefront_oid}/email/commseqs/{commseq_uuid}"
-                .replace("{" + "storefront_oid" + "}", encodeURIComponent(String(storefront_oid)))
-                .replace("{" + "commseq_uuid" + "}", encodeURIComponent(String(commseq_uuid)));
+                .replace("{".concat("storefront_oid", "}"), encodeURIComponent(String(storefront_oid)))
+                .replace("{".concat("commseq_uuid", "}"), encodeURIComponent(String(commseq_uuid)));
             var localVarUrlObj = url.parse(localVarPath, true);
             var localVarRequestOptions = Object.assign({ method: 'PUT' }, options);
             var localVarHeaderParameter = {};
@@ -23072,8 +23280,8 @@ var StorefrontApiFetchParamCreator = function (configuration) {
                 throw new RequiredError('email_customer', 'Required parameter email_customer was null or undefined when calling updateEmailCustomer.');
             }
             var localVarPath = "/storefront/{storefront_oid}/email/customers/{email_customer_uuid}"
-                .replace("{" + "storefront_oid" + "}", encodeURIComponent(String(storefront_oid)))
-                .replace("{" + "email_customer_uuid" + "}", encodeURIComponent(String(email_customer_uuid)));
+                .replace("{".concat("storefront_oid", "}"), encodeURIComponent(String(storefront_oid)))
+                .replace("{".concat("email_customer_uuid", "}"), encodeURIComponent(String(email_customer_uuid)));
             var localVarUrlObj = url.parse(localVarPath, true);
             var localVarRequestOptions = Object.assign({ method: 'PUT' }, options);
             var localVarHeaderParameter = {};
@@ -23139,8 +23347,8 @@ var StorefrontApiFetchParamCreator = function (configuration) {
                 throw new RequiredError('email_commseq_email', 'Required parameter email_commseq_email was null or undefined when calling updateEmailEmail.');
             }
             var localVarPath = "/storefront/{storefront_oid}/email/emails/{commseq_email_uuid}"
-                .replace("{" + "storefront_oid" + "}", encodeURIComponent(String(storefront_oid)))
-                .replace("{" + "commseq_email_uuid" + "}", encodeURIComponent(String(commseq_email_uuid)));
+                .replace("{".concat("storefront_oid", "}"), encodeURIComponent(String(storefront_oid)))
+                .replace("{".concat("commseq_email_uuid", "}"), encodeURIComponent(String(commseq_email_uuid)));
             var localVarUrlObj = url.parse(localVarPath, true);
             var localVarRequestOptions = Object.assign({ method: 'PUT' }, options);
             var localVarHeaderParameter = {};
@@ -23206,8 +23414,8 @@ var StorefrontApiFetchParamCreator = function (configuration) {
                 throw new RequiredError('email_flow', 'Required parameter email_flow was null or undefined when calling updateEmailFlow.');
             }
             var localVarPath = "/storefront/{storefront_oid}/email/flows/{email_flow_uuid}"
-                .replace("{" + "storefront_oid" + "}", encodeURIComponent(String(storefront_oid)))
-                .replace("{" + "email_flow_uuid" + "}", encodeURIComponent(String(email_flow_uuid)));
+                .replace("{".concat("storefront_oid", "}"), encodeURIComponent(String(storefront_oid)))
+                .replace("{".concat("email_flow_uuid", "}"), encodeURIComponent(String(email_flow_uuid)));
             var localVarUrlObj = url.parse(localVarPath, true);
             var localVarRequestOptions = Object.assign({ method: 'PUT' }, options);
             var localVarHeaderParameter = {};
@@ -23273,8 +23481,8 @@ var StorefrontApiFetchParamCreator = function (configuration) {
                 throw new RequiredError('email_flow_folder', 'Required parameter email_flow_folder was null or undefined when calling updateEmailFlowFolder.');
             }
             var localVarPath = "/storefront/{storefront_oid}/email/flow_folders/{email_flow_folder_uuid}"
-                .replace("{" + "storefront_oid" + "}", encodeURIComponent(String(storefront_oid)))
-                .replace("{" + "email_flow_folder_uuid" + "}", encodeURIComponent(String(email_flow_folder_uuid)));
+                .replace("{".concat("storefront_oid", "}"), encodeURIComponent(String(storefront_oid)))
+                .replace("{".concat("email_flow_folder_uuid", "}"), encodeURIComponent(String(email_flow_folder_uuid)));
             var localVarUrlObj = url.parse(localVarPath, true);
             var localVarRequestOptions = Object.assign({ method: 'PUT' }, options);
             var localVarHeaderParameter = {};
@@ -23395,8 +23603,8 @@ var StorefrontApiFetchParamCreator = function (configuration) {
                 throw new RequiredError('email_list', 'Required parameter email_list was null or undefined when calling updateEmailList.');
             }
             var localVarPath = "/storefront/{storefront_oid}/email/lists/{email_list_uuid}"
-                .replace("{" + "storefront_oid" + "}", encodeURIComponent(String(storefront_oid)))
-                .replace("{" + "email_list_uuid" + "}", encodeURIComponent(String(email_list_uuid)));
+                .replace("{".concat("storefront_oid", "}"), encodeURIComponent(String(storefront_oid)))
+                .replace("{".concat("email_list_uuid", "}"), encodeURIComponent(String(email_list_uuid)));
             var localVarUrlObj = url.parse(localVarPath, true);
             var localVarRequestOptions = Object.assign({ method: 'PUT' }, options);
             var localVarHeaderParameter = {};
@@ -23462,8 +23670,8 @@ var StorefrontApiFetchParamCreator = function (configuration) {
                 throw new RequiredError('email_list_segment_folder', 'Required parameter email_list_segment_folder was null or undefined when calling updateEmailListSegmentFolder.');
             }
             var localVarPath = "/storefront/{storefront_oid}/email/list_segment_folders/{email_list_segment_folder_uuid}"
-                .replace("{" + "storefront_oid" + "}", encodeURIComponent(String(storefront_oid)))
-                .replace("{" + "email_list_segment_folder_uuid" + "}", encodeURIComponent(String(email_list_segment_folder_uuid)));
+                .replace("{".concat("storefront_oid", "}"), encodeURIComponent(String(storefront_oid)))
+                .replace("{".concat("email_list_segment_folder_uuid", "}"), encodeURIComponent(String(email_list_segment_folder_uuid)));
             var localVarUrlObj = url.parse(localVarPath, true);
             var localVarRequestOptions = Object.assign({ method: 'PUT' }, options);
             var localVarHeaderParameter = {};
@@ -23524,7 +23732,7 @@ var StorefrontApiFetchParamCreator = function (configuration) {
                 throw new RequiredError('settings', 'Required parameter settings was null or undefined when calling updateEmailPlan.');
             }
             var localVarPath = "/storefront/{storefront_oid}/email/plan"
-                .replace("{" + "storefront_oid" + "}", encodeURIComponent(String(storefront_oid)));
+                .replace("{".concat("storefront_oid", "}"), encodeURIComponent(String(storefront_oid)));
             var localVarUrlObj = url.parse(localVarPath, true);
             var localVarRequestOptions = Object.assign({ method: 'POST' }, options);
             var localVarHeaderParameter = {};
@@ -23590,8 +23798,8 @@ var StorefrontApiFetchParamCreator = function (configuration) {
                 throw new RequiredError('email_commseq_postcard', 'Required parameter email_commseq_postcard was null or undefined when calling updateEmailPostcard.');
             }
             var localVarPath = "/storefront/{storefront_oid}/email/postcards/{commseq_postcard_uuid}"
-                .replace("{" + "storefront_oid" + "}", encodeURIComponent(String(storefront_oid)))
-                .replace("{" + "commseq_postcard_uuid" + "}", encodeURIComponent(String(commseq_postcard_uuid)));
+                .replace("{".concat("storefront_oid", "}"), encodeURIComponent(String(storefront_oid)))
+                .replace("{".concat("commseq_postcard_uuid", "}"), encodeURIComponent(String(commseq_postcard_uuid)));
             var localVarUrlObj = url.parse(localVarPath, true);
             var localVarRequestOptions = Object.assign({ method: 'PUT' }, options);
             var localVarHeaderParameter = {};
@@ -23657,8 +23865,8 @@ var StorefrontApiFetchParamCreator = function (configuration) {
                 throw new RequiredError('email_segment', 'Required parameter email_segment was null or undefined when calling updateEmailSegment.');
             }
             var localVarPath = "/storefront/{storefront_oid}/email/segments/{email_segment_uuid}"
-                .replace("{" + "storefront_oid" + "}", encodeURIComponent(String(storefront_oid)))
-                .replace("{" + "email_segment_uuid" + "}", encodeURIComponent(String(email_segment_uuid)));
+                .replace("{".concat("storefront_oid", "}"), encodeURIComponent(String(storefront_oid)))
+                .replace("{".concat("email_segment_uuid", "}"), encodeURIComponent(String(email_segment_uuid)));
             var localVarUrlObj = url.parse(localVarPath, true);
             var localVarRequestOptions = Object.assign({ method: 'PUT' }, options);
             var localVarHeaderParameter = {};
@@ -23719,7 +23927,7 @@ var StorefrontApiFetchParamCreator = function (configuration) {
                 throw new RequiredError('settings', 'Required parameter settings was null or undefined when calling updateEmailSettings.');
             }
             var localVarPath = "/storefront/{storefront_oid}/email/settings"
-                .replace("{" + "storefront_oid" + "}", encodeURIComponent(String(storefront_oid)));
+                .replace("{".concat("storefront_oid", "}"), encodeURIComponent(String(storefront_oid)));
             var localVarUrlObj = url.parse(localVarPath, true);
             var localVarRequestOptions = Object.assign({ method: 'POST' }, options);
             var localVarHeaderParameter = {};
@@ -23785,8 +23993,8 @@ var StorefrontApiFetchParamCreator = function (configuration) {
                 throw new RequiredError('experiment', 'Required parameter experiment was null or undefined when calling updateExperiment.');
             }
             var localVarPath = "/storefront/{storefront_oid}/experiments/{storefront_experiment_oid}"
-                .replace("{" + "storefront_oid" + "}", encodeURIComponent(String(storefront_oid)))
-                .replace("{" + "storefront_experiment_oid" + "}", encodeURIComponent(String(storefront_experiment_oid)));
+                .replace("{".concat("storefront_oid", "}"), encodeURIComponent(String(storefront_oid)))
+                .replace("{".concat("storefront_experiment_oid", "}"), encodeURIComponent(String(storefront_experiment_oid)));
             var localVarUrlObj = url.parse(localVarPath, true);
             var localVarRequestOptions = Object.assign({ method: 'PUT' }, options);
             var localVarHeaderParameter = {};
@@ -23847,7 +24055,7 @@ var StorefrontApiFetchParamCreator = function (configuration) {
                 throw new RequiredError('library_item', 'Required parameter library_item was null or undefined when calling updateLibraryItem.');
             }
             var localVarPath = "/storefront/code_library/{library_item_oid}"
-                .replace("{" + "library_item_oid" + "}", encodeURIComponent(String(library_item_oid)));
+                .replace("{".concat("library_item_oid", "}"), encodeURIComponent(String(library_item_oid)));
             var localVarUrlObj = url.parse(localVarPath, true);
             var localVarRequestOptions = Object.assign({ method: 'PUT' }, options);
             var localVarHeaderParameter = {};
@@ -23913,8 +24121,8 @@ var StorefrontApiFetchParamCreator = function (configuration) {
                 throw new RequiredError('merchant_notes_request', 'Required parameter merchant_notes_request was null or undefined when calling updateScreenRecordingMerchantNotes.');
             }
             var localVarPath = "/storefront/{storefront_oid}/screen_recordings/{screen_recording_uuid}/merchant_notes"
-                .replace("{" + "storefront_oid" + "}", encodeURIComponent(String(storefront_oid)))
-                .replace("{" + "screen_recording_uuid" + "}", encodeURIComponent(String(screen_recording_uuid)));
+                .replace("{".concat("storefront_oid", "}"), encodeURIComponent(String(storefront_oid)))
+                .replace("{".concat("screen_recording_uuid", "}"), encodeURIComponent(String(screen_recording_uuid)));
             var localVarUrlObj = url.parse(localVarPath, true);
             var localVarRequestOptions = Object.assign({ method: 'POST' }, options);
             var localVarHeaderParameter = {};
@@ -23973,8 +24181,8 @@ var StorefrontApiFetchParamCreator = function (configuration) {
                 throw new RequiredError('segment', 'Required parameter segment was null or undefined when calling updateScreenRecordingSegment.');
             }
             var localVarPath = "/storefront/{storefront_oid}/screen_recordings/segments/{screen_recording_segment_oid}"
-                .replace("{" + "storefront_oid" + "}", encodeURIComponent(String(storefront_oid)))
-                .replace("{" + "screen_recording_segment_oid" + "}", encodeURIComponent(String(screen_recording_segment_oid)));
+                .replace("{".concat("storefront_oid", "}"), encodeURIComponent(String(storefront_oid)))
+                .replace("{".concat("screen_recording_segment_oid", "}"), encodeURIComponent(String(screen_recording_segment_oid)));
             var localVarUrlObj = url.parse(localVarPath, true);
             var localVarRequestOptions = Object.assign({ method: 'POST' }, options);
             var localVarHeaderParameter = {};
@@ -24035,7 +24243,7 @@ var StorefrontApiFetchParamCreator = function (configuration) {
                 throw new RequiredError('settings', 'Required parameter settings was null or undefined when calling updateScreenRecordingSettings.');
             }
             var localVarPath = "/storefront/{storefront_oid}/screen_recordings/settings"
-                .replace("{" + "storefront_oid" + "}", encodeURIComponent(String(storefront_oid)));
+                .replace("{".concat("storefront_oid", "}"), encodeURIComponent(String(storefront_oid)));
             var localVarUrlObj = url.parse(localVarPath, true);
             var localVarRequestOptions = Object.assign({ method: 'POST' }, options);
             var localVarHeaderParameter = {};
@@ -24101,8 +24309,8 @@ var StorefrontApiFetchParamCreator = function (configuration) {
                 throw new RequiredError('tags', 'Required parameter tags was null or undefined when calling updateScreenRecordingTags.');
             }
             var localVarPath = "/storefront/{storefront_oid}/screen_recordings/{screen_recording_uuid}/tags"
-                .replace("{" + "storefront_oid" + "}", encodeURIComponent(String(storefront_oid)))
-                .replace("{" + "screen_recording_uuid" + "}", encodeURIComponent(String(screen_recording_uuid)));
+                .replace("{".concat("storefront_oid", "}"), encodeURIComponent(String(storefront_oid)))
+                .replace("{".concat("screen_recording_uuid", "}"), encodeURIComponent(String(screen_recording_uuid)));
             var localVarUrlObj = url.parse(localVarPath, true);
             var localVarRequestOptions = Object.assign({ method: 'POST' }, options);
             var localVarHeaderParameter = {};
@@ -24161,8 +24369,8 @@ var StorefrontApiFetchParamCreator = function (configuration) {
                 throw new RequiredError('transaction_email', 'Required parameter transaction_email was null or undefined when calling updateTransactionEmail.');
             }
             var localVarPath = "/storefront/{storefront_oid}/transaction_email/list/{email_id}"
-                .replace("{" + "storefront_oid" + "}", encodeURIComponent(String(storefront_oid)))
-                .replace("{" + "email_id" + "}", encodeURIComponent(String(email_id)));
+                .replace("{".concat("storefront_oid", "}"), encodeURIComponent(String(storefront_oid)))
+                .replace("{".concat("email_id", "}"), encodeURIComponent(String(email_id)));
             var localVarUrlObj = url.parse(localVarPath, true);
             var localVarRequestOptions = Object.assign({ method: 'PUT' }, options);
             var localVarHeaderParameter = {};
@@ -24199,6 +24407,67 @@ var StorefrontApiFetchParamCreator = function (configuration) {
             localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
             var needsSerialization = ("TransactionEmail" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
             localVarRequestOptions.body = needsSerialization ? JSON.stringify(transaction_email || {}) : (transaction_email || "");
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         *
+         * @summary Update Twilio account
+         * @param {string} esp_twilio_uuid
+         * @param {Twilio} twilio Twilio
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        updateTwilioAccount: function (esp_twilio_uuid, twilio, options) {
+            if (options === void 0) { options = {}; }
+            // verify required parameter 'esp_twilio_uuid' is not null or undefined
+            if (esp_twilio_uuid === null || esp_twilio_uuid === undefined) {
+                throw new RequiredError('esp_twilio_uuid', 'Required parameter esp_twilio_uuid was null or undefined when calling updateTwilioAccount.');
+            }
+            // verify required parameter 'twilio' is not null or undefined
+            if (twilio === null || twilio === undefined) {
+                throw new RequiredError('twilio', 'Required parameter twilio was null or undefined when calling updateTwilioAccount.');
+            }
+            var localVarPath = "/storefront/twilio/accounts/{esp_twilio_uuid}"
+                .replace("{".concat("esp_twilio_uuid", "}"), encodeURIComponent(String(esp_twilio_uuid)));
+            var localVarUrlObj = url.parse(localVarPath, true);
+            var localVarRequestOptions = Object.assign({ method: 'PUT' }, options);
+            var localVarHeaderParameter = {};
+            var localVarQueryParameter = {};
+            if (configuration && configuration.apiVersion) {
+                localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+            }
+            // authentication ultraCartBrowserApiKey required
+            if (configuration && configuration.apiKey) {
+                var localVarApiKeyValue = typeof configuration.apiKey === 'function'
+                    ? configuration.apiKey("x-ultracart-browser-key")
+                    : configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-browser-key"] = localVarApiKeyValue;
+            }
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+                var localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+                    ? configuration.accessToken("ultraCartOauth", ["storefront_write"])
+                    : configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                var localVarApiKeyValue = typeof configuration.apiKey === 'function'
+                    ? configuration.apiKey("x-ultracart-simple-key")
+                    : configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+            var needsSerialization = ("Twilio" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
+            localVarRequestOptions.body = needsSerialization ? JSON.stringify(twilio || {}) : (twilio || "");
             return {
                 url: url.format(localVarUrlObj),
                 options: localVarRequestOptions,
@@ -24408,6 +24677,28 @@ var StorefrontApiFp = function (configuration) {
          */
         createEmailSendingDomain: function (domain, options) {
             var localVarFetchArgs = (0, exports.StorefrontApiFetchParamCreator)(configuration).createEmailSendingDomain(domain, options);
+            return function (fetch, basePath) {
+                if (fetch === void 0) { fetch = portableFetch; }
+                if (basePath === void 0) { basePath = BASE_PATH; }
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(function (response) {
+                    if (response.status >= 200 && response.status < 300) {
+                        return response.json();
+                    }
+                    else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
+         *
+         * @summary Create Twilio account
+         * @param {Twilio} twilio Twilio
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        createTwilioAccount: function (twilio, options) {
+            var localVarFetchArgs = (0, exports.StorefrontApiFetchParamCreator)(configuration).createTwilioAccount(twilio, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -24711,6 +25002,28 @@ var StorefrontApiFp = function (configuration) {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(function (response) {
                     if (response.status >= 200 && response.status < 300) {
                         return response;
+                    }
+                    else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
+         *
+         * @summary delete Twilio account
+         * @param {string} esp_twilio_uuid
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        deleteTwilioAccount: function (esp_twilio_uuid, options) {
+            var localVarFetchArgs = (0, exports.StorefrontApiFetchParamCreator)(configuration).deleteTwilioAccount(esp_twilio_uuid, options);
+            return function (fetch, basePath) {
+                if (fetch === void 0) { fetch = portableFetch; }
+                if (basePath === void 0) { basePath = BASE_PATH; }
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(function (response) {
+                    if (response.status >= 200 && response.status < 300) {
+                        return response.json();
                     }
                     else {
                         throw response;
@@ -26557,6 +26870,49 @@ var StorefrontApiFp = function (configuration) {
         },
         /**
          *
+         * @summary Get Twilio account
+         * @param {string} esp_twilio_uuid
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getTwilioAccount: function (esp_twilio_uuid, options) {
+            var localVarFetchArgs = (0, exports.StorefrontApiFetchParamCreator)(configuration).getTwilioAccount(esp_twilio_uuid, options);
+            return function (fetch, basePath) {
+                if (fetch === void 0) { fetch = portableFetch; }
+                if (basePath === void 0) { basePath = BASE_PATH; }
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(function (response) {
+                    if (response.status >= 200 && response.status < 300) {
+                        return response.json();
+                    }
+                    else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
+         *
+         * @summary Get all Twilio accounts
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getTwilioAccounts: function (options) {
+            var localVarFetchArgs = (0, exports.StorefrontApiFetchParamCreator)(configuration).getTwilioAccounts(options);
+            return function (fetch, basePath) {
+                if (fetch === void 0) { fetch = portableFetch; }
+                if (basePath === void 0) { basePath = BASE_PATH; }
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(function (response) {
+                    if (response.status >= 200 && response.status < 300) {
+                        return response.json();
+                    }
+                    else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
+         *
          * @summary Globally unsubscribe a customer
          * @param {number} storefront_oid
          * @param {EmailGlobalUnsubscribeRequest} unsubscribe Unsubscribe
@@ -27806,6 +28162,29 @@ var StorefrontApiFp = function (configuration) {
                 });
             };
         },
+        /**
+         *
+         * @summary Update Twilio account
+         * @param {string} esp_twilio_uuid
+         * @param {Twilio} twilio Twilio
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        updateTwilioAccount: function (esp_twilio_uuid, twilio, options) {
+            var localVarFetchArgs = (0, exports.StorefrontApiFetchParamCreator)(configuration).updateTwilioAccount(esp_twilio_uuid, twilio, options);
+            return function (fetch, basePath) {
+                if (fetch === void 0) { fetch = portableFetch; }
+                if (basePath === void 0) { basePath = BASE_PATH; }
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(function (response) {
+                    if (response.status >= 200 && response.status < 300) {
+                        return response.json();
+                    }
+                    else {
+                        throw response;
+                    }
+                });
+            };
+        },
     };
 };
 exports.StorefrontApiFp = StorefrontApiFp;
@@ -27914,6 +28293,16 @@ var StorefrontApiFactory = function (configuration, fetch, basePath) {
          */
         createEmailSendingDomain: function (domain, options) {
             return (0, exports.StorefrontApiFp)(configuration).createEmailSendingDomain(domain, options)(fetch, basePath);
+        },
+        /**
+         *
+         * @summary Create Twilio account
+         * @param {Twilio} twilio Twilio
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        createTwilioAccount: function (twilio, options) {
+            return (0, exports.StorefrontApiFp)(configuration).createTwilioAccount(twilio, options)(fetch, basePath);
         },
         /**
          *
@@ -28055,6 +28444,16 @@ var StorefrontApiFactory = function (configuration, fetch, basePath) {
          */
         deleteScreenRecordingSegment: function (storefront_oid, screen_recording_segment_oid, options) {
             return (0, exports.StorefrontApiFp)(configuration).deleteScreenRecordingSegment(storefront_oid, screen_recording_segment_oid, options)(fetch, basePath);
+        },
+        /**
+         *
+         * @summary delete Twilio account
+         * @param {string} esp_twilio_uuid
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        deleteTwilioAccount: function (esp_twilio_uuid, options) {
+            return (0, exports.StorefrontApiFp)(configuration).deleteTwilioAccount(esp_twilio_uuid, options)(fetch, basePath);
         },
         /**
          *
@@ -28935,6 +29334,25 @@ var StorefrontApiFactory = function (configuration, fetch, basePath) {
         },
         /**
          *
+         * @summary Get Twilio account
+         * @param {string} esp_twilio_uuid
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getTwilioAccount: function (esp_twilio_uuid, options) {
+            return (0, exports.StorefrontApiFp)(configuration).getTwilioAccount(esp_twilio_uuid, options)(fetch, basePath);
+        },
+        /**
+         *
+         * @summary Get all Twilio accounts
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getTwilioAccounts: function (options) {
+            return (0, exports.StorefrontApiFp)(configuration).getTwilioAccounts(options)(fetch, basePath);
+        },
+        /**
+         *
          * @summary Globally unsubscribe a customer
          * @param {number} storefront_oid
          * @param {EmailGlobalUnsubscribeRequest} unsubscribe Unsubscribe
@@ -29548,6 +29966,17 @@ var StorefrontApiFactory = function (configuration, fetch, basePath) {
         updateTransactionEmail: function (storefront_oid, email_id, transaction_email, options) {
             return (0, exports.StorefrontApiFp)(configuration).updateTransactionEmail(storefront_oid, email_id, transaction_email, options)(fetch, basePath);
         },
+        /**
+         *
+         * @summary Update Twilio account
+         * @param {string} esp_twilio_uuid
+         * @param {Twilio} twilio Twilio
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        updateTwilioAccount: function (esp_twilio_uuid, twilio, options) {
+            return (0, exports.StorefrontApiFp)(configuration).updateTwilioAccount(esp_twilio_uuid, twilio, options)(fetch, basePath);
+        },
     };
 };
 exports.StorefrontApiFactory = StorefrontApiFactory;
@@ -29670,6 +30099,17 @@ var StorefrontApi = /** @class */ (function (_super) {
      */
     StorefrontApi.prototype.createEmailSendingDomain = function (domain, options) {
         return (0, exports.StorefrontApiFp)(this.configuration).createEmailSendingDomain(domain, options)(this.fetch, this.basePath);
+    };
+    /**
+     *
+     * @summary Create Twilio account
+     * @param {Twilio} twilio Twilio
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof StorefrontApi
+     */
+    StorefrontApi.prototype.createTwilioAccount = function (twilio, options) {
+        return (0, exports.StorefrontApiFp)(this.configuration).createTwilioAccount(twilio, options)(this.fetch, this.basePath);
     };
     /**
      *
@@ -29824,6 +30264,17 @@ var StorefrontApi = /** @class */ (function (_super) {
      */
     StorefrontApi.prototype.deleteScreenRecordingSegment = function (storefront_oid, screen_recording_segment_oid, options) {
         return (0, exports.StorefrontApiFp)(this.configuration).deleteScreenRecordingSegment(storefront_oid, screen_recording_segment_oid, options)(this.fetch, this.basePath);
+    };
+    /**
+     *
+     * @summary delete Twilio account
+     * @param {string} esp_twilio_uuid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof StorefrontApi
+     */
+    StorefrontApi.prototype.deleteTwilioAccount = function (esp_twilio_uuid, options) {
+        return (0, exports.StorefrontApiFp)(this.configuration).deleteTwilioAccount(esp_twilio_uuid, options)(this.fetch, this.basePath);
     };
     /**
      *
@@ -30784,6 +31235,27 @@ var StorefrontApi = /** @class */ (function (_super) {
     };
     /**
      *
+     * @summary Get Twilio account
+     * @param {string} esp_twilio_uuid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof StorefrontApi
+     */
+    StorefrontApi.prototype.getTwilioAccount = function (esp_twilio_uuid, options) {
+        return (0, exports.StorefrontApiFp)(this.configuration).getTwilioAccount(esp_twilio_uuid, options)(this.fetch, this.basePath);
+    };
+    /**
+     *
+     * @summary Get all Twilio accounts
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof StorefrontApi
+     */
+    StorefrontApi.prototype.getTwilioAccounts = function (options) {
+        return (0, exports.StorefrontApiFp)(this.configuration).getTwilioAccounts(options)(this.fetch, this.basePath);
+    };
+    /**
+     *
      * @summary Globally unsubscribe a customer
      * @param {number} storefront_oid
      * @param {EmailGlobalUnsubscribeRequest} unsubscribe Unsubscribe
@@ -31450,6 +31922,18 @@ var StorefrontApi = /** @class */ (function (_super) {
     StorefrontApi.prototype.updateTransactionEmail = function (storefront_oid, email_id, transaction_email, options) {
         return (0, exports.StorefrontApiFp)(this.configuration).updateTransactionEmail(storefront_oid, email_id, transaction_email, options)(this.fetch, this.basePath);
     };
+    /**
+     *
+     * @summary Update Twilio account
+     * @param {string} esp_twilio_uuid
+     * @param {Twilio} twilio Twilio
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof StorefrontApi
+     */
+    StorefrontApi.prototype.updateTwilioAccount = function (esp_twilio_uuid, twilio, options) {
+        return (0, exports.StorefrontApiFp)(this.configuration).updateTwilioAccount(esp_twilio_uuid, twilio, options)(this.fetch, this.basePath);
+    };
     return StorefrontApi;
 }(BaseAPI));
 exports.StorefrontApi = StorefrontApi;
@@ -31478,7 +31962,7 @@ var TaxApiFetchParamCreator = function (configuration) {
                 throw new RequiredError('tax_city', 'Required parameter tax_city was null or undefined when calling deleteTaxProviderSelfCity.');
             }
             var localVarPath = "/tax/providers/self/city/{city}"
-                .replace("{" + "city" + "}", encodeURIComponent(String(city)));
+                .replace("{".concat("city", "}"), encodeURIComponent(String(city)));
             var localVarUrlObj = url.parse(localVarPath, true);
             var localVarRequestOptions = Object.assign({ method: 'DELETE' }, options);
             var localVarHeaderParameter = {};
@@ -31532,7 +32016,7 @@ var TaxApiFetchParamCreator = function (configuration) {
                 throw new RequiredError('tax_country', 'Required parameter tax_country was null or undefined when calling deleteTaxProviderSelfCountry.');
             }
             var localVarPath = "/tax/providers/self/country/{countryCode}"
-                .replace("{" + "countryCode" + "}", encodeURIComponent(String(countryCode)));
+                .replace("{".concat("countryCode", "}"), encodeURIComponent(String(countryCode)));
             var localVarUrlObj = url.parse(localVarPath, true);
             var localVarRequestOptions = Object.assign({ method: 'DELETE' }, options);
             var localVarHeaderParameter = {};
@@ -31586,7 +32070,7 @@ var TaxApiFetchParamCreator = function (configuration) {
                 throw new RequiredError('tax_county', 'Required parameter tax_county was null or undefined when calling deleteTaxProviderSelfCounty.');
             }
             var localVarPath = "/tax/providers/self/county/{county}"
-                .replace("{" + "county" + "}", encodeURIComponent(String(county)));
+                .replace("{".concat("county", "}"), encodeURIComponent(String(county)));
             var localVarUrlObj = url.parse(localVarPath, true);
             var localVarRequestOptions = Object.assign({ method: 'DELETE' }, options);
             var localVarHeaderParameter = {};
@@ -31640,7 +32124,7 @@ var TaxApiFetchParamCreator = function (configuration) {
                 throw new RequiredError('tax_postal_code', 'Required parameter tax_postal_code was null or undefined when calling deleteTaxProviderSelfPostalCode.');
             }
             var localVarPath = "/tax/providers/self/postalCode/{postal_code}"
-                .replace("{" + "postal_code" + "}", encodeURIComponent(String(postal_code)));
+                .replace("{".concat("postal_code", "}"), encodeURIComponent(String(postal_code)));
             var localVarUrlObj = url.parse(localVarPath, true);
             var localVarRequestOptions = Object.assign({ method: 'DELETE' }, options);
             var localVarHeaderParameter = {};
@@ -31694,7 +32178,7 @@ var TaxApiFetchParamCreator = function (configuration) {
                 throw new RequiredError('tax_state', 'Required parameter tax_state was null or undefined when calling deleteTaxProviderSelfState.');
             }
             var localVarPath = "/tax/providers/self/state/{stateCode}"
-                .replace("{" + "stateCode" + "}", encodeURIComponent(String(stateCode)));
+                .replace("{".concat("stateCode", "}"), encodeURIComponent(String(stateCode)));
             var localVarUrlObj = url.parse(localVarPath, true);
             var localVarRequestOptions = Object.assign({ method: 'DELETE' }, options);
             var localVarHeaderParameter = {};
@@ -31951,7 +32435,7 @@ var TaxApiFetchParamCreator = function (configuration) {
                 throw new RequiredError('countryCode', 'Required parameter countryCode was null or undefined when calling getTaxProviderSelfRegionsByCountryCode.');
             }
             var localVarPath = "/tax/providers/self/regions/{countryCode}"
-                .replace("{" + "countryCode" + "}", encodeURIComponent(String(countryCode)));
+                .replace("{".concat("countryCode", "}"), encodeURIComponent(String(countryCode)));
             var localVarUrlObj = url.parse(localVarPath, true);
             var localVarRequestOptions = Object.assign({ method: 'GET' }, options);
             var localVarHeaderParameter = {};
@@ -32249,7 +32733,7 @@ var TaxApiFetchParamCreator = function (configuration) {
                 throw new RequiredError('providerName', 'Required parameter providerName was null or undefined when calling setActiveTaxProvider.');
             }
             var localVarPath = "/tax/providers/setActive/{providerName}"
-                .replace("{" + "providerName" + "}", encodeURIComponent(String(providerName)));
+                .replace("{".concat("providerName", "}"), encodeURIComponent(String(providerName)));
             var localVarUrlObj = url.parse(localVarPath, true);
             var localVarRequestOptions = Object.assign({ method: 'POST' }, options);
             var localVarHeaderParameter = {};
@@ -32396,7 +32880,7 @@ var TaxApiFetchParamCreator = function (configuration) {
                 throw new RequiredError('tax_city', 'Required parameter tax_city was null or undefined when calling updateTaxProviderSelfCity.');
             }
             var localVarPath = "/tax/providers/self/city/{city}"
-                .replace("{" + "city" + "}", encodeURIComponent(String(city)));
+                .replace("{".concat("city", "}"), encodeURIComponent(String(city)));
             var localVarUrlObj = url.parse(localVarPath, true);
             var localVarRequestOptions = Object.assign({ method: 'POST' }, options);
             var localVarHeaderParameter = {};
@@ -32450,7 +32934,7 @@ var TaxApiFetchParamCreator = function (configuration) {
                 throw new RequiredError('tax_country', 'Required parameter tax_country was null or undefined when calling updateTaxProviderSelfCountry.');
             }
             var localVarPath = "/tax/providers/self/country/{countryCode}"
-                .replace("{" + "countryCode" + "}", encodeURIComponent(String(countryCode)));
+                .replace("{".concat("countryCode", "}"), encodeURIComponent(String(countryCode)));
             var localVarUrlObj = url.parse(localVarPath, true);
             var localVarRequestOptions = Object.assign({ method: 'POST' }, options);
             var localVarHeaderParameter = {};
@@ -32504,7 +32988,7 @@ var TaxApiFetchParamCreator = function (configuration) {
                 throw new RequiredError('tax_county', 'Required parameter tax_county was null or undefined when calling updateTaxProviderSelfCounty.');
             }
             var localVarPath = "/tax/providers/self/county/{county}"
-                .replace("{" + "county" + "}", encodeURIComponent(String(county)));
+                .replace("{".concat("county", "}"), encodeURIComponent(String(county)));
             var localVarUrlObj = url.parse(localVarPath, true);
             var localVarRequestOptions = Object.assign({ method: 'POST' }, options);
             var localVarHeaderParameter = {};
@@ -32558,7 +33042,7 @@ var TaxApiFetchParamCreator = function (configuration) {
                 throw new RequiredError('tax_postal_code', 'Required parameter tax_postal_code was null or undefined when calling updateTaxProviderSelfPostalCode.');
             }
             var localVarPath = "/tax/providers/self/postalCode/{postal_code}"
-                .replace("{" + "postal_code" + "}", encodeURIComponent(String(postal_code)));
+                .replace("{".concat("postal_code", "}"), encodeURIComponent(String(postal_code)));
             var localVarUrlObj = url.parse(localVarPath, true);
             var localVarRequestOptions = Object.assign({ method: 'POST' }, options);
             var localVarHeaderParameter = {};
@@ -32612,7 +33096,7 @@ var TaxApiFetchParamCreator = function (configuration) {
                 throw new RequiredError('tax_state', 'Required parameter tax_state was null or undefined when calling updateTaxProviderSelfState.');
             }
             var localVarPath = "/tax/providers/self/state/{stateCode}"
-                .replace("{" + "stateCode" + "}", encodeURIComponent(String(stateCode)));
+                .replace("{".concat("stateCode", "}"), encodeURIComponent(String(stateCode)));
             var localVarUrlObj = url.parse(localVarPath, true);
             var localVarRequestOptions = Object.assign({ method: 'POST' }, options);
             var localVarHeaderParameter = {};
@@ -34059,7 +34543,7 @@ var UserApiFetchParamCreator = function (configuration) {
                 throw new RequiredError('group_oid', 'Required parameter group_oid was null or undefined when calling deleteGroup.');
             }
             var localVarPath = "/user/groups/{group_oid}"
-                .replace("{" + "group_oid" + "}", encodeURIComponent(String(group_oid)));
+                .replace("{".concat("group_oid", "}"), encodeURIComponent(String(group_oid)));
             var localVarUrlObj = url.parse(localVarPath, true);
             var localVarRequestOptions = Object.assign({ method: 'DELETE' }, options);
             var localVarHeaderParameter = {};
@@ -34105,7 +34589,7 @@ var UserApiFetchParamCreator = function (configuration) {
                 throw new RequiredError('user_id', 'Required parameter user_id was null or undefined when calling deleteUser.');
             }
             var localVarPath = "/user/users/{user_id}"
-                .replace("{" + "user_id" + "}", encodeURIComponent(String(user_id)));
+                .replace("{".concat("user_id", "}"), encodeURIComponent(String(user_id)));
             var localVarUrlObj = url.parse(localVarPath, true);
             var localVarRequestOptions = Object.assign({ method: 'DELETE' }, options);
             var localVarHeaderParameter = {};
@@ -34151,7 +34635,7 @@ var UserApiFetchParamCreator = function (configuration) {
                 throw new RequiredError('group_oid', 'Required parameter group_oid was null or undefined when calling getGroup.');
             }
             var localVarPath = "/user/groups/{group_oid}"
-                .replace("{" + "group_oid" + "}", encodeURIComponent(String(group_oid)));
+                .replace("{".concat("group_oid", "}"), encodeURIComponent(String(group_oid)));
             var localVarUrlObj = url.parse(localVarPath, true);
             var localVarRequestOptions = Object.assign({ method: 'GET' }, options);
             var localVarHeaderParameter = {};
@@ -34237,7 +34721,7 @@ var UserApiFetchParamCreator = function (configuration) {
                 throw new RequiredError('user_id', 'Required parameter user_id was null or undefined when calling getUser.');
             }
             var localVarPath = "/user/users/{user_id}"
-                .replace("{" + "user_id" + "}", encodeURIComponent(String(user_id)));
+                .replace("{".concat("user_id", "}"), encodeURIComponent(String(user_id)));
             var localVarUrlObj = url.parse(localVarPath, true);
             var localVarRequestOptions = Object.assign({ method: 'GET' }, options);
             var localVarHeaderParameter = {};
@@ -34283,7 +34767,7 @@ var UserApiFetchParamCreator = function (configuration) {
                 throw new RequiredError('user_id', 'Required parameter user_id was null or undefined when calling getUserLogins.');
             }
             var localVarPath = "/user/users/{user_id}/logins"
-                .replace("{" + "user_id" + "}", encodeURIComponent(String(user_id)));
+                .replace("{".concat("user_id", "}"), encodeURIComponent(String(user_id)));
             var localVarUrlObj = url.parse(localVarPath, true);
             var localVarRequestOptions = Object.assign({ method: 'GET' }, options);
             var localVarHeaderParameter = {};
@@ -34470,7 +34954,7 @@ var UserApiFetchParamCreator = function (configuration) {
                 throw new RequiredError('group_oid', 'Required parameter group_oid was null or undefined when calling updateGroup.');
             }
             var localVarPath = "/user/groups/{group_oid}"
-                .replace("{" + "group_oid" + "}", encodeURIComponent(String(group_oid)));
+                .replace("{".concat("group_oid", "}"), encodeURIComponent(String(group_oid)));
             var localVarUrlObj = url.parse(localVarPath, true);
             var localVarRequestOptions = Object.assign({ method: 'PUT' }, options);
             var localVarHeaderParameter = {};
@@ -34524,7 +35008,7 @@ var UserApiFetchParamCreator = function (configuration) {
                 throw new RequiredError('user_id', 'Required parameter user_id was null or undefined when calling updateUser.');
             }
             var localVarPath = "/user/users/{user_id}"
-                .replace("{" + "user_id" + "}", encodeURIComponent(String(user_id)));
+                .replace("{".concat("user_id", "}"), encodeURIComponent(String(user_id)));
             var localVarUrlObj = url.parse(localVarPath, true);
             var localVarRequestOptions = Object.assign({ method: 'PUT' }, options);
             var localVarHeaderParameter = {};
@@ -35087,7 +35571,7 @@ var WebhookApiFetchParamCreator = function (configuration) {
                 throw new RequiredError('webhookOid', 'Required parameter webhookOid was null or undefined when calling deleteWebhook.');
             }
             var localVarPath = "/webhook/webhooks/{webhookOid}"
-                .replace("{" + "webhookOid" + "}", encodeURIComponent(String(webhookOid)));
+                .replace("{".concat("webhookOid", "}"), encodeURIComponent(String(webhookOid)));
             var localVarUrlObj = url.parse(localVarPath, true);
             var localVarRequestOptions = Object.assign({ method: 'DELETE' }, options);
             var localVarHeaderParameter = {};
@@ -35186,8 +35670,8 @@ var WebhookApiFetchParamCreator = function (configuration) {
                 throw new RequiredError('requestId', 'Required parameter requestId was null or undefined when calling getWebhookLog.');
             }
             var localVarPath = "/webhook/webhooks/{webhookOid}/logs/{requestId}"
-                .replace("{" + "webhookOid" + "}", encodeURIComponent(String(webhookOid)))
-                .replace("{" + "requestId" + "}", encodeURIComponent(String(requestId)));
+                .replace("{".concat("webhookOid", "}"), encodeURIComponent(String(webhookOid)))
+                .replace("{".concat("requestId", "}"), encodeURIComponent(String(requestId)));
             var localVarUrlObj = url.parse(localVarPath, true);
             var localVarRequestOptions = Object.assign({ method: 'GET' }, options);
             var localVarHeaderParameter = {};
@@ -35236,7 +35720,7 @@ var WebhookApiFetchParamCreator = function (configuration) {
                 throw new RequiredError('webhookOid', 'Required parameter webhookOid was null or undefined when calling getWebhookLogSummaries.');
             }
             var localVarPath = "/webhook/webhooks/{webhookOid}/logs"
-                .replace("{" + "webhookOid" + "}", encodeURIComponent(String(webhookOid)));
+                .replace("{".concat("webhookOid", "}"), encodeURIComponent(String(webhookOid)));
             var localVarUrlObj = url.parse(localVarPath, true);
             var localVarRequestOptions = Object.assign({ method: 'GET' }, options);
             var localVarHeaderParameter = {};
@@ -35404,8 +35888,8 @@ var WebhookApiFetchParamCreator = function (configuration) {
                 throw new RequiredError('eventName', 'Required parameter eventName was null or undefined when calling resendEvent.');
             }
             var localVarPath = "/webhook/webhooks/{webhookOid}/reflow/{eventName}"
-                .replace("{" + "webhookOid" + "}", encodeURIComponent(String(webhookOid)))
-                .replace("{" + "eventName" + "}", encodeURIComponent(String(eventName)));
+                .replace("{".concat("webhookOid", "}"), encodeURIComponent(String(webhookOid)))
+                .replace("{".concat("eventName", "}"), encodeURIComponent(String(eventName)));
             var localVarUrlObj = url.parse(localVarPath, true);
             var localVarRequestOptions = Object.assign({ method: 'POST' }, options);
             var localVarHeaderParameter = {};
@@ -35457,7 +35941,7 @@ var WebhookApiFetchParamCreator = function (configuration) {
                 throw new RequiredError('webhookOid', 'Required parameter webhookOid was null or undefined when calling updateWebhook.');
             }
             var localVarPath = "/webhook/webhooks/{webhookOid}"
-                .replace("{" + "webhookOid" + "}", encodeURIComponent(String(webhookOid)));
+                .replace("{".concat("webhookOid", "}"), encodeURIComponent(String(webhookOid)));
             var localVarUrlObj = url.parse(localVarPath, true);
             var localVarRequestOptions = Object.assign({ method: 'PUT' }, options);
             var localVarHeaderParameter = {};

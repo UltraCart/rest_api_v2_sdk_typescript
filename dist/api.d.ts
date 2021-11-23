@@ -31943,6 +31943,117 @@ export interface TransactionGatewaysResponse {
 /**
  *
  * @export
+ * @interface Twilio
+ */
+export interface Twilio {
+    /**
+     *
+     * @type {string}
+     * @memberof Twilio
+     */
+    account_sid?: string;
+    /**
+     *
+     * @type {string}
+     * @memberof Twilio
+     */
+    auth_token?: string;
+    /**
+     *
+     * @type {string}
+     * @memberof Twilio
+     */
+    esp_twilio_uuid?: string;
+    /**
+     *
+     * @type {Array<string>}
+     * @memberof Twilio
+     */
+    phone_numbers?: Array<string>;
+}
+/**
+ *
+ * @export
+ * @interface TwilioResponse
+ */
+export interface TwilioResponse {
+    /**
+     *
+     * @type {string}
+     * @memberof TwilioResponse
+     */
+    diagnostics?: string;
+    /**
+     *
+     * @type {ModelError}
+     * @memberof TwilioResponse
+     */
+    error?: ModelError;
+    /**
+     *
+     * @type {ResponseMetadata}
+     * @memberof TwilioResponse
+     */
+    metadata?: ResponseMetadata;
+    /**
+     * Indicates if API call was successful
+     * @type {boolean}
+     * @memberof TwilioResponse
+     */
+    success?: boolean;
+    /**
+     *
+     * @type {Twilio}
+     * @memberof TwilioResponse
+     */
+    twilio?: Twilio;
+    /**
+     *
+     * @type {Warning}
+     * @memberof TwilioResponse
+     */
+    warning?: Warning;
+}
+/**
+ *
+ * @export
+ * @interface TwiliosResponse
+ */
+export interface TwiliosResponse {
+    /**
+     *
+     * @type {ModelError}
+     * @memberof TwiliosResponse
+     */
+    error?: ModelError;
+    /**
+     *
+     * @type {ResponseMetadata}
+     * @memberof TwiliosResponse
+     */
+    metadata?: ResponseMetadata;
+    /**
+     * Indicates if API call was successful
+     * @type {boolean}
+     * @memberof TwiliosResponse
+     */
+    success?: boolean;
+    /**
+     *
+     * @type {Array<Twilio>}
+     * @memberof TwiliosResponse
+     */
+    twilios?: Array<Twilio>;
+    /**
+     *
+     * @type {Warning}
+     * @memberof TwiliosResponse
+     */
+    warning?: Warning;
+}
+/**
+ *
+ * @export
  * @interface UltraCartConfig
  */
 export interface UltraCartConfig {
@@ -39957,6 +40068,14 @@ export declare const StorefrontApiFetchParamCreator: (configuration?: Configurat
     createEmailSendingDomain(domain: string, options?: any): FetchArgs;
     /**
      *
+     * @summary Create Twilio account
+     * @param {Twilio} twilio Twilio
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    createTwilioAccount(twilio: Twilio, options?: any): FetchArgs;
+    /**
+     *
      * @summary Delete email campaignFolder
      * @param {number} storefront_oid
      * @param {string} email_campaign_folder_uuid
@@ -40070,6 +40189,14 @@ export declare const StorefrontApiFetchParamCreator: (configuration?: Configurat
      * @throws {RequiredError}
      */
     deleteScreenRecordingSegment(storefront_oid: number, screen_recording_segment_oid: number, options?: any): FetchArgs;
+    /**
+     *
+     * @summary delete Twilio account
+     * @param {string} esp_twilio_uuid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    deleteTwilioAccount(esp_twilio_uuid: string, options?: any): FetchArgs;
     /**
      *
      * @summary Duplicate library item.
@@ -40789,6 +40916,21 @@ export declare const StorefrontApiFetchParamCreator: (configuration?: Configurat
     getTransactionEmailScreenshots(storefront_oid: number, email_id: string, options?: any): FetchArgs;
     /**
      *
+     * @summary Get Twilio account
+     * @param {string} esp_twilio_uuid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getTwilioAccount(esp_twilio_uuid: string, options?: any): FetchArgs;
+    /**
+     *
+     * @summary Get all Twilio accounts
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getTwilioAccounts(options?: any): FetchArgs;
+    /**
+     *
      * @summary Globally unsubscribe a customer
      * @param {number} storefront_oid
      * @param {EmailGlobalUnsubscribeRequest} unsubscribe Unsubscribe
@@ -41296,6 +41438,15 @@ export declare const StorefrontApiFetchParamCreator: (configuration?: Configurat
      * @throws {RequiredError}
      */
     updateTransactionEmail(storefront_oid: number, email_id: string, transaction_email: TransactionEmail, options?: any): FetchArgs;
+    /**
+     *
+     * @summary Update Twilio account
+     * @param {string} esp_twilio_uuid
+     * @param {Twilio} twilio Twilio
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    updateTwilioAccount(esp_twilio_uuid: string, twilio: Twilio, options?: any): FetchArgs;
 };
 /**
  * StorefrontApi - functional programming interface
@@ -41384,6 +41535,14 @@ export declare const StorefrontApiFp: (configuration?: Configuration) => {
      * @throws {RequiredError}
      */
     createEmailSendingDomain(domain: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<EmailSendingDomainResponse>;
+    /**
+     *
+     * @summary Create Twilio account
+     * @param {Twilio} twilio Twilio
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    createTwilioAccount(twilio: Twilio, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<TwilioResponse>;
     /**
      *
      * @summary Delete email campaignFolder
@@ -41499,6 +41658,14 @@ export declare const StorefrontApiFp: (configuration?: Configuration) => {
      * @throws {RequiredError}
      */
     deleteScreenRecordingSegment(storefront_oid: number, screen_recording_segment_oid: number, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Response>;
+    /**
+     *
+     * @summary delete Twilio account
+     * @param {string} esp_twilio_uuid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    deleteTwilioAccount(esp_twilio_uuid: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<BaseResponse>;
     /**
      *
      * @summary Duplicate library item.
@@ -42218,6 +42385,21 @@ export declare const StorefrontApiFp: (configuration?: Configuration) => {
     getTransactionEmailScreenshots(storefront_oid: number, email_id: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ScreenshotsResponse>;
     /**
      *
+     * @summary Get Twilio account
+     * @param {string} esp_twilio_uuid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getTwilioAccount(esp_twilio_uuid: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<TwilioResponse>;
+    /**
+     *
+     * @summary Get all Twilio accounts
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getTwilioAccounts(options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<TwiliosResponse>;
+    /**
+     *
      * @summary Globally unsubscribe a customer
      * @param {number} storefront_oid
      * @param {EmailGlobalUnsubscribeRequest} unsubscribe Unsubscribe
@@ -42725,6 +42907,15 @@ export declare const StorefrontApiFp: (configuration?: Configuration) => {
      * @throws {RequiredError}
      */
     updateTransactionEmail(storefront_oid: number, email_id: string, transaction_email: TransactionEmail, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<TransactionEmailResponse>;
+    /**
+     *
+     * @summary Update Twilio account
+     * @param {string} esp_twilio_uuid
+     * @param {Twilio} twilio Twilio
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    updateTwilioAccount(esp_twilio_uuid: string, twilio: Twilio, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<TwilioResponse>;
 };
 /**
  * StorefrontApi - factory interface
@@ -42813,6 +43004,14 @@ export declare const StorefrontApiFactory: (configuration?: Configuration, fetch
      * @throws {RequiredError}
      */
     createEmailSendingDomain(domain: string, options?: any): Promise<EmailSendingDomainResponse>;
+    /**
+     *
+     * @summary Create Twilio account
+     * @param {Twilio} twilio Twilio
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    createTwilioAccount(twilio: Twilio, options?: any): Promise<TwilioResponse>;
     /**
      *
      * @summary Delete email campaignFolder
@@ -42928,6 +43127,14 @@ export declare const StorefrontApiFactory: (configuration?: Configuration, fetch
      * @throws {RequiredError}
      */
     deleteScreenRecordingSegment(storefront_oid: number, screen_recording_segment_oid: number, options?: any): Promise<Response>;
+    /**
+     *
+     * @summary delete Twilio account
+     * @param {string} esp_twilio_uuid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    deleteTwilioAccount(esp_twilio_uuid: string, options?: any): Promise<BaseResponse>;
     /**
      *
      * @summary Duplicate library item.
@@ -43647,6 +43854,21 @@ export declare const StorefrontApiFactory: (configuration?: Configuration, fetch
     getTransactionEmailScreenshots(storefront_oid: number, email_id: string, options?: any): Promise<ScreenshotsResponse>;
     /**
      *
+     * @summary Get Twilio account
+     * @param {string} esp_twilio_uuid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getTwilioAccount(esp_twilio_uuid: string, options?: any): Promise<TwilioResponse>;
+    /**
+     *
+     * @summary Get all Twilio accounts
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getTwilioAccounts(options?: any): Promise<TwiliosResponse>;
+    /**
+     *
      * @summary Globally unsubscribe a customer
      * @param {number} storefront_oid
      * @param {EmailGlobalUnsubscribeRequest} unsubscribe Unsubscribe
@@ -44154,6 +44376,15 @@ export declare const StorefrontApiFactory: (configuration?: Configuration, fetch
      * @throws {RequiredError}
      */
     updateTransactionEmail(storefront_oid: number, email_id: string, transaction_email: TransactionEmail, options?: any): Promise<TransactionEmailResponse>;
+    /**
+     *
+     * @summary Update Twilio account
+     * @param {string} esp_twilio_uuid
+     * @param {Twilio} twilio Twilio
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    updateTwilioAccount(esp_twilio_uuid: string, twilio: Twilio, options?: any): Promise<TwilioResponse>;
 };
 /**
  * StorefrontApi - interface
@@ -44252,6 +44483,15 @@ export interface StorefrontApiInterface {
      * @memberof StorefrontApiInterface
      */
     createEmailSendingDomain(domain: string, options?: any): Promise<EmailSendingDomainResponse>;
+    /**
+     *
+     * @summary Create Twilio account
+     * @param {Twilio} twilio Twilio
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof StorefrontApiInterface
+     */
+    createTwilioAccount(twilio: Twilio, options?: any): Promise<TwilioResponse>;
     /**
      *
      * @summary Delete email campaignFolder
@@ -44380,6 +44620,15 @@ export interface StorefrontApiInterface {
      * @memberof StorefrontApiInterface
      */
     deleteScreenRecordingSegment(storefront_oid: number, screen_recording_segment_oid: number, options?: any): Promise<{}>;
+    /**
+     *
+     * @summary delete Twilio account
+     * @param {string} esp_twilio_uuid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof StorefrontApiInterface
+     */
+    deleteTwilioAccount(esp_twilio_uuid: string, options?: any): Promise<BaseResponse>;
     /**
      *
      * @summary Duplicate library item.
@@ -45179,6 +45428,23 @@ export interface StorefrontApiInterface {
     getTransactionEmailScreenshots(storefront_oid: number, email_id: string, options?: any): Promise<ScreenshotsResponse>;
     /**
      *
+     * @summary Get Twilio account
+     * @param {string} esp_twilio_uuid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof StorefrontApiInterface
+     */
+    getTwilioAccount(esp_twilio_uuid: string, options?: any): Promise<TwilioResponse>;
+    /**
+     *
+     * @summary Get all Twilio accounts
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof StorefrontApiInterface
+     */
+    getTwilioAccounts(options?: any): Promise<TwiliosResponse>;
+    /**
+     *
      * @summary Globally unsubscribe a customer
      * @param {number} storefront_oid
      * @param {EmailGlobalUnsubscribeRequest} unsubscribe Unsubscribe
@@ -45739,6 +46005,16 @@ export interface StorefrontApiInterface {
      * @memberof StorefrontApiInterface
      */
     updateTransactionEmail(storefront_oid: number, email_id: string, transaction_email: TransactionEmail, options?: any): Promise<TransactionEmailResponse>;
+    /**
+     *
+     * @summary Update Twilio account
+     * @param {string} esp_twilio_uuid
+     * @param {Twilio} twilio Twilio
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof StorefrontApiInterface
+     */
+    updateTwilioAccount(esp_twilio_uuid: string, twilio: Twilio, options?: any): Promise<TwilioResponse>;
 }
 /**
  * StorefrontApi - object-oriented interface
@@ -45838,6 +46114,15 @@ export declare class StorefrontApi extends BaseAPI implements StorefrontApiInter
      * @memberof StorefrontApi
      */
     createEmailSendingDomain(domain: string, options?: any): Promise<EmailSendingDomainResponse>;
+    /**
+     *
+     * @summary Create Twilio account
+     * @param {Twilio} twilio Twilio
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof StorefrontApi
+     */
+    createTwilioAccount(twilio: Twilio, options?: any): Promise<TwilioResponse>;
     /**
      *
      * @summary Delete email campaignFolder
@@ -45966,6 +46251,15 @@ export declare class StorefrontApi extends BaseAPI implements StorefrontApiInter
      * @memberof StorefrontApi
      */
     deleteScreenRecordingSegment(storefront_oid: number, screen_recording_segment_oid: number, options?: any): Promise<Response>;
+    /**
+     *
+     * @summary delete Twilio account
+     * @param {string} esp_twilio_uuid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof StorefrontApi
+     */
+    deleteTwilioAccount(esp_twilio_uuid: string, options?: any): Promise<BaseResponse>;
     /**
      *
      * @summary Duplicate library item.
@@ -46765,6 +47059,23 @@ export declare class StorefrontApi extends BaseAPI implements StorefrontApiInter
     getTransactionEmailScreenshots(storefront_oid: number, email_id: string, options?: any): Promise<ScreenshotsResponse>;
     /**
      *
+     * @summary Get Twilio account
+     * @param {string} esp_twilio_uuid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof StorefrontApi
+     */
+    getTwilioAccount(esp_twilio_uuid: string, options?: any): Promise<TwilioResponse>;
+    /**
+     *
+     * @summary Get all Twilio accounts
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof StorefrontApi
+     */
+    getTwilioAccounts(options?: any): Promise<TwiliosResponse>;
+    /**
+     *
      * @summary Globally unsubscribe a customer
      * @param {number} storefront_oid
      * @param {EmailGlobalUnsubscribeRequest} unsubscribe Unsubscribe
@@ -47325,6 +47636,16 @@ export declare class StorefrontApi extends BaseAPI implements StorefrontApiInter
      * @memberof StorefrontApi
      */
     updateTransactionEmail(storefront_oid: number, email_id: string, transaction_email: TransactionEmail, options?: any): Promise<TransactionEmailResponse>;
+    /**
+     *
+     * @summary Update Twilio account
+     * @param {string} esp_twilio_uuid
+     * @param {Twilio} twilio Twilio
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof StorefrontApi
+     */
+    updateTwilioAccount(esp_twilio_uuid: string, twilio: Twilio, options?: any): Promise<TwilioResponse>;
 }
 /**
  * TaxApi - fetch parameter creator
