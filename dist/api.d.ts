@@ -15985,6 +15985,12 @@ export interface ItemAutoOrder {
      */
     auto_order_paused?: boolean;
     /**
+     * Minimum number of months before expiration for the card.  Overrides the account level setting if higher.  Set to zero to disable.
+     * @type {number}
+     * @memberof ItemAutoOrder
+     */
+    auto_order_prohibit_expiring_cards?: number;
+    /**
      * The user selectable schedules that are available
      * @type {Array<string>}
      * @memberof ItemAutoOrder
