@@ -6969,6 +6969,12 @@ export interface CouponResponse {
      */
     error?: ModelError;
     /**
+     * Items invalid for coupons.  These will display as warnings within the UI.
+     * @type {Array<string>}
+     * @memberof CouponResponse
+     */
+    items_invalid_for_coupons?: Array<string>;
+    /**
      * 
      * @type {ResponseMetadata}
      * @memberof CouponResponse
