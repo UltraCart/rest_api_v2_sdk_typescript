@@ -1,8 +1,8 @@
 {
   "name": "ultracart_rest_api_v2_typescript",
-  "version": "3.6.27",
-  "description": "swagger client for ultracart_rest_api_v2_typescript",
-  "author": "Swagger Codegen Contributors",
+  "version": "3.8.3",
+  "description": "UltraCart Rest TypeScript SDK",
+  "author": "UltraCart",
   "keywords": [
     "fetch",
     "typescript",

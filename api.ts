@@ -97,6 +97,12 @@ export interface AccountsReceivableRetryConfig {
      */
     allow_process_linked_accounts?: boolean;
     /**
+     * If true also cancel the auto order if the order is rejected at the end
+     * @type {boolean}
+     * @memberof AccountsReceivableRetryConfig
+     */
+    cancel_auto_order?: boolean;
+    /**
      * The current service plan that the account is on.
      * @type {string}
      * @memberof AccountsReceivableRetryConfig
@@ -1275,6 +1281,12 @@ export interface AutoOrder {
      */
     items?: Array<AutoOrderItem>;
     /**
+     * Logs associated with this auto order
+     * @type {Array<AutoOrderLog>}
+     * @memberof AutoOrder
+     */
+    logs?: Array<AutoOrderLog>;
+    /**
      * The next time that the auto order will be attempted for processing
      * @type {string}
      * @memberof AutoOrder
@@ -1614,6 +1626,26 @@ export namespace AutoOrderItemSimpleSchedule {
         Every6Months = <any> 'Every 6 Months',
         Yearly = <any> 'Yearly'
     }
+}
+
+/**
+ * 
+ * @export
+ * @interface AutoOrderLog
+ */
+export interface AutoOrderLog {
+    /**
+     * Date/time that the log message was added
+     * @type {string}
+     * @memberof AutoOrderLog
+     */
+    log_dts?: string;
+    /**
+     * Log message
+     * @type {string}
+     * @memberof AutoOrderLog
+     */
+    log_message?: string;
 }
 
 /**
@@ -10351,6 +10383,12 @@ export interface EmailCommseqPostcardSendTestRequest {
     esp_commseq_uuid?: string;
     /**
      * 
+     * @type {boolean}
+     * @memberof EmailCommseqPostcardSendTestRequest
+     */
+    mail_card?: boolean;
+    /**
+     * 
      * @type {string}
      * @memberof EmailCommseqPostcardSendTestRequest
      */
@@ -14931,6 +14969,12 @@ export interface ExperimentVariation {
      */
     page_view_count?: number;
     /**
+     * True if traffic should be paused to this variation
+     * @type {boolean}
+     * @memberof ExperimentVariation
+     */
+    paused?: boolean;
+    /**
      * Total revenue for this variation
      * @type {number}
      * @memberof ExperimentVariation
@@ -15242,6 +15286,306 @@ export interface GeocodeResponse {
      * 
      * @type {Warning}
      * @memberof GeocodeResponse
+     */
+    warning?: Warning;
+}
+
+/**
+ * 
+ * @export
+ * @interface GiftCertificate
+ */
+export interface GiftCertificate {
+    /**
+     * True if this gift certificate is activated and ready to apply to purchases.
+     * @type {boolean}
+     * @memberof GiftCertificate
+     */
+    activated?: boolean;
+    /**
+     * The code used by the customer to purchase against this gift certificate.
+     * @type {string}
+     * @memberof GiftCertificate
+     */
+    code?: string;
+    /**
+     * True if this gift certificate was deleted.
+     * @type {boolean}
+     * @memberof GiftCertificate
+     */
+    deleted?: boolean;
+    /**
+     * Email of the customer associated with this gift certificate.
+     * @type {string}
+     * @memberof GiftCertificate
+     */
+    email?: string;
+    /**
+     * Expiration date time.
+     * @type {string}
+     * @memberof GiftCertificate
+     */
+    expiration_dts?: string;
+    /**
+     * Gift certificate oid.
+     * @type {number}
+     * @memberof GiftCertificate
+     */
+    gift_certificate_oid?: number;
+    /**
+     * A list of all ledger activity for this gift certificate.
+     * @type {Array<GiftCertificateLedgerEntry>}
+     * @memberof GiftCertificate
+     */
+    ledger_entries?: Array<GiftCertificateLedgerEntry>;
+    /**
+     * Merchant Id
+     * @type {string}
+     * @memberof GiftCertificate
+     */
+    merchant_id?: string;
+    /**
+     * A list of all ledger activity for this gift certificate.
+     * @type {string}
+     * @memberof GiftCertificate
+     */
+    merchant_note?: string;
+    /**
+     * Original balance of the gift certificate.
+     * @type {number}
+     * @memberof GiftCertificate
+     */
+    original_balance?: number;
+    /**
+     * The order used to purchase this gift certificate.  This value is ONLY set during checkout when a certificate is purchased, not when it is used.  Any usage is recorded in the ledger
+     * @type {string}
+     * @memberof GiftCertificate
+     */
+    reference_order_id?: string;
+    /**
+     * The remaining balance on the gift certificate.  This is never set directly, but calculated from the ledger.  To change the remaining balance, add a ledger entry.
+     * @type {number}
+     * @memberof GiftCertificate
+     */
+    remaining_balance?: number;
+}
+
+/**
+ * 
+ * @export
+ * @interface GiftCertificateCreateRequest
+ */
+export interface GiftCertificateCreateRequest {
+    /**
+     * Initial amount of this gift certificate.
+     * @type {number}
+     * @memberof GiftCertificateCreateRequest
+     */
+    amount?: number;
+    /**
+     * The email address (customer/owner) associated with this gift certificate.
+     * @type {string}
+     * @memberof GiftCertificateCreateRequest
+     */
+    email?: string;
+    /**
+     * Expiration date time.
+     * @type {string}
+     * @memberof GiftCertificateCreateRequest
+     */
+    expiration_dts?: string;
+    /**
+     * A brief description of how and/or why this gift certificate was created.
+     * @type {string}
+     * @memberof GiftCertificateCreateRequest
+     */
+    initial_ledger_description?: string;
+    /**
+     * Any internal details you wish to record about this gift certificate.
+     * @type {string}
+     * @memberof GiftCertificateCreateRequest
+     */
+    merchant_note?: string;
+}
+
+/**
+ * 
+ * @export
+ * @interface GiftCertificateLedgerEntry
+ */
+export interface GiftCertificateLedgerEntry {
+    /**
+     * The amount of the activity.
+     * @type {number}
+     * @memberof GiftCertificateLedgerEntry
+     */
+    amount?: number;
+    /**
+     * Description of what this ledger entry is used.
+     * @type {string}
+     * @memberof GiftCertificateLedgerEntry
+     */
+    description?: string;
+    /**
+     * Date time of this ledger activity.
+     * @type {string}
+     * @memberof GiftCertificateLedgerEntry
+     */
+    entry_dts?: string;
+    /**
+     * Gift certificate ledger oid is a primary key for this object, used internally.
+     * @type {number}
+     * @memberof GiftCertificateLedgerEntry
+     */
+    gift_certificate_ledger_oid?: number;
+    /**
+     * Gift certificate oid.
+     * @type {number}
+     * @memberof GiftCertificateLedgerEntry
+     */
+    gift_certificate_oid?: number;
+    /**
+     * The order id if this gift certificate was used as part of the payment.
+     * @type {string}
+     * @memberof GiftCertificateLedgerEntry
+     */
+    reference_order_id?: string;
+}
+
+/**
+ * 
+ * @export
+ * @interface GiftCertificateQuery
+ */
+export interface GiftCertificateQuery {
+    /**
+     * Gift certificate code
+     * @type {string}
+     * @memberof GiftCertificateQuery
+     */
+    code?: string;
+    /**
+     * Email address of this gift certificate
+     * @type {string}
+     * @memberof GiftCertificateQuery
+     */
+    email?: string;
+    /**
+     * Expiration date end
+     * @type {string}
+     * @memberof GiftCertificateQuery
+     */
+    expiration_dts_end?: string;
+    /**
+     * Expiration date start
+     * @type {string}
+     * @memberof GiftCertificateQuery
+     */
+    expiration_dts_start?: string;
+    /**
+     * Original balance end
+     * @type {number}
+     * @memberof GiftCertificateQuery
+     */
+    original_balance_end?: number;
+    /**
+     * Original balance start
+     * @type {number}
+     * @memberof GiftCertificateQuery
+     */
+    original_balance_start?: number;
+    /**
+     * Gift certificate reference order id
+     * @type {string}
+     * @memberof GiftCertificateQuery
+     */
+    reference_order_id?: string;
+    /**
+     * Remaining balance end
+     * @type {number}
+     * @memberof GiftCertificateQuery
+     */
+    remaining_balance_end?: number;
+    /**
+     * Remaining balance start
+     * @type {number}
+     * @memberof GiftCertificateQuery
+     */
+    remaining_balance_start?: number;
+}
+
+/**
+ * 
+ * @export
+ * @interface GiftCertificateResponse
+ */
+export interface GiftCertificateResponse {
+    /**
+     * 
+     * @type {ModelError}
+     * @memberof GiftCertificateResponse
+     */
+    error?: ModelError;
+    /**
+     * 
+     * @type {GiftCertificate}
+     * @memberof GiftCertificateResponse
+     */
+    gift_certificate?: GiftCertificate;
+    /**
+     * 
+     * @type {ResponseMetadata}
+     * @memberof GiftCertificateResponse
+     */
+    metadata?: ResponseMetadata;
+    /**
+     * Indicates if API call was successful
+     * @type {boolean}
+     * @memberof GiftCertificateResponse
+     */
+    success?: boolean;
+    /**
+     * 
+     * @type {Warning}
+     * @memberof GiftCertificateResponse
+     */
+    warning?: Warning;
+}
+
+/**
+ * 
+ * @export
+ * @interface GiftCertificatesResponse
+ */
+export interface GiftCertificatesResponse {
+    /**
+     * 
+     * @type {ModelError}
+     * @memberof GiftCertificatesResponse
+     */
+    error?: ModelError;
+    /**
+     * 
+     * @type {Array<GiftCertificate>}
+     * @memberof GiftCertificatesResponse
+     */
+    gift_certificates?: Array<GiftCertificate>;
+    /**
+     * 
+     * @type {ResponseMetadata}
+     * @memberof GiftCertificatesResponse
+     */
+    metadata?: ResponseMetadata;
+    /**
+     * Indicates if API call was successful
+     * @type {boolean}
+     * @memberof GiftCertificatesResponse
+     */
+    success?: boolean;
+    /**
+     * 
+     * @type {Warning}
+     * @memberof GiftCertificatesResponse
      */
     warning?: Warning;
 }
@@ -21900,6 +22244,12 @@ export interface OrderBilling {
      */
     evening_phone?: string;
     /**
+     * Evening phone (E164 format)
+     * @type {string}
+     * @memberof OrderBilling
+     */
+    evening_phone_e164?: string;
+    /**
      * First name
      * @type {string}
      * @memberof OrderBilling
@@ -23734,6 +24084,12 @@ export interface OrderPaymentInsurance {
      */
     claim_id?: string;
     /**
+     * insurance type
+     * @type {string}
+     * @memberof OrderPaymentInsurance
+     */
+    insurance_type?: string;
+    /**
      * refund claim id
      * @type {string}
      * @memberof OrderPaymentInsurance
@@ -24509,6 +24865,12 @@ export interface OrderShipping {
      * @memberof OrderShipping
      */
     evening_phone?: string;
+    /**
+     * Evening phone (E164 format)
+     * @type {string}
+     * @memberof OrderShipping
+     */
+    evening_phone_e164?: string;
     /**
      * First name
      * @type {string}
@@ -28360,6 +28722,12 @@ export interface ScreenRecordingAdPlatform {
      * @memberof ScreenRecordingAdPlatform
      */
     msclkid?: string;
+    /**
+     * TikTok Click Id (Parameter
+     * @type {string}
+     * @memberof ScreenRecordingAdPlatform
+     */
+    ttclid?: string;
 }
 
 /**
@@ -43146,13 +43514,13 @@ export const CustomerApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        deleteCustomer(customer_profile_oid: number, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<CustomerResponse> {
+        deleteCustomer(customer_profile_oid: number, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Response> {
             const localVarFetchArgs = CustomerApiFetchParamCreator(configuration).deleteCustomer(customer_profile_oid, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
 
                     if (response.status >= 200 && response.status < 300) {
-                      return response.json();
+                      return response;
                       
                     } else {
                         throw response;
@@ -43648,7 +44016,7 @@ export interface CustomerApiInterface {
      * @throws {RequiredError}
      * @memberof CustomerApiInterface
      */
-    deleteCustomer(customer_profile_oid: number, options?: any): Promise<CustomerResponse>;
+    deleteCustomer(customer_profile_oid: number, options?: any): Promise<{}>;
 
     /**
      * Retrieves a single customer using the specified customer profile oid. 
@@ -44726,6 +45094,967 @@ export class FulfillmentApi extends BaseAPI implements FulfillmentApiInterface {
      */
     public updateInventory(distribution_center_code: string, inventories: Array<FulfillmentInventory>, options?: any) {
         return FulfillmentApiFp(this.configuration).updateInventory(distribution_center_code, inventories, options)(this.fetch, this.basePath);
+    }
+
+}
+
+/**
+ * GiftCertificateApi - fetch parameter creator
+ * @export
+ */
+export const GiftCertificateApiFetchParamCreator = function (configuration?: Configuration) {
+    return {
+        /**
+         * Adds a ledger entry for this gift certificate. 
+         * @summary Add a gift certificate ledger entry
+         * @param {number} gift_certificate_oid 
+         * @param {GiftCertificateLedgerEntry} gift_certificate_ledger_entry Gift certificate ledger entry
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        addGiftCertificateLedgerEntry(gift_certificate_oid: number, gift_certificate_ledger_entry: GiftCertificateLedgerEntry, options: any = {}): FetchArgs {
+            // verify required parameter 'gift_certificate_oid' is not null or undefined
+            if (gift_certificate_oid === null || gift_certificate_oid === undefined) {
+                throw new RequiredError('gift_certificate_oid','Required parameter gift_certificate_oid was null or undefined when calling addGiftCertificateLedgerEntry.');
+            }
+            // verify required parameter 'gift_certificate_ledger_entry' is not null or undefined
+            if (gift_certificate_ledger_entry === null || gift_certificate_ledger_entry === undefined) {
+                throw new RequiredError('gift_certificate_ledger_entry','Required parameter gift_certificate_ledger_entry was null or undefined when calling addGiftCertificateLedgerEntry.');
+            }
+            const localVarPath = `/gift_certificate/gift_certificates/{gift_certificate_oid}/ledger_entry`
+                .replace(`{${"gift_certificate_oid"}}`, encodeURIComponent(String(gift_certificate_oid)));
+            const localVarUrlObj = url.parse(localVarPath, true);
+            const localVarRequestOptions = Object.assign({ method: 'POST' }, options);
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+    if(configuration && configuration.apiVersion) {
+      localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+    }
+
+
+
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+				const localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+					? configuration.accessToken("ultraCartOauth", ["gift_certificate_write"])
+					: configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
+					? configuration.apiKey("x-ultracart-simple-key")
+					: configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+            const needsSerialization = (<any>"GiftCertificateLedgerEntry" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
+            localVarRequestOptions.body =  needsSerialization ? JSON.stringify(gift_certificate_ledger_entry || {}) : (gift_certificate_ledger_entry || "");
+
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Creates a gift certificate for this merchant account. 
+         * @summary Create a gift certificate
+         * @param {GiftCertificateCreateRequest} gift_certificate_create_request Gift certificate create request
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        createGiftCertificate(gift_certificate_create_request: GiftCertificateCreateRequest, options: any = {}): FetchArgs {
+            // verify required parameter 'gift_certificate_create_request' is not null or undefined
+            if (gift_certificate_create_request === null || gift_certificate_create_request === undefined) {
+                throw new RequiredError('gift_certificate_create_request','Required parameter gift_certificate_create_request was null or undefined when calling createGiftCertificate.');
+            }
+            const localVarPath = `/gift_certificate/gift_certificates`;
+            const localVarUrlObj = url.parse(localVarPath, true);
+            const localVarRequestOptions = Object.assign({ method: 'POST' }, options);
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+    if(configuration && configuration.apiVersion) {
+      localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+    }
+
+
+
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+				const localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+					? configuration.accessToken("ultraCartOauth", ["gift_certificate_write"])
+					: configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
+					? configuration.apiKey("x-ultracart-simple-key")
+					: configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+            const needsSerialization = (<any>"GiftCertificateCreateRequest" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
+            localVarRequestOptions.body =  needsSerialization ? JSON.stringify(gift_certificate_create_request || {}) : (gift_certificate_create_request || "");
+
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Deletes a gift certificate for this merchant account. 
+         * @summary Delete a gift certificate
+         * @param {number} gift_certificate_oid 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        deleteGiftCertificate(gift_certificate_oid: number, options: any = {}): FetchArgs {
+            // verify required parameter 'gift_certificate_oid' is not null or undefined
+            if (gift_certificate_oid === null || gift_certificate_oid === undefined) {
+                throw new RequiredError('gift_certificate_oid','Required parameter gift_certificate_oid was null or undefined when calling deleteGiftCertificate.');
+            }
+            const localVarPath = `/gift_certificate/gift_certificates/{gift_certificate_oid}`
+                .replace(`{${"gift_certificate_oid"}}`, encodeURIComponent(String(gift_certificate_oid)));
+            const localVarUrlObj = url.parse(localVarPath, true);
+            const localVarRequestOptions = Object.assign({ method: 'DELETE' }, options);
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+    if(configuration && configuration.apiVersion) {
+      localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+    }
+
+
+
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+				const localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+					? configuration.accessToken("ultraCartOauth", ["gift_certificate_write"])
+					: configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
+					? configuration.apiKey("x-ultracart-simple-key")
+					: configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Retrieves a gift certificate from the account based on the code (the value the customer enters at checkout time). 
+         * @summary Retrieve gift certificate by code
+         * @param {string} code 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getGiftCertificateByCode(code: string, options: any = {}): FetchArgs {
+            // verify required parameter 'code' is not null or undefined
+            if (code === null || code === undefined) {
+                throw new RequiredError('code','Required parameter code was null or undefined when calling getGiftCertificateByCode.');
+            }
+            const localVarPath = `/gift_certificate/gift_certificates/by_code/{code}`
+                .replace(`{${"code"}}`, encodeURIComponent(String(code)));
+            const localVarUrlObj = url.parse(localVarPath, true);
+            const localVarRequestOptions = Object.assign({ method: 'POST' }, options);
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+    if(configuration && configuration.apiVersion) {
+      localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+    }
+
+
+
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+				const localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+					? configuration.accessToken("ultraCartOauth", ["gift_certificate_read"])
+					: configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
+					? configuration.apiKey("x-ultracart-simple-key")
+					: configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Retrieves a gift certificate from the account based on the internal primary key. 
+         * @summary Retrieve gift certificate by oid
+         * @param {number} gift_certificate_oid 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getGiftCertificateByOid(gift_certificate_oid: number, options: any = {}): FetchArgs {
+            // verify required parameter 'gift_certificate_oid' is not null or undefined
+            if (gift_certificate_oid === null || gift_certificate_oid === undefined) {
+                throw new RequiredError('gift_certificate_oid','Required parameter gift_certificate_oid was null or undefined when calling getGiftCertificateByOid.');
+            }
+            const localVarPath = `/gift_certificate/gift_certificates/{gift_certificate_oid}`
+                .replace(`{${"gift_certificate_oid"}}`, encodeURIComponent(String(gift_certificate_oid)));
+            const localVarUrlObj = url.parse(localVarPath, true);
+            const localVarRequestOptions = Object.assign({ method: 'POST' }, options);
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+    if(configuration && configuration.apiVersion) {
+      localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+    }
+
+
+
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+				const localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+					? configuration.accessToken("ultraCartOauth", ["gift_certificate_read"])
+					: configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
+					? configuration.apiKey("x-ultracart-simple-key")
+					: configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Retrieves all gift certificates from the account based on customer email. 
+         * @summary Retrieve gift certificate by email
+         * @param {string} email 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getGiftCertificatesByEmail(email: string, options: any = {}): FetchArgs {
+            // verify required parameter 'email' is not null or undefined
+            if (email === null || email === undefined) {
+                throw new RequiredError('email','Required parameter email was null or undefined when calling getGiftCertificatesByEmail.');
+            }
+            const localVarPath = `/gift_certificate/gift_certificates/by_email/{email}`
+                .replace(`{${"email"}}`, encodeURIComponent(String(email)));
+            const localVarUrlObj = url.parse(localVarPath, true);
+            const localVarRequestOptions = Object.assign({ method: 'POST' }, options);
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+    if(configuration && configuration.apiVersion) {
+      localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+    }
+
+
+
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+				const localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+					? configuration.accessToken("ultraCartOauth", ["gift_certificate_read"])
+					: configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
+					? configuration.apiKey("x-ultracart-simple-key")
+					: configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Retrieves gift certificates from the account.  If no parameters are specified, all gift certificates will be returned.  You will need to make multiple API calls in order to retrieve the entire result set since this API performs result set pagination. 
+         * @summary Retrieve gift certificates by query
+         * @param {GiftCertificateQuery} gift_certificate_query Gift certificates query
+         * @param {number} [_limit] The maximum number of records to return on this one API call. (Max 200)
+         * @param {number} [_offset] Pagination of the record set.  Offset is a zero based index.
+         * @param {string} [_since] Fetch customers that have been created/modified since this date/time.
+         * @param {string} [_sort] The sort order of the customers.  See Sorting documentation for examples of using multiple values and sorting by ascending and descending.
+         * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getGiftCertificatesByQuery(gift_certificate_query: GiftCertificateQuery, _limit?: number, _offset?: number, _since?: string, _sort?: string, _expand?: string, options: any = {}): FetchArgs {
+            // verify required parameter 'gift_certificate_query' is not null or undefined
+            if (gift_certificate_query === null || gift_certificate_query === undefined) {
+                throw new RequiredError('gift_certificate_query','Required parameter gift_certificate_query was null or undefined when calling getGiftCertificatesByQuery.');
+            }
+            const localVarPath = `/gift_certificate/gift_certificates/query`;
+            const localVarUrlObj = url.parse(localVarPath, true);
+            const localVarRequestOptions = Object.assign({ method: 'POST' }, options);
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+    if(configuration && configuration.apiVersion) {
+      localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+    }
+
+
+
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+				const localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+					? configuration.accessToken("ultraCartOauth", ["gift_certificate_read"])
+					: configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
+					? configuration.apiKey("x-ultracart-simple-key")
+					: configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+
+            if (_limit !== undefined) {
+                localVarQueryParameter['_limit'] = _limit;
+            }
+
+            if (_offset !== undefined) {
+                localVarQueryParameter['_offset'] = _offset;
+            }
+
+            if (_since !== undefined) {
+                localVarQueryParameter['_since'] = _since;
+            }
+
+            if (_sort !== undefined) {
+                localVarQueryParameter['_sort'] = _sort;
+            }
+
+            if (_expand !== undefined) {
+                localVarQueryParameter['_expand'] = _expand;
+            }
+
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+            const needsSerialization = (<any>"GiftCertificateQuery" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
+            localVarRequestOptions.body =  needsSerialization ? JSON.stringify(gift_certificate_query || {}) : (gift_certificate_query || "");
+
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Update a gift certificate for this merchant account. 
+         * @summary Update a gift certificate
+         * @param {number} gift_certificate_oid 
+         * @param {GiftCertificate} gift_certificate Gift certificate
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        updateGiftCertificate(gift_certificate_oid: number, gift_certificate: GiftCertificate, options: any = {}): FetchArgs {
+            // verify required parameter 'gift_certificate_oid' is not null or undefined
+            if (gift_certificate_oid === null || gift_certificate_oid === undefined) {
+                throw new RequiredError('gift_certificate_oid','Required parameter gift_certificate_oid was null or undefined when calling updateGiftCertificate.');
+            }
+            // verify required parameter 'gift_certificate' is not null or undefined
+            if (gift_certificate === null || gift_certificate === undefined) {
+                throw new RequiredError('gift_certificate','Required parameter gift_certificate was null or undefined when calling updateGiftCertificate.');
+            }
+            const localVarPath = `/gift_certificate/gift_certificates/{gift_certificate_oid}`
+                .replace(`{${"gift_certificate_oid"}}`, encodeURIComponent(String(gift_certificate_oid)));
+            const localVarUrlObj = url.parse(localVarPath, true);
+            const localVarRequestOptions = Object.assign({ method: 'PUT' }, options);
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+    if(configuration && configuration.apiVersion) {
+      localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+    }
+
+
+
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+				const localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+					? configuration.accessToken("ultraCartOauth", ["gift_certificate_write"])
+					: configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
+					? configuration.apiKey("x-ultracart-simple-key")
+					: configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+            const needsSerialization = (<any>"GiftCertificate" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
+            localVarRequestOptions.body =  needsSerialization ? JSON.stringify(gift_certificate || {}) : (gift_certificate || "");
+
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+    }
+};
+
+/**
+ * GiftCertificateApi - functional programming interface
+ * @export
+ */
+export const GiftCertificateApiFp = function(configuration?: Configuration) {
+    return {
+        /**
+         * Adds a ledger entry for this gift certificate. 
+         * @summary Add a gift certificate ledger entry
+         * @param {number} gift_certificate_oid 
+         * @param {GiftCertificateLedgerEntry} gift_certificate_ledger_entry Gift certificate ledger entry
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        addGiftCertificateLedgerEntry(gift_certificate_oid: number, gift_certificate_ledger_entry: GiftCertificateLedgerEntry, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<GiftCertificateResponse> {
+            const localVarFetchArgs = GiftCertificateApiFetchParamCreator(configuration).addGiftCertificateLedgerEntry(gift_certificate_oid, gift_certificate_ledger_entry, options);
+            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
+                    if (response.status >= 200 && response.status < 300) {
+                      return response.json();
+                      
+                    } else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
+         * Creates a gift certificate for this merchant account. 
+         * @summary Create a gift certificate
+         * @param {GiftCertificateCreateRequest} gift_certificate_create_request Gift certificate create request
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        createGiftCertificate(gift_certificate_create_request: GiftCertificateCreateRequest, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<GiftCertificateResponse> {
+            const localVarFetchArgs = GiftCertificateApiFetchParamCreator(configuration).createGiftCertificate(gift_certificate_create_request, options);
+            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
+                    if (response.status >= 200 && response.status < 300) {
+                      return response.json();
+                      
+                    } else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
+         * Deletes a gift certificate for this merchant account. 
+         * @summary Delete a gift certificate
+         * @param {number} gift_certificate_oid 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        deleteGiftCertificate(gift_certificate_oid: number, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Response> {
+            const localVarFetchArgs = GiftCertificateApiFetchParamCreator(configuration).deleteGiftCertificate(gift_certificate_oid, options);
+            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
+                    if (response.status >= 200 && response.status < 300) {
+                      return response;
+                      
+                    } else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
+         * Retrieves a gift certificate from the account based on the code (the value the customer enters at checkout time). 
+         * @summary Retrieve gift certificate by code
+         * @param {string} code 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getGiftCertificateByCode(code: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<GiftCertificateResponse> {
+            const localVarFetchArgs = GiftCertificateApiFetchParamCreator(configuration).getGiftCertificateByCode(code, options);
+            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
+                    if (response.status >= 200 && response.status < 300) {
+                      return response.json();
+                      
+                    } else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
+         * Retrieves a gift certificate from the account based on the internal primary key. 
+         * @summary Retrieve gift certificate by oid
+         * @param {number} gift_certificate_oid 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getGiftCertificateByOid(gift_certificate_oid: number, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<GiftCertificateResponse> {
+            const localVarFetchArgs = GiftCertificateApiFetchParamCreator(configuration).getGiftCertificateByOid(gift_certificate_oid, options);
+            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
+                    if (response.status >= 200 && response.status < 300) {
+                      return response.json();
+                      
+                    } else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
+         * Retrieves all gift certificates from the account based on customer email. 
+         * @summary Retrieve gift certificate by email
+         * @param {string} email 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getGiftCertificatesByEmail(email: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<GiftCertificatesResponse> {
+            const localVarFetchArgs = GiftCertificateApiFetchParamCreator(configuration).getGiftCertificatesByEmail(email, options);
+            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
+                    if (response.status >= 200 && response.status < 300) {
+                      return response.json();
+                      
+                    } else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
+         * Retrieves gift certificates from the account.  If no parameters are specified, all gift certificates will be returned.  You will need to make multiple API calls in order to retrieve the entire result set since this API performs result set pagination. 
+         * @summary Retrieve gift certificates by query
+         * @param {GiftCertificateQuery} gift_certificate_query Gift certificates query
+         * @param {number} [_limit] The maximum number of records to return on this one API call. (Max 200)
+         * @param {number} [_offset] Pagination of the record set.  Offset is a zero based index.
+         * @param {string} [_since] Fetch customers that have been created/modified since this date/time.
+         * @param {string} [_sort] The sort order of the customers.  See Sorting documentation for examples of using multiple values and sorting by ascending and descending.
+         * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getGiftCertificatesByQuery(gift_certificate_query: GiftCertificateQuery, _limit?: number, _offset?: number, _since?: string, _sort?: string, _expand?: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<GiftCertificatesResponse> {
+            const localVarFetchArgs = GiftCertificateApiFetchParamCreator(configuration).getGiftCertificatesByQuery(gift_certificate_query, _limit, _offset, _since, _sort, _expand, options);
+            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
+                    if (response.status >= 200 && response.status < 300) {
+                      return response.json();
+                      
+                    } else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
+         * Update a gift certificate for this merchant account. 
+         * @summary Update a gift certificate
+         * @param {number} gift_certificate_oid 
+         * @param {GiftCertificate} gift_certificate Gift certificate
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        updateGiftCertificate(gift_certificate_oid: number, gift_certificate: GiftCertificate, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<GiftCertificateResponse> {
+            const localVarFetchArgs = GiftCertificateApiFetchParamCreator(configuration).updateGiftCertificate(gift_certificate_oid, gift_certificate, options);
+            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
+                    if (response.status >= 200 && response.status < 300) {
+                      return response.json();
+                      
+                    } else {
+                        throw response;
+                    }
+                });
+            };
+        },
+    }
+};
+
+/**
+ * GiftCertificateApi - factory interface
+ * @export
+ */
+export const GiftCertificateApiFactory = function (configuration?: Configuration, fetch?: FetchAPI, basePath?: string) {
+    return {
+        /**
+         * Adds a ledger entry for this gift certificate. 
+         * @summary Add a gift certificate ledger entry
+         * @param {number} gift_certificate_oid 
+         * @param {GiftCertificateLedgerEntry} gift_certificate_ledger_entry Gift certificate ledger entry
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        addGiftCertificateLedgerEntry(gift_certificate_oid: number, gift_certificate_ledger_entry: GiftCertificateLedgerEntry, options?: any) {
+            return GiftCertificateApiFp(configuration).addGiftCertificateLedgerEntry(gift_certificate_oid, gift_certificate_ledger_entry, options)(fetch, basePath);
+        },
+        /**
+         * Creates a gift certificate for this merchant account. 
+         * @summary Create a gift certificate
+         * @param {GiftCertificateCreateRequest} gift_certificate_create_request Gift certificate create request
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        createGiftCertificate(gift_certificate_create_request: GiftCertificateCreateRequest, options?: any) {
+            return GiftCertificateApiFp(configuration).createGiftCertificate(gift_certificate_create_request, options)(fetch, basePath);
+        },
+        /**
+         * Deletes a gift certificate for this merchant account. 
+         * @summary Delete a gift certificate
+         * @param {number} gift_certificate_oid 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        deleteGiftCertificate(gift_certificate_oid: number, options?: any) {
+            return GiftCertificateApiFp(configuration).deleteGiftCertificate(gift_certificate_oid, options)(fetch, basePath);
+        },
+        /**
+         * Retrieves a gift certificate from the account based on the code (the value the customer enters at checkout time). 
+         * @summary Retrieve gift certificate by code
+         * @param {string} code 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getGiftCertificateByCode(code: string, options?: any) {
+            return GiftCertificateApiFp(configuration).getGiftCertificateByCode(code, options)(fetch, basePath);
+        },
+        /**
+         * Retrieves a gift certificate from the account based on the internal primary key. 
+         * @summary Retrieve gift certificate by oid
+         * @param {number} gift_certificate_oid 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getGiftCertificateByOid(gift_certificate_oid: number, options?: any) {
+            return GiftCertificateApiFp(configuration).getGiftCertificateByOid(gift_certificate_oid, options)(fetch, basePath);
+        },
+        /**
+         * Retrieves all gift certificates from the account based on customer email. 
+         * @summary Retrieve gift certificate by email
+         * @param {string} email 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getGiftCertificatesByEmail(email: string, options?: any) {
+            return GiftCertificateApiFp(configuration).getGiftCertificatesByEmail(email, options)(fetch, basePath);
+        },
+        /**
+         * Retrieves gift certificates from the account.  If no parameters are specified, all gift certificates will be returned.  You will need to make multiple API calls in order to retrieve the entire result set since this API performs result set pagination. 
+         * @summary Retrieve gift certificates by query
+         * @param {GiftCertificateQuery} gift_certificate_query Gift certificates query
+         * @param {number} [_limit] The maximum number of records to return on this one API call. (Max 200)
+         * @param {number} [_offset] Pagination of the record set.  Offset is a zero based index.
+         * @param {string} [_since] Fetch customers that have been created/modified since this date/time.
+         * @param {string} [_sort] The sort order of the customers.  See Sorting documentation for examples of using multiple values and sorting by ascending and descending.
+         * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getGiftCertificatesByQuery(gift_certificate_query: GiftCertificateQuery, _limit?: number, _offset?: number, _since?: string, _sort?: string, _expand?: string, options?: any) {
+            return GiftCertificateApiFp(configuration).getGiftCertificatesByQuery(gift_certificate_query, _limit, _offset, _since, _sort, _expand, options)(fetch, basePath);
+        },
+        /**
+         * Update a gift certificate for this merchant account. 
+         * @summary Update a gift certificate
+         * @param {number} gift_certificate_oid 
+         * @param {GiftCertificate} gift_certificate Gift certificate
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        updateGiftCertificate(gift_certificate_oid: number, gift_certificate: GiftCertificate, options?: any) {
+            return GiftCertificateApiFp(configuration).updateGiftCertificate(gift_certificate_oid, gift_certificate, options)(fetch, basePath);
+        },
+    };
+};
+
+/**
+ * GiftCertificateApi - interface
+ * @export
+ * @interface GiftCertificateApi
+ */
+export interface GiftCertificateApiInterface {
+    /**
+     * Adds a ledger entry for this gift certificate. 
+     * @summary Add a gift certificate ledger entry
+     * @param {number} gift_certificate_oid 
+     * @param {GiftCertificateLedgerEntry} gift_certificate_ledger_entry Gift certificate ledger entry
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof GiftCertificateApiInterface
+     */
+    addGiftCertificateLedgerEntry(gift_certificate_oid: number, gift_certificate_ledger_entry: GiftCertificateLedgerEntry, options?: any): Promise<GiftCertificateResponse>;
+
+    /**
+     * Creates a gift certificate for this merchant account. 
+     * @summary Create a gift certificate
+     * @param {GiftCertificateCreateRequest} gift_certificate_create_request Gift certificate create request
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof GiftCertificateApiInterface
+     */
+    createGiftCertificate(gift_certificate_create_request: GiftCertificateCreateRequest, options?: any): Promise<GiftCertificateResponse>;
+
+    /**
+     * Deletes a gift certificate for this merchant account. 
+     * @summary Delete a gift certificate
+     * @param {number} gift_certificate_oid 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof GiftCertificateApiInterface
+     */
+    deleteGiftCertificate(gift_certificate_oid: number, options?: any): Promise<{}>;
+
+    /**
+     * Retrieves a gift certificate from the account based on the code (the value the customer enters at checkout time). 
+     * @summary Retrieve gift certificate by code
+     * @param {string} code 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof GiftCertificateApiInterface
+     */
+    getGiftCertificateByCode(code: string, options?: any): Promise<GiftCertificateResponse>;
+
+    /**
+     * Retrieves a gift certificate from the account based on the internal primary key. 
+     * @summary Retrieve gift certificate by oid
+     * @param {number} gift_certificate_oid 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof GiftCertificateApiInterface
+     */
+    getGiftCertificateByOid(gift_certificate_oid: number, options?: any): Promise<GiftCertificateResponse>;
+
+    /**
+     * Retrieves all gift certificates from the account based on customer email. 
+     * @summary Retrieve gift certificate by email
+     * @param {string} email 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof GiftCertificateApiInterface
+     */
+    getGiftCertificatesByEmail(email: string, options?: any): Promise<GiftCertificatesResponse>;
+
+    /**
+     * Retrieves gift certificates from the account.  If no parameters are specified, all gift certificates will be returned.  You will need to make multiple API calls in order to retrieve the entire result set since this API performs result set pagination. 
+     * @summary Retrieve gift certificates by query
+     * @param {GiftCertificateQuery} gift_certificate_query Gift certificates query
+     * @param {number} [_limit] The maximum number of records to return on this one API call. (Max 200)
+     * @param {number} [_offset] Pagination of the record set.  Offset is a zero based index.
+     * @param {string} [_since] Fetch customers that have been created/modified since this date/time.
+     * @param {string} [_sort] The sort order of the customers.  See Sorting documentation for examples of using multiple values and sorting by ascending and descending.
+     * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof GiftCertificateApiInterface
+     */
+    getGiftCertificatesByQuery(gift_certificate_query: GiftCertificateQuery, _limit?: number, _offset?: number, _since?: string, _sort?: string, _expand?: string, options?: any): Promise<GiftCertificatesResponse>;
+
+    /**
+     * Update a gift certificate for this merchant account. 
+     * @summary Update a gift certificate
+     * @param {number} gift_certificate_oid 
+     * @param {GiftCertificate} gift_certificate Gift certificate
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof GiftCertificateApiInterface
+     */
+    updateGiftCertificate(gift_certificate_oid: number, gift_certificate: GiftCertificate, options?: any): Promise<GiftCertificateResponse>;
+
+}
+
+/**
+ * GiftCertificateApi - object-oriented interface
+ * @export
+ * @class GiftCertificateApi
+ * @extends {BaseAPI}
+ */
+export class GiftCertificateApi extends BaseAPI implements GiftCertificateApiInterface {
+    /**
+     * Adds a ledger entry for this gift certificate. 
+     * @summary Add a gift certificate ledger entry
+     * @param {number} gift_certificate_oid 
+     * @param {GiftCertificateLedgerEntry} gift_certificate_ledger_entry Gift certificate ledger entry
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof GiftCertificateApi
+     */
+    public addGiftCertificateLedgerEntry(gift_certificate_oid: number, gift_certificate_ledger_entry: GiftCertificateLedgerEntry, options?: any) {
+        return GiftCertificateApiFp(this.configuration).addGiftCertificateLedgerEntry(gift_certificate_oid, gift_certificate_ledger_entry, options)(this.fetch, this.basePath);
+    }
+
+    /**
+     * Creates a gift certificate for this merchant account. 
+     * @summary Create a gift certificate
+     * @param {GiftCertificateCreateRequest} gift_certificate_create_request Gift certificate create request
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof GiftCertificateApi
+     */
+    public createGiftCertificate(gift_certificate_create_request: GiftCertificateCreateRequest, options?: any) {
+        return GiftCertificateApiFp(this.configuration).createGiftCertificate(gift_certificate_create_request, options)(this.fetch, this.basePath);
+    }
+
+    /**
+     * Deletes a gift certificate for this merchant account. 
+     * @summary Delete a gift certificate
+     * @param {number} gift_certificate_oid 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof GiftCertificateApi
+     */
+    public deleteGiftCertificate(gift_certificate_oid: number, options?: any) {
+        return GiftCertificateApiFp(this.configuration).deleteGiftCertificate(gift_certificate_oid, options)(this.fetch, this.basePath);
+    }
+
+    /**
+     * Retrieves a gift certificate from the account based on the code (the value the customer enters at checkout time). 
+     * @summary Retrieve gift certificate by code
+     * @param {string} code 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof GiftCertificateApi
+     */
+    public getGiftCertificateByCode(code: string, options?: any) {
+        return GiftCertificateApiFp(this.configuration).getGiftCertificateByCode(code, options)(this.fetch, this.basePath);
+    }
+
+    /**
+     * Retrieves a gift certificate from the account based on the internal primary key. 
+     * @summary Retrieve gift certificate by oid
+     * @param {number} gift_certificate_oid 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof GiftCertificateApi
+     */
+    public getGiftCertificateByOid(gift_certificate_oid: number, options?: any) {
+        return GiftCertificateApiFp(this.configuration).getGiftCertificateByOid(gift_certificate_oid, options)(this.fetch, this.basePath);
+    }
+
+    /**
+     * Retrieves all gift certificates from the account based on customer email. 
+     * @summary Retrieve gift certificate by email
+     * @param {string} email 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof GiftCertificateApi
+     */
+    public getGiftCertificatesByEmail(email: string, options?: any) {
+        return GiftCertificateApiFp(this.configuration).getGiftCertificatesByEmail(email, options)(this.fetch, this.basePath);
+    }
+
+    /**
+     * Retrieves gift certificates from the account.  If no parameters are specified, all gift certificates will be returned.  You will need to make multiple API calls in order to retrieve the entire result set since this API performs result set pagination. 
+     * @summary Retrieve gift certificates by query
+     * @param {GiftCertificateQuery} gift_certificate_query Gift certificates query
+     * @param {number} [_limit] The maximum number of records to return on this one API call. (Max 200)
+     * @param {number} [_offset] Pagination of the record set.  Offset is a zero based index.
+     * @param {string} [_since] Fetch customers that have been created/modified since this date/time.
+     * @param {string} [_sort] The sort order of the customers.  See Sorting documentation for examples of using multiple values and sorting by ascending and descending.
+     * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof GiftCertificateApi
+     */
+    public getGiftCertificatesByQuery(gift_certificate_query: GiftCertificateQuery, _limit?: number, _offset?: number, _since?: string, _sort?: string, _expand?: string, options?: any) {
+        return GiftCertificateApiFp(this.configuration).getGiftCertificatesByQuery(gift_certificate_query, _limit, _offset, _since, _sort, _expand, options)(this.fetch, this.basePath);
+    }
+
+    /**
+     * Update a gift certificate for this merchant account. 
+     * @summary Update a gift certificate
+     * @param {number} gift_certificate_oid 
+     * @param {GiftCertificate} gift_certificate Gift certificate
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof GiftCertificateApi
+     */
+    public updateGiftCertificate(gift_certificate_oid: number, gift_certificate: GiftCertificate, options?: any) {
+        return GiftCertificateApiFp(this.configuration).updateGiftCertificate(gift_certificate_oid, gift_certificate, options)(this.fetch, this.basePath);
     }
 
 }
@@ -46483,7 +47812,7 @@ export const OauthApiFetchParamCreator = function (configuration?: Configuration
             // oauth required
             if (configuration && configuration.accessToken) {
 				const localVarAccessTokenValue = typeof configuration.accessToken === 'function'
-					? configuration.accessToken("ultraCartOauth", ["ultrabooks_write", "auto_order_write", "coupon_read", "affiliate_read", "coupon_write", "tax_read", "fulfillment_write", "tax_write", "item_read", "fulfillment_read", "webhook_write", "chargeback_write", "user_write", "checkout_write", "storefront_read", "webhook_read", "item_write", "auto_order_read", "customer_read", "user_read", "configuration_read", "customer_write", "order_read", "affiliate_write", "storefront_write", "ultrabooks_read", "order_write", "chargeback_read", "integration_log_write", "configuration_write", "checkout_read", "integration_log_read"])
+					? configuration.accessToken("ultraCartOauth", ["ultrabooks_write", "auto_order_write", "coupon_read", "affiliate_read", "coupon_write", "tax_read", "fulfillment_write", "tax_write", "gift_certificate_write", "item_read", "fulfillment_read", "webhook_write", "chargeback_write", "user_write", "gift_certificate_read", "checkout_write", "storefront_read", "webhook_read", "item_write", "auto_order_read", "customer_read", "user_read", "configuration_read", "customer_write", "order_read", "affiliate_write", "storefront_write", "ultrabooks_read", "order_write", "chargeback_read", "integration_log_write", "configuration_write", "checkout_read", "integration_log_read"])
 					: configuration.accessToken;
                 localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
             }
@@ -46571,7 +47900,7 @@ export const OauthApiFetchParamCreator = function (configuration?: Configuration
             // oauth required
             if (configuration && configuration.accessToken) {
 				const localVarAccessTokenValue = typeof configuration.accessToken === 'function'
-					? configuration.accessToken("ultraCartOauth", ["ultrabooks_write", "auto_order_write", "coupon_read", "affiliate_read", "coupon_write", "tax_read", "fulfillment_write", "tax_write", "item_read", "fulfillment_read", "webhook_write", "chargeback_write", "user_write", "checkout_write", "storefront_read", "webhook_read", "item_write", "auto_order_read", "customer_read", "user_read", "configuration_read", "customer_write", "order_read", "affiliate_write", "storefront_write", "ultrabooks_read", "order_write", "chargeback_read", "integration_log_write", "configuration_write", "checkout_read", "integration_log_read"])
+					? configuration.accessToken("ultraCartOauth", ["ultrabooks_write", "auto_order_write", "coupon_read", "affiliate_read", "coupon_write", "tax_read", "fulfillment_write", "tax_write", "gift_certificate_write", "item_read", "fulfillment_read", "webhook_write", "chargeback_write", "user_write", "gift_certificate_read", "checkout_write", "storefront_read", "webhook_read", "item_write", "auto_order_read", "customer_read", "user_read", "configuration_read", "customer_write", "order_read", "affiliate_write", "storefront_write", "ultrabooks_read", "order_write", "chargeback_read", "integration_log_write", "configuration_write", "checkout_read", "integration_log_read"])
 					: configuration.accessToken;
                 localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
             }

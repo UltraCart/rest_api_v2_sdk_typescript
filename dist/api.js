@@ -29,8 +29,8 @@ var __extends = (this && this.__extends) || (function () {
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Webhook = exports.TransactionGatewaysRequest = exports.TempMultimedia = exports.RtgThemeRestriction = exports.RotatingTransactionGateway = exports.PaymentsThemeTransactionType = exports.PaymentsConfigurationTestMethod = exports.PaymentsConfigurationSezzle = exports.PaymentsConfigurationRestrictions = exports.PaymentsConfigurationPayPal = exports.PaymentsConfigurationCreditCardType = exports.PaymentsConfigurationAmazon = exports.PaymentsConfigurationAffirm = exports.OrderQuery = exports.OrderPaymentECheck = exports.OrderPaymentCreditCard = exports.OrderPayment = exports.OrderItemOption = exports.OrderFraudScore = exports.OrderFormat = exports.OrderAutoOrder = exports.OrderAffiliateLedger = exports.Order = exports.OauthTokenResponse = exports.ItemThirdPartyEmailMarketing = exports.ItemTag = exports.ItemShippingMethod = exports.ItemShippingDestinationRestriction = exports.ItemRestrictionItem = exports.ItemRelatedItem = exports.ItemOptionValue = exports.ItemOption = exports.ItemContentMultimedia = exports.ItemAutoOrderStep = exports.Experiment = exports.EmailCommseqStep = exports.Distance = exports.CheckoutHandoffRequest = exports.CartKitComponentOption = exports.CartItemOption = exports.CartItemMultimedia = exports.CartCustomerProfileCreditCard = exports.AutoOrderItemSimpleSchedule = exports.AutoOrderItem = exports.AutoOrder = exports.AffiliateLink = exports.AffiliateLedger = exports.RequiredError = exports.BaseAPI = exports.COLLECTION_FORMATS = void 0;
-exports.SsoApiFetchParamCreator = exports.OrderApi = exports.OrderApiFactory = exports.OrderApiFp = exports.OrderApiFetchParamCreator = exports.OauthApi = exports.OauthApiFactory = exports.OauthApiFp = exports.OauthApiFetchParamCreator = exports.ItemApi = exports.ItemApiFactory = exports.ItemApiFp = exports.ItemApiFetchParamCreator = exports.IntegrationLogApi = exports.IntegrationLogApiFactory = exports.IntegrationLogApiFp = exports.IntegrationLogApiFetchParamCreator = exports.FulfillmentApi = exports.FulfillmentApiFactory = exports.FulfillmentApiFp = exports.FulfillmentApiFetchParamCreator = exports.CustomerApi = exports.CustomerApiFactory = exports.CustomerApiFp = exports.CustomerApiFetchParamCreator = exports.CouponApi = exports.CouponApiFactory = exports.CouponApiFp = exports.CouponApiFetchParamCreator = exports.ConfigurationApi = exports.ConfigurationApiFactory = exports.ConfigurationApiFp = exports.ConfigurationApiFetchParamCreator = exports.CheckoutApi = exports.CheckoutApiFactory = exports.CheckoutApiFp = exports.CheckoutApiFetchParamCreator = exports.ChargebackApi = exports.ChargebackApiFactory = exports.ChargebackApiFp = exports.ChargebackApiFetchParamCreator = exports.AutoOrderApi = exports.AutoOrderApiFactory = exports.AutoOrderApiFp = exports.AutoOrderApiFetchParamCreator = exports.AffiliateApi = exports.AffiliateApiFactory = exports.AffiliateApiFp = exports.AffiliateApiFetchParamCreator = exports.Weight = void 0;
-exports.WebhookApi = exports.WebhookApiFactory = exports.WebhookApiFp = exports.WebhookApiFetchParamCreator = exports.UserApi = exports.UserApiFactory = exports.UserApiFp = exports.UserApiFetchParamCreator = exports.TaxApi = exports.TaxApiFactory = exports.TaxApiFp = exports.TaxApiFetchParamCreator = exports.StorefrontApi = exports.StorefrontApiFactory = exports.StorefrontApiFp = exports.StorefrontApiFetchParamCreator = exports.SsoApi = exports.SsoApiFactory = exports.SsoApiFp = void 0;
+exports.OrderApiFetchParamCreator = exports.OauthApi = exports.OauthApiFactory = exports.OauthApiFp = exports.OauthApiFetchParamCreator = exports.ItemApi = exports.ItemApiFactory = exports.ItemApiFp = exports.ItemApiFetchParamCreator = exports.IntegrationLogApi = exports.IntegrationLogApiFactory = exports.IntegrationLogApiFp = exports.IntegrationLogApiFetchParamCreator = exports.GiftCertificateApi = exports.GiftCertificateApiFactory = exports.GiftCertificateApiFp = exports.GiftCertificateApiFetchParamCreator = exports.FulfillmentApi = exports.FulfillmentApiFactory = exports.FulfillmentApiFp = exports.FulfillmentApiFetchParamCreator = exports.CustomerApi = exports.CustomerApiFactory = exports.CustomerApiFp = exports.CustomerApiFetchParamCreator = exports.CouponApi = exports.CouponApiFactory = exports.CouponApiFp = exports.CouponApiFetchParamCreator = exports.ConfigurationApi = exports.ConfigurationApiFactory = exports.ConfigurationApiFp = exports.ConfigurationApiFetchParamCreator = exports.CheckoutApi = exports.CheckoutApiFactory = exports.CheckoutApiFp = exports.CheckoutApiFetchParamCreator = exports.ChargebackApi = exports.ChargebackApiFactory = exports.ChargebackApiFp = exports.ChargebackApiFetchParamCreator = exports.AutoOrderApi = exports.AutoOrderApiFactory = exports.AutoOrderApiFp = exports.AutoOrderApiFetchParamCreator = exports.AffiliateApi = exports.AffiliateApiFactory = exports.AffiliateApiFp = exports.AffiliateApiFetchParamCreator = exports.Weight = void 0;
+exports.WebhookApi = exports.WebhookApiFactory = exports.WebhookApiFp = exports.WebhookApiFetchParamCreator = exports.UserApi = exports.UserApiFactory = exports.UserApiFp = exports.UserApiFetchParamCreator = exports.TaxApi = exports.TaxApiFactory = exports.TaxApiFp = exports.TaxApiFetchParamCreator = exports.StorefrontApi = exports.StorefrontApiFactory = exports.StorefrontApiFp = exports.StorefrontApiFetchParamCreator = exports.SsoApi = exports.SsoApiFactory = exports.SsoApiFp = exports.SsoApiFetchParamCreator = exports.OrderApi = exports.OrderApiFactory = exports.OrderApiFp = void 0;
 var url = require("url");
 var portableFetch = require("portable-fetch");
 var BASE_PATH = "https://secure.ultracart.com/rest/v2".replace(/\/+$/, "");
@@ -9104,7 +9104,7 @@ var CustomerApiFp = function (configuration) {
                 if (basePath === void 0) { basePath = BASE_PATH; }
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(function (response) {
                     if (response.status >= 200 && response.status < 300) {
-                        return response.json();
+                        return response;
                     }
                     else {
                         throw response;
@@ -10403,6 +10403,820 @@ var FulfillmentApi = /** @class */ (function (_super) {
     return FulfillmentApi;
 }(BaseAPI));
 exports.FulfillmentApi = FulfillmentApi;
+/**
+ * GiftCertificateApi - fetch parameter creator
+ * @export
+ */
+var GiftCertificateApiFetchParamCreator = function (configuration) {
+    return {
+        /**
+         * Adds a ledger entry for this gift certificate.
+         * @summary Add a gift certificate ledger entry
+         * @param {number} gift_certificate_oid
+         * @param {GiftCertificateLedgerEntry} gift_certificate_ledger_entry Gift certificate ledger entry
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        addGiftCertificateLedgerEntry: function (gift_certificate_oid, gift_certificate_ledger_entry, options) {
+            if (options === void 0) { options = {}; }
+            // verify required parameter 'gift_certificate_oid' is not null or undefined
+            if (gift_certificate_oid === null || gift_certificate_oid === undefined) {
+                throw new RequiredError('gift_certificate_oid', 'Required parameter gift_certificate_oid was null or undefined when calling addGiftCertificateLedgerEntry.');
+            }
+            // verify required parameter 'gift_certificate_ledger_entry' is not null or undefined
+            if (gift_certificate_ledger_entry === null || gift_certificate_ledger_entry === undefined) {
+                throw new RequiredError('gift_certificate_ledger_entry', 'Required parameter gift_certificate_ledger_entry was null or undefined when calling addGiftCertificateLedgerEntry.');
+            }
+            var localVarPath = "/gift_certificate/gift_certificates/{gift_certificate_oid}/ledger_entry"
+                .replace("{".concat("gift_certificate_oid", "}"), encodeURIComponent(String(gift_certificate_oid)));
+            var localVarUrlObj = url.parse(localVarPath, true);
+            var localVarRequestOptions = Object.assign({ method: 'POST' }, options);
+            var localVarHeaderParameter = {};
+            var localVarQueryParameter = {};
+            if (configuration && configuration.apiVersion) {
+                localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+            }
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+                var localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+                    ? configuration.accessToken("ultraCartOauth", ["gift_certificate_write"])
+                    : configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                var localVarApiKeyValue = typeof configuration.apiKey === 'function'
+                    ? configuration.apiKey("x-ultracart-simple-key")
+                    : configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+            var needsSerialization = ("GiftCertificateLedgerEntry" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
+            localVarRequestOptions.body = needsSerialization ? JSON.stringify(gift_certificate_ledger_entry || {}) : (gift_certificate_ledger_entry || "");
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Creates a gift certificate for this merchant account.
+         * @summary Create a gift certificate
+         * @param {GiftCertificateCreateRequest} gift_certificate_create_request Gift certificate create request
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        createGiftCertificate: function (gift_certificate_create_request, options) {
+            if (options === void 0) { options = {}; }
+            // verify required parameter 'gift_certificate_create_request' is not null or undefined
+            if (gift_certificate_create_request === null || gift_certificate_create_request === undefined) {
+                throw new RequiredError('gift_certificate_create_request', 'Required parameter gift_certificate_create_request was null or undefined when calling createGiftCertificate.');
+            }
+            var localVarPath = "/gift_certificate/gift_certificates";
+            var localVarUrlObj = url.parse(localVarPath, true);
+            var localVarRequestOptions = Object.assign({ method: 'POST' }, options);
+            var localVarHeaderParameter = {};
+            var localVarQueryParameter = {};
+            if (configuration && configuration.apiVersion) {
+                localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+            }
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+                var localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+                    ? configuration.accessToken("ultraCartOauth", ["gift_certificate_write"])
+                    : configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                var localVarApiKeyValue = typeof configuration.apiKey === 'function'
+                    ? configuration.apiKey("x-ultracart-simple-key")
+                    : configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+            var needsSerialization = ("GiftCertificateCreateRequest" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
+            localVarRequestOptions.body = needsSerialization ? JSON.stringify(gift_certificate_create_request || {}) : (gift_certificate_create_request || "");
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Deletes a gift certificate for this merchant account.
+         * @summary Delete a gift certificate
+         * @param {number} gift_certificate_oid
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        deleteGiftCertificate: function (gift_certificate_oid, options) {
+            if (options === void 0) { options = {}; }
+            // verify required parameter 'gift_certificate_oid' is not null or undefined
+            if (gift_certificate_oid === null || gift_certificate_oid === undefined) {
+                throw new RequiredError('gift_certificate_oid', 'Required parameter gift_certificate_oid was null or undefined when calling deleteGiftCertificate.');
+            }
+            var localVarPath = "/gift_certificate/gift_certificates/{gift_certificate_oid}"
+                .replace("{".concat("gift_certificate_oid", "}"), encodeURIComponent(String(gift_certificate_oid)));
+            var localVarUrlObj = url.parse(localVarPath, true);
+            var localVarRequestOptions = Object.assign({ method: 'DELETE' }, options);
+            var localVarHeaderParameter = {};
+            var localVarQueryParameter = {};
+            if (configuration && configuration.apiVersion) {
+                localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+            }
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+                var localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+                    ? configuration.accessToken("ultraCartOauth", ["gift_certificate_write"])
+                    : configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                var localVarApiKeyValue = typeof configuration.apiKey === 'function'
+                    ? configuration.apiKey("x-ultracart-simple-key")
+                    : configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Retrieves a gift certificate from the account based on the code (the value the customer enters at checkout time).
+         * @summary Retrieve gift certificate by code
+         * @param {string} code
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getGiftCertificateByCode: function (code, options) {
+            if (options === void 0) { options = {}; }
+            // verify required parameter 'code' is not null or undefined
+            if (code === null || code === undefined) {
+                throw new RequiredError('code', 'Required parameter code was null or undefined when calling getGiftCertificateByCode.');
+            }
+            var localVarPath = "/gift_certificate/gift_certificates/by_code/{code}"
+                .replace("{".concat("code", "}"), encodeURIComponent(String(code)));
+            var localVarUrlObj = url.parse(localVarPath, true);
+            var localVarRequestOptions = Object.assign({ method: 'POST' }, options);
+            var localVarHeaderParameter = {};
+            var localVarQueryParameter = {};
+            if (configuration && configuration.apiVersion) {
+                localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+            }
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+                var localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+                    ? configuration.accessToken("ultraCartOauth", ["gift_certificate_read"])
+                    : configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                var localVarApiKeyValue = typeof configuration.apiKey === 'function'
+                    ? configuration.apiKey("x-ultracart-simple-key")
+                    : configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Retrieves a gift certificate from the account based on the internal primary key.
+         * @summary Retrieve gift certificate by oid
+         * @param {number} gift_certificate_oid
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getGiftCertificateByOid: function (gift_certificate_oid, options) {
+            if (options === void 0) { options = {}; }
+            // verify required parameter 'gift_certificate_oid' is not null or undefined
+            if (gift_certificate_oid === null || gift_certificate_oid === undefined) {
+                throw new RequiredError('gift_certificate_oid', 'Required parameter gift_certificate_oid was null or undefined when calling getGiftCertificateByOid.');
+            }
+            var localVarPath = "/gift_certificate/gift_certificates/{gift_certificate_oid}"
+                .replace("{".concat("gift_certificate_oid", "}"), encodeURIComponent(String(gift_certificate_oid)));
+            var localVarUrlObj = url.parse(localVarPath, true);
+            var localVarRequestOptions = Object.assign({ method: 'POST' }, options);
+            var localVarHeaderParameter = {};
+            var localVarQueryParameter = {};
+            if (configuration && configuration.apiVersion) {
+                localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+            }
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+                var localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+                    ? configuration.accessToken("ultraCartOauth", ["gift_certificate_read"])
+                    : configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                var localVarApiKeyValue = typeof configuration.apiKey === 'function'
+                    ? configuration.apiKey("x-ultracart-simple-key")
+                    : configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Retrieves all gift certificates from the account based on customer email.
+         * @summary Retrieve gift certificate by email
+         * @param {string} email
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getGiftCertificatesByEmail: function (email, options) {
+            if (options === void 0) { options = {}; }
+            // verify required parameter 'email' is not null or undefined
+            if (email === null || email === undefined) {
+                throw new RequiredError('email', 'Required parameter email was null or undefined when calling getGiftCertificatesByEmail.');
+            }
+            var localVarPath = "/gift_certificate/gift_certificates/by_email/{email}"
+                .replace("{".concat("email", "}"), encodeURIComponent(String(email)));
+            var localVarUrlObj = url.parse(localVarPath, true);
+            var localVarRequestOptions = Object.assign({ method: 'POST' }, options);
+            var localVarHeaderParameter = {};
+            var localVarQueryParameter = {};
+            if (configuration && configuration.apiVersion) {
+                localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+            }
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+                var localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+                    ? configuration.accessToken("ultraCartOauth", ["gift_certificate_read"])
+                    : configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                var localVarApiKeyValue = typeof configuration.apiKey === 'function'
+                    ? configuration.apiKey("x-ultracart-simple-key")
+                    : configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Retrieves gift certificates from the account.  If no parameters are specified, all gift certificates will be returned.  You will need to make multiple API calls in order to retrieve the entire result set since this API performs result set pagination.
+         * @summary Retrieve gift certificates by query
+         * @param {GiftCertificateQuery} gift_certificate_query Gift certificates query
+         * @param {number} [_limit] The maximum number of records to return on this one API call. (Max 200)
+         * @param {number} [_offset] Pagination of the record set.  Offset is a zero based index.
+         * @param {string} [_since] Fetch customers that have been created/modified since this date/time.
+         * @param {string} [_sort] The sort order of the customers.  See Sorting documentation for examples of using multiple values and sorting by ascending and descending.
+         * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getGiftCertificatesByQuery: function (gift_certificate_query, _limit, _offset, _since, _sort, _expand, options) {
+            if (options === void 0) { options = {}; }
+            // verify required parameter 'gift_certificate_query' is not null or undefined
+            if (gift_certificate_query === null || gift_certificate_query === undefined) {
+                throw new RequiredError('gift_certificate_query', 'Required parameter gift_certificate_query was null or undefined when calling getGiftCertificatesByQuery.');
+            }
+            var localVarPath = "/gift_certificate/gift_certificates/query";
+            var localVarUrlObj = url.parse(localVarPath, true);
+            var localVarRequestOptions = Object.assign({ method: 'POST' }, options);
+            var localVarHeaderParameter = {};
+            var localVarQueryParameter = {};
+            if (configuration && configuration.apiVersion) {
+                localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+            }
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+                var localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+                    ? configuration.accessToken("ultraCartOauth", ["gift_certificate_read"])
+                    : configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                var localVarApiKeyValue = typeof configuration.apiKey === 'function'
+                    ? configuration.apiKey("x-ultracart-simple-key")
+                    : configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+            if (_limit !== undefined) {
+                localVarQueryParameter['_limit'] = _limit;
+            }
+            if (_offset !== undefined) {
+                localVarQueryParameter['_offset'] = _offset;
+            }
+            if (_since !== undefined) {
+                localVarQueryParameter['_since'] = _since;
+            }
+            if (_sort !== undefined) {
+                localVarQueryParameter['_sort'] = _sort;
+            }
+            if (_expand !== undefined) {
+                localVarQueryParameter['_expand'] = _expand;
+            }
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+            var needsSerialization = ("GiftCertificateQuery" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
+            localVarRequestOptions.body = needsSerialization ? JSON.stringify(gift_certificate_query || {}) : (gift_certificate_query || "");
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Update a gift certificate for this merchant account.
+         * @summary Update a gift certificate
+         * @param {number} gift_certificate_oid
+         * @param {GiftCertificate} gift_certificate Gift certificate
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        updateGiftCertificate: function (gift_certificate_oid, gift_certificate, options) {
+            if (options === void 0) { options = {}; }
+            // verify required parameter 'gift_certificate_oid' is not null or undefined
+            if (gift_certificate_oid === null || gift_certificate_oid === undefined) {
+                throw new RequiredError('gift_certificate_oid', 'Required parameter gift_certificate_oid was null or undefined when calling updateGiftCertificate.');
+            }
+            // verify required parameter 'gift_certificate' is not null or undefined
+            if (gift_certificate === null || gift_certificate === undefined) {
+                throw new RequiredError('gift_certificate', 'Required parameter gift_certificate was null or undefined when calling updateGiftCertificate.');
+            }
+            var localVarPath = "/gift_certificate/gift_certificates/{gift_certificate_oid}"
+                .replace("{".concat("gift_certificate_oid", "}"), encodeURIComponent(String(gift_certificate_oid)));
+            var localVarUrlObj = url.parse(localVarPath, true);
+            var localVarRequestOptions = Object.assign({ method: 'PUT' }, options);
+            var localVarHeaderParameter = {};
+            var localVarQueryParameter = {};
+            if (configuration && configuration.apiVersion) {
+                localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+            }
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+                var localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+                    ? configuration.accessToken("ultraCartOauth", ["gift_certificate_write"])
+                    : configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                var localVarApiKeyValue = typeof configuration.apiKey === 'function'
+                    ? configuration.apiKey("x-ultracart-simple-key")
+                    : configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+            var needsSerialization = ("GiftCertificate" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
+            localVarRequestOptions.body = needsSerialization ? JSON.stringify(gift_certificate || {}) : (gift_certificate || "");
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+    };
+};
+exports.GiftCertificateApiFetchParamCreator = GiftCertificateApiFetchParamCreator;
+/**
+ * GiftCertificateApi - functional programming interface
+ * @export
+ */
+var GiftCertificateApiFp = function (configuration) {
+    return {
+        /**
+         * Adds a ledger entry for this gift certificate.
+         * @summary Add a gift certificate ledger entry
+         * @param {number} gift_certificate_oid
+         * @param {GiftCertificateLedgerEntry} gift_certificate_ledger_entry Gift certificate ledger entry
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        addGiftCertificateLedgerEntry: function (gift_certificate_oid, gift_certificate_ledger_entry, options) {
+            var localVarFetchArgs = (0, exports.GiftCertificateApiFetchParamCreator)(configuration).addGiftCertificateLedgerEntry(gift_certificate_oid, gift_certificate_ledger_entry, options);
+            return function (fetch, basePath) {
+                if (fetch === void 0) { fetch = portableFetch; }
+                if (basePath === void 0) { basePath = BASE_PATH; }
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(function (response) {
+                    if (response.status >= 200 && response.status < 300) {
+                        return response.json();
+                    }
+                    else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
+         * Creates a gift certificate for this merchant account.
+         * @summary Create a gift certificate
+         * @param {GiftCertificateCreateRequest} gift_certificate_create_request Gift certificate create request
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        createGiftCertificate: function (gift_certificate_create_request, options) {
+            var localVarFetchArgs = (0, exports.GiftCertificateApiFetchParamCreator)(configuration).createGiftCertificate(gift_certificate_create_request, options);
+            return function (fetch, basePath) {
+                if (fetch === void 0) { fetch = portableFetch; }
+                if (basePath === void 0) { basePath = BASE_PATH; }
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(function (response) {
+                    if (response.status >= 200 && response.status < 300) {
+                        return response.json();
+                    }
+                    else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
+         * Deletes a gift certificate for this merchant account.
+         * @summary Delete a gift certificate
+         * @param {number} gift_certificate_oid
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        deleteGiftCertificate: function (gift_certificate_oid, options) {
+            var localVarFetchArgs = (0, exports.GiftCertificateApiFetchParamCreator)(configuration).deleteGiftCertificate(gift_certificate_oid, options);
+            return function (fetch, basePath) {
+                if (fetch === void 0) { fetch = portableFetch; }
+                if (basePath === void 0) { basePath = BASE_PATH; }
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(function (response) {
+                    if (response.status >= 200 && response.status < 300) {
+                        return response;
+                    }
+                    else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
+         * Retrieves a gift certificate from the account based on the code (the value the customer enters at checkout time).
+         * @summary Retrieve gift certificate by code
+         * @param {string} code
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getGiftCertificateByCode: function (code, options) {
+            var localVarFetchArgs = (0, exports.GiftCertificateApiFetchParamCreator)(configuration).getGiftCertificateByCode(code, options);
+            return function (fetch, basePath) {
+                if (fetch === void 0) { fetch = portableFetch; }
+                if (basePath === void 0) { basePath = BASE_PATH; }
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(function (response) {
+                    if (response.status >= 200 && response.status < 300) {
+                        return response.json();
+                    }
+                    else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
+         * Retrieves a gift certificate from the account based on the internal primary key.
+         * @summary Retrieve gift certificate by oid
+         * @param {number} gift_certificate_oid
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getGiftCertificateByOid: function (gift_certificate_oid, options) {
+            var localVarFetchArgs = (0, exports.GiftCertificateApiFetchParamCreator)(configuration).getGiftCertificateByOid(gift_certificate_oid, options);
+            return function (fetch, basePath) {
+                if (fetch === void 0) { fetch = portableFetch; }
+                if (basePath === void 0) { basePath = BASE_PATH; }
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(function (response) {
+                    if (response.status >= 200 && response.status < 300) {
+                        return response.json();
+                    }
+                    else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
+         * Retrieves all gift certificates from the account based on customer email.
+         * @summary Retrieve gift certificate by email
+         * @param {string} email
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getGiftCertificatesByEmail: function (email, options) {
+            var localVarFetchArgs = (0, exports.GiftCertificateApiFetchParamCreator)(configuration).getGiftCertificatesByEmail(email, options);
+            return function (fetch, basePath) {
+                if (fetch === void 0) { fetch = portableFetch; }
+                if (basePath === void 0) { basePath = BASE_PATH; }
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(function (response) {
+                    if (response.status >= 200 && response.status < 300) {
+                        return response.json();
+                    }
+                    else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
+         * Retrieves gift certificates from the account.  If no parameters are specified, all gift certificates will be returned.  You will need to make multiple API calls in order to retrieve the entire result set since this API performs result set pagination.
+         * @summary Retrieve gift certificates by query
+         * @param {GiftCertificateQuery} gift_certificate_query Gift certificates query
+         * @param {number} [_limit] The maximum number of records to return on this one API call. (Max 200)
+         * @param {number} [_offset] Pagination of the record set.  Offset is a zero based index.
+         * @param {string} [_since] Fetch customers that have been created/modified since this date/time.
+         * @param {string} [_sort] The sort order of the customers.  See Sorting documentation for examples of using multiple values and sorting by ascending and descending.
+         * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getGiftCertificatesByQuery: function (gift_certificate_query, _limit, _offset, _since, _sort, _expand, options) {
+            var localVarFetchArgs = (0, exports.GiftCertificateApiFetchParamCreator)(configuration).getGiftCertificatesByQuery(gift_certificate_query, _limit, _offset, _since, _sort, _expand, options);
+            return function (fetch, basePath) {
+                if (fetch === void 0) { fetch = portableFetch; }
+                if (basePath === void 0) { basePath = BASE_PATH; }
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(function (response) {
+                    if (response.status >= 200 && response.status < 300) {
+                        return response.json();
+                    }
+                    else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
+         * Update a gift certificate for this merchant account.
+         * @summary Update a gift certificate
+         * @param {number} gift_certificate_oid
+         * @param {GiftCertificate} gift_certificate Gift certificate
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        updateGiftCertificate: function (gift_certificate_oid, gift_certificate, options) {
+            var localVarFetchArgs = (0, exports.GiftCertificateApiFetchParamCreator)(configuration).updateGiftCertificate(gift_certificate_oid, gift_certificate, options);
+            return function (fetch, basePath) {
+                if (fetch === void 0) { fetch = portableFetch; }
+                if (basePath === void 0) { basePath = BASE_PATH; }
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(function (response) {
+                    if (response.status >= 200 && response.status < 300) {
+                        return response.json();
+                    }
+                    else {
+                        throw response;
+                    }
+                });
+            };
+        },
+    };
+};
+exports.GiftCertificateApiFp = GiftCertificateApiFp;
+/**
+ * GiftCertificateApi - factory interface
+ * @export
+ */
+var GiftCertificateApiFactory = function (configuration, fetch, basePath) {
+    return {
+        /**
+         * Adds a ledger entry for this gift certificate.
+         * @summary Add a gift certificate ledger entry
+         * @param {number} gift_certificate_oid
+         * @param {GiftCertificateLedgerEntry} gift_certificate_ledger_entry Gift certificate ledger entry
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        addGiftCertificateLedgerEntry: function (gift_certificate_oid, gift_certificate_ledger_entry, options) {
+            return (0, exports.GiftCertificateApiFp)(configuration).addGiftCertificateLedgerEntry(gift_certificate_oid, gift_certificate_ledger_entry, options)(fetch, basePath);
+        },
+        /**
+         * Creates a gift certificate for this merchant account.
+         * @summary Create a gift certificate
+         * @param {GiftCertificateCreateRequest} gift_certificate_create_request Gift certificate create request
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        createGiftCertificate: function (gift_certificate_create_request, options) {
+            return (0, exports.GiftCertificateApiFp)(configuration).createGiftCertificate(gift_certificate_create_request, options)(fetch, basePath);
+        },
+        /**
+         * Deletes a gift certificate for this merchant account.
+         * @summary Delete a gift certificate
+         * @param {number} gift_certificate_oid
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        deleteGiftCertificate: function (gift_certificate_oid, options) {
+            return (0, exports.GiftCertificateApiFp)(configuration).deleteGiftCertificate(gift_certificate_oid, options)(fetch, basePath);
+        },
+        /**
+         * Retrieves a gift certificate from the account based on the code (the value the customer enters at checkout time).
+         * @summary Retrieve gift certificate by code
+         * @param {string} code
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getGiftCertificateByCode: function (code, options) {
+            return (0, exports.GiftCertificateApiFp)(configuration).getGiftCertificateByCode(code, options)(fetch, basePath);
+        },
+        /**
+         * Retrieves a gift certificate from the account based on the internal primary key.
+         * @summary Retrieve gift certificate by oid
+         * @param {number} gift_certificate_oid
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getGiftCertificateByOid: function (gift_certificate_oid, options) {
+            return (0, exports.GiftCertificateApiFp)(configuration).getGiftCertificateByOid(gift_certificate_oid, options)(fetch, basePath);
+        },
+        /**
+         * Retrieves all gift certificates from the account based on customer email.
+         * @summary Retrieve gift certificate by email
+         * @param {string} email
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getGiftCertificatesByEmail: function (email, options) {
+            return (0, exports.GiftCertificateApiFp)(configuration).getGiftCertificatesByEmail(email, options)(fetch, basePath);
+        },
+        /**
+         * Retrieves gift certificates from the account.  If no parameters are specified, all gift certificates will be returned.  You will need to make multiple API calls in order to retrieve the entire result set since this API performs result set pagination.
+         * @summary Retrieve gift certificates by query
+         * @param {GiftCertificateQuery} gift_certificate_query Gift certificates query
+         * @param {number} [_limit] The maximum number of records to return on this one API call. (Max 200)
+         * @param {number} [_offset] Pagination of the record set.  Offset is a zero based index.
+         * @param {string} [_since] Fetch customers that have been created/modified since this date/time.
+         * @param {string} [_sort] The sort order of the customers.  See Sorting documentation for examples of using multiple values and sorting by ascending and descending.
+         * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getGiftCertificatesByQuery: function (gift_certificate_query, _limit, _offset, _since, _sort, _expand, options) {
+            return (0, exports.GiftCertificateApiFp)(configuration).getGiftCertificatesByQuery(gift_certificate_query, _limit, _offset, _since, _sort, _expand, options)(fetch, basePath);
+        },
+        /**
+         * Update a gift certificate for this merchant account.
+         * @summary Update a gift certificate
+         * @param {number} gift_certificate_oid
+         * @param {GiftCertificate} gift_certificate Gift certificate
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        updateGiftCertificate: function (gift_certificate_oid, gift_certificate, options) {
+            return (0, exports.GiftCertificateApiFp)(configuration).updateGiftCertificate(gift_certificate_oid, gift_certificate, options)(fetch, basePath);
+        },
+    };
+};
+exports.GiftCertificateApiFactory = GiftCertificateApiFactory;
+/**
+ * GiftCertificateApi - object-oriented interface
+ * @export
+ * @class GiftCertificateApi
+ * @extends {BaseAPI}
+ */
+var GiftCertificateApi = /** @class */ (function (_super) {
+    __extends(GiftCertificateApi, _super);
+    function GiftCertificateApi() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    /**
+     * Adds a ledger entry for this gift certificate.
+     * @summary Add a gift certificate ledger entry
+     * @param {number} gift_certificate_oid
+     * @param {GiftCertificateLedgerEntry} gift_certificate_ledger_entry Gift certificate ledger entry
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof GiftCertificateApi
+     */
+    GiftCertificateApi.prototype.addGiftCertificateLedgerEntry = function (gift_certificate_oid, gift_certificate_ledger_entry, options) {
+        return (0, exports.GiftCertificateApiFp)(this.configuration).addGiftCertificateLedgerEntry(gift_certificate_oid, gift_certificate_ledger_entry, options)(this.fetch, this.basePath);
+    };
+    /**
+     * Creates a gift certificate for this merchant account.
+     * @summary Create a gift certificate
+     * @param {GiftCertificateCreateRequest} gift_certificate_create_request Gift certificate create request
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof GiftCertificateApi
+     */
+    GiftCertificateApi.prototype.createGiftCertificate = function (gift_certificate_create_request, options) {
+        return (0, exports.GiftCertificateApiFp)(this.configuration).createGiftCertificate(gift_certificate_create_request, options)(this.fetch, this.basePath);
+    };
+    /**
+     * Deletes a gift certificate for this merchant account.
+     * @summary Delete a gift certificate
+     * @param {number} gift_certificate_oid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof GiftCertificateApi
+     */
+    GiftCertificateApi.prototype.deleteGiftCertificate = function (gift_certificate_oid, options) {
+        return (0, exports.GiftCertificateApiFp)(this.configuration).deleteGiftCertificate(gift_certificate_oid, options)(this.fetch, this.basePath);
+    };
+    /**
+     * Retrieves a gift certificate from the account based on the code (the value the customer enters at checkout time).
+     * @summary Retrieve gift certificate by code
+     * @param {string} code
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof GiftCertificateApi
+     */
+    GiftCertificateApi.prototype.getGiftCertificateByCode = function (code, options) {
+        return (0, exports.GiftCertificateApiFp)(this.configuration).getGiftCertificateByCode(code, options)(this.fetch, this.basePath);
+    };
+    /**
+     * Retrieves a gift certificate from the account based on the internal primary key.
+     * @summary Retrieve gift certificate by oid
+     * @param {number} gift_certificate_oid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof GiftCertificateApi
+     */
+    GiftCertificateApi.prototype.getGiftCertificateByOid = function (gift_certificate_oid, options) {
+        return (0, exports.GiftCertificateApiFp)(this.configuration).getGiftCertificateByOid(gift_certificate_oid, options)(this.fetch, this.basePath);
+    };
+    /**
+     * Retrieves all gift certificates from the account based on customer email.
+     * @summary Retrieve gift certificate by email
+     * @param {string} email
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof GiftCertificateApi
+     */
+    GiftCertificateApi.prototype.getGiftCertificatesByEmail = function (email, options) {
+        return (0, exports.GiftCertificateApiFp)(this.configuration).getGiftCertificatesByEmail(email, options)(this.fetch, this.basePath);
+    };
+    /**
+     * Retrieves gift certificates from the account.  If no parameters are specified, all gift certificates will be returned.  You will need to make multiple API calls in order to retrieve the entire result set since this API performs result set pagination.
+     * @summary Retrieve gift certificates by query
+     * @param {GiftCertificateQuery} gift_certificate_query Gift certificates query
+     * @param {number} [_limit] The maximum number of records to return on this one API call. (Max 200)
+     * @param {number} [_offset] Pagination of the record set.  Offset is a zero based index.
+     * @param {string} [_since] Fetch customers that have been created/modified since this date/time.
+     * @param {string} [_sort] The sort order of the customers.  See Sorting documentation for examples of using multiple values and sorting by ascending and descending.
+     * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof GiftCertificateApi
+     */
+    GiftCertificateApi.prototype.getGiftCertificatesByQuery = function (gift_certificate_query, _limit, _offset, _since, _sort, _expand, options) {
+        return (0, exports.GiftCertificateApiFp)(this.configuration).getGiftCertificatesByQuery(gift_certificate_query, _limit, _offset, _since, _sort, _expand, options)(this.fetch, this.basePath);
+    };
+    /**
+     * Update a gift certificate for this merchant account.
+     * @summary Update a gift certificate
+     * @param {number} gift_certificate_oid
+     * @param {GiftCertificate} gift_certificate Gift certificate
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof GiftCertificateApi
+     */
+    GiftCertificateApi.prototype.updateGiftCertificate = function (gift_certificate_oid, gift_certificate, options) {
+        return (0, exports.GiftCertificateApiFp)(this.configuration).updateGiftCertificate(gift_certificate_oid, gift_certificate, options)(this.fetch, this.basePath);
+    };
+    return GiftCertificateApi;
+}(BaseAPI));
+exports.GiftCertificateApi = GiftCertificateApi;
 /**
  * IntegrationLogApi - fetch parameter creator
  * @export
@@ -11883,7 +12697,7 @@ var OauthApiFetchParamCreator = function (configuration) {
             // oauth required
             if (configuration && configuration.accessToken) {
                 var localVarAccessTokenValue = typeof configuration.accessToken === 'function'
-                    ? configuration.accessToken("ultraCartOauth", ["ultrabooks_write", "auto_order_write", "coupon_read", "affiliate_read", "coupon_write", "tax_read", "fulfillment_write", "tax_write", "item_read", "fulfillment_read", "webhook_write", "chargeback_write", "user_write", "checkout_write", "storefront_read", "webhook_read", "item_write", "auto_order_read", "customer_read", "user_read", "configuration_read", "customer_write", "order_read", "affiliate_write", "storefront_write", "ultrabooks_read", "order_write", "chargeback_read", "integration_log_write", "configuration_write", "checkout_read", "integration_log_read"])
+                    ? configuration.accessToken("ultraCartOauth", ["ultrabooks_write", "auto_order_write", "coupon_read", "affiliate_read", "coupon_write", "tax_read", "fulfillment_write", "tax_write", "gift_certificate_write", "item_read", "fulfillment_read", "webhook_write", "chargeback_write", "user_write", "gift_certificate_read", "checkout_write", "storefront_read", "webhook_read", "item_write", "auto_order_read", "customer_read", "user_read", "configuration_read", "customer_write", "order_read", "affiliate_write", "storefront_write", "ultrabooks_read", "order_write", "chargeback_read", "integration_log_write", "configuration_write", "checkout_read", "integration_log_read"])
                     : configuration.accessToken;
                 localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
             }
@@ -11958,7 +12772,7 @@ var OauthApiFetchParamCreator = function (configuration) {
             // oauth required
             if (configuration && configuration.accessToken) {
                 var localVarAccessTokenValue = typeof configuration.accessToken === 'function'
-                    ? configuration.accessToken("ultraCartOauth", ["ultrabooks_write", "auto_order_write", "coupon_read", "affiliate_read", "coupon_write", "tax_read", "fulfillment_write", "tax_write", "item_read", "fulfillment_read", "webhook_write", "chargeback_write", "user_write", "checkout_write", "storefront_read", "webhook_read", "item_write", "auto_order_read", "customer_read", "user_read", "configuration_read", "customer_write", "order_read", "affiliate_write", "storefront_write", "ultrabooks_read", "order_write", "chargeback_read", "integration_log_write", "configuration_write", "checkout_read", "integration_log_read"])
+                    ? configuration.accessToken("ultraCartOauth", ["ultrabooks_write", "auto_order_write", "coupon_read", "affiliate_read", "coupon_write", "tax_read", "fulfillment_write", "tax_write", "gift_certificate_write", "item_read", "fulfillment_read", "webhook_write", "chargeback_write", "user_write", "gift_certificate_read", "checkout_write", "storefront_read", "webhook_read", "item_write", "auto_order_read", "customer_read", "user_read", "configuration_read", "customer_write", "order_read", "affiliate_write", "storefront_write", "ultrabooks_read", "order_write", "chargeback_read", "integration_log_write", "configuration_write", "checkout_read", "integration_log_read"])
                     : configuration.accessToken;
                 localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
             }

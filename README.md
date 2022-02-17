@@ -1,4 +1,4 @@
-## ultracart_rest_api_v2_typescript@3.6.27
+## ultracart_rest_api_v2_typescript@3.8.3
 
 This generator creates TypeScript/JavaScript client that utilizes [Fetch API](https://fetch.spec.whatwg.org/). The generated Node module can be used in the following environments:
 
@@ -36,14 +36,17 @@ navigate to the folder of your consuming project and run one of the following co
 _published:_
 
 ```
-npm install ultracart_rest_api_v2_typescript@3.6.27 --save
+npm install ultracart_rest_api_v2_typescript@3.8.3 --save
 ```
 
 _unPublished (not recommended):_
 
 ```
 npm install PATH_TO_GENERATED_PACKAGE --save
+\n\n
 ```
+\n\n
+
 
 
 # CHANGE LOG
@@ -51,6 +54,17 @@ Not every change is committed to every SDK.
 
 | Version | Date | Comments |
 | --: | :-: | --- |
+| 3.8.2 | 02/16/2022 | create gift certificate method was missing email |
+| 3.8.1 | 02/16/2022 | auto order item level pause flag |
+| 3.8.0 | 02/16/2022 | gift certificate api (testing) |
+| 3.7.38 | 02/15/2022 | gift certificate api (currently in testing) |
+| 3.6.38 | 02/07/2022 | Exposed auto order logs |
+| 3.6.37 | 02/04/2022 | insurance type for insurance payments |
+| 3.6.36 | 12/29/2021 | Mail actual post card flag added to test method |
+| 3.6.35 | 12/14/2021 | Add cancel_auto_order option to the accounts receivable retry configuration |
+| 3.6.34 | 12/14/2021 | add evening phone E.164 fields to order billing/shipping objects |
+| 3.6.33 | 12/13/2021 | automation testing |
+| 3.6.32 | 12/10/2021 | testing automation - message 4 |
 | 3.6.25 | 12/06/2021 | sdk automation testing.  no changes to actual sdk | 
 | 3.6.24 | 11/30/2021 | return items_invalid_for_coupons for CouponResponse object to drive UI warnings | 
 | 3.6.23 | 11/29/2021 | Item auto order prohibit cards that expire in months setting. | 

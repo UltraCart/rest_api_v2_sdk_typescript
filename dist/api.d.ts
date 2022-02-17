@@ -79,6 +79,12 @@ export interface AccountsReceivableRetryConfig {
      */
     allow_process_linked_accounts?: boolean;
     /**
+     * If true also cancel the auto order if the order is rejected at the end
+     * @type {boolean}
+     * @memberof AccountsReceivableRetryConfig
+     */
+    cancel_auto_order?: boolean;
+    /**
      * The current service plan that the account is on.
      * @type {string}
      * @memberof AccountsReceivableRetryConfig
@@ -1236,6 +1242,12 @@ export interface AutoOrder {
      */
     items?: Array<AutoOrderItem>;
     /**
+     * Logs associated with this auto order
+     * @type {Array<AutoOrderLog>}
+     * @memberof AutoOrder
+     */
+    logs?: Array<AutoOrderLog>;
+    /**
      * The next time that the auto order will be attempted for processing
      * @type {string}
      * @memberof AutoOrder
@@ -1568,6 +1580,25 @@ export declare namespace AutoOrderItemSimpleSchedule {
         Every6Months,
         Yearly
     }
+}
+/**
+ *
+ * @export
+ * @interface AutoOrderLog
+ */
+export interface AutoOrderLog {
+    /**
+     * Date/time that the log message was added
+     * @type {string}
+     * @memberof AutoOrderLog
+     */
+    log_dts?: string;
+    /**
+     * Log message
+     * @type {string}
+     * @memberof AutoOrderLog
+     */
+    log_message?: string;
 }
 /**
  *
@@ -10111,6 +10142,12 @@ export interface EmailCommseqPostcardSendTestRequest {
     esp_commseq_uuid?: string;
     /**
      *
+     * @type {boolean}
+     * @memberof EmailCommseqPostcardSendTestRequest
+     */
+    mail_card?: boolean;
+    /**
+     *
      * @type {string}
      * @memberof EmailCommseqPostcardSendTestRequest
      */
@@ -14597,6 +14634,12 @@ export interface ExperimentVariation {
      */
     page_view_count?: number;
     /**
+     * True if traffic should be paused to this variation
+     * @type {boolean}
+     * @memberof ExperimentVariation
+     */
+    paused?: boolean;
+    /**
      * Total revenue for this variation
      * @type {number}
      * @memberof ExperimentVariation
@@ -14901,6 +14944,300 @@ export interface GeocodeResponse {
      *
      * @type {Warning}
      * @memberof GeocodeResponse
+     */
+    warning?: Warning;
+}
+/**
+ *
+ * @export
+ * @interface GiftCertificate
+ */
+export interface GiftCertificate {
+    /**
+     * True if this gift certificate is activated and ready to apply to purchases.
+     * @type {boolean}
+     * @memberof GiftCertificate
+     */
+    activated?: boolean;
+    /**
+     * The code used by the customer to purchase against this gift certificate.
+     * @type {string}
+     * @memberof GiftCertificate
+     */
+    code?: string;
+    /**
+     * True if this gift certificate was deleted.
+     * @type {boolean}
+     * @memberof GiftCertificate
+     */
+    deleted?: boolean;
+    /**
+     * Email of the customer associated with this gift certificate.
+     * @type {string}
+     * @memberof GiftCertificate
+     */
+    email?: string;
+    /**
+     * Expiration date time.
+     * @type {string}
+     * @memberof GiftCertificate
+     */
+    expiration_dts?: string;
+    /**
+     * Gift certificate oid.
+     * @type {number}
+     * @memberof GiftCertificate
+     */
+    gift_certificate_oid?: number;
+    /**
+     * A list of all ledger activity for this gift certificate.
+     * @type {Array<GiftCertificateLedgerEntry>}
+     * @memberof GiftCertificate
+     */
+    ledger_entries?: Array<GiftCertificateLedgerEntry>;
+    /**
+     * Merchant Id
+     * @type {string}
+     * @memberof GiftCertificate
+     */
+    merchant_id?: string;
+    /**
+     * A list of all ledger activity for this gift certificate.
+     * @type {string}
+     * @memberof GiftCertificate
+     */
+    merchant_note?: string;
+    /**
+     * Original balance of the gift certificate.
+     * @type {number}
+     * @memberof GiftCertificate
+     */
+    original_balance?: number;
+    /**
+     * The order used to purchase this gift certificate.  This value is ONLY set during checkout when a certificate is purchased, not when it is used.  Any usage is recorded in the ledger
+     * @type {string}
+     * @memberof GiftCertificate
+     */
+    reference_order_id?: string;
+    /**
+     * The remaining balance on the gift certificate.  This is never set directly, but calculated from the ledger.  To change the remaining balance, add a ledger entry.
+     * @type {number}
+     * @memberof GiftCertificate
+     */
+    remaining_balance?: number;
+}
+/**
+ *
+ * @export
+ * @interface GiftCertificateCreateRequest
+ */
+export interface GiftCertificateCreateRequest {
+    /**
+     * Initial amount of this gift certificate.
+     * @type {number}
+     * @memberof GiftCertificateCreateRequest
+     */
+    amount?: number;
+    /**
+     * The email address (customer/owner) associated with this gift certificate.
+     * @type {string}
+     * @memberof GiftCertificateCreateRequest
+     */
+    email?: string;
+    /**
+     * Expiration date time.
+     * @type {string}
+     * @memberof GiftCertificateCreateRequest
+     */
+    expiration_dts?: string;
+    /**
+     * A brief description of how and/or why this gift certificate was created.
+     * @type {string}
+     * @memberof GiftCertificateCreateRequest
+     */
+    initial_ledger_description?: string;
+    /**
+     * Any internal details you wish to record about this gift certificate.
+     * @type {string}
+     * @memberof GiftCertificateCreateRequest
+     */
+    merchant_note?: string;
+}
+/**
+ *
+ * @export
+ * @interface GiftCertificateLedgerEntry
+ */
+export interface GiftCertificateLedgerEntry {
+    /**
+     * The amount of the activity.
+     * @type {number}
+     * @memberof GiftCertificateLedgerEntry
+     */
+    amount?: number;
+    /**
+     * Description of what this ledger entry is used.
+     * @type {string}
+     * @memberof GiftCertificateLedgerEntry
+     */
+    description?: string;
+    /**
+     * Date time of this ledger activity.
+     * @type {string}
+     * @memberof GiftCertificateLedgerEntry
+     */
+    entry_dts?: string;
+    /**
+     * Gift certificate ledger oid is a primary key for this object, used internally.
+     * @type {number}
+     * @memberof GiftCertificateLedgerEntry
+     */
+    gift_certificate_ledger_oid?: number;
+    /**
+     * Gift certificate oid.
+     * @type {number}
+     * @memberof GiftCertificateLedgerEntry
+     */
+    gift_certificate_oid?: number;
+    /**
+     * The order id if this gift certificate was used as part of the payment.
+     * @type {string}
+     * @memberof GiftCertificateLedgerEntry
+     */
+    reference_order_id?: string;
+}
+/**
+ *
+ * @export
+ * @interface GiftCertificateQuery
+ */
+export interface GiftCertificateQuery {
+    /**
+     * Gift certificate code
+     * @type {string}
+     * @memberof GiftCertificateQuery
+     */
+    code?: string;
+    /**
+     * Email address of this gift certificate
+     * @type {string}
+     * @memberof GiftCertificateQuery
+     */
+    email?: string;
+    /**
+     * Expiration date end
+     * @type {string}
+     * @memberof GiftCertificateQuery
+     */
+    expiration_dts_end?: string;
+    /**
+     * Expiration date start
+     * @type {string}
+     * @memberof GiftCertificateQuery
+     */
+    expiration_dts_start?: string;
+    /**
+     * Original balance end
+     * @type {number}
+     * @memberof GiftCertificateQuery
+     */
+    original_balance_end?: number;
+    /**
+     * Original balance start
+     * @type {number}
+     * @memberof GiftCertificateQuery
+     */
+    original_balance_start?: number;
+    /**
+     * Gift certificate reference order id
+     * @type {string}
+     * @memberof GiftCertificateQuery
+     */
+    reference_order_id?: string;
+    /**
+     * Remaining balance end
+     * @type {number}
+     * @memberof GiftCertificateQuery
+     */
+    remaining_balance_end?: number;
+    /**
+     * Remaining balance start
+     * @type {number}
+     * @memberof GiftCertificateQuery
+     */
+    remaining_balance_start?: number;
+}
+/**
+ *
+ * @export
+ * @interface GiftCertificateResponse
+ */
+export interface GiftCertificateResponse {
+    /**
+     *
+     * @type {ModelError}
+     * @memberof GiftCertificateResponse
+     */
+    error?: ModelError;
+    /**
+     *
+     * @type {GiftCertificate}
+     * @memberof GiftCertificateResponse
+     */
+    gift_certificate?: GiftCertificate;
+    /**
+     *
+     * @type {ResponseMetadata}
+     * @memberof GiftCertificateResponse
+     */
+    metadata?: ResponseMetadata;
+    /**
+     * Indicates if API call was successful
+     * @type {boolean}
+     * @memberof GiftCertificateResponse
+     */
+    success?: boolean;
+    /**
+     *
+     * @type {Warning}
+     * @memberof GiftCertificateResponse
+     */
+    warning?: Warning;
+}
+/**
+ *
+ * @export
+ * @interface GiftCertificatesResponse
+ */
+export interface GiftCertificatesResponse {
+    /**
+     *
+     * @type {ModelError}
+     * @memberof GiftCertificatesResponse
+     */
+    error?: ModelError;
+    /**
+     *
+     * @type {Array<GiftCertificate>}
+     * @memberof GiftCertificatesResponse
+     */
+    gift_certificates?: Array<GiftCertificate>;
+    /**
+     *
+     * @type {ResponseMetadata}
+     * @memberof GiftCertificatesResponse
+     */
+    metadata?: ResponseMetadata;
+    /**
+     * Indicates if API call was successful
+     * @type {boolean}
+     * @memberof GiftCertificatesResponse
+     */
+    success?: boolean;
+    /**
+     *
+     * @type {Warning}
+     * @memberof GiftCertificatesResponse
      */
     warning?: Warning;
 }
@@ -21428,6 +21765,12 @@ export interface OrderBilling {
      */
     evening_phone?: string;
     /**
+     * Evening phone (E164 format)
+     * @type {string}
+     * @memberof OrderBilling
+     */
+    evening_phone_e164?: string;
+    /**
      * First name
      * @type {string}
      * @memberof OrderBilling
@@ -23227,6 +23570,12 @@ export interface OrderPaymentInsurance {
      */
     claim_id?: string;
     /**
+     * insurance type
+     * @type {string}
+     * @memberof OrderPaymentInsurance
+     */
+    insurance_type?: string;
+    /**
      * refund claim id
      * @type {string}
      * @memberof OrderPaymentInsurance
@@ -23986,6 +24335,12 @@ export interface OrderShipping {
      * @memberof OrderShipping
      */
     evening_phone?: string;
+    /**
+     * Evening phone (E164 format)
+     * @type {string}
+     * @memberof OrderShipping
+     */
+    evening_phone_e164?: string;
     /**
      * First name
      * @type {string}
@@ -27775,6 +28130,12 @@ export interface ScreenRecordingAdPlatform {
      * @memberof ScreenRecordingAdPlatform
      */
     msclkid?: string;
+    /**
+     * TikTok Click Id (Parameter
+     * @type {string}
+     * @memberof ScreenRecordingAdPlatform
+     */
+    ttclid?: string;
 }
 /**
  *
@@ -36727,7 +37088,7 @@ export declare const CustomerApiFp: (configuration?: Configuration) => {
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    deleteCustomer(customer_profile_oid: number, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<CustomerResponse>;
+    deleteCustomer(customer_profile_oid: number, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Response>;
     /**
      * Retrieves a single customer using the specified customer profile oid.
      * @summary Retrieve a customer
@@ -36877,7 +37238,7 @@ export declare const CustomerApiFactory: (configuration?: Configuration, fetch?:
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    deleteCustomer(customer_profile_oid: number, options?: any): Promise<CustomerResponse>;
+    deleteCustomer(customer_profile_oid: number, options?: any): Promise<Response>;
     /**
      * Retrieves a single customer using the specified customer profile oid.
      * @summary Retrieve a customer
@@ -37029,7 +37390,7 @@ export interface CustomerApiInterface {
      * @throws {RequiredError}
      * @memberof CustomerApiInterface
      */
-    deleteCustomer(customer_profile_oid: number, options?: any): Promise<CustomerResponse>;
+    deleteCustomer(customer_profile_oid: number, options?: any): Promise<{}>;
     /**
      * Retrieves a single customer using the specified customer profile oid.
      * @summary Retrieve a customer
@@ -37194,7 +37555,7 @@ export declare class CustomerApi extends BaseAPI implements CustomerApiInterface
      * @throws {RequiredError}
      * @memberof CustomerApi
      */
-    deleteCustomer(customer_profile_oid: number, options?: any): Promise<CustomerResponse>;
+    deleteCustomer(customer_profile_oid: number, options?: any): Promise<Response>;
     /**
      * Retrieves a single customer using the specified customer profile oid.
      * @summary Retrieve a customer
@@ -37643,6 +38004,410 @@ export declare class FulfillmentApi extends BaseAPI implements FulfillmentApiInt
      * @memberof FulfillmentApi
      */
     updateInventory(distribution_center_code: string, inventories: Array<FulfillmentInventory>, options?: any): Promise<Response>;
+}
+/**
+ * GiftCertificateApi - fetch parameter creator
+ * @export
+ */
+export declare const GiftCertificateApiFetchParamCreator: (configuration?: Configuration) => {
+    /**
+     * Adds a ledger entry for this gift certificate.
+     * @summary Add a gift certificate ledger entry
+     * @param {number} gift_certificate_oid
+     * @param {GiftCertificateLedgerEntry} gift_certificate_ledger_entry Gift certificate ledger entry
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    addGiftCertificateLedgerEntry(gift_certificate_oid: number, gift_certificate_ledger_entry: GiftCertificateLedgerEntry, options?: any): FetchArgs;
+    /**
+     * Creates a gift certificate for this merchant account.
+     * @summary Create a gift certificate
+     * @param {GiftCertificateCreateRequest} gift_certificate_create_request Gift certificate create request
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    createGiftCertificate(gift_certificate_create_request: GiftCertificateCreateRequest, options?: any): FetchArgs;
+    /**
+     * Deletes a gift certificate for this merchant account.
+     * @summary Delete a gift certificate
+     * @param {number} gift_certificate_oid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    deleteGiftCertificate(gift_certificate_oid: number, options?: any): FetchArgs;
+    /**
+     * Retrieves a gift certificate from the account based on the code (the value the customer enters at checkout time).
+     * @summary Retrieve gift certificate by code
+     * @param {string} code
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getGiftCertificateByCode(code: string, options?: any): FetchArgs;
+    /**
+     * Retrieves a gift certificate from the account based on the internal primary key.
+     * @summary Retrieve gift certificate by oid
+     * @param {number} gift_certificate_oid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getGiftCertificateByOid(gift_certificate_oid: number, options?: any): FetchArgs;
+    /**
+     * Retrieves all gift certificates from the account based on customer email.
+     * @summary Retrieve gift certificate by email
+     * @param {string} email
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getGiftCertificatesByEmail(email: string, options?: any): FetchArgs;
+    /**
+     * Retrieves gift certificates from the account.  If no parameters are specified, all gift certificates will be returned.  You will need to make multiple API calls in order to retrieve the entire result set since this API performs result set pagination.
+     * @summary Retrieve gift certificates by query
+     * @param {GiftCertificateQuery} gift_certificate_query Gift certificates query
+     * @param {number} [_limit] The maximum number of records to return on this one API call. (Max 200)
+     * @param {number} [_offset] Pagination of the record set.  Offset is a zero based index.
+     * @param {string} [_since] Fetch customers that have been created/modified since this date/time.
+     * @param {string} [_sort] The sort order of the customers.  See Sorting documentation for examples of using multiple values and sorting by ascending and descending.
+     * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getGiftCertificatesByQuery(gift_certificate_query: GiftCertificateQuery, _limit?: number, _offset?: number, _since?: string, _sort?: string, _expand?: string, options?: any): FetchArgs;
+    /**
+     * Update a gift certificate for this merchant account.
+     * @summary Update a gift certificate
+     * @param {number} gift_certificate_oid
+     * @param {GiftCertificate} gift_certificate Gift certificate
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    updateGiftCertificate(gift_certificate_oid: number, gift_certificate: GiftCertificate, options?: any): FetchArgs;
+};
+/**
+ * GiftCertificateApi - functional programming interface
+ * @export
+ */
+export declare const GiftCertificateApiFp: (configuration?: Configuration) => {
+    /**
+     * Adds a ledger entry for this gift certificate.
+     * @summary Add a gift certificate ledger entry
+     * @param {number} gift_certificate_oid
+     * @param {GiftCertificateLedgerEntry} gift_certificate_ledger_entry Gift certificate ledger entry
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    addGiftCertificateLedgerEntry(gift_certificate_oid: number, gift_certificate_ledger_entry: GiftCertificateLedgerEntry, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<GiftCertificateResponse>;
+    /**
+     * Creates a gift certificate for this merchant account.
+     * @summary Create a gift certificate
+     * @param {GiftCertificateCreateRequest} gift_certificate_create_request Gift certificate create request
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    createGiftCertificate(gift_certificate_create_request: GiftCertificateCreateRequest, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<GiftCertificateResponse>;
+    /**
+     * Deletes a gift certificate for this merchant account.
+     * @summary Delete a gift certificate
+     * @param {number} gift_certificate_oid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    deleteGiftCertificate(gift_certificate_oid: number, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Response>;
+    /**
+     * Retrieves a gift certificate from the account based on the code (the value the customer enters at checkout time).
+     * @summary Retrieve gift certificate by code
+     * @param {string} code
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getGiftCertificateByCode(code: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<GiftCertificateResponse>;
+    /**
+     * Retrieves a gift certificate from the account based on the internal primary key.
+     * @summary Retrieve gift certificate by oid
+     * @param {number} gift_certificate_oid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getGiftCertificateByOid(gift_certificate_oid: number, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<GiftCertificateResponse>;
+    /**
+     * Retrieves all gift certificates from the account based on customer email.
+     * @summary Retrieve gift certificate by email
+     * @param {string} email
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getGiftCertificatesByEmail(email: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<GiftCertificatesResponse>;
+    /**
+     * Retrieves gift certificates from the account.  If no parameters are specified, all gift certificates will be returned.  You will need to make multiple API calls in order to retrieve the entire result set since this API performs result set pagination.
+     * @summary Retrieve gift certificates by query
+     * @param {GiftCertificateQuery} gift_certificate_query Gift certificates query
+     * @param {number} [_limit] The maximum number of records to return on this one API call. (Max 200)
+     * @param {number} [_offset] Pagination of the record set.  Offset is a zero based index.
+     * @param {string} [_since] Fetch customers that have been created/modified since this date/time.
+     * @param {string} [_sort] The sort order of the customers.  See Sorting documentation for examples of using multiple values and sorting by ascending and descending.
+     * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getGiftCertificatesByQuery(gift_certificate_query: GiftCertificateQuery, _limit?: number, _offset?: number, _since?: string, _sort?: string, _expand?: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<GiftCertificatesResponse>;
+    /**
+     * Update a gift certificate for this merchant account.
+     * @summary Update a gift certificate
+     * @param {number} gift_certificate_oid
+     * @param {GiftCertificate} gift_certificate Gift certificate
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    updateGiftCertificate(gift_certificate_oid: number, gift_certificate: GiftCertificate, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<GiftCertificateResponse>;
+};
+/**
+ * GiftCertificateApi - factory interface
+ * @export
+ */
+export declare const GiftCertificateApiFactory: (configuration?: Configuration, fetch?: FetchAPI, basePath?: string) => {
+    /**
+     * Adds a ledger entry for this gift certificate.
+     * @summary Add a gift certificate ledger entry
+     * @param {number} gift_certificate_oid
+     * @param {GiftCertificateLedgerEntry} gift_certificate_ledger_entry Gift certificate ledger entry
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    addGiftCertificateLedgerEntry(gift_certificate_oid: number, gift_certificate_ledger_entry: GiftCertificateLedgerEntry, options?: any): Promise<GiftCertificateResponse>;
+    /**
+     * Creates a gift certificate for this merchant account.
+     * @summary Create a gift certificate
+     * @param {GiftCertificateCreateRequest} gift_certificate_create_request Gift certificate create request
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    createGiftCertificate(gift_certificate_create_request: GiftCertificateCreateRequest, options?: any): Promise<GiftCertificateResponse>;
+    /**
+     * Deletes a gift certificate for this merchant account.
+     * @summary Delete a gift certificate
+     * @param {number} gift_certificate_oid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    deleteGiftCertificate(gift_certificate_oid: number, options?: any): Promise<Response>;
+    /**
+     * Retrieves a gift certificate from the account based on the code (the value the customer enters at checkout time).
+     * @summary Retrieve gift certificate by code
+     * @param {string} code
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getGiftCertificateByCode(code: string, options?: any): Promise<GiftCertificateResponse>;
+    /**
+     * Retrieves a gift certificate from the account based on the internal primary key.
+     * @summary Retrieve gift certificate by oid
+     * @param {number} gift_certificate_oid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getGiftCertificateByOid(gift_certificate_oid: number, options?: any): Promise<GiftCertificateResponse>;
+    /**
+     * Retrieves all gift certificates from the account based on customer email.
+     * @summary Retrieve gift certificate by email
+     * @param {string} email
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getGiftCertificatesByEmail(email: string, options?: any): Promise<GiftCertificatesResponse>;
+    /**
+     * Retrieves gift certificates from the account.  If no parameters are specified, all gift certificates will be returned.  You will need to make multiple API calls in order to retrieve the entire result set since this API performs result set pagination.
+     * @summary Retrieve gift certificates by query
+     * @param {GiftCertificateQuery} gift_certificate_query Gift certificates query
+     * @param {number} [_limit] The maximum number of records to return on this one API call. (Max 200)
+     * @param {number} [_offset] Pagination of the record set.  Offset is a zero based index.
+     * @param {string} [_since] Fetch customers that have been created/modified since this date/time.
+     * @param {string} [_sort] The sort order of the customers.  See Sorting documentation for examples of using multiple values and sorting by ascending and descending.
+     * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getGiftCertificatesByQuery(gift_certificate_query: GiftCertificateQuery, _limit?: number, _offset?: number, _since?: string, _sort?: string, _expand?: string, options?: any): Promise<GiftCertificatesResponse>;
+    /**
+     * Update a gift certificate for this merchant account.
+     * @summary Update a gift certificate
+     * @param {number} gift_certificate_oid
+     * @param {GiftCertificate} gift_certificate Gift certificate
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    updateGiftCertificate(gift_certificate_oid: number, gift_certificate: GiftCertificate, options?: any): Promise<GiftCertificateResponse>;
+};
+/**
+ * GiftCertificateApi - interface
+ * @export
+ * @interface GiftCertificateApi
+ */
+export interface GiftCertificateApiInterface {
+    /**
+     * Adds a ledger entry for this gift certificate.
+     * @summary Add a gift certificate ledger entry
+     * @param {number} gift_certificate_oid
+     * @param {GiftCertificateLedgerEntry} gift_certificate_ledger_entry Gift certificate ledger entry
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof GiftCertificateApiInterface
+     */
+    addGiftCertificateLedgerEntry(gift_certificate_oid: number, gift_certificate_ledger_entry: GiftCertificateLedgerEntry, options?: any): Promise<GiftCertificateResponse>;
+    /**
+     * Creates a gift certificate for this merchant account.
+     * @summary Create a gift certificate
+     * @param {GiftCertificateCreateRequest} gift_certificate_create_request Gift certificate create request
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof GiftCertificateApiInterface
+     */
+    createGiftCertificate(gift_certificate_create_request: GiftCertificateCreateRequest, options?: any): Promise<GiftCertificateResponse>;
+    /**
+     * Deletes a gift certificate for this merchant account.
+     * @summary Delete a gift certificate
+     * @param {number} gift_certificate_oid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof GiftCertificateApiInterface
+     */
+    deleteGiftCertificate(gift_certificate_oid: number, options?: any): Promise<{}>;
+    /**
+     * Retrieves a gift certificate from the account based on the code (the value the customer enters at checkout time).
+     * @summary Retrieve gift certificate by code
+     * @param {string} code
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof GiftCertificateApiInterface
+     */
+    getGiftCertificateByCode(code: string, options?: any): Promise<GiftCertificateResponse>;
+    /**
+     * Retrieves a gift certificate from the account based on the internal primary key.
+     * @summary Retrieve gift certificate by oid
+     * @param {number} gift_certificate_oid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof GiftCertificateApiInterface
+     */
+    getGiftCertificateByOid(gift_certificate_oid: number, options?: any): Promise<GiftCertificateResponse>;
+    /**
+     * Retrieves all gift certificates from the account based on customer email.
+     * @summary Retrieve gift certificate by email
+     * @param {string} email
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof GiftCertificateApiInterface
+     */
+    getGiftCertificatesByEmail(email: string, options?: any): Promise<GiftCertificatesResponse>;
+    /**
+     * Retrieves gift certificates from the account.  If no parameters are specified, all gift certificates will be returned.  You will need to make multiple API calls in order to retrieve the entire result set since this API performs result set pagination.
+     * @summary Retrieve gift certificates by query
+     * @param {GiftCertificateQuery} gift_certificate_query Gift certificates query
+     * @param {number} [_limit] The maximum number of records to return on this one API call. (Max 200)
+     * @param {number} [_offset] Pagination of the record set.  Offset is a zero based index.
+     * @param {string} [_since] Fetch customers that have been created/modified since this date/time.
+     * @param {string} [_sort] The sort order of the customers.  See Sorting documentation for examples of using multiple values and sorting by ascending and descending.
+     * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof GiftCertificateApiInterface
+     */
+    getGiftCertificatesByQuery(gift_certificate_query: GiftCertificateQuery, _limit?: number, _offset?: number, _since?: string, _sort?: string, _expand?: string, options?: any): Promise<GiftCertificatesResponse>;
+    /**
+     * Update a gift certificate for this merchant account.
+     * @summary Update a gift certificate
+     * @param {number} gift_certificate_oid
+     * @param {GiftCertificate} gift_certificate Gift certificate
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof GiftCertificateApiInterface
+     */
+    updateGiftCertificate(gift_certificate_oid: number, gift_certificate: GiftCertificate, options?: any): Promise<GiftCertificateResponse>;
+}
+/**
+ * GiftCertificateApi - object-oriented interface
+ * @export
+ * @class GiftCertificateApi
+ * @extends {BaseAPI}
+ */
+export declare class GiftCertificateApi extends BaseAPI implements GiftCertificateApiInterface {
+    /**
+     * Adds a ledger entry for this gift certificate.
+     * @summary Add a gift certificate ledger entry
+     * @param {number} gift_certificate_oid
+     * @param {GiftCertificateLedgerEntry} gift_certificate_ledger_entry Gift certificate ledger entry
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof GiftCertificateApi
+     */
+    addGiftCertificateLedgerEntry(gift_certificate_oid: number, gift_certificate_ledger_entry: GiftCertificateLedgerEntry, options?: any): Promise<GiftCertificateResponse>;
+    /**
+     * Creates a gift certificate for this merchant account.
+     * @summary Create a gift certificate
+     * @param {GiftCertificateCreateRequest} gift_certificate_create_request Gift certificate create request
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof GiftCertificateApi
+     */
+    createGiftCertificate(gift_certificate_create_request: GiftCertificateCreateRequest, options?: any): Promise<GiftCertificateResponse>;
+    /**
+     * Deletes a gift certificate for this merchant account.
+     * @summary Delete a gift certificate
+     * @param {number} gift_certificate_oid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof GiftCertificateApi
+     */
+    deleteGiftCertificate(gift_certificate_oid: number, options?: any): Promise<Response>;
+    /**
+     * Retrieves a gift certificate from the account based on the code (the value the customer enters at checkout time).
+     * @summary Retrieve gift certificate by code
+     * @param {string} code
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof GiftCertificateApi
+     */
+    getGiftCertificateByCode(code: string, options?: any): Promise<GiftCertificateResponse>;
+    /**
+     * Retrieves a gift certificate from the account based on the internal primary key.
+     * @summary Retrieve gift certificate by oid
+     * @param {number} gift_certificate_oid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof GiftCertificateApi
+     */
+    getGiftCertificateByOid(gift_certificate_oid: number, options?: any): Promise<GiftCertificateResponse>;
+    /**
+     * Retrieves all gift certificates from the account based on customer email.
+     * @summary Retrieve gift certificate by email
+     * @param {string} email
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof GiftCertificateApi
+     */
+    getGiftCertificatesByEmail(email: string, options?: any): Promise<GiftCertificatesResponse>;
+    /**
+     * Retrieves gift certificates from the account.  If no parameters are specified, all gift certificates will be returned.  You will need to make multiple API calls in order to retrieve the entire result set since this API performs result set pagination.
+     * @summary Retrieve gift certificates by query
+     * @param {GiftCertificateQuery} gift_certificate_query Gift certificates query
+     * @param {number} [_limit] The maximum number of records to return on this one API call. (Max 200)
+     * @param {number} [_offset] Pagination of the record set.  Offset is a zero based index.
+     * @param {string} [_since] Fetch customers that have been created/modified since this date/time.
+     * @param {string} [_sort] The sort order of the customers.  See Sorting documentation for examples of using multiple values and sorting by ascending and descending.
+     * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof GiftCertificateApi
+     */
+    getGiftCertificatesByQuery(gift_certificate_query: GiftCertificateQuery, _limit?: number, _offset?: number, _since?: string, _sort?: string, _expand?: string, options?: any): Promise<GiftCertificatesResponse>;
+    /**
+     * Update a gift certificate for this merchant account.
+     * @summary Update a gift certificate
+     * @param {number} gift_certificate_oid
+     * @param {GiftCertificate} gift_certificate Gift certificate
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof GiftCertificateApi
+     */
+    updateGiftCertificate(gift_certificate_oid: number, gift_certificate: GiftCertificate, options?: any): Promise<GiftCertificateResponse>;
 }
 /**
  * IntegrationLogApi - fetch parameter creator
