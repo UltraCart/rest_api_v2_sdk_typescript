@@ -10,9 +10,9 @@
     "ultracart_rest_api_v2_typescript"
   ],
   "license": "Unlicense",
-  "main": "dist/index.js",
-  "typings": "dist/index.d.ts",
-  "scripts": {
+  "main": "./dist/index.js",
+  "typings": "./dist/index.d.ts",
+  "scripts" : {
     "build": "tsc --outDir dist/",
     "prepublishOnly": "npm run build"
   },
@@ -23,7 +23,5 @@
     "@types/node": "^14.14.6",
     "typescript": "^4.5.5"
   },
-  "publishConfig": {
-    "registry": "UltraCart"
-  }
+
 }
