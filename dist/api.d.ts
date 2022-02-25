@@ -5152,6 +5152,12 @@ export interface Coupon {
     amount_off_subtotal_with_purchase?: CouponAmountOffSubtotalWithPurchase;
     /**
      *
+     * @type {CouponAmountShippingWithSubtotal}
+     * @memberof Coupon
+     */
+    amount_shipping_with_subtotal?: CouponAmountShippingWithSubtotal;
+    /**
+     *
      * @type {CouponAutomaticallyApplyCouponCodes}
      * @memberof Coupon
      */
@@ -5681,6 +5687,37 @@ export interface CouponAmountOffSubtotalWithPurchase {
      * @memberof CouponAmountOffSubtotalWithPurchase
      */
     purchase_amount?: number;
+}
+/**
+ *
+ * @export
+ * @interface CouponAmountShippingWithSubtotal
+ */
+export interface CouponAmountShippingWithSubtotal {
+    /**
+     * The ISO-4217 three letter currency code the customer is viewing prices in
+     * @type {string}
+     * @memberof CouponAmountShippingWithSubtotal
+     */
+    currency_code?: string;
+    /**
+     * The purchase amount to qualify for subtotal discount and free shipping
+     * @type {number}
+     * @memberof CouponAmountShippingWithSubtotal
+     */
+    purchase_amount?: number;
+    /**
+     * The amount of the shipping cost (this is not a discount, this is the actual cost of shipping)
+     * @type {number}
+     * @memberof CouponAmountShippingWithSubtotal
+     */
+    shipping_amount?: number;
+    /**
+     * One or more shipping methods that may be used with this coupon
+     * @type {Array<string>}
+     * @memberof CouponAmountShippingWithSubtotal
+     */
+    shipping_methods?: Array<string>;
 }
 /**
  *
