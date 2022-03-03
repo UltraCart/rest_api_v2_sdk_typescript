@@ -1,4 +1,4 @@
-## ultracart_rest_api_v2_typescript@3.8.8
+## ultracart_rest_api_v2_typescript@3.9.0
 
 This generator creates TypeScript/JavaScript client that utilizes [Fetch API](https://fetch.spec.whatwg.org/). The generated Node module can be used in the following environments:
 
@@ -36,7 +36,7 @@ navigate to the folder of your consuming project and run one of the following co
 _published:_
 
 ```
-npm install ultracart_rest_api_v2_typescript@3.8.8 --save
+npm install ultracart_rest_api_v2_typescript@3.9.0 --save
 ```
 
 _unPublished (not recommended):_
@@ -54,6 +54,7 @@ Not every change is committed to every SDK.
 
 | Version | Date | Comments |
 | --: | :-: | --- |
+| 3.9.0 | 03/03/2022 | removed  ultra_cart_rest_api_v2.d.ts from javascript sdk because typescript sdk exists now |
 | 3.8.8 | 03/02/2022 | bug fix for ruby sdk, uri.escape deprecated in 3.x |
 | 3.8.7 | 03/02/2022 | bug fix for ruby sdk, uri.escape deprecated in 3.x |
 | 3.8.6 | 03/02/2022 | bug fix for ruby sdk, uri.escape deprecated in 3.x |
