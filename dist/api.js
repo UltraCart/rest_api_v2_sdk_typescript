@@ -28,9 +28,9 @@ var __extends = (this && this.__extends) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.Webhook = exports.TransactionGatewaysRequest = exports.TempMultimedia = exports.RtgThemeRestriction = exports.RotatingTransactionGateway = exports.PaymentsThemeTransactionType = exports.PaymentsConfigurationTestMethod = exports.PaymentsConfigurationSezzle = exports.PaymentsConfigurationRestrictions = exports.PaymentsConfigurationPayPal = exports.PaymentsConfigurationCreditCardType = exports.PaymentsConfigurationAmazon = exports.PaymentsConfigurationAffirm = exports.OrderQuery = exports.OrderPaymentECheck = exports.OrderPaymentCreditCard = exports.OrderPayment = exports.OrderItemOption = exports.OrderFraudScore = exports.OrderFormat = exports.OrderAutoOrder = exports.OrderAffiliateLedger = exports.Order = exports.OauthTokenResponse = exports.ItemThirdPartyEmailMarketing = exports.ItemTag = exports.ItemShippingMethod = exports.ItemShippingDestinationRestriction = exports.ItemRestrictionItem = exports.ItemRelatedItem = exports.ItemOptionValue = exports.ItemOption = exports.ItemContentMultimedia = exports.ItemAutoOrderStep = exports.Experiment = exports.EmailCommseqStep = exports.Distance = exports.CheckoutHandoffRequest = exports.CartKitComponentOption = exports.CartItemOption = exports.CartItemMultimedia = exports.CartCustomerProfileCreditCard = exports.AutoOrderItemSimpleSchedule = exports.AutoOrderItem = exports.AutoOrder = exports.AffiliateLink = exports.AffiliateLedger = exports.RequiredError = exports.BaseAPI = exports.COLLECTION_FORMATS = void 0;
-exports.OrderApiFetchParamCreator = exports.OauthApi = exports.OauthApiFactory = exports.OauthApiFp = exports.OauthApiFetchParamCreator = exports.ItemApi = exports.ItemApiFactory = exports.ItemApiFp = exports.ItemApiFetchParamCreator = exports.IntegrationLogApi = exports.IntegrationLogApiFactory = exports.IntegrationLogApiFp = exports.IntegrationLogApiFetchParamCreator = exports.GiftCertificateApi = exports.GiftCertificateApiFactory = exports.GiftCertificateApiFp = exports.GiftCertificateApiFetchParamCreator = exports.FulfillmentApi = exports.FulfillmentApiFactory = exports.FulfillmentApiFp = exports.FulfillmentApiFetchParamCreator = exports.CustomerApi = exports.CustomerApiFactory = exports.CustomerApiFp = exports.CustomerApiFetchParamCreator = exports.CouponApi = exports.CouponApiFactory = exports.CouponApiFp = exports.CouponApiFetchParamCreator = exports.ConfigurationApi = exports.ConfigurationApiFactory = exports.ConfigurationApiFp = exports.ConfigurationApiFetchParamCreator = exports.CheckoutApi = exports.CheckoutApiFactory = exports.CheckoutApiFp = exports.CheckoutApiFetchParamCreator = exports.ChargebackApi = exports.ChargebackApiFactory = exports.ChargebackApiFp = exports.ChargebackApiFetchParamCreator = exports.AutoOrderApi = exports.AutoOrderApiFactory = exports.AutoOrderApiFp = exports.AutoOrderApiFetchParamCreator = exports.AffiliateApi = exports.AffiliateApiFactory = exports.AffiliateApiFp = exports.AffiliateApiFetchParamCreator = exports.Weight = void 0;
-exports.WebhookApi = exports.WebhookApiFactory = exports.WebhookApiFp = exports.WebhookApiFetchParamCreator = exports.UserApi = exports.UserApiFactory = exports.UserApiFp = exports.UserApiFetchParamCreator = exports.TaxApi = exports.TaxApiFactory = exports.TaxApiFp = exports.TaxApiFetchParamCreator = exports.StorefrontApi = exports.StorefrontApiFactory = exports.StorefrontApiFp = exports.StorefrontApiFetchParamCreator = exports.SsoApi = exports.SsoApiFactory = exports.SsoApiFp = exports.SsoApiFetchParamCreator = exports.OrderApi = exports.OrderApiFactory = exports.OrderApiFp = void 0;
+exports.TempMultimedia = exports.RtgThemeRestriction = exports.RotatingTransactionGateway = exports.PaymentsThemeTransactionType = exports.PaymentsConfigurationTestMethod = exports.PaymentsConfigurationSezzle = exports.PaymentsConfigurationRestrictions = exports.PaymentsConfigurationPayPal = exports.PaymentsConfigurationCreditCardType = exports.PaymentsConfigurationAmazon = exports.PaymentsConfigurationAffirm = exports.OrderQuery = exports.OrderPaymentECheck = exports.OrderPaymentCreditCard = exports.OrderPayment = exports.OrderItemOption = exports.OrderItem = exports.OrderFraudScore = exports.OrderFormat = exports.OrderAutoOrder = exports.OrderAffiliateLedger = exports.Order = exports.OauthTokenResponse = exports.ItemThirdPartyEmailMarketing = exports.ItemTax = exports.ItemTag = exports.ItemShippingMethod = exports.ItemShippingDestinationRestriction = exports.ItemRestrictionItem = exports.ItemRelatedItem = exports.ItemOptionValue = exports.ItemOption = exports.ItemContentMultimedia = exports.ItemAutoOrderStep = exports.Experiment = exports.EmailCommseqStep = exports.Distance = exports.CheckoutHandoffRequest = exports.CartKitComponentOption = exports.CartItemOption = exports.CartItemMultimedia = exports.CartCustomerProfileCreditCard = exports.AutoOrderItemSimpleSchedule = exports.AutoOrderItem = exports.AutoOrder = exports.AffiliateLink = exports.AffiliateLedger = exports.RequiredError = exports.BaseAPI = exports.COLLECTION_FORMATS = void 0;
+exports.OauthApiFactory = exports.OauthApiFp = exports.OauthApiFetchParamCreator = exports.ItemApi = exports.ItemApiFactory = exports.ItemApiFp = exports.ItemApiFetchParamCreator = exports.IntegrationLogApi = exports.IntegrationLogApiFactory = exports.IntegrationLogApiFp = exports.IntegrationLogApiFetchParamCreator = exports.GiftCertificateApi = exports.GiftCertificateApiFactory = exports.GiftCertificateApiFp = exports.GiftCertificateApiFetchParamCreator = exports.FulfillmentApi = exports.FulfillmentApiFactory = exports.FulfillmentApiFp = exports.FulfillmentApiFetchParamCreator = exports.CustomerApi = exports.CustomerApiFactory = exports.CustomerApiFp = exports.CustomerApiFetchParamCreator = exports.CouponApi = exports.CouponApiFactory = exports.CouponApiFp = exports.CouponApiFetchParamCreator = exports.ConfigurationApi = exports.ConfigurationApiFactory = exports.ConfigurationApiFp = exports.ConfigurationApiFetchParamCreator = exports.CheckoutApi = exports.CheckoutApiFactory = exports.CheckoutApiFp = exports.CheckoutApiFetchParamCreator = exports.ChargebackApi = exports.ChargebackApiFactory = exports.ChargebackApiFp = exports.ChargebackApiFetchParamCreator = exports.AutoOrderApi = exports.AutoOrderApiFactory = exports.AutoOrderApiFp = exports.AutoOrderApiFetchParamCreator = exports.AffiliateApi = exports.AffiliateApiFactory = exports.AffiliateApiFp = exports.AffiliateApiFetchParamCreator = exports.Weight = exports.Webhook = exports.TransactionGatewaysRequest = void 0;
+exports.WebhookApi = exports.WebhookApiFactory = exports.WebhookApiFp = exports.WebhookApiFetchParamCreator = exports.UserApi = exports.UserApiFactory = exports.UserApiFp = exports.UserApiFetchParamCreator = exports.TaxApi = exports.TaxApiFactory = exports.TaxApiFp = exports.TaxApiFetchParamCreator = exports.StorefrontApi = exports.StorefrontApiFactory = exports.StorefrontApiFp = exports.StorefrontApiFetchParamCreator = exports.SsoApi = exports.SsoApiFactory = exports.SsoApiFp = exports.SsoApiFetchParamCreator = exports.OrderApi = exports.OrderApiFactory = exports.OrderApiFp = exports.OrderApiFetchParamCreator = exports.OauthApi = void 0;
 var url = require("url");
 var portableFetch = require("portable-fetch");
 var BASE_PATH = "https://secure.ultracart.com/rest/v2".replace(/\/+$/, "");
@@ -521,6 +521,24 @@ var ItemTag;
 })(ItemTag = exports.ItemTag || (exports.ItemTag = {}));
 /**
  * @export
+ * @namespace ItemTax
+ */
+var ItemTax;
+(function (ItemTax) {
+    /**
+     * @export
+     * @enum {string}
+     */
+    var TaxProductTypeEnum;
+    (function (TaxProductTypeEnum) {
+        TaxProductTypeEnum[TaxProductTypeEnum["Empty"] = ''] = "Empty";
+        TaxProductTypeEnum[TaxProductTypeEnum["Digital"] = 'digital'] = "Digital";
+        TaxProductTypeEnum[TaxProductTypeEnum["Physical"] = 'physical'] = "Physical";
+        TaxProductTypeEnum[TaxProductTypeEnum["Service"] = 'service'] = "Service";
+    })(TaxProductTypeEnum = ItemTax.TaxProductTypeEnum || (ItemTax.TaxProductTypeEnum = {}));
+})(ItemTax = exports.ItemTax || (exports.ItemTax = {}));
+/**
+ * @export
  * @namespace ItemThirdPartyEmailMarketing
  */
 var ItemThirdPartyEmailMarketing;
@@ -658,6 +676,24 @@ var OrderFraudScore;
         BinMatchEnum[BinMatchEnum["Yes"] = 'Yes'] = "Yes";
     })(BinMatchEnum = OrderFraudScore.BinMatchEnum || (OrderFraudScore.BinMatchEnum = {}));
 })(OrderFraudScore = exports.OrderFraudScore || (exports.OrderFraudScore = {}));
+/**
+ * @export
+ * @namespace OrderItem
+ */
+var OrderItem;
+(function (OrderItem) {
+    /**
+     * @export
+     * @enum {string}
+     */
+    var TaxProductTypeEnum;
+    (function (TaxProductTypeEnum) {
+        TaxProductTypeEnum[TaxProductTypeEnum["Empty"] = ''] = "Empty";
+        TaxProductTypeEnum[TaxProductTypeEnum["Digital"] = 'digital'] = "Digital";
+        TaxProductTypeEnum[TaxProductTypeEnum["Physical"] = 'physical'] = "Physical";
+        TaxProductTypeEnum[TaxProductTypeEnum["Service"] = 'service'] = "Service";
+    })(TaxProductTypeEnum = OrderItem.TaxProductTypeEnum || (OrderItem.TaxProductTypeEnum = {}));
+})(OrderItem = exports.OrderItem || (exports.OrderItem = {}));
 /**
  * @export
  * @namespace OrderItemOption

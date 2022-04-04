@@ -465,6 +465,12 @@ export interface AddLibraryItemRequest {
      */
     cjson?: string;
     /**
+     * Additional Cjson to be added to library, notably for the postcard which has a front and back.
+     * @type {string}
+     * @memberof AddLibraryItemRequest
+     */
+    cjson2?: string;
+    /**
      * flow, campaign, cjson, email, transactional_email, postcard or upsell
      * @type {string}
      * @memberof AddLibraryItemRequest
@@ -1952,6 +1958,112 @@ export interface BaseResponse {
 /**
  *
  * @export
+ * @interface Browser
+ */
+export interface Browser {
+    /**
+     *
+     * @type {BrowserDevice}
+     * @memberof Browser
+     */
+    device?: BrowserDevice;
+    /**
+     *
+     * @type {BrowserOS}
+     * @memberof Browser
+     */
+    os?: BrowserOS;
+    /**
+     *
+     * @type {BrowserUserAgent}
+     * @memberof Browser
+     */
+    user_agent?: BrowserUserAgent;
+}
+/**
+ *
+ * @export
+ * @interface BrowserDevice
+ */
+export interface BrowserDevice {
+    /**
+     *
+     * @type {string}
+     * @memberof BrowserDevice
+     */
+    family?: string;
+}
+/**
+ *
+ * @export
+ * @interface BrowserOS
+ */
+export interface BrowserOS {
+    /**
+     *
+     * @type {string}
+     * @memberof BrowserOS
+     */
+    family?: string;
+    /**
+     *
+     * @type {string}
+     * @memberof BrowserOS
+     */
+    major?: string;
+    /**
+     *
+     * @type {string}
+     * @memberof BrowserOS
+     */
+    minor?: string;
+    /**
+     *
+     * @type {string}
+     * @memberof BrowserOS
+     */
+    patch?: string;
+    /**
+     *
+     * @type {string}
+     * @memberof BrowserOS
+     */
+    patch_minor?: string;
+}
+/**
+ *
+ * @export
+ * @interface BrowserUserAgent
+ */
+export interface BrowserUserAgent {
+    /**
+     *
+     * @type {string}
+     * @memberof BrowserUserAgent
+     */
+    family?: string;
+    /**
+     *
+     * @type {string}
+     * @memberof BrowserUserAgent
+     */
+    major?: string;
+    /**
+     *
+     * @type {string}
+     * @memberof BrowserUserAgent
+     */
+    minor?: string;
+    /**
+     *
+     * @type {string}
+     * @memberof BrowserUserAgent
+     */
+    patch?: string;
+}
+/**
+ *
+ * @export
  * @interface Cart
  */
 export interface Cart {
@@ -1961,6 +2073,12 @@ export interface Cart {
      * @memberof Cart
      */
     affiliate?: CartAffiliate;
+    /**
+     * The affiliate network pixel identifier associated with the cart
+     * @type {number}
+     * @memberof Cart
+     */
+    affiliate_network_pixel_oid?: number;
     /**
      * The ISO-4217 three letter base currency code of the account
      * @type {string}
@@ -9168,6 +9286,12 @@ export interface DistributionCenter {
      */
     state?: string;
     /**
+     * True if monetary amounts should be zeroed before transmission
+     * @type {boolean}
+     * @memberof DistributionCenter
+     */
+    transmit_blank_costs?: boolean;
+    /**
      * Transport mechanism for this distribution center
      * @type {string}
      * @memberof DistributionCenter
@@ -10079,6 +10203,54 @@ export interface EmailCommseqPostcard {
      * @memberof EmailCommseqPostcard
      */
     postcard_front_container_uuid?: string;
+    /**
+     * URL to screenshot (back) in large form factor full page
+     * @type {string}
+     * @memberof EmailCommseqPostcard
+     */
+    screenshot_back_large_full_url?: string;
+    /**
+     * URL to screenshot (back) in large form factor viewport
+     * @type {string}
+     * @memberof EmailCommseqPostcard
+     */
+    screenshot_back_large_viewport_url?: string;
+    /**
+     * URL to screenshot (back) in small form factor full page
+     * @type {string}
+     * @memberof EmailCommseqPostcard
+     */
+    screenshot_back_small_full_url?: string;
+    /**
+     * URL to screenshot (back) in small form factor viewport
+     * @type {string}
+     * @memberof EmailCommseqPostcard
+     */
+    screenshot_back_small_viewport_url?: string;
+    /**
+     * URL to screenshot in large form factor full page
+     * @type {string}
+     * @memberof EmailCommseqPostcard
+     */
+    screenshot_large_full_url?: string;
+    /**
+     * URL to screenshot in large form factor viewport
+     * @type {string}
+     * @memberof EmailCommseqPostcard
+     */
+    screenshot_large_viewport_url?: string;
+    /**
+     * URL to screenshot in small form factor full page
+     * @type {string}
+     * @memberof EmailCommseqPostcard
+     */
+    screenshot_small_full_url?: string;
+    /**
+     * URL to screenshot in small form factor viewport
+     * @type {string}
+     * @memberof EmailCommseqPostcard
+     */
+    screenshot_small_viewport_url?: string;
     /**
      * Storefront oid
      * @type {number}
@@ -15003,6 +15175,12 @@ export interface GiftCertificate {
      */
     code?: string;
     /**
+     * This is the customer profile oid associated with this internally managed gift certificate.
+     * @type {number}
+     * @memberof GiftCertificate
+     */
+    customer_profile_oid?: number;
+    /**
      * True if this gift certificate was deleted.
      * @type {boolean}
      * @memberof GiftCertificate
@@ -15026,6 +15204,12 @@ export interface GiftCertificate {
      * @memberof GiftCertificate
      */
     gift_certificate_oid?: number;
+    /**
+     * This is an internally managed gift certificate associated with the loyalty cash rewards program.
+     * @type {boolean}
+     * @memberof GiftCertificate
+     */
+    internal?: boolean;
     /**
      * A list of all ledger activity for this gift certificate.
      * @type {Array<GiftCertificateLedgerEntry>}
@@ -19915,11 +20099,33 @@ export interface ItemTax {
      */
     tax_free?: boolean;
     /**
+     * Tax product type
+     * @type {string}
+     * @memberof ItemTax
+     */
+    tax_product_type?: ItemTax.TaxProductTypeEnum;
+    /**
      * Taxable cost if different than regular cost
      * @type {number}
      * @memberof ItemTax
      */
     taxable_cost?: number;
+}
+/**
+ * @export
+ * @namespace ItemTax
+ */
+export declare namespace ItemTax {
+    /**
+     * @export
+     * @enum {string}
+     */
+    enum TaxProductTypeEnum {
+        Empty,
+        Digital,
+        Physical,
+        Service
+    }
 }
 /**
  *
@@ -21974,6 +22180,12 @@ export interface OrderChannelPartner {
  */
 export interface OrderCheckout {
     /**
+     *
+     * @type {Browser}
+     * @memberof OrderCheckout
+     */
+    browser?: Browser;
+    /**
      * Comments from the customer.  Rarely used on the single page checkout.
      * @type {string}
      * @memberof OrderCheckout
@@ -22033,6 +22245,12 @@ export interface OrderCheckout {
      * @memberof OrderCheckout
      */
     screen_branding_theme_code?: string;
+    /**
+     * Screen size small, medium or large
+     * @type {string}
+     * @memberof OrderCheckout
+     */
+    screen_size?: string;
     /**
      * StoreFront host name associated with the order
      * @type {string}
@@ -22899,6 +23117,12 @@ export interface OrderItem {
      */
     tax_free?: boolean;
     /**
+     * Type of product for tax purposes (self or UltraCart Managed taxes)
+     * @type {string}
+     * @memberof OrderItem
+     */
+    tax_product_type?: OrderItem.TaxProductTypeEnum;
+    /**
      *
      * @type {Currency}
      * @memberof OrderItem
@@ -22946,6 +23170,22 @@ export interface OrderItem {
      * @memberof OrderItem
      */
     width?: Distance;
+}
+/**
+ * @export
+ * @namespace OrderItem
+ */
+export declare namespace OrderItem {
+    /**
+     * @export
+     * @enum {string}
+     */
+    enum TaxProductTypeEnum {
+        Empty,
+        Digital,
+        Physical,
+        Service
+    }
 }
 /**
  *
@@ -31219,6 +31459,24 @@ export interface TaxProviderUltraCartState {
      */
     enabled?: boolean;
     /**
+     * True if digital items are exempt from sales tax in this state.
+     * @type {boolean}
+     * @memberof TaxProviderUltraCartState
+     */
+    exempt_digital_items?: boolean;
+    /**
+     * True if physical items are exempt from sales tax in this state.
+     * @type {boolean}
+     * @memberof TaxProviderUltraCartState
+     */
+    exempt_physical_items?: boolean;
+    /**
+     * True if service items are exempt from sales tax in this state.
+     * @type {boolean}
+     * @memberof TaxProviderUltraCartState
+     */
+    exempt_service_items?: boolean;
+    /**
      * State Code (2 digits)
      * @type {string}
      * @memberof TaxProviderUltraCartState
@@ -31364,6 +31622,24 @@ export interface TaxState {
      * @memberof TaxState
      */
     dont_collect_state?: boolean;
+    /**
+     * True if digital items are exempt from sales tax in this state.
+     * @type {boolean}
+     * @memberof TaxState
+     */
+    exempt_digital_items?: boolean;
+    /**
+     * True if physical items are exempt from sales tax in this state.
+     * @type {boolean}
+     * @memberof TaxState
+     */
+    exempt_physical_items?: boolean;
+    /**
+     * True if service items are exempt from sales tax in this state.
+     * @type {boolean}
+     * @memberof TaxState
+     */
+    exempt_service_items?: boolean;
     /**
      * State code
      * @type {string}
