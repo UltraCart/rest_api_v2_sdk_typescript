@@ -491,12 +491,6 @@ export interface AddLibraryItemRequest {
      */
     cjson?: string;
     /**
-     * Additional Cjson to be added to library, notably for the postcard which has a front and back.
-     * @type {string}
-     * @memberof AddLibraryItemRequest
-     */
-    cjson2?: string;
-    /**
      * flow, campaign, cjson, email, transactional_email, postcard or upsell
      * @type {string}
      * @memberof AddLibraryItemRequest
@@ -10448,53 +10442,17 @@ export interface EmailCommseqPostcard {
      */
     postcard_front_container_uuid?: string;
     /**
-     * URL to screenshot (back) in large form factor full page
+     * URL for front screenshot
      * @type {string}
      * @memberof EmailCommseqPostcard
      */
-    screenshot_back_large_full_url?: string;
+    screenshot_front_url?: string;
     /**
-     * URL to screenshot (back) in large form factor viewport
-     * @type {string}
-     * @memberof EmailCommseqPostcard
-     */
-    screenshot_back_large_viewport_url?: string;
-    /**
-     * URL to screenshot (back) in small form factor full page
-     * @type {string}
-     * @memberof EmailCommseqPostcard
-     */
-    screenshot_back_small_full_url?: string;
-    /**
-     * URL to screenshot (back) in small form factor viewport
-     * @type {string}
-     * @memberof EmailCommseqPostcard
-     */
-    screenshot_back_small_viewport_url?: string;
-    /**
-     * URL to screenshot in large form factor full page
-     * @type {string}
-     * @memberof EmailCommseqPostcard
-     */
-    screenshot_large_full_url?: string;
-    /**
-     * URL to screenshot in large form factor viewport
-     * @type {string}
-     * @memberof EmailCommseqPostcard
-     */
-    screenshot_large_viewport_url?: string;
-    /**
-     * URL to screenshot in small form factor full page
+     * URL for back screenshot
      * @type {string}
      * @memberof EmailCommseqPostcard
      */
     screenshot_small_full_url?: string;
-    /**
-     * URL to screenshot in small form factor viewport
-     * @type {string}
-     * @memberof EmailCommseqPostcard
-     */
-    screenshot_small_viewport_url?: string;
     /**
      * Storefront oid
      * @type {number}
@@ -11234,6 +11192,56 @@ export interface EmailCommseqWebhookSendTestRequest {
      * @memberof EmailCommseqWebhookSendTestRequest
      */
     order_id?: string;
+}
+
+/**
+ * 
+ * @export
+ * @interface EmailCommseqWebhookSendTestResponse
+ */
+export interface EmailCommseqWebhookSendTestResponse {
+    /**
+     * 
+     * @type {ModelError}
+     * @memberof EmailCommseqWebhookSendTestResponse
+     */
+    error?: ModelError;
+    /**
+     * 
+     * @type {ResponseMetadata}
+     * @memberof EmailCommseqWebhookSendTestResponse
+     */
+    metadata?: ResponseMetadata;
+    /**
+     * HTTP Request
+     * @type {string}
+     * @memberof EmailCommseqWebhookSendTestResponse
+     */
+    request?: string;
+    /**
+     * HTTP Response
+     * @type {string}
+     * @memberof EmailCommseqWebhookSendTestResponse
+     */
+    response?: string;
+    /**
+     * HTTP Status Code
+     * @type {number}
+     * @memberof EmailCommseqWebhookSendTestResponse
+     */
+    status_code?: number;
+    /**
+     * Indicates if API call was successful
+     * @type {boolean}
+     * @memberof EmailCommseqWebhookSendTestResponse
+     */
+    success?: boolean;
+    /**
+     * 
+     * @type {Warning}
+     * @memberof EmailCommseqWebhookSendTestResponse
+     */
+    warning?: Warning;
 }
 
 /**
@@ -65510,7 +65518,7 @@ export const StorefrontApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        sendWebhookTest(storefront_oid: number, email_commseq_webhook_test_request: EmailCommseqWebhookSendTestRequest, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<EmailCommseqEmailSendTestResponse> {
+        sendWebhookTest(storefront_oid: number, email_commseq_webhook_test_request: EmailCommseqWebhookSendTestRequest, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<EmailCommseqWebhookSendTestResponse> {
             const localVarFetchArgs = StorefrontApiFetchParamCreator(configuration).sendWebhookTest(storefront_oid, email_commseq_webhook_test_request, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
@@ -69381,7 +69389,7 @@ export interface StorefrontApiInterface {
      * @throws {RequiredError}
      * @memberof StorefrontApiInterface
      */
-    sendWebhookTest(storefront_oid: number, email_commseq_webhook_test_request: EmailCommseqWebhookSendTestRequest, options?: any): Promise<EmailCommseqEmailSendTestResponse>;
+    sendWebhookTest(storefront_oid: number, email_commseq_webhook_test_request: EmailCommseqWebhookSendTestRequest, options?: any): Promise<EmailCommseqWebhookSendTestResponse>;
 
     /**
      * 
