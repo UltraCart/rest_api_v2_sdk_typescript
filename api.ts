@@ -8333,6 +8333,18 @@ export interface CustomerLoyalty {
      */
     current_points?: number;
     /**
+     * Loyalty Cashback / Store credit balance (internal gift certificate balance)
+     * @type {string}
+     * @memberof CustomerLoyalty
+     */
+    internal_gift_certificate_balance?: string;
+    /**
+     * Internal gift certificate oid used to tracking loyalty cashback / store credit.
+     * @type {number}
+     * @memberof CustomerLoyalty
+     */
+    internal_gift_certificate_oid?: number;
+    /**
      * Ledger entries
      * @type {Array<CustomerLoyaltyLedger>}
      * @memberof CustomerLoyalty
@@ -11594,6 +11606,12 @@ export interface EmailDomain {
      * @memberof EmailDomain
      */
     provider?: string;
+    /**
+     * 
+     * @type {VerificationRecord}
+     * @memberof EmailDomain
+     */
+    spf?: VerificationRecord;
     /**
      * 
      * @type {string}
