@@ -10210,17 +10210,17 @@ export interface EmailCommseqPostcard {
      */
     postcard_front_container_uuid?: string;
     /**
-     * URL for front screenshot
+     * URL to screenshot of the back of the postcard
+     * @type {string}
+     * @memberof EmailCommseqPostcard
+     */
+    screenshot_back_url?: string;
+    /**
+     * URL to screenshot of the front of the postcard
      * @type {string}
      * @memberof EmailCommseqPostcard
      */
     screenshot_front_url?: string;
-    /**
-     * URL for back screenshot
-     * @type {string}
-     * @memberof EmailCommseqPostcard
-     */
-    screenshot_small_full_url?: string;
     /**
      * Storefront oid
      * @type {number}
