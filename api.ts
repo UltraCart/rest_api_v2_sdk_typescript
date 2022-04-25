@@ -549,6 +549,94 @@ export interface AddLibraryItemRequest {
 /**
  * 
  * @export
+ * @interface AdjustInternalCertificateRequest
+ */
+export interface AdjustInternalCertificateRequest {
+    /**
+     * The adjustment amount
+     * @type {number}
+     * @memberof AdjustInternalCertificateRequest
+     */
+    adjustment_amount?: number;
+    /**
+     * Description of this adjustment, 50 characters max
+     * @type {string}
+     * @memberof AdjustInternalCertificateRequest
+     */
+    description?: string;
+    /**
+     * Optional timestamp for the adjustment, defaults to current time
+     * @type {string}
+     * @memberof AdjustInternalCertificateRequest
+     */
+    entry_dts?: string;
+    /**
+     * Optional expiration days from the entry_dts when these adjustment becomes worthless
+     * @type {number}
+     * @memberof AdjustInternalCertificateRequest
+     */
+    expiration_days?: number;
+    /**
+     * Optional order id if this adjustment is related to a particular order
+     * @type {string}
+     * @memberof AdjustInternalCertificateRequest
+     */
+    order_id?: string;
+    /**
+     * Optional days required for this adjustment to vest
+     * @type {number}
+     * @memberof AdjustInternalCertificateRequest
+     */
+    vesting_days?: number;
+}
+
+/**
+ * 
+ * @export
+ * @interface AdjustInternalCertificateResponse
+ */
+export interface AdjustInternalCertificateResponse {
+    /**
+     * The adjustment amount
+     * @type {number}
+     * @memberof AdjustInternalCertificateResponse
+     */
+    adjustment_amount?: number;
+    /**
+     * The balance amount after the adjustment was made
+     * @type {number}
+     * @memberof AdjustInternalCertificateResponse
+     */
+    balance_amount?: number;
+    /**
+     * 
+     * @type {ModelError}
+     * @memberof AdjustInternalCertificateResponse
+     */
+    error?: ModelError;
+    /**
+     * 
+     * @type {ResponseMetadata}
+     * @memberof AdjustInternalCertificateResponse
+     */
+    metadata?: ResponseMetadata;
+    /**
+     * Indicates if API call was successful
+     * @type {boolean}
+     * @memberof AdjustInternalCertificateResponse
+     */
+    success?: boolean;
+    /**
+     * 
+     * @type {Warning}
+     * @memberof AdjustInternalCertificateResponse
+     */
+    warning?: Warning;
+}
+
+/**
+ * 
+ * @export
  * @interface AffiliateClick
  */
 export interface AffiliateClick {
@@ -8333,11 +8421,17 @@ export interface CustomerEmailListChanges {
  */
 export interface CustomerLoyalty {
     /**
-     * Current Points
+     * Current points
      * @type {number}
      * @memberof CustomerLoyalty
      */
     current_points?: number;
+    /**
+     * 
+     * @type {GiftCertificate}
+     * @memberof CustomerLoyalty
+     */
+    internal_gift_certificate?: GiftCertificate;
     /**
      * Loyalty Cashback / Store credit balance (internal gift certificate balance)
      * @type {string}
@@ -42993,6 +43087,67 @@ export class CouponApi extends BaseAPI implements CouponApiInterface {
 export const CustomerApiFetchParamCreator = function (configuration?: Configuration) {
     return {
         /**
+         * Updates the cashback balance for a customer by updating the internal gift certificate used, creating the gift certificate if needed. 
+         * @summary Updates the cashback balance for a customer by updating the internal gift certificate used, creating the gift certificate if needed.
+         * @param {number} customer_profile_oid The customer profile oid
+         * @param {AdjustInternalCertificateRequest} adjust_internal_certificate_request adjustInternalCertificateRequest
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        adjustInternalCertificate(customer_profile_oid: number, adjust_internal_certificate_request: AdjustInternalCertificateRequest, options: any = {}): FetchArgs {
+            // verify required parameter 'customer_profile_oid' is not null or undefined
+            if (customer_profile_oid === null || customer_profile_oid === undefined) {
+                throw new RequiredError('customer_profile_oid','Required parameter customer_profile_oid was null or undefined when calling adjustInternalCertificate.');
+            }
+            // verify required parameter 'adjust_internal_certificate_request' is not null or undefined
+            if (adjust_internal_certificate_request === null || adjust_internal_certificate_request === undefined) {
+                throw new RequiredError('adjust_internal_certificate_request','Required parameter adjust_internal_certificate_request was null or undefined when calling adjustInternalCertificate.');
+            }
+            const localVarPath = `/customer/customers/{customer_profile_oid}/adjust_cashback_balance`
+                .replace(`{${"customer_profile_oid"}}`, encodeURIComponent(String(customer_profile_oid)));
+            const localVarUrlObj = url.parse(localVarPath, true);
+            const localVarRequestOptions = Object.assign({ method: 'POST' }, options);
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+    if(configuration && configuration.apiVersion) {
+      localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+    }
+
+
+
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+				const localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+					? configuration.accessToken("ultraCartOauth", ["customer_write"])
+					: configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
+					? configuration.apiKey("x-ultracart-simple-key")
+					: configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+
+            localVarHeaderParameter['Content-Type'] = 'application/json; charset=UTF-8';
+
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+            const needsSerialization = (<any>"AdjustInternalCertificateRequest" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
+            localVarRequestOptions.body =  needsSerialization ? JSON.stringify(adjust_internal_certificate_request || {}) : (adjust_internal_certificate_request || "");
+
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
          * Delete a customer on the UltraCart account. 
          * @summary Delete a customer
          * @param {number} customer_profile_oid The customer_profile_oid to delete.
@@ -43894,6 +44049,28 @@ export const CustomerApiFetchParamCreator = function (configuration?: Configurat
 export const CustomerApiFp = function(configuration?: Configuration) {
     return {
         /**
+         * Updates the cashback balance for a customer by updating the internal gift certificate used, creating the gift certificate if needed. 
+         * @summary Updates the cashback balance for a customer by updating the internal gift certificate used, creating the gift certificate if needed.
+         * @param {number} customer_profile_oid The customer profile oid
+         * @param {AdjustInternalCertificateRequest} adjust_internal_certificate_request adjustInternalCertificateRequest
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        adjustInternalCertificate(customer_profile_oid: number, adjust_internal_certificate_request: AdjustInternalCertificateRequest, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<AdjustInternalCertificateResponse> {
+            const localVarFetchArgs = CustomerApiFetchParamCreator(configuration).adjustInternalCertificate(customer_profile_oid, adjust_internal_certificate_request, options);
+            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
+                    if (response.status >= 200 && response.status < 300) {
+                      return response.json();
+                      
+                    } else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
          * Delete a customer on the UltraCart account. 
          * @summary Delete a customer
          * @param {number} customer_profile_oid The customer_profile_oid to delete.
@@ -44216,6 +44393,17 @@ export const CustomerApiFp = function(configuration?: Configuration) {
 export const CustomerApiFactory = function (configuration?: Configuration, fetch?: FetchAPI, basePath?: string) {
     return {
         /**
+         * Updates the cashback balance for a customer by updating the internal gift certificate used, creating the gift certificate if needed. 
+         * @summary Updates the cashback balance for a customer by updating the internal gift certificate used, creating the gift certificate if needed.
+         * @param {number} customer_profile_oid The customer profile oid
+         * @param {AdjustInternalCertificateRequest} adjust_internal_certificate_request adjustInternalCertificateRequest
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        adjustInternalCertificate(customer_profile_oid: number, adjust_internal_certificate_request: AdjustInternalCertificateRequest, options?: any) {
+            return CustomerApiFp(configuration).adjustInternalCertificate(customer_profile_oid, adjust_internal_certificate_request, options)(fetch, basePath);
+        },
+        /**
          * Delete a customer on the UltraCart account. 
          * @summary Delete a customer
          * @param {number} customer_profile_oid The customer_profile_oid to delete.
@@ -44395,6 +44583,17 @@ export const CustomerApiFactory = function (configuration?: Configuration, fetch
  */
 export interface CustomerApiInterface {
     /**
+     * Updates the cashback balance for a customer by updating the internal gift certificate used, creating the gift certificate if needed. 
+     * @summary Updates the cashback balance for a customer by updating the internal gift certificate used, creating the gift certificate if needed.
+     * @param {number} customer_profile_oid The customer profile oid
+     * @param {AdjustInternalCertificateRequest} adjust_internal_certificate_request adjustInternalCertificateRequest
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof CustomerApiInterface
+     */
+    adjustInternalCertificate(customer_profile_oid: number, adjust_internal_certificate_request: AdjustInternalCertificateRequest, options?: any): Promise<AdjustInternalCertificateResponse>;
+
+    /**
      * Delete a customer on the UltraCart account. 
      * @summary Delete a customer
      * @param {number} customer_profile_oid The customer_profile_oid to delete.
@@ -44573,6 +44772,19 @@ export interface CustomerApiInterface {
  * @extends {BaseAPI}
  */
 export class CustomerApi extends BaseAPI implements CustomerApiInterface {
+    /**
+     * Updates the cashback balance for a customer by updating the internal gift certificate used, creating the gift certificate if needed. 
+     * @summary Updates the cashback balance for a customer by updating the internal gift certificate used, creating the gift certificate if needed.
+     * @param {number} customer_profile_oid The customer profile oid
+     * @param {AdjustInternalCertificateRequest} adjust_internal_certificate_request adjustInternalCertificateRequest
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof CustomerApi
+     */
+    public adjustInternalCertificate(customer_profile_oid: number, adjust_internal_certificate_request: AdjustInternalCertificateRequest, options?: any) {
+        return CustomerApiFp(this.configuration).adjustInternalCertificate(customer_profile_oid, adjust_internal_certificate_request, options)(this.fetch, this.basePath);
+    }
+
     /**
      * Delete a customer on the UltraCart account. 
      * @summary Delete a customer
@@ -46574,6 +46786,70 @@ export const IntegrationLogApiFetchParamCreator = function (configuration?: Conf
             };
         },
         /**
+         * Retrieve an integration log file from the account based identifiers 
+         * @summary Retrieve an integration log file converted to PDF
+         * @param {string} pk 
+         * @param {string} sk 
+         * @param {string} uuid 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getIntegrationLogFilePdf(pk: string, sk: string, uuid: string, options: any = {}): FetchArgs {
+            // verify required parameter 'pk' is not null or undefined
+            if (pk === null || pk === undefined) {
+                throw new RequiredError('pk','Required parameter pk was null or undefined when calling getIntegrationLogFilePdf.');
+            }
+            // verify required parameter 'sk' is not null or undefined
+            if (sk === null || sk === undefined) {
+                throw new RequiredError('sk','Required parameter sk was null or undefined when calling getIntegrationLogFilePdf.');
+            }
+            // verify required parameter 'uuid' is not null or undefined
+            if (uuid === null || uuid === undefined) {
+                throw new RequiredError('uuid','Required parameter uuid was null or undefined when calling getIntegrationLogFilePdf.');
+            }
+            const localVarPath = `/integration_log/query/{pk}/{sk}/{uuid}/pdf`
+                .replace(`{${"pk"}}`, encodeURIComponent(String(pk)))
+                .replace(`{${"sk"}}`, encodeURIComponent(String(sk)))
+                .replace(`{${"uuid"}}`, encodeURIComponent(String(uuid)));
+            const localVarUrlObj = url.parse(localVarPath, true);
+            const localVarRequestOptions = Object.assign({ method: 'GET' }, options);
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+    if(configuration && configuration.apiVersion) {
+      localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+    }
+
+
+
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+				const localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+					? configuration.accessToken("ultraCartOauth", ["integration_log_read"])
+					: configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
+					? configuration.apiKey("x-ultracart-simple-key")
+					: configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
          * Retrieves a set of integration log summaries from the account based on a query object. 
          * @summary Retrieve integration log summaries
          * @param {IntegrationLogSummaryQueryRequest} integration_log_summaries_query Integration log summaries query
@@ -46753,6 +47029,29 @@ export const IntegrationLogApiFp = function(configuration?: Configuration) {
             };
         },
         /**
+         * Retrieve an integration log file from the account based identifiers 
+         * @summary Retrieve an integration log file converted to PDF
+         * @param {string} pk 
+         * @param {string} sk 
+         * @param {string} uuid 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getIntegrationLogFilePdf(pk: string, sk: string, uuid: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Blob> {
+            const localVarFetchArgs = IntegrationLogApiFetchParamCreator(configuration).getIntegrationLogFilePdf(pk, sk, uuid, options);
+            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
+                    if (response.status >= 200 && response.status < 300) {
+                      
+                      return response.blob();
+                    } else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
          * Retrieves a set of integration log summaries from the account based on a query object. 
          * @summary Retrieve integration log summaries
          * @param {IntegrationLogSummaryQueryRequest} integration_log_summaries_query Integration log summaries query
@@ -46830,6 +47129,18 @@ export const IntegrationLogApiFactory = function (configuration?: Configuration,
             return IntegrationLogApiFp(configuration).getIntegrationLogFile(pk, sk, uuid, options)(fetch, basePath);
         },
         /**
+         * Retrieve an integration log file from the account based identifiers 
+         * @summary Retrieve an integration log file converted to PDF
+         * @param {string} pk 
+         * @param {string} sk 
+         * @param {string} uuid 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getIntegrationLogFilePdf(pk: string, sk: string, uuid: string, options?: any) {
+            return IntegrationLogApiFp(configuration).getIntegrationLogFilePdf(pk, sk, uuid, options)(fetch, basePath);
+        },
+        /**
          * Retrieves a set of integration log summaries from the account based on a query object. 
          * @summary Retrieve integration log summaries
          * @param {IntegrationLogSummaryQueryRequest} integration_log_summaries_query Integration log summaries query
@@ -46883,6 +47194,18 @@ export interface IntegrationLogApiInterface {
      * @memberof IntegrationLogApiInterface
      */
     getIntegrationLogFile(pk: string, sk: string, uuid: string, options?: any): Promise<Blob>;
+
+    /**
+     * Retrieve an integration log file from the account based identifiers 
+     * @summary Retrieve an integration log file converted to PDF
+     * @param {string} pk 
+     * @param {string} sk 
+     * @param {string} uuid 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof IntegrationLogApiInterface
+     */
+    getIntegrationLogFilePdf(pk: string, sk: string, uuid: string, options?: any): Promise<Blob>;
 
     /**
      * Retrieves a set of integration log summaries from the account based on a query object. 
@@ -46941,6 +47264,20 @@ export class IntegrationLogApi extends BaseAPI implements IntegrationLogApiInter
      */
     public getIntegrationLogFile(pk: string, sk: string, uuid: string, options?: any) {
         return IntegrationLogApiFp(this.configuration).getIntegrationLogFile(pk, sk, uuid, options)(this.fetch, this.basePath);
+    }
+
+    /**
+     * Retrieve an integration log file from the account based identifiers 
+     * @summary Retrieve an integration log file converted to PDF
+     * @param {string} pk 
+     * @param {string} sk 
+     * @param {string} uuid 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof IntegrationLogApi
+     */
+    public getIntegrationLogFilePdf(pk: string, sk: string, uuid: string, options?: any) {
+        return IntegrationLogApiFp(this.configuration).getIntegrationLogFilePdf(pk, sk, uuid, options)(this.fetch, this.basePath);
     }
 
     /**

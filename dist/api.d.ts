@@ -522,6 +522,92 @@ export interface AddLibraryItemRequest {
 /**
  *
  * @export
+ * @interface AdjustInternalCertificateRequest
+ */
+export interface AdjustInternalCertificateRequest {
+    /**
+     * The adjustment amount
+     * @type {number}
+     * @memberof AdjustInternalCertificateRequest
+     */
+    adjustment_amount?: number;
+    /**
+     * Description of this adjustment, 50 characters max
+     * @type {string}
+     * @memberof AdjustInternalCertificateRequest
+     */
+    description?: string;
+    /**
+     * Optional timestamp for the adjustment, defaults to current time
+     * @type {string}
+     * @memberof AdjustInternalCertificateRequest
+     */
+    entry_dts?: string;
+    /**
+     * Optional expiration days from the entry_dts when these adjustment becomes worthless
+     * @type {number}
+     * @memberof AdjustInternalCertificateRequest
+     */
+    expiration_days?: number;
+    /**
+     * Optional order id if this adjustment is related to a particular order
+     * @type {string}
+     * @memberof AdjustInternalCertificateRequest
+     */
+    order_id?: string;
+    /**
+     * Optional days required for this adjustment to vest
+     * @type {number}
+     * @memberof AdjustInternalCertificateRequest
+     */
+    vesting_days?: number;
+}
+/**
+ *
+ * @export
+ * @interface AdjustInternalCertificateResponse
+ */
+export interface AdjustInternalCertificateResponse {
+    /**
+     * The adjustment amount
+     * @type {number}
+     * @memberof AdjustInternalCertificateResponse
+     */
+    adjustment_amount?: number;
+    /**
+     * The balance amount after the adjustment was made
+     * @type {number}
+     * @memberof AdjustInternalCertificateResponse
+     */
+    balance_amount?: number;
+    /**
+     *
+     * @type {ModelError}
+     * @memberof AdjustInternalCertificateResponse
+     */
+    error?: ModelError;
+    /**
+     *
+     * @type {ResponseMetadata}
+     * @memberof AdjustInternalCertificateResponse
+     */
+    metadata?: ResponseMetadata;
+    /**
+     * Indicates if API call was successful
+     * @type {boolean}
+     * @memberof AdjustInternalCertificateResponse
+     */
+    success?: boolean;
+    /**
+     *
+     * @type {Warning}
+     * @memberof AdjustInternalCertificateResponse
+     */
+    warning?: Warning;
+}
+/**
+ *
+ * @export
  * @interface AffiliateClick
  */
 export interface AffiliateClick {
@@ -8126,11 +8212,17 @@ export interface CustomerEmailListChanges {
  */
 export interface CustomerLoyalty {
     /**
-     * Current Points
+     * Current points
      * @type {number}
      * @memberof CustomerLoyalty
      */
     current_points?: number;
+    /**
+     *
+     * @type {GiftCertificate}
+     * @memberof CustomerLoyalty
+     */
+    internal_gift_certificate?: GiftCertificate;
     /**
      * Loyalty Cashback / Store credit balance (internal gift certificate balance)
      * @type {string}
@@ -37309,6 +37401,15 @@ export declare class CouponApi extends BaseAPI implements CouponApiInterface {
  */
 export declare const CustomerApiFetchParamCreator: (configuration?: Configuration) => {
     /**
+     * Updates the cashback balance for a customer by updating the internal gift certificate used, creating the gift certificate if needed.
+     * @summary Updates the cashback balance for a customer by updating the internal gift certificate used, creating the gift certificate if needed.
+     * @param {number} customer_profile_oid The customer profile oid
+     * @param {AdjustInternalCertificateRequest} adjust_internal_certificate_request adjustInternalCertificateRequest
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    adjustInternalCertificate(customer_profile_oid: number, adjust_internal_certificate_request: AdjustInternalCertificateRequest, options?: any): FetchArgs;
+    /**
      * Delete a customer on the UltraCart account.
      * @summary Delete a customer
      * @param {number} customer_profile_oid The customer_profile_oid to delete.
@@ -37458,6 +37559,15 @@ export declare const CustomerApiFetchParamCreator: (configuration?: Configuratio
  * @export
  */
 export declare const CustomerApiFp: (configuration?: Configuration) => {
+    /**
+     * Updates the cashback balance for a customer by updating the internal gift certificate used, creating the gift certificate if needed.
+     * @summary Updates the cashback balance for a customer by updating the internal gift certificate used, creating the gift certificate if needed.
+     * @param {number} customer_profile_oid The customer profile oid
+     * @param {AdjustInternalCertificateRequest} adjust_internal_certificate_request adjustInternalCertificateRequest
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    adjustInternalCertificate(customer_profile_oid: number, adjust_internal_certificate_request: AdjustInternalCertificateRequest, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<AdjustInternalCertificateResponse>;
     /**
      * Delete a customer on the UltraCart account.
      * @summary Delete a customer
@@ -37609,6 +37719,15 @@ export declare const CustomerApiFp: (configuration?: Configuration) => {
  */
 export declare const CustomerApiFactory: (configuration?: Configuration, fetch?: FetchAPI, basePath?: string) => {
     /**
+     * Updates the cashback balance for a customer by updating the internal gift certificate used, creating the gift certificate if needed.
+     * @summary Updates the cashback balance for a customer by updating the internal gift certificate used, creating the gift certificate if needed.
+     * @param {number} customer_profile_oid The customer profile oid
+     * @param {AdjustInternalCertificateRequest} adjust_internal_certificate_request adjustInternalCertificateRequest
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    adjustInternalCertificate(customer_profile_oid: number, adjust_internal_certificate_request: AdjustInternalCertificateRequest, options?: any): Promise<AdjustInternalCertificateResponse>;
+    /**
      * Delete a customer on the UltraCart account.
      * @summary Delete a customer
      * @param {number} customer_profile_oid The customer_profile_oid to delete.
@@ -37759,6 +37878,16 @@ export declare const CustomerApiFactory: (configuration?: Configuration, fetch?:
  * @interface CustomerApi
  */
 export interface CustomerApiInterface {
+    /**
+     * Updates the cashback balance for a customer by updating the internal gift certificate used, creating the gift certificate if needed.
+     * @summary Updates the cashback balance for a customer by updating the internal gift certificate used, creating the gift certificate if needed.
+     * @param {number} customer_profile_oid The customer profile oid
+     * @param {AdjustInternalCertificateRequest} adjust_internal_certificate_request adjustInternalCertificateRequest
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof CustomerApiInterface
+     */
+    adjustInternalCertificate(customer_profile_oid: number, adjust_internal_certificate_request: AdjustInternalCertificateRequest, options?: any): Promise<AdjustInternalCertificateResponse>;
     /**
      * Delete a customer on the UltraCart account.
      * @summary Delete a customer
@@ -37924,6 +38053,16 @@ export interface CustomerApiInterface {
  * @extends {BaseAPI}
  */
 export declare class CustomerApi extends BaseAPI implements CustomerApiInterface {
+    /**
+     * Updates the cashback balance for a customer by updating the internal gift certificate used, creating the gift certificate if needed.
+     * @summary Updates the cashback balance for a customer by updating the internal gift certificate used, creating the gift certificate if needed.
+     * @param {number} customer_profile_oid The customer profile oid
+     * @param {AdjustInternalCertificateRequest} adjust_internal_certificate_request adjustInternalCertificateRequest
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof CustomerApi
+     */
+    adjustInternalCertificate(customer_profile_oid: number, adjust_internal_certificate_request: AdjustInternalCertificateRequest, options?: any): Promise<AdjustInternalCertificateResponse>;
     /**
      * Delete a customer on the UltraCart account.
      * @summary Delete a customer
@@ -38811,6 +38950,16 @@ export declare const IntegrationLogApiFetchParamCreator: (configuration?: Config
      */
     getIntegrationLogFile(pk: string, sk: string, uuid: string, options?: any): FetchArgs;
     /**
+     * Retrieve an integration log file from the account based identifiers
+     * @summary Retrieve an integration log file converted to PDF
+     * @param {string} pk
+     * @param {string} sk
+     * @param {string} uuid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getIntegrationLogFilePdf(pk: string, sk: string, uuid: string, options?: any): FetchArgs;
+    /**
      * Retrieves a set of integration log summaries from the account based on a query object.
      * @summary Retrieve integration log summaries
      * @param {IntegrationLogSummaryQueryRequest} integration_log_summaries_query Integration log summaries query
@@ -38855,6 +39004,16 @@ export declare const IntegrationLogApiFp: (configuration?: Configuration) => {
      */
     getIntegrationLogFile(pk: string, sk: string, uuid: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Blob>;
     /**
+     * Retrieve an integration log file from the account based identifiers
+     * @summary Retrieve an integration log file converted to PDF
+     * @param {string} pk
+     * @param {string} sk
+     * @param {string} uuid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getIntegrationLogFilePdf(pk: string, sk: string, uuid: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Blob>;
+    /**
      * Retrieves a set of integration log summaries from the account based on a query object.
      * @summary Retrieve integration log summaries
      * @param {IntegrationLogSummaryQueryRequest} integration_log_summaries_query Integration log summaries query
@@ -38898,6 +39057,16 @@ export declare const IntegrationLogApiFactory: (configuration?: Configuration, f
      * @throws {RequiredError}
      */
     getIntegrationLogFile(pk: string, sk: string, uuid: string, options?: any): Promise<Blob>;
+    /**
+     * Retrieve an integration log file from the account based identifiers
+     * @summary Retrieve an integration log file converted to PDF
+     * @param {string} pk
+     * @param {string} sk
+     * @param {string} uuid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getIntegrationLogFilePdf(pk: string, sk: string, uuid: string, options?: any): Promise<Blob>;
     /**
      * Retrieves a set of integration log summaries from the account based on a query object.
      * @summary Retrieve integration log summaries
@@ -38945,6 +39114,17 @@ export interface IntegrationLogApiInterface {
      * @memberof IntegrationLogApiInterface
      */
     getIntegrationLogFile(pk: string, sk: string, uuid: string, options?: any): Promise<Blob>;
+    /**
+     * Retrieve an integration log file from the account based identifiers
+     * @summary Retrieve an integration log file converted to PDF
+     * @param {string} pk
+     * @param {string} sk
+     * @param {string} uuid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof IntegrationLogApiInterface
+     */
+    getIntegrationLogFilePdf(pk: string, sk: string, uuid: string, options?: any): Promise<Blob>;
     /**
      * Retrieves a set of integration log summaries from the account based on a query object.
      * @summary Retrieve integration log summaries
@@ -38995,6 +39175,17 @@ export declare class IntegrationLogApi extends BaseAPI implements IntegrationLog
      * @memberof IntegrationLogApi
      */
     getIntegrationLogFile(pk: string, sk: string, uuid: string, options?: any): Promise<Blob>;
+    /**
+     * Retrieve an integration log file from the account based identifiers
+     * @summary Retrieve an integration log file converted to PDF
+     * @param {string} pk
+     * @param {string} sk
+     * @param {string} uuid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof IntegrationLogApi
+     */
+    getIntegrationLogFilePdf(pk: string, sk: string, uuid: string, options?: any): Promise<Blob>;
     /**
      * Retrieves a set of integration log summaries from the account based on a query object.
      * @summary Retrieve integration log summaries

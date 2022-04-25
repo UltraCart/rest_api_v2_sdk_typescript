@@ -8369,6 +8369,60 @@ exports.CouponApi = CouponApi;
 var CustomerApiFetchParamCreator = function (configuration) {
     return {
         /**
+         * Updates the cashback balance for a customer by updating the internal gift certificate used, creating the gift certificate if needed.
+         * @summary Updates the cashback balance for a customer by updating the internal gift certificate used, creating the gift certificate if needed.
+         * @param {number} customer_profile_oid The customer profile oid
+         * @param {AdjustInternalCertificateRequest} adjust_internal_certificate_request adjustInternalCertificateRequest
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        adjustInternalCertificate: function (customer_profile_oid, adjust_internal_certificate_request, options) {
+            if (options === void 0) { options = {}; }
+            // verify required parameter 'customer_profile_oid' is not null or undefined
+            if (customer_profile_oid === null || customer_profile_oid === undefined) {
+                throw new RequiredError('customer_profile_oid', 'Required parameter customer_profile_oid was null or undefined when calling adjustInternalCertificate.');
+            }
+            // verify required parameter 'adjust_internal_certificate_request' is not null or undefined
+            if (adjust_internal_certificate_request === null || adjust_internal_certificate_request === undefined) {
+                throw new RequiredError('adjust_internal_certificate_request', 'Required parameter adjust_internal_certificate_request was null or undefined when calling adjustInternalCertificate.');
+            }
+            var localVarPath = "/customer/customers/{customer_profile_oid}/adjust_cashback_balance"
+                .replace("{".concat("customer_profile_oid", "}"), encodeURIComponent(String(customer_profile_oid)));
+            var localVarUrlObj = url.parse(localVarPath, true);
+            var localVarRequestOptions = Object.assign({ method: 'POST' }, options);
+            var localVarHeaderParameter = {};
+            var localVarQueryParameter = {};
+            if (configuration && configuration.apiVersion) {
+                localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+            }
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+                var localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+                    ? configuration.accessToken("ultraCartOauth", ["customer_write"])
+                    : configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                var localVarApiKeyValue = typeof configuration.apiKey === 'function'
+                    ? configuration.apiKey("x-ultracart-simple-key")
+                    : configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+            localVarHeaderParameter['Content-Type'] = 'application/json; charset=UTF-8';
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+            var needsSerialization = ("AdjustInternalCertificateRequest" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
+            localVarRequestOptions.body = needsSerialization ? JSON.stringify(adjust_internal_certificate_request || {}) : (adjust_internal_certificate_request || "");
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
          * Delete a customer on the UltraCart account.
          * @summary Delete a customer
          * @param {number} customer_profile_oid The customer_profile_oid to delete.
@@ -9144,6 +9198,29 @@ exports.CustomerApiFetchParamCreator = CustomerApiFetchParamCreator;
 var CustomerApiFp = function (configuration) {
     return {
         /**
+         * Updates the cashback balance for a customer by updating the internal gift certificate used, creating the gift certificate if needed.
+         * @summary Updates the cashback balance for a customer by updating the internal gift certificate used, creating the gift certificate if needed.
+         * @param {number} customer_profile_oid The customer profile oid
+         * @param {AdjustInternalCertificateRequest} adjust_internal_certificate_request adjustInternalCertificateRequest
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        adjustInternalCertificate: function (customer_profile_oid, adjust_internal_certificate_request, options) {
+            var localVarFetchArgs = (0, exports.CustomerApiFetchParamCreator)(configuration).adjustInternalCertificate(customer_profile_oid, adjust_internal_certificate_request, options);
+            return function (fetch, basePath) {
+                if (fetch === void 0) { fetch = portableFetch; }
+                if (basePath === void 0) { basePath = BASE_PATH; }
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(function (response) {
+                    if (response.status >= 200 && response.status < 300) {
+                        return response.json();
+                    }
+                    else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
          * Delete a customer on the UltraCart account.
          * @summary Delete a customer
          * @param {number} customer_profile_oid The customer_profile_oid to delete.
@@ -9479,6 +9556,17 @@ exports.CustomerApiFp = CustomerApiFp;
 var CustomerApiFactory = function (configuration, fetch, basePath) {
     return {
         /**
+         * Updates the cashback balance for a customer by updating the internal gift certificate used, creating the gift certificate if needed.
+         * @summary Updates the cashback balance for a customer by updating the internal gift certificate used, creating the gift certificate if needed.
+         * @param {number} customer_profile_oid The customer profile oid
+         * @param {AdjustInternalCertificateRequest} adjust_internal_certificate_request adjustInternalCertificateRequest
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        adjustInternalCertificate: function (customer_profile_oid, adjust_internal_certificate_request, options) {
+            return (0, exports.CustomerApiFp)(configuration).adjustInternalCertificate(customer_profile_oid, adjust_internal_certificate_request, options)(fetch, basePath);
+        },
+        /**
          * Delete a customer on the UltraCart account.
          * @summary Delete a customer
          * @param {number} customer_profile_oid The customer_profile_oid to delete.
@@ -9662,6 +9750,18 @@ var CustomerApi = /** @class */ (function (_super) {
     function CustomerApi() {
         return _super !== null && _super.apply(this, arguments) || this;
     }
+    /**
+     * Updates the cashback balance for a customer by updating the internal gift certificate used, creating the gift certificate if needed.
+     * @summary Updates the cashback balance for a customer by updating the internal gift certificate used, creating the gift certificate if needed.
+     * @param {number} customer_profile_oid The customer profile oid
+     * @param {AdjustInternalCertificateRequest} adjust_internal_certificate_request adjustInternalCertificateRequest
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof CustomerApi
+     */
+    CustomerApi.prototype.adjustInternalCertificate = function (customer_profile_oid, adjust_internal_certificate_request, options) {
+        return (0, exports.CustomerApiFp)(this.configuration).adjustInternalCertificate(customer_profile_oid, adjust_internal_certificate_request, options)(this.fetch, this.basePath);
+    };
     /**
      * Delete a customer on the UltraCart account.
      * @summary Delete a customer
@@ -11387,6 +11487,64 @@ var IntegrationLogApiFetchParamCreator = function (configuration) {
             };
         },
         /**
+         * Retrieve an integration log file from the account based identifiers
+         * @summary Retrieve an integration log file converted to PDF
+         * @param {string} pk
+         * @param {string} sk
+         * @param {string} uuid
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getIntegrationLogFilePdf: function (pk, sk, uuid, options) {
+            if (options === void 0) { options = {}; }
+            // verify required parameter 'pk' is not null or undefined
+            if (pk === null || pk === undefined) {
+                throw new RequiredError('pk', 'Required parameter pk was null or undefined when calling getIntegrationLogFilePdf.');
+            }
+            // verify required parameter 'sk' is not null or undefined
+            if (sk === null || sk === undefined) {
+                throw new RequiredError('sk', 'Required parameter sk was null or undefined when calling getIntegrationLogFilePdf.');
+            }
+            // verify required parameter 'uuid' is not null or undefined
+            if (uuid === null || uuid === undefined) {
+                throw new RequiredError('uuid', 'Required parameter uuid was null or undefined when calling getIntegrationLogFilePdf.');
+            }
+            var localVarPath = "/integration_log/query/{pk}/{sk}/{uuid}/pdf"
+                .replace("{".concat("pk", "}"), encodeURIComponent(String(pk)))
+                .replace("{".concat("sk", "}"), encodeURIComponent(String(sk)))
+                .replace("{".concat("uuid", "}"), encodeURIComponent(String(uuid)));
+            var localVarUrlObj = url.parse(localVarPath, true);
+            var localVarRequestOptions = Object.assign({ method: 'GET' }, options);
+            var localVarHeaderParameter = {};
+            var localVarQueryParameter = {};
+            if (configuration && configuration.apiVersion) {
+                localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+            }
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+                var localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+                    ? configuration.accessToken("ultraCartOauth", ["integration_log_read"])
+                    : configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                var localVarApiKeyValue = typeof configuration.apiKey === 'function'
+                    ? configuration.apiKey("x-ultracart-simple-key")
+                    : configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
          * Retrieves a set of integration log summaries from the account based on a query object.
          * @summary Retrieve integration log summaries
          * @param {IntegrationLogSummaryQueryRequest} integration_log_summaries_query Integration log summaries query
@@ -11551,6 +11709,30 @@ var IntegrationLogApiFp = function (configuration) {
             };
         },
         /**
+         * Retrieve an integration log file from the account based identifiers
+         * @summary Retrieve an integration log file converted to PDF
+         * @param {string} pk
+         * @param {string} sk
+         * @param {string} uuid
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getIntegrationLogFilePdf: function (pk, sk, uuid, options) {
+            var localVarFetchArgs = (0, exports.IntegrationLogApiFetchParamCreator)(configuration).getIntegrationLogFilePdf(pk, sk, uuid, options);
+            return function (fetch, basePath) {
+                if (fetch === void 0) { fetch = portableFetch; }
+                if (basePath === void 0) { basePath = BASE_PATH; }
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(function (response) {
+                    if (response.status >= 200 && response.status < 300) {
+                        return response.blob();
+                    }
+                    else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
          * Retrieves a set of integration log summaries from the account based on a query object.
          * @summary Retrieve integration log summaries
          * @param {IntegrationLogSummaryQueryRequest} integration_log_summaries_query Integration log summaries query
@@ -11630,6 +11812,18 @@ var IntegrationLogApiFactory = function (configuration, fetch, basePath) {
             return (0, exports.IntegrationLogApiFp)(configuration).getIntegrationLogFile(pk, sk, uuid, options)(fetch, basePath);
         },
         /**
+         * Retrieve an integration log file from the account based identifiers
+         * @summary Retrieve an integration log file converted to PDF
+         * @param {string} pk
+         * @param {string} sk
+         * @param {string} uuid
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getIntegrationLogFilePdf: function (pk, sk, uuid, options) {
+            return (0, exports.IntegrationLogApiFp)(configuration).getIntegrationLogFilePdf(pk, sk, uuid, options)(fetch, basePath);
+        },
+        /**
          * Retrieves a set of integration log summaries from the account based on a query object.
          * @summary Retrieve integration log summaries
          * @param {IntegrationLogSummaryQueryRequest} integration_log_summaries_query Integration log summaries query
@@ -11690,6 +11884,19 @@ var IntegrationLogApi = /** @class */ (function (_super) {
      */
     IntegrationLogApi.prototype.getIntegrationLogFile = function (pk, sk, uuid, options) {
         return (0, exports.IntegrationLogApiFp)(this.configuration).getIntegrationLogFile(pk, sk, uuid, options)(this.fetch, this.basePath);
+    };
+    /**
+     * Retrieve an integration log file from the account based identifiers
+     * @summary Retrieve an integration log file converted to PDF
+     * @param {string} pk
+     * @param {string} sk
+     * @param {string} uuid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof IntegrationLogApi
+     */
+    IntegrationLogApi.prototype.getIntegrationLogFilePdf = function (pk, sk, uuid, options) {
+        return (0, exports.IntegrationLogApiFp)(this.configuration).getIntegrationLogFilePdf(pk, sk, uuid, options)(this.fetch, this.basePath);
     };
     /**
      * Retrieves a set of integration log summaries from the account based on a query object.
