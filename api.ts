@@ -1227,6 +1227,12 @@ export interface AutoOrder {
      */
     cancel_downgrade?: boolean;
     /**
+     * The reason this auto order was canceled by either merchant or customer
+     * @type {string}
+     * @memberof AutoOrder
+     */
+    cancel_reason?: string;
+    /**
      * True if the auto order was canceled because the customer purchased an upgrade item
      * @type {boolean}
      * @memberof AutoOrder
@@ -10082,6 +10088,12 @@ export interface EmailCommseqEmail {
      */
     library_item_oid?: number;
     /**
+     * True if email links should contain magic link tokens to log the customer in automatically
+     * @type {boolean}
+     * @memberof EmailCommseqEmail
+     */
+    magic_link?: boolean;
+    /**
      * Merchant ID
      * @type {string}
      * @memberof EmailCommseqEmail
@@ -12777,6 +12789,12 @@ export interface EmailPerformance {
      */
     delivered_count?: number;
     /**
+     * Loyalty Program Type
+     * @type {string}
+     * @memberof EmailPerformance
+     */
+    loyalty_program_type?: EmailPerformance.LoyaltyProgramTypeEnum;
+    /**
      * Maximum active customers allowed under their billing plan
      * @type {number}
      * @memberof EmailPerformance
@@ -12860,6 +12878,22 @@ export interface EmailPerformance {
      * @memberof EmailPerformance
      */
     transactional_send_count?: number;
+}
+
+/**
+ * @export
+ * @namespace EmailPerformance
+ */
+export namespace EmailPerformance {
+    /**
+     * @export
+     * @enum {string}
+     */
+    export enum LoyaltyProgramTypeEnum {
+        Disabled = <any> 'disabled',
+        Points = <any> 'points',
+        Cashback = <any> 'cashback'
+    }
 }
 
 /**
@@ -22344,6 +22378,12 @@ export interface OrderAutoOrder {
      * @memberof OrderAutoOrder
      */
     cancel_downgrade?: boolean;
+    /**
+     * The reason this auto order was canceled by either merchant or customer
+     * @type {string}
+     * @memberof OrderAutoOrder
+     */
+    cancel_reason?: string;
     /**
      * True if the auto order was canceled because the customer purchased an upgrade item
      * @type {boolean}
