@@ -39887,6 +39887,15 @@ export declare const OrderApiFetchParamCreator: (configuration?: Configuration) 
      */
     deleteOrder(order_id: string, options?: any): FetchArgs;
     /**
+     * Perform a duplicate of the specified order_id and return a new order located in Accounts Receivable.
+     * @summary Duplicate an order
+     * @param {string} order_id The order id to duplicate.
+     * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    duplicateOrder(order_id: string, _expand?: string, options?: any): FetchArgs;
+    /**
      * Format the order for display at text or html
      * @summary Format order
      * @param {string} order_id The order id to format
@@ -40133,6 +40142,15 @@ export declare const OrderApiFp: (configuration?: Configuration) => {
      */
     deleteOrder(order_id: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Response>;
     /**
+     * Perform a duplicate of the specified order_id and return a new order located in Accounts Receivable.
+     * @summary Duplicate an order
+     * @param {string} order_id The order id to duplicate.
+     * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    duplicateOrder(order_id: string, _expand?: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<OrderResponse>;
+    /**
      * Format the order for display at text or html
      * @summary Format order
      * @param {string} order_id The order id to format
@@ -40378,6 +40396,15 @@ export declare const OrderApiFactory: (configuration?: Configuration, fetch?: Fe
      * @throws {RequiredError}
      */
     deleteOrder(order_id: string, options?: any): Promise<Response>;
+    /**
+     * Perform a duplicate of the specified order_id and return a new order located in Accounts Receivable.
+     * @summary Duplicate an order
+     * @param {string} order_id The order id to duplicate.
+     * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    duplicateOrder(order_id: string, _expand?: string, options?: any): Promise<OrderResponse>;
     /**
      * Format the order for display at text or html
      * @summary Format order
@@ -40628,6 +40655,16 @@ export interface OrderApiInterface {
      * @memberof OrderApiInterface
      */
     deleteOrder(order_id: string, options?: any): Promise<{}>;
+    /**
+     * Perform a duplicate of the specified order_id and return a new order located in Accounts Receivable.
+     * @summary Duplicate an order
+     * @param {string} order_id The order id to duplicate.
+     * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof OrderApiInterface
+     */
+    duplicateOrder(order_id: string, _expand?: string, options?: any): Promise<OrderResponse>;
     /**
      * Format the order for display at text or html
      * @summary Format order
@@ -40898,6 +40935,16 @@ export declare class OrderApi extends BaseAPI implements OrderApiInterface {
      * @memberof OrderApi
      */
     deleteOrder(order_id: string, options?: any): Promise<Response>;
+    /**
+     * Perform a duplicate of the specified order_id and return a new order located in Accounts Receivable.
+     * @summary Duplicate an order
+     * @param {string} order_id The order id to duplicate.
+     * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof OrderApi
+     */
+    duplicateOrder(order_id: string, _expand?: string, options?: any): Promise<OrderResponse>;
     /**
      * Format the order for display at text or html
      * @summary Format order

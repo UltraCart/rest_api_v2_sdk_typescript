@@ -13347,6 +13347,56 @@ var OrderApiFetchParamCreator = function (configuration) {
             };
         },
         /**
+         * Perform a duplicate of the specified order_id and return a new order located in Accounts Receivable.
+         * @summary Duplicate an order
+         * @param {string} order_id The order id to duplicate.
+         * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        duplicateOrder: function (order_id, _expand, options) {
+            if (options === void 0) { options = {}; }
+            // verify required parameter 'order_id' is not null or undefined
+            if (order_id === null || order_id === undefined) {
+                throw new RequiredError('order_id', 'Required parameter order_id was null or undefined when calling duplicateOrder.');
+            }
+            var localVarPath = "/order/orders/{order_id}/duplicate"
+                .replace("{".concat("order_id", "}"), encodeURIComponent(String(order_id)));
+            var localVarUrlObj = url.parse(localVarPath, true);
+            var localVarRequestOptions = Object.assign({ method: 'POST' }, options);
+            var localVarHeaderParameter = {};
+            var localVarQueryParameter = {};
+            if (configuration && configuration.apiVersion) {
+                localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+            }
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+                var localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+                    ? configuration.accessToken("ultraCartOauth", ["order_write"])
+                    : configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                var localVarApiKeyValue = typeof configuration.apiKey === 'function'
+                    ? configuration.apiKey("x-ultracart-simple-key")
+                    : configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+            if (_expand !== undefined) {
+                localVarQueryParameter['_expand'] = _expand;
+            }
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
          * Format the order for display at text or html
          * @summary Format order
          * @param {string} order_id The order id to format
@@ -14575,6 +14625,29 @@ var OrderApiFp = function (configuration) {
             };
         },
         /**
+         * Perform a duplicate of the specified order_id and return a new order located in Accounts Receivable.
+         * @summary Duplicate an order
+         * @param {string} order_id The order id to duplicate.
+         * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        duplicateOrder: function (order_id, _expand, options) {
+            var localVarFetchArgs = (0, exports.OrderApiFetchParamCreator)(configuration).duplicateOrder(order_id, _expand, options);
+            return function (fetch, basePath) {
+                if (fetch === void 0) { fetch = portableFetch; }
+                if (basePath === void 0) { basePath = BASE_PATH; }
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(function (response) {
+                    if (response.status >= 200 && response.status < 300) {
+                        return response.json();
+                    }
+                    else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
          * Format the order for display at text or html
          * @summary Format order
          * @param {string} order_id The order id to format
@@ -15096,6 +15169,17 @@ var OrderApiFactory = function (configuration, fetch, basePath) {
             return (0, exports.OrderApiFp)(configuration).deleteOrder(order_id, options)(fetch, basePath);
         },
         /**
+         * Perform a duplicate of the specified order_id and return a new order located in Accounts Receivable.
+         * @summary Duplicate an order
+         * @param {string} order_id The order id to duplicate.
+         * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        duplicateOrder: function (order_id, _expand, options) {
+            return (0, exports.OrderApiFp)(configuration).duplicateOrder(order_id, _expand, options)(fetch, basePath);
+        },
+        /**
          * Format the order for display at text or html
          * @summary Format order
          * @param {string} order_id The order id to format
@@ -15395,6 +15479,18 @@ var OrderApi = /** @class */ (function (_super) {
      */
     OrderApi.prototype.deleteOrder = function (order_id, options) {
         return (0, exports.OrderApiFp)(this.configuration).deleteOrder(order_id, options)(this.fetch, this.basePath);
+    };
+    /**
+     * Perform a duplicate of the specified order_id and return a new order located in Accounts Receivable.
+     * @summary Duplicate an order
+     * @param {string} order_id The order id to duplicate.
+     * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof OrderApi
+     */
+    OrderApi.prototype.duplicateOrder = function (order_id, _expand, options) {
+        return (0, exports.OrderApiFp)(this.configuration).duplicateOrder(order_id, _expand, options)(this.fetch, this.basePath);
     };
     /**
      * Format the order for display at text or html
