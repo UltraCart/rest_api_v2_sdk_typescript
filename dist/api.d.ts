@@ -4488,6 +4488,12 @@ export interface CartSettingsShippingEstimate {
      */
     name?: string;
     /**
+     * True if this shipping method requires customers to physically pickup product themselves
+     * @type {boolean}
+     * @memberof CartSettingsShippingEstimate
+     */
+    pickup?: boolean;
+    /**
      *
      * @type {Currency}
      * @memberof CartSettingsShippingEstimate
@@ -4843,6 +4849,782 @@ export interface CartValidationResponse {
      * @memberof CartValidationResponse
      */
     errors?: Array<string>;
+}
+/**
+ *
+ * @export
+ * @interface ChannelPartnerCancelResponse
+ */
+export interface ChannelPartnerCancelResponse {
+    /**
+     * Array of errors if errors occurred
+     * @type {Array<string>}
+     * @memberof ChannelPartnerCancelResponse
+     */
+    cancel_errors?: Array<string>;
+    /**
+     *
+     * @type {ModelError}
+     * @memberof ChannelPartnerCancelResponse
+     */
+    error?: ModelError;
+    /**
+     *
+     * @type {ResponseMetadata}
+     * @memberof ChannelPartnerCancelResponse
+     */
+    metadata?: ResponseMetadata;
+    /**
+     * Indicates if API call was successful
+     * @type {boolean}
+     * @memberof ChannelPartnerCancelResponse
+     */
+    success?: boolean;
+    /**
+     *
+     * @type {Warning}
+     * @memberof ChannelPartnerCancelResponse
+     */
+    warning?: Warning;
+}
+/**
+ *
+ * @export
+ * @interface ChannelPartnerEstimateShippingResponse
+ */
+export interface ChannelPartnerEstimateShippingResponse {
+    /**
+     *
+     * @type {ModelError}
+     * @memberof ChannelPartnerEstimateShippingResponse
+     */
+    error?: ModelError;
+    /**
+     * An array of shipping methods and their costs
+     * @type {Array<ChannelPartnerShippingEstimate>}
+     * @memberof ChannelPartnerEstimateShippingResponse
+     */
+    estimates?: Array<ChannelPartnerShippingEstimate>;
+    /**
+     *
+     * @type {ResponseMetadata}
+     * @memberof ChannelPartnerEstimateShippingResponse
+     */
+    metadata?: ResponseMetadata;
+    /**
+     * Indicates if API call was successful
+     * @type {boolean}
+     * @memberof ChannelPartnerEstimateShippingResponse
+     */
+    success?: boolean;
+    /**
+     *
+     * @type {Warning}
+     * @memberof ChannelPartnerEstimateShippingResponse
+     */
+    warning?: Warning;
+}
+/**
+ *
+ * @export
+ * @interface ChannelPartnerImportResponse
+ */
+export interface ChannelPartnerImportResponse {
+    /**
+     *
+     * @type {ModelError}
+     * @memberof ChannelPartnerImportResponse
+     */
+    error?: ModelError;
+    /**
+     * Array of errors if errors occurred
+     * @type {Array<string>}
+     * @memberof ChannelPartnerImportResponse
+     */
+    import_errors?: Array<string>;
+    /**
+     * Array of warnings if warnings occurred
+     * @type {Array<string>}
+     * @memberof ChannelPartnerImportResponse
+     */
+    import_warnings?: Array<string>;
+    /**
+     *
+     * @type {ResponseMetadata}
+     * @memberof ChannelPartnerImportResponse
+     */
+    metadata?: ResponseMetadata;
+    /**
+     * Indicates if API call was successful
+     * @type {boolean}
+     * @memberof ChannelPartnerImportResponse
+     */
+    success?: boolean;
+    /**
+     *
+     * @type {Warning}
+     * @memberof ChannelPartnerImportResponse
+     */
+    warning?: Warning;
+}
+/**
+ *
+ * @export
+ * @interface ChannelPartnerOrder
+ */
+export interface ChannelPartnerOrder {
+    /**
+     * advertising_source
+     * @type {string}
+     * @memberof ChannelPartnerOrder
+     */
+    advertisingSource?: string;
+    /**
+     * Affiliate Id
+     * @type {string}
+     * @memberof ChannelPartnerOrder
+     */
+    affiliate_id?: string;
+    /**
+     * Affiliate Sub Id
+     * @type {string}
+     * @memberof ChannelPartnerOrder
+     */
+    affiliate_sub_id?: string;
+    /**
+     * Arbitrary shipping handling total
+     * @type {number}
+     * @memberof ChannelPartnerOrder
+     */
+    arbitrary_shipping_handling_total?: number;
+    /**
+     * Arbitrary tax for overriding calculated taxes
+     * @type {number}
+     * @memberof ChannelPartnerOrder
+     */
+    arbitrary_tax?: number;
+    /**
+     * Arbitrary tax rate
+     * @type {number}
+     * @memberof ChannelPartnerOrder
+     */
+    arbitrary_tax_rate?: number;
+    /**
+     * Arbitrary taxable subtotal
+     * @type {number}
+     * @memberof ChannelPartnerOrder
+     */
+    arbitrary_taxable_subtotal?: number;
+    /**
+     * If true any matching customer profile based on email is associated with this order
+     * @type {boolean}
+     * @memberof ChannelPartnerOrder
+     */
+    associate_with_customer_profile_if_present?: boolean;
+    /**
+     * If true any purchase orders are automatically approved
+     * @type {boolean}
+     * @memberof ChannelPartnerOrder
+     */
+    auto_approve_purchase_order?: boolean;
+    /**
+     * Billing Address line 1
+     * @type {string}
+     * @memberof ChannelPartnerOrder
+     */
+    billto_address1?: string;
+    /**
+     * Billing Address line 2
+     * @type {string}
+     * @memberof ChannelPartnerOrder
+     */
+    billto_address2?: string;
+    /**
+     * Billing City
+     * @type {string}
+     * @memberof ChannelPartnerOrder
+     */
+    billto_city?: string;
+    /**
+     * Billing Company
+     * @type {string}
+     * @memberof ChannelPartnerOrder
+     */
+    billto_company?: string;
+    /**
+     * Billing ISO-3166 two letter country code
+     * @type {string}
+     * @memberof ChannelPartnerOrder
+     */
+    billto_country_code?: string;
+    /**
+     * Billing Day phone
+     * @type {string}
+     * @memberof ChannelPartnerOrder
+     */
+    billto_day_phone?: string;
+    /**
+     * Billing Evening phone
+     * @type {string}
+     * @memberof ChannelPartnerOrder
+     */
+    billto_evening_phone?: string;
+    /**
+     * Billing First name
+     * @type {string}
+     * @memberof ChannelPartnerOrder
+     */
+    billto_first_name?: string;
+    /**
+     * Billing Last name
+     * @type {string}
+     * @memberof ChannelPartnerOrder
+     */
+    billto_last_name?: string;
+    /**
+     * Billing Postal code
+     * @type {string}
+     * @memberof ChannelPartnerOrder
+     */
+    billto_postal_code?: string;
+    /**
+     * Billing State for United States otherwise region or province for other countries
+     * @type {string}
+     * @memberof ChannelPartnerOrder
+     */
+    billto_state_region?: string;
+    /**
+     * Billing Title
+     * @type {string}
+     * @memberof ChannelPartnerOrder
+     */
+    billto_title?: string;
+    /**
+     * CC email.
+     * @type {string}
+     * @memberof ChannelPartnerOrder
+     */
+    cc_email?: string;
+    /**
+     * The id for this order within the channel partner system.
+     * @type {string}
+     * @memberof ChannelPartnerOrder
+     */
+    channel_partner_order_id?: string;
+    /**
+     * If true this order is marked as an auto order (recurring)
+     * @type {boolean}
+     * @memberof ChannelPartnerOrder
+     */
+    consider_recurring?: boolean;
+    /**
+     * Array of coupon codes
+     * @type {Array<string>}
+     * @memberof ChannelPartnerOrder
+     */
+    coupons?: Array<string>;
+    /**
+     * The amount authorized externally
+     * @type {number}
+     * @memberof ChannelPartnerOrder
+     */
+    credit_card_authorization_amount?: number;
+    /**
+     * Date/Time of credit card authorization in ISO8601 format
+     * @type {string}
+     * @memberof ChannelPartnerOrder
+     */
+    credit_card_authorization_dts?: string;
+    /**
+     * The reference number provided by an externally processed transaction
+     * @type {string}
+     * @memberof ChannelPartnerOrder
+     */
+    credit_card_authorization_number?: string;
+    /**
+     * Credit card expiration month
+     * @type {number}
+     * @memberof ChannelPartnerOrder
+     */
+    credit_card_expiration_month?: number;
+    /**
+     * Credit card expiration year
+     * @type {number}
+     * @memberof ChannelPartnerOrder
+     */
+    credit_card_expiration_year?: number;
+    /**
+     * Credit card type
+     * @type {string}
+     * @memberof ChannelPartnerOrder
+     */
+    credit_card_type?: string;
+    /**
+     * Custom field 1
+     * @type {string}
+     * @memberof ChannelPartnerOrder
+     */
+    custom_field1?: string;
+    /**
+     * Custom field 2
+     * @type {string}
+     * @memberof ChannelPartnerOrder
+     */
+    custom_field2?: string;
+    /**
+     * Custom field 3
+     * @type {string}
+     * @memberof ChannelPartnerOrder
+     */
+    custom_field3?: string;
+    /**
+     * Custom field 4
+     * @type {string}
+     * @memberof ChannelPartnerOrder
+     */
+    custom_field4?: string;
+    /**
+     * Custom field 5
+     * @type {string}
+     * @memberof ChannelPartnerOrder
+     */
+    custom_field5?: string;
+    /**
+     * Custom field 6
+     * @type {string}
+     * @memberof ChannelPartnerOrder
+     */
+    custom_field6?: string;
+    /**
+     * Custom field 7
+     * @type {string}
+     * @memberof ChannelPartnerOrder
+     */
+    custom_field7?: string;
+    /**
+     * Date the customer is requesting delivery on. Typically used for perishable product delivery.
+     * @type {string}
+     * @memberof ChannelPartnerOrder
+     */
+    delivery_date?: string;
+    /**
+     * Email
+     * @type {string}
+     * @memberof ChannelPartnerOrder
+     */
+    email?: string;
+    /**
+     * True if this order is a gift
+     * @type {boolean}
+     * @memberof ChannelPartnerOrder
+     */
+    gift?: boolean;
+    /**
+     * Email address of the gift recipient
+     * @type {string}
+     * @memberof ChannelPartnerOrder
+     */
+    gift_email?: string;
+    /**
+     * Message to the gift recipient
+     * @type {string}
+     * @memberof ChannelPartnerOrder
+     */
+    gift_message?: string;
+    /**
+     * The token provided by UltraCart hosted fields when a credit card number is uploaded into the system.  This is the only way to provide a credit card number.
+     * @type {string}
+     * @memberof ChannelPartnerOrder
+     */
+    hosted_fields_card_token?: string;
+    /**
+     * The token provided by UltraCart hosted fields when a credit card cvv is uploaded into the system.  This is the only way to provide a cvv number.
+     * @type {string}
+     * @memberof ChannelPartnerOrder
+     */
+    hosted_fields_cvv_token?: string;
+    /**
+     * Insurance application id
+     * @type {string}
+     * @memberof ChannelPartnerOrder
+     */
+    insurance_application_id?: string;
+    /**
+     * Insurance claim id
+     * @type {string}
+     * @memberof ChannelPartnerOrder
+     */
+    insurance_claim_id?: string;
+    /**
+     * IP Address of the customer
+     * @type {string}
+     * @memberof ChannelPartnerOrder
+     */
+    ip_address?: string;
+    /**
+     * Items
+     * @type {Array<ChannelPartnerOrderItem>}
+     * @memberof ChannelPartnerOrder
+     */
+    items?: Array<ChannelPartnerOrderItem>;
+    /**
+     * If true the least expensive shipping method is automatically chosen during the order import
+     * @type {boolean}
+     * @memberof ChannelPartnerOrder
+     */
+    least_cost_route?: boolean;
+    /**
+     * An optional array of shipping methods to restict choices if least_cost_route is true
+     * @type {Array<string>}
+     * @memberof ChannelPartnerOrder
+     */
+    least_cost_route_shipping_methods?: Array<string>;
+    /**
+     * If true the customer is subscribed to any configured mailing lists
+     * @type {boolean}
+     * @memberof ChannelPartnerOrder
+     */
+    mailing_list_opt_in?: boolean;
+    /**
+     * If true no payment processing is done and the order is placed into Accounts Receivable
+     * @type {boolean}
+     * @memberof ChannelPartnerOrder
+     */
+    no_realtime_payment_processing?: boolean;
+    /**
+     * Payment method
+     * @type {string}
+     * @memberof ChannelPartnerOrder
+     */
+    payment_method?: ChannelPartnerOrder.PaymentMethodEnum;
+    /**
+     * Purchase order number
+     * @type {string}
+     * @memberof ChannelPartnerOrder
+     */
+    purchase_order_number?: string;
+    /**
+     * The rotating transaction gateway code for the gateway used to charge this order
+     * @type {string}
+     * @memberof ChannelPartnerOrder
+     */
+    rotating_transaction_gateway_code?: string;
+    /**
+     * Screen branding theme code
+     * @type {string}
+     * @memberof ChannelPartnerOrder
+     */
+    screen_branding_theme_code?: string;
+    /**
+     * Date the customer is requesting that the order ship on.  Typically used for perishable product delivery.
+     * @type {string}
+     * @memberof ChannelPartnerOrder
+     */
+    ship_on_date?: string;
+    /**
+     * True if the shipping adress is residential.  Effects the methods that are available to the customer as well as the price of the shipping method.
+     * @type {boolean}
+     * @memberof ChannelPartnerOrder
+     */
+    ship_to_residential?: boolean;
+    /**
+     * Shipping method
+     * @type {string}
+     * @memberof ChannelPartnerOrder
+     */
+    shipping_method?: string;
+    /**
+     * Shipping Address line 1
+     * @type {string}
+     * @memberof ChannelPartnerOrder
+     */
+    shipto_address1?: string;
+    /**
+     * Shipping Address line 2
+     * @type {string}
+     * @memberof ChannelPartnerOrder
+     */
+    shipto_address2?: string;
+    /**
+     * Shipping City
+     * @type {string}
+     * @memberof ChannelPartnerOrder
+     */
+    shipto_city?: string;
+    /**
+     * Shipping Company
+     * @type {string}
+     * @memberof ChannelPartnerOrder
+     */
+    shipto_company?: string;
+    /**
+     * Shipping ISO-3166 two letter country code
+     * @type {string}
+     * @memberof ChannelPartnerOrder
+     */
+    shipto_country_code?: string;
+    /**
+     * Shipping Day phone
+     * @type {string}
+     * @memberof ChannelPartnerOrder
+     */
+    shipto_day_phone?: string;
+    /**
+     * Shipping Evening phone
+     * @type {string}
+     * @memberof ChannelPartnerOrder
+     */
+    shipto_evening_phone?: string;
+    /**
+     * Shipping First name
+     * @type {string}
+     * @memberof ChannelPartnerOrder
+     */
+    shipto_first_name?: string;
+    /**
+     * Shipping Last name
+     * @type {string}
+     * @memberof ChannelPartnerOrder
+     */
+    shipto_last_name?: string;
+    /**
+     * Shipping Postal code
+     * @type {string}
+     * @memberof ChannelPartnerOrder
+     */
+    shipto_postal_code?: string;
+    /**
+     * Shipping State for United States otherwise region or province for other countries
+     * @type {string}
+     * @memberof ChannelPartnerOrder
+     */
+    shipto_state_region?: string;
+    /**
+     * Shipping Title
+     * @type {string}
+     * @memberof ChannelPartnerOrder
+     */
+    shipto_title?: string;
+    /**
+     * If true the order is placed directly into the shipping department
+     * @type {boolean}
+     * @memberof ChannelPartnerOrder
+     */
+    skip_payment_processing?: boolean;
+    /**
+     * Special instructions from the customer regarding shipping
+     * @type {string}
+     * @memberof ChannelPartnerOrder
+     */
+    special_instructions?: string;
+    /**
+     * If true the order bypasses shipping and is marked completed
+     * @type {boolean}
+     * @memberof ChannelPartnerOrder
+     */
+    store_completed?: boolean;
+    /**
+     * If true any failed payments are placed into Accounts Receivable.  If false any failed payments result in a rejected order resulting in errors thrown during the insert routine
+     * @type {boolean}
+     * @memberof ChannelPartnerOrder
+     */
+    store_if_payment_declines?: boolean;
+    /**
+     * The optional shipping county used to determine exact taxes
+     * @type {string}
+     * @memberof ChannelPartnerOrder
+     */
+    tax_county?: string;
+    /**
+     * If true this order is marked as being tax exempt
+     * @type {boolean}
+     * @memberof ChannelPartnerOrder
+     */
+    tax_exempt?: boolean;
+    /**
+     *
+     * @type {ChannelPartnerOrderTransaction}
+     * @memberof ChannelPartnerOrder
+     */
+    transaction?: ChannelPartnerOrderTransaction;
+    /**
+     * If true all warnings are considered errors, this is true by default
+     * @type {boolean}
+     * @memberof ChannelPartnerOrder
+     */
+    treat_warnings_as_errors?: boolean;
+}
+/**
+ * @export
+ * @namespace ChannelPartnerOrder
+ */
+export declare namespace ChannelPartnerOrder {
+    /**
+     * @export
+     * @enum {string}
+     */
+    enum PaymentMethodEnum {
+        Affirm,
+        Amazon,
+        Check,
+        COD,
+        CreditCard,
+        LoanHero,
+        MoneyOrder,
+        PayPal,
+        PurchaseOrder,
+        QuoteRequest,
+        WireTransfer
+    }
+}
+/**
+ *
+ * @export
+ * @interface ChannelPartnerOrderItem
+ */
+export interface ChannelPartnerOrderItem {
+    /**
+     * Arbitrary unit cost for this item that differs from the listed price
+     * @type {number}
+     * @memberof ChannelPartnerOrderItem
+     */
+    arbitrary_unit_cost?: number;
+    /**
+     * Optional date/time of the last rebill if this item is part of an auto (recurring) order
+     * @type {string}
+     * @memberof ChannelPartnerOrderItem
+     */
+    auto_order_last_rebill_dts?: string;
+    /**
+     * The frequency schedule for this item if this item is part of an auto (recurring) order
+     * @type {string}
+     * @memberof ChannelPartnerOrderItem
+     */
+    auto_order_schedule?: ChannelPartnerOrderItem.AutoOrderScheduleEnum;
+    /**
+     * Item ID
+     * @type {string}
+     * @memberof ChannelPartnerOrderItem
+     */
+    merchant_item_id?: string;
+    /**
+     * Item options
+     * @type {Array<ChannelPartnerOrderItemOption>}
+     * @memberof ChannelPartnerOrderItem
+     */
+    options?: Array<ChannelPartnerOrderItemOption>;
+    /**
+     * Quantity
+     * @type {number}
+     * @memberof ChannelPartnerOrderItem
+     */
+    quantity?: number;
+    /**
+     * True if this item was an upsell item.
+     * @type {boolean}
+     * @memberof ChannelPartnerOrderItem
+     */
+    upsell?: boolean;
+}
+/**
+ * @export
+ * @namespace ChannelPartnerOrderItem
+ */
+export declare namespace ChannelPartnerOrderItem {
+    /**
+     * @export
+     * @enum {string}
+     */
+    enum AutoOrderScheduleEnum {
+        Weekly,
+        Every10Days,
+        Biweekly,
+        Every24Days,
+        Every28Days,
+        Monthly,
+        Every45Days,
+        Every2Months,
+        Every3Months,
+        Every4Months,
+        Every6Months,
+        Yearly
+    }
+}
+/**
+ *
+ * @export
+ * @interface ChannelPartnerOrderItemOption
+ */
+export interface ChannelPartnerOrderItemOption {
+    /**
+     * The name of the item option.
+     * @type {string}
+     * @memberof ChannelPartnerOrderItemOption
+     */
+    name?: string;
+    /**
+     * The value of the item option.
+     * @type {string}
+     * @memberof ChannelPartnerOrderItemOption
+     */
+    value?: string;
+}
+/**
+ *
+ * @export
+ * @interface ChannelPartnerOrderTransaction
+ */
+export interface ChannelPartnerOrderTransaction {
+    /**
+     * Transaction gateway details
+     * @type {Array<ChannelPartnerOrderTransactionDetail>}
+     * @memberof ChannelPartnerOrderTransaction
+     */
+    details?: Array<ChannelPartnerOrderTransactionDetail>;
+    /**
+     * True if the transaction was successfully charged
+     * @type {boolean}
+     * @memberof ChannelPartnerOrderTransaction
+     */
+    successful?: boolean;
+}
+/**
+ *
+ * @export
+ * @interface ChannelPartnerOrderTransactionDetail
+ */
+export interface ChannelPartnerOrderTransactionDetail {
+    /**
+     * The name of the item option.
+     * @type {string}
+     * @memberof ChannelPartnerOrderTransactionDetail
+     */
+    name?: string;
+    /**
+     * The value of the item option.
+     * @type {string}
+     * @memberof ChannelPartnerOrderTransactionDetail
+     */
+    value?: string;
+}
+/**
+ *
+ * @export
+ * @interface ChannelPartnerShippingEstimate
+ */
+export interface ChannelPartnerShippingEstimate {
+    /**
+     * The total estimate for this shipping method based on the provided order.
+     * @type {number}
+     * @memberof ChannelPartnerShippingEstimate
+     */
+    shipping_handling_total?: number;
+    /**
+     * The name of the shipping method
+     * @type {string}
+     * @memberof ChannelPartnerShippingEstimate
+     */
+    shipping_method?: string;
 }
 /**
  *
@@ -34566,6 +35348,207 @@ export declare class AutoOrderApi extends BaseAPI implements AutoOrderApiInterfa
      * @memberof AutoOrderApi
      */
     updateAutoOrdersBatch(auto_orders_request: AutoOrdersRequest, _expand?: string, _placeholders?: boolean, _async?: boolean, options?: any): Promise<AutoOrdersResponse>;
+}
+/**
+ * ChannelPartnerApi - fetch parameter creator
+ * @export
+ */
+export declare const ChannelPartnerApiFetchParamCreator: (configuration?: Configuration) => {
+    /**
+     * Cancel channel partner order by channel partner order id
+     * @summary Cancel channel partner order by channel partner order id
+     * @param {string} order_id The channel partner order id to delete.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    cancelOrderByChannelPartnerOrderId(order_id: string, options?: any): FetchArgs;
+    /**
+     * Cancel channel partner order by UltraCart order id
+     * @summary Cancel channel partner order by UltraCart order id
+     * @param {string} order_id The UltraCart order id to delete.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    cancelOrderByChannelUltraCartOrderId(order_id: string, options?: any): FetchArgs;
+    /**
+     * Estimate shipping for order from a channel partner.
+     * @summary Estimate shipping for channel partner order
+     * @param {ChannelPartnerOrder} channel_partner_order Order needing shipping estimate
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    estimateShippingForChannelPartnerOrder(channel_partner_order: ChannelPartnerOrder, options?: any): FetchArgs;
+    /**
+     * Insert order from a channel partner.
+     * @summary Insert channel partner order
+     * @param {ChannelPartnerOrder} channel_partner_order Order to insert
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    importChannelPartnerOrder(channel_partner_order: ChannelPartnerOrder, options?: any): FetchArgs;
+};
+/**
+ * ChannelPartnerApi - functional programming interface
+ * @export
+ */
+export declare const ChannelPartnerApiFp: (configuration?: Configuration) => {
+    /**
+     * Cancel channel partner order by channel partner order id
+     * @summary Cancel channel partner order by channel partner order id
+     * @param {string} order_id The channel partner order id to delete.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    cancelOrderByChannelPartnerOrderId(order_id: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ChannelPartnerCancelResponse>;
+    /**
+     * Cancel channel partner order by UltraCart order id
+     * @summary Cancel channel partner order by UltraCart order id
+     * @param {string} order_id The UltraCart order id to delete.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    cancelOrderByChannelUltraCartOrderId(order_id: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ChannelPartnerCancelResponse>;
+    /**
+     * Estimate shipping for order from a channel partner.
+     * @summary Estimate shipping for channel partner order
+     * @param {ChannelPartnerOrder} channel_partner_order Order needing shipping estimate
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    estimateShippingForChannelPartnerOrder(channel_partner_order: ChannelPartnerOrder, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ChannelPartnerEstimateShippingResponse>;
+    /**
+     * Insert order from a channel partner.
+     * @summary Insert channel partner order
+     * @param {ChannelPartnerOrder} channel_partner_order Order to insert
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    importChannelPartnerOrder(channel_partner_order: ChannelPartnerOrder, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ChannelPartnerImportResponse>;
+};
+/**
+ * ChannelPartnerApi - factory interface
+ * @export
+ */
+export declare const ChannelPartnerApiFactory: (configuration?: Configuration, fetch?: FetchAPI, basePath?: string) => {
+    /**
+     * Cancel channel partner order by channel partner order id
+     * @summary Cancel channel partner order by channel partner order id
+     * @param {string} order_id The channel partner order id to delete.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    cancelOrderByChannelPartnerOrderId(order_id: string, options?: any): Promise<ChannelPartnerCancelResponse>;
+    /**
+     * Cancel channel partner order by UltraCart order id
+     * @summary Cancel channel partner order by UltraCart order id
+     * @param {string} order_id The UltraCart order id to delete.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    cancelOrderByChannelUltraCartOrderId(order_id: string, options?: any): Promise<ChannelPartnerCancelResponse>;
+    /**
+     * Estimate shipping for order from a channel partner.
+     * @summary Estimate shipping for channel partner order
+     * @param {ChannelPartnerOrder} channel_partner_order Order needing shipping estimate
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    estimateShippingForChannelPartnerOrder(channel_partner_order: ChannelPartnerOrder, options?: any): Promise<ChannelPartnerEstimateShippingResponse>;
+    /**
+     * Insert order from a channel partner.
+     * @summary Insert channel partner order
+     * @param {ChannelPartnerOrder} channel_partner_order Order to insert
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    importChannelPartnerOrder(channel_partner_order: ChannelPartnerOrder, options?: any): Promise<ChannelPartnerImportResponse>;
+};
+/**
+ * ChannelPartnerApi - interface
+ * @export
+ * @interface ChannelPartnerApi
+ */
+export interface ChannelPartnerApiInterface {
+    /**
+     * Cancel channel partner order by channel partner order id
+     * @summary Cancel channel partner order by channel partner order id
+     * @param {string} order_id The channel partner order id to delete.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ChannelPartnerApiInterface
+     */
+    cancelOrderByChannelPartnerOrderId(order_id: string, options?: any): Promise<ChannelPartnerCancelResponse>;
+    /**
+     * Cancel channel partner order by UltraCart order id
+     * @summary Cancel channel partner order by UltraCart order id
+     * @param {string} order_id The UltraCart order id to delete.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ChannelPartnerApiInterface
+     */
+    cancelOrderByChannelUltraCartOrderId(order_id: string, options?: any): Promise<ChannelPartnerCancelResponse>;
+    /**
+     * Estimate shipping for order from a channel partner.
+     * @summary Estimate shipping for channel partner order
+     * @param {ChannelPartnerOrder} channel_partner_order Order needing shipping estimate
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ChannelPartnerApiInterface
+     */
+    estimateShippingForChannelPartnerOrder(channel_partner_order: ChannelPartnerOrder, options?: any): Promise<ChannelPartnerEstimateShippingResponse>;
+    /**
+     * Insert order from a channel partner.
+     * @summary Insert channel partner order
+     * @param {ChannelPartnerOrder} channel_partner_order Order to insert
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ChannelPartnerApiInterface
+     */
+    importChannelPartnerOrder(channel_partner_order: ChannelPartnerOrder, options?: any): Promise<ChannelPartnerImportResponse>;
+}
+/**
+ * ChannelPartnerApi - object-oriented interface
+ * @export
+ * @class ChannelPartnerApi
+ * @extends {BaseAPI}
+ */
+export declare class ChannelPartnerApi extends BaseAPI implements ChannelPartnerApiInterface {
+    /**
+     * Cancel channel partner order by channel partner order id
+     * @summary Cancel channel partner order by channel partner order id
+     * @param {string} order_id The channel partner order id to delete.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ChannelPartnerApi
+     */
+    cancelOrderByChannelPartnerOrderId(order_id: string, options?: any): Promise<ChannelPartnerCancelResponse>;
+    /**
+     * Cancel channel partner order by UltraCart order id
+     * @summary Cancel channel partner order by UltraCart order id
+     * @param {string} order_id The UltraCart order id to delete.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ChannelPartnerApi
+     */
+    cancelOrderByChannelUltraCartOrderId(order_id: string, options?: any): Promise<ChannelPartnerCancelResponse>;
+    /**
+     * Estimate shipping for order from a channel partner.
+     * @summary Estimate shipping for channel partner order
+     * @param {ChannelPartnerOrder} channel_partner_order Order needing shipping estimate
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ChannelPartnerApi
+     */
+    estimateShippingForChannelPartnerOrder(channel_partner_order: ChannelPartnerOrder, options?: any): Promise<ChannelPartnerEstimateShippingResponse>;
+    /**
+     * Insert order from a channel partner.
+     * @summary Insert channel partner order
+     * @param {ChannelPartnerOrder} channel_partner_order Order to insert
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ChannelPartnerApi
+     */
+    importChannelPartnerOrder(channel_partner_order: ChannelPartnerOrder, options?: any): Promise<ChannelPartnerImportResponse>;
 }
 /**
  * ChargebackApi - fetch parameter creator

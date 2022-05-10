@@ -28,9 +28,9 @@ var __extends = (this && this.__extends) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.RtgThemeRestriction = exports.RotatingTransactionGateway = exports.PaymentsThemeTransactionType = exports.PaymentsConfigurationTestMethod = exports.PaymentsConfigurationSezzle = exports.PaymentsConfigurationRestrictions = exports.PaymentsConfigurationPayPal = exports.PaymentsConfigurationCreditCardType = exports.PaymentsConfigurationAmazon = exports.PaymentsConfigurationAffirm = exports.OrderQuery = exports.OrderPaymentECheck = exports.OrderPaymentCreditCard = exports.OrderPayment = exports.OrderItemOption = exports.OrderItem = exports.OrderFraudScore = exports.OrderFormat = exports.OrderAutoOrder = exports.OrderAffiliateLedger = exports.Order = exports.OauthTokenResponse = exports.ItemThirdPartyEmailMarketing = exports.ItemTax = exports.ItemTag = exports.ItemShippingMethod = exports.ItemShippingDestinationRestriction = exports.ItemRestrictionItem = exports.ItemRelatedItem = exports.ItemOptionValue = exports.ItemOption = exports.ItemContentMultimedia = exports.ItemAutoOrderStep = exports.Experiment = exports.EmailPerformance = exports.EmailCommseqStep = exports.Distance = exports.CheckoutHandoffRequest = exports.CartKitComponentOption = exports.CartItemOption = exports.CartItemMultimedia = exports.CartCustomerProfileCreditCard = exports.AutoOrderItemSimpleSchedule = exports.AutoOrderItem = exports.AutoOrder = exports.AffiliateLink = exports.AffiliateLedger = exports.RequiredError = exports.BaseAPI = exports.COLLECTION_FORMATS = void 0;
-exports.OauthApiFp = exports.OauthApiFetchParamCreator = exports.ItemApi = exports.ItemApiFactory = exports.ItemApiFp = exports.ItemApiFetchParamCreator = exports.IntegrationLogApi = exports.IntegrationLogApiFactory = exports.IntegrationLogApiFp = exports.IntegrationLogApiFetchParamCreator = exports.GiftCertificateApi = exports.GiftCertificateApiFactory = exports.GiftCertificateApiFp = exports.GiftCertificateApiFetchParamCreator = exports.FulfillmentApi = exports.FulfillmentApiFactory = exports.FulfillmentApiFp = exports.FulfillmentApiFetchParamCreator = exports.CustomerApi = exports.CustomerApiFactory = exports.CustomerApiFp = exports.CustomerApiFetchParamCreator = exports.CouponApi = exports.CouponApiFactory = exports.CouponApiFp = exports.CouponApiFetchParamCreator = exports.ConfigurationApi = exports.ConfigurationApiFactory = exports.ConfigurationApiFp = exports.ConfigurationApiFetchParamCreator = exports.CheckoutApi = exports.CheckoutApiFactory = exports.CheckoutApiFp = exports.CheckoutApiFetchParamCreator = exports.ChargebackApi = exports.ChargebackApiFactory = exports.ChargebackApiFp = exports.ChargebackApiFetchParamCreator = exports.AutoOrderApi = exports.AutoOrderApiFactory = exports.AutoOrderApiFp = exports.AutoOrderApiFetchParamCreator = exports.AffiliateApi = exports.AffiliateApiFactory = exports.AffiliateApiFp = exports.AffiliateApiFetchParamCreator = exports.Weight = exports.Webhook = exports.TransactionGatewaysRequest = exports.TempMultimedia = void 0;
-exports.WebhookApi = exports.WebhookApiFactory = exports.WebhookApiFp = exports.WebhookApiFetchParamCreator = exports.UserApi = exports.UserApiFactory = exports.UserApiFp = exports.UserApiFetchParamCreator = exports.TaxApi = exports.TaxApiFactory = exports.TaxApiFp = exports.TaxApiFetchParamCreator = exports.StorefrontApi = exports.StorefrontApiFactory = exports.StorefrontApiFp = exports.StorefrontApiFetchParamCreator = exports.SsoApi = exports.SsoApiFactory = exports.SsoApiFp = exports.SsoApiFetchParamCreator = exports.OrderApi = exports.OrderApiFactory = exports.OrderApiFp = exports.OrderApiFetchParamCreator = exports.OauthApi = exports.OauthApiFactory = void 0;
+exports.PaymentsThemeTransactionType = exports.PaymentsConfigurationTestMethod = exports.PaymentsConfigurationSezzle = exports.PaymentsConfigurationRestrictions = exports.PaymentsConfigurationPayPal = exports.PaymentsConfigurationCreditCardType = exports.PaymentsConfigurationAmazon = exports.PaymentsConfigurationAffirm = exports.OrderQuery = exports.OrderPaymentECheck = exports.OrderPaymentCreditCard = exports.OrderPayment = exports.OrderItemOption = exports.OrderItem = exports.OrderFraudScore = exports.OrderFormat = exports.OrderAutoOrder = exports.OrderAffiliateLedger = exports.Order = exports.OauthTokenResponse = exports.ItemThirdPartyEmailMarketing = exports.ItemTax = exports.ItemTag = exports.ItemShippingMethod = exports.ItemShippingDestinationRestriction = exports.ItemRestrictionItem = exports.ItemRelatedItem = exports.ItemOptionValue = exports.ItemOption = exports.ItemContentMultimedia = exports.ItemAutoOrderStep = exports.Experiment = exports.EmailPerformance = exports.EmailCommseqStep = exports.Distance = exports.CheckoutHandoffRequest = exports.ChannelPartnerOrderItem = exports.ChannelPartnerOrder = exports.CartKitComponentOption = exports.CartItemOption = exports.CartItemMultimedia = exports.CartCustomerProfileCreditCard = exports.AutoOrderItemSimpleSchedule = exports.AutoOrderItem = exports.AutoOrder = exports.AffiliateLink = exports.AffiliateLedger = exports.RequiredError = exports.BaseAPI = exports.COLLECTION_FORMATS = void 0;
+exports.IntegrationLogApi = exports.IntegrationLogApiFactory = exports.IntegrationLogApiFp = exports.IntegrationLogApiFetchParamCreator = exports.GiftCertificateApi = exports.GiftCertificateApiFactory = exports.GiftCertificateApiFp = exports.GiftCertificateApiFetchParamCreator = exports.FulfillmentApi = exports.FulfillmentApiFactory = exports.FulfillmentApiFp = exports.FulfillmentApiFetchParamCreator = exports.CustomerApi = exports.CustomerApiFactory = exports.CustomerApiFp = exports.CustomerApiFetchParamCreator = exports.CouponApi = exports.CouponApiFactory = exports.CouponApiFp = exports.CouponApiFetchParamCreator = exports.ConfigurationApi = exports.ConfigurationApiFactory = exports.ConfigurationApiFp = exports.ConfigurationApiFetchParamCreator = exports.CheckoutApi = exports.CheckoutApiFactory = exports.CheckoutApiFp = exports.CheckoutApiFetchParamCreator = exports.ChargebackApi = exports.ChargebackApiFactory = exports.ChargebackApiFp = exports.ChargebackApiFetchParamCreator = exports.ChannelPartnerApi = exports.ChannelPartnerApiFactory = exports.ChannelPartnerApiFp = exports.ChannelPartnerApiFetchParamCreator = exports.AutoOrderApi = exports.AutoOrderApiFactory = exports.AutoOrderApiFp = exports.AutoOrderApiFetchParamCreator = exports.AffiliateApi = exports.AffiliateApiFactory = exports.AffiliateApiFp = exports.AffiliateApiFetchParamCreator = exports.Weight = exports.Webhook = exports.TransactionGatewaysRequest = exports.TempMultimedia = exports.RtgThemeRestriction = exports.RotatingTransactionGateway = void 0;
+exports.WebhookApi = exports.WebhookApiFactory = exports.WebhookApiFp = exports.WebhookApiFetchParamCreator = exports.UserApi = exports.UserApiFactory = exports.UserApiFp = exports.UserApiFetchParamCreator = exports.TaxApi = exports.TaxApiFactory = exports.TaxApiFp = exports.TaxApiFetchParamCreator = exports.StorefrontApi = exports.StorefrontApiFactory = exports.StorefrontApiFp = exports.StorefrontApiFetchParamCreator = exports.SsoApi = exports.SsoApiFactory = exports.SsoApiFp = exports.SsoApiFetchParamCreator = exports.OrderApi = exports.OrderApiFactory = exports.OrderApiFp = exports.OrderApiFetchParamCreator = exports.OauthApi = exports.OauthApiFactory = exports.OauthApiFp = exports.OauthApiFetchParamCreator = exports.ItemApi = exports.ItemApiFactory = exports.ItemApiFp = exports.ItemApiFetchParamCreator = void 0;
 var url = require("url");
 var portableFetch = require("portable-fetch");
 var BASE_PATH = "https://secure.ultracart.com/rest/v2".replace(/\/+$/, "");
@@ -288,6 +288,57 @@ var CartKitComponentOption;
         TypeEnum[TypeEnum["Fixed"] = 'fixed'] = "Fixed";
     })(TypeEnum = CartKitComponentOption.TypeEnum || (CartKitComponentOption.TypeEnum = {}));
 })(CartKitComponentOption = exports.CartKitComponentOption || (exports.CartKitComponentOption = {}));
+/**
+ * @export
+ * @namespace ChannelPartnerOrder
+ */
+var ChannelPartnerOrder;
+(function (ChannelPartnerOrder) {
+    /**
+     * @export
+     * @enum {string}
+     */
+    var PaymentMethodEnum;
+    (function (PaymentMethodEnum) {
+        PaymentMethodEnum[PaymentMethodEnum["Affirm"] = 'Affirm'] = "Affirm";
+        PaymentMethodEnum[PaymentMethodEnum["Amazon"] = 'Amazon'] = "Amazon";
+        PaymentMethodEnum[PaymentMethodEnum["Check"] = 'Check'] = "Check";
+        PaymentMethodEnum[PaymentMethodEnum["COD"] = 'COD'] = "COD";
+        PaymentMethodEnum[PaymentMethodEnum["CreditCard"] = 'Credit Card'] = "CreditCard";
+        PaymentMethodEnum[PaymentMethodEnum["LoanHero"] = 'LoanHero'] = "LoanHero";
+        PaymentMethodEnum[PaymentMethodEnum["MoneyOrder"] = 'Money Order'] = "MoneyOrder";
+        PaymentMethodEnum[PaymentMethodEnum["PayPal"] = 'PayPal'] = "PayPal";
+        PaymentMethodEnum[PaymentMethodEnum["PurchaseOrder"] = 'Purchase Order'] = "PurchaseOrder";
+        PaymentMethodEnum[PaymentMethodEnum["QuoteRequest"] = 'Quote Request'] = "QuoteRequest";
+        PaymentMethodEnum[PaymentMethodEnum["WireTransfer"] = 'Wire Transfer'] = "WireTransfer";
+    })(PaymentMethodEnum = ChannelPartnerOrder.PaymentMethodEnum || (ChannelPartnerOrder.PaymentMethodEnum = {}));
+})(ChannelPartnerOrder = exports.ChannelPartnerOrder || (exports.ChannelPartnerOrder = {}));
+/**
+ * @export
+ * @namespace ChannelPartnerOrderItem
+ */
+var ChannelPartnerOrderItem;
+(function (ChannelPartnerOrderItem) {
+    /**
+     * @export
+     * @enum {string}
+     */
+    var AutoOrderScheduleEnum;
+    (function (AutoOrderScheduleEnum) {
+        AutoOrderScheduleEnum[AutoOrderScheduleEnum["Weekly"] = 'Weekly'] = "Weekly";
+        AutoOrderScheduleEnum[AutoOrderScheduleEnum["Every10Days"] = 'Every 10 Days'] = "Every10Days";
+        AutoOrderScheduleEnum[AutoOrderScheduleEnum["Biweekly"] = 'Biweekly'] = "Biweekly";
+        AutoOrderScheduleEnum[AutoOrderScheduleEnum["Every24Days"] = 'Every 24 Days'] = "Every24Days";
+        AutoOrderScheduleEnum[AutoOrderScheduleEnum["Every28Days"] = 'Every 28 Days'] = "Every28Days";
+        AutoOrderScheduleEnum[AutoOrderScheduleEnum["Monthly"] = 'Monthly'] = "Monthly";
+        AutoOrderScheduleEnum[AutoOrderScheduleEnum["Every45Days"] = 'Every 45 Days'] = "Every45Days";
+        AutoOrderScheduleEnum[AutoOrderScheduleEnum["Every2Months"] = 'Every 2 Months'] = "Every2Months";
+        AutoOrderScheduleEnum[AutoOrderScheduleEnum["Every3Months"] = 'Every 3 Months'] = "Every3Months";
+        AutoOrderScheduleEnum[AutoOrderScheduleEnum["Every4Months"] = 'Every 4 Months'] = "Every4Months";
+        AutoOrderScheduleEnum[AutoOrderScheduleEnum["Every6Months"] = 'Every 6 Months'] = "Every6Months";
+        AutoOrderScheduleEnum[AutoOrderScheduleEnum["Yearly"] = 'Yearly'] = "Yearly";
+    })(AutoOrderScheduleEnum = ChannelPartnerOrderItem.AutoOrderScheduleEnum || (ChannelPartnerOrderItem.AutoOrderScheduleEnum = {}));
+})(ChannelPartnerOrderItem = exports.ChannelPartnerOrderItem || (exports.ChannelPartnerOrderItem = {}));
 /**
  * @export
  * @namespace CheckoutHandoffRequest
@@ -2503,6 +2554,407 @@ var AutoOrderApi = /** @class */ (function (_super) {
     return AutoOrderApi;
 }(BaseAPI));
 exports.AutoOrderApi = AutoOrderApi;
+/**
+ * ChannelPartnerApi - fetch parameter creator
+ * @export
+ */
+var ChannelPartnerApiFetchParamCreator = function (configuration) {
+    return {
+        /**
+         * Cancel channel partner order by channel partner order id
+         * @summary Cancel channel partner order by channel partner order id
+         * @param {string} order_id The channel partner order id to delete.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        cancelOrderByChannelPartnerOrderId: function (order_id, options) {
+            if (options === void 0) { options = {}; }
+            // verify required parameter 'order_id' is not null or undefined
+            if (order_id === null || order_id === undefined) {
+                throw new RequiredError('order_id', 'Required parameter order_id was null or undefined when calling cancelOrderByChannelPartnerOrderId.');
+            }
+            var localVarPath = "/channel_partner/cancel/by_channel_partner_order_id/{order_id}"
+                .replace("{".concat("order_id", "}"), encodeURIComponent(String(order_id)));
+            var localVarUrlObj = url.parse(localVarPath, true);
+            var localVarRequestOptions = Object.assign({ method: 'DELETE' }, options);
+            var localVarHeaderParameter = {};
+            var localVarQueryParameter = {};
+            if (configuration && configuration.apiVersion) {
+                localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+            }
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+                var localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+                    ? configuration.accessToken("ultraCartOauth", ["channel_partner_write"])
+                    : configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                var localVarApiKeyValue = typeof configuration.apiKey === 'function'
+                    ? configuration.apiKey("x-ultracart-simple-key")
+                    : configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Cancel channel partner order by UltraCart order id
+         * @summary Cancel channel partner order by UltraCart order id
+         * @param {string} order_id The UltraCart order id to delete.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        cancelOrderByChannelUltraCartOrderId: function (order_id, options) {
+            if (options === void 0) { options = {}; }
+            // verify required parameter 'order_id' is not null or undefined
+            if (order_id === null || order_id === undefined) {
+                throw new RequiredError('order_id', 'Required parameter order_id was null or undefined when calling cancelOrderByChannelUltraCartOrderId.');
+            }
+            var localVarPath = "/channel_partner/cancel/by_ultracart_order_id/{order_id}"
+                .replace("{".concat("order_id", "}"), encodeURIComponent(String(order_id)));
+            var localVarUrlObj = url.parse(localVarPath, true);
+            var localVarRequestOptions = Object.assign({ method: 'DELETE' }, options);
+            var localVarHeaderParameter = {};
+            var localVarQueryParameter = {};
+            if (configuration && configuration.apiVersion) {
+                localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+            }
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+                var localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+                    ? configuration.accessToken("ultraCartOauth", ["channel_partner_write"])
+                    : configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                var localVarApiKeyValue = typeof configuration.apiKey === 'function'
+                    ? configuration.apiKey("x-ultracart-simple-key")
+                    : configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Estimate shipping for order from a channel partner.
+         * @summary Estimate shipping for channel partner order
+         * @param {ChannelPartnerOrder} channel_partner_order Order needing shipping estimate
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        estimateShippingForChannelPartnerOrder: function (channel_partner_order, options) {
+            if (options === void 0) { options = {}; }
+            // verify required parameter 'channel_partner_order' is not null or undefined
+            if (channel_partner_order === null || channel_partner_order === undefined) {
+                throw new RequiredError('channel_partner_order', 'Required parameter channel_partner_order was null or undefined when calling estimateShippingForChannelPartnerOrder.');
+            }
+            var localVarPath = "/channel_partner/estimate_shipping";
+            var localVarUrlObj = url.parse(localVarPath, true);
+            var localVarRequestOptions = Object.assign({ method: 'POST' }, options);
+            var localVarHeaderParameter = {};
+            var localVarQueryParameter = {};
+            if (configuration && configuration.apiVersion) {
+                localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+            }
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+                var localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+                    ? configuration.accessToken("ultraCartOauth", ["channel_partner_read"])
+                    : configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                var localVarApiKeyValue = typeof configuration.apiKey === 'function'
+                    ? configuration.apiKey("x-ultracart-simple-key")
+                    : configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+            localVarHeaderParameter['Content-Type'] = 'application/json; charset=UTF-8';
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+            var needsSerialization = ("ChannelPartnerOrder" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
+            localVarRequestOptions.body = needsSerialization ? JSON.stringify(channel_partner_order || {}) : (channel_partner_order || "");
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Insert order from a channel partner.
+         * @summary Insert channel partner order
+         * @param {ChannelPartnerOrder} channel_partner_order Order to insert
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        importChannelPartnerOrder: function (channel_partner_order, options) {
+            if (options === void 0) { options = {}; }
+            // verify required parameter 'channel_partner_order' is not null or undefined
+            if (channel_partner_order === null || channel_partner_order === undefined) {
+                throw new RequiredError('channel_partner_order', 'Required parameter channel_partner_order was null or undefined when calling importChannelPartnerOrder.');
+            }
+            var localVarPath = "/channel_partner/import";
+            var localVarUrlObj = url.parse(localVarPath, true);
+            var localVarRequestOptions = Object.assign({ method: 'POST' }, options);
+            var localVarHeaderParameter = {};
+            var localVarQueryParameter = {};
+            if (configuration && configuration.apiVersion) {
+                localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+            }
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+                var localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+                    ? configuration.accessToken("ultraCartOauth", ["channel_partner_write"])
+                    : configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                var localVarApiKeyValue = typeof configuration.apiKey === 'function'
+                    ? configuration.apiKey("x-ultracart-simple-key")
+                    : configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+            localVarHeaderParameter['Content-Type'] = 'application/json; charset=UTF-8';
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+            var needsSerialization = ("ChannelPartnerOrder" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
+            localVarRequestOptions.body = needsSerialization ? JSON.stringify(channel_partner_order || {}) : (channel_partner_order || "");
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+    };
+};
+exports.ChannelPartnerApiFetchParamCreator = ChannelPartnerApiFetchParamCreator;
+/**
+ * ChannelPartnerApi - functional programming interface
+ * @export
+ */
+var ChannelPartnerApiFp = function (configuration) {
+    return {
+        /**
+         * Cancel channel partner order by channel partner order id
+         * @summary Cancel channel partner order by channel partner order id
+         * @param {string} order_id The channel partner order id to delete.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        cancelOrderByChannelPartnerOrderId: function (order_id, options) {
+            var localVarFetchArgs = (0, exports.ChannelPartnerApiFetchParamCreator)(configuration).cancelOrderByChannelPartnerOrderId(order_id, options);
+            return function (fetch, basePath) {
+                if (fetch === void 0) { fetch = portableFetch; }
+                if (basePath === void 0) { basePath = BASE_PATH; }
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(function (response) {
+                    if (response.status >= 200 && response.status < 300) {
+                        return response.json();
+                    }
+                    else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
+         * Cancel channel partner order by UltraCart order id
+         * @summary Cancel channel partner order by UltraCart order id
+         * @param {string} order_id The UltraCart order id to delete.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        cancelOrderByChannelUltraCartOrderId: function (order_id, options) {
+            var localVarFetchArgs = (0, exports.ChannelPartnerApiFetchParamCreator)(configuration).cancelOrderByChannelUltraCartOrderId(order_id, options);
+            return function (fetch, basePath) {
+                if (fetch === void 0) { fetch = portableFetch; }
+                if (basePath === void 0) { basePath = BASE_PATH; }
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(function (response) {
+                    if (response.status >= 200 && response.status < 300) {
+                        return response.json();
+                    }
+                    else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
+         * Estimate shipping for order from a channel partner.
+         * @summary Estimate shipping for channel partner order
+         * @param {ChannelPartnerOrder} channel_partner_order Order needing shipping estimate
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        estimateShippingForChannelPartnerOrder: function (channel_partner_order, options) {
+            var localVarFetchArgs = (0, exports.ChannelPartnerApiFetchParamCreator)(configuration).estimateShippingForChannelPartnerOrder(channel_partner_order, options);
+            return function (fetch, basePath) {
+                if (fetch === void 0) { fetch = portableFetch; }
+                if (basePath === void 0) { basePath = BASE_PATH; }
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(function (response) {
+                    if (response.status >= 200 && response.status < 300) {
+                        return response.json();
+                    }
+                    else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
+         * Insert order from a channel partner.
+         * @summary Insert channel partner order
+         * @param {ChannelPartnerOrder} channel_partner_order Order to insert
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        importChannelPartnerOrder: function (channel_partner_order, options) {
+            var localVarFetchArgs = (0, exports.ChannelPartnerApiFetchParamCreator)(configuration).importChannelPartnerOrder(channel_partner_order, options);
+            return function (fetch, basePath) {
+                if (fetch === void 0) { fetch = portableFetch; }
+                if (basePath === void 0) { basePath = BASE_PATH; }
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(function (response) {
+                    if (response.status >= 200 && response.status < 300) {
+                        return response.json();
+                    }
+                    else {
+                        throw response;
+                    }
+                });
+            };
+        },
+    };
+};
+exports.ChannelPartnerApiFp = ChannelPartnerApiFp;
+/**
+ * ChannelPartnerApi - factory interface
+ * @export
+ */
+var ChannelPartnerApiFactory = function (configuration, fetch, basePath) {
+    return {
+        /**
+         * Cancel channel partner order by channel partner order id
+         * @summary Cancel channel partner order by channel partner order id
+         * @param {string} order_id The channel partner order id to delete.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        cancelOrderByChannelPartnerOrderId: function (order_id, options) {
+            return (0, exports.ChannelPartnerApiFp)(configuration).cancelOrderByChannelPartnerOrderId(order_id, options)(fetch, basePath);
+        },
+        /**
+         * Cancel channel partner order by UltraCart order id
+         * @summary Cancel channel partner order by UltraCart order id
+         * @param {string} order_id The UltraCart order id to delete.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        cancelOrderByChannelUltraCartOrderId: function (order_id, options) {
+            return (0, exports.ChannelPartnerApiFp)(configuration).cancelOrderByChannelUltraCartOrderId(order_id, options)(fetch, basePath);
+        },
+        /**
+         * Estimate shipping for order from a channel partner.
+         * @summary Estimate shipping for channel partner order
+         * @param {ChannelPartnerOrder} channel_partner_order Order needing shipping estimate
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        estimateShippingForChannelPartnerOrder: function (channel_partner_order, options) {
+            return (0, exports.ChannelPartnerApiFp)(configuration).estimateShippingForChannelPartnerOrder(channel_partner_order, options)(fetch, basePath);
+        },
+        /**
+         * Insert order from a channel partner.
+         * @summary Insert channel partner order
+         * @param {ChannelPartnerOrder} channel_partner_order Order to insert
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        importChannelPartnerOrder: function (channel_partner_order, options) {
+            return (0, exports.ChannelPartnerApiFp)(configuration).importChannelPartnerOrder(channel_partner_order, options)(fetch, basePath);
+        },
+    };
+};
+exports.ChannelPartnerApiFactory = ChannelPartnerApiFactory;
+/**
+ * ChannelPartnerApi - object-oriented interface
+ * @export
+ * @class ChannelPartnerApi
+ * @extends {BaseAPI}
+ */
+var ChannelPartnerApi = /** @class */ (function (_super) {
+    __extends(ChannelPartnerApi, _super);
+    function ChannelPartnerApi() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    /**
+     * Cancel channel partner order by channel partner order id
+     * @summary Cancel channel partner order by channel partner order id
+     * @param {string} order_id The channel partner order id to delete.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ChannelPartnerApi
+     */
+    ChannelPartnerApi.prototype.cancelOrderByChannelPartnerOrderId = function (order_id, options) {
+        return (0, exports.ChannelPartnerApiFp)(this.configuration).cancelOrderByChannelPartnerOrderId(order_id, options)(this.fetch, this.basePath);
+    };
+    /**
+     * Cancel channel partner order by UltraCart order id
+     * @summary Cancel channel partner order by UltraCart order id
+     * @param {string} order_id The UltraCart order id to delete.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ChannelPartnerApi
+     */
+    ChannelPartnerApi.prototype.cancelOrderByChannelUltraCartOrderId = function (order_id, options) {
+        return (0, exports.ChannelPartnerApiFp)(this.configuration).cancelOrderByChannelUltraCartOrderId(order_id, options)(this.fetch, this.basePath);
+    };
+    /**
+     * Estimate shipping for order from a channel partner.
+     * @summary Estimate shipping for channel partner order
+     * @param {ChannelPartnerOrder} channel_partner_order Order needing shipping estimate
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ChannelPartnerApi
+     */
+    ChannelPartnerApi.prototype.estimateShippingForChannelPartnerOrder = function (channel_partner_order, options) {
+        return (0, exports.ChannelPartnerApiFp)(this.configuration).estimateShippingForChannelPartnerOrder(channel_partner_order, options)(this.fetch, this.basePath);
+    };
+    /**
+     * Insert order from a channel partner.
+     * @summary Insert channel partner order
+     * @param {ChannelPartnerOrder} channel_partner_order Order to insert
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ChannelPartnerApi
+     */
+    ChannelPartnerApi.prototype.importChannelPartnerOrder = function (channel_partner_order, options) {
+        return (0, exports.ChannelPartnerApiFp)(this.configuration).importChannelPartnerOrder(channel_partner_order, options)(this.fetch, this.basePath);
+    };
+    return ChannelPartnerApi;
+}(BaseAPI));
+exports.ChannelPartnerApi = ChannelPartnerApi;
 /**
  * ChargebackApi - fetch parameter creator
  * @export
@@ -12957,7 +13409,7 @@ var OauthApiFetchParamCreator = function (configuration) {
             // oauth required
             if (configuration && configuration.accessToken) {
                 var localVarAccessTokenValue = typeof configuration.accessToken === 'function'
-                    ? configuration.accessToken("ultraCartOauth", ["ultrabooks_write", "auto_order_write", "coupon_read", "affiliate_read", "coupon_write", "tax_read", "fulfillment_write", "tax_write", "gift_certificate_write", "item_read", "fulfillment_read", "webhook_write", "chargeback_write", "user_write", "gift_certificate_read", "checkout_write", "storefront_read", "webhook_read", "item_write", "auto_order_read", "customer_read", "user_read", "configuration_read", "customer_write", "order_read", "affiliate_write", "storefront_write", "ultrabooks_read", "order_write", "chargeback_read", "integration_log_write", "configuration_write", "checkout_read", "integration_log_read"])
+                    ? configuration.accessToken("ultraCartOauth", ["ultrabooks_write", "auto_order_write", "coupon_read", "affiliate_read", "coupon_write", "channel_partner_read", "tax_read", "fulfillment_write", "tax_write", "gift_certificate_write", "channel_partner_write", "item_read", "fulfillment_read", "webhook_write", "chargeback_write", "user_write", "gift_certificate_read", "checkout_write", "storefront_read", "webhook_read", "item_write", "auto_order_read", "customer_read", "user_read", "configuration_read", "customer_write", "order_read", "affiliate_write", "storefront_write", "ultrabooks_read", "order_write", "chargeback_read", "integration_log_write", "configuration_write", "checkout_read", "integration_log_read"])
                     : configuration.accessToken;
                 localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
             }
@@ -13032,7 +13484,7 @@ var OauthApiFetchParamCreator = function (configuration) {
             // oauth required
             if (configuration && configuration.accessToken) {
                 var localVarAccessTokenValue = typeof configuration.accessToken === 'function'
-                    ? configuration.accessToken("ultraCartOauth", ["ultrabooks_write", "auto_order_write", "coupon_read", "affiliate_read", "coupon_write", "tax_read", "fulfillment_write", "tax_write", "gift_certificate_write", "item_read", "fulfillment_read", "webhook_write", "chargeback_write", "user_write", "gift_certificate_read", "checkout_write", "storefront_read", "webhook_read", "item_write", "auto_order_read", "customer_read", "user_read", "configuration_read", "customer_write", "order_read", "affiliate_write", "storefront_write", "ultrabooks_read", "order_write", "chargeback_read", "integration_log_write", "configuration_write", "checkout_read", "integration_log_read"])
+                    ? configuration.accessToken("ultraCartOauth", ["ultrabooks_write", "auto_order_write", "coupon_read", "affiliate_read", "coupon_write", "channel_partner_read", "tax_read", "fulfillment_write", "tax_write", "gift_certificate_write", "channel_partner_write", "item_read", "fulfillment_read", "webhook_write", "chargeback_write", "user_write", "gift_certificate_read", "checkout_write", "storefront_read", "webhook_read", "item_write", "auto_order_read", "customer_read", "user_read", "configuration_read", "customer_write", "order_read", "affiliate_write", "storefront_write", "ultrabooks_read", "order_write", "chargeback_read", "integration_log_write", "configuration_write", "checkout_read", "integration_log_read"])
                     : configuration.accessToken;
                 localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
             }
