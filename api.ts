@@ -36989,10 +36989,10 @@ export const ChannelPartnerApiFetchParamCreator = function (configuration?: Conf
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        cancelOrderByChannelUltraCartOrderId(order_id: string, options: any = {}): FetchArgs {
+        cancelOrderByUltraCartOrderId(order_id: string, options: any = {}): FetchArgs {
             // verify required parameter 'order_id' is not null or undefined
             if (order_id === null || order_id === undefined) {
-                throw new RequiredError('order_id','Required parameter order_id was null or undefined when calling cancelOrderByChannelUltraCartOrderId.');
+                throw new RequiredError('order_id','Required parameter order_id was null or undefined when calling cancelOrderByUltraCartOrderId.');
             }
             const localVarPath = `/channel_partner/cancel/by_ultracart_order_id/{order_id}`
                 .replace(`{${"order_id"}}`, encodeURIComponent(String(order_id)));
@@ -37181,8 +37181,8 @@ export const ChannelPartnerApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        cancelOrderByChannelUltraCartOrderId(order_id: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ChannelPartnerCancelResponse> {
-            const localVarFetchArgs = ChannelPartnerApiFetchParamCreator(configuration).cancelOrderByChannelUltraCartOrderId(order_id, options);
+        cancelOrderByUltraCartOrderId(order_id: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ChannelPartnerCancelResponse> {
+            const localVarFetchArgs = ChannelPartnerApiFetchParamCreator(configuration).cancelOrderByUltraCartOrderId(order_id, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
 
@@ -37263,8 +37263,8 @@ export const ChannelPartnerApiFactory = function (configuration?: Configuration,
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        cancelOrderByChannelUltraCartOrderId(order_id: string, options?: any) {
-            return ChannelPartnerApiFp(configuration).cancelOrderByChannelUltraCartOrderId(order_id, options)(fetch, basePath);
+        cancelOrderByUltraCartOrderId(order_id: string, options?: any) {
+            return ChannelPartnerApiFp(configuration).cancelOrderByUltraCartOrderId(order_id, options)(fetch, basePath);
         },
         /**
          * Estimate shipping for order from a channel partner. 
@@ -37313,7 +37313,7 @@ export interface ChannelPartnerApiInterface {
      * @throws {RequiredError}
      * @memberof ChannelPartnerApiInterface
      */
-    cancelOrderByChannelUltraCartOrderId(order_id: string, options?: any): Promise<ChannelPartnerCancelResponse>;
+    cancelOrderByUltraCartOrderId(order_id: string, options?: any): Promise<ChannelPartnerCancelResponse>;
 
     /**
      * Estimate shipping for order from a channel partner. 
@@ -37364,8 +37364,8 @@ export class ChannelPartnerApi extends BaseAPI implements ChannelPartnerApiInter
      * @throws {RequiredError}
      * @memberof ChannelPartnerApi
      */
-    public cancelOrderByChannelUltraCartOrderId(order_id: string, options?: any) {
-        return ChannelPartnerApiFp(this.configuration).cancelOrderByChannelUltraCartOrderId(order_id, options)(this.fetch, this.basePath);
+    public cancelOrderByUltraCartOrderId(order_id: string, options?: any) {
+        return ChannelPartnerApiFp(this.configuration).cancelOrderByUltraCartOrderId(order_id, options)(this.fetch, this.basePath);
     }
 
     /**

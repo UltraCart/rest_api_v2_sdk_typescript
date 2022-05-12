@@ -35375,7 +35375,7 @@ export declare const ChannelPartnerApiFetchParamCreator: (configuration?: Config
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    cancelOrderByChannelUltraCartOrderId(order_id: string, options?: any): FetchArgs;
+    cancelOrderByUltraCartOrderId(order_id: string, options?: any): FetchArgs;
     /**
      * Estimate shipping for order from a channel partner.
      * @summary Estimate shipping for channel partner order
@@ -35413,7 +35413,7 @@ export declare const ChannelPartnerApiFp: (configuration?: Configuration) => {
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    cancelOrderByChannelUltraCartOrderId(order_id: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ChannelPartnerCancelResponse>;
+    cancelOrderByUltraCartOrderId(order_id: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ChannelPartnerCancelResponse>;
     /**
      * Estimate shipping for order from a channel partner.
      * @summary Estimate shipping for channel partner order
@@ -35451,7 +35451,7 @@ export declare const ChannelPartnerApiFactory: (configuration?: Configuration, f
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    cancelOrderByChannelUltraCartOrderId(order_id: string, options?: any): Promise<ChannelPartnerCancelResponse>;
+    cancelOrderByUltraCartOrderId(order_id: string, options?: any): Promise<ChannelPartnerCancelResponse>;
     /**
      * Estimate shipping for order from a channel partner.
      * @summary Estimate shipping for channel partner order
@@ -35492,7 +35492,7 @@ export interface ChannelPartnerApiInterface {
      * @throws {RequiredError}
      * @memberof ChannelPartnerApiInterface
      */
-    cancelOrderByChannelUltraCartOrderId(order_id: string, options?: any): Promise<ChannelPartnerCancelResponse>;
+    cancelOrderByUltraCartOrderId(order_id: string, options?: any): Promise<ChannelPartnerCancelResponse>;
     /**
      * Estimate shipping for order from a channel partner.
      * @summary Estimate shipping for channel partner order
@@ -35536,7 +35536,7 @@ export declare class ChannelPartnerApi extends BaseAPI implements ChannelPartner
      * @throws {RequiredError}
      * @memberof ChannelPartnerApi
      */
-    cancelOrderByChannelUltraCartOrderId(order_id: string, options?: any): Promise<ChannelPartnerCancelResponse>;
+    cancelOrderByUltraCartOrderId(order_id: string, options?: any): Promise<ChannelPartnerCancelResponse>;
     /**
      * Estimate shipping for order from a channel partner.
      * @summary Estimate shipping for channel partner order

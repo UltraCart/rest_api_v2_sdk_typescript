@@ -2613,11 +2613,11 @@ var ChannelPartnerApiFetchParamCreator = function (configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        cancelOrderByChannelUltraCartOrderId: function (order_id, options) {
+        cancelOrderByUltraCartOrderId: function (order_id, options) {
             if (options === void 0) { options = {}; }
             // verify required parameter 'order_id' is not null or undefined
             if (order_id === null || order_id === undefined) {
-                throw new RequiredError('order_id', 'Required parameter order_id was null or undefined when calling cancelOrderByChannelUltraCartOrderId.');
+                throw new RequiredError('order_id', 'Required parameter order_id was null or undefined when calling cancelOrderByUltraCartOrderId.');
             }
             var localVarPath = "/channel_partner/cancel/by_ultracart_order_id/{order_id}"
                 .replace("{".concat("order_id", "}"), encodeURIComponent(String(order_id)));
@@ -2786,8 +2786,8 @@ var ChannelPartnerApiFp = function (configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        cancelOrderByChannelUltraCartOrderId: function (order_id, options) {
-            var localVarFetchArgs = (0, exports.ChannelPartnerApiFetchParamCreator)(configuration).cancelOrderByChannelUltraCartOrderId(order_id, options);
+        cancelOrderByUltraCartOrderId: function (order_id, options) {
+            var localVarFetchArgs = (0, exports.ChannelPartnerApiFetchParamCreator)(configuration).cancelOrderByUltraCartOrderId(order_id, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -2871,8 +2871,8 @@ var ChannelPartnerApiFactory = function (configuration, fetch, basePath) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        cancelOrderByChannelUltraCartOrderId: function (order_id, options) {
-            return (0, exports.ChannelPartnerApiFp)(configuration).cancelOrderByChannelUltraCartOrderId(order_id, options)(fetch, basePath);
+        cancelOrderByUltraCartOrderId: function (order_id, options) {
+            return (0, exports.ChannelPartnerApiFp)(configuration).cancelOrderByUltraCartOrderId(order_id, options)(fetch, basePath);
         },
         /**
          * Estimate shipping for order from a channel partner.
@@ -2927,8 +2927,8 @@ var ChannelPartnerApi = /** @class */ (function (_super) {
      * @throws {RequiredError}
      * @memberof ChannelPartnerApi
      */
-    ChannelPartnerApi.prototype.cancelOrderByChannelUltraCartOrderId = function (order_id, options) {
-        return (0, exports.ChannelPartnerApiFp)(this.configuration).cancelOrderByChannelUltraCartOrderId(order_id, options)(this.fetch, this.basePath);
+    ChannelPartnerApi.prototype.cancelOrderByUltraCartOrderId = function (order_id, options) {
+        return (0, exports.ChannelPartnerApiFp)(this.configuration).cancelOrderByUltraCartOrderId(order_id, options)(this.fetch, this.basePath);
     };
     /**
      * Estimate shipping for order from a channel partner.
