@@ -4955,6 +4955,12 @@ export interface ChannelPartnerImportResponse {
      */
     metadata?: ResponseMetadata;
     /**
+     * The order id of the newly imported order if successful
+     * @type {string}
+     * @memberof ChannelPartnerImportResponse
+     */
+    order_id?: string;
+    /**
      * Indicates if API call was successful
      * @type {boolean}
      * @memberof ChannelPartnerImportResponse
