@@ -23912,7 +23912,7 @@ export interface OrderFormat {
      * @type {number}
      * @memberof OrderFormat
      */
-    filter_to_items_in_contact_oid?: number;
+    filter_to_items_in_container_oid?: number;
     /**
      * The desired format.
      * @type {string}
@@ -24560,6 +24560,12 @@ export interface OrderItem {
      */
     shipped_dts?: string;
     /**
+     * Shipping status for this item.  This is the replacement for the old order level shipping status.
+     * @type {string}
+     * @memberof OrderItem
+     */
+    shipping_status?: string;
+    /**
      * Special product type (USPS Media Mail)
      * @type {string}
      * @memberof OrderItem
@@ -24946,6 +24952,44 @@ export interface OrderMarketing {
      * @memberof OrderMarketing
      */
     referral_code?: string;
+}
+
+/**
+ * 
+ * @export
+ * @interface OrderPackingSlipResponse
+ */
+export interface OrderPackingSlipResponse {
+    /**
+     * 
+     * @type {ModelError}
+     * @memberof OrderPackingSlipResponse
+     */
+    error?: ModelError;
+    /**
+     * 
+     * @type {ResponseMetadata}
+     * @memberof OrderPackingSlipResponse
+     */
+    metadata?: ResponseMetadata;
+    /**
+     * pdf_base64
+     * @type {string}
+     * @memberof OrderPackingSlipResponse
+     */
+    pdfBase64?: string;
+    /**
+     * Indicates if API call was successful
+     * @type {boolean}
+     * @memberof OrderPackingSlipResponse
+     */
+    success?: boolean;
+    /**
+     * 
+     * @type {Warning}
+     * @memberof OrderPackingSlipResponse
+     */
+    warning?: Warning;
 }
 
 /**
@@ -51796,7 +51840,7 @@ export const OrderApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        generatePackingSlipAllDC(order_id: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<OrdersResponse> {
+        generatePackingSlipAllDC(order_id: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<OrderPackingSlipResponse> {
             const localVarFetchArgs = OrderApiFetchParamCreator(configuration).generatePackingSlipAllDC(order_id, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
@@ -51818,7 +51862,7 @@ export const OrderApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        generatePackingSlipSpecificDC(distribution_center_code: string, order_id: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<OrdersResponse> {
+        generatePackingSlipSpecificDC(distribution_center_code: string, order_id: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<OrderPackingSlipResponse> {
             const localVarFetchArgs = OrderApiFetchParamCreator(configuration).generatePackingSlipSpecificDC(distribution_center_code, order_id, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
@@ -52592,7 +52636,7 @@ export interface OrderApiInterface {
      * @throws {RequiredError}
      * @memberof OrderApiInterface
      */
-    generatePackingSlipAllDC(order_id: string, options?: any): Promise<OrdersResponse>;
+    generatePackingSlipAllDC(order_id: string, options?: any): Promise<OrderPackingSlipResponse>;
 
     /**
      * The packing slip PDF that is returned is base 64 encoded 
@@ -52603,7 +52647,7 @@ export interface OrderApiInterface {
      * @throws {RequiredError}
      * @memberof OrderApiInterface
      */
-    generatePackingSlipSpecificDC(distribution_center_code: string, order_id: string, options?: any): Promise<OrdersResponse>;
+    generatePackingSlipSpecificDC(distribution_center_code: string, order_id: string, options?: any): Promise<OrderPackingSlipResponse>;
 
     /**
      * Retrieve A/R Retry Configuration. This is primarily an internal API call.  It is doubtful you would ever need to use it. 
