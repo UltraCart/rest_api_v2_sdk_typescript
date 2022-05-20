@@ -1,4 +1,4 @@
-## ultracart_rest_api_v2_typescript@3.10.3
+## ultracart_rest_api_v2_typescript@3.10.4
 
 This generator creates TypeScript/JavaScript client that utilizes [Fetch API](https://fetch.spec.whatwg.org/). The generated Node module can be used in the following environments:
 
@@ -36,7 +36,7 @@ navigate to the folder of your consuming project and run one of the following co
 _published:_
 
 ```
-npm install ultracart_rest_api_v2_typescript@3.10.3 --save
+npm install ultracart_rest_api_v2_typescript@3.10.4 --save
 ```
 
 _unPublished (not recommended):_
@@ -54,6 +54,7 @@ Not every change is committed to every SDK.
 
 | Version | Date | Comments |
 | --: | :-: | --- |
+| 3.10.4 | 05/20/2022 | dependabot on java gson |
 | 3.10.3 | 05/20/2022 | OrderApi.generatePackingSkip calls had wrong return type |
 | 3.10.2 | 05/12/2022 | ChannelPartnerApi renamed one of the delete methods |
 | 3.10.1 | 05/12/2022 | ChannelPartnerApi added orderId to import response obj |
