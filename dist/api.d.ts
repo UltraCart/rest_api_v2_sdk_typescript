@@ -15305,6 +15305,18 @@ export interface EmailThirdPartyProvider {
      * @memberof EmailThirdPartyProvider
      */
     supports_remove_tags?: boolean;
+    /**
+     * tag_count
+     * @type {number}
+     * @memberof EmailThirdPartyProvider
+     */
+    tag_count?: number;
+    /**
+     * tags
+     * @type {Array<EmailThirdPartyTag>}
+     * @memberof EmailThirdPartyProvider
+     */
+    tags?: Array<EmailThirdPartyTag>;
 }
 /**
  *
@@ -15342,6 +15354,25 @@ export interface EmailThirdPartyProvidersResponse {
      * @memberof EmailThirdPartyProvidersResponse
      */
     warning?: Warning;
+}
+/**
+ *
+ * @export
+ * @interface EmailThirdPartyTag
+ */
+export interface EmailThirdPartyTag {
+    /**
+     * id
+     * @type {string}
+     * @memberof EmailThirdPartyTag
+     */
+    id?: string;
+    /**
+     * name
+     * @type {string}
+     * @memberof EmailThirdPartyTag
+     */
+    name?: string;
 }
 /**
  *
@@ -25756,6 +25787,18 @@ export interface OrderSummary {
      * @memberof OrderSummary
      */
     arbitrary_shipping_handling_total?: Currency;
+    /**
+     *
+     * @type {Currency}
+     * @memberof OrderSummary
+     */
+    internal_gift_certificate_amount?: Currency;
+    /**
+     *
+     * @type {Currency}
+     * @memberof OrderSummary
+     */
+    internal_gift_certificate_refunded?: Currency;
     /**
      *
      * @type {Currency}
