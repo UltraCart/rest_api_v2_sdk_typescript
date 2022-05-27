@@ -8907,6 +8907,12 @@ export interface CustomerEditorValues {
      */
     countries?: Array<Country>;
     /**
+     * loyalty_program_type
+     * @type {string}
+     * @memberof CustomerEditorValues
+     */
+    loyalty_program_type?: string;
+    /**
      * qb_classes
      * @type {Array<string>}
      * @memberof CustomerEditorValues
@@ -9784,6 +9790,166 @@ export interface CustomerSoftwareEntitlement {
      * @memberof CustomerSoftwareEntitlement
      */
     software_sku?: string;
+}
+/**
+ *
+ * @export
+ * @interface CustomerStoreCredit
+ */
+export interface CustomerStoreCredit {
+    /**
+     *
+     * @type {number}
+     * @memberof CustomerStoreCredit
+     */
+    available?: number;
+    /**
+     *
+     * @type {number}
+     * @memberof CustomerStoreCredit
+     */
+    expiring?: number;
+    /**
+     *
+     * @type {Array<CustomerStoreCreditLedgerEntry>}
+     * @memberof CustomerStoreCredit
+     */
+    futureLedgers?: Array<CustomerStoreCreditLedgerEntry>;
+    /**
+     *
+     * @type {Array<CustomerStoreCreditLedgerEntry>}
+     * @memberof CustomerStoreCredit
+     */
+    pastLedgers?: Array<CustomerStoreCreditLedgerEntry>;
+    /**
+     *
+     * @type {number}
+     * @memberof CustomerStoreCredit
+     */
+    total?: number;
+    /**
+     *
+     * @type {number}
+     * @memberof CustomerStoreCredit
+     */
+    vesting?: number;
+}
+/**
+ *
+ * @export
+ * @interface CustomerStoreCreditAddRequest
+ */
+export interface CustomerStoreCreditAddRequest {
+    /**
+     * Amount of store credit
+     * @type {number}
+     * @memberof CustomerStoreCreditAddRequest
+     */
+    amount?: number;
+    /**
+     * Description or reason for the store credit
+     * @type {string}
+     * @memberof CustomerStoreCreditAddRequest
+     */
+    description?: string;
+    /**
+     * Optional days for store credit to expire or zero for no expiration
+     * @type {number}
+     * @memberof CustomerStoreCreditAddRequest
+     */
+    expiration_days?: number;
+    /**
+     * Optional days for store credit to vesting or zero for immediately available
+     * @type {number}
+     * @memberof CustomerStoreCreditAddRequest
+     */
+    vesting_days?: number;
+}
+/**
+ *
+ * @export
+ * @interface CustomerStoreCreditLedgerEntry
+ */
+export interface CustomerStoreCreditLedgerEntry {
+    /**
+     * Identifies the state of this ledger entry whether the entry is Vesting or Expiring
+     * @type {string}
+     * @memberof CustomerStoreCreditLedgerEntry
+     */
+    action?: string;
+    /**
+     * The amount of the activity.
+     * @type {number}
+     * @memberof CustomerStoreCreditLedgerEntry
+     */
+    amount?: number;
+    /**
+     * Description of what this ledger entry is used.
+     * @type {string}
+     * @memberof CustomerStoreCreditLedgerEntry
+     */
+    description?: string;
+    /**
+     * Date time of this ledger activity.
+     * @type {string}
+     * @memberof CustomerStoreCreditLedgerEntry
+     */
+    entry_dts?: string;
+    /**
+     * Gift certificate ledger oid is a primary key for this object, used internally.
+     * @type {number}
+     * @memberof CustomerStoreCreditLedgerEntry
+     */
+    gift_certificate_ledger_oid?: number;
+    /**
+     * Gift certificate oid.
+     * @type {number}
+     * @memberof CustomerStoreCreditLedgerEntry
+     */
+    gift_certificate_oid?: number;
+    /**
+     * The order id if this gift certificate was used as part of the payment.
+     * @type {string}
+     * @memberof CustomerStoreCreditLedgerEntry
+     */
+    reference_order_id?: string;
+}
+/**
+ *
+ * @export
+ * @interface CustomerStoreCreditResponse
+ */
+export interface CustomerStoreCreditResponse {
+    /**
+     *
+     * @type {CustomerStoreCredit}
+     * @memberof CustomerStoreCreditResponse
+     */
+    customer_store_credit?: CustomerStoreCredit;
+    /**
+     *
+     * @type {ModelError}
+     * @memberof CustomerStoreCreditResponse
+     */
+    error?: ModelError;
+    /**
+     *
+     * @type {ResponseMetadata}
+     * @memberof CustomerStoreCreditResponse
+     */
+    metadata?: ResponseMetadata;
+    /**
+     * Indicates if API call was successful
+     * @type {boolean}
+     * @memberof CustomerStoreCreditResponse
+     */
+    success?: boolean;
+    /**
+     *
+     * @type {Warning}
+     * @memberof CustomerStoreCreditResponse
+     */
+    warning?: Warning;
 }
 /**
  *
@@ -38476,6 +38642,15 @@ export declare class CouponApi extends BaseAPI implements CouponApiInterface {
  */
 export declare const CustomerApiFetchParamCreator: (configuration?: Configuration) => {
     /**
+     * Adds store credit to a customer
+     * @summary Adds store credit to a customer
+     * @param {number} customer_profile_oid The customer oid to credit.
+     * @param {CustomerStoreCreditAddRequest} store_credit_request Store credit to add
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    addCustomerStoreCredit(customer_profile_oid: number, store_credit_request: CustomerStoreCreditAddRequest, options?: any): FetchArgs;
+    /**
      * Updates the cashback balance for a customer by updating the internal gift certificate used, creating the gift certificate if needed.
      * @summary Updates the cashback balance for a customer by updating the internal gift certificate used, creating the gift certificate if needed.
      * @param {number} customer_profile_oid The customer profile oid
@@ -38524,6 +38699,14 @@ export declare const CustomerApiFetchParamCreator: (configuration?: Configuratio
      * @throws {RequiredError}
      */
     getCustomerEmailLists(options?: any): FetchArgs;
+    /**
+     * Retrieve the customer store credit accumulated through loyalty programs
+     * @summary Retrieve the customer store credit accumulated through loyalty programs
+     * @param {number} customer_profile_oid The customer oid to retrieve.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getCustomerStoreCredit(customer_profile_oid: number, options?: any): FetchArgs;
     /**
      * Retrieves customers from the account.  If no parameters are specified, all customers will be returned.  You will need to make multiple API calls in order to retrieve the entire result set since this API performs result set pagination.
      * @summary Retrieve customers
@@ -38635,6 +38818,15 @@ export declare const CustomerApiFetchParamCreator: (configuration?: Configuratio
  */
 export declare const CustomerApiFp: (configuration?: Configuration) => {
     /**
+     * Adds store credit to a customer
+     * @summary Adds store credit to a customer
+     * @param {number} customer_profile_oid The customer oid to credit.
+     * @param {CustomerStoreCreditAddRequest} store_credit_request Store credit to add
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    addCustomerStoreCredit(customer_profile_oid: number, store_credit_request: CustomerStoreCreditAddRequest, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<BaseResponse>;
+    /**
      * Updates the cashback balance for a customer by updating the internal gift certificate used, creating the gift certificate if needed.
      * @summary Updates the cashback balance for a customer by updating the internal gift certificate used, creating the gift certificate if needed.
      * @param {number} customer_profile_oid The customer profile oid
@@ -38683,6 +38875,14 @@ export declare const CustomerApiFp: (configuration?: Configuration) => {
      * @throws {RequiredError}
      */
     getCustomerEmailLists(options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<EmailListsResponse>;
+    /**
+     * Retrieve the customer store credit accumulated through loyalty programs
+     * @summary Retrieve the customer store credit accumulated through loyalty programs
+     * @param {number} customer_profile_oid The customer oid to retrieve.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getCustomerStoreCredit(customer_profile_oid: number, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<CustomerStoreCreditResponse>;
     /**
      * Retrieves customers from the account.  If no parameters are specified, all customers will be returned.  You will need to make multiple API calls in order to retrieve the entire result set since this API performs result set pagination.
      * @summary Retrieve customers
@@ -38794,6 +38994,15 @@ export declare const CustomerApiFp: (configuration?: Configuration) => {
  */
 export declare const CustomerApiFactory: (configuration?: Configuration, fetch?: FetchAPI, basePath?: string) => {
     /**
+     * Adds store credit to a customer
+     * @summary Adds store credit to a customer
+     * @param {number} customer_profile_oid The customer oid to credit.
+     * @param {CustomerStoreCreditAddRequest} store_credit_request Store credit to add
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    addCustomerStoreCredit(customer_profile_oid: number, store_credit_request: CustomerStoreCreditAddRequest, options?: any): Promise<BaseResponse>;
+    /**
      * Updates the cashback balance for a customer by updating the internal gift certificate used, creating the gift certificate if needed.
      * @summary Updates the cashback balance for a customer by updating the internal gift certificate used, creating the gift certificate if needed.
      * @param {number} customer_profile_oid The customer profile oid
@@ -38842,6 +39051,14 @@ export declare const CustomerApiFactory: (configuration?: Configuration, fetch?:
      * @throws {RequiredError}
      */
     getCustomerEmailLists(options?: any): Promise<EmailListsResponse>;
+    /**
+     * Retrieve the customer store credit accumulated through loyalty programs
+     * @summary Retrieve the customer store credit accumulated through loyalty programs
+     * @param {number} customer_profile_oid The customer oid to retrieve.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getCustomerStoreCredit(customer_profile_oid: number, options?: any): Promise<CustomerStoreCreditResponse>;
     /**
      * Retrieves customers from the account.  If no parameters are specified, all customers will be returned.  You will need to make multiple API calls in order to retrieve the entire result set since this API performs result set pagination.
      * @summary Retrieve customers
@@ -38954,6 +39171,16 @@ export declare const CustomerApiFactory: (configuration?: Configuration, fetch?:
  */
 export interface CustomerApiInterface {
     /**
+     * Adds store credit to a customer
+     * @summary Adds store credit to a customer
+     * @param {number} customer_profile_oid The customer oid to credit.
+     * @param {CustomerStoreCreditAddRequest} store_credit_request Store credit to add
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof CustomerApiInterface
+     */
+    addCustomerStoreCredit(customer_profile_oid: number, store_credit_request: CustomerStoreCreditAddRequest, options?: any): Promise<BaseResponse>;
+    /**
      * Updates the cashback balance for a customer by updating the internal gift certificate used, creating the gift certificate if needed.
      * @summary Updates the cashback balance for a customer by updating the internal gift certificate used, creating the gift certificate if needed.
      * @param {number} customer_profile_oid The customer profile oid
@@ -39008,6 +39235,15 @@ export interface CustomerApiInterface {
      * @memberof CustomerApiInterface
      */
     getCustomerEmailLists(options?: any): Promise<EmailListsResponse>;
+    /**
+     * Retrieve the customer store credit accumulated through loyalty programs
+     * @summary Retrieve the customer store credit accumulated through loyalty programs
+     * @param {number} customer_profile_oid The customer oid to retrieve.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof CustomerApiInterface
+     */
+    getCustomerStoreCredit(customer_profile_oid: number, options?: any): Promise<CustomerStoreCreditResponse>;
     /**
      * Retrieves customers from the account.  If no parameters are specified, all customers will be returned.  You will need to make multiple API calls in order to retrieve the entire result set since this API performs result set pagination.
      * @summary Retrieve customers
@@ -39129,6 +39365,16 @@ export interface CustomerApiInterface {
  */
 export declare class CustomerApi extends BaseAPI implements CustomerApiInterface {
     /**
+     * Adds store credit to a customer
+     * @summary Adds store credit to a customer
+     * @param {number} customer_profile_oid The customer oid to credit.
+     * @param {CustomerStoreCreditAddRequest} store_credit_request Store credit to add
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof CustomerApi
+     */
+    addCustomerStoreCredit(customer_profile_oid: number, store_credit_request: CustomerStoreCreditAddRequest, options?: any): Promise<BaseResponse>;
+    /**
      * Updates the cashback balance for a customer by updating the internal gift certificate used, creating the gift certificate if needed.
      * @summary Updates the cashback balance for a customer by updating the internal gift certificate used, creating the gift certificate if needed.
      * @param {number} customer_profile_oid The customer profile oid
@@ -39183,6 +39429,15 @@ export declare class CustomerApi extends BaseAPI implements CustomerApiInterface
      * @memberof CustomerApi
      */
     getCustomerEmailLists(options?: any): Promise<EmailListsResponse>;
+    /**
+     * Retrieve the customer store credit accumulated through loyalty programs
+     * @summary Retrieve the customer store credit accumulated through loyalty programs
+     * @param {number} customer_profile_oid The customer oid to retrieve.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof CustomerApi
+     */
+    getCustomerStoreCredit(customer_profile_oid: number, options?: any): Promise<CustomerStoreCreditResponse>;
     /**
      * Retrieves customers from the account.  If no parameters are specified, all customers will be returned.  You will need to make multiple API calls in order to retrieve the entire result set since this API performs result set pagination.
      * @summary Retrieve customers

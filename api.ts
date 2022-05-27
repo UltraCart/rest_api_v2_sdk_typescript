@@ -9124,6 +9124,12 @@ export interface CustomerEditorValues {
      */
     countries?: Array<Country>;
     /**
+     * loyalty_program_type
+     * @type {string}
+     * @memberof CustomerEditorValues
+     */
+    loyalty_program_type?: string;
+    /**
      * qb_classes
      * @type {Array<string>}
      * @memberof CustomerEditorValues
@@ -10015,6 +10021,170 @@ export interface CustomerSoftwareEntitlement {
      * @memberof CustomerSoftwareEntitlement
      */
     software_sku?: string;
+}
+
+/**
+ * 
+ * @export
+ * @interface CustomerStoreCredit
+ */
+export interface CustomerStoreCredit {
+    /**
+     * 
+     * @type {number}
+     * @memberof CustomerStoreCredit
+     */
+    available?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof CustomerStoreCredit
+     */
+    expiring?: number;
+    /**
+     * 
+     * @type {Array<CustomerStoreCreditLedgerEntry>}
+     * @memberof CustomerStoreCredit
+     */
+    futureLedgers?: Array<CustomerStoreCreditLedgerEntry>;
+    /**
+     * 
+     * @type {Array<CustomerStoreCreditLedgerEntry>}
+     * @memberof CustomerStoreCredit
+     */
+    pastLedgers?: Array<CustomerStoreCreditLedgerEntry>;
+    /**
+     * 
+     * @type {number}
+     * @memberof CustomerStoreCredit
+     */
+    total?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof CustomerStoreCredit
+     */
+    vesting?: number;
+}
+
+/**
+ * 
+ * @export
+ * @interface CustomerStoreCreditAddRequest
+ */
+export interface CustomerStoreCreditAddRequest {
+    /**
+     * Amount of store credit
+     * @type {number}
+     * @memberof CustomerStoreCreditAddRequest
+     */
+    amount?: number;
+    /**
+     * Description or reason for the store credit
+     * @type {string}
+     * @memberof CustomerStoreCreditAddRequest
+     */
+    description?: string;
+    /**
+     * Optional days for store credit to expire or zero for no expiration
+     * @type {number}
+     * @memberof CustomerStoreCreditAddRequest
+     */
+    expiration_days?: number;
+    /**
+     * Optional days for store credit to vesting or zero for immediately available
+     * @type {number}
+     * @memberof CustomerStoreCreditAddRequest
+     */
+    vesting_days?: number;
+}
+
+/**
+ * 
+ * @export
+ * @interface CustomerStoreCreditLedgerEntry
+ */
+export interface CustomerStoreCreditLedgerEntry {
+    /**
+     * Identifies the state of this ledger entry whether the entry is Vesting or Expiring
+     * @type {string}
+     * @memberof CustomerStoreCreditLedgerEntry
+     */
+    action?: string;
+    /**
+     * The amount of the activity.
+     * @type {number}
+     * @memberof CustomerStoreCreditLedgerEntry
+     */
+    amount?: number;
+    /**
+     * Description of what this ledger entry is used.
+     * @type {string}
+     * @memberof CustomerStoreCreditLedgerEntry
+     */
+    description?: string;
+    /**
+     * Date time of this ledger activity.
+     * @type {string}
+     * @memberof CustomerStoreCreditLedgerEntry
+     */
+    entry_dts?: string;
+    /**
+     * Gift certificate ledger oid is a primary key for this object, used internally.
+     * @type {number}
+     * @memberof CustomerStoreCreditLedgerEntry
+     */
+    gift_certificate_ledger_oid?: number;
+    /**
+     * Gift certificate oid.
+     * @type {number}
+     * @memberof CustomerStoreCreditLedgerEntry
+     */
+    gift_certificate_oid?: number;
+    /**
+     * The order id if this gift certificate was used as part of the payment.
+     * @type {string}
+     * @memberof CustomerStoreCreditLedgerEntry
+     */
+    reference_order_id?: string;
+}
+
+/**
+ * 
+ * @export
+ * @interface CustomerStoreCreditResponse
+ */
+export interface CustomerStoreCreditResponse {
+    /**
+     * 
+     * @type {CustomerStoreCredit}
+     * @memberof CustomerStoreCreditResponse
+     */
+    customer_store_credit?: CustomerStoreCredit;
+    /**
+     * 
+     * @type {ModelError}
+     * @memberof CustomerStoreCreditResponse
+     */
+    error?: ModelError;
+    /**
+     * 
+     * @type {ResponseMetadata}
+     * @memberof CustomerStoreCreditResponse
+     */
+    metadata?: ResponseMetadata;
+    /**
+     * Indicates if API call was successful
+     * @type {boolean}
+     * @memberof CustomerStoreCreditResponse
+     */
+    success?: boolean;
+    /**
+     * 
+     * @type {Warning}
+     * @memberof CustomerStoreCreditResponse
+     */
+    warning?: Warning;
 }
 
 /**
@@ -44444,6 +44614,67 @@ export class CouponApi extends BaseAPI implements CouponApiInterface {
 export const CustomerApiFetchParamCreator = function (configuration?: Configuration) {
     return {
         /**
+         * Adds store credit to a customer 
+         * @summary Adds store credit to a customer
+         * @param {number} customer_profile_oid The customer oid to credit.
+         * @param {CustomerStoreCreditAddRequest} store_credit_request Store credit to add
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        addCustomerStoreCredit(customer_profile_oid: number, store_credit_request: CustomerStoreCreditAddRequest, options: any = {}): FetchArgs {
+            // verify required parameter 'customer_profile_oid' is not null or undefined
+            if (customer_profile_oid === null || customer_profile_oid === undefined) {
+                throw new RequiredError('customer_profile_oid','Required parameter customer_profile_oid was null or undefined when calling addCustomerStoreCredit.');
+            }
+            // verify required parameter 'store_credit_request' is not null or undefined
+            if (store_credit_request === null || store_credit_request === undefined) {
+                throw new RequiredError('store_credit_request','Required parameter store_credit_request was null or undefined when calling addCustomerStoreCredit.');
+            }
+            const localVarPath = `/customer/customers/{customer_profile_oid}/store_credit`
+                .replace(`{${"customer_profile_oid"}}`, encodeURIComponent(String(customer_profile_oid)));
+            const localVarUrlObj = url.parse(localVarPath, true);
+            const localVarRequestOptions = Object.assign({ method: 'POST' }, options);
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+    if(configuration && configuration.apiVersion) {
+      localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+    }
+
+
+
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+				const localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+					? configuration.accessToken("ultraCartOauth", ["customer_write"])
+					: configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
+					? configuration.apiKey("x-ultracart-simple-key")
+					: configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+
+            localVarHeaderParameter['Content-Type'] = 'application/json; charset=UTF-8';
+
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+            const needsSerialization = (<any>"CustomerStoreCreditAddRequest" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
+            localVarRequestOptions.body =  needsSerialization ? JSON.stringify(store_credit_request || {}) : (store_credit_request || "");
+
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
          * Updates the cashback balance for a customer by updating the internal gift certificate used, creating the gift certificate if needed. 
          * @summary Updates the cashback balance for a customer by updating the internal gift certificate used, creating the gift certificate if needed.
          * @param {number} customer_profile_oid The customer profile oid
@@ -44724,6 +44955,58 @@ export const CustomerApiFetchParamCreator = function (configuration?: Configurat
          */
         getCustomerEmailLists(options: any = {}): FetchArgs {
             const localVarPath = `/customer/email_lists`;
+            const localVarUrlObj = url.parse(localVarPath, true);
+            const localVarRequestOptions = Object.assign({ method: 'GET' }, options);
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+    if(configuration && configuration.apiVersion) {
+      localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+    }
+
+
+
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+				const localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+					? configuration.accessToken("ultraCartOauth", ["customer_read"])
+					: configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
+					? configuration.apiKey("x-ultracart-simple-key")
+					: configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Retrieve the customer store credit accumulated through loyalty programs 
+         * @summary Retrieve the customer store credit accumulated through loyalty programs
+         * @param {number} customer_profile_oid The customer oid to retrieve.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getCustomerStoreCredit(customer_profile_oid: number, options: any = {}): FetchArgs {
+            // verify required parameter 'customer_profile_oid' is not null or undefined
+            if (customer_profile_oid === null || customer_profile_oid === undefined) {
+                throw new RequiredError('customer_profile_oid','Required parameter customer_profile_oid was null or undefined when calling getCustomerStoreCredit.');
+            }
+            const localVarPath = `/customer/customers/{customer_profile_oid}/store_credit`
+                .replace(`{${"customer_profile_oid"}}`, encodeURIComponent(String(customer_profile_oid)));
             const localVarUrlObj = url.parse(localVarPath, true);
             const localVarRequestOptions = Object.assign({ method: 'GET' }, options);
             const localVarHeaderParameter = {} as any;
@@ -45406,6 +45689,28 @@ export const CustomerApiFetchParamCreator = function (configuration?: Configurat
 export const CustomerApiFp = function(configuration?: Configuration) {
     return {
         /**
+         * Adds store credit to a customer 
+         * @summary Adds store credit to a customer
+         * @param {number} customer_profile_oid The customer oid to credit.
+         * @param {CustomerStoreCreditAddRequest} store_credit_request Store credit to add
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        addCustomerStoreCredit(customer_profile_oid: number, store_credit_request: CustomerStoreCreditAddRequest, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<BaseResponse> {
+            const localVarFetchArgs = CustomerApiFetchParamCreator(configuration).addCustomerStoreCredit(customer_profile_oid, store_credit_request, options);
+            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
+                    if (response.status >= 200 && response.status < 300) {
+                      return response.json();
+                      
+                    } else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
          * Updates the cashback balance for a customer by updating the internal gift certificate used, creating the gift certificate if needed. 
          * @summary Updates the cashback balance for a customer by updating the internal gift certificate used, creating the gift certificate if needed.
          * @param {number} customer_profile_oid The customer profile oid
@@ -45520,6 +45825,27 @@ export const CustomerApiFp = function(configuration?: Configuration) {
          */
         getCustomerEmailLists(options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<EmailListsResponse> {
             const localVarFetchArgs = CustomerApiFetchParamCreator(configuration).getCustomerEmailLists(options);
+            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
+                    if (response.status >= 200 && response.status < 300) {
+                      return response.json();
+                      
+                    } else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
+         * Retrieve the customer store credit accumulated through loyalty programs 
+         * @summary Retrieve the customer store credit accumulated through loyalty programs
+         * @param {number} customer_profile_oid The customer oid to retrieve.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getCustomerStoreCredit(customer_profile_oid: number, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<CustomerStoreCreditResponse> {
+            const localVarFetchArgs = CustomerApiFetchParamCreator(configuration).getCustomerStoreCredit(customer_profile_oid, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
 
@@ -45750,6 +46076,17 @@ export const CustomerApiFp = function(configuration?: Configuration) {
 export const CustomerApiFactory = function (configuration?: Configuration, fetch?: FetchAPI, basePath?: string) {
     return {
         /**
+         * Adds store credit to a customer 
+         * @summary Adds store credit to a customer
+         * @param {number} customer_profile_oid The customer oid to credit.
+         * @param {CustomerStoreCreditAddRequest} store_credit_request Store credit to add
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        addCustomerStoreCredit(customer_profile_oid: number, store_credit_request: CustomerStoreCreditAddRequest, options?: any) {
+            return CustomerApiFp(configuration).addCustomerStoreCredit(customer_profile_oid, store_credit_request, options)(fetch, basePath);
+        },
+        /**
          * Updates the cashback balance for a customer by updating the internal gift certificate used, creating the gift certificate if needed. 
          * @summary Updates the cashback balance for a customer by updating the internal gift certificate used, creating the gift certificate if needed.
          * @param {number} customer_profile_oid The customer profile oid
@@ -45809,6 +46146,16 @@ export const CustomerApiFactory = function (configuration?: Configuration, fetch
          */
         getCustomerEmailLists(options?: any) {
             return CustomerApiFp(configuration).getCustomerEmailLists(options)(fetch, basePath);
+        },
+        /**
+         * Retrieve the customer store credit accumulated through loyalty programs 
+         * @summary Retrieve the customer store credit accumulated through loyalty programs
+         * @param {number} customer_profile_oid The customer oid to retrieve.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getCustomerStoreCredit(customer_profile_oid: number, options?: any) {
+            return CustomerApiFp(configuration).getCustomerStoreCredit(customer_profile_oid, options)(fetch, basePath);
         },
         /**
          * Retrieves customers from the account.  If no parameters are specified, all customers will be returned.  You will need to make multiple API calls in order to retrieve the entire result set since this API performs result set pagination. 
@@ -45940,6 +46287,17 @@ export const CustomerApiFactory = function (configuration?: Configuration, fetch
  */
 export interface CustomerApiInterface {
     /**
+     * Adds store credit to a customer 
+     * @summary Adds store credit to a customer
+     * @param {number} customer_profile_oid The customer oid to credit.
+     * @param {CustomerStoreCreditAddRequest} store_credit_request Store credit to add
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof CustomerApiInterface
+     */
+    addCustomerStoreCredit(customer_profile_oid: number, store_credit_request: CustomerStoreCreditAddRequest, options?: any): Promise<BaseResponse>;
+
+    /**
      * Updates the cashback balance for a customer by updating the internal gift certificate used, creating the gift certificate if needed. 
      * @summary Updates the cashback balance for a customer by updating the internal gift certificate used, creating the gift certificate if needed.
      * @param {number} customer_profile_oid The customer profile oid
@@ -45999,6 +46357,16 @@ export interface CustomerApiInterface {
      * @memberof CustomerApiInterface
      */
     getCustomerEmailLists(options?: any): Promise<EmailListsResponse>;
+
+    /**
+     * Retrieve the customer store credit accumulated through loyalty programs 
+     * @summary Retrieve the customer store credit accumulated through loyalty programs
+     * @param {number} customer_profile_oid The customer oid to retrieve.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof CustomerApiInterface
+     */
+    getCustomerStoreCredit(customer_profile_oid: number, options?: any): Promise<CustomerStoreCreditResponse>;
 
     /**
      * Retrieves customers from the account.  If no parameters are specified, all customers will be returned.  You will need to make multiple API calls in order to retrieve the entire result set since this API performs result set pagination. 
@@ -46130,6 +46498,19 @@ export interface CustomerApiInterface {
  */
 export class CustomerApi extends BaseAPI implements CustomerApiInterface {
     /**
+     * Adds store credit to a customer 
+     * @summary Adds store credit to a customer
+     * @param {number} customer_profile_oid The customer oid to credit.
+     * @param {CustomerStoreCreditAddRequest} store_credit_request Store credit to add
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof CustomerApi
+     */
+    public addCustomerStoreCredit(customer_profile_oid: number, store_credit_request: CustomerStoreCreditAddRequest, options?: any) {
+        return CustomerApiFp(this.configuration).addCustomerStoreCredit(customer_profile_oid, store_credit_request, options)(this.fetch, this.basePath);
+    }
+
+    /**
      * Updates the cashback balance for a customer by updating the internal gift certificate used, creating the gift certificate if needed. 
      * @summary Updates the cashback balance for a customer by updating the internal gift certificate used, creating the gift certificate if needed.
      * @param {number} customer_profile_oid The customer profile oid
@@ -46200,6 +46581,18 @@ export class CustomerApi extends BaseAPI implements CustomerApiInterface {
      */
     public getCustomerEmailLists(options?: any) {
         return CustomerApiFp(this.configuration).getCustomerEmailLists(options)(this.fetch, this.basePath);
+    }
+
+    /**
+     * Retrieve the customer store credit accumulated through loyalty programs 
+     * @summary Retrieve the customer store credit accumulated through loyalty programs
+     * @param {number} customer_profile_oid The customer oid to retrieve.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof CustomerApi
+     */
+    public getCustomerStoreCredit(customer_profile_oid: number, options?: any) {
+        return CustomerApiFp(this.configuration).getCustomerStoreCredit(customer_profile_oid, options)(this.fetch, this.basePath);
     }
 
     /**

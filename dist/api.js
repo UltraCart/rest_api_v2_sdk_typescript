@@ -8821,6 +8821,60 @@ exports.CouponApi = CouponApi;
 var CustomerApiFetchParamCreator = function (configuration) {
     return {
         /**
+         * Adds store credit to a customer
+         * @summary Adds store credit to a customer
+         * @param {number} customer_profile_oid The customer oid to credit.
+         * @param {CustomerStoreCreditAddRequest} store_credit_request Store credit to add
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        addCustomerStoreCredit: function (customer_profile_oid, store_credit_request, options) {
+            if (options === void 0) { options = {}; }
+            // verify required parameter 'customer_profile_oid' is not null or undefined
+            if (customer_profile_oid === null || customer_profile_oid === undefined) {
+                throw new RequiredError('customer_profile_oid', 'Required parameter customer_profile_oid was null or undefined when calling addCustomerStoreCredit.');
+            }
+            // verify required parameter 'store_credit_request' is not null or undefined
+            if (store_credit_request === null || store_credit_request === undefined) {
+                throw new RequiredError('store_credit_request', 'Required parameter store_credit_request was null or undefined when calling addCustomerStoreCredit.');
+            }
+            var localVarPath = "/customer/customers/{customer_profile_oid}/store_credit"
+                .replace("{".concat("customer_profile_oid", "}"), encodeURIComponent(String(customer_profile_oid)));
+            var localVarUrlObj = url.parse(localVarPath, true);
+            var localVarRequestOptions = Object.assign({ method: 'POST' }, options);
+            var localVarHeaderParameter = {};
+            var localVarQueryParameter = {};
+            if (configuration && configuration.apiVersion) {
+                localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+            }
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+                var localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+                    ? configuration.accessToken("ultraCartOauth", ["customer_write"])
+                    : configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                var localVarApiKeyValue = typeof configuration.apiKey === 'function'
+                    ? configuration.apiKey("x-ultracart-simple-key")
+                    : configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+            localVarHeaderParameter['Content-Type'] = 'application/json; charset=UTF-8';
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+            var needsSerialization = ("CustomerStoreCreditAddRequest" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
+            localVarRequestOptions.body = needsSerialization ? JSON.stringify(store_credit_request || {}) : (store_credit_request || "");
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
          * Updates the cashback balance for a customer by updating the internal gift certificate used, creating the gift certificate if needed.
          * @summary Updates the cashback balance for a customer by updating the internal gift certificate used, creating the gift certificate if needed.
          * @param {number} customer_profile_oid The customer profile oid
@@ -9069,6 +9123,52 @@ var CustomerApiFetchParamCreator = function (configuration) {
         getCustomerEmailLists: function (options) {
             if (options === void 0) { options = {}; }
             var localVarPath = "/customer/email_lists";
+            var localVarUrlObj = url.parse(localVarPath, true);
+            var localVarRequestOptions = Object.assign({ method: 'GET' }, options);
+            var localVarHeaderParameter = {};
+            var localVarQueryParameter = {};
+            if (configuration && configuration.apiVersion) {
+                localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+            }
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+                var localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+                    ? configuration.accessToken("ultraCartOauth", ["customer_read"])
+                    : configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                var localVarApiKeyValue = typeof configuration.apiKey === 'function'
+                    ? configuration.apiKey("x-ultracart-simple-key")
+                    : configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Retrieve the customer store credit accumulated through loyalty programs
+         * @summary Retrieve the customer store credit accumulated through loyalty programs
+         * @param {number} customer_profile_oid The customer oid to retrieve.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getCustomerStoreCredit: function (customer_profile_oid, options) {
+            if (options === void 0) { options = {}; }
+            // verify required parameter 'customer_profile_oid' is not null or undefined
+            if (customer_profile_oid === null || customer_profile_oid === undefined) {
+                throw new RequiredError('customer_profile_oid', 'Required parameter customer_profile_oid was null or undefined when calling getCustomerStoreCredit.');
+            }
+            var localVarPath = "/customer/customers/{customer_profile_oid}/store_credit"
+                .replace("{".concat("customer_profile_oid", "}"), encodeURIComponent(String(customer_profile_oid)));
             var localVarUrlObj = url.parse(localVarPath, true);
             var localVarRequestOptions = Object.assign({ method: 'GET' }, options);
             var localVarHeaderParameter = {};
@@ -9650,6 +9750,29 @@ exports.CustomerApiFetchParamCreator = CustomerApiFetchParamCreator;
 var CustomerApiFp = function (configuration) {
     return {
         /**
+         * Adds store credit to a customer
+         * @summary Adds store credit to a customer
+         * @param {number} customer_profile_oid The customer oid to credit.
+         * @param {CustomerStoreCreditAddRequest} store_credit_request Store credit to add
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        addCustomerStoreCredit: function (customer_profile_oid, store_credit_request, options) {
+            var localVarFetchArgs = (0, exports.CustomerApiFetchParamCreator)(configuration).addCustomerStoreCredit(customer_profile_oid, store_credit_request, options);
+            return function (fetch, basePath) {
+                if (fetch === void 0) { fetch = portableFetch; }
+                if (basePath === void 0) { basePath = BASE_PATH; }
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(function (response) {
+                    if (response.status >= 200 && response.status < 300) {
+                        return response.json();
+                    }
+                    else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
          * Updates the cashback balance for a customer by updating the internal gift certificate used, creating the gift certificate if needed.
          * @summary Updates the cashback balance for a customer by updating the internal gift certificate used, creating the gift certificate if needed.
          * @param {number} customer_profile_oid The customer profile oid
@@ -9769,6 +9892,28 @@ var CustomerApiFp = function (configuration) {
          */
         getCustomerEmailLists: function (options) {
             var localVarFetchArgs = (0, exports.CustomerApiFetchParamCreator)(configuration).getCustomerEmailLists(options);
+            return function (fetch, basePath) {
+                if (fetch === void 0) { fetch = portableFetch; }
+                if (basePath === void 0) { basePath = BASE_PATH; }
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(function (response) {
+                    if (response.status >= 200 && response.status < 300) {
+                        return response.json();
+                    }
+                    else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
+         * Retrieve the customer store credit accumulated through loyalty programs
+         * @summary Retrieve the customer store credit accumulated through loyalty programs
+         * @param {number} customer_profile_oid The customer oid to retrieve.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getCustomerStoreCredit: function (customer_profile_oid, options) {
+            var localVarFetchArgs = (0, exports.CustomerApiFetchParamCreator)(configuration).getCustomerStoreCredit(customer_profile_oid, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -10008,6 +10153,17 @@ exports.CustomerApiFp = CustomerApiFp;
 var CustomerApiFactory = function (configuration, fetch, basePath) {
     return {
         /**
+         * Adds store credit to a customer
+         * @summary Adds store credit to a customer
+         * @param {number} customer_profile_oid The customer oid to credit.
+         * @param {CustomerStoreCreditAddRequest} store_credit_request Store credit to add
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        addCustomerStoreCredit: function (customer_profile_oid, store_credit_request, options) {
+            return (0, exports.CustomerApiFp)(configuration).addCustomerStoreCredit(customer_profile_oid, store_credit_request, options)(fetch, basePath);
+        },
+        /**
          * Updates the cashback balance for a customer by updating the internal gift certificate used, creating the gift certificate if needed.
          * @summary Updates the cashback balance for a customer by updating the internal gift certificate used, creating the gift certificate if needed.
          * @param {number} customer_profile_oid The customer profile oid
@@ -10067,6 +10223,16 @@ var CustomerApiFactory = function (configuration, fetch, basePath) {
          */
         getCustomerEmailLists: function (options) {
             return (0, exports.CustomerApiFp)(configuration).getCustomerEmailLists(options)(fetch, basePath);
+        },
+        /**
+         * Retrieve the customer store credit accumulated through loyalty programs
+         * @summary Retrieve the customer store credit accumulated through loyalty programs
+         * @param {number} customer_profile_oid The customer oid to retrieve.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getCustomerStoreCredit: function (customer_profile_oid, options) {
+            return (0, exports.CustomerApiFp)(configuration).getCustomerStoreCredit(customer_profile_oid, options)(fetch, basePath);
         },
         /**
          * Retrieves customers from the account.  If no parameters are specified, all customers will be returned.  You will need to make multiple API calls in order to retrieve the entire result set since this API performs result set pagination.
@@ -10203,6 +10369,18 @@ var CustomerApi = /** @class */ (function (_super) {
         return _super !== null && _super.apply(this, arguments) || this;
     }
     /**
+     * Adds store credit to a customer
+     * @summary Adds store credit to a customer
+     * @param {number} customer_profile_oid The customer oid to credit.
+     * @param {CustomerStoreCreditAddRequest} store_credit_request Store credit to add
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof CustomerApi
+     */
+    CustomerApi.prototype.addCustomerStoreCredit = function (customer_profile_oid, store_credit_request, options) {
+        return (0, exports.CustomerApiFp)(this.configuration).addCustomerStoreCredit(customer_profile_oid, store_credit_request, options)(this.fetch, this.basePath);
+    };
+    /**
      * Updates the cashback balance for a customer by updating the internal gift certificate used, creating the gift certificate if needed.
      * @summary Updates the cashback balance for a customer by updating the internal gift certificate used, creating the gift certificate if needed.
      * @param {number} customer_profile_oid The customer profile oid
@@ -10268,6 +10446,17 @@ var CustomerApi = /** @class */ (function (_super) {
      */
     CustomerApi.prototype.getCustomerEmailLists = function (options) {
         return (0, exports.CustomerApiFp)(this.configuration).getCustomerEmailLists(options)(this.fetch, this.basePath);
+    };
+    /**
+     * Retrieve the customer store credit accumulated through loyalty programs
+     * @summary Retrieve the customer store credit accumulated through loyalty programs
+     * @param {number} customer_profile_oid The customer oid to retrieve.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof CustomerApi
+     */
+    CustomerApi.prototype.getCustomerStoreCredit = function (customer_profile_oid, options) {
+        return (0, exports.CustomerApiFp)(this.configuration).getCustomerStoreCredit(customer_profile_oid, options)(this.fetch, this.basePath);
     };
     /**
      * Retrieves customers from the account.  If no parameters are specified, all customers will be returned.  You will need to make multiple API calls in order to retrieve the entire result set since this API performs result set pagination.
