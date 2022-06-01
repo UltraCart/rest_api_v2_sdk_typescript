@@ -10030,37 +10030,37 @@ export interface CustomerSoftwareEntitlement {
  */
 export interface CustomerStoreCredit {
     /**
-     * 
+     * Available store credit which is defined as unused and vested
      * @type {number}
      * @memberof CustomerStoreCredit
      */
     available?: number;
     /**
-     * 
+     * Amount of store credit expiring within 30 days
      * @type {number}
      * @memberof CustomerStoreCredit
      */
     expiring?: number;
     /**
-     * 
+     * Array of future ledger entries including expiring entries
      * @type {Array<CustomerStoreCreditLedgerEntry>}
      * @memberof CustomerStoreCredit
      */
-    futureLedgers?: Array<CustomerStoreCreditLedgerEntry>;
+    future_ledgers?: Array<CustomerStoreCreditLedgerEntry>;
     /**
-     * 
+     * Array of past ledger entries including accrual, usage, and expiring entries
      * @type {Array<CustomerStoreCreditLedgerEntry>}
      * @memberof CustomerStoreCredit
      */
-    pastLedgers?: Array<CustomerStoreCreditLedgerEntry>;
+    past_ledgers?: Array<CustomerStoreCreditLedgerEntry>;
     /**
-     * 
+     * Total lifetime store credit for this customer.
      * @type {number}
      * @memberof CustomerStoreCredit
      */
     total?: number;
     /**
-     * 
+     * Amount of store credit vesting
      * @type {number}
      * @memberof CustomerStoreCredit
      */
