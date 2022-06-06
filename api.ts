@@ -14600,6 +14600,18 @@ export interface EmailSegment {
      */
     storefront_oid?: number;
     /**
+     * List id of third party provider to sync with.
+     * @type {string}
+     * @memberof EmailSegment
+     */
+    thirdparty_list_id?: string;
+    /**
+     * Name of third party provider to sync segment to a list with.
+     * @type {string}
+     * @memberof EmailSegment
+     */
+    thirdparty_provider_name?: string;
+    /**
      * Details on the flows or campaigns that use this list.
      * @type {Array<EmailListSegmentUsedBy>}
      * @memberof EmailSegment
