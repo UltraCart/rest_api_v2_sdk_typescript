@@ -14600,6 +14600,30 @@ export interface EmailSegment {
      */
     storefront_oid?: number;
     /**
+     * Third party provider tags to add when a customer joins the segment.
+     * @type {Array<string>}
+     * @memberof EmailSegment
+     */
+    thirdparty_join_add_tags?: Array<string>;
+    /**
+     * Third party provider tags to remove when a customer joins the segment.
+     * @type {Array<string>}
+     * @memberof EmailSegment
+     */
+    thirdparty_join_remove_tags?: Array<string>;
+    /**
+     * Third party provider tags to add when a customer leaves the segment.
+     * @type {Array<string>}
+     * @memberof EmailSegment
+     */
+    thirdparty_leave_add_tags?: Array<string>;
+    /**
+     * Third party provider tags to remove when a customer leaves the segment.
+     * @type {Array<string>}
+     * @memberof EmailSegment
+     */
+    thirdparty_leave_remove_tags?: Array<string>;
+    /**
      * List id of third party provider to sync with.
      * @type {string}
      * @memberof EmailSegment
