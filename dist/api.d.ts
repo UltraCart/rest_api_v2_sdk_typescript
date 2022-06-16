@@ -38827,7 +38827,7 @@ export declare const CustomerApiFetchParamCreator: (configuration?: Configuratio
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    search(lookup_request: LookupRequest, options?: any): FetchArgs;
+    searchCustomerProfileValues(lookup_request: LookupRequest, options?: any): FetchArgs;
     /**
      * Update a customer on the UltraCart account.
      * @summary Update a customer
@@ -39011,7 +39011,7 @@ export declare const CustomerApiFp: (configuration?: Configuration) => {
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    search(lookup_request: LookupRequest, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<LookupResponse>;
+    searchCustomerProfileValues(lookup_request: LookupRequest, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<LookupResponse>;
     /**
      * Update a customer on the UltraCart account.
      * @summary Update a customer
@@ -39195,7 +39195,7 @@ export declare const CustomerApiFactory: (configuration?: Configuration, fetch?:
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    search(lookup_request: LookupRequest, options?: any): Promise<LookupResponse>;
+    searchCustomerProfileValues(lookup_request: LookupRequest, options?: any): Promise<LookupResponse>;
     /**
      * Update a customer on the UltraCart account.
      * @summary Update a customer
@@ -39394,7 +39394,7 @@ export interface CustomerApiInterface {
      * @throws {RequiredError}
      * @memberof CustomerApiInterface
      */
-    search(lookup_request: LookupRequest, options?: any): Promise<LookupResponse>;
+    searchCustomerProfileValues(lookup_request: LookupRequest, options?: any): Promise<LookupResponse>;
     /**
      * Update a customer on the UltraCart account.
      * @summary Update a customer
@@ -39597,7 +39597,7 @@ export declare class CustomerApi extends BaseAPI implements CustomerApiInterface
      * @throws {RequiredError}
      * @memberof CustomerApi
      */
-    search(lookup_request: LookupRequest, options?: any): Promise<LookupResponse>;
+    searchCustomerProfileValues(lookup_request: LookupRequest, options?: any): Promise<LookupResponse>;
     /**
      * Update a customer on the UltraCart account.
      * @summary Update a customer

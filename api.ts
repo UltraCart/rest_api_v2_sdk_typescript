@@ -45540,10 +45540,10 @@ export const CustomerApiFetchParamCreator = function (configuration?: Configurat
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        search(lookup_request: LookupRequest, options: any = {}): FetchArgs {
+        searchCustomerProfileValues(lookup_request: LookupRequest, options: any = {}): FetchArgs {
             // verify required parameter 'lookup_request' is not null or undefined
             if (lookup_request === null || lookup_request === undefined) {
-                throw new RequiredError('lookup_request','Required parameter lookup_request was null or undefined when calling search.');
+                throw new RequiredError('lookup_request','Required parameter lookup_request was null or undefined when calling searchCustomerProfileValues.');
             }
             const localVarPath = `/customer/search`;
             const localVarUrlObj = url.parse(localVarPath, true);
@@ -45569,7 +45569,7 @@ export const CustomerApiFetchParamCreator = function (configuration?: Configurat
             // oauth required
             if (configuration && configuration.accessToken) {
 				const localVarAccessTokenValue = typeof configuration.accessToken === 'function'
-					? configuration.accessToken("ultraCartOauth", ["storefront_read"])
+					? configuration.accessToken("ultraCartOauth", ["customer_read"])
 					: configuration.accessToken;
                 localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
             }
@@ -46106,8 +46106,8 @@ export const CustomerApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        search(lookup_request: LookupRequest, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<LookupResponse> {
-            const localVarFetchArgs = CustomerApiFetchParamCreator(configuration).search(lookup_request, options);
+        searchCustomerProfileValues(lookup_request: LookupRequest, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<LookupResponse> {
+            const localVarFetchArgs = CustomerApiFetchParamCreator(configuration).searchCustomerProfileValues(lookup_request, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
 
@@ -46371,8 +46371,8 @@ export const CustomerApiFactory = function (configuration?: Configuration, fetch
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        search(lookup_request: LookupRequest, options?: any) {
-            return CustomerApiFp(configuration).search(lookup_request, options)(fetch, basePath);
+        searchCustomerProfileValues(lookup_request: LookupRequest, options?: any) {
+            return CustomerApiFp(configuration).searchCustomerProfileValues(lookup_request, options)(fetch, basePath);
         },
         /**
          * Update a customer on the UltraCart account. 
@@ -46593,7 +46593,7 @@ export interface CustomerApiInterface {
      * @throws {RequiredError}
      * @memberof CustomerApiInterface
      */
-    search(lookup_request: LookupRequest, options?: any): Promise<LookupResponse>;
+    searchCustomerProfileValues(lookup_request: LookupRequest, options?: any): Promise<LookupResponse>;
 
     /**
      * Update a customer on the UltraCart account. 
@@ -46840,8 +46840,8 @@ export class CustomerApi extends BaseAPI implements CustomerApiInterface {
      * @throws {RequiredError}
      * @memberof CustomerApi
      */
-    public search(lookup_request: LookupRequest, options?: any) {
-        return CustomerApiFp(this.configuration).search(lookup_request, options)(this.fetch, this.basePath);
+    public searchCustomerProfileValues(lookup_request: LookupRequest, options?: any) {
+        return CustomerApiFp(this.configuration).searchCustomerProfileValues(lookup_request, options)(this.fetch, this.basePath);
     }
 
     /**

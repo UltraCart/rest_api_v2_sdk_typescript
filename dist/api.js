@@ -9587,11 +9587,11 @@ var CustomerApiFetchParamCreator = function (configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        search: function (lookup_request, options) {
+        searchCustomerProfileValues: function (lookup_request, options) {
             if (options === void 0) { options = {}; }
             // verify required parameter 'lookup_request' is not null or undefined
             if (lookup_request === null || lookup_request === undefined) {
-                throw new RequiredError('lookup_request', 'Required parameter lookup_request was null or undefined when calling search.');
+                throw new RequiredError('lookup_request', 'Required parameter lookup_request was null or undefined when calling searchCustomerProfileValues.');
             }
             var localVarPath = "/customer/search";
             var localVarUrlObj = url.parse(localVarPath, true);
@@ -9612,7 +9612,7 @@ var CustomerApiFetchParamCreator = function (configuration) {
             // oauth required
             if (configuration && configuration.accessToken) {
                 var localVarAccessTokenValue = typeof configuration.accessToken === 'function'
-                    ? configuration.accessToken("ultraCartOauth", ["storefront_read"])
+                    ? configuration.accessToken("ultraCartOauth", ["customer_read"])
                     : configuration.accessToken;
                 localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
             }
@@ -10136,8 +10136,8 @@ var CustomerApiFp = function (configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        search: function (lookup_request, options) {
-            var localVarFetchArgs = (0, exports.CustomerApiFetchParamCreator)(configuration).search(lookup_request, options);
+        searchCustomerProfileValues: function (lookup_request, options) {
+            var localVarFetchArgs = (0, exports.CustomerApiFetchParamCreator)(configuration).searchCustomerProfileValues(lookup_request, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -10405,8 +10405,8 @@ var CustomerApiFactory = function (configuration, fetch, basePath) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        search: function (lookup_request, options) {
-            return (0, exports.CustomerApiFp)(configuration).search(lookup_request, options)(fetch, basePath);
+        searchCustomerProfileValues: function (lookup_request, options) {
+            return (0, exports.CustomerApiFp)(configuration).searchCustomerProfileValues(lookup_request, options)(fetch, basePath);
         },
         /**
          * Update a customer on the UltraCart account.
@@ -10645,8 +10645,8 @@ var CustomerApi = /** @class */ (function (_super) {
      * @throws {RequiredError}
      * @memberof CustomerApi
      */
-    CustomerApi.prototype.search = function (lookup_request, options) {
-        return (0, exports.CustomerApiFp)(this.configuration).search(lookup_request, options)(this.fetch, this.basePath);
+    CustomerApi.prototype.searchCustomerProfileValues = function (lookup_request, options) {
+        return (0, exports.CustomerApiFp)(this.configuration).searchCustomerProfileValues(lookup_request, options)(this.fetch, this.basePath);
     };
     /**
      * Update a customer on the UltraCart account.
