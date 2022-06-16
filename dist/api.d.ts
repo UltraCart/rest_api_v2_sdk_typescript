@@ -12388,6 +12388,12 @@ export interface EmailDomain {
     identity_status?: string;
     /**
      *
+     * @type {Mailgun}
+     * @memberof EmailDomain
+     */
+    mailgun?: Mailgun;
+    /**
+     *
      * @type {string}
      * @memberof EmailDomain
      */
@@ -22385,6 +22391,19 @@ export interface LookupResponse {
      * @memberof LookupResponse
      */
     warning?: Warning;
+}
+/**
+ *
+ * @export
+ * @interface Mailgun
+ */
+export interface Mailgun {
+    /**
+     *
+     * @type {string}
+     * @memberof Mailgun
+     */
+    api_key?: string;
 }
 /**
  *
@@ -42808,6 +42827,14 @@ export declare const StorefrontApiFetchParamCreator: (configuration?: Configurat
     createEmailSendingDomain(domain: string, options?: any): FetchArgs;
     /**
      *
+     * @summary Create email sending domain for various providers
+     * @param {EmailDomain} email_domain EmailDomain
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    createEmailSendingDomain2(email_domain: EmailDomain, options?: any): FetchArgs;
+    /**
+     *
      * @summary Create Twilio account
      * @param {Twilio} twilio Twilio
      * @param {*} [options] Override http request option.
@@ -44103,6 +44130,15 @@ export declare const StorefrontApiFetchParamCreator: (configuration?: Configurat
     updateEmailSegment(storefront_oid: number, email_segment_uuid: string, email_segment: EmailSegment, options?: any): FetchArgs;
     /**
      *
+     * @summary Update email sending domain
+     * @param {string} domain
+     * @param {EmailDomain} email_domain EmailDomain
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    updateEmailSendingDomain(domain: string, email_domain: EmailDomain, options?: any): FetchArgs;
+    /**
+     *
      * @summary Update email settings
      * @param {number} storefront_oid
      * @param {EmailSettings} settings settings request
@@ -44275,6 +44311,14 @@ export declare const StorefrontApiFp: (configuration?: Configuration) => {
      * @throws {RequiredError}
      */
     createEmailSendingDomain(domain: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<EmailSendingDomainResponse>;
+    /**
+     *
+     * @summary Create email sending domain for various providers
+     * @param {EmailDomain} email_domain EmailDomain
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    createEmailSendingDomain2(email_domain: EmailDomain, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<EmailSendingDomainResponse>;
     /**
      *
      * @summary Create Twilio account
@@ -45572,6 +45616,15 @@ export declare const StorefrontApiFp: (configuration?: Configuration) => {
     updateEmailSegment(storefront_oid: number, email_segment_uuid: string, email_segment: EmailSegment, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<EmailSegmentResponse>;
     /**
      *
+     * @summary Update email sending domain
+     * @param {string} domain
+     * @param {EmailDomain} email_domain EmailDomain
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    updateEmailSendingDomain(domain: string, email_domain: EmailDomain, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<EmailSendingDomainResponse>;
+    /**
+     *
      * @summary Update email settings
      * @param {number} storefront_oid
      * @param {EmailSettings} settings settings request
@@ -45744,6 +45797,14 @@ export declare const StorefrontApiFactory: (configuration?: Configuration, fetch
      * @throws {RequiredError}
      */
     createEmailSendingDomain(domain: string, options?: any): Promise<EmailSendingDomainResponse>;
+    /**
+     *
+     * @summary Create email sending domain for various providers
+     * @param {EmailDomain} email_domain EmailDomain
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    createEmailSendingDomain2(email_domain: EmailDomain, options?: any): Promise<EmailSendingDomainResponse>;
     /**
      *
      * @summary Create Twilio account
@@ -47041,6 +47102,15 @@ export declare const StorefrontApiFactory: (configuration?: Configuration, fetch
     updateEmailSegment(storefront_oid: number, email_segment_uuid: string, email_segment: EmailSegment, options?: any): Promise<EmailSegmentResponse>;
     /**
      *
+     * @summary Update email sending domain
+     * @param {string} domain
+     * @param {EmailDomain} email_domain EmailDomain
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    updateEmailSendingDomain(domain: string, email_domain: EmailDomain, options?: any): Promise<EmailSendingDomainResponse>;
+    /**
+     *
      * @summary Update email settings
      * @param {number} storefront_oid
      * @param {EmailSettings} settings settings request
@@ -47223,6 +47293,15 @@ export interface StorefrontApiInterface {
      * @memberof StorefrontApiInterface
      */
     createEmailSendingDomain(domain: string, options?: any): Promise<EmailSendingDomainResponse>;
+    /**
+     *
+     * @summary Create email sending domain for various providers
+     * @param {EmailDomain} email_domain EmailDomain
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof StorefrontApiInterface
+     */
+    createEmailSendingDomain2(email_domain: EmailDomain, options?: any): Promise<EmailSendingDomainResponse>;
     /**
      *
      * @summary Create Twilio account
@@ -48662,6 +48741,16 @@ export interface StorefrontApiInterface {
     updateEmailSegment(storefront_oid: number, email_segment_uuid: string, email_segment: EmailSegment, options?: any): Promise<EmailSegmentResponse>;
     /**
      *
+     * @summary Update email sending domain
+     * @param {string} domain
+     * @param {EmailDomain} email_domain EmailDomain
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof StorefrontApiInterface
+     */
+    updateEmailSendingDomain(domain: string, email_domain: EmailDomain, options?: any): Promise<EmailSendingDomainResponse>;
+    /**
+     *
      * @summary Update email settings
      * @param {number} storefront_oid
      * @param {EmailSettings} settings settings request
@@ -48854,6 +48943,15 @@ export declare class StorefrontApi extends BaseAPI implements StorefrontApiInter
      * @memberof StorefrontApi
      */
     createEmailSendingDomain(domain: string, options?: any): Promise<EmailSendingDomainResponse>;
+    /**
+     *
+     * @summary Create email sending domain for various providers
+     * @param {EmailDomain} email_domain EmailDomain
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof StorefrontApi
+     */
+    createEmailSendingDomain2(email_domain: EmailDomain, options?: any): Promise<EmailSendingDomainResponse>;
     /**
      *
      * @summary Create Twilio account
@@ -50291,6 +50389,16 @@ export declare class StorefrontApi extends BaseAPI implements StorefrontApiInter
      * @memberof StorefrontApi
      */
     updateEmailSegment(storefront_oid: number, email_segment_uuid: string, email_segment: EmailSegment, options?: any): Promise<EmailSegmentResponse>;
+    /**
+     *
+     * @summary Update email sending domain
+     * @param {string} domain
+     * @param {EmailDomain} email_domain EmailDomain
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof StorefrontApi
+     */
+    updateEmailSendingDomain(domain: string, email_domain: EmailDomain, options?: any): Promise<EmailSendingDomainResponse>;
     /**
      *
      * @summary Update email settings

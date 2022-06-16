@@ -17352,6 +17352,61 @@ var StorefrontApiFetchParamCreator = function (configuration) {
         },
         /**
          *
+         * @summary Create email sending domain for various providers
+         * @param {EmailDomain} email_domain EmailDomain
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        createEmailSendingDomain2: function (email_domain, options) {
+            if (options === void 0) { options = {}; }
+            // verify required parameter 'email_domain' is not null or undefined
+            if (email_domain === null || email_domain === undefined) {
+                throw new RequiredError('email_domain', 'Required parameter email_domain was null or undefined when calling createEmailSendingDomain2.');
+            }
+            var localVarPath = "/storefront/email/sending_domains";
+            var localVarUrlObj = url.parse(localVarPath, true);
+            var localVarRequestOptions = Object.assign({ method: 'POST' }, options);
+            var localVarHeaderParameter = {};
+            var localVarQueryParameter = {};
+            if (configuration && configuration.apiVersion) {
+                localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+            }
+            // authentication ultraCartBrowserApiKey required
+            if (configuration && configuration.apiKey) {
+                var localVarApiKeyValue = typeof configuration.apiKey === 'function'
+                    ? configuration.apiKey("x-ultracart-browser-key")
+                    : configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-browser-key"] = localVarApiKeyValue;
+            }
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+                var localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+                    ? configuration.accessToken("ultraCartOauth", ["storefront_read"])
+                    : configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                var localVarApiKeyValue = typeof configuration.apiKey === 'function'
+                    ? configuration.apiKey("x-ultracart-simple-key")
+                    : configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+            var needsSerialization = ("EmailDomain" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
+            localVarRequestOptions.body = needsSerialization ? JSON.stringify(email_domain || {}) : (email_domain || "");
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         *
          * @summary Create Twilio account
          * @param {Twilio} twilio Twilio
          * @param {*} [options] Override http request option.
@@ -25735,6 +25790,67 @@ var StorefrontApiFetchParamCreator = function (configuration) {
         },
         /**
          *
+         * @summary Update email sending domain
+         * @param {string} domain
+         * @param {EmailDomain} email_domain EmailDomain
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        updateEmailSendingDomain: function (domain, email_domain, options) {
+            if (options === void 0) { options = {}; }
+            // verify required parameter 'domain' is not null or undefined
+            if (domain === null || domain === undefined) {
+                throw new RequiredError('domain', 'Required parameter domain was null or undefined when calling updateEmailSendingDomain.');
+            }
+            // verify required parameter 'email_domain' is not null or undefined
+            if (email_domain === null || email_domain === undefined) {
+                throw new RequiredError('email_domain', 'Required parameter email_domain was null or undefined when calling updateEmailSendingDomain.');
+            }
+            var localVarPath = "/storefront/email/sending_domains/{domain}"
+                .replace("{".concat("domain", "}"), encodeURIComponent(String(domain)));
+            var localVarUrlObj = url.parse(localVarPath, true);
+            var localVarRequestOptions = Object.assign({ method: 'PUT' }, options);
+            var localVarHeaderParameter = {};
+            var localVarQueryParameter = {};
+            if (configuration && configuration.apiVersion) {
+                localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+            }
+            // authentication ultraCartBrowserApiKey required
+            if (configuration && configuration.apiKey) {
+                var localVarApiKeyValue = typeof configuration.apiKey === 'function'
+                    ? configuration.apiKey("x-ultracart-browser-key")
+                    : configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-browser-key"] = localVarApiKeyValue;
+            }
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+                var localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+                    ? configuration.accessToken("ultraCartOauth", ["storefront_write"])
+                    : configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                var localVarApiKeyValue = typeof configuration.apiKey === 'function'
+                    ? configuration.apiKey("x-ultracart-simple-key")
+                    : configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+            var needsSerialization = ("EmailDomain" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
+            localVarRequestOptions.body = needsSerialization ? JSON.stringify(email_domain || {}) : (email_domain || "");
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         *
          * @summary Update email settings
          * @param {number} storefront_oid
          * @param {EmailSettings} settings settings request
@@ -26502,6 +26618,28 @@ var StorefrontApiFp = function (configuration) {
          */
         createEmailSendingDomain: function (domain, options) {
             var localVarFetchArgs = (0, exports.StorefrontApiFetchParamCreator)(configuration).createEmailSendingDomain(domain, options);
+            return function (fetch, basePath) {
+                if (fetch === void 0) { fetch = portableFetch; }
+                if (basePath === void 0) { basePath = BASE_PATH; }
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(function (response) {
+                    if (response.status >= 200 && response.status < 300) {
+                        return response.json();
+                    }
+                    else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
+         *
+         * @summary Create email sending domain for various providers
+         * @param {EmailDomain} email_domain EmailDomain
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        createEmailSendingDomain2: function (email_domain, options) {
+            var localVarFetchArgs = (0, exports.StorefrontApiFetchParamCreator)(configuration).createEmailSendingDomain2(email_domain, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -29800,6 +29938,29 @@ var StorefrontApiFp = function (configuration) {
         },
         /**
          *
+         * @summary Update email sending domain
+         * @param {string} domain
+         * @param {EmailDomain} email_domain EmailDomain
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        updateEmailSendingDomain: function (domain, email_domain, options) {
+            var localVarFetchArgs = (0, exports.StorefrontApiFetchParamCreator)(configuration).updateEmailSendingDomain(domain, email_domain, options);
+            return function (fetch, basePath) {
+                if (fetch === void 0) { fetch = portableFetch; }
+                if (basePath === void 0) { basePath = BASE_PATH; }
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(function (response) {
+                    if (response.status >= 200 && response.status < 300) {
+                        return response.json();
+                    }
+                    else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
+         *
          * @summary Update email settings
          * @param {number} storefront_oid
          * @param {EmailSettings} settings settings request
@@ -30118,6 +30279,16 @@ var StorefrontApiFactory = function (configuration, fetch, basePath) {
          */
         createEmailSendingDomain: function (domain, options) {
             return (0, exports.StorefrontApiFp)(configuration).createEmailSendingDomain(domain, options)(fetch, basePath);
+        },
+        /**
+         *
+         * @summary Create email sending domain for various providers
+         * @param {EmailDomain} email_domain EmailDomain
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        createEmailSendingDomain2: function (email_domain, options) {
+            return (0, exports.StorefrontApiFp)(configuration).createEmailSendingDomain2(email_domain, options)(fetch, basePath);
         },
         /**
          *
@@ -31700,6 +31871,17 @@ var StorefrontApiFactory = function (configuration, fetch, basePath) {
         },
         /**
          *
+         * @summary Update email sending domain
+         * @param {string} domain
+         * @param {EmailDomain} email_domain EmailDomain
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        updateEmailSendingDomain: function (domain, email_domain, options) {
+            return (0, exports.StorefrontApiFp)(configuration).updateEmailSendingDomain(domain, email_domain, options)(fetch, basePath);
+        },
+        /**
+         *
          * @summary Update email settings
          * @param {number} storefront_oid
          * @param {EmailSettings} settings settings request
@@ -31924,6 +32106,17 @@ var StorefrontApi = /** @class */ (function (_super) {
      */
     StorefrontApi.prototype.createEmailSendingDomain = function (domain, options) {
         return (0, exports.StorefrontApiFp)(this.configuration).createEmailSendingDomain(domain, options)(this.fetch, this.basePath);
+    };
+    /**
+     *
+     * @summary Create email sending domain for various providers
+     * @param {EmailDomain} email_domain EmailDomain
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof StorefrontApi
+     */
+    StorefrontApi.prototype.createEmailSendingDomain2 = function (email_domain, options) {
+        return (0, exports.StorefrontApiFp)(this.configuration).createEmailSendingDomain2(email_domain, options)(this.fetch, this.basePath);
     };
     /**
      *
@@ -33645,6 +33838,18 @@ var StorefrontApi = /** @class */ (function (_super) {
      */
     StorefrontApi.prototype.updateEmailSegment = function (storefront_oid, email_segment_uuid, email_segment, options) {
         return (0, exports.StorefrontApiFp)(this.configuration).updateEmailSegment(storefront_oid, email_segment_uuid, email_segment, options)(this.fetch, this.basePath);
+    };
+    /**
+     *
+     * @summary Update email sending domain
+     * @param {string} domain
+     * @param {EmailDomain} email_domain EmailDomain
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof StorefrontApi
+     */
+    StorefrontApi.prototype.updateEmailSendingDomain = function (domain, email_domain, options) {
+        return (0, exports.StorefrontApiFp)(this.configuration).updateEmailSendingDomain(domain, email_domain, options)(this.fetch, this.basePath);
     };
     /**
      *

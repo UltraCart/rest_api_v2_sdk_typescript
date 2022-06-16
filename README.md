@@ -1,4 +1,4 @@
-## ultracart_rest_api_v2_typescript@3.10.13
+## ultracart_rest_api_v2_typescript@3.10.14
 
 This generator creates TypeScript/JavaScript client that utilizes [Fetch API](https://fetch.spec.whatwg.org/). The generated Node module can be used in the following environments:
 
@@ -36,7 +36,7 @@ navigate to the folder of your consuming project and run one of the following co
 _published:_
 
 ```
-npm install ultracart_rest_api_v2_typescript@3.10.13 --save
+npm install ultracart_rest_api_v2_typescript@3.10.14 --save
 ```
 
 _unPublished (not recommended):_
@@ -54,6 +54,7 @@ Not every change is committed to every SDK.
 
 | Version | Date | Comments |
 | --: | :-: | --- |
+| 3.10.14 | 06/16/2022 | added createEmailSendingDomain2 to support additional MTAs |
 | 3.10.13 | 06/16/2022 | renamed latest method to avoid conflict between customer profile search and storefront search |
 | 3.10.12 | 06/16/2022 | Customer profile search method to look up tags |
 | 3.10.11 | 06/10/2022 | esp segment 3rd party sync add/remove tag fields |
