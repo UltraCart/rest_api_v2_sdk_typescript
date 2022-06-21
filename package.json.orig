@@ -1,6 +1,6 @@
 {
   "name": "ultracart_rest_api_v2_typescript",
-  "version": "4.0.9-RC",
+  "version": "4.0.8-RC",
   "description": "UltraCart Rest TypeScript SDK",
   "author": "UltraCart",
   "repository": {
@@ -16,4 +16,10 @@
   "devDependencies": {
     "typescript": "^4.0"
   },
+  "publishConfig": {
+    "registry": "UltraCart"
+  },
+  "dependencies": {
+    "isomorphic-fetch": "^3.0.0"
+  }
 }
