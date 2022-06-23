@@ -1,4 +1,4 @@
-## ultracart_rest_api_v2_typescript@4.0.10-RC
+## ultracart_rest_api_v2_typescript@4.0.23-RC
 
 This generator creates TypeScript/JavaScript client that utilizes [Fetch API](https://fetch.spec.whatwg.org/). The generated Node module can be used in the following environments:
 
@@ -36,7 +36,7 @@ navigate to the folder of your consuming project and run one of the following co
 _published:_
 
 ```
-npm install ultracart_rest_api_v2_typescript@4.0.10-RC --save
+npm install ultracart_rest_api_v2_typescript@4.0.23-RC --save
 ```
 
 _unPublished (not recommended):_
@@ -54,6 +54,19 @@ Not every change is committed to every SDK.
 
 | Version | Date | Comments |
 | --: | :-: | --- |
+| 4.0.23-RC | 06/23/2022 | automation test |
+| 4.0.22-RC | 06/23/2022 | v4 automation testing - not production ready |
+| 4.0.21-RC | 06/22/2022 | v4 automation testing - not production ready |
+| 4.0.20-RC | 06/22/2022 | v4 automation testing - not production ready |
+| 4.0.19-RC | 06/22/2022 | v4 automation testing - not production ready |
+| 4.0.18-RC | 06/22/2022 | v4 automation testing - not production ready |
+| 4.0.17-RC | 06/22/2022 | v4 automation testing - not production ready |
+| 4.0.16-RC | 06/22/2022 | v4 automation testing - not production ready |
+| 4.0.15-RC | 06/22/2022 | v4 automation testing - not production ready |
+| 4.0.14-RC | 06/22/2022 | v4 automation testing - not production ready |
+| 4.0.13-RC | 06/22/2022 | v4 automation testing - not production ready |
+| 4.0.12-RC | 06/22/2022 | v4 automation testing - not production ready |
+| 4.0.11-RC | 06/22/2022 | v4 automation testing - not production ready |
 | 4.0.10-RC | 06/21/2022 | v4 automation testing - not production ready |
 | 4.0.9-RC | 06/21/2022 | v4 automation testing - not production ready |
 | 4.0.8-RC | 06/21/2022 | v4 automation testing - not production ready |
