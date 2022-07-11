@@ -8007,6 +8007,64 @@ var CustomerApiFetchParamCreator = function (configuration) {
             };
         },
         /**
+         * Merge customer into this customer.
+         * @summary Merge customer into this customer
+         * @param {CustomerMergeRequest} customer Customer to merge into this profile.
+         * @param {number} customer_profile_oid The customer_profile_oid to update.
+         * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        mergeCustomer: function (customer, customer_profile_oid, _expand, options) {
+            if (options === void 0) { options = {}; }
+            // verify required parameter 'customer' is not null or undefined
+            if (customer === null || customer === undefined) {
+                throw new RequiredError('customer', 'Required parameter customer was null or undefined when calling mergeCustomer.');
+            }
+            // verify required parameter 'customer_profile_oid' is not null or undefined
+            if (customer_profile_oid === null || customer_profile_oid === undefined) {
+                throw new RequiredError('customer_profile_oid', 'Required parameter customer_profile_oid was null or undefined when calling mergeCustomer.');
+            }
+            var localVarPath = "/customer/customers/{customer_profile_oid}/merge"
+                .replace("{".concat("customer_profile_oid", "}"), encodeURIComponent(String(customer_profile_oid)));
+            var localVarUrlObj = url.parse(localVarPath, true);
+            var localVarRequestOptions = Object.assign({ method: 'PUT' }, options);
+            var localVarHeaderParameter = {};
+            var localVarQueryParameter = {};
+            if (configuration && configuration.apiVersion) {
+                localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+            }
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+                var localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+                    ? configuration.accessToken("ultraCartOauth", ["customer_write"])
+                    : configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                var localVarApiKeyValue = typeof configuration.apiKey === 'function'
+                    ? configuration.apiKey("x-ultracart-simple-key")
+                    : configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+            if (_expand !== undefined) {
+                localVarQueryParameter['_expand'] = _expand;
+            }
+            localVarHeaderParameter['Content-Type'] = 'application/json; charset=UTF-8';
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+            var needsSerialization = ("CustomerMergeRequest" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
+            localVarRequestOptions.body = needsSerialization ? JSON.stringify(customer || {}) : (customer || "");
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
          *
          * @summary Searches for all matching values (using POST)
          * @param {LookupRequest} lookup_request LookupRequest
@@ -8556,6 +8614,30 @@ var CustomerApiFp = function (configuration) {
             };
         },
         /**
+         * Merge customer into this customer.
+         * @summary Merge customer into this customer
+         * @param {CustomerMergeRequest} customer Customer to merge into this profile.
+         * @param {number} customer_profile_oid The customer_profile_oid to update.
+         * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        mergeCustomer: function (customer, customer_profile_oid, _expand, options) {
+            var localVarFetchArgs = (0, exports.CustomerApiFetchParamCreator)(configuration).mergeCustomer(customer, customer_profile_oid, _expand, options);
+            return function (fetch, basePath) {
+                if (fetch === void 0) { fetch = portableFetch; }
+                if (basePath === void 0) { basePath = BASE_PATH; }
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(function (response) {
+                    if (response.status >= 200 && response.status < 300) {
+                        return response;
+                    }
+                    else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
          *
          * @summary Searches for all matching values (using POST)
          * @param {LookupRequest} lookup_request LookupRequest
@@ -8825,6 +8907,18 @@ var CustomerApiFactory = function (configuration, fetch, basePath) {
             return (0, exports.CustomerApiFp)(configuration).insertCustomer(customer, _expand, options)(fetch, basePath);
         },
         /**
+         * Merge customer into this customer.
+         * @summary Merge customer into this customer
+         * @param {CustomerMergeRequest} customer Customer to merge into this profile.
+         * @param {number} customer_profile_oid The customer_profile_oid to update.
+         * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        mergeCustomer: function (customer, customer_profile_oid, _expand, options) {
+            return (0, exports.CustomerApiFp)(configuration).mergeCustomer(customer, customer_profile_oid, _expand, options)(fetch, basePath);
+        },
+        /**
          *
          * @summary Searches for all matching values (using POST)
          * @param {LookupRequest} lookup_request LookupRequest
@@ -9062,6 +9156,19 @@ var CustomerApi = /** @class */ (function (_super) {
      */
     CustomerApi.prototype.insertCustomer = function (customer, _expand, options) {
         return (0, exports.CustomerApiFp)(this.configuration).insertCustomer(customer, _expand, options)(this.fetch, this.basePath);
+    };
+    /**
+     * Merge customer into this customer.
+     * @summary Merge customer into this customer
+     * @param {CustomerMergeRequest} customer Customer to merge into this profile.
+     * @param {number} customer_profile_oid The customer_profile_oid to update.
+     * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof CustomerApi
+     */
+    CustomerApi.prototype.mergeCustomer = function (customer, customer_profile_oid, _expand, options) {
+        return (0, exports.CustomerApiFp)(this.configuration).mergeCustomer(customer, customer_profile_oid, _expand, options)(this.fetch, this.basePath);
     };
     /**
      *

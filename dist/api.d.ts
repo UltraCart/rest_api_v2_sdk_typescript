@@ -8658,6 +8658,18 @@ export interface CustomerActivity {
     activities?: Array<Activity>;
     /**
      *
+     * @type {boolean}
+     * @memberof CustomerActivity
+     */
+    global_unsubscribed?: boolean;
+    /**
+     *
+     * @type {string}
+     * @memberof CustomerActivity
+     */
+    global_unsubscribed_dts?: string;
+    /**
+     *
      * @type {Array<ListSegmentMembership>}
      * @memberof CustomerActivity
      */
@@ -8674,6 +8686,18 @@ export interface CustomerActivity {
      * @memberof CustomerActivity
      */
     properties_list?: Array<Property>;
+    /**
+     *
+     * @type {boolean}
+     * @memberof CustomerActivity
+     */
+    spam_complaint?: boolean;
+    /**
+     *
+     * @type {string}
+     * @memberof CustomerActivity
+     */
+    spam_complaint_dts?: string;
 }
 /**
  *
@@ -9266,6 +9290,25 @@ export interface CustomerLoyaltyRedemption {
      * @memberof CustomerLoyaltyRedemption
      */
     remaining_balance?: number;
+}
+/**
+ *
+ * @export
+ * @interface CustomerMergeRequest
+ */
+export interface CustomerMergeRequest {
+    /**
+     * Customer profile oid to merge
+     * @type {number}
+     * @memberof CustomerMergeRequest
+     */
+    customer_profile_oid?: number;
+    /**
+     * Email of the customer profile to merge
+     * @type {string}
+     * @memberof CustomerMergeRequest
+     */
+    email?: string;
 }
 /**
  *
@@ -35363,6 +35406,16 @@ export declare const CustomerApiFetchParamCreator: (configuration?: Configuratio
      */
     insertCustomer(customer: Customer, _expand?: string, options?: any): FetchArgs;
     /**
+     * Merge customer into this customer.
+     * @summary Merge customer into this customer
+     * @param {CustomerMergeRequest} customer Customer to merge into this profile.
+     * @param {number} customer_profile_oid The customer_profile_oid to update.
+     * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    mergeCustomer(customer: CustomerMergeRequest, customer_profile_oid: number, _expand?: string, options?: any): FetchArgs;
+    /**
      *
      * @summary Searches for all matching values (using POST)
      * @param {LookupRequest} lookup_request LookupRequest
@@ -35547,6 +35600,16 @@ export declare const CustomerApiFp: (configuration?: Configuration) => {
      */
     insertCustomer(customer: Customer, _expand?: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<CustomerResponse>;
     /**
+     * Merge customer into this customer.
+     * @summary Merge customer into this customer
+     * @param {CustomerMergeRequest} customer Customer to merge into this profile.
+     * @param {number} customer_profile_oid The customer_profile_oid to update.
+     * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    mergeCustomer(customer: CustomerMergeRequest, customer_profile_oid: number, _expand?: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Response>;
+    /**
      *
      * @summary Searches for all matching values (using POST)
      * @param {LookupRequest} lookup_request LookupRequest
@@ -35730,6 +35793,16 @@ export declare const CustomerApiFactory: (configuration?: Configuration, fetch?:
      * @throws {RequiredError}
      */
     insertCustomer(customer: Customer, _expand?: string, options?: any): Promise<CustomerResponse>;
+    /**
+     * Merge customer into this customer.
+     * @summary Merge customer into this customer
+     * @param {CustomerMergeRequest} customer Customer to merge into this profile.
+     * @param {number} customer_profile_oid The customer_profile_oid to update.
+     * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    mergeCustomer(customer: CustomerMergeRequest, customer_profile_oid: number, _expand?: string, options?: any): Promise<Response>;
     /**
      *
      * @summary Searches for all matching values (using POST)
@@ -35928,6 +36001,17 @@ export interface CustomerApiInterface {
      * @memberof CustomerApiInterface
      */
     insertCustomer(customer: Customer, _expand?: string, options?: any): Promise<CustomerResponse>;
+    /**
+     * Merge customer into this customer.
+     * @summary Merge customer into this customer
+     * @param {CustomerMergeRequest} customer Customer to merge into this profile.
+     * @param {number} customer_profile_oid The customer_profile_oid to update.
+     * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof CustomerApiInterface
+     */
+    mergeCustomer(customer: CustomerMergeRequest, customer_profile_oid: number, _expand?: string, options?: any): Promise<{}>;
     /**
      *
      * @summary Searches for all matching values (using POST)
@@ -36131,6 +36215,17 @@ export declare class CustomerApi extends BaseAPI implements CustomerApiInterface
      * @memberof CustomerApi
      */
     insertCustomer(customer: Customer, _expand?: string, options?: any): Promise<CustomerResponse>;
+    /**
+     * Merge customer into this customer.
+     * @summary Merge customer into this customer
+     * @param {CustomerMergeRequest} customer Customer to merge into this profile.
+     * @param {number} customer_profile_oid The customer_profile_oid to update.
+     * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof CustomerApi
+     */
+    mergeCustomer(customer: CustomerMergeRequest, customer_profile_oid: number, _expand?: string, options?: any): Promise<Response>;
     /**
      *
      * @summary Searches for all matching values (using POST)
