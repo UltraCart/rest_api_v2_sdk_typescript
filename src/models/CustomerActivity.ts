@@ -52,6 +52,18 @@ export interface CustomerActivity {
     activities?: Array<Activity>;
     /**
      * 
+     * @type {boolean}
+     * @memberof CustomerActivity
+     */
+    global_unsubscribed?: boolean;
+    /**
+     * 
+     * @type {string}
+     * @memberof CustomerActivity
+     */
+    global_unsubscribed_dts?: string;
+    /**
+     * 
      * @type {Array<ListSegmentMembership>}
      * @memberof CustomerActivity
      */
@@ -68,6 +80,18 @@ export interface CustomerActivity {
      * @memberof CustomerActivity
      */
     properties_list?: Array<Property>;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof CustomerActivity
+     */
+    spam_complaint?: boolean;
+    /**
+     * 
+     * @type {string}
+     * @memberof CustomerActivity
+     */
+    spam_complaint_dts?: string;
 }
 
 export function CustomerActivityFromJSON(json: any): CustomerActivity {
@@ -81,9 +105,13 @@ export function CustomerActivityFromJSONTyped(json: any, ignoreDiscriminator: bo
     return {
         
         'activities': !exists(json, 'activities') ? undefined : ((json['activities'] as Array<any>).map(ActivityFromJSON)),
+        'global_unsubscribed': !exists(json, 'global_unsubscribed') ? undefined : json['global_unsubscribed'],
+        'global_unsubscribed_dts': !exists(json, 'global_unsubscribed_dts') ? undefined : json['global_unsubscribed_dts'],
         'memberships': !exists(json, 'memberships') ? undefined : ((json['memberships'] as Array<any>).map(ListSegmentMembershipFromJSON)),
         'metrics': !exists(json, 'metrics') ? undefined : ((json['metrics'] as Array<any>).map(MetricFromJSON)),
         'properties_list': !exists(json, 'properties_list') ? undefined : ((json['properties_list'] as Array<any>).map(PropertyFromJSON)),
+        'spam_complaint': !exists(json, 'spam_complaint') ? undefined : json['spam_complaint'],
+        'spam_complaint_dts': !exists(json, 'spam_complaint_dts') ? undefined : json['spam_complaint_dts'],
     };
 }
 
@@ -97,9 +125,13 @@ export function CustomerActivityToJSON(value?: CustomerActivity | null): any {
     return {
         
         'activities': value.activities === undefined ? undefined : ((value.activities as Array<any>).map(ActivityToJSON)),
+        'global_unsubscribed': value.global_unsubscribed,
+        'global_unsubscribed_dts': value.global_unsubscribed_dts,
         'memberships': value.memberships === undefined ? undefined : ((value.memberships as Array<any>).map(ListSegmentMembershipToJSON)),
         'metrics': value.metrics === undefined ? undefined : ((value.metrics as Array<any>).map(MetricToJSON)),
         'properties_list': value.properties_list === undefined ? undefined : ((value.properties_list as Array<any>).map(PropertyToJSON)),
+        'spam_complaint': value.spam_complaint,
+        'spam_complaint_dts': value.spam_complaint_dts,
     };
 }
 

@@ -193,6 +193,7 @@ export * from './CustomerEmailListChanges';
 export * from './CustomerLoyalty';
 export * from './CustomerLoyaltyLedger';
 export * from './CustomerLoyaltyRedemption';
+export * from './CustomerMergeRequest';
 export * from './CustomerOrdersSummary';
 export * from './CustomerPricingTier';
 export * from './CustomerPrivacy';

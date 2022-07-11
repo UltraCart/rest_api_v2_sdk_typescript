@@ -33,6 +33,9 @@ import {
     CustomerEmailListChanges,
     CustomerEmailListChangesFromJSON,
     CustomerEmailListChangesToJSON,
+    CustomerMergeRequest,
+    CustomerMergeRequestFromJSON,
+    CustomerMergeRequestToJSON,
     CustomerQuery,
     CustomerQueryFromJSON,
     CustomerQueryToJSON,
@@ -159,6 +162,12 @@ export interface GetEmailVerificationTokenRequest {
 
 export interface InsertCustomerRequest {
     customer: Customer;
+    expand?: string;
+}
+
+export interface MergeCustomerRequest {
+    customerProfileOid: number;
+    customer: CustomerMergeRequest;
     expand?: string;
 }
 
@@ -434,6 +443,24 @@ export interface CustomerApiInterface {
      * Insert a customer
      */
     insertCustomer(requestParameters: InsertCustomerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomerResponse>;
+
+    /**
+     * Merge customer into this customer. 
+     * @summary Merge customer into this customer
+     * @param {number} customerProfileOid The customer_profile_oid to update.
+     * @param {CustomerMergeRequest} customer Customer to merge into this profile.
+     * @param {string} [expand] The object expansion to perform on the result.  See documentation for examples
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof CustomerApiInterface
+     */
+    mergeCustomerRaw(requestParameters: MergeCustomerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+
+    /**
+     * Merge customer into this customer. 
+     * Merge customer into this customer
+     */
+    mergeCustomer(requestParameters: MergeCustomerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
      * 
@@ -1209,6 +1236,57 @@ export class CustomerApi extends runtime.BaseAPI implements CustomerApiInterface
     async insertCustomer(requestParameters: InsertCustomerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomerResponse> {
         const response = await this.insertCustomerRaw(requestParameters, initOverrides);
         return await response.value();
+    }
+
+    /**
+     * Merge customer into this customer. 
+     * Merge customer into this customer
+     */
+    async mergeCustomerRaw(requestParameters: MergeCustomerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        if (requestParameters.customerProfileOid === null || requestParameters.customerProfileOid === undefined) {
+            throw new runtime.RequiredError('customerProfileOid','Required parameter requestParameters.customerProfileOid was null or undefined when calling mergeCustomer.');
+        }
+
+        if (requestParameters.customer === null || requestParameters.customer === undefined) {
+            throw new runtime.RequiredError('customer','Required parameter requestParameters.customer was null or undefined when calling mergeCustomer.');
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters.expand !== undefined) {
+            queryParameters['_expand'] = requestParameters.expand;
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json; charset=UTF-8';
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", ["customer_write"]);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/customer/customers/{customer_profile_oid}/merge`.replace(`{${"customer_profile_oid"}}`, encodeURIComponent(String(requestParameters.customerProfileOid))),
+            method: 'PUT',
+            headers: headerParameters,
+            query: queryParameters,
+            body: CustomerMergeRequestToJSON(requestParameters.customer),
+        }, initOverrides);
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     * Merge customer into this customer. 
+     * Merge customer into this customer
+     */
+    async mergeCustomer(requestParameters: MergeCustomerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.mergeCustomerRaw(requestParameters, initOverrides);
     }
 
     /**
