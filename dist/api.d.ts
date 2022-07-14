@@ -420,7 +420,19 @@ export interface Activity {
      * @type {string}
      * @memberof Activity
      */
+    channel?: string;
+    /**
+     *
+     * @type {string}
+     * @memberof Activity
+     */
     metric?: string;
+    /**
+     *
+     * @type {number}
+     * @memberof Activity
+     */
+    storefront_oid?: number;
     /**
      *
      * @type {string}
@@ -6074,6 +6086,290 @@ export interface CityStateZip {
      * @memberof CityStateZip
      */
     zip?: string;
+}
+/**
+ *
+ * @export
+ * @interface Conversation
+ */
+export interface Conversation {
+    /**
+     *
+     * @type {string}
+     * @memberof Conversation
+     */
+    conversation_arn?: string;
+    /**
+     *
+     * @type {string}
+     * @memberof Conversation
+     */
+    conversation_uuid?: string;
+    /**
+     *
+     * @type {string}
+     * @memberof Conversation
+     */
+    merchant_id?: string;
+    /**
+     *
+     * @type {Array<ConversationMessage>}
+     * @memberof Conversation
+     */
+    messages?: Array<ConversationMessage>;
+    /**
+     *
+     * @type {Array<ConversationParticipant>}
+     * @memberof Conversation
+     */
+    participants?: Array<ConversationParticipant>;
+}
+/**
+ *
+ * @export
+ * @interface ConversationAgentAuthResponse
+ */
+export interface ConversationAgentAuthResponse {
+    /**
+     *
+     * @type {string}
+     * @memberof ConversationAgentAuthResponse
+     */
+    conversation_participant_arn?: string;
+    /**
+     *
+     * @type {string}
+     * @memberof ConversationAgentAuthResponse
+     */
+    jwt?: string;
+    /**
+     *
+     * @type {string}
+     * @memberof ConversationAgentAuthResponse
+     */
+    websocket_url?: string;
+}
+/**
+ *
+ * @export
+ * @interface ConversationMessage
+ */
+export interface ConversationMessage {
+    /**
+     *
+     * @type {string}
+     * @memberof ConversationMessage
+     */
+    author_conversation_participant_arn?: string;
+    /**
+     *
+     * @type {string}
+     * @memberof ConversationMessage
+     */
+    author_conversation_participant_name?: string;
+    /**
+     *
+     * @type {string}
+     * @memberof ConversationMessage
+     */
+    body?: string;
+    /**
+     *
+     * @type {Array<string>}
+     * @memberof ConversationMessage
+     */
+    media_urls?: Array<string>;
+    /**
+     * Message date/time
+     * @type {string}
+     * @memberof ConversationMessage
+     */
+    message_dts?: string;
+}
+/**
+ *
+ * @export
+ * @interface ConversationParticipant
+ */
+export interface ConversationParticipant {
+    /**
+     *
+     * @type {string}
+     * @memberof ConversationParticipant
+     */
+    conversation_participant_arn?: string;
+    /**
+     *
+     * @type {string}
+     * @memberof ConversationParticipant
+     */
+    conversation_participant_name?: string;
+    /**
+     *
+     * @type {string}
+     * @memberof ConversationParticipant
+     */
+    conversation_participant_uuid?: string;
+    /**
+     * Joined conversation date/time
+     * @type {string}
+     * @memberof ConversationParticipant
+     */
+    joined_dts?: string;
+    /**
+     * Last message date/time
+     * @type {string}
+     * @memberof ConversationParticipant
+     */
+    last_message_dts?: string;
+    /**
+     * Left conversation date/time
+     * @type {string}
+     * @memberof ConversationParticipant
+     */
+    left_dts?: string;
+    /**
+     *
+     * @type {string}
+     * @memberof ConversationParticipant
+     */
+    status?: string;
+}
+/**
+ *
+ * @export
+ * @interface ConversationStartRequest
+ */
+export interface ConversationStartRequest {
+    /**
+     *
+     * @type {Array<string>}
+     * @memberof ConversationStartRequest
+     */
+    add_conversation_participant_arns?: Array<string>;
+    /**
+     *
+     * @type {string}
+     * @memberof ConversationStartRequest
+     */
+    conversation_arn?: string;
+}
+/**
+ *
+ * @export
+ * @interface ConversationStartResponse
+ */
+export interface ConversationStartResponse {
+    /**
+     *
+     * @type {string}
+     * @memberof ConversationStartResponse
+     */
+    conversation_arn?: string;
+    /**
+     *
+     * @type {string}
+     * @memberof ConversationStartResponse
+     */
+    conversation_uuid?: string;
+}
+/**
+ *
+ * @export
+ * @interface ConversationSummary
+ */
+export interface ConversationSummary {
+    /**
+     *
+     * @type {string}
+     * @memberof ConversationSummary
+     */
+    conversation_arn?: string;
+    /**
+     *
+     * @type {string}
+     * @memberof ConversationSummary
+     */
+    conversation_uuid?: string;
+    /**
+     *
+     * @type {string}
+     * @memberof ConversationSummary
+     */
+    last_conversation_message_body?: string;
+    /**
+     *
+     * @type {string}
+     * @memberof ConversationSummary
+     */
+    last_conversation_participant_arn?: string;
+    /**
+     *
+     * @type {string}
+     * @memberof ConversationSummary
+     */
+    last_conversation_participant_name?: string;
+    /**
+     * Last message date/time
+     * @type {string}
+     * @memberof ConversationSummary
+     */
+    last_message_dts?: string;
+    /**
+     *
+     * @type {string}
+     * @memberof ConversationSummary
+     */
+    merchant_id?: string;
+    /**
+     *
+     * @type {number}
+     * @memberof ConversationSummary
+     */
+    message_count?: number;
+    /**
+     *
+     * @type {boolean}
+     * @memberof ConversationSummary
+     */
+    unread_messages?: boolean;
+}
+/**
+ *
+ * @export
+ * @interface ConversationsResponse
+ */
+export interface ConversationsResponse {
+    /**
+     *
+     * @type {Array<ConversationSummary>}
+     * @memberof ConversationsResponse
+     */
+    conversations?: Array<ConversationSummary>;
+    /**
+     *
+     * @type {ModelError}
+     * @memberof ConversationsResponse
+     */
+    error?: ModelError;
+    /**
+     *
+     * @type {ResponseMetadata}
+     * @memberof ConversationsResponse
+     */
+    metadata?: ResponseMetadata;
+    /**
+     * Indicates if API call was successful
+     * @type {boolean}
+     * @memberof ConversationsResponse
+     */
+    success?: boolean;
+    /**
+     *
+     * @type {Warning}
+     * @memberof ConversationsResponse
+     */
+    warning?: Warning;
 }
 /**
  *
@@ -34285,6 +34581,291 @@ export declare class CheckoutApi extends BaseAPI implements CheckoutApiInterface
      * @memberof CheckoutApi
      */
     validateCart(validation_request: CartValidationRequest, _expand?: string, options?: any): Promise<CartValidationResponse>;
+}
+/**
+ * ConversationApi - fetch parameter creator
+ * @export
+ */
+export declare const ConversationApiFetchParamCreator: (configuration?: Configuration) => {
+    /**
+     * Retrieve a JWT to authorize an agent to make a websocket connection.
+     * @summary Get agent websocket authorization
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getAgentWebsocketAuthorization(options?: any): FetchArgs;
+    /**
+     * Retrieve a conversation including the participants and messages
+     * @summary Retrieve a conversation
+     * @param {string} conversation_uuid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getConversation(conversation_uuid: string, options?: any): FetchArgs;
+    /**
+     * Retrieve a list of conversation summaries that are ordered newest to oldest, include the most recent message and whether its been read.
+     * @summary Retrieve a list of conversation summaries newest to oldest
+     * @param {number} [_limit] The maximum number of records to return on this one API call. (Max 200)
+     * @param {number} [_offset] Pagination of the record set.  Offset is a zero based index.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getConversations(_limit?: number, _offset?: number, options?: any): FetchArgs;
+    /**
+     * Join a conversation
+     * @summary Join a conversation
+     * @param {string} conversation_uuid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    joinConversation(conversation_uuid: string, options?: any): FetchArgs;
+    /**
+     * Leave a conversation
+     * @summary Leave a conversation
+     * @param {string} conversation_uuid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    leaveConversation(conversation_uuid: string, options?: any): FetchArgs;
+    /**
+     * Start a new conversation
+     * @summary Start a conversation
+     * @param {ConversationStartRequest} start_request Start request
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    startConversation(start_request: ConversationStartRequest, options?: any): FetchArgs;
+};
+/**
+ * ConversationApi - functional programming interface
+ * @export
+ */
+export declare const ConversationApiFp: (configuration?: Configuration) => {
+    /**
+     * Retrieve a JWT to authorize an agent to make a websocket connection.
+     * @summary Get agent websocket authorization
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getAgentWebsocketAuthorization(options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ConversationAgentAuthResponse>;
+    /**
+     * Retrieve a conversation including the participants and messages
+     * @summary Retrieve a conversation
+     * @param {string} conversation_uuid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getConversation(conversation_uuid: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Conversation>;
+    /**
+     * Retrieve a list of conversation summaries that are ordered newest to oldest, include the most recent message and whether its been read.
+     * @summary Retrieve a list of conversation summaries newest to oldest
+     * @param {number} [_limit] The maximum number of records to return on this one API call. (Max 200)
+     * @param {number} [_offset] Pagination of the record set.  Offset is a zero based index.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getConversations(_limit?: number, _offset?: number, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ConversationsResponse>;
+    /**
+     * Join a conversation
+     * @summary Join a conversation
+     * @param {string} conversation_uuid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    joinConversation(conversation_uuid: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Response>;
+    /**
+     * Leave a conversation
+     * @summary Leave a conversation
+     * @param {string} conversation_uuid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    leaveConversation(conversation_uuid: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Response>;
+    /**
+     * Start a new conversation
+     * @summary Start a conversation
+     * @param {ConversationStartRequest} start_request Start request
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    startConversation(start_request: ConversationStartRequest, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ConversationStartResponse>;
+};
+/**
+ * ConversationApi - factory interface
+ * @export
+ */
+export declare const ConversationApiFactory: (configuration?: Configuration, fetch?: FetchAPI, basePath?: string) => {
+    /**
+     * Retrieve a JWT to authorize an agent to make a websocket connection.
+     * @summary Get agent websocket authorization
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getAgentWebsocketAuthorization(options?: any): Promise<ConversationAgentAuthResponse>;
+    /**
+     * Retrieve a conversation including the participants and messages
+     * @summary Retrieve a conversation
+     * @param {string} conversation_uuid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getConversation(conversation_uuid: string, options?: any): Promise<Conversation>;
+    /**
+     * Retrieve a list of conversation summaries that are ordered newest to oldest, include the most recent message and whether its been read.
+     * @summary Retrieve a list of conversation summaries newest to oldest
+     * @param {number} [_limit] The maximum number of records to return on this one API call. (Max 200)
+     * @param {number} [_offset] Pagination of the record set.  Offset is a zero based index.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getConversations(_limit?: number, _offset?: number, options?: any): Promise<ConversationsResponse>;
+    /**
+     * Join a conversation
+     * @summary Join a conversation
+     * @param {string} conversation_uuid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    joinConversation(conversation_uuid: string, options?: any): Promise<Response>;
+    /**
+     * Leave a conversation
+     * @summary Leave a conversation
+     * @param {string} conversation_uuid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    leaveConversation(conversation_uuid: string, options?: any): Promise<Response>;
+    /**
+     * Start a new conversation
+     * @summary Start a conversation
+     * @param {ConversationStartRequest} start_request Start request
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    startConversation(start_request: ConversationStartRequest, options?: any): Promise<ConversationStartResponse>;
+};
+/**
+ * ConversationApi - interface
+ * @export
+ * @interface ConversationApi
+ */
+export interface ConversationApiInterface {
+    /**
+     * Retrieve a JWT to authorize an agent to make a websocket connection.
+     * @summary Get agent websocket authorization
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApiInterface
+     */
+    getAgentWebsocketAuthorization(options?: any): Promise<ConversationAgentAuthResponse>;
+    /**
+     * Retrieve a conversation including the participants and messages
+     * @summary Retrieve a conversation
+     * @param {string} conversation_uuid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApiInterface
+     */
+    getConversation(conversation_uuid: string, options?: any): Promise<Conversation>;
+    /**
+     * Retrieve a list of conversation summaries that are ordered newest to oldest, include the most recent message and whether its been read.
+     * @summary Retrieve a list of conversation summaries newest to oldest
+     * @param {number} [_limit] The maximum number of records to return on this one API call. (Max 200)
+     * @param {number} [_offset] Pagination of the record set.  Offset is a zero based index.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApiInterface
+     */
+    getConversations(_limit?: number, _offset?: number, options?: any): Promise<ConversationsResponse>;
+    /**
+     * Join a conversation
+     * @summary Join a conversation
+     * @param {string} conversation_uuid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApiInterface
+     */
+    joinConversation(conversation_uuid: string, options?: any): Promise<{}>;
+    /**
+     * Leave a conversation
+     * @summary Leave a conversation
+     * @param {string} conversation_uuid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApiInterface
+     */
+    leaveConversation(conversation_uuid: string, options?: any): Promise<{}>;
+    /**
+     * Start a new conversation
+     * @summary Start a conversation
+     * @param {ConversationStartRequest} start_request Start request
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApiInterface
+     */
+    startConversation(start_request: ConversationStartRequest, options?: any): Promise<ConversationStartResponse>;
+}
+/**
+ * ConversationApi - object-oriented interface
+ * @export
+ * @class ConversationApi
+ * @extends {BaseAPI}
+ */
+export declare class ConversationApi extends BaseAPI implements ConversationApiInterface {
+    /**
+     * Retrieve a JWT to authorize an agent to make a websocket connection.
+     * @summary Get agent websocket authorization
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApi
+     */
+    getAgentWebsocketAuthorization(options?: any): Promise<ConversationAgentAuthResponse>;
+    /**
+     * Retrieve a conversation including the participants and messages
+     * @summary Retrieve a conversation
+     * @param {string} conversation_uuid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApi
+     */
+    getConversation(conversation_uuid: string, options?: any): Promise<Conversation>;
+    /**
+     * Retrieve a list of conversation summaries that are ordered newest to oldest, include the most recent message and whether its been read.
+     * @summary Retrieve a list of conversation summaries newest to oldest
+     * @param {number} [_limit] The maximum number of records to return on this one API call. (Max 200)
+     * @param {number} [_offset] Pagination of the record set.  Offset is a zero based index.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApi
+     */
+    getConversations(_limit?: number, _offset?: number, options?: any): Promise<ConversationsResponse>;
+    /**
+     * Join a conversation
+     * @summary Join a conversation
+     * @param {string} conversation_uuid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApi
+     */
+    joinConversation(conversation_uuid: string, options?: any): Promise<Response>;
+    /**
+     * Leave a conversation
+     * @summary Leave a conversation
+     * @param {string} conversation_uuid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApi
+     */
+    leaveConversation(conversation_uuid: string, options?: any): Promise<Response>;
+    /**
+     * Start a new conversation
+     * @summary Start a conversation
+     * @param {ConversationStartRequest} start_request Start request
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApi
+     */
+    startConversation(start_request: ConversationStartRequest, options?: any): Promise<ConversationStartResponse>;
 }
 /**
  * CouponApi - fetch parameter creator

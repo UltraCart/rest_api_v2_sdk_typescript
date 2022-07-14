@@ -445,7 +445,19 @@ export interface Activity {
      * @type {string}
      * @memberof Activity
      */
+    channel?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof Activity
+     */
     metric?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof Activity
+     */
+    storefront_oid?: number;
     /**
      * 
      * @type {string}
@@ -6219,6 +6231,298 @@ export interface CityStateZip {
      * @memberof CityStateZip
      */
     zip?: string;
+}
+
+/**
+ * 
+ * @export
+ * @interface Conversation
+ */
+export interface Conversation {
+    /**
+     * 
+     * @type {string}
+     * @memberof Conversation
+     */
+    conversation_arn?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof Conversation
+     */
+    conversation_uuid?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof Conversation
+     */
+    merchant_id?: string;
+    /**
+     * 
+     * @type {Array<ConversationMessage>}
+     * @memberof Conversation
+     */
+    messages?: Array<ConversationMessage>;
+    /**
+     * 
+     * @type {Array<ConversationParticipant>}
+     * @memberof Conversation
+     */
+    participants?: Array<ConversationParticipant>;
+}
+
+/**
+ * 
+ * @export
+ * @interface ConversationAgentAuthResponse
+ */
+export interface ConversationAgentAuthResponse {
+    /**
+     * 
+     * @type {string}
+     * @memberof ConversationAgentAuthResponse
+     */
+    conversation_participant_arn?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ConversationAgentAuthResponse
+     */
+    jwt?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ConversationAgentAuthResponse
+     */
+    websocket_url?: string;
+}
+
+/**
+ * 
+ * @export
+ * @interface ConversationMessage
+ */
+export interface ConversationMessage {
+    /**
+     * 
+     * @type {string}
+     * @memberof ConversationMessage
+     */
+    author_conversation_participant_arn?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ConversationMessage
+     */
+    author_conversation_participant_name?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ConversationMessage
+     */
+    body?: string;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof ConversationMessage
+     */
+    media_urls?: Array<string>;
+    /**
+     * Message date/time
+     * @type {string}
+     * @memberof ConversationMessage
+     */
+    message_dts?: string;
+}
+
+/**
+ * 
+ * @export
+ * @interface ConversationParticipant
+ */
+export interface ConversationParticipant {
+    /**
+     * 
+     * @type {string}
+     * @memberof ConversationParticipant
+     */
+    conversation_participant_arn?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ConversationParticipant
+     */
+    conversation_participant_name?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ConversationParticipant
+     */
+    conversation_participant_uuid?: string;
+    /**
+     * Joined conversation date/time
+     * @type {string}
+     * @memberof ConversationParticipant
+     */
+    joined_dts?: string;
+    /**
+     * Last message date/time
+     * @type {string}
+     * @memberof ConversationParticipant
+     */
+    last_message_dts?: string;
+    /**
+     * Left conversation date/time
+     * @type {string}
+     * @memberof ConversationParticipant
+     */
+    left_dts?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ConversationParticipant
+     */
+    status?: string;
+}
+
+/**
+ * 
+ * @export
+ * @interface ConversationStartRequest
+ */
+export interface ConversationStartRequest {
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof ConversationStartRequest
+     */
+    add_conversation_participant_arns?: Array<string>;
+    /**
+     * 
+     * @type {string}
+     * @memberof ConversationStartRequest
+     */
+    conversation_arn?: string;
+}
+
+/**
+ * 
+ * @export
+ * @interface ConversationStartResponse
+ */
+export interface ConversationStartResponse {
+    /**
+     * 
+     * @type {string}
+     * @memberof ConversationStartResponse
+     */
+    conversation_arn?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ConversationStartResponse
+     */
+    conversation_uuid?: string;
+}
+
+/**
+ * 
+ * @export
+ * @interface ConversationSummary
+ */
+export interface ConversationSummary {
+    /**
+     * 
+     * @type {string}
+     * @memberof ConversationSummary
+     */
+    conversation_arn?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ConversationSummary
+     */
+    conversation_uuid?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ConversationSummary
+     */
+    last_conversation_message_body?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ConversationSummary
+     */
+    last_conversation_participant_arn?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ConversationSummary
+     */
+    last_conversation_participant_name?: string;
+    /**
+     * Last message date/time
+     * @type {string}
+     * @memberof ConversationSummary
+     */
+    last_message_dts?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ConversationSummary
+     */
+    merchant_id?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof ConversationSummary
+     */
+    message_count?: number;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof ConversationSummary
+     */
+    unread_messages?: boolean;
+}
+
+/**
+ * 
+ * @export
+ * @interface ConversationsResponse
+ */
+export interface ConversationsResponse {
+    /**
+     * 
+     * @type {Array<ConversationSummary>}
+     * @memberof ConversationsResponse
+     */
+    conversations?: Array<ConversationSummary>;
+    /**
+     * 
+     * @type {ModelError}
+     * @memberof ConversationsResponse
+     */
+    error?: ModelError;
+    /**
+     * 
+     * @type {ResponseMetadata}
+     * @memberof ConversationsResponse
+     */
+    metadata?: ResponseMetadata;
+    /**
+     * Indicates if API call was successful
+     * @type {boolean}
+     * @memberof ConversationsResponse
+     */
+    success?: boolean;
+    /**
+     * 
+     * @type {Warning}
+     * @memberof ConversationsResponse
+     */
+    warning?: Warning;
 }
 
 /**
@@ -37969,6 +38273,681 @@ export class CheckoutApi extends BaseAPI implements CheckoutApiInterface {
 }
 
 /**
+ * ConversationApi - fetch parameter creator
+ * @export
+ */
+export const ConversationApiFetchParamCreator = function (configuration?: Configuration) {
+    return {
+        /**
+         * Retrieve a JWT to authorize an agent to make a websocket connection. 
+         * @summary Get agent websocket authorization
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getAgentWebsocketAuthorization(options: any = {}): FetchArgs {
+            const localVarPath = `/conversation/agent/auth`;
+            const localVarUrlObj = url.parse(localVarPath, true);
+            const localVarRequestOptions = Object.assign({ method: 'PUT' }, options);
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+    if(configuration && configuration.apiVersion) {
+      localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+    }
+
+
+
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+				const localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+					? configuration.accessToken("ultraCartOauth", ["conversation_write"])
+					: configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
+					? configuration.apiKey("x-ultracart-simple-key")
+					: configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Retrieve a conversation including the participants and messages 
+         * @summary Retrieve a conversation
+         * @param {string} conversation_uuid 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getConversation(conversation_uuid: string, options: any = {}): FetchArgs {
+            // verify required parameter 'conversation_uuid' is not null or undefined
+            if (conversation_uuid === null || conversation_uuid === undefined) {
+                throw new RequiredError('conversation_uuid','Required parameter conversation_uuid was null or undefined when calling getConversation.');
+            }
+            const localVarPath = `/conversation/conversations/{conversation_uuid}`
+                .replace(`{${"conversation_uuid"}}`, encodeURIComponent(String(conversation_uuid)));
+            const localVarUrlObj = url.parse(localVarPath, true);
+            const localVarRequestOptions = Object.assign({ method: 'GET' }, options);
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+    if(configuration && configuration.apiVersion) {
+      localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+    }
+
+
+
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+				const localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+					? configuration.accessToken("ultraCartOauth", ["conversation_read"])
+					: configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
+					? configuration.apiKey("x-ultracart-simple-key")
+					: configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Retrieve a list of conversation summaries that are ordered newest to oldest, include the most recent message and whether its been read. 
+         * @summary Retrieve a list of conversation summaries newest to oldest
+         * @param {number} [_limit] The maximum number of records to return on this one API call. (Max 200)
+         * @param {number} [_offset] Pagination of the record set.  Offset is a zero based index.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getConversations(_limit?: number, _offset?: number, options: any = {}): FetchArgs {
+            const localVarPath = `/conversation/conversations`;
+            const localVarUrlObj = url.parse(localVarPath, true);
+            const localVarRequestOptions = Object.assign({ method: 'GET' }, options);
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+    if(configuration && configuration.apiVersion) {
+      localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+    }
+
+
+
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+				const localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+					? configuration.accessToken("ultraCartOauth", ["conversation_read"])
+					: configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
+					? configuration.apiKey("x-ultracart-simple-key")
+					: configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+
+            if (_limit !== undefined) {
+                localVarQueryParameter['_limit'] = _limit;
+            }
+
+            if (_offset !== undefined) {
+                localVarQueryParameter['_offset'] = _offset;
+            }
+
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Join a conversation 
+         * @summary Join a conversation
+         * @param {string} conversation_uuid 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        joinConversation(conversation_uuid: string, options: any = {}): FetchArgs {
+            // verify required parameter 'conversation_uuid' is not null or undefined
+            if (conversation_uuid === null || conversation_uuid === undefined) {
+                throw new RequiredError('conversation_uuid','Required parameter conversation_uuid was null or undefined when calling joinConversation.');
+            }
+            const localVarPath = `/conversation/conversations/{conversation_uuid}/join`
+                .replace(`{${"conversation_uuid"}}`, encodeURIComponent(String(conversation_uuid)));
+            const localVarUrlObj = url.parse(localVarPath, true);
+            const localVarRequestOptions = Object.assign({ method: 'PUT' }, options);
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+    if(configuration && configuration.apiVersion) {
+      localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+    }
+
+
+
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+				const localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+					? configuration.accessToken("ultraCartOauth", ["conversation_write"])
+					: configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
+					? configuration.apiKey("x-ultracart-simple-key")
+					: configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Leave a conversation 
+         * @summary Leave a conversation
+         * @param {string} conversation_uuid 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        leaveConversation(conversation_uuid: string, options: any = {}): FetchArgs {
+            // verify required parameter 'conversation_uuid' is not null or undefined
+            if (conversation_uuid === null || conversation_uuid === undefined) {
+                throw new RequiredError('conversation_uuid','Required parameter conversation_uuid was null or undefined when calling leaveConversation.');
+            }
+            const localVarPath = `/conversation/conversations/{conversation_uuid}/leave`
+                .replace(`{${"conversation_uuid"}}`, encodeURIComponent(String(conversation_uuid)));
+            const localVarUrlObj = url.parse(localVarPath, true);
+            const localVarRequestOptions = Object.assign({ method: 'DELETE' }, options);
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+    if(configuration && configuration.apiVersion) {
+      localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+    }
+
+
+
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+				const localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+					? configuration.accessToken("ultraCartOauth", ["conversation_write"])
+					: configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
+					? configuration.apiKey("x-ultracart-simple-key")
+					: configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Start a new conversation 
+         * @summary Start a conversation
+         * @param {ConversationStartRequest} start_request Start request
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        startConversation(start_request: ConversationStartRequest, options: any = {}): FetchArgs {
+            // verify required parameter 'start_request' is not null or undefined
+            if (start_request === null || start_request === undefined) {
+                throw new RequiredError('start_request','Required parameter start_request was null or undefined when calling startConversation.');
+            }
+            const localVarPath = `/conversation/conversations`;
+            const localVarUrlObj = url.parse(localVarPath, true);
+            const localVarRequestOptions = Object.assign({ method: 'PUT' }, options);
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+    if(configuration && configuration.apiVersion) {
+      localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+    }
+
+
+
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+				const localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+					? configuration.accessToken("ultraCartOauth", ["conversation_write"])
+					: configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
+					? configuration.apiKey("x-ultracart-simple-key")
+					: configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+            const needsSerialization = (<any>"ConversationStartRequest" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
+            localVarRequestOptions.body =  needsSerialization ? JSON.stringify(start_request || {}) : (start_request || "");
+
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+    }
+};
+
+/**
+ * ConversationApi - functional programming interface
+ * @export
+ */
+export const ConversationApiFp = function(configuration?: Configuration) {
+    return {
+        /**
+         * Retrieve a JWT to authorize an agent to make a websocket connection. 
+         * @summary Get agent websocket authorization
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getAgentWebsocketAuthorization(options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ConversationAgentAuthResponse> {
+            const localVarFetchArgs = ConversationApiFetchParamCreator(configuration).getAgentWebsocketAuthorization(options);
+            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
+                    if (response.status >= 200 && response.status < 300) {
+                      return response.json();
+                      
+                    } else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
+         * Retrieve a conversation including the participants and messages 
+         * @summary Retrieve a conversation
+         * @param {string} conversation_uuid 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getConversation(conversation_uuid: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Conversation> {
+            const localVarFetchArgs = ConversationApiFetchParamCreator(configuration).getConversation(conversation_uuid, options);
+            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
+                    if (response.status >= 200 && response.status < 300) {
+                      return response.json();
+                      
+                    } else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
+         * Retrieve a list of conversation summaries that are ordered newest to oldest, include the most recent message and whether its been read. 
+         * @summary Retrieve a list of conversation summaries newest to oldest
+         * @param {number} [_limit] The maximum number of records to return on this one API call. (Max 200)
+         * @param {number} [_offset] Pagination of the record set.  Offset is a zero based index.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getConversations(_limit?: number, _offset?: number, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ConversationsResponse> {
+            const localVarFetchArgs = ConversationApiFetchParamCreator(configuration).getConversations(_limit, _offset, options);
+            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
+                    if (response.status >= 200 && response.status < 300) {
+                      return response.json();
+                      
+                    } else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
+         * Join a conversation 
+         * @summary Join a conversation
+         * @param {string} conversation_uuid 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        joinConversation(conversation_uuid: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Response> {
+            const localVarFetchArgs = ConversationApiFetchParamCreator(configuration).joinConversation(conversation_uuid, options);
+            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
+                    if (response.status >= 200 && response.status < 300) {
+                      return response;
+                      
+                    } else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
+         * Leave a conversation 
+         * @summary Leave a conversation
+         * @param {string} conversation_uuid 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        leaveConversation(conversation_uuid: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Response> {
+            const localVarFetchArgs = ConversationApiFetchParamCreator(configuration).leaveConversation(conversation_uuid, options);
+            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
+                    if (response.status >= 200 && response.status < 300) {
+                      return response;
+                      
+                    } else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
+         * Start a new conversation 
+         * @summary Start a conversation
+         * @param {ConversationStartRequest} start_request Start request
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        startConversation(start_request: ConversationStartRequest, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ConversationStartResponse> {
+            const localVarFetchArgs = ConversationApiFetchParamCreator(configuration).startConversation(start_request, options);
+            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
+                    if (response.status >= 200 && response.status < 300) {
+                      return response.json();
+                      
+                    } else {
+                        throw response;
+                    }
+                });
+            };
+        },
+    }
+};
+
+/**
+ * ConversationApi - factory interface
+ * @export
+ */
+export const ConversationApiFactory = function (configuration?: Configuration, fetch?: FetchAPI, basePath?: string) {
+    return {
+        /**
+         * Retrieve a JWT to authorize an agent to make a websocket connection. 
+         * @summary Get agent websocket authorization
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getAgentWebsocketAuthorization(options?: any) {
+            return ConversationApiFp(configuration).getAgentWebsocketAuthorization(options)(fetch, basePath);
+        },
+        /**
+         * Retrieve a conversation including the participants and messages 
+         * @summary Retrieve a conversation
+         * @param {string} conversation_uuid 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getConversation(conversation_uuid: string, options?: any) {
+            return ConversationApiFp(configuration).getConversation(conversation_uuid, options)(fetch, basePath);
+        },
+        /**
+         * Retrieve a list of conversation summaries that are ordered newest to oldest, include the most recent message and whether its been read. 
+         * @summary Retrieve a list of conversation summaries newest to oldest
+         * @param {number} [_limit] The maximum number of records to return on this one API call. (Max 200)
+         * @param {number} [_offset] Pagination of the record set.  Offset is a zero based index.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getConversations(_limit?: number, _offset?: number, options?: any) {
+            return ConversationApiFp(configuration).getConversations(_limit, _offset, options)(fetch, basePath);
+        },
+        /**
+         * Join a conversation 
+         * @summary Join a conversation
+         * @param {string} conversation_uuid 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        joinConversation(conversation_uuid: string, options?: any) {
+            return ConversationApiFp(configuration).joinConversation(conversation_uuid, options)(fetch, basePath);
+        },
+        /**
+         * Leave a conversation 
+         * @summary Leave a conversation
+         * @param {string} conversation_uuid 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        leaveConversation(conversation_uuid: string, options?: any) {
+            return ConversationApiFp(configuration).leaveConversation(conversation_uuid, options)(fetch, basePath);
+        },
+        /**
+         * Start a new conversation 
+         * @summary Start a conversation
+         * @param {ConversationStartRequest} start_request Start request
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        startConversation(start_request: ConversationStartRequest, options?: any) {
+            return ConversationApiFp(configuration).startConversation(start_request, options)(fetch, basePath);
+        },
+    };
+};
+
+/**
+ * ConversationApi - interface
+ * @export
+ * @interface ConversationApi
+ */
+export interface ConversationApiInterface {
+    /**
+     * Retrieve a JWT to authorize an agent to make a websocket connection. 
+     * @summary Get agent websocket authorization
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApiInterface
+     */
+    getAgentWebsocketAuthorization(options?: any): Promise<ConversationAgentAuthResponse>;
+
+    /**
+     * Retrieve a conversation including the participants and messages 
+     * @summary Retrieve a conversation
+     * @param {string} conversation_uuid 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApiInterface
+     */
+    getConversation(conversation_uuid: string, options?: any): Promise<Conversation>;
+
+    /**
+     * Retrieve a list of conversation summaries that are ordered newest to oldest, include the most recent message and whether its been read. 
+     * @summary Retrieve a list of conversation summaries newest to oldest
+     * @param {number} [_limit] The maximum number of records to return on this one API call. (Max 200)
+     * @param {number} [_offset] Pagination of the record set.  Offset is a zero based index.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApiInterface
+     */
+    getConversations(_limit?: number, _offset?: number, options?: any): Promise<ConversationsResponse>;
+
+    /**
+     * Join a conversation 
+     * @summary Join a conversation
+     * @param {string} conversation_uuid 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApiInterface
+     */
+    joinConversation(conversation_uuid: string, options?: any): Promise<{}>;
+
+    /**
+     * Leave a conversation 
+     * @summary Leave a conversation
+     * @param {string} conversation_uuid 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApiInterface
+     */
+    leaveConversation(conversation_uuid: string, options?: any): Promise<{}>;
+
+    /**
+     * Start a new conversation 
+     * @summary Start a conversation
+     * @param {ConversationStartRequest} start_request Start request
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApiInterface
+     */
+    startConversation(start_request: ConversationStartRequest, options?: any): Promise<ConversationStartResponse>;
+
+}
+
+/**
+ * ConversationApi - object-oriented interface
+ * @export
+ * @class ConversationApi
+ * @extends {BaseAPI}
+ */
+export class ConversationApi extends BaseAPI implements ConversationApiInterface {
+    /**
+     * Retrieve a JWT to authorize an agent to make a websocket connection. 
+     * @summary Get agent websocket authorization
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApi
+     */
+    public getAgentWebsocketAuthorization(options?: any) {
+        return ConversationApiFp(this.configuration).getAgentWebsocketAuthorization(options)(this.fetch, this.basePath);
+    }
+
+    /**
+     * Retrieve a conversation including the participants and messages 
+     * @summary Retrieve a conversation
+     * @param {string} conversation_uuid 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApi
+     */
+    public getConversation(conversation_uuid: string, options?: any) {
+        return ConversationApiFp(this.configuration).getConversation(conversation_uuid, options)(this.fetch, this.basePath);
+    }
+
+    /**
+     * Retrieve a list of conversation summaries that are ordered newest to oldest, include the most recent message and whether its been read. 
+     * @summary Retrieve a list of conversation summaries newest to oldest
+     * @param {number} [_limit] The maximum number of records to return on this one API call. (Max 200)
+     * @param {number} [_offset] Pagination of the record set.  Offset is a zero based index.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApi
+     */
+    public getConversations(_limit?: number, _offset?: number, options?: any) {
+        return ConversationApiFp(this.configuration).getConversations(_limit, _offset, options)(this.fetch, this.basePath);
+    }
+
+    /**
+     * Join a conversation 
+     * @summary Join a conversation
+     * @param {string} conversation_uuid 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApi
+     */
+    public joinConversation(conversation_uuid: string, options?: any) {
+        return ConversationApiFp(this.configuration).joinConversation(conversation_uuid, options)(this.fetch, this.basePath);
+    }
+
+    /**
+     * Leave a conversation 
+     * @summary Leave a conversation
+     * @param {string} conversation_uuid 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApi
+     */
+    public leaveConversation(conversation_uuid: string, options?: any) {
+        return ConversationApiFp(this.configuration).leaveConversation(conversation_uuid, options)(this.fetch, this.basePath);
+    }
+
+    /**
+     * Start a new conversation 
+     * @summary Start a conversation
+     * @param {ConversationStartRequest} start_request Start request
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApi
+     */
+    public startConversation(start_request: ConversationStartRequest, options?: any) {
+        return ConversationApiFp(this.configuration).startConversation(start_request, options)(this.fetch, this.basePath);
+    }
+
+}
+
+/**
  * CouponApi - fetch parameter creator
  * @export
  */
@@ -46213,7 +47192,7 @@ export const OauthApiFetchParamCreator = function (configuration?: Configuration
             // oauth required
             if (configuration && configuration.accessToken) {
 				const localVarAccessTokenValue = typeof configuration.accessToken === 'function'
-					? configuration.accessToken("ultraCartOauth", ["ultrabooks_write", "auto_order_write", "coupon_read", "affiliate_read", "coupon_write", "channel_partner_read", "tax_read", "fulfillment_write", "tax_write", "gift_certificate_write", "channel_partner_write", "item_read", "fulfillment_read", "webhook_write", "chargeback_write", "user_write", "gift_certificate_read", "checkout_write", "storefront_read", "webhook_read", "item_write", "auto_order_read", "customer_read", "user_read", "configuration_read", "customer_write", "order_read", "affiliate_write", "storefront_write", "ultrabooks_read", "order_write", "chargeback_read", "integration_log_write", "configuration_write", "checkout_read", "integration_log_read"])
+					? configuration.accessToken("ultraCartOauth", ["ultrabooks_write", "auto_order_write", "coupon_read", "affiliate_read", "coupon_write", "channel_partner_read", "tax_read", "conversation_write", "fulfillment_write", "tax_write", "gift_certificate_write", "channel_partner_write", "item_read", "fulfillment_read", "webhook_write", "chargeback_write", "user_write", "gift_certificate_read", "checkout_write", "storefront_read", "webhook_read", "item_write", "auto_order_read", "customer_read", "user_read", "configuration_read", "customer_write", "order_read", "conversation_read", "affiliate_write", "storefront_write", "ultrabooks_read", "order_write", "chargeback_read", "integration_log_write", "configuration_write", "checkout_read", "integration_log_read"])
 					: configuration.accessToken;
                 localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
             }
@@ -46301,7 +47280,7 @@ export const OauthApiFetchParamCreator = function (configuration?: Configuration
             // oauth required
             if (configuration && configuration.accessToken) {
 				const localVarAccessTokenValue = typeof configuration.accessToken === 'function'
-					? configuration.accessToken("ultraCartOauth", ["ultrabooks_write", "auto_order_write", "coupon_read", "affiliate_read", "coupon_write", "channel_partner_read", "tax_read", "fulfillment_write", "tax_write", "gift_certificate_write", "channel_partner_write", "item_read", "fulfillment_read", "webhook_write", "chargeback_write", "user_write", "gift_certificate_read", "checkout_write", "storefront_read", "webhook_read", "item_write", "auto_order_read", "customer_read", "user_read", "configuration_read", "customer_write", "order_read", "affiliate_write", "storefront_write", "ultrabooks_read", "order_write", "chargeback_read", "integration_log_write", "configuration_write", "checkout_read", "integration_log_read"])
+					? configuration.accessToken("ultraCartOauth", ["ultrabooks_write", "auto_order_write", "coupon_read", "affiliate_read", "coupon_write", "channel_partner_read", "tax_read", "conversation_write", "fulfillment_write", "tax_write", "gift_certificate_write", "channel_partner_write", "item_read", "fulfillment_read", "webhook_write", "chargeback_write", "user_write", "gift_certificate_read", "checkout_write", "storefront_read", "webhook_read", "item_write", "auto_order_read", "customer_read", "user_read", "configuration_read", "customer_write", "order_read", "conversation_read", "affiliate_write", "storefront_write", "ultrabooks_read", "order_write", "chargeback_read", "integration_log_write", "configuration_write", "checkout_read", "integration_log_read"])
 					: configuration.accessToken;
                 localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
             }
