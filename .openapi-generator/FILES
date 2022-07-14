@@ -7,6 +7,7 @@ src/apis/AutoOrderApi.ts
 src/apis/ChannelPartnerApi.ts
 src/apis/ChargebackApi.ts
 src/apis/CheckoutApi.ts
+src/apis/ConversationApi.ts
 src/apis/CouponApi.ts
 src/apis/CustomerApi.ts
 src/apis/FulfillmentApi.ts
@@ -138,6 +139,14 @@ src/models/CheckoutSetupBrowserKeyRequest.ts
 src/models/CheckoutSetupBrowserKeyResponse.ts
 src/models/CheckoutStateProvinceResponse.ts
 src/models/CityStateZip.ts
+src/models/Conversation.ts
+src/models/ConversationAgentAuthResponse.ts
+src/models/ConversationMessage.ts
+src/models/ConversationParticipant.ts
+src/models/ConversationStartRequest.ts
+src/models/ConversationStartResponse.ts
+src/models/ConversationSummary.ts
+src/models/ConversationsResponse.ts
 src/models/CountriesResponse.ts
 src/models/Country.ts
 src/models/Coupon.ts

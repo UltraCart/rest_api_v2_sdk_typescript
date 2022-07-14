@@ -30,7 +30,19 @@ export interface Activity {
      * @type {string}
      * @memberof Activity
      */
+    channel?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof Activity
+     */
     metric?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof Activity
+     */
+    storefront_oid?: number;
     /**
      * 
      * @type {string}
@@ -68,7 +80,9 @@ export function ActivityFromJSONTyped(json: any, ignoreDiscriminator: boolean): 
     return {
         
         'action': !exists(json, 'action') ? undefined : json['action'],
+        'channel': !exists(json, 'channel') ? undefined : json['channel'],
         'metric': !exists(json, 'metric') ? undefined : json['metric'],
+        'storefront_oid': !exists(json, 'storefront_oid') ? undefined : json['storefront_oid'],
         'subject': !exists(json, 'subject') ? undefined : json['subject'],
         'ts': !exists(json, 'ts') ? undefined : json['ts'],
         'type': !exists(json, 'type') ? undefined : json['type'],
@@ -86,7 +100,9 @@ export function ActivityToJSON(value?: Activity | null): any {
     return {
         
         'action': value.action,
+        'channel': value.channel,
         'metric': value.metric,
+        'storefront_oid': value.storefront_oid,
         'subject': value.subject,
         'ts': value.ts,
         'type': value.type,
