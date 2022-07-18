@@ -36,6 +36,18 @@ export interface ConversationAgentAuthResponse {
      * @type {string}
      * @memberof ConversationAgentAuthResponse
      */
+    merchant_id?: string;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof ConversationAgentAuthResponse
+     */
+    twilio_phone_numbers?: Array<string>;
+    /**
+     * 
+     * @type {string}
+     * @memberof ConversationAgentAuthResponse
+     */
     websocket_url?: string;
 }
 
@@ -51,6 +63,8 @@ export function ConversationAgentAuthResponseFromJSONTyped(json: any, ignoreDisc
         
         'conversation_participant_arn': !exists(json, 'conversation_participant_arn') ? undefined : json['conversation_participant_arn'],
         'jwt': !exists(json, 'jwt') ? undefined : json['jwt'],
+        'merchant_id': !exists(json, 'merchant_id') ? undefined : json['merchant_id'],
+        'twilio_phone_numbers': !exists(json, 'twilio_phone_numbers') ? undefined : json['twilio_phone_numbers'],
         'websocket_url': !exists(json, 'websocket_url') ? undefined : json['websocket_url'],
     };
 }
@@ -66,6 +80,8 @@ export function ConversationAgentAuthResponseToJSON(value?: ConversationAgentAut
         
         'conversation_participant_arn': value.conversation_participant_arn,
         'jwt': value.jwt,
+        'merchant_id': value.merchant_id,
+        'twilio_phone_numbers': value.twilio_phone_numbers,
         'websocket_url': value.websocket_url,
     };
 }

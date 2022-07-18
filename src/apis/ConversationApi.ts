@@ -39,6 +39,10 @@ export interface GetConversationRequest {
     conversationUuid: string;
 }
 
+export interface GetConversationMultimediaUploadUrlRequest {
+    extension: string;
+}
+
 export interface GetConversationsRequest {
     limit?: number;
     offset?: number;
@@ -93,6 +97,22 @@ export interface ConversationApiInterface {
      * Retrieve a conversation
      */
     getConversation(requestParameters: GetConversationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Conversation>;
+
+    /**
+     * Get a presigned conersation multimedia upload URL 
+     * @summary Get a presigned conersation multimedia upload URL
+     * @param {string} extension 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApiInterface
+     */
+    getConversationMultimediaUploadUrlRaw(requestParameters: GetConversationMultimediaUploadUrlRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+
+    /**
+     * Get a presigned conersation multimedia upload URL 
+     * Get a presigned conersation multimedia upload URL
+     */
+    getConversationMultimediaUploadUrl(requestParameters: GetConversationMultimediaUploadUrlRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
      * Retrieve a list of conversation summaries that are ordered newest to oldest, include the most recent message and whether its been read. 
@@ -242,6 +262,46 @@ export class ConversationApi extends runtime.BaseAPI implements ConversationApiI
     async getConversation(requestParameters: GetConversationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Conversation> {
         const response = await this.getConversationRaw(requestParameters, initOverrides);
         return await response.value();
+    }
+
+    /**
+     * Get a presigned conersation multimedia upload URL 
+     * Get a presigned conersation multimedia upload URL
+     */
+    async getConversationMultimediaUploadUrlRaw(requestParameters: GetConversationMultimediaUploadUrlRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        if (requestParameters.extension === null || requestParameters.extension === undefined) {
+            throw new runtime.RequiredError('extension','Required parameter requestParameters.extension was null or undefined when calling getConversationMultimediaUploadUrl.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", ["conversation_write"]);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/conversation/upload_url/{extension}`.replace(`{${"extension"}}`, encodeURIComponent(String(requestParameters.extension))),
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     * Get a presigned conersation multimedia upload URL 
+     * Get a presigned conersation multimedia upload URL
+     */
+    async getConversationMultimediaUploadUrl(requestParameters: GetConversationMultimediaUploadUrlRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.getConversationMultimediaUploadUrlRaw(requestParameters, initOverrides);
     }
 
     /**
