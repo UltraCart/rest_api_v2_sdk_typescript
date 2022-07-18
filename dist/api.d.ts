@@ -6147,6 +6147,18 @@ export interface ConversationAgentAuthResponse {
      * @type {string}
      * @memberof ConversationAgentAuthResponse
      */
+    merchant_id?: string;
+    /**
+     *
+     * @type {Array<string>}
+     * @memberof ConversationAgentAuthResponse
+     */
+    twilio_phone_numbers?: Array<string>;
+    /**
+     *
+     * @type {string}
+     * @memberof ConversationAgentAuthResponse
+     */
     websocket_url?: string;
 }
 /**
@@ -34603,6 +34615,14 @@ export declare const ConversationApiFetchParamCreator: (configuration?: Configur
      */
     getConversation(conversation_uuid: string, options?: any): FetchArgs;
     /**
+     * Get a presigned conersation multimedia upload URL
+     * @summary Get a presigned conersation multimedia upload URL
+     * @param {string} extension
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getConversationMultimediaUploadUrl(extension: string, options?: any): FetchArgs;
+    /**
      * Retrieve a list of conversation summaries that are ordered newest to oldest, include the most recent message and whether its been read.
      * @summary Retrieve a list of conversation summaries newest to oldest
      * @param {number} [_limit] The maximum number of records to return on this one API call. (Max 200)
@@ -34657,6 +34677,14 @@ export declare const ConversationApiFp: (configuration?: Configuration) => {
      */
     getConversation(conversation_uuid: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Conversation>;
     /**
+     * Get a presigned conersation multimedia upload URL
+     * @summary Get a presigned conersation multimedia upload URL
+     * @param {string} extension
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getConversationMultimediaUploadUrl(extension: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Response>;
+    /**
      * Retrieve a list of conversation summaries that are ordered newest to oldest, include the most recent message and whether its been read.
      * @summary Retrieve a list of conversation summaries newest to oldest
      * @param {number} [_limit] The maximum number of records to return on this one API call. (Max 200)
@@ -34710,6 +34738,14 @@ export declare const ConversationApiFactory: (configuration?: Configuration, fet
      * @throws {RequiredError}
      */
     getConversation(conversation_uuid: string, options?: any): Promise<Conversation>;
+    /**
+     * Get a presigned conersation multimedia upload URL
+     * @summary Get a presigned conersation multimedia upload URL
+     * @param {string} extension
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getConversationMultimediaUploadUrl(extension: string, options?: any): Promise<Response>;
     /**
      * Retrieve a list of conversation summaries that are ordered newest to oldest, include the most recent message and whether its been read.
      * @summary Retrieve a list of conversation summaries newest to oldest
@@ -34767,6 +34803,15 @@ export interface ConversationApiInterface {
      * @memberof ConversationApiInterface
      */
     getConversation(conversation_uuid: string, options?: any): Promise<Conversation>;
+    /**
+     * Get a presigned conersation multimedia upload URL
+     * @summary Get a presigned conersation multimedia upload URL
+     * @param {string} extension
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApiInterface
+     */
+    getConversationMultimediaUploadUrl(extension: string, options?: any): Promise<{}>;
     /**
      * Retrieve a list of conversation summaries that are ordered newest to oldest, include the most recent message and whether its been read.
      * @summary Retrieve a list of conversation summaries newest to oldest
@@ -34829,6 +34874,15 @@ export declare class ConversationApi extends BaseAPI implements ConversationApiI
      * @memberof ConversationApi
      */
     getConversation(conversation_uuid: string, options?: any): Promise<Conversation>;
+    /**
+     * Get a presigned conersation multimedia upload URL
+     * @summary Get a presigned conersation multimedia upload URL
+     * @param {string} extension
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApi
+     */
+    getConversationMultimediaUploadUrl(extension: string, options?: any): Promise<Response>;
     /**
      * Retrieve a list of conversation summaries that are ordered newest to oldest, include the most recent message and whether its been read.
      * @summary Retrieve a list of conversation summaries newest to oldest

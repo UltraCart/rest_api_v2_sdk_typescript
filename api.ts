@@ -6294,6 +6294,18 @@ export interface ConversationAgentAuthResponse {
      * @type {string}
      * @memberof ConversationAgentAuthResponse
      */
+    merchant_id?: string;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof ConversationAgentAuthResponse
+     */
+    twilio_phone_numbers?: Array<string>;
+    /**
+     * 
+     * @type {string}
+     * @memberof ConversationAgentAuthResponse
+     */
     websocket_url?: string;
 }
 
@@ -38377,6 +38389,58 @@ export const ConversationApiFetchParamCreator = function (configuration?: Config
             };
         },
         /**
+         * Get a presigned conersation multimedia upload URL 
+         * @summary Get a presigned conersation multimedia upload URL
+         * @param {string} extension 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getConversationMultimediaUploadUrl(extension: string, options: any = {}): FetchArgs {
+            // verify required parameter 'extension' is not null or undefined
+            if (extension === null || extension === undefined) {
+                throw new RequiredError('extension','Required parameter extension was null or undefined when calling getConversationMultimediaUploadUrl.');
+            }
+            const localVarPath = `/conversation/upload_url/{extension}`
+                .replace(`{${"extension"}}`, encodeURIComponent(String(extension)));
+            const localVarUrlObj = url.parse(localVarPath, true);
+            const localVarRequestOptions = Object.assign({ method: 'GET' }, options);
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+    if(configuration && configuration.apiVersion) {
+      localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+    }
+
+
+
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+				const localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+					? configuration.accessToken("ultraCartOauth", ["conversation_write"])
+					: configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
+					? configuration.apiKey("x-ultracart-simple-key")
+					: configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
          * Retrieve a list of conversation summaries that are ordered newest to oldest, include the most recent message and whether its been read. 
          * @summary Retrieve a list of conversation summaries newest to oldest
          * @param {number} [_limit] The maximum number of records to return on this one API call. (Max 200)
@@ -38642,6 +38706,27 @@ export const ConversationApiFp = function(configuration?: Configuration) {
             };
         },
         /**
+         * Get a presigned conersation multimedia upload URL 
+         * @summary Get a presigned conersation multimedia upload URL
+         * @param {string} extension 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getConversationMultimediaUploadUrl(extension: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Response> {
+            const localVarFetchArgs = ConversationApiFetchParamCreator(configuration).getConversationMultimediaUploadUrl(extension, options);
+            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
+                    if (response.status >= 200 && response.status < 300) {
+                      return response;
+                      
+                    } else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
          * Retrieve a list of conversation summaries that are ordered newest to oldest, include the most recent message and whether its been read. 
          * @summary Retrieve a list of conversation summaries newest to oldest
          * @param {number} [_limit] The maximum number of records to return on this one API call. (Max 200)
@@ -38755,6 +38840,16 @@ export const ConversationApiFactory = function (configuration?: Configuration, f
             return ConversationApiFp(configuration).getConversation(conversation_uuid, options)(fetch, basePath);
         },
         /**
+         * Get a presigned conersation multimedia upload URL 
+         * @summary Get a presigned conersation multimedia upload URL
+         * @param {string} extension 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getConversationMultimediaUploadUrl(extension: string, options?: any) {
+            return ConversationApiFp(configuration).getConversationMultimediaUploadUrl(extension, options)(fetch, basePath);
+        },
+        /**
          * Retrieve a list of conversation summaries that are ordered newest to oldest, include the most recent message and whether its been read. 
          * @summary Retrieve a list of conversation summaries newest to oldest
          * @param {number} [_limit] The maximum number of records to return on this one API call. (Max 200)
@@ -38822,6 +38917,16 @@ export interface ConversationApiInterface {
      * @memberof ConversationApiInterface
      */
     getConversation(conversation_uuid: string, options?: any): Promise<Conversation>;
+
+    /**
+     * Get a presigned conersation multimedia upload URL 
+     * @summary Get a presigned conersation multimedia upload URL
+     * @param {string} extension 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApiInterface
+     */
+    getConversationMultimediaUploadUrl(extension: string, options?: any): Promise<{}>;
 
     /**
      * Retrieve a list of conversation summaries that are ordered newest to oldest, include the most recent message and whether its been read. 
@@ -38894,6 +38999,18 @@ export class ConversationApi extends BaseAPI implements ConversationApiInterface
      */
     public getConversation(conversation_uuid: string, options?: any) {
         return ConversationApiFp(this.configuration).getConversation(conversation_uuid, options)(this.fetch, this.basePath);
+    }
+
+    /**
+     * Get a presigned conersation multimedia upload URL 
+     * @summary Get a presigned conersation multimedia upload URL
+     * @param {string} extension 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApi
+     */
+    public getConversationMultimediaUploadUrl(extension: string, options?: any) {
+        return ConversationApiFp(this.configuration).getConversationMultimediaUploadUrl(extension, options)(this.fetch, this.basePath);
     }
 
     /**
