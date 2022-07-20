@@ -6288,6 +6288,12 @@ export interface ConversationAgentAuthResponse {
      * @type {string}
      * @memberof ConversationAgentAuthResponse
      */
+    conversation_participant_name?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ConversationAgentAuthResponse
+     */
     jwt?: string;
     /**
      * 
@@ -6345,6 +6351,32 @@ export interface ConversationMessage {
      * @memberof ConversationMessage
      */
     message_dts?: string;
+    /**
+     * 
+     * @type {Array<ConversationMessageTransportStatus>}
+     * @memberof ConversationMessage
+     */
+    transport_statuses?: Array<ConversationMessageTransportStatus>;
+}
+
+/**
+ * 
+ * @export
+ * @interface ConversationMessageTransportStatus
+ */
+export interface ConversationMessageTransportStatus {
+    /**
+     * 
+     * @type {string}
+     * @memberof ConversationMessageTransportStatus
+     */
+    conversation_participant_arn?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ConversationMessageTransportStatus
+     */
+    status?: string;
 }
 
 /**
