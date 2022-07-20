@@ -119,6 +119,7 @@ export * from './CityStateZip';
 export * from './Conversation';
 export * from './ConversationAgentAuthResponse';
 export * from './ConversationMessage';
+export * from './ConversationMessageTransportStatus';
 export * from './ConversationParticipant';
 export * from './ConversationStartRequest';
 export * from './ConversationStartResponse';

@@ -30,6 +30,12 @@ export interface ConversationAgentAuthResponse {
      * @type {string}
      * @memberof ConversationAgentAuthResponse
      */
+    conversation_participant_name?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ConversationAgentAuthResponse
+     */
     jwt?: string;
     /**
      * 
@@ -62,6 +68,7 @@ export function ConversationAgentAuthResponseFromJSONTyped(json: any, ignoreDisc
     return {
         
         'conversation_participant_arn': !exists(json, 'conversation_participant_arn') ? undefined : json['conversation_participant_arn'],
+        'conversation_participant_name': !exists(json, 'conversation_participant_name') ? undefined : json['conversation_participant_name'],
         'jwt': !exists(json, 'jwt') ? undefined : json['jwt'],
         'merchant_id': !exists(json, 'merchant_id') ? undefined : json['merchant_id'],
         'twilio_phone_numbers': !exists(json, 'twilio_phone_numbers') ? undefined : json['twilio_phone_numbers'],
@@ -79,6 +86,7 @@ export function ConversationAgentAuthResponseToJSON(value?: ConversationAgentAut
     return {
         
         'conversation_participant_arn': value.conversation_participant_arn,
+        'conversation_participant_name': value.conversation_participant_name,
         'jwt': value.jwt,
         'merchant_id': value.merchant_id,
         'twilio_phone_numbers': value.twilio_phone_numbers,

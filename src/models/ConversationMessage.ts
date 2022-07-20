@@ -13,6 +13,13 @@
  */
 
 import { exists, mapValues } from '../runtime';
+import {
+    ConversationMessageTransportStatus,
+    ConversationMessageTransportStatusFromJSON,
+    ConversationMessageTransportStatusFromJSONTyped,
+    ConversationMessageTransportStatusToJSON,
+} from './ConversationMessageTransportStatus';
+
 /**
  * 
  * @export
@@ -49,6 +56,12 @@ export interface ConversationMessage {
      * @memberof ConversationMessage
      */
     message_dts?: string;
+    /**
+     * 
+     * @type {Array<ConversationMessageTransportStatus>}
+     * @memberof ConversationMessage
+     */
+    transport_statuses?: Array<ConversationMessageTransportStatus>;
 }
 
 export function ConversationMessageFromJSON(json: any): ConversationMessage {
@@ -66,6 +79,7 @@ export function ConversationMessageFromJSONTyped(json: any, ignoreDiscriminator:
         'body': !exists(json, 'body') ? undefined : json['body'],
         'media_urls': !exists(json, 'media_urls') ? undefined : json['media_urls'],
         'message_dts': !exists(json, 'message_dts') ? undefined : json['message_dts'],
+        'transport_statuses': !exists(json, 'transport_statuses') ? undefined : ((json['transport_statuses'] as Array<any>).map(ConversationMessageTransportStatusFromJSON)),
     };
 }
 
@@ -83,6 +97,7 @@ export function ConversationMessageToJSON(value?: ConversationMessage | null): a
         'body': value.body,
         'media_urls': value.media_urls,
         'message_dts': value.message_dts,
+        'transport_statuses': value.transport_statuses === undefined ? undefined : ((value.transport_statuses as Array<any>).map(ConversationMessageTransportStatusToJSON)),
     };
 }
 

@@ -142,6 +142,7 @@ src/models/CityStateZip.ts
 src/models/Conversation.ts
 src/models/ConversationAgentAuthResponse.ts
 src/models/ConversationMessage.ts
+src/models/ConversationMessageTransportStatus.ts
 src/models/ConversationParticipant.ts
 src/models/ConversationStartRequest.ts
 src/models/ConversationStartResponse.ts
