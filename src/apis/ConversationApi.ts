@@ -18,6 +18,9 @@ import {
     ConversationAgentAuthResponse,
     ConversationAgentAuthResponseFromJSON,
     ConversationAgentAuthResponseToJSON,
+    ConversationMultimediaUploadUrlResponse,
+    ConversationMultimediaUploadUrlResponseFromJSON,
+    ConversationMultimediaUploadUrlResponseToJSON,
     ConversationResponse,
     ConversationResponseFromJSON,
     ConversationResponseToJSON,
@@ -106,13 +109,13 @@ export interface ConversationApiInterface {
      * @throws {RequiredError}
      * @memberof ConversationApiInterface
      */
-    getConversationMultimediaUploadUrlRaw(requestParameters: GetConversationMultimediaUploadUrlRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    getConversationMultimediaUploadUrlRaw(requestParameters: GetConversationMultimediaUploadUrlRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ConversationMultimediaUploadUrlResponse>>;
 
     /**
      * Get a presigned conersation multimedia upload URL 
      * Get a presigned conersation multimedia upload URL
      */
-    getConversationMultimediaUploadUrl(requestParameters: GetConversationMultimediaUploadUrlRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    getConversationMultimediaUploadUrl(requestParameters: GetConversationMultimediaUploadUrlRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ConversationMultimediaUploadUrlResponse>;
 
     /**
      * Retrieve a list of conversation summaries that are ordered newest to oldest, include the most recent message and whether its been read. 
@@ -268,7 +271,7 @@ export class ConversationApi extends runtime.BaseAPI implements ConversationApiI
      * Get a presigned conersation multimedia upload URL 
      * Get a presigned conersation multimedia upload URL
      */
-    async getConversationMultimediaUploadUrlRaw(requestParameters: GetConversationMultimediaUploadUrlRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async getConversationMultimediaUploadUrlRaw(requestParameters: GetConversationMultimediaUploadUrlRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ConversationMultimediaUploadUrlResponse>> {
         if (requestParameters.extension === null || requestParameters.extension === undefined) {
             throw new runtime.RequiredError('extension','Required parameter requestParameters.extension was null or undefined when calling getConversationMultimediaUploadUrl.');
         }
@@ -293,15 +296,16 @@ export class ConversationApi extends runtime.BaseAPI implements ConversationApiI
             query: queryParameters,
         }, initOverrides);
 
-        return new runtime.VoidApiResponse(response);
+        return new runtime.JSONApiResponse(response, (jsonValue) => ConversationMultimediaUploadUrlResponseFromJSON(jsonValue));
     }
 
     /**
      * Get a presigned conersation multimedia upload URL 
      * Get a presigned conersation multimedia upload URL
      */
-    async getConversationMultimediaUploadUrl(requestParameters: GetConversationMultimediaUploadUrlRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
-        await this.getConversationMultimediaUploadUrlRaw(requestParameters, initOverrides);
+    async getConversationMultimediaUploadUrl(requestParameters: GetConversationMultimediaUploadUrlRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ConversationMultimediaUploadUrlResponse> {
+        const response = await this.getConversationMultimediaUploadUrlRaw(requestParameters, initOverrides);
+        return await response.value();
     }
 
     /**

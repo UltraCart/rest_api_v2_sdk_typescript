@@ -121,6 +121,8 @@ export * from './ConversationAgentAuth';
 export * from './ConversationAgentAuthResponse';
 export * from './ConversationMessage';
 export * from './ConversationMessageTransportStatus';
+export * from './ConversationMultimediaUploadUrl';
+export * from './ConversationMultimediaUploadUrlResponse';
 export * from './ConversationParticipant';
 export * from './ConversationResponse';
 export * from './ConversationStartRequest';

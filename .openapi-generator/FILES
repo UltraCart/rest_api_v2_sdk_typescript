@@ -144,6 +144,8 @@ src/models/ConversationAgentAuth.ts
 src/models/ConversationAgentAuthResponse.ts
 src/models/ConversationMessage.ts
 src/models/ConversationMessageTransportStatus.ts
+src/models/ConversationMultimediaUploadUrl.ts
+src/models/ConversationMultimediaUploadUrlResponse.ts
 src/models/ConversationParticipant.ts
 src/models/ConversationResponse.ts
 src/models/ConversationStartRequest.ts
