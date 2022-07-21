@@ -140,10 +140,12 @@ src/models/CheckoutSetupBrowserKeyResponse.ts
 src/models/CheckoutStateProvinceResponse.ts
 src/models/CityStateZip.ts
 src/models/Conversation.ts
+src/models/ConversationAgentAuth.ts
 src/models/ConversationAgentAuthResponse.ts
 src/models/ConversationMessage.ts
 src/models/ConversationMessageTransportStatus.ts
 src/models/ConversationParticipant.ts
+src/models/ConversationResponse.ts
 src/models/ConversationStartRequest.ts
 src/models/ConversationStartResponse.ts
 src/models/ConversationSummary.ts

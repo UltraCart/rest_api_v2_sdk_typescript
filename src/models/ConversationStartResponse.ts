@@ -13,6 +13,13 @@
  */
 
 import { exists, mapValues } from '../runtime';
+import {
+    Conversation,
+    ConversationFromJSON,
+    ConversationFromJSONTyped,
+    ConversationToJSON,
+} from './Conversation';
+
 /**
  * 
  * @export
@@ -21,16 +28,10 @@ import { exists, mapValues } from '../runtime';
 export interface ConversationStartResponse {
     /**
      * 
-     * @type {string}
+     * @type {Conversation}
      * @memberof ConversationStartResponse
      */
-    conversation_arn?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof ConversationStartResponse
-     */
-    conversation_uuid?: string;
+    conversation?: Conversation;
 }
 
 export function ConversationStartResponseFromJSON(json: any): ConversationStartResponse {
@@ -43,8 +44,7 @@ export function ConversationStartResponseFromJSONTyped(json: any, ignoreDiscrimi
     }
     return {
         
-        'conversation_arn': !exists(json, 'conversation_arn') ? undefined : json['conversation_arn'],
-        'conversation_uuid': !exists(json, 'conversation_uuid') ? undefined : json['conversation_uuid'],
+        'conversation': !exists(json, 'conversation') ? undefined : ConversationFromJSON(json['conversation']),
     };
 }
 
@@ -57,8 +57,7 @@ export function ConversationStartResponseToJSON(value?: ConversationStartRespons
     }
     return {
         
-        'conversation_arn': value.conversation_arn,
-        'conversation_uuid': value.conversation_uuid,
+        'conversation': ConversationToJSON(value.conversation),
     };
 }
 

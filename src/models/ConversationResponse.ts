@@ -14,11 +14,11 @@
 
 import { exists, mapValues } from '../runtime';
 import {
-    ConversationAgentAuth,
-    ConversationAgentAuthFromJSON,
-    ConversationAgentAuthFromJSONTyped,
-    ConversationAgentAuthToJSON,
-} from './ConversationAgentAuth';
+    Conversation,
+    ConversationFromJSON,
+    ConversationFromJSONTyped,
+    ConversationToJSON,
+} from './Conversation';
 import {
     ModelError,
     ModelErrorFromJSON,
@@ -41,52 +41,52 @@ import {
 /**
  * 
  * @export
- * @interface ConversationAgentAuthResponse
+ * @interface ConversationResponse
  */
-export interface ConversationAgentAuthResponse {
+export interface ConversationResponse {
     /**
      * 
-     * @type {ConversationAgentAuth}
-     * @memberof ConversationAgentAuthResponse
+     * @type {Conversation}
+     * @memberof ConversationResponse
      */
-    agent_auth?: ConversationAgentAuth;
+    conversation?: Conversation;
     /**
      * 
      * @type {ModelError}
-     * @memberof ConversationAgentAuthResponse
+     * @memberof ConversationResponse
      */
     error?: ModelError;
     /**
      * 
      * @type {ResponseMetadata}
-     * @memberof ConversationAgentAuthResponse
+     * @memberof ConversationResponse
      */
     metadata?: ResponseMetadata;
     /**
      * Indicates if API call was successful
      * @type {boolean}
-     * @memberof ConversationAgentAuthResponse
+     * @memberof ConversationResponse
      */
     success?: boolean;
     /**
      * 
      * @type {Warning}
-     * @memberof ConversationAgentAuthResponse
+     * @memberof ConversationResponse
      */
     warning?: Warning;
 }
 
-export function ConversationAgentAuthResponseFromJSON(json: any): ConversationAgentAuthResponse {
-    return ConversationAgentAuthResponseFromJSONTyped(json, false);
+export function ConversationResponseFromJSON(json: any): ConversationResponse {
+    return ConversationResponseFromJSONTyped(json, false);
 }
 
-export function ConversationAgentAuthResponseFromJSONTyped(json: any, ignoreDiscriminator: boolean): ConversationAgentAuthResponse {
+export function ConversationResponseFromJSONTyped(json: any, ignoreDiscriminator: boolean): ConversationResponse {
     if ((json === undefined) || (json === null)) {
         return json;
     }
     return {
         
-        'agent_auth': !exists(json, 'agent_auth') ? undefined : ConversationAgentAuthFromJSON(json['agent_auth']),
+        'conversation': !exists(json, 'conversation') ? undefined : ConversationFromJSON(json['conversation']),
         'error': !exists(json, 'error') ? undefined : ModelErrorFromJSON(json['error']),
         'metadata': !exists(json, 'metadata') ? undefined : ResponseMetadataFromJSON(json['metadata']),
         'success': !exists(json, 'success') ? undefined : json['success'],
@@ -94,7 +94,7 @@ export function ConversationAgentAuthResponseFromJSONTyped(json: any, ignoreDisc
     };
 }
 
-export function ConversationAgentAuthResponseToJSON(value?: ConversationAgentAuthResponse | null): any {
+export function ConversationResponseToJSON(value?: ConversationResponse | null): any {
     if (value === undefined) {
         return undefined;
     }
@@ -103,7 +103,7 @@ export function ConversationAgentAuthResponseToJSON(value?: ConversationAgentAut
     }
     return {
         
-        'agent_auth': ConversationAgentAuthToJSON(value.agent_auth),
+        'conversation': ConversationToJSON(value.conversation),
         'error': ModelErrorToJSON(value.error),
         'metadata': ResponseMetadataToJSON(value.metadata),
         'success': value.success,

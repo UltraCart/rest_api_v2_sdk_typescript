@@ -80,7 +80,7 @@ export interface EmailCommseqPostcard {
      */
     postcard_front_container_uuid?: string;
     /**
-     * URL to screenshot of the back of the postcard
+     * URL to screenshot of the front of the postcard
      * @type {string}
      * @memberof EmailCommseqPostcard
      */

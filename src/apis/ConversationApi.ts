@@ -15,12 +15,12 @@
 
 import * as runtime from '../runtime';
 import {
-    Conversation,
-    ConversationFromJSON,
-    ConversationToJSON,
     ConversationAgentAuthResponse,
     ConversationAgentAuthResponseFromJSON,
     ConversationAgentAuthResponseToJSON,
+    ConversationResponse,
+    ConversationResponseFromJSON,
+    ConversationResponseToJSON,
     ConversationStartRequest,
     ConversationStartRequestFromJSON,
     ConversationStartRequestToJSON,
@@ -90,13 +90,13 @@ export interface ConversationApiInterface {
      * @throws {RequiredError}
      * @memberof ConversationApiInterface
      */
-    getConversationRaw(requestParameters: GetConversationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Conversation>>;
+    getConversationRaw(requestParameters: GetConversationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ConversationResponse>>;
 
     /**
      * Retrieve a conversation including the participants and messages 
      * Retrieve a conversation
      */
-    getConversation(requestParameters: GetConversationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Conversation>;
+    getConversation(requestParameters: GetConversationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ConversationResponse>;
 
     /**
      * Get a presigned conersation multimedia upload URL 
@@ -227,7 +227,7 @@ export class ConversationApi extends runtime.BaseAPI implements ConversationApiI
      * Retrieve a conversation including the participants and messages 
      * Retrieve a conversation
      */
-    async getConversationRaw(requestParameters: GetConversationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Conversation>> {
+    async getConversationRaw(requestParameters: GetConversationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ConversationResponse>> {
         if (requestParameters.conversationUuid === null || requestParameters.conversationUuid === undefined) {
             throw new runtime.RequiredError('conversationUuid','Required parameter requestParameters.conversationUuid was null or undefined when calling getConversation.');
         }
@@ -252,14 +252,14 @@ export class ConversationApi extends runtime.BaseAPI implements ConversationApiI
             query: queryParameters,
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => ConversationFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => ConversationResponseFromJSON(jsonValue));
     }
 
     /**
      * Retrieve a conversation including the participants and messages 
      * Retrieve a conversation
      */
-    async getConversation(requestParameters: GetConversationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Conversation> {
+    async getConversation(requestParameters: GetConversationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ConversationResponse> {
         const response = await this.getConversationRaw(requestParameters, initOverrides);
         return await response.value();
     }
