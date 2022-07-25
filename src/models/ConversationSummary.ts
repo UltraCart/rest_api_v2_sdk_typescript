@@ -21,6 +21,12 @@ import { exists, mapValues } from '../runtime';
 export interface ConversationSummary {
     /**
      * 
+     * @type {boolean}
+     * @memberof ConversationSummary
+     */
+    closed?: boolean;
+    /**
+     * 
      * @type {string}
      * @memberof ConversationSummary
      */
@@ -85,6 +91,7 @@ export function ConversationSummaryFromJSONTyped(json: any, ignoreDiscriminator:
     }
     return {
         
+        'closed': !exists(json, 'closed') ? undefined : json['closed'],
         'conversation_arn': !exists(json, 'conversation_arn') ? undefined : json['conversation_arn'],
         'conversation_uuid': !exists(json, 'conversation_uuid') ? undefined : json['conversation_uuid'],
         'last_conversation_message_body': !exists(json, 'last_conversation_message_body') ? undefined : json['last_conversation_message_body'],
@@ -106,6 +113,7 @@ export function ConversationSummaryToJSON(value?: ConversationSummary | null): a
     }
     return {
         
+        'closed': value.closed,
         'conversation_arn': value.conversation_arn,
         'conversation_uuid': value.conversation_uuid,
         'last_conversation_message_body': value.last_conversation_message_body,

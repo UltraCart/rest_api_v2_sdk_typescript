@@ -14,12 +14,6 @@
 
 import { exists, mapValues } from '../runtime';
 import {
-    Conversation,
-    ConversationFromJSON,
-    ConversationFromJSONTyped,
-    ConversationToJSON,
-} from './Conversation';
-import {
     ConversationEventQueuePosition,
     ConversationEventQueuePositionFromJSON,
     ConversationEventQueuePositionFromJSONTyped,
@@ -31,6 +25,12 @@ import {
     ConversationMessageFromJSONTyped,
     ConversationMessageToJSON,
 } from './ConversationMessage';
+import {
+    ConversationSummary,
+    ConversationSummaryFromJSON,
+    ConversationSummaryFromJSONTyped,
+    ConversationSummaryToJSON,
+} from './ConversationSummary';
 
 /**
  * 
@@ -46,22 +46,22 @@ export interface ConversationWebsocketMessage {
     conversation_uuid?: string;
     /**
      * 
-     * @type {Conversation}
+     * @type {ConversationSummary}
      * @memberof ConversationWebsocketMessage
      */
-    event_conversation_closed?: Conversation;
+    event_conversation_closed?: ConversationSummary;
     /**
      * 
-     * @type {Conversation}
+     * @type {ConversationSummary}
      * @memberof ConversationWebsocketMessage
      */
-    event_new_conversation?: Conversation;
+    event_new_conversation?: ConversationSummary;
     /**
      * 
-     * @type {Conversation}
+     * @type {ConversationSummary}
      * @memberof ConversationWebsocketMessage
      */
-    event_new_message?: Conversation;
+    event_new_message?: ConversationSummary;
     /**
      * 
      * @type {ConversationEventQueuePosition}
@@ -130,9 +130,9 @@ export function ConversationWebsocketMessageFromJSONTyped(json: any, ignoreDiscr
     return {
         
         'conversation_uuid': !exists(json, 'conversation_uuid') ? undefined : json['conversation_uuid'],
-        'event_conversation_closed': !exists(json, 'event_conversation_closed') ? undefined : ConversationFromJSON(json['event_conversation_closed']),
-        'event_new_conversation': !exists(json, 'event_new_conversation') ? undefined : ConversationFromJSON(json['event_new_conversation']),
-        'event_new_message': !exists(json, 'event_new_message') ? undefined : ConversationFromJSON(json['event_new_message']),
+        'event_conversation_closed': !exists(json, 'event_conversation_closed') ? undefined : ConversationSummaryFromJSON(json['event_conversation_closed']),
+        'event_new_conversation': !exists(json, 'event_new_conversation') ? undefined : ConversationSummaryFromJSON(json['event_new_conversation']),
+        'event_new_message': !exists(json, 'event_new_message') ? undefined : ConversationSummaryFromJSON(json['event_new_message']),
         'event_queue_position': !exists(json, 'event_queue_position') ? undefined : ConversationEventQueuePositionFromJSON(json['event_queue_position']),
         'event_type': !exists(json, 'event_type') ? undefined : json['event_type'],
         'event_updated_message': !exists(json, 'event_updated_message') ? undefined : ConversationMessageFromJSON(json['event_updated_message']),
@@ -151,9 +151,9 @@ export function ConversationWebsocketMessageToJSON(value?: ConversationWebsocket
     return {
         
         'conversation_uuid': value.conversation_uuid,
-        'event_conversation_closed': ConversationToJSON(value.event_conversation_closed),
-        'event_new_conversation': ConversationToJSON(value.event_new_conversation),
-        'event_new_message': ConversationToJSON(value.event_new_message),
+        'event_conversation_closed': ConversationSummaryToJSON(value.event_conversation_closed),
+        'event_new_conversation': ConversationSummaryToJSON(value.event_new_conversation),
+        'event_new_message': ConversationSummaryToJSON(value.event_new_message),
         'event_queue_position': ConversationEventQueuePositionToJSON(value.event_queue_position),
         'event_type': value.event_type,
         'event_updated_message': ConversationMessageToJSON(value.event_updated_message),

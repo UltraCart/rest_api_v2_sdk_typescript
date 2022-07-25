@@ -34,6 +34,12 @@ import {
 export interface Conversation {
     /**
      * 
+     * @type {boolean}
+     * @memberof Conversation
+     */
+    closed?: boolean;
+    /**
+     * 
      * @type {string}
      * @memberof Conversation
      */
@@ -74,6 +80,7 @@ export function ConversationFromJSONTyped(json: any, ignoreDiscriminator: boolea
     }
     return {
         
+        'closed': !exists(json, 'closed') ? undefined : json['closed'],
         'conversation_arn': !exists(json, 'conversation_arn') ? undefined : json['conversation_arn'],
         'conversation_uuid': !exists(json, 'conversation_uuid') ? undefined : json['conversation_uuid'],
         'merchant_id': !exists(json, 'merchant_id') ? undefined : json['merchant_id'],
@@ -91,6 +98,7 @@ export function ConversationToJSON(value?: Conversation | null): any {
     }
     return {
         
+        'closed': value.closed,
         'conversation_arn': value.conversation_arn,
         'conversation_uuid': value.conversation_uuid,
         'merchant_id': value.merchant_id,
