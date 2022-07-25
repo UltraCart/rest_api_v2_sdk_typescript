@@ -20,6 +20,12 @@ import {
     ConversationToJSON,
 } from './Conversation';
 import {
+    ConversationEventQueuePosition,
+    ConversationEventQueuePositionFromJSON,
+    ConversationEventQueuePositionFromJSONTyped,
+    ConversationEventQueuePositionToJSON,
+} from './ConversationEventQueuePosition';
+import {
     ConversationMessage,
     ConversationMessageFromJSON,
     ConversationMessageFromJSONTyped,
@@ -52,16 +58,16 @@ export interface ConversationWebsocketMessage {
     event_new_conversation?: Conversation;
     /**
      * 
-     * @type {ConversationMessage}
+     * @type {Conversation}
      * @memberof ConversationWebsocketMessage
      */
-    event_new_message?: ConversationMessage;
+    event_new_message?: Conversation;
     /**
      * 
-     * @type {object}
+     * @type {ConversationEventQueuePosition}
      * @memberof ConversationWebsocketMessage
      */
-    event_queue_position?: object;
+    event_queue_position?: ConversationEventQueuePosition;
     /**
      * Type of event
      * @type {string}
@@ -126,8 +132,8 @@ export function ConversationWebsocketMessageFromJSONTyped(json: any, ignoreDiscr
         'conversation_uuid': !exists(json, 'conversation_uuid') ? undefined : json['conversation_uuid'],
         'event_conversation_closed': !exists(json, 'event_conversation_closed') ? undefined : ConversationFromJSON(json['event_conversation_closed']),
         'event_new_conversation': !exists(json, 'event_new_conversation') ? undefined : ConversationFromJSON(json['event_new_conversation']),
-        'event_new_message': !exists(json, 'event_new_message') ? undefined : ConversationMessageFromJSON(json['event_new_message']),
-        'event_queue_position': !exists(json, 'event_queue_position') ? undefined : json['event_queue_position'],
+        'event_new_message': !exists(json, 'event_new_message') ? undefined : ConversationFromJSON(json['event_new_message']),
+        'event_queue_position': !exists(json, 'event_queue_position') ? undefined : ConversationEventQueuePositionFromJSON(json['event_queue_position']),
         'event_type': !exists(json, 'event_type') ? undefined : json['event_type'],
         'event_updated_message': !exists(json, 'event_updated_message') ? undefined : ConversationMessageFromJSON(json['event_updated_message']),
         'message': !exists(json, 'message') ? undefined : ConversationMessageFromJSON(json['message']),
@@ -147,8 +153,8 @@ export function ConversationWebsocketMessageToJSON(value?: ConversationWebsocket
         'conversation_uuid': value.conversation_uuid,
         'event_conversation_closed': ConversationToJSON(value.event_conversation_closed),
         'event_new_conversation': ConversationToJSON(value.event_new_conversation),
-        'event_new_message': ConversationMessageToJSON(value.event_new_message),
-        'event_queue_position': value.event_queue_position,
+        'event_new_message': ConversationToJSON(value.event_new_message),
+        'event_queue_position': ConversationEventQueuePositionToJSON(value.event_queue_position),
         'event_type': value.event_type,
         'event_updated_message': ConversationMessageToJSON(value.event_updated_message),
         'message': ConversationMessageToJSON(value.message),

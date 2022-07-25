@@ -120,6 +120,7 @@ export * from './CityStateZip';
 export * from './Conversation';
 export * from './ConversationAgentAuth';
 export * from './ConversationAgentAuthResponse';
+export * from './ConversationEventQueuePosition';
 export * from './ConversationMessage';
 export * from './ConversationMessageTransportStatus';
 export * from './ConversationMultimediaUploadUrl';
