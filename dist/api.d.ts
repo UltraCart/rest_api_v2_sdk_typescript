@@ -1352,6 +1352,12 @@ export interface AutoOrder {
      */
     logs?: Array<AutoOrderLog>;
     /**
+     *
+     * @type {AutoOrderManagement}
+     * @memberof AutoOrder
+     */
+    management?: AutoOrderManagement;
+    /**
      * The next time that the auto order will be attempted for processing
      * @type {string}
      * @memberof AutoOrder
@@ -1703,6 +1709,19 @@ export interface AutoOrderLog {
      * @memberof AutoOrderLog
      */
     log_message?: string;
+}
+/**
+ *
+ * @export
+ * @interface AutoOrderManagement
+ */
+export interface AutoOrderManagement {
+    /**
+     * URL where the customer can go to update their billing information.
+     * @type {string}
+     * @memberof AutoOrderManagement
+     */
+    update_billing_url?: string;
 }
 /**
  *
@@ -6127,45 +6146,89 @@ export interface Conversation {
 /**
  *
  * @export
- * @interface ConversationAgentAuthResponse
+ * @interface ConversationAgentAuth
  */
-export interface ConversationAgentAuthResponse {
+export interface ConversationAgentAuth {
     /**
      *
      * @type {string}
-     * @memberof ConversationAgentAuthResponse
+     * @memberof ConversationAgentAuth
      */
     conversation_participant_arn?: string;
     /**
      *
      * @type {string}
-     * @memberof ConversationAgentAuthResponse
+     * @memberof ConversationAgentAuth
      */
     conversation_participant_name?: string;
     /**
      *
      * @type {string}
-     * @memberof ConversationAgentAuthResponse
+     * @memberof ConversationAgentAuth
      */
     jwt?: string;
     /**
      *
      * @type {string}
-     * @memberof ConversationAgentAuthResponse
+     * @memberof ConversationAgentAuth
      */
     merchant_id?: string;
     /**
      *
      * @type {Array<string>}
-     * @memberof ConversationAgentAuthResponse
+     * @memberof ConversationAgentAuth
      */
     twilio_phone_numbers?: Array<string>;
     /**
      *
      * @type {string}
-     * @memberof ConversationAgentAuthResponse
+     * @memberof ConversationAgentAuth
      */
     websocket_url?: string;
+}
+/**
+ *
+ * @export
+ * @interface ConversationAgentAuthResponse
+ */
+export interface ConversationAgentAuthResponse {
+    /**
+     *
+     * @type {ConversationAgentAuth}
+     * @memberof ConversationAgentAuthResponse
+     */
+    agent_auth?: ConversationAgentAuth;
+    /**
+     *
+     * @type {ModelError}
+     * @memberof ConversationAgentAuthResponse
+     */
+    error?: ModelError;
+    /**
+     *
+     * @type {ResponseMetadata}
+     * @memberof ConversationAgentAuthResponse
+     */
+    metadata?: ResponseMetadata;
+    /**
+     * Indicates if API call was successful
+     * @type {boolean}
+     * @memberof ConversationAgentAuthResponse
+     */
+    success?: boolean;
+    /**
+     *
+     * @type {Warning}
+     * @memberof ConversationAgentAuthResponse
+     */
+    warning?: Warning;
+}
+/**
+ *
+ * @export
+ * @interface ConversationEventQueuePosition
+ */
+export interface ConversationEventQueuePosition {
 }
 /**
  *
@@ -6232,6 +6295,62 @@ export interface ConversationMessageTransportStatus {
 /**
  *
  * @export
+ * @interface ConversationMultimediaUploadUrl
+ */
+export interface ConversationMultimediaUploadUrl {
+    /**
+     *
+     * @type {string}
+     * @memberof ConversationMultimediaUploadUrl
+     */
+    key?: string;
+    /**
+     *
+     * @type {string}
+     * @memberof ConversationMultimediaUploadUrl
+     */
+    url?: string;
+}
+/**
+ *
+ * @export
+ * @interface ConversationMultimediaUploadUrlResponse
+ */
+export interface ConversationMultimediaUploadUrlResponse {
+    /**
+     *
+     * @type {ConversationMultimediaUploadUrl}
+     * @memberof ConversationMultimediaUploadUrlResponse
+     */
+    conversation_multimedia_upload_url?: ConversationMultimediaUploadUrl;
+    /**
+     *
+     * @type {ModelError}
+     * @memberof ConversationMultimediaUploadUrlResponse
+     */
+    error?: ModelError;
+    /**
+     *
+     * @type {ResponseMetadata}
+     * @memberof ConversationMultimediaUploadUrlResponse
+     */
+    metadata?: ResponseMetadata;
+    /**
+     * Indicates if API call was successful
+     * @type {boolean}
+     * @memberof ConversationMultimediaUploadUrlResponse
+     */
+    success?: boolean;
+    /**
+     *
+     * @type {Warning}
+     * @memberof ConversationMultimediaUploadUrlResponse
+     */
+    warning?: Warning;
+}
+/**
+ *
+ * @export
  * @interface ConversationParticipant
  */
 export interface ConversationParticipant {
@@ -6281,6 +6400,43 @@ export interface ConversationParticipant {
 /**
  *
  * @export
+ * @interface ConversationResponse
+ */
+export interface ConversationResponse {
+    /**
+     *
+     * @type {Conversation}
+     * @memberof ConversationResponse
+     */
+    conversation?: Conversation;
+    /**
+     *
+     * @type {ModelError}
+     * @memberof ConversationResponse
+     */
+    error?: ModelError;
+    /**
+     *
+     * @type {ResponseMetadata}
+     * @memberof ConversationResponse
+     */
+    metadata?: ResponseMetadata;
+    /**
+     * Indicates if API call was successful
+     * @type {boolean}
+     * @memberof ConversationResponse
+     */
+    success?: boolean;
+    /**
+     *
+     * @type {Warning}
+     * @memberof ConversationResponse
+     */
+    warning?: Warning;
+}
+/**
+ *
+ * @export
  * @interface ConversationStartRequest
  */
 export interface ConversationStartRequest {
@@ -6296,6 +6452,12 @@ export interface ConversationStartRequest {
      * @memberof ConversationStartRequest
      */
     conversation_arn?: string;
+    /**
+     *
+     * @type {string}
+     * @memberof ConversationStartRequest
+     */
+    conversation_webchat_queue_uuid?: string;
 }
 /**
  *
@@ -6305,16 +6467,10 @@ export interface ConversationStartRequest {
 export interface ConversationStartResponse {
     /**
      *
-     * @type {string}
+     * @type {Conversation}
      * @memberof ConversationStartResponse
      */
-    conversation_arn?: string;
-    /**
-     *
-     * @type {string}
-     * @memberof ConversationStartResponse
-     */
-    conversation_uuid?: string;
+    conversation?: Conversation;
 }
 /**
  *
@@ -6376,6 +6532,94 @@ export interface ConversationSummary {
      * @memberof ConversationSummary
      */
     unread_messages?: boolean;
+}
+/**
+ *
+ * @export
+ * @interface ConversationWebsocketMessage
+ */
+export interface ConversationWebsocketMessage {
+    /**
+     * Conversation UUID if the websocket message is tied to a specific conversation
+     * @type {string}
+     * @memberof ConversationWebsocketMessage
+     */
+    conversation_uuid?: string;
+    /**
+     *
+     * @type {Conversation}
+     * @memberof ConversationWebsocketMessage
+     */
+    event_conversation_closed?: Conversation;
+    /**
+     *
+     * @type {Conversation}
+     * @memberof ConversationWebsocketMessage
+     */
+    event_new_conversation?: Conversation;
+    /**
+     *
+     * @type {ConversationMessage}
+     * @memberof ConversationWebsocketMessage
+     */
+    event_new_message?: ConversationMessage;
+    /**
+     *
+     * @type {ConversationEventQueuePosition}
+     * @memberof ConversationWebsocketMessage
+     */
+    event_queue_position?: ConversationEventQueuePosition;
+    /**
+     * Type of event
+     * @type {string}
+     * @memberof ConversationWebsocketMessage
+     */
+    event_type?: ConversationWebsocketMessage.EventTypeEnum;
+    /**
+     *
+     * @type {ConversationMessage}
+     * @memberof ConversationWebsocketMessage
+     */
+    event_updated_message?: ConversationMessage;
+    /**
+     *
+     * @type {ConversationMessage}
+     * @memberof ConversationWebsocketMessage
+     */
+    message?: ConversationMessage;
+    /**
+     * Type of message
+     * @type {string}
+     * @memberof ConversationWebsocketMessage
+     */
+    type?: ConversationWebsocketMessage.TypeEnum;
+}
+/**
+ * @export
+ * @namespace ConversationWebsocketMessage
+ */
+export declare namespace ConversationWebsocketMessage {
+    /**
+     * @export
+     * @enum {string}
+     */
+    enum EventTypeEnum {
+        QueuePosition,
+        WebchatStartConversation,
+        ConversationClosed,
+        NewConversation,
+        NewMessage,
+        UpdatedMessage
+    }
+    /**
+     * @export
+     * @enum {string}
+     */
+    enum TypeEnum {
+        Message,
+        Event,
+        Ping
+    }
 }
 /**
  *
@@ -34706,7 +34950,7 @@ export declare const ConversationApiFp: (configuration?: Configuration) => {
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getConversation(conversation_uuid: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Conversation>;
+    getConversation(conversation_uuid: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ConversationResponse>;
     /**
      * Get a presigned conersation multimedia upload URL
      * @summary Get a presigned conersation multimedia upload URL
@@ -34714,7 +34958,7 @@ export declare const ConversationApiFp: (configuration?: Configuration) => {
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getConversationMultimediaUploadUrl(extension: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Response>;
+    getConversationMultimediaUploadUrl(extension: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ConversationMultimediaUploadUrlResponse>;
     /**
      * Retrieve a list of conversation summaries that are ordered newest to oldest, include the most recent message and whether its been read.
      * @summary Retrieve a list of conversation summaries newest to oldest
@@ -34768,7 +35012,7 @@ export declare const ConversationApiFactory: (configuration?: Configuration, fet
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getConversation(conversation_uuid: string, options?: any): Promise<Conversation>;
+    getConversation(conversation_uuid: string, options?: any): Promise<ConversationResponse>;
     /**
      * Get a presigned conersation multimedia upload URL
      * @summary Get a presigned conersation multimedia upload URL
@@ -34776,7 +35020,7 @@ export declare const ConversationApiFactory: (configuration?: Configuration, fet
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getConversationMultimediaUploadUrl(extension: string, options?: any): Promise<Response>;
+    getConversationMultimediaUploadUrl(extension: string, options?: any): Promise<ConversationMultimediaUploadUrlResponse>;
     /**
      * Retrieve a list of conversation summaries that are ordered newest to oldest, include the most recent message and whether its been read.
      * @summary Retrieve a list of conversation summaries newest to oldest
@@ -34833,7 +35077,7 @@ export interface ConversationApiInterface {
      * @throws {RequiredError}
      * @memberof ConversationApiInterface
      */
-    getConversation(conversation_uuid: string, options?: any): Promise<Conversation>;
+    getConversation(conversation_uuid: string, options?: any): Promise<ConversationResponse>;
     /**
      * Get a presigned conersation multimedia upload URL
      * @summary Get a presigned conersation multimedia upload URL
@@ -34842,7 +35086,7 @@ export interface ConversationApiInterface {
      * @throws {RequiredError}
      * @memberof ConversationApiInterface
      */
-    getConversationMultimediaUploadUrl(extension: string, options?: any): Promise<{}>;
+    getConversationMultimediaUploadUrl(extension: string, options?: any): Promise<ConversationMultimediaUploadUrlResponse>;
     /**
      * Retrieve a list of conversation summaries that are ordered newest to oldest, include the most recent message and whether its been read.
      * @summary Retrieve a list of conversation summaries newest to oldest
@@ -34904,7 +35148,7 @@ export declare class ConversationApi extends BaseAPI implements ConversationApiI
      * @throws {RequiredError}
      * @memberof ConversationApi
      */
-    getConversation(conversation_uuid: string, options?: any): Promise<Conversation>;
+    getConversation(conversation_uuid: string, options?: any): Promise<ConversationResponse>;
     /**
      * Get a presigned conersation multimedia upload URL
      * @summary Get a presigned conersation multimedia upload URL
@@ -34913,7 +35157,7 @@ export declare class ConversationApi extends BaseAPI implements ConversationApiI
      * @throws {RequiredError}
      * @memberof ConversationApi
      */
-    getConversationMultimediaUploadUrl(extension: string, options?: any): Promise<Response>;
+    getConversationMultimediaUploadUrl(extension: string, options?: any): Promise<ConversationMultimediaUploadUrlResponse>;
     /**
      * Retrieve a list of conversation summaries that are ordered newest to oldest, include the most recent message and whether its been read.
      * @summary Retrieve a list of conversation summaries newest to oldest

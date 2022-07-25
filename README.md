@@ -1,4 +1,4 @@
-## ultracart_rest_api_v2_typescript@3.10.22
+## ultracart_rest_api_v2_typescript@3.10.23
 
 This generator creates TypeScript/JavaScript client that utilizes [Fetch API](https://fetch.spec.whatwg.org/). The generated Node module can be used in the following environments:
 
@@ -36,7 +36,7 @@ navigate to the folder of your consuming project and run one of the following co
 _published:_
 
 ```
-npm install ultracart_rest_api_v2_typescript@3.10.22 --save
+npm install ultracart_rest_api_v2_typescript@3.10.23 --save
 ```
 
 _unPublished (not recommended):_
@@ -54,6 +54,7 @@ Not every change is committed to every SDK.
 
 | Version | Date | Comments |
 | --: | :-: | --- |
+| 3.10.23 | 07/25/2022 | conversations - add a websocket message model |
 | 3.10.22 | 07/20/2022 | conversation participant name added |
 | 3.10.21 | 07/18/2022 | twilio dev |
 | 3.10.20 | 07/14/2022 | Add channel storefront_oid to the customer activity record |
