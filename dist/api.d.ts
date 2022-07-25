@@ -6229,6 +6229,18 @@ export interface ConversationAgentAuthResponse {
  * @interface ConversationEventQueuePosition
  */
 export interface ConversationEventQueuePosition {
+    /**
+     * True if agents are logged into the queue
+     * @type {boolean}
+     * @memberof ConversationEventQueuePosition
+     */
+    available?: boolean;
+    /**
+     * Position in the queue.  Value will be -1 if they cant be found in the queue.
+     * @type {number}
+     * @memberof ConversationEventQueuePosition
+     */
+    position?: number;
 }
 /**
  *
@@ -6559,10 +6571,10 @@ export interface ConversationWebsocketMessage {
     event_new_conversation?: Conversation;
     /**
      *
-     * @type {ConversationMessage}
+     * @type {Conversation}
      * @memberof ConversationWebsocketMessage
      */
-    event_new_message?: ConversationMessage;
+    event_new_message?: Conversation;
     /**
      *
      * @type {ConversationEventQueuePosition}
