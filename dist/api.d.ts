@@ -6114,6 +6114,12 @@ export interface CityStateZip {
 export interface Conversation {
     /**
      *
+     * @type {boolean}
+     * @memberof Conversation
+     */
+    closed?: boolean;
+    /**
+     *
      * @type {string}
      * @memberof Conversation
      */
@@ -6492,6 +6498,12 @@ export interface ConversationStartResponse {
 export interface ConversationSummary {
     /**
      *
+     * @type {boolean}
+     * @memberof ConversationSummary
+     */
+    closed?: boolean;
+    /**
+     *
      * @type {string}
      * @memberof ConversationSummary
      */
@@ -6559,22 +6571,22 @@ export interface ConversationWebsocketMessage {
     conversation_uuid?: string;
     /**
      *
-     * @type {Conversation}
+     * @type {ConversationSummary}
      * @memberof ConversationWebsocketMessage
      */
-    event_conversation_closed?: Conversation;
+    event_conversation_closed?: ConversationSummary;
     /**
      *
-     * @type {Conversation}
+     * @type {ConversationSummary}
      * @memberof ConversationWebsocketMessage
      */
-    event_new_conversation?: Conversation;
+    event_new_conversation?: ConversationSummary;
     /**
      *
-     * @type {Conversation}
+     * @type {ConversationSummary}
      * @memberof ConversationWebsocketMessage
      */
-    event_new_message?: Conversation;
+    event_new_message?: ConversationSummary;
     /**
      *
      * @type {ConversationEventQueuePosition}
