@@ -50,6 +50,7 @@ src/models/AutoOrderItemFutureSchedule.ts
 src/models/AutoOrderItemOption.ts
 src/models/AutoOrderItemSimpleSchedule.ts
 src/models/AutoOrderLog.ts
+src/models/AutoOrderManagement.ts
 src/models/AutoOrderQuery.ts
 src/models/AutoOrderQueryBatch.ts
 src/models/AutoOrderResponse.ts
@@ -151,6 +152,7 @@ src/models/ConversationResponse.ts
 src/models/ConversationStartRequest.ts
 src/models/ConversationStartResponse.ts
 src/models/ConversationSummary.ts
+src/models/ConversationWebsocketMessage.ts
 src/models/ConversationsResponse.ts
 src/models/CountriesResponse.ts
 src/models/Country.ts

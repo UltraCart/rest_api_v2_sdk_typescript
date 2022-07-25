@@ -81,12 +81,6 @@ export interface AutoOrderItem {
      */
     auto_order_item_oid?: number;
     /**
-     * Date/time of the first order of this item.  Null if item added to auto order and has not been rebilled yet.
-     * @type {string}
-     * @memberof AutoOrderItem
-     */
-    first_order_dts?: string;
-    /**
      * Frequency of the rebill if not a fixed schedule
      * @type {string}
      * @memberof AutoOrderItem
@@ -152,12 +146,6 @@ export interface AutoOrderItem {
      * @memberof AutoOrderItem
      */
     original_quantity?: number;
-    /**
-     * True if paused.  This field is an object instead of a primitive for backwards compatibility.
-     * @type {boolean}
-     * @memberof AutoOrderItem
-     */
-    paused?: boolean;
     /**
      * The PayPal Payer ID tied to this item
      * @type {string}
@@ -235,7 +223,6 @@ export function AutoOrderItemFromJSONTyped(json: any, ignoreDiscriminator: boole
         'arbitrary_unit_cost': !exists(json, 'arbitrary_unit_cost') ? undefined : json['arbitrary_unit_cost'],
         'arbitrary_unit_cost_remaining_orders': !exists(json, 'arbitrary_unit_cost_remaining_orders') ? undefined : json['arbitrary_unit_cost_remaining_orders'],
         'auto_order_item_oid': !exists(json, 'auto_order_item_oid') ? undefined : json['auto_order_item_oid'],
-        'first_order_dts': !exists(json, 'first_order_dts') ? undefined : json['first_order_dts'],
         'frequency': !exists(json, 'frequency') ? undefined : json['frequency'],
         'future_schedules': !exists(json, 'future_schedules') ? undefined : ((json['future_schedules'] as Array<any>).map(AutoOrderItemFutureScheduleFromJSON)),
         'last_order_dts': !exists(json, 'last_order_dts') ? undefined : json['last_order_dts'],
@@ -247,7 +234,6 @@ export function AutoOrderItemFromJSONTyped(json: any, ignoreDiscriminator: boole
         'options': !exists(json, 'options') ? undefined : ((json['options'] as Array<any>).map(AutoOrderItemOptionFromJSON)),
         'original_item_id': !exists(json, 'original_item_id') ? undefined : json['original_item_id'],
         'original_quantity': !exists(json, 'original_quantity') ? undefined : json['original_quantity'],
-        'paused': !exists(json, 'paused') ? undefined : json['paused'],
         'paypal_payer_id': !exists(json, 'paypal_payer_id') ? undefined : json['paypal_payer_id'],
         'paypal_recurring_payment_profile_id': !exists(json, 'paypal_recurring_payment_profile_id') ? undefined : json['paypal_recurring_payment_profile_id'],
         'preshipment_notice_sent': !exists(json, 'preshipment_notice_sent') ? undefined : json['preshipment_notice_sent'],
@@ -273,7 +259,6 @@ export function AutoOrderItemToJSON(value?: AutoOrderItem | null): any {
         'arbitrary_unit_cost': value.arbitrary_unit_cost,
         'arbitrary_unit_cost_remaining_orders': value.arbitrary_unit_cost_remaining_orders,
         'auto_order_item_oid': value.auto_order_item_oid,
-        'first_order_dts': value.first_order_dts,
         'frequency': value.frequency,
         'future_schedules': value.future_schedules === undefined ? undefined : ((value.future_schedules as Array<any>).map(AutoOrderItemFutureScheduleToJSON)),
         'last_order_dts': value.last_order_dts,
@@ -285,7 +270,6 @@ export function AutoOrderItemToJSON(value?: AutoOrderItem | null): any {
         'options': value.options === undefined ? undefined : ((value.options as Array<any>).map(AutoOrderItemOptionToJSON)),
         'original_item_id': value.original_item_id,
         'original_quantity': value.original_quantity,
-        'paused': value.paused,
         'paypal_payer_id': value.paypal_payer_id,
         'paypal_recurring_payment_profile_id': value.paypal_recurring_payment_profile_id,
         'preshipment_notice_sent': value.preshipment_notice_sent,

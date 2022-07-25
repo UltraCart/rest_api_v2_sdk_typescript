@@ -26,6 +26,12 @@ import {
     AutoOrderLogToJSON,
 } from './AutoOrderLog';
 import {
+    AutoOrderManagement,
+    AutoOrderManagementFromJSON,
+    AutoOrderManagementFromJSONTyped,
+    AutoOrderManagementToJSON,
+} from './AutoOrderManagement';
+import {
     Order,
     OrderFromJSON,
     OrderFromJSONTyped,
@@ -129,6 +135,12 @@ export interface AutoOrder {
      */
     logs?: Array<AutoOrderLog>;
     /**
+     * 
+     * @type {AutoOrderManagement}
+     * @memberof AutoOrder
+     */
+    management?: AutoOrderManagement;
+    /**
      * The next time that the auto order will be attempted for processing
      * @type {string}
      * @memberof AutoOrder
@@ -209,6 +221,7 @@ export function AutoOrderFromJSONTyped(json: any, ignoreDiscriminator: boolean):
         'failure_reason': !exists(json, 'failure_reason') ? undefined : json['failure_reason'],
         'items': !exists(json, 'items') ? undefined : ((json['items'] as Array<any>).map(AutoOrderItemFromJSON)),
         'logs': !exists(json, 'logs') ? undefined : ((json['logs'] as Array<any>).map(AutoOrderLogFromJSON)),
+        'management': !exists(json, 'management') ? undefined : AutoOrderManagementFromJSON(json['management']),
         'next_attempt': !exists(json, 'next_attempt') ? undefined : json['next_attempt'],
         'original_order': !exists(json, 'original_order') ? undefined : OrderFromJSON(json['original_order']),
         'original_order_id': !exists(json, 'original_order_id') ? undefined : json['original_order_id'],
@@ -243,6 +256,7 @@ export function AutoOrderToJSON(value?: AutoOrder | null): any {
         'failure_reason': value.failure_reason,
         'items': value.items === undefined ? undefined : ((value.items as Array<any>).map(AutoOrderItemToJSON)),
         'logs': value.logs === undefined ? undefined : ((value.logs as Array<any>).map(AutoOrderLogToJSON)),
+        'management': AutoOrderManagementToJSON(value.management),
         'next_attempt': value.next_attempt,
         'original_order': OrderToJSON(value.original_order),
         'original_order_id': value.original_order_id,

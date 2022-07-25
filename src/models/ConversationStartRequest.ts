@@ -31,6 +31,12 @@ export interface ConversationStartRequest {
      * @memberof ConversationStartRequest
      */
     conversation_arn?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ConversationStartRequest
+     */
+    conversation_webchat_queue_uuid?: string;
 }
 
 export function ConversationStartRequestFromJSON(json: any): ConversationStartRequest {
@@ -45,6 +51,7 @@ export function ConversationStartRequestFromJSONTyped(json: any, ignoreDiscrimin
         
         'add_conversation_participant_arns': !exists(json, 'add_conversation_participant_arns') ? undefined : json['add_conversation_participant_arns'],
         'conversation_arn': !exists(json, 'conversation_arn') ? undefined : json['conversation_arn'],
+        'conversation_webchat_queue_uuid': !exists(json, 'conversation_webchat_queue_uuid') ? undefined : json['conversation_webchat_queue_uuid'],
     };
 }
 
@@ -59,6 +66,7 @@ export function ConversationStartRequestToJSON(value?: ConversationStartRequest 
         
         'add_conversation_participant_arns': value.add_conversation_participant_arns,
         'conversation_arn': value.conversation_arn,
+        'conversation_webchat_queue_uuid': value.conversation_webchat_queue_uuid,
     };
 }
 
