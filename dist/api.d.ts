@@ -6560,6 +6560,197 @@ export interface ConversationSummary {
 /**
  *
  * @export
+ * @interface ConversationWebchatQueueStatus
+ */
+export interface ConversationWebchatQueueStatus {
+    /**
+     *
+     * @type {number}
+     * @memberof ConversationWebchatQueueStatus
+     */
+    agent_available_count?: number;
+    /**
+     *
+     * @type {number}
+     * @memberof ConversationWebchatQueueStatus
+     */
+    agent_busy_count?: number;
+    /**
+     *
+     * @type {number}
+     * @memberof ConversationWebchatQueueStatus
+     */
+    agent_count?: number;
+    /**
+     *
+     * @type {number}
+     * @memberof ConversationWebchatQueueStatus
+     */
+    agent_unavailable_count?: number;
+    /**
+     *
+     * @type {Array<ConversationWebchatQueueStatusAgent>}
+     * @memberof ConversationWebchatQueueStatus
+     */
+    agents?: Array<ConversationWebchatQueueStatusAgent>;
+    /**
+     *
+     * @type {number}
+     * @memberof ConversationWebchatQueueStatus
+     */
+    customer_abandon_count?: number;
+    /**
+     *
+     * @type {number}
+     * @memberof ConversationWebchatQueueStatus
+     */
+    customer_active_count?: number;
+    /**
+     *
+     * @type {number}
+     * @memberof ConversationWebchatQueueStatus
+     */
+    customer_waiting_count?: number;
+    /**
+     * Date/time that the oldest person joined the queue
+     * @type {string}
+     * @memberof ConversationWebchatQueueStatus
+     */
+    customer_waiting_join_dts?: string;
+    /**
+     *
+     * @type {Array<ConversationWebchatQueueStatusQueueEntry>}
+     * @memberof ConversationWebchatQueueStatus
+     */
+    queue_entries?: Array<ConversationWebchatQueueStatusQueueEntry>;
+    /**
+     *
+     * @type {string}
+     * @memberof ConversationWebchatQueueStatus
+     */
+    queue_name?: string;
+}
+/**
+ *
+ * @export
+ * @interface ConversationWebchatQueueStatusAgent
+ */
+export interface ConversationWebchatQueueStatusAgent {
+    /**
+     *
+     * @type {string}
+     * @memberof ConversationWebchatQueueStatusAgent
+     */
+    agent_status?: string;
+    /**
+     *
+     * @type {string}
+     * @memberof ConversationWebchatQueueStatusAgent
+     */
+    conversation_participant_arn?: string;
+    /**
+     *
+     * @type {string}
+     * @memberof ConversationWebchatQueueStatusAgent
+     */
+    conversation_participant_name?: string;
+    /**
+     * Date/time that this agent took their last chat
+     * @type {string}
+     * @memberof ConversationWebchatQueueStatusAgent
+     */
+    last_chat_dts?: string;
+    /**
+     *
+     * @type {boolean}
+     * @memberof ConversationWebchatQueueStatusAgent
+     */
+    next_round_robin?: boolean;
+}
+/**
+ *
+ * @export
+ * @interface ConversationWebchatQueueStatusQueueEntry
+ */
+export interface ConversationWebchatQueueStatusQueueEntry {
+    /**
+     *
+     * @type {string}
+     * @memberof ConversationWebchatQueueStatusQueueEntry
+     */
+    conversation_participant_arn?: string;
+    /**
+     *
+     * @type {string}
+     * @memberof ConversationWebchatQueueStatusQueueEntry
+     */
+    conversation_participant_name?: string;
+    /**
+     *
+     * @type {string}
+     * @memberof ConversationWebchatQueueStatusQueueEntry
+     */
+    conversation_webchat_queue_uuid?: string;
+    /**
+     * Date/time the customer joined the queue
+     * @type {string}
+     * @memberof ConversationWebchatQueueStatusQueueEntry
+     */
+    join_dts?: string;
+}
+/**
+ *
+ * @export
+ * @interface ConversationWebchatQueueStatusUpdateRequest
+ */
+export interface ConversationWebchatQueueStatusUpdateRequest {
+    /**
+     *
+     * @type {string}
+     * @memberof ConversationWebchatQueueStatusUpdateRequest
+     */
+    agent_status?: string;
+}
+/**
+ *
+ * @export
+ * @interface ConversationWebchatQueueStatusesResponse
+ */
+export interface ConversationWebchatQueueStatusesResponse {
+    /**
+     *
+     * @type {ModelError}
+     * @memberof ConversationWebchatQueueStatusesResponse
+     */
+    error?: ModelError;
+    /**
+     *
+     * @type {ResponseMetadata}
+     * @memberof ConversationWebchatQueueStatusesResponse
+     */
+    metadata?: ResponseMetadata;
+    /**
+     *
+     * @type {Array<ConversationWebchatQueueStatus>}
+     * @memberof ConversationWebchatQueueStatusesResponse
+     */
+    queue_statuses?: Array<ConversationWebchatQueueStatus>;
+    /**
+     * Indicates if API call was successful
+     * @type {boolean}
+     * @memberof ConversationWebchatQueueStatusesResponse
+     */
+    success?: boolean;
+    /**
+     *
+     * @type {Warning}
+     * @memberof ConversationWebchatQueueStatusesResponse
+     */
+    warning?: Warning;
+}
+/**
+ *
+ * @export
  * @interface ConversationWebsocketMessage
  */
 export interface ConversationWebsocketMessage {
@@ -6593,6 +6784,12 @@ export interface ConversationWebsocketMessage {
      * @memberof ConversationWebsocketMessage
      */
     event_queue_position?: ConversationEventQueuePosition;
+    /**
+     *
+     * @type {ConversationWebchatQueueStatus}
+     * @memberof ConversationWebsocketMessage
+     */
+    event_queue_status_update?: ConversationWebchatQueueStatus;
     /**
      * Type of event
      * @type {string}
@@ -6633,7 +6830,8 @@ export declare namespace ConversationWebsocketMessage {
         ConversationClosed,
         NewConversation,
         NewMessage,
-        UpdatedMessage
+        UpdatedMessage,
+        QueueStatusUpdate
     }
     /**
      * @export
@@ -34922,6 +35120,13 @@ export declare const ConversationApiFetchParamCreator: (configuration?: Configur
      */
     getConversationMultimediaUploadUrl(extension: string, options?: any): FetchArgs;
     /**
+     * Retrieve a conversation webchat queue statuses including agent status and queue entries
+     * @summary Retrieve a conversation webchat queue statuses
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getConversationWebchatQueueStatuses(options?: any): FetchArgs;
+    /**
      * Retrieve a list of conversation summaries that are ordered newest to oldest, include the most recent message and whether its been read.
      * @summary Retrieve a list of conversation summaries newest to oldest
      * @param {number} [_limit] The maximum number of records to return on this one API call. (Max 200)
@@ -34954,6 +35159,15 @@ export declare const ConversationApiFetchParamCreator: (configuration?: Configur
      * @throws {RequiredError}
      */
     startConversation(start_request: ConversationStartRequest, options?: any): FetchArgs;
+    /**
+     * Update status within the queue
+     * @summary Update status within the queue
+     * @param {string} queue_name
+     * @param {ConversationWebchatQueueStatusUpdateRequest} status_request Status request
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    updateConversationWebchatQueueStatus(queue_name: string, status_request: ConversationWebchatQueueStatusUpdateRequest, options?: any): FetchArgs;
 };
 /**
  * ConversationApi - functional programming interface
@@ -34983,6 +35197,13 @@ export declare const ConversationApiFp: (configuration?: Configuration) => {
      * @throws {RequiredError}
      */
     getConversationMultimediaUploadUrl(extension: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ConversationMultimediaUploadUrlResponse>;
+    /**
+     * Retrieve a conversation webchat queue statuses including agent status and queue entries
+     * @summary Retrieve a conversation webchat queue statuses
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getConversationWebchatQueueStatuses(options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ConversationWebchatQueueStatusesResponse>;
     /**
      * Retrieve a list of conversation summaries that are ordered newest to oldest, include the most recent message and whether its been read.
      * @summary Retrieve a list of conversation summaries newest to oldest
@@ -35016,6 +35237,15 @@ export declare const ConversationApiFp: (configuration?: Configuration) => {
      * @throws {RequiredError}
      */
     startConversation(start_request: ConversationStartRequest, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ConversationStartResponse>;
+    /**
+     * Update status within the queue
+     * @summary Update status within the queue
+     * @param {string} queue_name
+     * @param {ConversationWebchatQueueStatusUpdateRequest} status_request Status request
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    updateConversationWebchatQueueStatus(queue_name: string, status_request: ConversationWebchatQueueStatusUpdateRequest, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Response>;
 };
 /**
  * ConversationApi - factory interface
@@ -35045,6 +35275,13 @@ export declare const ConversationApiFactory: (configuration?: Configuration, fet
      * @throws {RequiredError}
      */
     getConversationMultimediaUploadUrl(extension: string, options?: any): Promise<ConversationMultimediaUploadUrlResponse>;
+    /**
+     * Retrieve a conversation webchat queue statuses including agent status and queue entries
+     * @summary Retrieve a conversation webchat queue statuses
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getConversationWebchatQueueStatuses(options?: any): Promise<ConversationWebchatQueueStatusesResponse>;
     /**
      * Retrieve a list of conversation summaries that are ordered newest to oldest, include the most recent message and whether its been read.
      * @summary Retrieve a list of conversation summaries newest to oldest
@@ -35078,6 +35315,15 @@ export declare const ConversationApiFactory: (configuration?: Configuration, fet
      * @throws {RequiredError}
      */
     startConversation(start_request: ConversationStartRequest, options?: any): Promise<ConversationStartResponse>;
+    /**
+     * Update status within the queue
+     * @summary Update status within the queue
+     * @param {string} queue_name
+     * @param {ConversationWebchatQueueStatusUpdateRequest} status_request Status request
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    updateConversationWebchatQueueStatus(queue_name: string, status_request: ConversationWebchatQueueStatusUpdateRequest, options?: any): Promise<Response>;
 };
 /**
  * ConversationApi - interface
@@ -35111,6 +35357,14 @@ export interface ConversationApiInterface {
      * @memberof ConversationApiInterface
      */
     getConversationMultimediaUploadUrl(extension: string, options?: any): Promise<ConversationMultimediaUploadUrlResponse>;
+    /**
+     * Retrieve a conversation webchat queue statuses including agent status and queue entries
+     * @summary Retrieve a conversation webchat queue statuses
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApiInterface
+     */
+    getConversationWebchatQueueStatuses(options?: any): Promise<ConversationWebchatQueueStatusesResponse>;
     /**
      * Retrieve a list of conversation summaries that are ordered newest to oldest, include the most recent message and whether its been read.
      * @summary Retrieve a list of conversation summaries newest to oldest
@@ -35148,6 +35402,16 @@ export interface ConversationApiInterface {
      * @memberof ConversationApiInterface
      */
     startConversation(start_request: ConversationStartRequest, options?: any): Promise<ConversationStartResponse>;
+    /**
+     * Update status within the queue
+     * @summary Update status within the queue
+     * @param {string} queue_name
+     * @param {ConversationWebchatQueueStatusUpdateRequest} status_request Status request
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApiInterface
+     */
+    updateConversationWebchatQueueStatus(queue_name: string, status_request: ConversationWebchatQueueStatusUpdateRequest, options?: any): Promise<{}>;
 }
 /**
  * ConversationApi - object-oriented interface
@@ -35182,6 +35446,14 @@ export declare class ConversationApi extends BaseAPI implements ConversationApiI
      * @memberof ConversationApi
      */
     getConversationMultimediaUploadUrl(extension: string, options?: any): Promise<ConversationMultimediaUploadUrlResponse>;
+    /**
+     * Retrieve a conversation webchat queue statuses including agent status and queue entries
+     * @summary Retrieve a conversation webchat queue statuses
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApi
+     */
+    getConversationWebchatQueueStatuses(options?: any): Promise<ConversationWebchatQueueStatusesResponse>;
     /**
      * Retrieve a list of conversation summaries that are ordered newest to oldest, include the most recent message and whether its been read.
      * @summary Retrieve a list of conversation summaries newest to oldest
@@ -35219,6 +35491,16 @@ export declare class ConversationApi extends BaseAPI implements ConversationApiI
      * @memberof ConversationApi
      */
     startConversation(start_request: ConversationStartRequest, options?: any): Promise<ConversationStartResponse>;
+    /**
+     * Update status within the queue
+     * @summary Update status within the queue
+     * @param {string} queue_name
+     * @param {ConversationWebchatQueueStatusUpdateRequest} status_request Status request
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApi
+     */
+    updateConversationWebchatQueueStatus(queue_name: string, status_request: ConversationWebchatQueueStatusUpdateRequest, options?: any): Promise<Response>;
 }
 /**
  * CouponApi - fetch parameter creator

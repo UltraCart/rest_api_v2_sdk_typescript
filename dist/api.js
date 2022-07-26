@@ -377,6 +377,7 @@ var ConversationWebsocketMessage;
         EventTypeEnum[EventTypeEnum["NewConversation"] = 'new conversation'] = "NewConversation";
         EventTypeEnum[EventTypeEnum["NewMessage"] = 'new message'] = "NewMessage";
         EventTypeEnum[EventTypeEnum["UpdatedMessage"] = 'updated message'] = "UpdatedMessage";
+        EventTypeEnum[EventTypeEnum["QueueStatusUpdate"] = 'queue status update'] = "QueueStatusUpdate";
     })(EventTypeEnum = ConversationWebsocketMessage.EventTypeEnum || (ConversationWebsocketMessage.EventTypeEnum = {}));
     /**
      * @export
@@ -5459,6 +5460,46 @@ var ConversationApiFetchParamCreator = function (configuration) {
             };
         },
         /**
+         * Retrieve a conversation webchat queue statuses including agent status and queue entries
+         * @summary Retrieve a conversation webchat queue statuses
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getConversationWebchatQueueStatuses: function (options) {
+            if (options === void 0) { options = {}; }
+            var localVarPath = "/conversation/conversations/queues/statuses";
+            var localVarUrlObj = url.parse(localVarPath, true);
+            var localVarRequestOptions = Object.assign({ method: 'GET' }, options);
+            var localVarHeaderParameter = {};
+            var localVarQueryParameter = {};
+            if (configuration && configuration.apiVersion) {
+                localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+            }
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+                var localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+                    ? configuration.accessToken("ultraCartOauth", ["conversation_read"])
+                    : configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                var localVarApiKeyValue = typeof configuration.apiKey === 'function'
+                    ? configuration.apiKey("x-ultracart-simple-key")
+                    : configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
          * Retrieve a list of conversation summaries that are ordered newest to oldest, include the most recent message and whether its been read.
          * @summary Retrieve a list of conversation summaries newest to oldest
          * @param {number} [_limit] The maximum number of records to return on this one API call. (Max 200)
@@ -5646,6 +5687,60 @@ var ConversationApiFetchParamCreator = function (configuration) {
                 options: localVarRequestOptions,
             };
         },
+        /**
+         * Update status within the queue
+         * @summary Update status within the queue
+         * @param {string} queue_name
+         * @param {ConversationWebchatQueueStatusUpdateRequest} status_request Status request
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        updateConversationWebchatQueueStatus: function (queue_name, status_request, options) {
+            if (options === void 0) { options = {}; }
+            // verify required parameter 'queue_name' is not null or undefined
+            if (queue_name === null || queue_name === undefined) {
+                throw new RequiredError('queue_name', 'Required parameter queue_name was null or undefined when calling updateConversationWebchatQueueStatus.');
+            }
+            // verify required parameter 'status_request' is not null or undefined
+            if (status_request === null || status_request === undefined) {
+                throw new RequiredError('status_request', 'Required parameter status_request was null or undefined when calling updateConversationWebchatQueueStatus.');
+            }
+            var localVarPath = "/conversation/conversations/queues/{queue_name}/status"
+                .replace("{".concat("queue_name", "}"), encodeURIComponent(String(queue_name)));
+            var localVarUrlObj = url.parse(localVarPath, true);
+            var localVarRequestOptions = Object.assign({ method: 'PUT' }, options);
+            var localVarHeaderParameter = {};
+            var localVarQueryParameter = {};
+            if (configuration && configuration.apiVersion) {
+                localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+            }
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+                var localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+                    ? configuration.accessToken("ultraCartOauth", ["conversation_write"])
+                    : configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                var localVarApiKeyValue = typeof configuration.apiKey === 'function'
+                    ? configuration.apiKey("x-ultracart-simple-key")
+                    : configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+            var needsSerialization = ("ConversationWebchatQueueStatusUpdateRequest" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
+            localVarRequestOptions.body = needsSerialization ? JSON.stringify(status_request || {}) : (status_request || "");
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
     };
 };
 exports.ConversationApiFetchParamCreator = ConversationApiFetchParamCreator;
@@ -5707,6 +5802,27 @@ var ConversationApiFp = function (configuration) {
          */
         getConversationMultimediaUploadUrl: function (extension, options) {
             var localVarFetchArgs = (0, exports.ConversationApiFetchParamCreator)(configuration).getConversationMultimediaUploadUrl(extension, options);
+            return function (fetch, basePath) {
+                if (fetch === void 0) { fetch = portableFetch; }
+                if (basePath === void 0) { basePath = BASE_PATH; }
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(function (response) {
+                    if (response.status >= 200 && response.status < 300) {
+                        return response.json();
+                    }
+                    else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
+         * Retrieve a conversation webchat queue statuses including agent status and queue entries
+         * @summary Retrieve a conversation webchat queue statuses
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getConversationWebchatQueueStatuses: function (options) {
+            var localVarFetchArgs = (0, exports.ConversationApiFetchParamCreator)(configuration).getConversationWebchatQueueStatuses(options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -5809,6 +5925,29 @@ var ConversationApiFp = function (configuration) {
                 });
             };
         },
+        /**
+         * Update status within the queue
+         * @summary Update status within the queue
+         * @param {string} queue_name
+         * @param {ConversationWebchatQueueStatusUpdateRequest} status_request Status request
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        updateConversationWebchatQueueStatus: function (queue_name, status_request, options) {
+            var localVarFetchArgs = (0, exports.ConversationApiFetchParamCreator)(configuration).updateConversationWebchatQueueStatus(queue_name, status_request, options);
+            return function (fetch, basePath) {
+                if (fetch === void 0) { fetch = portableFetch; }
+                if (basePath === void 0) { basePath = BASE_PATH; }
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(function (response) {
+                    if (response.status >= 200 && response.status < 300) {
+                        return response;
+                    }
+                    else {
+                        throw response;
+                    }
+                });
+            };
+        },
     };
 };
 exports.ConversationApiFp = ConversationApiFp;
@@ -5846,6 +5985,15 @@ var ConversationApiFactory = function (configuration, fetch, basePath) {
          */
         getConversationMultimediaUploadUrl: function (extension, options) {
             return (0, exports.ConversationApiFp)(configuration).getConversationMultimediaUploadUrl(extension, options)(fetch, basePath);
+        },
+        /**
+         * Retrieve a conversation webchat queue statuses including agent status and queue entries
+         * @summary Retrieve a conversation webchat queue statuses
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getConversationWebchatQueueStatuses: function (options) {
+            return (0, exports.ConversationApiFp)(configuration).getConversationWebchatQueueStatuses(options)(fetch, basePath);
         },
         /**
          * Retrieve a list of conversation summaries that are ordered newest to oldest, include the most recent message and whether its been read.
@@ -5887,6 +6035,17 @@ var ConversationApiFactory = function (configuration, fetch, basePath) {
          */
         startConversation: function (start_request, options) {
             return (0, exports.ConversationApiFp)(configuration).startConversation(start_request, options)(fetch, basePath);
+        },
+        /**
+         * Update status within the queue
+         * @summary Update status within the queue
+         * @param {string} queue_name
+         * @param {ConversationWebchatQueueStatusUpdateRequest} status_request Status request
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        updateConversationWebchatQueueStatus: function (queue_name, status_request, options) {
+            return (0, exports.ConversationApiFp)(configuration).updateConversationWebchatQueueStatus(queue_name, status_request, options)(fetch, basePath);
         },
     };
 };
@@ -5935,6 +6094,16 @@ var ConversationApi = /** @class */ (function (_super) {
         return (0, exports.ConversationApiFp)(this.configuration).getConversationMultimediaUploadUrl(extension, options)(this.fetch, this.basePath);
     };
     /**
+     * Retrieve a conversation webchat queue statuses including agent status and queue entries
+     * @summary Retrieve a conversation webchat queue statuses
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApi
+     */
+    ConversationApi.prototype.getConversationWebchatQueueStatuses = function (options) {
+        return (0, exports.ConversationApiFp)(this.configuration).getConversationWebchatQueueStatuses(options)(this.fetch, this.basePath);
+    };
+    /**
      * Retrieve a list of conversation summaries that are ordered newest to oldest, include the most recent message and whether its been read.
      * @summary Retrieve a list of conversation summaries newest to oldest
      * @param {number} [_limit] The maximum number of records to return on this one API call. (Max 200)
@@ -5978,6 +6147,18 @@ var ConversationApi = /** @class */ (function (_super) {
      */
     ConversationApi.prototype.startConversation = function (start_request, options) {
         return (0, exports.ConversationApiFp)(this.configuration).startConversation(start_request, options)(this.fetch, this.basePath);
+    };
+    /**
+     * Update status within the queue
+     * @summary Update status within the queue
+     * @param {string} queue_name
+     * @param {ConversationWebchatQueueStatusUpdateRequest} status_request Status request
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApi
+     */
+    ConversationApi.prototype.updateConversationWebchatQueueStatus = function (queue_name, status_request, options) {
+        return (0, exports.ConversationApiFp)(this.configuration).updateConversationWebchatQueueStatus(queue_name, status_request, options)(this.fetch, this.basePath);
     };
     return ConversationApi;
 }(BaseAPI));
