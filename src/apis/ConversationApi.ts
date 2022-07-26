@@ -30,6 +30,12 @@ import {
     ConversationStartResponse,
     ConversationStartResponseFromJSON,
     ConversationStartResponseToJSON,
+    ConversationWebchatQueueStatusUpdateRequest,
+    ConversationWebchatQueueStatusUpdateRequestFromJSON,
+    ConversationWebchatQueueStatusUpdateRequestToJSON,
+    ConversationWebchatQueueStatusesResponse,
+    ConversationWebchatQueueStatusesResponseFromJSON,
+    ConversationWebchatQueueStatusesResponseToJSON,
     ConversationsResponse,
     ConversationsResponseFromJSON,
     ConversationsResponseToJSON,
@@ -61,6 +67,11 @@ export interface LeaveConversationRequest {
 
 export interface StartConversationRequest {
     startRequest: ConversationStartRequest;
+}
+
+export interface UpdateConversationWebchatQueueStatusRequest {
+    queueName: string;
+    statusRequest: ConversationWebchatQueueStatusUpdateRequest;
 }
 
 /**
@@ -116,6 +127,21 @@ export interface ConversationApiInterface {
      * Get a presigned conersation multimedia upload URL
      */
     getConversationMultimediaUploadUrl(requestParameters: GetConversationMultimediaUploadUrlRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ConversationMultimediaUploadUrlResponse>;
+
+    /**
+     * Retrieve a conversation webchat queue statuses including agent status and queue entries 
+     * @summary Retrieve a conversation webchat queue statuses
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApiInterface
+     */
+    getConversationWebchatQueueStatusesRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ConversationWebchatQueueStatusesResponse>>;
+
+    /**
+     * Retrieve a conversation webchat queue statuses including agent status and queue entries 
+     * Retrieve a conversation webchat queue statuses
+     */
+    getConversationWebchatQueueStatuses(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ConversationWebchatQueueStatusesResponse>;
 
     /**
      * Retrieve a list of conversation summaries that are ordered newest to oldest, include the most recent message and whether its been read. 
@@ -181,6 +207,23 @@ export interface ConversationApiInterface {
      * Start a conversation
      */
     startConversation(requestParameters: StartConversationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ConversationStartResponse>;
+
+    /**
+     * Update status within the queue 
+     * @summary Update status within the queue
+     * @param {string} queueName 
+     * @param {ConversationWebchatQueueStatusUpdateRequest} statusRequest Status request
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApiInterface
+     */
+    updateConversationWebchatQueueStatusRaw(requestParameters: UpdateConversationWebchatQueueStatusRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+
+    /**
+     * Update status within the queue 
+     * Update status within the queue
+     */
+    updateConversationWebchatQueueStatus(requestParameters: UpdateConversationWebchatQueueStatusRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
 }
 
@@ -305,6 +348,43 @@ export class ConversationApi extends runtime.BaseAPI implements ConversationApiI
      */
     async getConversationMultimediaUploadUrl(requestParameters: GetConversationMultimediaUploadUrlRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ConversationMultimediaUploadUrlResponse> {
         const response = await this.getConversationMultimediaUploadUrlRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Retrieve a conversation webchat queue statuses including agent status and queue entries 
+     * Retrieve a conversation webchat queue statuses
+     */
+    async getConversationWebchatQueueStatusesRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ConversationWebchatQueueStatusesResponse>> {
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", ["conversation_read"]);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/conversation/conversations/queues/statuses`,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => ConversationWebchatQueueStatusesResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Retrieve a conversation webchat queue statuses including agent status and queue entries 
+     * Retrieve a conversation webchat queue statuses
+     */
+    async getConversationWebchatQueueStatuses(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ConversationWebchatQueueStatusesResponse> {
+        const response = await this.getConversationWebchatQueueStatusesRaw(initOverrides);
         return await response.value();
     }
 
@@ -475,6 +555,53 @@ export class ConversationApi extends runtime.BaseAPI implements ConversationApiI
     async startConversation(requestParameters: StartConversationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ConversationStartResponse> {
         const response = await this.startConversationRaw(requestParameters, initOverrides);
         return await response.value();
+    }
+
+    /**
+     * Update status within the queue 
+     * Update status within the queue
+     */
+    async updateConversationWebchatQueueStatusRaw(requestParameters: UpdateConversationWebchatQueueStatusRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        if (requestParameters.queueName === null || requestParameters.queueName === undefined) {
+            throw new runtime.RequiredError('queueName','Required parameter requestParameters.queueName was null or undefined when calling updateConversationWebchatQueueStatus.');
+        }
+
+        if (requestParameters.statusRequest === null || requestParameters.statusRequest === undefined) {
+            throw new runtime.RequiredError('statusRequest','Required parameter requestParameters.statusRequest was null or undefined when calling updateConversationWebchatQueueStatus.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", ["conversation_write"]);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/conversation/conversations/queues/{queue_name}/status`.replace(`{${"queue_name"}}`, encodeURIComponent(String(requestParameters.queueName))),
+            method: 'PUT',
+            headers: headerParameters,
+            query: queryParameters,
+            body: ConversationWebchatQueueStatusUpdateRequestToJSON(requestParameters.statusRequest),
+        }, initOverrides);
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     * Update status within the queue 
+     * Update status within the queue
+     */
+    async updateConversationWebchatQueueStatus(requestParameters: UpdateConversationWebchatQueueStatusRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.updateConversationWebchatQueueStatusRaw(requestParameters, initOverrides);
     }
 
 }

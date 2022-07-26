@@ -153,6 +153,11 @@ src/models/ConversationResponse.ts
 src/models/ConversationStartRequest.ts
 src/models/ConversationStartResponse.ts
 src/models/ConversationSummary.ts
+src/models/ConversationWebchatQueueStatus.ts
+src/models/ConversationWebchatQueueStatusAgent.ts
+src/models/ConversationWebchatQueueStatusQueueEntry.ts
+src/models/ConversationWebchatQueueStatusUpdateRequest.ts
+src/models/ConversationWebchatQueueStatusesResponse.ts
 src/models/ConversationWebsocketMessage.ts
 src/models/ConversationsResponse.ts
 src/models/CountriesResponse.ts
