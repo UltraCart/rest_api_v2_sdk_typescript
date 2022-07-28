@@ -6794,6 +6794,12 @@ export interface ConversationWebchatQueueStatus {
      * @type {number}
      * @memberof ConversationWebchatQueueStatus
      */
+    customer_chat_count?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof ConversationWebchatQueueStatus
+     */
     customer_waiting_count?: number;
     /**
      * Date/time that the oldest person joined the queue
@@ -6877,6 +6883,12 @@ export interface ConversationWebchatQueueStatusQueueEntry {
      * @memberof ConversationWebchatQueueStatusQueueEntry
      */
     conversation_webchat_queue_uuid?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ConversationWebchatQueueStatusQueueEntry
+     */
+    email?: string;
     /**
      * Date/time the customer joined the queue
      * @type {string}
