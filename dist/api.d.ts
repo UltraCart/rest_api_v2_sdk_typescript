@@ -6290,6 +6290,12 @@ export interface ConversationMessage {
      * @memberof ConversationMessage
      */
     transport_statuses?: Array<ConversationMessageTransportStatus>;
+    /**
+     *
+     * @type {Array<string>}
+     * @memberof ConversationMessage
+     */
+    upload_keys?: Array<string>;
 }
 /**
  *
@@ -6610,6 +6616,24 @@ export interface ConversationWebchatQueueStatus {
      * @type {number}
      * @memberof ConversationWebchatQueueStatus
      */
+    customer_average_abandon_time_seconds?: number;
+    /**
+     *
+     * @type {number}
+     * @memberof ConversationWebchatQueueStatus
+     */
+    customer_average_chat_time_seconds?: number;
+    /**
+     *
+     * @type {number}
+     * @memberof ConversationWebchatQueueStatus
+     */
+    customer_average_hold_time_seconds?: number;
+    /**
+     *
+     * @type {number}
+     * @memberof ConversationWebchatQueueStatus
+     */
     customer_waiting_count?: number;
     /**
      * Date/time that the oldest person joined the queue
@@ -6697,6 +6721,12 @@ export interface ConversationWebchatQueueStatusQueueEntry {
      * @memberof ConversationWebchatQueueStatusQueueEntry
      */
     join_dts?: string;
+    /**
+     *
+     * @type {string}
+     * @memberof ConversationWebchatQueueStatusQueueEntry
+     */
+    question?: string;
 }
 /**
  *
