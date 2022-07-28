@@ -38,6 +38,12 @@ export interface ConversationWebchatQueueStatusQueueEntry {
      */
     conversation_webchat_queue_uuid?: string;
     /**
+     * 
+     * @type {string}
+     * @memberof ConversationWebchatQueueStatusQueueEntry
+     */
+    email?: string;
+    /**
      * Date/time the customer joined the queue
      * @type {string}
      * @memberof ConversationWebchatQueueStatusQueueEntry
@@ -64,6 +70,7 @@ export function ConversationWebchatQueueStatusQueueEntryFromJSONTyped(json: any,
         'conversation_participant_arn': !exists(json, 'conversation_participant_arn') ? undefined : json['conversation_participant_arn'],
         'conversation_participant_name': !exists(json, 'conversation_participant_name') ? undefined : json['conversation_participant_name'],
         'conversation_webchat_queue_uuid': !exists(json, 'conversation_webchat_queue_uuid') ? undefined : json['conversation_webchat_queue_uuid'],
+        'email': !exists(json, 'email') ? undefined : json['email'],
         'join_dts': !exists(json, 'join_dts') ? undefined : json['join_dts'],
         'question': !exists(json, 'question') ? undefined : json['question'],
     };
@@ -81,6 +88,7 @@ export function ConversationWebchatQueueStatusQueueEntryToJSON(value?: Conversat
         'conversation_participant_arn': value.conversation_participant_arn,
         'conversation_participant_name': value.conversation_participant_name,
         'conversation_webchat_queue_uuid': value.conversation_webchat_queue_uuid,
+        'email': value.email,
         'join_dts': value.join_dts,
         'question': value.question,
     };

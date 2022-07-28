@@ -97,6 +97,12 @@ export interface ConversationWebchatQueueStatus {
      * @type {number}
      * @memberof ConversationWebchatQueueStatus
      */
+    customer_chat_count?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof ConversationWebchatQueueStatus
+     */
     customer_waiting_count?: number;
     /**
      * Date/time that the oldest person joined the queue
@@ -138,6 +144,7 @@ export function ConversationWebchatQueueStatusFromJSONTyped(json: any, ignoreDis
         'customer_average_abandon_time_seconds': !exists(json, 'customer_average_abandon_time_seconds') ? undefined : json['customer_average_abandon_time_seconds'],
         'customer_average_chat_time_seconds': !exists(json, 'customer_average_chat_time_seconds') ? undefined : json['customer_average_chat_time_seconds'],
         'customer_average_hold_time_seconds': !exists(json, 'customer_average_hold_time_seconds') ? undefined : json['customer_average_hold_time_seconds'],
+        'customer_chat_count': !exists(json, 'customer_chat_count') ? undefined : json['customer_chat_count'],
         'customer_waiting_count': !exists(json, 'customer_waiting_count') ? undefined : json['customer_waiting_count'],
         'customer_waiting_join_dts': !exists(json, 'customer_waiting_join_dts') ? undefined : json['customer_waiting_join_dts'],
         'queue_entries': !exists(json, 'queue_entries') ? undefined : ((json['queue_entries'] as Array<any>).map(ConversationWebchatQueueStatusQueueEntryFromJSON)),
@@ -164,6 +171,7 @@ export function ConversationWebchatQueueStatusToJSON(value?: ConversationWebchat
         'customer_average_abandon_time_seconds': value.customer_average_abandon_time_seconds,
         'customer_average_chat_time_seconds': value.customer_average_chat_time_seconds,
         'customer_average_hold_time_seconds': value.customer_average_hold_time_seconds,
+        'customer_chat_count': value.customer_chat_count,
         'customer_waiting_count': value.customer_waiting_count,
         'customer_waiting_join_dts': value.customer_waiting_join_dts,
         'queue_entries': value.queue_entries === undefined ? undefined : ((value.queue_entries as Array<any>).map(ConversationWebchatQueueStatusQueueEntryToJSON)),
