@@ -62,6 +62,12 @@ export interface ConversationMessage {
      * @memberof ConversationMessage
      */
     transport_statuses?: Array<ConversationMessageTransportStatus>;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof ConversationMessage
+     */
+    upload_keys?: Array<string>;
 }
 
 export function ConversationMessageFromJSON(json: any): ConversationMessage {
@@ -80,6 +86,7 @@ export function ConversationMessageFromJSONTyped(json: any, ignoreDiscriminator:
         'media_urls': !exists(json, 'media_urls') ? undefined : json['media_urls'],
         'message_dts': !exists(json, 'message_dts') ? undefined : json['message_dts'],
         'transport_statuses': !exists(json, 'transport_statuses') ? undefined : ((json['transport_statuses'] as Array<any>).map(ConversationMessageTransportStatusFromJSON)),
+        'upload_keys': !exists(json, 'upload_keys') ? undefined : json['upload_keys'],
     };
 }
 
@@ -98,6 +105,7 @@ export function ConversationMessageToJSON(value?: ConversationMessage | null): a
         'media_urls': value.media_urls,
         'message_dts': value.message_dts,
         'transport_statuses': value.transport_statuses === undefined ? undefined : ((value.transport_statuses as Array<any>).map(ConversationMessageTransportStatusToJSON)),
+        'upload_keys': value.upload_keys,
     };
 }
 

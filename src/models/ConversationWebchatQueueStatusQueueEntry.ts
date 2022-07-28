@@ -43,6 +43,12 @@ export interface ConversationWebchatQueueStatusQueueEntry {
      * @memberof ConversationWebchatQueueStatusQueueEntry
      */
     join_dts?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ConversationWebchatQueueStatusQueueEntry
+     */
+    question?: string;
 }
 
 export function ConversationWebchatQueueStatusQueueEntryFromJSON(json: any): ConversationWebchatQueueStatusQueueEntry {
@@ -59,6 +65,7 @@ export function ConversationWebchatQueueStatusQueueEntryFromJSONTyped(json: any,
         'conversation_participant_name': !exists(json, 'conversation_participant_name') ? undefined : json['conversation_participant_name'],
         'conversation_webchat_queue_uuid': !exists(json, 'conversation_webchat_queue_uuid') ? undefined : json['conversation_webchat_queue_uuid'],
         'join_dts': !exists(json, 'join_dts') ? undefined : json['join_dts'],
+        'question': !exists(json, 'question') ? undefined : json['question'],
     };
 }
 
@@ -75,6 +82,7 @@ export function ConversationWebchatQueueStatusQueueEntryToJSON(value?: Conversat
         'conversation_participant_name': value.conversation_participant_name,
         'conversation_webchat_queue_uuid': value.conversation_webchat_queue_uuid,
         'join_dts': value.join_dts,
+        'question': value.question,
     };
 }
 
