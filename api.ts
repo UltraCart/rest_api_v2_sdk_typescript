@@ -6329,10 +6329,10 @@ export interface ConversationAgentAuth {
     merchant_id?: string;
     /**
      * 
-     * @type {Array<string>}
+     * @type {Array<ConversationTwilioAccount>}
      * @memberof ConversationAgentAuth
      */
-    twilio_phone_numbers?: Array<string>;
+    twilio_accounts?: Array<ConversationTwilioAccount>;
     /**
      * 
      * @type {string}
@@ -6423,6 +6423,12 @@ export interface ConversationMessage {
      * @memberof ConversationMessage
      */
     body?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ConversationMessage
+     */
+    client_message_id?: string;
     /**
      * 
      * @type {Array<string>}
@@ -6716,11 +6722,43 @@ export interface ConversationSummary {
      */
     message_count?: number;
     /**
+     * Start of the conversation date/time
+     * @type {string}
+     * @memberof ConversationSummary
+     */
+    start_dts?: string;
+    /**
      * 
      * @type {boolean}
      * @memberof ConversationSummary
      */
     unread_messages?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof ConversationSummary
+     */
+    visible?: boolean;
+}
+
+/**
+ * 
+ * @export
+ * @interface ConversationTwilioAccount
+ */
+export interface ConversationTwilioAccount {
+    /**
+     * 
+     * @type {string}
+     * @memberof ConversationTwilioAccount
+     */
+    merchant_id?: string;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof ConversationTwilioAccount
+     */
+    twilio_phone_numbers?: Array<string>;
 }
 
 /**
