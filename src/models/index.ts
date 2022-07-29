@@ -130,6 +130,7 @@ export * from './ConversationResponse';
 export * from './ConversationStartRequest';
 export * from './ConversationStartResponse';
 export * from './ConversationSummary';
+export * from './ConversationTwilioAccount';
 export * from './ConversationWebchatQueueStatus';
 export * from './ConversationWebchatQueueStatusAgent';
 export * from './ConversationWebchatQueueStatusQueueEntry';

@@ -13,6 +13,13 @@
  */
 
 import { exists, mapValues } from '../runtime';
+import {
+    ConversationTwilioAccount,
+    ConversationTwilioAccountFromJSON,
+    ConversationTwilioAccountFromJSONTyped,
+    ConversationTwilioAccountToJSON,
+} from './ConversationTwilioAccount';
+
 /**
  * 
  * @export
@@ -45,10 +52,10 @@ export interface ConversationAgentAuth {
     merchant_id?: string;
     /**
      * 
-     * @type {Array<string>}
+     * @type {Array<ConversationTwilioAccount>}
      * @memberof ConversationAgentAuth
      */
-    twilio_phone_numbers?: Array<string>;
+    twilio_accounts?: Array<ConversationTwilioAccount>;
     /**
      * 
      * @type {string}
@@ -71,7 +78,7 @@ export function ConversationAgentAuthFromJSONTyped(json: any, ignoreDiscriminato
         'conversation_participant_name': !exists(json, 'conversation_participant_name') ? undefined : json['conversation_participant_name'],
         'jwt': !exists(json, 'jwt') ? undefined : json['jwt'],
         'merchant_id': !exists(json, 'merchant_id') ? undefined : json['merchant_id'],
-        'twilio_phone_numbers': !exists(json, 'twilio_phone_numbers') ? undefined : json['twilio_phone_numbers'],
+        'twilio_accounts': !exists(json, 'twilio_accounts') ? undefined : ((json['twilio_accounts'] as Array<any>).map(ConversationTwilioAccountFromJSON)),
         'websocket_url': !exists(json, 'websocket_url') ? undefined : json['websocket_url'],
     };
 }
@@ -89,7 +96,7 @@ export function ConversationAgentAuthToJSON(value?: ConversationAgentAuth | null
         'conversation_participant_name': value.conversation_participant_name,
         'jwt': value.jwt,
         'merchant_id': value.merchant_id,
-        'twilio_phone_numbers': value.twilio_phone_numbers,
+        'twilio_accounts': value.twilio_accounts === undefined ? undefined : ((value.twilio_accounts as Array<any>).map(ConversationTwilioAccountToJSON)),
         'websocket_url': value.websocket_url,
     };
 }

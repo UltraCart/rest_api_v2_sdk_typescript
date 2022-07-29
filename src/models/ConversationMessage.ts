@@ -46,6 +46,12 @@ export interface ConversationMessage {
     body?: string;
     /**
      * 
+     * @type {string}
+     * @memberof ConversationMessage
+     */
+    client_message_id?: string;
+    /**
+     * 
      * @type {Array<string>}
      * @memberof ConversationMessage
      */
@@ -83,6 +89,7 @@ export function ConversationMessageFromJSONTyped(json: any, ignoreDiscriminator:
         'author_conversation_participant_arn': !exists(json, 'author_conversation_participant_arn') ? undefined : json['author_conversation_participant_arn'],
         'author_conversation_participant_name': !exists(json, 'author_conversation_participant_name') ? undefined : json['author_conversation_participant_name'],
         'body': !exists(json, 'body') ? undefined : json['body'],
+        'client_message_id': !exists(json, 'client_message_id') ? undefined : json['client_message_id'],
         'media_urls': !exists(json, 'media_urls') ? undefined : json['media_urls'],
         'message_dts': !exists(json, 'message_dts') ? undefined : json['message_dts'],
         'transport_statuses': !exists(json, 'transport_statuses') ? undefined : ((json['transport_statuses'] as Array<any>).map(ConversationMessageTransportStatusFromJSON)),
@@ -102,6 +109,7 @@ export function ConversationMessageToJSON(value?: ConversationMessage | null): a
         'author_conversation_participant_arn': value.author_conversation_participant_arn,
         'author_conversation_participant_name': value.author_conversation_participant_name,
         'body': value.body,
+        'client_message_id': value.client_message_id,
         'media_urls': value.media_urls,
         'message_dts': value.message_dts,
         'transport_statuses': value.transport_statuses === undefined ? undefined : ((value.transport_statuses as Array<any>).map(ConversationMessageTransportStatusToJSON)),

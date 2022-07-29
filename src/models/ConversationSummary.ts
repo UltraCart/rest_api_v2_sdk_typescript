@@ -74,11 +74,23 @@ export interface ConversationSummary {
      */
     message_count?: number;
     /**
+     * Start of the conversation date/time
+     * @type {string}
+     * @memberof ConversationSummary
+     */
+    start_dts?: string;
+    /**
      * 
      * @type {boolean}
      * @memberof ConversationSummary
      */
     unread_messages?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof ConversationSummary
+     */
+    visible?: boolean;
 }
 
 export function ConversationSummaryFromJSON(json: any): ConversationSummary {
@@ -100,7 +112,9 @@ export function ConversationSummaryFromJSONTyped(json: any, ignoreDiscriminator:
         'last_message_dts': !exists(json, 'last_message_dts') ? undefined : json['last_message_dts'],
         'merchant_id': !exists(json, 'merchant_id') ? undefined : json['merchant_id'],
         'message_count': !exists(json, 'message_count') ? undefined : json['message_count'],
+        'start_dts': !exists(json, 'start_dts') ? undefined : json['start_dts'],
         'unread_messages': !exists(json, 'unread_messages') ? undefined : json['unread_messages'],
+        'visible': !exists(json, 'visible') ? undefined : json['visible'],
     };
 }
 
@@ -122,7 +136,9 @@ export function ConversationSummaryToJSON(value?: ConversationSummary | null): a
         'last_message_dts': value.last_message_dts,
         'merchant_id': value.merchant_id,
         'message_count': value.message_count,
+        'start_dts': value.start_dts,
         'unread_messages': value.unread_messages,
+        'visible': value.visible,
     };
 }
 

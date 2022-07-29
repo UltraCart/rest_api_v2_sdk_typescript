@@ -153,6 +153,7 @@ src/models/ConversationResponse.ts
 src/models/ConversationStartRequest.ts
 src/models/ConversationStartResponse.ts
 src/models/ConversationSummary.ts
+src/models/ConversationTwilioAccount.ts
 src/models/ConversationWebchatQueueStatus.ts
 src/models/ConversationWebchatQueueStatusAgent.ts
 src/models/ConversationWebchatQueueStatusQueueEntry.ts
