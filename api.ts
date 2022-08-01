@@ -6402,6 +6402,71 @@ export interface ConversationEventQueuePosition {
 /**
  * 
  * @export
+ * @interface ConversationEventRRWeb
+ */
+export interface ConversationEventRRWeb {
+    /**
+     * 
+     * @type {string}
+     * @memberof ConversationEventRRWeb
+     */
+    data?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof ConversationEventRRWeb
+     */
+    data_part?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof ConversationEventRRWeb
+     */
+    data_sha256?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof ConversationEventRRWeb
+     */
+    data_total_parts?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof ConversationEventRRWeb
+     */
+    data_total_sha256?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof ConversationEventRRWeb
+     */
+    event_index?: number;
+    /**
+     * Type of event
+     * @type {string}
+     * @memberof ConversationEventRRWeb
+     */
+    type?: ConversationEventRRWeb.TypeEnum;
+}
+
+/**
+ * @export
+ * @namespace ConversationEventRRWeb
+ */
+export namespace ConversationEventRRWeb {
+    /**
+     * @export
+     * @enum {string}
+     */
+    export enum TypeEnum {
+        Init = <any> 'init',
+        Events = <any> 'events'
+    }
+}
+
+/**
+ * 
+ * @export
  * @interface ConversationMessage
  */
 export interface ConversationMessage {
@@ -6448,11 +6513,32 @@ export interface ConversationMessage {
      */
     transport_statuses?: Array<ConversationMessageTransportStatus>;
     /**
+     * Message type
+     * @type {string}
+     * @memberof ConversationMessage
+     */
+    type?: ConversationMessage.TypeEnum;
+    /**
      * 
      * @type {Array<string>}
      * @memberof ConversationMessage
      */
     upload_keys?: Array<string>;
+}
+
+/**
+ * @export
+ * @namespace ConversationMessage
+ */
+export namespace ConversationMessage {
+    /**
+     * @export
+     * @enum {string}
+     */
+    export enum TypeEnum {
+        Message = <any> 'message',
+        Notice = <any> 'notice'
+    }
 }
 
 /**
@@ -7036,6 +7122,12 @@ export interface ConversationWebsocketMessage {
      */
     event_queue_status_update?: ConversationWebchatQueueStatus;
     /**
+     * 
+     * @type {ConversationEventRRWeb}
+     * @memberof ConversationWebsocketMessage
+     */
+    event_rrweb?: ConversationEventRRWeb;
+    /**
      * Type of event
      * @type {string}
      * @memberof ConversationWebsocketMessage
@@ -7077,7 +7169,8 @@ export namespace ConversationWebsocketMessage {
         NewConversation = <any> 'new conversation',
         NewMessage = <any> 'new message',
         UpdatedMessage = <any> 'updated message',
-        QueueStatusUpdate = <any> 'queue status update'
+        QueueStatusUpdate = <any> 'queue status update',
+        Rrweb = <any> 'rrweb'
     }
     /**
      * @export
@@ -7086,7 +7179,8 @@ export namespace ConversationWebsocketMessage {
     export enum TypeEnum {
         Message = <any> 'message',
         Event = <any> 'event',
-        Ping = <any> 'ping'
+        Ping = <any> 'ping',
+        CheckQueuePosition = <any> 'check queue position'
     }
 }
 
