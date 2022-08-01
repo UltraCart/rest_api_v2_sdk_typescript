@@ -69,12 +69,29 @@ export interface ConversationMessage {
      */
     transport_statuses?: Array<ConversationMessageTransportStatus>;
     /**
+     * Message type
+     * @type {string}
+     * @memberof ConversationMessage
+     */
+    type?: ConversationMessageTypeEnum;
+    /**
      * 
      * @type {Array<string>}
      * @memberof ConversationMessage
      */
     upload_keys?: Array<string>;
 }
+
+
+/**
+ * @export
+ */
+export const ConversationMessageTypeEnum = {
+    Message: 'message',
+    Notice: 'notice'
+} as const;
+export type ConversationMessageTypeEnum = typeof ConversationMessageTypeEnum[keyof typeof ConversationMessageTypeEnum];
+
 
 export function ConversationMessageFromJSON(json: any): ConversationMessage {
     return ConversationMessageFromJSONTyped(json, false);
@@ -93,6 +110,7 @@ export function ConversationMessageFromJSONTyped(json: any, ignoreDiscriminator:
         'media_urls': !exists(json, 'media_urls') ? undefined : json['media_urls'],
         'message_dts': !exists(json, 'message_dts') ? undefined : json['message_dts'],
         'transport_statuses': !exists(json, 'transport_statuses') ? undefined : ((json['transport_statuses'] as Array<any>).map(ConversationMessageTransportStatusFromJSON)),
+        'type': !exists(json, 'type') ? undefined : json['type'],
         'upload_keys': !exists(json, 'upload_keys') ? undefined : json['upload_keys'],
     };
 }
@@ -113,6 +131,7 @@ export function ConversationMessageToJSON(value?: ConversationMessage | null): a
         'media_urls': value.media_urls,
         'message_dts': value.message_dts,
         'transport_statuses': value.transport_statuses === undefined ? undefined : ((value.transport_statuses as Array<any>).map(ConversationMessageTransportStatusToJSON)),
+        'type': value.type,
         'upload_keys': value.upload_keys,
     };
 }
