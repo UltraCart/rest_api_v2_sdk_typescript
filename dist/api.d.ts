@@ -12565,6 +12565,92 @@ export interface EmailCommseqResponse {
 /**
  *
  * @export
+ * @interface EmailCommseqSequenceTestRequest
+ */
+export interface EmailCommseqSequenceTestRequest {
+    /**
+     *
+     * @type {string}
+     * @memberof EmailCommseqSequenceTestRequest
+     */
+    cart_id?: string;
+    /**
+     *
+     * @type {Array<string>}
+     * @memberof EmailCommseqSequenceTestRequest
+     */
+    cart_item_ids?: Array<string>;
+    /**
+     *
+     * @type {string}
+     * @memberof EmailCommseqSequenceTestRequest
+     */
+    esp_commseq_uuid?: string;
+    /**
+     *
+     * @type {string}
+     * @memberof EmailCommseqSequenceTestRequest
+     */
+    name?: string;
+    /**
+     *
+     * @type {string}
+     * @memberof EmailCommseqSequenceTestRequest
+     */
+    order_id?: string;
+    /**
+     *
+     * @type {boolean}
+     * @memberof EmailCommseqSequenceTestRequest
+     */
+    please_review?: boolean;
+    /**
+     *
+     * @type {string}
+     * @memberof EmailCommseqSequenceTestRequest
+     */
+    send_to_email?: string;
+    /**
+     *
+     * @type {boolean}
+     * @memberof EmailCommseqSequenceTestRequest
+     */
+    send_to_logged_in_user?: boolean;
+}
+/**
+ *
+ * @export
+ * @interface EmailCommseqSequenceTestResponse
+ */
+export interface EmailCommseqSequenceTestResponse {
+    /**
+     *
+     * @type {ModelError}
+     * @memberof EmailCommseqSequenceTestResponse
+     */
+    error?: ModelError;
+    /**
+     *
+     * @type {ResponseMetadata}
+     * @memberof EmailCommseqSequenceTestResponse
+     */
+    metadata?: ResponseMetadata;
+    /**
+     * Indicates if API call was successful
+     * @type {boolean}
+     * @memberof EmailCommseqSequenceTestResponse
+     */
+    success?: boolean;
+    /**
+     *
+     * @type {Warning}
+     * @memberof EmailCommseqSequenceTestResponse
+     */
+    warning?: Warning;
+}
+/**
+ *
+ * @export
  * @interface EmailCommseqStat
  */
 export interface EmailCommseqStat {
@@ -41979,6 +42065,16 @@ export declare const StorefrontApiFetchParamCreator: (configuration?: Configurat
     sendWebhookTest(storefront_oid: number, email_commseq_webhook_test_request: EmailCommseqWebhookSendTestRequest, options?: any): FetchArgs;
     /**
      *
+     * @summary Sequence test
+     * @param {number} storefront_oid
+     * @param {string} commseq_uuid
+     * @param {EmailCommseqSequenceTestRequest} email_commseq_sequence_test_request Commseq test request
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    sequenceTest(storefront_oid: number, commseq_uuid: string, email_commseq_sequence_test_request: EmailCommseqSequenceTestRequest, options?: any): FetchArgs;
+    /**
+     *
      * @summary Start email campaign
      * @param {number} storefront_oid
      * @param {string} email_campaign_uuid
@@ -43465,6 +43561,16 @@ export declare const StorefrontApiFp: (configuration?: Configuration) => {
     sendWebhookTest(storefront_oid: number, email_commseq_webhook_test_request: EmailCommseqWebhookSendTestRequest, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<EmailCommseqWebhookSendTestResponse>;
     /**
      *
+     * @summary Sequence test
+     * @param {number} storefront_oid
+     * @param {string} commseq_uuid
+     * @param {EmailCommseqSequenceTestRequest} email_commseq_sequence_test_request Commseq test request
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    sequenceTest(storefront_oid: number, commseq_uuid: string, email_commseq_sequence_test_request: EmailCommseqSequenceTestRequest, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<EmailCommseqSequenceTestResponse>;
+    /**
+     *
      * @summary Start email campaign
      * @param {number} storefront_oid
      * @param {string} email_campaign_uuid
@@ -44949,6 +45055,16 @@ export declare const StorefrontApiFactory: (configuration?: Configuration, fetch
      * @throws {RequiredError}
      */
     sendWebhookTest(storefront_oid: number, email_commseq_webhook_test_request: EmailCommseqWebhookSendTestRequest, options?: any): Promise<EmailCommseqWebhookSendTestResponse>;
+    /**
+     *
+     * @summary Sequence test
+     * @param {number} storefront_oid
+     * @param {string} commseq_uuid
+     * @param {EmailCommseqSequenceTestRequest} email_commseq_sequence_test_request Commseq test request
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    sequenceTest(storefront_oid: number, commseq_uuid: string, email_commseq_sequence_test_request: EmailCommseqSequenceTestRequest, options?: any): Promise<EmailCommseqSequenceTestResponse>;
     /**
      *
      * @summary Start email campaign
@@ -46572,6 +46688,17 @@ export interface StorefrontApiInterface {
      * @memberof StorefrontApiInterface
      */
     sendWebhookTest(storefront_oid: number, email_commseq_webhook_test_request: EmailCommseqWebhookSendTestRequest, options?: any): Promise<EmailCommseqWebhookSendTestResponse>;
+    /**
+     *
+     * @summary Sequence test
+     * @param {number} storefront_oid
+     * @param {string} commseq_uuid
+     * @param {EmailCommseqSequenceTestRequest} email_commseq_sequence_test_request Commseq test request
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof StorefrontApiInterface
+     */
+    sequenceTest(storefront_oid: number, commseq_uuid: string, email_commseq_sequence_test_request: EmailCommseqSequenceTestRequest, options?: any): Promise<EmailCommseqSequenceTestResponse>;
     /**
      *
      * @summary Start email campaign
@@ -48222,6 +48349,17 @@ export declare class StorefrontApi extends BaseAPI implements StorefrontApiInter
      * @memberof StorefrontApi
      */
     sendWebhookTest(storefront_oid: number, email_commseq_webhook_test_request: EmailCommseqWebhookSendTestRequest, options?: any): Promise<EmailCommseqWebhookSendTestResponse>;
+    /**
+     *
+     * @summary Sequence test
+     * @param {number} storefront_oid
+     * @param {string} commseq_uuid
+     * @param {EmailCommseqSequenceTestRequest} email_commseq_sequence_test_request Commseq test request
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof StorefrontApi
+     */
+    sequenceTest(storefront_oid: number, commseq_uuid: string, email_commseq_sequence_test_request: EmailCommseqSequenceTestRequest, options?: any): Promise<EmailCommseqSequenceTestResponse>;
     /**
      *
      * @summary Start email campaign

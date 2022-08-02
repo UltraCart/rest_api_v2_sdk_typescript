@@ -12860,6 +12860,94 @@ export interface EmailCommseqResponse {
 /**
  * 
  * @export
+ * @interface EmailCommseqSequenceTestRequest
+ */
+export interface EmailCommseqSequenceTestRequest {
+    /**
+     * 
+     * @type {string}
+     * @memberof EmailCommseqSequenceTestRequest
+     */
+    cart_id?: string;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof EmailCommseqSequenceTestRequest
+     */
+    cart_item_ids?: Array<string>;
+    /**
+     * 
+     * @type {string}
+     * @memberof EmailCommseqSequenceTestRequest
+     */
+    esp_commseq_uuid?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof EmailCommseqSequenceTestRequest
+     */
+    name?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof EmailCommseqSequenceTestRequest
+     */
+    order_id?: string;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof EmailCommseqSequenceTestRequest
+     */
+    please_review?: boolean;
+    /**
+     * 
+     * @type {string}
+     * @memberof EmailCommseqSequenceTestRequest
+     */
+    send_to_email?: string;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof EmailCommseqSequenceTestRequest
+     */
+    send_to_logged_in_user?: boolean;
+}
+
+/**
+ * 
+ * @export
+ * @interface EmailCommseqSequenceTestResponse
+ */
+export interface EmailCommseqSequenceTestResponse {
+    /**
+     * 
+     * @type {ModelError}
+     * @memberof EmailCommseqSequenceTestResponse
+     */
+    error?: ModelError;
+    /**
+     * 
+     * @type {ResponseMetadata}
+     * @memberof EmailCommseqSequenceTestResponse
+     */
+    metadata?: ResponseMetadata;
+    /**
+     * Indicates if API call was successful
+     * @type {boolean}
+     * @memberof EmailCommseqSequenceTestResponse
+     */
+    success?: boolean;
+    /**
+     * 
+     * @type {Warning}
+     * @memberof EmailCommseqSequenceTestResponse
+     */
+    warning?: Warning;
+}
+
+/**
+ * 
+ * @export
  * @interface EmailCommseqStat
  */
 export interface EmailCommseqStat {
@@ -60893,6 +60981,81 @@ export const StorefrontApiFetchParamCreator = function (configuration?: Configur
         },
         /**
          * 
+         * @summary Sequence test
+         * @param {number} storefront_oid 
+         * @param {string} commseq_uuid 
+         * @param {EmailCommseqSequenceTestRequest} email_commseq_sequence_test_request Commseq test request
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        sequenceTest(storefront_oid: number, commseq_uuid: string, email_commseq_sequence_test_request: EmailCommseqSequenceTestRequest, options: any = {}): FetchArgs {
+            // verify required parameter 'storefront_oid' is not null or undefined
+            if (storefront_oid === null || storefront_oid === undefined) {
+                throw new RequiredError('storefront_oid','Required parameter storefront_oid was null or undefined when calling sequenceTest.');
+            }
+            // verify required parameter 'commseq_uuid' is not null or undefined
+            if (commseq_uuid === null || commseq_uuid === undefined) {
+                throw new RequiredError('commseq_uuid','Required parameter commseq_uuid was null or undefined when calling sequenceTest.');
+            }
+            // verify required parameter 'email_commseq_sequence_test_request' is not null or undefined
+            if (email_commseq_sequence_test_request === null || email_commseq_sequence_test_request === undefined) {
+                throw new RequiredError('email_commseq_sequence_test_request','Required parameter email_commseq_sequence_test_request was null or undefined when calling sequenceTest.');
+            }
+            const localVarPath = `/storefront/{storefront_oid}/email/commseqs/{commseq_uuid}/test`
+                .replace(`{${"storefront_oid"}}`, encodeURIComponent(String(storefront_oid)))
+                .replace(`{${"commseq_uuid"}}`, encodeURIComponent(String(commseq_uuid)));
+            const localVarUrlObj = url.parse(localVarPath, true);
+            const localVarRequestOptions = Object.assign({ method: 'POST' }, options);
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+    if(configuration && configuration.apiVersion) {
+      localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+    }
+
+
+
+            // authentication ultraCartBrowserApiKey required
+            if (configuration && configuration.apiKey) {
+                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
+					? configuration.apiKey("x-ultracart-browser-key")
+					: configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-browser-key"] = localVarApiKeyValue;
+            }
+
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+				const localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+					? configuration.accessToken("ultraCartOauth", ["storefront_write"])
+					: configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
+					? configuration.apiKey("x-ultracart-simple-key")
+					: configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+            const needsSerialization = (<any>"EmailCommseqSequenceTestRequest" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
+            localVarRequestOptions.body =  needsSerialization ? JSON.stringify(email_commseq_sequence_test_request || {}) : (email_commseq_sequence_test_request || "");
+
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
          * @summary Start email campaign
          * @param {number} storefront_oid 
          * @param {string} email_campaign_uuid 
@@ -65760,6 +65923,29 @@ export const StorefrontApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
+         * @summary Sequence test
+         * @param {number} storefront_oid 
+         * @param {string} commseq_uuid 
+         * @param {EmailCommseqSequenceTestRequest} email_commseq_sequence_test_request Commseq test request
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        sequenceTest(storefront_oid: number, commseq_uuid: string, email_commseq_sequence_test_request: EmailCommseqSequenceTestRequest, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<EmailCommseqSequenceTestResponse> {
+            const localVarFetchArgs = StorefrontApiFetchParamCreator(configuration).sequenceTest(storefront_oid, commseq_uuid, email_commseq_sequence_test_request, options);
+            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
+                    if (response.status >= 200 && response.status < 300) {
+                      return response.json();
+                      
+                    } else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
+         * 
          * @summary Start email campaign
          * @param {number} storefront_oid 
          * @param {string} email_campaign_uuid 
@@ -67859,6 +68045,18 @@ export const StorefrontApiFactory = function (configuration?: Configuration, fet
         },
         /**
          * 
+         * @summary Sequence test
+         * @param {number} storefront_oid 
+         * @param {string} commseq_uuid 
+         * @param {EmailCommseqSequenceTestRequest} email_commseq_sequence_test_request Commseq test request
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        sequenceTest(storefront_oid: number, commseq_uuid: string, email_commseq_sequence_test_request: EmailCommseqSequenceTestRequest, options?: any) {
+            return StorefrontApiFp(configuration).sequenceTest(storefront_oid, commseq_uuid, email_commseq_sequence_test_request, options)(fetch, basePath);
+        },
+        /**
+         * 
          * @summary Start email campaign
          * @param {number} storefront_oid 
          * @param {string} email_campaign_uuid 
@@ -69669,6 +69867,18 @@ export interface StorefrontApiInterface {
      * @memberof StorefrontApiInterface
      */
     sendWebhookTest(storefront_oid: number, email_commseq_webhook_test_request: EmailCommseqWebhookSendTestRequest, options?: any): Promise<EmailCommseqWebhookSendTestResponse>;
+
+    /**
+     * 
+     * @summary Sequence test
+     * @param {number} storefront_oid 
+     * @param {string} commseq_uuid 
+     * @param {EmailCommseqSequenceTestRequest} email_commseq_sequence_test_request Commseq test request
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof StorefrontApiInterface
+     */
+    sequenceTest(storefront_oid: number, commseq_uuid: string, email_commseq_sequence_test_request: EmailCommseqSequenceTestRequest, options?: any): Promise<EmailCommseqSequenceTestResponse>;
 
     /**
      * 
@@ -71753,6 +71963,20 @@ export class StorefrontApi extends BaseAPI implements StorefrontApiInterface {
      */
     public sendWebhookTest(storefront_oid: number, email_commseq_webhook_test_request: EmailCommseqWebhookSendTestRequest, options?: any) {
         return StorefrontApiFp(this.configuration).sendWebhookTest(storefront_oid, email_commseq_webhook_test_request, options)(this.fetch, this.basePath);
+    }
+
+    /**
+     * 
+     * @summary Sequence test
+     * @param {number} storefront_oid 
+     * @param {string} commseq_uuid 
+     * @param {EmailCommseqSequenceTestRequest} email_commseq_sequence_test_request Commseq test request
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof StorefrontApi
+     */
+    public sequenceTest(storefront_oid: number, commseq_uuid: string, email_commseq_sequence_test_request: EmailCommseqSequenceTestRequest, options?: any) {
+        return StorefrontApiFp(this.configuration).sequenceTest(storefront_oid, commseq_uuid, email_commseq_sequence_test_request, options)(this.fetch, this.basePath);
     }
 
     /**
