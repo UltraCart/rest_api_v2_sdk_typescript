@@ -260,6 +260,8 @@ export * from './EmailCommseqPostcardSendTestResponse';
 export * from './EmailCommseqPostcardsRequest';
 export * from './EmailCommseqPostcardsResponse';
 export * from './EmailCommseqResponse';
+export * from './EmailCommseqSequenceTestRequest';
+export * from './EmailCommseqSequenceTestResponse';
 export * from './EmailCommseqStat';
 export * from './EmailCommseqStatResponse';
 export * from './EmailCommseqStep';

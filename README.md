@@ -1,4 +1,4 @@
-## ultracart_rest_api_v2_typescript@4.0.47-RC
+## ultracart_rest_api_v2_typescript@4.0.48-RC
 
 This generator creates TypeScript/JavaScript client that utilizes [Fetch API](https://fetch.spec.whatwg.org/). The generated Node module can be used in the following environments:
 
@@ -36,7 +36,7 @@ navigate to the folder of your consuming project and run one of the following co
 _published:_
 
 ```
-npm install ultracart_rest_api_v2_typescript@4.0.47-RC --save
+npm install ultracart_rest_api_v2_typescript@4.0.48-RC --save
 ```
 
 _unPublished (not recommended):_
@@ -54,6 +54,7 @@ Not every change is committed to every SDK.
 
 | Version | Date | Comments |
 | --: | :-: | --- |
+| 4.0.48-RC | 08/02/2022 | storefront communication sequence test method |
 | 4.0.47-RC | 08/01/2022 | conversation event refinement |
 | 4.0.46-RC | 07/29/2022 | conversation development |
 | 4.0.45-RC | 07/28/2022 | conversation bug fixes |

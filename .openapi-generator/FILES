@@ -283,6 +283,8 @@ src/models/EmailCommseqPostcardSendTestResponse.ts
 src/models/EmailCommseqPostcardsRequest.ts
 src/models/EmailCommseqPostcardsResponse.ts
 src/models/EmailCommseqResponse.ts
+src/models/EmailCommseqSequenceTestRequest.ts
+src/models/EmailCommseqSequenceTestResponse.ts
 src/models/EmailCommseqStat.ts
 src/models/EmailCommseqStatResponse.ts
 src/models/EmailCommseqStep.ts

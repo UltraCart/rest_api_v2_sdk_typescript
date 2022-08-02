@@ -96,6 +96,12 @@ import {
     EmailCommseqResponse,
     EmailCommseqResponseFromJSON,
     EmailCommseqResponseToJSON,
+    EmailCommseqSequenceTestRequest,
+    EmailCommseqSequenceTestRequestFromJSON,
+    EmailCommseqSequenceTestRequestToJSON,
+    EmailCommseqSequenceTestResponse,
+    EmailCommseqSequenceTestResponseFromJSON,
+    EmailCommseqSequenceTestResponseToJSON,
     EmailCommseqStatResponse,
     EmailCommseqStatResponseFromJSON,
     EmailCommseqStatResponseToJSON,
@@ -1079,6 +1085,12 @@ export interface SendPostcardTestRequest {
 export interface SendWebhookTestRequest {
     storefrontOid: number;
     emailCommseqWebhookTestRequest: EmailCommseqWebhookSendTestRequest;
+}
+
+export interface SequenceTestRequest {
+    storefrontOid: number;
+    commseqUuid: string;
+    emailCommseqSequenceTestRequest: EmailCommseqSequenceTestRequest;
 }
 
 export interface StartEmailCampaignRequest {
@@ -3435,6 +3447,23 @@ export interface StorefrontApiInterface {
      * Send webhook test
      */
     sendWebhookTest(requestParameters: SendWebhookTestRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EmailCommseqWebhookSendTestResponse>;
+
+    /**
+     * 
+     * @summary Sequence test
+     * @param {number} storefrontOid 
+     * @param {string} commseqUuid 
+     * @param {EmailCommseqSequenceTestRequest} emailCommseqSequenceTestRequest Commseq test request
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof StorefrontApiInterface
+     */
+    sequenceTestRaw(requestParameters: SequenceTestRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EmailCommseqSequenceTestResponse>>;
+
+    /**
+     * Sequence test
+     */
+    sequenceTest(requestParameters: SequenceTestRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EmailCommseqSequenceTestResponse>;
 
     /**
      * 
@@ -10387,6 +10416,60 @@ export class StorefrontApi extends runtime.BaseAPI implements StorefrontApiInter
      */
     async sendWebhookTest(requestParameters: SendWebhookTestRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EmailCommseqWebhookSendTestResponse> {
         const response = await this.sendWebhookTestRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Sequence test
+     */
+    async sequenceTestRaw(requestParameters: SequenceTestRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EmailCommseqSequenceTestResponse>> {
+        if (requestParameters.storefrontOid === null || requestParameters.storefrontOid === undefined) {
+            throw new runtime.RequiredError('storefrontOid','Required parameter requestParameters.storefrontOid was null or undefined when calling sequenceTest.');
+        }
+
+        if (requestParameters.commseqUuid === null || requestParameters.commseqUuid === undefined) {
+            throw new runtime.RequiredError('commseqUuid','Required parameter requestParameters.commseqUuid was null or undefined when calling sequenceTest.');
+        }
+
+        if (requestParameters.emailCommseqSequenceTestRequest === null || requestParameters.emailCommseqSequenceTestRequest === undefined) {
+            throw new runtime.RequiredError('emailCommseqSequenceTestRequest','Required parameter requestParameters.emailCommseqSequenceTestRequest was null or undefined when calling sequenceTest.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-browser-key"] = this.configuration.apiKey("x-ultracart-browser-key"); // ultraCartBrowserApiKey authentication
+        }
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", ["storefront_write"]);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/storefront/{storefront_oid}/email/commseqs/{commseq_uuid}/test`.replace(`{${"storefront_oid"}}`, encodeURIComponent(String(requestParameters.storefrontOid))).replace(`{${"commseq_uuid"}}`, encodeURIComponent(String(requestParameters.commseqUuid))),
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: EmailCommseqSequenceTestRequestToJSON(requestParameters.emailCommseqSequenceTestRequest),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => EmailCommseqSequenceTestResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Sequence test
+     */
+    async sequenceTest(requestParameters: SequenceTestRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EmailCommseqSequenceTestResponse> {
+        const response = await this.sequenceTestRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
