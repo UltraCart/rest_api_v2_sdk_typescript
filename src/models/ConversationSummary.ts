@@ -13,6 +13,13 @@
  */
 
 import { exists, mapValues } from '../runtime';
+import {
+    ConversationParticipant,
+    ConversationParticipantFromJSON,
+    ConversationParticipantFromJSONTyped,
+    ConversationParticipantToJSON,
+} from './ConversationParticipant';
+
 /**
  * 
  * @export
@@ -74,6 +81,12 @@ export interface ConversationSummary {
      */
     message_count?: number;
     /**
+     * 
+     * @type {Array<ConversationParticipant>}
+     * @memberof ConversationSummary
+     */
+    participants?: Array<ConversationParticipant>;
+    /**
      * Start of the conversation date/time
      * @type {string}
      * @memberof ConversationSummary
@@ -112,6 +125,7 @@ export function ConversationSummaryFromJSONTyped(json: any, ignoreDiscriminator:
         'last_message_dts': !exists(json, 'last_message_dts') ? undefined : json['last_message_dts'],
         'merchant_id': !exists(json, 'merchant_id') ? undefined : json['merchant_id'],
         'message_count': !exists(json, 'message_count') ? undefined : json['message_count'],
+        'participants': !exists(json, 'participants') ? undefined : ((json['participants'] as Array<any>).map(ConversationParticipantFromJSON)),
         'start_dts': !exists(json, 'start_dts') ? undefined : json['start_dts'],
         'unread_messages': !exists(json, 'unread_messages') ? undefined : json['unread_messages'],
         'visible': !exists(json, 'visible') ? undefined : json['visible'],
@@ -136,6 +150,7 @@ export function ConversationSummaryToJSON(value?: ConversationSummary | null): a
         'last_message_dts': value.last_message_dts,
         'merchant_id': value.merchant_id,
         'message_count': value.message_count,
+        'participants': value.participants === undefined ? undefined : ((value.participants as Array<any>).map(ConversationParticipantToJSON)),
         'start_dts': value.start_dts,
         'unread_messages': value.unread_messages,
         'visible': value.visible,
