@@ -6671,6 +6671,12 @@ export interface ConversationSummary {
      */
     message_count?: number;
     /**
+     *
+     * @type {Array<ConversationParticipant>}
+     * @memberof ConversationSummary
+     */
+    participants?: Array<ConversationParticipant>;
+    /**
      * Start of the conversation date/time
      * @type {string}
      * @memberof ConversationSummary
@@ -6967,6 +6973,12 @@ export interface ConversationWebsocketMessage {
     event_new_message?: ConversationSummary;
     /**
      *
+     * @type {ConversationSummary}
+     * @memberof ConversationWebsocketMessage
+     */
+    event_participant_update?: ConversationSummary;
+    /**
+     *
      * @type {ConversationEventQueuePosition}
      * @memberof ConversationWebsocketMessage
      */
@@ -7031,7 +7043,8 @@ export declare namespace ConversationWebsocketMessage {
         NewMessage,
         UpdatedMessage,
         QueueStatusUpdate,
-        Rrweb
+        Rrweb,
+        ParticipantUpdate
     }
     /**
      * @export

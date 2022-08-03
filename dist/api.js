@@ -411,6 +411,7 @@ var ConversationWebsocketMessage;
         EventTypeEnum[EventTypeEnum["UpdatedMessage"] = 'updated message'] = "UpdatedMessage";
         EventTypeEnum[EventTypeEnum["QueueStatusUpdate"] = 'queue status update'] = "QueueStatusUpdate";
         EventTypeEnum[EventTypeEnum["Rrweb"] = 'rrweb'] = "Rrweb";
+        EventTypeEnum[EventTypeEnum["ParticipantUpdate"] = 'participant update'] = "ParticipantUpdate";
     })(EventTypeEnum = ConversationWebsocketMessage.EventTypeEnum || (ConversationWebsocketMessage.EventTypeEnum = {}));
     /**
      * @export
