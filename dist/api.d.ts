@@ -6314,6 +6314,31 @@ export declare namespace ConversationEventRRWeb {
 /**
  *
  * @export
+ * @interface ConversationEventTyping
+ */
+export interface ConversationEventTyping {
+    /**
+     *
+     * @type {string}
+     * @memberof ConversationEventTyping
+     */
+    author_conversation_participant_arn?: string;
+    /**
+     *
+     * @type {string}
+     * @memberof ConversationEventTyping
+     */
+    author_conversation_participant_name?: string;
+    /**
+     *
+     * @type {string}
+     * @memberof ConversationEventTyping
+     */
+    value?: string;
+}
+/**
+ *
+ * @export
  * @interface ConversationMessage
  */
 export interface ConversationMessage {
@@ -6964,6 +6989,12 @@ export interface ConversationWebsocketMessage {
      * @memberof ConversationWebsocketMessage
      */
     event_type?: ConversationWebsocketMessage.EventTypeEnum;
+    /**
+     *
+     * @type {ConversationEventTyping}
+     * @memberof ConversationWebsocketMessage
+     */
+    event_typing?: ConversationEventTyping;
     /**
      *
      * @type {ConversationMessage}
