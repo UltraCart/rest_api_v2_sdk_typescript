@@ -122,6 +122,7 @@ export * from './ConversationAgentAuth';
 export * from './ConversationAgentAuthResponse';
 export * from './ConversationEventQueuePosition';
 export * from './ConversationEventRRWeb';
+export * from './ConversationEventTyping';
 export * from './ConversationMessage';
 export * from './ConversationMessageTransportStatus';
 export * from './ConversationMultimediaUploadUrl';

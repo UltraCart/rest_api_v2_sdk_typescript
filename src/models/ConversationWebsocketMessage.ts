@@ -26,6 +26,12 @@ import {
     ConversationEventRRWebToJSON,
 } from './ConversationEventRRWeb';
 import {
+    ConversationEventTyping,
+    ConversationEventTypingFromJSON,
+    ConversationEventTypingFromJSONTyped,
+    ConversationEventTypingToJSON,
+} from './ConversationEventTyping';
+import {
     ConversationMessage,
     ConversationMessageFromJSON,
     ConversationMessageFromJSONTyped,
@@ -100,6 +106,12 @@ export interface ConversationWebsocketMessage {
     event_type?: ConversationWebsocketMessageEventTypeEnum;
     /**
      * 
+     * @type {ConversationEventTyping}
+     * @memberof ConversationWebsocketMessage
+     */
+    event_typing?: ConversationEventTyping;
+    /**
+     * 
      * @type {ConversationMessage}
      * @memberof ConversationWebsocketMessage
      */
@@ -164,6 +176,7 @@ export function ConversationWebsocketMessageFromJSONTyped(json: any, ignoreDiscr
         'event_queue_status_update': !exists(json, 'event_queue_status_update') ? undefined : ConversationWebchatQueueStatusFromJSON(json['event_queue_status_update']),
         'event_rrweb': !exists(json, 'event_rrweb') ? undefined : ConversationEventRRWebFromJSON(json['event_rrweb']),
         'event_type': !exists(json, 'event_type') ? undefined : json['event_type'],
+        'event_typing': !exists(json, 'event_typing') ? undefined : ConversationEventTypingFromJSON(json['event_typing']),
         'event_updated_message': !exists(json, 'event_updated_message') ? undefined : ConversationMessageFromJSON(json['event_updated_message']),
         'message': !exists(json, 'message') ? undefined : ConversationMessageFromJSON(json['message']),
         'type': !exists(json, 'type') ? undefined : json['type'],
@@ -187,6 +200,7 @@ export function ConversationWebsocketMessageToJSON(value?: ConversationWebsocket
         'event_queue_status_update': ConversationWebchatQueueStatusToJSON(value.event_queue_status_update),
         'event_rrweb': ConversationEventRRWebToJSON(value.event_rrweb),
         'event_type': value.event_type,
+        'event_typing': ConversationEventTypingToJSON(value.event_typing),
         'event_updated_message': ConversationMessageToJSON(value.event_updated_message),
         'message': ConversationMessageToJSON(value.message),
         'type': value.type,

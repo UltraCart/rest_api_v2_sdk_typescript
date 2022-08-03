@@ -145,6 +145,7 @@ src/models/ConversationAgentAuth.ts
 src/models/ConversationAgentAuthResponse.ts
 src/models/ConversationEventQueuePosition.ts
 src/models/ConversationEventRRWeb.ts
+src/models/ConversationEventTyping.ts
 src/models/ConversationMessage.ts
 src/models/ConversationMessageTransportStatus.ts
 src/models/ConversationMultimediaUploadUrl.ts
