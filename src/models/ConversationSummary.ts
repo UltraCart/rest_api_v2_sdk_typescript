@@ -69,6 +69,12 @@ export interface ConversationSummary {
      */
     last_message_dts?: string;
     /**
+     * The communication medium of the customer.
+     * @type {string}
+     * @memberof ConversationSummary
+     */
+    medium?: ConversationSummaryMediumEnum;
+    /**
      * 
      * @type {string}
      * @memberof ConversationSummary
@@ -106,6 +112,17 @@ export interface ConversationSummary {
     visible?: boolean;
 }
 
+
+/**
+ * @export
+ */
+export const ConversationSummaryMediumEnum = {
+    Sms: 'sms',
+    Websocket: 'websocket'
+} as const;
+export type ConversationSummaryMediumEnum = typeof ConversationSummaryMediumEnum[keyof typeof ConversationSummaryMediumEnum];
+
+
 export function ConversationSummaryFromJSON(json: any): ConversationSummary {
     return ConversationSummaryFromJSONTyped(json, false);
 }
@@ -123,6 +140,7 @@ export function ConversationSummaryFromJSONTyped(json: any, ignoreDiscriminator:
         'last_conversation_participant_arn': !exists(json, 'last_conversation_participant_arn') ? undefined : json['last_conversation_participant_arn'],
         'last_conversation_participant_name': !exists(json, 'last_conversation_participant_name') ? undefined : json['last_conversation_participant_name'],
         'last_message_dts': !exists(json, 'last_message_dts') ? undefined : json['last_message_dts'],
+        'medium': !exists(json, 'medium') ? undefined : json['medium'],
         'merchant_id': !exists(json, 'merchant_id') ? undefined : json['merchant_id'],
         'message_count': !exists(json, 'message_count') ? undefined : json['message_count'],
         'participants': !exists(json, 'participants') ? undefined : ((json['participants'] as Array<any>).map(ConversationParticipantFromJSON)),
@@ -148,6 +166,7 @@ export function ConversationSummaryToJSON(value?: ConversationSummary | null): a
         'last_conversation_participant_arn': value.last_conversation_participant_arn,
         'last_conversation_participant_name': value.last_conversation_participant_name,
         'last_message_dts': value.last_message_dts,
+        'medium': value.medium,
         'merchant_id': value.merchant_id,
         'message_count': value.message_count,
         'participants': value.participants === undefined ? undefined : ((value.participants as Array<any>).map(ConversationParticipantToJSON)),
