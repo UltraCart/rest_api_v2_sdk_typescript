@@ -28,9 +28,9 @@ var __extends = (this && this.__extends) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.AffiliateApiFp = exports.AffiliateApiFetchParamCreator = exports.Weight = exports.Webhook = exports.TempMultimedia = exports.OrderQuery = exports.OrderPaymentECheck = exports.OrderPaymentCreditCard = exports.OrderPayment = exports.OrderItemOption = exports.OrderItem = exports.OrderFraudScore = exports.OrderFormat = exports.OrderAutoOrder = exports.OrderAffiliateLedger = exports.Order = exports.OauthTokenResponse = exports.ItemThirdPartyEmailMarketing = exports.ItemTax = exports.ItemTag = exports.ItemShippingMethod = exports.ItemShippingDestinationRestriction = exports.ItemRestrictionItem = exports.ItemRelatedItem = exports.ItemOptionValue = exports.ItemOption = exports.ItemContentMultimedia = exports.ItemAutoOrderStep = exports.Experiment = exports.EmailPerformance = exports.EmailCommseqStep = exports.Distance = exports.ConversationWebsocketMessage = exports.ConversationMessage = exports.ConversationEventRRWeb = exports.CheckoutHandoffRequest = exports.ChannelPartnerOrderItem = exports.ChannelPartnerOrder = exports.CartKitComponentOption = exports.CartItemOption = exports.CartItemMultimedia = exports.CartCustomerProfileCreditCard = exports.AutoOrderItemSimpleSchedule = exports.AutoOrderItem = exports.AutoOrder = exports.AffiliateLink = exports.AffiliateLedger = exports.RequiredError = exports.BaseAPI = exports.COLLECTION_FORMATS = void 0;
-exports.OauthApi = exports.OauthApiFactory = exports.OauthApiFp = exports.OauthApiFetchParamCreator = exports.ItemApi = exports.ItemApiFactory = exports.ItemApiFp = exports.ItemApiFetchParamCreator = exports.IntegrationLogApi = exports.IntegrationLogApiFactory = exports.IntegrationLogApiFp = exports.IntegrationLogApiFetchParamCreator = exports.GiftCertificateApi = exports.GiftCertificateApiFactory = exports.GiftCertificateApiFp = exports.GiftCertificateApiFetchParamCreator = exports.FulfillmentApi = exports.FulfillmentApiFactory = exports.FulfillmentApiFp = exports.FulfillmentApiFetchParamCreator = exports.CustomerApi = exports.CustomerApiFactory = exports.CustomerApiFp = exports.CustomerApiFetchParamCreator = exports.CouponApi = exports.CouponApiFactory = exports.CouponApiFp = exports.CouponApiFetchParamCreator = exports.ConversationApi = exports.ConversationApiFactory = exports.ConversationApiFp = exports.ConversationApiFetchParamCreator = exports.CheckoutApi = exports.CheckoutApiFactory = exports.CheckoutApiFp = exports.CheckoutApiFetchParamCreator = exports.ChargebackApi = exports.ChargebackApiFactory = exports.ChargebackApiFp = exports.ChargebackApiFetchParamCreator = exports.ChannelPartnerApi = exports.ChannelPartnerApiFactory = exports.ChannelPartnerApiFp = exports.ChannelPartnerApiFetchParamCreator = exports.AutoOrderApi = exports.AutoOrderApiFactory = exports.AutoOrderApiFp = exports.AutoOrderApiFetchParamCreator = exports.AffiliateApi = exports.AffiliateApiFactory = void 0;
-exports.WebhookApi = exports.WebhookApiFactory = exports.WebhookApiFp = exports.WebhookApiFetchParamCreator = exports.UserApi = exports.UserApiFactory = exports.UserApiFp = exports.UserApiFetchParamCreator = exports.TaxApi = exports.TaxApiFactory = exports.TaxApiFp = exports.TaxApiFetchParamCreator = exports.StorefrontApi = exports.StorefrontApiFactory = exports.StorefrontApiFp = exports.StorefrontApiFetchParamCreator = exports.SsoApi = exports.SsoApiFactory = exports.SsoApiFp = exports.SsoApiFetchParamCreator = exports.OrderApi = exports.OrderApiFactory = exports.OrderApiFp = exports.OrderApiFetchParamCreator = void 0;
+exports.Weight = exports.Webhook = exports.TempMultimedia = exports.OrderQuery = exports.OrderPaymentECheck = exports.OrderPaymentCreditCard = exports.OrderPayment = exports.OrderItemOption = exports.OrderItem = exports.OrderFraudScore = exports.OrderFormat = exports.OrderAutoOrder = exports.OrderAffiliateLedger = exports.Order = exports.OauthTokenResponse = exports.ItemThirdPartyEmailMarketing = exports.ItemTax = exports.ItemTag = exports.ItemShippingMethod = exports.ItemShippingDestinationRestriction = exports.ItemRestrictionItem = exports.ItemRelatedItem = exports.ItemOptionValue = exports.ItemOption = exports.ItemContentMultimedia = exports.ItemAutoOrderStep = exports.Experiment = exports.EmailPerformance = exports.EmailCommseqStep = exports.Distance = exports.ConversationWebsocketMessage = exports.ConversationSummary = exports.ConversationMessage = exports.ConversationEventRRWeb = exports.Conversation = exports.CheckoutHandoffRequest = exports.ChannelPartnerOrderItem = exports.ChannelPartnerOrder = exports.CartKitComponentOption = exports.CartItemOption = exports.CartItemMultimedia = exports.CartCustomerProfileCreditCard = exports.AutoOrderItemSimpleSchedule = exports.AutoOrderItem = exports.AutoOrder = exports.AffiliateLink = exports.AffiliateLedger = exports.RequiredError = exports.BaseAPI = exports.COLLECTION_FORMATS = void 0;
+exports.OauthApiFp = exports.OauthApiFetchParamCreator = exports.ItemApi = exports.ItemApiFactory = exports.ItemApiFp = exports.ItemApiFetchParamCreator = exports.IntegrationLogApi = exports.IntegrationLogApiFactory = exports.IntegrationLogApiFp = exports.IntegrationLogApiFetchParamCreator = exports.GiftCertificateApi = exports.GiftCertificateApiFactory = exports.GiftCertificateApiFp = exports.GiftCertificateApiFetchParamCreator = exports.FulfillmentApi = exports.FulfillmentApiFactory = exports.FulfillmentApiFp = exports.FulfillmentApiFetchParamCreator = exports.CustomerApi = exports.CustomerApiFactory = exports.CustomerApiFp = exports.CustomerApiFetchParamCreator = exports.CouponApi = exports.CouponApiFactory = exports.CouponApiFp = exports.CouponApiFetchParamCreator = exports.ConversationApi = exports.ConversationApiFactory = exports.ConversationApiFp = exports.ConversationApiFetchParamCreator = exports.CheckoutApi = exports.CheckoutApiFactory = exports.CheckoutApiFp = exports.CheckoutApiFetchParamCreator = exports.ChargebackApi = exports.ChargebackApiFactory = exports.ChargebackApiFp = exports.ChargebackApiFetchParamCreator = exports.ChannelPartnerApi = exports.ChannelPartnerApiFactory = exports.ChannelPartnerApiFp = exports.ChannelPartnerApiFetchParamCreator = exports.AutoOrderApi = exports.AutoOrderApiFactory = exports.AutoOrderApiFp = exports.AutoOrderApiFetchParamCreator = exports.AffiliateApi = exports.AffiliateApiFactory = exports.AffiliateApiFp = exports.AffiliateApiFetchParamCreator = void 0;
+exports.WebhookApi = exports.WebhookApiFactory = exports.WebhookApiFp = exports.WebhookApiFetchParamCreator = exports.UserApi = exports.UserApiFactory = exports.UserApiFp = exports.UserApiFetchParamCreator = exports.TaxApi = exports.TaxApiFactory = exports.TaxApiFp = exports.TaxApiFetchParamCreator = exports.StorefrontApi = exports.StorefrontApiFactory = exports.StorefrontApiFp = exports.StorefrontApiFetchParamCreator = exports.SsoApi = exports.SsoApiFactory = exports.SsoApiFp = exports.SsoApiFetchParamCreator = exports.OrderApi = exports.OrderApiFactory = exports.OrderApiFp = exports.OrderApiFetchParamCreator = exports.OauthApi = exports.OauthApiFactory = void 0;
 var url = require("url");
 var portableFetch = require("portable-fetch");
 var BASE_PATH = "https://secure.ultracart.com/rest/v2".replace(/\/+$/, "");
@@ -361,6 +361,22 @@ var CheckoutHandoffRequest;
 })(CheckoutHandoffRequest = exports.CheckoutHandoffRequest || (exports.CheckoutHandoffRequest = {}));
 /**
  * @export
+ * @namespace Conversation
+ */
+var Conversation;
+(function (Conversation) {
+    /**
+     * @export
+     * @enum {string}
+     */
+    var MediumEnum;
+    (function (MediumEnum) {
+        MediumEnum[MediumEnum["Sms"] = 'sms'] = "Sms";
+        MediumEnum[MediumEnum["Websocket"] = 'websocket'] = "Websocket";
+    })(MediumEnum = Conversation.MediumEnum || (Conversation.MediumEnum = {}));
+})(Conversation = exports.Conversation || (exports.Conversation = {}));
+/**
+ * @export
  * @namespace ConversationEventRRWeb
  */
 var ConversationEventRRWeb;
@@ -391,6 +407,22 @@ var ConversationMessage;
         TypeEnum[TypeEnum["Notice"] = 'notice'] = "Notice";
     })(TypeEnum = ConversationMessage.TypeEnum || (ConversationMessage.TypeEnum = {}));
 })(ConversationMessage = exports.ConversationMessage || (exports.ConversationMessage = {}));
+/**
+ * @export
+ * @namespace ConversationSummary
+ */
+var ConversationSummary;
+(function (ConversationSummary) {
+    /**
+     * @export
+     * @enum {string}
+     */
+    var MediumEnum;
+    (function (MediumEnum) {
+        MediumEnum[MediumEnum["Sms"] = 'sms'] = "Sms";
+        MediumEnum[MediumEnum["Websocket"] = 'websocket'] = "Websocket";
+    })(MediumEnum = ConversationSummary.MediumEnum || (ConversationSummary.MediumEnum = {}));
+})(ConversationSummary = exports.ConversationSummary || (exports.ConversationSummary = {}));
 /**
  * @export
  * @namespace ConversationWebsocketMessage
@@ -5537,12 +5569,13 @@ var ConversationApiFetchParamCreator = function (configuration) {
         /**
          * Retrieve a list of conversation summaries that are ordered newest to oldest, include the most recent message and whether its been read.
          * @summary Retrieve a list of conversation summaries newest to oldest
+         * @param {string} [medium]
          * @param {number} [_limit] The maximum number of records to return on this one API call. (Max 200)
          * @param {number} [_offset] Pagination of the record set.  Offset is a zero based index.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getConversations: function (_limit, _offset, options) {
+        getConversations: function (medium, _limit, _offset, options) {
             if (options === void 0) { options = {}; }
             var localVarPath = "/conversation/conversations";
             var localVarUrlObj = url.parse(localVarPath, true);
@@ -5566,6 +5599,9 @@ var ConversationApiFetchParamCreator = function (configuration) {
                     ? configuration.apiKey("x-ultracart-simple-key")
                     : configuration.apiKey;
                 localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+            if (medium !== undefined) {
+                localVarQueryParameter['medium'] = medium;
             }
             if (_limit !== undefined) {
                 localVarQueryParameter['_limit'] = _limit;
@@ -5874,13 +5910,14 @@ var ConversationApiFp = function (configuration) {
         /**
          * Retrieve a list of conversation summaries that are ordered newest to oldest, include the most recent message and whether its been read.
          * @summary Retrieve a list of conversation summaries newest to oldest
+         * @param {string} [medium]
          * @param {number} [_limit] The maximum number of records to return on this one API call. (Max 200)
          * @param {number} [_offset] Pagination of the record set.  Offset is a zero based index.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getConversations: function (_limit, _offset, options) {
-            var localVarFetchArgs = (0, exports.ConversationApiFetchParamCreator)(configuration).getConversations(_limit, _offset, options);
+        getConversations: function (medium, _limit, _offset, options) {
+            var localVarFetchArgs = (0, exports.ConversationApiFetchParamCreator)(configuration).getConversations(medium, _limit, _offset, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -6033,13 +6070,14 @@ var ConversationApiFactory = function (configuration, fetch, basePath) {
         /**
          * Retrieve a list of conversation summaries that are ordered newest to oldest, include the most recent message and whether its been read.
          * @summary Retrieve a list of conversation summaries newest to oldest
+         * @param {string} [medium]
          * @param {number} [_limit] The maximum number of records to return on this one API call. (Max 200)
          * @param {number} [_offset] Pagination of the record set.  Offset is a zero based index.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getConversations: function (_limit, _offset, options) {
-            return (0, exports.ConversationApiFp)(configuration).getConversations(_limit, _offset, options)(fetch, basePath);
+        getConversations: function (medium, _limit, _offset, options) {
+            return (0, exports.ConversationApiFp)(configuration).getConversations(medium, _limit, _offset, options)(fetch, basePath);
         },
         /**
          * Join a conversation
@@ -6141,14 +6179,15 @@ var ConversationApi = /** @class */ (function (_super) {
     /**
      * Retrieve a list of conversation summaries that are ordered newest to oldest, include the most recent message and whether its been read.
      * @summary Retrieve a list of conversation summaries newest to oldest
+     * @param {string} [medium]
      * @param {number} [_limit] The maximum number of records to return on this one API call. (Max 200)
      * @param {number} [_offset] Pagination of the record set.  Offset is a zero based index.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ConversationApi
      */
-    ConversationApi.prototype.getConversations = function (_limit, _offset, options) {
-        return (0, exports.ConversationApiFp)(this.configuration).getConversations(_limit, _offset, options)(this.fetch, this.basePath);
+    ConversationApi.prototype.getConversations = function (medium, _limit, _offset, options) {
+        return (0, exports.ConversationApiFp)(this.configuration).getConversations(medium, _limit, _offset, options)(this.fetch, this.basePath);
     };
     /**
      * Join a conversation

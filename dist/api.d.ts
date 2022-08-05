@@ -6135,7 +6135,43 @@ export interface Conversation {
      * @type {string}
      * @memberof Conversation
      */
+    last_conversation_message_body?: string;
+    /**
+     *
+     * @type {string}
+     * @memberof Conversation
+     */
+    last_conversation_participant_arn?: string;
+    /**
+     *
+     * @type {string}
+     * @memberof Conversation
+     */
+    last_conversation_participant_name?: string;
+    /**
+     * Last message date/time
+     * @type {string}
+     * @memberof Conversation
+     */
+    last_message_dts?: string;
+    /**
+     * The communication medium of the customer.
+     * @type {string}
+     * @memberof Conversation
+     */
+    medium?: Conversation.MediumEnum;
+    /**
+     *
+     * @type {string}
+     * @memberof Conversation
+     */
     merchant_id?: string;
+    /**
+     *
+     * @type {number}
+     * @memberof Conversation
+     */
+    message_count?: number;
     /**
      *
      * @type {Array<ConversationMessage>}
@@ -6148,6 +6184,38 @@ export interface Conversation {
      * @memberof Conversation
      */
     participants?: Array<ConversationParticipant>;
+    /**
+     * Start of the conversation date/time
+     * @type {string}
+     * @memberof Conversation
+     */
+    start_dts?: string;
+    /**
+     *
+     * @type {boolean}
+     * @memberof Conversation
+     */
+    unread_messages?: boolean;
+    /**
+     *
+     * @type {boolean}
+     * @memberof Conversation
+     */
+    visible?: boolean;
+}
+/**
+ * @export
+ * @namespace Conversation
+ */
+export declare namespace Conversation {
+    /**
+     * @export
+     * @enum {string}
+     */
+    enum MediumEnum {
+        Sms,
+        Websocket
+    }
 }
 /**
  *
@@ -6659,6 +6727,12 @@ export interface ConversationSummary {
      */
     last_message_dts?: string;
     /**
+     * The communication medium of the customer.
+     * @type {string}
+     * @memberof ConversationSummary
+     */
+    medium?: ConversationSummary.MediumEnum;
+    /**
      *
      * @type {string}
      * @memberof ConversationSummary
@@ -6694,6 +6768,20 @@ export interface ConversationSummary {
      * @memberof ConversationSummary
      */
     visible?: boolean;
+}
+/**
+ * @export
+ * @namespace ConversationSummary
+ */
+export declare namespace ConversationSummary {
+    /**
+     * @export
+     * @enum {string}
+     */
+    enum MediumEnum {
+        Sms,
+        Websocket
+    }
 }
 /**
  *
@@ -35429,12 +35517,13 @@ export declare const ConversationApiFetchParamCreator: (configuration?: Configur
     /**
      * Retrieve a list of conversation summaries that are ordered newest to oldest, include the most recent message and whether its been read.
      * @summary Retrieve a list of conversation summaries newest to oldest
+     * @param {string} [medium]
      * @param {number} [_limit] The maximum number of records to return on this one API call. (Max 200)
      * @param {number} [_offset] Pagination of the record set.  Offset is a zero based index.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getConversations(_limit?: number, _offset?: number, options?: any): FetchArgs;
+    getConversations(medium?: string, _limit?: number, _offset?: number, options?: any): FetchArgs;
     /**
      * Join a conversation
      * @summary Join a conversation
@@ -35507,12 +35596,13 @@ export declare const ConversationApiFp: (configuration?: Configuration) => {
     /**
      * Retrieve a list of conversation summaries that are ordered newest to oldest, include the most recent message and whether its been read.
      * @summary Retrieve a list of conversation summaries newest to oldest
+     * @param {string} [medium]
      * @param {number} [_limit] The maximum number of records to return on this one API call. (Max 200)
      * @param {number} [_offset] Pagination of the record set.  Offset is a zero based index.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getConversations(_limit?: number, _offset?: number, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ConversationsResponse>;
+    getConversations(medium?: string, _limit?: number, _offset?: number, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ConversationsResponse>;
     /**
      * Join a conversation
      * @summary Join a conversation
@@ -35585,12 +35675,13 @@ export declare const ConversationApiFactory: (configuration?: Configuration, fet
     /**
      * Retrieve a list of conversation summaries that are ordered newest to oldest, include the most recent message and whether its been read.
      * @summary Retrieve a list of conversation summaries newest to oldest
+     * @param {string} [medium]
      * @param {number} [_limit] The maximum number of records to return on this one API call. (Max 200)
      * @param {number} [_offset] Pagination of the record set.  Offset is a zero based index.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getConversations(_limit?: number, _offset?: number, options?: any): Promise<ConversationsResponse>;
+    getConversations(medium?: string, _limit?: number, _offset?: number, options?: any): Promise<ConversationsResponse>;
     /**
      * Join a conversation
      * @summary Join a conversation
@@ -35668,13 +35759,14 @@ export interface ConversationApiInterface {
     /**
      * Retrieve a list of conversation summaries that are ordered newest to oldest, include the most recent message and whether its been read.
      * @summary Retrieve a list of conversation summaries newest to oldest
+     * @param {string} [medium]
      * @param {number} [_limit] The maximum number of records to return on this one API call. (Max 200)
      * @param {number} [_offset] Pagination of the record set.  Offset is a zero based index.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ConversationApiInterface
      */
-    getConversations(_limit?: number, _offset?: number, options?: any): Promise<ConversationsResponse>;
+    getConversations(medium?: string, _limit?: number, _offset?: number, options?: any): Promise<ConversationsResponse>;
     /**
      * Join a conversation
      * @summary Join a conversation
@@ -35757,13 +35849,14 @@ export declare class ConversationApi extends BaseAPI implements ConversationApiI
     /**
      * Retrieve a list of conversation summaries that are ordered newest to oldest, include the most recent message and whether its been read.
      * @summary Retrieve a list of conversation summaries newest to oldest
+     * @param {string} [medium]
      * @param {number} [_limit] The maximum number of records to return on this one API call. (Max 200)
      * @param {number} [_offset] Pagination of the record set.  Offset is a zero based index.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ConversationApi
      */
-    getConversations(_limit?: number, _offset?: number, options?: any): Promise<ConversationsResponse>;
+    getConversations(medium?: string, _limit?: number, _offset?: number, options?: any): Promise<ConversationsResponse>;
     /**
      * Join a conversation
      * @summary Join a conversation
