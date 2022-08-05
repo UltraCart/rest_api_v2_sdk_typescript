@@ -52,10 +52,22 @@ export interface ConversationMessage {
     client_message_id?: string;
     /**
      * 
+     * @type {string}
+     * @memberof ConversationMessage
+     */
+    conversation_message_uuid?: string;
+    /**
+     * 
      * @type {Array<string>}
      * @memberof ConversationMessage
      */
     media_urls?: Array<string>;
+    /**
+     * 
+     * @type {string}
+     * @memberof ConversationMessage
+     */
+    merchant_id?: string;
     /**
      * Message date/time
      * @type {string}
@@ -107,7 +119,9 @@ export function ConversationMessageFromJSONTyped(json: any, ignoreDiscriminator:
         'author_conversation_participant_name': !exists(json, 'author_conversation_participant_name') ? undefined : json['author_conversation_participant_name'],
         'body': !exists(json, 'body') ? undefined : json['body'],
         'client_message_id': !exists(json, 'client_message_id') ? undefined : json['client_message_id'],
+        'conversation_message_uuid': !exists(json, 'conversation_message_uuid') ? undefined : json['conversation_message_uuid'],
         'media_urls': !exists(json, 'media_urls') ? undefined : json['media_urls'],
+        'merchant_id': !exists(json, 'merchant_id') ? undefined : json['merchant_id'],
         'message_dts': !exists(json, 'message_dts') ? undefined : json['message_dts'],
         'transport_statuses': !exists(json, 'transport_statuses') ? undefined : ((json['transport_statuses'] as Array<any>).map(ConversationMessageTransportStatusFromJSON)),
         'type': !exists(json, 'type') ? undefined : json['type'],
@@ -128,7 +142,9 @@ export function ConversationMessageToJSON(value?: ConversationMessage | null): a
         'author_conversation_participant_name': value.author_conversation_participant_name,
         'body': value.body,
         'client_message_id': value.client_message_id,
+        'conversation_message_uuid': value.conversation_message_uuid,
         'media_urls': value.media_urls,
+        'merchant_id': value.merchant_id,
         'message_dts': value.message_dts,
         'transport_statuses': value.transport_statuses === undefined ? undefined : ((value.transport_statuses as Array<any>).map(ConversationMessageTransportStatusToJSON)),
         'type': value.type,
