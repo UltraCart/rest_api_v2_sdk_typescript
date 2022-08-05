@@ -6591,10 +6591,22 @@ export interface ConversationMessage {
     client_message_id?: string;
     /**
      * 
+     * @type {string}
+     * @memberof ConversationMessage
+     */
+    conversation_message_uuid?: string;
+    /**
+     * 
      * @type {Array<string>}
      * @memberof ConversationMessage
      */
     media_urls?: Array<string>;
+    /**
+     * 
+     * @type {string}
+     * @memberof ConversationMessage
+     */
+    merchant_id?: string;
     /**
      * Message date/time
      * @type {string}
