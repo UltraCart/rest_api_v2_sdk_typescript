@@ -75,6 +75,12 @@ export interface ConversationMessage {
      */
     message_dts?: string;
     /**
+     * Message epoch milliseconds
+     * @type {number}
+     * @memberof ConversationMessage
+     */
+    message_epoch?: number;
+    /**
      * 
      * @type {Array<ConversationMessageTransportStatus>}
      * @memberof ConversationMessage
@@ -123,6 +129,7 @@ export function ConversationMessageFromJSONTyped(json: any, ignoreDiscriminator:
         'media_urls': !exists(json, 'media_urls') ? undefined : json['media_urls'],
         'merchant_id': !exists(json, 'merchant_id') ? undefined : json['merchant_id'],
         'message_dts': !exists(json, 'message_dts') ? undefined : json['message_dts'],
+        'message_epoch': !exists(json, 'message_epoch') ? undefined : json['message_epoch'],
         'transport_statuses': !exists(json, 'transport_statuses') ? undefined : ((json['transport_statuses'] as Array<any>).map(ConversationMessageTransportStatusFromJSON)),
         'type': !exists(json, 'type') ? undefined : json['type'],
         'upload_keys': !exists(json, 'upload_keys') ? undefined : json['upload_keys'],
@@ -146,6 +153,7 @@ export function ConversationMessageToJSON(value?: ConversationMessage | null): a
         'media_urls': value.media_urls,
         'merchant_id': value.merchant_id,
         'message_dts': value.message_dts,
+        'message_epoch': value.message_epoch,
         'transport_statuses': value.transport_statuses === undefined ? undefined : ((value.transport_statuses as Array<any>).map(ConversationMessageTransportStatusToJSON)),
         'type': value.type,
         'upload_keys': value.upload_keys,

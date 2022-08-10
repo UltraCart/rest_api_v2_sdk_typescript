@@ -158,6 +158,12 @@ import {
     CouponMultipleAmountsOffItemsToJSON,
 } from './CouponMultipleAmountsOffItems';
 import {
+    CouponNoDiscount,
+    CouponNoDiscountFromJSON,
+    CouponNoDiscountFromJSONTyped,
+    CouponNoDiscountToJSON,
+} from './CouponNoDiscount';
+import {
     CouponPercentOffItemWithItemsQuantityPurchase,
     CouponPercentOffItemWithItemsQuantityPurchaseFromJSON,
     CouponPercentOffItemWithItemsQuantityPurchaseFromJSONTyped,
@@ -484,10 +490,10 @@ export interface Coupon {
     multiple_amounts_off_items?: CouponMultipleAmountsOffItems;
     /**
      * 
-     * @type {object}
+     * @type {CouponNoDiscount}
      * @memberof Coupon
      */
-    no_discount?: object;
+    no_discount?: CouponNoDiscount;
     /**
      * 
      * @type {CouponPercentOffItemWithItemsQuantityPurchase}
@@ -679,7 +685,7 @@ export function CouponFromJSONTyped(json: any, ignoreDiscriminator: boolean): Co
         'merchant_code': !exists(json, 'merchant_code') ? undefined : json['merchant_code'],
         'merchant_notes': !exists(json, 'merchant_notes') ? undefined : json['merchant_notes'],
         'multiple_amounts_off_items': !exists(json, 'multiple_amounts_off_items') ? undefined : CouponMultipleAmountsOffItemsFromJSON(json['multiple_amounts_off_items']),
-        'no_discount': !exists(json, 'no_discount') ? undefined : json['no_discount'],
+        'no_discount': !exists(json, 'no_discount') ? undefined : CouponNoDiscountFromJSON(json['no_discount']),
         'percent_off_item_with_items_quantity_purchase': !exists(json, 'percent_off_item_with_items_quantity_purchase') ? undefined : CouponPercentOffItemWithItemsQuantityPurchaseFromJSON(json['percent_off_item_with_items_quantity_purchase']),
         'percent_off_items': !exists(json, 'percent_off_items') ? undefined : CouponPercentOffItemsFromJSON(json['percent_off_items']),
         'percent_off_items_and_free_shipping': !exists(json, 'percent_off_items_and_free_shipping') ? undefined : CouponPercentOffItemsAndFreeShippingFromJSON(json['percent_off_items_and_free_shipping']),
@@ -751,7 +757,7 @@ export function CouponToJSON(value?: Coupon | null): any {
         'merchant_code': value.merchant_code,
         'merchant_notes': value.merchant_notes,
         'multiple_amounts_off_items': CouponMultipleAmountsOffItemsToJSON(value.multiple_amounts_off_items),
-        'no_discount': value.no_discount,
+        'no_discount': CouponNoDiscountToJSON(value.no_discount),
         'percent_off_item_with_items_quantity_purchase': CouponPercentOffItemWithItemsQuantityPurchaseToJSON(value.percent_off_item_with_items_quantity_purchase),
         'percent_off_items': CouponPercentOffItemsToJSON(value.percent_off_items),
         'percent_off_items_and_free_shipping': CouponPercentOffItemsAndFreeShippingToJSON(value.percent_off_items_and_free_shipping),

@@ -26,6 +26,12 @@ import {
     ConversationEventRRWebToJSON,
 } from './ConversationEventRRWeb';
 import {
+    ConversationEventReadMessage,
+    ConversationEventReadMessageFromJSON,
+    ConversationEventReadMessageFromJSONTyped,
+    ConversationEventReadMessageToJSON,
+} from './ConversationEventReadMessage';
+import {
     ConversationEventTyping,
     ConversationEventTypingFromJSON,
     ConversationEventTypingFromJSONTyped,
@@ -100,6 +106,12 @@ export interface ConversationWebsocketMessage {
     event_queue_status_update?: ConversationWebchatQueueStatus;
     /**
      * 
+     * @type {ConversationEventReadMessage}
+     * @memberof ConversationWebsocketMessage
+     */
+    event_read_message?: ConversationEventReadMessage;
+    /**
+     * 
      * @type {ConversationEventRRWeb}
      * @memberof ConversationWebsocketMessage
      */
@@ -149,7 +161,8 @@ export const ConversationWebsocketMessageEventTypeEnum = {
     UpdatedMessage: 'updated message',
     QueueStatusUpdate: 'queue status update',
     Rrweb: 'rrweb',
-    ParticipantUpdate: 'participant update'
+    ParticipantUpdate: 'participant update',
+    ReadMessage: 'read message'
 } as const;
 export type ConversationWebsocketMessageEventTypeEnum = typeof ConversationWebsocketMessageEventTypeEnum[keyof typeof ConversationWebsocketMessageEventTypeEnum];
 
@@ -182,6 +195,7 @@ export function ConversationWebsocketMessageFromJSONTyped(json: any, ignoreDiscr
         'event_participant_update': !exists(json, 'event_participant_update') ? undefined : ConversationSummaryFromJSON(json['event_participant_update']),
         'event_queue_position': !exists(json, 'event_queue_position') ? undefined : ConversationEventQueuePositionFromJSON(json['event_queue_position']),
         'event_queue_status_update': !exists(json, 'event_queue_status_update') ? undefined : ConversationWebchatQueueStatusFromJSON(json['event_queue_status_update']),
+        'event_read_message': !exists(json, 'event_read_message') ? undefined : ConversationEventReadMessageFromJSON(json['event_read_message']),
         'event_rrweb': !exists(json, 'event_rrweb') ? undefined : ConversationEventRRWebFromJSON(json['event_rrweb']),
         'event_type': !exists(json, 'event_type') ? undefined : json['event_type'],
         'event_typing': !exists(json, 'event_typing') ? undefined : ConversationEventTypingFromJSON(json['event_typing']),
@@ -207,6 +221,7 @@ export function ConversationWebsocketMessageToJSON(value?: ConversationWebsocket
         'event_participant_update': ConversationSummaryToJSON(value.event_participant_update),
         'event_queue_position': ConversationEventQueuePositionToJSON(value.event_queue_position),
         'event_queue_status_update': ConversationWebchatQueueStatusToJSON(value.event_queue_status_update),
+        'event_read_message': ConversationEventReadMessageToJSON(value.event_read_message),
         'event_rrweb': ConversationEventRRWebToJSON(value.event_rrweb),
         'event_type': value.event_type,
         'event_typing': ConversationEventTypingToJSON(value.event_typing),

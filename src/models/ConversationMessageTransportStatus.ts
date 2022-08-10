@@ -26,12 +26,32 @@ export interface ConversationMessageTransportStatus {
      */
     conversation_participant_arn?: string;
     /**
-     * 
+     * The status of the message transport
      * @type {string}
      * @memberof ConversationMessageTransportStatus
      */
-    status?: string;
+    status?: ConversationMessageTransportStatusStatusEnum;
 }
+
+
+/**
+ * @export
+ */
+export const ConversationMessageTransportStatusStatusEnum = {
+    Accepted: 'accepted',
+    Scheduled: 'scheduled',
+    Queued: 'queued',
+    Sending: 'sending',
+    Sent: 'sent',
+    Read: 'read',
+    TwilioCredentialsMissing: 'TWILIO_CREDENTIALS_MISSING',
+    SentToTwilio: 'SENT_TO_TWILIO',
+    TwilioError: 'TWILIO_ERROR',
+    SentToPinpoint: 'SENT_TO_PINPOINT',
+    PinpointError: 'PINPOINT_ERROR'
+} as const;
+export type ConversationMessageTransportStatusStatusEnum = typeof ConversationMessageTransportStatusStatusEnum[keyof typeof ConversationMessageTransportStatusStatusEnum];
+
 
 export function ConversationMessageTransportStatusFromJSON(json: any): ConversationMessageTransportStatus {
     return ConversationMessageTransportStatusFromJSONTyped(json, false);

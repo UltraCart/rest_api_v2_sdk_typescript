@@ -61,6 +61,12 @@ export interface ConversationParticipant {
      * @memberof ConversationParticipant
      */
     status?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof ConversationParticipant
+     */
+    unread_messages?: number;
 }
 
 export function ConversationParticipantFromJSON(json: any): ConversationParticipant {
@@ -80,6 +86,7 @@ export function ConversationParticipantFromJSONTyped(json: any, ignoreDiscrimina
         'last_message_dts': !exists(json, 'last_message_dts') ? undefined : json['last_message_dts'],
         'left_dts': !exists(json, 'left_dts') ? undefined : json['left_dts'],
         'status': !exists(json, 'status') ? undefined : json['status'],
+        'unread_messages': !exists(json, 'unread_messages') ? undefined : json['unread_messages'],
     };
 }
 
@@ -99,6 +106,7 @@ export function ConversationParticipantToJSON(value?: ConversationParticipant | 
         'last_message_dts': value.last_message_dts,
         'left_dts': value.left_dts,
         'status': value.status,
+        'unread_messages': value.unread_messages,
     };
 }
 

@@ -145,6 +145,7 @@ src/models/ConversationAgentAuth.ts
 src/models/ConversationAgentAuthResponse.ts
 src/models/ConversationEventQueuePosition.ts
 src/models/ConversationEventRRWeb.ts
+src/models/ConversationEventReadMessage.ts
 src/models/ConversationEventTyping.ts
 src/models/ConversationMessage.ts
 src/models/ConversationMessageTransportStatus.ts
@@ -199,6 +200,7 @@ src/models/CouponFreeShippingWithSubtotal.ts
 src/models/CouponItemSearchResult.ts
 src/models/CouponItemSearchResultsResponse.ts
 src/models/CouponMultipleAmountsOffItems.ts
+src/models/CouponNoDiscount.ts
 src/models/CouponPercentOffItemWithItemsQuantityPurchase.ts
 src/models/CouponPercentOffItems.ts
 src/models/CouponPercentOffItemsAndFreeShipping.ts
