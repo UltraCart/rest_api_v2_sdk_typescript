@@ -387,6 +387,9 @@ import {
     ScreenshotsResponse,
     ScreenshotsResponseFromJSON,
     ScreenshotsResponseToJSON,
+    StoreFrontsResponse,
+    StoreFrontsResponseFromJSON,
+    StoreFrontsResponseToJSON,
     ThumbnailParametersRequest,
     ThumbnailParametersRequestFromJSON,
     ThumbnailParametersRequestToJSON,
@@ -2870,6 +2873,20 @@ export interface StorefrontApiInterface {
      * Retrieve pricing tiers
      */
     getStoreFrontPricingTiers(requestParameters: GetStoreFrontPricingTiersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PricingTiersResponse>;
+
+    /**
+     * 
+     * @summary Get storefronts (internal use only for security reasons)
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof StorefrontApiInterface
+     */
+    getStoreFrontsRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<StoreFrontsResponse>>;
+
+    /**
+     * Get storefronts (internal use only for security reasons)
+     */
+    getStoreFronts(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<StoreFrontsResponse>;
 
     /**
      * 
@@ -8661,6 +8678,45 @@ export class StorefrontApi extends runtime.BaseAPI implements StorefrontApiInter
      */
     async getStoreFrontPricingTiers(requestParameters: GetStoreFrontPricingTiersRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PricingTiersResponse> {
         const response = await this.getStoreFrontPricingTiersRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Get storefronts (internal use only for security reasons)
+     */
+    async getStoreFrontsRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<StoreFrontsResponse>> {
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-browser-key"] = this.configuration.apiKey("x-ultracart-browser-key"); // ultraCartBrowserApiKey authentication
+        }
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", ["affiliate_read", "affiliate_write", "auto_order_read", "auto_order_write", "channel_partner_read", "channel_partner_write", "chargeback_read", "chargeback_write", "checkout_read", "checkout_write", "configuration_read", "configuration_write", "conversation_read", "conversation_write", "coupon_read", "coupon_write", "customer_read", "customer_write", "fulfillment_read", "fulfillment_write", "gift_certificate_read", "gift_certificate_write", "integration_log_read", "integration_log_write", "order_read", "order_write", "item_read", "item_write", "storefront_read", "storefront_write", "tax_read", "tax_write", "webhook_read", "webhook_write", "ultrabooks_read", "ultrabooks_write", "user_read", "user_write"]);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/storefront/`,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => StoreFrontsResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Get storefronts (internal use only for security reasons)
+     */
+    async getStoreFronts(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<StoreFrontsResponse> {
+        const response = await this.getStoreFrontsRaw(initOverrides);
         return await response.value();
     }
 

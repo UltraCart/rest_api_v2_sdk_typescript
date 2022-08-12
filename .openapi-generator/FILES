@@ -242,6 +242,7 @@ src/models/CustomerEmailListChanges.ts
 src/models/CustomerLoyalty.ts
 src/models/CustomerLoyaltyLedger.ts
 src/models/CustomerLoyaltyRedemption.ts
+src/models/CustomerMagicLinkResponse.ts
 src/models/CustomerMergeRequest.ts
 src/models/CustomerOrdersSummary.ts
 src/models/CustomerPricingTier.ts
@@ -629,6 +630,8 @@ src/models/SingleSignOnTokenResponse.ts
 src/models/SovosConfig.ts
 src/models/StateProvince.ts
 src/models/StepWaiting.ts
+src/models/StoreFront.ts
+src/models/StoreFrontsResponse.ts
 src/models/TaxCity.ts
 src/models/TaxCountry.ts
 src/models/TaxCountryCode.ts

@@ -33,6 +33,9 @@ import {
     CustomerEmailListChanges,
     CustomerEmailListChangesFromJSON,
     CustomerEmailListChangesToJSON,
+    CustomerMagicLinkResponse,
+    CustomerMagicLinkResponseFromJSON,
+    CustomerMagicLinkResponseToJSON,
     CustomerMergeRequest,
     CustomerMergeRequestFromJSON,
     CustomerMergeRequestToJSON,
@@ -158,6 +161,11 @@ export interface GetCustomersForDataTablesRequest {
 
 export interface GetEmailVerificationTokenRequest {
     tokenRequest: EmailVerifyTokenRequest;
+}
+
+export interface GetMagicLinkRequest {
+    customerProfileOid: number;
+    storefrontHostName: string;
 }
 
 export interface InsertCustomerRequest {
@@ -426,6 +434,23 @@ export interface CustomerApiInterface {
      * Create a token that can be used to verify a customer email address
      */
     getEmailVerificationToken(requestParameters: GetEmailVerificationTokenRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EmailVerifyTokenResponse>;
+
+    /**
+     * Retrieves a magic link to allow a merchant to login as a customer.  This method is a PUT call intentionally. 
+     * @summary getMagicLink
+     * @param {number} customerProfileOid The customer_profile_oid of the customer.
+     * @param {string} storefrontHostName The storefront to log into.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof CustomerApiInterface
+     */
+    getMagicLinkRaw(requestParameters: GetMagicLinkRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CustomerMagicLinkResponse>>;
+
+    /**
+     * Retrieves a magic link to allow a merchant to login as a customer.  This method is a PUT call intentionally. 
+     * getMagicLink
+     */
+    getMagicLink(requestParameters: GetMagicLinkRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomerMagicLinkResponse>;
 
     /**
      * Insert a customer on the UltraCart account. 
@@ -1187,6 +1212,51 @@ export class CustomerApi extends runtime.BaseAPI implements CustomerApiInterface
      */
     async getEmailVerificationToken(requestParameters: GetEmailVerificationTokenRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EmailVerifyTokenResponse> {
         const response = await this.getEmailVerificationTokenRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Retrieves a magic link to allow a merchant to login as a customer.  This method is a PUT call intentionally. 
+     * getMagicLink
+     */
+    async getMagicLinkRaw(requestParameters: GetMagicLinkRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CustomerMagicLinkResponse>> {
+        if (requestParameters.customerProfileOid === null || requestParameters.customerProfileOid === undefined) {
+            throw new runtime.RequiredError('customerProfileOid','Required parameter requestParameters.customerProfileOid was null or undefined when calling getMagicLink.');
+        }
+
+        if (requestParameters.storefrontHostName === null || requestParameters.storefrontHostName === undefined) {
+            throw new runtime.RequiredError('storefrontHostName','Required parameter requestParameters.storefrontHostName was null or undefined when calling getMagicLink.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", ["customer_write"]);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/customer/customers/{customer_profile_oid}/magic_link/{storefront_host_name}`.replace(`{${"customer_profile_oid"}}`, encodeURIComponent(String(requestParameters.customerProfileOid))).replace(`{${"storefront_host_name"}}`, encodeURIComponent(String(requestParameters.storefrontHostName))),
+            method: 'PUT',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => CustomerMagicLinkResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Retrieves a magic link to allow a merchant to login as a customer.  This method is a PUT call intentionally. 
+     * getMagicLink
+     */
+    async getMagicLink(requestParameters: GetMagicLinkRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomerMagicLinkResponse> {
+        const response = await this.getMagicLinkRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
