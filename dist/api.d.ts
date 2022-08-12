@@ -10486,6 +10486,43 @@ export interface CustomerLoyaltyRedemption {
 /**
  *
  * @export
+ * @interface CustomerMagicLinkResponse
+ */
+export interface CustomerMagicLinkResponse {
+    /**
+     *
+     * @type {ModelError}
+     * @memberof CustomerMagicLinkResponse
+     */
+    error?: ModelError;
+    /**
+     *
+     * @type {ResponseMetadata}
+     * @memberof CustomerMagicLinkResponse
+     */
+    metadata?: ResponseMetadata;
+    /**
+     * Indicates if API call was successful
+     * @type {boolean}
+     * @memberof CustomerMagicLinkResponse
+     */
+    success?: boolean;
+    /**
+     * URL
+     * @type {string}
+     * @memberof CustomerMagicLinkResponse
+     */
+    url?: string;
+    /**
+     *
+     * @type {Warning}
+     * @memberof CustomerMagicLinkResponse
+     */
+    warning?: Warning;
+}
+/**
+ *
+ * @export
  * @interface CustomerMergeRequest
  */
 export interface CustomerMergeRequest {
@@ -31013,6 +31050,116 @@ export interface StepWaiting {
 /**
  *
  * @export
+ * @interface StoreFront
+ */
+export interface StoreFront {
+    /**
+     *
+     * @type {string}
+     * @memberof StoreFront
+     */
+    host_alias1?: string;
+    /**
+     *
+     * @type {string}
+     * @memberof StoreFront
+     */
+    host_alias2?: string;
+    /**
+     *
+     * @type {string}
+     * @memberof StoreFront
+     */
+    host_alias3?: string;
+    /**
+     *
+     * @type {string}
+     * @memberof StoreFront
+     */
+    host_alias4?: string;
+    /**
+     *
+     * @type {string}
+     * @memberof StoreFront
+     */
+    host_alias5?: string;
+    /**
+     *
+     * @type {string}
+     * @memberof StoreFront
+     */
+    host_name?: string;
+    /**
+     *
+     * @type {boolean}
+     * @memberof StoreFront
+     */
+    locked?: boolean;
+    /**
+     *
+     * @type {string}
+     * @memberof StoreFront
+     */
+    merchant_id?: string;
+    /**
+     *
+     * @type {boolean}
+     * @memberof StoreFront
+     */
+    redirect_aliases?: boolean;
+    /**
+     *
+     * @type {number}
+     * @memberof StoreFront
+     */
+    storefront_oid?: number;
+    /**
+     *
+     * @type {string}
+     * @memberof StoreFront
+     */
+    unlock_password?: string;
+}
+/**
+ *
+ * @export
+ * @interface StoreFrontsResponse
+ */
+export interface StoreFrontsResponse {
+    /**
+     *
+     * @type {ModelError}
+     * @memberof StoreFrontsResponse
+     */
+    error?: ModelError;
+    /**
+     *
+     * @type {ResponseMetadata}
+     * @memberof StoreFrontsResponse
+     */
+    metadata?: ResponseMetadata;
+    /**
+     *
+     * @type {Array<StoreFront>}
+     * @memberof StoreFrontsResponse
+     */
+    storeFronts?: Array<StoreFront>;
+    /**
+     * Indicates if API call was successful
+     * @type {boolean}
+     * @memberof StoreFrontsResponse
+     */
+    success?: boolean;
+    /**
+     *
+     * @type {Warning}
+     * @memberof StoreFrontsResponse
+     */
+    warning?: Warning;
+}
+/**
+ *
+ * @export
  * @interface TaxCity
  */
 export interface TaxCity {
@@ -37091,6 +37238,15 @@ export declare const CustomerApiFetchParamCreator: (configuration?: Configuratio
      */
     getEmailVerificationToken(token_request: EmailVerifyTokenRequest, options?: any): FetchArgs;
     /**
+     * Retrieves a magic link to allow a merchant to login as a customer.  This method is a PUT call intentionally.
+     * @summary getMagicLink
+     * @param {number} customer_profile_oid The customer_profile_oid of the customer.
+     * @param {string} storefront_host_name The storefront to log into.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getMagicLink(customer_profile_oid: number, storefront_host_name: string, options?: any): FetchArgs;
+    /**
      * Insert a customer on the UltraCart account.
      * @summary Insert a customer
      * @param {Customer} customer Customer to insert
@@ -37285,6 +37441,15 @@ export declare const CustomerApiFp: (configuration?: Configuration) => {
      */
     getEmailVerificationToken(token_request: EmailVerifyTokenRequest, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<EmailVerifyTokenResponse>;
     /**
+     * Retrieves a magic link to allow a merchant to login as a customer.  This method is a PUT call intentionally.
+     * @summary getMagicLink
+     * @param {number} customer_profile_oid The customer_profile_oid of the customer.
+     * @param {string} storefront_host_name The storefront to log into.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getMagicLink(customer_profile_oid: number, storefront_host_name: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<CustomerMagicLinkResponse>;
+    /**
      * Insert a customer on the UltraCart account.
      * @summary Insert a customer
      * @param {Customer} customer Customer to insert
@@ -37478,6 +37643,15 @@ export declare const CustomerApiFactory: (configuration?: Configuration, fetch?:
      * @throws {RequiredError}
      */
     getEmailVerificationToken(token_request: EmailVerifyTokenRequest, options?: any): Promise<EmailVerifyTokenResponse>;
+    /**
+     * Retrieves a magic link to allow a merchant to login as a customer.  This method is a PUT call intentionally.
+     * @summary getMagicLink
+     * @param {number} customer_profile_oid The customer_profile_oid of the customer.
+     * @param {string} storefront_host_name The storefront to log into.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getMagicLink(customer_profile_oid: number, storefront_host_name: string, options?: any): Promise<CustomerMagicLinkResponse>;
     /**
      * Insert a customer on the UltraCart account.
      * @summary Insert a customer
@@ -37685,6 +37859,16 @@ export interface CustomerApiInterface {
      * @memberof CustomerApiInterface
      */
     getEmailVerificationToken(token_request: EmailVerifyTokenRequest, options?: any): Promise<EmailVerifyTokenResponse>;
+    /**
+     * Retrieves a magic link to allow a merchant to login as a customer.  This method is a PUT call intentionally.
+     * @summary getMagicLink
+     * @param {number} customer_profile_oid The customer_profile_oid of the customer.
+     * @param {string} storefront_host_name The storefront to log into.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof CustomerApiInterface
+     */
+    getMagicLink(customer_profile_oid: number, storefront_host_name: string, options?: any): Promise<CustomerMagicLinkResponse>;
     /**
      * Insert a customer on the UltraCart account.
      * @summary Insert a customer
@@ -37899,6 +38083,16 @@ export declare class CustomerApi extends BaseAPI implements CustomerApiInterface
      * @memberof CustomerApi
      */
     getEmailVerificationToken(token_request: EmailVerifyTokenRequest, options?: any): Promise<EmailVerifyTokenResponse>;
+    /**
+     * Retrieves a magic link to allow a merchant to login as a customer.  This method is a PUT call intentionally.
+     * @summary getMagicLink
+     * @param {number} customer_profile_oid The customer_profile_oid of the customer.
+     * @param {string} storefront_host_name The storefront to log into.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof CustomerApi
+     */
+    getMagicLink(customer_profile_oid: number, storefront_host_name: string, options?: any): Promise<CustomerMagicLinkResponse>;
     /**
      * Insert a customer on the UltraCart account.
      * @summary Insert a customer
@@ -41961,6 +42155,13 @@ export declare const StorefrontApiFetchParamCreator: (configuration?: Configurat
     getStoreFrontPricingTiers(_expand?: string, options?: any): FetchArgs;
     /**
      *
+     * @summary Get storefronts (internal use only for security reasons)
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getStoreFronts(options?: any): FetchArgs;
+    /**
+     *
      * @summary Get thumbnail parameters
      * @param {ThumbnailParametersRequest} thumbnail_parameters Thumbnail Parameters
      * @param {*} [options] Override http request option.
@@ -43457,6 +43658,13 @@ export declare const StorefrontApiFp: (configuration?: Configuration) => {
     getStoreFrontPricingTiers(_expand?: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<PricingTiersResponse>;
     /**
      *
+     * @summary Get storefronts (internal use only for security reasons)
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getStoreFronts(options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<StoreFrontsResponse>;
+    /**
+     *
      * @summary Get thumbnail parameters
      * @param {ThumbnailParametersRequest} thumbnail_parameters Thumbnail Parameters
      * @param {*} [options] Override http request option.
@@ -44951,6 +45159,13 @@ export declare const StorefrontApiFactory: (configuration?: Configuration, fetch
      * @throws {RequiredError}
      */
     getStoreFrontPricingTiers(_expand?: string, options?: any): Promise<PricingTiersResponse>;
+    /**
+     *
+     * @summary Get storefronts (internal use only for security reasons)
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getStoreFronts(options?: any): Promise<StoreFrontsResponse>;
     /**
      *
      * @summary Get thumbnail parameters
@@ -46549,6 +46764,14 @@ export interface StorefrontApiInterface {
      * @memberof StorefrontApiInterface
      */
     getStoreFrontPricingTiers(_expand?: string, options?: any): Promise<PricingTiersResponse>;
+    /**
+     *
+     * @summary Get storefronts (internal use only for security reasons)
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof StorefrontApiInterface
+     */
+    getStoreFronts(options?: any): Promise<StoreFrontsResponse>;
     /**
      *
      * @summary Get thumbnail parameters
@@ -48210,6 +48433,14 @@ export declare class StorefrontApi extends BaseAPI implements StorefrontApiInter
      * @memberof StorefrontApi
      */
     getStoreFrontPricingTiers(_expand?: string, options?: any): Promise<PricingTiersResponse>;
+    /**
+     *
+     * @summary Get storefronts (internal use only for security reasons)
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof StorefrontApi
+     */
+    getStoreFronts(options?: any): Promise<StoreFrontsResponse>;
     /**
      *
      * @summary Get thumbnail parameters

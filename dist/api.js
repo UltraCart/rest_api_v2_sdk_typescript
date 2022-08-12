@@ -8928,6 +8928,58 @@ var CustomerApiFetchParamCreator = function (configuration) {
             };
         },
         /**
+         * Retrieves a magic link to allow a merchant to login as a customer.  This method is a PUT call intentionally.
+         * @summary getMagicLink
+         * @param {number} customer_profile_oid The customer_profile_oid of the customer.
+         * @param {string} storefront_host_name The storefront to log into.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getMagicLink: function (customer_profile_oid, storefront_host_name, options) {
+            if (options === void 0) { options = {}; }
+            // verify required parameter 'customer_profile_oid' is not null or undefined
+            if (customer_profile_oid === null || customer_profile_oid === undefined) {
+                throw new RequiredError('customer_profile_oid', 'Required parameter customer_profile_oid was null or undefined when calling getMagicLink.');
+            }
+            // verify required parameter 'storefront_host_name' is not null or undefined
+            if (storefront_host_name === null || storefront_host_name === undefined) {
+                throw new RequiredError('storefront_host_name', 'Required parameter storefront_host_name was null or undefined when calling getMagicLink.');
+            }
+            var localVarPath = "/customer/customers/{customer_profile_oid}/magic_link/{storefront_host_name}"
+                .replace("{".concat("customer_profile_oid", "}"), encodeURIComponent(String(customer_profile_oid)))
+                .replace("{".concat("storefront_host_name", "}"), encodeURIComponent(String(storefront_host_name)));
+            var localVarUrlObj = url.parse(localVarPath, true);
+            var localVarRequestOptions = Object.assign({ method: 'PUT' }, options);
+            var localVarHeaderParameter = {};
+            var localVarQueryParameter = {};
+            if (configuration && configuration.apiVersion) {
+                localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+            }
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+                var localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+                    ? configuration.accessToken("ultraCartOauth", ["customer_write"])
+                    : configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                var localVarApiKeyValue = typeof configuration.apiKey === 'function'
+                    ? configuration.apiKey("x-ultracart-simple-key")
+                    : configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
          * Insert a customer on the UltraCart account.
          * @summary Insert a customer
          * @param {Customer} customer Customer to insert
@@ -9564,6 +9616,29 @@ var CustomerApiFp = function (configuration) {
             };
         },
         /**
+         * Retrieves a magic link to allow a merchant to login as a customer.  This method is a PUT call intentionally.
+         * @summary getMagicLink
+         * @param {number} customer_profile_oid The customer_profile_oid of the customer.
+         * @param {string} storefront_host_name The storefront to log into.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getMagicLink: function (customer_profile_oid, storefront_host_name, options) {
+            var localVarFetchArgs = (0, exports.CustomerApiFetchParamCreator)(configuration).getMagicLink(customer_profile_oid, storefront_host_name, options);
+            return function (fetch, basePath) {
+                if (fetch === void 0) { fetch = portableFetch; }
+                if (basePath === void 0) { basePath = BASE_PATH; }
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(function (response) {
+                    if (response.status >= 200 && response.status < 300) {
+                        return response.json();
+                    }
+                    else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
          * Insert a customer on the UltraCart account.
          * @summary Insert a customer
          * @param {Customer} customer Customer to insert
@@ -9869,6 +9944,17 @@ var CustomerApiFactory = function (configuration, fetch, basePath) {
             return (0, exports.CustomerApiFp)(configuration).getEmailVerificationToken(token_request, options)(fetch, basePath);
         },
         /**
+         * Retrieves a magic link to allow a merchant to login as a customer.  This method is a PUT call intentionally.
+         * @summary getMagicLink
+         * @param {number} customer_profile_oid The customer_profile_oid of the customer.
+         * @param {string} storefront_host_name The storefront to log into.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getMagicLink: function (customer_profile_oid, storefront_host_name, options) {
+            return (0, exports.CustomerApiFp)(configuration).getMagicLink(customer_profile_oid, storefront_host_name, options)(fetch, basePath);
+        },
+        /**
          * Insert a customer on the UltraCart account.
          * @summary Insert a customer
          * @param {Customer} customer Customer to insert
@@ -10117,6 +10203,18 @@ var CustomerApi = /** @class */ (function (_super) {
      */
     CustomerApi.prototype.getEmailVerificationToken = function (token_request, options) {
         return (0, exports.CustomerApiFp)(this.configuration).getEmailVerificationToken(token_request, options)(this.fetch, this.basePath);
+    };
+    /**
+     * Retrieves a magic link to allow a merchant to login as a customer.  This method is a PUT call intentionally.
+     * @summary getMagicLink
+     * @param {number} customer_profile_oid The customer_profile_oid of the customer.
+     * @param {string} storefront_host_name The storefront to log into.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof CustomerApi
+     */
+    CustomerApi.prototype.getMagicLink = function (customer_profile_oid, storefront_host_name, options) {
+        return (0, exports.CustomerApiFp)(this.configuration).getMagicLink(customer_profile_oid, storefront_host_name, options)(this.fetch, this.basePath);
     };
     /**
      * Insert a customer on the UltraCart account.
@@ -22154,6 +22252,53 @@ var StorefrontApiFetchParamCreator = function (configuration) {
         },
         /**
          *
+         * @summary Get storefronts (internal use only for security reasons)
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getStoreFronts: function (options) {
+            if (options === void 0) { options = {}; }
+            var localVarPath = "/storefront/";
+            var localVarUrlObj = url.parse(localVarPath, true);
+            var localVarRequestOptions = Object.assign({ method: 'GET' }, options);
+            var localVarHeaderParameter = {};
+            var localVarQueryParameter = {};
+            if (configuration && configuration.apiVersion) {
+                localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+            }
+            // authentication ultraCartBrowserApiKey required
+            if (configuration && configuration.apiKey) {
+                var localVarApiKeyValue = typeof configuration.apiKey === 'function'
+                    ? configuration.apiKey("x-ultracart-browser-key")
+                    : configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-browser-key"] = localVarApiKeyValue;
+            }
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+                var localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+                    ? configuration.accessToken("ultraCartOauth", ["ultrabooks_write", "auto_order_write", "coupon_read", "affiliate_read", "coupon_write", "channel_partner_read", "tax_read", "conversation_write", "fulfillment_write", "tax_write", "gift_certificate_write", "channel_partner_write", "item_read", "fulfillment_read", "webhook_write", "chargeback_write", "user_write", "gift_certificate_read", "checkout_write", "storefront_read", "webhook_read", "item_write", "auto_order_read", "customer_read", "user_read", "configuration_read", "customer_write", "order_read", "conversation_read", "affiliate_write", "storefront_write", "ultrabooks_read", "order_write", "chargeback_read", "integration_log_write", "configuration_write", "checkout_read", "integration_log_read"])
+                    : configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                var localVarApiKeyValue = typeof configuration.apiKey === 'function'
+                    ? configuration.apiKey("x-ultracart-simple-key")
+                    : configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         *
          * @summary Get thumbnail parameters
          * @param {ThumbnailParametersRequest} thumbnail_parameters Thumbnail Parameters
          * @param {*} [options] Override http request option.
@@ -28316,6 +28461,27 @@ var StorefrontApiFp = function (configuration) {
         },
         /**
          *
+         * @summary Get storefronts (internal use only for security reasons)
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getStoreFronts: function (options) {
+            var localVarFetchArgs = (0, exports.StorefrontApiFetchParamCreator)(configuration).getStoreFronts(options);
+            return function (fetch, basePath) {
+                if (fetch === void 0) { fetch = portableFetch; }
+                if (basePath === void 0) { basePath = BASE_PATH; }
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(function (response) {
+                    if (response.status >= 200 && response.status < 300) {
+                        return response.json();
+                    }
+                    else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
+         *
          * @summary Get thumbnail parameters
          * @param {ThumbnailParametersRequest} thumbnail_parameters Thumbnail Parameters
          * @param {*} [options] Override http request option.
@@ -30885,6 +31051,15 @@ var StorefrontApiFactory = function (configuration, fetch, basePath) {
         },
         /**
          *
+         * @summary Get storefronts (internal use only for security reasons)
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getStoreFronts: function (options) {
+            return (0, exports.StorefrontApiFp)(configuration).getStoreFronts(options)(fetch, basePath);
+        },
+        /**
+         *
          * @summary Get thumbnail parameters
          * @param {ThumbnailParametersRequest} thumbnail_parameters Thumbnail Parameters
          * @param {*} [options] Override http request option.
@@ -32813,6 +32988,16 @@ var StorefrontApi = /** @class */ (function (_super) {
      */
     StorefrontApi.prototype.getStoreFrontPricingTiers = function (_expand, options) {
         return (0, exports.StorefrontApiFp)(this.configuration).getStoreFrontPricingTiers(_expand, options)(this.fetch, this.basePath);
+    };
+    /**
+     *
+     * @summary Get storefronts (internal use only for security reasons)
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof StorefrontApi
+     */
+    StorefrontApi.prototype.getStoreFronts = function (options) {
+        return (0, exports.StorefrontApiFp)(this.configuration).getStoreFronts(options)(this.fetch, this.basePath);
     };
     /**
      *
