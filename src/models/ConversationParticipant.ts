@@ -60,6 +60,12 @@ export interface ConversationParticipant {
      * @type {string}
      * @memberof ConversationParticipant
      */
+    profile_image_url?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ConversationParticipant
+     */
     status?: string;
     /**
      * 
@@ -85,6 +91,7 @@ export function ConversationParticipantFromJSONTyped(json: any, ignoreDiscrimina
         'joined_dts': !exists(json, 'joined_dts') ? undefined : json['joined_dts'],
         'last_message_dts': !exists(json, 'last_message_dts') ? undefined : json['last_message_dts'],
         'left_dts': !exists(json, 'left_dts') ? undefined : json['left_dts'],
+        'profile_image_url': !exists(json, 'profile_image_url') ? undefined : json['profile_image_url'],
         'status': !exists(json, 'status') ? undefined : json['status'],
         'unread_messages': !exists(json, 'unread_messages') ? undefined : json['unread_messages'],
     };
@@ -105,6 +112,7 @@ export function ConversationParticipantToJSON(value?: ConversationParticipant | 
         'joined_dts': value.joined_dts,
         'last_message_dts': value.last_message_dts,
         'left_dts': value.left_dts,
+        'profile_image_url': value.profile_image_url,
         'status': value.status,
         'unread_messages': value.unread_messages,
     };

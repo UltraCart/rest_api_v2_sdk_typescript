@@ -26,6 +26,12 @@ export interface CartMarketing {
      */
     advertising_source?: string;
     /**
+     * True if the customer agrees to receiving marketing SMS messages
+     * @type {boolean}
+     * @memberof CartMarketing
+     */
+    cell_phone_opt_in?: boolean;
+    /**
      * True if the customer agrees to receiving marketing emails
      * @type {boolean}
      * @memberof CartMarketing
@@ -44,6 +50,7 @@ export function CartMarketingFromJSONTyped(json: any, ignoreDiscriminator: boole
     return {
         
         'advertising_source': !exists(json, 'advertising_source') ? undefined : json['advertising_source'],
+        'cell_phone_opt_in': !exists(json, 'cell_phone_opt_in') ? undefined : json['cell_phone_opt_in'],
         'mailing_list_opt_in': !exists(json, 'mailing_list_opt_in') ? undefined : json['mailing_list_opt_in'],
     };
 }
@@ -58,6 +65,7 @@ export function CartMarketingToJSON(value?: CartMarketing | null): any {
     return {
         
         'advertising_source': value.advertising_source,
+        'cell_phone_opt_in': value.cell_phone_opt_in,
         'mailing_list_opt_in': value.mailing_list_opt_in,
     };
 }

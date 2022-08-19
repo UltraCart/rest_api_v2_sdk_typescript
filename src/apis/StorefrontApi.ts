@@ -8703,7 +8703,7 @@ export class StorefrontApi extends runtime.BaseAPI implements StorefrontApiInter
         }
 
         const response = await this.request({
-            path: `/storefront/`,
+            path: `/storefront`,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,

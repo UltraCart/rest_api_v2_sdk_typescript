@@ -20,11 +20,11 @@ import { exists, mapValues } from '../runtime';
  */
 export interface ConversationWebchatQueueStatusAgent {
     /**
-     * 
+     * Status of the agent
      * @type {string}
      * @memberof ConversationWebchatQueueStatusAgent
      */
-    agent_status?: string;
+    agent_status?: ConversationWebchatQueueStatusAgentAgentStatusEnum;
     /**
      * 
      * @type {string}
@@ -49,7 +49,25 @@ export interface ConversationWebchatQueueStatusAgent {
      * @memberof ConversationWebchatQueueStatusAgent
      */
     next_round_robin?: boolean;
+    /**
+     * Profile image URL
+     * @type {string}
+     * @memberof ConversationWebchatQueueStatusAgent
+     */
+    profile_image_url?: string;
 }
+
+
+/**
+ * @export
+ */
+export const ConversationWebchatQueueStatusAgentAgentStatusEnum = {
+    Available: 'available',
+    Busy: 'busy',
+    Unavailable: 'unavailable'
+} as const;
+export type ConversationWebchatQueueStatusAgentAgentStatusEnum = typeof ConversationWebchatQueueStatusAgentAgentStatusEnum[keyof typeof ConversationWebchatQueueStatusAgentAgentStatusEnum];
+
 
 export function ConversationWebchatQueueStatusAgentFromJSON(json: any): ConversationWebchatQueueStatusAgent {
     return ConversationWebchatQueueStatusAgentFromJSONTyped(json, false);
@@ -66,6 +84,7 @@ export function ConversationWebchatQueueStatusAgentFromJSONTyped(json: any, igno
         'conversation_participant_name': !exists(json, 'conversation_participant_name') ? undefined : json['conversation_participant_name'],
         'last_chat_dts': !exists(json, 'last_chat_dts') ? undefined : json['last_chat_dts'],
         'next_round_robin': !exists(json, 'next_round_robin') ? undefined : json['next_round_robin'],
+        'profile_image_url': !exists(json, 'profile_image_url') ? undefined : json['profile_image_url'],
     };
 }
 
@@ -83,6 +102,7 @@ export function ConversationWebchatQueueStatusAgentToJSON(value?: ConversationWe
         'conversation_participant_name': value.conversation_participant_name,
         'last_chat_dts': value.last_chat_dts,
         'next_round_robin': value.next_round_robin,
+        'profile_image_url': value.profile_image_url,
     };
 }
 

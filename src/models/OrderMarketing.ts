@@ -26,6 +26,12 @@ export interface OrderMarketing {
      */
     advertising_source?: string;
     /**
+     * True if the customer has opted into SMS marketing
+     * @type {boolean}
+     * @memberof OrderMarketing
+     */
+    cell_phone_opt_in?: boolean;
+    /**
      * True if the customer has opted into mailing list subscription
      * @type {boolean}
      * @memberof OrderMarketing
@@ -50,6 +56,7 @@ export function OrderMarketingFromJSONTyped(json: any, ignoreDiscriminator: bool
     return {
         
         'advertising_source': !exists(json, 'advertising_source') ? undefined : json['advertising_source'],
+        'cell_phone_opt_in': !exists(json, 'cell_phone_opt_in') ? undefined : json['cell_phone_opt_in'],
         'mailing_list': !exists(json, 'mailing_list') ? undefined : json['mailing_list'],
         'referral_code': !exists(json, 'referral_code') ? undefined : json['referral_code'],
     };
@@ -65,6 +72,7 @@ export function OrderMarketingToJSON(value?: OrderMarketing | null): any {
     return {
         
         'advertising_source': value.advertising_source,
+        'cell_phone_opt_in': value.cell_phone_opt_in,
         'mailing_list': value.mailing_list,
         'referral_code': value.referral_code,
     };
