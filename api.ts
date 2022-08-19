@@ -3860,6 +3860,12 @@ export interface CartMarketing {
      */
     advertising_source?: string;
     /**
+     * True if the customer agrees to receiving marketing SMS messages
+     * @type {boolean}
+     * @memberof CartMarketing
+     */
+    cell_phone_opt_in?: boolean;
+    /**
      * True if the customer agrees to receiving marketing emails
      * @type {boolean}
      * @memberof CartMarketing
@@ -6829,6 +6835,12 @@ export interface ConversationParticipant {
      * @type {string}
      * @memberof ConversationParticipant
      */
+    profile_image_url?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ConversationParticipant
+     */
     status?: string;
     /**
      * 
@@ -7148,11 +7160,11 @@ export interface ConversationWebchatQueueStatus {
  */
 export interface ConversationWebchatQueueStatusAgent {
     /**
-     * 
+     * Status of the agent
      * @type {string}
      * @memberof ConversationWebchatQueueStatusAgent
      */
-    agent_status?: string;
+    agent_status?: ConversationWebchatQueueStatusAgent.AgentStatusEnum;
     /**
      * 
      * @type {string}
@@ -7177,6 +7189,28 @@ export interface ConversationWebchatQueueStatusAgent {
      * @memberof ConversationWebchatQueueStatusAgent
      */
     next_round_robin?: boolean;
+    /**
+     * Profile image URL
+     * @type {string}
+     * @memberof ConversationWebchatQueueStatusAgent
+     */
+    profile_image_url?: string;
+}
+
+/**
+ * @export
+ * @namespace ConversationWebchatQueueStatusAgent
+ */
+export namespace ConversationWebchatQueueStatusAgent {
+    /**
+     * @export
+     * @enum {string}
+     */
+    export enum AgentStatusEnum {
+        Available = <any> 'available',
+        Busy = <any> 'busy',
+        Unavailable = <any> 'unavailable'
+    }
 }
 
 /**
@@ -25061,6 +25095,18 @@ export interface OrderBilling {
      */
     cc_emails?: Array<string>;
     /**
+     * Cell phone
+     * @type {string}
+     * @memberof OrderBilling
+     */
+    cell_phone?: string;
+    /**
+     * Cell phone (E164 format)
+     * @type {string}
+     * @memberof OrderBilling
+     */
+    cell_phone_e164?: string;
+    /**
      * City
      * @type {string}
      * @memberof OrderBilling
@@ -26591,6 +26637,12 @@ export interface OrderMarketing {
      * @memberof OrderMarketing
      */
     advertising_source?: string;
+    /**
+     * True if the customer has opted into SMS marketing
+     * @type {boolean}
+     * @memberof OrderMarketing
+     */
+    cell_phone_opt_in?: boolean;
     /**
      * True if the customer has opted into mailing list subscription
      * @type {boolean}
@@ -59086,7 +59138,7 @@ export const StorefrontApiFetchParamCreator = function (configuration?: Configur
          * @throws {RequiredError}
          */
         getStoreFronts(options: any = {}): FetchArgs {
-            const localVarPath = `/storefront/`;
+            const localVarPath = `/storefront`;
             const localVarUrlObj = url.parse(localVarPath, true);
             const localVarRequestOptions = Object.assign({ method: 'GET' }, options);
             const localVarHeaderParameter = {} as any;
