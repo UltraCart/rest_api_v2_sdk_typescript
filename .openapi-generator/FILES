@@ -461,6 +461,7 @@ src/models/ItemResponse.ts
 src/models/ItemRestriction.ts
 src/models/ItemRestrictionItem.ts
 src/models/ItemRevguard.ts
+src/models/ItemReview.ts
 src/models/ItemReviews.ts
 src/models/ItemSalesforce.ts
 src/models/ItemShipping.ts

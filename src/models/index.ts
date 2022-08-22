@@ -438,6 +438,7 @@ export * from './ItemResponse';
 export * from './ItemRestriction';
 export * from './ItemRestrictionItem';
 export * from './ItemRevguard';
+export * from './ItemReview';
 export * from './ItemReviews';
 export * from './ItemSalesforce';
 export * from './ItemShipping';

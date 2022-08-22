@@ -13,6 +13,13 @@
  */
 
 import { exists, mapValues } from '../runtime';
+import {
+    ItemReview,
+    ItemReviewFromJSON,
+    ItemReviewFromJSONTyped,
+    ItemReviewToJSON,
+} from './ItemReview';
+
 /**
  * 
  * @export
@@ -31,6 +38,12 @@ export interface ItemReviews {
      * @memberof ItemReviews
      */
     has_review?: boolean;
+    /**
+     * 
+     * @type {Array<ItemReview>}
+     * @memberof ItemReviews
+     */
+    individual_reviews?: Array<ItemReview>;
     /**
      * Number of approved reviews
      * @type {number}
@@ -87,6 +100,7 @@ export function ItemReviewsFromJSONTyped(json: any, ignoreDiscriminator: boolean
         
         'has_approved_review': !exists(json, 'has_approved_review') ? undefined : json['has_approved_review'],
         'has_review': !exists(json, 'has_review') ? undefined : json['has_review'],
+        'individual_reviews': !exists(json, 'individual_reviews') ? undefined : ((json['individual_reviews'] as Array<any>).map(ItemReviewFromJSON)),
         'review_count': !exists(json, 'review_count') ? undefined : json['review_count'],
         'review_overall': !exists(json, 'review_overall') ? undefined : json['review_overall'],
         'review_template_name': !exists(json, 'review_template_name') ? undefined : json['review_template_name'],
@@ -108,6 +122,7 @@ export function ItemReviewsToJSON(value?: ItemReviews | null): any {
         
         'has_approved_review': value.has_approved_review,
         'has_review': value.has_review,
+        'individual_reviews': value.individual_reviews === undefined ? undefined : ((value.individual_reviews as Array<any>).map(ItemReviewToJSON)),
         'review_count': value.review_count,
         'review_overall': value.review_overall,
         'review_template_name': value.review_template_name,
