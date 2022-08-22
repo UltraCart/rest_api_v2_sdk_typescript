@@ -21894,6 +21894,235 @@ export interface ItemRevguard {
 /**
  *
  * @export
+ * @interface ItemReview
+ */
+export interface ItemReview {
+    /**
+     * Customer profile object identifier
+     * @type {number}
+     * @memberof ItemReview
+     */
+    customer_profile_oid?: number;
+    /**
+     *
+     * @type {boolean}
+     * @memberof ItemReview
+     */
+    featured?: boolean;
+    /**
+     *
+     * @type {number}
+     * @memberof ItemReview
+     */
+    helperful_no_votes?: number;
+    /**
+     *
+     * @type {number}
+     * @memberof ItemReview
+     */
+    helpful_yes_votes?: number;
+    /**
+     *
+     * @type {string}
+     * @memberof ItemReview
+     */
+    order_id?: string;
+    /**
+     *
+     * @type {number}
+     * @memberof ItemReview
+     */
+    overall?: number;
+    /**
+     *
+     * @type {string}
+     * @memberof ItemReview
+     */
+    rating_name1?: string;
+    /**
+     *
+     * @type {string}
+     * @memberof ItemReview
+     */
+    rating_name10?: string;
+    /**
+     *
+     * @type {string}
+     * @memberof ItemReview
+     */
+    rating_name2?: string;
+    /**
+     *
+     * @type {string}
+     * @memberof ItemReview
+     */
+    rating_name3?: string;
+    /**
+     *
+     * @type {string}
+     * @memberof ItemReview
+     */
+    rating_name4?: string;
+    /**
+     *
+     * @type {string}
+     * @memberof ItemReview
+     */
+    rating_name5?: string;
+    /**
+     *
+     * @type {string}
+     * @memberof ItemReview
+     */
+    rating_name6?: string;
+    /**
+     *
+     * @type {string}
+     * @memberof ItemReview
+     */
+    rating_name7?: string;
+    /**
+     *
+     * @type {string}
+     * @memberof ItemReview
+     */
+    rating_name8?: string;
+    /**
+     *
+     * @type {string}
+     * @memberof ItemReview
+     */
+    rating_name9?: string;
+    /**
+     *
+     * @type {number}
+     * @memberof ItemReview
+     */
+    rating_score1?: number;
+    /**
+     *
+     * @type {number}
+     * @memberof ItemReview
+     */
+    rating_score10?: number;
+    /**
+     *
+     * @type {number}
+     * @memberof ItemReview
+     */
+    rating_score2?: number;
+    /**
+     *
+     * @type {number}
+     * @memberof ItemReview
+     */
+    rating_score3?: number;
+    /**
+     *
+     * @type {number}
+     * @memberof ItemReview
+     */
+    rating_score4?: number;
+    /**
+     *
+     * @type {number}
+     * @memberof ItemReview
+     */
+    rating_score5?: number;
+    /**
+     *
+     * @type {number}
+     * @memberof ItemReview
+     */
+    rating_score6?: number;
+    /**
+     *
+     * @type {number}
+     * @memberof ItemReview
+     */
+    rating_score7?: number;
+    /**
+     *
+     * @type {number}
+     * @memberof ItemReview
+     */
+    rating_score8?: number;
+    /**
+     *
+     * @type {number}
+     * @memberof ItemReview
+     */
+    rating_score9?: number;
+    /**
+     *
+     * @type {number}
+     * @memberof ItemReview
+     */
+    recommend_store_to_friend?: number;
+    /**
+     *
+     * @type {boolean}
+     * @memberof ItemReview
+     */
+    recommend_to_friend?: boolean;
+    /**
+     *
+     * @type {string}
+     * @memberof ItemReview
+     */
+    review?: string;
+    /**
+     *
+     * @type {number}
+     * @memberof ItemReview
+     */
+    review_oid?: number;
+    /**
+     *
+     * @type {string}
+     * @memberof ItemReview
+     */
+    reviewed_nickname?: string;
+    /**
+     *
+     * @type {string}
+     * @memberof ItemReview
+     */
+    reviewer_email?: string;
+    /**
+     *
+     * @type {string}
+     * @memberof ItemReview
+     */
+    reviewer_location?: string;
+    /**
+     *
+     * @type {string}
+     * @memberof ItemReview
+     */
+    status?: string;
+    /**
+     *
+     * @type {string}
+     * @memberof ItemReview
+     */
+    store_feedback?: string;
+    /**
+     * Date/time of review submission
+     * @type {string}
+     * @memberof ItemReview
+     */
+    submitted_dts?: string;
+    /**
+     *
+     * @type {string}
+     * @memberof ItemReview
+     */
+    title?: string;
+}
+/**
+ *
+ * @export
  * @interface ItemReviews
  */
 export interface ItemReviews {
@@ -21909,6 +22138,12 @@ export interface ItemReviews {
      * @memberof ItemReviews
      */
     has_review?: boolean;
+    /**
+     *
+     * @type {Array<ItemReview>}
+     * @memberof ItemReviews
+     */
+    individual_reviews?: Array<ItemReview>;
     /**
      * Number of approved reviews
      * @type {number}
