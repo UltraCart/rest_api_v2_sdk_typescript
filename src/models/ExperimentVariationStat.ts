@@ -80,6 +80,12 @@ export interface ExperimentVariationStat {
      */
     session_count?: number;
     /**
+     * Total SMS opt in count for this variation
+     * @type {number}
+     * @memberof ExperimentVariationStat
+     */
+    sms_opt_in_count?: number;
+    /**
      * Date/time that the statistic was created
      * @type {string}
      * @memberof ExperimentVariationStat
@@ -107,6 +113,7 @@ export function ExperimentVariationStatFromJSONTyped(json: any, ignoreDiscrimina
         'page_view_count': !exists(json, 'page_view_count') ? undefined : json['page_view_count'],
         'revenue': !exists(json, 'revenue') ? undefined : json['revenue'],
         'session_count': !exists(json, 'session_count') ? undefined : json['session_count'],
+        'sms_opt_in_count': !exists(json, 'sms_opt_in_count') ? undefined : json['sms_opt_in_count'],
         'stat_dts': !exists(json, 'stat_dts') ? undefined : json['stat_dts'],
     };
 }
@@ -130,6 +137,7 @@ export function ExperimentVariationStatToJSON(value?: ExperimentVariationStat | 
         'page_view_count': value.page_view_count,
         'revenue': value.revenue,
         'session_count': value.session_count,
+        'sms_opt_in_count': value.sms_opt_in_count,
         'stat_dts': value.stat_dts,
     };
 }

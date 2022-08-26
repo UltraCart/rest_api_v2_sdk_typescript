@@ -129,6 +129,12 @@ export interface ExperimentVariation {
      */
     session_count?: number;
     /**
+     * SMS Opt Ins for this variation
+     * @type {number}
+     * @memberof ExperimentVariation
+     */
+    sms_opt_ins?: number;
+    /**
      * Percentage of the traffic this variation is currently receiving
      * @type {number}
      * @memberof ExperimentVariation
@@ -187,6 +193,7 @@ export function ExperimentVariationFromJSONTyped(json: any, ignoreDiscriminator:
         'paused': !exists(json, 'paused') ? undefined : json['paused'],
         'revenue': !exists(json, 'revenue') ? undefined : json['revenue'],
         'session_count': !exists(json, 'session_count') ? undefined : json['session_count'],
+        'sms_opt_ins': !exists(json, 'sms_opt_ins') ? undefined : json['sms_opt_ins'],
         'traffic_percentage': !exists(json, 'traffic_percentage') ? undefined : json['traffic_percentage'],
         'url': !exists(json, 'url') ? undefined : json['url'],
         'variation_name': !exists(json, 'variation_name') ? undefined : json['variation_name'],
@@ -221,6 +228,7 @@ export function ExperimentVariationToJSON(value?: ExperimentVariation | null): a
         'paused': value.paused,
         'revenue': value.revenue,
         'session_count': value.session_count,
+        'sms_opt_ins': value.sms_opt_ins,
         'traffic_percentage': value.traffic_percentage,
         'url': value.url,
         'variation_name': value.variation_name,

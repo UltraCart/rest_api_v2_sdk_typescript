@@ -24,6 +24,18 @@ export interface EmailCommseqSequenceTestRequest {
      * @type {string}
      * @memberof EmailCommseqSequenceTestRequest
      */
+    address_1?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof EmailCommseqSequenceTestRequest
+     */
+    address_2?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof EmailCommseqSequenceTestRequest
+     */
     cart_id?: string;
     /**
      * 
@@ -36,7 +48,19 @@ export interface EmailCommseqSequenceTestRequest {
      * @type {string}
      * @memberof EmailCommseqSequenceTestRequest
      */
+    city?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof EmailCommseqSequenceTestRequest
+     */
     esp_commseq_uuid?: string;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof EmailCommseqSequenceTestRequest
+     */
+    mail_card?: boolean;
     /**
      * 
      * @type {string}
@@ -60,6 +84,12 @@ export interface EmailCommseqSequenceTestRequest {
      * @type {string}
      * @memberof EmailCommseqSequenceTestRequest
      */
+    postal_code?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof EmailCommseqSequenceTestRequest
+     */
     send_to_email?: string;
     /**
      * 
@@ -67,6 +97,12 @@ export interface EmailCommseqSequenceTestRequest {
      * @memberof EmailCommseqSequenceTestRequest
      */
     send_to_logged_in_user?: boolean;
+    /**
+     * 
+     * @type {string}
+     * @memberof EmailCommseqSequenceTestRequest
+     */
+    state?: string;
 }
 
 export function EmailCommseqSequenceTestRequestFromJSON(json: any): EmailCommseqSequenceTestRequest {
@@ -79,14 +115,20 @@ export function EmailCommseqSequenceTestRequestFromJSONTyped(json: any, ignoreDi
     }
     return {
         
+        'address_1': !exists(json, 'address_1') ? undefined : json['address_1'],
+        'address_2': !exists(json, 'address_2') ? undefined : json['address_2'],
         'cart_id': !exists(json, 'cart_id') ? undefined : json['cart_id'],
         'cart_item_ids': !exists(json, 'cart_item_ids') ? undefined : json['cart_item_ids'],
+        'city': !exists(json, 'city') ? undefined : json['city'],
         'esp_commseq_uuid': !exists(json, 'esp_commseq_uuid') ? undefined : json['esp_commseq_uuid'],
+        'mail_card': !exists(json, 'mail_card') ? undefined : json['mail_card'],
         'name': !exists(json, 'name') ? undefined : json['name'],
         'order_id': !exists(json, 'order_id') ? undefined : json['order_id'],
         'please_review': !exists(json, 'please_review') ? undefined : json['please_review'],
+        'postal_code': !exists(json, 'postal_code') ? undefined : json['postal_code'],
         'send_to_email': !exists(json, 'send_to_email') ? undefined : json['send_to_email'],
         'send_to_logged_in_user': !exists(json, 'send_to_logged_in_user') ? undefined : json['send_to_logged_in_user'],
+        'state': !exists(json, 'state') ? undefined : json['state'],
     };
 }
 
@@ -99,14 +141,20 @@ export function EmailCommseqSequenceTestRequestToJSON(value?: EmailCommseqSequen
     }
     return {
         
+        'address_1': value.address_1,
+        'address_2': value.address_2,
         'cart_id': value.cart_id,
         'cart_item_ids': value.cart_item_ids,
+        'city': value.city,
         'esp_commseq_uuid': value.esp_commseq_uuid,
+        'mail_card': value.mail_card,
         'name': value.name,
         'order_id': value.order_id,
         'please_review': value.please_review,
+        'postal_code': value.postal_code,
         'send_to_email': value.send_to_email,
         'send_to_logged_in_user': value.send_to_logged_in_user,
+        'state': value.state,
     };
 }
 
