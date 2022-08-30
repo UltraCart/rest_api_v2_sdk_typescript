@@ -11844,6 +11844,18 @@ export interface EmailCampaign {
      */
     screenshot_large_full_url?: string;
     /**
+     * Twilio Account UUID.  Null for none
+     * @type {string}
+     * @memberof EmailCampaign
+     */
+    sms_esp_twilio_uuid?: string;
+    /**
+     * Twilio SMS Phone Number.  Null for none
+     * @type {string}
+     * @memberof EmailCampaign
+     */
+    sms_phone_number?: string;
+    /**
      * Status of the campaign of draft, archived, and sent
      * @type {string}
      * @memberof EmailCampaign
@@ -14032,6 +14044,18 @@ export interface EmailFlow {
      */
     screenshot_large_full_url?: string;
     /**
+     * Twilio Account UUID.  Null for none
+     * @type {string}
+     * @memberof EmailFlow
+     */
+    sms_esp_twilio_uuid?: string;
+    /**
+     * Twilio SMS Phone Number.  Null for none
+     * @type {string}
+     * @memberof EmailFlow
+     */
+    sms_phone_number?: string;
+    /**
      * Status of the campaign of draft, archived, active, and inactive
      * @type {string}
      * @memberof EmailFlow
@@ -16120,6 +16144,18 @@ export interface EmailSettings {
      * @memberof EmailSettings
      */
     postcard_from_state?: string;
+    /**
+     *
+     * @type {string}
+     * @memberof EmailSettings
+     */
+    sms_esp_twilio_uuid?: string;
+    /**
+     *
+     * @type {string}
+     * @memberof EmailSettings
+     */
+    sms_phone_number?: string;
     /**
      *
      * @type {string}
