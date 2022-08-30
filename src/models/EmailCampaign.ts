@@ -153,6 +153,18 @@ export interface EmailCampaign {
      */
     screenshot_large_full_url?: string;
     /**
+     * Twilio Account UUID.  Null for none
+     * @type {string}
+     * @memberof EmailCampaign
+     */
+    sms_esp_twilio_uuid?: string;
+    /**
+     * Twilio SMS Phone Number.  Null for none
+     * @type {string}
+     * @memberof EmailCampaign
+     */
+    sms_phone_number?: string;
+    /**
      * Status of the campaign of draft, archived, and sent
      * @type {string}
      * @memberof EmailCampaign
@@ -203,6 +215,8 @@ export function EmailCampaignFromJSONTyped(json: any, ignoreDiscriminator: boole
         'revenue_per_customer_formatted': !exists(json, 'revenue_per_customer_formatted') ? undefined : json['revenue_per_customer_formatted'],
         'scheduled_dts': !exists(json, 'scheduled_dts') ? undefined : json['scheduled_dts'],
         'screenshot_large_full_url': !exists(json, 'screenshot_large_full_url') ? undefined : json['screenshot_large_full_url'],
+        'sms_esp_twilio_uuid': !exists(json, 'sms_esp_twilio_uuid') ? undefined : json['sms_esp_twilio_uuid'],
+        'sms_phone_number': !exists(json, 'sms_phone_number') ? undefined : json['sms_phone_number'],
         'status': !exists(json, 'status') ? undefined : json['status'],
         'status_dts': !exists(json, 'status_dts') ? undefined : json['status_dts'],
         'storefront_oid': !exists(json, 'storefront_oid') ? undefined : json['storefront_oid'],
@@ -239,6 +253,8 @@ export function EmailCampaignToJSON(value?: EmailCampaign | null): any {
         'revenue_per_customer_formatted': value.revenue_per_customer_formatted,
         'scheduled_dts': value.scheduled_dts,
         'screenshot_large_full_url': value.screenshot_large_full_url,
+        'sms_esp_twilio_uuid': value.sms_esp_twilio_uuid,
+        'sms_phone_number': value.sms_phone_number,
         'status': value.status,
         'status_dts': value.status_dts,
         'storefront_oid': value.storefront_oid,

@@ -1,4 +1,4 @@
-## ultracart_rest_api_v2_typescript@4.0.58-RC
+## ultracart_rest_api_v2_typescript@4.0.59-RC
 
 This generator creates TypeScript/JavaScript client that utilizes [Fetch API](https://fetch.spec.whatwg.org/). The generated Node module can be used in the following environments:
 
@@ -36,7 +36,7 @@ navigate to the folder of your consuming project and run one of the following co
 _published:_
 
 ```
-npm install ultracart_rest_api_v2_typescript@4.0.58-RC --save
+npm install ultracart_rest_api_v2_typescript@4.0.59-RC --save
 ```
 
 _unPublished (not recommended):_
@@ -54,6 +54,7 @@ Not every change is committed to every SDK.
 
 | Version | Date | Comments |
 | --: | :-: | --- |
+| 4.0.59-RC | 08/30/2022 | storefront comm fields for sms configuration |
 | 4.0.58-RC | 08/26/2022 | postcard address fields for comm sequence testing |
 | 4.0.57-RC | 08/22/2022 | exposing individual reviews within item.review object |
 | 4.0.56-RC | 08/19/2022 | order api - added cell phone fields for sms |

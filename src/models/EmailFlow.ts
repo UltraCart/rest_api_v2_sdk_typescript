@@ -152,6 +152,18 @@ export interface EmailFlow {
      */
     screenshot_large_full_url?: string;
     /**
+     * Twilio Account UUID.  Null for none
+     * @type {string}
+     * @memberof EmailFlow
+     */
+    sms_esp_twilio_uuid?: string;
+    /**
+     * Twilio SMS Phone Number.  Null for none
+     * @type {string}
+     * @memberof EmailFlow
+     */
+    sms_phone_number?: string;
+    /**
      * Status of the campaign of draft, archived, active, and inactive
      * @type {string}
      * @memberof EmailFlow
@@ -221,6 +233,8 @@ export function EmailFlowFromJSONTyped(json: any, ignoreDiscriminator: boolean):
         'revenue_formatted': !exists(json, 'revenue_formatted') ? undefined : json['revenue_formatted'],
         'revenue_per_customer_formatted': !exists(json, 'revenue_per_customer_formatted') ? undefined : json['revenue_per_customer_formatted'],
         'screenshot_large_full_url': !exists(json, 'screenshot_large_full_url') ? undefined : json['screenshot_large_full_url'],
+        'sms_esp_twilio_uuid': !exists(json, 'sms_esp_twilio_uuid') ? undefined : json['sms_esp_twilio_uuid'],
+        'sms_phone_number': !exists(json, 'sms_phone_number') ? undefined : json['sms_phone_number'],
         'status': !exists(json, 'status') ? undefined : json['status'],
         'status_dts': !exists(json, 'status_dts') ? undefined : json['status_dts'],
         'storefront_oid': !exists(json, 'storefront_oid') ? undefined : json['storefront_oid'],
@@ -261,6 +275,8 @@ export function EmailFlowToJSON(value?: EmailFlow | null): any {
         'revenue_formatted': value.revenue_formatted,
         'revenue_per_customer_formatted': value.revenue_per_customer_formatted,
         'screenshot_large_full_url': value.screenshot_large_full_url,
+        'sms_esp_twilio_uuid': value.sms_esp_twilio_uuid,
+        'sms_phone_number': value.sms_phone_number,
         'status': value.status,
         'status_dts': value.status_dts,
         'storefront_oid': value.storefront_oid,
