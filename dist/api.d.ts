@@ -10193,6 +10193,12 @@ export interface CustomerEditorValues {
      */
     countries?: Array<Country>;
     /**
+     * loyalty_ledger_descriptions
+     * @type {Array<string>}
+     * @memberof CustomerEditorValues
+     */
+    loyalty_ledger_descriptions?: Array<string>;
+    /**
      * loyalty_program_type
      * @type {string}
      * @memberof CustomerEditorValues
