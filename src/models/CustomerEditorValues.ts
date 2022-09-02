@@ -63,6 +63,12 @@ export interface CustomerEditorValues {
      */
     countries?: Array<Country>;
     /**
+     * loyalty_ledger_descriptions
+     * @type {Array<string>}
+     * @memberof CustomerEditorValues
+     */
+    loyalty_ledger_descriptions?: Array<string>;
+    /**
      * loyalty_program_type
      * @type {string}
      * @memberof CustomerEditorValues
@@ -109,6 +115,7 @@ export function CustomerEditorValuesFromJSONTyped(json: any, ignoreDiscriminator
         'card_exp_years': !exists(json, 'card_exp_years') ? undefined : json['card_exp_years'],
         'card_types': !exists(json, 'card_types') ? undefined : json['card_types'],
         'countries': !exists(json, 'countries') ? undefined : ((json['countries'] as Array<any>).map(CountryFromJSON)),
+        'loyalty_ledger_descriptions': !exists(json, 'loyalty_ledger_descriptions') ? undefined : json['loyalty_ledger_descriptions'],
         'loyalty_program_type': !exists(json, 'loyalty_program_type') ? undefined : json['loyalty_program_type'],
         'qb_classes': !exists(json, 'qb_classes') ? undefined : json['qb_classes'],
         'sales_rep_codes': !exists(json, 'sales_rep_codes') ? undefined : json['sales_rep_codes'],
@@ -131,6 +138,7 @@ export function CustomerEditorValuesToJSON(value?: CustomerEditorValues | null):
         'card_exp_years': value.card_exp_years,
         'card_types': value.card_types,
         'countries': value.countries === undefined ? undefined : ((value.countries as Array<any>).map(CountryToJSON)),
+        'loyalty_ledger_descriptions': value.loyalty_ledger_descriptions,
         'loyalty_program_type': value.loyalty_program_type,
         'qb_classes': value.qb_classes,
         'sales_rep_codes': value.sales_rep_codes,
