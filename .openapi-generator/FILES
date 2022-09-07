@@ -573,6 +573,8 @@ src/models/RegisterAffiliateClickRequest.ts
 src/models/RegisterAffiliateClickResponse.ts
 src/models/ResponseMetadata.ts
 src/models/ResultSet.ts
+src/models/RulerValidationRequest.ts
+src/models/RulerValidationResponse.ts
 src/models/ScreenRecording.ts
 src/models/ScreenRecordingAdPlatform.ts
 src/models/ScreenRecordingFilter.ts

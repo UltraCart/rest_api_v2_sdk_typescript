@@ -333,6 +333,12 @@ import {
     PublishLibraryItemRequest,
     PublishLibraryItemRequestFromJSON,
     PublishLibraryItemRequestToJSON,
+    RulerValidationRequest,
+    RulerValidationRequestFromJSON,
+    RulerValidationRequestToJSON,
+    RulerValidationResponse,
+    RulerValidationResponseFromJSON,
+    RulerValidationResponseToJSON,
     ScreenRecordingHeatmapIndexRequest,
     ScreenRecordingHeatmapIndexRequestFromJSON,
     ScreenRecordingHeatmapIndexRequestToJSON,
@@ -1240,6 +1246,10 @@ export interface UpdateTransactionEmailRequest {
 export interface UpdateTwilioAccountRequest {
     espTwilioUuid: string;
     twilio: Twilio;
+}
+
+export interface ValidateRulerRequest {
+    rulerValidateRequest: RulerValidationRequest;
 }
 
 /**
@@ -3917,6 +3927,21 @@ export interface StorefrontApiInterface {
      * Update Twilio account
      */
     updateTwilioAccount(requestParameters: UpdateTwilioAccountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<TwilioResponse>;
+
+    /**
+     * 
+     * @summary Validate AWS Event Ruler
+     * @param {RulerValidationRequest} rulerValidateRequest Ruler Validate Request
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof StorefrontApiInterface
+     */
+    validateRulerRaw(requestParameters: ValidateRulerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<RulerValidationResponse>>;
+
+    /**
+     * Validate AWS Event Ruler
+     */
+    validateRuler(requestParameters: ValidateRulerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<RulerValidationResponse>;
 
 }
 
@@ -11876,6 +11901,52 @@ export class StorefrontApi extends runtime.BaseAPI implements StorefrontApiInter
      */
     async updateTwilioAccount(requestParameters: UpdateTwilioAccountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<TwilioResponse> {
         const response = await this.updateTwilioAccountRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Validate AWS Event Ruler
+     */
+    async validateRulerRaw(requestParameters: ValidateRulerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<RulerValidationResponse>> {
+        if (requestParameters.rulerValidateRequest === null || requestParameters.rulerValidateRequest === undefined) {
+            throw new runtime.RequiredError('rulerValidateRequest','Required parameter requestParameters.rulerValidateRequest was null or undefined when calling validateRuler.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-browser-key"] = this.configuration.apiKey("x-ultracart-browser-key"); // ultraCartBrowserApiKey authentication
+        }
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", ["storefront_write"]);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/storefront/ruler/validate`,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: RulerValidationRequestToJSON(requestParameters.rulerValidateRequest),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => RulerValidationResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Validate AWS Event Ruler
+     */
+    async validateRuler(requestParameters: ValidateRulerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<RulerValidationResponse> {
+        const response = await this.validateRulerRaw(requestParameters, initOverrides);
         return await response.value();
     }
 

@@ -550,6 +550,8 @@ export * from './RegisterAffiliateClickRequest';
 export * from './RegisterAffiliateClickResponse';
 export * from './ResponseMetadata';
 export * from './ResultSet';
+export * from './RulerValidationRequest';
+export * from './RulerValidationResponse';
 export * from './ScreenRecording';
 export * from './ScreenRecordingAdPlatform';
 export * from './ScreenRecordingFilter';
