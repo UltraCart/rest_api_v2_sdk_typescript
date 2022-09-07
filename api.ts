@@ -29294,6 +29294,40 @@ export interface ResultSet {
 /**
  * 
  * @export
+ * @interface RulerValidationRequest
+ */
+export interface RulerValidationRequest {
+    /**
+     * 
+     * @type {string}
+     * @memberof RulerValidationRequest
+     */
+    ruler?: string;
+}
+
+/**
+ * 
+ * @export
+ * @interface RulerValidationResponse
+ */
+export interface RulerValidationResponse {
+    /**
+     * 
+     * @type {string}
+     * @memberof RulerValidationResponse
+     */
+    error_message?: string;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof RulerValidationResponse
+     */
+    valid?: boolean;
+}
+
+/**
+ * 
+ * @export
  * @interface ScreenRecording
  */
 export interface ScreenRecording {
@@ -63851,6 +63885,69 @@ export const StorefrontApiFetchParamCreator = function (configuration?: Configur
                 options: localVarRequestOptions,
             };
         },
+        /**
+         * 
+         * @summary Validate AWS Event Ruler
+         * @param {RulerValidationRequest} ruler_validate_request Ruler Validate Request
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        validateRuler(ruler_validate_request: RulerValidationRequest, options: any = {}): FetchArgs {
+            // verify required parameter 'ruler_validate_request' is not null or undefined
+            if (ruler_validate_request === null || ruler_validate_request === undefined) {
+                throw new RequiredError('ruler_validate_request','Required parameter ruler_validate_request was null or undefined when calling validateRuler.');
+            }
+            const localVarPath = `/storefront/ruler/validate`;
+            const localVarUrlObj = url.parse(localVarPath, true);
+            const localVarRequestOptions = Object.assign({ method: 'POST' }, options);
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+    if(configuration && configuration.apiVersion) {
+      localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+    }
+
+
+
+            // authentication ultraCartBrowserApiKey required
+            if (configuration && configuration.apiKey) {
+                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
+					? configuration.apiKey("x-ultracart-browser-key")
+					: configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-browser-key"] = localVarApiKeyValue;
+            }
+
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+				const localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+					? configuration.accessToken("ultraCartOauth", ["storefront_write"])
+					: configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
+					? configuration.apiKey("x-ultracart-simple-key")
+					: configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+            const needsSerialization = (<any>"RulerValidationRequest" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
+            localVarRequestOptions.body =  needsSerialization ? JSON.stringify(ruler_validate_request || {}) : (ruler_validate_request || "");
+
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
     }
 };
 
@@ -67489,6 +67586,27 @@ export const StorefrontApiFp = function(configuration?: Configuration) {
                 });
             };
         },
+        /**
+         * 
+         * @summary Validate AWS Event Ruler
+         * @param {RulerValidationRequest} ruler_validate_request Ruler Validate Request
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        validateRuler(ruler_validate_request: RulerValidationRequest, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<RulerValidationResponse> {
+            const localVarFetchArgs = StorefrontApiFetchParamCreator(configuration).validateRuler(ruler_validate_request, options);
+            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
+                    if (response.status >= 200 && response.status < 300) {
+                      return response.json();
+                      
+                    } else {
+                        throw response;
+                    }
+                });
+            };
+        },
     }
 };
 
@@ -69323,6 +69441,16 @@ export const StorefrontApiFactory = function (configuration?: Configuration, fet
         updateTwilioAccount(esp_twilio_uuid: string, twilio: Twilio, options?: any) {
             return StorefrontApiFp(configuration).updateTwilioAccount(esp_twilio_uuid, twilio, options)(fetch, basePath);
         },
+        /**
+         * 
+         * @summary Validate AWS Event Ruler
+         * @param {RulerValidationRequest} ruler_validate_request Ruler Validate Request
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        validateRuler(ruler_validate_request: RulerValidationRequest, options?: any) {
+            return StorefrontApiFp(configuration).validateRuler(ruler_validate_request, options)(fetch, basePath);
+        },
     };
 };
 
@@ -71156,6 +71284,16 @@ export interface StorefrontApiInterface {
      * @memberof StorefrontApiInterface
      */
     updateTwilioAccount(esp_twilio_uuid: string, twilio: Twilio, options?: any): Promise<TwilioResponse>;
+
+    /**
+     * 
+     * @summary Validate AWS Event Ruler
+     * @param {RulerValidationRequest} ruler_validate_request Ruler Validate Request
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof StorefrontApiInterface
+     */
+    validateRuler(ruler_validate_request: RulerValidationRequest, options?: any): Promise<RulerValidationResponse>;
 
 }
 
@@ -73317,6 +73455,18 @@ export class StorefrontApi extends BaseAPI implements StorefrontApiInterface {
      */
     public updateTwilioAccount(esp_twilio_uuid: string, twilio: Twilio, options?: any) {
         return StorefrontApiFp(this.configuration).updateTwilioAccount(esp_twilio_uuid, twilio, options)(this.fetch, this.basePath);
+    }
+
+    /**
+     * 
+     * @summary Validate AWS Event Ruler
+     * @param {RulerValidationRequest} ruler_validate_request Ruler Validate Request
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof StorefrontApi
+     */
+    public validateRuler(ruler_validate_request: RulerValidationRequest, options?: any) {
+        return StorefrontApiFp(this.configuration).validateRuler(ruler_validate_request, options)(this.fetch, this.basePath);
     }
 
 }

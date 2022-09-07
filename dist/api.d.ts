@@ -28680,6 +28680,38 @@ export interface ResultSet {
 /**
  *
  * @export
+ * @interface RulerValidationRequest
+ */
+export interface RulerValidationRequest {
+    /**
+     *
+     * @type {string}
+     * @memberof RulerValidationRequest
+     */
+    ruler?: string;
+}
+/**
+ *
+ * @export
+ * @interface RulerValidationResponse
+ */
+export interface RulerValidationResponse {
+    /**
+     *
+     * @type {string}
+     * @memberof RulerValidationResponse
+     */
+    error_message?: string;
+    /**
+     *
+     * @type {boolean}
+     * @memberof RulerValidationResponse
+     */
+    valid?: boolean;
+}
+/**
+ *
+ * @export
  * @interface ScreenRecording
  */
 export interface ScreenRecording {
@@ -43127,6 +43159,14 @@ export declare const StorefrontApiFetchParamCreator: (configuration?: Configurat
      * @throws {RequiredError}
      */
     updateTwilioAccount(esp_twilio_uuid: string, twilio: Twilio, options?: any): FetchArgs;
+    /**
+     *
+     * @summary Validate AWS Event Ruler
+     * @param {RulerValidationRequest} ruler_validate_request Ruler Validate Request
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    validateRuler(ruler_validate_request: RulerValidationRequest, options?: any): FetchArgs;
 };
 /**
  * StorefrontApi - functional programming interface
@@ -44630,6 +44670,14 @@ export declare const StorefrontApiFp: (configuration?: Configuration) => {
      * @throws {RequiredError}
      */
     updateTwilioAccount(esp_twilio_uuid: string, twilio: Twilio, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<TwilioResponse>;
+    /**
+     *
+     * @summary Validate AWS Event Ruler
+     * @param {RulerValidationRequest} ruler_validate_request Ruler Validate Request
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    validateRuler(ruler_validate_request: RulerValidationRequest, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<RulerValidationResponse>;
 };
 /**
  * StorefrontApi - factory interface
@@ -46133,6 +46181,14 @@ export declare const StorefrontApiFactory: (configuration?: Configuration, fetch
      * @throws {RequiredError}
      */
     updateTwilioAccount(esp_twilio_uuid: string, twilio: Twilio, options?: any): Promise<TwilioResponse>;
+    /**
+     *
+     * @summary Validate AWS Event Ruler
+     * @param {RulerValidationRequest} ruler_validate_request Ruler Validate Request
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    validateRuler(ruler_validate_request: RulerValidationRequest, options?: any): Promise<RulerValidationResponse>;
 };
 /**
  * StorefrontApi - interface
@@ -47801,6 +47857,15 @@ export interface StorefrontApiInterface {
      * @memberof StorefrontApiInterface
      */
     updateTwilioAccount(esp_twilio_uuid: string, twilio: Twilio, options?: any): Promise<TwilioResponse>;
+    /**
+     *
+     * @summary Validate AWS Event Ruler
+     * @param {RulerValidationRequest} ruler_validate_request Ruler Validate Request
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof StorefrontApiInterface
+     */
+    validateRuler(ruler_validate_request: RulerValidationRequest, options?: any): Promise<RulerValidationResponse>;
 }
 /**
  * StorefrontApi - object-oriented interface
@@ -49470,6 +49535,15 @@ export declare class StorefrontApi extends BaseAPI implements StorefrontApiInter
      * @memberof StorefrontApi
      */
     updateTwilioAccount(esp_twilio_uuid: string, twilio: Twilio, options?: any): Promise<TwilioResponse>;
+    /**
+     *
+     * @summary Validate AWS Event Ruler
+     * @param {RulerValidationRequest} ruler_validate_request Ruler Validate Request
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof StorefrontApi
+     */
+    validateRuler(ruler_validate_request: RulerValidationRequest, options?: any): Promise<RulerValidationResponse>;
 }
 /**
  * TaxApi - fetch parameter creator

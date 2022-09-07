@@ -26156,6 +26156,61 @@ var StorefrontApiFetchParamCreator = function (configuration) {
                 options: localVarRequestOptions,
             };
         },
+        /**
+         *
+         * @summary Validate AWS Event Ruler
+         * @param {RulerValidationRequest} ruler_validate_request Ruler Validate Request
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        validateRuler: function (ruler_validate_request, options) {
+            if (options === void 0) { options = {}; }
+            // verify required parameter 'ruler_validate_request' is not null or undefined
+            if (ruler_validate_request === null || ruler_validate_request === undefined) {
+                throw new RequiredError('ruler_validate_request', 'Required parameter ruler_validate_request was null or undefined when calling validateRuler.');
+            }
+            var localVarPath = "/storefront/ruler/validate";
+            var localVarUrlObj = url.parse(localVarPath, true);
+            var localVarRequestOptions = Object.assign({ method: 'POST' }, options);
+            var localVarHeaderParameter = {};
+            var localVarQueryParameter = {};
+            if (configuration && configuration.apiVersion) {
+                localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+            }
+            // authentication ultraCartBrowserApiKey required
+            if (configuration && configuration.apiKey) {
+                var localVarApiKeyValue = typeof configuration.apiKey === 'function'
+                    ? configuration.apiKey("x-ultracart-browser-key")
+                    : configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-browser-key"] = localVarApiKeyValue;
+            }
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+                var localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+                    ? configuration.accessToken("ultraCartOauth", ["storefront_write"])
+                    : configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                var localVarApiKeyValue = typeof configuration.apiKey === 'function'
+                    ? configuration.apiKey("x-ultracart-simple-key")
+                    : configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+            var needsSerialization = ("RulerValidationRequest" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
+            localVarRequestOptions.body = needsSerialization ? JSON.stringify(ruler_validate_request || {}) : (ruler_validate_request || "");
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
     };
 };
 exports.StorefrontApiFetchParamCreator = StorefrontApiFetchParamCreator;
@@ -29958,6 +30013,28 @@ var StorefrontApiFp = function (configuration) {
                 });
             };
         },
+        /**
+         *
+         * @summary Validate AWS Event Ruler
+         * @param {RulerValidationRequest} ruler_validate_request Ruler Validate Request
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        validateRuler: function (ruler_validate_request, options) {
+            var localVarFetchArgs = (0, exports.StorefrontApiFetchParamCreator)(configuration).validateRuler(ruler_validate_request, options);
+            return function (fetch, basePath) {
+                if (fetch === void 0) { fetch = portableFetch; }
+                if (basePath === void 0) { basePath = BASE_PATH; }
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(function (response) {
+                    if (response.status >= 200 && response.status < 300) {
+                        return response.json();
+                    }
+                    else {
+                        throw response;
+                    }
+                });
+            };
+        },
     };
 };
 exports.StorefrontApiFp = StorefrontApiFp;
@@ -31791,6 +31868,16 @@ var StorefrontApiFactory = function (configuration, fetch, basePath) {
          */
         updateTwilioAccount: function (esp_twilio_uuid, twilio, options) {
             return (0, exports.StorefrontApiFp)(configuration).updateTwilioAccount(esp_twilio_uuid, twilio, options)(fetch, basePath);
+        },
+        /**
+         *
+         * @summary Validate AWS Event Ruler
+         * @param {RulerValidationRequest} ruler_validate_request Ruler Validate Request
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        validateRuler: function (ruler_validate_request, options) {
+            return (0, exports.StorefrontApiFp)(configuration).validateRuler(ruler_validate_request, options)(fetch, basePath);
         },
     };
 };
@@ -33794,6 +33881,17 @@ var StorefrontApi = /** @class */ (function (_super) {
      */
     StorefrontApi.prototype.updateTwilioAccount = function (esp_twilio_uuid, twilio, options) {
         return (0, exports.StorefrontApiFp)(this.configuration).updateTwilioAccount(esp_twilio_uuid, twilio, options)(this.fetch, this.basePath);
+    };
+    /**
+     *
+     * @summary Validate AWS Event Ruler
+     * @param {RulerValidationRequest} ruler_validate_request Ruler Validate Request
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof StorefrontApi
+     */
+    StorefrontApi.prototype.validateRuler = function (ruler_validate_request, options) {
+        return (0, exports.StorefrontApiFp)(this.configuration).validateRuler(ruler_validate_request, options)(this.fetch, this.basePath);
     };
     return StorefrontApi;
 }(BaseAPI));
