@@ -16519,6 +16519,12 @@ export interface EmailSettings {
      */
     postcard_from_state?: string;
     /**
+     * True if the Reviews.io integration is configured
+     * @type {boolean}
+     * @memberof EmailSettings
+     */
+    reviews_io_configured?: boolean;
+    /**
      * 
      * @type {string}
      * @memberof EmailSettings
