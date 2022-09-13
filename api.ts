@@ -16011,6 +16011,202 @@ export interface EmailPostcardStat {
 /**
  * 
  * @export
+ * @interface EmailPostcardTracking
+ */
+export interface EmailPostcardTracking {
+    /**
+     * 
+     * @type {string}
+     * @memberof EmailPostcardTracking
+     */
+    commseq_postcard_uuid?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof EmailPostcardTracking
+     */
+    commseq_step_uuid?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof EmailPostcardTracking
+     */
+    commseq_uuid?: string;
+    /**
+     * Conversion date time.
+     * @type {string}
+     * @memberof EmailPostcardTracking
+     */
+    conversion_dts?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof EmailPostcardTracking
+     */
+    cost?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof EmailPostcardTracking
+     */
+    customer_uuid?: string;
+    /**
+     * Delivered date time.
+     * @type {string}
+     * @memberof EmailPostcardTracking
+     */
+    delivered_dts?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof EmailPostcardTracking
+     */
+    from_address_line1?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof EmailPostcardTracking
+     */
+    from_address_line2?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof EmailPostcardTracking
+     */
+    from_city?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof EmailPostcardTracking
+     */
+    from_name?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof EmailPostcardTracking
+     */
+    from_state?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof EmailPostcardTracking
+     */
+    from_zip?: string;
+    /**
+     * Mailed date time.
+     * @type {string}
+     * @memberof EmailPostcardTracking
+     */
+    mailed_dts?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof EmailPostcardTracking
+     */
+    order_id?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof EmailPostcardTracking
+     */
+    postcard_tracking_uuid?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof EmailPostcardTracking
+     */
+    status?: string;
+    /**
+     * Submit date time.
+     * @type {string}
+     * @memberof EmailPostcardTracking
+     */
+    submit_dts?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof EmailPostcardTracking
+     */
+    to_address_line1?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof EmailPostcardTracking
+     */
+    to_address_line2?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof EmailPostcardTracking
+     */
+    to_city?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof EmailPostcardTracking
+     */
+    to_name?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof EmailPostcardTracking
+     */
+    to_state?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof EmailPostcardTracking
+     */
+    to_zip?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof EmailPostcardTracking
+     */
+    tracking_description?: string;
+}
+
+/**
+ * 
+ * @export
+ * @interface EmailPostcardTrackingResponse
+ */
+export interface EmailPostcardTrackingResponse {
+    /**
+     * 
+     * @type {ModelError}
+     * @memberof EmailPostcardTrackingResponse
+     */
+    error?: ModelError;
+    /**
+     * 
+     * @type {ResponseMetadata}
+     * @memberof EmailPostcardTrackingResponse
+     */
+    metadata?: ResponseMetadata;
+    /**
+     * Indicates if API call was successful
+     * @type {boolean}
+     * @memberof EmailPostcardTrackingResponse
+     */
+    success?: boolean;
+    /**
+     * 
+     * @type {EmailPostcardTracking}
+     * @memberof EmailPostcardTrackingResponse
+     */
+    tracking?: EmailPostcardTracking;
+    /**
+     * 
+     * @type {Warning}
+     * @memberof EmailPostcardTrackingResponse
+     */
+    warning?: Warning;
+}
+
+/**
+ * 
+ * @export
  * @interface EmailSegment
  */
 export interface EmailSegment {
@@ -55533,6 +55729,72 @@ export const StorefrontApiFetchParamCreator = function (configuration?: Configur
         },
         /**
          * 
+         * @summary Get email communication postcard tracking
+         * @param {number} storefront_oid 
+         * @param {string} commseq_postcard_uuid 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getEmailCommseqPostcardTracking(storefront_oid: number, commseq_postcard_uuid: string, options: any = {}): FetchArgs {
+            // verify required parameter 'storefront_oid' is not null or undefined
+            if (storefront_oid === null || storefront_oid === undefined) {
+                throw new RequiredError('storefront_oid','Required parameter storefront_oid was null or undefined when calling getEmailCommseqPostcardTracking.');
+            }
+            // verify required parameter 'commseq_postcard_uuid' is not null or undefined
+            if (commseq_postcard_uuid === null || commseq_postcard_uuid === undefined) {
+                throw new RequiredError('commseq_postcard_uuid','Required parameter commseq_postcard_uuid was null or undefined when calling getEmailCommseqPostcardTracking.');
+            }
+            const localVarPath = `/storefront/{storefront_oid}/email/postcards/{commseq_postcard_uuid}/tracking`
+                .replace(`{${"storefront_oid"}}`, encodeURIComponent(String(storefront_oid)))
+                .replace(`{${"commseq_postcard_uuid"}}`, encodeURIComponent(String(commseq_postcard_uuid)));
+            const localVarUrlObj = url.parse(localVarPath, true);
+            const localVarRequestOptions = Object.assign({ method: 'GET' }, options);
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+    if(configuration && configuration.apiVersion) {
+      localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+    }
+
+
+
+            // authentication ultraCartBrowserApiKey required
+            if (configuration && configuration.apiKey) {
+                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
+					? configuration.apiKey("x-ultracart-browser-key")
+					: configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-browser-key"] = localVarApiKeyValue;
+            }
+
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+				const localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+					? configuration.accessToken("ultraCartOauth", ["storefront_read"])
+					: configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
+					? configuration.apiKey("x-ultracart-simple-key")
+					: configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
          * @summary Get communication sequence stats overall
          * @param {number} storefront_oid 
          * @param {string} commseq_uuid 
@@ -64837,6 +65099,28 @@ export const StorefrontApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
+         * @summary Get email communication postcard tracking
+         * @param {number} storefront_oid 
+         * @param {string} commseq_postcard_uuid 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getEmailCommseqPostcardTracking(storefront_oid: number, commseq_postcard_uuid: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<EmailPostcardTrackingResponse> {
+            const localVarFetchArgs = StorefrontApiFetchParamCreator(configuration).getEmailCommseqPostcardTracking(storefront_oid, commseq_postcard_uuid, options);
+            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
+                    if (response.status >= 200 && response.status < 300) {
+                      return response.json();
+                      
+                    } else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
+         * 
          * @summary Get communication sequence stats overall
          * @param {number} storefront_oid 
          * @param {string} commseq_uuid 
@@ -68056,6 +68340,17 @@ export const StorefrontApiFactory = function (configuration?: Configuration, fet
         },
         /**
          * 
+         * @summary Get email communication postcard tracking
+         * @param {number} storefront_oid 
+         * @param {string} commseq_postcard_uuid 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getEmailCommseqPostcardTracking(storefront_oid: number, commseq_postcard_uuid: string, options?: any) {
+            return StorefrontApiFp(configuration).getEmailCommseqPostcardTracking(storefront_oid, commseq_postcard_uuid, options)(fetch, basePath);
+        },
+        /**
+         * 
          * @summary Get communication sequence stats overall
          * @param {number} storefront_oid 
          * @param {string} commseq_uuid 
@@ -69897,6 +70192,17 @@ export interface StorefrontApiInterface {
      * @memberof StorefrontApiInterface
      */
     getEmailCommseqPostcardStats(storefront_oid: number, commseq_uuid: string, statsRequest: EmailStatPostcardSummaryRequest, options?: any): Promise<EmailStatPostcardSummaryResponse>;
+
+    /**
+     * 
+     * @summary Get email communication postcard tracking
+     * @param {number} storefront_oid 
+     * @param {string} commseq_postcard_uuid 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof StorefrontApiInterface
+     */
+    getEmailCommseqPostcardTracking(storefront_oid: number, commseq_postcard_uuid: string, options?: any): Promise<EmailPostcardTrackingResponse>;
 
     /**
      * 
@@ -71820,6 +72126,19 @@ export class StorefrontApi extends BaseAPI implements StorefrontApiInterface {
      */
     public getEmailCommseqPostcardStats(storefront_oid: number, commseq_uuid: string, statsRequest: EmailStatPostcardSummaryRequest, options?: any) {
         return StorefrontApiFp(this.configuration).getEmailCommseqPostcardStats(storefront_oid, commseq_uuid, statsRequest, options)(this.fetch, this.basePath);
+    }
+
+    /**
+     * 
+     * @summary Get email communication postcard tracking
+     * @param {number} storefront_oid 
+     * @param {string} commseq_postcard_uuid 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof StorefrontApi
+     */
+    public getEmailCommseqPostcardTracking(storefront_oid: number, commseq_postcard_uuid: string, options?: any) {
+        return StorefrontApiFp(this.configuration).getEmailCommseqPostcardTracking(storefront_oid, commseq_postcard_uuid, options)(this.fetch, this.basePath);
     }
 
     /**

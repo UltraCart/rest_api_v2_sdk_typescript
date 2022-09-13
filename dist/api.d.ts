@@ -15652,6 +15652,200 @@ export interface EmailPostcardStat {
 /**
  *
  * @export
+ * @interface EmailPostcardTracking
+ */
+export interface EmailPostcardTracking {
+    /**
+     *
+     * @type {string}
+     * @memberof EmailPostcardTracking
+     */
+    commseq_postcard_uuid?: string;
+    /**
+     *
+     * @type {string}
+     * @memberof EmailPostcardTracking
+     */
+    commseq_step_uuid?: string;
+    /**
+     *
+     * @type {string}
+     * @memberof EmailPostcardTracking
+     */
+    commseq_uuid?: string;
+    /**
+     * Conversion date time.
+     * @type {string}
+     * @memberof EmailPostcardTracking
+     */
+    conversion_dts?: string;
+    /**
+     *
+     * @type {number}
+     * @memberof EmailPostcardTracking
+     */
+    cost?: number;
+    /**
+     *
+     * @type {string}
+     * @memberof EmailPostcardTracking
+     */
+    customer_uuid?: string;
+    /**
+     * Delivered date time.
+     * @type {string}
+     * @memberof EmailPostcardTracking
+     */
+    delivered_dts?: string;
+    /**
+     *
+     * @type {string}
+     * @memberof EmailPostcardTracking
+     */
+    from_address_line1?: string;
+    /**
+     *
+     * @type {string}
+     * @memberof EmailPostcardTracking
+     */
+    from_address_line2?: string;
+    /**
+     *
+     * @type {string}
+     * @memberof EmailPostcardTracking
+     */
+    from_city?: string;
+    /**
+     *
+     * @type {string}
+     * @memberof EmailPostcardTracking
+     */
+    from_name?: string;
+    /**
+     *
+     * @type {string}
+     * @memberof EmailPostcardTracking
+     */
+    from_state?: string;
+    /**
+     *
+     * @type {string}
+     * @memberof EmailPostcardTracking
+     */
+    from_zip?: string;
+    /**
+     * Mailed date time.
+     * @type {string}
+     * @memberof EmailPostcardTracking
+     */
+    mailed_dts?: string;
+    /**
+     *
+     * @type {string}
+     * @memberof EmailPostcardTracking
+     */
+    order_id?: string;
+    /**
+     *
+     * @type {string}
+     * @memberof EmailPostcardTracking
+     */
+    postcard_tracking_uuid?: string;
+    /**
+     *
+     * @type {string}
+     * @memberof EmailPostcardTracking
+     */
+    status?: string;
+    /**
+     * Submit date time.
+     * @type {string}
+     * @memberof EmailPostcardTracking
+     */
+    submit_dts?: string;
+    /**
+     *
+     * @type {string}
+     * @memberof EmailPostcardTracking
+     */
+    to_address_line1?: string;
+    /**
+     *
+     * @type {string}
+     * @memberof EmailPostcardTracking
+     */
+    to_address_line2?: string;
+    /**
+     *
+     * @type {string}
+     * @memberof EmailPostcardTracking
+     */
+    to_city?: string;
+    /**
+     *
+     * @type {string}
+     * @memberof EmailPostcardTracking
+     */
+    to_name?: string;
+    /**
+     *
+     * @type {string}
+     * @memberof EmailPostcardTracking
+     */
+    to_state?: string;
+    /**
+     *
+     * @type {string}
+     * @memberof EmailPostcardTracking
+     */
+    to_zip?: string;
+    /**
+     *
+     * @type {string}
+     * @memberof EmailPostcardTracking
+     */
+    tracking_description?: string;
+}
+/**
+ *
+ * @export
+ * @interface EmailPostcardTrackingResponse
+ */
+export interface EmailPostcardTrackingResponse {
+    /**
+     *
+     * @type {ModelError}
+     * @memberof EmailPostcardTrackingResponse
+     */
+    error?: ModelError;
+    /**
+     *
+     * @type {ResponseMetadata}
+     * @memberof EmailPostcardTrackingResponse
+     */
+    metadata?: ResponseMetadata;
+    /**
+     * Indicates if API call was successful
+     * @type {boolean}
+     * @memberof EmailPostcardTrackingResponse
+     */
+    success?: boolean;
+    /**
+     *
+     * @type {EmailPostcardTracking}
+     * @memberof EmailPostcardTrackingResponse
+     */
+    tracking?: EmailPostcardTracking;
+    /**
+     *
+     * @type {Warning}
+     * @memberof EmailPostcardTrackingResponse
+     */
+    warning?: Warning;
+}
+/**
+ *
+ * @export
  * @interface EmailSegment
  */
 export interface EmailSegment {
@@ -42022,6 +42216,15 @@ export declare const StorefrontApiFetchParamCreator: (configuration?: Configurat
     getEmailCommseqPostcardStats(storefront_oid: number, commseq_uuid: string, statsRequest: EmailStatPostcardSummaryRequest, options?: any): FetchArgs;
     /**
      *
+     * @summary Get email communication postcard tracking
+     * @param {number} storefront_oid
+     * @param {string} commseq_postcard_uuid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getEmailCommseqPostcardTracking(storefront_oid: number, commseq_postcard_uuid: string, options?: any): FetchArgs;
+    /**
+     *
      * @summary Get communication sequence stats overall
      * @param {number} storefront_oid
      * @param {string} commseq_uuid
@@ -43533,6 +43736,15 @@ export declare const StorefrontApiFp: (configuration?: Configuration) => {
     getEmailCommseqPostcardStats(storefront_oid: number, commseq_uuid: string, statsRequest: EmailStatPostcardSummaryRequest, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<EmailStatPostcardSummaryResponse>;
     /**
      *
+     * @summary Get email communication postcard tracking
+     * @param {number} storefront_oid
+     * @param {string} commseq_postcard_uuid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getEmailCommseqPostcardTracking(storefront_oid: number, commseq_postcard_uuid: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<EmailPostcardTrackingResponse>;
+    /**
+     *
      * @summary Get communication sequence stats overall
      * @param {number} storefront_oid
      * @param {string} commseq_uuid
@@ -45042,6 +45254,15 @@ export declare const StorefrontApiFactory: (configuration?: Configuration, fetch
      * @throws {RequiredError}
      */
     getEmailCommseqPostcardStats(storefront_oid: number, commseq_uuid: string, statsRequest: EmailStatPostcardSummaryRequest, options?: any): Promise<EmailStatPostcardSummaryResponse>;
+    /**
+     *
+     * @summary Get email communication postcard tracking
+     * @param {number} storefront_oid
+     * @param {string} commseq_postcard_uuid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getEmailCommseqPostcardTracking(storefront_oid: number, commseq_postcard_uuid: string, options?: any): Promise<EmailPostcardTrackingResponse>;
     /**
      *
      * @summary Get communication sequence stats overall
@@ -46594,6 +46815,16 @@ export interface StorefrontApiInterface {
      * @memberof StorefrontApiInterface
      */
     getEmailCommseqPostcardStats(storefront_oid: number, commseq_uuid: string, statsRequest: EmailStatPostcardSummaryRequest, options?: any): Promise<EmailStatPostcardSummaryResponse>;
+    /**
+     *
+     * @summary Get email communication postcard tracking
+     * @param {number} storefront_oid
+     * @param {string} commseq_postcard_uuid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof StorefrontApiInterface
+     */
+    getEmailCommseqPostcardTracking(storefront_oid: number, commseq_postcard_uuid: string, options?: any): Promise<EmailPostcardTrackingResponse>;
     /**
      *
      * @summary Get communication sequence stats overall
@@ -48272,6 +48503,16 @@ export declare class StorefrontApi extends BaseAPI implements StorefrontApiInter
      * @memberof StorefrontApi
      */
     getEmailCommseqPostcardStats(storefront_oid: number, commseq_uuid: string, statsRequest: EmailStatPostcardSummaryRequest, options?: any): Promise<EmailStatPostcardSummaryResponse>;
+    /**
+     *
+     * @summary Get email communication postcard tracking
+     * @param {number} storefront_oid
+     * @param {string} commseq_postcard_uuid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof StorefrontApi
+     */
+    getEmailCommseqPostcardTracking(storefront_oid: number, commseq_postcard_uuid: string, options?: any): Promise<EmailPostcardTrackingResponse>;
     /**
      *
      * @summary Get communication sequence stats overall
