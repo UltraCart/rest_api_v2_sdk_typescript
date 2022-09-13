@@ -319,6 +319,8 @@ export * from './EmailPlan';
 export * from './EmailPlanAdditional';
 export * from './EmailPlanResponse';
 export * from './EmailPostcardStat';
+export * from './EmailPostcardTracking';
+export * from './EmailPostcardTrackingResponse';
 export * from './EmailSegment';
 export * from './EmailSegmentArchiveResponse';
 export * from './EmailSegmentCustomer';

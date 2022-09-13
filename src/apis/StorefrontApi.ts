@@ -219,6 +219,9 @@ import {
     EmailPlanResponse,
     EmailPlanResponseFromJSON,
     EmailPlanResponseToJSON,
+    EmailPostcardTrackingResponse,
+    EmailPostcardTrackingResponseFromJSON,
+    EmailPostcardTrackingResponseToJSON,
     EmailSegment,
     EmailSegmentFromJSON,
     EmailSegmentToJSON,
@@ -612,6 +615,11 @@ export interface GetEmailCommseqPostcardStatsRequest {
     storefrontOid: number;
     commseqUuid: string;
     statsRequest: EmailStatPostcardSummaryRequest;
+}
+
+export interface GetEmailCommseqPostcardTrackingRequest {
+    storefrontOid: number;
+    commseqPostcardUuid: string;
 }
 
 export interface GetEmailCommseqStatOverallRequest {
@@ -1894,6 +1902,22 @@ export interface StorefrontApiInterface {
      * Get email communication sequence postcard stats
      */
     getEmailCommseqPostcardStats(requestParameters: GetEmailCommseqPostcardStatsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EmailStatPostcardSummaryResponse>;
+
+    /**
+     * 
+     * @summary Get email communication postcard tracking
+     * @param {number} storefrontOid 
+     * @param {string} commseqPostcardUuid 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof StorefrontApiInterface
+     */
+    getEmailCommseqPostcardTrackingRaw(requestParameters: GetEmailCommseqPostcardTrackingRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EmailPostcardTrackingResponse>>;
+
+    /**
+     * Get email communication postcard tracking
+     */
+    getEmailCommseqPostcardTracking(requestParameters: GetEmailCommseqPostcardTrackingRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EmailPostcardTrackingResponse>;
 
     /**
      * 
@@ -5815,6 +5839,53 @@ export class StorefrontApi extends runtime.BaseAPI implements StorefrontApiInter
      */
     async getEmailCommseqPostcardStats(requestParameters: GetEmailCommseqPostcardStatsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EmailStatPostcardSummaryResponse> {
         const response = await this.getEmailCommseqPostcardStatsRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Get email communication postcard tracking
+     */
+    async getEmailCommseqPostcardTrackingRaw(requestParameters: GetEmailCommseqPostcardTrackingRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EmailPostcardTrackingResponse>> {
+        if (requestParameters.storefrontOid === null || requestParameters.storefrontOid === undefined) {
+            throw new runtime.RequiredError('storefrontOid','Required parameter requestParameters.storefrontOid was null or undefined when calling getEmailCommseqPostcardTracking.');
+        }
+
+        if (requestParameters.commseqPostcardUuid === null || requestParameters.commseqPostcardUuid === undefined) {
+            throw new runtime.RequiredError('commseqPostcardUuid','Required parameter requestParameters.commseqPostcardUuid was null or undefined when calling getEmailCommseqPostcardTracking.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-browser-key"] = this.configuration.apiKey("x-ultracart-browser-key"); // ultraCartBrowserApiKey authentication
+        }
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", ["storefront_read"]);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/storefront/{storefront_oid}/email/postcards/{commseq_postcard_uuid}/tracking`.replace(`{${"storefront_oid"}}`, encodeURIComponent(String(requestParameters.storefrontOid))).replace(`{${"commseq_postcard_uuid"}}`, encodeURIComponent(String(requestParameters.commseqPostcardUuid))),
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => EmailPostcardTrackingResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Get email communication postcard tracking
+     */
+    async getEmailCommseqPostcardTracking(requestParameters: GetEmailCommseqPostcardTrackingRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EmailPostcardTrackingResponse> {
+        const response = await this.getEmailCommseqPostcardTrackingRaw(requestParameters, initOverrides);
         return await response.value();
     }
 

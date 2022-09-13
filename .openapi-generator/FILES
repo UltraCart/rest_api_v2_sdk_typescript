@@ -342,6 +342,8 @@ src/models/EmailPlan.ts
 src/models/EmailPlanAdditional.ts
 src/models/EmailPlanResponse.ts
 src/models/EmailPostcardStat.ts
+src/models/EmailPostcardTracking.ts
+src/models/EmailPostcardTrackingResponse.ts
 src/models/EmailSegment.ts
 src/models/EmailSegmentArchiveResponse.ts
 src/models/EmailSegmentCustomer.ts
