@@ -6573,6 +6573,43 @@ export declare namespace ConversationMessageTransportStatus {
 /**
  *
  * @export
+ * @interface ConversationMessagesResponse
+ */
+export interface ConversationMessagesResponse {
+    /**
+     *
+     * @type {Array<ConversationMessage>}
+     * @memberof ConversationMessagesResponse
+     */
+    conversation_messages?: Array<ConversationMessage>;
+    /**
+     *
+     * @type {ModelError}
+     * @memberof ConversationMessagesResponse
+     */
+    error?: ModelError;
+    /**
+     *
+     * @type {ResponseMetadata}
+     * @memberof ConversationMessagesResponse
+     */
+    metadata?: ResponseMetadata;
+    /**
+     * Indicates if API call was successful
+     * @type {boolean}
+     * @memberof ConversationMessagesResponse
+     */
+    success?: boolean;
+    /**
+     *
+     * @type {Warning}
+     * @memberof ConversationMessagesResponse
+     */
+    warning?: Warning;
+}
+/**
+ *
+ * @export
  * @interface ConversationMultimediaUploadUrl
  */
 export interface ConversationMultimediaUploadUrl {
@@ -36325,6 +36362,13 @@ export declare class CheckoutApi extends BaseAPI implements CheckoutApiInterface
  */
 export declare const ConversationApiFetchParamCreator: (configuration?: Configuration) => {
     /**
+     * Called periodically by the conversation API to keep the session alive.
+     * @summary Agent keep alive
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getAgentKeepAlive(options?: any): FetchArgs;
+    /**
      * Retrieve a JWT to authorize an agent to make a websocket connection.
      * @summary Get agent websocket authorization
      * @param {*} [options] Override http request option.
@@ -36335,10 +36379,21 @@ export declare const ConversationApiFetchParamCreator: (configuration?: Configur
      * Retrieve a conversation including the participants and messages
      * @summary Retrieve a conversation
      * @param {string} conversation_uuid
+     * @param {number} [limit]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getConversation(conversation_uuid: string, options?: any): FetchArgs;
+    getConversation(conversation_uuid: string, limit?: number, options?: any): FetchArgs;
+    /**
+     * Retrieve conversation messages since a particular time
+     * @summary Retrieve conversation messages
+     * @param {string} conversation_uuid
+     * @param {number} since
+     * @param {number} [limit]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getConversationMessages(conversation_uuid: string, since: number, limit?: number, options?: any): FetchArgs;
     /**
      * Get a presigned conersation multimedia upload URL
      * @summary Get a presigned conersation multimedia upload URL
@@ -36404,6 +36459,13 @@ export declare const ConversationApiFetchParamCreator: (configuration?: Configur
  */
 export declare const ConversationApiFp: (configuration?: Configuration) => {
     /**
+     * Called periodically by the conversation API to keep the session alive.
+     * @summary Agent keep alive
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getAgentKeepAlive(options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Response>;
+    /**
      * Retrieve a JWT to authorize an agent to make a websocket connection.
      * @summary Get agent websocket authorization
      * @param {*} [options] Override http request option.
@@ -36414,10 +36476,21 @@ export declare const ConversationApiFp: (configuration?: Configuration) => {
      * Retrieve a conversation including the participants and messages
      * @summary Retrieve a conversation
      * @param {string} conversation_uuid
+     * @param {number} [limit]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getConversation(conversation_uuid: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ConversationResponse>;
+    getConversation(conversation_uuid: string, limit?: number, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ConversationResponse>;
+    /**
+     * Retrieve conversation messages since a particular time
+     * @summary Retrieve conversation messages
+     * @param {string} conversation_uuid
+     * @param {number} since
+     * @param {number} [limit]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getConversationMessages(conversation_uuid: string, since: number, limit?: number, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ConversationMessagesResponse>;
     /**
      * Get a presigned conersation multimedia upload URL
      * @summary Get a presigned conersation multimedia upload URL
@@ -36483,6 +36556,13 @@ export declare const ConversationApiFp: (configuration?: Configuration) => {
  */
 export declare const ConversationApiFactory: (configuration?: Configuration, fetch?: FetchAPI, basePath?: string) => {
     /**
+     * Called periodically by the conversation API to keep the session alive.
+     * @summary Agent keep alive
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getAgentKeepAlive(options?: any): Promise<Response>;
+    /**
      * Retrieve a JWT to authorize an agent to make a websocket connection.
      * @summary Get agent websocket authorization
      * @param {*} [options] Override http request option.
@@ -36493,10 +36573,21 @@ export declare const ConversationApiFactory: (configuration?: Configuration, fet
      * Retrieve a conversation including the participants and messages
      * @summary Retrieve a conversation
      * @param {string} conversation_uuid
+     * @param {number} [limit]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getConversation(conversation_uuid: string, options?: any): Promise<ConversationResponse>;
+    getConversation(conversation_uuid: string, limit?: number, options?: any): Promise<ConversationResponse>;
+    /**
+     * Retrieve conversation messages since a particular time
+     * @summary Retrieve conversation messages
+     * @param {string} conversation_uuid
+     * @param {number} since
+     * @param {number} [limit]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getConversationMessages(conversation_uuid: string, since: number, limit?: number, options?: any): Promise<ConversationMessagesResponse>;
     /**
      * Get a presigned conersation multimedia upload URL
      * @summary Get a presigned conersation multimedia upload URL
@@ -36563,6 +36654,14 @@ export declare const ConversationApiFactory: (configuration?: Configuration, fet
  */
 export interface ConversationApiInterface {
     /**
+     * Called periodically by the conversation API to keep the session alive.
+     * @summary Agent keep alive
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApiInterface
+     */
+    getAgentKeepAlive(options?: any): Promise<{}>;
+    /**
      * Retrieve a JWT to authorize an agent to make a websocket connection.
      * @summary Get agent websocket authorization
      * @param {*} [options] Override http request option.
@@ -36574,11 +36673,23 @@ export interface ConversationApiInterface {
      * Retrieve a conversation including the participants and messages
      * @summary Retrieve a conversation
      * @param {string} conversation_uuid
+     * @param {number} [limit]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ConversationApiInterface
      */
-    getConversation(conversation_uuid: string, options?: any): Promise<ConversationResponse>;
+    getConversation(conversation_uuid: string, limit?: number, options?: any): Promise<ConversationResponse>;
+    /**
+     * Retrieve conversation messages since a particular time
+     * @summary Retrieve conversation messages
+     * @param {string} conversation_uuid
+     * @param {number} since
+     * @param {number} [limit]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApiInterface
+     */
+    getConversationMessages(conversation_uuid: string, since: number, limit?: number, options?: any): Promise<ConversationMessagesResponse>;
     /**
      * Get a presigned conersation multimedia upload URL
      * @summary Get a presigned conersation multimedia upload URL
@@ -36653,6 +36764,14 @@ export interface ConversationApiInterface {
  */
 export declare class ConversationApi extends BaseAPI implements ConversationApiInterface {
     /**
+     * Called periodically by the conversation API to keep the session alive.
+     * @summary Agent keep alive
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApi
+     */
+    getAgentKeepAlive(options?: any): Promise<Response>;
+    /**
      * Retrieve a JWT to authorize an agent to make a websocket connection.
      * @summary Get agent websocket authorization
      * @param {*} [options] Override http request option.
@@ -36664,11 +36783,23 @@ export declare class ConversationApi extends BaseAPI implements ConversationApiI
      * Retrieve a conversation including the participants and messages
      * @summary Retrieve a conversation
      * @param {string} conversation_uuid
+     * @param {number} [limit]
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ConversationApi
      */
-    getConversation(conversation_uuid: string, options?: any): Promise<ConversationResponse>;
+    getConversation(conversation_uuid: string, limit?: number, options?: any): Promise<ConversationResponse>;
+    /**
+     * Retrieve conversation messages since a particular time
+     * @summary Retrieve conversation messages
+     * @param {string} conversation_uuid
+     * @param {number} since
+     * @param {number} [limit]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApi
+     */
+    getConversationMessages(conversation_uuid: string, since: number, limit?: number, options?: any): Promise<ConversationMessagesResponse>;
     /**
      * Get a presigned conersation multimedia upload URL
      * @summary Get a presigned conersation multimedia upload URL
