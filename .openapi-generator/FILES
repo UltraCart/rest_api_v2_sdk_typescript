@@ -149,6 +149,7 @@ src/models/ConversationEventReadMessage.ts
 src/models/ConversationEventTyping.ts
 src/models/ConversationMessage.ts
 src/models/ConversationMessageTransportStatus.ts
+src/models/ConversationMessagesResponse.ts
 src/models/ConversationMultimediaUploadUrl.ts
 src/models/ConversationMultimediaUploadUrlResponse.ts
 src/models/ConversationParticipant.ts

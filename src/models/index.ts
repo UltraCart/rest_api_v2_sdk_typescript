@@ -126,6 +126,7 @@ export * from './ConversationEventReadMessage';
 export * from './ConversationEventTyping';
 export * from './ConversationMessage';
 export * from './ConversationMessageTransportStatus';
+export * from './ConversationMessagesResponse';
 export * from './ConversationMultimediaUploadUrl';
 export * from './ConversationMultimediaUploadUrlResponse';
 export * from './ConversationParticipant';

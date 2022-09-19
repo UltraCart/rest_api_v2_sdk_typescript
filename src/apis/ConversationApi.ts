@@ -18,6 +18,9 @@ import {
     ConversationAgentAuthResponse,
     ConversationAgentAuthResponseFromJSON,
     ConversationAgentAuthResponseToJSON,
+    ConversationMessagesResponse,
+    ConversationMessagesResponseFromJSON,
+    ConversationMessagesResponseToJSON,
     ConversationMultimediaUploadUrlResponse,
     ConversationMultimediaUploadUrlResponseFromJSON,
     ConversationMultimediaUploadUrlResponseToJSON,
@@ -46,6 +49,13 @@ import {
 
 export interface GetConversationRequest {
     conversationUuid: string;
+    limit?: number;
+}
+
+export interface GetConversationMessagesRequest {
+    conversationUuid: string;
+    since: number;
+    limit?: number;
 }
 
 export interface GetConversationMultimediaUploadUrlRequest {
@@ -83,6 +93,21 @@ export interface UpdateConversationWebchatQueueStatusRequest {
  */
 export interface ConversationApiInterface {
     /**
+     * Called periodically by the conversation API to keep the session alive. 
+     * @summary Agent keep alive
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApiInterface
+     */
+    getAgentKeepAliveRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+
+    /**
+     * Called periodically by the conversation API to keep the session alive. 
+     * Agent keep alive
+     */
+    getAgentKeepAlive(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+
+    /**
      * Retrieve a JWT to authorize an agent to make a websocket connection. 
      * @summary Get agent websocket authorization
      * @param {*} [options] Override http request option.
@@ -101,6 +126,7 @@ export interface ConversationApiInterface {
      * Retrieve a conversation including the participants and messages 
      * @summary Retrieve a conversation
      * @param {string} conversationUuid 
+     * @param {number} [limit] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ConversationApiInterface
@@ -112,6 +138,24 @@ export interface ConversationApiInterface {
      * Retrieve a conversation
      */
     getConversation(requestParameters: GetConversationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ConversationResponse>;
+
+    /**
+     * Retrieve conversation messages since a particular time 
+     * @summary Retrieve conversation messages
+     * @param {string} conversationUuid 
+     * @param {number} since 
+     * @param {number} [limit] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApiInterface
+     */
+    getConversationMessagesRaw(requestParameters: GetConversationMessagesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ConversationMessagesResponse>>;
+
+    /**
+     * Retrieve conversation messages since a particular time 
+     * Retrieve conversation messages
+     */
+    getConversationMessages(requestParameters: GetConversationMessagesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ConversationMessagesResponse>;
 
     /**
      * Get a presigned conersation multimedia upload URL 
@@ -235,6 +279,42 @@ export interface ConversationApiInterface {
 export class ConversationApi extends runtime.BaseAPI implements ConversationApiInterface {
 
     /**
+     * Called periodically by the conversation API to keep the session alive. 
+     * Agent keep alive
+     */
+    async getAgentKeepAliveRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", ["conversation_write"]);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/conversation/agent/keepalive`,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     * Called periodically by the conversation API to keep the session alive. 
+     * Agent keep alive
+     */
+    async getAgentKeepAlive(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.getAgentKeepAliveRaw(initOverrides);
+    }
+
+    /**
      * Retrieve a JWT to authorize an agent to make a websocket connection. 
      * Get agent websocket authorization
      */
@@ -282,6 +362,10 @@ export class ConversationApi extends runtime.BaseAPI implements ConversationApiI
 
         const queryParameters: any = {};
 
+        if (requestParameters.limit !== undefined) {
+            queryParameters['limit'] = requestParameters.limit;
+        }
+
         const headerParameters: runtime.HTTPHeaders = {};
 
         if (this.configuration && this.configuration.accessToken) {
@@ -309,6 +393,55 @@ export class ConversationApi extends runtime.BaseAPI implements ConversationApiI
      */
     async getConversation(requestParameters: GetConversationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ConversationResponse> {
         const response = await this.getConversationRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Retrieve conversation messages since a particular time 
+     * Retrieve conversation messages
+     */
+    async getConversationMessagesRaw(requestParameters: GetConversationMessagesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ConversationMessagesResponse>> {
+        if (requestParameters.conversationUuid === null || requestParameters.conversationUuid === undefined) {
+            throw new runtime.RequiredError('conversationUuid','Required parameter requestParameters.conversationUuid was null or undefined when calling getConversationMessages.');
+        }
+
+        if (requestParameters.since === null || requestParameters.since === undefined) {
+            throw new runtime.RequiredError('since','Required parameter requestParameters.since was null or undefined when calling getConversationMessages.');
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters.limit !== undefined) {
+            queryParameters['limit'] = requestParameters.limit;
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", ["conversation_read"]);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/conversation/conversations/{conversation_uuid}/messages/{since}`.replace(`{${"conversation_uuid"}}`, encodeURIComponent(String(requestParameters.conversationUuid))).replace(`{${"since"}}`, encodeURIComponent(String(requestParameters.since))),
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => ConversationMessagesResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Retrieve conversation messages since a particular time 
+     * Retrieve conversation messages
+     */
+    async getConversationMessages(requestParameters: GetConversationMessagesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ConversationMessagesResponse> {
+        const response = await this.getConversationMessagesRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
