@@ -57,12 +57,6 @@ export interface DeleteItemRequest {
 
 export interface GetDigitalItemRequest {
     digitalItemOid: number;
-    limit?: number;
-    offset?: number;
-    since?: string;
-    sort?: string;
-    expand?: string;
-    placeholders?: boolean;
 }
 
 export interface GetDigitalItemsRequest {
@@ -177,12 +171,6 @@ export interface ItemApiInterface {
      * Retrieves a digital item (file information) from the account.  Be aware that these are not normal items that can be added to a shopping cart. Rather, they are digital files that may be associated with normal items. 
      * @summary Retrieve a digital item from the digital library, which are digital files that may be attached to normal items
      * @param {number} digitalItemOid The digital item oid to retrieve.
-     * @param {number} [limit] The maximum number of records to return on this one API call. (Default 100, Max 2000)
-     * @param {number} [offset] Pagination of the record set.  Offset is a zero based index.
-     * @param {string} [since] Fetch items that have been created/modified since this date/time.
-     * @param {string} [sort] The sort order of the items.  See Sorting documentation for examples of using multiple values and sorting by ascending and descending.
-     * @param {string} [expand] The object expansion to perform on the result.  See documentation for examples
-     * @param {boolean} [placeholders] Whether or not placeholder values should be returned in the result.  Useful for UIs that consume this REST API.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ItemApiInterface
@@ -493,30 +481,6 @@ export class ItemApi extends runtime.BaseAPI implements ItemApiInterface {
         }
 
         const queryParameters: any = {};
-
-        if (requestParameters.limit !== undefined) {
-            queryParameters['_limit'] = requestParameters.limit;
-        }
-
-        if (requestParameters.offset !== undefined) {
-            queryParameters['_offset'] = requestParameters.offset;
-        }
-
-        if (requestParameters.since !== undefined) {
-            queryParameters['_since'] = requestParameters.since;
-        }
-
-        if (requestParameters.sort !== undefined) {
-            queryParameters['_sort'] = requestParameters.sort;
-        }
-
-        if (requestParameters.expand !== undefined) {
-            queryParameters['_expand'] = requestParameters.expand;
-        }
-
-        if (requestParameters.placeholders !== undefined) {
-            queryParameters['_placeholders'] = requestParameters.placeholders;
-        }
 
         const headerParameters: runtime.HTTPHeaders = {};
 
