@@ -20297,6 +20297,12 @@ export interface ItemDigitalDelivery {
  */
 export interface ItemDigitalItem {
     /**
+     * Click wrap agreement is presented to the customer before they can purchase your product.
+     * @type {string}
+     * @memberof ItemDigitalItem
+     */
+    click_wrap_agreement?: string;
+    /**
      * File creation date
      * @type {string}
      * @memberof ItemDigitalItem
@@ -20309,11 +20315,23 @@ export interface ItemDigitalItem {
      */
     description?: string;
     /**
+     * The Digital item oid is a primary key used internally by UltraCart.  You should not set or change this value.  Doing so will have no effect.
+     * @type {number}
+     * @memberof ItemDigitalItem
+     */
+    digital_item_oid?: number;
+    /**
      * File size
      * @type {number}
      * @memberof ItemDigitalItem
      */
     file_size?: number;
+    /**
+     * This url is sourced to create or update a digital file in your digital library.  It is only considered during an insert or update operation.
+     * @type {string}
+     * @memberof ItemDigitalItem
+     */
+    import_from_url?: string;
     /**
      * Mime type associated with the file
      * @type {string}
@@ -20326,6 +20344,159 @@ export interface ItemDigitalItem {
      * @memberof ItemDigitalItem
      */
     original_filename?: string;
+    /**
+     *
+     * @type {ItemDigitalItemPdfMeta}
+     * @memberof ItemDigitalItem
+     */
+    pdf_meta?: ItemDigitalItemPdfMeta;
+}
+/**
+ *
+ * @export
+ * @interface ItemDigitalItemPdfMeta
+ */
+export interface ItemDigitalItemPdfMeta {
+    /**
+     * Assembly allowed
+     * @type {boolean}
+     * @memberof ItemDigitalItemPdfMeta
+     */
+    assembly_allowed?: boolean;
+    /**
+     * Copy/Paste is allowed
+     * @type {boolean}
+     * @memberof ItemDigitalItemPdfMeta
+     */
+    copy_allowed?: boolean;
+    /**
+     * A custom footer for each pdf page
+     * @type {string}
+     * @memberof ItemDigitalItemPdfMeta
+     */
+    custom_footer?: string;
+    /**
+     * A custom header for each pdf page
+     * @type {string}
+     * @memberof ItemDigitalItemPdfMeta
+     */
+    custom_header?: string;
+    /**
+     * Degraded printing allowed
+     * @type {boolean}
+     * @memberof ItemDigitalItemPdfMeta
+     */
+    degraded_printing_allowed?: boolean;
+    /**
+     * Fillin is allowed
+     * @type {boolean}
+     * @memberof ItemDigitalItemPdfMeta
+     */
+    fillin_allowed?: boolean;
+    /**
+     * Modifying annotations is allowed
+     * @type {boolean}
+     * @memberof ItemDigitalItemPdfMeta
+     */
+    modify_annotations_allowed?: boolean;
+    /**
+     * Modifying contents is allowed
+     * @type {boolean}
+     * @memberof ItemDigitalItemPdfMeta
+     */
+    modify_contents_allowed?: boolean;
+    /**
+     * Printing is allowed
+     * @type {boolean}
+     * @memberof ItemDigitalItemPdfMeta
+     */
+    printing_allowed?: boolean;
+    /**
+     * Screen readers are allowed
+     * @type {boolean}
+     * @memberof ItemDigitalItemPdfMeta
+     */
+    screen_readers_allowed?: boolean;
+    /**
+     * PDF is tagged
+     * @type {boolean}
+     * @memberof ItemDigitalItemPdfMeta
+     */
+    tagged?: boolean;
+}
+/**
+ *
+ * @export
+ * @interface ItemDigitalItemResponse
+ */
+export interface ItemDigitalItemResponse {
+    /**
+     *
+     * @type {ItemDigitalItem}
+     * @memberof ItemDigitalItemResponse
+     */
+    digital_item?: ItemDigitalItem;
+    /**
+     *
+     * @type {ModelError}
+     * @memberof ItemDigitalItemResponse
+     */
+    error?: ModelError;
+    /**
+     *
+     * @type {ResponseMetadata}
+     * @memberof ItemDigitalItemResponse
+     */
+    metadata?: ResponseMetadata;
+    /**
+     * Indicates if API call was successful
+     * @type {boolean}
+     * @memberof ItemDigitalItemResponse
+     */
+    success?: boolean;
+    /**
+     *
+     * @type {Warning}
+     * @memberof ItemDigitalItemResponse
+     */
+    warning?: Warning;
+}
+/**
+ *
+ * @export
+ * @interface ItemDigitalItemsResponse
+ */
+export interface ItemDigitalItemsResponse {
+    /**
+     * digital_items
+     * @type {Array<ItemDigitalItem>}
+     * @memberof ItemDigitalItemsResponse
+     */
+    digitalItems?: Array<ItemDigitalItem>;
+    /**
+     *
+     * @type {ModelError}
+     * @memberof ItemDigitalItemsResponse
+     */
+    error?: ModelError;
+    /**
+     *
+     * @type {ResponseMetadata}
+     * @memberof ItemDigitalItemsResponse
+     */
+    metadata?: ResponseMetadata;
+    /**
+     * Indicates if API call was successful
+     * @type {boolean}
+     * @memberof ItemDigitalItemsResponse
+     */
+    success?: boolean;
+    /**
+     *
+     * @type {Warning}
+     * @memberof ItemDigitalItemsResponse
+     */
+    warning?: Warning;
 }
 /**
  *
@@ -39886,6 +40057,14 @@ export declare class IntegrationLogApi extends BaseAPI implements IntegrationLog
  */
 export declare const ItemApiFetchParamCreator: (configuration?: Configuration) => {
     /**
+     * Delete a digital item on the UltraCart account.
+     * @summary Delete a digital item, which is a file within the digital library, not an actual merchant item
+     * @param {number} digital_item_oid The digital item oid to delete.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    deleteDigitalItem(digital_item_oid: number, options?: any): FetchArgs;
+    /**
      * Delete an item on the UltraCart account.
      * @summary Delete an item
      * @param {number} merchant_item_oid The item oid to delete.
@@ -39893,6 +40072,33 @@ export declare const ItemApiFetchParamCreator: (configuration?: Configuration) =
      * @throws {RequiredError}
      */
     deleteItem(merchant_item_oid: number, options?: any): FetchArgs;
+    /**
+     * Retrieves a digital item (file information) from the account.  Be aware that these are not normal items that can be added to a shopping cart. Rather, they are digital files that may be associated with normal items.
+     * @summary Retrieve a digital item from the digital library, which are digital files that may be attached to normal items
+     * @param {number} digital_item_oid The digital item oid to retrieve.
+     * @param {number} [_limit] The maximum number of records to return on this one API call. (Default 100, Max 2000)
+     * @param {number} [_offset] Pagination of the record set.  Offset is a zero based index.
+     * @param {string} [_since] Fetch items that have been created/modified since this date/time.
+     * @param {string} [_sort] The sort order of the items.  See Sorting documentation for examples of using multiple values and sorting by ascending and descending.
+     * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
+     * @param {boolean} [_placeholders] Whether or not placeholder values should be returned in the result.  Useful for UIs that consume this REST API.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getDigitalItem(digital_item_oid: number, _limit?: number, _offset?: number, _since?: string, _sort?: string, _expand?: string, _placeholders?: boolean, options?: any): FetchArgs;
+    /**
+     * Retrieves a group of digital items (file information) from the account.  If no parameters are specified, all digital items will be returned.  Be aware that these are not normal items that can be added to a shopping cart. Rather, they are digital files that may be associated with normal items.  You will need to make multiple API calls in order to retrieve the entire result set since this API performs result set pagination.
+     * @summary Retrieve digital items from the digital library which are digital files that may be attached to normal items
+     * @param {number} [_limit] The maximum number of records to return on this one API call. (Default 100, Max 2000)
+     * @param {number} [_offset] Pagination of the record set.  Offset is a zero based index.
+     * @param {string} [_since] Fetch items that have been created/modified since this date/time.
+     * @param {string} [_sort] The sort order of the items.  See Sorting documentation for examples of using multiple values and sorting by ascending and descending.
+     * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
+     * @param {boolean} [_placeholders] Whether or not placeholder values should be returned in the result.  Useful for UIs that consume this REST API.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getDigitalItems(_limit?: number, _offset?: number, _since?: string, _sort?: string, _expand?: string, _placeholders?: boolean, options?: any): FetchArgs;
     /**
      * Retrieves a single item using the specified item oid.
      * @summary Retrieve an item
@@ -39937,6 +40143,14 @@ export declare const ItemApiFetchParamCreator: (configuration?: Configuration) =
      */
     getPricingTiers(_expand?: string, options?: any): FetchArgs;
     /**
+     * Create a file within the digital library.  This does not create an item, but makes this digital file available and selectable as part (or all) of an item.
+     * @summary Create a file within the digital library
+     * @param {ItemDigitalItem} digital_item Digital item to create
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    insertDigitalItem(digital_item: ItemDigitalItem, options?: any): FetchArgs;
+    /**
      * Create a new item on the UltraCart account.
      * @summary Create an item
      * @param {Item} item Item to create
@@ -39946,6 +40160,15 @@ export declare const ItemApiFetchParamCreator: (configuration?: Configuration) =
      * @throws {RequiredError}
      */
     insertItem(item: Item, _expand?: string, _placeholders?: boolean, options?: any): FetchArgs;
+    /**
+     * Updates a file within the digital library.  This does not update an item, but updates a digital file available and selectable as part (or all) of an item.
+     * @summary Updates a file within the digital library
+     * @param {number} digital_item_oid The digital item oid to update.
+     * @param {ItemDigitalItem} digital_item Digital item to update
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    updateDigitalItem(digital_item_oid: number, digital_item: ItemDigitalItem, options?: any): FetchArgs;
     /**
      * Update a new item on the UltraCart account.
      * @summary Update an item
@@ -39983,6 +40206,14 @@ export declare const ItemApiFetchParamCreator: (configuration?: Configuration) =
  */
 export declare const ItemApiFp: (configuration?: Configuration) => {
     /**
+     * Delete a digital item on the UltraCart account.
+     * @summary Delete a digital item, which is a file within the digital library, not an actual merchant item
+     * @param {number} digital_item_oid The digital item oid to delete.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    deleteDigitalItem(digital_item_oid: number, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Response>;
+    /**
      * Delete an item on the UltraCart account.
      * @summary Delete an item
      * @param {number} merchant_item_oid The item oid to delete.
@@ -39990,6 +40221,33 @@ export declare const ItemApiFp: (configuration?: Configuration) => {
      * @throws {RequiredError}
      */
     deleteItem(merchant_item_oid: number, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Response>;
+    /**
+     * Retrieves a digital item (file information) from the account.  Be aware that these are not normal items that can be added to a shopping cart. Rather, they are digital files that may be associated with normal items.
+     * @summary Retrieve a digital item from the digital library, which are digital files that may be attached to normal items
+     * @param {number} digital_item_oid The digital item oid to retrieve.
+     * @param {number} [_limit] The maximum number of records to return on this one API call. (Default 100, Max 2000)
+     * @param {number} [_offset] Pagination of the record set.  Offset is a zero based index.
+     * @param {string} [_since] Fetch items that have been created/modified since this date/time.
+     * @param {string} [_sort] The sort order of the items.  See Sorting documentation for examples of using multiple values and sorting by ascending and descending.
+     * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
+     * @param {boolean} [_placeholders] Whether or not placeholder values should be returned in the result.  Useful for UIs that consume this REST API.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getDigitalItem(digital_item_oid: number, _limit?: number, _offset?: number, _since?: string, _sort?: string, _expand?: string, _placeholders?: boolean, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ItemDigitalItemResponse>;
+    /**
+     * Retrieves a group of digital items (file information) from the account.  If no parameters are specified, all digital items will be returned.  Be aware that these are not normal items that can be added to a shopping cart. Rather, they are digital files that may be associated with normal items.  You will need to make multiple API calls in order to retrieve the entire result set since this API performs result set pagination.
+     * @summary Retrieve digital items from the digital library which are digital files that may be attached to normal items
+     * @param {number} [_limit] The maximum number of records to return on this one API call. (Default 100, Max 2000)
+     * @param {number} [_offset] Pagination of the record set.  Offset is a zero based index.
+     * @param {string} [_since] Fetch items that have been created/modified since this date/time.
+     * @param {string} [_sort] The sort order of the items.  See Sorting documentation for examples of using multiple values and sorting by ascending and descending.
+     * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
+     * @param {boolean} [_placeholders] Whether or not placeholder values should be returned in the result.  Useful for UIs that consume this REST API.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getDigitalItems(_limit?: number, _offset?: number, _since?: string, _sort?: string, _expand?: string, _placeholders?: boolean, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ItemDigitalItemsResponse>;
     /**
      * Retrieves a single item using the specified item oid.
      * @summary Retrieve an item
@@ -40034,6 +40292,14 @@ export declare const ItemApiFp: (configuration?: Configuration) => {
      */
     getPricingTiers(_expand?: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<PricingTiersResponse>;
     /**
+     * Create a file within the digital library.  This does not create an item, but makes this digital file available and selectable as part (or all) of an item.
+     * @summary Create a file within the digital library
+     * @param {ItemDigitalItem} digital_item Digital item to create
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    insertDigitalItem(digital_item: ItemDigitalItem, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ItemDigitalItemResponse>;
+    /**
      * Create a new item on the UltraCart account.
      * @summary Create an item
      * @param {Item} item Item to create
@@ -40043,6 +40309,15 @@ export declare const ItemApiFp: (configuration?: Configuration) => {
      * @throws {RequiredError}
      */
     insertItem(item: Item, _expand?: string, _placeholders?: boolean, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ItemResponse>;
+    /**
+     * Updates a file within the digital library.  This does not update an item, but updates a digital file available and selectable as part (or all) of an item.
+     * @summary Updates a file within the digital library
+     * @param {number} digital_item_oid The digital item oid to update.
+     * @param {ItemDigitalItem} digital_item Digital item to update
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    updateDigitalItem(digital_item_oid: number, digital_item: ItemDigitalItem, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ItemDigitalItemResponse>;
     /**
      * Update a new item on the UltraCart account.
      * @summary Update an item
@@ -40080,6 +40355,14 @@ export declare const ItemApiFp: (configuration?: Configuration) => {
  */
 export declare const ItemApiFactory: (configuration?: Configuration, fetch?: FetchAPI, basePath?: string) => {
     /**
+     * Delete a digital item on the UltraCart account.
+     * @summary Delete a digital item, which is a file within the digital library, not an actual merchant item
+     * @param {number} digital_item_oid The digital item oid to delete.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    deleteDigitalItem(digital_item_oid: number, options?: any): Promise<Response>;
+    /**
      * Delete an item on the UltraCart account.
      * @summary Delete an item
      * @param {number} merchant_item_oid The item oid to delete.
@@ -40087,6 +40370,33 @@ export declare const ItemApiFactory: (configuration?: Configuration, fetch?: Fet
      * @throws {RequiredError}
      */
     deleteItem(merchant_item_oid: number, options?: any): Promise<Response>;
+    /**
+     * Retrieves a digital item (file information) from the account.  Be aware that these are not normal items that can be added to a shopping cart. Rather, they are digital files that may be associated with normal items.
+     * @summary Retrieve a digital item from the digital library, which are digital files that may be attached to normal items
+     * @param {number} digital_item_oid The digital item oid to retrieve.
+     * @param {number} [_limit] The maximum number of records to return on this one API call. (Default 100, Max 2000)
+     * @param {number} [_offset] Pagination of the record set.  Offset is a zero based index.
+     * @param {string} [_since] Fetch items that have been created/modified since this date/time.
+     * @param {string} [_sort] The sort order of the items.  See Sorting documentation for examples of using multiple values and sorting by ascending and descending.
+     * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
+     * @param {boolean} [_placeholders] Whether or not placeholder values should be returned in the result.  Useful for UIs that consume this REST API.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getDigitalItem(digital_item_oid: number, _limit?: number, _offset?: number, _since?: string, _sort?: string, _expand?: string, _placeholders?: boolean, options?: any): Promise<ItemDigitalItemResponse>;
+    /**
+     * Retrieves a group of digital items (file information) from the account.  If no parameters are specified, all digital items will be returned.  Be aware that these are not normal items that can be added to a shopping cart. Rather, they are digital files that may be associated with normal items.  You will need to make multiple API calls in order to retrieve the entire result set since this API performs result set pagination.
+     * @summary Retrieve digital items from the digital library which are digital files that may be attached to normal items
+     * @param {number} [_limit] The maximum number of records to return on this one API call. (Default 100, Max 2000)
+     * @param {number} [_offset] Pagination of the record set.  Offset is a zero based index.
+     * @param {string} [_since] Fetch items that have been created/modified since this date/time.
+     * @param {string} [_sort] The sort order of the items.  See Sorting documentation for examples of using multiple values and sorting by ascending and descending.
+     * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
+     * @param {boolean} [_placeholders] Whether or not placeholder values should be returned in the result.  Useful for UIs that consume this REST API.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getDigitalItems(_limit?: number, _offset?: number, _since?: string, _sort?: string, _expand?: string, _placeholders?: boolean, options?: any): Promise<ItemDigitalItemsResponse>;
     /**
      * Retrieves a single item using the specified item oid.
      * @summary Retrieve an item
@@ -40131,6 +40441,14 @@ export declare const ItemApiFactory: (configuration?: Configuration, fetch?: Fet
      */
     getPricingTiers(_expand?: string, options?: any): Promise<PricingTiersResponse>;
     /**
+     * Create a file within the digital library.  This does not create an item, but makes this digital file available and selectable as part (or all) of an item.
+     * @summary Create a file within the digital library
+     * @param {ItemDigitalItem} digital_item Digital item to create
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    insertDigitalItem(digital_item: ItemDigitalItem, options?: any): Promise<ItemDigitalItemResponse>;
+    /**
      * Create a new item on the UltraCart account.
      * @summary Create an item
      * @param {Item} item Item to create
@@ -40140,6 +40458,15 @@ export declare const ItemApiFactory: (configuration?: Configuration, fetch?: Fet
      * @throws {RequiredError}
      */
     insertItem(item: Item, _expand?: string, _placeholders?: boolean, options?: any): Promise<ItemResponse>;
+    /**
+     * Updates a file within the digital library.  This does not update an item, but updates a digital file available and selectable as part (or all) of an item.
+     * @summary Updates a file within the digital library
+     * @param {number} digital_item_oid The digital item oid to update.
+     * @param {ItemDigitalItem} digital_item Digital item to update
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    updateDigitalItem(digital_item_oid: number, digital_item: ItemDigitalItem, options?: any): Promise<ItemDigitalItemResponse>;
     /**
      * Update a new item on the UltraCart account.
      * @summary Update an item
@@ -40178,6 +40505,15 @@ export declare const ItemApiFactory: (configuration?: Configuration, fetch?: Fet
  */
 export interface ItemApiInterface {
     /**
+     * Delete a digital item on the UltraCart account.
+     * @summary Delete a digital item, which is a file within the digital library, not an actual merchant item
+     * @param {number} digital_item_oid The digital item oid to delete.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ItemApiInterface
+     */
+    deleteDigitalItem(digital_item_oid: number, options?: any): Promise<{}>;
+    /**
      * Delete an item on the UltraCart account.
      * @summary Delete an item
      * @param {number} merchant_item_oid The item oid to delete.
@@ -40186,6 +40522,35 @@ export interface ItemApiInterface {
      * @memberof ItemApiInterface
      */
     deleteItem(merchant_item_oid: number, options?: any): Promise<{}>;
+    /**
+     * Retrieves a digital item (file information) from the account.  Be aware that these are not normal items that can be added to a shopping cart. Rather, they are digital files that may be associated with normal items.
+     * @summary Retrieve a digital item from the digital library, which are digital files that may be attached to normal items
+     * @param {number} digital_item_oid The digital item oid to retrieve.
+     * @param {number} [_limit] The maximum number of records to return on this one API call. (Default 100, Max 2000)
+     * @param {number} [_offset] Pagination of the record set.  Offset is a zero based index.
+     * @param {string} [_since] Fetch items that have been created/modified since this date/time.
+     * @param {string} [_sort] The sort order of the items.  See Sorting documentation for examples of using multiple values and sorting by ascending and descending.
+     * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
+     * @param {boolean} [_placeholders] Whether or not placeholder values should be returned in the result.  Useful for UIs that consume this REST API.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ItemApiInterface
+     */
+    getDigitalItem(digital_item_oid: number, _limit?: number, _offset?: number, _since?: string, _sort?: string, _expand?: string, _placeholders?: boolean, options?: any): Promise<ItemDigitalItemResponse>;
+    /**
+     * Retrieves a group of digital items (file information) from the account.  If no parameters are specified, all digital items will be returned.  Be aware that these are not normal items that can be added to a shopping cart. Rather, they are digital files that may be associated with normal items.  You will need to make multiple API calls in order to retrieve the entire result set since this API performs result set pagination.
+     * @summary Retrieve digital items from the digital library which are digital files that may be attached to normal items
+     * @param {number} [_limit] The maximum number of records to return on this one API call. (Default 100, Max 2000)
+     * @param {number} [_offset] Pagination of the record set.  Offset is a zero based index.
+     * @param {string} [_since] Fetch items that have been created/modified since this date/time.
+     * @param {string} [_sort] The sort order of the items.  See Sorting documentation for examples of using multiple values and sorting by ascending and descending.
+     * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
+     * @param {boolean} [_placeholders] Whether or not placeholder values should be returned in the result.  Useful for UIs that consume this REST API.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ItemApiInterface
+     */
+    getDigitalItems(_limit?: number, _offset?: number, _since?: string, _sort?: string, _expand?: string, _placeholders?: boolean, options?: any): Promise<ItemDigitalItemsResponse>;
     /**
      * Retrieves a single item using the specified item oid.
      * @summary Retrieve an item
@@ -40234,6 +40599,15 @@ export interface ItemApiInterface {
      */
     getPricingTiers(_expand?: string, options?: any): Promise<PricingTiersResponse>;
     /**
+     * Create a file within the digital library.  This does not create an item, but makes this digital file available and selectable as part (or all) of an item.
+     * @summary Create a file within the digital library
+     * @param {ItemDigitalItem} digital_item Digital item to create
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ItemApiInterface
+     */
+    insertDigitalItem(digital_item: ItemDigitalItem, options?: any): Promise<ItemDigitalItemResponse>;
+    /**
      * Create a new item on the UltraCart account.
      * @summary Create an item
      * @param {Item} item Item to create
@@ -40244,6 +40618,16 @@ export interface ItemApiInterface {
      * @memberof ItemApiInterface
      */
     insertItem(item: Item, _expand?: string, _placeholders?: boolean, options?: any): Promise<ItemResponse>;
+    /**
+     * Updates a file within the digital library.  This does not update an item, but updates a digital file available and selectable as part (or all) of an item.
+     * @summary Updates a file within the digital library
+     * @param {number} digital_item_oid The digital item oid to update.
+     * @param {ItemDigitalItem} digital_item Digital item to update
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ItemApiInterface
+     */
+    updateDigitalItem(digital_item_oid: number, digital_item: ItemDigitalItem, options?: any): Promise<ItemDigitalItemResponse>;
     /**
      * Update a new item on the UltraCart account.
      * @summary Update an item
@@ -40286,6 +40670,15 @@ export interface ItemApiInterface {
  */
 export declare class ItemApi extends BaseAPI implements ItemApiInterface {
     /**
+     * Delete a digital item on the UltraCart account.
+     * @summary Delete a digital item, which is a file within the digital library, not an actual merchant item
+     * @param {number} digital_item_oid The digital item oid to delete.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ItemApi
+     */
+    deleteDigitalItem(digital_item_oid: number, options?: any): Promise<Response>;
+    /**
      * Delete an item on the UltraCart account.
      * @summary Delete an item
      * @param {number} merchant_item_oid The item oid to delete.
@@ -40294,6 +40687,35 @@ export declare class ItemApi extends BaseAPI implements ItemApiInterface {
      * @memberof ItemApi
      */
     deleteItem(merchant_item_oid: number, options?: any): Promise<Response>;
+    /**
+     * Retrieves a digital item (file information) from the account.  Be aware that these are not normal items that can be added to a shopping cart. Rather, they are digital files that may be associated with normal items.
+     * @summary Retrieve a digital item from the digital library, which are digital files that may be attached to normal items
+     * @param {number} digital_item_oid The digital item oid to retrieve.
+     * @param {number} [_limit] The maximum number of records to return on this one API call. (Default 100, Max 2000)
+     * @param {number} [_offset] Pagination of the record set.  Offset is a zero based index.
+     * @param {string} [_since] Fetch items that have been created/modified since this date/time.
+     * @param {string} [_sort] The sort order of the items.  See Sorting documentation for examples of using multiple values and sorting by ascending and descending.
+     * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
+     * @param {boolean} [_placeholders] Whether or not placeholder values should be returned in the result.  Useful for UIs that consume this REST API.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ItemApi
+     */
+    getDigitalItem(digital_item_oid: number, _limit?: number, _offset?: number, _since?: string, _sort?: string, _expand?: string, _placeholders?: boolean, options?: any): Promise<ItemDigitalItemResponse>;
+    /**
+     * Retrieves a group of digital items (file information) from the account.  If no parameters are specified, all digital items will be returned.  Be aware that these are not normal items that can be added to a shopping cart. Rather, they are digital files that may be associated with normal items.  You will need to make multiple API calls in order to retrieve the entire result set since this API performs result set pagination.
+     * @summary Retrieve digital items from the digital library which are digital files that may be attached to normal items
+     * @param {number} [_limit] The maximum number of records to return on this one API call. (Default 100, Max 2000)
+     * @param {number} [_offset] Pagination of the record set.  Offset is a zero based index.
+     * @param {string} [_since] Fetch items that have been created/modified since this date/time.
+     * @param {string} [_sort] The sort order of the items.  See Sorting documentation for examples of using multiple values and sorting by ascending and descending.
+     * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
+     * @param {boolean} [_placeholders] Whether or not placeholder values should be returned in the result.  Useful for UIs that consume this REST API.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ItemApi
+     */
+    getDigitalItems(_limit?: number, _offset?: number, _since?: string, _sort?: string, _expand?: string, _placeholders?: boolean, options?: any): Promise<ItemDigitalItemsResponse>;
     /**
      * Retrieves a single item using the specified item oid.
      * @summary Retrieve an item
@@ -40342,6 +40764,15 @@ export declare class ItemApi extends BaseAPI implements ItemApiInterface {
      */
     getPricingTiers(_expand?: string, options?: any): Promise<PricingTiersResponse>;
     /**
+     * Create a file within the digital library.  This does not create an item, but makes this digital file available and selectable as part (or all) of an item.
+     * @summary Create a file within the digital library
+     * @param {ItemDigitalItem} digital_item Digital item to create
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ItemApi
+     */
+    insertDigitalItem(digital_item: ItemDigitalItem, options?: any): Promise<ItemDigitalItemResponse>;
+    /**
      * Create a new item on the UltraCart account.
      * @summary Create an item
      * @param {Item} item Item to create
@@ -40352,6 +40783,16 @@ export declare class ItemApi extends BaseAPI implements ItemApiInterface {
      * @memberof ItemApi
      */
     insertItem(item: Item, _expand?: string, _placeholders?: boolean, options?: any): Promise<ItemResponse>;
+    /**
+     * Updates a file within the digital library.  This does not update an item, but updates a digital file available and selectable as part (or all) of an item.
+     * @summary Updates a file within the digital library
+     * @param {number} digital_item_oid The digital item oid to update.
+     * @param {ItemDigitalItem} digital_item Digital item to update
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ItemApi
+     */
+    updateDigitalItem(digital_item_oid: number, digital_item: ItemDigitalItem, options?: any): Promise<ItemDigitalItemResponse>;
     /**
      * Update a new item on the UltraCart account.
      * @summary Update an item

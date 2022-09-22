@@ -12485,6 +12485,52 @@ exports.IntegrationLogApi = IntegrationLogApi;
 var ItemApiFetchParamCreator = function (configuration) {
     return {
         /**
+         * Delete a digital item on the UltraCart account.
+         * @summary Delete a digital item, which is a file within the digital library, not an actual merchant item
+         * @param {number} digital_item_oid The digital item oid to delete.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        deleteDigitalItem: function (digital_item_oid, options) {
+            if (options === void 0) { options = {}; }
+            // verify required parameter 'digital_item_oid' is not null or undefined
+            if (digital_item_oid === null || digital_item_oid === undefined) {
+                throw new RequiredError('digital_item_oid', 'Required parameter digital_item_oid was null or undefined when calling deleteDigitalItem.');
+            }
+            var localVarPath = "/item/digital_library/{digital_item_oid}"
+                .replace("{".concat("digital_item_oid", "}"), encodeURIComponent(String(digital_item_oid)));
+            var localVarUrlObj = url.parse(localVarPath, true);
+            var localVarRequestOptions = Object.assign({ method: 'DELETE' }, options);
+            var localVarHeaderParameter = {};
+            var localVarQueryParameter = {};
+            if (configuration && configuration.apiVersion) {
+                localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+            }
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+                var localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+                    ? configuration.accessToken("ultraCartOauth", ["item_write"])
+                    : configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                var localVarApiKeyValue = typeof configuration.apiKey === 'function'
+                    ? configuration.apiKey("x-ultracart-simple-key")
+                    : configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
          * Delete an item on the UltraCart account.
          * @summary Delete an item
          * @param {number} merchant_item_oid The item oid to delete.
@@ -12520,6 +12566,140 @@ var ItemApiFetchParamCreator = function (configuration) {
                     ? configuration.apiKey("x-ultracart-simple-key")
                     : configuration.apiKey;
                 localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Retrieves a digital item (file information) from the account.  Be aware that these are not normal items that can be added to a shopping cart. Rather, they are digital files that may be associated with normal items.
+         * @summary Retrieve a digital item from the digital library, which are digital files that may be attached to normal items
+         * @param {number} digital_item_oid The digital item oid to retrieve.
+         * @param {number} [_limit] The maximum number of records to return on this one API call. (Default 100, Max 2000)
+         * @param {number} [_offset] Pagination of the record set.  Offset is a zero based index.
+         * @param {string} [_since] Fetch items that have been created/modified since this date/time.
+         * @param {string} [_sort] The sort order of the items.  See Sorting documentation for examples of using multiple values and sorting by ascending and descending.
+         * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
+         * @param {boolean} [_placeholders] Whether or not placeholder values should be returned in the result.  Useful for UIs that consume this REST API.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getDigitalItem: function (digital_item_oid, _limit, _offset, _since, _sort, _expand, _placeholders, options) {
+            if (options === void 0) { options = {}; }
+            // verify required parameter 'digital_item_oid' is not null or undefined
+            if (digital_item_oid === null || digital_item_oid === undefined) {
+                throw new RequiredError('digital_item_oid', 'Required parameter digital_item_oid was null or undefined when calling getDigitalItem.');
+            }
+            var localVarPath = "/item/digital_library/{digital_item_oid}"
+                .replace("{".concat("digital_item_oid", "}"), encodeURIComponent(String(digital_item_oid)));
+            var localVarUrlObj = url.parse(localVarPath, true);
+            var localVarRequestOptions = Object.assign({ method: 'GET' }, options);
+            var localVarHeaderParameter = {};
+            var localVarQueryParameter = {};
+            if (configuration && configuration.apiVersion) {
+                localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+            }
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+                var localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+                    ? configuration.accessToken("ultraCartOauth", ["item_read"])
+                    : configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                var localVarApiKeyValue = typeof configuration.apiKey === 'function'
+                    ? configuration.apiKey("x-ultracart-simple-key")
+                    : configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+            if (_limit !== undefined) {
+                localVarQueryParameter['_limit'] = _limit;
+            }
+            if (_offset !== undefined) {
+                localVarQueryParameter['_offset'] = _offset;
+            }
+            if (_since !== undefined) {
+                localVarQueryParameter['_since'] = _since;
+            }
+            if (_sort !== undefined) {
+                localVarQueryParameter['_sort'] = _sort;
+            }
+            if (_expand !== undefined) {
+                localVarQueryParameter['_expand'] = _expand;
+            }
+            if (_placeholders !== undefined) {
+                localVarQueryParameter['_placeholders'] = _placeholders;
+            }
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Retrieves a group of digital items (file information) from the account.  If no parameters are specified, all digital items will be returned.  Be aware that these are not normal items that can be added to a shopping cart. Rather, they are digital files that may be associated with normal items.  You will need to make multiple API calls in order to retrieve the entire result set since this API performs result set pagination.
+         * @summary Retrieve digital items from the digital library which are digital files that may be attached to normal items
+         * @param {number} [_limit] The maximum number of records to return on this one API call. (Default 100, Max 2000)
+         * @param {number} [_offset] Pagination of the record set.  Offset is a zero based index.
+         * @param {string} [_since] Fetch items that have been created/modified since this date/time.
+         * @param {string} [_sort] The sort order of the items.  See Sorting documentation for examples of using multiple values and sorting by ascending and descending.
+         * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
+         * @param {boolean} [_placeholders] Whether or not placeholder values should be returned in the result.  Useful for UIs that consume this REST API.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getDigitalItems: function (_limit, _offset, _since, _sort, _expand, _placeholders, options) {
+            if (options === void 0) { options = {}; }
+            var localVarPath = "/item/digital_library";
+            var localVarUrlObj = url.parse(localVarPath, true);
+            var localVarRequestOptions = Object.assign({ method: 'GET' }, options);
+            var localVarHeaderParameter = {};
+            var localVarQueryParameter = {};
+            if (configuration && configuration.apiVersion) {
+                localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+            }
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+                var localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+                    ? configuration.accessToken("ultraCartOauth", ["item_read"])
+                    : configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                var localVarApiKeyValue = typeof configuration.apiKey === 'function'
+                    ? configuration.apiKey("x-ultracart-simple-key")
+                    : configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+            if (_limit !== undefined) {
+                localVarQueryParameter['_limit'] = _limit;
+            }
+            if (_offset !== undefined) {
+                localVarQueryParameter['_offset'] = _offset;
+            }
+            if (_since !== undefined) {
+                localVarQueryParameter['_since'] = _since;
+            }
+            if (_sort !== undefined) {
+                localVarQueryParameter['_sort'] = _sort;
+            }
+            if (_expand !== undefined) {
+                localVarQueryParameter['_expand'] = _expand;
+            }
+            if (_placeholders !== undefined) {
+                localVarQueryParameter['_placeholders'] = _placeholders;
             }
             localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
             // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
@@ -12755,6 +12935,54 @@ var ItemApiFetchParamCreator = function (configuration) {
             };
         },
         /**
+         * Create a file within the digital library.  This does not create an item, but makes this digital file available and selectable as part (or all) of an item.
+         * @summary Create a file within the digital library
+         * @param {ItemDigitalItem} digital_item Digital item to create
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        insertDigitalItem: function (digital_item, options) {
+            if (options === void 0) { options = {}; }
+            // verify required parameter 'digital_item' is not null or undefined
+            if (digital_item === null || digital_item === undefined) {
+                throw new RequiredError('digital_item', 'Required parameter digital_item was null or undefined when calling insertDigitalItem.');
+            }
+            var localVarPath = "/item/digital_library";
+            var localVarUrlObj = url.parse(localVarPath, true);
+            var localVarRequestOptions = Object.assign({ method: 'POST' }, options);
+            var localVarHeaderParameter = {};
+            var localVarQueryParameter = {};
+            if (configuration && configuration.apiVersion) {
+                localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+            }
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+                var localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+                    ? configuration.accessToken("ultraCartOauth", ["item_write"])
+                    : configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                var localVarApiKeyValue = typeof configuration.apiKey === 'function'
+                    ? configuration.apiKey("x-ultracart-simple-key")
+                    : configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+            localVarHeaderParameter['Content-Type'] = 'application/json; charset=UTF-8';
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+            var needsSerialization = ("ItemDigitalItem" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
+            localVarRequestOptions.body = needsSerialization ? JSON.stringify(digital_item || {}) : (digital_item || "");
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
          * Create a new item on the UltraCart account.
          * @summary Create an item
          * @param {Item} item Item to create
@@ -12805,6 +13033,60 @@ var ItemApiFetchParamCreator = function (configuration) {
             localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
             var needsSerialization = ("Item" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
             localVarRequestOptions.body = needsSerialization ? JSON.stringify(item || {}) : (item || "");
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Updates a file within the digital library.  This does not update an item, but updates a digital file available and selectable as part (or all) of an item.
+         * @summary Updates a file within the digital library
+         * @param {number} digital_item_oid The digital item oid to update.
+         * @param {ItemDigitalItem} digital_item Digital item to update
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        updateDigitalItem: function (digital_item_oid, digital_item, options) {
+            if (options === void 0) { options = {}; }
+            // verify required parameter 'digital_item_oid' is not null or undefined
+            if (digital_item_oid === null || digital_item_oid === undefined) {
+                throw new RequiredError('digital_item_oid', 'Required parameter digital_item_oid was null or undefined when calling updateDigitalItem.');
+            }
+            // verify required parameter 'digital_item' is not null or undefined
+            if (digital_item === null || digital_item === undefined) {
+                throw new RequiredError('digital_item', 'Required parameter digital_item was null or undefined when calling updateDigitalItem.');
+            }
+            var localVarPath = "/item/digital_library/{digital_item_oid}"
+                .replace("{".concat("digital_item_oid", "}"), encodeURIComponent(String(digital_item_oid)));
+            var localVarUrlObj = url.parse(localVarPath, true);
+            var localVarRequestOptions = Object.assign({ method: 'PUT' }, options);
+            var localVarHeaderParameter = {};
+            var localVarQueryParameter = {};
+            if (configuration && configuration.apiVersion) {
+                localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+            }
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+                var localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+                    ? configuration.accessToken("ultraCartOauth", ["item_write"])
+                    : configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                var localVarApiKeyValue = typeof configuration.apiKey === 'function'
+                    ? configuration.apiKey("x-ultracart-simple-key")
+                    : configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+            localVarHeaderParameter['Content-Type'] = 'application/json; charset=UTF-8';
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+            var needsSerialization = ("ItemDigitalItem" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
+            localVarRequestOptions.body = needsSerialization ? JSON.stringify(digital_item || {}) : (digital_item || "");
             return {
                 url: url.format(localVarUrlObj),
                 options: localVarRequestOptions,
@@ -12993,6 +13275,28 @@ exports.ItemApiFetchParamCreator = ItemApiFetchParamCreator;
 var ItemApiFp = function (configuration) {
     return {
         /**
+         * Delete a digital item on the UltraCart account.
+         * @summary Delete a digital item, which is a file within the digital library, not an actual merchant item
+         * @param {number} digital_item_oid The digital item oid to delete.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        deleteDigitalItem: function (digital_item_oid, options) {
+            var localVarFetchArgs = (0, exports.ItemApiFetchParamCreator)(configuration).deleteDigitalItem(digital_item_oid, options);
+            return function (fetch, basePath) {
+                if (fetch === void 0) { fetch = portableFetch; }
+                if (basePath === void 0) { basePath = BASE_PATH; }
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(function (response) {
+                    if (response.status >= 200 && response.status < 300) {
+                        return response;
+                    }
+                    else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
          * Delete an item on the UltraCart account.
          * @summary Delete an item
          * @param {number} merchant_item_oid The item oid to delete.
@@ -13007,6 +13311,61 @@ var ItemApiFp = function (configuration) {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(function (response) {
                     if (response.status >= 200 && response.status < 300) {
                         return response;
+                    }
+                    else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
+         * Retrieves a digital item (file information) from the account.  Be aware that these are not normal items that can be added to a shopping cart. Rather, they are digital files that may be associated with normal items.
+         * @summary Retrieve a digital item from the digital library, which are digital files that may be attached to normal items
+         * @param {number} digital_item_oid The digital item oid to retrieve.
+         * @param {number} [_limit] The maximum number of records to return on this one API call. (Default 100, Max 2000)
+         * @param {number} [_offset] Pagination of the record set.  Offset is a zero based index.
+         * @param {string} [_since] Fetch items that have been created/modified since this date/time.
+         * @param {string} [_sort] The sort order of the items.  See Sorting documentation for examples of using multiple values and sorting by ascending and descending.
+         * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
+         * @param {boolean} [_placeholders] Whether or not placeholder values should be returned in the result.  Useful for UIs that consume this REST API.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getDigitalItem: function (digital_item_oid, _limit, _offset, _since, _sort, _expand, _placeholders, options) {
+            var localVarFetchArgs = (0, exports.ItemApiFetchParamCreator)(configuration).getDigitalItem(digital_item_oid, _limit, _offset, _since, _sort, _expand, _placeholders, options);
+            return function (fetch, basePath) {
+                if (fetch === void 0) { fetch = portableFetch; }
+                if (basePath === void 0) { basePath = BASE_PATH; }
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(function (response) {
+                    if (response.status >= 200 && response.status < 300) {
+                        return response.json();
+                    }
+                    else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
+         * Retrieves a group of digital items (file information) from the account.  If no parameters are specified, all digital items will be returned.  Be aware that these are not normal items that can be added to a shopping cart. Rather, they are digital files that may be associated with normal items.  You will need to make multiple API calls in order to retrieve the entire result set since this API performs result set pagination.
+         * @summary Retrieve digital items from the digital library which are digital files that may be attached to normal items
+         * @param {number} [_limit] The maximum number of records to return on this one API call. (Default 100, Max 2000)
+         * @param {number} [_offset] Pagination of the record set.  Offset is a zero based index.
+         * @param {string} [_since] Fetch items that have been created/modified since this date/time.
+         * @param {string} [_sort] The sort order of the items.  See Sorting documentation for examples of using multiple values and sorting by ascending and descending.
+         * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
+         * @param {boolean} [_placeholders] Whether or not placeholder values should be returned in the result.  Useful for UIs that consume this REST API.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getDigitalItems: function (_limit, _offset, _since, _sort, _expand, _placeholders, options) {
+            var localVarFetchArgs = (0, exports.ItemApiFetchParamCreator)(configuration).getDigitalItems(_limit, _offset, _since, _sort, _expand, _placeholders, options);
+            return function (fetch, basePath) {
+                if (fetch === void 0) { fetch = portableFetch; }
+                if (basePath === void 0) { basePath = BASE_PATH; }
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(function (response) {
+                    if (response.status >= 200 && response.status < 300) {
+                        return response.json();
                     }
                     else {
                         throw response;
@@ -13114,6 +13473,28 @@ var ItemApiFp = function (configuration) {
             };
         },
         /**
+         * Create a file within the digital library.  This does not create an item, but makes this digital file available and selectable as part (or all) of an item.
+         * @summary Create a file within the digital library
+         * @param {ItemDigitalItem} digital_item Digital item to create
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        insertDigitalItem: function (digital_item, options) {
+            var localVarFetchArgs = (0, exports.ItemApiFetchParamCreator)(configuration).insertDigitalItem(digital_item, options);
+            return function (fetch, basePath) {
+                if (fetch === void 0) { fetch = portableFetch; }
+                if (basePath === void 0) { basePath = BASE_PATH; }
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(function (response) {
+                    if (response.status >= 200 && response.status < 300) {
+                        return response.json();
+                    }
+                    else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
          * Create a new item on the UltraCart account.
          * @summary Create an item
          * @param {Item} item Item to create
@@ -13124,6 +13505,29 @@ var ItemApiFp = function (configuration) {
          */
         insertItem: function (item, _expand, _placeholders, options) {
             var localVarFetchArgs = (0, exports.ItemApiFetchParamCreator)(configuration).insertItem(item, _expand, _placeholders, options);
+            return function (fetch, basePath) {
+                if (fetch === void 0) { fetch = portableFetch; }
+                if (basePath === void 0) { basePath = BASE_PATH; }
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(function (response) {
+                    if (response.status >= 200 && response.status < 300) {
+                        return response.json();
+                    }
+                    else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
+         * Updates a file within the digital library.  This does not update an item, but updates a digital file available and selectable as part (or all) of an item.
+         * @summary Updates a file within the digital library
+         * @param {number} digital_item_oid The digital item oid to update.
+         * @param {ItemDigitalItem} digital_item Digital item to update
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        updateDigitalItem: function (digital_item_oid, digital_item, options) {
+            var localVarFetchArgs = (0, exports.ItemApiFetchParamCreator)(configuration).updateDigitalItem(digital_item_oid, digital_item, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -13219,6 +13623,16 @@ exports.ItemApiFp = ItemApiFp;
 var ItemApiFactory = function (configuration, fetch, basePath) {
     return {
         /**
+         * Delete a digital item on the UltraCart account.
+         * @summary Delete a digital item, which is a file within the digital library, not an actual merchant item
+         * @param {number} digital_item_oid The digital item oid to delete.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        deleteDigitalItem: function (digital_item_oid, options) {
+            return (0, exports.ItemApiFp)(configuration).deleteDigitalItem(digital_item_oid, options)(fetch, basePath);
+        },
+        /**
          * Delete an item on the UltraCart account.
          * @summary Delete an item
          * @param {number} merchant_item_oid The item oid to delete.
@@ -13227,6 +13641,37 @@ var ItemApiFactory = function (configuration, fetch, basePath) {
          */
         deleteItem: function (merchant_item_oid, options) {
             return (0, exports.ItemApiFp)(configuration).deleteItem(merchant_item_oid, options)(fetch, basePath);
+        },
+        /**
+         * Retrieves a digital item (file information) from the account.  Be aware that these are not normal items that can be added to a shopping cart. Rather, they are digital files that may be associated with normal items.
+         * @summary Retrieve a digital item from the digital library, which are digital files that may be attached to normal items
+         * @param {number} digital_item_oid The digital item oid to retrieve.
+         * @param {number} [_limit] The maximum number of records to return on this one API call. (Default 100, Max 2000)
+         * @param {number} [_offset] Pagination of the record set.  Offset is a zero based index.
+         * @param {string} [_since] Fetch items that have been created/modified since this date/time.
+         * @param {string} [_sort] The sort order of the items.  See Sorting documentation for examples of using multiple values and sorting by ascending and descending.
+         * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
+         * @param {boolean} [_placeholders] Whether or not placeholder values should be returned in the result.  Useful for UIs that consume this REST API.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getDigitalItem: function (digital_item_oid, _limit, _offset, _since, _sort, _expand, _placeholders, options) {
+            return (0, exports.ItemApiFp)(configuration).getDigitalItem(digital_item_oid, _limit, _offset, _since, _sort, _expand, _placeholders, options)(fetch, basePath);
+        },
+        /**
+         * Retrieves a group of digital items (file information) from the account.  If no parameters are specified, all digital items will be returned.  Be aware that these are not normal items that can be added to a shopping cart. Rather, they are digital files that may be associated with normal items.  You will need to make multiple API calls in order to retrieve the entire result set since this API performs result set pagination.
+         * @summary Retrieve digital items from the digital library which are digital files that may be attached to normal items
+         * @param {number} [_limit] The maximum number of records to return on this one API call. (Default 100, Max 2000)
+         * @param {number} [_offset] Pagination of the record set.  Offset is a zero based index.
+         * @param {string} [_since] Fetch items that have been created/modified since this date/time.
+         * @param {string} [_sort] The sort order of the items.  See Sorting documentation for examples of using multiple values and sorting by ascending and descending.
+         * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
+         * @param {boolean} [_placeholders] Whether or not placeholder values should be returned in the result.  Useful for UIs that consume this REST API.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getDigitalItems: function (_limit, _offset, _since, _sort, _expand, _placeholders, options) {
+            return (0, exports.ItemApiFp)(configuration).getDigitalItems(_limit, _offset, _since, _sort, _expand, _placeholders, options)(fetch, basePath);
         },
         /**
          * Retrieves a single item using the specified item oid.
@@ -13280,6 +13725,16 @@ var ItemApiFactory = function (configuration, fetch, basePath) {
             return (0, exports.ItemApiFp)(configuration).getPricingTiers(_expand, options)(fetch, basePath);
         },
         /**
+         * Create a file within the digital library.  This does not create an item, but makes this digital file available and selectable as part (or all) of an item.
+         * @summary Create a file within the digital library
+         * @param {ItemDigitalItem} digital_item Digital item to create
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        insertDigitalItem: function (digital_item, options) {
+            return (0, exports.ItemApiFp)(configuration).insertDigitalItem(digital_item, options)(fetch, basePath);
+        },
+        /**
          * Create a new item on the UltraCart account.
          * @summary Create an item
          * @param {Item} item Item to create
@@ -13290,6 +13745,17 @@ var ItemApiFactory = function (configuration, fetch, basePath) {
          */
         insertItem: function (item, _expand, _placeholders, options) {
             return (0, exports.ItemApiFp)(configuration).insertItem(item, _expand, _placeholders, options)(fetch, basePath);
+        },
+        /**
+         * Updates a file within the digital library.  This does not update an item, but updates a digital file available and selectable as part (or all) of an item.
+         * @summary Updates a file within the digital library
+         * @param {number} digital_item_oid The digital item oid to update.
+         * @param {ItemDigitalItem} digital_item Digital item to update
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        updateDigitalItem: function (digital_item_oid, digital_item, options) {
+            return (0, exports.ItemApiFp)(configuration).updateDigitalItem(digital_item_oid, digital_item, options)(fetch, basePath);
         },
         /**
          * Update a new item on the UltraCart account.
@@ -13342,6 +13808,17 @@ var ItemApi = /** @class */ (function (_super) {
         return _super !== null && _super.apply(this, arguments) || this;
     }
     /**
+     * Delete a digital item on the UltraCart account.
+     * @summary Delete a digital item, which is a file within the digital library, not an actual merchant item
+     * @param {number} digital_item_oid The digital item oid to delete.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ItemApi
+     */
+    ItemApi.prototype.deleteDigitalItem = function (digital_item_oid, options) {
+        return (0, exports.ItemApiFp)(this.configuration).deleteDigitalItem(digital_item_oid, options)(this.fetch, this.basePath);
+    };
+    /**
      * Delete an item on the UltraCart account.
      * @summary Delete an item
      * @param {number} merchant_item_oid The item oid to delete.
@@ -13351,6 +13828,39 @@ var ItemApi = /** @class */ (function (_super) {
      */
     ItemApi.prototype.deleteItem = function (merchant_item_oid, options) {
         return (0, exports.ItemApiFp)(this.configuration).deleteItem(merchant_item_oid, options)(this.fetch, this.basePath);
+    };
+    /**
+     * Retrieves a digital item (file information) from the account.  Be aware that these are not normal items that can be added to a shopping cart. Rather, they are digital files that may be associated with normal items.
+     * @summary Retrieve a digital item from the digital library, which are digital files that may be attached to normal items
+     * @param {number} digital_item_oid The digital item oid to retrieve.
+     * @param {number} [_limit] The maximum number of records to return on this one API call. (Default 100, Max 2000)
+     * @param {number} [_offset] Pagination of the record set.  Offset is a zero based index.
+     * @param {string} [_since] Fetch items that have been created/modified since this date/time.
+     * @param {string} [_sort] The sort order of the items.  See Sorting documentation for examples of using multiple values and sorting by ascending and descending.
+     * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
+     * @param {boolean} [_placeholders] Whether or not placeholder values should be returned in the result.  Useful for UIs that consume this REST API.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ItemApi
+     */
+    ItemApi.prototype.getDigitalItem = function (digital_item_oid, _limit, _offset, _since, _sort, _expand, _placeholders, options) {
+        return (0, exports.ItemApiFp)(this.configuration).getDigitalItem(digital_item_oid, _limit, _offset, _since, _sort, _expand, _placeholders, options)(this.fetch, this.basePath);
+    };
+    /**
+     * Retrieves a group of digital items (file information) from the account.  If no parameters are specified, all digital items will be returned.  Be aware that these are not normal items that can be added to a shopping cart. Rather, they are digital files that may be associated with normal items.  You will need to make multiple API calls in order to retrieve the entire result set since this API performs result set pagination.
+     * @summary Retrieve digital items from the digital library which are digital files that may be attached to normal items
+     * @param {number} [_limit] The maximum number of records to return on this one API call. (Default 100, Max 2000)
+     * @param {number} [_offset] Pagination of the record set.  Offset is a zero based index.
+     * @param {string} [_since] Fetch items that have been created/modified since this date/time.
+     * @param {string} [_sort] The sort order of the items.  See Sorting documentation for examples of using multiple values and sorting by ascending and descending.
+     * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
+     * @param {boolean} [_placeholders] Whether or not placeholder values should be returned in the result.  Useful for UIs that consume this REST API.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ItemApi
+     */
+    ItemApi.prototype.getDigitalItems = function (_limit, _offset, _since, _sort, _expand, _placeholders, options) {
+        return (0, exports.ItemApiFp)(this.configuration).getDigitalItems(_limit, _offset, _since, _sort, _expand, _placeholders, options)(this.fetch, this.basePath);
     };
     /**
      * Retrieves a single item using the specified item oid.
@@ -13408,6 +13918,17 @@ var ItemApi = /** @class */ (function (_super) {
         return (0, exports.ItemApiFp)(this.configuration).getPricingTiers(_expand, options)(this.fetch, this.basePath);
     };
     /**
+     * Create a file within the digital library.  This does not create an item, but makes this digital file available and selectable as part (or all) of an item.
+     * @summary Create a file within the digital library
+     * @param {ItemDigitalItem} digital_item Digital item to create
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ItemApi
+     */
+    ItemApi.prototype.insertDigitalItem = function (digital_item, options) {
+        return (0, exports.ItemApiFp)(this.configuration).insertDigitalItem(digital_item, options)(this.fetch, this.basePath);
+    };
+    /**
      * Create a new item on the UltraCart account.
      * @summary Create an item
      * @param {Item} item Item to create
@@ -13419,6 +13940,18 @@ var ItemApi = /** @class */ (function (_super) {
      */
     ItemApi.prototype.insertItem = function (item, _expand, _placeholders, options) {
         return (0, exports.ItemApiFp)(this.configuration).insertItem(item, _expand, _placeholders, options)(this.fetch, this.basePath);
+    };
+    /**
+     * Updates a file within the digital library.  This does not update an item, but updates a digital file available and selectable as part (or all) of an item.
+     * @summary Updates a file within the digital library
+     * @param {number} digital_item_oid The digital item oid to update.
+     * @param {ItemDigitalItem} digital_item Digital item to update
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ItemApi
+     */
+    ItemApi.prototype.updateDigitalItem = function (digital_item_oid, digital_item, options) {
+        return (0, exports.ItemApiFp)(this.configuration).updateDigitalItem(digital_item_oid, digital_item, options)(this.fetch, this.basePath);
     };
     /**
      * Update a new item on the UltraCart account.
