@@ -13,12 +13,25 @@
  */
 
 import { exists, mapValues } from '../runtime';
+import {
+    ItemDigitalItemPdfMeta,
+    ItemDigitalItemPdfMetaFromJSON,
+    ItemDigitalItemPdfMetaFromJSONTyped,
+    ItemDigitalItemPdfMetaToJSON,
+} from './ItemDigitalItemPdfMeta';
+
 /**
  * 
  * @export
  * @interface ItemDigitalItem
  */
 export interface ItemDigitalItem {
+    /**
+     * Click wrap agreement is presented to the customer before they can purchase your product.
+     * @type {string}
+     * @memberof ItemDigitalItem
+     */
+    click_wrap_agreement?: string;
     /**
      * File creation date
      * @type {string}
@@ -32,11 +45,23 @@ export interface ItemDigitalItem {
      */
     description?: string;
     /**
+     * The Digital item oid is a primary key used internally by UltraCart.  You should not set or change this value.  Doing so will have no effect.
+     * @type {number}
+     * @memberof ItemDigitalItem
+     */
+    digital_item_oid?: number;
+    /**
      * File size
      * @type {number}
      * @memberof ItemDigitalItem
      */
     file_size?: number;
+    /**
+     * This url is sourced to create or update a digital file in your digital library.  It is only considered during an insert or update operation.
+     * @type {string}
+     * @memberof ItemDigitalItem
+     */
+    import_from_url?: string;
     /**
      * Mime type associated with the file
      * @type {string}
@@ -49,6 +74,12 @@ export interface ItemDigitalItem {
      * @memberof ItemDigitalItem
      */
     original_filename?: string;
+    /**
+     * 
+     * @type {ItemDigitalItemPdfMeta}
+     * @memberof ItemDigitalItem
+     */
+    pdf_meta?: ItemDigitalItemPdfMeta;
 }
 
 export function ItemDigitalItemFromJSON(json: any): ItemDigitalItem {
@@ -61,11 +92,15 @@ export function ItemDigitalItemFromJSONTyped(json: any, ignoreDiscriminator: boo
     }
     return {
         
+        'click_wrap_agreement': !exists(json, 'click_wrap_agreement') ? undefined : json['click_wrap_agreement'],
         'creation_dts': !exists(json, 'creation_dts') ? undefined : json['creation_dts'],
         'description': !exists(json, 'description') ? undefined : json['description'],
+        'digital_item_oid': !exists(json, 'digital_item_oid') ? undefined : json['digital_item_oid'],
         'file_size': !exists(json, 'file_size') ? undefined : json['file_size'],
+        'import_from_url': !exists(json, 'import_from_url') ? undefined : json['import_from_url'],
         'mime_type': !exists(json, 'mime_type') ? undefined : json['mime_type'],
         'original_filename': !exists(json, 'original_filename') ? undefined : json['original_filename'],
+        'pdf_meta': !exists(json, 'pdf_meta') ? undefined : ItemDigitalItemPdfMetaFromJSON(json['pdf_meta']),
     };
 }
 
@@ -78,11 +113,15 @@ export function ItemDigitalItemToJSON(value?: ItemDigitalItem | null): any {
     }
     return {
         
+        'click_wrap_agreement': value.click_wrap_agreement,
         'creation_dts': value.creation_dts,
         'description': value.description,
+        'digital_item_oid': value.digital_item_oid,
         'file_size': value.file_size,
+        'import_from_url': value.import_from_url,
         'mime_type': value.mime_type,
         'original_filename': value.original_filename,
+        'pdf_meta': ItemDigitalItemPdfMetaToJSON(value.pdf_meta),
     };
 }
 

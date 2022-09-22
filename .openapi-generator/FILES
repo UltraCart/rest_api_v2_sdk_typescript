@@ -430,6 +430,9 @@ src/models/ItemContentMultimedia.ts
 src/models/ItemContentMultimediaThumbnail.ts
 src/models/ItemDigitalDelivery.ts
 src/models/ItemDigitalItem.ts
+src/models/ItemDigitalItemPdfMeta.ts
+src/models/ItemDigitalItemResponse.ts
+src/models/ItemDigitalItemsResponse.ts
 src/models/ItemEbay.ts
 src/models/ItemEbayCategorySpecific.ts
 src/models/ItemEbayMarketListing.ts

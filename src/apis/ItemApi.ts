@@ -21,6 +21,15 @@ import {
     Item,
     ItemFromJSON,
     ItemToJSON,
+    ItemDigitalItem,
+    ItemDigitalItemFromJSON,
+    ItemDigitalItemToJSON,
+    ItemDigitalItemResponse,
+    ItemDigitalItemResponseFromJSON,
+    ItemDigitalItemResponseToJSON,
+    ItemDigitalItemsResponse,
+    ItemDigitalItemsResponseFromJSON,
+    ItemDigitalItemsResponseToJSON,
     ItemResponse,
     ItemResponseFromJSON,
     ItemResponseToJSON,
@@ -38,8 +47,31 @@ import {
     TempMultimediaResponseToJSON,
 } from '../models';
 
+export interface DeleteDigitalItemRequest {
+    digitalItemOid: number;
+}
+
 export interface DeleteItemRequest {
     merchantItemOid: number;
+}
+
+export interface GetDigitalItemRequest {
+    digitalItemOid: number;
+    limit?: number;
+    offset?: number;
+    since?: string;
+    sort?: string;
+    expand?: string;
+    placeholders?: boolean;
+}
+
+export interface GetDigitalItemsRequest {
+    limit?: number;
+    offset?: number;
+    since?: string;
+    sort?: string;
+    expand?: string;
+    placeholders?: boolean;
 }
 
 export interface GetItemRequest {
@@ -69,10 +101,19 @@ export interface GetPricingTiersRequest {
     expand?: string;
 }
 
+export interface InsertDigitalItemRequest {
+    digitalItem: ItemDigitalItem;
+}
+
 export interface InsertItemRequest {
     item: Item;
     expand?: string;
     placeholders?: boolean;
+}
+
+export interface UpdateDigitalItemRequest {
+    digitalItemOid: number;
+    digitalItem: ItemDigitalItem;
 }
 
 export interface UpdateItemRequest {
@@ -101,6 +142,22 @@ export interface UploadTemporaryMultimediaRequest {
  */
 export interface ItemApiInterface {
     /**
+     * Delete a digital item on the UltraCart account. 
+     * @summary Delete a digital item, which is a file within the digital library, not an actual merchant item
+     * @param {number} digitalItemOid The digital item oid to delete.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ItemApiInterface
+     */
+    deleteDigitalItemRaw(requestParameters: DeleteDigitalItemRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+
+    /**
+     * Delete a digital item on the UltraCart account. 
+     * Delete a digital item, which is a file within the digital library, not an actual merchant item
+     */
+    deleteDigitalItem(requestParameters: DeleteDigitalItemRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+
+    /**
      * Delete an item on the UltraCart account. 
      * @summary Delete an item
      * @param {number} merchantItemOid The item oid to delete.
@@ -115,6 +172,49 @@ export interface ItemApiInterface {
      * Delete an item
      */
     deleteItem(requestParameters: DeleteItemRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+
+    /**
+     * Retrieves a digital item (file information) from the account.  Be aware that these are not normal items that can be added to a shopping cart. Rather, they are digital files that may be associated with normal items. 
+     * @summary Retrieve a digital item from the digital library, which are digital files that may be attached to normal items
+     * @param {number} digitalItemOid The digital item oid to retrieve.
+     * @param {number} [limit] The maximum number of records to return on this one API call. (Default 100, Max 2000)
+     * @param {number} [offset] Pagination of the record set.  Offset is a zero based index.
+     * @param {string} [since] Fetch items that have been created/modified since this date/time.
+     * @param {string} [sort] The sort order of the items.  See Sorting documentation for examples of using multiple values and sorting by ascending and descending.
+     * @param {string} [expand] The object expansion to perform on the result.  See documentation for examples
+     * @param {boolean} [placeholders] Whether or not placeholder values should be returned in the result.  Useful for UIs that consume this REST API.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ItemApiInterface
+     */
+    getDigitalItemRaw(requestParameters: GetDigitalItemRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ItemDigitalItemResponse>>;
+
+    /**
+     * Retrieves a digital item (file information) from the account.  Be aware that these are not normal items that can be added to a shopping cart. Rather, they are digital files that may be associated with normal items. 
+     * Retrieve a digital item from the digital library, which are digital files that may be attached to normal items
+     */
+    getDigitalItem(requestParameters: GetDigitalItemRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ItemDigitalItemResponse>;
+
+    /**
+     * Retrieves a group of digital items (file information) from the account.  If no parameters are specified, all digital items will be returned.  Be aware that these are not normal items that can be added to a shopping cart. Rather, they are digital files that may be associated with normal items.  You will need to make multiple API calls in order to retrieve the entire result set since this API performs result set pagination. 
+     * @summary Retrieve digital items from the digital library which are digital files that may be attached to normal items
+     * @param {number} [limit] The maximum number of records to return on this one API call. (Default 100, Max 2000)
+     * @param {number} [offset] Pagination of the record set.  Offset is a zero based index.
+     * @param {string} [since] Fetch items that have been created/modified since this date/time.
+     * @param {string} [sort] The sort order of the items.  See Sorting documentation for examples of using multiple values and sorting by ascending and descending.
+     * @param {string} [expand] The object expansion to perform on the result.  See documentation for examples
+     * @param {boolean} [placeholders] Whether or not placeholder values should be returned in the result.  Useful for UIs that consume this REST API.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ItemApiInterface
+     */
+    getDigitalItemsRaw(requestParameters: GetDigitalItemsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ItemDigitalItemsResponse>>;
+
+    /**
+     * Retrieves a group of digital items (file information) from the account.  If no parameters are specified, all digital items will be returned.  Be aware that these are not normal items that can be added to a shopping cart. Rather, they are digital files that may be associated with normal items.  You will need to make multiple API calls in order to retrieve the entire result set since this API performs result set pagination. 
+     * Retrieve digital items from the digital library which are digital files that may be attached to normal items
+     */
+    getDigitalItems(requestParameters: GetDigitalItemsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ItemDigitalItemsResponse>;
 
     /**
      * Retrieves a single item using the specified item oid. 
@@ -192,6 +292,22 @@ export interface ItemApiInterface {
     getPricingTiers(requestParameters: GetPricingTiersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PricingTiersResponse>;
 
     /**
+     * Create a file within the digital library.  This does not create an item, but makes this digital file available and selectable as part (or all) of an item. 
+     * @summary Create a file within the digital library
+     * @param {ItemDigitalItem} digitalItem Digital item to create
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ItemApiInterface
+     */
+    insertDigitalItemRaw(requestParameters: InsertDigitalItemRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ItemDigitalItemResponse>>;
+
+    /**
+     * Create a file within the digital library.  This does not create an item, but makes this digital file available and selectable as part (or all) of an item. 
+     * Create a file within the digital library
+     */
+    insertDigitalItem(requestParameters: InsertDigitalItemRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ItemDigitalItemResponse>;
+
+    /**
      * Create a new item on the UltraCart account. 
      * @summary Create an item
      * @param {Item} item Item to create
@@ -208,6 +324,23 @@ export interface ItemApiInterface {
      * Create an item
      */
     insertItem(requestParameters: InsertItemRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ItemResponse>;
+
+    /**
+     * Updates a file within the digital library.  This does not update an item, but updates a digital file available and selectable as part (or all) of an item. 
+     * @summary Updates a file within the digital library
+     * @param {number} digitalItemOid The digital item oid to update.
+     * @param {ItemDigitalItem} digitalItem Digital item to update
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ItemApiInterface
+     */
+    updateDigitalItemRaw(requestParameters: UpdateDigitalItemRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ItemDigitalItemResponse>>;
+
+    /**
+     * Updates a file within the digital library.  This does not update an item, but updates a digital file available and selectable as part (or all) of an item. 
+     * Updates a file within the digital library
+     */
+    updateDigitalItem(requestParameters: UpdateDigitalItemRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ItemDigitalItemResponse>;
 
     /**
      * Update a new item on the UltraCart account. 
@@ -271,6 +404,46 @@ export interface ItemApiInterface {
 export class ItemApi extends runtime.BaseAPI implements ItemApiInterface {
 
     /**
+     * Delete a digital item on the UltraCart account. 
+     * Delete a digital item, which is a file within the digital library, not an actual merchant item
+     */
+    async deleteDigitalItemRaw(requestParameters: DeleteDigitalItemRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        if (requestParameters.digitalItemOid === null || requestParameters.digitalItemOid === undefined) {
+            throw new runtime.RequiredError('digitalItemOid','Required parameter requestParameters.digitalItemOid was null or undefined when calling deleteDigitalItem.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", ["item_write"]);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/item/digital_library/{digital_item_oid}`.replace(`{${"digital_item_oid"}}`, encodeURIComponent(String(requestParameters.digitalItemOid))),
+            method: 'DELETE',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     * Delete a digital item on the UltraCart account. 
+     * Delete a digital item, which is a file within the digital library, not an actual merchant item
+     */
+    async deleteDigitalItem(requestParameters: DeleteDigitalItemRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.deleteDigitalItemRaw(requestParameters, initOverrides);
+    }
+
+    /**
      * Delete an item on the UltraCart account. 
      * Delete an item
      */
@@ -308,6 +481,132 @@ export class ItemApi extends runtime.BaseAPI implements ItemApiInterface {
      */
     async deleteItem(requestParameters: DeleteItemRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.deleteItemRaw(requestParameters, initOverrides);
+    }
+
+    /**
+     * Retrieves a digital item (file information) from the account.  Be aware that these are not normal items that can be added to a shopping cart. Rather, they are digital files that may be associated with normal items. 
+     * Retrieve a digital item from the digital library, which are digital files that may be attached to normal items
+     */
+    async getDigitalItemRaw(requestParameters: GetDigitalItemRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ItemDigitalItemResponse>> {
+        if (requestParameters.digitalItemOid === null || requestParameters.digitalItemOid === undefined) {
+            throw new runtime.RequiredError('digitalItemOid','Required parameter requestParameters.digitalItemOid was null or undefined when calling getDigitalItem.');
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters.limit !== undefined) {
+            queryParameters['_limit'] = requestParameters.limit;
+        }
+
+        if (requestParameters.offset !== undefined) {
+            queryParameters['_offset'] = requestParameters.offset;
+        }
+
+        if (requestParameters.since !== undefined) {
+            queryParameters['_since'] = requestParameters.since;
+        }
+
+        if (requestParameters.sort !== undefined) {
+            queryParameters['_sort'] = requestParameters.sort;
+        }
+
+        if (requestParameters.expand !== undefined) {
+            queryParameters['_expand'] = requestParameters.expand;
+        }
+
+        if (requestParameters.placeholders !== undefined) {
+            queryParameters['_placeholders'] = requestParameters.placeholders;
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", ["item_read"]);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/item/digital_library/{digital_item_oid}`.replace(`{${"digital_item_oid"}}`, encodeURIComponent(String(requestParameters.digitalItemOid))),
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => ItemDigitalItemResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Retrieves a digital item (file information) from the account.  Be aware that these are not normal items that can be added to a shopping cart. Rather, they are digital files that may be associated with normal items. 
+     * Retrieve a digital item from the digital library, which are digital files that may be attached to normal items
+     */
+    async getDigitalItem(requestParameters: GetDigitalItemRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ItemDigitalItemResponse> {
+        const response = await this.getDigitalItemRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Retrieves a group of digital items (file information) from the account.  If no parameters are specified, all digital items will be returned.  Be aware that these are not normal items that can be added to a shopping cart. Rather, they are digital files that may be associated with normal items.  You will need to make multiple API calls in order to retrieve the entire result set since this API performs result set pagination. 
+     * Retrieve digital items from the digital library which are digital files that may be attached to normal items
+     */
+    async getDigitalItemsRaw(requestParameters: GetDigitalItemsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ItemDigitalItemsResponse>> {
+        const queryParameters: any = {};
+
+        if (requestParameters.limit !== undefined) {
+            queryParameters['_limit'] = requestParameters.limit;
+        }
+
+        if (requestParameters.offset !== undefined) {
+            queryParameters['_offset'] = requestParameters.offset;
+        }
+
+        if (requestParameters.since !== undefined) {
+            queryParameters['_since'] = requestParameters.since;
+        }
+
+        if (requestParameters.sort !== undefined) {
+            queryParameters['_sort'] = requestParameters.sort;
+        }
+
+        if (requestParameters.expand !== undefined) {
+            queryParameters['_expand'] = requestParameters.expand;
+        }
+
+        if (requestParameters.placeholders !== undefined) {
+            queryParameters['_placeholders'] = requestParameters.placeholders;
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", ["item_read"]);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/item/digital_library`,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => ItemDigitalItemsResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Retrieves a group of digital items (file information) from the account.  If no parameters are specified, all digital items will be returned.  Be aware that these are not normal items that can be added to a shopping cart. Rather, they are digital files that may be associated with normal items.  You will need to make multiple API calls in order to retrieve the entire result set since this API performs result set pagination. 
+     * Retrieve digital items from the digital library which are digital files that may be attached to normal items
+     */
+    async getDigitalItems(requestParameters: GetDigitalItemsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ItemDigitalItemsResponse> {
+        const response = await this.getDigitalItemsRaw(requestParameters, initOverrides);
+        return await response.value();
     }
 
     /**
@@ -519,6 +818,50 @@ export class ItemApi extends runtime.BaseAPI implements ItemApiInterface {
     }
 
     /**
+     * Create a file within the digital library.  This does not create an item, but makes this digital file available and selectable as part (or all) of an item. 
+     * Create a file within the digital library
+     */
+    async insertDigitalItemRaw(requestParameters: InsertDigitalItemRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ItemDigitalItemResponse>> {
+        if (requestParameters.digitalItem === null || requestParameters.digitalItem === undefined) {
+            throw new runtime.RequiredError('digitalItem','Required parameter requestParameters.digitalItem was null or undefined when calling insertDigitalItem.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json; charset=UTF-8';
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", ["item_write"]);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/item/digital_library`,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: ItemDigitalItemToJSON(requestParameters.digitalItem),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => ItemDigitalItemResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Create a file within the digital library.  This does not create an item, but makes this digital file available and selectable as part (or all) of an item. 
+     * Create a file within the digital library
+     */
+    async insertDigitalItem(requestParameters: InsertDigitalItemRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ItemDigitalItemResponse> {
+        const response = await this.insertDigitalItemRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
      * Create a new item on the UltraCart account. 
      * Create an item
      */
@@ -567,6 +910,54 @@ export class ItemApi extends runtime.BaseAPI implements ItemApiInterface {
      */
     async insertItem(requestParameters: InsertItemRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ItemResponse> {
         const response = await this.insertItemRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Updates a file within the digital library.  This does not update an item, but updates a digital file available and selectable as part (or all) of an item. 
+     * Updates a file within the digital library
+     */
+    async updateDigitalItemRaw(requestParameters: UpdateDigitalItemRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ItemDigitalItemResponse>> {
+        if (requestParameters.digitalItemOid === null || requestParameters.digitalItemOid === undefined) {
+            throw new runtime.RequiredError('digitalItemOid','Required parameter requestParameters.digitalItemOid was null or undefined when calling updateDigitalItem.');
+        }
+
+        if (requestParameters.digitalItem === null || requestParameters.digitalItem === undefined) {
+            throw new runtime.RequiredError('digitalItem','Required parameter requestParameters.digitalItem was null or undefined when calling updateDigitalItem.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json; charset=UTF-8';
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", ["item_write"]);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/item/digital_library/{digital_item_oid}`.replace(`{${"digital_item_oid"}}`, encodeURIComponent(String(requestParameters.digitalItemOid))),
+            method: 'PUT',
+            headers: headerParameters,
+            query: queryParameters,
+            body: ItemDigitalItemToJSON(requestParameters.digitalItem),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => ItemDigitalItemResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Updates a file within the digital library.  This does not update an item, but updates a digital file available and selectable as part (or all) of an item. 
+     * Updates a file within the digital library
+     */
+    async updateDigitalItem(requestParameters: UpdateDigitalItemRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ItemDigitalItemResponse> {
+        const response = await this.updateDigitalItemRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
