@@ -40076,16 +40076,10 @@ export declare const ItemApiFetchParamCreator: (configuration?: Configuration) =
      * Retrieves a digital item (file information) from the account.  Be aware that these are not normal items that can be added to a shopping cart. Rather, they are digital files that may be associated with normal items.
      * @summary Retrieve a digital item from the digital library, which are digital files that may be attached to normal items
      * @param {number} digital_item_oid The digital item oid to retrieve.
-     * @param {number} [_limit] The maximum number of records to return on this one API call. (Default 100, Max 2000)
-     * @param {number} [_offset] Pagination of the record set.  Offset is a zero based index.
-     * @param {string} [_since] Fetch items that have been created/modified since this date/time.
-     * @param {string} [_sort] The sort order of the items.  See Sorting documentation for examples of using multiple values and sorting by ascending and descending.
-     * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
-     * @param {boolean} [_placeholders] Whether or not placeholder values should be returned in the result.  Useful for UIs that consume this REST API.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getDigitalItem(digital_item_oid: number, _limit?: number, _offset?: number, _since?: string, _sort?: string, _expand?: string, _placeholders?: boolean, options?: any): FetchArgs;
+    getDigitalItem(digital_item_oid: number, options?: any): FetchArgs;
     /**
      * Retrieves a group of digital items (file information) from the account.  If no parameters are specified, all digital items will be returned.  Be aware that these are not normal items that can be added to a shopping cart. Rather, they are digital files that may be associated with normal items.  You will need to make multiple API calls in order to retrieve the entire result set since this API performs result set pagination.
      * @summary Retrieve digital items from the digital library which are digital files that may be attached to normal items
@@ -40225,16 +40219,10 @@ export declare const ItemApiFp: (configuration?: Configuration) => {
      * Retrieves a digital item (file information) from the account.  Be aware that these are not normal items that can be added to a shopping cart. Rather, they are digital files that may be associated with normal items.
      * @summary Retrieve a digital item from the digital library, which are digital files that may be attached to normal items
      * @param {number} digital_item_oid The digital item oid to retrieve.
-     * @param {number} [_limit] The maximum number of records to return on this one API call. (Default 100, Max 2000)
-     * @param {number} [_offset] Pagination of the record set.  Offset is a zero based index.
-     * @param {string} [_since] Fetch items that have been created/modified since this date/time.
-     * @param {string} [_sort] The sort order of the items.  See Sorting documentation for examples of using multiple values and sorting by ascending and descending.
-     * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
-     * @param {boolean} [_placeholders] Whether or not placeholder values should be returned in the result.  Useful for UIs that consume this REST API.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getDigitalItem(digital_item_oid: number, _limit?: number, _offset?: number, _since?: string, _sort?: string, _expand?: string, _placeholders?: boolean, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ItemDigitalItemResponse>;
+    getDigitalItem(digital_item_oid: number, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ItemDigitalItemResponse>;
     /**
      * Retrieves a group of digital items (file information) from the account.  If no parameters are specified, all digital items will be returned.  Be aware that these are not normal items that can be added to a shopping cart. Rather, they are digital files that may be associated with normal items.  You will need to make multiple API calls in order to retrieve the entire result set since this API performs result set pagination.
      * @summary Retrieve digital items from the digital library which are digital files that may be attached to normal items
@@ -40374,16 +40362,10 @@ export declare const ItemApiFactory: (configuration?: Configuration, fetch?: Fet
      * Retrieves a digital item (file information) from the account.  Be aware that these are not normal items that can be added to a shopping cart. Rather, they are digital files that may be associated with normal items.
      * @summary Retrieve a digital item from the digital library, which are digital files that may be attached to normal items
      * @param {number} digital_item_oid The digital item oid to retrieve.
-     * @param {number} [_limit] The maximum number of records to return on this one API call. (Default 100, Max 2000)
-     * @param {number} [_offset] Pagination of the record set.  Offset is a zero based index.
-     * @param {string} [_since] Fetch items that have been created/modified since this date/time.
-     * @param {string} [_sort] The sort order of the items.  See Sorting documentation for examples of using multiple values and sorting by ascending and descending.
-     * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
-     * @param {boolean} [_placeholders] Whether or not placeholder values should be returned in the result.  Useful for UIs that consume this REST API.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getDigitalItem(digital_item_oid: number, _limit?: number, _offset?: number, _since?: string, _sort?: string, _expand?: string, _placeholders?: boolean, options?: any): Promise<ItemDigitalItemResponse>;
+    getDigitalItem(digital_item_oid: number, options?: any): Promise<ItemDigitalItemResponse>;
     /**
      * Retrieves a group of digital items (file information) from the account.  If no parameters are specified, all digital items will be returned.  Be aware that these are not normal items that can be added to a shopping cart. Rather, they are digital files that may be associated with normal items.  You will need to make multiple API calls in order to retrieve the entire result set since this API performs result set pagination.
      * @summary Retrieve digital items from the digital library which are digital files that may be attached to normal items
@@ -40526,17 +40508,11 @@ export interface ItemApiInterface {
      * Retrieves a digital item (file information) from the account.  Be aware that these are not normal items that can be added to a shopping cart. Rather, they are digital files that may be associated with normal items.
      * @summary Retrieve a digital item from the digital library, which are digital files that may be attached to normal items
      * @param {number} digital_item_oid The digital item oid to retrieve.
-     * @param {number} [_limit] The maximum number of records to return on this one API call. (Default 100, Max 2000)
-     * @param {number} [_offset] Pagination of the record set.  Offset is a zero based index.
-     * @param {string} [_since] Fetch items that have been created/modified since this date/time.
-     * @param {string} [_sort] The sort order of the items.  See Sorting documentation for examples of using multiple values and sorting by ascending and descending.
-     * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
-     * @param {boolean} [_placeholders] Whether or not placeholder values should be returned in the result.  Useful for UIs that consume this REST API.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ItemApiInterface
      */
-    getDigitalItem(digital_item_oid: number, _limit?: number, _offset?: number, _since?: string, _sort?: string, _expand?: string, _placeholders?: boolean, options?: any): Promise<ItemDigitalItemResponse>;
+    getDigitalItem(digital_item_oid: number, options?: any): Promise<ItemDigitalItemResponse>;
     /**
      * Retrieves a group of digital items (file information) from the account.  If no parameters are specified, all digital items will be returned.  Be aware that these are not normal items that can be added to a shopping cart. Rather, they are digital files that may be associated with normal items.  You will need to make multiple API calls in order to retrieve the entire result set since this API performs result set pagination.
      * @summary Retrieve digital items from the digital library which are digital files that may be attached to normal items
@@ -40691,17 +40667,11 @@ export declare class ItemApi extends BaseAPI implements ItemApiInterface {
      * Retrieves a digital item (file information) from the account.  Be aware that these are not normal items that can be added to a shopping cart. Rather, they are digital files that may be associated with normal items.
      * @summary Retrieve a digital item from the digital library, which are digital files that may be attached to normal items
      * @param {number} digital_item_oid The digital item oid to retrieve.
-     * @param {number} [_limit] The maximum number of records to return on this one API call. (Default 100, Max 2000)
-     * @param {number} [_offset] Pagination of the record set.  Offset is a zero based index.
-     * @param {string} [_since] Fetch items that have been created/modified since this date/time.
-     * @param {string} [_sort] The sort order of the items.  See Sorting documentation for examples of using multiple values and sorting by ascending and descending.
-     * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
-     * @param {boolean} [_placeholders] Whether or not placeholder values should be returned in the result.  Useful for UIs that consume this REST API.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ItemApi
      */
-    getDigitalItem(digital_item_oid: number, _limit?: number, _offset?: number, _since?: string, _sort?: string, _expand?: string, _placeholders?: boolean, options?: any): Promise<ItemDigitalItemResponse>;
+    getDigitalItem(digital_item_oid: number, options?: any): Promise<ItemDigitalItemResponse>;
     /**
      * Retrieves a group of digital items (file information) from the account.  If no parameters are specified, all digital items will be returned.  Be aware that these are not normal items that can be added to a shopping cart. Rather, they are digital files that may be associated with normal items.  You will need to make multiple API calls in order to retrieve the entire result set since this API performs result set pagination.
      * @summary Retrieve digital items from the digital library which are digital files that may be attached to normal items

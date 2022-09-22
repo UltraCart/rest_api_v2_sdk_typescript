@@ -12580,16 +12580,10 @@ var ItemApiFetchParamCreator = function (configuration) {
          * Retrieves a digital item (file information) from the account.  Be aware that these are not normal items that can be added to a shopping cart. Rather, they are digital files that may be associated with normal items.
          * @summary Retrieve a digital item from the digital library, which are digital files that may be attached to normal items
          * @param {number} digital_item_oid The digital item oid to retrieve.
-         * @param {number} [_limit] The maximum number of records to return on this one API call. (Default 100, Max 2000)
-         * @param {number} [_offset] Pagination of the record set.  Offset is a zero based index.
-         * @param {string} [_since] Fetch items that have been created/modified since this date/time.
-         * @param {string} [_sort] The sort order of the items.  See Sorting documentation for examples of using multiple values and sorting by ascending and descending.
-         * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
-         * @param {boolean} [_placeholders] Whether or not placeholder values should be returned in the result.  Useful for UIs that consume this REST API.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getDigitalItem: function (digital_item_oid, _limit, _offset, _since, _sort, _expand, _placeholders, options) {
+        getDigitalItem: function (digital_item_oid, options) {
             if (options === void 0) { options = {}; }
             // verify required parameter 'digital_item_oid' is not null or undefined
             if (digital_item_oid === null || digital_item_oid === undefined) {
@@ -12618,24 +12612,6 @@ var ItemApiFetchParamCreator = function (configuration) {
                     ? configuration.apiKey("x-ultracart-simple-key")
                     : configuration.apiKey;
                 localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
-            }
-            if (_limit !== undefined) {
-                localVarQueryParameter['_limit'] = _limit;
-            }
-            if (_offset !== undefined) {
-                localVarQueryParameter['_offset'] = _offset;
-            }
-            if (_since !== undefined) {
-                localVarQueryParameter['_since'] = _since;
-            }
-            if (_sort !== undefined) {
-                localVarQueryParameter['_sort'] = _sort;
-            }
-            if (_expand !== undefined) {
-                localVarQueryParameter['_expand'] = _expand;
-            }
-            if (_placeholders !== undefined) {
-                localVarQueryParameter['_placeholders'] = _placeholders;
             }
             localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
             // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
@@ -13322,17 +13298,11 @@ var ItemApiFp = function (configuration) {
          * Retrieves a digital item (file information) from the account.  Be aware that these are not normal items that can be added to a shopping cart. Rather, they are digital files that may be associated with normal items.
          * @summary Retrieve a digital item from the digital library, which are digital files that may be attached to normal items
          * @param {number} digital_item_oid The digital item oid to retrieve.
-         * @param {number} [_limit] The maximum number of records to return on this one API call. (Default 100, Max 2000)
-         * @param {number} [_offset] Pagination of the record set.  Offset is a zero based index.
-         * @param {string} [_since] Fetch items that have been created/modified since this date/time.
-         * @param {string} [_sort] The sort order of the items.  See Sorting documentation for examples of using multiple values and sorting by ascending and descending.
-         * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
-         * @param {boolean} [_placeholders] Whether or not placeholder values should be returned in the result.  Useful for UIs that consume this REST API.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getDigitalItem: function (digital_item_oid, _limit, _offset, _since, _sort, _expand, _placeholders, options) {
-            var localVarFetchArgs = (0, exports.ItemApiFetchParamCreator)(configuration).getDigitalItem(digital_item_oid, _limit, _offset, _since, _sort, _expand, _placeholders, options);
+        getDigitalItem: function (digital_item_oid, options) {
+            var localVarFetchArgs = (0, exports.ItemApiFetchParamCreator)(configuration).getDigitalItem(digital_item_oid, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -13646,17 +13616,11 @@ var ItemApiFactory = function (configuration, fetch, basePath) {
          * Retrieves a digital item (file information) from the account.  Be aware that these are not normal items that can be added to a shopping cart. Rather, they are digital files that may be associated with normal items.
          * @summary Retrieve a digital item from the digital library, which are digital files that may be attached to normal items
          * @param {number} digital_item_oid The digital item oid to retrieve.
-         * @param {number} [_limit] The maximum number of records to return on this one API call. (Default 100, Max 2000)
-         * @param {number} [_offset] Pagination of the record set.  Offset is a zero based index.
-         * @param {string} [_since] Fetch items that have been created/modified since this date/time.
-         * @param {string} [_sort] The sort order of the items.  See Sorting documentation for examples of using multiple values and sorting by ascending and descending.
-         * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
-         * @param {boolean} [_placeholders] Whether or not placeholder values should be returned in the result.  Useful for UIs that consume this REST API.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getDigitalItem: function (digital_item_oid, _limit, _offset, _since, _sort, _expand, _placeholders, options) {
-            return (0, exports.ItemApiFp)(configuration).getDigitalItem(digital_item_oid, _limit, _offset, _since, _sort, _expand, _placeholders, options)(fetch, basePath);
+        getDigitalItem: function (digital_item_oid, options) {
+            return (0, exports.ItemApiFp)(configuration).getDigitalItem(digital_item_oid, options)(fetch, basePath);
         },
         /**
          * Retrieves a group of digital items (file information) from the account.  If no parameters are specified, all digital items will be returned.  Be aware that these are not normal items that can be added to a shopping cart. Rather, they are digital files that may be associated with normal items.  You will need to make multiple API calls in order to retrieve the entire result set since this API performs result set pagination.
@@ -13833,18 +13797,12 @@ var ItemApi = /** @class */ (function (_super) {
      * Retrieves a digital item (file information) from the account.  Be aware that these are not normal items that can be added to a shopping cart. Rather, they are digital files that may be associated with normal items.
      * @summary Retrieve a digital item from the digital library, which are digital files that may be attached to normal items
      * @param {number} digital_item_oid The digital item oid to retrieve.
-     * @param {number} [_limit] The maximum number of records to return on this one API call. (Default 100, Max 2000)
-     * @param {number} [_offset] Pagination of the record set.  Offset is a zero based index.
-     * @param {string} [_since] Fetch items that have been created/modified since this date/time.
-     * @param {string} [_sort] The sort order of the items.  See Sorting documentation for examples of using multiple values and sorting by ascending and descending.
-     * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
-     * @param {boolean} [_placeholders] Whether or not placeholder values should be returned in the result.  Useful for UIs that consume this REST API.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ItemApi
      */
-    ItemApi.prototype.getDigitalItem = function (digital_item_oid, _limit, _offset, _since, _sort, _expand, _placeholders, options) {
-        return (0, exports.ItemApiFp)(this.configuration).getDigitalItem(digital_item_oid, _limit, _offset, _since, _sort, _expand, _placeholders, options)(this.fetch, this.basePath);
+    ItemApi.prototype.getDigitalItem = function (digital_item_oid, options) {
+        return (0, exports.ItemApiFp)(this.configuration).getDigitalItem(digital_item_oid, options)(this.fetch, this.basePath);
     };
     /**
      * Retrieves a group of digital items (file information) from the account.  If no parameters are specified, all digital items will be returned.  Be aware that these are not normal items that can be added to a shopping cart. Rather, they are digital files that may be associated with normal items.  You will need to make multiple API calls in order to retrieve the entire result set since this API performs result set pagination.
