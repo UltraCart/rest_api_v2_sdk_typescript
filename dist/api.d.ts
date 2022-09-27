@@ -17899,6 +17899,43 @@ export interface ExperimentsResponse {
 /**
  *
  * @export
+ * @interface FileManagerPage
+ */
+export interface FileManagerPage {
+    /**
+     *
+     * @type {number}
+     * @memberof FileManagerPage
+     */
+    current_storefront_fs_directory_oid?: number;
+    /**
+     *
+     * @type {string}
+     * @memberof FileManagerPage
+     */
+    hostname?: string;
+    /**
+     *
+     * @type {number}
+     * @memberof FileManagerPage
+     */
+    parent_storefront_fs_directory_oid?: number;
+    /**
+     *
+     * @type {string}
+     * @memberof FileManagerPage
+     */
+    path?: string;
+    /**
+     *
+     * @type {number}
+     * @memberof FileManagerPage
+     */
+    storefront_oid?: number;
+}
+/**
+ *
+ * @export
  * @interface FulfillmentInventory
  */
 export interface FulfillmentInventory {
@@ -40137,6 +40174,19 @@ export declare const ItemApiFetchParamCreator: (configuration?: Configuration) =
      */
     getPricingTiers(_expand?: string, options?: any): FetchArgs;
     /**
+     * Retrieves a group of digital items (file information) from the account that are not yet associated with any actual items.  If no parameters are specified, all digital items will be returned.  Be aware that these are not normal items that can be added to a shopping cart. Rather, they are digital files that may be associated with normal items.  You will need to make multiple API calls in order to retrieve the entire result set since this API performs result set pagination.
+     * @summary Retrieve digital items from the digital library (which are digital files that may be attached to normal items) not yet associated with actual items
+     * @param {number} [_limit] The maximum number of records to return on this one API call. (Default 100, Max 2000)
+     * @param {number} [_offset] Pagination of the record set.  Offset is a zero based index.
+     * @param {string} [_since] Fetch items that have been created/modified since this date/time.
+     * @param {string} [_sort] The sort order of the items.  See Sorting documentation for examples of using multiple values and sorting by ascending and descending.
+     * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
+     * @param {boolean} [_placeholders] Whether or not placeholder values should be returned in the result.  Useful for UIs that consume this REST API.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getUnassociatedDigitalItems(_limit?: number, _offset?: number, _since?: string, _sort?: string, _expand?: string, _placeholders?: boolean, options?: any): FetchArgs;
+    /**
      * Create a file within the digital library.  This does not create an item, but makes this digital file available and selectable as part (or all) of an item.
      * @summary Create a file within the digital library
      * @param {ItemDigitalItem} digital_item Digital item to create
@@ -40280,6 +40330,19 @@ export declare const ItemApiFp: (configuration?: Configuration) => {
      */
     getPricingTiers(_expand?: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<PricingTiersResponse>;
     /**
+     * Retrieves a group of digital items (file information) from the account that are not yet associated with any actual items.  If no parameters are specified, all digital items will be returned.  Be aware that these are not normal items that can be added to a shopping cart. Rather, they are digital files that may be associated with normal items.  You will need to make multiple API calls in order to retrieve the entire result set since this API performs result set pagination.
+     * @summary Retrieve digital items from the digital library (which are digital files that may be attached to normal items) not yet associated with actual items
+     * @param {number} [_limit] The maximum number of records to return on this one API call. (Default 100, Max 2000)
+     * @param {number} [_offset] Pagination of the record set.  Offset is a zero based index.
+     * @param {string} [_since] Fetch items that have been created/modified since this date/time.
+     * @param {string} [_sort] The sort order of the items.  See Sorting documentation for examples of using multiple values and sorting by ascending and descending.
+     * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
+     * @param {boolean} [_placeholders] Whether or not placeholder values should be returned in the result.  Useful for UIs that consume this REST API.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getUnassociatedDigitalItems(_limit?: number, _offset?: number, _since?: string, _sort?: string, _expand?: string, _placeholders?: boolean, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ItemDigitalItemsResponse>;
+    /**
      * Create a file within the digital library.  This does not create an item, but makes this digital file available and selectable as part (or all) of an item.
      * @summary Create a file within the digital library
      * @param {ItemDigitalItem} digital_item Digital item to create
@@ -40422,6 +40485,19 @@ export declare const ItemApiFactory: (configuration?: Configuration, fetch?: Fet
      * @throws {RequiredError}
      */
     getPricingTiers(_expand?: string, options?: any): Promise<PricingTiersResponse>;
+    /**
+     * Retrieves a group of digital items (file information) from the account that are not yet associated with any actual items.  If no parameters are specified, all digital items will be returned.  Be aware that these are not normal items that can be added to a shopping cart. Rather, they are digital files that may be associated with normal items.  You will need to make multiple API calls in order to retrieve the entire result set since this API performs result set pagination.
+     * @summary Retrieve digital items from the digital library (which are digital files that may be attached to normal items) not yet associated with actual items
+     * @param {number} [_limit] The maximum number of records to return on this one API call. (Default 100, Max 2000)
+     * @param {number} [_offset] Pagination of the record set.  Offset is a zero based index.
+     * @param {string} [_since] Fetch items that have been created/modified since this date/time.
+     * @param {string} [_sort] The sort order of the items.  See Sorting documentation for examples of using multiple values and sorting by ascending and descending.
+     * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
+     * @param {boolean} [_placeholders] Whether or not placeholder values should be returned in the result.  Useful for UIs that consume this REST API.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getUnassociatedDigitalItems(_limit?: number, _offset?: number, _since?: string, _sort?: string, _expand?: string, _placeholders?: boolean, options?: any): Promise<ItemDigitalItemsResponse>;
     /**
      * Create a file within the digital library.  This does not create an item, but makes this digital file available and selectable as part (or all) of an item.
      * @summary Create a file within the digital library
@@ -40574,6 +40650,20 @@ export interface ItemApiInterface {
      * @memberof ItemApiInterface
      */
     getPricingTiers(_expand?: string, options?: any): Promise<PricingTiersResponse>;
+    /**
+     * Retrieves a group of digital items (file information) from the account that are not yet associated with any actual items.  If no parameters are specified, all digital items will be returned.  Be aware that these are not normal items that can be added to a shopping cart. Rather, they are digital files that may be associated with normal items.  You will need to make multiple API calls in order to retrieve the entire result set since this API performs result set pagination.
+     * @summary Retrieve digital items from the digital library (which are digital files that may be attached to normal items) not yet associated with actual items
+     * @param {number} [_limit] The maximum number of records to return on this one API call. (Default 100, Max 2000)
+     * @param {number} [_offset] Pagination of the record set.  Offset is a zero based index.
+     * @param {string} [_since] Fetch items that have been created/modified since this date/time.
+     * @param {string} [_sort] The sort order of the items.  See Sorting documentation for examples of using multiple values and sorting by ascending and descending.
+     * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
+     * @param {boolean} [_placeholders] Whether or not placeholder values should be returned in the result.  Useful for UIs that consume this REST API.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ItemApiInterface
+     */
+    getUnassociatedDigitalItems(_limit?: number, _offset?: number, _since?: string, _sort?: string, _expand?: string, _placeholders?: boolean, options?: any): Promise<ItemDigitalItemsResponse>;
     /**
      * Create a file within the digital library.  This does not create an item, but makes this digital file available and selectable as part (or all) of an item.
      * @summary Create a file within the digital library
@@ -40733,6 +40823,20 @@ export declare class ItemApi extends BaseAPI implements ItemApiInterface {
      * @memberof ItemApi
      */
     getPricingTiers(_expand?: string, options?: any): Promise<PricingTiersResponse>;
+    /**
+     * Retrieves a group of digital items (file information) from the account that are not yet associated with any actual items.  If no parameters are specified, all digital items will be returned.  Be aware that these are not normal items that can be added to a shopping cart. Rather, they are digital files that may be associated with normal items.  You will need to make multiple API calls in order to retrieve the entire result set since this API performs result set pagination.
+     * @summary Retrieve digital items from the digital library (which are digital files that may be attached to normal items) not yet associated with actual items
+     * @param {number} [_limit] The maximum number of records to return on this one API call. (Default 100, Max 2000)
+     * @param {number} [_offset] Pagination of the record set.  Offset is a zero based index.
+     * @param {string} [_since] Fetch items that have been created/modified since this date/time.
+     * @param {string} [_sort] The sort order of the items.  See Sorting documentation for examples of using multiple values and sorting by ascending and descending.
+     * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
+     * @param {boolean} [_placeholders] Whether or not placeholder values should be returned in the result.  Useful for UIs that consume this REST API.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ItemApi
+     */
+    getUnassociatedDigitalItems(_limit?: number, _offset?: number, _since?: string, _sort?: string, _expand?: string, _placeholders?: boolean, options?: any): Promise<ItemDigitalItemsResponse>;
     /**
      * Create a file within the digital library.  This does not create an item, but makes this digital file available and selectable as part (or all) of an item.
      * @summary Create a file within the digital library
@@ -42480,6 +42584,25 @@ export declare const StorefrontApiFetchParamCreator: (configuration?: Configurat
     cloneEmailFlow(storefront_oid: number, email_flow_uuid: string, target_storefront_oid?: number, options?: any): FetchArgs;
     /**
      *
+     * @summary Create file manager directory for admin panel
+     * @param {number} id
+     * @param {string} [name]
+     * @param {number} [parent_storefront_fs_directory_oid]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    createAdminPanelFsDirectory(id: number, name?: string, parent_storefront_fs_directory_oid?: number, options?: any): FetchArgs;
+    /**
+     *
+     * @summary Upload file manager file for admin panel
+     * @param {number} id
+     * @param {number} [parent_storefront_fs_directory_oid]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    createAdminPanelFsFileUpload(id: number, parent_storefront_fs_directory_oid?: number, options?: any): FetchArgs;
+    /**
+     *
      * @summary Create email campaign
      * @param {string} domain
      * @param {*} [options] Override http request option.
@@ -42502,6 +42625,16 @@ export declare const StorefrontApiFetchParamCreator: (configuration?: Configurat
      * @throws {RequiredError}
      */
     createTwilioAccount(twilio: Twilio, options?: any): FetchArgs;
+    /**
+     *
+     * @summary Delete file manager directory for admin panel
+     * @param {number} id
+     * @param {number} [parent_storefront_fs_directory_oid]
+     * @param {number} [storefront_fs_file_oid]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    deleteAdminPanelFsFile(id: number, parent_storefront_fs_directory_oid?: number, storefront_fs_file_oid?: number, options?: any): FetchArgs;
     /**
      *
      * @summary Delete email campaignFolder
@@ -42651,6 +42784,17 @@ export declare const StorefrontApiFetchParamCreator: (configuration?: Configurat
      * @throws {RequiredError}
      */
     geocodeAddress(storefront_oid: number, geocode_request: GeocodeRequest, options?: any): FetchArgs;
+    /**
+     *
+     * @summary Get file manager directory for admin panel
+     * @param {number} id
+     * @param {string} [path]
+     * @param {number} [storefront_fs_directory_oid]
+     * @param {number} [storefront_theme_oid]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getAdminPanelFsDirectory(id: number, path?: string, storefront_fs_directory_oid?: number, storefront_theme_oid?: number, options?: any): FetchArgs;
     /**
      * Obtain a list of all the countries
      * @summary Get countries
@@ -44000,6 +44144,25 @@ export declare const StorefrontApiFp: (configuration?: Configuration) => {
     cloneEmailFlow(storefront_oid: number, email_flow_uuid: string, target_storefront_oid?: number, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<EmailFlowResponse>;
     /**
      *
+     * @summary Create file manager directory for admin panel
+     * @param {number} id
+     * @param {string} [name]
+     * @param {number} [parent_storefront_fs_directory_oid]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    createAdminPanelFsDirectory(id: number, name?: string, parent_storefront_fs_directory_oid?: number, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<FileManagerPage>;
+    /**
+     *
+     * @summary Upload file manager file for admin panel
+     * @param {number} id
+     * @param {number} [parent_storefront_fs_directory_oid]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    createAdminPanelFsFileUpload(id: number, parent_storefront_fs_directory_oid?: number, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<FileManagerPage>;
+    /**
+     *
      * @summary Create email campaign
      * @param {string} domain
      * @param {*} [options] Override http request option.
@@ -44022,6 +44185,16 @@ export declare const StorefrontApiFp: (configuration?: Configuration) => {
      * @throws {RequiredError}
      */
     createTwilioAccount(twilio: Twilio, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<TwilioResponse>;
+    /**
+     *
+     * @summary Delete file manager directory for admin panel
+     * @param {number} id
+     * @param {number} [parent_storefront_fs_directory_oid]
+     * @param {number} [storefront_fs_file_oid]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    deleteAdminPanelFsFile(id: number, parent_storefront_fs_directory_oid?: number, storefront_fs_file_oid?: number, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<FileManagerPage>;
     /**
      *
      * @summary Delete email campaignFolder
@@ -44171,6 +44344,17 @@ export declare const StorefrontApiFp: (configuration?: Configuration) => {
      * @throws {RequiredError}
      */
     geocodeAddress(storefront_oid: number, geocode_request: GeocodeRequest, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<GeocodeResponse>;
+    /**
+     *
+     * @summary Get file manager directory for admin panel
+     * @param {number} id
+     * @param {string} [path]
+     * @param {number} [storefront_fs_directory_oid]
+     * @param {number} [storefront_theme_oid]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getAdminPanelFsDirectory(id: number, path?: string, storefront_fs_directory_oid?: number, storefront_theme_oid?: number, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<FileManagerPage>;
     /**
      * Obtain a list of all the countries
      * @summary Get countries
@@ -45520,6 +45704,25 @@ export declare const StorefrontApiFactory: (configuration?: Configuration, fetch
     cloneEmailFlow(storefront_oid: number, email_flow_uuid: string, target_storefront_oid?: number, options?: any): Promise<EmailFlowResponse>;
     /**
      *
+     * @summary Create file manager directory for admin panel
+     * @param {number} id
+     * @param {string} [name]
+     * @param {number} [parent_storefront_fs_directory_oid]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    createAdminPanelFsDirectory(id: number, name?: string, parent_storefront_fs_directory_oid?: number, options?: any): Promise<FileManagerPage>;
+    /**
+     *
+     * @summary Upload file manager file for admin panel
+     * @param {number} id
+     * @param {number} [parent_storefront_fs_directory_oid]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    createAdminPanelFsFileUpload(id: number, parent_storefront_fs_directory_oid?: number, options?: any): Promise<FileManagerPage>;
+    /**
+     *
      * @summary Create email campaign
      * @param {string} domain
      * @param {*} [options] Override http request option.
@@ -45542,6 +45745,16 @@ export declare const StorefrontApiFactory: (configuration?: Configuration, fetch
      * @throws {RequiredError}
      */
     createTwilioAccount(twilio: Twilio, options?: any): Promise<TwilioResponse>;
+    /**
+     *
+     * @summary Delete file manager directory for admin panel
+     * @param {number} id
+     * @param {number} [parent_storefront_fs_directory_oid]
+     * @param {number} [storefront_fs_file_oid]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    deleteAdminPanelFsFile(id: number, parent_storefront_fs_directory_oid?: number, storefront_fs_file_oid?: number, options?: any): Promise<FileManagerPage>;
     /**
      *
      * @summary Delete email campaignFolder
@@ -45691,6 +45904,17 @@ export declare const StorefrontApiFactory: (configuration?: Configuration, fetch
      * @throws {RequiredError}
      */
     geocodeAddress(storefront_oid: number, geocode_request: GeocodeRequest, options?: any): Promise<GeocodeResponse>;
+    /**
+     *
+     * @summary Get file manager directory for admin panel
+     * @param {number} id
+     * @param {string} [path]
+     * @param {number} [storefront_fs_directory_oid]
+     * @param {number} [storefront_theme_oid]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getAdminPanelFsDirectory(id: number, path?: string, storefront_fs_directory_oid?: number, storefront_theme_oid?: number, options?: any): Promise<FileManagerPage>;
     /**
      * Obtain a list of all the countries
      * @summary Get countries
@@ -47049,6 +47273,27 @@ export interface StorefrontApiInterface {
     cloneEmailFlow(storefront_oid: number, email_flow_uuid: string, target_storefront_oid?: number, options?: any): Promise<EmailFlowResponse>;
     /**
      *
+     * @summary Create file manager directory for admin panel
+     * @param {number} id
+     * @param {string} [name]
+     * @param {number} [parent_storefront_fs_directory_oid]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof StorefrontApiInterface
+     */
+    createAdminPanelFsDirectory(id: number, name?: string, parent_storefront_fs_directory_oid?: number, options?: any): Promise<FileManagerPage>;
+    /**
+     *
+     * @summary Upload file manager file for admin panel
+     * @param {number} id
+     * @param {number} [parent_storefront_fs_directory_oid]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof StorefrontApiInterface
+     */
+    createAdminPanelFsFileUpload(id: number, parent_storefront_fs_directory_oid?: number, options?: any): Promise<FileManagerPage>;
+    /**
+     *
      * @summary Create email campaign
      * @param {string} domain
      * @param {*} [options] Override http request option.
@@ -47074,6 +47319,17 @@ export interface StorefrontApiInterface {
      * @memberof StorefrontApiInterface
      */
     createTwilioAccount(twilio: Twilio, options?: any): Promise<TwilioResponse>;
+    /**
+     *
+     * @summary Delete file manager directory for admin panel
+     * @param {number} id
+     * @param {number} [parent_storefront_fs_directory_oid]
+     * @param {number} [storefront_fs_file_oid]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof StorefrontApiInterface
+     */
+    deleteAdminPanelFsFile(id: number, parent_storefront_fs_directory_oid?: number, storefront_fs_file_oid?: number, options?: any): Promise<FileManagerPage>;
     /**
      *
      * @summary Delete email campaignFolder
@@ -47240,6 +47496,18 @@ export interface StorefrontApiInterface {
      * @memberof StorefrontApiInterface
      */
     geocodeAddress(storefront_oid: number, geocode_request: GeocodeRequest, options?: any): Promise<GeocodeResponse>;
+    /**
+     *
+     * @summary Get file manager directory for admin panel
+     * @param {number} id
+     * @param {string} [path]
+     * @param {number} [storefront_fs_directory_oid]
+     * @param {number} [storefront_theme_oid]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof StorefrontApiInterface
+     */
+    getAdminPanelFsDirectory(id: number, path?: string, storefront_fs_directory_oid?: number, storefront_theme_oid?: number, options?: any): Promise<FileManagerPage>;
     /**
      * Obtain a list of all the countries
      * @summary Get countries
@@ -48737,6 +49005,27 @@ export declare class StorefrontApi extends BaseAPI implements StorefrontApiInter
     cloneEmailFlow(storefront_oid: number, email_flow_uuid: string, target_storefront_oid?: number, options?: any): Promise<EmailFlowResponse>;
     /**
      *
+     * @summary Create file manager directory for admin panel
+     * @param {number} id
+     * @param {string} [name]
+     * @param {number} [parent_storefront_fs_directory_oid]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof StorefrontApi
+     */
+    createAdminPanelFsDirectory(id: number, name?: string, parent_storefront_fs_directory_oid?: number, options?: any): Promise<FileManagerPage>;
+    /**
+     *
+     * @summary Upload file manager file for admin panel
+     * @param {number} id
+     * @param {number} [parent_storefront_fs_directory_oid]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof StorefrontApi
+     */
+    createAdminPanelFsFileUpload(id: number, parent_storefront_fs_directory_oid?: number, options?: any): Promise<FileManagerPage>;
+    /**
+     *
      * @summary Create email campaign
      * @param {string} domain
      * @param {*} [options] Override http request option.
@@ -48762,6 +49051,17 @@ export declare class StorefrontApi extends BaseAPI implements StorefrontApiInter
      * @memberof StorefrontApi
      */
     createTwilioAccount(twilio: Twilio, options?: any): Promise<TwilioResponse>;
+    /**
+     *
+     * @summary Delete file manager directory for admin panel
+     * @param {number} id
+     * @param {number} [parent_storefront_fs_directory_oid]
+     * @param {number} [storefront_fs_file_oid]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof StorefrontApi
+     */
+    deleteAdminPanelFsFile(id: number, parent_storefront_fs_directory_oid?: number, storefront_fs_file_oid?: number, options?: any): Promise<FileManagerPage>;
     /**
      *
      * @summary Delete email campaignFolder
@@ -48928,6 +49228,18 @@ export declare class StorefrontApi extends BaseAPI implements StorefrontApiInter
      * @memberof StorefrontApi
      */
     geocodeAddress(storefront_oid: number, geocode_request: GeocodeRequest, options?: any): Promise<GeocodeResponse>;
+    /**
+     *
+     * @summary Get file manager directory for admin panel
+     * @param {number} id
+     * @param {string} [path]
+     * @param {number} [storefront_fs_directory_oid]
+     * @param {number} [storefront_theme_oid]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof StorefrontApi
+     */
+    getAdminPanelFsDirectory(id: number, path?: string, storefront_fs_directory_oid?: number, storefront_theme_oid?: number, options?: any): Promise<FileManagerPage>;
     /**
      * Obtain a list of all the countries
      * @summary Get countries
