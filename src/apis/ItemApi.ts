@@ -95,6 +95,15 @@ export interface GetPricingTiersRequest {
     expand?: string;
 }
 
+export interface GetUnassociatedDigitalItemsRequest {
+    limit?: number;
+    offset?: number;
+    since?: string;
+    sort?: string;
+    expand?: string;
+    placeholders?: boolean;
+}
+
 export interface InsertDigitalItemRequest {
     digitalItem: ItemDigitalItem;
 }
@@ -278,6 +287,27 @@ export interface ItemApiInterface {
      * Retrieve pricing tiers
      */
     getPricingTiers(requestParameters: GetPricingTiersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PricingTiersResponse>;
+
+    /**
+     * Retrieves a group of digital items (file information) from the account that are not yet associated with any actual items.  If no parameters are specified, all digital items will be returned.  Be aware that these are not normal items that can be added to a shopping cart. Rather, they are digital files that may be associated with normal items.  You will need to make multiple API calls in order to retrieve the entire result set since this API performs result set pagination. 
+     * @summary Retrieve digital items from the digital library (which are digital files that may be attached to normal items) not yet associated with actual items
+     * @param {number} [limit] The maximum number of records to return on this one API call. (Default 100, Max 2000)
+     * @param {number} [offset] Pagination of the record set.  Offset is a zero based index.
+     * @param {string} [since] Fetch items that have been created/modified since this date/time.
+     * @param {string} [sort] The sort order of the items.  See Sorting documentation for examples of using multiple values and sorting by ascending and descending.
+     * @param {string} [expand] The object expansion to perform on the result.  See documentation for examples
+     * @param {boolean} [placeholders] Whether or not placeholder values should be returned in the result.  Useful for UIs that consume this REST API.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ItemApiInterface
+     */
+    getUnassociatedDigitalItemsRaw(requestParameters: GetUnassociatedDigitalItemsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ItemDigitalItemsResponse>>;
+
+    /**
+     * Retrieves a group of digital items (file information) from the account that are not yet associated with any actual items.  If no parameters are specified, all digital items will be returned.  Be aware that these are not normal items that can be added to a shopping cart. Rather, they are digital files that may be associated with normal items.  You will need to make multiple API calls in order to retrieve the entire result set since this API performs result set pagination. 
+     * Retrieve digital items from the digital library (which are digital files that may be attached to normal items) not yet associated with actual items
+     */
+    getUnassociatedDigitalItems(requestParameters: GetUnassociatedDigitalItemsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ItemDigitalItemsResponse>;
 
     /**
      * Create a file within the digital library.  This does not create an item, but makes this digital file available and selectable as part (or all) of an item. 
@@ -778,6 +808,67 @@ export class ItemApi extends runtime.BaseAPI implements ItemApiInterface {
      */
     async getPricingTiers(requestParameters: GetPricingTiersRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PricingTiersResponse> {
         const response = await this.getPricingTiersRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Retrieves a group of digital items (file information) from the account that are not yet associated with any actual items.  If no parameters are specified, all digital items will be returned.  Be aware that these are not normal items that can be added to a shopping cart. Rather, they are digital files that may be associated with normal items.  You will need to make multiple API calls in order to retrieve the entire result set since this API performs result set pagination. 
+     * Retrieve digital items from the digital library (which are digital files that may be attached to normal items) not yet associated with actual items
+     */
+    async getUnassociatedDigitalItemsRaw(requestParameters: GetUnassociatedDigitalItemsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ItemDigitalItemsResponse>> {
+        const queryParameters: any = {};
+
+        if (requestParameters.limit !== undefined) {
+            queryParameters['_limit'] = requestParameters.limit;
+        }
+
+        if (requestParameters.offset !== undefined) {
+            queryParameters['_offset'] = requestParameters.offset;
+        }
+
+        if (requestParameters.since !== undefined) {
+            queryParameters['_since'] = requestParameters.since;
+        }
+
+        if (requestParameters.sort !== undefined) {
+            queryParameters['_sort'] = requestParameters.sort;
+        }
+
+        if (requestParameters.expand !== undefined) {
+            queryParameters['_expand'] = requestParameters.expand;
+        }
+
+        if (requestParameters.placeholders !== undefined) {
+            queryParameters['_placeholders'] = requestParameters.placeholders;
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", ["item_read"]);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/item/digital_library/unassociated`,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => ItemDigitalItemsResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Retrieves a group of digital items (file information) from the account that are not yet associated with any actual items.  If no parameters are specified, all digital items will be returned.  Be aware that these are not normal items that can be added to a shopping cart. Rather, they are digital files that may be associated with normal items.  You will need to make multiple API calls in order to retrieve the entire result set since this API performs result set pagination. 
+     * Retrieve digital items from the digital library (which are digital files that may be attached to normal items) not yet associated with actual items
+     */
+    async getUnassociatedDigitalItems(requestParameters: GetUnassociatedDigitalItemsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ItemDigitalItemsResponse> {
+        const response = await this.getUnassociatedDigitalItemsRaw(requestParameters, initOverrides);
         return await response.value();
     }
 

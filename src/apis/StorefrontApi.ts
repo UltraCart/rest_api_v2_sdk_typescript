@@ -303,6 +303,9 @@ import {
     ExperimentsResponse,
     ExperimentsResponseFromJSON,
     ExperimentsResponseToJSON,
+    FileManagerPage,
+    FileManagerPageFromJSON,
+    FileManagerPageToJSON,
     GeocodeRequest,
     GeocodeRequestFromJSON,
     GeocodeRequestToJSON,
@@ -467,6 +470,17 @@ export interface CloneEmailFlowRequest {
     targetStorefrontOid?: number;
 }
 
+export interface CreateAdminPanelFsDirectoryRequest {
+    id: number;
+    name?: string;
+    parentStorefrontFsDirectoryOid?: number;
+}
+
+export interface CreateAdminPanelFsFileUploadRequest {
+    id: number;
+    parentStorefrontFsDirectoryOid?: number;
+}
+
 export interface CreateEmailSendingDomainRequest {
     domain: string;
 }
@@ -477,6 +491,12 @@ export interface CreateEmailSendingDomain2Request {
 
 export interface CreateTwilioAccountRequest {
     twilio: Twilio;
+}
+
+export interface DeleteAdminPanelFsFileRequest {
+    id: number;
+    parentStorefrontFsDirectoryOid?: number;
+    storefrontFsFileOid?: number;
 }
 
 export interface DeleteEmailCampaignFolderRequest {
@@ -558,6 +578,13 @@ export interface FavoriteScreenRecordingRequest {
 export interface GeocodeAddressRequest {
     storefrontOid: number;
     geocodeRequest: GeocodeRequest;
+}
+
+export interface GetAdminPanelFsDirectoryRequest {
+    id: number;
+    path?: string;
+    storefrontFsDirectoryOid?: number;
+    storefrontThemeOid?: number;
 }
 
 export interface GetCountriesRequest {
@@ -1399,6 +1426,39 @@ export interface StorefrontApiInterface {
 
     /**
      * 
+     * @summary Create file manager directory for admin panel
+     * @param {number} id 
+     * @param {string} [name] 
+     * @param {number} [parentStorefrontFsDirectoryOid] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof StorefrontApiInterface
+     */
+    createAdminPanelFsDirectoryRaw(requestParameters: CreateAdminPanelFsDirectoryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<FileManagerPage>>;
+
+    /**
+     * Create file manager directory for admin panel
+     */
+    createAdminPanelFsDirectory(requestParameters: CreateAdminPanelFsDirectoryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<FileManagerPage>;
+
+    /**
+     * 
+     * @summary Upload file manager file for admin panel
+     * @param {number} id 
+     * @param {number} [parentStorefrontFsDirectoryOid] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof StorefrontApiInterface
+     */
+    createAdminPanelFsFileUploadRaw(requestParameters: CreateAdminPanelFsFileUploadRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<FileManagerPage>>;
+
+    /**
+     * Upload file manager file for admin panel
+     */
+    createAdminPanelFsFileUpload(requestParameters: CreateAdminPanelFsFileUploadRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<FileManagerPage>;
+
+    /**
+     * 
      * @summary Create email campaign
      * @param {string} domain 
      * @param {*} [options] Override http request option.
@@ -1441,6 +1501,23 @@ export interface StorefrontApiInterface {
      * Create Twilio account
      */
     createTwilioAccount(requestParameters: CreateTwilioAccountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<TwilioResponse>;
+
+    /**
+     * 
+     * @summary Delete file manager directory for admin panel
+     * @param {number} id 
+     * @param {number} [parentStorefrontFsDirectoryOid] 
+     * @param {number} [storefrontFsFileOid] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof StorefrontApiInterface
+     */
+    deleteAdminPanelFsFileRaw(requestParameters: DeleteAdminPanelFsFileRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<FileManagerPage>>;
+
+    /**
+     * Delete file manager directory for admin panel
+     */
+    deleteAdminPanelFsFile(requestParameters: DeleteAdminPanelFsFileRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<FileManagerPage>;
 
     /**
      * 
@@ -1711,6 +1788,24 @@ export interface StorefrontApiInterface {
      * Obtain lat/long for an address
      */
     geocodeAddress(requestParameters: GeocodeAddressRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GeocodeResponse>;
+
+    /**
+     * 
+     * @summary Get file manager directory for admin panel
+     * @param {number} id 
+     * @param {string} [path] 
+     * @param {number} [storefrontFsDirectoryOid] 
+     * @param {number} [storefrontThemeOid] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof StorefrontApiInterface
+     */
+    getAdminPanelFsDirectoryRaw(requestParameters: GetAdminPanelFsDirectoryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<FileManagerPage>>;
+
+    /**
+     * Get file manager directory for admin panel
+     */
+    getAdminPanelFsDirectory(requestParameters: GetAdminPanelFsDirectoryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<FileManagerPage>;
 
     /**
      * Obtain a list of all the countries 
@@ -4368,6 +4463,104 @@ export class StorefrontApi extends runtime.BaseAPI implements StorefrontApiInter
     }
 
     /**
+     * Create file manager directory for admin panel
+     */
+    async createAdminPanelFsDirectoryRaw(requestParameters: CreateAdminPanelFsDirectoryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<FileManagerPage>> {
+        if (requestParameters.id === null || requestParameters.id === undefined) {
+            throw new runtime.RequiredError('id','Required parameter requestParameters.id was null or undefined when calling createAdminPanelFsDirectory.');
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters.name !== undefined) {
+            queryParameters['name'] = requestParameters.name;
+        }
+
+        if (requestParameters.parentStorefrontFsDirectoryOid !== undefined) {
+            queryParameters['parent_storefront_fs_directory_oid'] = requestParameters.parentStorefrontFsDirectoryOid;
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-browser-key"] = this.configuration.apiKey("x-ultracart-browser-key"); // ultraCartBrowserApiKey authentication
+        }
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", ["storefront_write"]);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/storefront/{id}/adminPanel/fs/dir`.replace(`{${"id"}}`, encodeURIComponent(String(requestParameters.id))),
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => FileManagerPageFromJSON(jsonValue));
+    }
+
+    /**
+     * Create file manager directory for admin panel
+     */
+    async createAdminPanelFsDirectory(requestParameters: CreateAdminPanelFsDirectoryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<FileManagerPage> {
+        const response = await this.createAdminPanelFsDirectoryRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Upload file manager file for admin panel
+     */
+    async createAdminPanelFsFileUploadRaw(requestParameters: CreateAdminPanelFsFileUploadRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<FileManagerPage>> {
+        if (requestParameters.id === null || requestParameters.id === undefined) {
+            throw new runtime.RequiredError('id','Required parameter requestParameters.id was null or undefined when calling createAdminPanelFsFileUpload.');
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters.parentStorefrontFsDirectoryOid !== undefined) {
+            queryParameters['parent_storefront_fs_directory_oid'] = requestParameters.parentStorefrontFsDirectoryOid;
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-browser-key"] = this.configuration.apiKey("x-ultracart-browser-key"); // ultraCartBrowserApiKey authentication
+        }
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", ["storefront_write"]);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/storefront/{id}/adminPanel/fs/file`.replace(`{${"id"}}`, encodeURIComponent(String(requestParameters.id))),
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => FileManagerPageFromJSON(jsonValue));
+    }
+
+    /**
+     * Upload file manager file for admin panel
+     */
+    async createAdminPanelFsFileUpload(requestParameters: CreateAdminPanelFsFileUploadRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<FileManagerPage> {
+        const response = await this.createAdminPanelFsFileUploadRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
      * Create email campaign
      */
     async createEmailSendingDomainRaw(requestParameters: CreateEmailSendingDomainRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EmailSendingDomainResponse>> {
@@ -4499,6 +4692,57 @@ export class StorefrontApi extends runtime.BaseAPI implements StorefrontApiInter
      */
     async createTwilioAccount(requestParameters: CreateTwilioAccountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<TwilioResponse> {
         const response = await this.createTwilioAccountRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Delete file manager directory for admin panel
+     */
+    async deleteAdminPanelFsFileRaw(requestParameters: DeleteAdminPanelFsFileRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<FileManagerPage>> {
+        if (requestParameters.id === null || requestParameters.id === undefined) {
+            throw new runtime.RequiredError('id','Required parameter requestParameters.id was null or undefined when calling deleteAdminPanelFsFile.');
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters.parentStorefrontFsDirectoryOid !== undefined) {
+            queryParameters['parent_storefront_fs_directory_oid'] = requestParameters.parentStorefrontFsDirectoryOid;
+        }
+
+        if (requestParameters.storefrontFsFileOid !== undefined) {
+            queryParameters['storefront_fs_file_oid'] = requestParameters.storefrontFsFileOid;
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-browser-key"] = this.configuration.apiKey("x-ultracart-browser-key"); // ultraCartBrowserApiKey authentication
+        }
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", ["storefront_write"]);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/storefront/{id}/adminPanel/fs/file`.replace(`{${"id"}}`, encodeURIComponent(String(requestParameters.id))),
+            method: 'DELETE',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => FileManagerPageFromJSON(jsonValue));
+    }
+
+    /**
+     * Delete file manager directory for admin panel
+     */
+    async deleteAdminPanelFsFile(requestParameters: DeleteAdminPanelFsFileRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<FileManagerPage> {
+        const response = await this.deleteAdminPanelFsFileRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
@@ -5277,6 +5521,61 @@ export class StorefrontApi extends runtime.BaseAPI implements StorefrontApiInter
      */
     async geocodeAddress(requestParameters: GeocodeAddressRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GeocodeResponse> {
         const response = await this.geocodeAddressRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Get file manager directory for admin panel
+     */
+    async getAdminPanelFsDirectoryRaw(requestParameters: GetAdminPanelFsDirectoryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<FileManagerPage>> {
+        if (requestParameters.id === null || requestParameters.id === undefined) {
+            throw new runtime.RequiredError('id','Required parameter requestParameters.id was null or undefined when calling getAdminPanelFsDirectory.');
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters.path !== undefined) {
+            queryParameters['path'] = requestParameters.path;
+        }
+
+        if (requestParameters.storefrontFsDirectoryOid !== undefined) {
+            queryParameters['storefront_fs_directory_oid'] = requestParameters.storefrontFsDirectoryOid;
+        }
+
+        if (requestParameters.storefrontThemeOid !== undefined) {
+            queryParameters['storefront_theme_oid'] = requestParameters.storefrontThemeOid;
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-browser-key"] = this.configuration.apiKey("x-ultracart-browser-key"); // ultraCartBrowserApiKey authentication
+        }
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", ["storefront_write"]);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/storefront/{id}/adminPanel/fs/dir`.replace(`{${"id"}}`, encodeURIComponent(String(requestParameters.id))),
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => FileManagerPageFromJSON(jsonValue));
+    }
+
+    /**
+     * Get file manager directory for admin panel
+     */
+    async getAdminPanelFsDirectory(requestParameters: GetAdminPanelFsDirectoryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<FileManagerPage> {
+        const response = await this.getAdminPanelFsDirectoryRaw(requestParameters, initOverrides);
         return await response.value();
     }
 

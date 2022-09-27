@@ -361,6 +361,7 @@ export * from './ExperimentResponse';
 export * from './ExperimentVariation';
 export * from './ExperimentVariationStat';
 export * from './ExperimentsResponse';
+export * from './FileManagerPage';
 export * from './FulfillmentInventory';
 export * from './FulfillmentShipment';
 export * from './GeoPoint';

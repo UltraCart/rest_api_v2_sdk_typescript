@@ -384,6 +384,7 @@ src/models/ExperimentResponse.ts
 src/models/ExperimentVariation.ts
 src/models/ExperimentVariationStat.ts
 src/models/ExperimentsResponse.ts
+src/models/FileManagerPage.ts
 src/models/FulfillmentInventory.ts
 src/models/FulfillmentShipment.ts
 src/models/GeoPoint.ts
