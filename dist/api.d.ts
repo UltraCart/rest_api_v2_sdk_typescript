@@ -17899,6 +17899,212 @@ export interface ExperimentsResponse {
 /**
  *
  * @export
+ * @interface FileManagerDirectory
+ */
+export interface FileManagerDirectory {
+    /**
+     *
+     * @type {boolean}
+     * @memberof FileManagerDirectory
+     */
+    active_theme_directory?: boolean;
+    /**
+     *
+     * @type {boolean}
+     * @memberof FileManagerDirectory
+     */
+    favorite?: boolean;
+    /**
+     *
+     * @type {string}
+     * @memberof FileManagerDirectory
+     */
+    hostname?: string;
+    /**
+     *
+     * @type {string}
+     * @memberof FileManagerDirectory
+     */
+    icon?: string;
+    /**
+     *
+     * @type {string}
+     * @memberof FileManagerDirectory
+     */
+    last_modified?: string;
+    /**
+     *
+     * @type {string}
+     * @memberof FileManagerDirectory
+     */
+    name?: string;
+    /**
+     *
+     * @type {number}
+     * @memberof FileManagerDirectory
+     */
+    parent_storefront_fs_directory_oid?: number;
+    /**
+     *
+     * @type {boolean}
+     * @memberof FileManagerDirectory
+     */
+    part_of_active_theme?: boolean;
+    /**
+     *
+     * @type {boolean}
+     * @memberof FileManagerDirectory
+     */
+    selected?: boolean;
+    /**
+     *
+     * @type {number}
+     * @memberof FileManagerDirectory
+     */
+    storefront_fs_directory_oid?: number;
+    /**
+     *
+     * @type {number}
+     * @memberof FileManagerDirectory
+     */
+    storefront_fs_file_oid?: number;
+    /**
+     *
+     * @type {number}
+     * @memberof FileManagerDirectory
+     */
+    storefront_oid?: number;
+    /**
+     *
+     * @type {string}
+     * @memberof FileManagerDirectory
+     */
+    type?: string;
+}
+/**
+ *
+ * @export
+ * @interface FileManagerFile
+ */
+export interface FileManagerFile {
+    /**
+     *
+     * @type {boolean}
+     * @memberof FileManagerFile
+     */
+    favorite?: boolean;
+    /**
+     *
+     * @type {string}
+     * @memberof FileManagerFile
+     */
+    hostname?: string;
+    /**
+     *
+     * @type {boolean}
+     * @memberof FileManagerFile
+     */
+    i18n_violation?: boolean;
+    /**
+     *
+     * @type {string}
+     * @memberof FileManagerFile
+     */
+    icon?: string;
+    /**
+     *
+     * @type {number}
+     * @memberof FileManagerFile
+     */
+    internal_version?: number;
+    /**
+     *
+     * @type {string}
+     * @memberof FileManagerFile
+     */
+    last_modified?: string;
+    /**
+     *
+     * @type {boolean}
+     * @memberof FileManagerFile
+     */
+    merge_conflict?: boolean;
+    /**
+     *
+     * @type {string}
+     * @memberof FileManagerFile
+     */
+    name?: string;
+    /**
+     *
+     * @type {number}
+     * @memberof FileManagerFile
+     */
+    parent_storefront_fs_directory_oid?: number;
+    /**
+     *
+     * @type {boolean}
+     * @memberof FileManagerFile
+     */
+    part_of_active_theme?: boolean;
+    /**
+     *
+     * @type {string}
+     * @memberof FileManagerFile
+     */
+    path?: string;
+    /**
+     *
+     * @type {number}
+     * @memberof FileManagerFile
+     */
+    raw_size?: number;
+    /**
+     *
+     * @type {boolean}
+     * @memberof FileManagerFile
+     */
+    selected?: boolean;
+    /**
+     *
+     * @type {string}
+     * @memberof FileManagerFile
+     */
+    size?: string;
+    /**
+     *
+     * @type {number}
+     * @memberof FileManagerFile
+     */
+    storefront_fs_directory_oid?: number;
+    /**
+     *
+     * @type {number}
+     * @memberof FileManagerFile
+     */
+    storefront_fs_file_oid?: number;
+    /**
+     *
+     * @type {number}
+     * @memberof FileManagerFile
+     */
+    storefront_oid?: number;
+    /**
+     *
+     * @type {string}
+     * @memberof FileManagerFile
+     */
+    type?: string;
+    /**
+     *
+     * @type {string}
+     * @memberof FileManagerFile
+     */
+    valid_velocity?: string;
+}
+/**
+ *
+ * @export
  * @interface FileManagerPage
  */
 export interface FileManagerPage {
@@ -17908,6 +18114,18 @@ export interface FileManagerPage {
      * @memberof FileManagerPage
      */
     current_storefront_fs_directory_oid?: number;
+    /**
+     *
+     * @type {Array<FileManagerDirectory>}
+     * @memberof FileManagerPage
+     */
+    directories?: Array<FileManagerDirectory>;
+    /**
+     *
+     * @type {Array<FileManagerFile>}
+     * @memberof FileManagerPage
+     */
+    files?: Array<FileManagerFile>;
     /**
      *
      * @type {string}
@@ -17928,10 +18146,78 @@ export interface FileManagerPage {
     path?: string;
     /**
      *
+     * @type {Array<FileManagerDirectory>}
+     * @memberof FileManagerPage
+     */
+    path_list?: Array<FileManagerDirectory>;
+    /**
+     *
      * @type {number}
      * @memberof FileManagerPage
      */
     storefront_oid?: number;
+}
+/**
+ *
+ * @export
+ * @interface FileManagerUploadRequest
+ */
+export interface FileManagerUploadRequest {
+    /**
+     *
+     * @type {string}
+     * @memberof FileManagerUploadRequest
+     */
+    filename?: string;
+    /**
+     *
+     * @type {string}
+     * @memberof FileManagerUploadRequest
+     */
+    key?: string;
+    /**
+     *
+     * @type {number}
+     * @memberof FileManagerUploadRequest
+     */
+    parent_storefront_fs_directory_oid?: number;
+}
+/**
+ *
+ * @export
+ * @interface FileManagerUploadUrlResponse
+ */
+export interface FileManagerUploadUrlResponse {
+    /**
+     *
+     * @type {ModelError}
+     * @memberof FileManagerUploadUrlResponse
+     */
+    error?: ModelError;
+    /**
+     *
+     * @type {string}
+     * @memberof FileManagerUploadUrlResponse
+     */
+    key?: string;
+    /**
+     *
+     * @type {ResponseMetadata}
+     * @memberof FileManagerUploadUrlResponse
+     */
+    metadata?: ResponseMetadata;
+    /**
+     * Indicates if API call was successful
+     * @type {boolean}
+     * @memberof FileManagerUploadUrlResponse
+     */
+    success?: boolean;
+    /**
+     *
+     * @type {Warning}
+     * @memberof FileManagerUploadUrlResponse
+     */
+    warning?: Warning;
 }
 /**
  *
@@ -20357,6 +20643,12 @@ export interface ItemDigitalItem {
      * @memberof ItemDigitalItem
      */
     digital_item_oid?: number;
+    /**
+     * External Id useful for syncing with a remote filesystem, this may be an MD5 hash or whatever suits your needs.
+     * @type {string}
+     * @memberof ItemDigitalItem
+     */
+    external_id?: string;
     /**
      * File size
      * @type {number}
@@ -40131,6 +40423,14 @@ export declare const ItemApiFetchParamCreator: (configuration?: Configuration) =
      */
     getDigitalItems(_limit?: number, _offset?: number, _since?: string, _sort?: string, _expand?: string, _placeholders?: boolean, options?: any): FetchArgs;
     /**
+     * Retrieves digital items from the digital library (which are digital files that may be attached to normal items) that having a matching external id.  Be aware that these are not normal items that can be added to a shopping cart. Rather, they are digital files that may be associated with normal items.
+     * @summary Retrieves digital items from the digital library (which are digital files that may be attached to normal items) that having a matching external id
+     * @param {string} external_id The external id to match against.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getDigitalItemsByExternalId(external_id: string, options?: any): FetchArgs;
+    /**
      * Retrieves a single item using the specified item oid.
      * @summary Retrieve an item
      * @param {number} merchant_item_oid The item oid to retrieve.
@@ -40287,6 +40587,14 @@ export declare const ItemApiFp: (configuration?: Configuration) => {
      */
     getDigitalItems(_limit?: number, _offset?: number, _since?: string, _sort?: string, _expand?: string, _placeholders?: boolean, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ItemDigitalItemsResponse>;
     /**
+     * Retrieves digital items from the digital library (which are digital files that may be attached to normal items) that having a matching external id.  Be aware that these are not normal items that can be added to a shopping cart. Rather, they are digital files that may be associated with normal items.
+     * @summary Retrieves digital items from the digital library (which are digital files that may be attached to normal items) that having a matching external id
+     * @param {string} external_id The external id to match against.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getDigitalItemsByExternalId(external_id: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ItemDigitalItemsResponse>;
+    /**
      * Retrieves a single item using the specified item oid.
      * @summary Retrieve an item
      * @param {number} merchant_item_oid The item oid to retrieve.
@@ -40442,6 +40750,14 @@ export declare const ItemApiFactory: (configuration?: Configuration, fetch?: Fet
      * @throws {RequiredError}
      */
     getDigitalItems(_limit?: number, _offset?: number, _since?: string, _sort?: string, _expand?: string, _placeholders?: boolean, options?: any): Promise<ItemDigitalItemsResponse>;
+    /**
+     * Retrieves digital items from the digital library (which are digital files that may be attached to normal items) that having a matching external id.  Be aware that these are not normal items that can be added to a shopping cart. Rather, they are digital files that may be associated with normal items.
+     * @summary Retrieves digital items from the digital library (which are digital files that may be attached to normal items) that having a matching external id
+     * @param {string} external_id The external id to match against.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getDigitalItemsByExternalId(external_id: string, options?: any): Promise<ItemDigitalItemsResponse>;
     /**
      * Retrieves a single item using the specified item oid.
      * @summary Retrieve an item
@@ -40603,6 +40919,15 @@ export interface ItemApiInterface {
      * @memberof ItemApiInterface
      */
     getDigitalItems(_limit?: number, _offset?: number, _since?: string, _sort?: string, _expand?: string, _placeholders?: boolean, options?: any): Promise<ItemDigitalItemsResponse>;
+    /**
+     * Retrieves digital items from the digital library (which are digital files that may be attached to normal items) that having a matching external id.  Be aware that these are not normal items that can be added to a shopping cart. Rather, they are digital files that may be associated with normal items.
+     * @summary Retrieves digital items from the digital library (which are digital files that may be attached to normal items) that having a matching external id
+     * @param {string} external_id The external id to match against.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ItemApiInterface
+     */
+    getDigitalItemsByExternalId(external_id: string, options?: any): Promise<ItemDigitalItemsResponse>;
     /**
      * Retrieves a single item using the specified item oid.
      * @summary Retrieve an item
@@ -40776,6 +41101,15 @@ export declare class ItemApi extends BaseAPI implements ItemApiInterface {
      * @memberof ItemApi
      */
     getDigitalItems(_limit?: number, _offset?: number, _since?: string, _sort?: string, _expand?: string, _placeholders?: boolean, options?: any): Promise<ItemDigitalItemsResponse>;
+    /**
+     * Retrieves digital items from the digital library (which are digital files that may be attached to normal items) that having a matching external id.  Be aware that these are not normal items that can be added to a shopping cart. Rather, they are digital files that may be associated with normal items.
+     * @summary Retrieves digital items from the digital library (which are digital files that may be attached to normal items) that having a matching external id
+     * @param {string} external_id The external id to match against.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ItemApi
+     */
+    getDigitalItemsByExternalId(external_id: string, options?: any): Promise<ItemDigitalItemsResponse>;
     /**
      * Retrieves a single item using the specified item oid.
      * @summary Retrieve an item
@@ -42584,25 +42918,6 @@ export declare const StorefrontApiFetchParamCreator: (configuration?: Configurat
     cloneEmailFlow(storefront_oid: number, email_flow_uuid: string, target_storefront_oid?: number, options?: any): FetchArgs;
     /**
      *
-     * @summary Create file manager directory for admin panel
-     * @param {number} id
-     * @param {string} [name]
-     * @param {number} [parent_storefront_fs_directory_oid]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    createAdminPanelFsDirectory(id: number, name?: string, parent_storefront_fs_directory_oid?: number, options?: any): FetchArgs;
-    /**
-     *
-     * @summary Upload file manager file for admin panel
-     * @param {number} id
-     * @param {number} [parent_storefront_fs_directory_oid]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    createAdminPanelFsFileUpload(id: number, parent_storefront_fs_directory_oid?: number, options?: any): FetchArgs;
-    /**
-     *
      * @summary Create email campaign
      * @param {string} domain
      * @param {*} [options] Override http request option.
@@ -42619,22 +42934,22 @@ export declare const StorefrontApiFetchParamCreator: (configuration?: Configurat
     createEmailSendingDomain2(email_domain: EmailDomain, options?: any): FetchArgs;
     /**
      *
+     * @summary Create file manager directory
+     * @param {number} id
+     * @param {string} [name]
+     * @param {number} [parent_storefront_fs_directory_oid]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    createFsDirectory(id: number, name?: string, parent_storefront_fs_directory_oid?: number, options?: any): FetchArgs;
+    /**
+     *
      * @summary Create Twilio account
      * @param {Twilio} twilio Twilio
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     createTwilioAccount(twilio: Twilio, options?: any): FetchArgs;
-    /**
-     *
-     * @summary Delete file manager directory for admin panel
-     * @param {number} id
-     * @param {number} [parent_storefront_fs_directory_oid]
-     * @param {number} [storefront_fs_file_oid]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    deleteAdminPanelFsFile(id: number, parent_storefront_fs_directory_oid?: number, storefront_fs_file_oid?: number, options?: any): FetchArgs;
     /**
      *
      * @summary Delete email campaignFolder
@@ -42717,6 +43032,16 @@ export declare const StorefrontApiFetchParamCreator: (configuration?: Configurat
      */
     deleteExperiment(storefront_oid: number, storefront_experiment_oid: number, options?: any): FetchArgs;
     /**
+     *
+     * @summary Delete file manager directory
+     * @param {number} id
+     * @param {number} [parent_storefront_fs_directory_oid]
+     * @param {number} [storefront_fs_file_oid]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    deleteFsFile(id: number, parent_storefront_fs_directory_oid?: number, storefront_fs_file_oid?: number, options?: any): FetchArgs;
+    /**
      * Delete screen recording heatmap
      * @summary Delete screen recording heatmap
      * @param {number} storefront_oid
@@ -42784,17 +43109,6 @@ export declare const StorefrontApiFetchParamCreator: (configuration?: Configurat
      * @throws {RequiredError}
      */
     geocodeAddress(storefront_oid: number, geocode_request: GeocodeRequest, options?: any): FetchArgs;
-    /**
-     *
-     * @summary Get file manager directory for admin panel
-     * @param {number} id
-     * @param {string} [path]
-     * @param {number} [storefront_fs_directory_oid]
-     * @param {number} [storefront_theme_oid]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    getAdminPanelFsDirectory(id: number, path?: string, storefront_fs_directory_oid?: number, storefront_theme_oid?: number, options?: any): FetchArgs;
     /**
      * Obtain a list of all the countries
      * @summary Get countries
@@ -43314,6 +43628,17 @@ export declare const StorefrontApiFetchParamCreator: (configuration?: Configurat
      */
     getExperiments(storefront_oid: number, options?: any): FetchArgs;
     /**
+     *
+     * @summary Get file manager directory
+     * @param {number} id
+     * @param {string} [path]
+     * @param {number} [storefront_fs_directory_oid]
+     * @param {number} [storefront_theme_oid]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getFsDirectory(id: number, path?: string, storefront_fs_directory_oid?: number, storefront_theme_oid?: number, options?: any): FetchArgs;
+    /**
      * Get screen recording heatmap
      * @summary Get screen recording heatmap
      * @param {number} storefront_oid
@@ -43517,6 +43842,15 @@ export declare const StorefrontApiFetchParamCreator: (configuration?: Configurat
      * @throws {RequiredError}
      */
     getTwilioAccounts(options?: any): FetchArgs;
+    /**
+     *
+     * @summary Retrieves a S3 url where a file may be uploaded. Once uploaded, use uploadFsFile to trigger the server into reading the S3 bucket and retrieving the file.
+     * @param {number} id
+     * @param {string} extension
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getUploadFsFileUrl(id: number, extension: string, options?: any): FetchArgs;
     /**
      *
      * @summary Globally unsubscribe a customer
@@ -44056,6 +44390,15 @@ export declare const StorefrontApiFetchParamCreator: (configuration?: Configurat
     updateTwilioAccount(esp_twilio_uuid: string, twilio: Twilio, options?: any): FetchArgs;
     /**
      *
+     * @summary This is the last step in uploading a file after 1) calling getUploadFsFileUrl and 2) uploading a file to the provided url, then finally 3) calling this method and providing the key to trigger the server into reading the S3 bucket and retrieving the file.
+     * @param {number} id
+     * @param {FileManagerUploadRequest} upload_request UploadRequest
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    uploadFsFile(id: number, upload_request: FileManagerUploadRequest, options?: any): FetchArgs;
+    /**
+     *
      * @summary Validate AWS Event Ruler
      * @param {RulerValidationRequest} ruler_validate_request Ruler Validate Request
      * @param {*} [options] Override http request option.
@@ -44144,25 +44487,6 @@ export declare const StorefrontApiFp: (configuration?: Configuration) => {
     cloneEmailFlow(storefront_oid: number, email_flow_uuid: string, target_storefront_oid?: number, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<EmailFlowResponse>;
     /**
      *
-     * @summary Create file manager directory for admin panel
-     * @param {number} id
-     * @param {string} [name]
-     * @param {number} [parent_storefront_fs_directory_oid]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    createAdminPanelFsDirectory(id: number, name?: string, parent_storefront_fs_directory_oid?: number, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<FileManagerPage>;
-    /**
-     *
-     * @summary Upload file manager file for admin panel
-     * @param {number} id
-     * @param {number} [parent_storefront_fs_directory_oid]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    createAdminPanelFsFileUpload(id: number, parent_storefront_fs_directory_oid?: number, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<FileManagerPage>;
-    /**
-     *
      * @summary Create email campaign
      * @param {string} domain
      * @param {*} [options] Override http request option.
@@ -44179,22 +44503,22 @@ export declare const StorefrontApiFp: (configuration?: Configuration) => {
     createEmailSendingDomain2(email_domain: EmailDomain, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<EmailSendingDomainResponse>;
     /**
      *
+     * @summary Create file manager directory
+     * @param {number} id
+     * @param {string} [name]
+     * @param {number} [parent_storefront_fs_directory_oid]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    createFsDirectory(id: number, name?: string, parent_storefront_fs_directory_oid?: number, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<FileManagerPage>;
+    /**
+     *
      * @summary Create Twilio account
      * @param {Twilio} twilio Twilio
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     createTwilioAccount(twilio: Twilio, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<TwilioResponse>;
-    /**
-     *
-     * @summary Delete file manager directory for admin panel
-     * @param {number} id
-     * @param {number} [parent_storefront_fs_directory_oid]
-     * @param {number} [storefront_fs_file_oid]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    deleteAdminPanelFsFile(id: number, parent_storefront_fs_directory_oid?: number, storefront_fs_file_oid?: number, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<FileManagerPage>;
     /**
      *
      * @summary Delete email campaignFolder
@@ -44277,6 +44601,16 @@ export declare const StorefrontApiFp: (configuration?: Configuration) => {
      */
     deleteExperiment(storefront_oid: number, storefront_experiment_oid: number, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Response>;
     /**
+     *
+     * @summary Delete file manager directory
+     * @param {number} id
+     * @param {number} [parent_storefront_fs_directory_oid]
+     * @param {number} [storefront_fs_file_oid]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    deleteFsFile(id: number, parent_storefront_fs_directory_oid?: number, storefront_fs_file_oid?: number, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<FileManagerPage>;
+    /**
      * Delete screen recording heatmap
      * @summary Delete screen recording heatmap
      * @param {number} storefront_oid
@@ -44344,17 +44678,6 @@ export declare const StorefrontApiFp: (configuration?: Configuration) => {
      * @throws {RequiredError}
      */
     geocodeAddress(storefront_oid: number, geocode_request: GeocodeRequest, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<GeocodeResponse>;
-    /**
-     *
-     * @summary Get file manager directory for admin panel
-     * @param {number} id
-     * @param {string} [path]
-     * @param {number} [storefront_fs_directory_oid]
-     * @param {number} [storefront_theme_oid]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    getAdminPanelFsDirectory(id: number, path?: string, storefront_fs_directory_oid?: number, storefront_theme_oid?: number, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<FileManagerPage>;
     /**
      * Obtain a list of all the countries
      * @summary Get countries
@@ -44874,6 +45197,17 @@ export declare const StorefrontApiFp: (configuration?: Configuration) => {
      */
     getExperiments(storefront_oid: number, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ExperimentsResponse>;
     /**
+     *
+     * @summary Get file manager directory
+     * @param {number} id
+     * @param {string} [path]
+     * @param {number} [storefront_fs_directory_oid]
+     * @param {number} [storefront_theme_oid]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getFsDirectory(id: number, path?: string, storefront_fs_directory_oid?: number, storefront_theme_oid?: number, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<FileManagerPage>;
+    /**
      * Get screen recording heatmap
      * @summary Get screen recording heatmap
      * @param {number} storefront_oid
@@ -45077,6 +45411,15 @@ export declare const StorefrontApiFp: (configuration?: Configuration) => {
      * @throws {RequiredError}
      */
     getTwilioAccounts(options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<TwiliosResponse>;
+    /**
+     *
+     * @summary Retrieves a S3 url where a file may be uploaded. Once uploaded, use uploadFsFile to trigger the server into reading the S3 bucket and retrieving the file.
+     * @param {number} id
+     * @param {string} extension
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getUploadFsFileUrl(id: number, extension: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<FileManagerUploadUrlResponse>;
     /**
      *
      * @summary Globally unsubscribe a customer
@@ -45616,6 +45959,15 @@ export declare const StorefrontApiFp: (configuration?: Configuration) => {
     updateTwilioAccount(esp_twilio_uuid: string, twilio: Twilio, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<TwilioResponse>;
     /**
      *
+     * @summary This is the last step in uploading a file after 1) calling getUploadFsFileUrl and 2) uploading a file to the provided url, then finally 3) calling this method and providing the key to trigger the server into reading the S3 bucket and retrieving the file.
+     * @param {number} id
+     * @param {FileManagerUploadRequest} upload_request UploadRequest
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    uploadFsFile(id: number, upload_request: FileManagerUploadRequest, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Response>;
+    /**
+     *
      * @summary Validate AWS Event Ruler
      * @param {RulerValidationRequest} ruler_validate_request Ruler Validate Request
      * @param {*} [options] Override http request option.
@@ -45704,25 +46056,6 @@ export declare const StorefrontApiFactory: (configuration?: Configuration, fetch
     cloneEmailFlow(storefront_oid: number, email_flow_uuid: string, target_storefront_oid?: number, options?: any): Promise<EmailFlowResponse>;
     /**
      *
-     * @summary Create file manager directory for admin panel
-     * @param {number} id
-     * @param {string} [name]
-     * @param {number} [parent_storefront_fs_directory_oid]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    createAdminPanelFsDirectory(id: number, name?: string, parent_storefront_fs_directory_oid?: number, options?: any): Promise<FileManagerPage>;
-    /**
-     *
-     * @summary Upload file manager file for admin panel
-     * @param {number} id
-     * @param {number} [parent_storefront_fs_directory_oid]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    createAdminPanelFsFileUpload(id: number, parent_storefront_fs_directory_oid?: number, options?: any): Promise<FileManagerPage>;
-    /**
-     *
      * @summary Create email campaign
      * @param {string} domain
      * @param {*} [options] Override http request option.
@@ -45739,22 +46072,22 @@ export declare const StorefrontApiFactory: (configuration?: Configuration, fetch
     createEmailSendingDomain2(email_domain: EmailDomain, options?: any): Promise<EmailSendingDomainResponse>;
     /**
      *
+     * @summary Create file manager directory
+     * @param {number} id
+     * @param {string} [name]
+     * @param {number} [parent_storefront_fs_directory_oid]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    createFsDirectory(id: number, name?: string, parent_storefront_fs_directory_oid?: number, options?: any): Promise<FileManagerPage>;
+    /**
+     *
      * @summary Create Twilio account
      * @param {Twilio} twilio Twilio
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     createTwilioAccount(twilio: Twilio, options?: any): Promise<TwilioResponse>;
-    /**
-     *
-     * @summary Delete file manager directory for admin panel
-     * @param {number} id
-     * @param {number} [parent_storefront_fs_directory_oid]
-     * @param {number} [storefront_fs_file_oid]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    deleteAdminPanelFsFile(id: number, parent_storefront_fs_directory_oid?: number, storefront_fs_file_oid?: number, options?: any): Promise<FileManagerPage>;
     /**
      *
      * @summary Delete email campaignFolder
@@ -45837,6 +46170,16 @@ export declare const StorefrontApiFactory: (configuration?: Configuration, fetch
      */
     deleteExperiment(storefront_oid: number, storefront_experiment_oid: number, options?: any): Promise<Response>;
     /**
+     *
+     * @summary Delete file manager directory
+     * @param {number} id
+     * @param {number} [parent_storefront_fs_directory_oid]
+     * @param {number} [storefront_fs_file_oid]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    deleteFsFile(id: number, parent_storefront_fs_directory_oid?: number, storefront_fs_file_oid?: number, options?: any): Promise<FileManagerPage>;
+    /**
      * Delete screen recording heatmap
      * @summary Delete screen recording heatmap
      * @param {number} storefront_oid
@@ -45904,17 +46247,6 @@ export declare const StorefrontApiFactory: (configuration?: Configuration, fetch
      * @throws {RequiredError}
      */
     geocodeAddress(storefront_oid: number, geocode_request: GeocodeRequest, options?: any): Promise<GeocodeResponse>;
-    /**
-     *
-     * @summary Get file manager directory for admin panel
-     * @param {number} id
-     * @param {string} [path]
-     * @param {number} [storefront_fs_directory_oid]
-     * @param {number} [storefront_theme_oid]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    getAdminPanelFsDirectory(id: number, path?: string, storefront_fs_directory_oid?: number, storefront_theme_oid?: number, options?: any): Promise<FileManagerPage>;
     /**
      * Obtain a list of all the countries
      * @summary Get countries
@@ -46434,6 +46766,17 @@ export declare const StorefrontApiFactory: (configuration?: Configuration, fetch
      */
     getExperiments(storefront_oid: number, options?: any): Promise<ExperimentsResponse>;
     /**
+     *
+     * @summary Get file manager directory
+     * @param {number} id
+     * @param {string} [path]
+     * @param {number} [storefront_fs_directory_oid]
+     * @param {number} [storefront_theme_oid]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getFsDirectory(id: number, path?: string, storefront_fs_directory_oid?: number, storefront_theme_oid?: number, options?: any): Promise<FileManagerPage>;
+    /**
      * Get screen recording heatmap
      * @summary Get screen recording heatmap
      * @param {number} storefront_oid
@@ -46637,6 +46980,15 @@ export declare const StorefrontApiFactory: (configuration?: Configuration, fetch
      * @throws {RequiredError}
      */
     getTwilioAccounts(options?: any): Promise<TwiliosResponse>;
+    /**
+     *
+     * @summary Retrieves a S3 url where a file may be uploaded. Once uploaded, use uploadFsFile to trigger the server into reading the S3 bucket and retrieving the file.
+     * @param {number} id
+     * @param {string} extension
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getUploadFsFileUrl(id: number, extension: string, options?: any): Promise<FileManagerUploadUrlResponse>;
     /**
      *
      * @summary Globally unsubscribe a customer
@@ -47176,6 +47528,15 @@ export declare const StorefrontApiFactory: (configuration?: Configuration, fetch
     updateTwilioAccount(esp_twilio_uuid: string, twilio: Twilio, options?: any): Promise<TwilioResponse>;
     /**
      *
+     * @summary This is the last step in uploading a file after 1) calling getUploadFsFileUrl and 2) uploading a file to the provided url, then finally 3) calling this method and providing the key to trigger the server into reading the S3 bucket and retrieving the file.
+     * @param {number} id
+     * @param {FileManagerUploadRequest} upload_request UploadRequest
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    uploadFsFile(id: number, upload_request: FileManagerUploadRequest, options?: any): Promise<Response>;
+    /**
+     *
      * @summary Validate AWS Event Ruler
      * @param {RulerValidationRequest} ruler_validate_request Ruler Validate Request
      * @param {*} [options] Override http request option.
@@ -47273,27 +47634,6 @@ export interface StorefrontApiInterface {
     cloneEmailFlow(storefront_oid: number, email_flow_uuid: string, target_storefront_oid?: number, options?: any): Promise<EmailFlowResponse>;
     /**
      *
-     * @summary Create file manager directory for admin panel
-     * @param {number} id
-     * @param {string} [name]
-     * @param {number} [parent_storefront_fs_directory_oid]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof StorefrontApiInterface
-     */
-    createAdminPanelFsDirectory(id: number, name?: string, parent_storefront_fs_directory_oid?: number, options?: any): Promise<FileManagerPage>;
-    /**
-     *
-     * @summary Upload file manager file for admin panel
-     * @param {number} id
-     * @param {number} [parent_storefront_fs_directory_oid]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof StorefrontApiInterface
-     */
-    createAdminPanelFsFileUpload(id: number, parent_storefront_fs_directory_oid?: number, options?: any): Promise<FileManagerPage>;
-    /**
-     *
      * @summary Create email campaign
      * @param {string} domain
      * @param {*} [options] Override http request option.
@@ -47312,6 +47652,17 @@ export interface StorefrontApiInterface {
     createEmailSendingDomain2(email_domain: EmailDomain, options?: any): Promise<EmailSendingDomainResponse>;
     /**
      *
+     * @summary Create file manager directory
+     * @param {number} id
+     * @param {string} [name]
+     * @param {number} [parent_storefront_fs_directory_oid]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof StorefrontApiInterface
+     */
+    createFsDirectory(id: number, name?: string, parent_storefront_fs_directory_oid?: number, options?: any): Promise<FileManagerPage>;
+    /**
+     *
      * @summary Create Twilio account
      * @param {Twilio} twilio Twilio
      * @param {*} [options] Override http request option.
@@ -47319,17 +47670,6 @@ export interface StorefrontApiInterface {
      * @memberof StorefrontApiInterface
      */
     createTwilioAccount(twilio: Twilio, options?: any): Promise<TwilioResponse>;
-    /**
-     *
-     * @summary Delete file manager directory for admin panel
-     * @param {number} id
-     * @param {number} [parent_storefront_fs_directory_oid]
-     * @param {number} [storefront_fs_file_oid]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof StorefrontApiInterface
-     */
-    deleteAdminPanelFsFile(id: number, parent_storefront_fs_directory_oid?: number, storefront_fs_file_oid?: number, options?: any): Promise<FileManagerPage>;
     /**
      *
      * @summary Delete email campaignFolder
@@ -47421,6 +47761,17 @@ export interface StorefrontApiInterface {
      */
     deleteExperiment(storefront_oid: number, storefront_experiment_oid: number, options?: any): Promise<{}>;
     /**
+     *
+     * @summary Delete file manager directory
+     * @param {number} id
+     * @param {number} [parent_storefront_fs_directory_oid]
+     * @param {number} [storefront_fs_file_oid]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof StorefrontApiInterface
+     */
+    deleteFsFile(id: number, parent_storefront_fs_directory_oid?: number, storefront_fs_file_oid?: number, options?: any): Promise<FileManagerPage>;
+    /**
      * Delete screen recording heatmap
      * @summary Delete screen recording heatmap
      * @param {number} storefront_oid
@@ -47496,18 +47847,6 @@ export interface StorefrontApiInterface {
      * @memberof StorefrontApiInterface
      */
     geocodeAddress(storefront_oid: number, geocode_request: GeocodeRequest, options?: any): Promise<GeocodeResponse>;
-    /**
-     *
-     * @summary Get file manager directory for admin panel
-     * @param {number} id
-     * @param {string} [path]
-     * @param {number} [storefront_fs_directory_oid]
-     * @param {number} [storefront_theme_oid]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof StorefrontApiInterface
-     */
-    getAdminPanelFsDirectory(id: number, path?: string, storefront_fs_directory_oid?: number, storefront_theme_oid?: number, options?: any): Promise<FileManagerPage>;
     /**
      * Obtain a list of all the countries
      * @summary Get countries
@@ -48085,6 +48424,18 @@ export interface StorefrontApiInterface {
      */
     getExperiments(storefront_oid: number, options?: any): Promise<ExperimentsResponse>;
     /**
+     *
+     * @summary Get file manager directory
+     * @param {number} id
+     * @param {string} [path]
+     * @param {number} [storefront_fs_directory_oid]
+     * @param {number} [storefront_theme_oid]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof StorefrontApiInterface
+     */
+    getFsDirectory(id: number, path?: string, storefront_fs_directory_oid?: number, storefront_theme_oid?: number, options?: any): Promise<FileManagerPage>;
+    /**
      * Get screen recording heatmap
      * @summary Get screen recording heatmap
      * @param {number} storefront_oid
@@ -48311,6 +48662,16 @@ export interface StorefrontApiInterface {
      * @memberof StorefrontApiInterface
      */
     getTwilioAccounts(options?: any): Promise<TwiliosResponse>;
+    /**
+     *
+     * @summary Retrieves a S3 url where a file may be uploaded. Once uploaded, use uploadFsFile to trigger the server into reading the S3 bucket and retrieving the file.
+     * @param {number} id
+     * @param {string} extension
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof StorefrontApiInterface
+     */
+    getUploadFsFileUrl(id: number, extension: string, options?: any): Promise<FileManagerUploadUrlResponse>;
     /**
      *
      * @summary Globally unsubscribe a customer
@@ -48906,6 +49267,16 @@ export interface StorefrontApiInterface {
     updateTwilioAccount(esp_twilio_uuid: string, twilio: Twilio, options?: any): Promise<TwilioResponse>;
     /**
      *
+     * @summary This is the last step in uploading a file after 1) calling getUploadFsFileUrl and 2) uploading a file to the provided url, then finally 3) calling this method and providing the key to trigger the server into reading the S3 bucket and retrieving the file.
+     * @param {number} id
+     * @param {FileManagerUploadRequest} upload_request UploadRequest
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof StorefrontApiInterface
+     */
+    uploadFsFile(id: number, upload_request: FileManagerUploadRequest, options?: any): Promise<{}>;
+    /**
+     *
      * @summary Validate AWS Event Ruler
      * @param {RulerValidationRequest} ruler_validate_request Ruler Validate Request
      * @param {*} [options] Override http request option.
@@ -49005,27 +49376,6 @@ export declare class StorefrontApi extends BaseAPI implements StorefrontApiInter
     cloneEmailFlow(storefront_oid: number, email_flow_uuid: string, target_storefront_oid?: number, options?: any): Promise<EmailFlowResponse>;
     /**
      *
-     * @summary Create file manager directory for admin panel
-     * @param {number} id
-     * @param {string} [name]
-     * @param {number} [parent_storefront_fs_directory_oid]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof StorefrontApi
-     */
-    createAdminPanelFsDirectory(id: number, name?: string, parent_storefront_fs_directory_oid?: number, options?: any): Promise<FileManagerPage>;
-    /**
-     *
-     * @summary Upload file manager file for admin panel
-     * @param {number} id
-     * @param {number} [parent_storefront_fs_directory_oid]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof StorefrontApi
-     */
-    createAdminPanelFsFileUpload(id: number, parent_storefront_fs_directory_oid?: number, options?: any): Promise<FileManagerPage>;
-    /**
-     *
      * @summary Create email campaign
      * @param {string} domain
      * @param {*} [options] Override http request option.
@@ -49044,6 +49394,17 @@ export declare class StorefrontApi extends BaseAPI implements StorefrontApiInter
     createEmailSendingDomain2(email_domain: EmailDomain, options?: any): Promise<EmailSendingDomainResponse>;
     /**
      *
+     * @summary Create file manager directory
+     * @param {number} id
+     * @param {string} [name]
+     * @param {number} [parent_storefront_fs_directory_oid]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof StorefrontApi
+     */
+    createFsDirectory(id: number, name?: string, parent_storefront_fs_directory_oid?: number, options?: any): Promise<FileManagerPage>;
+    /**
+     *
      * @summary Create Twilio account
      * @param {Twilio} twilio Twilio
      * @param {*} [options] Override http request option.
@@ -49051,17 +49412,6 @@ export declare class StorefrontApi extends BaseAPI implements StorefrontApiInter
      * @memberof StorefrontApi
      */
     createTwilioAccount(twilio: Twilio, options?: any): Promise<TwilioResponse>;
-    /**
-     *
-     * @summary Delete file manager directory for admin panel
-     * @param {number} id
-     * @param {number} [parent_storefront_fs_directory_oid]
-     * @param {number} [storefront_fs_file_oid]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof StorefrontApi
-     */
-    deleteAdminPanelFsFile(id: number, parent_storefront_fs_directory_oid?: number, storefront_fs_file_oid?: number, options?: any): Promise<FileManagerPage>;
     /**
      *
      * @summary Delete email campaignFolder
@@ -49153,6 +49503,17 @@ export declare class StorefrontApi extends BaseAPI implements StorefrontApiInter
      */
     deleteExperiment(storefront_oid: number, storefront_experiment_oid: number, options?: any): Promise<Response>;
     /**
+     *
+     * @summary Delete file manager directory
+     * @param {number} id
+     * @param {number} [parent_storefront_fs_directory_oid]
+     * @param {number} [storefront_fs_file_oid]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof StorefrontApi
+     */
+    deleteFsFile(id: number, parent_storefront_fs_directory_oid?: number, storefront_fs_file_oid?: number, options?: any): Promise<FileManagerPage>;
+    /**
      * Delete screen recording heatmap
      * @summary Delete screen recording heatmap
      * @param {number} storefront_oid
@@ -49228,18 +49589,6 @@ export declare class StorefrontApi extends BaseAPI implements StorefrontApiInter
      * @memberof StorefrontApi
      */
     geocodeAddress(storefront_oid: number, geocode_request: GeocodeRequest, options?: any): Promise<GeocodeResponse>;
-    /**
-     *
-     * @summary Get file manager directory for admin panel
-     * @param {number} id
-     * @param {string} [path]
-     * @param {number} [storefront_fs_directory_oid]
-     * @param {number} [storefront_theme_oid]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof StorefrontApi
-     */
-    getAdminPanelFsDirectory(id: number, path?: string, storefront_fs_directory_oid?: number, storefront_theme_oid?: number, options?: any): Promise<FileManagerPage>;
     /**
      * Obtain a list of all the countries
      * @summary Get countries
@@ -49817,6 +50166,18 @@ export declare class StorefrontApi extends BaseAPI implements StorefrontApiInter
      */
     getExperiments(storefront_oid: number, options?: any): Promise<ExperimentsResponse>;
     /**
+     *
+     * @summary Get file manager directory
+     * @param {number} id
+     * @param {string} [path]
+     * @param {number} [storefront_fs_directory_oid]
+     * @param {number} [storefront_theme_oid]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof StorefrontApi
+     */
+    getFsDirectory(id: number, path?: string, storefront_fs_directory_oid?: number, storefront_theme_oid?: number, options?: any): Promise<FileManagerPage>;
+    /**
      * Get screen recording heatmap
      * @summary Get screen recording heatmap
      * @param {number} storefront_oid
@@ -50043,6 +50404,16 @@ export declare class StorefrontApi extends BaseAPI implements StorefrontApiInter
      * @memberof StorefrontApi
      */
     getTwilioAccounts(options?: any): Promise<TwiliosResponse>;
+    /**
+     *
+     * @summary Retrieves a S3 url where a file may be uploaded. Once uploaded, use uploadFsFile to trigger the server into reading the S3 bucket and retrieving the file.
+     * @param {number} id
+     * @param {string} extension
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof StorefrontApi
+     */
+    getUploadFsFileUrl(id: number, extension: string, options?: any): Promise<FileManagerUploadUrlResponse>;
     /**
      *
      * @summary Globally unsubscribe a customer
@@ -50636,6 +51007,16 @@ export declare class StorefrontApi extends BaseAPI implements StorefrontApiInter
      * @memberof StorefrontApi
      */
     updateTwilioAccount(esp_twilio_uuid: string, twilio: Twilio, options?: any): Promise<TwilioResponse>;
+    /**
+     *
+     * @summary This is the last step in uploading a file after 1) calling getUploadFsFileUrl and 2) uploading a file to the provided url, then finally 3) calling this method and providing the key to trigger the server into reading the S3 bucket and retrieving the file.
+     * @param {number} id
+     * @param {FileManagerUploadRequest} upload_request UploadRequest
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof StorefrontApi
+     */
+    uploadFsFile(id: number, upload_request: FileManagerUploadRequest, options?: any): Promise<Response>;
     /**
      *
      * @summary Validate AWS Event Ruler

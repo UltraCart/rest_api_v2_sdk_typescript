@@ -12687,6 +12687,52 @@ var ItemApiFetchParamCreator = function (configuration) {
             };
         },
         /**
+         * Retrieves digital items from the digital library (which are digital files that may be attached to normal items) that having a matching external id.  Be aware that these are not normal items that can be added to a shopping cart. Rather, they are digital files that may be associated with normal items.
+         * @summary Retrieves digital items from the digital library (which are digital files that may be attached to normal items) that having a matching external id
+         * @param {string} external_id The external id to match against.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getDigitalItemsByExternalId: function (external_id, options) {
+            if (options === void 0) { options = {}; }
+            // verify required parameter 'external_id' is not null or undefined
+            if (external_id === null || external_id === undefined) {
+                throw new RequiredError('external_id', 'Required parameter external_id was null or undefined when calling getDigitalItemsByExternalId.');
+            }
+            var localVarPath = "/item/digital_library/by_external/{external_id}"
+                .replace("{".concat("external_id", "}"), encodeURIComponent(String(external_id)));
+            var localVarUrlObj = url.parse(localVarPath, true);
+            var localVarRequestOptions = Object.assign({ method: 'GET' }, options);
+            var localVarHeaderParameter = {};
+            var localVarQueryParameter = {};
+            if (configuration && configuration.apiVersion) {
+                localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+            }
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+                var localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+                    ? configuration.accessToken("ultraCartOauth", ["item_read"])
+                    : configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                var localVarApiKeyValue = typeof configuration.apiKey === 'function'
+                    ? configuration.apiKey("x-ultracart-simple-key")
+                    : configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
          * Retrieves a single item using the specified item oid.
          * @summary Retrieve an item
          * @param {number} merchant_item_oid The item oid to retrieve.
@@ -13408,6 +13454,28 @@ var ItemApiFp = function (configuration) {
             };
         },
         /**
+         * Retrieves digital items from the digital library (which are digital files that may be attached to normal items) that having a matching external id.  Be aware that these are not normal items that can be added to a shopping cart. Rather, they are digital files that may be associated with normal items.
+         * @summary Retrieves digital items from the digital library (which are digital files that may be attached to normal items) that having a matching external id
+         * @param {string} external_id The external id to match against.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getDigitalItemsByExternalId: function (external_id, options) {
+            var localVarFetchArgs = (0, exports.ItemApiFetchParamCreator)(configuration).getDigitalItemsByExternalId(external_id, options);
+            return function (fetch, basePath) {
+                if (fetch === void 0) { fetch = portableFetch; }
+                if (basePath === void 0) { basePath = BASE_PATH; }
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(function (response) {
+                    if (response.status >= 200 && response.status < 300) {
+                        return response.json();
+                    }
+                    else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
          * Retrieves a single item using the specified item oid.
          * @summary Retrieve an item
          * @param {number} merchant_item_oid The item oid to retrieve.
@@ -13729,6 +13797,16 @@ var ItemApiFactory = function (configuration, fetch, basePath) {
             return (0, exports.ItemApiFp)(configuration).getDigitalItems(_limit, _offset, _since, _sort, _expand, _placeholders, options)(fetch, basePath);
         },
         /**
+         * Retrieves digital items from the digital library (which are digital files that may be attached to normal items) that having a matching external id.  Be aware that these are not normal items that can be added to a shopping cart. Rather, they are digital files that may be associated with normal items.
+         * @summary Retrieves digital items from the digital library (which are digital files that may be attached to normal items) that having a matching external id
+         * @param {string} external_id The external id to match against.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getDigitalItemsByExternalId: function (external_id, options) {
+            return (0, exports.ItemApiFp)(configuration).getDigitalItemsByExternalId(external_id, options)(fetch, basePath);
+        },
+        /**
          * Retrieves a single item using the specified item oid.
          * @summary Retrieve an item
          * @param {number} merchant_item_oid The item oid to retrieve.
@@ -13925,6 +14003,17 @@ var ItemApi = /** @class */ (function (_super) {
      */
     ItemApi.prototype.getDigitalItems = function (_limit, _offset, _since, _sort, _expand, _placeholders, options) {
         return (0, exports.ItemApiFp)(this.configuration).getDigitalItems(_limit, _offset, _since, _sort, _expand, _placeholders, options)(this.fetch, this.basePath);
+    };
+    /**
+     * Retrieves digital items from the digital library (which are digital files that may be attached to normal items) that having a matching external id.  Be aware that these are not normal items that can be added to a shopping cart. Rather, they are digital files that may be associated with normal items.
+     * @summary Retrieves digital items from the digital library (which are digital files that may be attached to normal items) that having a matching external id
+     * @param {string} external_id The external id to match against.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ItemApi
+     */
+    ItemApi.prototype.getDigitalItemsByExternalId = function (external_id, options) {
+        return (0, exports.ItemApiFp)(this.configuration).getDigitalItemsByExternalId(external_id, options)(this.fetch, this.basePath);
     };
     /**
      * Retrieves a single item using the specified item oid.
@@ -17732,124 +17821,6 @@ var StorefrontApiFetchParamCreator = function (configuration) {
         },
         /**
          *
-         * @summary Create file manager directory for admin panel
-         * @param {number} id
-         * @param {string} [name]
-         * @param {number} [parent_storefront_fs_directory_oid]
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        createAdminPanelFsDirectory: function (id, name, parent_storefront_fs_directory_oid, options) {
-            if (options === void 0) { options = {}; }
-            // verify required parameter 'id' is not null or undefined
-            if (id === null || id === undefined) {
-                throw new RequiredError('id', 'Required parameter id was null or undefined when calling createAdminPanelFsDirectory.');
-            }
-            var localVarPath = "/storefront/{id}/adminPanel/fs/dir"
-                .replace("{".concat("id", "}"), encodeURIComponent(String(id)));
-            var localVarUrlObj = url.parse(localVarPath, true);
-            var localVarRequestOptions = Object.assign({ method: 'POST' }, options);
-            var localVarHeaderParameter = {};
-            var localVarQueryParameter = {};
-            if (configuration && configuration.apiVersion) {
-                localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
-            }
-            // authentication ultraCartBrowserApiKey required
-            if (configuration && configuration.apiKey) {
-                var localVarApiKeyValue = typeof configuration.apiKey === 'function'
-                    ? configuration.apiKey("x-ultracart-browser-key")
-                    : configuration.apiKey;
-                localVarHeaderParameter["x-ultracart-browser-key"] = localVarApiKeyValue;
-            }
-            // authentication ultraCartOauth required
-            // oauth required
-            if (configuration && configuration.accessToken) {
-                var localVarAccessTokenValue = typeof configuration.accessToken === 'function'
-                    ? configuration.accessToken("ultraCartOauth", ["storefront_write"])
-                    : configuration.accessToken;
-                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
-            }
-            // authentication ultraCartSimpleApiKey required
-            if (configuration && configuration.apiKey) {
-                var localVarApiKeyValue = typeof configuration.apiKey === 'function'
-                    ? configuration.apiKey("x-ultracart-simple-key")
-                    : configuration.apiKey;
-                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
-            }
-            if (name !== undefined) {
-                localVarQueryParameter['name'] = name;
-            }
-            if (parent_storefront_fs_directory_oid !== undefined) {
-                localVarQueryParameter['parent_storefront_fs_directory_oid'] = parent_storefront_fs_directory_oid;
-            }
-            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
-            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
-            delete localVarUrlObj.search;
-            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
-            return {
-                url: url.format(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         *
-         * @summary Upload file manager file for admin panel
-         * @param {number} id
-         * @param {number} [parent_storefront_fs_directory_oid]
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        createAdminPanelFsFileUpload: function (id, parent_storefront_fs_directory_oid, options) {
-            if (options === void 0) { options = {}; }
-            // verify required parameter 'id' is not null or undefined
-            if (id === null || id === undefined) {
-                throw new RequiredError('id', 'Required parameter id was null or undefined when calling createAdminPanelFsFileUpload.');
-            }
-            var localVarPath = "/storefront/{id}/adminPanel/fs/file"
-                .replace("{".concat("id", "}"), encodeURIComponent(String(id)));
-            var localVarUrlObj = url.parse(localVarPath, true);
-            var localVarRequestOptions = Object.assign({ method: 'POST' }, options);
-            var localVarHeaderParameter = {};
-            var localVarQueryParameter = {};
-            if (configuration && configuration.apiVersion) {
-                localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
-            }
-            // authentication ultraCartBrowserApiKey required
-            if (configuration && configuration.apiKey) {
-                var localVarApiKeyValue = typeof configuration.apiKey === 'function'
-                    ? configuration.apiKey("x-ultracart-browser-key")
-                    : configuration.apiKey;
-                localVarHeaderParameter["x-ultracart-browser-key"] = localVarApiKeyValue;
-            }
-            // authentication ultraCartOauth required
-            // oauth required
-            if (configuration && configuration.accessToken) {
-                var localVarAccessTokenValue = typeof configuration.accessToken === 'function'
-                    ? configuration.accessToken("ultraCartOauth", ["storefront_write"])
-                    : configuration.accessToken;
-                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
-            }
-            // authentication ultraCartSimpleApiKey required
-            if (configuration && configuration.apiKey) {
-                var localVarApiKeyValue = typeof configuration.apiKey === 'function'
-                    ? configuration.apiKey("x-ultracart-simple-key")
-                    : configuration.apiKey;
-                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
-            }
-            if (parent_storefront_fs_directory_oid !== undefined) {
-                localVarQueryParameter['parent_storefront_fs_directory_oid'] = parent_storefront_fs_directory_oid;
-            }
-            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
-            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
-            delete localVarUrlObj.search;
-            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
-            return {
-                url: url.format(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         *
          * @summary Create email campaign
          * @param {string} domain
          * @param {*} [options] Override http request option.
@@ -17958,6 +17929,67 @@ var StorefrontApiFetchParamCreator = function (configuration) {
         },
         /**
          *
+         * @summary Create file manager directory
+         * @param {number} id
+         * @param {string} [name]
+         * @param {number} [parent_storefront_fs_directory_oid]
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        createFsDirectory: function (id, name, parent_storefront_fs_directory_oid, options) {
+            if (options === void 0) { options = {}; }
+            // verify required parameter 'id' is not null or undefined
+            if (id === null || id === undefined) {
+                throw new RequiredError('id', 'Required parameter id was null or undefined when calling createFsDirectory.');
+            }
+            var localVarPath = "/storefront/{id}/fs/dir"
+                .replace("{".concat("id", "}"), encodeURIComponent(String(id)));
+            var localVarUrlObj = url.parse(localVarPath, true);
+            var localVarRequestOptions = Object.assign({ method: 'POST' }, options);
+            var localVarHeaderParameter = {};
+            var localVarQueryParameter = {};
+            if (configuration && configuration.apiVersion) {
+                localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+            }
+            // authentication ultraCartBrowserApiKey required
+            if (configuration && configuration.apiKey) {
+                var localVarApiKeyValue = typeof configuration.apiKey === 'function'
+                    ? configuration.apiKey("x-ultracart-browser-key")
+                    : configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-browser-key"] = localVarApiKeyValue;
+            }
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+                var localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+                    ? configuration.accessToken("ultraCartOauth", ["storefront_write"])
+                    : configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                var localVarApiKeyValue = typeof configuration.apiKey === 'function'
+                    ? configuration.apiKey("x-ultracart-simple-key")
+                    : configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+            if (name !== undefined) {
+                localVarQueryParameter['name'] = name;
+            }
+            if (parent_storefront_fs_directory_oid !== undefined) {
+                localVarQueryParameter['parent_storefront_fs_directory_oid'] = parent_storefront_fs_directory_oid;
+            }
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         *
          * @summary Create Twilio account
          * @param {Twilio} twilio Twilio
          * @param {*} [options] Override http request option.
@@ -18006,67 +18038,6 @@ var StorefrontApiFetchParamCreator = function (configuration) {
             localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
             var needsSerialization = ("Twilio" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
             localVarRequestOptions.body = needsSerialization ? JSON.stringify(twilio || {}) : (twilio || "");
-            return {
-                url: url.format(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         *
-         * @summary Delete file manager directory for admin panel
-         * @param {number} id
-         * @param {number} [parent_storefront_fs_directory_oid]
-         * @param {number} [storefront_fs_file_oid]
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        deleteAdminPanelFsFile: function (id, parent_storefront_fs_directory_oid, storefront_fs_file_oid, options) {
-            if (options === void 0) { options = {}; }
-            // verify required parameter 'id' is not null or undefined
-            if (id === null || id === undefined) {
-                throw new RequiredError('id', 'Required parameter id was null or undefined when calling deleteAdminPanelFsFile.');
-            }
-            var localVarPath = "/storefront/{id}/adminPanel/fs/file"
-                .replace("{".concat("id", "}"), encodeURIComponent(String(id)));
-            var localVarUrlObj = url.parse(localVarPath, true);
-            var localVarRequestOptions = Object.assign({ method: 'DELETE' }, options);
-            var localVarHeaderParameter = {};
-            var localVarQueryParameter = {};
-            if (configuration && configuration.apiVersion) {
-                localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
-            }
-            // authentication ultraCartBrowserApiKey required
-            if (configuration && configuration.apiKey) {
-                var localVarApiKeyValue = typeof configuration.apiKey === 'function'
-                    ? configuration.apiKey("x-ultracart-browser-key")
-                    : configuration.apiKey;
-                localVarHeaderParameter["x-ultracart-browser-key"] = localVarApiKeyValue;
-            }
-            // authentication ultraCartOauth required
-            // oauth required
-            if (configuration && configuration.accessToken) {
-                var localVarAccessTokenValue = typeof configuration.accessToken === 'function'
-                    ? configuration.accessToken("ultraCartOauth", ["storefront_write"])
-                    : configuration.accessToken;
-                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
-            }
-            // authentication ultraCartSimpleApiKey required
-            if (configuration && configuration.apiKey) {
-                var localVarApiKeyValue = typeof configuration.apiKey === 'function'
-                    ? configuration.apiKey("x-ultracart-simple-key")
-                    : configuration.apiKey;
-                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
-            }
-            if (parent_storefront_fs_directory_oid !== undefined) {
-                localVarQueryParameter['parent_storefront_fs_directory_oid'] = parent_storefront_fs_directory_oid;
-            }
-            if (storefront_fs_file_oid !== undefined) {
-                localVarQueryParameter['storefront_fs_file_oid'] = storefront_fs_file_oid;
-            }
-            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
-            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
-            delete localVarUrlObj.search;
-            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
             return {
                 url: url.format(localVarUrlObj),
                 options: localVarRequestOptions,
@@ -18604,6 +18575,67 @@ var StorefrontApiFetchParamCreator = function (configuration) {
             };
         },
         /**
+         *
+         * @summary Delete file manager directory
+         * @param {number} id
+         * @param {number} [parent_storefront_fs_directory_oid]
+         * @param {number} [storefront_fs_file_oid]
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        deleteFsFile: function (id, parent_storefront_fs_directory_oid, storefront_fs_file_oid, options) {
+            if (options === void 0) { options = {}; }
+            // verify required parameter 'id' is not null or undefined
+            if (id === null || id === undefined) {
+                throw new RequiredError('id', 'Required parameter id was null or undefined when calling deleteFsFile.');
+            }
+            var localVarPath = "/storefront/{id}/fs/file"
+                .replace("{".concat("id", "}"), encodeURIComponent(String(id)));
+            var localVarUrlObj = url.parse(localVarPath, true);
+            var localVarRequestOptions = Object.assign({ method: 'DELETE' }, options);
+            var localVarHeaderParameter = {};
+            var localVarQueryParameter = {};
+            if (configuration && configuration.apiVersion) {
+                localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+            }
+            // authentication ultraCartBrowserApiKey required
+            if (configuration && configuration.apiKey) {
+                var localVarApiKeyValue = typeof configuration.apiKey === 'function'
+                    ? configuration.apiKey("x-ultracart-browser-key")
+                    : configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-browser-key"] = localVarApiKeyValue;
+            }
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+                var localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+                    ? configuration.accessToken("ultraCartOauth", ["storefront_write"])
+                    : configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                var localVarApiKeyValue = typeof configuration.apiKey === 'function'
+                    ? configuration.apiKey("x-ultracart-simple-key")
+                    : configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+            if (parent_storefront_fs_directory_oid !== undefined) {
+                localVarQueryParameter['parent_storefront_fs_directory_oid'] = parent_storefront_fs_directory_oid;
+            }
+            if (storefront_fs_file_oid !== undefined) {
+                localVarQueryParameter['storefront_fs_file_oid'] = storefront_fs_file_oid;
+            }
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
          * Delete screen recording heatmap
          * @summary Delete screen recording heatmap
          * @param {number} storefront_oid
@@ -19036,71 +19068,6 @@ var StorefrontApiFetchParamCreator = function (configuration) {
             localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
             var needsSerialization = ("GeocodeRequest" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
             localVarRequestOptions.body = needsSerialization ? JSON.stringify(geocode_request || {}) : (geocode_request || "");
-            return {
-                url: url.format(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         *
-         * @summary Get file manager directory for admin panel
-         * @param {number} id
-         * @param {string} [path]
-         * @param {number} [storefront_fs_directory_oid]
-         * @param {number} [storefront_theme_oid]
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        getAdminPanelFsDirectory: function (id, path, storefront_fs_directory_oid, storefront_theme_oid, options) {
-            if (options === void 0) { options = {}; }
-            // verify required parameter 'id' is not null or undefined
-            if (id === null || id === undefined) {
-                throw new RequiredError('id', 'Required parameter id was null or undefined when calling getAdminPanelFsDirectory.');
-            }
-            var localVarPath = "/storefront/{id}/adminPanel/fs/dir"
-                .replace("{".concat("id", "}"), encodeURIComponent(String(id)));
-            var localVarUrlObj = url.parse(localVarPath, true);
-            var localVarRequestOptions = Object.assign({ method: 'GET' }, options);
-            var localVarHeaderParameter = {};
-            var localVarQueryParameter = {};
-            if (configuration && configuration.apiVersion) {
-                localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
-            }
-            // authentication ultraCartBrowserApiKey required
-            if (configuration && configuration.apiKey) {
-                var localVarApiKeyValue = typeof configuration.apiKey === 'function'
-                    ? configuration.apiKey("x-ultracart-browser-key")
-                    : configuration.apiKey;
-                localVarHeaderParameter["x-ultracart-browser-key"] = localVarApiKeyValue;
-            }
-            // authentication ultraCartOauth required
-            // oauth required
-            if (configuration && configuration.accessToken) {
-                var localVarAccessTokenValue = typeof configuration.accessToken === 'function'
-                    ? configuration.accessToken("ultraCartOauth", ["storefront_write"])
-                    : configuration.accessToken;
-                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
-            }
-            // authentication ultraCartSimpleApiKey required
-            if (configuration && configuration.apiKey) {
-                var localVarApiKeyValue = typeof configuration.apiKey === 'function'
-                    ? configuration.apiKey("x-ultracart-simple-key")
-                    : configuration.apiKey;
-                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
-            }
-            if (path !== undefined) {
-                localVarQueryParameter['path'] = path;
-            }
-            if (storefront_fs_directory_oid !== undefined) {
-                localVarQueryParameter['storefront_fs_directory_oid'] = storefront_fs_directory_oid;
-            }
-            if (storefront_theme_oid !== undefined) {
-                localVarQueryParameter['storefront_theme_oid'] = storefront_theme_oid;
-            }
-            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
-            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
-            delete localVarUrlObj.search;
-            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
             return {
                 url: url.format(localVarUrlObj),
                 options: localVarRequestOptions,
@@ -22493,6 +22460,71 @@ var StorefrontApiFetchParamCreator = function (configuration) {
             };
         },
         /**
+         *
+         * @summary Get file manager directory
+         * @param {number} id
+         * @param {string} [path]
+         * @param {number} [storefront_fs_directory_oid]
+         * @param {number} [storefront_theme_oid]
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getFsDirectory: function (id, path, storefront_fs_directory_oid, storefront_theme_oid, options) {
+            if (options === void 0) { options = {}; }
+            // verify required parameter 'id' is not null or undefined
+            if (id === null || id === undefined) {
+                throw new RequiredError('id', 'Required parameter id was null or undefined when calling getFsDirectory.');
+            }
+            var localVarPath = "/storefront/{id}/fs/dir"
+                .replace("{".concat("id", "}"), encodeURIComponent(String(id)));
+            var localVarUrlObj = url.parse(localVarPath, true);
+            var localVarRequestOptions = Object.assign({ method: 'GET' }, options);
+            var localVarHeaderParameter = {};
+            var localVarQueryParameter = {};
+            if (configuration && configuration.apiVersion) {
+                localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+            }
+            // authentication ultraCartBrowserApiKey required
+            if (configuration && configuration.apiKey) {
+                var localVarApiKeyValue = typeof configuration.apiKey === 'function'
+                    ? configuration.apiKey("x-ultracart-browser-key")
+                    : configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-browser-key"] = localVarApiKeyValue;
+            }
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+                var localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+                    ? configuration.accessToken("ultraCartOauth", ["storefront_write"])
+                    : configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                var localVarApiKeyValue = typeof configuration.apiKey === 'function'
+                    ? configuration.apiKey("x-ultracart-simple-key")
+                    : configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+            if (path !== undefined) {
+                localVarQueryParameter['path'] = path;
+            }
+            if (storefront_fs_directory_oid !== undefined) {
+                localVarQueryParameter['storefront_fs_directory_oid'] = storefront_fs_directory_oid;
+            }
+            if (storefront_theme_oid !== undefined) {
+                localVarQueryParameter['storefront_theme_oid'] = storefront_theme_oid;
+            }
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
          * Get screen recording heatmap
          * @summary Get screen recording heatmap
          * @param {number} storefront_oid
@@ -23736,6 +23768,65 @@ var StorefrontApiFetchParamCreator = function (configuration) {
             if (configuration && configuration.accessToken) {
                 var localVarAccessTokenValue = typeof configuration.accessToken === 'function'
                     ? configuration.accessToken("ultraCartOauth", ["storefront_read"])
+                    : configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                var localVarApiKeyValue = typeof configuration.apiKey === 'function'
+                    ? configuration.apiKey("x-ultracart-simple-key")
+                    : configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         *
+         * @summary Retrieves a S3 url where a file may be uploaded. Once uploaded, use uploadFsFile to trigger the server into reading the S3 bucket and retrieving the file.
+         * @param {number} id
+         * @param {string} extension
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getUploadFsFileUrl: function (id, extension, options) {
+            if (options === void 0) { options = {}; }
+            // verify required parameter 'id' is not null or undefined
+            if (id === null || id === undefined) {
+                throw new RequiredError('id', 'Required parameter id was null or undefined when calling getUploadFsFileUrl.');
+            }
+            // verify required parameter 'extension' is not null or undefined
+            if (extension === null || extension === undefined) {
+                throw new RequiredError('extension', 'Required parameter extension was null or undefined when calling getUploadFsFileUrl.');
+            }
+            var localVarPath = "/storefront/{id}/fs/upload_url/{extension}"
+                .replace("{".concat("id", "}"), encodeURIComponent(String(id)))
+                .replace("{".concat("extension", "}"), encodeURIComponent(String(extension)));
+            var localVarUrlObj = url.parse(localVarPath, true);
+            var localVarRequestOptions = Object.assign({ method: 'GET' }, options);
+            var localVarHeaderParameter = {};
+            var localVarQueryParameter = {};
+            if (configuration && configuration.apiVersion) {
+                localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+            }
+            // authentication ultraCartBrowserApiKey required
+            if (configuration && configuration.apiKey) {
+                var localVarApiKeyValue = typeof configuration.apiKey === 'function'
+                    ? configuration.apiKey("x-ultracart-browser-key")
+                    : configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-browser-key"] = localVarApiKeyValue;
+            }
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+                var localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+                    ? configuration.accessToken("ultraCartOauth", ["storefront_write"])
                     : configuration.accessToken;
                 localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
             }
@@ -27266,6 +27357,67 @@ var StorefrontApiFetchParamCreator = function (configuration) {
         },
         /**
          *
+         * @summary This is the last step in uploading a file after 1) calling getUploadFsFileUrl and 2) uploading a file to the provided url, then finally 3) calling this method and providing the key to trigger the server into reading the S3 bucket and retrieving the file.
+         * @param {number} id
+         * @param {FileManagerUploadRequest} upload_request UploadRequest
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        uploadFsFile: function (id, upload_request, options) {
+            if (options === void 0) { options = {}; }
+            // verify required parameter 'id' is not null or undefined
+            if (id === null || id === undefined) {
+                throw new RequiredError('id', 'Required parameter id was null or undefined when calling uploadFsFile.');
+            }
+            // verify required parameter 'upload_request' is not null or undefined
+            if (upload_request === null || upload_request === undefined) {
+                throw new RequiredError('upload_request', 'Required parameter upload_request was null or undefined when calling uploadFsFile.');
+            }
+            var localVarPath = "/storefront/{id}/fs/upload"
+                .replace("{".concat("id", "}"), encodeURIComponent(String(id)));
+            var localVarUrlObj = url.parse(localVarPath, true);
+            var localVarRequestOptions = Object.assign({ method: 'POST' }, options);
+            var localVarHeaderParameter = {};
+            var localVarQueryParameter = {};
+            if (configuration && configuration.apiVersion) {
+                localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+            }
+            // authentication ultraCartBrowserApiKey required
+            if (configuration && configuration.apiKey) {
+                var localVarApiKeyValue = typeof configuration.apiKey === 'function'
+                    ? configuration.apiKey("x-ultracart-browser-key")
+                    : configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-browser-key"] = localVarApiKeyValue;
+            }
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+                var localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+                    ? configuration.accessToken("ultraCartOauth", ["storefront_write"])
+                    : configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                var localVarApiKeyValue = typeof configuration.apiKey === 'function'
+                    ? configuration.apiKey("x-ultracart-simple-key")
+                    : configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+            var needsSerialization = ("FileManagerUploadRequest" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
+            localVarRequestOptions.body = needsSerialization ? JSON.stringify(upload_request || {}) : (upload_request || "");
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         *
          * @summary Validate AWS Event Ruler
          * @param {RulerValidationRequest} ruler_validate_request Ruler Validate Request
          * @param {*} [options] Override http request option.
@@ -27516,53 +27668,6 @@ var StorefrontApiFp = function (configuration) {
         },
         /**
          *
-         * @summary Create file manager directory for admin panel
-         * @param {number} id
-         * @param {string} [name]
-         * @param {number} [parent_storefront_fs_directory_oid]
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        createAdminPanelFsDirectory: function (id, name, parent_storefront_fs_directory_oid, options) {
-            var localVarFetchArgs = (0, exports.StorefrontApiFetchParamCreator)(configuration).createAdminPanelFsDirectory(id, name, parent_storefront_fs_directory_oid, options);
-            return function (fetch, basePath) {
-                if (fetch === void 0) { fetch = portableFetch; }
-                if (basePath === void 0) { basePath = BASE_PATH; }
-                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(function (response) {
-                    if (response.status >= 200 && response.status < 300) {
-                        return response.json();
-                    }
-                    else {
-                        throw response;
-                    }
-                });
-            };
-        },
-        /**
-         *
-         * @summary Upload file manager file for admin panel
-         * @param {number} id
-         * @param {number} [parent_storefront_fs_directory_oid]
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        createAdminPanelFsFileUpload: function (id, parent_storefront_fs_directory_oid, options) {
-            var localVarFetchArgs = (0, exports.StorefrontApiFetchParamCreator)(configuration).createAdminPanelFsFileUpload(id, parent_storefront_fs_directory_oid, options);
-            return function (fetch, basePath) {
-                if (fetch === void 0) { fetch = portableFetch; }
-                if (basePath === void 0) { basePath = BASE_PATH; }
-                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(function (response) {
-                    if (response.status >= 200 && response.status < 300) {
-                        return response.json();
-                    }
-                    else {
-                        throw response;
-                    }
-                });
-            };
-        },
-        /**
-         *
          * @summary Create email campaign
          * @param {string} domain
          * @param {*} [options] Override http request option.
@@ -27607,13 +27712,15 @@ var StorefrontApiFp = function (configuration) {
         },
         /**
          *
-         * @summary Create Twilio account
-         * @param {Twilio} twilio Twilio
+         * @summary Create file manager directory
+         * @param {number} id
+         * @param {string} [name]
+         * @param {number} [parent_storefront_fs_directory_oid]
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        createTwilioAccount: function (twilio, options) {
-            var localVarFetchArgs = (0, exports.StorefrontApiFetchParamCreator)(configuration).createTwilioAccount(twilio, options);
+        createFsDirectory: function (id, name, parent_storefront_fs_directory_oid, options) {
+            var localVarFetchArgs = (0, exports.StorefrontApiFetchParamCreator)(configuration).createFsDirectory(id, name, parent_storefront_fs_directory_oid, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -27629,15 +27736,13 @@ var StorefrontApiFp = function (configuration) {
         },
         /**
          *
-         * @summary Delete file manager directory for admin panel
-         * @param {number} id
-         * @param {number} [parent_storefront_fs_directory_oid]
-         * @param {number} [storefront_fs_file_oid]
+         * @summary Create Twilio account
+         * @param {Twilio} twilio Twilio
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        deleteAdminPanelFsFile: function (id, parent_storefront_fs_directory_oid, storefront_fs_file_oid, options) {
-            var localVarFetchArgs = (0, exports.StorefrontApiFetchParamCreator)(configuration).deleteAdminPanelFsFile(id, parent_storefront_fs_directory_oid, storefront_fs_file_oid, options);
+        createTwilioAccount: function (twilio, options) {
+            var localVarFetchArgs = (0, exports.StorefrontApiFetchParamCreator)(configuration).createTwilioAccount(twilio, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -27859,6 +27964,30 @@ var StorefrontApiFp = function (configuration) {
             };
         },
         /**
+         *
+         * @summary Delete file manager directory
+         * @param {number} id
+         * @param {number} [parent_storefront_fs_directory_oid]
+         * @param {number} [storefront_fs_file_oid]
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        deleteFsFile: function (id, parent_storefront_fs_directory_oid, storefront_fs_file_oid, options) {
+            var localVarFetchArgs = (0, exports.StorefrontApiFetchParamCreator)(configuration).deleteFsFile(id, parent_storefront_fs_directory_oid, storefront_fs_file_oid, options);
+            return function (fetch, basePath) {
+                if (fetch === void 0) { fetch = portableFetch; }
+                if (basePath === void 0) { basePath = BASE_PATH; }
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(function (response) {
+                    if (response.status >= 200 && response.status < 300) {
+                        return response.json();
+                    }
+                    else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
          * Delete screen recording heatmap
          * @summary Delete screen recording heatmap
          * @param {number} storefront_oid
@@ -28025,31 +28154,6 @@ var StorefrontApiFp = function (configuration) {
          */
         geocodeAddress: function (storefront_oid, geocode_request, options) {
             var localVarFetchArgs = (0, exports.StorefrontApiFetchParamCreator)(configuration).geocodeAddress(storefront_oid, geocode_request, options);
-            return function (fetch, basePath) {
-                if (fetch === void 0) { fetch = portableFetch; }
-                if (basePath === void 0) { basePath = BASE_PATH; }
-                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(function (response) {
-                    if (response.status >= 200 && response.status < 300) {
-                        return response.json();
-                    }
-                    else {
-                        throw response;
-                    }
-                });
-            };
-        },
-        /**
-         *
-         * @summary Get file manager directory for admin panel
-         * @param {number} id
-         * @param {string} [path]
-         * @param {number} [storefront_fs_directory_oid]
-         * @param {number} [storefront_theme_oid]
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        getAdminPanelFsDirectory: function (id, path, storefront_fs_directory_oid, storefront_theme_oid, options) {
-            var localVarFetchArgs = (0, exports.StorefrontApiFetchParamCreator)(configuration).getAdminPanelFsDirectory(id, path, storefront_fs_directory_oid, storefront_theme_oid, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -29394,6 +29498,31 @@ var StorefrontApiFp = function (configuration) {
             };
         },
         /**
+         *
+         * @summary Get file manager directory
+         * @param {number} id
+         * @param {string} [path]
+         * @param {number} [storefront_fs_directory_oid]
+         * @param {number} [storefront_theme_oid]
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getFsDirectory: function (id, path, storefront_fs_directory_oid, storefront_theme_oid, options) {
+            var localVarFetchArgs = (0, exports.StorefrontApiFetchParamCreator)(configuration).getFsDirectory(id, path, storefront_fs_directory_oid, storefront_theme_oid, options);
+            return function (fetch, basePath) {
+                if (fetch === void 0) { fetch = portableFetch; }
+                if (basePath === void 0) { basePath = BASE_PATH; }
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(function (response) {
+                    if (response.status >= 200 && response.status < 300) {
+                        return response.json();
+                    }
+                    else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
          * Get screen recording heatmap
          * @summary Get screen recording heatmap
          * @param {number} storefront_oid
@@ -29906,6 +30035,29 @@ var StorefrontApiFp = function (configuration) {
          */
         getTwilioAccounts: function (options) {
             var localVarFetchArgs = (0, exports.StorefrontApiFetchParamCreator)(configuration).getTwilioAccounts(options);
+            return function (fetch, basePath) {
+                if (fetch === void 0) { fetch = portableFetch; }
+                if (basePath === void 0) { basePath = BASE_PATH; }
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(function (response) {
+                    if (response.status >= 200 && response.status < 300) {
+                        return response.json();
+                    }
+                    else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
+         *
+         * @summary Retrieves a S3 url where a file may be uploaded. Once uploaded, use uploadFsFile to trigger the server into reading the S3 bucket and retrieving the file.
+         * @param {number} id
+         * @param {string} extension
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getUploadFsFileUrl: function (id, extension, options) {
+            var localVarFetchArgs = (0, exports.StorefrontApiFetchParamCreator)(configuration).getUploadFsFileUrl(id, extension, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -31242,6 +31394,29 @@ var StorefrontApiFp = function (configuration) {
         },
         /**
          *
+         * @summary This is the last step in uploading a file after 1) calling getUploadFsFileUrl and 2) uploading a file to the provided url, then finally 3) calling this method and providing the key to trigger the server into reading the S3 bucket and retrieving the file.
+         * @param {number} id
+         * @param {FileManagerUploadRequest} upload_request UploadRequest
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        uploadFsFile: function (id, upload_request, options) {
+            var localVarFetchArgs = (0, exports.StorefrontApiFetchParamCreator)(configuration).uploadFsFile(id, upload_request, options);
+            return function (fetch, basePath) {
+                if (fetch === void 0) { fetch = portableFetch; }
+                if (basePath === void 0) { basePath = BASE_PATH; }
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(function (response) {
+                    if (response.status >= 200 && response.status < 300) {
+                        return response;
+                    }
+                    else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
+         *
          * @summary Validate AWS Event Ruler
          * @param {RulerValidationRequest} ruler_validate_request Ruler Validate Request
          * @param {*} [options] Override http request option.
@@ -31363,29 +31538,6 @@ var StorefrontApiFactory = function (configuration, fetch, basePath) {
         },
         /**
          *
-         * @summary Create file manager directory for admin panel
-         * @param {number} id
-         * @param {string} [name]
-         * @param {number} [parent_storefront_fs_directory_oid]
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        createAdminPanelFsDirectory: function (id, name, parent_storefront_fs_directory_oid, options) {
-            return (0, exports.StorefrontApiFp)(configuration).createAdminPanelFsDirectory(id, name, parent_storefront_fs_directory_oid, options)(fetch, basePath);
-        },
-        /**
-         *
-         * @summary Upload file manager file for admin panel
-         * @param {number} id
-         * @param {number} [parent_storefront_fs_directory_oid]
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        createAdminPanelFsFileUpload: function (id, parent_storefront_fs_directory_oid, options) {
-            return (0, exports.StorefrontApiFp)(configuration).createAdminPanelFsFileUpload(id, parent_storefront_fs_directory_oid, options)(fetch, basePath);
-        },
-        /**
-         *
          * @summary Create email campaign
          * @param {string} domain
          * @param {*} [options] Override http request option.
@@ -31406,6 +31558,18 @@ var StorefrontApiFactory = function (configuration, fetch, basePath) {
         },
         /**
          *
+         * @summary Create file manager directory
+         * @param {number} id
+         * @param {string} [name]
+         * @param {number} [parent_storefront_fs_directory_oid]
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        createFsDirectory: function (id, name, parent_storefront_fs_directory_oid, options) {
+            return (0, exports.StorefrontApiFp)(configuration).createFsDirectory(id, name, parent_storefront_fs_directory_oid, options)(fetch, basePath);
+        },
+        /**
+         *
          * @summary Create Twilio account
          * @param {Twilio} twilio Twilio
          * @param {*} [options] Override http request option.
@@ -31413,18 +31577,6 @@ var StorefrontApiFactory = function (configuration, fetch, basePath) {
          */
         createTwilioAccount: function (twilio, options) {
             return (0, exports.StorefrontApiFp)(configuration).createTwilioAccount(twilio, options)(fetch, basePath);
-        },
-        /**
-         *
-         * @summary Delete file manager directory for admin panel
-         * @param {number} id
-         * @param {number} [parent_storefront_fs_directory_oid]
-         * @param {number} [storefront_fs_file_oid]
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        deleteAdminPanelFsFile: function (id, parent_storefront_fs_directory_oid, storefront_fs_file_oid, options) {
-            return (0, exports.StorefrontApiFp)(configuration).deleteAdminPanelFsFile(id, parent_storefront_fs_directory_oid, storefront_fs_file_oid, options)(fetch, basePath);
         },
         /**
          *
@@ -31526,6 +31678,18 @@ var StorefrontApiFactory = function (configuration, fetch, basePath) {
             return (0, exports.StorefrontApiFp)(configuration).deleteExperiment(storefront_oid, storefront_experiment_oid, options)(fetch, basePath);
         },
         /**
+         *
+         * @summary Delete file manager directory
+         * @param {number} id
+         * @param {number} [parent_storefront_fs_directory_oid]
+         * @param {number} [storefront_fs_file_oid]
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        deleteFsFile: function (id, parent_storefront_fs_directory_oid, storefront_fs_file_oid, options) {
+            return (0, exports.StorefrontApiFp)(configuration).deleteFsFile(id, parent_storefront_fs_directory_oid, storefront_fs_file_oid, options)(fetch, basePath);
+        },
+        /**
          * Delete screen recording heatmap
          * @summary Delete screen recording heatmap
          * @param {number} storefront_oid
@@ -31608,19 +31772,6 @@ var StorefrontApiFactory = function (configuration, fetch, basePath) {
          */
         geocodeAddress: function (storefront_oid, geocode_request, options) {
             return (0, exports.StorefrontApiFp)(configuration).geocodeAddress(storefront_oid, geocode_request, options)(fetch, basePath);
-        },
-        /**
-         *
-         * @summary Get file manager directory for admin panel
-         * @param {number} id
-         * @param {string} [path]
-         * @param {number} [storefront_fs_directory_oid]
-         * @param {number} [storefront_theme_oid]
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        getAdminPanelFsDirectory: function (id, path, storefront_fs_directory_oid, storefront_theme_oid, options) {
-            return (0, exports.StorefrontApiFp)(configuration).getAdminPanelFsDirectory(id, path, storefront_fs_directory_oid, storefront_theme_oid, options)(fetch, basePath);
         },
         /**
          * Obtain a list of all the countries
@@ -32257,6 +32408,19 @@ var StorefrontApiFactory = function (configuration, fetch, basePath) {
             return (0, exports.StorefrontApiFp)(configuration).getExperiments(storefront_oid, options)(fetch, basePath);
         },
         /**
+         *
+         * @summary Get file manager directory
+         * @param {number} id
+         * @param {string} [path]
+         * @param {number} [storefront_fs_directory_oid]
+         * @param {number} [storefront_theme_oid]
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getFsDirectory: function (id, path, storefront_fs_directory_oid, storefront_theme_oid, options) {
+            return (0, exports.StorefrontApiFp)(configuration).getFsDirectory(id, path, storefront_fs_directory_oid, storefront_theme_oid, options)(fetch, basePath);
+        },
+        /**
          * Get screen recording heatmap
          * @summary Get screen recording heatmap
          * @param {number} storefront_oid
@@ -32505,6 +32669,17 @@ var StorefrontApiFactory = function (configuration, fetch, basePath) {
          */
         getTwilioAccounts: function (options) {
             return (0, exports.StorefrontApiFp)(configuration).getTwilioAccounts(options)(fetch, basePath);
+        },
+        /**
+         *
+         * @summary Retrieves a S3 url where a file may be uploaded. Once uploaded, use uploadFsFile to trigger the server into reading the S3 bucket and retrieving the file.
+         * @param {number} id
+         * @param {string} extension
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getUploadFsFileUrl: function (id, extension, options) {
+            return (0, exports.StorefrontApiFp)(configuration).getUploadFsFileUrl(id, extension, options)(fetch, basePath);
         },
         /**
          *
@@ -33157,6 +33332,17 @@ var StorefrontApiFactory = function (configuration, fetch, basePath) {
         },
         /**
          *
+         * @summary This is the last step in uploading a file after 1) calling getUploadFsFileUrl and 2) uploading a file to the provided url, then finally 3) calling this method and providing the key to trigger the server into reading the S3 bucket and retrieving the file.
+         * @param {number} id
+         * @param {FileManagerUploadRequest} upload_request UploadRequest
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        uploadFsFile: function (id, upload_request, options) {
+            return (0, exports.StorefrontApiFp)(configuration).uploadFsFile(id, upload_request, options)(fetch, basePath);
+        },
+        /**
+         *
          * @summary Validate AWS Event Ruler
          * @param {RulerValidationRequest} ruler_validate_request Ruler Validate Request
          * @param {*} [options] Override http request option.
@@ -33279,31 +33465,6 @@ var StorefrontApi = /** @class */ (function (_super) {
     };
     /**
      *
-     * @summary Create file manager directory for admin panel
-     * @param {number} id
-     * @param {string} [name]
-     * @param {number} [parent_storefront_fs_directory_oid]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof StorefrontApi
-     */
-    StorefrontApi.prototype.createAdminPanelFsDirectory = function (id, name, parent_storefront_fs_directory_oid, options) {
-        return (0, exports.StorefrontApiFp)(this.configuration).createAdminPanelFsDirectory(id, name, parent_storefront_fs_directory_oid, options)(this.fetch, this.basePath);
-    };
-    /**
-     *
-     * @summary Upload file manager file for admin panel
-     * @param {number} id
-     * @param {number} [parent_storefront_fs_directory_oid]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof StorefrontApi
-     */
-    StorefrontApi.prototype.createAdminPanelFsFileUpload = function (id, parent_storefront_fs_directory_oid, options) {
-        return (0, exports.StorefrontApiFp)(this.configuration).createAdminPanelFsFileUpload(id, parent_storefront_fs_directory_oid, options)(this.fetch, this.basePath);
-    };
-    /**
-     *
      * @summary Create email campaign
      * @param {string} domain
      * @param {*} [options] Override http request option.
@@ -33326,6 +33487,19 @@ var StorefrontApi = /** @class */ (function (_super) {
     };
     /**
      *
+     * @summary Create file manager directory
+     * @param {number} id
+     * @param {string} [name]
+     * @param {number} [parent_storefront_fs_directory_oid]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof StorefrontApi
+     */
+    StorefrontApi.prototype.createFsDirectory = function (id, name, parent_storefront_fs_directory_oid, options) {
+        return (0, exports.StorefrontApiFp)(this.configuration).createFsDirectory(id, name, parent_storefront_fs_directory_oid, options)(this.fetch, this.basePath);
+    };
+    /**
+     *
      * @summary Create Twilio account
      * @param {Twilio} twilio Twilio
      * @param {*} [options] Override http request option.
@@ -33334,19 +33508,6 @@ var StorefrontApi = /** @class */ (function (_super) {
      */
     StorefrontApi.prototype.createTwilioAccount = function (twilio, options) {
         return (0, exports.StorefrontApiFp)(this.configuration).createTwilioAccount(twilio, options)(this.fetch, this.basePath);
-    };
-    /**
-     *
-     * @summary Delete file manager directory for admin panel
-     * @param {number} id
-     * @param {number} [parent_storefront_fs_directory_oid]
-     * @param {number} [storefront_fs_file_oid]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof StorefrontApi
-     */
-    StorefrontApi.prototype.deleteAdminPanelFsFile = function (id, parent_storefront_fs_directory_oid, storefront_fs_file_oid, options) {
-        return (0, exports.StorefrontApiFp)(this.configuration).deleteAdminPanelFsFile(id, parent_storefront_fs_directory_oid, storefront_fs_file_oid, options)(this.fetch, this.basePath);
     };
     /**
      *
@@ -33457,6 +33618,19 @@ var StorefrontApi = /** @class */ (function (_super) {
         return (0, exports.StorefrontApiFp)(this.configuration).deleteExperiment(storefront_oid, storefront_experiment_oid, options)(this.fetch, this.basePath);
     };
     /**
+     *
+     * @summary Delete file manager directory
+     * @param {number} id
+     * @param {number} [parent_storefront_fs_directory_oid]
+     * @param {number} [storefront_fs_file_oid]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof StorefrontApi
+     */
+    StorefrontApi.prototype.deleteFsFile = function (id, parent_storefront_fs_directory_oid, storefront_fs_file_oid, options) {
+        return (0, exports.StorefrontApiFp)(this.configuration).deleteFsFile(id, parent_storefront_fs_directory_oid, storefront_fs_file_oid, options)(this.fetch, this.basePath);
+    };
+    /**
      * Delete screen recording heatmap
      * @summary Delete screen recording heatmap
      * @param {number} storefront_oid
@@ -33547,20 +33721,6 @@ var StorefrontApi = /** @class */ (function (_super) {
      */
     StorefrontApi.prototype.geocodeAddress = function (storefront_oid, geocode_request, options) {
         return (0, exports.StorefrontApiFp)(this.configuration).geocodeAddress(storefront_oid, geocode_request, options)(this.fetch, this.basePath);
-    };
-    /**
-     *
-     * @summary Get file manager directory for admin panel
-     * @param {number} id
-     * @param {string} [path]
-     * @param {number} [storefront_fs_directory_oid]
-     * @param {number} [storefront_theme_oid]
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof StorefrontApi
-     */
-    StorefrontApi.prototype.getAdminPanelFsDirectory = function (id, path, storefront_fs_directory_oid, storefront_theme_oid, options) {
-        return (0, exports.StorefrontApiFp)(this.configuration).getAdminPanelFsDirectory(id, path, storefront_fs_directory_oid, storefront_theme_oid, options)(this.fetch, this.basePath);
     };
     /**
      * Obtain a list of all the countries
@@ -34255,6 +34415,20 @@ var StorefrontApi = /** @class */ (function (_super) {
         return (0, exports.StorefrontApiFp)(this.configuration).getExperiments(storefront_oid, options)(this.fetch, this.basePath);
     };
     /**
+     *
+     * @summary Get file manager directory
+     * @param {number} id
+     * @param {string} [path]
+     * @param {number} [storefront_fs_directory_oid]
+     * @param {number} [storefront_theme_oid]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof StorefrontApi
+     */
+    StorefrontApi.prototype.getFsDirectory = function (id, path, storefront_fs_directory_oid, storefront_theme_oid, options) {
+        return (0, exports.StorefrontApiFp)(this.configuration).getFsDirectory(id, path, storefront_fs_directory_oid, storefront_theme_oid, options)(this.fetch, this.basePath);
+    };
+    /**
      * Get screen recording heatmap
      * @summary Get screen recording heatmap
      * @param {number} storefront_oid
@@ -34526,6 +34700,18 @@ var StorefrontApi = /** @class */ (function (_super) {
      */
     StorefrontApi.prototype.getTwilioAccounts = function (options) {
         return (0, exports.StorefrontApiFp)(this.configuration).getTwilioAccounts(options)(this.fetch, this.basePath);
+    };
+    /**
+     *
+     * @summary Retrieves a S3 url where a file may be uploaded. Once uploaded, use uploadFsFile to trigger the server into reading the S3 bucket and retrieving the file.
+     * @param {number} id
+     * @param {string} extension
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof StorefrontApi
+     */
+    StorefrontApi.prototype.getUploadFsFileUrl = function (id, extension, options) {
+        return (0, exports.StorefrontApiFp)(this.configuration).getUploadFsFileUrl(id, extension, options)(this.fetch, this.basePath);
     };
     /**
      *
@@ -35231,6 +35417,18 @@ var StorefrontApi = /** @class */ (function (_super) {
      */
     StorefrontApi.prototype.updateTwilioAccount = function (esp_twilio_uuid, twilio, options) {
         return (0, exports.StorefrontApiFp)(this.configuration).updateTwilioAccount(esp_twilio_uuid, twilio, options)(this.fetch, this.basePath);
+    };
+    /**
+     *
+     * @summary This is the last step in uploading a file after 1) calling getUploadFsFileUrl and 2) uploading a file to the provided url, then finally 3) calling this method and providing the key to trigger the server into reading the S3 bucket and retrieving the file.
+     * @param {number} id
+     * @param {FileManagerUploadRequest} upload_request UploadRequest
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof StorefrontApi
+     */
+    StorefrontApi.prototype.uploadFsFile = function (id, upload_request, options) {
+        return (0, exports.StorefrontApiFp)(this.configuration).uploadFsFile(id, upload_request, options)(this.fetch, this.basePath);
     };
     /**
      *
