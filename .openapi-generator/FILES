@@ -387,6 +387,7 @@ src/models/ExperimentsResponse.ts
 src/models/FileManagerDirectory.ts
 src/models/FileManagerFile.ts
 src/models/FileManagerPage.ts
+src/models/FileManagerPageResponse.ts
 src/models/FileManagerUploadRequest.ts
 src/models/FileManagerUploadUrlResponse.ts
 src/models/FulfillmentInventory.ts

@@ -303,9 +303,9 @@ import {
     ExperimentsResponse,
     ExperimentsResponseFromJSON,
     ExperimentsResponseToJSON,
-    FileManagerPage,
-    FileManagerPageFromJSON,
-    FileManagerPageToJSON,
+    FileManagerPageResponse,
+    FileManagerPageResponseFromJSON,
+    FileManagerPageResponseToJSON,
     FileManagerUploadRequest,
     FileManagerUploadRequestFromJSON,
     FileManagerUploadRequestToJSON,
@@ -1475,12 +1475,12 @@ export interface StorefrontApiInterface {
      * @throws {RequiredError}
      * @memberof StorefrontApiInterface
      */
-    createFsDirectoryRaw(requestParameters: CreateFsDirectoryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<FileManagerPage>>;
+    createFsDirectoryRaw(requestParameters: CreateFsDirectoryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<FileManagerPageResponse>>;
 
     /**
      * Create file manager directory
      */
-    createFsDirectory(requestParameters: CreateFsDirectoryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<FileManagerPage>;
+    createFsDirectory(requestParameters: CreateFsDirectoryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<FileManagerPageResponse>;
 
     /**
      * 
@@ -1651,12 +1651,12 @@ export interface StorefrontApiInterface {
      * @throws {RequiredError}
      * @memberof StorefrontApiInterface
      */
-    deleteFsFileRaw(requestParameters: DeleteFsFileRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<FileManagerPage>>;
+    deleteFsFileRaw(requestParameters: DeleteFsFileRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<FileManagerPageResponse>>;
 
     /**
      * Delete file manager directory
      */
-    deleteFsFile(requestParameters: DeleteFsFileRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<FileManagerPage>;
+    deleteFsFile(requestParameters: DeleteFsFileRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<FileManagerPageResponse>;
 
     /**
      * Delete screen recording heatmap 
@@ -2721,12 +2721,12 @@ export interface StorefrontApiInterface {
      * @throws {RequiredError}
      * @memberof StorefrontApiInterface
      */
-    getFsDirectoryRaw(requestParameters: GetFsDirectoryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<FileManagerPage>>;
+    getFsDirectoryRaw(requestParameters: GetFsDirectoryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<FileManagerPageResponse>>;
 
     /**
      * Get file manager directory
      */
-    getFsDirectory(requestParameters: GetFsDirectoryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<FileManagerPage>;
+    getFsDirectory(requestParameters: GetFsDirectoryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<FileManagerPageResponse>;
 
     /**
      * Get screen recording heatmap 
@@ -4581,7 +4581,7 @@ export class StorefrontApi extends runtime.BaseAPI implements StorefrontApiInter
     /**
      * Create file manager directory
      */
-    async createFsDirectoryRaw(requestParameters: CreateFsDirectoryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<FileManagerPage>> {
+    async createFsDirectoryRaw(requestParameters: CreateFsDirectoryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<FileManagerPageResponse>> {
         if (requestParameters.id === null || requestParameters.id === undefined) {
             throw new runtime.RequiredError('id','Required parameter requestParameters.id was null or undefined when calling createFsDirectory.');
         }
@@ -4618,13 +4618,13 @@ export class StorefrontApi extends runtime.BaseAPI implements StorefrontApiInter
             query: queryParameters,
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => FileManagerPageFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => FileManagerPageResponseFromJSON(jsonValue));
     }
 
     /**
      * Create file manager directory
      */
-    async createFsDirectory(requestParameters: CreateFsDirectoryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<FileManagerPage> {
+    async createFsDirectory(requestParameters: CreateFsDirectoryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<FileManagerPageResponse> {
         const response = await this.createFsDirectoryRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -5099,7 +5099,7 @@ export class StorefrontApi extends runtime.BaseAPI implements StorefrontApiInter
     /**
      * Delete file manager directory
      */
-    async deleteFsFileRaw(requestParameters: DeleteFsFileRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<FileManagerPage>> {
+    async deleteFsFileRaw(requestParameters: DeleteFsFileRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<FileManagerPageResponse>> {
         if (requestParameters.id === null || requestParameters.id === undefined) {
             throw new runtime.RequiredError('id','Required parameter requestParameters.id was null or undefined when calling deleteFsFile.');
         }
@@ -5136,13 +5136,13 @@ export class StorefrontApi extends runtime.BaseAPI implements StorefrontApiInter
             query: queryParameters,
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => FileManagerPageFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => FileManagerPageResponseFromJSON(jsonValue));
     }
 
     /**
      * Delete file manager directory
      */
-    async deleteFsFile(requestParameters: DeleteFsFileRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<FileManagerPage> {
+    async deleteFsFile(requestParameters: DeleteFsFileRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<FileManagerPageResponse> {
         const response = await this.deleteFsFileRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -8239,7 +8239,7 @@ export class StorefrontApi extends runtime.BaseAPI implements StorefrontApiInter
     /**
      * Get file manager directory
      */
-    async getFsDirectoryRaw(requestParameters: GetFsDirectoryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<FileManagerPage>> {
+    async getFsDirectoryRaw(requestParameters: GetFsDirectoryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<FileManagerPageResponse>> {
         if (requestParameters.id === null || requestParameters.id === undefined) {
             throw new runtime.RequiredError('id','Required parameter requestParameters.id was null or undefined when calling getFsDirectory.');
         }
@@ -8280,13 +8280,13 @@ export class StorefrontApi extends runtime.BaseAPI implements StorefrontApiInter
             query: queryParameters,
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => FileManagerPageFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => FileManagerPageResponseFromJSON(jsonValue));
     }
 
     /**
      * Get file manager directory
      */
-    async getFsDirectory(requestParameters: GetFsDirectoryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<FileManagerPage> {
+    async getFsDirectory(requestParameters: GetFsDirectoryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<FileManagerPageResponse> {
         const response = await this.getFsDirectoryRaw(requestParameters, initOverrides);
         return await response.value();
     }

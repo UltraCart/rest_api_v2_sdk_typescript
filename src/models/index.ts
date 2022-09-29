@@ -364,6 +364,7 @@ export * from './ExperimentsResponse';
 export * from './FileManagerDirectory';
 export * from './FileManagerFile';
 export * from './FileManagerPage';
+export * from './FileManagerPageResponse';
 export * from './FileManagerUploadRequest';
 export * from './FileManagerUploadUrlResponse';
 export * from './FulfillmentInventory';
