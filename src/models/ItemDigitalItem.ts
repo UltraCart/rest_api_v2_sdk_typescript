@@ -51,6 +51,12 @@ export interface ItemDigitalItem {
      */
     digital_item_oid?: number;
     /**
+     * External Id useful for syncing with a remote filesystem, this may be an MD5 hash or whatever suits your needs.
+     * @type {string}
+     * @memberof ItemDigitalItem
+     */
+    external_id?: string;
+    /**
      * File size
      * @type {number}
      * @memberof ItemDigitalItem
@@ -96,6 +102,7 @@ export function ItemDigitalItemFromJSONTyped(json: any, ignoreDiscriminator: boo
         'creation_dts': !exists(json, 'creation_dts') ? undefined : json['creation_dts'],
         'description': !exists(json, 'description') ? undefined : json['description'],
         'digital_item_oid': !exists(json, 'digital_item_oid') ? undefined : json['digital_item_oid'],
+        'external_id': !exists(json, 'external_id') ? undefined : json['external_id'],
         'file_size': !exists(json, 'file_size') ? undefined : json['file_size'],
         'import_from_url': !exists(json, 'import_from_url') ? undefined : json['import_from_url'],
         'mime_type': !exists(json, 'mime_type') ? undefined : json['mime_type'],
@@ -117,6 +124,7 @@ export function ItemDigitalItemToJSON(value?: ItemDigitalItem | null): any {
         'creation_dts': value.creation_dts,
         'description': value.description,
         'digital_item_oid': value.digital_item_oid,
+        'external_id': value.external_id,
         'file_size': value.file_size,
         'import_from_url': value.import_from_url,
         'mime_type': value.mime_type,

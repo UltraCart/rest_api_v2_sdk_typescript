@@ -68,6 +68,10 @@ export interface GetDigitalItemsRequest {
     placeholders?: boolean;
 }
 
+export interface GetDigitalItemsByExternalIdRequest {
+    externalId: string;
+}
+
 export interface GetItemRequest {
     merchantItemOid: number;
     expand?: string;
@@ -212,6 +216,22 @@ export interface ItemApiInterface {
      * Retrieve digital items from the digital library which are digital files that may be attached to normal items
      */
     getDigitalItems(requestParameters: GetDigitalItemsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ItemDigitalItemsResponse>;
+
+    /**
+     * Retrieves digital items from the digital library (which are digital files that may be attached to normal items) that having a matching external id.  Be aware that these are not normal items that can be added to a shopping cart. Rather, they are digital files that may be associated with normal items. 
+     * @summary Retrieves digital items from the digital library (which are digital files that may be attached to normal items) that having a matching external id
+     * @param {string} externalId The external id to match against.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ItemApiInterface
+     */
+    getDigitalItemsByExternalIdRaw(requestParameters: GetDigitalItemsByExternalIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ItemDigitalItemsResponse>>;
+
+    /**
+     * Retrieves digital items from the digital library (which are digital files that may be attached to normal items) that having a matching external id.  Be aware that these are not normal items that can be added to a shopping cart. Rather, they are digital files that may be associated with normal items. 
+     * Retrieves digital items from the digital library (which are digital files that may be attached to normal items) that having a matching external id
+     */
+    getDigitalItemsByExternalId(requestParameters: GetDigitalItemsByExternalIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ItemDigitalItemsResponse>;
 
     /**
      * Retrieves a single item using the specified item oid. 
@@ -600,6 +620,47 @@ export class ItemApi extends runtime.BaseAPI implements ItemApiInterface {
      */
     async getDigitalItems(requestParameters: GetDigitalItemsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ItemDigitalItemsResponse> {
         const response = await this.getDigitalItemsRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Retrieves digital items from the digital library (which are digital files that may be attached to normal items) that having a matching external id.  Be aware that these are not normal items that can be added to a shopping cart. Rather, they are digital files that may be associated with normal items. 
+     * Retrieves digital items from the digital library (which are digital files that may be attached to normal items) that having a matching external id
+     */
+    async getDigitalItemsByExternalIdRaw(requestParameters: GetDigitalItemsByExternalIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ItemDigitalItemsResponse>> {
+        if (requestParameters.externalId === null || requestParameters.externalId === undefined) {
+            throw new runtime.RequiredError('externalId','Required parameter requestParameters.externalId was null or undefined when calling getDigitalItemsByExternalId.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", ["item_read"]);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/item/digital_library/by_external/{external_id}`.replace(`{${"external_id"}}`, encodeURIComponent(String(requestParameters.externalId))),
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => ItemDigitalItemsResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Retrieves digital items from the digital library (which are digital files that may be attached to normal items) that having a matching external id.  Be aware that these are not normal items that can be added to a shopping cart. Rather, they are digital files that may be associated with normal items. 
+     * Retrieves digital items from the digital library (which are digital files that may be attached to normal items) that having a matching external id
+     */
+    async getDigitalItemsByExternalId(requestParameters: GetDigitalItemsByExternalIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ItemDigitalItemsResponse> {
+        const response = await this.getDigitalItemsByExternalIdRaw(requestParameters, initOverrides);
         return await response.value();
     }
 

@@ -13,6 +13,19 @@
  */
 
 import { exists, mapValues } from '../runtime';
+import {
+    FileManagerDirectory,
+    FileManagerDirectoryFromJSON,
+    FileManagerDirectoryFromJSONTyped,
+    FileManagerDirectoryToJSON,
+} from './FileManagerDirectory';
+import {
+    FileManagerFile,
+    FileManagerFileFromJSON,
+    FileManagerFileFromJSONTyped,
+    FileManagerFileToJSON,
+} from './FileManagerFile';
+
 /**
  * 
  * @export
@@ -25,6 +38,18 @@ export interface FileManagerPage {
      * @memberof FileManagerPage
      */
     current_storefront_fs_directory_oid?: number;
+    /**
+     * 
+     * @type {Array<FileManagerDirectory>}
+     * @memberof FileManagerPage
+     */
+    directories?: Array<FileManagerDirectory>;
+    /**
+     * 
+     * @type {Array<FileManagerFile>}
+     * @memberof FileManagerPage
+     */
+    files?: Array<FileManagerFile>;
     /**
      * 
      * @type {string}
@@ -45,6 +70,12 @@ export interface FileManagerPage {
     path?: string;
     /**
      * 
+     * @type {Array<FileManagerDirectory>}
+     * @memberof FileManagerPage
+     */
+    path_list?: Array<FileManagerDirectory>;
+    /**
+     * 
      * @type {number}
      * @memberof FileManagerPage
      */
@@ -62,9 +93,12 @@ export function FileManagerPageFromJSONTyped(json: any, ignoreDiscriminator: boo
     return {
         
         'current_storefront_fs_directory_oid': !exists(json, 'current_storefront_fs_directory_oid') ? undefined : json['current_storefront_fs_directory_oid'],
+        'directories': !exists(json, 'directories') ? undefined : ((json['directories'] as Array<any>).map(FileManagerDirectoryFromJSON)),
+        'files': !exists(json, 'files') ? undefined : ((json['files'] as Array<any>).map(FileManagerFileFromJSON)),
         'hostname': !exists(json, 'hostname') ? undefined : json['hostname'],
         'parent_storefront_fs_directory_oid': !exists(json, 'parent_storefront_fs_directory_oid') ? undefined : json['parent_storefront_fs_directory_oid'],
         'path': !exists(json, 'path') ? undefined : json['path'],
+        'path_list': !exists(json, 'path_list') ? undefined : ((json['path_list'] as Array<any>).map(FileManagerDirectoryFromJSON)),
         'storefront_oid': !exists(json, 'storefront_oid') ? undefined : json['storefront_oid'],
     };
 }
@@ -79,9 +113,12 @@ export function FileManagerPageToJSON(value?: FileManagerPage | null): any {
     return {
         
         'current_storefront_fs_directory_oid': value.current_storefront_fs_directory_oid,
+        'directories': value.directories === undefined ? undefined : ((value.directories as Array<any>).map(FileManagerDirectoryToJSON)),
+        'files': value.files === undefined ? undefined : ((value.files as Array<any>).map(FileManagerFileToJSON)),
         'hostname': value.hostname,
         'parent_storefront_fs_directory_oid': value.parent_storefront_fs_directory_oid,
         'path': value.path,
+        'path_list': value.path_list === undefined ? undefined : ((value.path_list as Array<any>).map(FileManagerDirectoryToJSON)),
         'storefront_oid': value.storefront_oid,
     };
 }
