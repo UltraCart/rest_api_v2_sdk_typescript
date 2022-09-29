@@ -18160,6 +18160,43 @@ export interface FileManagerPage {
 /**
  *
  * @export
+ * @interface FileManagerPageResponse
+ */
+export interface FileManagerPageResponse {
+    /**
+     *
+     * @type {ModelError}
+     * @memberof FileManagerPageResponse
+     */
+    error?: ModelError;
+    /**
+     *
+     * @type {FileManagerPage}
+     * @memberof FileManagerPageResponse
+     */
+    file_manager_page?: FileManagerPage;
+    /**
+     *
+     * @type {ResponseMetadata}
+     * @memberof FileManagerPageResponse
+     */
+    metadata?: ResponseMetadata;
+    /**
+     * Indicates if API call was successful
+     * @type {boolean}
+     * @memberof FileManagerPageResponse
+     */
+    success?: boolean;
+    /**
+     *
+     * @type {Warning}
+     * @memberof FileManagerPageResponse
+     */
+    warning?: Warning;
+}
+/**
+ *
+ * @export
  * @interface FileManagerUploadRequest
  */
 export interface FileManagerUploadRequest {
@@ -44510,7 +44547,7 @@ export declare const StorefrontApiFp: (configuration?: Configuration) => {
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    createFsDirectory(id: number, name?: string, parent_storefront_fs_directory_oid?: number, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<FileManagerPage>;
+    createFsDirectory(id: number, name?: string, parent_storefront_fs_directory_oid?: number, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<FileManagerPageResponse>;
     /**
      *
      * @summary Create Twilio account
@@ -44609,7 +44646,7 @@ export declare const StorefrontApiFp: (configuration?: Configuration) => {
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    deleteFsFile(id: number, parent_storefront_fs_directory_oid?: number, storefront_fs_file_oid?: number, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<FileManagerPage>;
+    deleteFsFile(id: number, parent_storefront_fs_directory_oid?: number, storefront_fs_file_oid?: number, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<FileManagerPageResponse>;
     /**
      * Delete screen recording heatmap
      * @summary Delete screen recording heatmap
@@ -45206,7 +45243,7 @@ export declare const StorefrontApiFp: (configuration?: Configuration) => {
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getFsDirectory(id: number, path?: string, storefront_fs_directory_oid?: number, storefront_theme_oid?: number, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<FileManagerPage>;
+    getFsDirectory(id: number, path?: string, storefront_fs_directory_oid?: number, storefront_theme_oid?: number, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<FileManagerPageResponse>;
     /**
      * Get screen recording heatmap
      * @summary Get screen recording heatmap
@@ -46079,7 +46116,7 @@ export declare const StorefrontApiFactory: (configuration?: Configuration, fetch
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    createFsDirectory(id: number, name?: string, parent_storefront_fs_directory_oid?: number, options?: any): Promise<FileManagerPage>;
+    createFsDirectory(id: number, name?: string, parent_storefront_fs_directory_oid?: number, options?: any): Promise<FileManagerPageResponse>;
     /**
      *
      * @summary Create Twilio account
@@ -46178,7 +46215,7 @@ export declare const StorefrontApiFactory: (configuration?: Configuration, fetch
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    deleteFsFile(id: number, parent_storefront_fs_directory_oid?: number, storefront_fs_file_oid?: number, options?: any): Promise<FileManagerPage>;
+    deleteFsFile(id: number, parent_storefront_fs_directory_oid?: number, storefront_fs_file_oid?: number, options?: any): Promise<FileManagerPageResponse>;
     /**
      * Delete screen recording heatmap
      * @summary Delete screen recording heatmap
@@ -46775,7 +46812,7 @@ export declare const StorefrontApiFactory: (configuration?: Configuration, fetch
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getFsDirectory(id: number, path?: string, storefront_fs_directory_oid?: number, storefront_theme_oid?: number, options?: any): Promise<FileManagerPage>;
+    getFsDirectory(id: number, path?: string, storefront_fs_directory_oid?: number, storefront_theme_oid?: number, options?: any): Promise<FileManagerPageResponse>;
     /**
      * Get screen recording heatmap
      * @summary Get screen recording heatmap
@@ -47660,7 +47697,7 @@ export interface StorefrontApiInterface {
      * @throws {RequiredError}
      * @memberof StorefrontApiInterface
      */
-    createFsDirectory(id: number, name?: string, parent_storefront_fs_directory_oid?: number, options?: any): Promise<FileManagerPage>;
+    createFsDirectory(id: number, name?: string, parent_storefront_fs_directory_oid?: number, options?: any): Promise<FileManagerPageResponse>;
     /**
      *
      * @summary Create Twilio account
@@ -47770,7 +47807,7 @@ export interface StorefrontApiInterface {
      * @throws {RequiredError}
      * @memberof StorefrontApiInterface
      */
-    deleteFsFile(id: number, parent_storefront_fs_directory_oid?: number, storefront_fs_file_oid?: number, options?: any): Promise<FileManagerPage>;
+    deleteFsFile(id: number, parent_storefront_fs_directory_oid?: number, storefront_fs_file_oid?: number, options?: any): Promise<FileManagerPageResponse>;
     /**
      * Delete screen recording heatmap
      * @summary Delete screen recording heatmap
@@ -48434,7 +48471,7 @@ export interface StorefrontApiInterface {
      * @throws {RequiredError}
      * @memberof StorefrontApiInterface
      */
-    getFsDirectory(id: number, path?: string, storefront_fs_directory_oid?: number, storefront_theme_oid?: number, options?: any): Promise<FileManagerPage>;
+    getFsDirectory(id: number, path?: string, storefront_fs_directory_oid?: number, storefront_theme_oid?: number, options?: any): Promise<FileManagerPageResponse>;
     /**
      * Get screen recording heatmap
      * @summary Get screen recording heatmap
@@ -49402,7 +49439,7 @@ export declare class StorefrontApi extends BaseAPI implements StorefrontApiInter
      * @throws {RequiredError}
      * @memberof StorefrontApi
      */
-    createFsDirectory(id: number, name?: string, parent_storefront_fs_directory_oid?: number, options?: any): Promise<FileManagerPage>;
+    createFsDirectory(id: number, name?: string, parent_storefront_fs_directory_oid?: number, options?: any): Promise<FileManagerPageResponse>;
     /**
      *
      * @summary Create Twilio account
@@ -49512,7 +49549,7 @@ export declare class StorefrontApi extends BaseAPI implements StorefrontApiInter
      * @throws {RequiredError}
      * @memberof StorefrontApi
      */
-    deleteFsFile(id: number, parent_storefront_fs_directory_oid?: number, storefront_fs_file_oid?: number, options?: any): Promise<FileManagerPage>;
+    deleteFsFile(id: number, parent_storefront_fs_directory_oid?: number, storefront_fs_file_oid?: number, options?: any): Promise<FileManagerPageResponse>;
     /**
      * Delete screen recording heatmap
      * @summary Delete screen recording heatmap
@@ -50176,7 +50213,7 @@ export declare class StorefrontApi extends BaseAPI implements StorefrontApiInter
      * @throws {RequiredError}
      * @memberof StorefrontApi
      */
-    getFsDirectory(id: number, path?: string, storefront_fs_directory_oid?: number, storefront_theme_oid?: number, options?: any): Promise<FileManagerPage>;
+    getFsDirectory(id: number, path?: string, storefront_fs_directory_oid?: number, storefront_theme_oid?: number, options?: any): Promise<FileManagerPageResponse>;
     /**
      * Get screen recording heatmap
      * @summary Get screen recording heatmap

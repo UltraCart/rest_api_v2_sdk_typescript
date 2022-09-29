@@ -18565,6 +18565,44 @@ export interface FileManagerPage {
 /**
  * 
  * @export
+ * @interface FileManagerPageResponse
+ */
+export interface FileManagerPageResponse {
+    /**
+     * 
+     * @type {ModelError}
+     * @memberof FileManagerPageResponse
+     */
+    error?: ModelError;
+    /**
+     * 
+     * @type {FileManagerPage}
+     * @memberof FileManagerPageResponse
+     */
+    file_manager_page?: FileManagerPage;
+    /**
+     * 
+     * @type {ResponseMetadata}
+     * @memberof FileManagerPageResponse
+     */
+    metadata?: ResponseMetadata;
+    /**
+     * Indicates if API call was successful
+     * @type {boolean}
+     * @memberof FileManagerPageResponse
+     */
+    success?: boolean;
+    /**
+     * 
+     * @type {Warning}
+     * @memberof FileManagerPageResponse
+     */
+    warning?: Warning;
+}
+
+/**
+ * 
+ * @export
  * @interface FileManagerUploadRequest
  */
 export interface FileManagerUploadRequest {
@@ -66417,7 +66455,7 @@ export const StorefrontApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        createFsDirectory(id: number, name?: string, parent_storefront_fs_directory_oid?: number, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<FileManagerPage> {
+        createFsDirectory(id: number, name?: string, parent_storefront_fs_directory_oid?: number, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<FileManagerPageResponse> {
             const localVarFetchArgs = StorefrontApiFetchParamCreator(configuration).createFsDirectory(id, name, parent_storefront_fs_directory_oid, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
@@ -66659,7 +66697,7 @@ export const StorefrontApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        deleteFsFile(id: number, parent_storefront_fs_directory_oid?: number, storefront_fs_file_oid?: number, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<FileManagerPage> {
+        deleteFsFile(id: number, parent_storefront_fs_directory_oid?: number, storefront_fs_file_oid?: number, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<FileManagerPageResponse> {
             const localVarFetchArgs = StorefrontApiFetchParamCreator(configuration).deleteFsFile(id, parent_storefront_fs_directory_oid, storefront_fs_file_oid, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
@@ -68127,7 +68165,7 @@ export const StorefrontApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getFsDirectory(id: number, path?: string, storefront_fs_directory_oid?: number, storefront_theme_oid?: number, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<FileManagerPage> {
+        getFsDirectory(id: number, path?: string, storefront_fs_directory_oid?: number, storefront_theme_oid?: number, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<FileManagerPageResponse> {
             const localVarFetchArgs = StorefrontApiFetchParamCreator(configuration).getFsDirectory(id, path, storefront_fs_directory_oid, storefront_theme_oid, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
@@ -72017,7 +72055,7 @@ export interface StorefrontApiInterface {
      * @throws {RequiredError}
      * @memberof StorefrontApiInterface
      */
-    createFsDirectory(id: number, name?: string, parent_storefront_fs_directory_oid?: number, options?: any): Promise<FileManagerPage>;
+    createFsDirectory(id: number, name?: string, parent_storefront_fs_directory_oid?: number, options?: any): Promise<FileManagerPageResponse>;
 
     /**
      * 
@@ -72138,7 +72176,7 @@ export interface StorefrontApiInterface {
      * @throws {RequiredError}
      * @memberof StorefrontApiInterface
      */
-    deleteFsFile(id: number, parent_storefront_fs_directory_oid?: number, storefront_fs_file_oid?: number, options?: any): Promise<FileManagerPage>;
+    deleteFsFile(id: number, parent_storefront_fs_directory_oid?: number, storefront_fs_file_oid?: number, options?: any): Promise<FileManagerPageResponse>;
 
     /**
      * Delete screen recording heatmap 
@@ -72869,7 +72907,7 @@ export interface StorefrontApiInterface {
      * @throws {RequiredError}
      * @memberof StorefrontApiInterface
      */
-    getFsDirectory(id: number, path?: string, storefront_fs_directory_oid?: number, storefront_theme_oid?: number, options?: any): Promise<FileManagerPage>;
+    getFsDirectory(id: number, path?: string, storefront_fs_directory_oid?: number, storefront_theme_oid?: number, options?: any): Promise<FileManagerPageResponse>;
 
     /**
      * Get screen recording heatmap 
