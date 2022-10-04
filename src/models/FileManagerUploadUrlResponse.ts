@@ -64,6 +64,12 @@ export interface FileManagerUploadUrlResponse {
     success?: boolean;
     /**
      * 
+     * @type {string}
+     * @memberof FileManagerUploadUrlResponse
+     */
+    url?: string;
+    /**
+     * 
      * @type {Warning}
      * @memberof FileManagerUploadUrlResponse
      */
@@ -84,6 +90,7 @@ export function FileManagerUploadUrlResponseFromJSONTyped(json: any, ignoreDiscr
         'key': !exists(json, 'key') ? undefined : json['key'],
         'metadata': !exists(json, 'metadata') ? undefined : ResponseMetadataFromJSON(json['metadata']),
         'success': !exists(json, 'success') ? undefined : json['success'],
+        'url': !exists(json, 'url') ? undefined : json['url'],
         'warning': !exists(json, 'warning') ? undefined : WarningFromJSON(json['warning']),
     };
 }
@@ -101,6 +108,7 @@ export function FileManagerUploadUrlResponseToJSON(value?: FileManagerUploadUrlR
         'key': value.key,
         'metadata': ResponseMetadataToJSON(value.metadata),
         'success': value.success,
+        'url': value.url,
         'warning': WarningToJSON(value.warning),
     };
 }

@@ -38,6 +38,18 @@ export interface CartBilling {
      */
     cc_emails?: Array<string>;
     /**
+     * Cell phone
+     * @type {string}
+     * @memberof CartBilling
+     */
+    cell_phone?: string;
+    /**
+     * Cell phone (E164 format)
+     * @type {string}
+     * @memberof CartBilling
+     */
+    cell_phone_e164?: string;
+    /**
      * City
      * @type {string}
      * @memberof CartBilling
@@ -124,6 +136,8 @@ export function CartBillingFromJSONTyped(json: any, ignoreDiscriminator: boolean
         'address1': !exists(json, 'address1') ? undefined : json['address1'],
         'address2': !exists(json, 'address2') ? undefined : json['address2'],
         'cc_emails': !exists(json, 'cc_emails') ? undefined : json['cc_emails'],
+        'cell_phone': !exists(json, 'cell_phone') ? undefined : json['cell_phone'],
+        'cell_phone_e164': !exists(json, 'cell_phone_e164') ? undefined : json['cell_phone_e164'],
         'city': !exists(json, 'city') ? undefined : json['city'],
         'company': !exists(json, 'company') ? undefined : json['company'],
         'country_code': !exists(json, 'country_code') ? undefined : json['country_code'],
@@ -151,6 +165,8 @@ export function CartBillingToJSON(value?: CartBilling | null): any {
         'address1': value.address1,
         'address2': value.address2,
         'cc_emails': value.cc_emails,
+        'cell_phone': value.cell_phone,
+        'cell_phone_e164': value.cell_phone_e164,
         'city': value.city,
         'company': value.company,
         'country_code': value.country_code,

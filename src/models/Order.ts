@@ -391,7 +391,8 @@ export const OrderCurrentStageEnum = {
     QuoteSent: 'Quote Sent',
     LeastCostRouting: 'Least Cost Routing',
     Unknown: 'Unknown',
-    PreOrdered: 'Pre-ordered'
+    PreOrdered: 'Pre-ordered',
+    AdvancedOrderRouting: 'Advanced Order Routing'
 } as const;
 export type OrderCurrentStageEnum = typeof OrderCurrentStageEnum[keyof typeof OrderCurrentStageEnum];
 
