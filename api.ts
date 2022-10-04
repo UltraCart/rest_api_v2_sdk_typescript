@@ -2469,6 +2469,18 @@ export interface CartBilling {
      */
     cc_emails?: Array<string>;
     /**
+     * Cell phone
+     * @type {string}
+     * @memberof CartBilling
+     */
+    cell_phone?: string;
+    /**
+     * Cell phone (E164 format)
+     * @type {string}
+     * @memberof CartBilling
+     */
+    cell_phone_e164?: string;
+    /**
      * City
      * @type {string}
      * @memberof CartBilling
@@ -18658,6 +18670,12 @@ export interface FileManagerUploadUrlResponse {
     success?: boolean;
     /**
      * 
+     * @type {string}
+     * @memberof FileManagerUploadUrlResponse
+     */
+    url?: string;
+    /**
+     * 
      * @type {Warning}
      * @memberof FileManagerUploadUrlResponse
      */
@@ -25927,7 +25945,8 @@ export namespace Order {
         QuoteSent = <any> 'Quote Sent',
         LeastCostRouting = <any> 'Least Cost Routing',
         Unknown = <any> 'Unknown',
-        PreOrdered = <any> 'Pre-ordered'
+        PreOrdered = <any> 'Pre-ordered',
+        AdvancedOrderRouting = <any> 'Advanced Order Routing'
     }
 }
 
