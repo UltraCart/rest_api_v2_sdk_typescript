@@ -122,6 +122,24 @@ export interface FileManagerFile {
      */
     storefront_oid?: number;
     /**
+     * CDN thumbnail 16x16 size
+     * @type {string}
+     * @memberof FileManagerFile
+     */
+    thumbnail_16_url?: string;
+    /**
+     * CDN thumbnail 32x32 size
+     * @type {string}
+     * @memberof FileManagerFile
+     */
+    thumbnail_32_url?: string;
+    /**
+     * CDN thumbnail 64x64 size
+     * @type {string}
+     * @memberof FileManagerFile
+     */
+    thumbnail_64_url?: string;
+    /**
      * 
      * @type {string}
      * @memberof FileManagerFile
@@ -162,6 +180,9 @@ export function FileManagerFileFromJSONTyped(json: any, ignoreDiscriminator: boo
         'storefront_fs_directory_oid': !exists(json, 'storefront_fs_directory_oid') ? undefined : json['storefront_fs_directory_oid'],
         'storefront_fs_file_oid': !exists(json, 'storefront_fs_file_oid') ? undefined : json['storefront_fs_file_oid'],
         'storefront_oid': !exists(json, 'storefront_oid') ? undefined : json['storefront_oid'],
+        'thumbnail_16_url': !exists(json, 'thumbnail_16_url') ? undefined : json['thumbnail_16_url'],
+        'thumbnail_32_url': !exists(json, 'thumbnail_32_url') ? undefined : json['thumbnail_32_url'],
+        'thumbnail_64_url': !exists(json, 'thumbnail_64_url') ? undefined : json['thumbnail_64_url'],
         'type': !exists(json, 'type') ? undefined : json['type'],
         'valid_velocity': !exists(json, 'valid_velocity') ? undefined : json['valid_velocity'],
     };
@@ -193,6 +214,9 @@ export function FileManagerFileToJSON(value?: FileManagerFile | null): any {
         'storefront_fs_directory_oid': value.storefront_fs_directory_oid,
         'storefront_fs_file_oid': value.storefront_fs_file_oid,
         'storefront_oid': value.storefront_oid,
+        'thumbnail_16_url': value.thumbnail_16_url,
+        'thumbnail_32_url': value.thumbnail_32_url,
+        'thumbnail_64_url': value.thumbnail_64_url,
         'type': value.type,
         'valid_velocity': value.valid_velocity,
     };
