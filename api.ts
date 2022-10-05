@@ -18505,6 +18505,24 @@ export interface FileManagerFile {
      */
     storefront_oid?: number;
     /**
+     * CDN thumbnail 16x16 size
+     * @type {string}
+     * @memberof FileManagerFile
+     */
+    thumbnail_16_url?: string;
+    /**
+     * CDN thumbnail 32x32 size
+     * @type {string}
+     * @memberof FileManagerFile
+     */
+    thumbnail_32_url?: string;
+    /**
+     * CDN thumbnail 64x64 size
+     * @type {string}
+     * @memberof FileManagerFile
+     */
+    thumbnail_64_url?: string;
+    /**
      * 
      * @type {string}
      * @memberof FileManagerFile
