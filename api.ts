@@ -9977,6 +9977,12 @@ export interface Customer {
      */
     maximum_item_count?: number;
     /**
+     * Merchant ID
+     * @type {string}
+     * @memberof Customer
+     */
+    merchant_id?: string;
+    /**
      * Minimum item count
      * @type {number}
      * @memberof Customer
@@ -21332,7 +21338,7 @@ export interface ItemDigitalItemsResponse {
      * @type {Array<ItemDigitalItem>}
      * @memberof ItemDigitalItemsResponse
      */
-    digitalItems?: Array<ItemDigitalItem>;
+    digital_items?: Array<ItemDigitalItem>;
     /**
      * 
      * @type {ModelError}
