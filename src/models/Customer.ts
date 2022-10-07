@@ -285,6 +285,12 @@ export interface Customer {
      */
     maximum_item_count?: number;
     /**
+     * Merchant ID
+     * @type {string}
+     * @memberof Customer
+     */
+    merchant_id?: string;
+    /**
      * Minimum item count
      * @type {number}
      * @memberof Customer
@@ -510,6 +516,7 @@ export function CustomerFromJSONTyped(json: any, ignoreDiscriminator: boolean): 
         'last_modified_dts': !exists(json, 'last_modified_dts') ? undefined : json['last_modified_dts'],
         'loyalty': !exists(json, 'loyalty') ? undefined : CustomerLoyaltyFromJSON(json['loyalty']),
         'maximum_item_count': !exists(json, 'maximum_item_count') ? undefined : json['maximum_item_count'],
+        'merchant_id': !exists(json, 'merchant_id') ? undefined : json['merchant_id'],
         'minimum_item_count': !exists(json, 'minimum_item_count') ? undefined : json['minimum_item_count'],
         'minimum_subtotal': !exists(json, 'minimum_subtotal') ? undefined : json['minimum_subtotal'],
         'no_coupons': !exists(json, 'no_coupons') ? undefined : json['no_coupons'],
@@ -581,6 +588,7 @@ export function CustomerToJSON(value?: Customer | null): any {
         'last_modified_dts': value.last_modified_dts,
         'loyalty': CustomerLoyaltyToJSON(value.loyalty),
         'maximum_item_count': value.maximum_item_count,
+        'merchant_id': value.merchant_id,
         'minimum_item_count': value.minimum_item_count,
         'minimum_subtotal': value.minimum_subtotal,
         'no_coupons': value.no_coupons,

@@ -49,7 +49,7 @@ export interface ItemDigitalItemsResponse {
      * @type {Array<ItemDigitalItem>}
      * @memberof ItemDigitalItemsResponse
      */
-    digitalItems?: Array<ItemDigitalItem>;
+    digital_items?: Array<ItemDigitalItem>;
     /**
      * 
      * @type {ModelError}
@@ -86,7 +86,7 @@ export function ItemDigitalItemsResponseFromJSONTyped(json: any, ignoreDiscrimin
     }
     return {
         
-        'digitalItems': !exists(json, 'digitalItems') ? undefined : ((json['digitalItems'] as Array<any>).map(ItemDigitalItemFromJSON)),
+        'digital_items': !exists(json, 'digital_items') ? undefined : ((json['digital_items'] as Array<any>).map(ItemDigitalItemFromJSON)),
         'error': !exists(json, 'error') ? undefined : ModelErrorFromJSON(json['error']),
         'metadata': !exists(json, 'metadata') ? undefined : ResponseMetadataFromJSON(json['metadata']),
         'success': !exists(json, 'success') ? undefined : json['success'],
@@ -103,7 +103,7 @@ export function ItemDigitalItemsResponseToJSON(value?: ItemDigitalItemsResponse 
     }
     return {
         
-        'digitalItems': value.digitalItems === undefined ? undefined : ((value.digitalItems as Array<any>).map(ItemDigitalItemToJSON)),
+        'digital_items': value.digital_items === undefined ? undefined : ((value.digital_items as Array<any>).map(ItemDigitalItemToJSON)),
         'error': ModelErrorToJSON(value.error),
         'metadata': ResponseMetadataToJSON(value.metadata),
         'success': value.success,
