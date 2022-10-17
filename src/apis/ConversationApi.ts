@@ -64,6 +64,7 @@ export interface GetConversationMultimediaUploadUrlRequest {
 
 export interface GetConversationsRequest {
     medium?: string;
+    before?: string;
     limit?: number;
     offset?: number;
 }
@@ -192,6 +193,7 @@ export interface ConversationApiInterface {
      * Retrieve a list of conversation summaries that are ordered newest to oldest, include the most recent message and whether its been read. 
      * @summary Retrieve a list of conversation summaries newest to oldest
      * @param {string} [medium] 
+     * @param {string} [before] 
      * @param {number} [limit] The maximum number of records to return on this one API call. (Max 200)
      * @param {number} [offset] Pagination of the record set.  Offset is a zero based index.
      * @param {*} [options] Override http request option.
@@ -532,6 +534,10 @@ export class ConversationApi extends runtime.BaseAPI implements ConversationApiI
 
         if (requestParameters.medium !== undefined) {
             queryParameters['medium'] = requestParameters.medium;
+        }
+
+        if (requestParameters.before !== undefined) {
+            queryParameters['before'] = requestParameters.before;
         }
 
         if (requestParameters.limit !== undefined) {

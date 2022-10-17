@@ -69,6 +69,12 @@ export interface Conversation {
      */
     last_conversation_participant_name?: string;
     /**
+     * Last interactive message date/time
+     * @type {string}
+     * @memberof Conversation
+     */
+    last_interactive_message_dts?: string;
+    /**
      * Last message date/time
      * @type {string}
      * @memberof Conversation
@@ -151,6 +157,7 @@ export function ConversationFromJSONTyped(json: any, ignoreDiscriminator: boolea
         'last_conversation_message_body': !exists(json, 'last_conversation_message_body') ? undefined : json['last_conversation_message_body'],
         'last_conversation_participant_arn': !exists(json, 'last_conversation_participant_arn') ? undefined : json['last_conversation_participant_arn'],
         'last_conversation_participant_name': !exists(json, 'last_conversation_participant_name') ? undefined : json['last_conversation_participant_name'],
+        'last_interactive_message_dts': !exists(json, 'last_interactive_message_dts') ? undefined : json['last_interactive_message_dts'],
         'last_message_dts': !exists(json, 'last_message_dts') ? undefined : json['last_message_dts'],
         'medium': !exists(json, 'medium') ? undefined : json['medium'],
         'merchant_id': !exists(json, 'merchant_id') ? undefined : json['merchant_id'],
@@ -178,6 +185,7 @@ export function ConversationToJSON(value?: Conversation | null): any {
         'last_conversation_message_body': value.last_conversation_message_body,
         'last_conversation_participant_arn': value.last_conversation_participant_arn,
         'last_conversation_participant_name': value.last_conversation_participant_name,
+        'last_interactive_message_dts': value.last_interactive_message_dts,
         'last_message_dts': value.last_message_dts,
         'medium': value.medium,
         'merchant_id': value.merchant_id,
