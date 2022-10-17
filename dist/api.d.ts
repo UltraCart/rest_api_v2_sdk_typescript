@@ -6167,6 +6167,12 @@ export interface Conversation {
      */
     last_conversation_participant_name?: string;
     /**
+     * Last interactive message date/time
+     * @type {string}
+     * @memberof Conversation
+     */
+    last_interactive_message_dts?: string;
+    /**
      * Last message date/time
      * @type {string}
      * @memberof Conversation
@@ -6853,6 +6859,12 @@ export interface ConversationSummary {
      * @memberof ConversationSummary
      */
     last_conversation_participant_name?: string;
+    /**
+     * Last interactive message date/time
+     * @type {string}
+     * @memberof ConversationSummary
+     */
+    last_interactive_message_dts?: string;
     /**
      * Last message date/time
      * @type {string}
@@ -36993,12 +37005,13 @@ export declare const ConversationApiFetchParamCreator: (configuration?: Configur
      * Retrieve a list of conversation summaries that are ordered newest to oldest, include the most recent message and whether its been read.
      * @summary Retrieve a list of conversation summaries newest to oldest
      * @param {string} [medium]
+     * @param {string} [before]
      * @param {number} [_limit] The maximum number of records to return on this one API call. (Max 200)
      * @param {number} [_offset] Pagination of the record set.  Offset is a zero based index.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getConversations(medium?: string, _limit?: number, _offset?: number, options?: any): FetchArgs;
+    getConversations(medium?: string, before?: string, _limit?: number, _offset?: number, options?: any): FetchArgs;
     /**
      * Join a conversation
      * @summary Join a conversation
@@ -37090,12 +37103,13 @@ export declare const ConversationApiFp: (configuration?: Configuration) => {
      * Retrieve a list of conversation summaries that are ordered newest to oldest, include the most recent message and whether its been read.
      * @summary Retrieve a list of conversation summaries newest to oldest
      * @param {string} [medium]
+     * @param {string} [before]
      * @param {number} [_limit] The maximum number of records to return on this one API call. (Max 200)
      * @param {number} [_offset] Pagination of the record set.  Offset is a zero based index.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getConversations(medium?: string, _limit?: number, _offset?: number, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ConversationsResponse>;
+    getConversations(medium?: string, before?: string, _limit?: number, _offset?: number, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ConversationsResponse>;
     /**
      * Join a conversation
      * @summary Join a conversation
@@ -37187,12 +37201,13 @@ export declare const ConversationApiFactory: (configuration?: Configuration, fet
      * Retrieve a list of conversation summaries that are ordered newest to oldest, include the most recent message and whether its been read.
      * @summary Retrieve a list of conversation summaries newest to oldest
      * @param {string} [medium]
+     * @param {string} [before]
      * @param {number} [_limit] The maximum number of records to return on this one API call. (Max 200)
      * @param {number} [_offset] Pagination of the record set.  Offset is a zero based index.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getConversations(medium?: string, _limit?: number, _offset?: number, options?: any): Promise<ConversationsResponse>;
+    getConversations(medium?: string, before?: string, _limit?: number, _offset?: number, options?: any): Promise<ConversationsResponse>;
     /**
      * Join a conversation
      * @summary Join a conversation
@@ -37291,13 +37306,14 @@ export interface ConversationApiInterface {
      * Retrieve a list of conversation summaries that are ordered newest to oldest, include the most recent message and whether its been read.
      * @summary Retrieve a list of conversation summaries newest to oldest
      * @param {string} [medium]
+     * @param {string} [before]
      * @param {number} [_limit] The maximum number of records to return on this one API call. (Max 200)
      * @param {number} [_offset] Pagination of the record set.  Offset is a zero based index.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ConversationApiInterface
      */
-    getConversations(medium?: string, _limit?: number, _offset?: number, options?: any): Promise<ConversationsResponse>;
+    getConversations(medium?: string, before?: string, _limit?: number, _offset?: number, options?: any): Promise<ConversationsResponse>;
     /**
      * Join a conversation
      * @summary Join a conversation
@@ -37401,13 +37417,14 @@ export declare class ConversationApi extends BaseAPI implements ConversationApiI
      * Retrieve a list of conversation summaries that are ordered newest to oldest, include the most recent message and whether its been read.
      * @summary Retrieve a list of conversation summaries newest to oldest
      * @param {string} [medium]
+     * @param {string} [before]
      * @param {number} [_limit] The maximum number of records to return on this one API call. (Max 200)
      * @param {number} [_offset] Pagination of the record set.  Offset is a zero based index.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ConversationApi
      */
-    getConversations(medium?: string, _limit?: number, _offset?: number, options?: any): Promise<ConversationsResponse>;
+    getConversations(medium?: string, before?: string, _limit?: number, _offset?: number, options?: any): Promise<ConversationsResponse>;
     /**
      * Join a conversation
      * @summary Join a conversation

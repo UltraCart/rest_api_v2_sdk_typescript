@@ -5714,12 +5714,13 @@ var ConversationApiFetchParamCreator = function (configuration) {
          * Retrieve a list of conversation summaries that are ordered newest to oldest, include the most recent message and whether its been read.
          * @summary Retrieve a list of conversation summaries newest to oldest
          * @param {string} [medium]
+         * @param {string} [before]
          * @param {number} [_limit] The maximum number of records to return on this one API call. (Max 200)
          * @param {number} [_offset] Pagination of the record set.  Offset is a zero based index.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getConversations: function (medium, _limit, _offset, options) {
+        getConversations: function (medium, before, _limit, _offset, options) {
             if (options === void 0) { options = {}; }
             var localVarPath = "/conversation/conversations";
             var localVarUrlObj = url.parse(localVarPath, true);
@@ -5746,6 +5747,9 @@ var ConversationApiFetchParamCreator = function (configuration) {
             }
             if (medium !== undefined) {
                 localVarQueryParameter['medium'] = medium;
+            }
+            if (before !== undefined) {
+                localVarQueryParameter['before'] = before;
             }
             if (_limit !== undefined) {
                 localVarQueryParameter['_limit'] = _limit;
@@ -6101,13 +6105,14 @@ var ConversationApiFp = function (configuration) {
          * Retrieve a list of conversation summaries that are ordered newest to oldest, include the most recent message and whether its been read.
          * @summary Retrieve a list of conversation summaries newest to oldest
          * @param {string} [medium]
+         * @param {string} [before]
          * @param {number} [_limit] The maximum number of records to return on this one API call. (Max 200)
          * @param {number} [_offset] Pagination of the record set.  Offset is a zero based index.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getConversations: function (medium, _limit, _offset, options) {
-            var localVarFetchArgs = (0, exports.ConversationApiFetchParamCreator)(configuration).getConversations(medium, _limit, _offset, options);
+        getConversations: function (medium, before, _limit, _offset, options) {
+            var localVarFetchArgs = (0, exports.ConversationApiFetchParamCreator)(configuration).getConversations(medium, before, _limit, _offset, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -6283,13 +6288,14 @@ var ConversationApiFactory = function (configuration, fetch, basePath) {
          * Retrieve a list of conversation summaries that are ordered newest to oldest, include the most recent message and whether its been read.
          * @summary Retrieve a list of conversation summaries newest to oldest
          * @param {string} [medium]
+         * @param {string} [before]
          * @param {number} [_limit] The maximum number of records to return on this one API call. (Max 200)
          * @param {number} [_offset] Pagination of the record set.  Offset is a zero based index.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getConversations: function (medium, _limit, _offset, options) {
-            return (0, exports.ConversationApiFp)(configuration).getConversations(medium, _limit, _offset, options)(fetch, basePath);
+        getConversations: function (medium, before, _limit, _offset, options) {
+            return (0, exports.ConversationApiFp)(configuration).getConversations(medium, before, _limit, _offset, options)(fetch, basePath);
         },
         /**
          * Join a conversation
@@ -6416,14 +6422,15 @@ var ConversationApi = /** @class */ (function (_super) {
      * Retrieve a list of conversation summaries that are ordered newest to oldest, include the most recent message and whether its been read.
      * @summary Retrieve a list of conversation summaries newest to oldest
      * @param {string} [medium]
+     * @param {string} [before]
      * @param {number} [_limit] The maximum number of records to return on this one API call. (Max 200)
      * @param {number} [_offset] Pagination of the record set.  Offset is a zero based index.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ConversationApi
      */
-    ConversationApi.prototype.getConversations = function (medium, _limit, _offset, options) {
-        return (0, exports.ConversationApiFp)(this.configuration).getConversations(medium, _limit, _offset, options)(this.fetch, this.basePath);
+    ConversationApi.prototype.getConversations = function (medium, before, _limit, _offset, options) {
+        return (0, exports.ConversationApiFp)(this.configuration).getConversations(medium, before, _limit, _offset, options)(this.fetch, this.basePath);
     };
     /**
      * Join a conversation
