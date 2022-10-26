@@ -13011,6 +13011,12 @@ export interface EmailCommseqSequenceTestRequest {
      * @type {string}
      * @memberof EmailCommseqSequenceTestRequest
      */
+    send_to_cellphone_e164?: string;
+    /**
+     *
+     * @type {string}
+     * @memberof EmailCommseqSequenceTestRequest
+     */
     send_to_email?: string;
     /**
      *
@@ -13053,6 +13059,74 @@ export interface EmailCommseqSequenceTestResponse {
      *
      * @type {Warning}
      * @memberof EmailCommseqSequenceTestResponse
+     */
+    warning?: Warning;
+}
+/**
+ *
+ * @export
+ * @interface EmailCommseqSmsSendTestRequest
+ */
+export interface EmailCommseqSmsSendTestRequest {
+    /**
+     *
+     * @type {string}
+     * @memberof EmailCommseqSmsSendTestRequest
+     */
+    esp_commseq_step_uuid?: string;
+    /**
+     *
+     * @type {string}
+     * @memberof EmailCommseqSmsSendTestRequest
+     */
+    esp_commseq_uuid?: string;
+    /**
+     *
+     * @type {string}
+     * @memberof EmailCommseqSmsSendTestRequest
+     */
+    send_to_cellphone_e164?: string;
+}
+/**
+ *
+ * @export
+ * @interface EmailCommseqSmsSendTestResponse
+ */
+export interface EmailCommseqSmsSendTestResponse {
+    /**
+     *
+     * @type {string}
+     * @memberof EmailCommseqSmsSendTestResponse
+     */
+    body?: string;
+    /**
+     *
+     * @type {ModelError}
+     * @memberof EmailCommseqSmsSendTestResponse
+     */
+    error?: ModelError;
+    /**
+     *
+     * @type {Array<string>}
+     * @memberof EmailCommseqSmsSendTestResponse
+     */
+    media_urls?: Array<string>;
+    /**
+     *
+     * @type {ResponseMetadata}
+     * @memberof EmailCommseqSmsSendTestResponse
+     */
+    metadata?: ResponseMetadata;
+    /**
+     * Indicates if API call was successful
+     * @type {boolean}
+     * @memberof EmailCommseqSmsSendTestResponse
+     */
+    success?: boolean;
+    /**
+     *
+     * @type {Warning}
+     * @memberof EmailCommseqSmsSendTestResponse
      */
     warning?: Warning;
 }
@@ -44218,6 +44292,17 @@ export declare const StorefrontApiFetchParamCreator: (configuration?: Configurat
     sendPostcardTest(storefront_oid: number, commseq_postcard_uuid: string, email_commseq_postcard_test_request: EmailCommseqPostcardSendTestRequest, options?: any): FetchArgs;
     /**
      *
+     * @summary Send SMS test
+     * @param {number} storefront_oid
+     * @param {string} commseq_uuid
+     * @param {string} commseq_step_uuid
+     * @param {EmailCommseqSmsSendTestRequest} email_commseq_sms_test_request Email commseq sms test request
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    sendSmsTest(storefront_oid: number, commseq_uuid: string, commseq_step_uuid: string, email_commseq_sms_test_request: EmailCommseqSmsSendTestRequest, options?: any): FetchArgs;
+    /**
+     *
      * @summary Send webhook test
      * @param {number} storefront_oid
      * @param {EmailCommseqWebhookSendTestRequest} email_commseq_webhook_test_request Email commseq webhook test request
@@ -45787,6 +45872,17 @@ export declare const StorefrontApiFp: (configuration?: Configuration) => {
     sendPostcardTest(storefront_oid: number, commseq_postcard_uuid: string, email_commseq_postcard_test_request: EmailCommseqPostcardSendTestRequest, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<EmailCommseqPostcardSendTestResponse>;
     /**
      *
+     * @summary Send SMS test
+     * @param {number} storefront_oid
+     * @param {string} commseq_uuid
+     * @param {string} commseq_step_uuid
+     * @param {EmailCommseqSmsSendTestRequest} email_commseq_sms_test_request Email commseq sms test request
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    sendSmsTest(storefront_oid: number, commseq_uuid: string, commseq_step_uuid: string, email_commseq_sms_test_request: EmailCommseqSmsSendTestRequest, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<EmailCommseqSmsSendTestResponse>;
+    /**
+     *
      * @summary Send webhook test
      * @param {number} storefront_oid
      * @param {EmailCommseqWebhookSendTestRequest} email_commseq_webhook_test_request Email commseq webhook test request
@@ -47354,6 +47450,17 @@ export declare const StorefrontApiFactory: (configuration?: Configuration, fetch
      * @throws {RequiredError}
      */
     sendPostcardTest(storefront_oid: number, commseq_postcard_uuid: string, email_commseq_postcard_test_request: EmailCommseqPostcardSendTestRequest, options?: any): Promise<EmailCommseqPostcardSendTestResponse>;
+    /**
+     *
+     * @summary Send SMS test
+     * @param {number} storefront_oid
+     * @param {string} commseq_uuid
+     * @param {string} commseq_step_uuid
+     * @param {EmailCommseqSmsSendTestRequest} email_commseq_sms_test_request Email commseq sms test request
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    sendSmsTest(storefront_oid: number, commseq_uuid: string, commseq_step_uuid: string, email_commseq_sms_test_request: EmailCommseqSmsSendTestRequest, options?: any): Promise<EmailCommseqSmsSendTestResponse>;
     /**
      *
      * @summary Send webhook test
@@ -49065,6 +49172,18 @@ export interface StorefrontApiInterface {
      * @memberof StorefrontApiInterface
      */
     sendPostcardTest(storefront_oid: number, commseq_postcard_uuid: string, email_commseq_postcard_test_request: EmailCommseqPostcardSendTestRequest, options?: any): Promise<EmailCommseqPostcardSendTestResponse>;
+    /**
+     *
+     * @summary Send SMS test
+     * @param {number} storefront_oid
+     * @param {string} commseq_uuid
+     * @param {string} commseq_step_uuid
+     * @param {EmailCommseqSmsSendTestRequest} email_commseq_sms_test_request Email commseq sms test request
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof StorefrontApiInterface
+     */
+    sendSmsTest(storefront_oid: number, commseq_uuid: string, commseq_step_uuid: string, email_commseq_sms_test_request: EmailCommseqSmsSendTestRequest, options?: any): Promise<EmailCommseqSmsSendTestResponse>;
     /**
      *
      * @summary Send webhook test
@@ -50807,6 +50926,18 @@ export declare class StorefrontApi extends BaseAPI implements StorefrontApiInter
      * @memberof StorefrontApi
      */
     sendPostcardTest(storefront_oid: number, commseq_postcard_uuid: string, email_commseq_postcard_test_request: EmailCommseqPostcardSendTestRequest, options?: any): Promise<EmailCommseqPostcardSendTestResponse>;
+    /**
+     *
+     * @summary Send SMS test
+     * @param {number} storefront_oid
+     * @param {string} commseq_uuid
+     * @param {string} commseq_step_uuid
+     * @param {EmailCommseqSmsSendTestRequest} email_commseq_sms_test_request Email commseq sms test request
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof StorefrontApi
+     */
+    sendSmsTest(storefront_oid: number, commseq_uuid: string, commseq_step_uuid: string, email_commseq_sms_test_request: EmailCommseqSmsSendTestRequest, options?: any): Promise<EmailCommseqSmsSendTestResponse>;
     /**
      *
      * @summary Send webhook test

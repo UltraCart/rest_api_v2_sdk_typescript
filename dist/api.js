@@ -25580,6 +25580,79 @@ var StorefrontApiFetchParamCreator = function (configuration) {
         },
         /**
          *
+         * @summary Send SMS test
+         * @param {number} storefront_oid
+         * @param {string} commseq_uuid
+         * @param {string} commseq_step_uuid
+         * @param {EmailCommseqSmsSendTestRequest} email_commseq_sms_test_request Email commseq sms test request
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        sendSmsTest: function (storefront_oid, commseq_uuid, commseq_step_uuid, email_commseq_sms_test_request, options) {
+            if (options === void 0) { options = {}; }
+            // verify required parameter 'storefront_oid' is not null or undefined
+            if (storefront_oid === null || storefront_oid === undefined) {
+                throw new RequiredError('storefront_oid', 'Required parameter storefront_oid was null or undefined when calling sendSmsTest.');
+            }
+            // verify required parameter 'commseq_uuid' is not null or undefined
+            if (commseq_uuid === null || commseq_uuid === undefined) {
+                throw new RequiredError('commseq_uuid', 'Required parameter commseq_uuid was null or undefined when calling sendSmsTest.');
+            }
+            // verify required parameter 'commseq_step_uuid' is not null or undefined
+            if (commseq_step_uuid === null || commseq_step_uuid === undefined) {
+                throw new RequiredError('commseq_step_uuid', 'Required parameter commseq_step_uuid was null or undefined when calling sendSmsTest.');
+            }
+            // verify required parameter 'email_commseq_sms_test_request' is not null or undefined
+            if (email_commseq_sms_test_request === null || email_commseq_sms_test_request === undefined) {
+                throw new RequiredError('email_commseq_sms_test_request', 'Required parameter email_commseq_sms_test_request was null or undefined when calling sendSmsTest.');
+            }
+            var localVarPath = "/storefront/{storefront_oid}/email/sms/{commseq_uuid}/{commseq_step_uuid}/test"
+                .replace("{".concat("storefront_oid", "}"), encodeURIComponent(String(storefront_oid)))
+                .replace("{".concat("commseq_uuid", "}"), encodeURIComponent(String(commseq_uuid)))
+                .replace("{".concat("commseq_step_uuid", "}"), encodeURIComponent(String(commseq_step_uuid)));
+            var localVarUrlObj = url.parse(localVarPath, true);
+            var localVarRequestOptions = Object.assign({ method: 'POST' }, options);
+            var localVarHeaderParameter = {};
+            var localVarQueryParameter = {};
+            if (configuration && configuration.apiVersion) {
+                localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+            }
+            // authentication ultraCartBrowserApiKey required
+            if (configuration && configuration.apiKey) {
+                var localVarApiKeyValue = typeof configuration.apiKey === 'function'
+                    ? configuration.apiKey("x-ultracart-browser-key")
+                    : configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-browser-key"] = localVarApiKeyValue;
+            }
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+                var localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+                    ? configuration.accessToken("ultraCartOauth", ["storefront_write"])
+                    : configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                var localVarApiKeyValue = typeof configuration.apiKey === 'function'
+                    ? configuration.apiKey("x-ultracart-simple-key")
+                    : configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+            var needsSerialization = ("EmailCommseqSmsSendTestRequest" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
+            localVarRequestOptions.body = needsSerialization ? JSON.stringify(email_commseq_sms_test_request || {}) : (email_commseq_sms_test_request || "");
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         *
          * @summary Send webhook test
          * @param {number} storefront_oid
          * @param {EmailCommseqWebhookSendTestRequest} email_commseq_webhook_test_request Email commseq webhook test request
@@ -30741,6 +30814,31 @@ var StorefrontApiFp = function (configuration) {
         },
         /**
          *
+         * @summary Send SMS test
+         * @param {number} storefront_oid
+         * @param {string} commseq_uuid
+         * @param {string} commseq_step_uuid
+         * @param {EmailCommseqSmsSendTestRequest} email_commseq_sms_test_request Email commseq sms test request
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        sendSmsTest: function (storefront_oid, commseq_uuid, commseq_step_uuid, email_commseq_sms_test_request, options) {
+            var localVarFetchArgs = (0, exports.StorefrontApiFetchParamCreator)(configuration).sendSmsTest(storefront_oid, commseq_uuid, commseq_step_uuid, email_commseq_sms_test_request, options);
+            return function (fetch, basePath) {
+                if (fetch === void 0) { fetch = portableFetch; }
+                if (basePath === void 0) { basePath = BASE_PATH; }
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(function (response) {
+                    if (response.status >= 200 && response.status < 300) {
+                        return response.json();
+                    }
+                    else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
+         *
          * @summary Send webhook test
          * @param {number} storefront_oid
          * @param {EmailCommseqWebhookSendTestRequest} email_commseq_webhook_test_request Email commseq webhook test request
@@ -33015,6 +33113,19 @@ var StorefrontApiFactory = function (configuration, fetch, basePath) {
         },
         /**
          *
+         * @summary Send SMS test
+         * @param {number} storefront_oid
+         * @param {string} commseq_uuid
+         * @param {string} commseq_step_uuid
+         * @param {EmailCommseqSmsSendTestRequest} email_commseq_sms_test_request Email commseq sms test request
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        sendSmsTest: function (storefront_oid, commseq_uuid, commseq_step_uuid, email_commseq_sms_test_request, options) {
+            return (0, exports.StorefrontApiFp)(configuration).sendSmsTest(storefront_oid, commseq_uuid, commseq_step_uuid, email_commseq_sms_test_request, options)(fetch, basePath);
+        },
+        /**
+         *
          * @summary Send webhook test
          * @param {number} storefront_oid
          * @param {EmailCommseqWebhookSendTestRequest} email_commseq_webhook_test_request Email commseq webhook test request
@@ -35072,6 +35183,20 @@ var StorefrontApi = /** @class */ (function (_super) {
      */
     StorefrontApi.prototype.sendPostcardTest = function (storefront_oid, commseq_postcard_uuid, email_commseq_postcard_test_request, options) {
         return (0, exports.StorefrontApiFp)(this.configuration).sendPostcardTest(storefront_oid, commseq_postcard_uuid, email_commseq_postcard_test_request, options)(this.fetch, this.basePath);
+    };
+    /**
+     *
+     * @summary Send SMS test
+     * @param {number} storefront_oid
+     * @param {string} commseq_uuid
+     * @param {string} commseq_step_uuid
+     * @param {EmailCommseqSmsSendTestRequest} email_commseq_sms_test_request Email commseq sms test request
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof StorefrontApi
+     */
+    StorefrontApi.prototype.sendSmsTest = function (storefront_oid, commseq_uuid, commseq_step_uuid, email_commseq_sms_test_request, options) {
+        return (0, exports.StorefrontApiFp)(this.configuration).sendSmsTest(storefront_oid, commseq_uuid, commseq_step_uuid, email_commseq_sms_test_request, options)(this.fetch, this.basePath);
     };
     /**
      *
