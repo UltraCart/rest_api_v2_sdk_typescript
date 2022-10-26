@@ -102,6 +102,12 @@ import {
     EmailCommseqSequenceTestResponse,
     EmailCommseqSequenceTestResponseFromJSON,
     EmailCommseqSequenceTestResponseToJSON,
+    EmailCommseqSmsSendTestRequest,
+    EmailCommseqSmsSendTestRequestFromJSON,
+    EmailCommseqSmsSendTestRequestToJSON,
+    EmailCommseqSmsSendTestResponse,
+    EmailCommseqSmsSendTestResponseFromJSON,
+    EmailCommseqSmsSendTestResponseToJSON,
     EmailCommseqStatResponse,
     EmailCommseqStatResponseFromJSON,
     EmailCommseqStatResponseToJSON,
@@ -1130,6 +1136,13 @@ export interface SendPostcardTestRequest {
     storefrontOid: number;
     commseqPostcardUuid: string;
     emailCommseqPostcardTestRequest: EmailCommseqPostcardSendTestRequest;
+}
+
+export interface SendSmsTestRequest {
+    storefrontOid: number;
+    commseqUuid: string;
+    commseqStepUuid: string;
+    emailCommseqSmsTestRequest: EmailCommseqSmsSendTestRequest;
 }
 
 export interface SendWebhookTestRequest {
@@ -3588,6 +3601,24 @@ export interface StorefrontApiInterface {
      * Send postcard test
      */
     sendPostcardTest(requestParameters: SendPostcardTestRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EmailCommseqPostcardSendTestResponse>;
+
+    /**
+     * 
+     * @summary Send SMS test
+     * @param {number} storefrontOid 
+     * @param {string} commseqUuid 
+     * @param {string} commseqStepUuid 
+     * @param {EmailCommseqSmsSendTestRequest} emailCommseqSmsTestRequest Email commseq sms test request
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof StorefrontApiInterface
+     */
+    sendSmsTestRaw(requestParameters: SendSmsTestRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EmailCommseqSmsSendTestResponse>>;
+
+    /**
+     * Send SMS test
+     */
+    sendSmsTest(requestParameters: SendSmsTestRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EmailCommseqSmsSendTestResponse>;
 
     /**
      * 
@@ -10844,6 +10875,64 @@ export class StorefrontApi extends runtime.BaseAPI implements StorefrontApiInter
      */
     async sendPostcardTest(requestParameters: SendPostcardTestRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EmailCommseqPostcardSendTestResponse> {
         const response = await this.sendPostcardTestRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Send SMS test
+     */
+    async sendSmsTestRaw(requestParameters: SendSmsTestRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EmailCommseqSmsSendTestResponse>> {
+        if (requestParameters.storefrontOid === null || requestParameters.storefrontOid === undefined) {
+            throw new runtime.RequiredError('storefrontOid','Required parameter requestParameters.storefrontOid was null or undefined when calling sendSmsTest.');
+        }
+
+        if (requestParameters.commseqUuid === null || requestParameters.commseqUuid === undefined) {
+            throw new runtime.RequiredError('commseqUuid','Required parameter requestParameters.commseqUuid was null or undefined when calling sendSmsTest.');
+        }
+
+        if (requestParameters.commseqStepUuid === null || requestParameters.commseqStepUuid === undefined) {
+            throw new runtime.RequiredError('commseqStepUuid','Required parameter requestParameters.commseqStepUuid was null or undefined when calling sendSmsTest.');
+        }
+
+        if (requestParameters.emailCommseqSmsTestRequest === null || requestParameters.emailCommseqSmsTestRequest === undefined) {
+            throw new runtime.RequiredError('emailCommseqSmsTestRequest','Required parameter requestParameters.emailCommseqSmsTestRequest was null or undefined when calling sendSmsTest.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-browser-key"] = this.configuration.apiKey("x-ultracart-browser-key"); // ultraCartBrowserApiKey authentication
+        }
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", ["storefront_write"]);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/storefront/{storefront_oid}/email/sms/{commseq_uuid}/{commseq_step_uuid}/test`.replace(`{${"storefront_oid"}}`, encodeURIComponent(String(requestParameters.storefrontOid))).replace(`{${"commseq_uuid"}}`, encodeURIComponent(String(requestParameters.commseqUuid))).replace(`{${"commseq_step_uuid"}}`, encodeURIComponent(String(requestParameters.commseqStepUuid))),
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: EmailCommseqSmsSendTestRequestToJSON(requestParameters.emailCommseqSmsTestRequest),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => EmailCommseqSmsSendTestResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Send SMS test
+     */
+    async sendSmsTest(requestParameters: SendSmsTestRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EmailCommseqSmsSendTestResponse> {
+        const response = await this.sendSmsTestRaw(requestParameters, initOverrides);
         return await response.value();
     }
 

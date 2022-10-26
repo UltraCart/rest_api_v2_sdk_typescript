@@ -90,6 +90,12 @@ export interface EmailCommseqSequenceTestRequest {
      * @type {string}
      * @memberof EmailCommseqSequenceTestRequest
      */
+    send_to_cellphone_e164?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof EmailCommseqSequenceTestRequest
+     */
     send_to_email?: string;
     /**
      * 
@@ -126,6 +132,7 @@ export function EmailCommseqSequenceTestRequestFromJSONTyped(json: any, ignoreDi
         'order_id': !exists(json, 'order_id') ? undefined : json['order_id'],
         'please_review': !exists(json, 'please_review') ? undefined : json['please_review'],
         'postal_code': !exists(json, 'postal_code') ? undefined : json['postal_code'],
+        'send_to_cellphone_e164': !exists(json, 'send_to_cellphone_e164') ? undefined : json['send_to_cellphone_e164'],
         'send_to_email': !exists(json, 'send_to_email') ? undefined : json['send_to_email'],
         'send_to_logged_in_user': !exists(json, 'send_to_logged_in_user') ? undefined : json['send_to_logged_in_user'],
         'state': !exists(json, 'state') ? undefined : json['state'],
@@ -152,6 +159,7 @@ export function EmailCommseqSequenceTestRequestToJSON(value?: EmailCommseqSequen
         'order_id': value.order_id,
         'please_review': value.please_review,
         'postal_code': value.postal_code,
+        'send_to_cellphone_e164': value.send_to_cellphone_e164,
         'send_to_email': value.send_to_email,
         'send_to_logged_in_user': value.send_to_logged_in_user,
         'state': value.state,

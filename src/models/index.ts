@@ -267,6 +267,8 @@ export * from './EmailCommseqPostcardsResponse';
 export * from './EmailCommseqResponse';
 export * from './EmailCommseqSequenceTestRequest';
 export * from './EmailCommseqSequenceTestResponse';
+export * from './EmailCommseqSmsSendTestRequest';
+export * from './EmailCommseqSmsSendTestResponse';
 export * from './EmailCommseqStat';
 export * from './EmailCommseqStatResponse';
 export * from './EmailCommseqStep';
