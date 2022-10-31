@@ -20,13 +20,19 @@ import { exists, mapValues } from '../runtime';
  */
 export interface EmailStepStat {
     /**
+     * click count (left side)
+     * @type {number}
+     * @memberof EmailStepStat
+     */
+    left_click_count?: number;
+    /**
      * click count formatted (left side)
      * @type {string}
      * @memberof EmailStepStat
      */
     left_click_count_formatted?: string;
     /**
-     * click count (left side)
+     * conversion count (left/default side)
      * @type {number}
      * @memberof EmailStepStat
      */
@@ -205,6 +211,7 @@ export function EmailStepStatFromJSONTyped(json: any, ignoreDiscriminator: boole
     }
     return {
         
+        'left_click_count': !exists(json, 'left_click_count') ? undefined : json['left_click_count'],
         'left_click_count_formatted': !exists(json, 'left_click_count_formatted') ? undefined : json['left_click_count_formatted'],
         'left_conversion_count': !exists(json, 'left_conversion_count') ? undefined : json['left_conversion_count'],
         'left_conversion_count_formatted': !exists(json, 'left_conversion_count_formatted') ? undefined : json['left_conversion_count_formatted'],
@@ -246,6 +253,7 @@ export function EmailStepStatToJSON(value?: EmailStepStat | null): any {
     }
     return {
         
+        'left_click_count': value.left_click_count,
         'left_click_count_formatted': value.left_click_count_formatted,
         'left_conversion_count': value.left_conversion_count,
         'left_conversion_count_formatted': value.left_conversion_count_formatted,
