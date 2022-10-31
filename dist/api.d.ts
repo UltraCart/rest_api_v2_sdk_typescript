@@ -16925,13 +16925,19 @@ export interface EmailStatSummaryResponse {
  */
 export interface EmailStepStat {
     /**
+     * click count (left side)
+     * @type {number}
+     * @memberof EmailStepStat
+     */
+    left_click_count?: number;
+    /**
      * click count formatted (left side)
      * @type {string}
      * @memberof EmailStepStat
      */
     left_click_count_formatted?: string;
     /**
-     * click count (left side)
+     * conversion count (left/default side)
      * @type {number}
      * @memberof EmailStepStat
      */
