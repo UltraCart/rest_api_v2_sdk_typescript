@@ -69,6 +69,12 @@ export interface ConversationParticipant {
     status?: string;
     /**
      * 
+     * @type {string}
+     * @memberof ConversationParticipant
+     */
+    timezone?: string;
+    /**
+     * 
      * @type {number}
      * @memberof ConversationParticipant
      */
@@ -93,6 +99,7 @@ export function ConversationParticipantFromJSONTyped(json: any, ignoreDiscrimina
         'left_dts': !exists(json, 'left_dts') ? undefined : json['left_dts'],
         'profile_image_url': !exists(json, 'profile_image_url') ? undefined : json['profile_image_url'],
         'status': !exists(json, 'status') ? undefined : json['status'],
+        'timezone': !exists(json, 'timezone') ? undefined : json['timezone'],
         'unread_messages': !exists(json, 'unread_messages') ? undefined : json['unread_messages'],
     };
 }
@@ -114,6 +121,7 @@ export function ConversationParticipantToJSON(value?: ConversationParticipant | 
         'left_dts': value.left_dts,
         'profile_image_url': value.profile_image_url,
         'status': value.status,
+        'timezone': value.timezone,
         'unread_messages': value.unread_messages,
     };
 }

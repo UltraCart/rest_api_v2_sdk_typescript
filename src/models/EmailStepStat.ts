@@ -20,7 +20,13 @@ import { exists, mapValues } from '../runtime';
  */
 export interface EmailStepStat {
     /**
-     * conversion count (left/default side)
+     * click count formatted (left side)
+     * @type {string}
+     * @memberof EmailStepStat
+     */
+    left_click_count_formatted?: string;
+    /**
+     * click count (left side)
      * @type {number}
      * @memberof EmailStepStat
      */
@@ -43,6 +49,18 @@ export interface EmailStepStat {
      * @memberof EmailStepStat
      */
     left_customer_count_formatted?: string;
+    /**
+     * delivered count (left side)
+     * @type {number}
+     * @memberof EmailStepStat
+     */
+    left_delivered_count?: number;
+    /**
+     * delivered count formatted (left side)
+     * @type {string}
+     * @memberof EmailStepStat
+     */
+    left_delivered_count_formatted?: string;
     /**
      * order count (left/default side)
      * @type {number}
@@ -79,6 +97,42 @@ export interface EmailStepStat {
      * @memberof EmailStepStat
      */
     left_revenue_formatted?: string;
+    /**
+     * send count (left side)
+     * @type {number}
+     * @memberof EmailStepStat
+     */
+    left_send_count?: number;
+    /**
+     * send count formatted (left side)
+     * @type {string}
+     * @memberof EmailStepStat
+     */
+    left_send_count_formatted?: string;
+    /**
+     * conversion count (left side)
+     * @type {number}
+     * @memberof EmailStepStat
+     */
+    left_skipped_count?: number;
+    /**
+     * skipped count formatted (left side)
+     * @type {string}
+     * @memberof EmailStepStat
+     */
+    left_skipped_count_formatted?: string;
+    /**
+     * unsubscribe count (left side)
+     * @type {number}
+     * @memberof EmailStepStat
+     */
+    left_unsubscribe_count?: number;
+    /**
+     * unsubscribe count formatted (left side)
+     * @type {string}
+     * @memberof EmailStepStat
+     */
+    left_unsubscribe_count_formatted?: string;
     /**
      * conversion count (right side)
      * @type {number}
@@ -151,16 +205,25 @@ export function EmailStepStatFromJSONTyped(json: any, ignoreDiscriminator: boole
     }
     return {
         
+        'left_click_count_formatted': !exists(json, 'left_click_count_formatted') ? undefined : json['left_click_count_formatted'],
         'left_conversion_count': !exists(json, 'left_conversion_count') ? undefined : json['left_conversion_count'],
         'left_conversion_count_formatted': !exists(json, 'left_conversion_count_formatted') ? undefined : json['left_conversion_count_formatted'],
         'left_customer_count': !exists(json, 'left_customer_count') ? undefined : json['left_customer_count'],
         'left_customer_count_formatted': !exists(json, 'left_customer_count_formatted') ? undefined : json['left_customer_count_formatted'],
+        'left_delivered_count': !exists(json, 'left_delivered_count') ? undefined : json['left_delivered_count'],
+        'left_delivered_count_formatted': !exists(json, 'left_delivered_count_formatted') ? undefined : json['left_delivered_count_formatted'],
         'left_order_count': !exists(json, 'left_order_count') ? undefined : json['left_order_count'],
         'left_order_count_formatted': !exists(json, 'left_order_count_formatted') ? undefined : json['left_order_count_formatted'],
         'left_profit': !exists(json, 'left_profit') ? undefined : json['left_profit'],
         'left_profit_formatted': !exists(json, 'left_profit_formatted') ? undefined : json['left_profit_formatted'],
         'left_revenue': !exists(json, 'left_revenue') ? undefined : json['left_revenue'],
         'left_revenue_formatted': !exists(json, 'left_revenue_formatted') ? undefined : json['left_revenue_formatted'],
+        'left_send_count': !exists(json, 'left_send_count') ? undefined : json['left_send_count'],
+        'left_send_count_formatted': !exists(json, 'left_send_count_formatted') ? undefined : json['left_send_count_formatted'],
+        'left_skipped_count': !exists(json, 'left_skipped_count') ? undefined : json['left_skipped_count'],
+        'left_skipped_count_formatted': !exists(json, 'left_skipped_count_formatted') ? undefined : json['left_skipped_count_formatted'],
+        'left_unsubscribe_count': !exists(json, 'left_unsubscribe_count') ? undefined : json['left_unsubscribe_count'],
+        'left_unsubscribe_count_formatted': !exists(json, 'left_unsubscribe_count_formatted') ? undefined : json['left_unsubscribe_count_formatted'],
         'right_conversion_count': !exists(json, 'right_conversion_count') ? undefined : json['right_conversion_count'],
         'right_conversion_count_formatted': !exists(json, 'right_conversion_count_formatted') ? undefined : json['right_conversion_count_formatted'],
         'right_customer_count': !exists(json, 'right_customer_count') ? undefined : json['right_customer_count'],
@@ -183,16 +246,25 @@ export function EmailStepStatToJSON(value?: EmailStepStat | null): any {
     }
     return {
         
+        'left_click_count_formatted': value.left_click_count_formatted,
         'left_conversion_count': value.left_conversion_count,
         'left_conversion_count_formatted': value.left_conversion_count_formatted,
         'left_customer_count': value.left_customer_count,
         'left_customer_count_formatted': value.left_customer_count_formatted,
+        'left_delivered_count': value.left_delivered_count,
+        'left_delivered_count_formatted': value.left_delivered_count_formatted,
         'left_order_count': value.left_order_count,
         'left_order_count_formatted': value.left_order_count_formatted,
         'left_profit': value.left_profit,
         'left_profit_formatted': value.left_profit_formatted,
         'left_revenue': value.left_revenue,
         'left_revenue_formatted': value.left_revenue_formatted,
+        'left_send_count': value.left_send_count,
+        'left_send_count_formatted': value.left_send_count_formatted,
+        'left_skipped_count': value.left_skipped_count,
+        'left_skipped_count_formatted': value.left_skipped_count_formatted,
+        'left_unsubscribe_count': value.left_unsubscribe_count,
+        'left_unsubscribe_count_formatted': value.left_unsubscribe_count_formatted,
         'right_conversion_count': value.right_conversion_count,
         'right_conversion_count_formatted': value.right_conversion_count_formatted,
         'right_customer_count': value.right_customer_count,
