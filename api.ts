@@ -6900,6 +6900,12 @@ export interface ConversationParticipant {
     status?: string;
     /**
      * 
+     * @type {string}
+     * @memberof ConversationParticipant
+     */
+    timezone?: string;
+    /**
+     * 
      * @type {number}
      * @memberof ConversationParticipant
      */
@@ -17299,7 +17305,13 @@ export interface EmailStatSummaryResponse {
  */
 export interface EmailStepStat {
     /**
-     * conversion count (left/default side)
+     * click count formatted (left side)
+     * @type {string}
+     * @memberof EmailStepStat
+     */
+    left_click_count_formatted?: string;
+    /**
+     * click count (left side)
      * @type {number}
      * @memberof EmailStepStat
      */
@@ -17322,6 +17334,18 @@ export interface EmailStepStat {
      * @memberof EmailStepStat
      */
     left_customer_count_formatted?: string;
+    /**
+     * delivered count (left side)
+     * @type {number}
+     * @memberof EmailStepStat
+     */
+    left_delivered_count?: number;
+    /**
+     * delivered count formatted (left side)
+     * @type {string}
+     * @memberof EmailStepStat
+     */
+    left_delivered_count_formatted?: string;
     /**
      * order count (left/default side)
      * @type {number}
@@ -17358,6 +17382,42 @@ export interface EmailStepStat {
      * @memberof EmailStepStat
      */
     left_revenue_formatted?: string;
+    /**
+     * send count (left side)
+     * @type {number}
+     * @memberof EmailStepStat
+     */
+    left_send_count?: number;
+    /**
+     * send count formatted (left side)
+     * @type {string}
+     * @memberof EmailStepStat
+     */
+    left_send_count_formatted?: string;
+    /**
+     * conversion count (left side)
+     * @type {number}
+     * @memberof EmailStepStat
+     */
+    left_skipped_count?: number;
+    /**
+     * skipped count formatted (left side)
+     * @type {string}
+     * @memberof EmailStepStat
+     */
+    left_skipped_count_formatted?: string;
+    /**
+     * unsubscribe count (left side)
+     * @type {number}
+     * @memberof EmailStepStat
+     */
+    left_unsubscribe_count?: number;
+    /**
+     * unsubscribe count formatted (left side)
+     * @type {string}
+     * @memberof EmailStepStat
+     */
+    left_unsubscribe_count_formatted?: string;
     /**
      * conversion count (right side)
      * @type {number}
