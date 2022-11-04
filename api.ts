@@ -7935,6 +7935,12 @@ export interface Coupon {
      */
     tiered_percent_off_subtotal?: CouponTieredPercentOffSubtotal;
     /**
+     * 
+     * @type {CouponTieredPercentOffSubtotalBasedOnMSRP}
+     * @memberof Coupon
+     */
+    tiered_percent_off_subtotal_based_on_msrp?: CouponTieredPercentOffSubtotalBasedOnMSRP;
+    /**
      * Who may use this coupon.
      * @type {string}
      * @memberof Coupon
@@ -9706,6 +9712,26 @@ export interface CouponTieredPercentOffSubtotal {
      * A list of discount tiers.
      * @type {Array<CouponTierPercent>}
      * @memberof CouponTieredPercentOffSubtotal
+     */
+    tiers?: Array<CouponTierPercent>;
+}
+
+/**
+ * 
+ * @export
+ * @interface CouponTieredPercentOffSubtotalBasedOnMSRP
+ */
+export interface CouponTieredPercentOffSubtotalBasedOnMSRP {
+    /**
+     * An optional list of items of which a quantity of one or many must be purchased for coupon to be valid.  If empty, all items apply toward subtotal amount.
+     * @type {Array<string>}
+     * @memberof CouponTieredPercentOffSubtotalBasedOnMSRP
+     */
+    items?: Array<string>;
+    /**
+     * A list of discount tiers.
+     * @type {Array<CouponTierPercent>}
+     * @memberof CouponTieredPercentOffSubtotalBasedOnMSRP
      */
     tiers?: Array<CouponTierPercent>;
 }
