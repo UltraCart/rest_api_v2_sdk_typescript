@@ -227,6 +227,7 @@ src/models/CouponTieredAmountOffSubtotal.ts
 src/models/CouponTieredPercentOffItems.ts
 src/models/CouponTieredPercentOffShipping.ts
 src/models/CouponTieredPercentOffSubtotal.ts
+src/models/CouponTieredPercentOffSubtotalBasedOnMSRP.ts
 src/models/CouponType.ts
 src/models/CouponsRequest.ts
 src/models/CouponsResponse.ts

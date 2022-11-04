@@ -204,6 +204,7 @@ export * from './CouponTieredAmountOffSubtotal';
 export * from './CouponTieredPercentOffItems';
 export * from './CouponTieredPercentOffShipping';
 export * from './CouponTieredPercentOffSubtotal';
+export * from './CouponTieredPercentOffSubtotalBasedOnMSRP';
 export * from './CouponType';
 export * from './CouponsRequest';
 export * from './CouponsResponse';

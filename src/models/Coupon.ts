@@ -271,6 +271,12 @@ import {
     CouponTieredPercentOffSubtotalFromJSONTyped,
     CouponTieredPercentOffSubtotalToJSON,
 } from './CouponTieredPercentOffSubtotal';
+import {
+    CouponTieredPercentOffSubtotalBasedOnMSRP,
+    CouponTieredPercentOffSubtotalBasedOnMSRPFromJSON,
+    CouponTieredPercentOffSubtotalBasedOnMSRPFromJSONTyped,
+    CouponTieredPercentOffSubtotalBasedOnMSRPToJSON,
+} from './CouponTieredPercentOffSubtotalBasedOnMSRP';
 
 /**
  * 
@@ -633,6 +639,12 @@ export interface Coupon {
      */
     tiered_percent_off_subtotal?: CouponTieredPercentOffSubtotal;
     /**
+     * 
+     * @type {CouponTieredPercentOffSubtotalBasedOnMSRP}
+     * @memberof Coupon
+     */
+    tiered_percent_off_subtotal_based_on_msrp?: CouponTieredPercentOffSubtotalBasedOnMSRP;
+    /**
      * Who may use this coupon.
      * @type {string}
      * @memberof Coupon
@@ -709,6 +721,7 @@ export function CouponFromJSONTyped(json: any, ignoreDiscriminator: boolean): Co
         'tiered_percent_off_items': !exists(json, 'tiered_percent_off_items') ? undefined : CouponTieredPercentOffItemsFromJSON(json['tiered_percent_off_items']),
         'tiered_percent_off_shipping': !exists(json, 'tiered_percent_off_shipping') ? undefined : CouponTieredPercentOffShippingFromJSON(json['tiered_percent_off_shipping']),
         'tiered_percent_off_subtotal': !exists(json, 'tiered_percent_off_subtotal') ? undefined : CouponTieredPercentOffSubtotalFromJSON(json['tiered_percent_off_subtotal']),
+        'tiered_percent_off_subtotal_based_on_msrp': !exists(json, 'tiered_percent_off_subtotal_based_on_msrp') ? undefined : CouponTieredPercentOffSubtotalBasedOnMSRPFromJSON(json['tiered_percent_off_subtotal_based_on_msrp']),
         'usable_by': !exists(json, 'usable_by') ? undefined : json['usable_by'],
     };
 }
@@ -781,6 +794,7 @@ export function CouponToJSON(value?: Coupon | null): any {
         'tiered_percent_off_items': CouponTieredPercentOffItemsToJSON(value.tiered_percent_off_items),
         'tiered_percent_off_shipping': CouponTieredPercentOffShippingToJSON(value.tiered_percent_off_shipping),
         'tiered_percent_off_subtotal': CouponTieredPercentOffSubtotalToJSON(value.tiered_percent_off_subtotal),
+        'tiered_percent_off_subtotal_based_on_msrp': CouponTieredPercentOffSubtotalBasedOnMSRPToJSON(value.tiered_percent_off_subtotal_based_on_msrp),
         'usable_by': value.usable_by,
     };
 }
