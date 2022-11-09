@@ -162,7 +162,8 @@ export const ConversationWebsocketMessageEventTypeEnum = {
     QueueStatusUpdate: 'queue status update',
     Rrweb: 'rrweb',
     ParticipantUpdate: 'participant update',
-    ReadMessage: 'read message'
+    ReadMessage: 'read message',
+    Typing: 'typing'
 } as const;
 export type ConversationWebsocketMessageEventTypeEnum = typeof ConversationWebsocketMessageEventTypeEnum[keyof typeof ConversationWebsocketMessageEventTypeEnum];
 

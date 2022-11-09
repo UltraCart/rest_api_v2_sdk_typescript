@@ -32,7 +32,13 @@ export interface ItemFulfillmentAddon {
      */
     add_item_oid?: number;
     /**
-     * Quantity
+     * Initial Order Only
+     * @type {boolean}
+     * @memberof ItemFulfillmentAddon
+     */
+    initial_order_only?: boolean;
+    /**
+     * Once Per Order
      * @type {boolean}
      * @memberof ItemFulfillmentAddon
      */
@@ -57,6 +63,7 @@ export function ItemFulfillmentAddonFromJSONTyped(json: any, ignoreDiscriminator
         
         'add_item_id': !exists(json, 'add_item_id') ? undefined : json['add_item_id'],
         'add_item_oid': !exists(json, 'add_item_oid') ? undefined : json['add_item_oid'],
+        'initial_order_only': !exists(json, 'initial_order_only') ? undefined : json['initial_order_only'],
         'once_per_order': !exists(json, 'once_per_order') ? undefined : json['once_per_order'],
         'quantity': !exists(json, 'quantity') ? undefined : json['quantity'],
     };
@@ -73,6 +80,7 @@ export function ItemFulfillmentAddonToJSON(value?: ItemFulfillmentAddon | null):
         
         'add_item_id': value.add_item_id,
         'add_item_oid': value.add_item_oid,
+        'initial_order_only': value.initial_order_only,
         'once_per_order': value.once_per_order,
         'quantity': value.quantity,
     };
