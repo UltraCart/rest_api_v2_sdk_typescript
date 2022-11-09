@@ -7488,7 +7488,8 @@ export namespace ConversationWebsocketMessage {
         QueueStatusUpdate = <any> 'queue status update',
         Rrweb = <any> 'rrweb',
         ParticipantUpdate = <any> 'participant update',
-        ReadMessage = <any> 'read message'
+        ReadMessage = <any> 'read message',
+        Typing = <any> 'typing'
     }
     /**
      * @export
@@ -22146,7 +22147,13 @@ export interface ItemFulfillmentAddon {
      */
     add_item_oid?: number;
     /**
-     * Quantity
+     * Initial Order Only
+     * @type {boolean}
+     * @memberof ItemFulfillmentAddon
+     */
+    initial_order_only?: boolean;
+    /**
+     * Once Per Order
      * @type {boolean}
      * @memberof ItemFulfillmentAddon
      */

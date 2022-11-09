@@ -487,6 +487,7 @@ var ConversationWebsocketMessage;
         EventTypeEnum[EventTypeEnum["Rrweb"] = 'rrweb'] = "Rrweb";
         EventTypeEnum[EventTypeEnum["ParticipantUpdate"] = 'participant update'] = "ParticipantUpdate";
         EventTypeEnum[EventTypeEnum["ReadMessage"] = 'read message'] = "ReadMessage";
+        EventTypeEnum[EventTypeEnum["Typing"] = 'typing'] = "Typing";
     })(EventTypeEnum = ConversationWebsocketMessage.EventTypeEnum || (ConversationWebsocketMessage.EventTypeEnum = {}));
     /**
      * @export
