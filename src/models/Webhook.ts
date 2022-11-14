@@ -69,6 +69,12 @@ export interface Webhook {
      */
     basic_username?: string;
     /**
+     * Compress events with GZIP then base 64 encode them as a string
+     * @type {boolean}
+     * @memberof Webhook
+     */
+    compress_events?: boolean;
+    /**
      * The number of consecutive failures that have occurred trying to deliver notifications to the target server
      * @type {number}
      * @memberof Webhook
@@ -177,6 +183,7 @@ export function WebhookFromJSONTyped(json: any, ignoreDiscriminator: boolean): W
         'authentication_type': !exists(json, 'authentication_type') ? undefined : json['authentication_type'],
         'basic_password': !exists(json, 'basic_password') ? undefined : json['basic_password'],
         'basic_username': !exists(json, 'basic_username') ? undefined : json['basic_username'],
+        'compress_events': !exists(json, 'compress_events') ? undefined : json['compress_events'],
         'consecutive_failures': !exists(json, 'consecutive_failures') ? undefined : json['consecutive_failures'],
         'disabled': !exists(json, 'disabled') ? undefined : json['disabled'],
         'event_categories': !exists(json, 'event_categories') ? undefined : ((json['event_categories'] as Array<any>).map(WebhookEventCategoryFromJSON)),
@@ -207,6 +214,7 @@ export function WebhookToJSON(value?: Webhook | null): any {
         'authentication_type': value.authentication_type,
         'basic_password': value.basic_password,
         'basic_username': value.basic_username,
+        'compress_events': value.compress_events,
         'consecutive_failures': value.consecutive_failures,
         'disabled': value.disabled,
         'event_categories': value.event_categories === undefined ? undefined : ((value.event_categories as Array<any>).map(WebhookEventCategoryToJSON)),

@@ -20,12 +20,24 @@ import { exists, mapValues } from '../runtime';
  */
 export interface ConversationWebchatQueueStatusUpdateRequest {
     /**
-     * 
+     * Status of the agent
      * @type {string}
      * @memberof ConversationWebchatQueueStatusUpdateRequest
      */
-    agent_status?: string;
+    agent_status?: ConversationWebchatQueueStatusUpdateRequestAgentStatusEnum;
 }
+
+
+/**
+ * @export
+ */
+export const ConversationWebchatQueueStatusUpdateRequestAgentStatusEnum = {
+    Available: 'available',
+    Busy: 'busy',
+    Unavailable: 'unavailable'
+} as const;
+export type ConversationWebchatQueueStatusUpdateRequestAgentStatusEnum = typeof ConversationWebchatQueueStatusUpdateRequestAgentStatusEnum[keyof typeof ConversationWebchatQueueStatusUpdateRequestAgentStatusEnum];
+
 
 export function ConversationWebchatQueueStatusUpdateRequestFromJSON(json: any): ConversationWebchatQueueStatusUpdateRequest {
     return ConversationWebchatQueueStatusUpdateRequestFromJSONTyped(json, false);
