@@ -7158,11 +7158,26 @@ export interface ConversationWebchatQueueStatusQueueEntry {
  */
 export interface ConversationWebchatQueueStatusUpdateRequest {
     /**
-     *
+     * Status of the agent
      * @type {string}
      * @memberof ConversationWebchatQueueStatusUpdateRequest
      */
-    agent_status?: string;
+    agent_status?: ConversationWebchatQueueStatusUpdateRequest.AgentStatusEnum;
+}
+/**
+ * @export
+ * @namespace ConversationWebchatQueueStatusUpdateRequest
+ */
+export declare namespace ConversationWebchatQueueStatusUpdateRequest {
+    /**
+     * @export
+     * @enum {string}
+     */
+    enum AgentStatusEnum {
+        Available,
+        Busy,
+        Unavailable
+    }
 }
 /**
  *
@@ -34437,6 +34452,12 @@ export interface Webhook {
      * @memberof Webhook
      */
     basic_username?: string;
+    /**
+     * Compress events with GZIP then base 64 encode them as a string
+     * @type {boolean}
+     * @memberof Webhook
+     */
+    compress_events?: boolean;
     /**
      * The number of consecutive failures that have occurred trying to deliver notifications to the target server
      * @type {number}
