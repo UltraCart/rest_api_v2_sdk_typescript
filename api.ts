@@ -6493,6 +6493,34 @@ export interface ConversationAgentAuthResponse {
 /**
  * 
  * @export
+ * @interface ConversationEventAddCoupon
+ */
+export interface ConversationEventAddCoupon {
+    /**
+     * 
+     * @type {string}
+     * @memberof ConversationEventAddCoupon
+     */
+    coupon_code?: string;
+}
+
+/**
+ * 
+ * @export
+ * @interface ConversationEventAddItem
+ */
+export interface ConversationEventAddItem {
+    /**
+     * 
+     * @type {string}
+     * @memberof ConversationEventAddItem
+     */
+    item_id?: string;
+}
+
+/**
+ * 
+ * @export
  * @interface ConversationEventQueuePosition
  */
 export interface ConversationEventQueuePosition {
@@ -7425,6 +7453,18 @@ export interface ConversationWebsocketMessage {
     conversation_uuid?: string;
     /**
      * 
+     * @type {ConversationEventAddCoupon}
+     * @memberof ConversationWebsocketMessage
+     */
+    event_add_coupon?: ConversationEventAddCoupon;
+    /**
+     * 
+     * @type {ConversationEventAddItem}
+     * @memberof ConversationWebsocketMessage
+     */
+    event_add_item?: ConversationEventAddItem;
+    /**
+     * 
      * @type {ConversationSummary}
      * @memberof ConversationWebsocketMessage
      */
@@ -7523,7 +7563,9 @@ export namespace ConversationWebsocketMessage {
         Rrweb = <any> 'rrweb',
         ParticipantUpdate = <any> 'participant update',
         ReadMessage = <any> 'read message',
-        Typing = <any> 'typing'
+        Typing = <any> 'typing',
+        AddCoupon = <any> 'add coupon',
+        AddItem = <any> 'add item'
     }
     /**
      * @export
@@ -28970,7 +29012,7 @@ export interface OrderRefundableResponse {
      */
     metadata?: ResponseMetadata;
     /**
-     * Whether the order is refundable or not.
+     * Whether the order is refundable or not.  Null should be interpreted as false.
      * @type {boolean}
      * @memberof OrderRefundableResponse
      */
