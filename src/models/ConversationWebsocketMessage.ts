@@ -14,6 +14,18 @@
 
 import { exists, mapValues } from '../runtime';
 import {
+    ConversationEventAddCoupon,
+    ConversationEventAddCouponFromJSON,
+    ConversationEventAddCouponFromJSONTyped,
+    ConversationEventAddCouponToJSON,
+} from './ConversationEventAddCoupon';
+import {
+    ConversationEventAddItem,
+    ConversationEventAddItemFromJSON,
+    ConversationEventAddItemFromJSONTyped,
+    ConversationEventAddItemToJSON,
+} from './ConversationEventAddItem';
+import {
     ConversationEventQueuePosition,
     ConversationEventQueuePositionFromJSON,
     ConversationEventQueuePositionFromJSONTyped,
@@ -68,6 +80,18 @@ export interface ConversationWebsocketMessage {
      * @memberof ConversationWebsocketMessage
      */
     conversation_uuid?: string;
+    /**
+     * 
+     * @type {ConversationEventAddCoupon}
+     * @memberof ConversationWebsocketMessage
+     */
+    event_add_coupon?: ConversationEventAddCoupon;
+    /**
+     * 
+     * @type {ConversationEventAddItem}
+     * @memberof ConversationWebsocketMessage
+     */
+    event_add_item?: ConversationEventAddItem;
     /**
      * 
      * @type {ConversationSummary}
@@ -163,7 +187,9 @@ export const ConversationWebsocketMessageEventTypeEnum = {
     Rrweb: 'rrweb',
     ParticipantUpdate: 'participant update',
     ReadMessage: 'read message',
-    Typing: 'typing'
+    Typing: 'typing',
+    AddCoupon: 'add coupon',
+    AddItem: 'add item'
 } as const;
 export type ConversationWebsocketMessageEventTypeEnum = typeof ConversationWebsocketMessageEventTypeEnum[keyof typeof ConversationWebsocketMessageEventTypeEnum];
 
@@ -190,6 +216,8 @@ export function ConversationWebsocketMessageFromJSONTyped(json: any, ignoreDiscr
     return {
         
         'conversation_uuid': !exists(json, 'conversation_uuid') ? undefined : json['conversation_uuid'],
+        'event_add_coupon': !exists(json, 'event_add_coupon') ? undefined : ConversationEventAddCouponFromJSON(json['event_add_coupon']),
+        'event_add_item': !exists(json, 'event_add_item') ? undefined : ConversationEventAddItemFromJSON(json['event_add_item']),
         'event_conversation_closed': !exists(json, 'event_conversation_closed') ? undefined : ConversationSummaryFromJSON(json['event_conversation_closed']),
         'event_new_conversation': !exists(json, 'event_new_conversation') ? undefined : ConversationSummaryFromJSON(json['event_new_conversation']),
         'event_new_message': !exists(json, 'event_new_message') ? undefined : ConversationSummaryFromJSON(json['event_new_message']),
@@ -216,6 +244,8 @@ export function ConversationWebsocketMessageToJSON(value?: ConversationWebsocket
     return {
         
         'conversation_uuid': value.conversation_uuid,
+        'event_add_coupon': ConversationEventAddCouponToJSON(value.event_add_coupon),
+        'event_add_item': ConversationEventAddItemToJSON(value.event_add_item),
         'event_conversation_closed': ConversationSummaryToJSON(value.event_conversation_closed),
         'event_new_conversation': ConversationSummaryToJSON(value.event_new_conversation),
         'event_new_message': ConversationSummaryToJSON(value.event_new_message),

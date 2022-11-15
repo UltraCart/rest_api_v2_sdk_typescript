@@ -120,6 +120,8 @@ export * from './CityStateZip';
 export * from './Conversation';
 export * from './ConversationAgentAuth';
 export * from './ConversationAgentAuthResponse';
+export * from './ConversationEventAddCoupon';
+export * from './ConversationEventAddItem';
 export * from './ConversationEventQueuePosition';
 export * from './ConversationEventRRWeb';
 export * from './ConversationEventReadMessage';

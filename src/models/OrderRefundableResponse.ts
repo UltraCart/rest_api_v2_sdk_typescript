@@ -51,7 +51,7 @@ export interface OrderRefundableResponse {
      */
     metadata?: ResponseMetadata;
     /**
-     * Whether the order is refundable or not.
+     * Whether the order is refundable or not.  Null should be interpreted as false.
      * @type {boolean}
      * @memberof OrderRefundableResponse
      */
