@@ -87,11 +87,23 @@ export interface AffiliateClick {
      */
     referrer_query_string?: string;
     /**
+     * Screen recording UUID
+     * @type {string}
+     * @memberof AffiliateClick
+     */
+    screen_recording_uuid?: string;
+    /**
      * Sub ID value passed on the click
      * @type {string}
      * @memberof AffiliateClick
      */
     sub_id?: string;
+    /**
+     * UC Analytics Identifier
+     * @type {string}
+     * @memberof AffiliateClick
+     */
+    ucacid?: string;
 }
 
 export function AffiliateClickFromJSON(json: any): AffiliateClick {
@@ -114,7 +126,9 @@ export function AffiliateClickFromJSONTyped(json: any, ignoreDiscriminator: bool
         'link': !exists(json, 'link') ? undefined : AffiliateLinkFromJSON(json['link']),
         'referrer': !exists(json, 'referrer') ? undefined : json['referrer'],
         'referrer_query_string': !exists(json, 'referrer_query_string') ? undefined : json['referrer_query_string'],
+        'screen_recording_uuid': !exists(json, 'screen_recording_uuid') ? undefined : json['screen_recording_uuid'],
         'sub_id': !exists(json, 'sub_id') ? undefined : json['sub_id'],
+        'ucacid': !exists(json, 'ucacid') ? undefined : json['ucacid'],
     };
 }
 
@@ -137,7 +151,9 @@ export function AffiliateClickToJSON(value?: AffiliateClick | null): any {
         'link': AffiliateLinkToJSON(value.link),
         'referrer': value.referrer,
         'referrer_query_string': value.referrer_query_string,
+        'screen_recording_uuid': value.screen_recording_uuid,
         'sub_id': value.sub_id,
+        'ucacid': value.ucacid,
     };
 }
 

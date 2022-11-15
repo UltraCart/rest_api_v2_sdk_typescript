@@ -33,6 +33,12 @@ import {
  */
 export interface Conversation {
     /**
+     * The base language iso code for the StoreFront that everything is translated into
+     * @type {string}
+     * @memberof Conversation
+     */
+    base_language_iso_code?: string;
+    /**
      * 
      * @type {boolean}
      * @memberof Conversation
@@ -151,6 +157,7 @@ export function ConversationFromJSONTyped(json: any, ignoreDiscriminator: boolea
     }
     return {
         
+        'base_language_iso_code': !exists(json, 'base_language_iso_code') ? undefined : json['base_language_iso_code'],
         'closed': !exists(json, 'closed') ? undefined : json['closed'],
         'conversation_arn': !exists(json, 'conversation_arn') ? undefined : json['conversation_arn'],
         'conversation_uuid': !exists(json, 'conversation_uuid') ? undefined : json['conversation_uuid'],
@@ -179,6 +186,7 @@ export function ConversationToJSON(value?: Conversation | null): any {
     }
     return {
         
+        'base_language_iso_code': value.base_language_iso_code,
         'closed': value.closed,
         'conversation_arn': value.conversation_arn,
         'conversation_uuid': value.conversation_uuid,
