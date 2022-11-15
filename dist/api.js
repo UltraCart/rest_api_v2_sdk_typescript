@@ -15397,6 +15397,52 @@ var OrderApiFetchParamCreator = function (configuration) {
             };
         },
         /**
+         * Determine if an order can be refunded based upon payment method and age
+         * @summary Determine if an order can be refunded
+         * @param {string} order_id The order id to check for refundable order.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        isRefundableOrder: function (order_id, options) {
+            if (options === void 0) { options = {}; }
+            // verify required parameter 'order_id' is not null or undefined
+            if (order_id === null || order_id === undefined) {
+                throw new RequiredError('order_id', 'Required parameter order_id was null or undefined when calling isRefundableOrder.');
+            }
+            var localVarPath = "/order/orders/{order_id}/refundable"
+                .replace("{".concat("order_id", "}"), encodeURIComponent(String(order_id)));
+            var localVarUrlObj = url.parse(localVarPath, true);
+            var localVarRequestOptions = Object.assign({ method: 'GET' }, options);
+            var localVarHeaderParameter = {};
+            var localVarQueryParameter = {};
+            if (configuration && configuration.apiVersion) {
+                localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+            }
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+                var localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+                    ? configuration.accessToken("ultraCartOauth", ["order_write"])
+                    : configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                var localVarApiKeyValue = typeof configuration.apiKey === 'function'
+                    ? configuration.apiKey("x-ultracart-simple-key")
+                    : configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
          * Process payment on order
          * @summary Process payment
          * @param {string} order_id The order id to process payment on
@@ -16188,6 +16234,28 @@ var OrderApiFp = function (configuration) {
             };
         },
         /**
+         * Determine if an order can be refunded based upon payment method and age
+         * @summary Determine if an order can be refunded
+         * @param {string} order_id The order id to check for refundable order.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        isRefundableOrder: function (order_id, options) {
+            var localVarFetchArgs = (0, exports.OrderApiFetchParamCreator)(configuration).isRefundableOrder(order_id, options);
+            return function (fetch, basePath) {
+                if (fetch === void 0) { fetch = portableFetch; }
+                if (basePath === void 0) { basePath = BASE_PATH; }
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(function (response) {
+                    if (response.status >= 200 && response.status < 300) {
+                        return response.json();
+                    }
+                    else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
          * Process payment on order
          * @summary Process payment
          * @param {string} order_id The order id to process payment on
@@ -16565,6 +16633,16 @@ var OrderApiFactory = function (configuration, fetch, basePath) {
             return (0, exports.OrderApiFp)(configuration).insertOrder(order, _expand, options)(fetch, basePath);
         },
         /**
+         * Determine if an order can be refunded based upon payment method and age
+         * @summary Determine if an order can be refunded
+         * @param {string} order_id The order id to check for refundable order.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        isRefundableOrder: function (order_id, options) {
+            return (0, exports.OrderApiFp)(configuration).isRefundableOrder(order_id, options)(fetch, basePath);
+        },
+        /**
          * Process payment on order
          * @summary Process payment
          * @param {string} order_id The order id to process payment on
@@ -16877,6 +16955,17 @@ var OrderApi = /** @class */ (function (_super) {
      */
     OrderApi.prototype.insertOrder = function (order, _expand, options) {
         return (0, exports.OrderApiFp)(this.configuration).insertOrder(order, _expand, options)(this.fetch, this.basePath);
+    };
+    /**
+     * Determine if an order can be refunded based upon payment method and age
+     * @summary Determine if an order can be refunded
+     * @param {string} order_id The order id to check for refundable order.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof OrderApi
+     */
+    OrderApi.prototype.isRefundableOrder = function (order_id, options) {
+        return (0, exports.OrderApiFp)(this.configuration).isRefundableOrder(order_id, options)(this.fetch, this.basePath);
     };
     /**
      * Process payment on order

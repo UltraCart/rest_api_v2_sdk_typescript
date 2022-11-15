@@ -28954,6 +28954,44 @@ export interface OrderQuote {
 /**
  * 
  * @export
+ * @interface OrderRefundableResponse
+ */
+export interface OrderRefundableResponse {
+    /**
+     * 
+     * @type {ModelError}
+     * @memberof OrderRefundableResponse
+     */
+    error?: ModelError;
+    /**
+     * 
+     * @type {ResponseMetadata}
+     * @memberof OrderRefundableResponse
+     */
+    metadata?: ResponseMetadata;
+    /**
+     * Whether the order is refundable or not.
+     * @type {boolean}
+     * @memberof OrderRefundableResponse
+     */
+    refundable?: boolean;
+    /**
+     * Indicates if API call was successful
+     * @type {boolean}
+     * @memberof OrderRefundableResponse
+     */
+    success?: boolean;
+    /**
+     * 
+     * @type {Warning}
+     * @memberof OrderRefundableResponse
+     */
+    warning?: Warning;
+}
+
+/**
+ * 
+ * @export
  * @interface OrderReplacement
  */
 export interface OrderReplacement {
@@ -52685,6 +52723,58 @@ export const OrderApiFetchParamCreator = function (configuration?: Configuration
             };
         },
         /**
+         * Determine if an order can be refunded based upon payment method and age 
+         * @summary Determine if an order can be refunded
+         * @param {string} order_id The order id to check for refundable order.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        isRefundableOrder(order_id: string, options: any = {}): FetchArgs {
+            // verify required parameter 'order_id' is not null or undefined
+            if (order_id === null || order_id === undefined) {
+                throw new RequiredError('order_id','Required parameter order_id was null or undefined when calling isRefundableOrder.');
+            }
+            const localVarPath = `/order/orders/{order_id}/refundable`
+                .replace(`{${"order_id"}}`, encodeURIComponent(String(order_id)));
+            const localVarUrlObj = url.parse(localVarPath, true);
+            const localVarRequestOptions = Object.assign({ method: 'GET' }, options);
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+    if(configuration && configuration.apiVersion) {
+      localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+    }
+
+
+
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+				const localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+					? configuration.accessToken("ultraCartOauth", ["order_write"])
+					: configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
+					? configuration.apiKey("x-ultracart-simple-key")
+					: configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
          * Process payment on order 
          * @summary Process payment
          * @param {string} order_id The order id to process payment on
@@ -53515,6 +53605,27 @@ export const OrderApiFp = function(configuration?: Configuration) {
             };
         },
         /**
+         * Determine if an order can be refunded based upon payment method and age 
+         * @summary Determine if an order can be refunded
+         * @param {string} order_id The order id to check for refundable order.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        isRefundableOrder(order_id: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<OrderRefundableResponse> {
+            const localVarFetchArgs = OrderApiFetchParamCreator(configuration).isRefundableOrder(order_id, options);
+            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
+                    if (response.status >= 200 && response.status < 300) {
+                      return response.json();
+                      
+                    } else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
          * Process payment on order 
          * @summary Process payment
          * @param {string} order_id The order id to process payment on
@@ -53885,6 +53996,16 @@ export const OrderApiFactory = function (configuration?: Configuration, fetch?: 
             return OrderApiFp(configuration).insertOrder(order, _expand, options)(fetch, basePath);
         },
         /**
+         * Determine if an order can be refunded based upon payment method and age 
+         * @summary Determine if an order can be refunded
+         * @param {string} order_id The order id to check for refundable order.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        isRefundableOrder(order_id: string, options?: any) {
+            return OrderApiFp(configuration).isRefundableOrder(order_id, options)(fetch, basePath);
+        },
+        /**
          * Process payment on order 
          * @summary Process payment
          * @param {string} order_id The order id to process payment on
@@ -54176,6 +54297,16 @@ export interface OrderApiInterface {
      * @memberof OrderApiInterface
      */
     insertOrder(order: Order, _expand?: string, options?: any): Promise<OrderResponse>;
+
+    /**
+     * Determine if an order can be refunded based upon payment method and age 
+     * @summary Determine if an order can be refunded
+     * @param {string} order_id The order id to check for refundable order.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof OrderApiInterface
+     */
+    isRefundableOrder(order_id: string, options?: any): Promise<OrderRefundableResponse>;
 
     /**
      * Process payment on order 
@@ -54500,6 +54631,18 @@ export class OrderApi extends BaseAPI implements OrderApiInterface {
      */
     public insertOrder(order: Order, _expand?: string, options?: any) {
         return OrderApiFp(this.configuration).insertOrder(order, _expand, options)(this.fetch, this.basePath);
+    }
+
+    /**
+     * Determine if an order can be refunded based upon payment method and age 
+     * @summary Determine if an order can be refunded
+     * @param {string} order_id The order id to check for refundable order.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof OrderApi
+     */
+    public isRefundableOrder(order_id: string, options?: any) {
+        return OrderApiFp(this.configuration).isRefundableOrder(order_id, options)(this.fetch, this.basePath);
     }
 
     /**

@@ -28347,6 +28347,43 @@ export interface OrderQuote {
 /**
  *
  * @export
+ * @interface OrderRefundableResponse
+ */
+export interface OrderRefundableResponse {
+    /**
+     *
+     * @type {ModelError}
+     * @memberof OrderRefundableResponse
+     */
+    error?: ModelError;
+    /**
+     *
+     * @type {ResponseMetadata}
+     * @memberof OrderRefundableResponse
+     */
+    metadata?: ResponseMetadata;
+    /**
+     * Whether the order is refundable or not.
+     * @type {boolean}
+     * @memberof OrderRefundableResponse
+     */
+    refundable?: boolean;
+    /**
+     * Indicates if API call was successful
+     * @type {boolean}
+     * @memberof OrderRefundableResponse
+     */
+    success?: boolean;
+    /**
+     *
+     * @type {Warning}
+     * @memberof OrderRefundableResponse
+     */
+    warning?: Warning;
+}
+/**
+ *
+ * @export
  * @interface OrderReplacement
  */
 export interface OrderReplacement {
@@ -41861,6 +41898,14 @@ export declare const OrderApiFetchParamCreator: (configuration?: Configuration) 
      */
     insertOrder(order: Order, _expand?: string, options?: any): FetchArgs;
     /**
+     * Determine if an order can be refunded based upon payment method and age
+     * @summary Determine if an order can be refunded
+     * @param {string} order_id The order id to check for refundable order.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    isRefundableOrder(order_id: string, options?: any): FetchArgs;
+    /**
      * Process payment on order
      * @summary Process payment
      * @param {string} order_id The order id to process payment on
@@ -42105,6 +42150,14 @@ export declare const OrderApiFp: (configuration?: Configuration) => {
      */
     insertOrder(order: Order, _expand?: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<OrderResponse>;
     /**
+     * Determine if an order can be refunded based upon payment method and age
+     * @summary Determine if an order can be refunded
+     * @param {string} order_id The order id to check for refundable order.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    isRefundableOrder(order_id: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<OrderRefundableResponse>;
+    /**
      * Process payment on order
      * @summary Process payment
      * @param {string} order_id The order id to process payment on
@@ -42348,6 +42401,14 @@ export declare const OrderApiFactory: (configuration?: Configuration, fetch?: Fe
      * @throws {RequiredError}
      */
     insertOrder(order: Order, _expand?: string, options?: any): Promise<OrderResponse>;
+    /**
+     * Determine if an order can be refunded based upon payment method and age
+     * @summary Determine if an order can be refunded
+     * @param {string} order_id The order id to check for refundable order.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    isRefundableOrder(order_id: string, options?: any): Promise<OrderRefundableResponse>;
     /**
      * Process payment on order
      * @summary Process payment
@@ -42609,6 +42670,15 @@ export interface OrderApiInterface {
      * @memberof OrderApiInterface
      */
     insertOrder(order: Order, _expand?: string, options?: any): Promise<OrderResponse>;
+    /**
+     * Determine if an order can be refunded based upon payment method and age
+     * @summary Determine if an order can be refunded
+     * @param {string} order_id The order id to check for refundable order.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof OrderApiInterface
+     */
+    isRefundableOrder(order_id: string, options?: any): Promise<OrderRefundableResponse>;
     /**
      * Process payment on order
      * @summary Process payment
@@ -42878,6 +42948,15 @@ export declare class OrderApi extends BaseAPI implements OrderApiInterface {
      * @memberof OrderApi
      */
     insertOrder(order: Order, _expand?: string, options?: any): Promise<OrderResponse>;
+    /**
+     * Determine if an order can be refunded based upon payment method and age
+     * @summary Determine if an order can be refunded
+     * @param {string} order_id The order id to check for refundable order.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof OrderApi
+     */
+    isRefundableOrder(order_id: string, options?: any): Promise<OrderRefundableResponse>;
     /**
      * Process payment on order
      * @summary Process payment
