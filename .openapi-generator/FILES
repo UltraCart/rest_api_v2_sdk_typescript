@@ -565,6 +565,7 @@ src/models/OrderProperty.ts
 src/models/OrderQuery.ts
 src/models/OrderQueryBatch.ts
 src/models/OrderQuote.ts
+src/models/OrderRefundableResponse.ts
 src/models/OrderReplacement.ts
 src/models/OrderReplacementItem.ts
 src/models/OrderReplacementResponse.ts

@@ -57,6 +57,9 @@ import {
     OrderQueryBatch,
     OrderQueryBatchFromJSON,
     OrderQueryBatchToJSON,
+    OrderRefundableResponse,
+    OrderRefundableResponseFromJSON,
+    OrderRefundableResponseToJSON,
     OrderReplacement,
     OrderReplacementFromJSON,
     OrderReplacementToJSON,
@@ -175,6 +178,10 @@ export interface GetOrdersByQueryRequest {
 export interface InsertOrderRequest {
     order: Order;
     expand?: string;
+}
+
+export interface IsRefundableOrderRequest {
+    orderId: string;
 }
 
 export interface ProcessPaymentRequest {
@@ -521,6 +528,22 @@ export interface OrderApiInterface {
      * Insert an order
      */
     insertOrder(requestParameters: InsertOrderRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<OrderResponse>;
+
+    /**
+     * Determine if an order can be refunded based upon payment method and age 
+     * @summary Determine if an order can be refunded
+     * @param {string} orderId The order id to check for refundable order.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof OrderApiInterface
+     */
+    isRefundableOrderRaw(requestParameters: IsRefundableOrderRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<OrderRefundableResponse>>;
+
+    /**
+     * Determine if an order can be refunded based upon payment method and age 
+     * Determine if an order can be refunded
+     */
+    isRefundableOrder(requestParameters: IsRefundableOrderRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<OrderRefundableResponse>;
 
     /**
      * Process payment on order 
@@ -1488,6 +1511,47 @@ export class OrderApi extends runtime.BaseAPI implements OrderApiInterface {
      */
     async insertOrder(requestParameters: InsertOrderRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<OrderResponse> {
         const response = await this.insertOrderRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Determine if an order can be refunded based upon payment method and age 
+     * Determine if an order can be refunded
+     */
+    async isRefundableOrderRaw(requestParameters: IsRefundableOrderRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<OrderRefundableResponse>> {
+        if (requestParameters.orderId === null || requestParameters.orderId === undefined) {
+            throw new runtime.RequiredError('orderId','Required parameter requestParameters.orderId was null or undefined when calling isRefundableOrder.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", ["order_write"]);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/order/orders/{order_id}/refundable`.replace(`{${"order_id"}}`, encodeURIComponent(String(requestParameters.orderId))),
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => OrderRefundableResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Determine if an order can be refunded based upon payment method and age 
+     * Determine if an order can be refunded
+     */
+    async isRefundableOrder(requestParameters: IsRefundableOrderRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<OrderRefundableResponse> {
+        const response = await this.isRefundableOrderRaw(requestParameters, initOverrides);
         return await response.value();
     }
 

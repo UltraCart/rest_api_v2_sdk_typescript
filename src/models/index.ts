@@ -542,6 +542,7 @@ export * from './OrderProperty';
 export * from './OrderQuery';
 export * from './OrderQueryBatch';
 export * from './OrderQuote';
+export * from './OrderRefundableResponse';
 export * from './OrderReplacement';
 export * from './OrderReplacementItem';
 export * from './OrderReplacementResponse';
