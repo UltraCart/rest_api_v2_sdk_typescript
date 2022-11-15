@@ -713,11 +713,23 @@ export interface AffiliateClick {
      */
     referrer_query_string?: string;
     /**
+     * Screen recording UUID
+     * @type {string}
+     * @memberof AffiliateClick
+     */
+    screen_recording_uuid?: string;
+    /**
      * Sub ID value passed on the click
      * @type {string}
      * @memberof AffiliateClick
      */
     sub_id?: string;
+    /**
+     * UC Analytics Identifier
+     * @type {string}
+     * @memberof AffiliateClick
+     */
+    ucacid?: string;
 }
 
 /**
@@ -6277,6 +6289,12 @@ export interface CityStateZip {
  * @interface Conversation
  */
 export interface Conversation {
+    /**
+     * The base language iso code for the StoreFront that everything is translated into
+     * @type {string}
+     * @memberof Conversation
+     */
+    base_language_iso_code?: string;
     /**
      * 
      * @type {boolean}
