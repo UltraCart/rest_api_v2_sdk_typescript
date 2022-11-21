@@ -43,6 +43,18 @@ export interface CouponPercentOffMsrpItems {
      * @memberof CouponPercentOffMsrpItems
      */
     limit?: number;
+    /**
+     * The (optional) minimum cumulative msrp of qualifying items.
+     * @type {number}
+     * @memberof CouponPercentOffMsrpItems
+     */
+    minimum_cumulative_msrp?: number;
+    /**
+     * The (optional) minimum subtotal of qualifying items.
+     * @type {number}
+     * @memberof CouponPercentOffMsrpItems
+     */
+    minimum_subtotal?: number;
 }
 
 export function CouponPercentOffMsrpItemsFromJSON(json: any): CouponPercentOffMsrpItems {
@@ -59,6 +71,8 @@ export function CouponPercentOffMsrpItemsFromJSONTyped(json: any, ignoreDiscrimi
         'excluded_items': !exists(json, 'excluded_items') ? undefined : json['excluded_items'],
         'items': !exists(json, 'items') ? undefined : json['items'],
         'limit': !exists(json, 'limit') ? undefined : json['limit'],
+        'minimum_cumulative_msrp': !exists(json, 'minimum_cumulative_msrp') ? undefined : json['minimum_cumulative_msrp'],
+        'minimum_subtotal': !exists(json, 'minimum_subtotal') ? undefined : json['minimum_subtotal'],
     };
 }
 
@@ -75,6 +89,8 @@ export function CouponPercentOffMsrpItemsToJSON(value?: CouponPercentOffMsrpItem
         'excluded_items': value.excluded_items,
         'items': value.items,
         'limit': value.limit,
+        'minimum_cumulative_msrp': value.minimum_cumulative_msrp,
+        'minimum_subtotal': value.minimum_subtotal,
     };
 }
 
