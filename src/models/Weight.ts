@@ -39,6 +39,7 @@ export interface Weight {
  */
 export const WeightUomEnum = {
     Kg: 'KG',
+    G: 'G',
     Lb: 'LB',
     Oz: 'OZ'
 } as const;

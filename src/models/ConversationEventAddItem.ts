@@ -13,6 +13,13 @@
  */
 
 import { exists, mapValues } from '../runtime';
+import {
+    CartItem,
+    CartItemFromJSON,
+    CartItemFromJSONTyped,
+    CartItemToJSON,
+} from './CartItem';
+
 /**
  * 
  * @export
@@ -24,7 +31,19 @@ export interface ConversationEventAddItem {
      * @type {string}
      * @memberof ConversationEventAddItem
      */
-    item_id?: string;
+    agent_arn?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ConversationEventAddItem
+     */
+    agent_name?: string;
+    /**
+     * 
+     * @type {Array<CartItem>}
+     * @memberof ConversationEventAddItem
+     */
+    items?: Array<CartItem>;
 }
 
 export function ConversationEventAddItemFromJSON(json: any): ConversationEventAddItem {
@@ -37,7 +56,9 @@ export function ConversationEventAddItemFromJSONTyped(json: any, ignoreDiscrimin
     }
     return {
         
-        'item_id': !exists(json, 'item_id') ? undefined : json['item_id'],
+        'agent_arn': !exists(json, 'agent_arn') ? undefined : json['agent_arn'],
+        'agent_name': !exists(json, 'agent_name') ? undefined : json['agent_name'],
+        'items': !exists(json, 'items') ? undefined : ((json['items'] as Array<any>).map(CartItemFromJSON)),
     };
 }
 
@@ -50,7 +71,9 @@ export function ConversationEventAddItemToJSON(value?: ConversationEventAddItem 
     }
     return {
         
-        'item_id': value.item_id,
+        'agent_arn': value.agent_arn,
+        'agent_name': value.agent_name,
+        'items': value.items === undefined ? undefined : ((value.items as Array<any>).map(CartItemToJSON)),
     };
 }
 

@@ -126,6 +126,7 @@ export * from './ConversationEventQueuePosition';
 export * from './ConversationEventRRWeb';
 export * from './ConversationEventReadMessage';
 export * from './ConversationEventTyping';
+export * from './ConversationEventWebchatContext';
 export * from './ConversationMessage';
 export * from './ConversationMessageTransportStatus';
 export * from './ConversationMessagesResponse';

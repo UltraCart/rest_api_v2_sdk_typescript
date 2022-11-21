@@ -50,6 +50,12 @@ import {
     ConversationEventTypingToJSON,
 } from './ConversationEventTyping';
 import {
+    ConversationEventWebchatContext,
+    ConversationEventWebchatContextFromJSON,
+    ConversationEventWebchatContextFromJSONTyped,
+    ConversationEventWebchatContextToJSON,
+} from './ConversationEventWebchatContext';
+import {
     ConversationMessage,
     ConversationMessageFromJSON,
     ConversationMessageFromJSONTyped,
@@ -160,6 +166,12 @@ export interface ConversationWebsocketMessage {
     event_updated_message?: ConversationMessage;
     /**
      * 
+     * @type {ConversationEventWebchatContext}
+     * @memberof ConversationWebsocketMessage
+     */
+    event_webchat_context?: ConversationEventWebchatContext;
+    /**
+     * 
      * @type {ConversationMessage}
      * @memberof ConversationWebsocketMessage
      */
@@ -229,6 +241,7 @@ export function ConversationWebsocketMessageFromJSONTyped(json: any, ignoreDiscr
         'event_type': !exists(json, 'event_type') ? undefined : json['event_type'],
         'event_typing': !exists(json, 'event_typing') ? undefined : ConversationEventTypingFromJSON(json['event_typing']),
         'event_updated_message': !exists(json, 'event_updated_message') ? undefined : ConversationMessageFromJSON(json['event_updated_message']),
+        'event_webchat_context': !exists(json, 'event_webchat_context') ? undefined : ConversationEventWebchatContextFromJSON(json['event_webchat_context']),
         'message': !exists(json, 'message') ? undefined : ConversationMessageFromJSON(json['message']),
         'type': !exists(json, 'type') ? undefined : json['type'],
     };
@@ -257,6 +270,7 @@ export function ConversationWebsocketMessageToJSON(value?: ConversationWebsocket
         'event_type': value.event_type,
         'event_typing': ConversationEventTypingToJSON(value.event_typing),
         'event_updated_message': ConversationMessageToJSON(value.event_updated_message),
+        'event_webchat_context': ConversationEventWebchatContextToJSON(value.event_webchat_context),
         'message': ConversationMessageToJSON(value.message),
         'type': value.type,
     };

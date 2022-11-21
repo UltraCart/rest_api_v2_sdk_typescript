@@ -149,6 +149,7 @@ src/models/ConversationEventQueuePosition.ts
 src/models/ConversationEventRRWeb.ts
 src/models/ConversationEventReadMessage.ts
 src/models/ConversationEventTyping.ts
+src/models/ConversationEventWebchatContext.ts
 src/models/ConversationMessage.ts
 src/models/ConversationMessageTransportStatus.ts
 src/models/ConversationMessagesResponse.ts

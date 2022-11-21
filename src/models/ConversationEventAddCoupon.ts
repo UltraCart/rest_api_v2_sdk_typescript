@@ -24,6 +24,18 @@ export interface ConversationEventAddCoupon {
      * @type {string}
      * @memberof ConversationEventAddCoupon
      */
+    agent_arn?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ConversationEventAddCoupon
+     */
+    agent_name?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ConversationEventAddCoupon
+     */
     coupon_code?: string;
 }
 
@@ -37,6 +49,8 @@ export function ConversationEventAddCouponFromJSONTyped(json: any, ignoreDiscrim
     }
     return {
         
+        'agent_arn': !exists(json, 'agent_arn') ? undefined : json['agent_arn'],
+        'agent_name': !exists(json, 'agent_name') ? undefined : json['agent_name'],
         'coupon_code': !exists(json, 'coupon_code') ? undefined : json['coupon_code'],
     };
 }
@@ -50,6 +64,8 @@ export function ConversationEventAddCouponToJSON(value?: ConversationEventAddCou
     }
     return {
         
+        'agent_arn': value.agent_arn,
+        'agent_name': value.agent_name,
         'coupon_code': value.coupon_code,
     };
 }
