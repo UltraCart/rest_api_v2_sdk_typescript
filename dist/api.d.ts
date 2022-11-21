@@ -9117,6 +9117,18 @@ export interface CouponPercentOffMsrpItems {
      * @memberof CouponPercentOffMsrpItems
      */
     limit?: number;
+    /**
+     * The (optional) minimum cumulative msrp of qualifying items.
+     * @type {number}
+     * @memberof CouponPercentOffMsrpItems
+     */
+    minimum_cumulative_msrp?: number;
+    /**
+     * The (optional) minimum subtotal of qualifying items.
+     * @type {number}
+     * @memberof CouponPercentOffMsrpItems
+     */
+    minimum_subtotal?: number;
 }
 /**
  *
