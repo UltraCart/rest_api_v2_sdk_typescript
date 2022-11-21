@@ -507,6 +507,7 @@ var ConversationWebsocketMessage;
         EventTypeEnum[EventTypeEnum["Typing"] = 'typing'] = "Typing";
         EventTypeEnum[EventTypeEnum["AddCoupon"] = 'add coupon'] = "AddCoupon";
         EventTypeEnum[EventTypeEnum["AddItem"] = 'add item'] = "AddItem";
+        EventTypeEnum[EventTypeEnum["WebchatContext"] = 'webchat context'] = "WebchatContext";
     })(EventTypeEnum = ConversationWebsocketMessage.EventTypeEnum || (ConversationWebsocketMessage.EventTypeEnum = {}));
     /**
      * @export
@@ -5590,6 +5591,52 @@ var ConversationApiFetchParamCreator = function (configuration) {
             };
         },
         /**
+         * Get a webchat conversation context
+         * @summary Get a webchat conversation context
+         * @param {string} conversation_uuid
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getConversationContext: function (conversation_uuid, options) {
+            if (options === void 0) { options = {}; }
+            // verify required parameter 'conversation_uuid' is not null or undefined
+            if (conversation_uuid === null || conversation_uuid === undefined) {
+                throw new RequiredError('conversation_uuid', 'Required parameter conversation_uuid was null or undefined when calling getConversationContext.');
+            }
+            var localVarPath = "/conversation/conversations/{conversation_uuid}/context"
+                .replace("{".concat("conversation_uuid", "}"), encodeURIComponent(String(conversation_uuid)));
+            var localVarUrlObj = url.parse(localVarPath, true);
+            var localVarRequestOptions = Object.assign({ method: 'PUT' }, options);
+            var localVarHeaderParameter = {};
+            var localVarQueryParameter = {};
+            if (configuration && configuration.apiVersion) {
+                localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+            }
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+                var localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+                    ? configuration.accessToken("ultraCartOauth", ["conversation_write"])
+                    : configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                var localVarApiKeyValue = typeof configuration.apiKey === 'function'
+                    ? configuration.apiKey("x-ultracart-simple-key")
+                    : configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
          * Retrieve conversation messages since a particular time
          * @summary Retrieve conversation messages
          * @param {string} conversation_uuid
@@ -6056,6 +6103,28 @@ var ConversationApiFp = function (configuration) {
             };
         },
         /**
+         * Get a webchat conversation context
+         * @summary Get a webchat conversation context
+         * @param {string} conversation_uuid
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getConversationContext: function (conversation_uuid, options) {
+            var localVarFetchArgs = (0, exports.ConversationApiFetchParamCreator)(configuration).getConversationContext(conversation_uuid, options);
+            return function (fetch, basePath) {
+                if (fetch === void 0) { fetch = portableFetch; }
+                if (basePath === void 0) { basePath = BASE_PATH; }
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(function (response) {
+                    if (response.status >= 200 && response.status < 300) {
+                        return response.json();
+                    }
+                    else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
          * Retrieve conversation messages since a particular time
          * @summary Retrieve conversation messages
          * @param {string} conversation_uuid
@@ -6275,6 +6344,16 @@ var ConversationApiFactory = function (configuration, fetch, basePath) {
             return (0, exports.ConversationApiFp)(configuration).getConversation(conversation_uuid, limit, options)(fetch, basePath);
         },
         /**
+         * Get a webchat conversation context
+         * @summary Get a webchat conversation context
+         * @param {string} conversation_uuid
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getConversationContext: function (conversation_uuid, options) {
+            return (0, exports.ConversationApiFp)(configuration).getConversationContext(conversation_uuid, options)(fetch, basePath);
+        },
+        /**
          * Retrieve conversation messages since a particular time
          * @summary Retrieve conversation messages
          * @param {string} conversation_uuid
@@ -6404,6 +6483,17 @@ var ConversationApi = /** @class */ (function (_super) {
      */
     ConversationApi.prototype.getConversation = function (conversation_uuid, limit, options) {
         return (0, exports.ConversationApiFp)(this.configuration).getConversation(conversation_uuid, limit, options)(this.fetch, this.basePath);
+    };
+    /**
+     * Get a webchat conversation context
+     * @summary Get a webchat conversation context
+     * @param {string} conversation_uuid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApi
+     */
+    ConversationApi.prototype.getConversationContext = function (conversation_uuid, options) {
+        return (0, exports.ConversationApiFp)(this.configuration).getConversationContext(conversation_uuid, options)(this.fetch, this.basePath);
     };
     /**
      * Retrieve conversation messages since a particular time

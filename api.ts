@@ -7222,6 +7222,44 @@ export interface ConversationTwilioAccount {
 /**
  * 
  * @export
+ * @interface ConversationWebchatContext
+ */
+export interface ConversationWebchatContext {
+    /**
+     * 
+     * @type {Cart}
+     * @memberof ConversationWebchatContext
+     */
+    cart?: Cart;
+    /**
+     * 
+     * @type {string}
+     * @memberof ConversationWebchatContext
+     */
+    current_url?: string;
+    /**
+     * 
+     * @type {Array<HitPageView>}
+     * @memberof ConversationWebchatContext
+     */
+    page_view?: Array<HitPageView>;
+    /**
+     * 
+     * @type {HitSessionStart}
+     * @memberof ConversationWebchatContext
+     */
+    session_start?: HitSessionStart;
+    /**
+     * 
+     * @type {HitSessionUtm}
+     * @memberof ConversationWebchatContext
+     */
+    session_utm?: HitSessionUtm;
+}
+
+/**
+ * 
+ * @export
  * @interface ConversationWebchatQueueStatus
  */
 export interface ConversationWebchatQueueStatus {
@@ -7621,7 +7659,8 @@ export namespace ConversationWebsocketMessage {
         ReadMessage = <any> 'read message',
         Typing = <any> 'typing',
         AddCoupon = <any> 'add coupon',
-        AddItem = <any> 'add item'
+        AddItem = <any> 'add item',
+        WebchatContext = <any> 'webchat context'
     }
     /**
      * @export
@@ -19661,6 +19700,308 @@ export interface HTTPHeader {
      * @memberof HTTPHeader
      */
     value?: string;
+}
+
+/**
+ * 
+ * @export
+ * @interface HitPageView
+ */
+export interface HitPageView {
+    /**
+     * 
+     * @type {boolean}
+     * @memberof HitPageView
+     */
+    bounce?: boolean;
+    /**
+     * 
+     * @type {Array<HitPageViewMetaData>}
+     * @memberof HitPageView
+     */
+    meta_data?: Array<HitPageViewMetaData>;
+    /**
+     * 
+     * @type {string}
+     * @memberof HitPageView
+     */
+    method?: string;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof HitPageView
+     */
+    prefetch?: boolean;
+    /**
+     * 
+     * @type {string}
+     * @memberof HitPageView
+     */
+    query?: string;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof HitPageView
+     */
+    recording?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof HitPageView
+     */
+    redirect?: boolean;
+    /**
+     * 
+     * @type {string}
+     * @memberof HitPageView
+     */
+    referrer?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof HitPageView
+     */
+    time_on_page?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof HitPageView
+     */
+    title?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof HitPageView
+     */
+    url?: string;
+}
+
+/**
+ * 
+ * @export
+ * @interface HitPageViewMetaData
+ */
+export interface HitPageViewMetaData {
+    /**
+     * 
+     * @type {string}
+     * @memberof HitPageViewMetaData
+     */
+    key?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof HitPageViewMetaData
+     */
+    value?: string;
+}
+
+/**
+ * 
+ * @export
+ * @interface HitSessionStart
+ */
+export interface HitSessionStart {
+    /**
+     * 
+     * @type {boolean}
+     * @memberof HitSessionStart
+     */
+    bot?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof HitSessionStart
+     */
+    bounce?: boolean;
+    /**
+     * 
+     * @type {string}
+     * @memberof HitSessionStart
+     */
+    channel?: string;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof HitSessionStart
+     */
+    device_switch_detected?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof HitSessionStart
+     */
+    fake_bot?: boolean;
+    /**
+     * 
+     * @type {string}
+     * @memberof HitSessionStart
+     */
+    geolocation_country?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof HitSessionStart
+     */
+    geolocation_latitude?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof HitSessionStart
+     */
+    geolocation_longitude?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof HitSessionStart
+     */
+    geolocation_province?: string;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof HitSessionStart
+     */
+    no_cookie_support?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof HitSessionStart
+     */
+    prefetch?: boolean;
+    /**
+     * 
+     * @type {string}
+     * @memberof HitSessionStart
+     */
+    referrer?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof HitSessionStart
+     */
+    screen_height?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof HitSessionStart
+     */
+    screen_width?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof HitSessionStart
+     */
+    time_on_Site?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof HitSessionStart
+     */
+    user_agent?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof HitSessionStart
+     */
+    user_ip?: string;
+}
+
+/**
+ * 
+ * @export
+ * @interface HitSessionUtm
+ */
+export interface HitSessionUtm {
+    /**
+     * 
+     * @type {string}
+     * @memberof HitSessionUtm
+     */
+    fb_ad_id?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof HitSessionUtm
+     */
+    fbclid?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof HitSessionUtm
+     */
+    gbraid?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof HitSessionUtm
+     */
+    gclid?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof HitSessionUtm
+     */
+    msclkid?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof HitSessionUtm
+     */
+    ttclid?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof HitSessionUtm
+     */
+    uc_message_id?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof HitSessionUtm
+     */
+    utm_campaign?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof HitSessionUtm
+     */
+    utm_content?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof HitSessionUtm
+     */
+    utm_id?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof HitSessionUtm
+     */
+    utm_medium?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof HitSessionUtm
+     */
+    utm_source?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof HitSessionUtm
+     */
+    utm_term?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof HitSessionUtm
+     */
+    vmcid?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof HitSessionUtm
+     */
+    wbraid?: string;
 }
 
 /**
@@ -41190,6 +41531,58 @@ export const ConversationApiFetchParamCreator = function (configuration?: Config
             };
         },
         /**
+         * Get a webchat conversation context 
+         * @summary Get a webchat conversation context
+         * @param {string} conversation_uuid 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getConversationContext(conversation_uuid: string, options: any = {}): FetchArgs {
+            // verify required parameter 'conversation_uuid' is not null or undefined
+            if (conversation_uuid === null || conversation_uuid === undefined) {
+                throw new RequiredError('conversation_uuid','Required parameter conversation_uuid was null or undefined when calling getConversationContext.');
+            }
+            const localVarPath = `/conversation/conversations/{conversation_uuid}/context`
+                .replace(`{${"conversation_uuid"}}`, encodeURIComponent(String(conversation_uuid)));
+            const localVarUrlObj = url.parse(localVarPath, true);
+            const localVarRequestOptions = Object.assign({ method: 'PUT' }, options);
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+    if(configuration && configuration.apiVersion) {
+      localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+    }
+
+
+
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+				const localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+					? configuration.accessToken("ultraCartOauth", ["conversation_write"])
+					: configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
+					? configuration.apiKey("x-ultracart-simple-key")
+					: configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
          * Retrieve conversation messages since a particular time 
          * @summary Retrieve conversation messages
          * @param {string} conversation_uuid 
@@ -41708,6 +42101,27 @@ export const ConversationApiFp = function(configuration?: Configuration) {
             };
         },
         /**
+         * Get a webchat conversation context 
+         * @summary Get a webchat conversation context
+         * @param {string} conversation_uuid 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getConversationContext(conversation_uuid: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ConversationWebchatContext> {
+            const localVarFetchArgs = ConversationApiFetchParamCreator(configuration).getConversationContext(conversation_uuid, options);
+            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
+                    if (response.status >= 200 && response.status < 300) {
+                      return response.json();
+                      
+                    } else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
          * Retrieve conversation messages since a particular time 
          * @summary Retrieve conversation messages
          * @param {string} conversation_uuid 
@@ -41919,6 +42333,16 @@ export const ConversationApiFactory = function (configuration?: Configuration, f
             return ConversationApiFp(configuration).getConversation(conversation_uuid, limit, options)(fetch, basePath);
         },
         /**
+         * Get a webchat conversation context 
+         * @summary Get a webchat conversation context
+         * @param {string} conversation_uuid 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getConversationContext(conversation_uuid: string, options?: any) {
+            return ConversationApiFp(configuration).getConversationContext(conversation_uuid, options)(fetch, basePath);
+        },
+        /**
          * Retrieve conversation messages since a particular time 
          * @summary Retrieve conversation messages
          * @param {string} conversation_uuid 
@@ -42040,6 +42464,16 @@ export interface ConversationApiInterface {
      * @memberof ConversationApiInterface
      */
     getConversation(conversation_uuid: string, limit?: number, options?: any): Promise<ConversationResponse>;
+
+    /**
+     * Get a webchat conversation context 
+     * @summary Get a webchat conversation context
+     * @param {string} conversation_uuid 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApiInterface
+     */
+    getConversationContext(conversation_uuid: string, options?: any): Promise<ConversationWebchatContext>;
 
     /**
      * Retrieve conversation messages since a particular time 
@@ -42168,6 +42602,18 @@ export class ConversationApi extends BaseAPI implements ConversationApiInterface
      */
     public getConversation(conversation_uuid: string, limit?: number, options?: any) {
         return ConversationApiFp(this.configuration).getConversation(conversation_uuid, limit, options)(this.fetch, this.basePath);
+    }
+
+    /**
+     * Get a webchat conversation context 
+     * @summary Get a webchat conversation context
+     * @param {string} conversation_uuid 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApi
+     */
+    public getConversationContext(conversation_uuid: string, options?: any) {
+        return ConversationApiFp(this.configuration).getConversationContext(conversation_uuid, options)(this.fetch, this.basePath);
     }
 
     /**
