@@ -1135,6 +1135,7 @@ var Weight;
     var UomEnum;
     (function (UomEnum) {
         UomEnum[UomEnum["KG"] = 'KG'] = "KG";
+        UomEnum[UomEnum["G"] = 'G'] = "G";
         UomEnum[UomEnum["LB"] = 'LB'] = "LB";
         UomEnum[UomEnum["OZ"] = 'OZ'] = "OZ";
     })(UomEnum = Weight.UomEnum || (Weight.UomEnum = {}));

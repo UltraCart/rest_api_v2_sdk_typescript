@@ -6501,6 +6501,18 @@ export interface ConversationEventAddCoupon {
      * @type {string}
      * @memberof ConversationEventAddCoupon
      */
+    agent_arn?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ConversationEventAddCoupon
+     */
+    agent_name?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ConversationEventAddCoupon
+     */
     coupon_code?: string;
 }
 
@@ -6515,7 +6527,19 @@ export interface ConversationEventAddItem {
      * @type {string}
      * @memberof ConversationEventAddItem
      */
-    item_id?: string;
+    agent_arn?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ConversationEventAddItem
+     */
+    agent_name?: string;
+    /**
+     * 
+     * @type {Array<CartItem>}
+     * @memberof ConversationEventAddItem
+     */
+    items?: Array<CartItem>;
 }
 
 /**
@@ -6653,6 +6677,32 @@ export interface ConversationEventTyping {
      * @memberof ConversationEventTyping
      */
     value?: string;
+}
+
+/**
+ * 
+ * @export
+ * @interface ConversationEventWebchatContext
+ */
+export interface ConversationEventWebchatContext {
+    /**
+     * 
+     * @type {string}
+     * @memberof ConversationEventWebchatContext
+     */
+    cart_id?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ConversationEventWebchatContext
+     */
+    ucacid?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ConversationEventWebchatContext
+     */
+    url?: string;
 }
 
 /**
@@ -7529,6 +7579,12 @@ export interface ConversationWebsocketMessage {
      * @memberof ConversationWebsocketMessage
      */
     event_updated_message?: ConversationMessage;
+    /**
+     * 
+     * @type {ConversationEventWebchatContext}
+     * @memberof ConversationWebsocketMessage
+     */
+    event_webchat_context?: ConversationEventWebchatContext;
     /**
      * 
      * @type {ConversationMessage}
@@ -35841,6 +35897,7 @@ export namespace Weight {
      */
     export enum UomEnum {
         KG = <any> 'KG',
+        G = <any> 'G',
         LB = <any> 'LB',
         OZ = <any> 'OZ'
     }
