@@ -33,6 +33,9 @@ import {
     ConversationStartResponse,
     ConversationStartResponseFromJSON,
     ConversationStartResponseToJSON,
+    ConversationWebchatContext,
+    ConversationWebchatContextFromJSON,
+    ConversationWebchatContextToJSON,
     ConversationWebchatQueueStatusUpdateRequest,
     ConversationWebchatQueueStatusUpdateRequestFromJSON,
     ConversationWebchatQueueStatusUpdateRequestToJSON,
@@ -50,6 +53,10 @@ import {
 export interface GetConversationRequest {
     conversationUuid: string;
     limit?: number;
+}
+
+export interface GetConversationContextRequest {
+    conversationUuid: string;
 }
 
 export interface GetConversationMessagesRequest {
@@ -139,6 +146,22 @@ export interface ConversationApiInterface {
      * Retrieve a conversation
      */
     getConversation(requestParameters: GetConversationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ConversationResponse>;
+
+    /**
+     * Get a webchat conversation context 
+     * @summary Get a webchat conversation context
+     * @param {string} conversationUuid 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApiInterface
+     */
+    getConversationContextRaw(requestParameters: GetConversationContextRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ConversationWebchatContext>>;
+
+    /**
+     * Get a webchat conversation context 
+     * Get a webchat conversation context
+     */
+    getConversationContext(requestParameters: GetConversationContextRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ConversationWebchatContext>;
 
     /**
      * Retrieve conversation messages since a particular time 
@@ -395,6 +418,47 @@ export class ConversationApi extends runtime.BaseAPI implements ConversationApiI
      */
     async getConversation(requestParameters: GetConversationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ConversationResponse> {
         const response = await this.getConversationRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Get a webchat conversation context 
+     * Get a webchat conversation context
+     */
+    async getConversationContextRaw(requestParameters: GetConversationContextRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ConversationWebchatContext>> {
+        if (requestParameters.conversationUuid === null || requestParameters.conversationUuid === undefined) {
+            throw new runtime.RequiredError('conversationUuid','Required parameter requestParameters.conversationUuid was null or undefined when calling getConversationContext.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", ["conversation_write"]);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/conversation/conversations/{conversation_uuid}/context`.replace(`{${"conversation_uuid"}}`, encodeURIComponent(String(requestParameters.conversationUuid))),
+            method: 'PUT',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => ConversationWebchatContextFromJSON(jsonValue));
+    }
+
+    /**
+     * Get a webchat conversation context 
+     * Get a webchat conversation context
+     */
+    async getConversationContext(requestParameters: GetConversationContextRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ConversationWebchatContext> {
+        const response = await this.getConversationContextRaw(requestParameters, initOverrides);
         return await response.value();
     }
 

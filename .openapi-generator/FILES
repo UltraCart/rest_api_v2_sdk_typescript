@@ -161,6 +161,7 @@ src/models/ConversationStartRequest.ts
 src/models/ConversationStartResponse.ts
 src/models/ConversationSummary.ts
 src/models/ConversationTwilioAccount.ts
+src/models/ConversationWebchatContext.ts
 src/models/ConversationWebchatQueueStatus.ts
 src/models/ConversationWebchatQueueStatusAgent.ts
 src/models/ConversationWebchatQueueStatusQueueEntry.ts
@@ -412,6 +413,10 @@ src/models/GroupResponse.ts
 src/models/GroupUserMembership.ts
 src/models/GroupsResponse.ts
 src/models/HTTPHeader.ts
+src/models/HitPageView.ts
+src/models/HitPageViewMetaData.ts
+src/models/HitSessionStart.ts
+src/models/HitSessionUtm.ts
 src/models/IntegrationLog.ts
 src/models/IntegrationLogFile.ts
 src/models/IntegrationLogLog.ts
