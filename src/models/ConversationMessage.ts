@@ -57,6 +57,12 @@ export interface ConversationMessage {
      */
     conversation_message_uuid?: string;
     /**
+     * Delay message transmission until date/time
+     * @type {string}
+     * @memberof ConversationMessage
+     */
+    delay_until_dts?: string;
+    /**
      * 
      * @type {Array<string>}
      * @memberof ConversationMessage
@@ -126,6 +132,7 @@ export function ConversationMessageFromJSONTyped(json: any, ignoreDiscriminator:
         'body': !exists(json, 'body') ? undefined : json['body'],
         'client_message_id': !exists(json, 'client_message_id') ? undefined : json['client_message_id'],
         'conversation_message_uuid': !exists(json, 'conversation_message_uuid') ? undefined : json['conversation_message_uuid'],
+        'delay_until_dts': !exists(json, 'delay_until_dts') ? undefined : json['delay_until_dts'],
         'media_urls': !exists(json, 'media_urls') ? undefined : json['media_urls'],
         'merchant_id': !exists(json, 'merchant_id') ? undefined : json['merchant_id'],
         'message_dts': !exists(json, 'message_dts') ? undefined : json['message_dts'],
@@ -150,6 +157,7 @@ export function ConversationMessageToJSON(value?: ConversationMessage | null): a
         'body': value.body,
         'client_message_id': value.client_message_id,
         'conversation_message_uuid': value.conversation_message_uuid,
+        'delay_until_dts': value.delay_until_dts,
         'media_urls': value.media_urls,
         'merchant_id': value.merchant_id,
         'message_dts': value.message_dts,

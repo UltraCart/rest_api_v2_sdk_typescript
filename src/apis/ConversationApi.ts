@@ -84,6 +84,10 @@ export interface LeaveConversationRequest {
     conversationUuid: string;
 }
 
+export interface MarkReadConversationRequest {
+    conversationUuid: string;
+}
+
 export interface StartConversationRequest {
     startRequest: ConversationStartRequest;
 }
@@ -262,6 +266,22 @@ export interface ConversationApiInterface {
      * Leave a conversation
      */
     leaveConversation(requestParameters: LeaveConversationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+
+    /**
+     * Mark a conversation as read 
+     * @summary Mark a conversation as read
+     * @param {string} conversationUuid 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApiInterface
+     */
+    markReadConversationRaw(requestParameters: MarkReadConversationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+
+    /**
+     * Mark a conversation as read 
+     * Mark a conversation as read
+     */
+    markReadConversation(requestParameters: MarkReadConversationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
      * Start a new conversation 
@@ -720,6 +740,46 @@ export class ConversationApi extends runtime.BaseAPI implements ConversationApiI
      */
     async leaveConversation(requestParameters: LeaveConversationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.leaveConversationRaw(requestParameters, initOverrides);
+    }
+
+    /**
+     * Mark a conversation as read 
+     * Mark a conversation as read
+     */
+    async markReadConversationRaw(requestParameters: MarkReadConversationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        if (requestParameters.conversationUuid === null || requestParameters.conversationUuid === undefined) {
+            throw new runtime.RequiredError('conversationUuid','Required parameter requestParameters.conversationUuid was null or undefined when calling markReadConversation.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", ["conversation_write"]);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/conversation/conversations/{conversation_uuid}/markread`.replace(`{${"conversation_uuid"}}`, encodeURIComponent(String(requestParameters.conversationUuid))),
+            method: 'PUT',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     * Mark a conversation as read 
+     * Mark a conversation as read
+     */
+    async markReadConversation(requestParameters: MarkReadConversationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.markReadConversationRaw(requestParameters, initOverrides);
     }
 
     /**
