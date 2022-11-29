@@ -6583,6 +6583,12 @@ export interface ConversationMessage {
      */
     conversation_message_uuid?: string;
     /**
+     * Delay message transmission until date/time
+     * @type {string}
+     * @memberof ConversationMessage
+     */
+    delay_until_dts?: string;
+    /**
      *
      * @type {Array<string>}
      * @memberof ConversationMessage
@@ -37729,6 +37735,14 @@ export declare const ConversationApiFetchParamCreator: (configuration?: Configur
      */
     leaveConversation(conversation_uuid: string, options?: any): FetchArgs;
     /**
+     * Mark a conversation as read
+     * @summary Mark a conversation as read
+     * @param {string} conversation_uuid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    markReadConversation(conversation_uuid: string, options?: any): FetchArgs;
+    /**
      * Start a new conversation
      * @summary Start a conversation
      * @param {ConversationStartRequest} start_request Start request
@@ -37835,6 +37849,14 @@ export declare const ConversationApiFp: (configuration?: Configuration) => {
      */
     leaveConversation(conversation_uuid: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Response>;
     /**
+     * Mark a conversation as read
+     * @summary Mark a conversation as read
+     * @param {string} conversation_uuid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    markReadConversation(conversation_uuid: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Response>;
+    /**
      * Start a new conversation
      * @summary Start a conversation
      * @param {ConversationStartRequest} start_request Start request
@@ -37940,6 +37962,14 @@ export declare const ConversationApiFactory: (configuration?: Configuration, fet
      * @throws {RequiredError}
      */
     leaveConversation(conversation_uuid: string, options?: any): Promise<Response>;
+    /**
+     * Mark a conversation as read
+     * @summary Mark a conversation as read
+     * @param {string} conversation_uuid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    markReadConversation(conversation_uuid: string, options?: any): Promise<Response>;
     /**
      * Start a new conversation
      * @summary Start a conversation
@@ -38057,6 +38087,15 @@ export interface ConversationApiInterface {
      * @memberof ConversationApiInterface
      */
     leaveConversation(conversation_uuid: string, options?: any): Promise<{}>;
+    /**
+     * Mark a conversation as read
+     * @summary Mark a conversation as read
+     * @param {string} conversation_uuid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApiInterface
+     */
+    markReadConversation(conversation_uuid: string, options?: any): Promise<{}>;
     /**
      * Start a new conversation
      * @summary Start a conversation
@@ -38177,6 +38216,15 @@ export declare class ConversationApi extends BaseAPI implements ConversationApiI
      * @memberof ConversationApi
      */
     leaveConversation(conversation_uuid: string, options?: any): Promise<Response>;
+    /**
+     * Mark a conversation as read
+     * @summary Mark a conversation as read
+     * @param {string} conversation_uuid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApi
+     */
+    markReadConversation(conversation_uuid: string, options?: any): Promise<Response>;
     /**
      * Start a new conversation
      * @summary Start a conversation

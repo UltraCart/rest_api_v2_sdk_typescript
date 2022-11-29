@@ -6742,6 +6742,12 @@ export interface ConversationMessage {
      */
     conversation_message_uuid?: string;
     /**
+     * Delay message transmission until date/time
+     * @type {string}
+     * @memberof ConversationMessage
+     */
+    delay_until_dts?: string;
+    /**
      * 
      * @type {Array<string>}
      * @memberof ConversationMessage
@@ -41926,6 +41932,58 @@ export const ConversationApiFetchParamCreator = function (configuration?: Config
             };
         },
         /**
+         * Mark a conversation as read 
+         * @summary Mark a conversation as read
+         * @param {string} conversation_uuid 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        markReadConversation(conversation_uuid: string, options: any = {}): FetchArgs {
+            // verify required parameter 'conversation_uuid' is not null or undefined
+            if (conversation_uuid === null || conversation_uuid === undefined) {
+                throw new RequiredError('conversation_uuid','Required parameter conversation_uuid was null or undefined when calling markReadConversation.');
+            }
+            const localVarPath = `/conversation/conversations/{conversation_uuid}/markread`
+                .replace(`{${"conversation_uuid"}}`, encodeURIComponent(String(conversation_uuid)));
+            const localVarUrlObj = url.parse(localVarPath, true);
+            const localVarRequestOptions = Object.assign({ method: 'PUT' }, options);
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+    if(configuration && configuration.apiVersion) {
+      localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+    }
+
+
+
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+				const localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+					? configuration.accessToken("ultraCartOauth", ["conversation_write"])
+					: configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
+					? configuration.apiKey("x-ultracart-simple-key")
+					: configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
          * Start a new conversation 
          * @summary Start a conversation
          * @param {ConversationStartRequest} start_request Start request
@@ -42264,6 +42322,27 @@ export const ConversationApiFp = function(configuration?: Configuration) {
             };
         },
         /**
+         * Mark a conversation as read 
+         * @summary Mark a conversation as read
+         * @param {string} conversation_uuid 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        markReadConversation(conversation_uuid: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Response> {
+            const localVarFetchArgs = ConversationApiFetchParamCreator(configuration).markReadConversation(conversation_uuid, options);
+            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
+                    if (response.status >= 200 && response.status < 300) {
+                      return response;
+                      
+                    } else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
          * Start a new conversation 
          * @summary Start a conversation
          * @param {ConversationStartRequest} start_request Start request
@@ -42419,6 +42498,16 @@ export const ConversationApiFactory = function (configuration?: Configuration, f
             return ConversationApiFp(configuration).leaveConversation(conversation_uuid, options)(fetch, basePath);
         },
         /**
+         * Mark a conversation as read 
+         * @summary Mark a conversation as read
+         * @param {string} conversation_uuid 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        markReadConversation(conversation_uuid: string, options?: any) {
+            return ConversationApiFp(configuration).markReadConversation(conversation_uuid, options)(fetch, basePath);
+        },
+        /**
          * Start a new conversation 
          * @summary Start a conversation
          * @param {ConversationStartRequest} start_request Start request
@@ -42550,6 +42639,16 @@ export interface ConversationApiInterface {
      * @memberof ConversationApiInterface
      */
     leaveConversation(conversation_uuid: string, options?: any): Promise<{}>;
+
+    /**
+     * Mark a conversation as read 
+     * @summary Mark a conversation as read
+     * @param {string} conversation_uuid 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApiInterface
+     */
+    markReadConversation(conversation_uuid: string, options?: any): Promise<{}>;
 
     /**
      * Start a new conversation 
@@ -42702,6 +42801,18 @@ export class ConversationApi extends BaseAPI implements ConversationApiInterface
      */
     public leaveConversation(conversation_uuid: string, options?: any) {
         return ConversationApiFp(this.configuration).leaveConversation(conversation_uuid, options)(this.fetch, this.basePath);
+    }
+
+    /**
+     * Mark a conversation as read 
+     * @summary Mark a conversation as read
+     * @param {string} conversation_uuid 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApi
+     */
+    public markReadConversation(conversation_uuid: string, options?: any) {
+        return ConversationApiFp(this.configuration).markReadConversation(conversation_uuid, options)(this.fetch, this.basePath);
     }
 
     /**

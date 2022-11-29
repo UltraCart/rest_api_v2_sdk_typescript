@@ -5927,6 +5927,52 @@ var ConversationApiFetchParamCreator = function (configuration) {
             };
         },
         /**
+         * Mark a conversation as read
+         * @summary Mark a conversation as read
+         * @param {string} conversation_uuid
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        markReadConversation: function (conversation_uuid, options) {
+            if (options === void 0) { options = {}; }
+            // verify required parameter 'conversation_uuid' is not null or undefined
+            if (conversation_uuid === null || conversation_uuid === undefined) {
+                throw new RequiredError('conversation_uuid', 'Required parameter conversation_uuid was null or undefined when calling markReadConversation.');
+            }
+            var localVarPath = "/conversation/conversations/{conversation_uuid}/markread"
+                .replace("{".concat("conversation_uuid", "}"), encodeURIComponent(String(conversation_uuid)));
+            var localVarUrlObj = url.parse(localVarPath, true);
+            var localVarRequestOptions = Object.assign({ method: 'PUT' }, options);
+            var localVarHeaderParameter = {};
+            var localVarQueryParameter = {};
+            if (configuration && configuration.apiVersion) {
+                localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+            }
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+                var localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+                    ? configuration.accessToken("ultraCartOauth", ["conversation_write"])
+                    : configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                var localVarApiKeyValue = typeof configuration.apiKey === 'function'
+                    ? configuration.apiKey("x-ultracart-simple-key")
+                    : configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
          * Start a new conversation
          * @summary Start a conversation
          * @param {ConversationStartRequest} start_request Start request
@@ -6261,6 +6307,28 @@ var ConversationApiFp = function (configuration) {
             };
         },
         /**
+         * Mark a conversation as read
+         * @summary Mark a conversation as read
+         * @param {string} conversation_uuid
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        markReadConversation: function (conversation_uuid, options) {
+            var localVarFetchArgs = (0, exports.ConversationApiFetchParamCreator)(configuration).markReadConversation(conversation_uuid, options);
+            return function (fetch, basePath) {
+                if (fetch === void 0) { fetch = portableFetch; }
+                if (basePath === void 0) { basePath = BASE_PATH; }
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(function (response) {
+                    if (response.status >= 200 && response.status < 300) {
+                        return response;
+                    }
+                    else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
          * Start a new conversation
          * @summary Start a conversation
          * @param {ConversationStartRequest} start_request Start request
@@ -6418,6 +6486,16 @@ var ConversationApiFactory = function (configuration, fetch, basePath) {
             return (0, exports.ConversationApiFp)(configuration).leaveConversation(conversation_uuid, options)(fetch, basePath);
         },
         /**
+         * Mark a conversation as read
+         * @summary Mark a conversation as read
+         * @param {string} conversation_uuid
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        markReadConversation: function (conversation_uuid, options) {
+            return (0, exports.ConversationApiFp)(configuration).markReadConversation(conversation_uuid, options)(fetch, basePath);
+        },
+        /**
          * Start a new conversation
          * @summary Start a conversation
          * @param {ConversationStartRequest} start_request Start request
@@ -6564,6 +6642,17 @@ var ConversationApi = /** @class */ (function (_super) {
      */
     ConversationApi.prototype.leaveConversation = function (conversation_uuid, options) {
         return (0, exports.ConversationApiFp)(this.configuration).leaveConversation(conversation_uuid, options)(this.fetch, this.basePath);
+    };
+    /**
+     * Mark a conversation as read
+     * @summary Mark a conversation as read
+     * @param {string} conversation_uuid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApi
+     */
+    ConversationApi.prototype.markReadConversation = function (conversation_uuid, options) {
+        return (0, exports.ConversationApiFp)(this.configuration).markReadConversation(conversation_uuid, options)(this.fetch, this.basePath);
     };
     /**
      * Start a new conversation
