@@ -27380,6 +27380,12 @@ export interface OrderItem {
      */
     height?: Distance;
     /**
+     * Index of the item on the order (one based index)
+     * @type {number}
+     * @memberof OrderItem
+     */
+    item_index?: number;
+    /**
      * Item reference object identifier used to linked to auto order item record
      * @type {number}
      * @memberof OrderItem
@@ -27451,6 +27457,18 @@ export interface OrderItem {
      * @memberof OrderItem
      */
     packed_by_user?: string;
+    /**
+     * If this item is a kit component, this is the item index of the parent item (kit)
+     * @type {number}
+     * @memberof OrderItem
+     */
+    parent_item_index?: number;
+    /**
+     * If this item is a kit component, this is the item id of the parent item (kit)
+     * @type {string}
+     * @memberof OrderItem
+     */
+    parent_merchant_item_id?: string;
     /**
      * Perishable class of the item
      * @type {string}
