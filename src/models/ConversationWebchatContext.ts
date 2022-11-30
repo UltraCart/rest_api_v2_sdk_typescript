@@ -14,6 +14,12 @@
 
 import { exists, mapValues } from '../runtime';
 import {
+    AutoOrder,
+    AutoOrderFromJSON,
+    AutoOrderFromJSONTyped,
+    AutoOrderToJSON,
+} from './AutoOrder';
+import {
     Cart,
     CartFromJSON,
     CartFromJSONTyped,
@@ -37,6 +43,12 @@ import {
     HitSessionUtmFromJSONTyped,
     HitSessionUtmToJSON,
 } from './HitSessionUtm';
+import {
+    Order,
+    OrderFromJSON,
+    OrderFromJSONTyped,
+    OrderToJSON,
+} from './Order';
 
 /**
  * 
@@ -44,6 +56,12 @@ import {
  * @interface ConversationWebchatContext
  */
 export interface ConversationWebchatContext {
+    /**
+     * 
+     * @type {Array<AutoOrder>}
+     * @memberof ConversationWebchatContext
+     */
+    auto_orders?: Array<AutoOrder>;
     /**
      * 
      * @type {Cart}
@@ -56,6 +74,12 @@ export interface ConversationWebchatContext {
      * @memberof ConversationWebchatContext
      */
     current_url?: string;
+    /**
+     * 
+     * @type {Array<Order>}
+     * @memberof ConversationWebchatContext
+     */
+    orders?: Array<Order>;
     /**
      * 
      * @type {Array<HitPageView>}
@@ -86,8 +110,10 @@ export function ConversationWebchatContextFromJSONTyped(json: any, ignoreDiscrim
     }
     return {
         
+        'auto_orders': !exists(json, 'auto_orders') ? undefined : ((json['auto_orders'] as Array<any>).map(AutoOrderFromJSON)),
         'cart': !exists(json, 'cart') ? undefined : CartFromJSON(json['cart']),
         'current_url': !exists(json, 'current_url') ? undefined : json['current_url'],
+        'orders': !exists(json, 'orders') ? undefined : ((json['orders'] as Array<any>).map(OrderFromJSON)),
         'page_view': !exists(json, 'page_view') ? undefined : ((json['page_view'] as Array<any>).map(HitPageViewFromJSON)),
         'session_start': !exists(json, 'session_start') ? undefined : HitSessionStartFromJSON(json['session_start']),
         'session_utm': !exists(json, 'session_utm') ? undefined : HitSessionUtmFromJSON(json['session_utm']),
@@ -103,8 +129,10 @@ export function ConversationWebchatContextToJSON(value?: ConversationWebchatCont
     }
     return {
         
+        'auto_orders': value.auto_orders === undefined ? undefined : ((value.auto_orders as Array<any>).map(AutoOrderToJSON)),
         'cart': CartToJSON(value.cart),
         'current_url': value.current_url,
+        'orders': value.orders === undefined ? undefined : ((value.orders as Array<any>).map(OrderToJSON)),
         'page_view': value.page_view === undefined ? undefined : ((value.page_view as Array<any>).map(HitPageViewToJSON)),
         'session_start': HitSessionStartToJSON(value.session_start),
         'session_utm': HitSessionUtmToJSON(value.session_utm),
