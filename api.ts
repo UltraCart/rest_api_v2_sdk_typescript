@@ -7233,6 +7233,12 @@ export interface ConversationTwilioAccount {
 export interface ConversationWebchatContext {
     /**
      * 
+     * @type {Array<AutoOrder>}
+     * @memberof ConversationWebchatContext
+     */
+    auto_orders?: Array<AutoOrder>;
+    /**
+     * 
      * @type {Cart}
      * @memberof ConversationWebchatContext
      */
@@ -7243,6 +7249,12 @@ export interface ConversationWebchatContext {
      * @memberof ConversationWebchatContext
      */
     current_url?: string;
+    /**
+     * 
+     * @type {Array<Order>}
+     * @memberof ConversationWebchatContext
+     */
+    orders?: Array<Order>;
     /**
      * 
      * @type {Array<HitPageView>}
