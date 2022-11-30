@@ -195,6 +195,12 @@ export interface OrderItem {
      */
     height?: Distance;
     /**
+     * Index of the item on the order (one based index)
+     * @type {number}
+     * @memberof OrderItem
+     */
+    item_index?: number;
+    /**
      * Item reference object identifier used to linked to auto order item record
      * @type {number}
      * @memberof OrderItem
@@ -266,6 +272,18 @@ export interface OrderItem {
      * @memberof OrderItem
      */
     packed_by_user?: string;
+    /**
+     * If this item is a kit component, this is the item index of the parent item (kit)
+     * @type {number}
+     * @memberof OrderItem
+     */
+    parent_item_index?: number;
+    /**
+     * If this item is a kit component, this is the item id of the parent item (kit)
+     * @type {string}
+     * @memberof OrderItem
+     */
+    parent_merchant_item_id?: string;
     /**
      * Perishable class of the item
      * @type {string}
@@ -445,6 +463,7 @@ export function OrderItemFromJSONTyped(json: any, ignoreDiscriminator: boolean):
         'free_shipping': !exists(json, 'free_shipping') ? undefined : json['free_shipping'],
         'hazmat': !exists(json, 'hazmat') ? undefined : json['hazmat'],
         'height': !exists(json, 'height') ? undefined : DistanceFromJSON(json['height']),
+        'item_index': !exists(json, 'item_index') ? undefined : json['item_index'],
         'item_reference_oid': !exists(json, 'item_reference_oid') ? undefined : json['item_reference_oid'],
         'kit': !exists(json, 'kit') ? undefined : json['kit'],
         'kit_component': !exists(json, 'kit_component') ? undefined : json['kit_component'],
@@ -457,6 +476,8 @@ export function OrderItemFromJSONTyped(json: any, ignoreDiscriminator: boolean):
         'no_shipping_discount': !exists(json, 'no_shipping_discount') ? undefined : json['no_shipping_discount'],
         'options': !exists(json, 'options') ? undefined : ((json['options'] as Array<any>).map(OrderItemOptionFromJSON)),
         'packed_by_user': !exists(json, 'packed_by_user') ? undefined : json['packed_by_user'],
+        'parent_item_index': !exists(json, 'parent_item_index') ? undefined : json['parent_item_index'],
+        'parent_merchant_item_id': !exists(json, 'parent_merchant_item_id') ? undefined : json['parent_merchant_item_id'],
         'perishable_class': !exists(json, 'perishable_class') ? undefined : json['perishable_class'],
         'pricing_tier_name': !exists(json, 'pricing_tier_name') ? undefined : json['pricing_tier_name'],
         'properties': !exists(json, 'properties') ? undefined : ((json['properties'] as Array<any>).map(OrderItemPropertyFromJSON)),
@@ -513,6 +534,7 @@ export function OrderItemToJSON(value?: OrderItem | null): any {
         'free_shipping': value.free_shipping,
         'hazmat': value.hazmat,
         'height': DistanceToJSON(value.height),
+        'item_index': value.item_index,
         'item_reference_oid': value.item_reference_oid,
         'kit': value.kit,
         'kit_component': value.kit_component,
@@ -525,6 +547,8 @@ export function OrderItemToJSON(value?: OrderItem | null): any {
         'no_shipping_discount': value.no_shipping_discount,
         'options': value.options === undefined ? undefined : ((value.options as Array<any>).map(OrderItemOptionToJSON)),
         'packed_by_user': value.packed_by_user,
+        'parent_item_index': value.parent_item_index,
+        'parent_merchant_item_id': value.parent_merchant_item_id,
         'perishable_class': value.perishable_class,
         'pricing_tier_name': value.pricing_tier_name,
         'properties': value.properties === undefined ? undefined : ((value.properties as Array<any>).map(OrderItemPropertyToJSON)),
