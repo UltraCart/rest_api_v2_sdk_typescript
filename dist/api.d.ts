@@ -6167,6 +6167,12 @@ export interface Conversation {
      */
     conversation_uuid?: string;
     /**
+     * Date/time of the first customer message that is unresponded to.
+     * @type {string}
+     * @memberof Conversation
+     */
+    customer_first_message_unresponded_to_dts?: string;
+    /**
      *
      * @type {string}
      * @memberof Conversation
@@ -6946,6 +6952,12 @@ export interface ConversationSummary {
      * @memberof ConversationSummary
      */
     conversation_uuid?: string;
+    /**
+     * Date/time of the first customer message that is unresponded to.
+     * @type {string}
+     * @memberof ConversationSummary
+     */
+    customer_first_message_unresponded_to_dts?: string;
     /**
      *
      * @type {string}
