@@ -45,6 +45,12 @@ export interface ConversationSummary {
      */
     conversation_uuid?: string;
     /**
+     * Date/time of the first customer message that is unresponded to.
+     * @type {string}
+     * @memberof ConversationSummary
+     */
+    customer_first_message_unresponded_to_dts?: string;
+    /**
      * 
      * @type {string}
      * @memberof ConversationSummary
@@ -142,6 +148,7 @@ export function ConversationSummaryFromJSONTyped(json: any, ignoreDiscriminator:
         'closed': !exists(json, 'closed') ? undefined : json['closed'],
         'conversation_arn': !exists(json, 'conversation_arn') ? undefined : json['conversation_arn'],
         'conversation_uuid': !exists(json, 'conversation_uuid') ? undefined : json['conversation_uuid'],
+        'customer_first_message_unresponded_to_dts': !exists(json, 'customer_first_message_unresponded_to_dts') ? undefined : json['customer_first_message_unresponded_to_dts'],
         'last_conversation_message_body': !exists(json, 'last_conversation_message_body') ? undefined : json['last_conversation_message_body'],
         'last_conversation_participant_arn': !exists(json, 'last_conversation_participant_arn') ? undefined : json['last_conversation_participant_arn'],
         'last_conversation_participant_name': !exists(json, 'last_conversation_participant_name') ? undefined : json['last_conversation_participant_name'],
@@ -169,6 +176,7 @@ export function ConversationSummaryToJSON(value?: ConversationSummary | null): a
         'closed': value.closed,
         'conversation_arn': value.conversation_arn,
         'conversation_uuid': value.conversation_uuid,
+        'customer_first_message_unresponded_to_dts': value.customer_first_message_unresponded_to_dts,
         'last_conversation_message_body': value.last_conversation_message_body,
         'last_conversation_participant_arn': value.last_conversation_participant_arn,
         'last_conversation_participant_name': value.last_conversation_participant_name,
