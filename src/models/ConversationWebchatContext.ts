@@ -93,6 +93,12 @@ export interface ConversationWebchatContext {
      */
     session_start?: HitSessionStart;
     /**
+     * Date/time that the session was started (if known)
+     * @type {string}
+     * @memberof ConversationWebchatContext
+     */
+    session_start_dts?: string;
+    /**
      * 
      * @type {HitSessionUtm}
      * @memberof ConversationWebchatContext
@@ -116,6 +122,7 @@ export function ConversationWebchatContextFromJSONTyped(json: any, ignoreDiscrim
         'orders': !exists(json, 'orders') ? undefined : ((json['orders'] as Array<any>).map(OrderFromJSON)),
         'page_view': !exists(json, 'page_view') ? undefined : ((json['page_view'] as Array<any>).map(HitPageViewFromJSON)),
         'session_start': !exists(json, 'session_start') ? undefined : HitSessionStartFromJSON(json['session_start']),
+        'session_start_dts': !exists(json, 'session_start_dts') ? undefined : json['session_start_dts'],
         'session_utm': !exists(json, 'session_utm') ? undefined : HitSessionUtmFromJSON(json['session_utm']),
     };
 }
@@ -135,6 +142,7 @@ export function ConversationWebchatContextToJSON(value?: ConversationWebchatCont
         'orders': value.orders === undefined ? undefined : ((value.orders as Array<any>).map(OrderToJSON)),
         'page_view': value.page_view === undefined ? undefined : ((value.page_view as Array<any>).map(HitPageViewToJSON)),
         'session_start': HitSessionStartToJSON(value.session_start),
+        'session_start_dts': value.session_start_dts,
         'session_utm': HitSessionUtmToJSON(value.session_utm),
     };
 }

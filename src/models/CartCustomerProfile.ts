@@ -99,7 +99,7 @@ export interface CartCustomerProfile {
      */
     free_shipping?: boolean;
     /**
-     * The minimum aount that this profile has to purchase to qualify for free shipping
+     * The minimum amount that this profile has to purchase to qualify for free shipping
      * @type {number}
      * @memberof CartCustomerProfile
      */
@@ -153,6 +153,12 @@ export interface CartCustomerProfile {
      */
     shipping_addresses?: Array<CartCustomerProfileAddress>;
     /**
+     * Signup date
+     * @type {string}
+     * @memberof CartCustomerProfile
+     */
+    signup_dts?: string;
+    /**
      * True if this profile is exempt from sales tax
      * @type {boolean}
      * @memberof CartCustomerProfile
@@ -196,6 +202,7 @@ export function CartCustomerProfileFromJSONTyped(json: any, ignoreDiscriminator:
         'no_realtime_charge': !exists(json, 'no_realtime_charge') ? undefined : json['no_realtime_charge'],
         'pricing_tiers': !exists(json, 'pricing_tiers') ? undefined : json['pricing_tiers'],
         'shipping_addresses': !exists(json, 'shipping_addresses') ? undefined : ((json['shipping_addresses'] as Array<any>).map(CartCustomerProfileAddressFromJSON)),
+        'signup_dts': !exists(json, 'signup_dts') ? undefined : json['signup_dts'],
         'tax_exempt': !exists(json, 'tax_exempt') ? undefined : json['tax_exempt'],
         'ups_account_number': !exists(json, 'ups_account_number') ? undefined : json['ups_account_number'],
     };
@@ -230,6 +237,7 @@ export function CartCustomerProfileToJSON(value?: CartCustomerProfile | null): a
         'no_realtime_charge': value.no_realtime_charge,
         'pricing_tiers': value.pricing_tiers,
         'shipping_addresses': value.shipping_addresses === undefined ? undefined : ((value.shipping_addresses as Array<any>).map(CartCustomerProfileAddressToJSON)),
+        'signup_dts': value.signup_dts,
         'tax_exempt': value.tax_exempt,
         'ups_account_number': value.ups_account_number,
     };
