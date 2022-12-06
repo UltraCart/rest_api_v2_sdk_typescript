@@ -5038,6 +5038,56 @@ export interface CartValidationResponse {
 /**
  * 
  * @export
+ * @interface ChannelPartner
+ */
+export interface ChannelPartner {
+    /**
+     * Channel partner object id
+     * @type {number}
+     * @memberof ChannelPartner
+     */
+    channel_partner_oid?: number;
+    /**
+     * Code associated with the channel partner
+     * @type {string}
+     * @memberof ChannelPartner
+     */
+    code?: string;
+    /**
+     * Communication method of the channel partner
+     * @type {string}
+     * @memberof ChannelPartner
+     */
+    communication_method?: string;
+    /**
+     * True if the channel partner is inactive
+     * @type {boolean}
+     * @memberof ChannelPartner
+     */
+    inactive?: boolean;
+    /**
+     * Merchant ID of the channel partner
+     * @type {string}
+     * @memberof ChannelPartner
+     */
+    merchant_id?: string;
+    /**
+     * Name of the channel partner
+     * @type {string}
+     * @memberof ChannelPartner
+     */
+    name?: string;
+    /**
+     * True if emails to the customer are skipped for this channel partner.
+     * @type {boolean}
+     * @memberof ChannelPartner
+     */
+    skip_customer_emails?: boolean;
+}
+
+/**
+ * 
+ * @export
  * @interface ChannelPartnerCancelResponse
  */
 export interface ChannelPartnerCancelResponse {
@@ -10181,6 +10231,12 @@ export interface Customer {
      */
     dhl_duty_account_number?: string;
     /**
+     * 
+     * @type {CustomerEDI}
+     * @memberof Customer
+     */
+    edi?: CustomerEDI;
+    /**
      * Email address of this customer profile
      * @type {string}
      * @memberof Customer
@@ -10723,6 +10779,32 @@ export interface CustomerCard {
 /**
  * 
  * @export
+ * @interface CustomerEDI
+ */
+export interface CustomerEDI {
+    /**
+     * EDI channel partner this customer profile is associated with
+     * @type {number}
+     * @memberof CustomerEDI
+     */
+    channel_partner_oid?: number;
+    /**
+     * The EDI distribution center number associated with this customer profile.
+     * @type {string}
+     * @memberof CustomerEDI
+     */
+    distribution_center_number?: string;
+    /**
+     * The EDI store number associated with this customer profile.
+     * @type {string}
+     * @memberof CustomerEDI
+     */
+    store_number?: string;
+}
+
+/**
+ * 
+ * @export
  * @interface CustomerEditorValues
  */
 export interface CustomerEditorValues {
@@ -10756,6 +10838,12 @@ export interface CustomerEditorValues {
      * @memberof CustomerEditorValues
      */
     countries?: Array<Country>;
+    /**
+     * EDI channel partners
+     * @type {Array<ChannelPartner>}
+     * @memberof CustomerEditorValues
+     */
+    edi_channel_partners?: Array<ChannelPartner>;
     /**
      * loyalty_ledger_descriptions
      * @type {Array<string>}
