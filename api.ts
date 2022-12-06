@@ -2809,7 +2809,7 @@ export interface CartCustomerProfile {
      */
     free_shipping?: boolean;
     /**
-     * The minimum aount that this profile has to purchase to qualify for free shipping
+     * The minimum amount that this profile has to purchase to qualify for free shipping
      * @type {number}
      * @memberof CartCustomerProfile
      */
@@ -2862,6 +2862,12 @@ export interface CartCustomerProfile {
      * @memberof CartCustomerProfile
      */
     shipping_addresses?: Array<CartCustomerProfileAddress>;
+    /**
+     * Signup date
+     * @type {string}
+     * @memberof CartCustomerProfile
+     */
+    signup_dts?: string;
     /**
      * True if this profile is exempt from sales tax
      * @type {boolean}
@@ -7329,6 +7335,12 @@ export interface ConversationWebchatContext {
      * @memberof ConversationWebchatContext
      */
     session_start?: HitSessionStart;
+    /**
+     * Date/time that the session was started (if known)
+     * @type {string}
+     * @memberof ConversationWebchatContext
+     */
+    session_start_dts?: string;
     /**
      * 
      * @type {HitSessionUtm}
