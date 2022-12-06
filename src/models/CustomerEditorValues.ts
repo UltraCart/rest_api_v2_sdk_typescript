@@ -14,6 +14,12 @@
 
 import { exists, mapValues } from '../runtime';
 import {
+    ChannelPartner,
+    ChannelPartnerFromJSON,
+    ChannelPartnerFromJSONTyped,
+    ChannelPartnerToJSON,
+} from './ChannelPartner';
+import {
     Country,
     CountryFromJSON,
     CountryFromJSONTyped,
@@ -62,6 +68,12 @@ export interface CustomerEditorValues {
      * @memberof CustomerEditorValues
      */
     countries?: Array<Country>;
+    /**
+     * EDI channel partners
+     * @type {Array<ChannelPartner>}
+     * @memberof CustomerEditorValues
+     */
+    edi_channel_partners?: Array<ChannelPartner>;
     /**
      * loyalty_ledger_descriptions
      * @type {Array<string>}
@@ -115,6 +127,7 @@ export function CustomerEditorValuesFromJSONTyped(json: any, ignoreDiscriminator
         'card_exp_years': !exists(json, 'card_exp_years') ? undefined : json['card_exp_years'],
         'card_types': !exists(json, 'card_types') ? undefined : json['card_types'],
         'countries': !exists(json, 'countries') ? undefined : ((json['countries'] as Array<any>).map(CountryFromJSON)),
+        'edi_channel_partners': !exists(json, 'edi_channel_partners') ? undefined : ((json['edi_channel_partners'] as Array<any>).map(ChannelPartnerFromJSON)),
         'loyalty_ledger_descriptions': !exists(json, 'loyalty_ledger_descriptions') ? undefined : json['loyalty_ledger_descriptions'],
         'loyalty_program_type': !exists(json, 'loyalty_program_type') ? undefined : json['loyalty_program_type'],
         'qb_classes': !exists(json, 'qb_classes') ? undefined : json['qb_classes'],
@@ -138,6 +151,7 @@ export function CustomerEditorValuesToJSON(value?: CustomerEditorValues | null):
         'card_exp_years': value.card_exp_years,
         'card_types': value.card_types,
         'countries': value.countries === undefined ? undefined : ((value.countries as Array<any>).map(CountryToJSON)),
+        'edi_channel_partners': value.edi_channel_partners === undefined ? undefined : ((value.edi_channel_partners as Array<any>).map(ChannelPartnerToJSON)),
         'loyalty_ledger_descriptions': value.loyalty_ledger_descriptions,
         'loyalty_program_type': value.loyalty_program_type,
         'qb_classes': value.qb_classes,

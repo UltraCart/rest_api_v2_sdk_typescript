@@ -120,6 +120,7 @@ src/models/CartTaxes.ts
 src/models/CartUpsellAfter.ts
 src/models/CartValidationRequest.ts
 src/models/CartValidationResponse.ts
+src/models/ChannelPartner.ts
 src/models/ChannelPartnerCancelResponse.ts
 src/models/ChannelPartnerEstimateShippingResponse.ts
 src/models/ChannelPartnerEstimateTaxResponse.ts
@@ -242,6 +243,7 @@ src/models/CustomerAffiliate.ts
 src/models/CustomerAttachment.ts
 src/models/CustomerBilling.ts
 src/models/CustomerCard.ts
+src/models/CustomerEDI.ts
 src/models/CustomerEditorValues.ts
 src/models/CustomerEmail.ts
 src/models/CustomerEmailListChanges.ts

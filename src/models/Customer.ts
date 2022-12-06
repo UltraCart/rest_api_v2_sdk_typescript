@@ -38,6 +38,12 @@ import {
     CustomerCardToJSON,
 } from './CustomerCard';
 import {
+    CustomerEDI,
+    CustomerEDIFromJSON,
+    CustomerEDIFromJSONTyped,
+    CustomerEDIToJSON,
+} from './CustomerEDI';
+import {
     CustomerEmail,
     CustomerEmailFromJSON,
     CustomerEmailFromJSONTyped,
@@ -230,6 +236,12 @@ export interface Customer {
      * @memberof Customer
      */
     dhl_duty_account_number?: string;
+    /**
+     * 
+     * @type {CustomerEDI}
+     * @memberof Customer
+     */
+    edi?: CustomerEDI;
     /**
      * Email address of this customer profile
      * @type {string}
@@ -507,6 +519,7 @@ export function CustomerFromJSONTyped(json: any, ignoreDiscriminator: boolean): 
         'customer_profile_oid': !exists(json, 'customer_profile_oid') ? undefined : json['customer_profile_oid'],
         'dhl_account_number': !exists(json, 'dhl_account_number') ? undefined : json['dhl_account_number'],
         'dhl_duty_account_number': !exists(json, 'dhl_duty_account_number') ? undefined : json['dhl_duty_account_number'],
+        'edi': !exists(json, 'edi') ? undefined : CustomerEDIFromJSON(json['edi']),
         'email': !exists(json, 'email') ? undefined : json['email'],
         'exempt_shipping_handling_charge': !exists(json, 'exempt_shipping_handling_charge') ? undefined : json['exempt_shipping_handling_charge'],
         'fedex_account_number': !exists(json, 'fedex_account_number') ? undefined : json['fedex_account_number'],
@@ -579,6 +592,7 @@ export function CustomerToJSON(value?: Customer | null): any {
         'customer_profile_oid': value.customer_profile_oid,
         'dhl_account_number': value.dhl_account_number,
         'dhl_duty_account_number': value.dhl_duty_account_number,
+        'edi': CustomerEDIToJSON(value.edi),
         'email': value.email,
         'exempt_shipping_handling_charge': value.exempt_shipping_handling_charge,
         'fedex_account_number': value.fedex_account_number,
