@@ -6403,6 +6403,130 @@ export interface ConversationAgentAuthResponse {
 /**
  *
  * @export
+ * @interface ConversationCannedMessage
+ */
+export interface ConversationCannedMessage {
+    /**
+     *
+     * @type {string}
+     * @memberof ConversationCannedMessage
+     */
+    canned_message?: string;
+    /**
+     *
+     * @type {number}
+     * @memberof ConversationCannedMessage
+     */
+    conversation_canned_message_oid?: number;
+    /**
+     *
+     * @type {Array<string>}
+     * @memberof ConversationCannedMessage
+     */
+    conversation_webchat_queue_uuids?: Array<string>;
+    /**
+     *
+     * @type {string}
+     * @memberof ConversationCannedMessage
+     */
+    short_code?: string;
+}
+/**
+ *
+ * @export
+ * @interface ConversationCannedMessageResponse
+ */
+export interface ConversationCannedMessageResponse {
+    /**
+     *
+     * @type {ConversationCannedMessage}
+     * @memberof ConversationCannedMessageResponse
+     */
+    conversation_canned_message?: ConversationCannedMessage;
+    /**
+     *
+     * @type {ModelError}
+     * @memberof ConversationCannedMessageResponse
+     */
+    error?: ModelError;
+    /**
+     *
+     * @type {ResponseMetadata}
+     * @memberof ConversationCannedMessageResponse
+     */
+    metadata?: ResponseMetadata;
+    /**
+     * Indicates if API call was successful
+     * @type {boolean}
+     * @memberof ConversationCannedMessageResponse
+     */
+    success?: boolean;
+    /**
+     *
+     * @type {Warning}
+     * @memberof ConversationCannedMessageResponse
+     */
+    warning?: Warning;
+}
+/**
+ *
+ * @export
+ * @interface ConversationCannedMessagesResponse
+ */
+export interface ConversationCannedMessagesResponse {
+    /**
+     *
+     * @type {Array<ConversationCannedMessage>}
+     * @memberof ConversationCannedMessagesResponse
+     */
+    conversation_canned_messages?: Array<ConversationCannedMessage>;
+    /**
+     *
+     * @type {ModelError}
+     * @memberof ConversationCannedMessagesResponse
+     */
+    error?: ModelError;
+    /**
+     *
+     * @type {ResponseMetadata}
+     * @memberof ConversationCannedMessagesResponse
+     */
+    metadata?: ResponseMetadata;
+    /**
+     * Indicates if API call was successful
+     * @type {boolean}
+     * @memberof ConversationCannedMessagesResponse
+     */
+    success?: boolean;
+    /**
+     *
+     * @type {Warning}
+     * @memberof ConversationCannedMessagesResponse
+     */
+    warning?: Warning;
+}
+/**
+ *
+ * @export
+ * @interface ConversationCannedMessagesSearch
+ */
+export interface ConversationCannedMessagesSearch {
+    /**
+     *
+     * @type {number}
+     * @memberof ConversationCannedMessagesSearch
+     */
+    max_results?: number;
+    /**
+     *
+     * @type {string}
+     * @memberof ConversationCannedMessagesSearch
+     */
+    short_code?: string;
+}
+/**
+ *
+ * @export
  * @interface ConversationEventAddCoupon
  */
 export interface ConversationEventAddCoupon {
@@ -37821,6 +37945,13 @@ export declare const ConversationApiFetchParamCreator: (configuration?: Configur
      */
     getConversation(conversation_uuid: string, limit?: number, options?: any): FetchArgs;
     /**
+     * Retrieve a list of canned messages ordered by short_code
+     * @summary Retrieve a list of canned messages ordered by short_code
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getConversationCannedMessages(options?: any): FetchArgs;
+    /**
      * Get a webchat conversation context
      * @summary Get a webchat conversation context
      * @param {string} conversation_uuid
@@ -37865,6 +37996,14 @@ export declare const ConversationApiFetchParamCreator: (configuration?: Configur
      */
     getConversations(medium?: string, before?: string, _limit?: number, _offset?: number, options?: any): FetchArgs;
     /**
+     * Insert a canned message
+     * @summary Insert a canned message
+     * @param {ConversationCannedMessage} canned_message Canned message
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    insertConversationCannedMessage(canned_message: ConversationCannedMessage, options?: any): FetchArgs;
+    /**
      * Join a conversation
      * @summary Join a conversation
      * @param {string} conversation_uuid
@@ -37889,6 +38028,14 @@ export declare const ConversationApiFetchParamCreator: (configuration?: Configur
      */
     markReadConversation(conversation_uuid: string, options?: any): FetchArgs;
     /**
+     * Search for canned messages by short_code
+     * @summary Search for canned messages by short_code
+     * @param {ConversationCannedMessagesSearch} search_request Search request
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    searchConversationCannedMessages(search_request: ConversationCannedMessagesSearch, options?: any): FetchArgs;
+    /**
      * Start a new conversation
      * @summary Start a conversation
      * @param {ConversationStartRequest} start_request Start request
@@ -37896,6 +38043,15 @@ export declare const ConversationApiFetchParamCreator: (configuration?: Configur
      * @throws {RequiredError}
      */
     startConversation(start_request: ConversationStartRequest, options?: any): FetchArgs;
+    /**
+     * Update a canned message
+     * @summary Update a canned message
+     * @param {number} conversation_canned_message_oid
+     * @param {ConversationCannedMessage} canned_message Canned message
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    updateConversationCannedMessage(conversation_canned_message_oid: number, canned_message: ConversationCannedMessage, options?: any): FetchArgs;
     /**
      * Update status within the queue
      * @summary Update status within the queue
@@ -37934,6 +38090,13 @@ export declare const ConversationApiFp: (configuration?: Configuration) => {
      * @throws {RequiredError}
      */
     getConversation(conversation_uuid: string, limit?: number, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ConversationResponse>;
+    /**
+     * Retrieve a list of canned messages ordered by short_code
+     * @summary Retrieve a list of canned messages ordered by short_code
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getConversationCannedMessages(options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ConversationCannedMessagesResponse>;
     /**
      * Get a webchat conversation context
      * @summary Get a webchat conversation context
@@ -37979,6 +38142,14 @@ export declare const ConversationApiFp: (configuration?: Configuration) => {
      */
     getConversations(medium?: string, before?: string, _limit?: number, _offset?: number, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ConversationsResponse>;
     /**
+     * Insert a canned message
+     * @summary Insert a canned message
+     * @param {ConversationCannedMessage} canned_message Canned message
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    insertConversationCannedMessage(canned_message: ConversationCannedMessage, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ConversationCannedMessageResponse>;
+    /**
      * Join a conversation
      * @summary Join a conversation
      * @param {string} conversation_uuid
@@ -38003,6 +38174,14 @@ export declare const ConversationApiFp: (configuration?: Configuration) => {
      */
     markReadConversation(conversation_uuid: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Response>;
     /**
+     * Search for canned messages by short_code
+     * @summary Search for canned messages by short_code
+     * @param {ConversationCannedMessagesSearch} search_request Search request
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    searchConversationCannedMessages(search_request: ConversationCannedMessagesSearch, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ConversationCannedMessagesResponse>;
+    /**
      * Start a new conversation
      * @summary Start a conversation
      * @param {ConversationStartRequest} start_request Start request
@@ -38010,6 +38189,15 @@ export declare const ConversationApiFp: (configuration?: Configuration) => {
      * @throws {RequiredError}
      */
     startConversation(start_request: ConversationStartRequest, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ConversationStartResponse>;
+    /**
+     * Update a canned message
+     * @summary Update a canned message
+     * @param {number} conversation_canned_message_oid
+     * @param {ConversationCannedMessage} canned_message Canned message
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    updateConversationCannedMessage(conversation_canned_message_oid: number, canned_message: ConversationCannedMessage, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ConversationCannedMessageResponse>;
     /**
      * Update status within the queue
      * @summary Update status within the queue
@@ -38048,6 +38236,13 @@ export declare const ConversationApiFactory: (configuration?: Configuration, fet
      * @throws {RequiredError}
      */
     getConversation(conversation_uuid: string, limit?: number, options?: any): Promise<ConversationResponse>;
+    /**
+     * Retrieve a list of canned messages ordered by short_code
+     * @summary Retrieve a list of canned messages ordered by short_code
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getConversationCannedMessages(options?: any): Promise<ConversationCannedMessagesResponse>;
     /**
      * Get a webchat conversation context
      * @summary Get a webchat conversation context
@@ -38093,6 +38288,14 @@ export declare const ConversationApiFactory: (configuration?: Configuration, fet
      */
     getConversations(medium?: string, before?: string, _limit?: number, _offset?: number, options?: any): Promise<ConversationsResponse>;
     /**
+     * Insert a canned message
+     * @summary Insert a canned message
+     * @param {ConversationCannedMessage} canned_message Canned message
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    insertConversationCannedMessage(canned_message: ConversationCannedMessage, options?: any): Promise<ConversationCannedMessageResponse>;
+    /**
      * Join a conversation
      * @summary Join a conversation
      * @param {string} conversation_uuid
@@ -38117,6 +38320,14 @@ export declare const ConversationApiFactory: (configuration?: Configuration, fet
      */
     markReadConversation(conversation_uuid: string, options?: any): Promise<Response>;
     /**
+     * Search for canned messages by short_code
+     * @summary Search for canned messages by short_code
+     * @param {ConversationCannedMessagesSearch} search_request Search request
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    searchConversationCannedMessages(search_request: ConversationCannedMessagesSearch, options?: any): Promise<ConversationCannedMessagesResponse>;
+    /**
      * Start a new conversation
      * @summary Start a conversation
      * @param {ConversationStartRequest} start_request Start request
@@ -38124,6 +38335,15 @@ export declare const ConversationApiFactory: (configuration?: Configuration, fet
      * @throws {RequiredError}
      */
     startConversation(start_request: ConversationStartRequest, options?: any): Promise<ConversationStartResponse>;
+    /**
+     * Update a canned message
+     * @summary Update a canned message
+     * @param {number} conversation_canned_message_oid
+     * @param {ConversationCannedMessage} canned_message Canned message
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    updateConversationCannedMessage(conversation_canned_message_oid: number, canned_message: ConversationCannedMessage, options?: any): Promise<ConversationCannedMessageResponse>;
     /**
      * Update status within the queue
      * @summary Update status within the queue
@@ -38167,6 +38387,14 @@ export interface ConversationApiInterface {
      */
     getConversation(conversation_uuid: string, limit?: number, options?: any): Promise<ConversationResponse>;
     /**
+     * Retrieve a list of canned messages ordered by short_code
+     * @summary Retrieve a list of canned messages ordered by short_code
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApiInterface
+     */
+    getConversationCannedMessages(options?: any): Promise<ConversationCannedMessagesResponse>;
+    /**
      * Get a webchat conversation context
      * @summary Get a webchat conversation context
      * @param {string} conversation_uuid
@@ -38216,6 +38444,15 @@ export interface ConversationApiInterface {
      */
     getConversations(medium?: string, before?: string, _limit?: number, _offset?: number, options?: any): Promise<ConversationsResponse>;
     /**
+     * Insert a canned message
+     * @summary Insert a canned message
+     * @param {ConversationCannedMessage} canned_message Canned message
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApiInterface
+     */
+    insertConversationCannedMessage(canned_message: ConversationCannedMessage, options?: any): Promise<ConversationCannedMessageResponse>;
+    /**
      * Join a conversation
      * @summary Join a conversation
      * @param {string} conversation_uuid
@@ -38243,6 +38480,15 @@ export interface ConversationApiInterface {
      */
     markReadConversation(conversation_uuid: string, options?: any): Promise<{}>;
     /**
+     * Search for canned messages by short_code
+     * @summary Search for canned messages by short_code
+     * @param {ConversationCannedMessagesSearch} search_request Search request
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApiInterface
+     */
+    searchConversationCannedMessages(search_request: ConversationCannedMessagesSearch, options?: any): Promise<ConversationCannedMessagesResponse>;
+    /**
      * Start a new conversation
      * @summary Start a conversation
      * @param {ConversationStartRequest} start_request Start request
@@ -38251,6 +38497,16 @@ export interface ConversationApiInterface {
      * @memberof ConversationApiInterface
      */
     startConversation(start_request: ConversationStartRequest, options?: any): Promise<ConversationStartResponse>;
+    /**
+     * Update a canned message
+     * @summary Update a canned message
+     * @param {number} conversation_canned_message_oid
+     * @param {ConversationCannedMessage} canned_message Canned message
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApiInterface
+     */
+    updateConversationCannedMessage(conversation_canned_message_oid: number, canned_message: ConversationCannedMessage, options?: any): Promise<ConversationCannedMessageResponse>;
     /**
      * Update status within the queue
      * @summary Update status within the queue
@@ -38296,6 +38552,14 @@ export declare class ConversationApi extends BaseAPI implements ConversationApiI
      */
     getConversation(conversation_uuid: string, limit?: number, options?: any): Promise<ConversationResponse>;
     /**
+     * Retrieve a list of canned messages ordered by short_code
+     * @summary Retrieve a list of canned messages ordered by short_code
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApi
+     */
+    getConversationCannedMessages(options?: any): Promise<ConversationCannedMessagesResponse>;
+    /**
      * Get a webchat conversation context
      * @summary Get a webchat conversation context
      * @param {string} conversation_uuid
@@ -38345,6 +38609,15 @@ export declare class ConversationApi extends BaseAPI implements ConversationApiI
      */
     getConversations(medium?: string, before?: string, _limit?: number, _offset?: number, options?: any): Promise<ConversationsResponse>;
     /**
+     * Insert a canned message
+     * @summary Insert a canned message
+     * @param {ConversationCannedMessage} canned_message Canned message
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApi
+     */
+    insertConversationCannedMessage(canned_message: ConversationCannedMessage, options?: any): Promise<ConversationCannedMessageResponse>;
+    /**
      * Join a conversation
      * @summary Join a conversation
      * @param {string} conversation_uuid
@@ -38372,6 +38645,15 @@ export declare class ConversationApi extends BaseAPI implements ConversationApiI
      */
     markReadConversation(conversation_uuid: string, options?: any): Promise<Response>;
     /**
+     * Search for canned messages by short_code
+     * @summary Search for canned messages by short_code
+     * @param {ConversationCannedMessagesSearch} search_request Search request
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApi
+     */
+    searchConversationCannedMessages(search_request: ConversationCannedMessagesSearch, options?: any): Promise<ConversationCannedMessagesResponse>;
+    /**
      * Start a new conversation
      * @summary Start a conversation
      * @param {ConversationStartRequest} start_request Start request
@@ -38380,6 +38662,16 @@ export declare class ConversationApi extends BaseAPI implements ConversationApiI
      * @memberof ConversationApi
      */
     startConversation(start_request: ConversationStartRequest, options?: any): Promise<ConversationStartResponse>;
+    /**
+     * Update a canned message
+     * @summary Update a canned message
+     * @param {number} conversation_canned_message_oid
+     * @param {ConversationCannedMessage} canned_message Canned message
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApi
+     */
+    updateConversationCannedMessage(conversation_canned_message_oid: number, canned_message: ConversationCannedMessage, options?: any): Promise<ConversationCannedMessageResponse>;
     /**
      * Update status within the queue
      * @summary Update status within the queue

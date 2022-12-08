@@ -5591,6 +5591,46 @@ var ConversationApiFetchParamCreator = function (configuration) {
             };
         },
         /**
+         * Retrieve a list of canned messages ordered by short_code
+         * @summary Retrieve a list of canned messages ordered by short_code
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getConversationCannedMessages: function (options) {
+            if (options === void 0) { options = {}; }
+            var localVarPath = "/conversation/canned_messages";
+            var localVarUrlObj = url.parse(localVarPath, true);
+            var localVarRequestOptions = Object.assign({ method: 'GET' }, options);
+            var localVarHeaderParameter = {};
+            var localVarQueryParameter = {};
+            if (configuration && configuration.apiVersion) {
+                localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+            }
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+                var localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+                    ? configuration.accessToken("ultraCartOauth", ["conversation_read"])
+                    : configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                var localVarApiKeyValue = typeof configuration.apiKey === 'function'
+                    ? configuration.apiKey("x-ultracart-simple-key")
+                    : configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
          * Get a webchat conversation context
          * @summary Get a webchat conversation context
          * @param {string} conversation_uuid
@@ -5835,6 +5875,54 @@ var ConversationApiFetchParamCreator = function (configuration) {
             };
         },
         /**
+         * Insert a canned message
+         * @summary Insert a canned message
+         * @param {ConversationCannedMessage} canned_message Canned message
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        insertConversationCannedMessage: function (canned_message, options) {
+            if (options === void 0) { options = {}; }
+            // verify required parameter 'canned_message' is not null or undefined
+            if (canned_message === null || canned_message === undefined) {
+                throw new RequiredError('canned_message', 'Required parameter canned_message was null or undefined when calling insertConversationCannedMessage.');
+            }
+            var localVarPath = "/conversation/canned_messages";
+            var localVarUrlObj = url.parse(localVarPath, true);
+            var localVarRequestOptions = Object.assign({ method: 'POST' }, options);
+            var localVarHeaderParameter = {};
+            var localVarQueryParameter = {};
+            if (configuration && configuration.apiVersion) {
+                localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+            }
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+                var localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+                    ? configuration.accessToken("ultraCartOauth", ["conversation_read"])
+                    : configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                var localVarApiKeyValue = typeof configuration.apiKey === 'function'
+                    ? configuration.apiKey("x-ultracart-simple-key")
+                    : configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+            var needsSerialization = ("ConversationCannedMessage" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
+            localVarRequestOptions.body = needsSerialization ? JSON.stringify(canned_message || {}) : (canned_message || "");
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
          * Join a conversation
          * @summary Join a conversation
          * @param {string} conversation_uuid
@@ -5973,6 +6061,54 @@ var ConversationApiFetchParamCreator = function (configuration) {
             };
         },
         /**
+         * Search for canned messages by short_code
+         * @summary Search for canned messages by short_code
+         * @param {ConversationCannedMessagesSearch} search_request Search request
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        searchConversationCannedMessages: function (search_request, options) {
+            if (options === void 0) { options = {}; }
+            // verify required parameter 'search_request' is not null or undefined
+            if (search_request === null || search_request === undefined) {
+                throw new RequiredError('search_request', 'Required parameter search_request was null or undefined when calling searchConversationCannedMessages.');
+            }
+            var localVarPath = "/conversation/canned_messages/search";
+            var localVarUrlObj = url.parse(localVarPath, true);
+            var localVarRequestOptions = Object.assign({ method: 'POST' }, options);
+            var localVarHeaderParameter = {};
+            var localVarQueryParameter = {};
+            if (configuration && configuration.apiVersion) {
+                localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+            }
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+                var localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+                    ? configuration.accessToken("ultraCartOauth", ["conversation_read"])
+                    : configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                var localVarApiKeyValue = typeof configuration.apiKey === 'function'
+                    ? configuration.apiKey("x-ultracart-simple-key")
+                    : configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+            var needsSerialization = ("ConversationCannedMessagesSearch" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
+            localVarRequestOptions.body = needsSerialization ? JSON.stringify(search_request || {}) : (search_request || "");
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
          * Start a new conversation
          * @summary Start a conversation
          * @param {ConversationStartRequest} start_request Start request
@@ -6015,6 +6151,60 @@ var ConversationApiFetchParamCreator = function (configuration) {
             localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
             var needsSerialization = ("ConversationStartRequest" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
             localVarRequestOptions.body = needsSerialization ? JSON.stringify(start_request || {}) : (start_request || "");
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Update a canned message
+         * @summary Update a canned message
+         * @param {number} conversation_canned_message_oid
+         * @param {ConversationCannedMessage} canned_message Canned message
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        updateConversationCannedMessage: function (conversation_canned_message_oid, canned_message, options) {
+            if (options === void 0) { options = {}; }
+            // verify required parameter 'conversation_canned_message_oid' is not null or undefined
+            if (conversation_canned_message_oid === null || conversation_canned_message_oid === undefined) {
+                throw new RequiredError('conversation_canned_message_oid', 'Required parameter conversation_canned_message_oid was null or undefined when calling updateConversationCannedMessage.');
+            }
+            // verify required parameter 'canned_message' is not null or undefined
+            if (canned_message === null || canned_message === undefined) {
+                throw new RequiredError('canned_message', 'Required parameter canned_message was null or undefined when calling updateConversationCannedMessage.');
+            }
+            var localVarPath = "/conversation/canned_messages/{conversation_canned_message_oid}"
+                .replace("{".concat("conversation_canned_message_oid", "}"), encodeURIComponent(String(conversation_canned_message_oid)));
+            var localVarUrlObj = url.parse(localVarPath, true);
+            var localVarRequestOptions = Object.assign({ method: 'PUT' }, options);
+            var localVarHeaderParameter = {};
+            var localVarQueryParameter = {};
+            if (configuration && configuration.apiVersion) {
+                localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+            }
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+                var localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+                    ? configuration.accessToken("ultraCartOauth", ["conversation_read"])
+                    : configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                var localVarApiKeyValue = typeof configuration.apiKey === 'function'
+                    ? configuration.apiKey("x-ultracart-simple-key")
+                    : configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+            var needsSerialization = ("ConversationCannedMessage" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
+            localVarRequestOptions.body = needsSerialization ? JSON.stringify(canned_message || {}) : (canned_message || "");
             return {
                 url: url.format(localVarUrlObj),
                 options: localVarRequestOptions,
@@ -6149,6 +6339,27 @@ var ConversationApiFp = function (configuration) {
             };
         },
         /**
+         * Retrieve a list of canned messages ordered by short_code
+         * @summary Retrieve a list of canned messages ordered by short_code
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getConversationCannedMessages: function (options) {
+            var localVarFetchArgs = (0, exports.ConversationApiFetchParamCreator)(configuration).getConversationCannedMessages(options);
+            return function (fetch, basePath) {
+                if (fetch === void 0) { fetch = portableFetch; }
+                if (basePath === void 0) { basePath = BASE_PATH; }
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(function (response) {
+                    if (response.status >= 200 && response.status < 300) {
+                        return response.json();
+                    }
+                    else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
          * Get a webchat conversation context
          * @summary Get a webchat conversation context
          * @param {string} conversation_uuid
@@ -6263,6 +6474,28 @@ var ConversationApiFp = function (configuration) {
             };
         },
         /**
+         * Insert a canned message
+         * @summary Insert a canned message
+         * @param {ConversationCannedMessage} canned_message Canned message
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        insertConversationCannedMessage: function (canned_message, options) {
+            var localVarFetchArgs = (0, exports.ConversationApiFetchParamCreator)(configuration).insertConversationCannedMessage(canned_message, options);
+            return function (fetch, basePath) {
+                if (fetch === void 0) { fetch = portableFetch; }
+                if (basePath === void 0) { basePath = BASE_PATH; }
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(function (response) {
+                    if (response.status >= 200 && response.status < 300) {
+                        return response.json();
+                    }
+                    else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
          * Join a conversation
          * @summary Join a conversation
          * @param {string} conversation_uuid
@@ -6329,6 +6562,28 @@ var ConversationApiFp = function (configuration) {
             };
         },
         /**
+         * Search for canned messages by short_code
+         * @summary Search for canned messages by short_code
+         * @param {ConversationCannedMessagesSearch} search_request Search request
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        searchConversationCannedMessages: function (search_request, options) {
+            var localVarFetchArgs = (0, exports.ConversationApiFetchParamCreator)(configuration).searchConversationCannedMessages(search_request, options);
+            return function (fetch, basePath) {
+                if (fetch === void 0) { fetch = portableFetch; }
+                if (basePath === void 0) { basePath = BASE_PATH; }
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(function (response) {
+                    if (response.status >= 200 && response.status < 300) {
+                        return response.json();
+                    }
+                    else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
          * Start a new conversation
          * @summary Start a conversation
          * @param {ConversationStartRequest} start_request Start request
@@ -6337,6 +6592,29 @@ var ConversationApiFp = function (configuration) {
          */
         startConversation: function (start_request, options) {
             var localVarFetchArgs = (0, exports.ConversationApiFetchParamCreator)(configuration).startConversation(start_request, options);
+            return function (fetch, basePath) {
+                if (fetch === void 0) { fetch = portableFetch; }
+                if (basePath === void 0) { basePath = BASE_PATH; }
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(function (response) {
+                    if (response.status >= 200 && response.status < 300) {
+                        return response.json();
+                    }
+                    else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
+         * Update a canned message
+         * @summary Update a canned message
+         * @param {number} conversation_canned_message_oid
+         * @param {ConversationCannedMessage} canned_message Canned message
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        updateConversationCannedMessage: function (conversation_canned_message_oid, canned_message, options) {
+            var localVarFetchArgs = (0, exports.ConversationApiFetchParamCreator)(configuration).updateConversationCannedMessage(conversation_canned_message_oid, canned_message, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -6412,6 +6690,15 @@ var ConversationApiFactory = function (configuration, fetch, basePath) {
             return (0, exports.ConversationApiFp)(configuration).getConversation(conversation_uuid, limit, options)(fetch, basePath);
         },
         /**
+         * Retrieve a list of canned messages ordered by short_code
+         * @summary Retrieve a list of canned messages ordered by short_code
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getConversationCannedMessages: function (options) {
+            return (0, exports.ConversationApiFp)(configuration).getConversationCannedMessages(options)(fetch, basePath);
+        },
+        /**
          * Get a webchat conversation context
          * @summary Get a webchat conversation context
          * @param {string} conversation_uuid
@@ -6466,6 +6753,16 @@ var ConversationApiFactory = function (configuration, fetch, basePath) {
             return (0, exports.ConversationApiFp)(configuration).getConversations(medium, before, _limit, _offset, options)(fetch, basePath);
         },
         /**
+         * Insert a canned message
+         * @summary Insert a canned message
+         * @param {ConversationCannedMessage} canned_message Canned message
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        insertConversationCannedMessage: function (canned_message, options) {
+            return (0, exports.ConversationApiFp)(configuration).insertConversationCannedMessage(canned_message, options)(fetch, basePath);
+        },
+        /**
          * Join a conversation
          * @summary Join a conversation
          * @param {string} conversation_uuid
@@ -6496,6 +6793,16 @@ var ConversationApiFactory = function (configuration, fetch, basePath) {
             return (0, exports.ConversationApiFp)(configuration).markReadConversation(conversation_uuid, options)(fetch, basePath);
         },
         /**
+         * Search for canned messages by short_code
+         * @summary Search for canned messages by short_code
+         * @param {ConversationCannedMessagesSearch} search_request Search request
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        searchConversationCannedMessages: function (search_request, options) {
+            return (0, exports.ConversationApiFp)(configuration).searchConversationCannedMessages(search_request, options)(fetch, basePath);
+        },
+        /**
          * Start a new conversation
          * @summary Start a conversation
          * @param {ConversationStartRequest} start_request Start request
@@ -6504,6 +6811,17 @@ var ConversationApiFactory = function (configuration, fetch, basePath) {
          */
         startConversation: function (start_request, options) {
             return (0, exports.ConversationApiFp)(configuration).startConversation(start_request, options)(fetch, basePath);
+        },
+        /**
+         * Update a canned message
+         * @summary Update a canned message
+         * @param {number} conversation_canned_message_oid
+         * @param {ConversationCannedMessage} canned_message Canned message
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        updateConversationCannedMessage: function (conversation_canned_message_oid, canned_message, options) {
+            return (0, exports.ConversationApiFp)(configuration).updateConversationCannedMessage(conversation_canned_message_oid, canned_message, options)(fetch, basePath);
         },
         /**
          * Update status within the queue
@@ -6561,6 +6879,16 @@ var ConversationApi = /** @class */ (function (_super) {
      */
     ConversationApi.prototype.getConversation = function (conversation_uuid, limit, options) {
         return (0, exports.ConversationApiFp)(this.configuration).getConversation(conversation_uuid, limit, options)(this.fetch, this.basePath);
+    };
+    /**
+     * Retrieve a list of canned messages ordered by short_code
+     * @summary Retrieve a list of canned messages ordered by short_code
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApi
+     */
+    ConversationApi.prototype.getConversationCannedMessages = function (options) {
+        return (0, exports.ConversationApiFp)(this.configuration).getConversationCannedMessages(options)(this.fetch, this.basePath);
     };
     /**
      * Get a webchat conversation context
@@ -6622,6 +6950,17 @@ var ConversationApi = /** @class */ (function (_super) {
         return (0, exports.ConversationApiFp)(this.configuration).getConversations(medium, before, _limit, _offset, options)(this.fetch, this.basePath);
     };
     /**
+     * Insert a canned message
+     * @summary Insert a canned message
+     * @param {ConversationCannedMessage} canned_message Canned message
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApi
+     */
+    ConversationApi.prototype.insertConversationCannedMessage = function (canned_message, options) {
+        return (0, exports.ConversationApiFp)(this.configuration).insertConversationCannedMessage(canned_message, options)(this.fetch, this.basePath);
+    };
+    /**
      * Join a conversation
      * @summary Join a conversation
      * @param {string} conversation_uuid
@@ -6655,6 +6994,17 @@ var ConversationApi = /** @class */ (function (_super) {
         return (0, exports.ConversationApiFp)(this.configuration).markReadConversation(conversation_uuid, options)(this.fetch, this.basePath);
     };
     /**
+     * Search for canned messages by short_code
+     * @summary Search for canned messages by short_code
+     * @param {ConversationCannedMessagesSearch} search_request Search request
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApi
+     */
+    ConversationApi.prototype.searchConversationCannedMessages = function (search_request, options) {
+        return (0, exports.ConversationApiFp)(this.configuration).searchConversationCannedMessages(search_request, options)(this.fetch, this.basePath);
+    };
+    /**
      * Start a new conversation
      * @summary Start a conversation
      * @param {ConversationStartRequest} start_request Start request
@@ -6664,6 +7014,18 @@ var ConversationApi = /** @class */ (function (_super) {
      */
     ConversationApi.prototype.startConversation = function (start_request, options) {
         return (0, exports.ConversationApiFp)(this.configuration).startConversation(start_request, options)(this.fetch, this.basePath);
+    };
+    /**
+     * Update a canned message
+     * @summary Update a canned message
+     * @param {number} conversation_canned_message_oid
+     * @param {ConversationCannedMessage} canned_message Canned message
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApi
+     */
+    ConversationApi.prototype.updateConversationCannedMessage = function (conversation_canned_message_oid, canned_message, options) {
+        return (0, exports.ConversationApiFp)(this.configuration).updateConversationCannedMessage(conversation_canned_message_oid, canned_message, options)(this.fetch, this.basePath);
     };
     /**
      * Update status within the queue

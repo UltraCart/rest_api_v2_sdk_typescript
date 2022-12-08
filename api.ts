@@ -6555,6 +6555,134 @@ export interface ConversationAgentAuthResponse {
 /**
  * 
  * @export
+ * @interface ConversationCannedMessage
+ */
+export interface ConversationCannedMessage {
+    /**
+     * 
+     * @type {string}
+     * @memberof ConversationCannedMessage
+     */
+    canned_message?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof ConversationCannedMessage
+     */
+    conversation_canned_message_oid?: number;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof ConversationCannedMessage
+     */
+    conversation_webchat_queue_uuids?: Array<string>;
+    /**
+     * 
+     * @type {string}
+     * @memberof ConversationCannedMessage
+     */
+    short_code?: string;
+}
+
+/**
+ * 
+ * @export
+ * @interface ConversationCannedMessageResponse
+ */
+export interface ConversationCannedMessageResponse {
+    /**
+     * 
+     * @type {ConversationCannedMessage}
+     * @memberof ConversationCannedMessageResponse
+     */
+    conversation_canned_message?: ConversationCannedMessage;
+    /**
+     * 
+     * @type {ModelError}
+     * @memberof ConversationCannedMessageResponse
+     */
+    error?: ModelError;
+    /**
+     * 
+     * @type {ResponseMetadata}
+     * @memberof ConversationCannedMessageResponse
+     */
+    metadata?: ResponseMetadata;
+    /**
+     * Indicates if API call was successful
+     * @type {boolean}
+     * @memberof ConversationCannedMessageResponse
+     */
+    success?: boolean;
+    /**
+     * 
+     * @type {Warning}
+     * @memberof ConversationCannedMessageResponse
+     */
+    warning?: Warning;
+}
+
+/**
+ * 
+ * @export
+ * @interface ConversationCannedMessagesResponse
+ */
+export interface ConversationCannedMessagesResponse {
+    /**
+     * 
+     * @type {Array<ConversationCannedMessage>}
+     * @memberof ConversationCannedMessagesResponse
+     */
+    conversation_canned_messages?: Array<ConversationCannedMessage>;
+    /**
+     * 
+     * @type {ModelError}
+     * @memberof ConversationCannedMessagesResponse
+     */
+    error?: ModelError;
+    /**
+     * 
+     * @type {ResponseMetadata}
+     * @memberof ConversationCannedMessagesResponse
+     */
+    metadata?: ResponseMetadata;
+    /**
+     * Indicates if API call was successful
+     * @type {boolean}
+     * @memberof ConversationCannedMessagesResponse
+     */
+    success?: boolean;
+    /**
+     * 
+     * @type {Warning}
+     * @memberof ConversationCannedMessagesResponse
+     */
+    warning?: Warning;
+}
+
+/**
+ * 
+ * @export
+ * @interface ConversationCannedMessagesSearch
+ */
+export interface ConversationCannedMessagesSearch {
+    /**
+     * 
+     * @type {number}
+     * @memberof ConversationCannedMessagesSearch
+     */
+    max_results?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof ConversationCannedMessagesSearch
+     */
+    short_code?: string;
+}
+
+/**
+ * 
+ * @export
  * @interface ConversationEventAddCoupon
  */
 export interface ConversationEventAddCoupon {
@@ -41697,6 +41825,52 @@ export const ConversationApiFetchParamCreator = function (configuration?: Config
             };
         },
         /**
+         * Retrieve a list of canned messages ordered by short_code 
+         * @summary Retrieve a list of canned messages ordered by short_code
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getConversationCannedMessages(options: any = {}): FetchArgs {
+            const localVarPath = `/conversation/canned_messages`;
+            const localVarUrlObj = url.parse(localVarPath, true);
+            const localVarRequestOptions = Object.assign({ method: 'GET' }, options);
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+    if(configuration && configuration.apiVersion) {
+      localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+    }
+
+
+
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+				const localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+					? configuration.accessToken("ultraCartOauth", ["conversation_read"])
+					: configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
+					? configuration.apiKey("x-ultracart-simple-key")
+					: configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
          * Get a webchat conversation context 
          * @summary Get a webchat conversation context
          * @param {string} conversation_uuid 
@@ -41976,6 +42150,61 @@ export const ConversationApiFetchParamCreator = function (configuration?: Config
             };
         },
         /**
+         * Insert a canned message 
+         * @summary Insert a canned message
+         * @param {ConversationCannedMessage} canned_message Canned message
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        insertConversationCannedMessage(canned_message: ConversationCannedMessage, options: any = {}): FetchArgs {
+            // verify required parameter 'canned_message' is not null or undefined
+            if (canned_message === null || canned_message === undefined) {
+                throw new RequiredError('canned_message','Required parameter canned_message was null or undefined when calling insertConversationCannedMessage.');
+            }
+            const localVarPath = `/conversation/canned_messages`;
+            const localVarUrlObj = url.parse(localVarPath, true);
+            const localVarRequestOptions = Object.assign({ method: 'POST' }, options);
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+    if(configuration && configuration.apiVersion) {
+      localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+    }
+
+
+
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+				const localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+					? configuration.accessToken("ultraCartOauth", ["conversation_read"])
+					: configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
+					? configuration.apiKey("x-ultracart-simple-key")
+					: configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+            const needsSerialization = (<any>"ConversationCannedMessage" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
+            localVarRequestOptions.body =  needsSerialization ? JSON.stringify(canned_message || {}) : (canned_message || "");
+
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
          * Join a conversation 
          * @summary Join a conversation
          * @param {string} conversation_uuid 
@@ -42132,6 +42361,61 @@ export const ConversationApiFetchParamCreator = function (configuration?: Config
             };
         },
         /**
+         * Search for canned messages by short_code 
+         * @summary Search for canned messages by short_code
+         * @param {ConversationCannedMessagesSearch} search_request Search request
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        searchConversationCannedMessages(search_request: ConversationCannedMessagesSearch, options: any = {}): FetchArgs {
+            // verify required parameter 'search_request' is not null or undefined
+            if (search_request === null || search_request === undefined) {
+                throw new RequiredError('search_request','Required parameter search_request was null or undefined when calling searchConversationCannedMessages.');
+            }
+            const localVarPath = `/conversation/canned_messages/search`;
+            const localVarUrlObj = url.parse(localVarPath, true);
+            const localVarRequestOptions = Object.assign({ method: 'POST' }, options);
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+    if(configuration && configuration.apiVersion) {
+      localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+    }
+
+
+
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+				const localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+					? configuration.accessToken("ultraCartOauth", ["conversation_read"])
+					: configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
+					? configuration.apiKey("x-ultracart-simple-key")
+					: configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+            const needsSerialization = (<any>"ConversationCannedMessagesSearch" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
+            localVarRequestOptions.body =  needsSerialization ? JSON.stringify(search_request || {}) : (search_request || "");
+
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
          * Start a new conversation 
          * @summary Start a conversation
          * @param {ConversationStartRequest} start_request Start request
@@ -42180,6 +42464,67 @@ export const ConversationApiFetchParamCreator = function (configuration?: Config
             localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
             const needsSerialization = (<any>"ConversationStartRequest" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
             localVarRequestOptions.body =  needsSerialization ? JSON.stringify(start_request || {}) : (start_request || "");
+
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Update a canned message 
+         * @summary Update a canned message
+         * @param {number} conversation_canned_message_oid 
+         * @param {ConversationCannedMessage} canned_message Canned message
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        updateConversationCannedMessage(conversation_canned_message_oid: number, canned_message: ConversationCannedMessage, options: any = {}): FetchArgs {
+            // verify required parameter 'conversation_canned_message_oid' is not null or undefined
+            if (conversation_canned_message_oid === null || conversation_canned_message_oid === undefined) {
+                throw new RequiredError('conversation_canned_message_oid','Required parameter conversation_canned_message_oid was null or undefined when calling updateConversationCannedMessage.');
+            }
+            // verify required parameter 'canned_message' is not null or undefined
+            if (canned_message === null || canned_message === undefined) {
+                throw new RequiredError('canned_message','Required parameter canned_message was null or undefined when calling updateConversationCannedMessage.');
+            }
+            const localVarPath = `/conversation/canned_messages/{conversation_canned_message_oid}`
+                .replace(`{${"conversation_canned_message_oid"}}`, encodeURIComponent(String(conversation_canned_message_oid)));
+            const localVarUrlObj = url.parse(localVarPath, true);
+            const localVarRequestOptions = Object.assign({ method: 'PUT' }, options);
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+    if(configuration && configuration.apiVersion) {
+      localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+    }
+
+
+
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+				const localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+					? configuration.accessToken("ultraCartOauth", ["conversation_read"])
+					: configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
+					? configuration.apiKey("x-ultracart-simple-key")
+					: configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+            const needsSerialization = (<any>"ConversationCannedMessage" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
+            localVarRequestOptions.body =  needsSerialization ? JSON.stringify(canned_message || {}) : (canned_message || "");
 
             return {
                 url: url.format(localVarUrlObj),
@@ -42319,6 +42664,26 @@ export const ConversationApiFp = function(configuration?: Configuration) {
             };
         },
         /**
+         * Retrieve a list of canned messages ordered by short_code 
+         * @summary Retrieve a list of canned messages ordered by short_code
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getConversationCannedMessages(options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ConversationCannedMessagesResponse> {
+            const localVarFetchArgs = ConversationApiFetchParamCreator(configuration).getConversationCannedMessages(options);
+            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
+                    if (response.status >= 200 && response.status < 300) {
+                      return response.json();
+                      
+                    } else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
          * Get a webchat conversation context 
          * @summary Get a webchat conversation context
          * @param {string} conversation_uuid 
@@ -42428,6 +42793,27 @@ export const ConversationApiFp = function(configuration?: Configuration) {
             };
         },
         /**
+         * Insert a canned message 
+         * @summary Insert a canned message
+         * @param {ConversationCannedMessage} canned_message Canned message
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        insertConversationCannedMessage(canned_message: ConversationCannedMessage, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ConversationCannedMessageResponse> {
+            const localVarFetchArgs = ConversationApiFetchParamCreator(configuration).insertConversationCannedMessage(canned_message, options);
+            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
+                    if (response.status >= 200 && response.status < 300) {
+                      return response.json();
+                      
+                    } else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
          * Join a conversation 
          * @summary Join a conversation
          * @param {string} conversation_uuid 
@@ -42491,6 +42877,27 @@ export const ConversationApiFp = function(configuration?: Configuration) {
             };
         },
         /**
+         * Search for canned messages by short_code 
+         * @summary Search for canned messages by short_code
+         * @param {ConversationCannedMessagesSearch} search_request Search request
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        searchConversationCannedMessages(search_request: ConversationCannedMessagesSearch, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ConversationCannedMessagesResponse> {
+            const localVarFetchArgs = ConversationApiFetchParamCreator(configuration).searchConversationCannedMessages(search_request, options);
+            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
+                    if (response.status >= 200 && response.status < 300) {
+                      return response.json();
+                      
+                    } else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
          * Start a new conversation 
          * @summary Start a conversation
          * @param {ConversationStartRequest} start_request Start request
@@ -42499,6 +42906,28 @@ export const ConversationApiFp = function(configuration?: Configuration) {
          */
         startConversation(start_request: ConversationStartRequest, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ConversationStartResponse> {
             const localVarFetchArgs = ConversationApiFetchParamCreator(configuration).startConversation(start_request, options);
+            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
+                    if (response.status >= 200 && response.status < 300) {
+                      return response.json();
+                      
+                    } else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
+         * Update a canned message 
+         * @summary Update a canned message
+         * @param {number} conversation_canned_message_oid 
+         * @param {ConversationCannedMessage} canned_message Canned message
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        updateConversationCannedMessage(conversation_canned_message_oid: number, canned_message: ConversationCannedMessage, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ConversationCannedMessageResponse> {
+            const localVarFetchArgs = ConversationApiFetchParamCreator(configuration).updateConversationCannedMessage(conversation_canned_message_oid, canned_message, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
 
@@ -42572,6 +43001,15 @@ export const ConversationApiFactory = function (configuration?: Configuration, f
             return ConversationApiFp(configuration).getConversation(conversation_uuid, limit, options)(fetch, basePath);
         },
         /**
+         * Retrieve a list of canned messages ordered by short_code 
+         * @summary Retrieve a list of canned messages ordered by short_code
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getConversationCannedMessages(options?: any) {
+            return ConversationApiFp(configuration).getConversationCannedMessages(options)(fetch, basePath);
+        },
+        /**
          * Get a webchat conversation context 
          * @summary Get a webchat conversation context
          * @param {string} conversation_uuid 
@@ -42626,6 +43064,16 @@ export const ConversationApiFactory = function (configuration?: Configuration, f
             return ConversationApiFp(configuration).getConversations(medium, before, _limit, _offset, options)(fetch, basePath);
         },
         /**
+         * Insert a canned message 
+         * @summary Insert a canned message
+         * @param {ConversationCannedMessage} canned_message Canned message
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        insertConversationCannedMessage(canned_message: ConversationCannedMessage, options?: any) {
+            return ConversationApiFp(configuration).insertConversationCannedMessage(canned_message, options)(fetch, basePath);
+        },
+        /**
          * Join a conversation 
          * @summary Join a conversation
          * @param {string} conversation_uuid 
@@ -42656,6 +43104,16 @@ export const ConversationApiFactory = function (configuration?: Configuration, f
             return ConversationApiFp(configuration).markReadConversation(conversation_uuid, options)(fetch, basePath);
         },
         /**
+         * Search for canned messages by short_code 
+         * @summary Search for canned messages by short_code
+         * @param {ConversationCannedMessagesSearch} search_request Search request
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        searchConversationCannedMessages(search_request: ConversationCannedMessagesSearch, options?: any) {
+            return ConversationApiFp(configuration).searchConversationCannedMessages(search_request, options)(fetch, basePath);
+        },
+        /**
          * Start a new conversation 
          * @summary Start a conversation
          * @param {ConversationStartRequest} start_request Start request
@@ -42664,6 +43122,17 @@ export const ConversationApiFactory = function (configuration?: Configuration, f
          */
         startConversation(start_request: ConversationStartRequest, options?: any) {
             return ConversationApiFp(configuration).startConversation(start_request, options)(fetch, basePath);
+        },
+        /**
+         * Update a canned message 
+         * @summary Update a canned message
+         * @param {number} conversation_canned_message_oid 
+         * @param {ConversationCannedMessage} canned_message Canned message
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        updateConversationCannedMessage(conversation_canned_message_oid: number, canned_message: ConversationCannedMessage, options?: any) {
+            return ConversationApiFp(configuration).updateConversationCannedMessage(conversation_canned_message_oid, canned_message, options)(fetch, basePath);
         },
         /**
          * Update status within the queue 
@@ -42713,6 +43182,15 @@ export interface ConversationApiInterface {
      * @memberof ConversationApiInterface
      */
     getConversation(conversation_uuid: string, limit?: number, options?: any): Promise<ConversationResponse>;
+
+    /**
+     * Retrieve a list of canned messages ordered by short_code 
+     * @summary Retrieve a list of canned messages ordered by short_code
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApiInterface
+     */
+    getConversationCannedMessages(options?: any): Promise<ConversationCannedMessagesResponse>;
 
     /**
      * Get a webchat conversation context 
@@ -42769,6 +43247,16 @@ export interface ConversationApiInterface {
     getConversations(medium?: string, before?: string, _limit?: number, _offset?: number, options?: any): Promise<ConversationsResponse>;
 
     /**
+     * Insert a canned message 
+     * @summary Insert a canned message
+     * @param {ConversationCannedMessage} canned_message Canned message
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApiInterface
+     */
+    insertConversationCannedMessage(canned_message: ConversationCannedMessage, options?: any): Promise<ConversationCannedMessageResponse>;
+
+    /**
      * Join a conversation 
      * @summary Join a conversation
      * @param {string} conversation_uuid 
@@ -42799,6 +43287,16 @@ export interface ConversationApiInterface {
     markReadConversation(conversation_uuid: string, options?: any): Promise<{}>;
 
     /**
+     * Search for canned messages by short_code 
+     * @summary Search for canned messages by short_code
+     * @param {ConversationCannedMessagesSearch} search_request Search request
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApiInterface
+     */
+    searchConversationCannedMessages(search_request: ConversationCannedMessagesSearch, options?: any): Promise<ConversationCannedMessagesResponse>;
+
+    /**
      * Start a new conversation 
      * @summary Start a conversation
      * @param {ConversationStartRequest} start_request Start request
@@ -42807,6 +43305,17 @@ export interface ConversationApiInterface {
      * @memberof ConversationApiInterface
      */
     startConversation(start_request: ConversationStartRequest, options?: any): Promise<ConversationStartResponse>;
+
+    /**
+     * Update a canned message 
+     * @summary Update a canned message
+     * @param {number} conversation_canned_message_oid 
+     * @param {ConversationCannedMessage} canned_message Canned message
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApiInterface
+     */
+    updateConversationCannedMessage(conversation_canned_message_oid: number, canned_message: ConversationCannedMessage, options?: any): Promise<ConversationCannedMessageResponse>;
 
     /**
      * Update status within the queue 
@@ -42861,6 +43370,17 @@ export class ConversationApi extends BaseAPI implements ConversationApiInterface
      */
     public getConversation(conversation_uuid: string, limit?: number, options?: any) {
         return ConversationApiFp(this.configuration).getConversation(conversation_uuid, limit, options)(this.fetch, this.basePath);
+    }
+
+    /**
+     * Retrieve a list of canned messages ordered by short_code 
+     * @summary Retrieve a list of canned messages ordered by short_code
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApi
+     */
+    public getConversationCannedMessages(options?: any) {
+        return ConversationApiFp(this.configuration).getConversationCannedMessages(options)(this.fetch, this.basePath);
     }
 
     /**
@@ -42928,6 +43448,18 @@ export class ConversationApi extends BaseAPI implements ConversationApiInterface
     }
 
     /**
+     * Insert a canned message 
+     * @summary Insert a canned message
+     * @param {ConversationCannedMessage} canned_message Canned message
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApi
+     */
+    public insertConversationCannedMessage(canned_message: ConversationCannedMessage, options?: any) {
+        return ConversationApiFp(this.configuration).insertConversationCannedMessage(canned_message, options)(this.fetch, this.basePath);
+    }
+
+    /**
      * Join a conversation 
      * @summary Join a conversation
      * @param {string} conversation_uuid 
@@ -42964,6 +43496,18 @@ export class ConversationApi extends BaseAPI implements ConversationApiInterface
     }
 
     /**
+     * Search for canned messages by short_code 
+     * @summary Search for canned messages by short_code
+     * @param {ConversationCannedMessagesSearch} search_request Search request
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApi
+     */
+    public searchConversationCannedMessages(search_request: ConversationCannedMessagesSearch, options?: any) {
+        return ConversationApiFp(this.configuration).searchConversationCannedMessages(search_request, options)(this.fetch, this.basePath);
+    }
+
+    /**
      * Start a new conversation 
      * @summary Start a conversation
      * @param {ConversationStartRequest} start_request Start request
@@ -42973,6 +43517,19 @@ export class ConversationApi extends BaseAPI implements ConversationApiInterface
      */
     public startConversation(start_request: ConversationStartRequest, options?: any) {
         return ConversationApiFp(this.configuration).startConversation(start_request, options)(this.fetch, this.basePath);
+    }
+
+    /**
+     * Update a canned message 
+     * @summary Update a canned message
+     * @param {number} conversation_canned_message_oid 
+     * @param {ConversationCannedMessage} canned_message Canned message
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApi
+     */
+    public updateConversationCannedMessage(conversation_canned_message_oid: number, canned_message: ConversationCannedMessage, options?: any) {
+        return ConversationApiFp(this.configuration).updateConversationCannedMessage(conversation_canned_message_oid, canned_message, options)(this.fetch, this.basePath);
     }
 
     /**
