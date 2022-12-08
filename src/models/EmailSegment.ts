@@ -99,6 +99,12 @@ export interface EmailSegment {
      */
     rank_json?: string;
     /**
+     * Percentage of completion for a rebuild.  The value range will be 0-1.  Multiply by 100 to format for display.
+     * @type {number}
+     * @memberof EmailSegment
+     */
+    rebuild_percentage?: number;
+    /**
      * True if a rebuild is required because some part of the segment has changed
      * @type {boolean}
      * @memberof EmailSegment
@@ -176,6 +182,7 @@ export function EmailSegmentFromJSONTyped(json: any, ignoreDiscriminator: boolea
         'merchant_id': !exists(json, 'merchant_id') ? undefined : json['merchant_id'],
         'name': !exists(json, 'name') ? undefined : json['name'],
         'rank_json': !exists(json, 'rank_json') ? undefined : json['rank_json'],
+        'rebuild_percentage': !exists(json, 'rebuild_percentage') ? undefined : json['rebuild_percentage'],
         'rebuild_required': !exists(json, 'rebuild_required') ? undefined : json['rebuild_required'],
         'storefront_oid': !exists(json, 'storefront_oid') ? undefined : json['storefront_oid'],
         'thirdparty_join_add_tags': !exists(json, 'thirdparty_join_add_tags') ? undefined : json['thirdparty_join_add_tags'],
@@ -209,6 +216,7 @@ export function EmailSegmentToJSON(value?: EmailSegment | null): any {
         'merchant_id': value.merchant_id,
         'name': value.name,
         'rank_json': value.rank_json,
+        'rebuild_percentage': value.rebuild_percentage,
         'rebuild_required': value.rebuild_required,
         'storefront_oid': value.storefront_oid,
         'thirdparty_join_add_tags': value.thirdparty_join_add_tags,
