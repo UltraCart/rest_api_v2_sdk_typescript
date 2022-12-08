@@ -144,6 +144,10 @@ src/models/CityStateZip.ts
 src/models/Conversation.ts
 src/models/ConversationAgentAuth.ts
 src/models/ConversationAgentAuthResponse.ts
+src/models/ConversationCannedMessage.ts
+src/models/ConversationCannedMessageResponse.ts
+src/models/ConversationCannedMessagesResponse.ts
+src/models/ConversationCannedMessagesSearch.ts
 src/models/ConversationEventAddCoupon.ts
 src/models/ConversationEventAddItem.ts
 src/models/ConversationEventQueuePosition.ts

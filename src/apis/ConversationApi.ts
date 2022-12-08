@@ -18,6 +18,18 @@ import {
     ConversationAgentAuthResponse,
     ConversationAgentAuthResponseFromJSON,
     ConversationAgentAuthResponseToJSON,
+    ConversationCannedMessage,
+    ConversationCannedMessageFromJSON,
+    ConversationCannedMessageToJSON,
+    ConversationCannedMessageResponse,
+    ConversationCannedMessageResponseFromJSON,
+    ConversationCannedMessageResponseToJSON,
+    ConversationCannedMessagesResponse,
+    ConversationCannedMessagesResponseFromJSON,
+    ConversationCannedMessagesResponseToJSON,
+    ConversationCannedMessagesSearch,
+    ConversationCannedMessagesSearchFromJSON,
+    ConversationCannedMessagesSearchToJSON,
     ConversationMessagesResponse,
     ConversationMessagesResponseFromJSON,
     ConversationMessagesResponseToJSON,
@@ -76,6 +88,10 @@ export interface GetConversationsRequest {
     offset?: number;
 }
 
+export interface InsertConversationCannedMessageRequest {
+    cannedMessage: ConversationCannedMessage;
+}
+
 export interface JoinConversationRequest {
     conversationUuid: string;
 }
@@ -88,8 +104,17 @@ export interface MarkReadConversationRequest {
     conversationUuid: string;
 }
 
+export interface SearchConversationCannedMessagesRequest {
+    searchRequest: ConversationCannedMessagesSearch;
+}
+
 export interface StartConversationRequest {
     startRequest: ConversationStartRequest;
+}
+
+export interface UpdateConversationCannedMessageRequest {
+    conversationCannedMessageOid: number;
+    cannedMessage: ConversationCannedMessage;
 }
 
 export interface UpdateConversationWebchatQueueStatusRequest {
@@ -150,6 +175,21 @@ export interface ConversationApiInterface {
      * Retrieve a conversation
      */
     getConversation(requestParameters: GetConversationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ConversationResponse>;
+
+    /**
+     * Retrieve a list of canned messages ordered by short_code 
+     * @summary Retrieve a list of canned messages ordered by short_code
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApiInterface
+     */
+    getConversationCannedMessagesRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ConversationCannedMessagesResponse>>;
+
+    /**
+     * Retrieve a list of canned messages ordered by short_code 
+     * Retrieve a list of canned messages ordered by short_code
+     */
+    getConversationCannedMessages(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ConversationCannedMessagesResponse>;
 
     /**
      * Get a webchat conversation context 
@@ -236,6 +276,22 @@ export interface ConversationApiInterface {
     getConversations(requestParameters: GetConversationsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ConversationsResponse>;
 
     /**
+     * Insert a canned message 
+     * @summary Insert a canned message
+     * @param {ConversationCannedMessage} cannedMessage Canned message
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApiInterface
+     */
+    insertConversationCannedMessageRaw(requestParameters: InsertConversationCannedMessageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ConversationCannedMessageResponse>>;
+
+    /**
+     * Insert a canned message 
+     * Insert a canned message
+     */
+    insertConversationCannedMessage(requestParameters: InsertConversationCannedMessageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ConversationCannedMessageResponse>;
+
+    /**
      * Join a conversation 
      * @summary Join a conversation
      * @param {string} conversationUuid 
@@ -284,6 +340,22 @@ export interface ConversationApiInterface {
     markReadConversation(requestParameters: MarkReadConversationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
+     * Search for canned messages by short_code 
+     * @summary Search for canned messages by short_code
+     * @param {ConversationCannedMessagesSearch} searchRequest Search request
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApiInterface
+     */
+    searchConversationCannedMessagesRaw(requestParameters: SearchConversationCannedMessagesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ConversationCannedMessagesResponse>>;
+
+    /**
+     * Search for canned messages by short_code 
+     * Search for canned messages by short_code
+     */
+    searchConversationCannedMessages(requestParameters: SearchConversationCannedMessagesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ConversationCannedMessagesResponse>;
+
+    /**
      * Start a new conversation 
      * @summary Start a conversation
      * @param {ConversationStartRequest} startRequest Start request
@@ -298,6 +370,23 @@ export interface ConversationApiInterface {
      * Start a conversation
      */
     startConversation(requestParameters: StartConversationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ConversationStartResponse>;
+
+    /**
+     * Update a canned message 
+     * @summary Update a canned message
+     * @param {number} conversationCannedMessageOid 
+     * @param {ConversationCannedMessage} cannedMessage Canned message
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApiInterface
+     */
+    updateConversationCannedMessageRaw(requestParameters: UpdateConversationCannedMessageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ConversationCannedMessageResponse>>;
+
+    /**
+     * Update a canned message 
+     * Update a canned message
+     */
+    updateConversationCannedMessage(requestParameters: UpdateConversationCannedMessageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ConversationCannedMessageResponse>;
 
     /**
      * Update status within the queue 
@@ -438,6 +527,43 @@ export class ConversationApi extends runtime.BaseAPI implements ConversationApiI
      */
     async getConversation(requestParameters: GetConversationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ConversationResponse> {
         const response = await this.getConversationRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Retrieve a list of canned messages ordered by short_code 
+     * Retrieve a list of canned messages ordered by short_code
+     */
+    async getConversationCannedMessagesRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ConversationCannedMessagesResponse>> {
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", ["conversation_read"]);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/conversation/canned_messages`,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => ConversationCannedMessagesResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Retrieve a list of canned messages ordered by short_code 
+     * Retrieve a list of canned messages ordered by short_code
+     */
+    async getConversationCannedMessages(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ConversationCannedMessagesResponse> {
+        const response = await this.getConversationCannedMessagesRaw(initOverrides);
         return await response.value();
     }
 
@@ -663,6 +789,50 @@ export class ConversationApi extends runtime.BaseAPI implements ConversationApiI
     }
 
     /**
+     * Insert a canned message 
+     * Insert a canned message
+     */
+    async insertConversationCannedMessageRaw(requestParameters: InsertConversationCannedMessageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ConversationCannedMessageResponse>> {
+        if (requestParameters.cannedMessage === null || requestParameters.cannedMessage === undefined) {
+            throw new runtime.RequiredError('cannedMessage','Required parameter requestParameters.cannedMessage was null or undefined when calling insertConversationCannedMessage.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", ["conversation_read"]);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/conversation/canned_messages`,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: ConversationCannedMessageToJSON(requestParameters.cannedMessage),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => ConversationCannedMessageResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Insert a canned message 
+     * Insert a canned message
+     */
+    async insertConversationCannedMessage(requestParameters: InsertConversationCannedMessageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ConversationCannedMessageResponse> {
+        const response = await this.insertConversationCannedMessageRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
      * Join a conversation 
      * Join a conversation
      */
@@ -783,6 +953,50 @@ export class ConversationApi extends runtime.BaseAPI implements ConversationApiI
     }
 
     /**
+     * Search for canned messages by short_code 
+     * Search for canned messages by short_code
+     */
+    async searchConversationCannedMessagesRaw(requestParameters: SearchConversationCannedMessagesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ConversationCannedMessagesResponse>> {
+        if (requestParameters.searchRequest === null || requestParameters.searchRequest === undefined) {
+            throw new runtime.RequiredError('searchRequest','Required parameter requestParameters.searchRequest was null or undefined when calling searchConversationCannedMessages.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", ["conversation_read"]);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/conversation/canned_messages/search`,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: ConversationCannedMessagesSearchToJSON(requestParameters.searchRequest),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => ConversationCannedMessagesResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Search for canned messages by short_code 
+     * Search for canned messages by short_code
+     */
+    async searchConversationCannedMessages(requestParameters: SearchConversationCannedMessagesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ConversationCannedMessagesResponse> {
+        const response = await this.searchConversationCannedMessagesRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
      * Start a new conversation 
      * Start a conversation
      */
@@ -823,6 +1037,54 @@ export class ConversationApi extends runtime.BaseAPI implements ConversationApiI
      */
     async startConversation(requestParameters: StartConversationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ConversationStartResponse> {
         const response = await this.startConversationRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Update a canned message 
+     * Update a canned message
+     */
+    async updateConversationCannedMessageRaw(requestParameters: UpdateConversationCannedMessageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ConversationCannedMessageResponse>> {
+        if (requestParameters.conversationCannedMessageOid === null || requestParameters.conversationCannedMessageOid === undefined) {
+            throw new runtime.RequiredError('conversationCannedMessageOid','Required parameter requestParameters.conversationCannedMessageOid was null or undefined when calling updateConversationCannedMessage.');
+        }
+
+        if (requestParameters.cannedMessage === null || requestParameters.cannedMessage === undefined) {
+            throw new runtime.RequiredError('cannedMessage','Required parameter requestParameters.cannedMessage was null or undefined when calling updateConversationCannedMessage.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", ["conversation_read"]);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/conversation/canned_messages/{conversation_canned_message_oid}`.replace(`{${"conversation_canned_message_oid"}}`, encodeURIComponent(String(requestParameters.conversationCannedMessageOid))),
+            method: 'PUT',
+            headers: headerParameters,
+            query: queryParameters,
+            body: ConversationCannedMessageToJSON(requestParameters.cannedMessage),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => ConversationCannedMessageResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Update a canned message 
+     * Update a canned message
+     */
+    async updateConversationCannedMessage(requestParameters: UpdateConversationCannedMessageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ConversationCannedMessageResponse> {
+        const response = await this.updateConversationCannedMessageRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
