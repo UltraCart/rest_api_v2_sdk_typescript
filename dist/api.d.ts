@@ -16401,6 +16401,12 @@ export interface EmailSegment {
      */
     rank_json?: string;
     /**
+     * Percentage of completion for a rebuild.  The value range will be 0-1.  Multiply by 100 to format for display.
+     * @type {number}
+     * @memberof EmailSegment
+     */
+    rebuild_percentage?: number;
+    /**
      * True if a rebuild is required because some part of the segment has changed
      * @type {boolean}
      * @memberof EmailSegment
