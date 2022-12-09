@@ -6575,7 +6575,7 @@ export interface ConversationCannedMessage {
      * @type {Array<string>}
      * @memberof ConversationCannedMessage
      */
-    conversation_webchat_queue_uuids?: Array<string>;
+    conversation_department_oids?: Array<string>;
     /**
      * 
      * @type {string}
@@ -6939,6 +6939,12 @@ export interface ConversationMessage {
     delay_until_dts?: string;
     /**
      * 
+     * @type {string}
+     * @memberof ConversationMessage
+     */
+    language_iso_code?: string;
+    /**
+     * 
      * @type {Array<string>}
      * @memberof ConversationMessage
      */
@@ -6961,6 +6967,12 @@ export interface ConversationMessage {
      * @memberof ConversationMessage
      */
     message_epoch?: number;
+    /**
+     * 
+     * @type {Array<ConversationMessageTranslation>}
+     * @memberof ConversationMessage
+     */
+    translations?: Array<ConversationMessageTranslation>;
     /**
      * 
      * @type {Array<ConversationMessageTransportStatus>}
@@ -6994,6 +7006,26 @@ export namespace ConversationMessage {
         Message = <any> 'message',
         Notice = <any> 'notice'
     }
+}
+
+/**
+ * 
+ * @export
+ * @interface ConversationMessageTranslation
+ */
+export interface ConversationMessageTranslation {
+    /**
+     * 
+     * @type {string}
+     * @memberof ConversationMessageTranslation
+     */
+    body?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ConversationMessageTranslation
+     */
+    language_iso_code?: string;
 }
 
 /**
@@ -7166,6 +7198,12 @@ export interface ConversationParticipant {
      * @memberof ConversationParticipant
      */
     joined_dts?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ConversationParticipant
+     */
+    language_iso_code?: string;
     /**
      * Last message date/time
      * @type {string}
