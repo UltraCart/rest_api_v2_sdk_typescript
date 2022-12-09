@@ -36,7 +36,7 @@ export interface ConversationCannedMessage {
      * @type {Array<string>}
      * @memberof ConversationCannedMessage
      */
-    conversation_webchat_queue_uuids?: Array<string>;
+    conversation_department_oids?: Array<string>;
     /**
      * 
      * @type {string}
@@ -57,7 +57,7 @@ export function ConversationCannedMessageFromJSONTyped(json: any, ignoreDiscrimi
         
         'canned_message': !exists(json, 'canned_message') ? undefined : json['canned_message'],
         'conversation_canned_message_oid': !exists(json, 'conversation_canned_message_oid') ? undefined : json['conversation_canned_message_oid'],
-        'conversation_webchat_queue_uuids': !exists(json, 'conversation_webchat_queue_uuids') ? undefined : json['conversation_webchat_queue_uuids'],
+        'conversation_department_oids': !exists(json, 'conversation_department_oids') ? undefined : json['conversation_department_oids'],
         'short_code': !exists(json, 'short_code') ? undefined : json['short_code'],
     };
 }
@@ -73,7 +73,7 @@ export function ConversationCannedMessageToJSON(value?: ConversationCannedMessag
         
         'canned_message': value.canned_message,
         'conversation_canned_message_oid': value.conversation_canned_message_oid,
-        'conversation_webchat_queue_uuids': value.conversation_webchat_queue_uuids,
+        'conversation_department_oids': value.conversation_department_oids,
         'short_code': value.short_code,
     };
 }

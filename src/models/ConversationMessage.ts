@@ -14,6 +14,12 @@
 
 import { exists, mapValues } from '../runtime';
 import {
+    ConversationMessageTranslation,
+    ConversationMessageTranslationFromJSON,
+    ConversationMessageTranslationFromJSONTyped,
+    ConversationMessageTranslationToJSON,
+} from './ConversationMessageTranslation';
+import {
     ConversationMessageTransportStatus,
     ConversationMessageTransportStatusFromJSON,
     ConversationMessageTransportStatusFromJSONTyped,
@@ -64,6 +70,12 @@ export interface ConversationMessage {
     delay_until_dts?: string;
     /**
      * 
+     * @type {string}
+     * @memberof ConversationMessage
+     */
+    language_iso_code?: string;
+    /**
+     * 
      * @type {Array<string>}
      * @memberof ConversationMessage
      */
@@ -86,6 +98,12 @@ export interface ConversationMessage {
      * @memberof ConversationMessage
      */
     message_epoch?: number;
+    /**
+     * 
+     * @type {Array<ConversationMessageTranslation>}
+     * @memberof ConversationMessage
+     */
+    translations?: Array<ConversationMessageTranslation>;
     /**
      * 
      * @type {Array<ConversationMessageTransportStatus>}
@@ -133,10 +151,12 @@ export function ConversationMessageFromJSONTyped(json: any, ignoreDiscriminator:
         'client_message_id': !exists(json, 'client_message_id') ? undefined : json['client_message_id'],
         'conversation_message_uuid': !exists(json, 'conversation_message_uuid') ? undefined : json['conversation_message_uuid'],
         'delay_until_dts': !exists(json, 'delay_until_dts') ? undefined : json['delay_until_dts'],
+        'language_iso_code': !exists(json, 'language_iso_code') ? undefined : json['language_iso_code'],
         'media_urls': !exists(json, 'media_urls') ? undefined : json['media_urls'],
         'merchant_id': !exists(json, 'merchant_id') ? undefined : json['merchant_id'],
         'message_dts': !exists(json, 'message_dts') ? undefined : json['message_dts'],
         'message_epoch': !exists(json, 'message_epoch') ? undefined : json['message_epoch'],
+        'translations': !exists(json, 'translations') ? undefined : ((json['translations'] as Array<any>).map(ConversationMessageTranslationFromJSON)),
         'transport_statuses': !exists(json, 'transport_statuses') ? undefined : ((json['transport_statuses'] as Array<any>).map(ConversationMessageTransportStatusFromJSON)),
         'type': !exists(json, 'type') ? undefined : json['type'],
         'upload_keys': !exists(json, 'upload_keys') ? undefined : json['upload_keys'],
@@ -158,10 +178,12 @@ export function ConversationMessageToJSON(value?: ConversationMessage | null): a
         'client_message_id': value.client_message_id,
         'conversation_message_uuid': value.conversation_message_uuid,
         'delay_until_dts': value.delay_until_dts,
+        'language_iso_code': value.language_iso_code,
         'media_urls': value.media_urls,
         'merchant_id': value.merchant_id,
         'message_dts': value.message_dts,
         'message_epoch': value.message_epoch,
+        'translations': value.translations === undefined ? undefined : ((value.translations as Array<any>).map(ConversationMessageTranslationToJSON)),
         'transport_statuses': value.transport_statuses === undefined ? undefined : ((value.transport_statuses as Array<any>).map(ConversationMessageTransportStatusToJSON)),
         'type': value.type,
         'upload_keys': value.upload_keys,

@@ -133,6 +133,7 @@ export * from './ConversationEventReadMessage';
 export * from './ConversationEventTyping';
 export * from './ConversationEventWebchatContext';
 export * from './ConversationMessage';
+export * from './ConversationMessageTranslation';
 export * from './ConversationMessageTransportStatus';
 export * from './ConversationMessagesResponse';
 export * from './ConversationMultimediaUploadUrl';

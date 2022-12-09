@@ -44,6 +44,12 @@ export interface ConversationParticipant {
      */
     joined_dts?: string;
     /**
+     * 
+     * @type {string}
+     * @memberof ConversationParticipant
+     */
+    language_iso_code?: string;
+    /**
      * Last message date/time
      * @type {string}
      * @memberof ConversationParticipant
@@ -95,6 +101,7 @@ export function ConversationParticipantFromJSONTyped(json: any, ignoreDiscrimina
         'conversation_participant_name': !exists(json, 'conversation_participant_name') ? undefined : json['conversation_participant_name'],
         'conversation_participant_uuid': !exists(json, 'conversation_participant_uuid') ? undefined : json['conversation_participant_uuid'],
         'joined_dts': !exists(json, 'joined_dts') ? undefined : json['joined_dts'],
+        'language_iso_code': !exists(json, 'language_iso_code') ? undefined : json['language_iso_code'],
         'last_message_dts': !exists(json, 'last_message_dts') ? undefined : json['last_message_dts'],
         'left_dts': !exists(json, 'left_dts') ? undefined : json['left_dts'],
         'profile_image_url': !exists(json, 'profile_image_url') ? undefined : json['profile_image_url'],
@@ -117,6 +124,7 @@ export function ConversationParticipantToJSON(value?: ConversationParticipant | 
         'conversation_participant_name': value.conversation_participant_name,
         'conversation_participant_uuid': value.conversation_participant_uuid,
         'joined_dts': value.joined_dts,
+        'language_iso_code': value.language_iso_code,
         'last_message_dts': value.last_message_dts,
         'left_dts': value.left_dts,
         'profile_image_url': value.profile_image_url,
