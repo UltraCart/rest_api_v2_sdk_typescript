@@ -148,6 +148,12 @@ src/models/ConversationCannedMessage.ts
 src/models/ConversationCannedMessageResponse.ts
 src/models/ConversationCannedMessagesResponse.ts
 src/models/ConversationCannedMessagesSearch.ts
+src/models/ConversationDepartment.ts
+src/models/ConversationDepartmentResponse.ts
+src/models/ConversationDepartmentsResponse.ts
+src/models/ConversationEngagement.ts
+src/models/ConversationEngagementResponse.ts
+src/models/ConversationEngagementsResponse.ts
 src/models/ConversationEventAddCoupon.ts
 src/models/ConversationEventAddItem.ts
 src/models/ConversationEventQueuePosition.ts
@@ -155,6 +161,7 @@ src/models/ConversationEventRRWeb.ts
 src/models/ConversationEventReadMessage.ts
 src/models/ConversationEventTyping.ts
 src/models/ConversationEventWebchatContext.ts
+src/models/ConversationJoinRequest.ts
 src/models/ConversationMessage.ts
 src/models/ConversationMessageTranslation.ts
 src/models/ConversationMessageTransportStatus.ts

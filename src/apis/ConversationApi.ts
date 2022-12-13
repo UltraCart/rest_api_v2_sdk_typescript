@@ -30,6 +30,27 @@ import {
     ConversationCannedMessagesSearch,
     ConversationCannedMessagesSearchFromJSON,
     ConversationCannedMessagesSearchToJSON,
+    ConversationDepartment,
+    ConversationDepartmentFromJSON,
+    ConversationDepartmentToJSON,
+    ConversationDepartmentResponse,
+    ConversationDepartmentResponseFromJSON,
+    ConversationDepartmentResponseToJSON,
+    ConversationDepartmentsResponse,
+    ConversationDepartmentsResponseFromJSON,
+    ConversationDepartmentsResponseToJSON,
+    ConversationEngagement,
+    ConversationEngagementFromJSON,
+    ConversationEngagementToJSON,
+    ConversationEngagementResponse,
+    ConversationEngagementResponseFromJSON,
+    ConversationEngagementResponseToJSON,
+    ConversationEngagementsResponse,
+    ConversationEngagementsResponseFromJSON,
+    ConversationEngagementsResponseToJSON,
+    ConversationJoinRequest,
+    ConversationJoinRequestFromJSON,
+    ConversationJoinRequestToJSON,
     ConversationMessagesResponse,
     ConversationMessagesResponseFromJSON,
     ConversationMessagesResponseToJSON,
@@ -92,8 +113,17 @@ export interface InsertConversationCannedMessageRequest {
     cannedMessage: ConversationCannedMessage;
 }
 
+export interface InsertConversationDepartmentRequest {
+    department: ConversationDepartment;
+}
+
+export interface InsertConversationEngagementRequest {
+    engagement: ConversationEngagement;
+}
+
 export interface JoinConversationRequest {
     conversationUuid: string;
+    joinRequest?: ConversationJoinRequest;
 }
 
 export interface LeaveConversationRequest {
@@ -115,6 +145,16 @@ export interface StartConversationRequest {
 export interface UpdateConversationCannedMessageRequest {
     conversationCannedMessageOid: number;
     cannedMessage: ConversationCannedMessage;
+}
+
+export interface UpdateConversationDepartmentRequest {
+    conversationDepartmentOid: number;
+    department: ConversationDepartment;
+}
+
+export interface UpdateConversationEngagementRequest {
+    conversationEngagementOid: number;
+    engagement: ConversationEngagement;
 }
 
 export interface UpdateConversationWebchatQueueStatusRequest {
@@ -208,6 +248,36 @@ export interface ConversationApiInterface {
     getConversationContext(requestParameters: GetConversationContextRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ConversationWebchatContext>;
 
     /**
+     * Retrieve a list of departments ordered by name 
+     * @summary Retrieve a list of departments ordered by name
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApiInterface
+     */
+    getConversationDepartmentsRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ConversationDepartmentsResponse>>;
+
+    /**
+     * Retrieve a list of departments ordered by name 
+     * Retrieve a list of departments ordered by name
+     */
+    getConversationDepartments(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ConversationDepartmentsResponse>;
+
+    /**
+     * Retrieve a list of engagements ordered by name 
+     * @summary Retrieve a list of engagements ordered by name
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApiInterface
+     */
+    getConversationEngagementsRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ConversationEngagementsResponse>>;
+
+    /**
+     * Retrieve a list of engagements ordered by name 
+     * Retrieve a list of engagements ordered by name
+     */
+    getConversationEngagements(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ConversationEngagementsResponse>;
+
+    /**
      * Retrieve conversation messages since a particular time 
      * @summary Retrieve conversation messages
      * @param {string} conversationUuid 
@@ -292,9 +362,42 @@ export interface ConversationApiInterface {
     insertConversationCannedMessage(requestParameters: InsertConversationCannedMessageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ConversationCannedMessageResponse>;
 
     /**
+     * Insert a department 
+     * @summary Insert a department
+     * @param {ConversationDepartment} department Department
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApiInterface
+     */
+    insertConversationDepartmentRaw(requestParameters: InsertConversationDepartmentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ConversationDepartmentResponse>>;
+
+    /**
+     * Insert a department 
+     * Insert a department
+     */
+    insertConversationDepartment(requestParameters: InsertConversationDepartmentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ConversationDepartmentResponse>;
+
+    /**
+     * Insert a engagement 
+     * @summary Insert a engagement
+     * @param {ConversationEngagement} engagement Engagement
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApiInterface
+     */
+    insertConversationEngagementRaw(requestParameters: InsertConversationEngagementRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ConversationEngagementResponse>>;
+
+    /**
+     * Insert a engagement 
+     * Insert a engagement
+     */
+    insertConversationEngagement(requestParameters: InsertConversationEngagementRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ConversationEngagementResponse>;
+
+    /**
      * Join a conversation 
      * @summary Join a conversation
      * @param {string} conversationUuid 
+     * @param {ConversationJoinRequest} [joinRequest] Join request
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ConversationApiInterface
@@ -387,6 +490,40 @@ export interface ConversationApiInterface {
      * Update a canned message
      */
     updateConversationCannedMessage(requestParameters: UpdateConversationCannedMessageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ConversationCannedMessageResponse>;
+
+    /**
+     * Update a department 
+     * @summary Update a department
+     * @param {number} conversationDepartmentOid 
+     * @param {ConversationDepartment} department Department
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApiInterface
+     */
+    updateConversationDepartmentRaw(requestParameters: UpdateConversationDepartmentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ConversationDepartmentResponse>>;
+
+    /**
+     * Update a department 
+     * Update a department
+     */
+    updateConversationDepartment(requestParameters: UpdateConversationDepartmentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ConversationDepartmentResponse>;
+
+    /**
+     * Update a engagement 
+     * @summary Update a engagement
+     * @param {number} conversationEngagementOid 
+     * @param {ConversationEngagement} engagement Engagement
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApiInterface
+     */
+    updateConversationEngagementRaw(requestParameters: UpdateConversationEngagementRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ConversationEngagementResponse>>;
+
+    /**
+     * Update a engagement 
+     * Update a engagement
+     */
+    updateConversationEngagement(requestParameters: UpdateConversationEngagementRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ConversationEngagementResponse>;
 
     /**
      * Update status within the queue 
@@ -605,6 +742,80 @@ export class ConversationApi extends runtime.BaseAPI implements ConversationApiI
      */
     async getConversationContext(requestParameters: GetConversationContextRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ConversationWebchatContext> {
         const response = await this.getConversationContextRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Retrieve a list of departments ordered by name 
+     * Retrieve a list of departments ordered by name
+     */
+    async getConversationDepartmentsRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ConversationDepartmentsResponse>> {
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", ["conversation_read"]);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/conversation/departments`,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => ConversationDepartmentsResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Retrieve a list of departments ordered by name 
+     * Retrieve a list of departments ordered by name
+     */
+    async getConversationDepartments(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ConversationDepartmentsResponse> {
+        const response = await this.getConversationDepartmentsRaw(initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Retrieve a list of engagements ordered by name 
+     * Retrieve a list of engagements ordered by name
+     */
+    async getConversationEngagementsRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ConversationEngagementsResponse>> {
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", ["conversation_read"]);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/conversation/engagements`,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => ConversationEngagementsResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Retrieve a list of engagements ordered by name 
+     * Retrieve a list of engagements ordered by name
+     */
+    async getConversationEngagements(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ConversationEngagementsResponse> {
+        const response = await this.getConversationEngagementsRaw(initOverrides);
         return await response.value();
     }
 
@@ -833,6 +1044,94 @@ export class ConversationApi extends runtime.BaseAPI implements ConversationApiI
     }
 
     /**
+     * Insert a department 
+     * Insert a department
+     */
+    async insertConversationDepartmentRaw(requestParameters: InsertConversationDepartmentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ConversationDepartmentResponse>> {
+        if (requestParameters.department === null || requestParameters.department === undefined) {
+            throw new runtime.RequiredError('department','Required parameter requestParameters.department was null or undefined when calling insertConversationDepartment.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", ["conversation_read"]);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/conversation/departments`,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: ConversationDepartmentToJSON(requestParameters.department),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => ConversationDepartmentResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Insert a department 
+     * Insert a department
+     */
+    async insertConversationDepartment(requestParameters: InsertConversationDepartmentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ConversationDepartmentResponse> {
+        const response = await this.insertConversationDepartmentRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Insert a engagement 
+     * Insert a engagement
+     */
+    async insertConversationEngagementRaw(requestParameters: InsertConversationEngagementRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ConversationEngagementResponse>> {
+        if (requestParameters.engagement === null || requestParameters.engagement === undefined) {
+            throw new runtime.RequiredError('engagement','Required parameter requestParameters.engagement was null or undefined when calling insertConversationEngagement.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", ["conversation_read"]);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/conversation/engagements`,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: ConversationEngagementToJSON(requestParameters.engagement),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => ConversationEngagementResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Insert a engagement 
+     * Insert a engagement
+     */
+    async insertConversationEngagement(requestParameters: InsertConversationEngagementRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ConversationEngagementResponse> {
+        const response = await this.insertConversationEngagementRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
      * Join a conversation 
      * Join a conversation
      */
@@ -844,6 +1143,8 @@ export class ConversationApi extends runtime.BaseAPI implements ConversationApiI
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
 
         if (this.configuration && this.configuration.accessToken) {
             // oauth required
@@ -859,6 +1160,7 @@ export class ConversationApi extends runtime.BaseAPI implements ConversationApiI
             method: 'PUT',
             headers: headerParameters,
             query: queryParameters,
+            body: ConversationJoinRequestToJSON(requestParameters.joinRequest),
         }, initOverrides);
 
         return new runtime.VoidApiResponse(response);
@@ -1085,6 +1387,102 @@ export class ConversationApi extends runtime.BaseAPI implements ConversationApiI
      */
     async updateConversationCannedMessage(requestParameters: UpdateConversationCannedMessageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ConversationCannedMessageResponse> {
         const response = await this.updateConversationCannedMessageRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Update a department 
+     * Update a department
+     */
+    async updateConversationDepartmentRaw(requestParameters: UpdateConversationDepartmentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ConversationDepartmentResponse>> {
+        if (requestParameters.conversationDepartmentOid === null || requestParameters.conversationDepartmentOid === undefined) {
+            throw new runtime.RequiredError('conversationDepartmentOid','Required parameter requestParameters.conversationDepartmentOid was null or undefined when calling updateConversationDepartment.');
+        }
+
+        if (requestParameters.department === null || requestParameters.department === undefined) {
+            throw new runtime.RequiredError('department','Required parameter requestParameters.department was null or undefined when calling updateConversationDepartment.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", ["conversation_read"]);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/conversation/departments/{conversation_department_oid}`.replace(`{${"conversation_department_oid"}}`, encodeURIComponent(String(requestParameters.conversationDepartmentOid))),
+            method: 'PUT',
+            headers: headerParameters,
+            query: queryParameters,
+            body: ConversationDepartmentToJSON(requestParameters.department),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => ConversationDepartmentResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Update a department 
+     * Update a department
+     */
+    async updateConversationDepartment(requestParameters: UpdateConversationDepartmentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ConversationDepartmentResponse> {
+        const response = await this.updateConversationDepartmentRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Update a engagement 
+     * Update a engagement
+     */
+    async updateConversationEngagementRaw(requestParameters: UpdateConversationEngagementRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ConversationEngagementResponse>> {
+        if (requestParameters.conversationEngagementOid === null || requestParameters.conversationEngagementOid === undefined) {
+            throw new runtime.RequiredError('conversationEngagementOid','Required parameter requestParameters.conversationEngagementOid was null or undefined when calling updateConversationEngagement.');
+        }
+
+        if (requestParameters.engagement === null || requestParameters.engagement === undefined) {
+            throw new runtime.RequiredError('engagement','Required parameter requestParameters.engagement was null or undefined when calling updateConversationEngagement.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", ["conversation_read"]);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/conversation/engagements/{conversation_engagement_oid}`.replace(`{${"conversation_engagement_oid"}}`, encodeURIComponent(String(requestParameters.conversationEngagementOid))),
+            method: 'PUT',
+            headers: headerParameters,
+            query: queryParameters,
+            body: ConversationEngagementToJSON(requestParameters.engagement),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => ConversationEngagementResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Update a engagement 
+     * Update a engagement
+     */
+    async updateConversationEngagement(requestParameters: UpdateConversationEngagementRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ConversationEngagementResponse> {
+        const response = await this.updateConversationEngagementRaw(requestParameters, initOverrides);
         return await response.value();
     }
 

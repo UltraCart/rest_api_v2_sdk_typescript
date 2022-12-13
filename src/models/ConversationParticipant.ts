@@ -38,6 +38,12 @@ export interface ConversationParticipant {
      */
     conversation_participant_uuid?: string;
     /**
+     * 
+     * @type {string}
+     * @memberof ConversationParticipant
+     */
+    email?: string;
+    /**
      * Joined conversation date/time
      * @type {string}
      * @memberof ConversationParticipant
@@ -72,6 +78,12 @@ export interface ConversationParticipant {
      * @type {string}
      * @memberof ConversationParticipant
      */
+    sms_phone_number?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ConversationParticipant
+     */
     status?: string;
     /**
      * 
@@ -100,11 +112,13 @@ export function ConversationParticipantFromJSONTyped(json: any, ignoreDiscrimina
         'conversation_participant_arn': !exists(json, 'conversation_participant_arn') ? undefined : json['conversation_participant_arn'],
         'conversation_participant_name': !exists(json, 'conversation_participant_name') ? undefined : json['conversation_participant_name'],
         'conversation_participant_uuid': !exists(json, 'conversation_participant_uuid') ? undefined : json['conversation_participant_uuid'],
+        'email': !exists(json, 'email') ? undefined : json['email'],
         'joined_dts': !exists(json, 'joined_dts') ? undefined : json['joined_dts'],
         'language_iso_code': !exists(json, 'language_iso_code') ? undefined : json['language_iso_code'],
         'last_message_dts': !exists(json, 'last_message_dts') ? undefined : json['last_message_dts'],
         'left_dts': !exists(json, 'left_dts') ? undefined : json['left_dts'],
         'profile_image_url': !exists(json, 'profile_image_url') ? undefined : json['profile_image_url'],
+        'sms_phone_number': !exists(json, 'sms_phone_number') ? undefined : json['sms_phone_number'],
         'status': !exists(json, 'status') ? undefined : json['status'],
         'timezone': !exists(json, 'timezone') ? undefined : json['timezone'],
         'unread_messages': !exists(json, 'unread_messages') ? undefined : json['unread_messages'],
@@ -123,11 +137,13 @@ export function ConversationParticipantToJSON(value?: ConversationParticipant | 
         'conversation_participant_arn': value.conversation_participant_arn,
         'conversation_participant_name': value.conversation_participant_name,
         'conversation_participant_uuid': value.conversation_participant_uuid,
+        'email': value.email,
         'joined_dts': value.joined_dts,
         'language_iso_code': value.language_iso_code,
         'last_message_dts': value.last_message_dts,
         'left_dts': value.left_dts,
         'profile_image_url': value.profile_image_url,
+        'sms_phone_number': value.sms_phone_number,
         'status': value.status,
         'timezone': value.timezone,
         'unread_messages': value.unread_messages,

@@ -33,10 +33,10 @@ export interface ConversationCannedMessage {
     conversation_canned_message_oid?: number;
     /**
      * 
-     * @type {Array<string>}
+     * @type {Array<number>}
      * @memberof ConversationCannedMessage
      */
-    conversation_department_oids?: Array<string>;
+    conversation_department_oids?: Array<number>;
     /**
      * 
      * @type {string}

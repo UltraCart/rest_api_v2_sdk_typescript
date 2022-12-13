@@ -54,6 +54,12 @@ export interface ConversationWebchatQueueStatusQueueEntry {
      * @type {string}
      * @memberof ConversationWebchatQueueStatusQueueEntry
      */
+    participant_language_iso_code?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ConversationWebchatQueueStatusQueueEntry
+     */
     question?: string;
 }
 
@@ -72,6 +78,7 @@ export function ConversationWebchatQueueStatusQueueEntryFromJSONTyped(json: any,
         'conversation_webchat_queue_uuid': !exists(json, 'conversation_webchat_queue_uuid') ? undefined : json['conversation_webchat_queue_uuid'],
         'email': !exists(json, 'email') ? undefined : json['email'],
         'join_dts': !exists(json, 'join_dts') ? undefined : json['join_dts'],
+        'participant_language_iso_code': !exists(json, 'participant_language_iso_code') ? undefined : json['participant_language_iso_code'],
         'question': !exists(json, 'question') ? undefined : json['question'],
     };
 }
@@ -90,6 +97,7 @@ export function ConversationWebchatQueueStatusQueueEntryToJSON(value?: Conversat
         'conversation_webchat_queue_uuid': value.conversation_webchat_queue_uuid,
         'email': value.email,
         'join_dts': value.join_dts,
+        'participant_language_iso_code': value.participant_language_iso_code,
         'question': value.question,
     };
 }
