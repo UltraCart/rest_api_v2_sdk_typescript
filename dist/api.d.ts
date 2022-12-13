@@ -6420,10 +6420,10 @@ export interface ConversationCannedMessage {
     conversation_canned_message_oid?: number;
     /**
      *
-     * @type {Array<string>}
+     * @type {Array<number>}
      * @memberof ConversationCannedMessage
      */
-    conversation_department_oids?: Array<string>;
+    conversation_department_oids?: Array<number>;
     /**
      *
      * @type {string}
@@ -6523,6 +6523,254 @@ export interface ConversationCannedMessagesSearch {
      * @memberof ConversationCannedMessagesSearch
      */
     short_code?: string;
+}
+/**
+ *
+ * @export
+ * @interface ConversationDepartment
+ */
+export interface ConversationDepartment {
+    /**
+     *
+     * @type {number}
+     * @memberof ConversationDepartment
+     */
+    conversation_department_oid?: number;
+    /**
+     *
+     * @type {boolean}
+     * @memberof ConversationDepartment
+     */
+    delete_me?: boolean;
+    /**
+     *
+     * @type {string}
+     * @memberof ConversationDepartment
+     */
+    department_name?: string;
+    /**
+     *
+     * @type {string}
+     * @memberof ConversationDepartment
+     */
+    merchant_id?: string;
+    /**
+     *
+     * @type {ConversationDepartmentSettings}
+     * @memberof ConversationDepartment
+     */
+    settings?: ConversationDepartmentSettings;
+}
+/**
+ *
+ * @export
+ * @interface ConversationDepartmentResponse
+ */
+export interface ConversationDepartmentResponse {
+    /**
+     *
+     * @type {ConversationDepartment}
+     * @memberof ConversationDepartmentResponse
+     */
+    conversation_department?: ConversationDepartment;
+    /**
+     *
+     * @type {ModelError}
+     * @memberof ConversationDepartmentResponse
+     */
+    error?: ModelError;
+    /**
+     *
+     * @type {ResponseMetadata}
+     * @memberof ConversationDepartmentResponse
+     */
+    metadata?: ResponseMetadata;
+    /**
+     * Indicates if API call was successful
+     * @type {boolean}
+     * @memberof ConversationDepartmentResponse
+     */
+    success?: boolean;
+    /**
+     *
+     * @type {Warning}
+     * @memberof ConversationDepartmentResponse
+     */
+    warning?: Warning;
+}
+/**
+ *
+ * @export
+ * @interface ConversationDepartmentSettings
+ */
+export interface ConversationDepartmentSettings {
+}
+/**
+ *
+ * @export
+ * @interface ConversationDepartmentsResponse
+ */
+export interface ConversationDepartmentsResponse {
+    /**
+     *
+     * @type {Array<ConversationDepartment>}
+     * @memberof ConversationDepartmentsResponse
+     */
+    conversation_departments?: Array<ConversationDepartment>;
+    /**
+     *
+     * @type {ModelError}
+     * @memberof ConversationDepartmentsResponse
+     */
+    error?: ModelError;
+    /**
+     *
+     * @type {ResponseMetadata}
+     * @memberof ConversationDepartmentsResponse
+     */
+    metadata?: ResponseMetadata;
+    /**
+     * Indicates if API call was successful
+     * @type {boolean}
+     * @memberof ConversationDepartmentsResponse
+     */
+    success?: boolean;
+    /**
+     *
+     * @type {Warning}
+     * @memberof ConversationDepartmentsResponse
+     */
+    warning?: Warning;
+}
+/**
+ *
+ * @export
+ * @interface ConversationEngagement
+ */
+export interface ConversationEngagement {
+    /**
+     *
+     * @type {number}
+     * @memberof ConversationEngagement
+     */
+    conversation_engagement_oid?: number;
+    /**
+     *
+     * @type {string}
+     * @memberof ConversationEngagement
+     */
+    customer_greeting?: string;
+    /**
+     *
+     * @type {Array<number>}
+     * @memberof ConversationEngagement
+     */
+    department_oids?: Array<number>;
+    /**
+     *
+     * @type {string}
+     * @memberof ConversationEngagement
+     */
+    engagement_name?: string;
+    /**
+     *
+     * @type {ConversationEngagementEquation}
+     * @memberof ConversationEngagement
+     */
+    equation?: ConversationEngagementEquation;
+    /**
+     *
+     * @type {number}
+     * @memberof ConversationEngagement
+     */
+    time_on_page?: number;
+    /**
+     *
+     * @type {string}
+     * @memberof ConversationEngagement
+     */
+    visitor_type?: string;
+}
+/**
+ *
+ * @export
+ * @interface ConversationEngagementEquation
+ */
+export interface ConversationEngagementEquation {
+}
+/**
+ *
+ * @export
+ * @interface ConversationEngagementResponse
+ */
+export interface ConversationEngagementResponse {
+    /**
+     *
+     * @type {ConversationEngagement}
+     * @memberof ConversationEngagementResponse
+     */
+    conversation_engagement?: ConversationEngagement;
+    /**
+     *
+     * @type {ModelError}
+     * @memberof ConversationEngagementResponse
+     */
+    error?: ModelError;
+    /**
+     *
+     * @type {ResponseMetadata}
+     * @memberof ConversationEngagementResponse
+     */
+    metadata?: ResponseMetadata;
+    /**
+     * Indicates if API call was successful
+     * @type {boolean}
+     * @memberof ConversationEngagementResponse
+     */
+    success?: boolean;
+    /**
+     *
+     * @type {Warning}
+     * @memberof ConversationEngagementResponse
+     */
+    warning?: Warning;
+}
+/**
+ *
+ * @export
+ * @interface ConversationEngagementsResponse
+ */
+export interface ConversationEngagementsResponse {
+    /**
+     *
+     * @type {Array<ConversationEngagement>}
+     * @memberof ConversationEngagementsResponse
+     */
+    conversation_engagements?: Array<ConversationEngagement>;
+    /**
+     *
+     * @type {ModelError}
+     * @memberof ConversationEngagementsResponse
+     */
+    error?: ModelError;
+    /**
+     *
+     * @type {ResponseMetadata}
+     * @memberof ConversationEngagementsResponse
+     */
+    metadata?: ResponseMetadata;
+    /**
+     * Indicates if API call was successful
+     * @type {boolean}
+     * @memberof ConversationEngagementsResponse
+     */
+    success?: boolean;
+    /**
+     *
+     * @type {Warning}
+     * @memberof ConversationEngagementsResponse
+     */
+    warning?: Warning;
 }
 /**
  *
@@ -6730,6 +6978,19 @@ export interface ConversationEventWebchatContext {
      * @memberof ConversationEventWebchatContext
      */
     url?: string;
+}
+/**
+ *
+ * @export
+ * @interface ConversationJoinRequest
+ */
+export interface ConversationJoinRequest {
+    /**
+     *
+     * @type {string}
+     * @memberof ConversationJoinRequest
+     */
+    participant_language_iso_code?: string;
 }
 /**
  *
@@ -7021,6 +7282,12 @@ export interface ConversationParticipant {
      */
     conversation_participant_uuid?: string;
     /**
+     *
+     * @type {string}
+     * @memberof ConversationParticipant
+     */
+    email?: string;
+    /**
      * Joined conversation date/time
      * @type {string}
      * @memberof ConversationParticipant
@@ -7050,6 +7317,12 @@ export interface ConversationParticipant {
      * @memberof ConversationParticipant
      */
     profile_image_url?: string;
+    /**
+     *
+     * @type {string}
+     * @memberof ConversationParticipant
+     */
+    sms_phone_number?: string;
     /**
      *
      * @type {string}
@@ -7526,6 +7799,12 @@ export interface ConversationWebchatQueueStatusQueueEntry {
      * @memberof ConversationWebchatQueueStatusQueueEntry
      */
     join_dts?: string;
+    /**
+     *
+     * @type {string}
+     * @memberof ConversationWebchatQueueStatusQueueEntry
+     */
+    participant_language_iso_code?: string;
     /**
      *
      * @type {string}
@@ -37997,6 +38276,20 @@ export declare const ConversationApiFetchParamCreator: (configuration?: Configur
      */
     getConversationContext(conversation_uuid: string, options?: any): FetchArgs;
     /**
+     * Retrieve a list of departments ordered by name
+     * @summary Retrieve a list of departments ordered by name
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getConversationDepartments(options?: any): FetchArgs;
+    /**
+     * Retrieve a list of engagements ordered by name
+     * @summary Retrieve a list of engagements ordered by name
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getConversationEngagements(options?: any): FetchArgs;
+    /**
      * Retrieve conversation messages since a particular time
      * @summary Retrieve conversation messages
      * @param {string} conversation_uuid
@@ -38041,13 +38334,30 @@ export declare const ConversationApiFetchParamCreator: (configuration?: Configur
      */
     insertConversationCannedMessage(canned_message: ConversationCannedMessage, options?: any): FetchArgs;
     /**
-     * Join a conversation
-     * @summary Join a conversation
-     * @param {string} conversation_uuid
+     * Insert a department
+     * @summary Insert a department
+     * @param {ConversationDepartment} department Department
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    joinConversation(conversation_uuid: string, options?: any): FetchArgs;
+    insertConversationDepartment(department: ConversationDepartment, options?: any): FetchArgs;
+    /**
+     * Insert a engagement
+     * @summary Insert a engagement
+     * @param {ConversationEngagement} engagement Engagement
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    insertConversationEngagement(engagement: ConversationEngagement, options?: any): FetchArgs;
+    /**
+     * Join a conversation
+     * @summary Join a conversation
+     * @param {string} conversation_uuid
+     * @param {ConversationJoinRequest} [join_request] Join request
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    joinConversation(conversation_uuid: string, join_request?: ConversationJoinRequest, options?: any): FetchArgs;
     /**
      * Leave a conversation
      * @summary Leave a conversation
@@ -38089,6 +38399,24 @@ export declare const ConversationApiFetchParamCreator: (configuration?: Configur
      * @throws {RequiredError}
      */
     updateConversationCannedMessage(conversation_canned_message_oid: number, canned_message: ConversationCannedMessage, options?: any): FetchArgs;
+    /**
+     * Update a department
+     * @summary Update a department
+     * @param {number} conversation_department_oid
+     * @param {ConversationDepartment} department Department
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    updateConversationDepartment(conversation_department_oid: number, department: ConversationDepartment, options?: any): FetchArgs;
+    /**
+     * Update a engagement
+     * @summary Update a engagement
+     * @param {number} conversation_engagement_oid
+     * @param {ConversationEngagement} engagement Engagement
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    updateConversationEngagement(conversation_engagement_oid: number, engagement: ConversationEngagement, options?: any): FetchArgs;
     /**
      * Update status within the queue
      * @summary Update status within the queue
@@ -38143,6 +38471,20 @@ export declare const ConversationApiFp: (configuration?: Configuration) => {
      */
     getConversationContext(conversation_uuid: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ConversationWebchatContext>;
     /**
+     * Retrieve a list of departments ordered by name
+     * @summary Retrieve a list of departments ordered by name
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getConversationDepartments(options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ConversationDepartmentsResponse>;
+    /**
+     * Retrieve a list of engagements ordered by name
+     * @summary Retrieve a list of engagements ordered by name
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getConversationEngagements(options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ConversationEngagementsResponse>;
+    /**
      * Retrieve conversation messages since a particular time
      * @summary Retrieve conversation messages
      * @param {string} conversation_uuid
@@ -38187,13 +38529,30 @@ export declare const ConversationApiFp: (configuration?: Configuration) => {
      */
     insertConversationCannedMessage(canned_message: ConversationCannedMessage, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ConversationCannedMessageResponse>;
     /**
-     * Join a conversation
-     * @summary Join a conversation
-     * @param {string} conversation_uuid
+     * Insert a department
+     * @summary Insert a department
+     * @param {ConversationDepartment} department Department
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    joinConversation(conversation_uuid: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Response>;
+    insertConversationDepartment(department: ConversationDepartment, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ConversationDepartmentResponse>;
+    /**
+     * Insert a engagement
+     * @summary Insert a engagement
+     * @param {ConversationEngagement} engagement Engagement
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    insertConversationEngagement(engagement: ConversationEngagement, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ConversationEngagementResponse>;
+    /**
+     * Join a conversation
+     * @summary Join a conversation
+     * @param {string} conversation_uuid
+     * @param {ConversationJoinRequest} [join_request] Join request
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    joinConversation(conversation_uuid: string, join_request?: ConversationJoinRequest, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Response>;
     /**
      * Leave a conversation
      * @summary Leave a conversation
@@ -38235,6 +38594,24 @@ export declare const ConversationApiFp: (configuration?: Configuration) => {
      * @throws {RequiredError}
      */
     updateConversationCannedMessage(conversation_canned_message_oid: number, canned_message: ConversationCannedMessage, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ConversationCannedMessageResponse>;
+    /**
+     * Update a department
+     * @summary Update a department
+     * @param {number} conversation_department_oid
+     * @param {ConversationDepartment} department Department
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    updateConversationDepartment(conversation_department_oid: number, department: ConversationDepartment, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ConversationDepartmentResponse>;
+    /**
+     * Update a engagement
+     * @summary Update a engagement
+     * @param {number} conversation_engagement_oid
+     * @param {ConversationEngagement} engagement Engagement
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    updateConversationEngagement(conversation_engagement_oid: number, engagement: ConversationEngagement, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ConversationEngagementResponse>;
     /**
      * Update status within the queue
      * @summary Update status within the queue
@@ -38289,6 +38666,20 @@ export declare const ConversationApiFactory: (configuration?: Configuration, fet
      */
     getConversationContext(conversation_uuid: string, options?: any): Promise<ConversationWebchatContext>;
     /**
+     * Retrieve a list of departments ordered by name
+     * @summary Retrieve a list of departments ordered by name
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getConversationDepartments(options?: any): Promise<ConversationDepartmentsResponse>;
+    /**
+     * Retrieve a list of engagements ordered by name
+     * @summary Retrieve a list of engagements ordered by name
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getConversationEngagements(options?: any): Promise<ConversationEngagementsResponse>;
+    /**
      * Retrieve conversation messages since a particular time
      * @summary Retrieve conversation messages
      * @param {string} conversation_uuid
@@ -38333,13 +38724,30 @@ export declare const ConversationApiFactory: (configuration?: Configuration, fet
      */
     insertConversationCannedMessage(canned_message: ConversationCannedMessage, options?: any): Promise<ConversationCannedMessageResponse>;
     /**
-     * Join a conversation
-     * @summary Join a conversation
-     * @param {string} conversation_uuid
+     * Insert a department
+     * @summary Insert a department
+     * @param {ConversationDepartment} department Department
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    joinConversation(conversation_uuid: string, options?: any): Promise<Response>;
+    insertConversationDepartment(department: ConversationDepartment, options?: any): Promise<ConversationDepartmentResponse>;
+    /**
+     * Insert a engagement
+     * @summary Insert a engagement
+     * @param {ConversationEngagement} engagement Engagement
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    insertConversationEngagement(engagement: ConversationEngagement, options?: any): Promise<ConversationEngagementResponse>;
+    /**
+     * Join a conversation
+     * @summary Join a conversation
+     * @param {string} conversation_uuid
+     * @param {ConversationJoinRequest} [join_request] Join request
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    joinConversation(conversation_uuid: string, join_request?: ConversationJoinRequest, options?: any): Promise<Response>;
     /**
      * Leave a conversation
      * @summary Leave a conversation
@@ -38381,6 +38789,24 @@ export declare const ConversationApiFactory: (configuration?: Configuration, fet
      * @throws {RequiredError}
      */
     updateConversationCannedMessage(conversation_canned_message_oid: number, canned_message: ConversationCannedMessage, options?: any): Promise<ConversationCannedMessageResponse>;
+    /**
+     * Update a department
+     * @summary Update a department
+     * @param {number} conversation_department_oid
+     * @param {ConversationDepartment} department Department
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    updateConversationDepartment(conversation_department_oid: number, department: ConversationDepartment, options?: any): Promise<ConversationDepartmentResponse>;
+    /**
+     * Update a engagement
+     * @summary Update a engagement
+     * @param {number} conversation_engagement_oid
+     * @param {ConversationEngagement} engagement Engagement
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    updateConversationEngagement(conversation_engagement_oid: number, engagement: ConversationEngagement, options?: any): Promise<ConversationEngagementResponse>;
     /**
      * Update status within the queue
      * @summary Update status within the queue
@@ -38441,6 +38867,22 @@ export interface ConversationApiInterface {
      */
     getConversationContext(conversation_uuid: string, options?: any): Promise<ConversationWebchatContext>;
     /**
+     * Retrieve a list of departments ordered by name
+     * @summary Retrieve a list of departments ordered by name
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApiInterface
+     */
+    getConversationDepartments(options?: any): Promise<ConversationDepartmentsResponse>;
+    /**
+     * Retrieve a list of engagements ordered by name
+     * @summary Retrieve a list of engagements ordered by name
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApiInterface
+     */
+    getConversationEngagements(options?: any): Promise<ConversationEngagementsResponse>;
+    /**
      * Retrieve conversation messages since a particular time
      * @summary Retrieve conversation messages
      * @param {string} conversation_uuid
@@ -38490,14 +38932,33 @@ export interface ConversationApiInterface {
      */
     insertConversationCannedMessage(canned_message: ConversationCannedMessage, options?: any): Promise<ConversationCannedMessageResponse>;
     /**
-     * Join a conversation
-     * @summary Join a conversation
-     * @param {string} conversation_uuid
+     * Insert a department
+     * @summary Insert a department
+     * @param {ConversationDepartment} department Department
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ConversationApiInterface
      */
-    joinConversation(conversation_uuid: string, options?: any): Promise<{}>;
+    insertConversationDepartment(department: ConversationDepartment, options?: any): Promise<ConversationDepartmentResponse>;
+    /**
+     * Insert a engagement
+     * @summary Insert a engagement
+     * @param {ConversationEngagement} engagement Engagement
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApiInterface
+     */
+    insertConversationEngagement(engagement: ConversationEngagement, options?: any): Promise<ConversationEngagementResponse>;
+    /**
+     * Join a conversation
+     * @summary Join a conversation
+     * @param {string} conversation_uuid
+     * @param {ConversationJoinRequest} [join_request] Join request
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApiInterface
+     */
+    joinConversation(conversation_uuid: string, join_request?: ConversationJoinRequest, options?: any): Promise<{}>;
     /**
      * Leave a conversation
      * @summary Leave a conversation
@@ -38544,6 +39005,26 @@ export interface ConversationApiInterface {
      * @memberof ConversationApiInterface
      */
     updateConversationCannedMessage(conversation_canned_message_oid: number, canned_message: ConversationCannedMessage, options?: any): Promise<ConversationCannedMessageResponse>;
+    /**
+     * Update a department
+     * @summary Update a department
+     * @param {number} conversation_department_oid
+     * @param {ConversationDepartment} department Department
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApiInterface
+     */
+    updateConversationDepartment(conversation_department_oid: number, department: ConversationDepartment, options?: any): Promise<ConversationDepartmentResponse>;
+    /**
+     * Update a engagement
+     * @summary Update a engagement
+     * @param {number} conversation_engagement_oid
+     * @param {ConversationEngagement} engagement Engagement
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApiInterface
+     */
+    updateConversationEngagement(conversation_engagement_oid: number, engagement: ConversationEngagement, options?: any): Promise<ConversationEngagementResponse>;
     /**
      * Update status within the queue
      * @summary Update status within the queue
@@ -38606,6 +39087,22 @@ export declare class ConversationApi extends BaseAPI implements ConversationApiI
      */
     getConversationContext(conversation_uuid: string, options?: any): Promise<ConversationWebchatContext>;
     /**
+     * Retrieve a list of departments ordered by name
+     * @summary Retrieve a list of departments ordered by name
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApi
+     */
+    getConversationDepartments(options?: any): Promise<ConversationDepartmentsResponse>;
+    /**
+     * Retrieve a list of engagements ordered by name
+     * @summary Retrieve a list of engagements ordered by name
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApi
+     */
+    getConversationEngagements(options?: any): Promise<ConversationEngagementsResponse>;
+    /**
      * Retrieve conversation messages since a particular time
      * @summary Retrieve conversation messages
      * @param {string} conversation_uuid
@@ -38655,14 +39152,33 @@ export declare class ConversationApi extends BaseAPI implements ConversationApiI
      */
     insertConversationCannedMessage(canned_message: ConversationCannedMessage, options?: any): Promise<ConversationCannedMessageResponse>;
     /**
-     * Join a conversation
-     * @summary Join a conversation
-     * @param {string} conversation_uuid
+     * Insert a department
+     * @summary Insert a department
+     * @param {ConversationDepartment} department Department
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ConversationApi
      */
-    joinConversation(conversation_uuid: string, options?: any): Promise<Response>;
+    insertConversationDepartment(department: ConversationDepartment, options?: any): Promise<ConversationDepartmentResponse>;
+    /**
+     * Insert a engagement
+     * @summary Insert a engagement
+     * @param {ConversationEngagement} engagement Engagement
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApi
+     */
+    insertConversationEngagement(engagement: ConversationEngagement, options?: any): Promise<ConversationEngagementResponse>;
+    /**
+     * Join a conversation
+     * @summary Join a conversation
+     * @param {string} conversation_uuid
+     * @param {ConversationJoinRequest} [join_request] Join request
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApi
+     */
+    joinConversation(conversation_uuid: string, join_request?: ConversationJoinRequest, options?: any): Promise<Response>;
     /**
      * Leave a conversation
      * @summary Leave a conversation
@@ -38709,6 +39225,26 @@ export declare class ConversationApi extends BaseAPI implements ConversationApiI
      * @memberof ConversationApi
      */
     updateConversationCannedMessage(conversation_canned_message_oid: number, canned_message: ConversationCannedMessage, options?: any): Promise<ConversationCannedMessageResponse>;
+    /**
+     * Update a department
+     * @summary Update a department
+     * @param {number} conversation_department_oid
+     * @param {ConversationDepartment} department Department
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApi
+     */
+    updateConversationDepartment(conversation_department_oid: number, department: ConversationDepartment, options?: any): Promise<ConversationDepartmentResponse>;
+    /**
+     * Update a engagement
+     * @summary Update a engagement
+     * @param {number} conversation_engagement_oid
+     * @param {ConversationEngagement} engagement Engagement
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApi
+     */
+    updateConversationEngagement(conversation_engagement_oid: number, engagement: ConversationEngagement, options?: any): Promise<ConversationEngagementResponse>;
     /**
      * Update status within the queue
      * @summary Update status within the queue

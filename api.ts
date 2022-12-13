@@ -6572,10 +6572,10 @@ export interface ConversationCannedMessage {
     conversation_canned_message_oid?: number;
     /**
      * 
-     * @type {Array<string>}
+     * @type {Array<number>}
      * @memberof ConversationCannedMessage
      */
-    conversation_department_oids?: Array<string>;
+    conversation_department_oids?: Array<number>;
     /**
      * 
      * @type {string}
@@ -6678,6 +6678,262 @@ export interface ConversationCannedMessagesSearch {
      * @memberof ConversationCannedMessagesSearch
      */
     short_code?: string;
+}
+
+/**
+ * 
+ * @export
+ * @interface ConversationDepartment
+ */
+export interface ConversationDepartment {
+    /**
+     * 
+     * @type {number}
+     * @memberof ConversationDepartment
+     */
+    conversation_department_oid?: number;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof ConversationDepartment
+     */
+    delete_me?: boolean;
+    /**
+     * 
+     * @type {string}
+     * @memberof ConversationDepartment
+     */
+    department_name?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ConversationDepartment
+     */
+    merchant_id?: string;
+    /**
+     * 
+     * @type {ConversationDepartmentSettings}
+     * @memberof ConversationDepartment
+     */
+    settings?: ConversationDepartmentSettings;
+}
+
+/**
+ * 
+ * @export
+ * @interface ConversationDepartmentResponse
+ */
+export interface ConversationDepartmentResponse {
+    /**
+     * 
+     * @type {ConversationDepartment}
+     * @memberof ConversationDepartmentResponse
+     */
+    conversation_department?: ConversationDepartment;
+    /**
+     * 
+     * @type {ModelError}
+     * @memberof ConversationDepartmentResponse
+     */
+    error?: ModelError;
+    /**
+     * 
+     * @type {ResponseMetadata}
+     * @memberof ConversationDepartmentResponse
+     */
+    metadata?: ResponseMetadata;
+    /**
+     * Indicates if API call was successful
+     * @type {boolean}
+     * @memberof ConversationDepartmentResponse
+     */
+    success?: boolean;
+    /**
+     * 
+     * @type {Warning}
+     * @memberof ConversationDepartmentResponse
+     */
+    warning?: Warning;
+}
+
+/**
+ * 
+ * @export
+ * @interface ConversationDepartmentSettings
+ */
+export interface ConversationDepartmentSettings {
+}
+
+/**
+ * 
+ * @export
+ * @interface ConversationDepartmentsResponse
+ */
+export interface ConversationDepartmentsResponse {
+    /**
+     * 
+     * @type {Array<ConversationDepartment>}
+     * @memberof ConversationDepartmentsResponse
+     */
+    conversation_departments?: Array<ConversationDepartment>;
+    /**
+     * 
+     * @type {ModelError}
+     * @memberof ConversationDepartmentsResponse
+     */
+    error?: ModelError;
+    /**
+     * 
+     * @type {ResponseMetadata}
+     * @memberof ConversationDepartmentsResponse
+     */
+    metadata?: ResponseMetadata;
+    /**
+     * Indicates if API call was successful
+     * @type {boolean}
+     * @memberof ConversationDepartmentsResponse
+     */
+    success?: boolean;
+    /**
+     * 
+     * @type {Warning}
+     * @memberof ConversationDepartmentsResponse
+     */
+    warning?: Warning;
+}
+
+/**
+ * 
+ * @export
+ * @interface ConversationEngagement
+ */
+export interface ConversationEngagement {
+    /**
+     * 
+     * @type {number}
+     * @memberof ConversationEngagement
+     */
+    conversation_engagement_oid?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof ConversationEngagement
+     */
+    customer_greeting?: string;
+    /**
+     * 
+     * @type {Array<number>}
+     * @memberof ConversationEngagement
+     */
+    department_oids?: Array<number>;
+    /**
+     * 
+     * @type {string}
+     * @memberof ConversationEngagement
+     */
+    engagement_name?: string;
+    /**
+     * 
+     * @type {ConversationEngagementEquation}
+     * @memberof ConversationEngagement
+     */
+    equation?: ConversationEngagementEquation;
+    /**
+     * 
+     * @type {number}
+     * @memberof ConversationEngagement
+     */
+    time_on_page?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof ConversationEngagement
+     */
+    visitor_type?: string;
+}
+
+/**
+ * 
+ * @export
+ * @interface ConversationEngagementEquation
+ */
+export interface ConversationEngagementEquation {
+}
+
+/**
+ * 
+ * @export
+ * @interface ConversationEngagementResponse
+ */
+export interface ConversationEngagementResponse {
+    /**
+     * 
+     * @type {ConversationEngagement}
+     * @memberof ConversationEngagementResponse
+     */
+    conversation_engagement?: ConversationEngagement;
+    /**
+     * 
+     * @type {ModelError}
+     * @memberof ConversationEngagementResponse
+     */
+    error?: ModelError;
+    /**
+     * 
+     * @type {ResponseMetadata}
+     * @memberof ConversationEngagementResponse
+     */
+    metadata?: ResponseMetadata;
+    /**
+     * Indicates if API call was successful
+     * @type {boolean}
+     * @memberof ConversationEngagementResponse
+     */
+    success?: boolean;
+    /**
+     * 
+     * @type {Warning}
+     * @memberof ConversationEngagementResponse
+     */
+    warning?: Warning;
+}
+
+/**
+ * 
+ * @export
+ * @interface ConversationEngagementsResponse
+ */
+export interface ConversationEngagementsResponse {
+    /**
+     * 
+     * @type {Array<ConversationEngagement>}
+     * @memberof ConversationEngagementsResponse
+     */
+    conversation_engagements?: Array<ConversationEngagement>;
+    /**
+     * 
+     * @type {ModelError}
+     * @memberof ConversationEngagementsResponse
+     */
+    error?: ModelError;
+    /**
+     * 
+     * @type {ResponseMetadata}
+     * @memberof ConversationEngagementsResponse
+     */
+    metadata?: ResponseMetadata;
+    /**
+     * Indicates if API call was successful
+     * @type {boolean}
+     * @memberof ConversationEngagementsResponse
+     */
+    success?: boolean;
+    /**
+     * 
+     * @type {Warning}
+     * @memberof ConversationEngagementsResponse
+     */
+    warning?: Warning;
 }
 
 /**
@@ -6893,6 +7149,20 @@ export interface ConversationEventWebchatContext {
      * @memberof ConversationEventWebchatContext
      */
     url?: string;
+}
+
+/**
+ * 
+ * @export
+ * @interface ConversationJoinRequest
+ */
+export interface ConversationJoinRequest {
+    /**
+     * 
+     * @type {string}
+     * @memberof ConversationJoinRequest
+     */
+    participant_language_iso_code?: string;
 }
 
 /**
@@ -7193,6 +7463,12 @@ export interface ConversationParticipant {
      */
     conversation_participant_uuid?: string;
     /**
+     * 
+     * @type {string}
+     * @memberof ConversationParticipant
+     */
+    email?: string;
+    /**
      * Joined conversation date/time
      * @type {string}
      * @memberof ConversationParticipant
@@ -7222,6 +7498,12 @@ export interface ConversationParticipant {
      * @memberof ConversationParticipant
      */
     profile_image_url?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ConversationParticipant
+     */
+    sms_phone_number?: string;
     /**
      * 
      * @type {string}
@@ -7709,6 +7991,12 @@ export interface ConversationWebchatQueueStatusQueueEntry {
      * @memberof ConversationWebchatQueueStatusQueueEntry
      */
     join_dts?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ConversationWebchatQueueStatusQueueEntry
+     */
+    participant_language_iso_code?: string;
     /**
      * 
      * @type {string}
@@ -41961,6 +42249,98 @@ export const ConversationApiFetchParamCreator = function (configuration?: Config
             };
         },
         /**
+         * Retrieve a list of departments ordered by name 
+         * @summary Retrieve a list of departments ordered by name
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getConversationDepartments(options: any = {}): FetchArgs {
+            const localVarPath = `/conversation/departments`;
+            const localVarUrlObj = url.parse(localVarPath, true);
+            const localVarRequestOptions = Object.assign({ method: 'GET' }, options);
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+    if(configuration && configuration.apiVersion) {
+      localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+    }
+
+
+
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+				const localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+					? configuration.accessToken("ultraCartOauth", ["conversation_read"])
+					: configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
+					? configuration.apiKey("x-ultracart-simple-key")
+					: configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Retrieve a list of engagements ordered by name 
+         * @summary Retrieve a list of engagements ordered by name
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getConversationEngagements(options: any = {}): FetchArgs {
+            const localVarPath = `/conversation/engagements`;
+            const localVarUrlObj = url.parse(localVarPath, true);
+            const localVarRequestOptions = Object.assign({ method: 'GET' }, options);
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+    if(configuration && configuration.apiVersion) {
+      localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+    }
+
+
+
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+				const localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+					? configuration.accessToken("ultraCartOauth", ["conversation_read"])
+					: configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
+					? configuration.apiKey("x-ultracart-simple-key")
+					: configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
          * Retrieve conversation messages since a particular time 
          * @summary Retrieve conversation messages
          * @param {string} conversation_uuid 
@@ -42243,13 +42623,124 @@ export const ConversationApiFetchParamCreator = function (configuration?: Config
             };
         },
         /**
-         * Join a conversation 
-         * @summary Join a conversation
-         * @param {string} conversation_uuid 
+         * Insert a department 
+         * @summary Insert a department
+         * @param {ConversationDepartment} department Department
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        joinConversation(conversation_uuid: string, options: any = {}): FetchArgs {
+        insertConversationDepartment(department: ConversationDepartment, options: any = {}): FetchArgs {
+            // verify required parameter 'department' is not null or undefined
+            if (department === null || department === undefined) {
+                throw new RequiredError('department','Required parameter department was null or undefined when calling insertConversationDepartment.');
+            }
+            const localVarPath = `/conversation/departments`;
+            const localVarUrlObj = url.parse(localVarPath, true);
+            const localVarRequestOptions = Object.assign({ method: 'POST' }, options);
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+    if(configuration && configuration.apiVersion) {
+      localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+    }
+
+
+
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+				const localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+					? configuration.accessToken("ultraCartOauth", ["conversation_read"])
+					: configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
+					? configuration.apiKey("x-ultracart-simple-key")
+					: configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+            const needsSerialization = (<any>"ConversationDepartment" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
+            localVarRequestOptions.body =  needsSerialization ? JSON.stringify(department || {}) : (department || "");
+
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Insert a engagement 
+         * @summary Insert a engagement
+         * @param {ConversationEngagement} engagement Engagement
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        insertConversationEngagement(engagement: ConversationEngagement, options: any = {}): FetchArgs {
+            // verify required parameter 'engagement' is not null or undefined
+            if (engagement === null || engagement === undefined) {
+                throw new RequiredError('engagement','Required parameter engagement was null or undefined when calling insertConversationEngagement.');
+            }
+            const localVarPath = `/conversation/engagements`;
+            const localVarUrlObj = url.parse(localVarPath, true);
+            const localVarRequestOptions = Object.assign({ method: 'POST' }, options);
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+    if(configuration && configuration.apiVersion) {
+      localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+    }
+
+
+
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+				const localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+					? configuration.accessToken("ultraCartOauth", ["conversation_read"])
+					: configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
+					? configuration.apiKey("x-ultracart-simple-key")
+					: configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+            const needsSerialization = (<any>"ConversationEngagement" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
+            localVarRequestOptions.body =  needsSerialization ? JSON.stringify(engagement || {}) : (engagement || "");
+
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Join a conversation 
+         * @summary Join a conversation
+         * @param {string} conversation_uuid 
+         * @param {ConversationJoinRequest} [join_request] Join request
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        joinConversation(conversation_uuid: string, join_request?: ConversationJoinRequest, options: any = {}): FetchArgs {
             // verify required parameter 'conversation_uuid' is not null or undefined
             if (conversation_uuid === null || conversation_uuid === undefined) {
                 throw new RequiredError('conversation_uuid','Required parameter conversation_uuid was null or undefined when calling joinConversation.');
@@ -42284,10 +42775,14 @@ export const ConversationApiFetchParamCreator = function (configuration?: Config
                 localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
             }
 
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
             localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
             // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
             delete localVarUrlObj.search;
             localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+            const needsSerialization = (<any>"ConversationJoinRequest" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
+            localVarRequestOptions.body =  needsSerialization ? JSON.stringify(join_request || {}) : (join_request || "");
 
             return {
                 url: url.format(localVarUrlObj),
@@ -42570,6 +43065,128 @@ export const ConversationApiFetchParamCreator = function (configuration?: Config
             };
         },
         /**
+         * Update a department 
+         * @summary Update a department
+         * @param {number} conversation_department_oid 
+         * @param {ConversationDepartment} department Department
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        updateConversationDepartment(conversation_department_oid: number, department: ConversationDepartment, options: any = {}): FetchArgs {
+            // verify required parameter 'conversation_department_oid' is not null or undefined
+            if (conversation_department_oid === null || conversation_department_oid === undefined) {
+                throw new RequiredError('conversation_department_oid','Required parameter conversation_department_oid was null or undefined when calling updateConversationDepartment.');
+            }
+            // verify required parameter 'department' is not null or undefined
+            if (department === null || department === undefined) {
+                throw new RequiredError('department','Required parameter department was null or undefined when calling updateConversationDepartment.');
+            }
+            const localVarPath = `/conversation/departments/{conversation_department_oid}`
+                .replace(`{${"conversation_department_oid"}}`, encodeURIComponent(String(conversation_department_oid)));
+            const localVarUrlObj = url.parse(localVarPath, true);
+            const localVarRequestOptions = Object.assign({ method: 'PUT' }, options);
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+    if(configuration && configuration.apiVersion) {
+      localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+    }
+
+
+
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+				const localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+					? configuration.accessToken("ultraCartOauth", ["conversation_read"])
+					: configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
+					? configuration.apiKey("x-ultracart-simple-key")
+					: configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+            const needsSerialization = (<any>"ConversationDepartment" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
+            localVarRequestOptions.body =  needsSerialization ? JSON.stringify(department || {}) : (department || "");
+
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Update a engagement 
+         * @summary Update a engagement
+         * @param {number} conversation_engagement_oid 
+         * @param {ConversationEngagement} engagement Engagement
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        updateConversationEngagement(conversation_engagement_oid: number, engagement: ConversationEngagement, options: any = {}): FetchArgs {
+            // verify required parameter 'conversation_engagement_oid' is not null or undefined
+            if (conversation_engagement_oid === null || conversation_engagement_oid === undefined) {
+                throw new RequiredError('conversation_engagement_oid','Required parameter conversation_engagement_oid was null or undefined when calling updateConversationEngagement.');
+            }
+            // verify required parameter 'engagement' is not null or undefined
+            if (engagement === null || engagement === undefined) {
+                throw new RequiredError('engagement','Required parameter engagement was null or undefined when calling updateConversationEngagement.');
+            }
+            const localVarPath = `/conversation/engagements/{conversation_engagement_oid}`
+                .replace(`{${"conversation_engagement_oid"}}`, encodeURIComponent(String(conversation_engagement_oid)));
+            const localVarUrlObj = url.parse(localVarPath, true);
+            const localVarRequestOptions = Object.assign({ method: 'PUT' }, options);
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+    if(configuration && configuration.apiVersion) {
+      localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+    }
+
+
+
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+				const localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+					? configuration.accessToken("ultraCartOauth", ["conversation_read"])
+					: configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
+					? configuration.apiKey("x-ultracart-simple-key")
+					: configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+            const needsSerialization = (<any>"ConversationEngagement" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
+            localVarRequestOptions.body =  needsSerialization ? JSON.stringify(engagement || {}) : (engagement || "");
+
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
          * Update status within the queue 
          * @summary Update status within the queue
          * @param {string} queue_name 
@@ -42743,6 +43360,46 @@ export const ConversationApiFp = function(configuration?: Configuration) {
             };
         },
         /**
+         * Retrieve a list of departments ordered by name 
+         * @summary Retrieve a list of departments ordered by name
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getConversationDepartments(options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ConversationDepartmentsResponse> {
+            const localVarFetchArgs = ConversationApiFetchParamCreator(configuration).getConversationDepartments(options);
+            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
+                    if (response.status >= 200 && response.status < 300) {
+                      return response.json();
+                      
+                    } else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
+         * Retrieve a list of engagements ordered by name 
+         * @summary Retrieve a list of engagements ordered by name
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getConversationEngagements(options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ConversationEngagementsResponse> {
+            const localVarFetchArgs = ConversationApiFetchParamCreator(configuration).getConversationEngagements(options);
+            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
+                    if (response.status >= 200 && response.status < 300) {
+                      return response.json();
+                      
+                    } else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
          * Retrieve conversation messages since a particular time 
          * @summary Retrieve conversation messages
          * @param {string} conversation_uuid 
@@ -42852,14 +43509,57 @@ export const ConversationApiFp = function(configuration?: Configuration) {
             };
         },
         /**
-         * Join a conversation 
-         * @summary Join a conversation
-         * @param {string} conversation_uuid 
+         * Insert a department 
+         * @summary Insert a department
+         * @param {ConversationDepartment} department Department
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        joinConversation(conversation_uuid: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Response> {
-            const localVarFetchArgs = ConversationApiFetchParamCreator(configuration).joinConversation(conversation_uuid, options);
+        insertConversationDepartment(department: ConversationDepartment, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ConversationDepartmentResponse> {
+            const localVarFetchArgs = ConversationApiFetchParamCreator(configuration).insertConversationDepartment(department, options);
+            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
+                    if (response.status >= 200 && response.status < 300) {
+                      return response.json();
+                      
+                    } else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
+         * Insert a engagement 
+         * @summary Insert a engagement
+         * @param {ConversationEngagement} engagement Engagement
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        insertConversationEngagement(engagement: ConversationEngagement, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ConversationEngagementResponse> {
+            const localVarFetchArgs = ConversationApiFetchParamCreator(configuration).insertConversationEngagement(engagement, options);
+            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
+                    if (response.status >= 200 && response.status < 300) {
+                      return response.json();
+                      
+                    } else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
+         * Join a conversation 
+         * @summary Join a conversation
+         * @param {string} conversation_uuid 
+         * @param {ConversationJoinRequest} [join_request] Join request
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        joinConversation(conversation_uuid: string, join_request?: ConversationJoinRequest, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Response> {
+            const localVarFetchArgs = ConversationApiFetchParamCreator(configuration).joinConversation(conversation_uuid, join_request, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
 
@@ -42979,6 +43679,50 @@ export const ConversationApiFp = function(configuration?: Configuration) {
             };
         },
         /**
+         * Update a department 
+         * @summary Update a department
+         * @param {number} conversation_department_oid 
+         * @param {ConversationDepartment} department Department
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        updateConversationDepartment(conversation_department_oid: number, department: ConversationDepartment, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ConversationDepartmentResponse> {
+            const localVarFetchArgs = ConversationApiFetchParamCreator(configuration).updateConversationDepartment(conversation_department_oid, department, options);
+            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
+                    if (response.status >= 200 && response.status < 300) {
+                      return response.json();
+                      
+                    } else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
+         * Update a engagement 
+         * @summary Update a engagement
+         * @param {number} conversation_engagement_oid 
+         * @param {ConversationEngagement} engagement Engagement
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        updateConversationEngagement(conversation_engagement_oid: number, engagement: ConversationEngagement, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ConversationEngagementResponse> {
+            const localVarFetchArgs = ConversationApiFetchParamCreator(configuration).updateConversationEngagement(conversation_engagement_oid, engagement, options);
+            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
+                    if (response.status >= 200 && response.status < 300) {
+                      return response.json();
+                      
+                    } else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
          * Update status within the queue 
          * @summary Update status within the queue
          * @param {string} queue_name 
@@ -43058,6 +43802,24 @@ export const ConversationApiFactory = function (configuration?: Configuration, f
             return ConversationApiFp(configuration).getConversationContext(conversation_uuid, options)(fetch, basePath);
         },
         /**
+         * Retrieve a list of departments ordered by name 
+         * @summary Retrieve a list of departments ordered by name
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getConversationDepartments(options?: any) {
+            return ConversationApiFp(configuration).getConversationDepartments(options)(fetch, basePath);
+        },
+        /**
+         * Retrieve a list of engagements ordered by name 
+         * @summary Retrieve a list of engagements ordered by name
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getConversationEngagements(options?: any) {
+            return ConversationApiFp(configuration).getConversationEngagements(options)(fetch, basePath);
+        },
+        /**
          * Retrieve conversation messages since a particular time 
          * @summary Retrieve conversation messages
          * @param {string} conversation_uuid 
@@ -43112,14 +43874,35 @@ export const ConversationApiFactory = function (configuration?: Configuration, f
             return ConversationApiFp(configuration).insertConversationCannedMessage(canned_message, options)(fetch, basePath);
         },
         /**
-         * Join a conversation 
-         * @summary Join a conversation
-         * @param {string} conversation_uuid 
+         * Insert a department 
+         * @summary Insert a department
+         * @param {ConversationDepartment} department Department
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        joinConversation(conversation_uuid: string, options?: any) {
-            return ConversationApiFp(configuration).joinConversation(conversation_uuid, options)(fetch, basePath);
+        insertConversationDepartment(department: ConversationDepartment, options?: any) {
+            return ConversationApiFp(configuration).insertConversationDepartment(department, options)(fetch, basePath);
+        },
+        /**
+         * Insert a engagement 
+         * @summary Insert a engagement
+         * @param {ConversationEngagement} engagement Engagement
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        insertConversationEngagement(engagement: ConversationEngagement, options?: any) {
+            return ConversationApiFp(configuration).insertConversationEngagement(engagement, options)(fetch, basePath);
+        },
+        /**
+         * Join a conversation 
+         * @summary Join a conversation
+         * @param {string} conversation_uuid 
+         * @param {ConversationJoinRequest} [join_request] Join request
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        joinConversation(conversation_uuid: string, join_request?: ConversationJoinRequest, options?: any) {
+            return ConversationApiFp(configuration).joinConversation(conversation_uuid, join_request, options)(fetch, basePath);
         },
         /**
          * Leave a conversation 
@@ -43171,6 +43954,28 @@ export const ConversationApiFactory = function (configuration?: Configuration, f
          */
         updateConversationCannedMessage(conversation_canned_message_oid: number, canned_message: ConversationCannedMessage, options?: any) {
             return ConversationApiFp(configuration).updateConversationCannedMessage(conversation_canned_message_oid, canned_message, options)(fetch, basePath);
+        },
+        /**
+         * Update a department 
+         * @summary Update a department
+         * @param {number} conversation_department_oid 
+         * @param {ConversationDepartment} department Department
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        updateConversationDepartment(conversation_department_oid: number, department: ConversationDepartment, options?: any) {
+            return ConversationApiFp(configuration).updateConversationDepartment(conversation_department_oid, department, options)(fetch, basePath);
+        },
+        /**
+         * Update a engagement 
+         * @summary Update a engagement
+         * @param {number} conversation_engagement_oid 
+         * @param {ConversationEngagement} engagement Engagement
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        updateConversationEngagement(conversation_engagement_oid: number, engagement: ConversationEngagement, options?: any) {
+            return ConversationApiFp(configuration).updateConversationEngagement(conversation_engagement_oid, engagement, options)(fetch, basePath);
         },
         /**
          * Update status within the queue 
@@ -43241,6 +44046,24 @@ export interface ConversationApiInterface {
     getConversationContext(conversation_uuid: string, options?: any): Promise<ConversationWebchatContext>;
 
     /**
+     * Retrieve a list of departments ordered by name 
+     * @summary Retrieve a list of departments ordered by name
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApiInterface
+     */
+    getConversationDepartments(options?: any): Promise<ConversationDepartmentsResponse>;
+
+    /**
+     * Retrieve a list of engagements ordered by name 
+     * @summary Retrieve a list of engagements ordered by name
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApiInterface
+     */
+    getConversationEngagements(options?: any): Promise<ConversationEngagementsResponse>;
+
+    /**
      * Retrieve conversation messages since a particular time 
      * @summary Retrieve conversation messages
      * @param {string} conversation_uuid 
@@ -43295,14 +44118,35 @@ export interface ConversationApiInterface {
     insertConversationCannedMessage(canned_message: ConversationCannedMessage, options?: any): Promise<ConversationCannedMessageResponse>;
 
     /**
-     * Join a conversation 
-     * @summary Join a conversation
-     * @param {string} conversation_uuid 
+     * Insert a department 
+     * @summary Insert a department
+     * @param {ConversationDepartment} department Department
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ConversationApiInterface
      */
-    joinConversation(conversation_uuid: string, options?: any): Promise<{}>;
+    insertConversationDepartment(department: ConversationDepartment, options?: any): Promise<ConversationDepartmentResponse>;
+
+    /**
+     * Insert a engagement 
+     * @summary Insert a engagement
+     * @param {ConversationEngagement} engagement Engagement
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApiInterface
+     */
+    insertConversationEngagement(engagement: ConversationEngagement, options?: any): Promise<ConversationEngagementResponse>;
+
+    /**
+     * Join a conversation 
+     * @summary Join a conversation
+     * @param {string} conversation_uuid 
+     * @param {ConversationJoinRequest} [join_request] Join request
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApiInterface
+     */
+    joinConversation(conversation_uuid: string, join_request?: ConversationJoinRequest, options?: any): Promise<{}>;
 
     /**
      * Leave a conversation 
@@ -43354,6 +44198,28 @@ export interface ConversationApiInterface {
      * @memberof ConversationApiInterface
      */
     updateConversationCannedMessage(conversation_canned_message_oid: number, canned_message: ConversationCannedMessage, options?: any): Promise<ConversationCannedMessageResponse>;
+
+    /**
+     * Update a department 
+     * @summary Update a department
+     * @param {number} conversation_department_oid 
+     * @param {ConversationDepartment} department Department
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApiInterface
+     */
+    updateConversationDepartment(conversation_department_oid: number, department: ConversationDepartment, options?: any): Promise<ConversationDepartmentResponse>;
+
+    /**
+     * Update a engagement 
+     * @summary Update a engagement
+     * @param {number} conversation_engagement_oid 
+     * @param {ConversationEngagement} engagement Engagement
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApiInterface
+     */
+    updateConversationEngagement(conversation_engagement_oid: number, engagement: ConversationEngagement, options?: any): Promise<ConversationEngagementResponse>;
 
     /**
      * Update status within the queue 
@@ -43434,6 +44300,28 @@ export class ConversationApi extends BaseAPI implements ConversationApiInterface
     }
 
     /**
+     * Retrieve a list of departments ordered by name 
+     * @summary Retrieve a list of departments ordered by name
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApi
+     */
+    public getConversationDepartments(options?: any) {
+        return ConversationApiFp(this.configuration).getConversationDepartments(options)(this.fetch, this.basePath);
+    }
+
+    /**
+     * Retrieve a list of engagements ordered by name 
+     * @summary Retrieve a list of engagements ordered by name
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApi
+     */
+    public getConversationEngagements(options?: any) {
+        return ConversationApiFp(this.configuration).getConversationEngagements(options)(this.fetch, this.basePath);
+    }
+
+    /**
      * Retrieve conversation messages since a particular time 
      * @summary Retrieve conversation messages
      * @param {string} conversation_uuid 
@@ -43498,15 +44386,40 @@ export class ConversationApi extends BaseAPI implements ConversationApiInterface
     }
 
     /**
-     * Join a conversation 
-     * @summary Join a conversation
-     * @param {string} conversation_uuid 
+     * Insert a department 
+     * @summary Insert a department
+     * @param {ConversationDepartment} department Department
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ConversationApi
      */
-    public joinConversation(conversation_uuid: string, options?: any) {
-        return ConversationApiFp(this.configuration).joinConversation(conversation_uuid, options)(this.fetch, this.basePath);
+    public insertConversationDepartment(department: ConversationDepartment, options?: any) {
+        return ConversationApiFp(this.configuration).insertConversationDepartment(department, options)(this.fetch, this.basePath);
+    }
+
+    /**
+     * Insert a engagement 
+     * @summary Insert a engagement
+     * @param {ConversationEngagement} engagement Engagement
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApi
+     */
+    public insertConversationEngagement(engagement: ConversationEngagement, options?: any) {
+        return ConversationApiFp(this.configuration).insertConversationEngagement(engagement, options)(this.fetch, this.basePath);
+    }
+
+    /**
+     * Join a conversation 
+     * @summary Join a conversation
+     * @param {string} conversation_uuid 
+     * @param {ConversationJoinRequest} [join_request] Join request
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApi
+     */
+    public joinConversation(conversation_uuid: string, join_request?: ConversationJoinRequest, options?: any) {
+        return ConversationApiFp(this.configuration).joinConversation(conversation_uuid, join_request, options)(this.fetch, this.basePath);
     }
 
     /**
@@ -43568,6 +44481,32 @@ export class ConversationApi extends BaseAPI implements ConversationApiInterface
      */
     public updateConversationCannedMessage(conversation_canned_message_oid: number, canned_message: ConversationCannedMessage, options?: any) {
         return ConversationApiFp(this.configuration).updateConversationCannedMessage(conversation_canned_message_oid, canned_message, options)(this.fetch, this.basePath);
+    }
+
+    /**
+     * Update a department 
+     * @summary Update a department
+     * @param {number} conversation_department_oid 
+     * @param {ConversationDepartment} department Department
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApi
+     */
+    public updateConversationDepartment(conversation_department_oid: number, department: ConversationDepartment, options?: any) {
+        return ConversationApiFp(this.configuration).updateConversationDepartment(conversation_department_oid, department, options)(this.fetch, this.basePath);
+    }
+
+    /**
+     * Update a engagement 
+     * @summary Update a engagement
+     * @param {number} conversation_engagement_oid 
+     * @param {ConversationEngagement} engagement Engagement
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApi
+     */
+    public updateConversationEngagement(conversation_engagement_oid: number, engagement: ConversationEngagement, options?: any) {
+        return ConversationApiFp(this.configuration).updateConversationEngagement(conversation_engagement_oid, engagement, options)(this.fetch, this.basePath);
     }
 
     /**
