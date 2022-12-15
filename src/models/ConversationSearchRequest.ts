@@ -20,6 +20,18 @@ import { exists, mapValues } from '../runtime';
  */
 export interface ConversationSearchRequest {
     /**
+     * End of the range
+     * @type {string}
+     * @memberof ConversationSearchRequest
+     */
+    date_end?: string;
+    /**
+     * Start of the range
+     * @type {string}
+     * @memberof ConversationSearchRequest
+     */
+    date_start?: string;
+    /**
      * 
      * @type {string}
      * @memberof ConversationSearchRequest
@@ -91,6 +103,8 @@ export function ConversationSearchRequestFromJSONTyped(json: any, ignoreDiscrimi
     }
     return {
         
+        'date_end': !exists(json, 'date_end') ? undefined : json['date_end'],
+        'date_start': !exists(json, 'date_start') ? undefined : json['date_start'],
         'email_filter': !exists(json, 'email_filter') ? undefined : json['email_filter'],
         'language_filter': !exists(json, 'language_filter') ? undefined : json['language_filter'],
         'medium_filter': !exists(json, 'medium_filter') ? undefined : json['medium_filter'],
@@ -113,6 +127,8 @@ export function ConversationSearchRequestToJSON(value?: ConversationSearchReques
     }
     return {
         
+        'date_end': value.date_end,
+        'date_start': value.date_start,
         'email_filter': value.email_filter,
         'language_filter': value.language_filter,
         'medium_filter': value.medium_filter,

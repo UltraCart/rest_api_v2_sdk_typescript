@@ -14,6 +14,12 @@
 
 import { exists, mapValues } from '../runtime';
 import {
+    ConversationAutocompleteValue,
+    ConversationAutocompleteValueFromJSON,
+    ConversationAutocompleteValueFromJSONTyped,
+    ConversationAutocompleteValueToJSON,
+} from './ConversationAutocompleteValue';
+import {
     ModelError,
     ModelErrorFromJSON,
     ModelErrorFromJSONTyped,
@@ -58,10 +64,10 @@ export interface ConversationAutocompleteResponse {
     metadata?: ResponseMetadata;
     /**
      * 
-     * @type {Array<string>}
+     * @type {Array<ConversationAutocompleteValue>}
      * @memberof ConversationAutocompleteResponse
      */
-    results?: Array<string>;
+    results?: Array<ConversationAutocompleteValue>;
     /**
      * Indicates if API call was successful
      * @type {boolean}
@@ -95,7 +101,7 @@ export function ConversationAutocompleteResponseFromJSONTyped(json: any, ignoreD
         'error': !exists(json, 'error') ? undefined : ModelErrorFromJSON(json['error']),
         'field': !exists(json, 'field') ? undefined : json['field'],
         'metadata': !exists(json, 'metadata') ? undefined : ResponseMetadataFromJSON(json['metadata']),
-        'results': !exists(json, 'results') ? undefined : json['results'],
+        'results': !exists(json, 'results') ? undefined : ((json['results'] as Array<any>).map(ConversationAutocompleteValueFromJSON)),
         'success': !exists(json, 'success') ? undefined : json['success'],
         'term': !exists(json, 'term') ? undefined : json['term'],
         'warning': !exists(json, 'warning') ? undefined : WarningFromJSON(json['warning']),
@@ -114,7 +120,7 @@ export function ConversationAutocompleteResponseToJSON(value?: ConversationAutoc
         'error': ModelErrorToJSON(value.error),
         'field': value.field,
         'metadata': ResponseMetadataToJSON(value.metadata),
-        'results': value.results,
+        'results': value.results === undefined ? undefined : ((value.results as Array<any>).map(ConversationAutocompleteValueToJSON)),
         'success': value.success,
         'term': value.term,
         'warning': WarningToJSON(value.warning),

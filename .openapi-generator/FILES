@@ -146,6 +146,7 @@ src/models/ConversationAgentAuth.ts
 src/models/ConversationAgentAuthResponse.ts
 src/models/ConversationAutocompleteRequest.ts
 src/models/ConversationAutocompleteResponse.ts
+src/models/ConversationAutocompleteValue.ts
 src/models/ConversationCannedMessage.ts
 src/models/ConversationCannedMessageResponse.ts
 src/models/ConversationCannedMessagesResponse.ts

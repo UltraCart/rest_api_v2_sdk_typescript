@@ -123,6 +123,7 @@ export * from './ConversationAgentAuth';
 export * from './ConversationAgentAuthResponse';
 export * from './ConversationAutocompleteRequest';
 export * from './ConversationAutocompleteResponse';
+export * from './ConversationAutocompleteValue';
 export * from './ConversationCannedMessage';
 export * from './ConversationCannedMessageResponse';
 export * from './ConversationCannedMessagesResponse';
