@@ -144,6 +144,8 @@ src/models/CityStateZip.ts
 src/models/Conversation.ts
 src/models/ConversationAgentAuth.ts
 src/models/ConversationAgentAuthResponse.ts
+src/models/ConversationAutocompleteRequest.ts
+src/models/ConversationAutocompleteResponse.ts
 src/models/ConversationCannedMessage.ts
 src/models/ConversationCannedMessageResponse.ts
 src/models/ConversationCannedMessagesResponse.ts
@@ -170,6 +172,8 @@ src/models/ConversationMultimediaUploadUrl.ts
 src/models/ConversationMultimediaUploadUrlResponse.ts
 src/models/ConversationParticipant.ts
 src/models/ConversationResponse.ts
+src/models/ConversationSearchRequest.ts
+src/models/ConversationSearchResponse.ts
 src/models/ConversationStartRequest.ts
 src/models/ConversationStartResponse.ts
 src/models/ConversationSummary.ts

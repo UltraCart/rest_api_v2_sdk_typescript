@@ -18,6 +18,12 @@ import {
     ConversationAgentAuthResponse,
     ConversationAgentAuthResponseFromJSON,
     ConversationAgentAuthResponseToJSON,
+    ConversationAutocompleteRequest,
+    ConversationAutocompleteRequestFromJSON,
+    ConversationAutocompleteRequestToJSON,
+    ConversationAutocompleteResponse,
+    ConversationAutocompleteResponseFromJSON,
+    ConversationAutocompleteResponseToJSON,
     ConversationCannedMessage,
     ConversationCannedMessageFromJSON,
     ConversationCannedMessageToJSON,
@@ -60,6 +66,12 @@ import {
     ConversationResponse,
     ConversationResponseFromJSON,
     ConversationResponseToJSON,
+    ConversationSearchRequest,
+    ConversationSearchRequestFromJSON,
+    ConversationSearchRequestToJSON,
+    ConversationSearchResponse,
+    ConversationSearchResponseFromJSON,
+    ConversationSearchResponseToJSON,
     ConversationStartRequest,
     ConversationStartRequestFromJSON,
     ConversationStartRequestToJSON,
@@ -107,6 +119,14 @@ export interface GetConversationsRequest {
     before?: string;
     limit?: number;
     offset?: number;
+}
+
+export interface GetConversationsAutocompleteRequest {
+    autocompleteRequest: ConversationAutocompleteRequest;
+}
+
+export interface GetConversationsSearchRequest {
+    searchRequest: ConversationSearchRequest;
 }
 
 export interface InsertConversationCannedMessageRequest {
@@ -344,6 +364,38 @@ export interface ConversationApiInterface {
      * Retrieve a list of conversation summaries newest to oldest
      */
     getConversations(requestParameters: GetConversationsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ConversationsResponse>;
+
+    /**
+     * Retrieve a list of matching terms for a search field 
+     * @summary Retrieve a list of matching terms for a search field
+     * @param {ConversationAutocompleteRequest} autocompleteRequest Autocomplete Request
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApiInterface
+     */
+    getConversationsAutocompleteRaw(requestParameters: GetConversationsAutocompleteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ConversationAutocompleteResponse>>;
+
+    /**
+     * Retrieve a list of matching terms for a search field 
+     * Retrieve a list of matching terms for a search field
+     */
+    getConversationsAutocomplete(requestParameters: GetConversationsAutocompleteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ConversationAutocompleteResponse>;
+
+    /**
+     * Search conversations 
+     * @summary Search conversations
+     * @param {ConversationSearchRequest} searchRequest Search Request
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApiInterface
+     */
+    getConversationsSearchRaw(requestParameters: GetConversationsSearchRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ConversationSearchResponse>>;
+
+    /**
+     * Search conversations 
+     * Search conversations
+     */
+    getConversationsSearch(requestParameters: GetConversationsSearchRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ConversationSearchResponse>;
 
     /**
      * Insert a canned message 
@@ -996,6 +1048,94 @@ export class ConversationApi extends runtime.BaseAPI implements ConversationApiI
      */
     async getConversations(requestParameters: GetConversationsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ConversationsResponse> {
         const response = await this.getConversationsRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Retrieve a list of matching terms for a search field 
+     * Retrieve a list of matching terms for a search field
+     */
+    async getConversationsAutocompleteRaw(requestParameters: GetConversationsAutocompleteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ConversationAutocompleteResponse>> {
+        if (requestParameters.autocompleteRequest === null || requestParameters.autocompleteRequest === undefined) {
+            throw new runtime.RequiredError('autocompleteRequest','Required parameter requestParameters.autocompleteRequest was null or undefined when calling getConversationsAutocomplete.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", ["conversation_read"]);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/conversation/conversations/autocomplete`,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: ConversationAutocompleteRequestToJSON(requestParameters.autocompleteRequest),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => ConversationAutocompleteResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Retrieve a list of matching terms for a search field 
+     * Retrieve a list of matching terms for a search field
+     */
+    async getConversationsAutocomplete(requestParameters: GetConversationsAutocompleteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ConversationAutocompleteResponse> {
+        const response = await this.getConversationsAutocompleteRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Search conversations 
+     * Search conversations
+     */
+    async getConversationsSearchRaw(requestParameters: GetConversationsSearchRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ConversationSearchResponse>> {
+        if (requestParameters.searchRequest === null || requestParameters.searchRequest === undefined) {
+            throw new runtime.RequiredError('searchRequest','Required parameter requestParameters.searchRequest was null or undefined when calling getConversationsSearch.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", ["conversation_read"]);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/conversation/conversations/search`,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: ConversationSearchRequestToJSON(requestParameters.searchRequest),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => ConversationSearchResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Search conversations 
+     * Search conversations
+     */
+    async getConversationsSearch(requestParameters: GetConversationsSearchRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ConversationSearchResponse> {
+        const response = await this.getConversationsSearchRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
