@@ -6555,6 +6555,76 @@ export interface ConversationAgentAuthResponse {
 /**
  * 
  * @export
+ * @interface ConversationAutocompleteRequest
+ */
+export interface ConversationAutocompleteRequest {
+    /**
+     * 
+     * @type {string}
+     * @memberof ConversationAutocompleteRequest
+     */
+    field?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ConversationAutocompleteRequest
+     */
+    term?: string;
+}
+
+/**
+ * 
+ * @export
+ * @interface ConversationAutocompleteResponse
+ */
+export interface ConversationAutocompleteResponse {
+    /**
+     * 
+     * @type {ModelError}
+     * @memberof ConversationAutocompleteResponse
+     */
+    error?: ModelError;
+    /**
+     * 
+     * @type {string}
+     * @memberof ConversationAutocompleteResponse
+     */
+    field?: string;
+    /**
+     * 
+     * @type {ResponseMetadata}
+     * @memberof ConversationAutocompleteResponse
+     */
+    metadata?: ResponseMetadata;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof ConversationAutocompleteResponse
+     */
+    results?: Array<string>;
+    /**
+     * Indicates if API call was successful
+     * @type {boolean}
+     * @memberof ConversationAutocompleteResponse
+     */
+    success?: boolean;
+    /**
+     * 
+     * @type {string}
+     * @memberof ConversationAutocompleteResponse
+     */
+    term?: string;
+    /**
+     * 
+     * @type {Warning}
+     * @memberof ConversationAutocompleteResponse
+     */
+    warning?: Warning;
+}
+
+/**
+ * 
+ * @export
  * @interface ConversationCannedMessage
  */
 export interface ConversationCannedMessage {
@@ -7560,6 +7630,100 @@ export interface ConversationResponse {
      * @memberof ConversationResponse
      */
     warning?: Warning;
+}
+
+/**
+ * 
+ * @export
+ * @interface ConversationSearchRequest
+ */
+export interface ConversationSearchRequest {
+    /**
+     * 
+     * @type {string}
+     * @memberof ConversationSearchRequest
+     */
+    email_filter?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ConversationSearchRequest
+     */
+    language_filter?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ConversationSearchRequest
+     */
+    medium_filter?: string;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof ConversationSearchRequest
+     */
+    order_by_newest?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof ConversationSearchRequest
+     */
+    order_by_oldest?: boolean;
+    /**
+     * 
+     * @type {number}
+     * @memberof ConversationSearchRequest
+     */
+    range_begin?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof ConversationSearchRequest
+     */
+    range_end?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof ConversationSearchRequest
+     */
+    sms_phone_number_filter?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ConversationSearchRequest
+     */
+    text_search?: string;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof ConversationSearchRequest
+     */
+    visible_filter?: boolean;
+}
+
+/**
+ * 
+ * @export
+ * @interface ConversationSearchResponse
+ */
+export interface ConversationSearchResponse {
+    /**
+     * 
+     * @type {number}
+     * @memberof ConversationSearchResponse
+     */
+    range_begin?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof ConversationSearchResponse
+     */
+    range_end?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof ConversationSearchResponse
+     */
+    total?: number;
 }
 
 /**
@@ -42568,6 +42732,116 @@ export const ConversationApiFetchParamCreator = function (configuration?: Config
             };
         },
         /**
+         * Retrieve a list of matching terms for a search field 
+         * @summary Retrieve a list of matching terms for a search field
+         * @param {ConversationAutocompleteRequest} autocomplete_request Autocomplete Request
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getConversationsAutocomplete(autocomplete_request: ConversationAutocompleteRequest, options: any = {}): FetchArgs {
+            // verify required parameter 'autocomplete_request' is not null or undefined
+            if (autocomplete_request === null || autocomplete_request === undefined) {
+                throw new RequiredError('autocomplete_request','Required parameter autocomplete_request was null or undefined when calling getConversationsAutocomplete.');
+            }
+            const localVarPath = `/conversation/conversations/autocomplete`;
+            const localVarUrlObj = url.parse(localVarPath, true);
+            const localVarRequestOptions = Object.assign({ method: 'POST' }, options);
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+    if(configuration && configuration.apiVersion) {
+      localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+    }
+
+
+
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+				const localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+					? configuration.accessToken("ultraCartOauth", ["conversation_read"])
+					: configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
+					? configuration.apiKey("x-ultracart-simple-key")
+					: configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+            const needsSerialization = (<any>"ConversationAutocompleteRequest" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
+            localVarRequestOptions.body =  needsSerialization ? JSON.stringify(autocomplete_request || {}) : (autocomplete_request || "");
+
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Search conversations 
+         * @summary Search conversations
+         * @param {ConversationSearchRequest} search_request Search Request
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getConversationsSearch(search_request: ConversationSearchRequest, options: any = {}): FetchArgs {
+            // verify required parameter 'search_request' is not null or undefined
+            if (search_request === null || search_request === undefined) {
+                throw new RequiredError('search_request','Required parameter search_request was null or undefined when calling getConversationsSearch.');
+            }
+            const localVarPath = `/conversation/conversations/search`;
+            const localVarUrlObj = url.parse(localVarPath, true);
+            const localVarRequestOptions = Object.assign({ method: 'POST' }, options);
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+    if(configuration && configuration.apiVersion) {
+      localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+    }
+
+
+
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+				const localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+					? configuration.accessToken("ultraCartOauth", ["conversation_read"])
+					: configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
+					? configuration.apiKey("x-ultracart-simple-key")
+					: configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+            const needsSerialization = (<any>"ConversationSearchRequest" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
+            localVarRequestOptions.body =  needsSerialization ? JSON.stringify(search_request || {}) : (search_request || "");
+
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
          * Insert a canned message 
          * @summary Insert a canned message
          * @param {ConversationCannedMessage} canned_message Canned message
@@ -43488,6 +43762,48 @@ export const ConversationApiFp = function(configuration?: Configuration) {
             };
         },
         /**
+         * Retrieve a list of matching terms for a search field 
+         * @summary Retrieve a list of matching terms for a search field
+         * @param {ConversationAutocompleteRequest} autocomplete_request Autocomplete Request
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getConversationsAutocomplete(autocomplete_request: ConversationAutocompleteRequest, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ConversationAutocompleteResponse> {
+            const localVarFetchArgs = ConversationApiFetchParamCreator(configuration).getConversationsAutocomplete(autocomplete_request, options);
+            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
+                    if (response.status >= 200 && response.status < 300) {
+                      return response.json();
+                      
+                    } else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
+         * Search conversations 
+         * @summary Search conversations
+         * @param {ConversationSearchRequest} search_request Search Request
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getConversationsSearch(search_request: ConversationSearchRequest, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ConversationSearchResponse> {
+            const localVarFetchArgs = ConversationApiFetchParamCreator(configuration).getConversationsSearch(search_request, options);
+            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
+                    if (response.status >= 200 && response.status < 300) {
+                      return response.json();
+                      
+                    } else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
          * Insert a canned message 
          * @summary Insert a canned message
          * @param {ConversationCannedMessage} canned_message Canned message
@@ -43864,6 +44180,26 @@ export const ConversationApiFactory = function (configuration?: Configuration, f
             return ConversationApiFp(configuration).getConversations(medium, before, _limit, _offset, options)(fetch, basePath);
         },
         /**
+         * Retrieve a list of matching terms for a search field 
+         * @summary Retrieve a list of matching terms for a search field
+         * @param {ConversationAutocompleteRequest} autocomplete_request Autocomplete Request
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getConversationsAutocomplete(autocomplete_request: ConversationAutocompleteRequest, options?: any) {
+            return ConversationApiFp(configuration).getConversationsAutocomplete(autocomplete_request, options)(fetch, basePath);
+        },
+        /**
+         * Search conversations 
+         * @summary Search conversations
+         * @param {ConversationSearchRequest} search_request Search Request
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getConversationsSearch(search_request: ConversationSearchRequest, options?: any) {
+            return ConversationApiFp(configuration).getConversationsSearch(search_request, options)(fetch, basePath);
+        },
+        /**
          * Insert a canned message 
          * @summary Insert a canned message
          * @param {ConversationCannedMessage} canned_message Canned message
@@ -44106,6 +44442,26 @@ export interface ConversationApiInterface {
      * @memberof ConversationApiInterface
      */
     getConversations(medium?: string, before?: string, _limit?: number, _offset?: number, options?: any): Promise<ConversationsResponse>;
+
+    /**
+     * Retrieve a list of matching terms for a search field 
+     * @summary Retrieve a list of matching terms for a search field
+     * @param {ConversationAutocompleteRequest} autocomplete_request Autocomplete Request
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApiInterface
+     */
+    getConversationsAutocomplete(autocomplete_request: ConversationAutocompleteRequest, options?: any): Promise<ConversationAutocompleteResponse>;
+
+    /**
+     * Search conversations 
+     * @summary Search conversations
+     * @param {ConversationSearchRequest} search_request Search Request
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApiInterface
+     */
+    getConversationsSearch(search_request: ConversationSearchRequest, options?: any): Promise<ConversationSearchResponse>;
 
     /**
      * Insert a canned message 
@@ -44371,6 +44727,30 @@ export class ConversationApi extends BaseAPI implements ConversationApiInterface
      */
     public getConversations(medium?: string, before?: string, _limit?: number, _offset?: number, options?: any) {
         return ConversationApiFp(this.configuration).getConversations(medium, before, _limit, _offset, options)(this.fetch, this.basePath);
+    }
+
+    /**
+     * Retrieve a list of matching terms for a search field 
+     * @summary Retrieve a list of matching terms for a search field
+     * @param {ConversationAutocompleteRequest} autocomplete_request Autocomplete Request
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApi
+     */
+    public getConversationsAutocomplete(autocomplete_request: ConversationAutocompleteRequest, options?: any) {
+        return ConversationApiFp(this.configuration).getConversationsAutocomplete(autocomplete_request, options)(this.fetch, this.basePath);
+    }
+
+    /**
+     * Search conversations 
+     * @summary Search conversations
+     * @param {ConversationSearchRequest} search_request Search Request
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApi
+     */
+    public getConversationsSearch(search_request: ConversationSearchRequest, options?: any) {
+        return ConversationApiFp(this.configuration).getConversationsSearch(search_request, options)(this.fetch, this.basePath);
     }
 
     /**

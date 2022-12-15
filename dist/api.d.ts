@@ -6403,6 +6403,74 @@ export interface ConversationAgentAuthResponse {
 /**
  *
  * @export
+ * @interface ConversationAutocompleteRequest
+ */
+export interface ConversationAutocompleteRequest {
+    /**
+     *
+     * @type {string}
+     * @memberof ConversationAutocompleteRequest
+     */
+    field?: string;
+    /**
+     *
+     * @type {string}
+     * @memberof ConversationAutocompleteRequest
+     */
+    term?: string;
+}
+/**
+ *
+ * @export
+ * @interface ConversationAutocompleteResponse
+ */
+export interface ConversationAutocompleteResponse {
+    /**
+     *
+     * @type {ModelError}
+     * @memberof ConversationAutocompleteResponse
+     */
+    error?: ModelError;
+    /**
+     *
+     * @type {string}
+     * @memberof ConversationAutocompleteResponse
+     */
+    field?: string;
+    /**
+     *
+     * @type {ResponseMetadata}
+     * @memberof ConversationAutocompleteResponse
+     */
+    metadata?: ResponseMetadata;
+    /**
+     *
+     * @type {Array<string>}
+     * @memberof ConversationAutocompleteResponse
+     */
+    results?: Array<string>;
+    /**
+     * Indicates if API call was successful
+     * @type {boolean}
+     * @memberof ConversationAutocompleteResponse
+     */
+    success?: boolean;
+    /**
+     *
+     * @type {string}
+     * @memberof ConversationAutocompleteResponse
+     */
+    term?: string;
+    /**
+     *
+     * @type {Warning}
+     * @memberof ConversationAutocompleteResponse
+     */
+    warning?: Warning;
+}
+/**
+ *
+ * @export
  * @interface ConversationCannedMessage
  */
 export interface ConversationCannedMessage {
@@ -7378,6 +7446,98 @@ export interface ConversationResponse {
      * @memberof ConversationResponse
      */
     warning?: Warning;
+}
+/**
+ *
+ * @export
+ * @interface ConversationSearchRequest
+ */
+export interface ConversationSearchRequest {
+    /**
+     *
+     * @type {string}
+     * @memberof ConversationSearchRequest
+     */
+    email_filter?: string;
+    /**
+     *
+     * @type {string}
+     * @memberof ConversationSearchRequest
+     */
+    language_filter?: string;
+    /**
+     *
+     * @type {string}
+     * @memberof ConversationSearchRequest
+     */
+    medium_filter?: string;
+    /**
+     *
+     * @type {boolean}
+     * @memberof ConversationSearchRequest
+     */
+    order_by_newest?: boolean;
+    /**
+     *
+     * @type {boolean}
+     * @memberof ConversationSearchRequest
+     */
+    order_by_oldest?: boolean;
+    /**
+     *
+     * @type {number}
+     * @memberof ConversationSearchRequest
+     */
+    range_begin?: number;
+    /**
+     *
+     * @type {number}
+     * @memberof ConversationSearchRequest
+     */
+    range_end?: number;
+    /**
+     *
+     * @type {string}
+     * @memberof ConversationSearchRequest
+     */
+    sms_phone_number_filter?: string;
+    /**
+     *
+     * @type {string}
+     * @memberof ConversationSearchRequest
+     */
+    text_search?: string;
+    /**
+     *
+     * @type {boolean}
+     * @memberof ConversationSearchRequest
+     */
+    visible_filter?: boolean;
+}
+/**
+ *
+ * @export
+ * @interface ConversationSearchResponse
+ */
+export interface ConversationSearchResponse {
+    /**
+     *
+     * @type {number}
+     * @memberof ConversationSearchResponse
+     */
+    range_begin?: number;
+    /**
+     *
+     * @type {number}
+     * @memberof ConversationSearchResponse
+     */
+    range_end?: number;
+    /**
+     *
+     * @type {number}
+     * @memberof ConversationSearchResponse
+     */
+    total?: number;
 }
 /**
  *
@@ -38326,6 +38486,22 @@ export declare const ConversationApiFetchParamCreator: (configuration?: Configur
      */
     getConversations(medium?: string, before?: string, _limit?: number, _offset?: number, options?: any): FetchArgs;
     /**
+     * Retrieve a list of matching terms for a search field
+     * @summary Retrieve a list of matching terms for a search field
+     * @param {ConversationAutocompleteRequest} autocomplete_request Autocomplete Request
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getConversationsAutocomplete(autocomplete_request: ConversationAutocompleteRequest, options?: any): FetchArgs;
+    /**
+     * Search conversations
+     * @summary Search conversations
+     * @param {ConversationSearchRequest} search_request Search Request
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getConversationsSearch(search_request: ConversationSearchRequest, options?: any): FetchArgs;
+    /**
      * Insert a canned message
      * @summary Insert a canned message
      * @param {ConversationCannedMessage} canned_message Canned message
@@ -38521,6 +38697,22 @@ export declare const ConversationApiFp: (configuration?: Configuration) => {
      */
     getConversations(medium?: string, before?: string, _limit?: number, _offset?: number, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ConversationsResponse>;
     /**
+     * Retrieve a list of matching terms for a search field
+     * @summary Retrieve a list of matching terms for a search field
+     * @param {ConversationAutocompleteRequest} autocomplete_request Autocomplete Request
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getConversationsAutocomplete(autocomplete_request: ConversationAutocompleteRequest, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ConversationAutocompleteResponse>;
+    /**
+     * Search conversations
+     * @summary Search conversations
+     * @param {ConversationSearchRequest} search_request Search Request
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getConversationsSearch(search_request: ConversationSearchRequest, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ConversationSearchResponse>;
+    /**
      * Insert a canned message
      * @summary Insert a canned message
      * @param {ConversationCannedMessage} canned_message Canned message
@@ -38715,6 +38907,22 @@ export declare const ConversationApiFactory: (configuration?: Configuration, fet
      * @throws {RequiredError}
      */
     getConversations(medium?: string, before?: string, _limit?: number, _offset?: number, options?: any): Promise<ConversationsResponse>;
+    /**
+     * Retrieve a list of matching terms for a search field
+     * @summary Retrieve a list of matching terms for a search field
+     * @param {ConversationAutocompleteRequest} autocomplete_request Autocomplete Request
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getConversationsAutocomplete(autocomplete_request: ConversationAutocompleteRequest, options?: any): Promise<ConversationAutocompleteResponse>;
+    /**
+     * Search conversations
+     * @summary Search conversations
+     * @param {ConversationSearchRequest} search_request Search Request
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getConversationsSearch(search_request: ConversationSearchRequest, options?: any): Promise<ConversationSearchResponse>;
     /**
      * Insert a canned message
      * @summary Insert a canned message
@@ -38922,6 +39130,24 @@ export interface ConversationApiInterface {
      * @memberof ConversationApiInterface
      */
     getConversations(medium?: string, before?: string, _limit?: number, _offset?: number, options?: any): Promise<ConversationsResponse>;
+    /**
+     * Retrieve a list of matching terms for a search field
+     * @summary Retrieve a list of matching terms for a search field
+     * @param {ConversationAutocompleteRequest} autocomplete_request Autocomplete Request
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApiInterface
+     */
+    getConversationsAutocomplete(autocomplete_request: ConversationAutocompleteRequest, options?: any): Promise<ConversationAutocompleteResponse>;
+    /**
+     * Search conversations
+     * @summary Search conversations
+     * @param {ConversationSearchRequest} search_request Search Request
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApiInterface
+     */
+    getConversationsSearch(search_request: ConversationSearchRequest, options?: any): Promise<ConversationSearchResponse>;
     /**
      * Insert a canned message
      * @summary Insert a canned message
@@ -39142,6 +39368,24 @@ export declare class ConversationApi extends BaseAPI implements ConversationApiI
      * @memberof ConversationApi
      */
     getConversations(medium?: string, before?: string, _limit?: number, _offset?: number, options?: any): Promise<ConversationsResponse>;
+    /**
+     * Retrieve a list of matching terms for a search field
+     * @summary Retrieve a list of matching terms for a search field
+     * @param {ConversationAutocompleteRequest} autocomplete_request Autocomplete Request
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApi
+     */
+    getConversationsAutocomplete(autocomplete_request: ConversationAutocompleteRequest, options?: any): Promise<ConversationAutocompleteResponse>;
+    /**
+     * Search conversations
+     * @summary Search conversations
+     * @param {ConversationSearchRequest} search_request Search Request
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApi
+     */
+    getConversationsSearch(search_request: ConversationSearchRequest, options?: any): Promise<ConversationSearchResponse>;
     /**
      * Insert a canned message
      * @summary Insert a canned message

@@ -5955,6 +5955,102 @@ var ConversationApiFetchParamCreator = function (configuration) {
             };
         },
         /**
+         * Retrieve a list of matching terms for a search field
+         * @summary Retrieve a list of matching terms for a search field
+         * @param {ConversationAutocompleteRequest} autocomplete_request Autocomplete Request
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getConversationsAutocomplete: function (autocomplete_request, options) {
+            if (options === void 0) { options = {}; }
+            // verify required parameter 'autocomplete_request' is not null or undefined
+            if (autocomplete_request === null || autocomplete_request === undefined) {
+                throw new RequiredError('autocomplete_request', 'Required parameter autocomplete_request was null or undefined when calling getConversationsAutocomplete.');
+            }
+            var localVarPath = "/conversation/conversations/autocomplete";
+            var localVarUrlObj = url.parse(localVarPath, true);
+            var localVarRequestOptions = Object.assign({ method: 'POST' }, options);
+            var localVarHeaderParameter = {};
+            var localVarQueryParameter = {};
+            if (configuration && configuration.apiVersion) {
+                localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+            }
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+                var localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+                    ? configuration.accessToken("ultraCartOauth", ["conversation_read"])
+                    : configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                var localVarApiKeyValue = typeof configuration.apiKey === 'function'
+                    ? configuration.apiKey("x-ultracart-simple-key")
+                    : configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+            var needsSerialization = ("ConversationAutocompleteRequest" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
+            localVarRequestOptions.body = needsSerialization ? JSON.stringify(autocomplete_request || {}) : (autocomplete_request || "");
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Search conversations
+         * @summary Search conversations
+         * @param {ConversationSearchRequest} search_request Search Request
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getConversationsSearch: function (search_request, options) {
+            if (options === void 0) { options = {}; }
+            // verify required parameter 'search_request' is not null or undefined
+            if (search_request === null || search_request === undefined) {
+                throw new RequiredError('search_request', 'Required parameter search_request was null or undefined when calling getConversationsSearch.');
+            }
+            var localVarPath = "/conversation/conversations/search";
+            var localVarUrlObj = url.parse(localVarPath, true);
+            var localVarRequestOptions = Object.assign({ method: 'POST' }, options);
+            var localVarHeaderParameter = {};
+            var localVarQueryParameter = {};
+            if (configuration && configuration.apiVersion) {
+                localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+            }
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+                var localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+                    ? configuration.accessToken("ultraCartOauth", ["conversation_read"])
+                    : configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                var localVarApiKeyValue = typeof configuration.apiKey === 'function'
+                    ? configuration.apiKey("x-ultracart-simple-key")
+                    : configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+            var needsSerialization = ("ConversationSearchRequest" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
+            localVarRequestOptions.body = needsSerialization ? JSON.stringify(search_request || {}) : (search_request || "");
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
          * Insert a canned message
          * @summary Insert a canned message
          * @param {ConversationCannedMessage} canned_message Canned message
@@ -6804,6 +6900,50 @@ var ConversationApiFp = function (configuration) {
             };
         },
         /**
+         * Retrieve a list of matching terms for a search field
+         * @summary Retrieve a list of matching terms for a search field
+         * @param {ConversationAutocompleteRequest} autocomplete_request Autocomplete Request
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getConversationsAutocomplete: function (autocomplete_request, options) {
+            var localVarFetchArgs = (0, exports.ConversationApiFetchParamCreator)(configuration).getConversationsAutocomplete(autocomplete_request, options);
+            return function (fetch, basePath) {
+                if (fetch === void 0) { fetch = portableFetch; }
+                if (basePath === void 0) { basePath = BASE_PATH; }
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(function (response) {
+                    if (response.status >= 200 && response.status < 300) {
+                        return response.json();
+                    }
+                    else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
+         * Search conversations
+         * @summary Search conversations
+         * @param {ConversationSearchRequest} search_request Search Request
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getConversationsSearch: function (search_request, options) {
+            var localVarFetchArgs = (0, exports.ConversationApiFetchParamCreator)(configuration).getConversationsSearch(search_request, options);
+            return function (fetch, basePath) {
+                if (fetch === void 0) { fetch = portableFetch; }
+                if (basePath === void 0) { basePath = BASE_PATH; }
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(function (response) {
+                    if (response.status >= 200 && response.status < 300) {
+                        return response.json();
+                    }
+                    else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
          * Insert a canned message
          * @summary Insert a canned message
          * @param {ConversationCannedMessage} canned_message Canned message
@@ -7192,6 +7332,26 @@ var ConversationApiFactory = function (configuration, fetch, basePath) {
             return (0, exports.ConversationApiFp)(configuration).getConversations(medium, before, _limit, _offset, options)(fetch, basePath);
         },
         /**
+         * Retrieve a list of matching terms for a search field
+         * @summary Retrieve a list of matching terms for a search field
+         * @param {ConversationAutocompleteRequest} autocomplete_request Autocomplete Request
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getConversationsAutocomplete: function (autocomplete_request, options) {
+            return (0, exports.ConversationApiFp)(configuration).getConversationsAutocomplete(autocomplete_request, options)(fetch, basePath);
+        },
+        /**
+         * Search conversations
+         * @summary Search conversations
+         * @param {ConversationSearchRequest} search_request Search Request
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getConversationsSearch: function (search_request, options) {
+            return (0, exports.ConversationApiFp)(configuration).getConversationsSearch(search_request, options)(fetch, basePath);
+        },
+        /**
          * Insert a canned message
          * @summary Insert a canned message
          * @param {ConversationCannedMessage} canned_message Canned message
@@ -7450,6 +7610,28 @@ var ConversationApi = /** @class */ (function (_super) {
      */
     ConversationApi.prototype.getConversations = function (medium, before, _limit, _offset, options) {
         return (0, exports.ConversationApiFp)(this.configuration).getConversations(medium, before, _limit, _offset, options)(this.fetch, this.basePath);
+    };
+    /**
+     * Retrieve a list of matching terms for a search field
+     * @summary Retrieve a list of matching terms for a search field
+     * @param {ConversationAutocompleteRequest} autocomplete_request Autocomplete Request
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApi
+     */
+    ConversationApi.prototype.getConversationsAutocomplete = function (autocomplete_request, options) {
+        return (0, exports.ConversationApiFp)(this.configuration).getConversationsAutocomplete(autocomplete_request, options)(this.fetch, this.basePath);
+    };
+    /**
+     * Search conversations
+     * @summary Search conversations
+     * @param {ConversationSearchRequest} search_request Search Request
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApi
+     */
+    ConversationApi.prototype.getConversationsSearch = function (search_request, options) {
+        return (0, exports.ConversationApiFp)(this.configuration).getConversationsSearch(search_request, options)(this.fetch, this.basePath);
     };
     /**
      * Insert a canned message
