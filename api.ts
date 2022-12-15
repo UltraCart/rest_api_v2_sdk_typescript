@@ -6598,10 +6598,10 @@ export interface ConversationAutocompleteResponse {
     metadata?: ResponseMetadata;
     /**
      * 
-     * @type {Array<string>}
+     * @type {Array<ConversationAutocompleteValue>}
      * @memberof ConversationAutocompleteResponse
      */
-    results?: Array<string>;
+    results?: Array<ConversationAutocompleteValue>;
     /**
      * Indicates if API call was successful
      * @type {boolean}
@@ -6620,6 +6620,26 @@ export interface ConversationAutocompleteResponse {
      * @memberof ConversationAutocompleteResponse
      */
     warning?: Warning;
+}
+
+/**
+ * 
+ * @export
+ * @interface ConversationAutocompleteValue
+ */
+export interface ConversationAutocompleteValue {
+    /**
+     * 
+     * @type {string}
+     * @memberof ConversationAutocompleteValue
+     */
+    description?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ConversationAutocompleteValue
+     */
+    value?: string;
 }
 
 /**
@@ -7638,6 +7658,18 @@ export interface ConversationResponse {
  * @interface ConversationSearchRequest
  */
 export interface ConversationSearchRequest {
+    /**
+     * End of the range
+     * @type {string}
+     * @memberof ConversationSearchRequest
+     */
+    date_end?: string;
+    /**
+     * Start of the range
+     * @type {string}
+     * @memberof ConversationSearchRequest
+     */
+    date_start?: string;
     /**
      * 
      * @type {string}
