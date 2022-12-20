@@ -13,6 +13,13 @@
  */
 
 import { exists, mapValues } from '../runtime';
+import {
+    ConversationEngagementEquation,
+    ConversationEngagementEquationFromJSON,
+    ConversationEngagementEquationFromJSONTyped,
+    ConversationEngagementEquationToJSON,
+} from './ConversationEngagementEquation';
+
 /**
  * 
  * @export
@@ -45,10 +52,10 @@ export interface ConversationEngagement {
     engagement_name?: string;
     /**
      * 
-     * @type {object}
+     * @type {ConversationEngagementEquation}
      * @memberof ConversationEngagement
      */
-    equation?: object;
+    equation?: ConversationEngagementEquation;
     /**
      * 
      * @type {number}
@@ -56,12 +63,24 @@ export interface ConversationEngagement {
      */
     time_on_page?: number;
     /**
-     * 
+     * The type of visitor
      * @type {string}
      * @memberof ConversationEngagement
      */
-    visitor_type?: string;
+    visitor_type?: ConversationEngagementVisitorTypeEnum;
 }
+
+
+/**
+ * @export
+ */
+export const ConversationEngagementVisitorTypeEnum = {
+    All: 'all',
+    FirstTime: 'first time',
+    Returning: 'returning'
+} as const;
+export type ConversationEngagementVisitorTypeEnum = typeof ConversationEngagementVisitorTypeEnum[keyof typeof ConversationEngagementVisitorTypeEnum];
+
 
 export function ConversationEngagementFromJSON(json: any): ConversationEngagement {
     return ConversationEngagementFromJSONTyped(json, false);
@@ -77,7 +96,7 @@ export function ConversationEngagementFromJSONTyped(json: any, ignoreDiscriminat
         'customer_greeting': !exists(json, 'customer_greeting') ? undefined : json['customer_greeting'],
         'department_oids': !exists(json, 'department_oids') ? undefined : json['department_oids'],
         'engagement_name': !exists(json, 'engagement_name') ? undefined : json['engagement_name'],
-        'equation': !exists(json, 'equation') ? undefined : json['equation'],
+        'equation': !exists(json, 'equation') ? undefined : ConversationEngagementEquationFromJSON(json['equation']),
         'time_on_page': !exists(json, 'time_on_page') ? undefined : json['time_on_page'],
         'visitor_type': !exists(json, 'visitor_type') ? undefined : json['visitor_type'],
     };
@@ -96,7 +115,7 @@ export function ConversationEngagementToJSON(value?: ConversationEngagement | nu
         'customer_greeting': value.customer_greeting,
         'department_oids': value.department_oids,
         'engagement_name': value.engagement_name,
-        'equation': value.equation,
+        'equation': ConversationEngagementEquationToJSON(value.equation),
         'time_on_page': value.time_on_page,
         'visitor_type': value.visitor_type,
     };

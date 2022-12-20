@@ -155,6 +155,9 @@ src/models/ConversationDepartment.ts
 src/models/ConversationDepartmentResponse.ts
 src/models/ConversationDepartmentsResponse.ts
 src/models/ConversationEngagement.ts
+src/models/ConversationEngagementEquation.ts
+src/models/ConversationEngagementEquationFunction.ts
+src/models/ConversationEngagementEquationGroup.ts
 src/models/ConversationEngagementResponse.ts
 src/models/ConversationEngagementsResponse.ts
 src/models/ConversationEventAddCoupon.ts
