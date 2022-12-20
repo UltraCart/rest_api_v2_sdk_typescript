@@ -28,9 +28,9 @@ var __extends = (this && this.__extends) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.OrderQuery = exports.OrderPaymentECheck = exports.OrderPaymentCreditCard = exports.OrderPayment = exports.OrderItemOption = exports.OrderItem = exports.OrderFraudScore = exports.OrderFormat = exports.OrderAutoOrder = exports.OrderAffiliateLedger = exports.Order = exports.OauthTokenResponse = exports.ItemThirdPartyEmailMarketing = exports.ItemTax = exports.ItemTag = exports.ItemShippingMethod = exports.ItemShippingDestinationRestriction = exports.ItemRestrictionItem = exports.ItemRelatedItem = exports.ItemOptionValue = exports.ItemOption = exports.ItemContentMultimedia = exports.ItemAutoOrderStep = exports.Experiment = exports.EmailPerformance = exports.EmailCommseqStep = exports.Distance = exports.ConversationWebsocketMessage = exports.ConversationWebchatQueueStatusUpdateRequest = exports.ConversationWebchatQueueStatusAgent = exports.ConversationSummary = exports.ConversationMessageTransportStatus = exports.ConversationMessage = exports.ConversationEventRRWeb = exports.Conversation = exports.CheckoutHandoffRequest = exports.ChannelPartnerOrderItem = exports.ChannelPartnerOrder = exports.CartKitComponentOption = exports.CartItemOption = exports.CartItemMultimedia = exports.CartCustomerProfileCreditCard = exports.AutoOrderItemSimpleSchedule = exports.AutoOrderItem = exports.AutoOrder = exports.AffiliateLink = exports.AffiliateLedger = exports.RequiredError = exports.BaseAPI = exports.COLLECTION_FORMATS = void 0;
-exports.ItemApiFactory = exports.ItemApiFp = exports.ItemApiFetchParamCreator = exports.IntegrationLogApi = exports.IntegrationLogApiFactory = exports.IntegrationLogApiFp = exports.IntegrationLogApiFetchParamCreator = exports.GiftCertificateApi = exports.GiftCertificateApiFactory = exports.GiftCertificateApiFp = exports.GiftCertificateApiFetchParamCreator = exports.FulfillmentApi = exports.FulfillmentApiFactory = exports.FulfillmentApiFp = exports.FulfillmentApiFetchParamCreator = exports.CustomerApi = exports.CustomerApiFactory = exports.CustomerApiFp = exports.CustomerApiFetchParamCreator = exports.CouponApi = exports.CouponApiFactory = exports.CouponApiFp = exports.CouponApiFetchParamCreator = exports.ConversationApi = exports.ConversationApiFactory = exports.ConversationApiFp = exports.ConversationApiFetchParamCreator = exports.CheckoutApi = exports.CheckoutApiFactory = exports.CheckoutApiFp = exports.CheckoutApiFetchParamCreator = exports.ChargebackApi = exports.ChargebackApiFactory = exports.ChargebackApiFp = exports.ChargebackApiFetchParamCreator = exports.ChannelPartnerApi = exports.ChannelPartnerApiFactory = exports.ChannelPartnerApiFp = exports.ChannelPartnerApiFetchParamCreator = exports.AutoOrderApi = exports.AutoOrderApiFactory = exports.AutoOrderApiFp = exports.AutoOrderApiFetchParamCreator = exports.AffiliateApi = exports.AffiliateApiFactory = exports.AffiliateApiFp = exports.AffiliateApiFetchParamCreator = exports.Weight = exports.Webhook = exports.TempMultimedia = void 0;
-exports.WebhookApi = exports.WebhookApiFactory = exports.WebhookApiFp = exports.WebhookApiFetchParamCreator = exports.UserApi = exports.UserApiFactory = exports.UserApiFp = exports.UserApiFetchParamCreator = exports.TaxApi = exports.TaxApiFactory = exports.TaxApiFp = exports.TaxApiFetchParamCreator = exports.StorefrontApi = exports.StorefrontApiFactory = exports.StorefrontApiFp = exports.StorefrontApiFetchParamCreator = exports.SsoApi = exports.SsoApiFactory = exports.SsoApiFp = exports.SsoApiFetchParamCreator = exports.OrderApi = exports.OrderApiFactory = exports.OrderApiFp = exports.OrderApiFetchParamCreator = exports.OauthApi = exports.OauthApiFactory = exports.OauthApiFp = exports.OauthApiFetchParamCreator = exports.ItemApi = void 0;
+exports.OrderPaymentCreditCard = exports.OrderPayment = exports.OrderItemOption = exports.OrderItem = exports.OrderFraudScore = exports.OrderFormat = exports.OrderAutoOrder = exports.OrderAffiliateLedger = exports.Order = exports.OauthTokenResponse = exports.ItemThirdPartyEmailMarketing = exports.ItemTax = exports.ItemTag = exports.ItemShippingMethod = exports.ItemShippingDestinationRestriction = exports.ItemRestrictionItem = exports.ItemRelatedItem = exports.ItemOptionValue = exports.ItemOption = exports.ItemContentMultimedia = exports.ItemAutoOrderStep = exports.Experiment = exports.EmailPerformance = exports.EmailCommseqStep = exports.Distance = exports.ConversationWebsocketMessage = exports.ConversationWebchatQueueStatusUpdateRequest = exports.ConversationWebchatQueueStatusAgent = exports.ConversationSummary = exports.ConversationMessageTransportStatus = exports.ConversationMessage = exports.ConversationEventRRWeb = exports.ConversationEngagementEquationFunction = exports.ConversationEngagement = exports.Conversation = exports.CheckoutHandoffRequest = exports.ChannelPartnerOrderItem = exports.ChannelPartnerOrder = exports.CartKitComponentOption = exports.CartItemOption = exports.CartItemMultimedia = exports.CartCustomerProfileCreditCard = exports.AutoOrderItemSimpleSchedule = exports.AutoOrderItem = exports.AutoOrder = exports.AffiliateLink = exports.AffiliateLedger = exports.RequiredError = exports.BaseAPI = exports.COLLECTION_FORMATS = void 0;
+exports.ItemApiFetchParamCreator = exports.IntegrationLogApi = exports.IntegrationLogApiFactory = exports.IntegrationLogApiFp = exports.IntegrationLogApiFetchParamCreator = exports.GiftCertificateApi = exports.GiftCertificateApiFactory = exports.GiftCertificateApiFp = exports.GiftCertificateApiFetchParamCreator = exports.FulfillmentApi = exports.FulfillmentApiFactory = exports.FulfillmentApiFp = exports.FulfillmentApiFetchParamCreator = exports.CustomerApi = exports.CustomerApiFactory = exports.CustomerApiFp = exports.CustomerApiFetchParamCreator = exports.CouponApi = exports.CouponApiFactory = exports.CouponApiFp = exports.CouponApiFetchParamCreator = exports.ConversationApi = exports.ConversationApiFactory = exports.ConversationApiFp = exports.ConversationApiFetchParamCreator = exports.CheckoutApi = exports.CheckoutApiFactory = exports.CheckoutApiFp = exports.CheckoutApiFetchParamCreator = exports.ChargebackApi = exports.ChargebackApiFactory = exports.ChargebackApiFp = exports.ChargebackApiFetchParamCreator = exports.ChannelPartnerApi = exports.ChannelPartnerApiFactory = exports.ChannelPartnerApiFp = exports.ChannelPartnerApiFetchParamCreator = exports.AutoOrderApi = exports.AutoOrderApiFactory = exports.AutoOrderApiFp = exports.AutoOrderApiFetchParamCreator = exports.AffiliateApi = exports.AffiliateApiFactory = exports.AffiliateApiFp = exports.AffiliateApiFetchParamCreator = exports.Weight = exports.Webhook = exports.TempMultimedia = exports.OrderQuery = exports.OrderPaymentECheck = void 0;
+exports.WebhookApi = exports.WebhookApiFactory = exports.WebhookApiFp = exports.WebhookApiFetchParamCreator = exports.UserApi = exports.UserApiFactory = exports.UserApiFp = exports.UserApiFetchParamCreator = exports.TaxApi = exports.TaxApiFactory = exports.TaxApiFp = exports.TaxApiFetchParamCreator = exports.StorefrontApi = exports.StorefrontApiFactory = exports.StorefrontApiFp = exports.StorefrontApiFetchParamCreator = exports.SsoApi = exports.SsoApiFactory = exports.SsoApiFp = exports.SsoApiFetchParamCreator = exports.OrderApi = exports.OrderApiFactory = exports.OrderApiFp = exports.OrderApiFetchParamCreator = exports.OauthApi = exports.OauthApiFactory = exports.OauthApiFp = exports.OauthApiFetchParamCreator = exports.ItemApi = exports.ItemApiFactory = exports.ItemApiFp = void 0;
 var url = require("url");
 var portableFetch = require("portable-fetch");
 var BASE_PATH = "https://secure.ultracart.com/rest/v2".replace(/\/+$/, "");
@@ -375,6 +375,114 @@ var Conversation;
         MediumEnum[MediumEnum["Websocket"] = 'websocket'] = "Websocket";
     })(MediumEnum = Conversation.MediumEnum || (Conversation.MediumEnum = {}));
 })(Conversation = exports.Conversation || (exports.Conversation = {}));
+/**
+ * @export
+ * @namespace ConversationEngagement
+ */
+var ConversationEngagement;
+(function (ConversationEngagement) {
+    /**
+     * @export
+     * @enum {string}
+     */
+    var VisitorTypeEnum;
+    (function (VisitorTypeEnum) {
+        VisitorTypeEnum[VisitorTypeEnum["All"] = 'all'] = "All";
+        VisitorTypeEnum[VisitorTypeEnum["FirstTime"] = 'first time'] = "FirstTime";
+        VisitorTypeEnum[VisitorTypeEnum["Returning"] = 'returning'] = "Returning";
+    })(VisitorTypeEnum = ConversationEngagement.VisitorTypeEnum || (ConversationEngagement.VisitorTypeEnum = {}));
+})(ConversationEngagement = exports.ConversationEngagement || (exports.ConversationEngagement = {}));
+/**
+ * @export
+ * @namespace ConversationEngagementEquationFunction
+ */
+var ConversationEngagementEquationFunction;
+(function (ConversationEngagementEquationFunction) {
+    /**
+     * @export
+     * @enum {string}
+     */
+    var AnyPageUrlLogicEnum;
+    (function (AnyPageUrlLogicEnum) {
+        AnyPageUrlLogicEnum[AnyPageUrlLogicEnum["Contains"] = 'contains'] = "Contains";
+        AnyPageUrlLogicEnum[AnyPageUrlLogicEnum["DoesNotContain"] = 'does not contain'] = "DoesNotContain";
+        AnyPageUrlLogicEnum[AnyPageUrlLogicEnum["IsExactly"] = 'is exactly'] = "IsExactly";
+        AnyPageUrlLogicEnum[AnyPageUrlLogicEnum["IsNot"] = 'is not'] = "IsNot";
+    })(AnyPageUrlLogicEnum = ConversationEngagementEquationFunction.AnyPageUrlLogicEnum || (ConversationEngagementEquationFunction.AnyPageUrlLogicEnum = {}));
+    /**
+     * @export
+     * @enum {string}
+     */
+    var CurrentPageUrlLogicEnum;
+    (function (CurrentPageUrlLogicEnum) {
+        CurrentPageUrlLogicEnum[CurrentPageUrlLogicEnum["Contains"] = 'contains'] = "Contains";
+        CurrentPageUrlLogicEnum[CurrentPageUrlLogicEnum["DoesNotContain"] = 'does not contain'] = "DoesNotContain";
+        CurrentPageUrlLogicEnum[CurrentPageUrlLogicEnum["IsExactly"] = 'is exactly'] = "IsExactly";
+        CurrentPageUrlLogicEnum[CurrentPageUrlLogicEnum["IsNot"] = 'is not'] = "IsNot";
+    })(CurrentPageUrlLogicEnum = ConversationEngagementEquationFunction.CurrentPageUrlLogicEnum || (ConversationEngagementEquationFunction.CurrentPageUrlLogicEnum = {}));
+    /**
+     * @export
+     * @enum {string}
+     */
+    var CustomersBrowsingTimeLogicEnum;
+    (function (CustomersBrowsingTimeLogicEnum) {
+        CustomersBrowsingTimeLogicEnum[CustomersBrowsingTimeLogicEnum["AtLeast"] = 'is at least'] = "AtLeast";
+        CustomersBrowsingTimeLogicEnum[CustomersBrowsingTimeLogicEnum["MoreThan"] = 'is more than'] = "MoreThan";
+        CustomersBrowsingTimeLogicEnum[CustomersBrowsingTimeLogicEnum["LessThan"] = 'is less than'] = "LessThan";
+        CustomersBrowsingTimeLogicEnum[CustomersBrowsingTimeLogicEnum["AtMost"] = 'is at most'] = "AtMost";
+    })(CustomersBrowsingTimeLogicEnum = ConversationEngagementEquationFunction.CustomersBrowsingTimeLogicEnum || (ConversationEngagementEquationFunction.CustomersBrowsingTimeLogicEnum = {}));
+    /**
+     * @export
+     * @enum {string}
+     */
+    var CustomersLocationLogicEnum;
+    (function (CustomersLocationLogicEnum) {
+        CustomersLocationLogicEnum[CustomersLocationLogicEnum["Is"] = 'is'] = "Is";
+        CustomersLocationLogicEnum[CustomersLocationLogicEnum["IsNot"] = 'is not'] = "IsNot";
+    })(CustomersLocationLogicEnum = ConversationEngagementEquationFunction.CustomersLocationLogicEnum || (ConversationEngagementEquationFunction.CustomersLocationLogicEnum = {}));
+    /**
+     * @export
+     * @enum {string}
+     */
+    var NumberOfViewedPagesLogicEnum;
+    (function (NumberOfViewedPagesLogicEnum) {
+        NumberOfViewedPagesLogicEnum[NumberOfViewedPagesLogicEnum["AtLeast"] = 'is at least'] = "AtLeast";
+        NumberOfViewedPagesLogicEnum[NumberOfViewedPagesLogicEnum["MoreThan"] = 'is more than'] = "MoreThan";
+        NumberOfViewedPagesLogicEnum[NumberOfViewedPagesLogicEnum["LessThan"] = 'is less than'] = "LessThan";
+        NumberOfViewedPagesLogicEnum[NumberOfViewedPagesLogicEnum["AtMost"] = 'is at most'] = "AtMost";
+    })(NumberOfViewedPagesLogicEnum = ConversationEngagementEquationFunction.NumberOfViewedPagesLogicEnum || (ConversationEngagementEquationFunction.NumberOfViewedPagesLogicEnum = {}));
+    /**
+     * @export
+     * @enum {string}
+     */
+    var ReferringWebsiteLogicEnum;
+    (function (ReferringWebsiteLogicEnum) {
+        ReferringWebsiteLogicEnum[ReferringWebsiteLogicEnum["Contains"] = 'contains'] = "Contains";
+        ReferringWebsiteLogicEnum[ReferringWebsiteLogicEnum["DoesNotContain"] = 'does not contain'] = "DoesNotContain";
+        ReferringWebsiteLogicEnum[ReferringWebsiteLogicEnum["IsExactly"] = 'is exactly'] = "IsExactly";
+        ReferringWebsiteLogicEnum[ReferringWebsiteLogicEnum["IsNot"] = 'is not'] = "IsNot";
+    })(ReferringWebsiteLogicEnum = ConversationEngagementEquationFunction.ReferringWebsiteLogicEnum || (ConversationEngagementEquationFunction.ReferringWebsiteLogicEnum = {}));
+    /**
+     * @export
+     * @enum {string}
+     */
+    var TypeEnum;
+    (function (TypeEnum) {
+        TypeEnum[TypeEnum["CurrentPageUrl"] = 'current page url'] = "CurrentPageUrl";
+        TypeEnum[TypeEnum["CustomersLocation"] = 'customer'] = "CustomersLocation";
+        TypeEnum[TypeEnum["s"] = void 0] = "s";
+        TypeEnum[TypeEnum["location"] = void 0] = "location";
+        TypeEnum[TypeEnum[","] = void 0] = ",";
+        TypeEnum[TypeEnum["CustomersBrowsingTime"] = 'customer'] = "CustomersBrowsingTime";
+        TypeEnum[TypeEnum["s"] = void 0] = "s";
+        TypeEnum[TypeEnum["browsing"] = void 0] = "browsing";
+        TypeEnum[TypeEnum["time"] = void 0] = "time";
+        TypeEnum[TypeEnum[","] = void 0] = ",";
+        TypeEnum[TypeEnum["NumberOfViewedPages"] = 'number of viewed pages'] = "NumberOfViewedPages";
+        TypeEnum[TypeEnum["ReferringWebsiteAddress"] = 'referring website address'] = "ReferringWebsiteAddress";
+        TypeEnum[TypeEnum["AnyPageFromSession"] = 'any page from session'] = "AnyPageFromSession";
+    })(TypeEnum = ConversationEngagementEquationFunction.TypeEnum || (ConversationEngagementEquationFunction.TypeEnum = {}));
+})(ConversationEngagementEquationFunction = exports.ConversationEngagementEquationFunction || (exports.ConversationEngagementEquationFunction = {}));
 /**
  * @export
  * @namespace ConversationEventRRWeb

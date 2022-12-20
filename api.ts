@@ -6935,11 +6935,27 @@ export interface ConversationEngagement {
      */
     time_on_page?: number;
     /**
-     * 
+     * The type of visitor
      * @type {string}
      * @memberof ConversationEngagement
      */
-    visitor_type?: string;
+    visitor_type?: ConversationEngagement.VisitorTypeEnum;
+}
+
+/**
+ * @export
+ * @namespace ConversationEngagement
+ */
+export namespace ConversationEngagement {
+    /**
+     * @export
+     * @enum {string}
+     */
+    export enum VisitorTypeEnum {
+        All = <any> 'all',
+        FirstTime = <any> 'first time',
+        Returning = <any> 'returning'
+    }
 }
 
 /**
@@ -6948,6 +6964,195 @@ export interface ConversationEngagement {
  * @interface ConversationEngagementEquation
  */
 export interface ConversationEngagementEquation {
+    /**
+     * 
+     * @type {Array<ConversationEngagementEquationGroup>}
+     * @memberof ConversationEngagementEquation
+     */
+    groups?: Array<ConversationEngagementEquationGroup>;
+}
+
+/**
+ * 
+ * @export
+ * @interface ConversationEngagementEquationFunction
+ */
+export interface ConversationEngagementEquationFunction {
+    /**
+     * Logic operation to perform on an any page url function type
+     * @type {string}
+     * @memberof ConversationEngagementEquationFunction
+     */
+    any_page_url_logic?: ConversationEngagementEquationFunction.AnyPageUrlLogicEnum;
+    /**
+     * 
+     * @type {string}
+     * @memberof ConversationEngagementEquationFunction
+     */
+    any_page_url_value?: string;
+    /**
+     * Logic operation to perform on a current page url function type
+     * @type {string}
+     * @memberof ConversationEngagementEquationFunction
+     */
+    current_page_url_logic?: ConversationEngagementEquationFunction.CurrentPageUrlLogicEnum;
+    /**
+     * 
+     * @type {string}
+     * @memberof ConversationEngagementEquationFunction
+     */
+    current_page_url_value?: string;
+    /**
+     * Logic operation to perform on a customer's browsing time function type
+     * @type {string}
+     * @memberof ConversationEngagementEquationFunction
+     */
+    customers_browsing_time_logic?: ConversationEngagementEquationFunction.CustomersBrowsingTimeLogicEnum;
+    /**
+     * 
+     * @type {number}
+     * @memberof ConversationEngagementEquationFunction
+     */
+    customers_browsing_time_seconds?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof ConversationEngagementEquationFunction
+     */
+    customers_location_country?: string;
+    /**
+     * Logic operation to perform on a customer's location function type
+     * @type {string}
+     * @memberof ConversationEngagementEquationFunction
+     */
+    customers_location_logic?: ConversationEngagementEquationFunction.CustomersLocationLogicEnum;
+    /**
+     * 
+     * @type {string}
+     * @memberof ConversationEngagementEquationFunction
+     */
+    customers_location_state?: string;
+    /**
+     * Logic operation to perform on a customer's browsing time function type
+     * @type {string}
+     * @memberof ConversationEngagementEquationFunction
+     */
+    number_of_viewed_pages_logic?: ConversationEngagementEquationFunction.NumberOfViewedPagesLogicEnum;
+    /**
+     * 
+     * @type {number}
+     * @memberof ConversationEngagementEquationFunction
+     */
+    number_of_viewed_pages_value?: number;
+    /**
+     * Logic operation to perform on a referring website function type
+     * @type {string}
+     * @memberof ConversationEngagementEquationFunction
+     */
+    referring_website_logic?: ConversationEngagementEquationFunction.ReferringWebsiteLogicEnum;
+    /**
+     * 
+     * @type {string}
+     * @memberof ConversationEngagementEquationFunction
+     */
+    referring_website_value?: string;
+    /**
+     * Type of function
+     * @type {string}
+     * @memberof ConversationEngagementEquationFunction
+     */
+    type?: ConversationEngagementEquationFunction.TypeEnum;
+}
+
+/**
+ * @export
+ * @namespace ConversationEngagementEquationFunction
+ */
+export namespace ConversationEngagementEquationFunction {
+    /**
+     * @export
+     * @enum {string}
+     */
+    export enum AnyPageUrlLogicEnum {
+        Contains = <any> 'contains',
+        DoesNotContain = <any> 'does not contain',
+        IsExactly = <any> 'is exactly',
+        IsNot = <any> 'is not'
+    }
+    /**
+     * @export
+     * @enum {string}
+     */
+    export enum CurrentPageUrlLogicEnum {
+        Contains = <any> 'contains',
+        DoesNotContain = <any> 'does not contain',
+        IsExactly = <any> 'is exactly',
+        IsNot = <any> 'is not'
+    }
+    /**
+     * @export
+     * @enum {string}
+     */
+    export enum CustomersBrowsingTimeLogicEnum {
+        AtLeast = <any> 'is at least',
+        MoreThan = <any> 'is more than',
+        LessThan = <any> 'is less than',
+        AtMost = <any> 'is at most'
+    }
+    /**
+     * @export
+     * @enum {string}
+     */
+    export enum CustomersLocationLogicEnum {
+        Is = <any> 'is',
+        IsNot = <any> 'is not'
+    }
+    /**
+     * @export
+     * @enum {string}
+     */
+    export enum NumberOfViewedPagesLogicEnum {
+        AtLeast = <any> 'is at least',
+        MoreThan = <any> 'is more than',
+        LessThan = <any> 'is less than',
+        AtMost = <any> 'is at most'
+    }
+    /**
+     * @export
+     * @enum {string}
+     */
+    export enum ReferringWebsiteLogicEnum {
+        Contains = <any> 'contains',
+        DoesNotContain = <any> 'does not contain',
+        IsExactly = <any> 'is exactly',
+        IsNot = <any> 'is not'
+    }
+    /**
+     * @export
+     * @enum {string}
+     */
+    export enum TypeEnum {
+        CurrentPageUrl = <any> 'current page url',
+        CustomersLocation = <any> 'customer's location',
+        CustomersBrowsingTime = <any> 'customer's browsing time',
+        NumberOfViewedPages = <any> 'number of viewed pages',
+        ReferringWebsiteAddress = <any> 'referring website address',
+        AnyPageFromSession = <any> 'any page from session'
+    }
+}
+
+/**
+ * 
+ * @export
+ * @interface ConversationEngagementEquationGroup
+ */
+export interface ConversationEngagementEquationGroup {
+    /**
+     * 
+     * @type {Array<ConversationEngagementEquationFunction>}
+     * @memberof ConversationEngagementEquationGroup
+     */
+    functions?: Array<ConversationEngagementEquationFunction>;
 }
 
 /**
