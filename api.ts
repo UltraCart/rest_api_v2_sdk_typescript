@@ -6784,12 +6784,6 @@ export interface ConversationDepartment {
     conversation_department_oid?: number;
     /**
      * 
-     * @type {boolean}
-     * @memberof ConversationDepartment
-     */
-    delete_me?: boolean;
-    /**
-     * 
      * @type {string}
      * @memberof ConversationDepartment
      */
@@ -6898,6 +6892,12 @@ export interface ConversationDepartmentsResponse {
  * @interface ConversationEngagement
  */
 export interface ConversationEngagement {
+    /**
+     * 
+     * @type {boolean}
+     * @memberof ConversationEngagement
+     */
+    active?: boolean;
     /**
      * 
      * @type {number}
@@ -42403,6 +42403,162 @@ export class CheckoutApi extends BaseAPI implements CheckoutApiInterface {
 export const ConversationApiFetchParamCreator = function (configuration?: Configuration) {
     return {
         /**
+         * Delete a conversation canned message 
+         * @summary Delete a conversation canned message
+         * @param {number} conversation_canned_message_oid 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        deleteConversationCannedMessage(conversation_canned_message_oid: number, options: any = {}): FetchArgs {
+            // verify required parameter 'conversation_canned_message_oid' is not null or undefined
+            if (conversation_canned_message_oid === null || conversation_canned_message_oid === undefined) {
+                throw new RequiredError('conversation_canned_message_oid','Required parameter conversation_canned_message_oid was null or undefined when calling deleteConversationCannedMessage.');
+            }
+            const localVarPath = `/conversation/canned_messages/{conversation_canned_message_oid}`
+                .replace(`{${"conversation_canned_message_oid"}}`, encodeURIComponent(String(conversation_canned_message_oid)));
+            const localVarUrlObj = url.parse(localVarPath, true);
+            const localVarRequestOptions = Object.assign({ method: 'DELETE' }, options);
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+    if(configuration && configuration.apiVersion) {
+      localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+    }
+
+
+
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+				const localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+					? configuration.accessToken("ultraCartOauth", ["conversation_write"])
+					: configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
+					? configuration.apiKey("x-ultracart-simple-key")
+					: configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Delete a conversation department 
+         * @summary Delete a conversation department
+         * @param {number} conversation_department_oid 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        deleteDepartment(conversation_department_oid: number, options: any = {}): FetchArgs {
+            // verify required parameter 'conversation_department_oid' is not null or undefined
+            if (conversation_department_oid === null || conversation_department_oid === undefined) {
+                throw new RequiredError('conversation_department_oid','Required parameter conversation_department_oid was null or undefined when calling deleteDepartment.');
+            }
+            const localVarPath = `/conversation/departments/{conversation_department_oid}`
+                .replace(`{${"conversation_department_oid"}}`, encodeURIComponent(String(conversation_department_oid)));
+            const localVarUrlObj = url.parse(localVarPath, true);
+            const localVarRequestOptions = Object.assign({ method: 'DELETE' }, options);
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+    if(configuration && configuration.apiVersion) {
+      localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+    }
+
+
+
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+				const localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+					? configuration.accessToken("ultraCartOauth", ["conversation_write"])
+					: configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
+					? configuration.apiKey("x-ultracart-simple-key")
+					: configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Delete a conversation engagement 
+         * @summary Delete a conversation engagement
+         * @param {number} conversation_engagement_oid 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        deleteEngagement(conversation_engagement_oid: number, options: any = {}): FetchArgs {
+            // verify required parameter 'conversation_engagement_oid' is not null or undefined
+            if (conversation_engagement_oid === null || conversation_engagement_oid === undefined) {
+                throw new RequiredError('conversation_engagement_oid','Required parameter conversation_engagement_oid was null or undefined when calling deleteEngagement.');
+            }
+            const localVarPath = `/conversation/engagements/{conversation_engagement_oid}`
+                .replace(`{${"conversation_engagement_oid"}}`, encodeURIComponent(String(conversation_engagement_oid)));
+            const localVarUrlObj = url.parse(localVarPath, true);
+            const localVarRequestOptions = Object.assign({ method: 'DELETE' }, options);
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+    if(configuration && configuration.apiVersion) {
+      localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+    }
+
+
+
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+				const localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+					? configuration.accessToken("ultraCartOauth", ["conversation_write"])
+					: configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
+					? configuration.apiKey("x-ultracart-simple-key")
+					: configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
          * Called periodically by the conversation API to keep the session alive. 
          * @summary Agent keep alive
          * @param {*} [options] Override http request option.
@@ -43768,6 +43924,69 @@ export const ConversationApiFetchParamCreator = function (configuration?: Config
 export const ConversationApiFp = function(configuration?: Configuration) {
     return {
         /**
+         * Delete a conversation canned message 
+         * @summary Delete a conversation canned message
+         * @param {number} conversation_canned_message_oid 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        deleteConversationCannedMessage(conversation_canned_message_oid: number, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Response> {
+            const localVarFetchArgs = ConversationApiFetchParamCreator(configuration).deleteConversationCannedMessage(conversation_canned_message_oid, options);
+            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
+                    if (response.status >= 200 && response.status < 300) {
+                      return response;
+                      
+                    } else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
+         * Delete a conversation department 
+         * @summary Delete a conversation department
+         * @param {number} conversation_department_oid 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        deleteDepartment(conversation_department_oid: number, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Response> {
+            const localVarFetchArgs = ConversationApiFetchParamCreator(configuration).deleteDepartment(conversation_department_oid, options);
+            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
+                    if (response.status >= 200 && response.status < 300) {
+                      return response;
+                      
+                    } else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
+         * Delete a conversation engagement 
+         * @summary Delete a conversation engagement
+         * @param {number} conversation_engagement_oid 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        deleteEngagement(conversation_engagement_oid: number, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Response> {
+            const localVarFetchArgs = ConversationApiFetchParamCreator(configuration).deleteEngagement(conversation_engagement_oid, options);
+            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
+                    if (response.status >= 200 && response.status < 300) {
+                      return response;
+                      
+                    } else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
          * Called periodically by the conversation API to keep the session alive. 
          * @summary Agent keep alive
          * @param {*} [options] Override http request option.
@@ -44307,6 +44526,36 @@ export const ConversationApiFp = function(configuration?: Configuration) {
 export const ConversationApiFactory = function (configuration?: Configuration, fetch?: FetchAPI, basePath?: string) {
     return {
         /**
+         * Delete a conversation canned message 
+         * @summary Delete a conversation canned message
+         * @param {number} conversation_canned_message_oid 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        deleteConversationCannedMessage(conversation_canned_message_oid: number, options?: any) {
+            return ConversationApiFp(configuration).deleteConversationCannedMessage(conversation_canned_message_oid, options)(fetch, basePath);
+        },
+        /**
+         * Delete a conversation department 
+         * @summary Delete a conversation department
+         * @param {number} conversation_department_oid 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        deleteDepartment(conversation_department_oid: number, options?: any) {
+            return ConversationApiFp(configuration).deleteDepartment(conversation_department_oid, options)(fetch, basePath);
+        },
+        /**
+         * Delete a conversation engagement 
+         * @summary Delete a conversation engagement
+         * @param {number} conversation_engagement_oid 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        deleteEngagement(conversation_engagement_oid: number, options?: any) {
+            return ConversationApiFp(configuration).deleteEngagement(conversation_engagement_oid, options)(fetch, basePath);
+        },
+        /**
          * Called periodically by the conversation API to keep the session alive. 
          * @summary Agent keep alive
          * @param {*} [options] Override http request option.
@@ -44571,6 +44820,36 @@ export const ConversationApiFactory = function (configuration?: Configuration, f
  */
 export interface ConversationApiInterface {
     /**
+     * Delete a conversation canned message 
+     * @summary Delete a conversation canned message
+     * @param {number} conversation_canned_message_oid 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApiInterface
+     */
+    deleteConversationCannedMessage(conversation_canned_message_oid: number, options?: any): Promise<{}>;
+
+    /**
+     * Delete a conversation department 
+     * @summary Delete a conversation department
+     * @param {number} conversation_department_oid 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApiInterface
+     */
+    deleteDepartment(conversation_department_oid: number, options?: any): Promise<{}>;
+
+    /**
+     * Delete a conversation engagement 
+     * @summary Delete a conversation engagement
+     * @param {number} conversation_engagement_oid 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApiInterface
+     */
+    deleteEngagement(conversation_engagement_oid: number, options?: any): Promise<{}>;
+
+    /**
      * Called periodically by the conversation API to keep the session alive. 
      * @summary Agent keep alive
      * @param {*} [options] Override http request option.
@@ -44834,6 +45113,42 @@ export interface ConversationApiInterface {
  * @extends {BaseAPI}
  */
 export class ConversationApi extends BaseAPI implements ConversationApiInterface {
+    /**
+     * Delete a conversation canned message 
+     * @summary Delete a conversation canned message
+     * @param {number} conversation_canned_message_oid 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApi
+     */
+    public deleteConversationCannedMessage(conversation_canned_message_oid: number, options?: any) {
+        return ConversationApiFp(this.configuration).deleteConversationCannedMessage(conversation_canned_message_oid, options)(this.fetch, this.basePath);
+    }
+
+    /**
+     * Delete a conversation department 
+     * @summary Delete a conversation department
+     * @param {number} conversation_department_oid 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApi
+     */
+    public deleteDepartment(conversation_department_oid: number, options?: any) {
+        return ConversationApiFp(this.configuration).deleteDepartment(conversation_department_oid, options)(this.fetch, this.basePath);
+    }
+
+    /**
+     * Delete a conversation engagement 
+     * @summary Delete a conversation engagement
+     * @param {number} conversation_engagement_oid 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApi
+     */
+    public deleteEngagement(conversation_engagement_oid: number, options?: any) {
+        return ConversationApiFp(this.configuration).deleteEngagement(conversation_engagement_oid, options)(this.fetch, this.basePath);
+    }
+
     /**
      * Called periodically by the conversation API to keep the session alive. 
      * @summary Agent keep alive

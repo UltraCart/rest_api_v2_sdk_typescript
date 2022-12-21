@@ -6625,12 +6625,6 @@ export interface ConversationDepartment {
     conversation_department_oid?: number;
     /**
      *
-     * @type {boolean}
-     * @memberof ConversationDepartment
-     */
-    delete_me?: boolean;
-    /**
-     *
      * @type {string}
      * @memberof ConversationDepartment
      */
@@ -6735,6 +6729,12 @@ export interface ConversationDepartmentsResponse {
  * @interface ConversationEngagement
  */
 export interface ConversationEngagement {
+    /**
+     *
+     * @type {boolean}
+     * @memberof ConversationEngagement
+     */
+    active?: boolean;
     /**
      *
      * @type {number}
@@ -38637,6 +38637,30 @@ export declare class CheckoutApi extends BaseAPI implements CheckoutApiInterface
  */
 export declare const ConversationApiFetchParamCreator: (configuration?: Configuration) => {
     /**
+     * Delete a conversation canned message
+     * @summary Delete a conversation canned message
+     * @param {number} conversation_canned_message_oid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    deleteConversationCannedMessage(conversation_canned_message_oid: number, options?: any): FetchArgs;
+    /**
+     * Delete a conversation department
+     * @summary Delete a conversation department
+     * @param {number} conversation_department_oid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    deleteDepartment(conversation_department_oid: number, options?: any): FetchArgs;
+    /**
+     * Delete a conversation engagement
+     * @summary Delete a conversation engagement
+     * @param {number} conversation_engagement_oid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    deleteEngagement(conversation_engagement_oid: number, options?: any): FetchArgs;
+    /**
      * Called periodically by the conversation API to keep the session alive.
      * @summary Agent keep alive
      * @param {*} [options] Override http request option.
@@ -38847,6 +38871,30 @@ export declare const ConversationApiFetchParamCreator: (configuration?: Configur
  * @export
  */
 export declare const ConversationApiFp: (configuration?: Configuration) => {
+    /**
+     * Delete a conversation canned message
+     * @summary Delete a conversation canned message
+     * @param {number} conversation_canned_message_oid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    deleteConversationCannedMessage(conversation_canned_message_oid: number, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Response>;
+    /**
+     * Delete a conversation department
+     * @summary Delete a conversation department
+     * @param {number} conversation_department_oid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    deleteDepartment(conversation_department_oid: number, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Response>;
+    /**
+     * Delete a conversation engagement
+     * @summary Delete a conversation engagement
+     * @param {number} conversation_engagement_oid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    deleteEngagement(conversation_engagement_oid: number, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Response>;
     /**
      * Called periodically by the conversation API to keep the session alive.
      * @summary Agent keep alive
@@ -39059,6 +39107,30 @@ export declare const ConversationApiFp: (configuration?: Configuration) => {
  */
 export declare const ConversationApiFactory: (configuration?: Configuration, fetch?: FetchAPI, basePath?: string) => {
     /**
+     * Delete a conversation canned message
+     * @summary Delete a conversation canned message
+     * @param {number} conversation_canned_message_oid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    deleteConversationCannedMessage(conversation_canned_message_oid: number, options?: any): Promise<Response>;
+    /**
+     * Delete a conversation department
+     * @summary Delete a conversation department
+     * @param {number} conversation_department_oid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    deleteDepartment(conversation_department_oid: number, options?: any): Promise<Response>;
+    /**
+     * Delete a conversation engagement
+     * @summary Delete a conversation engagement
+     * @param {number} conversation_engagement_oid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    deleteEngagement(conversation_engagement_oid: number, options?: any): Promise<Response>;
+    /**
      * Called periodically by the conversation API to keep the session alive.
      * @summary Agent keep alive
      * @param {*} [options] Override http request option.
@@ -39270,6 +39342,33 @@ export declare const ConversationApiFactory: (configuration?: Configuration, fet
  * @interface ConversationApi
  */
 export interface ConversationApiInterface {
+    /**
+     * Delete a conversation canned message
+     * @summary Delete a conversation canned message
+     * @param {number} conversation_canned_message_oid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApiInterface
+     */
+    deleteConversationCannedMessage(conversation_canned_message_oid: number, options?: any): Promise<{}>;
+    /**
+     * Delete a conversation department
+     * @summary Delete a conversation department
+     * @param {number} conversation_department_oid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApiInterface
+     */
+    deleteDepartment(conversation_department_oid: number, options?: any): Promise<{}>;
+    /**
+     * Delete a conversation engagement
+     * @summary Delete a conversation engagement
+     * @param {number} conversation_engagement_oid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApiInterface
+     */
+    deleteEngagement(conversation_engagement_oid: number, options?: any): Promise<{}>;
     /**
      * Called periodically by the conversation API to keep the session alive.
      * @summary Agent keep alive
@@ -39508,6 +39607,33 @@ export interface ConversationApiInterface {
  * @extends {BaseAPI}
  */
 export declare class ConversationApi extends BaseAPI implements ConversationApiInterface {
+    /**
+     * Delete a conversation canned message
+     * @summary Delete a conversation canned message
+     * @param {number} conversation_canned_message_oid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApi
+     */
+    deleteConversationCannedMessage(conversation_canned_message_oid: number, options?: any): Promise<Response>;
+    /**
+     * Delete a conversation department
+     * @summary Delete a conversation department
+     * @param {number} conversation_department_oid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApi
+     */
+    deleteDepartment(conversation_department_oid: number, options?: any): Promise<Response>;
+    /**
+     * Delete a conversation engagement
+     * @summary Delete a conversation engagement
+     * @param {number} conversation_engagement_oid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApi
+     */
+    deleteEngagement(conversation_engagement_oid: number, options?: any): Promise<Response>;
     /**
      * Called periodically by the conversation API to keep the session alive.
      * @summary Agent keep alive
