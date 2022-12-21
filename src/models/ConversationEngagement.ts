@@ -28,6 +28,12 @@ import {
 export interface ConversationEngagement {
     /**
      * 
+     * @type {boolean}
+     * @memberof ConversationEngagement
+     */
+    active?: boolean;
+    /**
+     * 
      * @type {number}
      * @memberof ConversationEngagement
      */
@@ -92,6 +98,7 @@ export function ConversationEngagementFromJSONTyped(json: any, ignoreDiscriminat
     }
     return {
         
+        'active': !exists(json, 'active') ? undefined : json['active'],
         'conversation_engagement_oid': !exists(json, 'conversation_engagement_oid') ? undefined : json['conversation_engagement_oid'],
         'customer_greeting': !exists(json, 'customer_greeting') ? undefined : json['customer_greeting'],
         'department_oids': !exists(json, 'department_oids') ? undefined : json['department_oids'],
@@ -111,6 +118,7 @@ export function ConversationEngagementToJSON(value?: ConversationEngagement | nu
     }
     return {
         
+        'active': value.active,
         'conversation_engagement_oid': value.conversation_engagement_oid,
         'customer_greeting': value.customer_greeting,
         'department_oids': value.department_oids,

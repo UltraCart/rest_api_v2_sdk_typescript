@@ -95,6 +95,18 @@ import {
     ErrorResponseToJSON,
 } from '../models';
 
+export interface DeleteConversationCannedMessageRequest {
+    conversationCannedMessageOid: number;
+}
+
+export interface DeleteDepartmentRequest {
+    conversationDepartmentOid: number;
+}
+
+export interface DeleteEngagementRequest {
+    conversationEngagementOid: number;
+}
+
 export interface GetConversationRequest {
     conversationUuid: string;
     limit?: number;
@@ -189,6 +201,54 @@ export interface UpdateConversationWebchatQueueStatusRequest {
  * @interface ConversationApiInterface
  */
 export interface ConversationApiInterface {
+    /**
+     * Delete a conversation canned message 
+     * @summary Delete a conversation canned message
+     * @param {number} conversationCannedMessageOid 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApiInterface
+     */
+    deleteConversationCannedMessageRaw(requestParameters: DeleteConversationCannedMessageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+
+    /**
+     * Delete a conversation canned message 
+     * Delete a conversation canned message
+     */
+    deleteConversationCannedMessage(requestParameters: DeleteConversationCannedMessageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+
+    /**
+     * Delete a conversation department 
+     * @summary Delete a conversation department
+     * @param {number} conversationDepartmentOid 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApiInterface
+     */
+    deleteDepartmentRaw(requestParameters: DeleteDepartmentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+
+    /**
+     * Delete a conversation department 
+     * Delete a conversation department
+     */
+    deleteDepartment(requestParameters: DeleteDepartmentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+
+    /**
+     * Delete a conversation engagement 
+     * @summary Delete a conversation engagement
+     * @param {number} conversationEngagementOid 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApiInterface
+     */
+    deleteEngagementRaw(requestParameters: DeleteEngagementRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+
+    /**
+     * Delete a conversation engagement 
+     * Delete a conversation engagement
+     */
+    deleteEngagement(requestParameters: DeleteEngagementRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+
     /**
      * Called periodically by the conversation API to keep the session alive. 
      * @summary Agent keep alive
@@ -600,6 +660,126 @@ export interface ConversationApiInterface {
  * 
  */
 export class ConversationApi extends runtime.BaseAPI implements ConversationApiInterface {
+
+    /**
+     * Delete a conversation canned message 
+     * Delete a conversation canned message
+     */
+    async deleteConversationCannedMessageRaw(requestParameters: DeleteConversationCannedMessageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        if (requestParameters.conversationCannedMessageOid === null || requestParameters.conversationCannedMessageOid === undefined) {
+            throw new runtime.RequiredError('conversationCannedMessageOid','Required parameter requestParameters.conversationCannedMessageOid was null or undefined when calling deleteConversationCannedMessage.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", ["conversation_write"]);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/conversation/canned_messages/{conversation_canned_message_oid}`.replace(`{${"conversation_canned_message_oid"}}`, encodeURIComponent(String(requestParameters.conversationCannedMessageOid))),
+            method: 'DELETE',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     * Delete a conversation canned message 
+     * Delete a conversation canned message
+     */
+    async deleteConversationCannedMessage(requestParameters: DeleteConversationCannedMessageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.deleteConversationCannedMessageRaw(requestParameters, initOverrides);
+    }
+
+    /**
+     * Delete a conversation department 
+     * Delete a conversation department
+     */
+    async deleteDepartmentRaw(requestParameters: DeleteDepartmentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        if (requestParameters.conversationDepartmentOid === null || requestParameters.conversationDepartmentOid === undefined) {
+            throw new runtime.RequiredError('conversationDepartmentOid','Required parameter requestParameters.conversationDepartmentOid was null or undefined when calling deleteDepartment.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", ["conversation_write"]);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/conversation/departments/{conversation_department_oid}`.replace(`{${"conversation_department_oid"}}`, encodeURIComponent(String(requestParameters.conversationDepartmentOid))),
+            method: 'DELETE',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     * Delete a conversation department 
+     * Delete a conversation department
+     */
+    async deleteDepartment(requestParameters: DeleteDepartmentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.deleteDepartmentRaw(requestParameters, initOverrides);
+    }
+
+    /**
+     * Delete a conversation engagement 
+     * Delete a conversation engagement
+     */
+    async deleteEngagementRaw(requestParameters: DeleteEngagementRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        if (requestParameters.conversationEngagementOid === null || requestParameters.conversationEngagementOid === undefined) {
+            throw new runtime.RequiredError('conversationEngagementOid','Required parameter requestParameters.conversationEngagementOid was null or undefined when calling deleteEngagement.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", ["conversation_write"]);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/conversation/engagements/{conversation_engagement_oid}`.replace(`{${"conversation_engagement_oid"}}`, encodeURIComponent(String(requestParameters.conversationEngagementOid))),
+            method: 'DELETE',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     * Delete a conversation engagement 
+     * Delete a conversation engagement
+     */
+    async deleteEngagement(requestParameters: DeleteEngagementRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.deleteEngagementRaw(requestParameters, initOverrides);
+    }
 
     /**
      * Called periodically by the conversation API to keep the session alive. 

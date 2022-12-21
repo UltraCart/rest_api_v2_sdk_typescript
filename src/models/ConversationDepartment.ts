@@ -27,12 +27,6 @@ export interface ConversationDepartment {
     conversation_department_oid?: number;
     /**
      * 
-     * @type {boolean}
-     * @memberof ConversationDepartment
-     */
-    delete_me?: boolean;
-    /**
-     * 
      * @type {string}
      * @memberof ConversationDepartment
      */
@@ -62,7 +56,6 @@ export function ConversationDepartmentFromJSONTyped(json: any, ignoreDiscriminat
     return {
         
         'conversation_department_oid': !exists(json, 'conversation_department_oid') ? undefined : json['conversation_department_oid'],
-        'delete_me': !exists(json, 'delete_me') ? undefined : json['delete_me'],
         'department_name': !exists(json, 'department_name') ? undefined : json['department_name'],
         'merchant_id': !exists(json, 'merchant_id') ? undefined : json['merchant_id'],
         'settings': !exists(json, 'settings') ? undefined : json['settings'],
@@ -79,7 +72,6 @@ export function ConversationDepartmentToJSON(value?: ConversationDepartment | nu
     return {
         
         'conversation_department_oid': value.conversation_department_oid,
-        'delete_me': value.delete_me,
         'department_name': value.department_name,
         'merchant_id': value.merchant_id,
         'settings': value.settings,
