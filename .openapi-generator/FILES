@@ -225,8 +225,12 @@ src/models/CouponFreeShippingWithItemsPurchase.ts
 src/models/CouponFreeShippingWithSubtotal.ts
 src/models/CouponItemSearchResult.ts
 src/models/CouponItemSearchResultsResponse.ts
+src/models/CouponMoreLoyaltyCashback.ts
+src/models/CouponMoreLoyaltyPoints.ts
 src/models/CouponMultipleAmountsOffItems.ts
 src/models/CouponNoDiscount.ts
+src/models/CouponPercentMoreLoyaltyCashback.ts
+src/models/CouponPercentMoreLoyaltyPoints.ts
 src/models/CouponPercentOffItemWithItemsQuantityPurchase.ts
 src/models/CouponPercentOffItems.ts
 src/models/CouponPercentOffItemsAndFreeShipping.ts

@@ -152,6 +152,18 @@ import {
     CouponFreeShippingWithSubtotalToJSON,
 } from './CouponFreeShippingWithSubtotal';
 import {
+    CouponMoreLoyaltyCashback,
+    CouponMoreLoyaltyCashbackFromJSON,
+    CouponMoreLoyaltyCashbackFromJSONTyped,
+    CouponMoreLoyaltyCashbackToJSON,
+} from './CouponMoreLoyaltyCashback';
+import {
+    CouponMoreLoyaltyPoints,
+    CouponMoreLoyaltyPointsFromJSON,
+    CouponMoreLoyaltyPointsFromJSONTyped,
+    CouponMoreLoyaltyPointsToJSON,
+} from './CouponMoreLoyaltyPoints';
+import {
     CouponMultipleAmountsOffItems,
     CouponMultipleAmountsOffItemsFromJSON,
     CouponMultipleAmountsOffItemsFromJSONTyped,
@@ -163,6 +175,18 @@ import {
     CouponNoDiscountFromJSONTyped,
     CouponNoDiscountToJSON,
 } from './CouponNoDiscount';
+import {
+    CouponPercentMoreLoyaltyCashback,
+    CouponPercentMoreLoyaltyCashbackFromJSON,
+    CouponPercentMoreLoyaltyCashbackFromJSONTyped,
+    CouponPercentMoreLoyaltyCashbackToJSON,
+} from './CouponPercentMoreLoyaltyCashback';
+import {
+    CouponPercentMoreLoyaltyPoints,
+    CouponPercentMoreLoyaltyPointsFromJSON,
+    CouponPercentMoreLoyaltyPointsFromJSONTyped,
+    CouponPercentMoreLoyaltyPointsToJSON,
+} from './CouponPercentMoreLoyaltyPoints';
 import {
     CouponPercentOffItemWithItemsQuantityPurchase,
     CouponPercentOffItemWithItemsQuantityPurchaseFromJSON,
@@ -490,6 +514,18 @@ export interface Coupon {
     merchant_notes?: string;
     /**
      * 
+     * @type {CouponMoreLoyaltyCashback}
+     * @memberof Coupon
+     */
+    more_loyalty_cashback?: CouponMoreLoyaltyCashback;
+    /**
+     * 
+     * @type {CouponMoreLoyaltyPoints}
+     * @memberof Coupon
+     */
+    more_loyalty_points?: CouponMoreLoyaltyPoints;
+    /**
+     * 
      * @type {CouponMultipleAmountsOffItems}
      * @memberof Coupon
      */
@@ -500,6 +536,18 @@ export interface Coupon {
      * @memberof Coupon
      */
     no_discount?: CouponNoDiscount;
+    /**
+     * 
+     * @type {CouponPercentMoreLoyaltyCashback}
+     * @memberof Coupon
+     */
+    percent_more_loyalty_cashback?: CouponPercentMoreLoyaltyCashback;
+    /**
+     * 
+     * @type {CouponPercentMoreLoyaltyPoints}
+     * @memberof Coupon
+     */
+    percent_more_loyalty_points?: CouponPercentMoreLoyaltyPoints;
     /**
      * 
      * @type {CouponPercentOffItemWithItemsQuantityPurchase}
@@ -696,8 +744,12 @@ export function CouponFromJSONTyped(json: any, ignoreDiscriminator: boolean): Co
         'hide_from_customer': !exists(json, 'hide_from_customer') ? undefined : json['hide_from_customer'],
         'merchant_code': !exists(json, 'merchant_code') ? undefined : json['merchant_code'],
         'merchant_notes': !exists(json, 'merchant_notes') ? undefined : json['merchant_notes'],
+        'more_loyalty_cashback': !exists(json, 'more_loyalty_cashback') ? undefined : CouponMoreLoyaltyCashbackFromJSON(json['more_loyalty_cashback']),
+        'more_loyalty_points': !exists(json, 'more_loyalty_points') ? undefined : CouponMoreLoyaltyPointsFromJSON(json['more_loyalty_points']),
         'multiple_amounts_off_items': !exists(json, 'multiple_amounts_off_items') ? undefined : CouponMultipleAmountsOffItemsFromJSON(json['multiple_amounts_off_items']),
         'no_discount': !exists(json, 'no_discount') ? undefined : CouponNoDiscountFromJSON(json['no_discount']),
+        'percent_more_loyalty_cashback': !exists(json, 'percent_more_loyalty_cashback') ? undefined : CouponPercentMoreLoyaltyCashbackFromJSON(json['percent_more_loyalty_cashback']),
+        'percent_more_loyalty_points': !exists(json, 'percent_more_loyalty_points') ? undefined : CouponPercentMoreLoyaltyPointsFromJSON(json['percent_more_loyalty_points']),
         'percent_off_item_with_items_quantity_purchase': !exists(json, 'percent_off_item_with_items_quantity_purchase') ? undefined : CouponPercentOffItemWithItemsQuantityPurchaseFromJSON(json['percent_off_item_with_items_quantity_purchase']),
         'percent_off_items': !exists(json, 'percent_off_items') ? undefined : CouponPercentOffItemsFromJSON(json['percent_off_items']),
         'percent_off_items_and_free_shipping': !exists(json, 'percent_off_items_and_free_shipping') ? undefined : CouponPercentOffItemsAndFreeShippingFromJSON(json['percent_off_items_and_free_shipping']),
@@ -769,8 +821,12 @@ export function CouponToJSON(value?: Coupon | null): any {
         'hide_from_customer': value.hide_from_customer,
         'merchant_code': value.merchant_code,
         'merchant_notes': value.merchant_notes,
+        'more_loyalty_cashback': CouponMoreLoyaltyCashbackToJSON(value.more_loyalty_cashback),
+        'more_loyalty_points': CouponMoreLoyaltyPointsToJSON(value.more_loyalty_points),
         'multiple_amounts_off_items': CouponMultipleAmountsOffItemsToJSON(value.multiple_amounts_off_items),
         'no_discount': CouponNoDiscountToJSON(value.no_discount),
+        'percent_more_loyalty_cashback': CouponPercentMoreLoyaltyCashbackToJSON(value.percent_more_loyalty_cashback),
+        'percent_more_loyalty_points': CouponPercentMoreLoyaltyPointsToJSON(value.percent_more_loyalty_points),
         'percent_off_item_with_items_quantity_purchase': CouponPercentOffItemWithItemsQuantityPurchaseToJSON(value.percent_off_item_with_items_quantity_purchase),
         'percent_off_items': CouponPercentOffItemsToJSON(value.percent_off_items),
         'percent_off_items_and_free_shipping': CouponPercentOffItemsAndFreeShippingToJSON(value.percent_off_items_and_free_shipping),
