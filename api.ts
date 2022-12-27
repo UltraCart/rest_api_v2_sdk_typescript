@@ -8905,6 +8905,18 @@ export interface Coupon {
     merchant_notes?: string;
     /**
      * 
+     * @type {CouponMoreLoyaltyCashback}
+     * @memberof Coupon
+     */
+    more_loyalty_cashback?: CouponMoreLoyaltyCashback;
+    /**
+     * 
+     * @type {CouponMoreLoyaltyPoints}
+     * @memberof Coupon
+     */
+    more_loyalty_points?: CouponMoreLoyaltyPoints;
+    /**
+     * 
      * @type {CouponMultipleAmountsOffItems}
      * @memberof Coupon
      */
@@ -8915,6 +8927,18 @@ export interface Coupon {
      * @memberof Coupon
      */
     no_discount?: CouponNoDiscount;
+    /**
+     * 
+     * @type {CouponPercentMoreLoyaltyCashback}
+     * @memberof Coupon
+     */
+    percent_more_loyalty_cashback?: CouponPercentMoreLoyaltyCashback;
+    /**
+     * 
+     * @type {CouponPercentMoreLoyaltyPoints}
+     * @memberof Coupon
+     */
+    percent_more_loyalty_points?: CouponPercentMoreLoyaltyPoints;
     /**
      * 
      * @type {CouponPercentOffItemWithItemsQuantityPurchase}
@@ -10100,6 +10124,34 @@ export interface CouponItemSearchResultsResponse {
 /**
  * 
  * @export
+ * @interface CouponMoreLoyaltyCashback
+ */
+export interface CouponMoreLoyaltyCashback {
+    /**
+     * The additional loyalty cashback
+     * @type {number}
+     * @memberof CouponMoreLoyaltyCashback
+     */
+    loyalty_cashback?: number;
+}
+
+/**
+ * 
+ * @export
+ * @interface CouponMoreLoyaltyPoints
+ */
+export interface CouponMoreLoyaltyPoints {
+    /**
+     * The additional loyalty points
+     * @type {number}
+     * @memberof CouponMoreLoyaltyPoints
+     */
+    loyalty_points?: number;
+}
+
+/**
+ * 
+ * @export
  * @interface CouponMultipleAmountsOffItems
  */
 export interface CouponMultipleAmountsOffItems {
@@ -10129,6 +10181,34 @@ export interface CouponNoDiscount {
      * @memberof CouponNoDiscount
      */
     ignore_this_property?: boolean;
+}
+
+/**
+ * 
+ * @export
+ * @interface CouponPercentMoreLoyaltyCashback
+ */
+export interface CouponPercentMoreLoyaltyCashback {
+    /**
+     * The percentage of additional loyalty cashback
+     * @type {number}
+     * @memberof CouponPercentMoreLoyaltyCashback
+     */
+    percent_more_loyalty_cashback?: number;
+}
+
+/**
+ * 
+ * @export
+ * @interface CouponPercentMoreLoyaltyPoints
+ */
+export interface CouponPercentMoreLoyaltyPoints {
+    /**
+     * The percentage of additional loyalty points
+     * @type {number}
+     * @memberof CouponPercentMoreLoyaltyPoints
+     */
+    percent_more_loyalty_points?: number;
 }
 
 /**
