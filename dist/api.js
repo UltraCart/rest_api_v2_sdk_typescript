@@ -611,6 +611,8 @@ var ConversationWebsocketMessage;
         EventTypeEnum[EventTypeEnum["QueueStatusUpdate"] = 'queue status update'] = "QueueStatusUpdate";
         EventTypeEnum[EventTypeEnum["Rrweb"] = 'rrweb'] = "Rrweb";
         EventTypeEnum[EventTypeEnum["ParticipantUpdate"] = 'participant update'] = "ParticipantUpdate";
+        EventTypeEnum[EventTypeEnum["ParticipantJoin"] = 'participant join'] = "ParticipantJoin";
+        EventTypeEnum[EventTypeEnum["ParticipantLeave"] = 'participant leave'] = "ParticipantLeave";
         EventTypeEnum[EventTypeEnum["ReadMessage"] = 'read message'] = "ReadMessage";
         EventTypeEnum[EventTypeEnum["Typing"] = 'typing'] = "Typing";
         EventTypeEnum[EventTypeEnum["AddCoupon"] = 'add coupon'] = "AddCoupon";

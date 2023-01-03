@@ -8521,6 +8521,30 @@ export interface ConversationWebsocketMessage {
      * @type {ConversationSummary}
      * @memberof ConversationWebsocketMessage
      */
+    event_participant_join?: ConversationSummary;
+    /**
+     * 
+     * @type {ConversationParticipant}
+     * @memberof ConversationWebsocketMessage
+     */
+    event_participant_join_participant?: ConversationParticipant;
+    /**
+     * 
+     * @type {ConversationSummary}
+     * @memberof ConversationWebsocketMessage
+     */
+    event_participant_left?: ConversationSummary;
+    /**
+     * 
+     * @type {ConversationParticipant}
+     * @memberof ConversationWebsocketMessage
+     */
+    event_participant_left_participant?: ConversationParticipant;
+    /**
+     * 
+     * @type {ConversationSummary}
+     * @memberof ConversationWebsocketMessage
+     */
     event_participant_update?: ConversationSummary;
     /**
      * 
@@ -8603,6 +8627,8 @@ export namespace ConversationWebsocketMessage {
         QueueStatusUpdate = <any> 'queue status update',
         Rrweb = <any> 'rrweb',
         ParticipantUpdate = <any> 'participant update',
+        ParticipantJoin = <any> 'participant join',
+        ParticipantLeave = <any> 'participant leave',
         ReadMessage = <any> 'read message',
         Typing = <any> 'typing',
         AddCoupon = <any> 'add coupon',
