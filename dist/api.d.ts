@@ -27055,6 +27055,12 @@ export interface Order {
      */
     payment?: OrderPayment;
     /**
+     *
+     * @type {OrderPointOfSale}
+     * @memberof Order
+     */
+    point_of_sale?: OrderPointOfSale;
+    /**
      * Properties, available only through update, not through insert due to the nature of how properties are handled internally
      * @type {Array<OrderProperty>}
      * @memberof Order
@@ -29448,6 +29454,31 @@ export interface OrderPaymentTransactionDetail {
 /**
  *
  * @export
+ * @interface OrderPointOfSale
+ */
+export interface OrderPointOfSale {
+    /**
+     *
+     * @type {PointOfSaleLocation}
+     * @memberof OrderPointOfSale
+     */
+    location?: PointOfSaleLocation;
+    /**
+     *
+     * @type {PointOfSaleReader}
+     * @memberof OrderPointOfSale
+     */
+    reader?: PointOfSaleReader;
+    /**
+     *
+     * @type {PointOfSaleRegister}
+     * @memberof OrderPointOfSale
+     */
+    register?: PointOfSaleRegister;
+}
+/**
+ *
+ * @export
  * @interface OrderProcessPaymentRequest
  */
 export interface OrderProcessPaymentRequest {
@@ -30834,6 +30865,172 @@ export interface Permission {
      * @memberof Permission
      */
     selected?: boolean;
+}
+/**
+ *
+ * @export
+ * @interface PointOfSaleLocation
+ */
+export interface PointOfSaleLocation {
+    /**
+     * Address line 2
+     * @type {string}
+     * @memberof PointOfSaleLocation
+     */
+    adddress2?: string;
+    /**
+     * Address line 1
+     * @type {string}
+     * @memberof PointOfSaleLocation
+     */
+    address1?: string;
+    /**
+     * City
+     * @type {string}
+     * @memberof PointOfSaleLocation
+     */
+    city?: string;
+    /**
+     * Country
+     * @type {string}
+     * @memberof PointOfSaleLocation
+     */
+    country?: string;
+    /**
+     * The distribution center code where inventory is reduced from for this sale.
+     * @type {string}
+     * @memberof PointOfSaleLocation
+     */
+    distribution_center_code?: string;
+    /**
+     * Merchant ID that owns this location
+     * @type {string}
+     * @memberof PointOfSaleLocation
+     */
+    merchant_id?: string;
+    /**
+     * Object identifier of the point of sale location.
+     * @type {number}
+     * @memberof PointOfSaleLocation
+     */
+    pos_location_oid?: number;
+    /**
+     * Postal code
+     * @type {string}
+     * @memberof PointOfSaleLocation
+     */
+    postal_code?: string;
+    /**
+     * State/province
+     * @type {string}
+     * @memberof PointOfSaleLocation
+     */
+    state_province?: string;
+}
+/**
+ *
+ * @export
+ * @interface PointOfSaleReader
+ */
+export interface PointOfSaleReader {
+    /**
+     * The device type of the reader.
+     * @type {string}
+     * @memberof PointOfSaleReader
+     */
+    device_type?: string;
+    /**
+     * The label of the reader.
+     * @type {string}
+     * @memberof PointOfSaleReader
+     */
+    label?: string;
+    /**
+     * The merchant id that owns this point of sale reader.
+     * @type {string}
+     * @memberof PointOfSaleReader
+     */
+    merchant_id?: string;
+    /**
+     * The payment provider for the card reader.
+     * @type {string}
+     * @memberof PointOfSaleReader
+     */
+    payment_provider?: PointOfSaleReader.PaymentProviderEnum;
+    /**
+     * Object identifier of the point of sale reader.
+     * @type {number}
+     * @memberof PointOfSaleReader
+     */
+    pos_reader_id?: number;
+    /**
+     * Object identifier of the point of sale register this reader is assigned to.
+     * @type {number}
+     * @memberof PointOfSaleReader
+     */
+    pos_register_oid?: number;
+    /**
+     * The serial number of the reader.
+     * @type {string}
+     * @memberof PointOfSaleReader
+     */
+    serial_number?: string;
+    /**
+     * If the payment provider is Stripe, this is the Stripe account id
+     * @type {string}
+     * @memberof PointOfSaleReader
+     */
+    stripe_account_id?: string;
+    /**
+     * If the payment provide is Stripe, this is the Stripe terminal reader id
+     * @type {string}
+     * @memberof PointOfSaleReader
+     */
+    stripe_reader_id?: string;
+}
+/**
+ * @export
+ * @namespace PointOfSaleReader
+ */
+export declare namespace PointOfSaleReader {
+    /**
+     * @export
+     * @enum {string}
+     */
+    enum PaymentProviderEnum {
+        Stripe
+    }
+}
+/**
+ *
+ * @export
+ * @interface PointOfSaleRegister
+ */
+export interface PointOfSaleRegister {
+    /**
+     * The merchant id that owns this point of sale register.
+     * @type {string}
+     * @memberof PointOfSaleRegister
+     */
+    merchant_id?: string;
+    /**
+     * Name of the register.
+     * @type {string}
+     * @memberof PointOfSaleRegister
+     */
+    name?: string;
+    /**
+     * Object identifier of the point of sale location where this register is located.
+     * @type {number}
+     * @memberof PointOfSaleRegister
+     */
+    pos_location_oid?: number;
+    /**
+     * Object identifier of the point of sale register.
+     * @type {number}
+     * @memberof PointOfSaleRegister
+     */
+    pos_register_oid?: number;
 }
 /**
  *
