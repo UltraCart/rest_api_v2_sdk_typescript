@@ -62,6 +62,12 @@ import {
     ConversationMessageToJSON,
 } from './ConversationMessage';
 import {
+    ConversationParticipant,
+    ConversationParticipantFromJSON,
+    ConversationParticipantFromJSONTyped,
+    ConversationParticipantToJSON,
+} from './ConversationParticipant';
+import {
     ConversationSummary,
     ConversationSummaryFromJSON,
     ConversationSummaryFromJSONTyped,
@@ -116,6 +122,30 @@ export interface ConversationWebsocketMessage {
      * @memberof ConversationWebsocketMessage
      */
     event_new_message?: ConversationSummary;
+    /**
+     * 
+     * @type {ConversationSummary}
+     * @memberof ConversationWebsocketMessage
+     */
+    event_participant_join?: ConversationSummary;
+    /**
+     * 
+     * @type {ConversationParticipant}
+     * @memberof ConversationWebsocketMessage
+     */
+    event_participant_join_participant?: ConversationParticipant;
+    /**
+     * 
+     * @type {ConversationSummary}
+     * @memberof ConversationWebsocketMessage
+     */
+    event_participant_left?: ConversationSummary;
+    /**
+     * 
+     * @type {ConversationParticipant}
+     * @memberof ConversationWebsocketMessage
+     */
+    event_participant_left_participant?: ConversationParticipant;
     /**
      * 
      * @type {ConversationSummary}
@@ -198,6 +228,8 @@ export const ConversationWebsocketMessageEventTypeEnum = {
     QueueStatusUpdate: 'queue status update',
     Rrweb: 'rrweb',
     ParticipantUpdate: 'participant update',
+    ParticipantJoin: 'participant join',
+    ParticipantLeave: 'participant leave',
     ReadMessage: 'read message',
     Typing: 'typing',
     AddCoupon: 'add coupon',
@@ -234,6 +266,10 @@ export function ConversationWebsocketMessageFromJSONTyped(json: any, ignoreDiscr
         'event_conversation_closed': !exists(json, 'event_conversation_closed') ? undefined : ConversationSummaryFromJSON(json['event_conversation_closed']),
         'event_new_conversation': !exists(json, 'event_new_conversation') ? undefined : ConversationSummaryFromJSON(json['event_new_conversation']),
         'event_new_message': !exists(json, 'event_new_message') ? undefined : ConversationSummaryFromJSON(json['event_new_message']),
+        'event_participant_join': !exists(json, 'event_participant_join') ? undefined : ConversationSummaryFromJSON(json['event_participant_join']),
+        'event_participant_join_participant': !exists(json, 'event_participant_join_participant') ? undefined : ConversationParticipantFromJSON(json['event_participant_join_participant']),
+        'event_participant_left': !exists(json, 'event_participant_left') ? undefined : ConversationSummaryFromJSON(json['event_participant_left']),
+        'event_participant_left_participant': !exists(json, 'event_participant_left_participant') ? undefined : ConversationParticipantFromJSON(json['event_participant_left_participant']),
         'event_participant_update': !exists(json, 'event_participant_update') ? undefined : ConversationSummaryFromJSON(json['event_participant_update']),
         'event_queue_position': !exists(json, 'event_queue_position') ? undefined : ConversationEventQueuePositionFromJSON(json['event_queue_position']),
         'event_queue_status_update': !exists(json, 'event_queue_status_update') ? undefined : ConversationWebchatQueueStatusFromJSON(json['event_queue_status_update']),
@@ -263,6 +299,10 @@ export function ConversationWebsocketMessageToJSON(value?: ConversationWebsocket
         'event_conversation_closed': ConversationSummaryToJSON(value.event_conversation_closed),
         'event_new_conversation': ConversationSummaryToJSON(value.event_new_conversation),
         'event_new_message': ConversationSummaryToJSON(value.event_new_message),
+        'event_participant_join': ConversationSummaryToJSON(value.event_participant_join),
+        'event_participant_join_participant': ConversationParticipantToJSON(value.event_participant_join_participant),
+        'event_participant_left': ConversationSummaryToJSON(value.event_participant_left),
+        'event_participant_left_participant': ConversationParticipantToJSON(value.event_participant_left_participant),
         'event_participant_update': ConversationSummaryToJSON(value.event_participant_update),
         'event_queue_position': ConversationEventQueuePositionToJSON(value.event_queue_position),
         'event_queue_status_update': ConversationWebchatQueueStatusToJSON(value.event_queue_status_update),
