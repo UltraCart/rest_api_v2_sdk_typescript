@@ -593,6 +593,7 @@ src/models/OrderPaymentInsurance.ts
 src/models/OrderPaymentPurchaseOrder.ts
 src/models/OrderPaymentTransaction.ts
 src/models/OrderPaymentTransactionDetail.ts
+src/models/OrderPointOfSale.ts
 src/models/OrderProcessPaymentRequest.ts
 src/models/OrderProcessPaymentResponse.ts
 src/models/OrderProperty.ts
@@ -614,6 +615,9 @@ src/models/OrderTrackingNumberDetail.ts
 src/models/OrderTrackingNumberDetails.ts
 src/models/OrdersResponse.ts
 src/models/Permission.ts
+src/models/PointOfSaleLocation.ts
+src/models/PointOfSaleReader.ts
+src/models/PointOfSaleRegister.ts
 src/models/PricingTier.ts
 src/models/PricingTierNotification.ts
 src/models/PricingTiersResponse.ts

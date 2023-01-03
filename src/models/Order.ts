@@ -122,6 +122,12 @@ import {
     OrderPaymentToJSON,
 } from './OrderPayment';
 import {
+    OrderPointOfSale,
+    OrderPointOfSaleFromJSON,
+    OrderPointOfSaleFromJSONTyped,
+    OrderPointOfSaleToJSON,
+} from './OrderPointOfSale';
+import {
     OrderProperty,
     OrderPropertyFromJSON,
     OrderPropertyFromJSONTyped,
@@ -321,6 +327,12 @@ export interface Order {
      */
     payment?: OrderPayment;
     /**
+     * 
+     * @type {OrderPointOfSale}
+     * @memberof Order
+     */
+    point_of_sale?: OrderPointOfSale;
+    /**
      * Properties, available only through update, not through insert due to the nature of how properties are handled internally
      * @type {Array<OrderProperty>}
      * @memberof Order
@@ -432,6 +444,7 @@ export function OrderFromJSONTyped(json: any, ignoreDiscriminator: boolean): Ord
         'merchant_id': !exists(json, 'merchant_id') ? undefined : json['merchant_id'],
         'order_id': !exists(json, 'order_id') ? undefined : json['order_id'],
         'payment': !exists(json, 'payment') ? undefined : OrderPaymentFromJSON(json['payment']),
+        'point_of_sale': !exists(json, 'point_of_sale') ? undefined : OrderPointOfSaleFromJSON(json['point_of_sale']),
         'properties': !exists(json, 'properties') ? undefined : ((json['properties'] as Array<any>).map(OrderPropertyFromJSON)),
         'quote': !exists(json, 'quote') ? undefined : OrderQuoteFromJSON(json['quote']),
         'refund_dts': !exists(json, 'refund_dts') ? undefined : json['refund_dts'],
@@ -478,6 +491,7 @@ export function OrderToJSON(value?: Order | null): any {
         'merchant_id': value.merchant_id,
         'order_id': value.order_id,
         'payment': OrderPaymentToJSON(value.payment),
+        'point_of_sale': OrderPointOfSaleToJSON(value.point_of_sale),
         'properties': value.properties === undefined ? undefined : ((value.properties as Array<any>).map(OrderPropertyToJSON)),
         'quote': OrderQuoteToJSON(value.quote),
         'refund_dts': value.refund_dts,
