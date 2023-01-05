@@ -15434,6 +15434,12 @@ export interface EmailFlow {
      */
     library_item_oid?: number;
     /**
+     * The number of maximum customers for the plan are currently enrolled in this flow.
+     * @type {boolean}
+     * @memberof EmailFlow
+     */
+    maximum_enrolled?: boolean;
+    /**
      * Merchant ID
      * @type {string}
      * @memberof EmailFlow
