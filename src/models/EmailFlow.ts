@@ -116,6 +116,12 @@ export interface EmailFlow {
      */
     library_item_oid?: number;
     /**
+     * The number of maximum customers for the plan are currently enrolled in this flow.
+     * @type {boolean}
+     * @memberof EmailFlow
+     */
+    maximum_enrolled?: boolean;
+    /**
      * Merchant ID
      * @type {string}
      * @memberof EmailFlow
@@ -227,6 +233,7 @@ export function EmailFlowFromJSONTyped(json: any, ignoreDiscriminator: boolean):
         'esp_friendly_name': !exists(json, 'esp_friendly_name') ? undefined : json['esp_friendly_name'],
         'filter_profile_equation_json': !exists(json, 'filter_profile_equation_json') ? undefined : json['filter_profile_equation_json'],
         'library_item_oid': !exists(json, 'library_item_oid') ? undefined : json['library_item_oid'],
+        'maximum_enrolled': !exists(json, 'maximum_enrolled') ? undefined : json['maximum_enrolled'],
         'merchant_id': !exists(json, 'merchant_id') ? undefined : json['merchant_id'],
         'name': !exists(json, 'name') ? undefined : json['name'],
         'open_rate_formatted': !exists(json, 'open_rate_formatted') ? undefined : json['open_rate_formatted'],
@@ -269,6 +276,7 @@ export function EmailFlowToJSON(value?: EmailFlow | null): any {
         'esp_friendly_name': value.esp_friendly_name,
         'filter_profile_equation_json': value.filter_profile_equation_json,
         'library_item_oid': value.library_item_oid,
+        'maximum_enrolled': value.maximum_enrolled,
         'merchant_id': value.merchant_id,
         'name': value.name,
         'open_rate_formatted': value.open_rate_formatted,
