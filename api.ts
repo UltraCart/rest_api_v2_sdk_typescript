@@ -7957,6 +7957,12 @@ export interface ConversationSearchResponse {
     range_end?: number;
     /**
      * 
+     * @type {Array<Conversation>}
+     * @memberof ConversationSearchResponse
+     */
+    records?: Array<Conversation>;
+    /**
+     * 
      * @type {number}
      * @memberof ConversationSearchResponse
      */
