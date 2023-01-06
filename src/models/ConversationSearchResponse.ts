@@ -13,6 +13,13 @@
  */
 
 import { exists, mapValues } from '../runtime';
+import {
+    Conversation,
+    ConversationFromJSON,
+    ConversationFromJSONTyped,
+    ConversationToJSON,
+} from './Conversation';
+
 /**
  * 
  * @export
@@ -33,6 +40,12 @@ export interface ConversationSearchResponse {
     range_end?: number;
     /**
      * 
+     * @type {Array<Conversation>}
+     * @memberof ConversationSearchResponse
+     */
+    records?: Array<Conversation>;
+    /**
+     * 
      * @type {number}
      * @memberof ConversationSearchResponse
      */
@@ -51,6 +64,7 @@ export function ConversationSearchResponseFromJSONTyped(json: any, ignoreDiscrim
         
         'range_begin': !exists(json, 'range_begin') ? undefined : json['range_begin'],
         'range_end': !exists(json, 'range_end') ? undefined : json['range_end'],
+        'records': !exists(json, 'records') ? undefined : ((json['records'] as Array<any>).map(ConversationFromJSON)),
         'total': !exists(json, 'total') ? undefined : json['total'],
     };
 }
@@ -66,6 +80,7 @@ export function ConversationSearchResponseToJSON(value?: ConversationSearchRespo
         
         'range_begin': value.range_begin,
         'range_end': value.range_end,
+        'records': value.records === undefined ? undefined : ((value.records as Array<any>).map(ConversationToJSON)),
         'total': value.total,
     };
 }
