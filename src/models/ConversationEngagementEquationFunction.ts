@@ -175,8 +175,8 @@ export type ConversationEngagementEquationFunctionReferringWebsiteLogicEnum = ty
  */
 export const ConversationEngagementEquationFunctionTypeEnum = {
     CurrentPageUrl: 'current page url',
-    CustomersLocation: 'customer\'s location',
-    CustomersBrowsingTime: 'customer\'s browsing time',
+    CustomersLocation: 'customers location',
+    CustomersBrowsingTime: 'customers browsing time',
     NumberOfViewedPages: 'number of viewed pages',
     ReferringWebsiteAddress: 'referring website address',
     AnyPageFromSession: 'any page from session'
