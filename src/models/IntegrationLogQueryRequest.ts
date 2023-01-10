@@ -27,6 +27,18 @@ export interface IntegrationLogQueryRequest {
     action?: string;
     /**
      * 
+     * @type {Array<string>}
+     * @memberof IntegrationLogQueryRequest
+     */
+    auto_order_ids?: Array<string>;
+    /**
+     * 
+     * @type {Array<number>}
+     * @memberof IntegrationLogQueryRequest
+     */
+    auto_order_oids?: Array<number>;
+    /**
+     * 
      * @type {string}
      * @memberof IntegrationLogQueryRequest
      */
@@ -110,6 +122,8 @@ export function IntegrationLogQueryRequestFromJSONTyped(json: any, ignoreDiscrim
     return {
         
         'action': !exists(json, 'action') ? undefined : json['action'],
+        'auto_order_ids': !exists(json, 'auto_order_ids') ? undefined : json['auto_order_ids'],
+        'auto_order_oids': !exists(json, 'auto_order_oids') ? undefined : json['auto_order_oids'],
         'direction': !exists(json, 'direction') ? undefined : json['direction'],
         'email': !exists(json, 'email') ? undefined : json['email'],
         'file_names': !exists(json, 'file_names') ? undefined : json['file_names'],
@@ -135,6 +149,8 @@ export function IntegrationLogQueryRequestToJSON(value?: IntegrationLogQueryRequ
     return {
         
         'action': value.action,
+        'auto_order_ids': value.auto_order_ids,
+        'auto_order_oids': value.auto_order_oids,
         'direction': value.direction,
         'email': value.email,
         'file_names': value.file_names,

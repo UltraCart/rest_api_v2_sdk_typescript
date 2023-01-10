@@ -40,6 +40,12 @@ export interface IntegrationLog {
     action?: string;
     /**
      * 
+     * @type {Array<number>}
+     * @memberof IntegrationLog
+     */
+    auto_order_oids?: Array<number>;
+    /**
+     * 
      * @type {string}
      * @memberof IntegrationLog
      */
@@ -153,6 +159,7 @@ export function IntegrationLogFromJSONTyped(json: any, ignoreDiscriminator: bool
     return {
         
         'action': !exists(json, 'action') ? undefined : json['action'],
+        'auto_order_oids': !exists(json, 'auto_order_oids') ? undefined : json['auto_order_oids'],
         'direction': !exists(json, 'direction') ? undefined : json['direction'],
         'email': !exists(json, 'email') ? undefined : json['email'],
         'files': !exists(json, 'files') ? undefined : ((json['files'] as Array<any>).map(IntegrationLogFileFromJSON)),
@@ -183,6 +190,7 @@ export function IntegrationLogToJSON(value?: IntegrationLog | null): any {
     return {
         
         'action': value.action,
+        'auto_order_oids': value.auto_order_oids,
         'direction': value.direction,
         'email': value.email,
         'files': value.files === undefined ? undefined : ((value.files as Array<any>).map(IntegrationLogFileToJSON)),
