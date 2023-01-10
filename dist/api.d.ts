@@ -6967,14 +6967,7 @@ export declare namespace ConversationEngagementEquationFunction {
     enum TypeEnum {
         CurrentPageUrl,
         CustomersLocation,
-        s,
-        location,
-        ',,
         CustomersBrowsingTime,
-        s,
-        browsing,
-        time,
-        ',,
         NumberOfViewedPages,
         ReferringWebsiteAddress,
         AnyPageFromSession

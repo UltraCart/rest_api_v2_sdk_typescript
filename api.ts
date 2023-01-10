@@ -7133,8 +7133,8 @@ export namespace ConversationEngagementEquationFunction {
      */
     export enum TypeEnum {
         CurrentPageUrl = <any> 'current page url',
-        CustomersLocation = <any> 'customer's location',
-        CustomersBrowsingTime = <any> 'customer's browsing time',
+        CustomersLocation = <any> 'customers location',
+        CustomersBrowsingTime = <any> 'customers browsing time',
         NumberOfViewedPages = <any> 'number of viewed pages',
         ReferringWebsiteAddress = <any> 'referring website address',
         AnyPageFromSession = <any> 'any page from session'

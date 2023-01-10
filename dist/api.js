@@ -469,15 +469,8 @@ var ConversationEngagementEquationFunction;
     var TypeEnum;
     (function (TypeEnum) {
         TypeEnum[TypeEnum["CurrentPageUrl"] = 'current page url'] = "CurrentPageUrl";
-        TypeEnum[TypeEnum["CustomersLocation"] = 'customer'] = "CustomersLocation";
-        TypeEnum[TypeEnum["s"] = void 0] = "s";
-        TypeEnum[TypeEnum["location"] = void 0] = "location";
-        TypeEnum[TypeEnum[","] = void 0] = ",";
-        TypeEnum[TypeEnum["CustomersBrowsingTime"] = 'customer'] = "CustomersBrowsingTime";
-        TypeEnum[TypeEnum["s"] = void 0] = "s";
-        TypeEnum[TypeEnum["browsing"] = void 0] = "browsing";
-        TypeEnum[TypeEnum["time"] = void 0] = "time";
-        TypeEnum[TypeEnum[","] = void 0] = ",";
+        TypeEnum[TypeEnum["CustomersLocation"] = 'customers location'] = "CustomersLocation";
+        TypeEnum[TypeEnum["CustomersBrowsingTime"] = 'customers browsing time'] = "CustomersBrowsingTime";
         TypeEnum[TypeEnum["NumberOfViewedPages"] = 'number of viewed pages'] = "NumberOfViewedPages";
         TypeEnum[TypeEnum["ReferringWebsiteAddress"] = 'referring website address'] = "ReferringWebsiteAddress";
         TypeEnum[TypeEnum["AnyPageFromSession"] = 'any page from session'] = "AnyPageFromSession";
