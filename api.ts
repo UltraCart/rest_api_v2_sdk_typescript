@@ -21139,6 +21139,12 @@ export interface IntegrationLog {
     action?: string;
     /**
      * 
+     * @type {Array<number>}
+     * @memberof IntegrationLog
+     */
+    auto_order_oids?: Array<number>;
+    /**
+     * 
      * @type {string}
      * @memberof IntegrationLog
      */
@@ -21385,6 +21391,18 @@ export interface IntegrationLogQueryRequest {
      * @memberof IntegrationLogQueryRequest
      */
     action?: string;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof IntegrationLogQueryRequest
+     */
+    auto_order_ids?: Array<string>;
+    /**
+     * 
+     * @type {Array<number>}
+     * @memberof IntegrationLogQueryRequest
+     */
+    auto_order_oids?: Array<number>;
     /**
      * 
      * @type {string}
