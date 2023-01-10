@@ -20954,6 +20954,12 @@ export interface IntegrationLogQueryRequest {
     file_names?: Array<string>;
     /**
      *
+     * @type {number}
+     * @memberof IntegrationLogQueryRequest
+     */
+    integration_log_oid?: number;
+    /**
+     *
      * @type {string}
      * @memberof IntegrationLogQueryRequest
      */
