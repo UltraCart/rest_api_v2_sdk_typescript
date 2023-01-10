@@ -57,6 +57,12 @@ export interface IntegrationLogQueryRequest {
     file_names?: Array<string>;
     /**
      * 
+     * @type {number}
+     * @memberof IntegrationLogQueryRequest
+     */
+    integration_log_oid?: number;
+    /**
+     * 
      * @type {string}
      * @memberof IntegrationLogQueryRequest
      */
@@ -127,6 +133,7 @@ export function IntegrationLogQueryRequestFromJSONTyped(json: any, ignoreDiscrim
         'direction': !exists(json, 'direction') ? undefined : json['direction'],
         'email': !exists(json, 'email') ? undefined : json['email'],
         'file_names': !exists(json, 'file_names') ? undefined : json['file_names'],
+        'integration_log_oid': !exists(json, 'integration_log_oid') ? undefined : json['integration_log_oid'],
         'item_id': !exists(json, 'item_id') ? undefined : json['item_id'],
         'item_ipn_oid': !exists(json, 'item_ipn_oid') ? undefined : json['item_ipn_oid'],
         'log_dts_begin': !exists(json, 'log_dts_begin') ? undefined : json['log_dts_begin'],
@@ -154,6 +161,7 @@ export function IntegrationLogQueryRequestToJSON(value?: IntegrationLogQueryRequ
         'direction': value.direction,
         'email': value.email,
         'file_names': value.file_names,
+        'integration_log_oid': value.integration_log_oid,
         'item_id': value.item_id,
         'item_ipn_oid': value.item_ipn_oid,
         'log_dts_begin': value.log_dts_begin,
