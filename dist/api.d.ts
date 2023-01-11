@@ -7766,10 +7766,10 @@ export interface ConversationSearchResponse {
     range_end?: number;
     /**
      *
-     * @type {Array<Conversation>}
+     * @type {Array<ConversationSummary>}
      * @memberof ConversationSearchResponse
      */
-    records?: Array<Conversation>;
+    records?: Array<ConversationSummary>;
     /**
      *
      * @type {number}
