@@ -5905,6 +5905,126 @@ export interface ChannelPartnerOrderTransactionDetail {
 /**
  * 
  * @export
+ * @interface ChannelPartnerShipToPreference
+ */
+export interface ChannelPartnerShipToPreference {
+    /**
+     * Additional item ids to add as kit components to the order with a zero price.
+     * @type {Array<string>}
+     * @memberof ChannelPartnerShipToPreference
+     */
+    additional_kit_component_item_ids?: Array<string>;
+    /**
+     * The channel partner object identifier this preference is associated with
+     * @type {number}
+     * @memberof ChannelPartnerShipToPreference
+     */
+    channel_partner_oid?: number;
+    /**
+     * Object identifier for the ship to preference
+     * @type {number}
+     * @memberof ChannelPartnerShipToPreference
+     */
+    channel_partner_ship_to_preference_oid?: number;
+    /**
+     * The merchant id that owns the channel partner
+     * @type {string}
+     * @memberof ChannelPartnerShipToPreference
+     */
+    merchant_id?: string;
+    /**
+     * Alternate return policy to print on the packing slip.
+     * @type {string}
+     * @memberof ChannelPartnerShipToPreference
+     */
+    return_policy?: string;
+    /**
+     * The ship to EDI code that the preferences are for
+     * @type {string}
+     * @memberof ChannelPartnerShipToPreference
+     */
+    ship_to_edi_code?: string;
+}
+
+/**
+ * 
+ * @export
+ * @interface ChannelPartnerShipToPreferenceResponse
+ */
+export interface ChannelPartnerShipToPreferenceResponse {
+    /**
+     * 
+     * @type {ModelError}
+     * @memberof ChannelPartnerShipToPreferenceResponse
+     */
+    error?: ModelError;
+    /**
+     * 
+     * @type {ResponseMetadata}
+     * @memberof ChannelPartnerShipToPreferenceResponse
+     */
+    metadata?: ResponseMetadata;
+    /**
+     * 
+     * @type {ChannelPartnerShipToPreference}
+     * @memberof ChannelPartnerShipToPreferenceResponse
+     */
+    ship_to_preference?: ChannelPartnerShipToPreference;
+    /**
+     * Indicates if API call was successful
+     * @type {boolean}
+     * @memberof ChannelPartnerShipToPreferenceResponse
+     */
+    success?: boolean;
+    /**
+     * 
+     * @type {Warning}
+     * @memberof ChannelPartnerShipToPreferenceResponse
+     */
+    warning?: Warning;
+}
+
+/**
+ * 
+ * @export
+ * @interface ChannelPartnerShipToPreferencesResponse
+ */
+export interface ChannelPartnerShipToPreferencesResponse {
+    /**
+     * 
+     * @type {ModelError}
+     * @memberof ChannelPartnerShipToPreferencesResponse
+     */
+    error?: ModelError;
+    /**
+     * 
+     * @type {ResponseMetadata}
+     * @memberof ChannelPartnerShipToPreferencesResponse
+     */
+    metadata?: ResponseMetadata;
+    /**
+     * ship_to_preferences
+     * @type {Array<ChannelPartnerShipToPreference>}
+     * @memberof ChannelPartnerShipToPreferencesResponse
+     */
+    shipToPreferences?: Array<ChannelPartnerShipToPreference>;
+    /**
+     * Indicates if API call was successful
+     * @type {boolean}
+     * @memberof ChannelPartnerShipToPreferencesResponse
+     */
+    success?: boolean;
+    /**
+     * 
+     * @type {Warning}
+     * @memberof ChannelPartnerShipToPreferencesResponse
+     */
+    warning?: Warning;
+}
+
+/**
+ * 
+ * @export
  * @interface ChannelPartnerShippingEstimate
  */
 export interface ChannelPartnerShippingEstimate {
@@ -5920,6 +6040,44 @@ export interface ChannelPartnerShippingEstimate {
      * @memberof ChannelPartnerShippingEstimate
      */
     shipping_method?: string;
+}
+
+/**
+ * 
+ * @export
+ * @interface ChannelPartnersResponse
+ */
+export interface ChannelPartnersResponse {
+    /**
+     * channel_partners
+     * @type {Array<ChannelPartner>}
+     * @memberof ChannelPartnersResponse
+     */
+    channelPartners?: Array<ChannelPartner>;
+    /**
+     * 
+     * @type {ModelError}
+     * @memberof ChannelPartnersResponse
+     */
+    error?: ModelError;
+    /**
+     * 
+     * @type {ResponseMetadata}
+     * @memberof ChannelPartnersResponse
+     */
+    metadata?: ResponseMetadata;
+    /**
+     * Indicates if API call was successful
+     * @type {boolean}
+     * @memberof ChannelPartnersResponse
+     */
+    success?: boolean;
+    /**
+     * 
+     * @type {Warning}
+     * @memberof ChannelPartnersResponse
+     */
+    warning?: Warning;
 }
 
 /**
@@ -29823,7 +29981,8 @@ export namespace OrderPayment {
         QuoteRequest = <any> 'Quote Request',
         Unknown = <any> 'Unknown',
         WireTransfer = <any> 'Wire Transfer',
-        Walmart = <any> 'Walmart'
+        Walmart = <any> 'Walmart',
+        ShopCom = <any> 'Shop.com'
     }
     /**
      * @export
@@ -39246,6 +39405,64 @@ export const ChannelPartnerApiFetchParamCreator = function (configuration?: Conf
             };
         },
         /**
+         * Delete a ship to preference record for the channel partner. 
+         * @summary Delete a ship to preference record for the channel partner.
+         * @param {number} channel_partner_oid 
+         * @param {number} channel_partner_ship_to_preference_oid 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        deleteChannelPartnerShipToPreference(channel_partner_oid: number, channel_partner_ship_to_preference_oid: number, options: any = {}): FetchArgs {
+            // verify required parameter 'channel_partner_oid' is not null or undefined
+            if (channel_partner_oid === null || channel_partner_oid === undefined) {
+                throw new RequiredError('channel_partner_oid','Required parameter channel_partner_oid was null or undefined when calling deleteChannelPartnerShipToPreference.');
+            }
+            // verify required parameter 'channel_partner_ship_to_preference_oid' is not null or undefined
+            if (channel_partner_ship_to_preference_oid === null || channel_partner_ship_to_preference_oid === undefined) {
+                throw new RequiredError('channel_partner_ship_to_preference_oid','Required parameter channel_partner_ship_to_preference_oid was null or undefined when calling deleteChannelPartnerShipToPreference.');
+            }
+            const localVarPath = `/channel_partner/channel_partners/{channel_partner_oid}/ship_to_preferences/{channel_partner_ship_to_preference_oid}`
+                .replace(`{${"channel_partner_oid"}}`, encodeURIComponent(String(channel_partner_oid)))
+                .replace(`{${"channel_partner_ship_to_preference_oid"}}`, encodeURIComponent(String(channel_partner_ship_to_preference_oid)));
+            const localVarUrlObj = url.parse(localVarPath, true);
+            const localVarRequestOptions = Object.assign({ method: 'DELETE' }, options);
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+    if(configuration && configuration.apiVersion) {
+      localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+    }
+
+
+
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+				const localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+					? configuration.accessToken("ultraCartOauth", ["channel_partner_write"])
+					: configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
+					? configuration.apiKey("x-ultracart-simple-key")
+					: configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
          * Estimate shipping for order from a channel partner. 
          * @summary Estimate shipping for channel partner order
          * @param {ChannelPartnerOrder} channel_partner_order Order needing shipping estimate
@@ -39356,6 +39573,162 @@ export const ChannelPartnerApiFetchParamCreator = function (configuration?: Conf
             };
         },
         /**
+         * Retrieve the ship to preference associated with the channel partner and the specific id. 
+         * @summary Retrieve the ship to preference associated with the channel partner and the specific id.
+         * @param {number} channel_partner_oid 
+         * @param {number} channel_partner_ship_to_preference_oid 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getChannelPartnerShipToPreference(channel_partner_oid: number, channel_partner_ship_to_preference_oid: number, options: any = {}): FetchArgs {
+            // verify required parameter 'channel_partner_oid' is not null or undefined
+            if (channel_partner_oid === null || channel_partner_oid === undefined) {
+                throw new RequiredError('channel_partner_oid','Required parameter channel_partner_oid was null or undefined when calling getChannelPartnerShipToPreference.');
+            }
+            // verify required parameter 'channel_partner_ship_to_preference_oid' is not null or undefined
+            if (channel_partner_ship_to_preference_oid === null || channel_partner_ship_to_preference_oid === undefined) {
+                throw new RequiredError('channel_partner_ship_to_preference_oid','Required parameter channel_partner_ship_to_preference_oid was null or undefined when calling getChannelPartnerShipToPreference.');
+            }
+            const localVarPath = `/channel_partner/channel_partners/{channel_partner_oid}/ship_to_preferences/{channel_partner_ship_to_preference_oid}`
+                .replace(`{${"channel_partner_oid"}}`, encodeURIComponent(String(channel_partner_oid)))
+                .replace(`{${"channel_partner_ship_to_preference_oid"}}`, encodeURIComponent(String(channel_partner_ship_to_preference_oid)));
+            const localVarUrlObj = url.parse(localVarPath, true);
+            const localVarRequestOptions = Object.assign({ method: 'GET' }, options);
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+    if(configuration && configuration.apiVersion) {
+      localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+    }
+
+
+
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+				const localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+					? configuration.accessToken("ultraCartOauth", ["channel_partner_read"])
+					: configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
+					? configuration.apiKey("x-ultracart-simple-key")
+					: configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Retrieve the ship to preferences associated with the channel partner. 
+         * @summary Retrieve the ship to preferences associated with the channel partner.
+         * @param {number} channel_partner_oid 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getChannelPartnerShipToPreferences(channel_partner_oid: number, options: any = {}): FetchArgs {
+            // verify required parameter 'channel_partner_oid' is not null or undefined
+            if (channel_partner_oid === null || channel_partner_oid === undefined) {
+                throw new RequiredError('channel_partner_oid','Required parameter channel_partner_oid was null or undefined when calling getChannelPartnerShipToPreferences.');
+            }
+            const localVarPath = `/channel_partner/channel_partners/{channel_partner_oid}/ship_to_preferences`
+                .replace(`{${"channel_partner_oid"}}`, encodeURIComponent(String(channel_partner_oid)));
+            const localVarUrlObj = url.parse(localVarPath, true);
+            const localVarRequestOptions = Object.assign({ method: 'GET' }, options);
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+    if(configuration && configuration.apiVersion) {
+      localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+    }
+
+
+
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+				const localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+					? configuration.accessToken("ultraCartOauth", ["channel_partner_read"])
+					: configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
+					? configuration.apiKey("x-ultracart-simple-key")
+					: configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Retrieve the channel partners configured on the account. 
+         * @summary Retrieve the channel partners configured on the account.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getChannelPartners(options: any = {}): FetchArgs {
+            const localVarPath = `/channel_partner/channel_partners`;
+            const localVarUrlObj = url.parse(localVarPath, true);
+            const localVarRequestOptions = Object.assign({ method: 'GET' }, options);
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+    if(configuration && configuration.apiVersion) {
+      localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+    }
+
+
+
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+				const localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+					? configuration.accessToken("ultraCartOauth", ["channel_partner_read"])
+					: configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
+					? configuration.apiKey("x-ultracart-simple-key")
+					: configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
          * Insert order from a channel partner. 
          * @summary Insert channel partner order
          * @param {ChannelPartnerOrder} channel_partner_order Order to insert
@@ -39404,6 +39777,134 @@ export const ChannelPartnerApiFetchParamCreator = function (configuration?: Conf
             localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
             const needsSerialization = (<any>"ChannelPartnerOrder" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
             localVarRequestOptions.body =  needsSerialization ? JSON.stringify(channel_partner_order || {}) : (channel_partner_order || "");
+
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Insert a ship to preference record for the channel partner. 
+         * @summary Insert a ship to preference record for the channel partner.
+         * @param {number} channel_partner_oid 
+         * @param {ChannelPartnerShipToPreference} ship_to_preference Ship to preference to create
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        insertChannelPartnerShipToPreference(channel_partner_oid: number, ship_to_preference: ChannelPartnerShipToPreference, options: any = {}): FetchArgs {
+            // verify required parameter 'channel_partner_oid' is not null or undefined
+            if (channel_partner_oid === null || channel_partner_oid === undefined) {
+                throw new RequiredError('channel_partner_oid','Required parameter channel_partner_oid was null or undefined when calling insertChannelPartnerShipToPreference.');
+            }
+            // verify required parameter 'ship_to_preference' is not null or undefined
+            if (ship_to_preference === null || ship_to_preference === undefined) {
+                throw new RequiredError('ship_to_preference','Required parameter ship_to_preference was null or undefined when calling insertChannelPartnerShipToPreference.');
+            }
+            const localVarPath = `/channel_partner/channel_partners/{channel_partner_oid}/ship_to_preferences`
+                .replace(`{${"channel_partner_oid"}}`, encodeURIComponent(String(channel_partner_oid)));
+            const localVarUrlObj = url.parse(localVarPath, true);
+            const localVarRequestOptions = Object.assign({ method: 'POST' }, options);
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+    if(configuration && configuration.apiVersion) {
+      localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+    }
+
+
+
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+				const localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+					? configuration.accessToken("ultraCartOauth", ["channel_partner_write"])
+					: configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
+					? configuration.apiKey("x-ultracart-simple-key")
+					: configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+            const needsSerialization = (<any>"ChannelPartnerShipToPreference" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
+            localVarRequestOptions.body =  needsSerialization ? JSON.stringify(ship_to_preference || {}) : (ship_to_preference || "");
+
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Update a ship to preference record for the channel partner. 
+         * @summary Update a ship to preference record for the channel partner.
+         * @param {number} channel_partner_oid 
+         * @param {number} channel_partner_ship_to_preference_oid 
+         * @param {ChannelPartnerShipToPreference} ship_to_preference Ship to preference to create
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        updateChannelPartnerShipToPreference(channel_partner_oid: number, channel_partner_ship_to_preference_oid: number, ship_to_preference: ChannelPartnerShipToPreference, options: any = {}): FetchArgs {
+            // verify required parameter 'channel_partner_oid' is not null or undefined
+            if (channel_partner_oid === null || channel_partner_oid === undefined) {
+                throw new RequiredError('channel_partner_oid','Required parameter channel_partner_oid was null or undefined when calling updateChannelPartnerShipToPreference.');
+            }
+            // verify required parameter 'channel_partner_ship_to_preference_oid' is not null or undefined
+            if (channel_partner_ship_to_preference_oid === null || channel_partner_ship_to_preference_oid === undefined) {
+                throw new RequiredError('channel_partner_ship_to_preference_oid','Required parameter channel_partner_ship_to_preference_oid was null or undefined when calling updateChannelPartnerShipToPreference.');
+            }
+            // verify required parameter 'ship_to_preference' is not null or undefined
+            if (ship_to_preference === null || ship_to_preference === undefined) {
+                throw new RequiredError('ship_to_preference','Required parameter ship_to_preference was null or undefined when calling updateChannelPartnerShipToPreference.');
+            }
+            const localVarPath = `/channel_partner/channel_partners/{channel_partner_oid}/ship_to_preferences/{channel_partner_ship_to_preference_oid}`
+                .replace(`{${"channel_partner_oid"}}`, encodeURIComponent(String(channel_partner_oid)))
+                .replace(`{${"channel_partner_ship_to_preference_oid"}}`, encodeURIComponent(String(channel_partner_ship_to_preference_oid)));
+            const localVarUrlObj = url.parse(localVarPath, true);
+            const localVarRequestOptions = Object.assign({ method: 'PUT' }, options);
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+    if(configuration && configuration.apiVersion) {
+      localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+    }
+
+
+
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+				const localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+					? configuration.accessToken("ultraCartOauth", ["channel_partner_write"])
+					: configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
+					? configuration.apiKey("x-ultracart-simple-key")
+					: configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+            const needsSerialization = (<any>"ChannelPartnerShipToPreference" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
+            localVarRequestOptions.body =  needsSerialization ? JSON.stringify(ship_to_preference || {}) : (ship_to_preference || "");
 
             return {
                 url: url.format(localVarUrlObj),
@@ -39462,6 +39963,28 @@ export const ChannelPartnerApiFp = function(configuration?: Configuration) {
             };
         },
         /**
+         * Delete a ship to preference record for the channel partner. 
+         * @summary Delete a ship to preference record for the channel partner.
+         * @param {number} channel_partner_oid 
+         * @param {number} channel_partner_ship_to_preference_oid 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        deleteChannelPartnerShipToPreference(channel_partner_oid: number, channel_partner_ship_to_preference_oid: number, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Response> {
+            const localVarFetchArgs = ChannelPartnerApiFetchParamCreator(configuration).deleteChannelPartnerShipToPreference(channel_partner_oid, channel_partner_ship_to_preference_oid, options);
+            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
+                    if (response.status >= 200 && response.status < 300) {
+                      return response;
+                      
+                    } else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
          * Estimate shipping for order from a channel partner. 
          * @summary Estimate shipping for channel partner order
          * @param {ChannelPartnerOrder} channel_partner_order Order needing shipping estimate
@@ -39504,6 +40027,69 @@ export const ChannelPartnerApiFp = function(configuration?: Configuration) {
             };
         },
         /**
+         * Retrieve the ship to preference associated with the channel partner and the specific id. 
+         * @summary Retrieve the ship to preference associated with the channel partner and the specific id.
+         * @param {number} channel_partner_oid 
+         * @param {number} channel_partner_ship_to_preference_oid 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getChannelPartnerShipToPreference(channel_partner_oid: number, channel_partner_ship_to_preference_oid: number, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ChannelPartnerShipToPreferenceResponse> {
+            const localVarFetchArgs = ChannelPartnerApiFetchParamCreator(configuration).getChannelPartnerShipToPreference(channel_partner_oid, channel_partner_ship_to_preference_oid, options);
+            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
+                    if (response.status >= 200 && response.status < 300) {
+                      return response.json();
+                      
+                    } else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
+         * Retrieve the ship to preferences associated with the channel partner. 
+         * @summary Retrieve the ship to preferences associated with the channel partner.
+         * @param {number} channel_partner_oid 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getChannelPartnerShipToPreferences(channel_partner_oid: number, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ChannelPartnerShipToPreferencesResponse> {
+            const localVarFetchArgs = ChannelPartnerApiFetchParamCreator(configuration).getChannelPartnerShipToPreferences(channel_partner_oid, options);
+            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
+                    if (response.status >= 200 && response.status < 300) {
+                      return response.json();
+                      
+                    } else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
+         * Retrieve the channel partners configured on the account. 
+         * @summary Retrieve the channel partners configured on the account.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getChannelPartners(options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ChannelPartnersResponse> {
+            const localVarFetchArgs = ChannelPartnerApiFetchParamCreator(configuration).getChannelPartners(options);
+            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
+                    if (response.status >= 200 && response.status < 300) {
+                      return response.json();
+                      
+                    } else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
          * Insert order from a channel partner. 
          * @summary Insert channel partner order
          * @param {ChannelPartnerOrder} channel_partner_order Order to insert
@@ -39512,6 +40098,51 @@ export const ChannelPartnerApiFp = function(configuration?: Configuration) {
          */
         importChannelPartnerOrder(channel_partner_order: ChannelPartnerOrder, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ChannelPartnerImportResponse> {
             const localVarFetchArgs = ChannelPartnerApiFetchParamCreator(configuration).importChannelPartnerOrder(channel_partner_order, options);
+            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
+                    if (response.status >= 200 && response.status < 300) {
+                      return response.json();
+                      
+                    } else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
+         * Insert a ship to preference record for the channel partner. 
+         * @summary Insert a ship to preference record for the channel partner.
+         * @param {number} channel_partner_oid 
+         * @param {ChannelPartnerShipToPreference} ship_to_preference Ship to preference to create
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        insertChannelPartnerShipToPreference(channel_partner_oid: number, ship_to_preference: ChannelPartnerShipToPreference, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ChannelPartnerShipToPreferenceResponse> {
+            const localVarFetchArgs = ChannelPartnerApiFetchParamCreator(configuration).insertChannelPartnerShipToPreference(channel_partner_oid, ship_to_preference, options);
+            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
+                    if (response.status >= 200 && response.status < 300) {
+                      return response.json();
+                      
+                    } else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
+         * Update a ship to preference record for the channel partner. 
+         * @summary Update a ship to preference record for the channel partner.
+         * @param {number} channel_partner_oid 
+         * @param {number} channel_partner_ship_to_preference_oid 
+         * @param {ChannelPartnerShipToPreference} ship_to_preference Ship to preference to create
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        updateChannelPartnerShipToPreference(channel_partner_oid: number, channel_partner_ship_to_preference_oid: number, ship_to_preference: ChannelPartnerShipToPreference, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ChannelPartnerShipToPreferenceResponse> {
+            const localVarFetchArgs = ChannelPartnerApiFetchParamCreator(configuration).updateChannelPartnerShipToPreference(channel_partner_oid, channel_partner_ship_to_preference_oid, ship_to_preference, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
 
@@ -39554,6 +40185,17 @@ export const ChannelPartnerApiFactory = function (configuration?: Configuration,
             return ChannelPartnerApiFp(configuration).cancelOrderByUltraCartOrderId(order_id, options)(fetch, basePath);
         },
         /**
+         * Delete a ship to preference record for the channel partner. 
+         * @summary Delete a ship to preference record for the channel partner.
+         * @param {number} channel_partner_oid 
+         * @param {number} channel_partner_ship_to_preference_oid 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        deleteChannelPartnerShipToPreference(channel_partner_oid: number, channel_partner_ship_to_preference_oid: number, options?: any) {
+            return ChannelPartnerApiFp(configuration).deleteChannelPartnerShipToPreference(channel_partner_oid, channel_partner_ship_to_preference_oid, options)(fetch, basePath);
+        },
+        /**
          * Estimate shipping for order from a channel partner. 
          * @summary Estimate shipping for channel partner order
          * @param {ChannelPartnerOrder} channel_partner_order Order needing shipping estimate
@@ -39574,6 +40216,36 @@ export const ChannelPartnerApiFactory = function (configuration?: Configuration,
             return ChannelPartnerApiFp(configuration).estimateTaxForChannelPartnerOrder(channel_partner_order, options)(fetch, basePath);
         },
         /**
+         * Retrieve the ship to preference associated with the channel partner and the specific id. 
+         * @summary Retrieve the ship to preference associated with the channel partner and the specific id.
+         * @param {number} channel_partner_oid 
+         * @param {number} channel_partner_ship_to_preference_oid 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getChannelPartnerShipToPreference(channel_partner_oid: number, channel_partner_ship_to_preference_oid: number, options?: any) {
+            return ChannelPartnerApiFp(configuration).getChannelPartnerShipToPreference(channel_partner_oid, channel_partner_ship_to_preference_oid, options)(fetch, basePath);
+        },
+        /**
+         * Retrieve the ship to preferences associated with the channel partner. 
+         * @summary Retrieve the ship to preferences associated with the channel partner.
+         * @param {number} channel_partner_oid 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getChannelPartnerShipToPreferences(channel_partner_oid: number, options?: any) {
+            return ChannelPartnerApiFp(configuration).getChannelPartnerShipToPreferences(channel_partner_oid, options)(fetch, basePath);
+        },
+        /**
+         * Retrieve the channel partners configured on the account. 
+         * @summary Retrieve the channel partners configured on the account.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getChannelPartners(options?: any) {
+            return ChannelPartnerApiFp(configuration).getChannelPartners(options)(fetch, basePath);
+        },
+        /**
          * Insert order from a channel partner. 
          * @summary Insert channel partner order
          * @param {ChannelPartnerOrder} channel_partner_order Order to insert
@@ -39582,6 +40254,29 @@ export const ChannelPartnerApiFactory = function (configuration?: Configuration,
          */
         importChannelPartnerOrder(channel_partner_order: ChannelPartnerOrder, options?: any) {
             return ChannelPartnerApiFp(configuration).importChannelPartnerOrder(channel_partner_order, options)(fetch, basePath);
+        },
+        /**
+         * Insert a ship to preference record for the channel partner. 
+         * @summary Insert a ship to preference record for the channel partner.
+         * @param {number} channel_partner_oid 
+         * @param {ChannelPartnerShipToPreference} ship_to_preference Ship to preference to create
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        insertChannelPartnerShipToPreference(channel_partner_oid: number, ship_to_preference: ChannelPartnerShipToPreference, options?: any) {
+            return ChannelPartnerApiFp(configuration).insertChannelPartnerShipToPreference(channel_partner_oid, ship_to_preference, options)(fetch, basePath);
+        },
+        /**
+         * Update a ship to preference record for the channel partner. 
+         * @summary Update a ship to preference record for the channel partner.
+         * @param {number} channel_partner_oid 
+         * @param {number} channel_partner_ship_to_preference_oid 
+         * @param {ChannelPartnerShipToPreference} ship_to_preference Ship to preference to create
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        updateChannelPartnerShipToPreference(channel_partner_oid: number, channel_partner_ship_to_preference_oid: number, ship_to_preference: ChannelPartnerShipToPreference, options?: any) {
+            return ChannelPartnerApiFp(configuration).updateChannelPartnerShipToPreference(channel_partner_oid, channel_partner_ship_to_preference_oid, ship_to_preference, options)(fetch, basePath);
         },
     };
 };
@@ -39613,6 +40308,17 @@ export interface ChannelPartnerApiInterface {
     cancelOrderByUltraCartOrderId(order_id: string, options?: any): Promise<ChannelPartnerCancelResponse>;
 
     /**
+     * Delete a ship to preference record for the channel partner. 
+     * @summary Delete a ship to preference record for the channel partner.
+     * @param {number} channel_partner_oid 
+     * @param {number} channel_partner_ship_to_preference_oid 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ChannelPartnerApiInterface
+     */
+    deleteChannelPartnerShipToPreference(channel_partner_oid: number, channel_partner_ship_to_preference_oid: number, options?: any): Promise<{}>;
+
+    /**
      * Estimate shipping for order from a channel partner. 
      * @summary Estimate shipping for channel partner order
      * @param {ChannelPartnerOrder} channel_partner_order Order needing shipping estimate
@@ -39633,6 +40339,36 @@ export interface ChannelPartnerApiInterface {
     estimateTaxForChannelPartnerOrder(channel_partner_order: ChannelPartnerOrder, options?: any): Promise<ChannelPartnerEstimateTaxResponse>;
 
     /**
+     * Retrieve the ship to preference associated with the channel partner and the specific id. 
+     * @summary Retrieve the ship to preference associated with the channel partner and the specific id.
+     * @param {number} channel_partner_oid 
+     * @param {number} channel_partner_ship_to_preference_oid 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ChannelPartnerApiInterface
+     */
+    getChannelPartnerShipToPreference(channel_partner_oid: number, channel_partner_ship_to_preference_oid: number, options?: any): Promise<ChannelPartnerShipToPreferenceResponse>;
+
+    /**
+     * Retrieve the ship to preferences associated with the channel partner. 
+     * @summary Retrieve the ship to preferences associated with the channel partner.
+     * @param {number} channel_partner_oid 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ChannelPartnerApiInterface
+     */
+    getChannelPartnerShipToPreferences(channel_partner_oid: number, options?: any): Promise<ChannelPartnerShipToPreferencesResponse>;
+
+    /**
+     * Retrieve the channel partners configured on the account. 
+     * @summary Retrieve the channel partners configured on the account.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ChannelPartnerApiInterface
+     */
+    getChannelPartners(options?: any): Promise<ChannelPartnersResponse>;
+
+    /**
      * Insert order from a channel partner. 
      * @summary Insert channel partner order
      * @param {ChannelPartnerOrder} channel_partner_order Order to insert
@@ -39641,6 +40377,29 @@ export interface ChannelPartnerApiInterface {
      * @memberof ChannelPartnerApiInterface
      */
     importChannelPartnerOrder(channel_partner_order: ChannelPartnerOrder, options?: any): Promise<ChannelPartnerImportResponse>;
+
+    /**
+     * Insert a ship to preference record for the channel partner. 
+     * @summary Insert a ship to preference record for the channel partner.
+     * @param {number} channel_partner_oid 
+     * @param {ChannelPartnerShipToPreference} ship_to_preference Ship to preference to create
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ChannelPartnerApiInterface
+     */
+    insertChannelPartnerShipToPreference(channel_partner_oid: number, ship_to_preference: ChannelPartnerShipToPreference, options?: any): Promise<ChannelPartnerShipToPreferenceResponse>;
+
+    /**
+     * Update a ship to preference record for the channel partner. 
+     * @summary Update a ship to preference record for the channel partner.
+     * @param {number} channel_partner_oid 
+     * @param {number} channel_partner_ship_to_preference_oid 
+     * @param {ChannelPartnerShipToPreference} ship_to_preference Ship to preference to create
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ChannelPartnerApiInterface
+     */
+    updateChannelPartnerShipToPreference(channel_partner_oid: number, channel_partner_ship_to_preference_oid: number, ship_to_preference: ChannelPartnerShipToPreference, options?: any): Promise<ChannelPartnerShipToPreferenceResponse>;
 
 }
 
@@ -39676,6 +40435,19 @@ export class ChannelPartnerApi extends BaseAPI implements ChannelPartnerApiInter
     }
 
     /**
+     * Delete a ship to preference record for the channel partner. 
+     * @summary Delete a ship to preference record for the channel partner.
+     * @param {number} channel_partner_oid 
+     * @param {number} channel_partner_ship_to_preference_oid 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ChannelPartnerApi
+     */
+    public deleteChannelPartnerShipToPreference(channel_partner_oid: number, channel_partner_ship_to_preference_oid: number, options?: any) {
+        return ChannelPartnerApiFp(this.configuration).deleteChannelPartnerShipToPreference(channel_partner_oid, channel_partner_ship_to_preference_oid, options)(this.fetch, this.basePath);
+    }
+
+    /**
      * Estimate shipping for order from a channel partner. 
      * @summary Estimate shipping for channel partner order
      * @param {ChannelPartnerOrder} channel_partner_order Order needing shipping estimate
@@ -39700,6 +40472,42 @@ export class ChannelPartnerApi extends BaseAPI implements ChannelPartnerApiInter
     }
 
     /**
+     * Retrieve the ship to preference associated with the channel partner and the specific id. 
+     * @summary Retrieve the ship to preference associated with the channel partner and the specific id.
+     * @param {number} channel_partner_oid 
+     * @param {number} channel_partner_ship_to_preference_oid 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ChannelPartnerApi
+     */
+    public getChannelPartnerShipToPreference(channel_partner_oid: number, channel_partner_ship_to_preference_oid: number, options?: any) {
+        return ChannelPartnerApiFp(this.configuration).getChannelPartnerShipToPreference(channel_partner_oid, channel_partner_ship_to_preference_oid, options)(this.fetch, this.basePath);
+    }
+
+    /**
+     * Retrieve the ship to preferences associated with the channel partner. 
+     * @summary Retrieve the ship to preferences associated with the channel partner.
+     * @param {number} channel_partner_oid 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ChannelPartnerApi
+     */
+    public getChannelPartnerShipToPreferences(channel_partner_oid: number, options?: any) {
+        return ChannelPartnerApiFp(this.configuration).getChannelPartnerShipToPreferences(channel_partner_oid, options)(this.fetch, this.basePath);
+    }
+
+    /**
+     * Retrieve the channel partners configured on the account. 
+     * @summary Retrieve the channel partners configured on the account.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ChannelPartnerApi
+     */
+    public getChannelPartners(options?: any) {
+        return ChannelPartnerApiFp(this.configuration).getChannelPartners(options)(this.fetch, this.basePath);
+    }
+
+    /**
      * Insert order from a channel partner. 
      * @summary Insert channel partner order
      * @param {ChannelPartnerOrder} channel_partner_order Order to insert
@@ -39709,6 +40517,33 @@ export class ChannelPartnerApi extends BaseAPI implements ChannelPartnerApiInter
      */
     public importChannelPartnerOrder(channel_partner_order: ChannelPartnerOrder, options?: any) {
         return ChannelPartnerApiFp(this.configuration).importChannelPartnerOrder(channel_partner_order, options)(this.fetch, this.basePath);
+    }
+
+    /**
+     * Insert a ship to preference record for the channel partner. 
+     * @summary Insert a ship to preference record for the channel partner.
+     * @param {number} channel_partner_oid 
+     * @param {ChannelPartnerShipToPreference} ship_to_preference Ship to preference to create
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ChannelPartnerApi
+     */
+    public insertChannelPartnerShipToPreference(channel_partner_oid: number, ship_to_preference: ChannelPartnerShipToPreference, options?: any) {
+        return ChannelPartnerApiFp(this.configuration).insertChannelPartnerShipToPreference(channel_partner_oid, ship_to_preference, options)(this.fetch, this.basePath);
+    }
+
+    /**
+     * Update a ship to preference record for the channel partner. 
+     * @summary Update a ship to preference record for the channel partner.
+     * @param {number} channel_partner_oid 
+     * @param {number} channel_partner_ship_to_preference_oid 
+     * @param {ChannelPartnerShipToPreference} ship_to_preference Ship to preference to create
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ChannelPartnerApi
+     */
+    public updateChannelPartnerShipToPreference(channel_partner_oid: number, channel_partner_ship_to_preference_oid: number, ship_to_preference: ChannelPartnerShipToPreference, options?: any) {
+        return ChannelPartnerApiFp(this.configuration).updateChannelPartnerShipToPreference(channel_partner_oid, channel_partner_ship_to_preference_oid, ship_to_preference, options)(this.fetch, this.basePath);
     }
 
 }

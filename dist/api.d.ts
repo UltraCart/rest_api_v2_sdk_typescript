@@ -5769,6 +5769,123 @@ export interface ChannelPartnerOrderTransactionDetail {
 /**
  *
  * @export
+ * @interface ChannelPartnerShipToPreference
+ */
+export interface ChannelPartnerShipToPreference {
+    /**
+     * Additional item ids to add as kit components to the order with a zero price.
+     * @type {Array<string>}
+     * @memberof ChannelPartnerShipToPreference
+     */
+    additional_kit_component_item_ids?: Array<string>;
+    /**
+     * The channel partner object identifier this preference is associated with
+     * @type {number}
+     * @memberof ChannelPartnerShipToPreference
+     */
+    channel_partner_oid?: number;
+    /**
+     * Object identifier for the ship to preference
+     * @type {number}
+     * @memberof ChannelPartnerShipToPreference
+     */
+    channel_partner_ship_to_preference_oid?: number;
+    /**
+     * The merchant id that owns the channel partner
+     * @type {string}
+     * @memberof ChannelPartnerShipToPreference
+     */
+    merchant_id?: string;
+    /**
+     * Alternate return policy to print on the packing slip.
+     * @type {string}
+     * @memberof ChannelPartnerShipToPreference
+     */
+    return_policy?: string;
+    /**
+     * The ship to EDI code that the preferences are for
+     * @type {string}
+     * @memberof ChannelPartnerShipToPreference
+     */
+    ship_to_edi_code?: string;
+}
+/**
+ *
+ * @export
+ * @interface ChannelPartnerShipToPreferenceResponse
+ */
+export interface ChannelPartnerShipToPreferenceResponse {
+    /**
+     *
+     * @type {ModelError}
+     * @memberof ChannelPartnerShipToPreferenceResponse
+     */
+    error?: ModelError;
+    /**
+     *
+     * @type {ResponseMetadata}
+     * @memberof ChannelPartnerShipToPreferenceResponse
+     */
+    metadata?: ResponseMetadata;
+    /**
+     *
+     * @type {ChannelPartnerShipToPreference}
+     * @memberof ChannelPartnerShipToPreferenceResponse
+     */
+    ship_to_preference?: ChannelPartnerShipToPreference;
+    /**
+     * Indicates if API call was successful
+     * @type {boolean}
+     * @memberof ChannelPartnerShipToPreferenceResponse
+     */
+    success?: boolean;
+    /**
+     *
+     * @type {Warning}
+     * @memberof ChannelPartnerShipToPreferenceResponse
+     */
+    warning?: Warning;
+}
+/**
+ *
+ * @export
+ * @interface ChannelPartnerShipToPreferencesResponse
+ */
+export interface ChannelPartnerShipToPreferencesResponse {
+    /**
+     *
+     * @type {ModelError}
+     * @memberof ChannelPartnerShipToPreferencesResponse
+     */
+    error?: ModelError;
+    /**
+     *
+     * @type {ResponseMetadata}
+     * @memberof ChannelPartnerShipToPreferencesResponse
+     */
+    metadata?: ResponseMetadata;
+    /**
+     * ship_to_preferences
+     * @type {Array<ChannelPartnerShipToPreference>}
+     * @memberof ChannelPartnerShipToPreferencesResponse
+     */
+    shipToPreferences?: Array<ChannelPartnerShipToPreference>;
+    /**
+     * Indicates if API call was successful
+     * @type {boolean}
+     * @memberof ChannelPartnerShipToPreferencesResponse
+     */
+    success?: boolean;
+    /**
+     *
+     * @type {Warning}
+     * @memberof ChannelPartnerShipToPreferencesResponse
+     */
+    warning?: Warning;
+}
+/**
+ *
+ * @export
  * @interface ChannelPartnerShippingEstimate
  */
 export interface ChannelPartnerShippingEstimate {
@@ -5784,6 +5901,43 @@ export interface ChannelPartnerShippingEstimate {
      * @memberof ChannelPartnerShippingEstimate
      */
     shipping_method?: string;
+}
+/**
+ *
+ * @export
+ * @interface ChannelPartnersResponse
+ */
+export interface ChannelPartnersResponse {
+    /**
+     * channel_partners
+     * @type {Array<ChannelPartner>}
+     * @memberof ChannelPartnersResponse
+     */
+    channelPartners?: Array<ChannelPartner>;
+    /**
+     *
+     * @type {ModelError}
+     * @memberof ChannelPartnersResponse
+     */
+    error?: ModelError;
+    /**
+     *
+     * @type {ResponseMetadata}
+     * @memberof ChannelPartnersResponse
+     */
+    metadata?: ResponseMetadata;
+    /**
+     * Indicates if API call was successful
+     * @type {boolean}
+     * @memberof ChannelPartnersResponse
+     */
+    success?: boolean;
+    /**
+     *
+     * @type {Warning}
+     * @memberof ChannelPartnersResponse
+     */
+    warning?: Warning;
 }
 /**
  *
@@ -29196,7 +29350,8 @@ export declare namespace OrderPayment {
         QuoteRequest,
         Unknown,
         WireTransfer,
-        Walmart
+        Walmart,
+        ShopCom
     }
     /**
      * @export
@@ -37529,6 +37684,15 @@ export declare const ChannelPartnerApiFetchParamCreator: (configuration?: Config
      */
     cancelOrderByUltraCartOrderId(order_id: string, options?: any): FetchArgs;
     /**
+     * Delete a ship to preference record for the channel partner.
+     * @summary Delete a ship to preference record for the channel partner.
+     * @param {number} channel_partner_oid
+     * @param {number} channel_partner_ship_to_preference_oid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    deleteChannelPartnerShipToPreference(channel_partner_oid: number, channel_partner_ship_to_preference_oid: number, options?: any): FetchArgs;
+    /**
      * Estimate shipping for order from a channel partner.
      * @summary Estimate shipping for channel partner order
      * @param {ChannelPartnerOrder} channel_partner_order Order needing shipping estimate
@@ -37545,6 +37709,30 @@ export declare const ChannelPartnerApiFetchParamCreator: (configuration?: Config
      */
     estimateTaxForChannelPartnerOrder(channel_partner_order: ChannelPartnerOrder, options?: any): FetchArgs;
     /**
+     * Retrieve the ship to preference associated with the channel partner and the specific id.
+     * @summary Retrieve the ship to preference associated with the channel partner and the specific id.
+     * @param {number} channel_partner_oid
+     * @param {number} channel_partner_ship_to_preference_oid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getChannelPartnerShipToPreference(channel_partner_oid: number, channel_partner_ship_to_preference_oid: number, options?: any): FetchArgs;
+    /**
+     * Retrieve the ship to preferences associated with the channel partner.
+     * @summary Retrieve the ship to preferences associated with the channel partner.
+     * @param {number} channel_partner_oid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getChannelPartnerShipToPreferences(channel_partner_oid: number, options?: any): FetchArgs;
+    /**
+     * Retrieve the channel partners configured on the account.
+     * @summary Retrieve the channel partners configured on the account.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getChannelPartners(options?: any): FetchArgs;
+    /**
      * Insert order from a channel partner.
      * @summary Insert channel partner order
      * @param {ChannelPartnerOrder} channel_partner_order Order to insert
@@ -37552,6 +37740,25 @@ export declare const ChannelPartnerApiFetchParamCreator: (configuration?: Config
      * @throws {RequiredError}
      */
     importChannelPartnerOrder(channel_partner_order: ChannelPartnerOrder, options?: any): FetchArgs;
+    /**
+     * Insert a ship to preference record for the channel partner.
+     * @summary Insert a ship to preference record for the channel partner.
+     * @param {number} channel_partner_oid
+     * @param {ChannelPartnerShipToPreference} ship_to_preference Ship to preference to create
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    insertChannelPartnerShipToPreference(channel_partner_oid: number, ship_to_preference: ChannelPartnerShipToPreference, options?: any): FetchArgs;
+    /**
+     * Update a ship to preference record for the channel partner.
+     * @summary Update a ship to preference record for the channel partner.
+     * @param {number} channel_partner_oid
+     * @param {number} channel_partner_ship_to_preference_oid
+     * @param {ChannelPartnerShipToPreference} ship_to_preference Ship to preference to create
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    updateChannelPartnerShipToPreference(channel_partner_oid: number, channel_partner_ship_to_preference_oid: number, ship_to_preference: ChannelPartnerShipToPreference, options?: any): FetchArgs;
 };
 /**
  * ChannelPartnerApi - functional programming interface
@@ -37575,6 +37782,15 @@ export declare const ChannelPartnerApiFp: (configuration?: Configuration) => {
      */
     cancelOrderByUltraCartOrderId(order_id: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ChannelPartnerCancelResponse>;
     /**
+     * Delete a ship to preference record for the channel partner.
+     * @summary Delete a ship to preference record for the channel partner.
+     * @param {number} channel_partner_oid
+     * @param {number} channel_partner_ship_to_preference_oid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    deleteChannelPartnerShipToPreference(channel_partner_oid: number, channel_partner_ship_to_preference_oid: number, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Response>;
+    /**
      * Estimate shipping for order from a channel partner.
      * @summary Estimate shipping for channel partner order
      * @param {ChannelPartnerOrder} channel_partner_order Order needing shipping estimate
@@ -37591,6 +37807,30 @@ export declare const ChannelPartnerApiFp: (configuration?: Configuration) => {
      */
     estimateTaxForChannelPartnerOrder(channel_partner_order: ChannelPartnerOrder, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ChannelPartnerEstimateTaxResponse>;
     /**
+     * Retrieve the ship to preference associated with the channel partner and the specific id.
+     * @summary Retrieve the ship to preference associated with the channel partner and the specific id.
+     * @param {number} channel_partner_oid
+     * @param {number} channel_partner_ship_to_preference_oid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getChannelPartnerShipToPreference(channel_partner_oid: number, channel_partner_ship_to_preference_oid: number, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ChannelPartnerShipToPreferenceResponse>;
+    /**
+     * Retrieve the ship to preferences associated with the channel partner.
+     * @summary Retrieve the ship to preferences associated with the channel partner.
+     * @param {number} channel_partner_oid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getChannelPartnerShipToPreferences(channel_partner_oid: number, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ChannelPartnerShipToPreferencesResponse>;
+    /**
+     * Retrieve the channel partners configured on the account.
+     * @summary Retrieve the channel partners configured on the account.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getChannelPartners(options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ChannelPartnersResponse>;
+    /**
      * Insert order from a channel partner.
      * @summary Insert channel partner order
      * @param {ChannelPartnerOrder} channel_partner_order Order to insert
@@ -37598,6 +37838,25 @@ export declare const ChannelPartnerApiFp: (configuration?: Configuration) => {
      * @throws {RequiredError}
      */
     importChannelPartnerOrder(channel_partner_order: ChannelPartnerOrder, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ChannelPartnerImportResponse>;
+    /**
+     * Insert a ship to preference record for the channel partner.
+     * @summary Insert a ship to preference record for the channel partner.
+     * @param {number} channel_partner_oid
+     * @param {ChannelPartnerShipToPreference} ship_to_preference Ship to preference to create
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    insertChannelPartnerShipToPreference(channel_partner_oid: number, ship_to_preference: ChannelPartnerShipToPreference, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ChannelPartnerShipToPreferenceResponse>;
+    /**
+     * Update a ship to preference record for the channel partner.
+     * @summary Update a ship to preference record for the channel partner.
+     * @param {number} channel_partner_oid
+     * @param {number} channel_partner_ship_to_preference_oid
+     * @param {ChannelPartnerShipToPreference} ship_to_preference Ship to preference to create
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    updateChannelPartnerShipToPreference(channel_partner_oid: number, channel_partner_ship_to_preference_oid: number, ship_to_preference: ChannelPartnerShipToPreference, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ChannelPartnerShipToPreferenceResponse>;
 };
 /**
  * ChannelPartnerApi - factory interface
@@ -37621,6 +37880,15 @@ export declare const ChannelPartnerApiFactory: (configuration?: Configuration, f
      */
     cancelOrderByUltraCartOrderId(order_id: string, options?: any): Promise<ChannelPartnerCancelResponse>;
     /**
+     * Delete a ship to preference record for the channel partner.
+     * @summary Delete a ship to preference record for the channel partner.
+     * @param {number} channel_partner_oid
+     * @param {number} channel_partner_ship_to_preference_oid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    deleteChannelPartnerShipToPreference(channel_partner_oid: number, channel_partner_ship_to_preference_oid: number, options?: any): Promise<Response>;
+    /**
      * Estimate shipping for order from a channel partner.
      * @summary Estimate shipping for channel partner order
      * @param {ChannelPartnerOrder} channel_partner_order Order needing shipping estimate
@@ -37637,6 +37905,30 @@ export declare const ChannelPartnerApiFactory: (configuration?: Configuration, f
      */
     estimateTaxForChannelPartnerOrder(channel_partner_order: ChannelPartnerOrder, options?: any): Promise<ChannelPartnerEstimateTaxResponse>;
     /**
+     * Retrieve the ship to preference associated with the channel partner and the specific id.
+     * @summary Retrieve the ship to preference associated with the channel partner and the specific id.
+     * @param {number} channel_partner_oid
+     * @param {number} channel_partner_ship_to_preference_oid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getChannelPartnerShipToPreference(channel_partner_oid: number, channel_partner_ship_to_preference_oid: number, options?: any): Promise<ChannelPartnerShipToPreferenceResponse>;
+    /**
+     * Retrieve the ship to preferences associated with the channel partner.
+     * @summary Retrieve the ship to preferences associated with the channel partner.
+     * @param {number} channel_partner_oid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getChannelPartnerShipToPreferences(channel_partner_oid: number, options?: any): Promise<ChannelPartnerShipToPreferencesResponse>;
+    /**
+     * Retrieve the channel partners configured on the account.
+     * @summary Retrieve the channel partners configured on the account.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getChannelPartners(options?: any): Promise<ChannelPartnersResponse>;
+    /**
      * Insert order from a channel partner.
      * @summary Insert channel partner order
      * @param {ChannelPartnerOrder} channel_partner_order Order to insert
@@ -37644,6 +37936,25 @@ export declare const ChannelPartnerApiFactory: (configuration?: Configuration, f
      * @throws {RequiredError}
      */
     importChannelPartnerOrder(channel_partner_order: ChannelPartnerOrder, options?: any): Promise<ChannelPartnerImportResponse>;
+    /**
+     * Insert a ship to preference record for the channel partner.
+     * @summary Insert a ship to preference record for the channel partner.
+     * @param {number} channel_partner_oid
+     * @param {ChannelPartnerShipToPreference} ship_to_preference Ship to preference to create
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    insertChannelPartnerShipToPreference(channel_partner_oid: number, ship_to_preference: ChannelPartnerShipToPreference, options?: any): Promise<ChannelPartnerShipToPreferenceResponse>;
+    /**
+     * Update a ship to preference record for the channel partner.
+     * @summary Update a ship to preference record for the channel partner.
+     * @param {number} channel_partner_oid
+     * @param {number} channel_partner_ship_to_preference_oid
+     * @param {ChannelPartnerShipToPreference} ship_to_preference Ship to preference to create
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    updateChannelPartnerShipToPreference(channel_partner_oid: number, channel_partner_ship_to_preference_oid: number, ship_to_preference: ChannelPartnerShipToPreference, options?: any): Promise<ChannelPartnerShipToPreferenceResponse>;
 };
 /**
  * ChannelPartnerApi - interface
@@ -37670,6 +37981,16 @@ export interface ChannelPartnerApiInterface {
      */
     cancelOrderByUltraCartOrderId(order_id: string, options?: any): Promise<ChannelPartnerCancelResponse>;
     /**
+     * Delete a ship to preference record for the channel partner.
+     * @summary Delete a ship to preference record for the channel partner.
+     * @param {number} channel_partner_oid
+     * @param {number} channel_partner_ship_to_preference_oid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ChannelPartnerApiInterface
+     */
+    deleteChannelPartnerShipToPreference(channel_partner_oid: number, channel_partner_ship_to_preference_oid: number, options?: any): Promise<{}>;
+    /**
      * Estimate shipping for order from a channel partner.
      * @summary Estimate shipping for channel partner order
      * @param {ChannelPartnerOrder} channel_partner_order Order needing shipping estimate
@@ -37688,6 +38009,33 @@ export interface ChannelPartnerApiInterface {
      */
     estimateTaxForChannelPartnerOrder(channel_partner_order: ChannelPartnerOrder, options?: any): Promise<ChannelPartnerEstimateTaxResponse>;
     /**
+     * Retrieve the ship to preference associated with the channel partner and the specific id.
+     * @summary Retrieve the ship to preference associated with the channel partner and the specific id.
+     * @param {number} channel_partner_oid
+     * @param {number} channel_partner_ship_to_preference_oid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ChannelPartnerApiInterface
+     */
+    getChannelPartnerShipToPreference(channel_partner_oid: number, channel_partner_ship_to_preference_oid: number, options?: any): Promise<ChannelPartnerShipToPreferenceResponse>;
+    /**
+     * Retrieve the ship to preferences associated with the channel partner.
+     * @summary Retrieve the ship to preferences associated with the channel partner.
+     * @param {number} channel_partner_oid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ChannelPartnerApiInterface
+     */
+    getChannelPartnerShipToPreferences(channel_partner_oid: number, options?: any): Promise<ChannelPartnerShipToPreferencesResponse>;
+    /**
+     * Retrieve the channel partners configured on the account.
+     * @summary Retrieve the channel partners configured on the account.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ChannelPartnerApiInterface
+     */
+    getChannelPartners(options?: any): Promise<ChannelPartnersResponse>;
+    /**
      * Insert order from a channel partner.
      * @summary Insert channel partner order
      * @param {ChannelPartnerOrder} channel_partner_order Order to insert
@@ -37696,6 +38044,27 @@ export interface ChannelPartnerApiInterface {
      * @memberof ChannelPartnerApiInterface
      */
     importChannelPartnerOrder(channel_partner_order: ChannelPartnerOrder, options?: any): Promise<ChannelPartnerImportResponse>;
+    /**
+     * Insert a ship to preference record for the channel partner.
+     * @summary Insert a ship to preference record for the channel partner.
+     * @param {number} channel_partner_oid
+     * @param {ChannelPartnerShipToPreference} ship_to_preference Ship to preference to create
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ChannelPartnerApiInterface
+     */
+    insertChannelPartnerShipToPreference(channel_partner_oid: number, ship_to_preference: ChannelPartnerShipToPreference, options?: any): Promise<ChannelPartnerShipToPreferenceResponse>;
+    /**
+     * Update a ship to preference record for the channel partner.
+     * @summary Update a ship to preference record for the channel partner.
+     * @param {number} channel_partner_oid
+     * @param {number} channel_partner_ship_to_preference_oid
+     * @param {ChannelPartnerShipToPreference} ship_to_preference Ship to preference to create
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ChannelPartnerApiInterface
+     */
+    updateChannelPartnerShipToPreference(channel_partner_oid: number, channel_partner_ship_to_preference_oid: number, ship_to_preference: ChannelPartnerShipToPreference, options?: any): Promise<ChannelPartnerShipToPreferenceResponse>;
 }
 /**
  * ChannelPartnerApi - object-oriented interface
@@ -37723,6 +38092,16 @@ export declare class ChannelPartnerApi extends BaseAPI implements ChannelPartner
      */
     cancelOrderByUltraCartOrderId(order_id: string, options?: any): Promise<ChannelPartnerCancelResponse>;
     /**
+     * Delete a ship to preference record for the channel partner.
+     * @summary Delete a ship to preference record for the channel partner.
+     * @param {number} channel_partner_oid
+     * @param {number} channel_partner_ship_to_preference_oid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ChannelPartnerApi
+     */
+    deleteChannelPartnerShipToPreference(channel_partner_oid: number, channel_partner_ship_to_preference_oid: number, options?: any): Promise<Response>;
+    /**
      * Estimate shipping for order from a channel partner.
      * @summary Estimate shipping for channel partner order
      * @param {ChannelPartnerOrder} channel_partner_order Order needing shipping estimate
@@ -37741,6 +38120,33 @@ export declare class ChannelPartnerApi extends BaseAPI implements ChannelPartner
      */
     estimateTaxForChannelPartnerOrder(channel_partner_order: ChannelPartnerOrder, options?: any): Promise<ChannelPartnerEstimateTaxResponse>;
     /**
+     * Retrieve the ship to preference associated with the channel partner and the specific id.
+     * @summary Retrieve the ship to preference associated with the channel partner and the specific id.
+     * @param {number} channel_partner_oid
+     * @param {number} channel_partner_ship_to_preference_oid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ChannelPartnerApi
+     */
+    getChannelPartnerShipToPreference(channel_partner_oid: number, channel_partner_ship_to_preference_oid: number, options?: any): Promise<ChannelPartnerShipToPreferenceResponse>;
+    /**
+     * Retrieve the ship to preferences associated with the channel partner.
+     * @summary Retrieve the ship to preferences associated with the channel partner.
+     * @param {number} channel_partner_oid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ChannelPartnerApi
+     */
+    getChannelPartnerShipToPreferences(channel_partner_oid: number, options?: any): Promise<ChannelPartnerShipToPreferencesResponse>;
+    /**
+     * Retrieve the channel partners configured on the account.
+     * @summary Retrieve the channel partners configured on the account.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ChannelPartnerApi
+     */
+    getChannelPartners(options?: any): Promise<ChannelPartnersResponse>;
+    /**
      * Insert order from a channel partner.
      * @summary Insert channel partner order
      * @param {ChannelPartnerOrder} channel_partner_order Order to insert
@@ -37749,6 +38155,27 @@ export declare class ChannelPartnerApi extends BaseAPI implements ChannelPartner
      * @memberof ChannelPartnerApi
      */
     importChannelPartnerOrder(channel_partner_order: ChannelPartnerOrder, options?: any): Promise<ChannelPartnerImportResponse>;
+    /**
+     * Insert a ship to preference record for the channel partner.
+     * @summary Insert a ship to preference record for the channel partner.
+     * @param {number} channel_partner_oid
+     * @param {ChannelPartnerShipToPreference} ship_to_preference Ship to preference to create
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ChannelPartnerApi
+     */
+    insertChannelPartnerShipToPreference(channel_partner_oid: number, ship_to_preference: ChannelPartnerShipToPreference, options?: any): Promise<ChannelPartnerShipToPreferenceResponse>;
+    /**
+     * Update a ship to preference record for the channel partner.
+     * @summary Update a ship to preference record for the channel partner.
+     * @param {number} channel_partner_oid
+     * @param {number} channel_partner_ship_to_preference_oid
+     * @param {ChannelPartnerShipToPreference} ship_to_preference Ship to preference to create
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ChannelPartnerApi
+     */
+    updateChannelPartnerShipToPreference(channel_partner_oid: number, channel_partner_ship_to_preference_oid: number, ship_to_preference: ChannelPartnerShipToPreference, options?: any): Promise<ChannelPartnerShipToPreferenceResponse>;
 }
 /**
  * ChargebackApi - fetch parameter creator

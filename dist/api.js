@@ -1076,6 +1076,7 @@ var OrderPayment;
         PaymentMethodEnum[PaymentMethodEnum["Unknown"] = 'Unknown'] = "Unknown";
         PaymentMethodEnum[PaymentMethodEnum["WireTransfer"] = 'Wire Transfer'] = "WireTransfer";
         PaymentMethodEnum[PaymentMethodEnum["Walmart"] = 'Walmart'] = "Walmart";
+        PaymentMethodEnum[PaymentMethodEnum["ShopCom"] = 'Shop.com'] = "ShopCom";
     })(PaymentMethodEnum = OrderPayment.PaymentMethodEnum || (OrderPayment.PaymentMethodEnum = {}));
     /**
      * @export
@@ -2629,6 +2630,58 @@ var ChannelPartnerApiFetchParamCreator = function (configuration) {
             };
         },
         /**
+         * Delete a ship to preference record for the channel partner.
+         * @summary Delete a ship to preference record for the channel partner.
+         * @param {number} channel_partner_oid
+         * @param {number} channel_partner_ship_to_preference_oid
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        deleteChannelPartnerShipToPreference: function (channel_partner_oid, channel_partner_ship_to_preference_oid, options) {
+            if (options === void 0) { options = {}; }
+            // verify required parameter 'channel_partner_oid' is not null or undefined
+            if (channel_partner_oid === null || channel_partner_oid === undefined) {
+                throw new RequiredError('channel_partner_oid', 'Required parameter channel_partner_oid was null or undefined when calling deleteChannelPartnerShipToPreference.');
+            }
+            // verify required parameter 'channel_partner_ship_to_preference_oid' is not null or undefined
+            if (channel_partner_ship_to_preference_oid === null || channel_partner_ship_to_preference_oid === undefined) {
+                throw new RequiredError('channel_partner_ship_to_preference_oid', 'Required parameter channel_partner_ship_to_preference_oid was null or undefined when calling deleteChannelPartnerShipToPreference.');
+            }
+            var localVarPath = "/channel_partner/channel_partners/{channel_partner_oid}/ship_to_preferences/{channel_partner_ship_to_preference_oid}"
+                .replace("{".concat("channel_partner_oid", "}"), encodeURIComponent(String(channel_partner_oid)))
+                .replace("{".concat("channel_partner_ship_to_preference_oid", "}"), encodeURIComponent(String(channel_partner_ship_to_preference_oid)));
+            var localVarUrlObj = url.parse(localVarPath, true);
+            var localVarRequestOptions = Object.assign({ method: 'DELETE' }, options);
+            var localVarHeaderParameter = {};
+            var localVarQueryParameter = {};
+            if (configuration && configuration.apiVersion) {
+                localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+            }
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+                var localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+                    ? configuration.accessToken("ultraCartOauth", ["channel_partner_write"])
+                    : configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                var localVarApiKeyValue = typeof configuration.apiKey === 'function'
+                    ? configuration.apiKey("x-ultracart-simple-key")
+                    : configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
          * Estimate shipping for order from a channel partner.
          * @summary Estimate shipping for channel partner order
          * @param {ChannelPartnerOrder} channel_partner_order Order needing shipping estimate
@@ -2725,6 +2778,144 @@ var ChannelPartnerApiFetchParamCreator = function (configuration) {
             };
         },
         /**
+         * Retrieve the ship to preference associated with the channel partner and the specific id.
+         * @summary Retrieve the ship to preference associated with the channel partner and the specific id.
+         * @param {number} channel_partner_oid
+         * @param {number} channel_partner_ship_to_preference_oid
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getChannelPartnerShipToPreference: function (channel_partner_oid, channel_partner_ship_to_preference_oid, options) {
+            if (options === void 0) { options = {}; }
+            // verify required parameter 'channel_partner_oid' is not null or undefined
+            if (channel_partner_oid === null || channel_partner_oid === undefined) {
+                throw new RequiredError('channel_partner_oid', 'Required parameter channel_partner_oid was null or undefined when calling getChannelPartnerShipToPreference.');
+            }
+            // verify required parameter 'channel_partner_ship_to_preference_oid' is not null or undefined
+            if (channel_partner_ship_to_preference_oid === null || channel_partner_ship_to_preference_oid === undefined) {
+                throw new RequiredError('channel_partner_ship_to_preference_oid', 'Required parameter channel_partner_ship_to_preference_oid was null or undefined when calling getChannelPartnerShipToPreference.');
+            }
+            var localVarPath = "/channel_partner/channel_partners/{channel_partner_oid}/ship_to_preferences/{channel_partner_ship_to_preference_oid}"
+                .replace("{".concat("channel_partner_oid", "}"), encodeURIComponent(String(channel_partner_oid)))
+                .replace("{".concat("channel_partner_ship_to_preference_oid", "}"), encodeURIComponent(String(channel_partner_ship_to_preference_oid)));
+            var localVarUrlObj = url.parse(localVarPath, true);
+            var localVarRequestOptions = Object.assign({ method: 'GET' }, options);
+            var localVarHeaderParameter = {};
+            var localVarQueryParameter = {};
+            if (configuration && configuration.apiVersion) {
+                localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+            }
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+                var localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+                    ? configuration.accessToken("ultraCartOauth", ["channel_partner_read"])
+                    : configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                var localVarApiKeyValue = typeof configuration.apiKey === 'function'
+                    ? configuration.apiKey("x-ultracart-simple-key")
+                    : configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Retrieve the ship to preferences associated with the channel partner.
+         * @summary Retrieve the ship to preferences associated with the channel partner.
+         * @param {number} channel_partner_oid
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getChannelPartnerShipToPreferences: function (channel_partner_oid, options) {
+            if (options === void 0) { options = {}; }
+            // verify required parameter 'channel_partner_oid' is not null or undefined
+            if (channel_partner_oid === null || channel_partner_oid === undefined) {
+                throw new RequiredError('channel_partner_oid', 'Required parameter channel_partner_oid was null or undefined when calling getChannelPartnerShipToPreferences.');
+            }
+            var localVarPath = "/channel_partner/channel_partners/{channel_partner_oid}/ship_to_preferences"
+                .replace("{".concat("channel_partner_oid", "}"), encodeURIComponent(String(channel_partner_oid)));
+            var localVarUrlObj = url.parse(localVarPath, true);
+            var localVarRequestOptions = Object.assign({ method: 'GET' }, options);
+            var localVarHeaderParameter = {};
+            var localVarQueryParameter = {};
+            if (configuration && configuration.apiVersion) {
+                localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+            }
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+                var localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+                    ? configuration.accessToken("ultraCartOauth", ["channel_partner_read"])
+                    : configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                var localVarApiKeyValue = typeof configuration.apiKey === 'function'
+                    ? configuration.apiKey("x-ultracart-simple-key")
+                    : configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Retrieve the channel partners configured on the account.
+         * @summary Retrieve the channel partners configured on the account.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getChannelPartners: function (options) {
+            if (options === void 0) { options = {}; }
+            var localVarPath = "/channel_partner/channel_partners";
+            var localVarUrlObj = url.parse(localVarPath, true);
+            var localVarRequestOptions = Object.assign({ method: 'GET' }, options);
+            var localVarHeaderParameter = {};
+            var localVarQueryParameter = {};
+            if (configuration && configuration.apiVersion) {
+                localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+            }
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+                var localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+                    ? configuration.accessToken("ultraCartOauth", ["channel_partner_read"])
+                    : configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                var localVarApiKeyValue = typeof configuration.apiKey === 'function'
+                    ? configuration.apiKey("x-ultracart-simple-key")
+                    : configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
          * Insert order from a channel partner.
          * @summary Insert channel partner order
          * @param {ChannelPartnerOrder} channel_partner_order Order to insert
@@ -2767,6 +2958,120 @@ var ChannelPartnerApiFetchParamCreator = function (configuration) {
             localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
             var needsSerialization = ("ChannelPartnerOrder" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
             localVarRequestOptions.body = needsSerialization ? JSON.stringify(channel_partner_order || {}) : (channel_partner_order || "");
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Insert a ship to preference record for the channel partner.
+         * @summary Insert a ship to preference record for the channel partner.
+         * @param {number} channel_partner_oid
+         * @param {ChannelPartnerShipToPreference} ship_to_preference Ship to preference to create
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        insertChannelPartnerShipToPreference: function (channel_partner_oid, ship_to_preference, options) {
+            if (options === void 0) { options = {}; }
+            // verify required parameter 'channel_partner_oid' is not null or undefined
+            if (channel_partner_oid === null || channel_partner_oid === undefined) {
+                throw new RequiredError('channel_partner_oid', 'Required parameter channel_partner_oid was null or undefined when calling insertChannelPartnerShipToPreference.');
+            }
+            // verify required parameter 'ship_to_preference' is not null or undefined
+            if (ship_to_preference === null || ship_to_preference === undefined) {
+                throw new RequiredError('ship_to_preference', 'Required parameter ship_to_preference was null or undefined when calling insertChannelPartnerShipToPreference.');
+            }
+            var localVarPath = "/channel_partner/channel_partners/{channel_partner_oid}/ship_to_preferences"
+                .replace("{".concat("channel_partner_oid", "}"), encodeURIComponent(String(channel_partner_oid)));
+            var localVarUrlObj = url.parse(localVarPath, true);
+            var localVarRequestOptions = Object.assign({ method: 'POST' }, options);
+            var localVarHeaderParameter = {};
+            var localVarQueryParameter = {};
+            if (configuration && configuration.apiVersion) {
+                localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+            }
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+                var localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+                    ? configuration.accessToken("ultraCartOauth", ["channel_partner_write"])
+                    : configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                var localVarApiKeyValue = typeof configuration.apiKey === 'function'
+                    ? configuration.apiKey("x-ultracart-simple-key")
+                    : configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+            var needsSerialization = ("ChannelPartnerShipToPreference" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
+            localVarRequestOptions.body = needsSerialization ? JSON.stringify(ship_to_preference || {}) : (ship_to_preference || "");
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Update a ship to preference record for the channel partner.
+         * @summary Update a ship to preference record for the channel partner.
+         * @param {number} channel_partner_oid
+         * @param {number} channel_partner_ship_to_preference_oid
+         * @param {ChannelPartnerShipToPreference} ship_to_preference Ship to preference to create
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        updateChannelPartnerShipToPreference: function (channel_partner_oid, channel_partner_ship_to_preference_oid, ship_to_preference, options) {
+            if (options === void 0) { options = {}; }
+            // verify required parameter 'channel_partner_oid' is not null or undefined
+            if (channel_partner_oid === null || channel_partner_oid === undefined) {
+                throw new RequiredError('channel_partner_oid', 'Required parameter channel_partner_oid was null or undefined when calling updateChannelPartnerShipToPreference.');
+            }
+            // verify required parameter 'channel_partner_ship_to_preference_oid' is not null or undefined
+            if (channel_partner_ship_to_preference_oid === null || channel_partner_ship_to_preference_oid === undefined) {
+                throw new RequiredError('channel_partner_ship_to_preference_oid', 'Required parameter channel_partner_ship_to_preference_oid was null or undefined when calling updateChannelPartnerShipToPreference.');
+            }
+            // verify required parameter 'ship_to_preference' is not null or undefined
+            if (ship_to_preference === null || ship_to_preference === undefined) {
+                throw new RequiredError('ship_to_preference', 'Required parameter ship_to_preference was null or undefined when calling updateChannelPartnerShipToPreference.');
+            }
+            var localVarPath = "/channel_partner/channel_partners/{channel_partner_oid}/ship_to_preferences/{channel_partner_ship_to_preference_oid}"
+                .replace("{".concat("channel_partner_oid", "}"), encodeURIComponent(String(channel_partner_oid)))
+                .replace("{".concat("channel_partner_ship_to_preference_oid", "}"), encodeURIComponent(String(channel_partner_ship_to_preference_oid)));
+            var localVarUrlObj = url.parse(localVarPath, true);
+            var localVarRequestOptions = Object.assign({ method: 'PUT' }, options);
+            var localVarHeaderParameter = {};
+            var localVarQueryParameter = {};
+            if (configuration && configuration.apiVersion) {
+                localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+            }
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+                var localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+                    ? configuration.accessToken("ultraCartOauth", ["channel_partner_write"])
+                    : configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                var localVarApiKeyValue = typeof configuration.apiKey === 'function'
+                    ? configuration.apiKey("x-ultracart-simple-key")
+                    : configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+            var needsSerialization = ("ChannelPartnerShipToPreference" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
+            localVarRequestOptions.body = needsSerialization ? JSON.stringify(ship_to_preference || {}) : (ship_to_preference || "");
             return {
                 url: url.format(localVarUrlObj),
                 options: localVarRequestOptions,
@@ -2826,6 +3131,29 @@ var ChannelPartnerApiFp = function (configuration) {
             };
         },
         /**
+         * Delete a ship to preference record for the channel partner.
+         * @summary Delete a ship to preference record for the channel partner.
+         * @param {number} channel_partner_oid
+         * @param {number} channel_partner_ship_to_preference_oid
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        deleteChannelPartnerShipToPreference: function (channel_partner_oid, channel_partner_ship_to_preference_oid, options) {
+            var localVarFetchArgs = (0, exports.ChannelPartnerApiFetchParamCreator)(configuration).deleteChannelPartnerShipToPreference(channel_partner_oid, channel_partner_ship_to_preference_oid, options);
+            return function (fetch, basePath) {
+                if (fetch === void 0) { fetch = portableFetch; }
+                if (basePath === void 0) { basePath = BASE_PATH; }
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(function (response) {
+                    if (response.status >= 200 && response.status < 300) {
+                        return response;
+                    }
+                    else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
          * Estimate shipping for order from a channel partner.
          * @summary Estimate shipping for channel partner order
          * @param {ChannelPartnerOrder} channel_partner_order Order needing shipping estimate
@@ -2870,6 +3198,72 @@ var ChannelPartnerApiFp = function (configuration) {
             };
         },
         /**
+         * Retrieve the ship to preference associated with the channel partner and the specific id.
+         * @summary Retrieve the ship to preference associated with the channel partner and the specific id.
+         * @param {number} channel_partner_oid
+         * @param {number} channel_partner_ship_to_preference_oid
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getChannelPartnerShipToPreference: function (channel_partner_oid, channel_partner_ship_to_preference_oid, options) {
+            var localVarFetchArgs = (0, exports.ChannelPartnerApiFetchParamCreator)(configuration).getChannelPartnerShipToPreference(channel_partner_oid, channel_partner_ship_to_preference_oid, options);
+            return function (fetch, basePath) {
+                if (fetch === void 0) { fetch = portableFetch; }
+                if (basePath === void 0) { basePath = BASE_PATH; }
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(function (response) {
+                    if (response.status >= 200 && response.status < 300) {
+                        return response.json();
+                    }
+                    else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
+         * Retrieve the ship to preferences associated with the channel partner.
+         * @summary Retrieve the ship to preferences associated with the channel partner.
+         * @param {number} channel_partner_oid
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getChannelPartnerShipToPreferences: function (channel_partner_oid, options) {
+            var localVarFetchArgs = (0, exports.ChannelPartnerApiFetchParamCreator)(configuration).getChannelPartnerShipToPreferences(channel_partner_oid, options);
+            return function (fetch, basePath) {
+                if (fetch === void 0) { fetch = portableFetch; }
+                if (basePath === void 0) { basePath = BASE_PATH; }
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(function (response) {
+                    if (response.status >= 200 && response.status < 300) {
+                        return response.json();
+                    }
+                    else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
+         * Retrieve the channel partners configured on the account.
+         * @summary Retrieve the channel partners configured on the account.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getChannelPartners: function (options) {
+            var localVarFetchArgs = (0, exports.ChannelPartnerApiFetchParamCreator)(configuration).getChannelPartners(options);
+            return function (fetch, basePath) {
+                if (fetch === void 0) { fetch = portableFetch; }
+                if (basePath === void 0) { basePath = BASE_PATH; }
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(function (response) {
+                    if (response.status >= 200 && response.status < 300) {
+                        return response.json();
+                    }
+                    else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
          * Insert order from a channel partner.
          * @summary Insert channel partner order
          * @param {ChannelPartnerOrder} channel_partner_order Order to insert
@@ -2878,6 +3272,53 @@ var ChannelPartnerApiFp = function (configuration) {
          */
         importChannelPartnerOrder: function (channel_partner_order, options) {
             var localVarFetchArgs = (0, exports.ChannelPartnerApiFetchParamCreator)(configuration).importChannelPartnerOrder(channel_partner_order, options);
+            return function (fetch, basePath) {
+                if (fetch === void 0) { fetch = portableFetch; }
+                if (basePath === void 0) { basePath = BASE_PATH; }
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(function (response) {
+                    if (response.status >= 200 && response.status < 300) {
+                        return response.json();
+                    }
+                    else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
+         * Insert a ship to preference record for the channel partner.
+         * @summary Insert a ship to preference record for the channel partner.
+         * @param {number} channel_partner_oid
+         * @param {ChannelPartnerShipToPreference} ship_to_preference Ship to preference to create
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        insertChannelPartnerShipToPreference: function (channel_partner_oid, ship_to_preference, options) {
+            var localVarFetchArgs = (0, exports.ChannelPartnerApiFetchParamCreator)(configuration).insertChannelPartnerShipToPreference(channel_partner_oid, ship_to_preference, options);
+            return function (fetch, basePath) {
+                if (fetch === void 0) { fetch = portableFetch; }
+                if (basePath === void 0) { basePath = BASE_PATH; }
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(function (response) {
+                    if (response.status >= 200 && response.status < 300) {
+                        return response.json();
+                    }
+                    else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
+         * Update a ship to preference record for the channel partner.
+         * @summary Update a ship to preference record for the channel partner.
+         * @param {number} channel_partner_oid
+         * @param {number} channel_partner_ship_to_preference_oid
+         * @param {ChannelPartnerShipToPreference} ship_to_preference Ship to preference to create
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        updateChannelPartnerShipToPreference: function (channel_partner_oid, channel_partner_ship_to_preference_oid, ship_to_preference, options) {
+            var localVarFetchArgs = (0, exports.ChannelPartnerApiFetchParamCreator)(configuration).updateChannelPartnerShipToPreference(channel_partner_oid, channel_partner_ship_to_preference_oid, ship_to_preference, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -2921,6 +3362,17 @@ var ChannelPartnerApiFactory = function (configuration, fetch, basePath) {
             return (0, exports.ChannelPartnerApiFp)(configuration).cancelOrderByUltraCartOrderId(order_id, options)(fetch, basePath);
         },
         /**
+         * Delete a ship to preference record for the channel partner.
+         * @summary Delete a ship to preference record for the channel partner.
+         * @param {number} channel_partner_oid
+         * @param {number} channel_partner_ship_to_preference_oid
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        deleteChannelPartnerShipToPreference: function (channel_partner_oid, channel_partner_ship_to_preference_oid, options) {
+            return (0, exports.ChannelPartnerApiFp)(configuration).deleteChannelPartnerShipToPreference(channel_partner_oid, channel_partner_ship_to_preference_oid, options)(fetch, basePath);
+        },
+        /**
          * Estimate shipping for order from a channel partner.
          * @summary Estimate shipping for channel partner order
          * @param {ChannelPartnerOrder} channel_partner_order Order needing shipping estimate
@@ -2941,6 +3393,36 @@ var ChannelPartnerApiFactory = function (configuration, fetch, basePath) {
             return (0, exports.ChannelPartnerApiFp)(configuration).estimateTaxForChannelPartnerOrder(channel_partner_order, options)(fetch, basePath);
         },
         /**
+         * Retrieve the ship to preference associated with the channel partner and the specific id.
+         * @summary Retrieve the ship to preference associated with the channel partner and the specific id.
+         * @param {number} channel_partner_oid
+         * @param {number} channel_partner_ship_to_preference_oid
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getChannelPartnerShipToPreference: function (channel_partner_oid, channel_partner_ship_to_preference_oid, options) {
+            return (0, exports.ChannelPartnerApiFp)(configuration).getChannelPartnerShipToPreference(channel_partner_oid, channel_partner_ship_to_preference_oid, options)(fetch, basePath);
+        },
+        /**
+         * Retrieve the ship to preferences associated with the channel partner.
+         * @summary Retrieve the ship to preferences associated with the channel partner.
+         * @param {number} channel_partner_oid
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getChannelPartnerShipToPreferences: function (channel_partner_oid, options) {
+            return (0, exports.ChannelPartnerApiFp)(configuration).getChannelPartnerShipToPreferences(channel_partner_oid, options)(fetch, basePath);
+        },
+        /**
+         * Retrieve the channel partners configured on the account.
+         * @summary Retrieve the channel partners configured on the account.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getChannelPartners: function (options) {
+            return (0, exports.ChannelPartnerApiFp)(configuration).getChannelPartners(options)(fetch, basePath);
+        },
+        /**
          * Insert order from a channel partner.
          * @summary Insert channel partner order
          * @param {ChannelPartnerOrder} channel_partner_order Order to insert
@@ -2949,6 +3431,29 @@ var ChannelPartnerApiFactory = function (configuration, fetch, basePath) {
          */
         importChannelPartnerOrder: function (channel_partner_order, options) {
             return (0, exports.ChannelPartnerApiFp)(configuration).importChannelPartnerOrder(channel_partner_order, options)(fetch, basePath);
+        },
+        /**
+         * Insert a ship to preference record for the channel partner.
+         * @summary Insert a ship to preference record for the channel partner.
+         * @param {number} channel_partner_oid
+         * @param {ChannelPartnerShipToPreference} ship_to_preference Ship to preference to create
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        insertChannelPartnerShipToPreference: function (channel_partner_oid, ship_to_preference, options) {
+            return (0, exports.ChannelPartnerApiFp)(configuration).insertChannelPartnerShipToPreference(channel_partner_oid, ship_to_preference, options)(fetch, basePath);
+        },
+        /**
+         * Update a ship to preference record for the channel partner.
+         * @summary Update a ship to preference record for the channel partner.
+         * @param {number} channel_partner_oid
+         * @param {number} channel_partner_ship_to_preference_oid
+         * @param {ChannelPartnerShipToPreference} ship_to_preference Ship to preference to create
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        updateChannelPartnerShipToPreference: function (channel_partner_oid, channel_partner_ship_to_preference_oid, ship_to_preference, options) {
+            return (0, exports.ChannelPartnerApiFp)(configuration).updateChannelPartnerShipToPreference(channel_partner_oid, channel_partner_ship_to_preference_oid, ship_to_preference, options)(fetch, basePath);
         },
     };
 };
@@ -2987,6 +3492,18 @@ var ChannelPartnerApi = /** @class */ (function (_super) {
         return (0, exports.ChannelPartnerApiFp)(this.configuration).cancelOrderByUltraCartOrderId(order_id, options)(this.fetch, this.basePath);
     };
     /**
+     * Delete a ship to preference record for the channel partner.
+     * @summary Delete a ship to preference record for the channel partner.
+     * @param {number} channel_partner_oid
+     * @param {number} channel_partner_ship_to_preference_oid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ChannelPartnerApi
+     */
+    ChannelPartnerApi.prototype.deleteChannelPartnerShipToPreference = function (channel_partner_oid, channel_partner_ship_to_preference_oid, options) {
+        return (0, exports.ChannelPartnerApiFp)(this.configuration).deleteChannelPartnerShipToPreference(channel_partner_oid, channel_partner_ship_to_preference_oid, options)(this.fetch, this.basePath);
+    };
+    /**
      * Estimate shipping for order from a channel partner.
      * @summary Estimate shipping for channel partner order
      * @param {ChannelPartnerOrder} channel_partner_order Order needing shipping estimate
@@ -3009,6 +3526,39 @@ var ChannelPartnerApi = /** @class */ (function (_super) {
         return (0, exports.ChannelPartnerApiFp)(this.configuration).estimateTaxForChannelPartnerOrder(channel_partner_order, options)(this.fetch, this.basePath);
     };
     /**
+     * Retrieve the ship to preference associated with the channel partner and the specific id.
+     * @summary Retrieve the ship to preference associated with the channel partner and the specific id.
+     * @param {number} channel_partner_oid
+     * @param {number} channel_partner_ship_to_preference_oid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ChannelPartnerApi
+     */
+    ChannelPartnerApi.prototype.getChannelPartnerShipToPreference = function (channel_partner_oid, channel_partner_ship_to_preference_oid, options) {
+        return (0, exports.ChannelPartnerApiFp)(this.configuration).getChannelPartnerShipToPreference(channel_partner_oid, channel_partner_ship_to_preference_oid, options)(this.fetch, this.basePath);
+    };
+    /**
+     * Retrieve the ship to preferences associated with the channel partner.
+     * @summary Retrieve the ship to preferences associated with the channel partner.
+     * @param {number} channel_partner_oid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ChannelPartnerApi
+     */
+    ChannelPartnerApi.prototype.getChannelPartnerShipToPreferences = function (channel_partner_oid, options) {
+        return (0, exports.ChannelPartnerApiFp)(this.configuration).getChannelPartnerShipToPreferences(channel_partner_oid, options)(this.fetch, this.basePath);
+    };
+    /**
+     * Retrieve the channel partners configured on the account.
+     * @summary Retrieve the channel partners configured on the account.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ChannelPartnerApi
+     */
+    ChannelPartnerApi.prototype.getChannelPartners = function (options) {
+        return (0, exports.ChannelPartnerApiFp)(this.configuration).getChannelPartners(options)(this.fetch, this.basePath);
+    };
+    /**
      * Insert order from a channel partner.
      * @summary Insert channel partner order
      * @param {ChannelPartnerOrder} channel_partner_order Order to insert
@@ -3018,6 +3568,31 @@ var ChannelPartnerApi = /** @class */ (function (_super) {
      */
     ChannelPartnerApi.prototype.importChannelPartnerOrder = function (channel_partner_order, options) {
         return (0, exports.ChannelPartnerApiFp)(this.configuration).importChannelPartnerOrder(channel_partner_order, options)(this.fetch, this.basePath);
+    };
+    /**
+     * Insert a ship to preference record for the channel partner.
+     * @summary Insert a ship to preference record for the channel partner.
+     * @param {number} channel_partner_oid
+     * @param {ChannelPartnerShipToPreference} ship_to_preference Ship to preference to create
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ChannelPartnerApi
+     */
+    ChannelPartnerApi.prototype.insertChannelPartnerShipToPreference = function (channel_partner_oid, ship_to_preference, options) {
+        return (0, exports.ChannelPartnerApiFp)(this.configuration).insertChannelPartnerShipToPreference(channel_partner_oid, ship_to_preference, options)(this.fetch, this.basePath);
+    };
+    /**
+     * Update a ship to preference record for the channel partner.
+     * @summary Update a ship to preference record for the channel partner.
+     * @param {number} channel_partner_oid
+     * @param {number} channel_partner_ship_to_preference_oid
+     * @param {ChannelPartnerShipToPreference} ship_to_preference Ship to preference to create
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ChannelPartnerApi
+     */
+    ChannelPartnerApi.prototype.updateChannelPartnerShipToPreference = function (channel_partner_oid, channel_partner_ship_to_preference_oid, ship_to_preference, options) {
+        return (0, exports.ChannelPartnerApiFp)(this.configuration).updateChannelPartnerShipToPreference(channel_partner_oid, channel_partner_ship_to_preference_oid, ship_to_preference, options)(this.fetch, this.basePath);
     };
     return ChannelPartnerApi;
 }(BaseAPI));
