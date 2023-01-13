@@ -130,7 +130,11 @@ src/models/ChannelPartnerOrderItem.ts
 src/models/ChannelPartnerOrderItemOption.ts
 src/models/ChannelPartnerOrderTransaction.ts
 src/models/ChannelPartnerOrderTransactionDetail.ts
+src/models/ChannelPartnerShipToPreference.ts
+src/models/ChannelPartnerShipToPreferenceResponse.ts
+src/models/ChannelPartnerShipToPreferencesResponse.ts
 src/models/ChannelPartnerShippingEstimate.ts
+src/models/ChannelPartnersResponse.ts
 src/models/ChargebackDispute.ts
 src/models/ChargebackDisputeResponse.ts
 src/models/ChargebackDisputesResponse.ts

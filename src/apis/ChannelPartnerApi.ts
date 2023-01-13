@@ -30,6 +30,18 @@ import {
     ChannelPartnerOrder,
     ChannelPartnerOrderFromJSON,
     ChannelPartnerOrderToJSON,
+    ChannelPartnerShipToPreference,
+    ChannelPartnerShipToPreferenceFromJSON,
+    ChannelPartnerShipToPreferenceToJSON,
+    ChannelPartnerShipToPreferenceResponse,
+    ChannelPartnerShipToPreferenceResponseFromJSON,
+    ChannelPartnerShipToPreferenceResponseToJSON,
+    ChannelPartnerShipToPreferencesResponse,
+    ChannelPartnerShipToPreferencesResponseFromJSON,
+    ChannelPartnerShipToPreferencesResponseToJSON,
+    ChannelPartnersResponse,
+    ChannelPartnersResponseFromJSON,
+    ChannelPartnersResponseToJSON,
     ErrorResponse,
     ErrorResponseFromJSON,
     ErrorResponseToJSON,
@@ -43,6 +55,11 @@ export interface CancelOrderByUltraCartOrderIdRequest {
     orderId: string;
 }
 
+export interface DeleteChannelPartnerShipToPreferenceRequest {
+    channelPartnerOid: number;
+    channelPartnerShipToPreferenceOid: number;
+}
+
 export interface EstimateShippingForChannelPartnerOrderRequest {
     channelPartnerOrder: ChannelPartnerOrder;
 }
@@ -51,8 +68,28 @@ export interface EstimateTaxForChannelPartnerOrderRequest {
     channelPartnerOrder: ChannelPartnerOrder;
 }
 
+export interface GetChannelPartnerShipToPreferenceRequest {
+    channelPartnerOid: number;
+    channelPartnerShipToPreferenceOid: number;
+}
+
+export interface GetChannelPartnerShipToPreferencesRequest {
+    channelPartnerOid: number;
+}
+
 export interface ImportChannelPartnerOrderRequest {
     channelPartnerOrder: ChannelPartnerOrder;
+}
+
+export interface InsertChannelPartnerShipToPreferenceRequest {
+    channelPartnerOid: number;
+    shipToPreference: ChannelPartnerShipToPreference;
+}
+
+export interface UpdateChannelPartnerShipToPreferenceRequest {
+    channelPartnerOid: number;
+    channelPartnerShipToPreferenceOid: number;
+    shipToPreference: ChannelPartnerShipToPreference;
 }
 
 /**
@@ -95,6 +132,23 @@ export interface ChannelPartnerApiInterface {
     cancelOrderByUltraCartOrderId(requestParameters: CancelOrderByUltraCartOrderIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ChannelPartnerCancelResponse>;
 
     /**
+     * Delete a ship to preference record for the channel partner. 
+     * @summary Delete a ship to preference record for the channel partner.
+     * @param {number} channelPartnerOid 
+     * @param {number} channelPartnerShipToPreferenceOid 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ChannelPartnerApiInterface
+     */
+    deleteChannelPartnerShipToPreferenceRaw(requestParameters: DeleteChannelPartnerShipToPreferenceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+
+    /**
+     * Delete a ship to preference record for the channel partner. 
+     * Delete a ship to preference record for the channel partner.
+     */
+    deleteChannelPartnerShipToPreference(requestParameters: DeleteChannelPartnerShipToPreferenceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+
+    /**
      * Estimate shipping for order from a channel partner. 
      * @summary Estimate shipping for channel partner order
      * @param {ChannelPartnerOrder} channelPartnerOrder Order needing shipping estimate
@@ -127,6 +181,54 @@ export interface ChannelPartnerApiInterface {
     estimateTaxForChannelPartnerOrder(requestParameters: EstimateTaxForChannelPartnerOrderRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ChannelPartnerEstimateTaxResponse>;
 
     /**
+     * Retrieve the ship to preference associated with the channel partner and the specific id. 
+     * @summary Retrieve the ship to preference associated with the channel partner and the specific id.
+     * @param {number} channelPartnerOid 
+     * @param {number} channelPartnerShipToPreferenceOid 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ChannelPartnerApiInterface
+     */
+    getChannelPartnerShipToPreferenceRaw(requestParameters: GetChannelPartnerShipToPreferenceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ChannelPartnerShipToPreferenceResponse>>;
+
+    /**
+     * Retrieve the ship to preference associated with the channel partner and the specific id. 
+     * Retrieve the ship to preference associated with the channel partner and the specific id.
+     */
+    getChannelPartnerShipToPreference(requestParameters: GetChannelPartnerShipToPreferenceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ChannelPartnerShipToPreferenceResponse>;
+
+    /**
+     * Retrieve the ship to preferences associated with the channel partner. 
+     * @summary Retrieve the ship to preferences associated with the channel partner.
+     * @param {number} channelPartnerOid 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ChannelPartnerApiInterface
+     */
+    getChannelPartnerShipToPreferencesRaw(requestParameters: GetChannelPartnerShipToPreferencesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ChannelPartnerShipToPreferencesResponse>>;
+
+    /**
+     * Retrieve the ship to preferences associated with the channel partner. 
+     * Retrieve the ship to preferences associated with the channel partner.
+     */
+    getChannelPartnerShipToPreferences(requestParameters: GetChannelPartnerShipToPreferencesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ChannelPartnerShipToPreferencesResponse>;
+
+    /**
+     * Retrieve the channel partners configured on the account. 
+     * @summary Retrieve the channel partners configured on the account.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ChannelPartnerApiInterface
+     */
+    getChannelPartnersRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ChannelPartnersResponse>>;
+
+    /**
+     * Retrieve the channel partners configured on the account. 
+     * Retrieve the channel partners configured on the account.
+     */
+    getChannelPartners(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ChannelPartnersResponse>;
+
+    /**
      * Insert order from a channel partner. 
      * @summary Insert channel partner order
      * @param {ChannelPartnerOrder} channelPartnerOrder Order to insert
@@ -141,6 +243,41 @@ export interface ChannelPartnerApiInterface {
      * Insert channel partner order
      */
     importChannelPartnerOrder(requestParameters: ImportChannelPartnerOrderRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ChannelPartnerImportResponse>;
+
+    /**
+     * Insert a ship to preference record for the channel partner. 
+     * @summary Insert a ship to preference record for the channel partner.
+     * @param {number} channelPartnerOid 
+     * @param {ChannelPartnerShipToPreference} shipToPreference Ship to preference to create
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ChannelPartnerApiInterface
+     */
+    insertChannelPartnerShipToPreferenceRaw(requestParameters: InsertChannelPartnerShipToPreferenceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ChannelPartnerShipToPreferenceResponse>>;
+
+    /**
+     * Insert a ship to preference record for the channel partner. 
+     * Insert a ship to preference record for the channel partner.
+     */
+    insertChannelPartnerShipToPreference(requestParameters: InsertChannelPartnerShipToPreferenceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ChannelPartnerShipToPreferenceResponse>;
+
+    /**
+     * Update a ship to preference record for the channel partner. 
+     * @summary Update a ship to preference record for the channel partner.
+     * @param {number} channelPartnerOid 
+     * @param {number} channelPartnerShipToPreferenceOid 
+     * @param {ChannelPartnerShipToPreference} shipToPreference Ship to preference to create
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ChannelPartnerApiInterface
+     */
+    updateChannelPartnerShipToPreferenceRaw(requestParameters: UpdateChannelPartnerShipToPreferenceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ChannelPartnerShipToPreferenceResponse>>;
+
+    /**
+     * Update a ship to preference record for the channel partner. 
+     * Update a ship to preference record for the channel partner.
+     */
+    updateChannelPartnerShipToPreference(requestParameters: UpdateChannelPartnerShipToPreferenceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ChannelPartnerShipToPreferenceResponse>;
 
 }
 
@@ -232,6 +369,50 @@ export class ChannelPartnerApi extends runtime.BaseAPI implements ChannelPartner
     }
 
     /**
+     * Delete a ship to preference record for the channel partner. 
+     * Delete a ship to preference record for the channel partner.
+     */
+    async deleteChannelPartnerShipToPreferenceRaw(requestParameters: DeleteChannelPartnerShipToPreferenceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        if (requestParameters.channelPartnerOid === null || requestParameters.channelPartnerOid === undefined) {
+            throw new runtime.RequiredError('channelPartnerOid','Required parameter requestParameters.channelPartnerOid was null or undefined when calling deleteChannelPartnerShipToPreference.');
+        }
+
+        if (requestParameters.channelPartnerShipToPreferenceOid === null || requestParameters.channelPartnerShipToPreferenceOid === undefined) {
+            throw new runtime.RequiredError('channelPartnerShipToPreferenceOid','Required parameter requestParameters.channelPartnerShipToPreferenceOid was null or undefined when calling deleteChannelPartnerShipToPreference.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", ["channel_partner_write"]);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/channel_partner/channel_partners/{channel_partner_oid}/ship_to_preferences/{channel_partner_ship_to_preference_oid}`.replace(`{${"channel_partner_oid"}}`, encodeURIComponent(String(requestParameters.channelPartnerOid))).replace(`{${"channel_partner_ship_to_preference_oid"}}`, encodeURIComponent(String(requestParameters.channelPartnerShipToPreferenceOid))),
+            method: 'DELETE',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     * Delete a ship to preference record for the channel partner. 
+     * Delete a ship to preference record for the channel partner.
+     */
+    async deleteChannelPartnerShipToPreference(requestParameters: DeleteChannelPartnerShipToPreferenceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.deleteChannelPartnerShipToPreferenceRaw(requestParameters, initOverrides);
+    }
+
+    /**
      * Estimate shipping for order from a channel partner. 
      * Estimate shipping for channel partner order
      */
@@ -320,6 +501,129 @@ export class ChannelPartnerApi extends runtime.BaseAPI implements ChannelPartner
     }
 
     /**
+     * Retrieve the ship to preference associated with the channel partner and the specific id. 
+     * Retrieve the ship to preference associated with the channel partner and the specific id.
+     */
+    async getChannelPartnerShipToPreferenceRaw(requestParameters: GetChannelPartnerShipToPreferenceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ChannelPartnerShipToPreferenceResponse>> {
+        if (requestParameters.channelPartnerOid === null || requestParameters.channelPartnerOid === undefined) {
+            throw new runtime.RequiredError('channelPartnerOid','Required parameter requestParameters.channelPartnerOid was null or undefined when calling getChannelPartnerShipToPreference.');
+        }
+
+        if (requestParameters.channelPartnerShipToPreferenceOid === null || requestParameters.channelPartnerShipToPreferenceOid === undefined) {
+            throw new runtime.RequiredError('channelPartnerShipToPreferenceOid','Required parameter requestParameters.channelPartnerShipToPreferenceOid was null or undefined when calling getChannelPartnerShipToPreference.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", ["channel_partner_read"]);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/channel_partner/channel_partners/{channel_partner_oid}/ship_to_preferences/{channel_partner_ship_to_preference_oid}`.replace(`{${"channel_partner_oid"}}`, encodeURIComponent(String(requestParameters.channelPartnerOid))).replace(`{${"channel_partner_ship_to_preference_oid"}}`, encodeURIComponent(String(requestParameters.channelPartnerShipToPreferenceOid))),
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => ChannelPartnerShipToPreferenceResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Retrieve the ship to preference associated with the channel partner and the specific id. 
+     * Retrieve the ship to preference associated with the channel partner and the specific id.
+     */
+    async getChannelPartnerShipToPreference(requestParameters: GetChannelPartnerShipToPreferenceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ChannelPartnerShipToPreferenceResponse> {
+        const response = await this.getChannelPartnerShipToPreferenceRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Retrieve the ship to preferences associated with the channel partner. 
+     * Retrieve the ship to preferences associated with the channel partner.
+     */
+    async getChannelPartnerShipToPreferencesRaw(requestParameters: GetChannelPartnerShipToPreferencesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ChannelPartnerShipToPreferencesResponse>> {
+        if (requestParameters.channelPartnerOid === null || requestParameters.channelPartnerOid === undefined) {
+            throw new runtime.RequiredError('channelPartnerOid','Required parameter requestParameters.channelPartnerOid was null or undefined when calling getChannelPartnerShipToPreferences.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", ["channel_partner_read"]);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/channel_partner/channel_partners/{channel_partner_oid}/ship_to_preferences`.replace(`{${"channel_partner_oid"}}`, encodeURIComponent(String(requestParameters.channelPartnerOid))),
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => ChannelPartnerShipToPreferencesResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Retrieve the ship to preferences associated with the channel partner. 
+     * Retrieve the ship to preferences associated with the channel partner.
+     */
+    async getChannelPartnerShipToPreferences(requestParameters: GetChannelPartnerShipToPreferencesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ChannelPartnerShipToPreferencesResponse> {
+        const response = await this.getChannelPartnerShipToPreferencesRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Retrieve the channel partners configured on the account. 
+     * Retrieve the channel partners configured on the account.
+     */
+    async getChannelPartnersRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ChannelPartnersResponse>> {
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", ["channel_partner_read"]);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/channel_partner/channel_partners`,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => ChannelPartnersResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Retrieve the channel partners configured on the account. 
+     * Retrieve the channel partners configured on the account.
+     */
+    async getChannelPartners(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ChannelPartnersResponse> {
+        const response = await this.getChannelPartnersRaw(initOverrides);
+        return await response.value();
+    }
+
+    /**
      * Insert order from a channel partner. 
      * Insert channel partner order
      */
@@ -360,6 +664,106 @@ export class ChannelPartnerApi extends runtime.BaseAPI implements ChannelPartner
      */
     async importChannelPartnerOrder(requestParameters: ImportChannelPartnerOrderRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ChannelPartnerImportResponse> {
         const response = await this.importChannelPartnerOrderRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Insert a ship to preference record for the channel partner. 
+     * Insert a ship to preference record for the channel partner.
+     */
+    async insertChannelPartnerShipToPreferenceRaw(requestParameters: InsertChannelPartnerShipToPreferenceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ChannelPartnerShipToPreferenceResponse>> {
+        if (requestParameters.channelPartnerOid === null || requestParameters.channelPartnerOid === undefined) {
+            throw new runtime.RequiredError('channelPartnerOid','Required parameter requestParameters.channelPartnerOid was null or undefined when calling insertChannelPartnerShipToPreference.');
+        }
+
+        if (requestParameters.shipToPreference === null || requestParameters.shipToPreference === undefined) {
+            throw new runtime.RequiredError('shipToPreference','Required parameter requestParameters.shipToPreference was null or undefined when calling insertChannelPartnerShipToPreference.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", ["channel_partner_write"]);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/channel_partner/channel_partners/{channel_partner_oid}/ship_to_preferences`.replace(`{${"channel_partner_oid"}}`, encodeURIComponent(String(requestParameters.channelPartnerOid))),
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: ChannelPartnerShipToPreferenceToJSON(requestParameters.shipToPreference),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => ChannelPartnerShipToPreferenceResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Insert a ship to preference record for the channel partner. 
+     * Insert a ship to preference record for the channel partner.
+     */
+    async insertChannelPartnerShipToPreference(requestParameters: InsertChannelPartnerShipToPreferenceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ChannelPartnerShipToPreferenceResponse> {
+        const response = await this.insertChannelPartnerShipToPreferenceRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Update a ship to preference record for the channel partner. 
+     * Update a ship to preference record for the channel partner.
+     */
+    async updateChannelPartnerShipToPreferenceRaw(requestParameters: UpdateChannelPartnerShipToPreferenceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ChannelPartnerShipToPreferenceResponse>> {
+        if (requestParameters.channelPartnerOid === null || requestParameters.channelPartnerOid === undefined) {
+            throw new runtime.RequiredError('channelPartnerOid','Required parameter requestParameters.channelPartnerOid was null or undefined when calling updateChannelPartnerShipToPreference.');
+        }
+
+        if (requestParameters.channelPartnerShipToPreferenceOid === null || requestParameters.channelPartnerShipToPreferenceOid === undefined) {
+            throw new runtime.RequiredError('channelPartnerShipToPreferenceOid','Required parameter requestParameters.channelPartnerShipToPreferenceOid was null or undefined when calling updateChannelPartnerShipToPreference.');
+        }
+
+        if (requestParameters.shipToPreference === null || requestParameters.shipToPreference === undefined) {
+            throw new runtime.RequiredError('shipToPreference','Required parameter requestParameters.shipToPreference was null or undefined when calling updateChannelPartnerShipToPreference.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", ["channel_partner_write"]);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/channel_partner/channel_partners/{channel_partner_oid}/ship_to_preferences/{channel_partner_ship_to_preference_oid}`.replace(`{${"channel_partner_oid"}}`, encodeURIComponent(String(requestParameters.channelPartnerOid))).replace(`{${"channel_partner_ship_to_preference_oid"}}`, encodeURIComponent(String(requestParameters.channelPartnerShipToPreferenceOid))),
+            method: 'PUT',
+            headers: headerParameters,
+            query: queryParameters,
+            body: ChannelPartnerShipToPreferenceToJSON(requestParameters.shipToPreference),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => ChannelPartnerShipToPreferenceResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Update a ship to preference record for the channel partner. 
+     * Update a ship to preference record for the channel partner.
+     */
+    async updateChannelPartnerShipToPreference(requestParameters: UpdateChannelPartnerShipToPreferenceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ChannelPartnerShipToPreferenceResponse> {
+        const response = await this.updateChannelPartnerShipToPreferenceRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
