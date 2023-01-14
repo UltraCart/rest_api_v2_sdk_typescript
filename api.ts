@@ -31777,6 +31777,12 @@ export interface PointOfSaleLocation {
      */
     distribution_center_code?: string;
     /**
+     * External Id useful for syncing with a remote filesystem, this may be an MD5 hash or whatever suits your needs.
+     * @type {string}
+     * @memberof PointOfSaleLocation
+     */
+    external_id?: string;
+    /**
      * Merchant ID that owns this location
      * @type {string}
      * @memberof PointOfSaleLocation
