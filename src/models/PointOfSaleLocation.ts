@@ -50,6 +50,12 @@ export interface PointOfSaleLocation {
      */
     distribution_center_code?: string;
     /**
+     * External Id useful for syncing with a remote filesystem, this may be an MD5 hash or whatever suits your needs.
+     * @type {string}
+     * @memberof PointOfSaleLocation
+     */
+    external_id?: string;
+    /**
      * Merchant ID that owns this location
      * @type {string}
      * @memberof PointOfSaleLocation
@@ -90,6 +96,7 @@ export function PointOfSaleLocationFromJSONTyped(json: any, ignoreDiscriminator:
         'city': !exists(json, 'city') ? undefined : json['city'],
         'country': !exists(json, 'country') ? undefined : json['country'],
         'distribution_center_code': !exists(json, 'distribution_center_code') ? undefined : json['distribution_center_code'],
+        'external_id': !exists(json, 'external_id') ? undefined : json['external_id'],
         'merchant_id': !exists(json, 'merchant_id') ? undefined : json['merchant_id'],
         'pos_location_oid': !exists(json, 'pos_location_oid') ? undefined : json['pos_location_oid'],
         'postal_code': !exists(json, 'postal_code') ? undefined : json['postal_code'],
@@ -111,6 +118,7 @@ export function PointOfSaleLocationToJSON(value?: PointOfSaleLocation | null): a
         'city': value.city,
         'country': value.country,
         'distribution_center_code': value.distribution_center_code,
+        'external_id': value.external_id,
         'merchant_id': value.merchant_id,
         'pos_location_oid': value.pos_location_oid,
         'postal_code': value.postal_code,
