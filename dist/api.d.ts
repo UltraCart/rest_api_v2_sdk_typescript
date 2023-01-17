@@ -3299,6 +3299,12 @@ export interface CartItem {
      */
     preorder?: boolean;
     /**
+     * Properties associated with the item
+     * @type {Array<CartItemProperty>}
+     * @memberof CartItem
+     */
+    properties?: Array<CartItemProperty>;
+    /**
      * quantity
      * @type {number}
      * @memberof CartItem
@@ -3657,6 +3663,37 @@ export interface CartItemPhysical {
      * @memberof CartItemPhysical
      */
     width?: Distance;
+}
+/**
+ *
+ * @export
+ * @interface CartItemProperty
+ */
+export interface CartItemProperty {
+    /**
+     * True if this property is displayed to the customer
+     * @type {boolean}
+     * @memberof CartItemProperty
+     */
+    display?: boolean;
+    /**
+     * The date/time that the property expires and is deleted
+     * @type {string}
+     * @memberof CartItemProperty
+     */
+    expiration_dts?: string;
+    /**
+     * Name
+     * @type {string}
+     * @memberof CartItemProperty
+     */
+    name?: string;
+    /**
+     * Value
+     * @type {string}
+     * @memberof CartItemProperty
+     */
+    value?: string;
 }
 /**
  *
