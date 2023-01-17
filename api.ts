@@ -8830,7 +8830,7 @@ export namespace ConversationWebsocketMessage {
         Rrweb = <any> 'rrweb',
         ParticipantUpdate = <any> 'participant update',
         ParticipantJoin = <any> 'participant join',
-        ParticipantLeave = <any> 'participant leave',
+        ParticipantLeft = <any> 'participant left',
         ReadMessage = <any> 'read message',
         Typing = <any> 'typing',
         AddCoupon = <any> 'add coupon',

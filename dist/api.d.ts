@@ -8619,7 +8619,7 @@ export declare namespace ConversationWebsocketMessage {
         Rrweb,
         ParticipantUpdate,
         ParticipantJoin,
-        ParticipantLeave,
+        ParticipantLeft,
         ReadMessage,
         Typing,
         AddCoupon,
