@@ -62,6 +62,7 @@ export * from './CartItemMultimediaThumbnail';
 export * from './CartItemOption';
 export * from './CartItemOptionValue';
 export * from './CartItemPhysical';
+export * from './CartItemProperty';
 export * from './CartItemVariationSelection';
 export * from './CartKitComponentOption';
 export * from './CartMarketing';

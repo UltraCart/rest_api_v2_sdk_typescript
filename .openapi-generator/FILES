@@ -85,6 +85,7 @@ src/models/CartItemMultimediaThumbnail.ts
 src/models/CartItemOption.ts
 src/models/CartItemOptionValue.ts
 src/models/CartItemPhysical.ts
+src/models/CartItemProperty.ts
 src/models/CartItemVariationSelection.ts
 src/models/CartKitComponentOption.ts
 src/models/CartMarketing.ts

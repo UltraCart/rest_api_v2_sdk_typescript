@@ -38,6 +38,12 @@ import {
     CartItemPhysicalToJSON,
 } from './CartItemPhysical';
 import {
+    CartItemProperty,
+    CartItemPropertyFromJSON,
+    CartItemPropertyFromJSONTyped,
+    CartItemPropertyToJSON,
+} from './CartItemProperty';
+import {
     CartItemVariationSelection,
     CartItemVariationSelectionFromJSON,
     CartItemVariationSelectionFromJSONTyped,
@@ -183,6 +189,12 @@ export interface CartItem {
      */
     preorder?: boolean;
     /**
+     * Properties associated with the item
+     * @type {Array<CartItemProperty>}
+     * @memberof CartItem
+     */
+    properties?: Array<CartItemProperty>;
+    /**
      * quantity
      * @type {number}
      * @memberof CartItem
@@ -268,6 +280,7 @@ export function CartItemFromJSONTyped(json: any, ignoreDiscriminator: boolean): 
         'phsyical': !exists(json, 'phsyical') ? undefined : CartItemPhysicalFromJSON(json['phsyical']),
         'position': !exists(json, 'position') ? undefined : json['position'],
         'preorder': !exists(json, 'preorder') ? undefined : json['preorder'],
+        'properties': !exists(json, 'properties') ? undefined : ((json['properties'] as Array<any>).map(CartItemPropertyFromJSON)),
         'quantity': !exists(json, 'quantity') ? undefined : json['quantity'],
         'schedules': !exists(json, 'schedules') ? undefined : json['schedules'],
         'total_cost': !exists(json, 'total_cost') ? undefined : CurrencyFromJSON(json['total_cost']),
@@ -309,6 +322,7 @@ export function CartItemToJSON(value?: CartItem | null): any {
         'phsyical': CartItemPhysicalToJSON(value.phsyical),
         'position': value.position,
         'preorder': value.preorder,
+        'properties': value.properties === undefined ? undefined : ((value.properties as Array<any>).map(CartItemPropertyToJSON)),
         'quantity': value.quantity,
         'schedules': value.schedules,
         'total_cost': CurrencyToJSON(value.total_cost),
