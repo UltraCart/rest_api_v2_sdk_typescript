@@ -6992,6 +6992,12 @@ export interface ConversationDepartment {
     department_name?: string;
     /**
      * 
+     * @type {Array<ConversationDepartmentMember>}
+     * @memberof ConversationDepartment
+     */
+    members?: Array<ConversationDepartmentMember>;
+    /**
+     * 
      * @type {string}
      * @memberof ConversationDepartment
      */
@@ -7002,6 +7008,32 @@ export interface ConversationDepartment {
      * @memberof ConversationDepartment
      */
     settings?: ConversationDepartmentSettings;
+}
+
+/**
+ * 
+ * @export
+ * @interface ConversationDepartmentMember
+ */
+export interface ConversationDepartmentMember {
+    /**
+     * 
+     * @type {boolean}
+     * @memberof ConversationDepartmentMember
+     */
+    member?: boolean;
+    /**
+     * 
+     * @type {string}
+     * @memberof ConversationDepartmentMember
+     */
+    name?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof ConversationDepartmentMember
+     */
+    user_id?: number;
 }
 
 /**
@@ -7074,6 +7106,12 @@ export interface ConversationDepartmentsResponse {
      * @memberof ConversationDepartmentsResponse
      */
     metadata?: ResponseMetadata;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof ConversationDepartmentsResponse
+     */
+    read_only?: boolean;
     /**
      * Indicates if API call was successful
      * @type {boolean}
