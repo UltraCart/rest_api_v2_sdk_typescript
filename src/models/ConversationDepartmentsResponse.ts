@@ -63,6 +63,12 @@ export interface ConversationDepartmentsResponse {
      */
     metadata?: ResponseMetadata;
     /**
+     * 
+     * @type {boolean}
+     * @memberof ConversationDepartmentsResponse
+     */
+    read_only?: boolean;
+    /**
      * Indicates if API call was successful
      * @type {boolean}
      * @memberof ConversationDepartmentsResponse
@@ -89,6 +95,7 @@ export function ConversationDepartmentsResponseFromJSONTyped(json: any, ignoreDi
         'conversation_departments': !exists(json, 'conversation_departments') ? undefined : ((json['conversation_departments'] as Array<any>).map(ConversationDepartmentFromJSON)),
         'error': !exists(json, 'error') ? undefined : ModelErrorFromJSON(json['error']),
         'metadata': !exists(json, 'metadata') ? undefined : ResponseMetadataFromJSON(json['metadata']),
+        'read_only': !exists(json, 'read_only') ? undefined : json['read_only'],
         'success': !exists(json, 'success') ? undefined : json['success'],
         'warning': !exists(json, 'warning') ? undefined : WarningFromJSON(json['warning']),
     };
@@ -106,6 +113,7 @@ export function ConversationDepartmentsResponseToJSON(value?: ConversationDepart
         'conversation_departments': value.conversation_departments === undefined ? undefined : ((value.conversation_departments as Array<any>).map(ConversationDepartmentToJSON)),
         'error': ModelErrorToJSON(value.error),
         'metadata': ResponseMetadataToJSON(value.metadata),
+        'read_only': value.read_only,
         'success': value.success,
         'warning': WarningToJSON(value.warning),
     };

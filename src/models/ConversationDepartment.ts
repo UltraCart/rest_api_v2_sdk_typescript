@@ -13,6 +13,13 @@
  */
 
 import { exists, mapValues } from '../runtime';
+import {
+    ConversationDepartmentMember,
+    ConversationDepartmentMemberFromJSON,
+    ConversationDepartmentMemberFromJSONTyped,
+    ConversationDepartmentMemberToJSON,
+} from './ConversationDepartmentMember';
+
 /**
  * 
  * @export
@@ -31,6 +38,12 @@ export interface ConversationDepartment {
      * @memberof ConversationDepartment
      */
     department_name?: string;
+    /**
+     * 
+     * @type {Array<ConversationDepartmentMember>}
+     * @memberof ConversationDepartment
+     */
+    members?: Array<ConversationDepartmentMember>;
     /**
      * 
      * @type {string}
@@ -57,6 +70,7 @@ export function ConversationDepartmentFromJSONTyped(json: any, ignoreDiscriminat
         
         'conversation_department_oid': !exists(json, 'conversation_department_oid') ? undefined : json['conversation_department_oid'],
         'department_name': !exists(json, 'department_name') ? undefined : json['department_name'],
+        'members': !exists(json, 'members') ? undefined : ((json['members'] as Array<any>).map(ConversationDepartmentMemberFromJSON)),
         'merchant_id': !exists(json, 'merchant_id') ? undefined : json['merchant_id'],
         'settings': !exists(json, 'settings') ? undefined : json['settings'],
     };
@@ -73,6 +87,7 @@ export function ConversationDepartmentToJSON(value?: ConversationDepartment | nu
         
         'conversation_department_oid': value.conversation_department_oid,
         'department_name': value.department_name,
+        'members': value.members === undefined ? undefined : ((value.members as Array<any>).map(ConversationDepartmentMemberToJSON)),
         'merchant_id': value.merchant_id,
         'settings': value.settings,
     };

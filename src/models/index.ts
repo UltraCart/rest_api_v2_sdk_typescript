@@ -134,6 +134,7 @@ export * from './ConversationCannedMessageResponse';
 export * from './ConversationCannedMessagesResponse';
 export * from './ConversationCannedMessagesSearch';
 export * from './ConversationDepartment';
+export * from './ConversationDepartmentMember';
 export * from './ConversationDepartmentResponse';
 export * from './ConversationDepartmentsResponse';
 export * from './ConversationEngagement';
