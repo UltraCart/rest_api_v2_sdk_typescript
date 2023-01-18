@@ -6873,6 +6873,43 @@ export interface ConversationDepartmentMember {
 /**
  *
  * @export
+ * @interface ConversationDepartmentMembersResponse
+ */
+export interface ConversationDepartmentMembersResponse {
+    /**
+     *
+     * @type {Array<ConversationDepartmentMember>}
+     * @memberof ConversationDepartmentMembersResponse
+     */
+    conversation_department_members?: Array<ConversationDepartmentMember>;
+    /**
+     *
+     * @type {ModelError}
+     * @memberof ConversationDepartmentMembersResponse
+     */
+    error?: ModelError;
+    /**
+     *
+     * @type {ResponseMetadata}
+     * @memberof ConversationDepartmentMembersResponse
+     */
+    metadata?: ResponseMetadata;
+    /**
+     * Indicates if API call was successful
+     * @type {boolean}
+     * @memberof ConversationDepartmentMembersResponse
+     */
+    success?: boolean;
+    /**
+     *
+     * @type {Warning}
+     * @memberof ConversationDepartmentMembersResponse
+     */
+    warning?: Warning;
+}
+/**
+ *
+ * @export
  * @interface ConversationDepartmentResponse
  */
 export interface ConversationDepartmentResponse {
@@ -39540,6 +39577,13 @@ export declare const ConversationApiFetchParamCreator: (configuration?: Configur
      */
     getConversationContext(conversation_uuid: string, options?: any): FetchArgs;
     /**
+     * Retrieve a list of possible department members
+     * @summary Retrieve a list of possible department members
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getConversationDepartmentMemberList(options?: any): FetchArgs;
+    /**
      * Retrieve a list of departments ordered by name
      * @summary Retrieve a list of departments ordered by name
      * @param {*} [options] Override http request option.
@@ -39775,6 +39819,13 @@ export declare const ConversationApiFp: (configuration?: Configuration) => {
      */
     getConversationContext(conversation_uuid: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ConversationWebchatContext>;
     /**
+     * Retrieve a list of possible department members
+     * @summary Retrieve a list of possible department members
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getConversationDepartmentMemberList(options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ConversationDepartmentMembersResponse>;
+    /**
      * Retrieve a list of departments ordered by name
      * @summary Retrieve a list of departments ordered by name
      * @param {*} [options] Override http request option.
@@ -40009,6 +40060,13 @@ export declare const ConversationApiFactory: (configuration?: Configuration, fet
      * @throws {RequiredError}
      */
     getConversationContext(conversation_uuid: string, options?: any): Promise<ConversationWebchatContext>;
+    /**
+     * Retrieve a list of possible department members
+     * @summary Retrieve a list of possible department members
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getConversationDepartmentMemberList(options?: any): Promise<ConversationDepartmentMembersResponse>;
     /**
      * Retrieve a list of departments ordered by name
      * @summary Retrieve a list of departments ordered by name
@@ -40253,6 +40311,14 @@ export interface ConversationApiInterface {
      * @memberof ConversationApiInterface
      */
     getConversationContext(conversation_uuid: string, options?: any): Promise<ConversationWebchatContext>;
+    /**
+     * Retrieve a list of possible department members
+     * @summary Retrieve a list of possible department members
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApiInterface
+     */
+    getConversationDepartmentMemberList(options?: any): Promise<ConversationDepartmentMembersResponse>;
     /**
      * Retrieve a list of departments ordered by name
      * @summary Retrieve a list of departments ordered by name
@@ -40518,6 +40584,14 @@ export declare class ConversationApi extends BaseAPI implements ConversationApiI
      * @memberof ConversationApi
      */
     getConversationContext(conversation_uuid: string, options?: any): Promise<ConversationWebchatContext>;
+    /**
+     * Retrieve a list of possible department members
+     * @summary Retrieve a list of possible department members
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApi
+     */
+    getConversationDepartmentMemberList(options?: any): Promise<ConversationDepartmentMembersResponse>;
     /**
      * Retrieve a list of departments ordered by name
      * @summary Retrieve a list of departments ordered by name
