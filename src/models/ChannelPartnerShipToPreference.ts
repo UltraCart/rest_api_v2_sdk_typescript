@@ -38,6 +38,12 @@ export interface ChannelPartnerShipToPreference {
      */
     channel_partner_ship_to_preference_oid?: number;
     /**
+     * A description that is meaningful to the merchant.
+     * @type {string}
+     * @memberof ChannelPartnerShipToPreference
+     */
+    description?: string;
+    /**
      * The merchant id that owns the channel partner
      * @type {string}
      * @memberof ChannelPartnerShipToPreference
@@ -70,6 +76,7 @@ export function ChannelPartnerShipToPreferenceFromJSONTyped(json: any, ignoreDis
         'additional_kit_component_item_ids': !exists(json, 'additional_kit_component_item_ids') ? undefined : json['additional_kit_component_item_ids'],
         'channel_partner_oid': !exists(json, 'channel_partner_oid') ? undefined : json['channel_partner_oid'],
         'channel_partner_ship_to_preference_oid': !exists(json, 'channel_partner_ship_to_preference_oid') ? undefined : json['channel_partner_ship_to_preference_oid'],
+        'description': !exists(json, 'description') ? undefined : json['description'],
         'merchant_id': !exists(json, 'merchant_id') ? undefined : json['merchant_id'],
         'return_policy': !exists(json, 'return_policy') ? undefined : json['return_policy'],
         'ship_to_edi_code': !exists(json, 'ship_to_edi_code') ? undefined : json['ship_to_edi_code'],
@@ -88,6 +95,7 @@ export function ChannelPartnerShipToPreferenceToJSON(value?: ChannelPartnerShipT
         'additional_kit_component_item_ids': value.additional_kit_component_item_ids,
         'channel_partner_oid': value.channel_partner_oid,
         'channel_partner_ship_to_preference_oid': value.channel_partner_ship_to_preference_oid,
+        'description': value.description,
         'merchant_id': value.merchant_id,
         'return_policy': value.return_policy,
         'ship_to_edi_code': value.ship_to_edi_code,
