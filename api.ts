@@ -5965,6 +5965,12 @@ export interface ChannelPartnerShipToPreference {
      */
     channel_partner_ship_to_preference_oid?: number;
     /**
+     * A description that is meaningful to the merchant.
+     * @type {string}
+     * @memberof ChannelPartnerShipToPreference
+     */
+    description?: string;
+    /**
      * The merchant id that owns the channel partner
      * @type {string}
      * @memberof ChannelPartnerShipToPreference
