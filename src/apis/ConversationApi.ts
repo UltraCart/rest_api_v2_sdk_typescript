@@ -39,6 +39,9 @@ import {
     ConversationDepartment,
     ConversationDepartmentFromJSON,
     ConversationDepartmentToJSON,
+    ConversationDepartmentMembersResponse,
+    ConversationDepartmentMembersResponseFromJSON,
+    ConversationDepartmentMembersResponseToJSON,
     ConversationDepartmentResponse,
     ConversationDepartmentResponseFromJSON,
     ConversationDepartmentResponseToJSON,
@@ -326,6 +329,21 @@ export interface ConversationApiInterface {
      * Get a webchat conversation context
      */
     getConversationContext(requestParameters: GetConversationContextRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ConversationWebchatContext>;
+
+    /**
+     * Retrieve a list of possible department members 
+     * @summary Retrieve a list of possible department members
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApiInterface
+     */
+    getConversationDepartmentMemberListRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ConversationDepartmentMembersResponse>>;
+
+    /**
+     * Retrieve a list of possible department members 
+     * Retrieve a list of possible department members
+     */
+    getConversationDepartmentMemberList(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ConversationDepartmentMembersResponse>;
 
     /**
      * Retrieve a list of departments ordered by name 
@@ -974,6 +992,43 @@ export class ConversationApi extends runtime.BaseAPI implements ConversationApiI
      */
     async getConversationContext(requestParameters: GetConversationContextRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ConversationWebchatContext> {
         const response = await this.getConversationContextRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Retrieve a list of possible department members 
+     * Retrieve a list of possible department members
+     */
+    async getConversationDepartmentMemberListRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ConversationDepartmentMembersResponse>> {
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", ["conversation_read"]);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/conversation/department_members`,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => ConversationDepartmentMembersResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Retrieve a list of possible department members 
+     * Retrieve a list of possible department members
+     */
+    async getConversationDepartmentMemberList(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ConversationDepartmentMembersResponse> {
+        const response = await this.getConversationDepartmentMemberListRaw(initOverrides);
         return await response.value();
     }
 

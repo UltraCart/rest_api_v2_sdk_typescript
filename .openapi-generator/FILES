@@ -158,6 +158,7 @@ src/models/ConversationCannedMessagesResponse.ts
 src/models/ConversationCannedMessagesSearch.ts
 src/models/ConversationDepartment.ts
 src/models/ConversationDepartmentMember.ts
+src/models/ConversationDepartmentMembersResponse.ts
 src/models/ConversationDepartmentResponse.ts
 src/models/ConversationDepartmentsResponse.ts
 src/models/ConversationEngagement.ts
