@@ -159,6 +159,8 @@ export * from './ConversationMessagesResponse';
 export * from './ConversationMultimediaUploadUrl';
 export * from './ConversationMultimediaUploadUrlResponse';
 export * from './ConversationParticipant';
+export * from './ConversationPermissions';
+export * from './ConversationPermissionsResponse';
 export * from './ConversationResponse';
 export * from './ConversationSearchRequest';
 export * from './ConversationSearchResponse';

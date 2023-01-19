@@ -66,6 +66,9 @@ import {
     ConversationMultimediaUploadUrlResponse,
     ConversationMultimediaUploadUrlResponseFromJSON,
     ConversationMultimediaUploadUrlResponseToJSON,
+    ConversationPermissionsResponse,
+    ConversationPermissionsResponseFromJSON,
+    ConversationPermissionsResponseToJSON,
     ConversationResponse,
     ConversationResponseFromJSON,
     ConversationResponseToJSON,
@@ -408,6 +411,21 @@ export interface ConversationApiInterface {
      * Get a presigned conersation multimedia upload URL
      */
     getConversationMultimediaUploadUrl(requestParameters: GetConversationMultimediaUploadUrlRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ConversationMultimediaUploadUrlResponse>;
+
+    /**
+     * Retrieve conversation permissions 
+     * @summary Retrieve conversation permissions
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApiInterface
+     */
+    getConversationPermissionsRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ConversationPermissionsResponse>>;
+
+    /**
+     * Retrieve conversation permissions 
+     * Retrieve conversation permissions
+     */
+    getConversationPermissions(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ConversationPermissionsResponse>;
 
     /**
      * Retrieve a conversation webchat queue statuses including agent status and queue entries 
@@ -1193,6 +1211,43 @@ export class ConversationApi extends runtime.BaseAPI implements ConversationApiI
      */
     async getConversationMultimediaUploadUrl(requestParameters: GetConversationMultimediaUploadUrlRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ConversationMultimediaUploadUrlResponse> {
         const response = await this.getConversationMultimediaUploadUrlRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Retrieve conversation permissions 
+     * Retrieve conversation permissions
+     */
+    async getConversationPermissionsRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ConversationPermissionsResponse>> {
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", ["conversation_read"]);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/conversation/permissions`,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => ConversationPermissionsResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Retrieve conversation permissions 
+     * Retrieve conversation permissions
+     */
+    async getConversationPermissions(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ConversationPermissionsResponse> {
+        const response = await this.getConversationPermissionsRaw(initOverrides);
         return await response.value();
     }
 

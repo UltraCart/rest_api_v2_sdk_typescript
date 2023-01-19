@@ -14,11 +14,11 @@
 
 import { exists, mapValues } from '../runtime';
 import {
-    ConversationDepartment,
-    ConversationDepartmentFromJSON,
-    ConversationDepartmentFromJSONTyped,
-    ConversationDepartmentToJSON,
-} from './ConversationDepartment';
+    ConversationPermissions,
+    ConversationPermissionsFromJSON,
+    ConversationPermissionsFromJSONTyped,
+    ConversationPermissionsToJSON,
+} from './ConversationPermissions';
 import {
     ModelError,
     ModelErrorFromJSON,
@@ -41,60 +41,60 @@ import {
 /**
  * 
  * @export
- * @interface ConversationDepartmentsResponse
+ * @interface ConversationPermissionsResponse
  */
-export interface ConversationDepartmentsResponse {
-    /**
-     * 
-     * @type {Array<ConversationDepartment>}
-     * @memberof ConversationDepartmentsResponse
-     */
-    conversation_departments?: Array<ConversationDepartment>;
+export interface ConversationPermissionsResponse {
     /**
      * 
      * @type {ModelError}
-     * @memberof ConversationDepartmentsResponse
+     * @memberof ConversationPermissionsResponse
      */
     error?: ModelError;
     /**
      * 
      * @type {ResponseMetadata}
-     * @memberof ConversationDepartmentsResponse
+     * @memberof ConversationPermissionsResponse
      */
     metadata?: ResponseMetadata;
     /**
+     * 
+     * @type {ConversationPermissions}
+     * @memberof ConversationPermissionsResponse
+     */
+    permissions?: ConversationPermissions;
+    /**
      * Indicates if API call was successful
      * @type {boolean}
-     * @memberof ConversationDepartmentsResponse
+     * @memberof ConversationPermissionsResponse
      */
     success?: boolean;
     /**
      * 
      * @type {Warning}
-     * @memberof ConversationDepartmentsResponse
+     * @memberof ConversationPermissionsResponse
      */
     warning?: Warning;
 }
 
-export function ConversationDepartmentsResponseFromJSON(json: any): ConversationDepartmentsResponse {
-    return ConversationDepartmentsResponseFromJSONTyped(json, false);
+export function ConversationPermissionsResponseFromJSON(json: any): ConversationPermissionsResponse {
+    return ConversationPermissionsResponseFromJSONTyped(json, false);
 }
 
-export function ConversationDepartmentsResponseFromJSONTyped(json: any, ignoreDiscriminator: boolean): ConversationDepartmentsResponse {
+export function ConversationPermissionsResponseFromJSONTyped(json: any, ignoreDiscriminator: boolean): ConversationPermissionsResponse {
     if ((json === undefined) || (json === null)) {
         return json;
     }
     return {
         
-        'conversation_departments': !exists(json, 'conversation_departments') ? undefined : ((json['conversation_departments'] as Array<any>).map(ConversationDepartmentFromJSON)),
         'error': !exists(json, 'error') ? undefined : ModelErrorFromJSON(json['error']),
         'metadata': !exists(json, 'metadata') ? undefined : ResponseMetadataFromJSON(json['metadata']),
+        'permissions': !exists(json, 'permissions') ? undefined : ConversationPermissionsFromJSON(json['permissions']),
         'success': !exists(json, 'success') ? undefined : json['success'],
         'warning': !exists(json, 'warning') ? undefined : WarningFromJSON(json['warning']),
     };
 }
 
-export function ConversationDepartmentsResponseToJSON(value?: ConversationDepartmentsResponse | null): any {
+export function ConversationPermissionsResponseToJSON(value?: ConversationPermissionsResponse | null): any {
     if (value === undefined) {
         return undefined;
     }
@@ -103,9 +103,9 @@ export function ConversationDepartmentsResponseToJSON(value?: ConversationDepart
     }
     return {
         
-        'conversation_departments': value.conversation_departments === undefined ? undefined : ((value.conversation_departments as Array<any>).map(ConversationDepartmentToJSON)),
         'error': ModelErrorToJSON(value.error),
         'metadata': ResponseMetadataToJSON(value.metadata),
+        'permissions': ConversationPermissionsToJSON(value.permissions),
         'success': value.success,
         'warning': WarningToJSON(value.warning),
     };

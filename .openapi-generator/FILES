@@ -182,6 +182,8 @@ src/models/ConversationMessagesResponse.ts
 src/models/ConversationMultimediaUploadUrl.ts
 src/models/ConversationMultimediaUploadUrlResponse.ts
 src/models/ConversationParticipant.ts
+src/models/ConversationPermissions.ts
+src/models/ConversationPermissionsResponse.ts
 src/models/ConversationResponse.ts
 src/models/ConversationSearchRequest.ts
 src/models/ConversationSearchResponse.ts
