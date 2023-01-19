@@ -9392,6 +9392,12 @@ export interface Coupon {
      */
     restrict_by_storefronts?: Array<CouponRestriction>;
     /**
+     * Skip this coupon when it is on a rebill of an auto order.
+     * @type {boolean}
+     * @memberof Coupon
+     */
+    skip_on_rebill?: boolean;
+    /**
      * Date/time when coupon is valid
      * @type {string}
      * @memberof Coupon
