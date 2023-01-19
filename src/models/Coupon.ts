@@ -645,6 +645,12 @@ export interface Coupon {
      */
     restrict_by_storefronts?: Array<CouponRestriction>;
     /**
+     * Skip this coupon when it is on a rebill of an auto order.
+     * @type {boolean}
+     * @memberof Coupon
+     */
+    skip_on_rebill?: boolean;
+    /**
      * Date/time when coupon is valid
      * @type {string}
      * @memberof Coupon
@@ -766,6 +772,7 @@ export function CouponFromJSONTyped(json: any, ignoreDiscriminator: boolean): Co
         'restrict_by_postal_codes': !exists(json, 'restrict_by_postal_codes') ? undefined : json['restrict_by_postal_codes'],
         'restrict_by_screen_branding_theme_codes': !exists(json, 'restrict_by_screen_branding_theme_codes') ? undefined : ((json['restrict_by_screen_branding_theme_codes'] as Array<any>).map(CouponRestrictionFromJSON)),
         'restrict_by_storefronts': !exists(json, 'restrict_by_storefronts') ? undefined : ((json['restrict_by_storefronts'] as Array<any>).map(CouponRestrictionFromJSON)),
+        'skip_on_rebill': !exists(json, 'skip_on_rebill') ? undefined : json['skip_on_rebill'],
         'start_dts': !exists(json, 'start_dts') ? undefined : json['start_dts'],
         'super_coupon': !exists(json, 'super_coupon') ? undefined : json['super_coupon'],
         'tiered_amount_off_items': !exists(json, 'tiered_amount_off_items') ? undefined : CouponTieredAmountOffItemsFromJSON(json['tiered_amount_off_items']),
@@ -843,6 +850,7 @@ export function CouponToJSON(value?: Coupon | null): any {
         'restrict_by_postal_codes': value.restrict_by_postal_codes,
         'restrict_by_screen_branding_theme_codes': value.restrict_by_screen_branding_theme_codes === undefined ? undefined : ((value.restrict_by_screen_branding_theme_codes as Array<any>).map(CouponRestrictionToJSON)),
         'restrict_by_storefronts': value.restrict_by_storefronts === undefined ? undefined : ((value.restrict_by_storefronts as Array<any>).map(CouponRestrictionToJSON)),
+        'skip_on_rebill': value.skip_on_rebill,
         'start_dts': value.start_dts,
         'super_coupon': value.super_coupon,
         'tiered_amount_off_items': CouponTieredAmountOffItemsToJSON(value.tiered_amount_off_items),
