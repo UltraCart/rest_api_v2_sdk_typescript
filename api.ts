@@ -7145,12 +7145,6 @@ export interface ConversationDepartmentsResponse {
      */
     metadata?: ResponseMetadata;
     /**
-     * 
-     * @type {boolean}
-     * @memberof ConversationDepartmentsResponse
-     */
-    read_only?: boolean;
-    /**
      * Indicates if API call was successful
      * @type {boolean}
      * @memberof ConversationDepartmentsResponse
@@ -8095,6 +8089,58 @@ export interface ConversationParticipant {
      * @memberof ConversationParticipant
      */
     unread_messages?: number;
+}
+
+/**
+ * 
+ * @export
+ * @interface ConversationPermissions
+ */
+export interface ConversationPermissions {
+    /**
+     * 
+     * @type {boolean}
+     * @memberof ConversationPermissions
+     */
+    edit_settings?: boolean;
+}
+
+/**
+ * 
+ * @export
+ * @interface ConversationPermissionsResponse
+ */
+export interface ConversationPermissionsResponse {
+    /**
+     * 
+     * @type {ModelError}
+     * @memberof ConversationPermissionsResponse
+     */
+    error?: ModelError;
+    /**
+     * 
+     * @type {ResponseMetadata}
+     * @memberof ConversationPermissionsResponse
+     */
+    metadata?: ResponseMetadata;
+    /**
+     * 
+     * @type {ConversationPermissions}
+     * @memberof ConversationPermissionsResponse
+     */
+    permissions?: ConversationPermissions;
+    /**
+     * Indicates if API call was successful
+     * @type {boolean}
+     * @memberof ConversationPermissionsResponse
+     */
+    success?: boolean;
+    /**
+     * 
+     * @type {Warning}
+     * @memberof ConversationPermissionsResponse
+     */
+    warning?: Warning;
 }
 
 /**
@@ -44364,6 +44410,52 @@ export const ConversationApiFetchParamCreator = function (configuration?: Config
             };
         },
         /**
+         * Retrieve conversation permissions 
+         * @summary Retrieve conversation permissions
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getConversationPermissions(options: any = {}): FetchArgs {
+            const localVarPath = `/conversation/permissions`;
+            const localVarUrlObj = url.parse(localVarPath, true);
+            const localVarRequestOptions = Object.assign({ method: 'GET' }, options);
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+    if(configuration && configuration.apiVersion) {
+      localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+    }
+
+
+
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+				const localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+					? configuration.accessToken("ultraCartOauth", ["conversation_read"])
+					: configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
+					? configuration.apiKey("x-ultracart-simple-key")
+					: configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
          * Retrieve a conversation webchat queue statuses including agent status and queue entries 
          * @summary Retrieve a conversation webchat queue statuses
          * @param {*} [options] Override http request option.
@@ -45545,6 +45637,26 @@ export const ConversationApiFp = function(configuration?: Configuration) {
             };
         },
         /**
+         * Retrieve conversation permissions 
+         * @summary Retrieve conversation permissions
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getConversationPermissions(options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ConversationPermissionsResponse> {
+            const localVarFetchArgs = ConversationApiFetchParamCreator(configuration).getConversationPermissions(options);
+            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
+                    if (response.status >= 200 && response.status < 300) {
+                      return response.json();
+                      
+                    } else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
          * Retrieve a conversation webchat queue statuses including agent status and queue entries 
          * @summary Retrieve a conversation webchat queue statuses
          * @param {*} [options] Override http request option.
@@ -46024,6 +46136,15 @@ export const ConversationApiFactory = function (configuration?: Configuration, f
             return ConversationApiFp(configuration).getConversationMultimediaUploadUrl(extension, options)(fetch, basePath);
         },
         /**
+         * Retrieve conversation permissions 
+         * @summary Retrieve conversation permissions
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getConversationPermissions(options?: any) {
+            return ConversationApiFp(configuration).getConversationPermissions(options)(fetch, basePath);
+        },
+        /**
          * Retrieve a conversation webchat queue statuses including agent status and queue entries 
          * @summary Retrieve a conversation webchat queue statuses
          * @param {*} [options] Override http request option.
@@ -46325,6 +46446,15 @@ export interface ConversationApiInterface {
      * @memberof ConversationApiInterface
      */
     getConversationMultimediaUploadUrl(extension: string, options?: any): Promise<ConversationMultimediaUploadUrlResponse>;
+
+    /**
+     * Retrieve conversation permissions 
+     * @summary Retrieve conversation permissions
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApiInterface
+     */
+    getConversationPermissions(options?: any): Promise<ConversationPermissionsResponse>;
 
     /**
      * Retrieve a conversation webchat queue statuses including agent status and queue entries 
@@ -46653,6 +46783,17 @@ export class ConversationApi extends BaseAPI implements ConversationApiInterface
      */
     public getConversationMultimediaUploadUrl(extension: string, options?: any) {
         return ConversationApiFp(this.configuration).getConversationMultimediaUploadUrl(extension, options)(this.fetch, this.basePath);
+    }
+
+    /**
+     * Retrieve conversation permissions 
+     * @summary Retrieve conversation permissions
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApi
+     */
+    public getConversationPermissions(options?: any) {
+        return ConversationApiFp(this.configuration).getConversationPermissions(options)(this.fetch, this.basePath);
     }
 
     /**

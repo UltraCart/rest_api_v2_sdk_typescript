@@ -6730,6 +6730,46 @@ var ConversationApiFetchParamCreator = function (configuration) {
             };
         },
         /**
+         * Retrieve conversation permissions
+         * @summary Retrieve conversation permissions
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getConversationPermissions: function (options) {
+            if (options === void 0) { options = {}; }
+            var localVarPath = "/conversation/permissions";
+            var localVarUrlObj = url.parse(localVarPath, true);
+            var localVarRequestOptions = Object.assign({ method: 'GET' }, options);
+            var localVarHeaderParameter = {};
+            var localVarQueryParameter = {};
+            if (configuration && configuration.apiVersion) {
+                localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+            }
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+                var localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+                    ? configuration.accessToken("ultraCartOauth", ["conversation_read"])
+                    : configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                var localVarApiKeyValue = typeof configuration.apiKey === 'function'
+                    ? configuration.apiKey("x-ultracart-simple-key")
+                    : configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
          * Retrieve a conversation webchat queue statuses including agent status and queue entries
          * @summary Retrieve a conversation webchat queue statuses
          * @param {*} [options] Override http request option.
@@ -7812,6 +7852,27 @@ var ConversationApiFp = function (configuration) {
             };
         },
         /**
+         * Retrieve conversation permissions
+         * @summary Retrieve conversation permissions
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getConversationPermissions: function (options) {
+            var localVarFetchArgs = (0, exports.ConversationApiFetchParamCreator)(configuration).getConversationPermissions(options);
+            return function (fetch, basePath) {
+                if (fetch === void 0) { fetch = portableFetch; }
+                if (basePath === void 0) { basePath = BASE_PATH; }
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(function (response) {
+                    if (response.status >= 200 && response.status < 300) {
+                        return response.json();
+                    }
+                    else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
          * Retrieve a conversation webchat queue statuses including agent status and queue entries
          * @summary Retrieve a conversation webchat queue statuses
          * @param {*} [options] Override http request option.
@@ -8307,6 +8368,15 @@ var ConversationApiFactory = function (configuration, fetch, basePath) {
             return (0, exports.ConversationApiFp)(configuration).getConversationMultimediaUploadUrl(extension, options)(fetch, basePath);
         },
         /**
+         * Retrieve conversation permissions
+         * @summary Retrieve conversation permissions
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getConversationPermissions: function (options) {
+            return (0, exports.ConversationApiFp)(configuration).getConversationPermissions(options)(fetch, basePath);
+        },
+        /**
          * Retrieve a conversation webchat queue statuses including agent status and queue entries
          * @summary Retrieve a conversation webchat queue statuses
          * @param {*} [options] Override http request option.
@@ -8626,6 +8696,16 @@ var ConversationApi = /** @class */ (function (_super) {
      */
     ConversationApi.prototype.getConversationMultimediaUploadUrl = function (extension, options) {
         return (0, exports.ConversationApiFp)(this.configuration).getConversationMultimediaUploadUrl(extension, options)(this.fetch, this.basePath);
+    };
+    /**
+     * Retrieve conversation permissions
+     * @summary Retrieve conversation permissions
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApi
+     */
+    ConversationApi.prototype.getConversationPermissions = function (options) {
+        return (0, exports.ConversationApiFp)(this.configuration).getConversationPermissions(options)(this.fetch, this.basePath);
     };
     /**
      * Retrieve a conversation webchat queue statuses including agent status and queue entries

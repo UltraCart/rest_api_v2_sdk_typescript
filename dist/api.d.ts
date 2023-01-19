@@ -6976,12 +6976,6 @@ export interface ConversationDepartmentsResponse {
      */
     metadata?: ResponseMetadata;
     /**
-     *
-     * @type {boolean}
-     * @memberof ConversationDepartmentsResponse
-     */
-    read_only?: boolean;
-    /**
      * Indicates if API call was successful
      * @type {boolean}
      * @memberof ConversationDepartmentsResponse
@@ -7900,6 +7894,56 @@ export interface ConversationParticipant {
      * @memberof ConversationParticipant
      */
     unread_messages?: number;
+}
+/**
+ *
+ * @export
+ * @interface ConversationPermissions
+ */
+export interface ConversationPermissions {
+    /**
+     *
+     * @type {boolean}
+     * @memberof ConversationPermissions
+     */
+    edit_settings?: boolean;
+}
+/**
+ *
+ * @export
+ * @interface ConversationPermissionsResponse
+ */
+export interface ConversationPermissionsResponse {
+    /**
+     *
+     * @type {ModelError}
+     * @memberof ConversationPermissionsResponse
+     */
+    error?: ModelError;
+    /**
+     *
+     * @type {ResponseMetadata}
+     * @memberof ConversationPermissionsResponse
+     */
+    metadata?: ResponseMetadata;
+    /**
+     *
+     * @type {ConversationPermissions}
+     * @memberof ConversationPermissionsResponse
+     */
+    permissions?: ConversationPermissions;
+    /**
+     * Indicates if API call was successful
+     * @type {boolean}
+     * @memberof ConversationPermissionsResponse
+     */
+    success?: boolean;
+    /**
+     *
+     * @type {Warning}
+     * @memberof ConversationPermissionsResponse
+     */
+    warning?: Warning;
 }
 /**
  *
@@ -39616,6 +39660,13 @@ export declare const ConversationApiFetchParamCreator: (configuration?: Configur
      */
     getConversationMultimediaUploadUrl(extension: string, options?: any): FetchArgs;
     /**
+     * Retrieve conversation permissions
+     * @summary Retrieve conversation permissions
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getConversationPermissions(options?: any): FetchArgs;
+    /**
      * Retrieve a conversation webchat queue statuses including agent status and queue entries
      * @summary Retrieve a conversation webchat queue statuses
      * @param {*} [options] Override http request option.
@@ -39858,6 +39909,13 @@ export declare const ConversationApiFp: (configuration?: Configuration) => {
      */
     getConversationMultimediaUploadUrl(extension: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ConversationMultimediaUploadUrlResponse>;
     /**
+     * Retrieve conversation permissions
+     * @summary Retrieve conversation permissions
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getConversationPermissions(options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ConversationPermissionsResponse>;
+    /**
      * Retrieve a conversation webchat queue statuses including agent status and queue entries
      * @summary Retrieve a conversation webchat queue statuses
      * @param {*} [options] Override http request option.
@@ -40099,6 +40157,13 @@ export declare const ConversationApiFactory: (configuration?: Configuration, fet
      * @throws {RequiredError}
      */
     getConversationMultimediaUploadUrl(extension: string, options?: any): Promise<ConversationMultimediaUploadUrlResponse>;
+    /**
+     * Retrieve conversation permissions
+     * @summary Retrieve conversation permissions
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getConversationPermissions(options?: any): Promise<ConversationPermissionsResponse>;
     /**
      * Retrieve a conversation webchat queue statuses including agent status and queue entries
      * @summary Retrieve a conversation webchat queue statuses
@@ -40355,6 +40420,14 @@ export interface ConversationApiInterface {
      * @memberof ConversationApiInterface
      */
     getConversationMultimediaUploadUrl(extension: string, options?: any): Promise<ConversationMultimediaUploadUrlResponse>;
+    /**
+     * Retrieve conversation permissions
+     * @summary Retrieve conversation permissions
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApiInterface
+     */
+    getConversationPermissions(options?: any): Promise<ConversationPermissionsResponse>;
     /**
      * Retrieve a conversation webchat queue statuses including agent status and queue entries
      * @summary Retrieve a conversation webchat queue statuses
@@ -40628,6 +40701,14 @@ export declare class ConversationApi extends BaseAPI implements ConversationApiI
      * @memberof ConversationApi
      */
     getConversationMultimediaUploadUrl(extension: string, options?: any): Promise<ConversationMultimediaUploadUrlResponse>;
+    /**
+     * Retrieve conversation permissions
+     * @summary Retrieve conversation permissions
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApi
+     */
+    getConversationPermissions(options?: any): Promise<ConversationPermissionsResponse>;
     /**
      * Retrieve a conversation webchat queue statuses including agent status and queue entries
      * @summary Retrieve a conversation webchat queue statuses
