@@ -13,6 +13,13 @@
  */
 
 import { exists, mapValues } from '../runtime';
+import {
+    OrderTransactionalMerchantNote,
+    OrderTransactionalMerchantNoteFromJSON,
+    OrderTransactionalMerchantNoteFromJSONTyped,
+    OrderTransactionalMerchantNoteToJSON,
+} from './OrderTransactionalMerchantNote';
+
 /**
  * 
  * @export
@@ -26,7 +33,7 @@ export interface OrderInternal {
      */
     exported_to_accounting?: boolean;
     /**
-     * Merchant notes
+     * Merchant notes.  Full notes in non-transactional mode.  Just used to write a new merchant note when transaction merchant notes enabled.
      * @type {string}
      * @memberof OrderInternal
      */
@@ -49,6 +56,12 @@ export interface OrderInternal {
      * @memberof OrderInternal
      */
     sales_rep_code?: string;
+    /**
+     * Transactional merchant notes
+     * @type {Array<OrderTransactionalMerchantNote>}
+     * @memberof OrderInternal
+     */
+    transactional_merchant_notes?: Array<OrderTransactionalMerchantNote>;
 }
 
 export function OrderInternalFromJSON(json: any): OrderInternal {
@@ -66,6 +79,7 @@ export function OrderInternalFromJSONTyped(json: any, ignoreDiscriminator: boole
         'placed_by_user': !exists(json, 'placed_by_user') ? undefined : json['placed_by_user'],
         'refund_by_user': !exists(json, 'refund_by_user') ? undefined : json['refund_by_user'],
         'sales_rep_code': !exists(json, 'sales_rep_code') ? undefined : json['sales_rep_code'],
+        'transactional_merchant_notes': !exists(json, 'transactional_merchant_notes') ? undefined : ((json['transactional_merchant_notes'] as Array<any>).map(OrderTransactionalMerchantNoteFromJSON)),
     };
 }
 
@@ -83,6 +97,7 @@ export function OrderInternalToJSON(value?: OrderInternal | null): any {
         'placed_by_user': value.placed_by_user,
         'refund_by_user': value.refund_by_user,
         'sales_rep_code': value.sales_rep_code,
+        'transactional_merchant_notes': value.transactional_merchant_notes === undefined ? undefined : ((value.transactional_merchant_notes as Array<any>).map(OrderTransactionalMerchantNoteToJSON)),
     };
 }
 

@@ -122,6 +122,10 @@ export interface GetConversationContextRequest {
     conversationUuid: string;
 }
 
+export interface GetConversationEngagementRequest {
+    conversationEngagementOid: number;
+}
+
 export interface GetConversationMessagesRequest {
     conversationUuid: string;
     since: number;
@@ -362,6 +366,22 @@ export interface ConversationApiInterface {
      * Retrieve a list of departments ordered by name
      */
     getConversationDepartments(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ConversationDepartmentsResponse>;
+
+    /**
+     * Retrieve an engagement 
+     * @summary Retrieve an engagement
+     * @param {number} conversationEngagementOid 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApiInterface
+     */
+    getConversationEngagementRaw(requestParameters: GetConversationEngagementRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ConversationEngagementResponse>>;
+
+    /**
+     * Retrieve an engagement 
+     * Retrieve an engagement
+     */
+    getConversationEngagement(requestParameters: GetConversationEngagementRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ConversationEngagementResponse>;
 
     /**
      * Retrieve a list of engagements ordered by name 
@@ -1084,6 +1104,47 @@ export class ConversationApi extends runtime.BaseAPI implements ConversationApiI
      */
     async getConversationDepartments(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ConversationDepartmentsResponse> {
         const response = await this.getConversationDepartmentsRaw(initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Retrieve an engagement 
+     * Retrieve an engagement
+     */
+    async getConversationEngagementRaw(requestParameters: GetConversationEngagementRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ConversationEngagementResponse>> {
+        if (requestParameters.conversationEngagementOid === null || requestParameters.conversationEngagementOid === undefined) {
+            throw new runtime.RequiredError('conversationEngagementOid','Required parameter requestParameters.conversationEngagementOid was null or undefined when calling getConversationEngagement.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", ["conversation_read"]);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/conversation/engagements/{conversation_engagement_oid}`.replace(`{${"conversation_engagement_oid"}}`, encodeURIComponent(String(requestParameters.conversationEngagementOid))),
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => ConversationEngagementResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Retrieve an engagement 
+     * Retrieve an engagement
+     */
+    async getConversationEngagement(requestParameters: GetConversationEngagementRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ConversationEngagementResponse> {
+        const response = await this.getConversationEngagementRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
