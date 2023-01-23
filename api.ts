@@ -29263,7 +29263,7 @@ export interface OrderInternal {
      */
     exported_to_accounting?: boolean;
     /**
-     * Merchant notes
+     * Merchant notes.  Full notes in non-transactional mode.  Just used to write a new merchant note when transaction merchant notes enabled.
      * @type {string}
      * @memberof OrderInternal
      */
@@ -29286,6 +29286,12 @@ export interface OrderInternal {
      * @memberof OrderInternal
      */
     sales_rep_code?: string;
+    /**
+     * Transactional merchant notes
+     * @type {Array<OrderTransactionalMerchantNote>}
+     * @memberof OrderInternal
+     */
+    transactional_merchant_notes?: Array<OrderTransactionalMerchantNote>;
 }
 
 /**
@@ -31846,6 +31852,38 @@ export interface OrderTrackingNumberDetails {
      * @memberof OrderTrackingNumberDetails
      */
     tracking_url?: string;
+}
+
+/**
+ * 
+ * @export
+ * @interface OrderTransactionalMerchantNote
+ */
+export interface OrderTransactionalMerchantNote {
+    /**
+     * IP Address
+     * @type {string}
+     * @memberof OrderTransactionalMerchantNote
+     */
+    ip_address?: string;
+    /**
+     * note
+     * @type {string}
+     * @memberof OrderTransactionalMerchantNote
+     */
+    note?: string;
+    /**
+     * Timestamp when the note was added
+     * @type {string}
+     * @memberof OrderTransactionalMerchantNote
+     */
+    note_dts?: string;
+    /**
+     * User that wrote the merchant note
+     * @type {string}
+     * @memberof OrderTransactionalMerchantNote
+     */
+    user?: string;
 }
 
 /**
@@ -44255,6 +44293,58 @@ export const ConversationApiFetchParamCreator = function (configuration?: Config
             };
         },
         /**
+         * Retrieve an engagement 
+         * @summary Retrieve an engagement
+         * @param {number} conversation_engagement_oid 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getConversationEngagement(conversation_engagement_oid: number, options: any = {}): FetchArgs {
+            // verify required parameter 'conversation_engagement_oid' is not null or undefined
+            if (conversation_engagement_oid === null || conversation_engagement_oid === undefined) {
+                throw new RequiredError('conversation_engagement_oid','Required parameter conversation_engagement_oid was null or undefined when calling getConversationEngagement.');
+            }
+            const localVarPath = `/conversation/engagements/{conversation_engagement_oid}`
+                .replace(`{${"conversation_engagement_oid"}}`, encodeURIComponent(String(conversation_engagement_oid)));
+            const localVarUrlObj = url.parse(localVarPath, true);
+            const localVarRequestOptions = Object.assign({ method: 'GET' }, options);
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+    if(configuration && configuration.apiVersion) {
+      localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+    }
+
+
+
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+				const localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+					? configuration.accessToken("ultraCartOauth", ["conversation_read"])
+					: configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
+					? configuration.apiKey("x-ultracart-simple-key")
+					: configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
          * Retrieve a list of engagements ordered by name 
          * @summary Retrieve a list of engagements ordered by name
          * @param {*} [options] Override http request option.
@@ -45579,6 +45669,27 @@ export const ConversationApiFp = function(configuration?: Configuration) {
             };
         },
         /**
+         * Retrieve an engagement 
+         * @summary Retrieve an engagement
+         * @param {number} conversation_engagement_oid 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getConversationEngagement(conversation_engagement_oid: number, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ConversationEngagementResponse> {
+            const localVarFetchArgs = ConversationApiFetchParamCreator(configuration).getConversationEngagement(conversation_engagement_oid, options);
+            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
+                    if (response.status >= 200 && response.status < 300) {
+                      return response.json();
+                      
+                    } else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
          * Retrieve a list of engagements ordered by name 
          * @summary Retrieve a list of engagements ordered by name
          * @param {*} [options] Override http request option.
@@ -46111,6 +46222,16 @@ export const ConversationApiFactory = function (configuration?: Configuration, f
             return ConversationApiFp(configuration).getConversationDepartments(options)(fetch, basePath);
         },
         /**
+         * Retrieve an engagement 
+         * @summary Retrieve an engagement
+         * @param {number} conversation_engagement_oid 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getConversationEngagement(conversation_engagement_oid: number, options?: any) {
+            return ConversationApiFp(configuration).getConversationEngagement(conversation_engagement_oid, options)(fetch, basePath);
+        },
+        /**
          * Retrieve a list of engagements ordered by name 
          * @summary Retrieve a list of engagements ordered by name
          * @param {*} [options] Override http request option.
@@ -46421,6 +46542,16 @@ export interface ConversationApiInterface {
      * @memberof ConversationApiInterface
      */
     getConversationDepartments(options?: any): Promise<ConversationDepartmentsResponse>;
+
+    /**
+     * Retrieve an engagement 
+     * @summary Retrieve an engagement
+     * @param {number} conversation_engagement_oid 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApiInterface
+     */
+    getConversationEngagement(conversation_engagement_oid: number, options?: any): Promise<ConversationEngagementResponse>;
 
     /**
      * Retrieve a list of engagements ordered by name 
@@ -46752,6 +46883,18 @@ export class ConversationApi extends BaseAPI implements ConversationApiInterface
      */
     public getConversationDepartments(options?: any) {
         return ConversationApiFp(this.configuration).getConversationDepartments(options)(this.fetch, this.basePath);
+    }
+
+    /**
+     * Retrieve an engagement 
+     * @summary Retrieve an engagement
+     * @param {number} conversation_engagement_oid 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApi
+     */
+    public getConversationEngagement(conversation_engagement_oid: number, options?: any) {
+        return ConversationApiFp(this.configuration).getConversationEngagement(conversation_engagement_oid, options)(this.fetch, this.basePath);
     }
 
     /**

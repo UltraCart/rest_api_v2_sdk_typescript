@@ -28642,7 +28642,7 @@ export interface OrderInternal {
      */
     exported_to_accounting?: boolean;
     /**
-     * Merchant notes
+     * Merchant notes.  Full notes in non-transactional mode.  Just used to write a new merchant note when transaction merchant notes enabled.
      * @type {string}
      * @memberof OrderInternal
      */
@@ -28665,6 +28665,12 @@ export interface OrderInternal {
      * @memberof OrderInternal
      */
     sales_rep_code?: string;
+    /**
+     * Transactional merchant notes
+     * @type {Array<OrderTransactionalMerchantNote>}
+     * @memberof OrderInternal
+     */
+    transactional_merchant_notes?: Array<OrderTransactionalMerchantNote>;
 }
 /**
  *
@@ -31180,6 +31186,37 @@ export interface OrderTrackingNumberDetails {
      * @memberof OrderTrackingNumberDetails
      */
     tracking_url?: string;
+}
+/**
+ *
+ * @export
+ * @interface OrderTransactionalMerchantNote
+ */
+export interface OrderTransactionalMerchantNote {
+    /**
+     * IP Address
+     * @type {string}
+     * @memberof OrderTransactionalMerchantNote
+     */
+    ip_address?: string;
+    /**
+     * note
+     * @type {string}
+     * @memberof OrderTransactionalMerchantNote
+     */
+    note?: string;
+    /**
+     * Timestamp when the note was added
+     * @type {string}
+     * @memberof OrderTransactionalMerchantNote
+     */
+    note_dts?: string;
+    /**
+     * User that wrote the merchant note
+     * @type {string}
+     * @memberof OrderTransactionalMerchantNote
+     */
+    user?: string;
 }
 /**
  *
@@ -39641,6 +39678,14 @@ export declare const ConversationApiFetchParamCreator: (configuration?: Configur
      */
     getConversationDepartments(options?: any): FetchArgs;
     /**
+     * Retrieve an engagement
+     * @summary Retrieve an engagement
+     * @param {number} conversation_engagement_oid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getConversationEngagement(conversation_engagement_oid: number, options?: any): FetchArgs;
+    /**
      * Retrieve a list of engagements ordered by name
      * @summary Retrieve a list of engagements ordered by name
      * @param {*} [options] Override http request option.
@@ -39890,6 +39935,14 @@ export declare const ConversationApiFp: (configuration?: Configuration) => {
      */
     getConversationDepartments(options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ConversationDepartmentsResponse>;
     /**
+     * Retrieve an engagement
+     * @summary Retrieve an engagement
+     * @param {number} conversation_engagement_oid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getConversationEngagement(conversation_engagement_oid: number, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ConversationEngagementResponse>;
+    /**
      * Retrieve a list of engagements ordered by name
      * @summary Retrieve a list of engagements ordered by name
      * @param {*} [options] Override http request option.
@@ -40138,6 +40191,14 @@ export declare const ConversationApiFactory: (configuration?: Configuration, fet
      * @throws {RequiredError}
      */
     getConversationDepartments(options?: any): Promise<ConversationDepartmentsResponse>;
+    /**
+     * Retrieve an engagement
+     * @summary Retrieve an engagement
+     * @param {number} conversation_engagement_oid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getConversationEngagement(conversation_engagement_oid: number, options?: any): Promise<ConversationEngagementResponse>;
     /**
      * Retrieve a list of engagements ordered by name
      * @summary Retrieve a list of engagements ordered by name
@@ -40398,6 +40459,15 @@ export interface ConversationApiInterface {
      * @memberof ConversationApiInterface
      */
     getConversationDepartments(options?: any): Promise<ConversationDepartmentsResponse>;
+    /**
+     * Retrieve an engagement
+     * @summary Retrieve an engagement
+     * @param {number} conversation_engagement_oid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApiInterface
+     */
+    getConversationEngagement(conversation_engagement_oid: number, options?: any): Promise<ConversationEngagementResponse>;
     /**
      * Retrieve a list of engagements ordered by name
      * @summary Retrieve a list of engagements ordered by name
@@ -40679,6 +40749,15 @@ export declare class ConversationApi extends BaseAPI implements ConversationApiI
      * @memberof ConversationApi
      */
     getConversationDepartments(options?: any): Promise<ConversationDepartmentsResponse>;
+    /**
+     * Retrieve an engagement
+     * @summary Retrieve an engagement
+     * @param {number} conversation_engagement_oid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApi
+     */
+    getConversationEngagement(conversation_engagement_oid: number, options?: any): Promise<ConversationEngagementResponse>;
     /**
      * Retrieve a list of engagements ordered by name
      * @summary Retrieve a list of engagements ordered by name
