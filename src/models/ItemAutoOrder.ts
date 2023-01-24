@@ -39,6 +39,12 @@ export interface ItemAutoOrder {
      */
     auth_test_amount?: number;
     /**
+     * If true, the cost of the cancel item will be the remaining balance of the minimum rebill or lifetime value
+     * @type {boolean}
+     * @memberof ItemAutoOrder
+     */
+    auto_order_cancel_charge_minimum_balance?: boolean;
+    /**
      * Item id to attempt charging the customer for if they cancel
      * @type {string}
      * @memberof ItemAutoOrder
@@ -50,6 +56,18 @@ export interface ItemAutoOrder {
      * @memberof ItemAutoOrder
      */
     auto_order_cancel_item_oid?: number;
+    /**
+     * The minimum life time value that must be paid in order to not be charged the cancellation item.
+     * @type {number}
+     * @memberof ItemAutoOrder
+     */
+    auto_order_cancel_minimum_life_time_value?: number;
+    /**
+     * The minimum rebill value that must be paid in order to not be charged the cancellation item.
+     * @type {number}
+     * @memberof ItemAutoOrder
+     */
+    auto_order_cancel_minimum_rebill_value?: number;
     /**
      * List of downgrade items presented to customer service representatives
      * @type {Array<string>}
@@ -142,8 +160,11 @@ export function ItemAutoOrderFromJSONTyped(json: any, ignoreDiscriminator: boole
         
         'auth_future_amount': !exists(json, 'auth_future_amount') ? undefined : json['auth_future_amount'],
         'auth_test_amount': !exists(json, 'auth_test_amount') ? undefined : json['auth_test_amount'],
+        'auto_order_cancel_charge_minimum_balance': !exists(json, 'auto_order_cancel_charge_minimum_balance') ? undefined : json['auto_order_cancel_charge_minimum_balance'],
         'auto_order_cancel_item_id': !exists(json, 'auto_order_cancel_item_id') ? undefined : json['auto_order_cancel_item_id'],
         'auto_order_cancel_item_oid': !exists(json, 'auto_order_cancel_item_oid') ? undefined : json['auto_order_cancel_item_oid'],
+        'auto_order_cancel_minimum_life_time_value': !exists(json, 'auto_order_cancel_minimum_life_time_value') ? undefined : json['auto_order_cancel_minimum_life_time_value'],
+        'auto_order_cancel_minimum_rebill_value': !exists(json, 'auto_order_cancel_minimum_rebill_value') ? undefined : json['auto_order_cancel_minimum_rebill_value'],
         'auto_order_downgrade_items': !exists(json, 'auto_order_downgrade_items') ? undefined : json['auto_order_downgrade_items'],
         'auto_order_paused': !exists(json, 'auto_order_paused') ? undefined : json['auto_order_paused'],
         'auto_order_prohibit_expiring_cards': !exists(json, 'auto_order_prohibit_expiring_cards') ? undefined : json['auto_order_prohibit_expiring_cards'],
@@ -171,8 +192,11 @@ export function ItemAutoOrderToJSON(value?: ItemAutoOrder | null): any {
         
         'auth_future_amount': value.auth_future_amount,
         'auth_test_amount': value.auth_test_amount,
+        'auto_order_cancel_charge_minimum_balance': value.auto_order_cancel_charge_minimum_balance,
         'auto_order_cancel_item_id': value.auto_order_cancel_item_id,
         'auto_order_cancel_item_oid': value.auto_order_cancel_item_oid,
+        'auto_order_cancel_minimum_life_time_value': value.auto_order_cancel_minimum_life_time_value,
+        'auto_order_cancel_minimum_rebill_value': value.auto_order_cancel_minimum_rebill_value,
         'auto_order_downgrade_items': value.auto_order_downgrade_items,
         'auto_order_paused': value.auto_order_paused,
         'auto_order_prohibit_expiring_cards': value.auto_order_prohibit_expiring_cards,
