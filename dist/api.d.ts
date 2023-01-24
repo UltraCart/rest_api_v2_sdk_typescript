@@ -21901,6 +21901,12 @@ export interface ItemAutoOrder {
      */
     auth_test_amount?: number;
     /**
+     * If true, the cost of the cancel item will be the remaining balance of the minimum rebill or lifetime value
+     * @type {boolean}
+     * @memberof ItemAutoOrder
+     */
+    auto_order_cancel_charge_minimum_balance?: boolean;
+    /**
      * Item id to attempt charging the customer for if they cancel
      * @type {string}
      * @memberof ItemAutoOrder
@@ -21912,6 +21918,18 @@ export interface ItemAutoOrder {
      * @memberof ItemAutoOrder
      */
     auto_order_cancel_item_oid?: number;
+    /**
+     * The minimum life time value that must be paid in order to not be charged the cancellation item.
+     * @type {number}
+     * @memberof ItemAutoOrder
+     */
+    auto_order_cancel_minimum_life_time_value?: number;
+    /**
+     * The minimum rebill value that must be paid in order to not be charged the cancellation item.
+     * @type {number}
+     * @memberof ItemAutoOrder
+     */
+    auto_order_cancel_minimum_rebill_value?: number;
     /**
      * List of downgrade items presented to customer service representatives
      * @type {Array<string>}
