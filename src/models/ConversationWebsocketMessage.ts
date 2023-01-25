@@ -229,12 +229,13 @@ export const ConversationWebsocketMessageEventTypeEnum = {
     Rrweb: 'rrweb',
     ParticipantUpdate: 'participant update',
     ParticipantJoin: 'participant join',
-    ParticipantLeft: 'participant left',
+    ParticipantLeave: 'participant leave',
     ReadMessage: 'read message',
     Typing: 'typing',
     AddCoupon: 'add coupon',
     AddItem: 'add item',
-    WebchatContext: 'webchat context'
+    WebchatContext: 'webchat context',
+    EngageCustomer: 'engage customer'
 } as const;
 export type ConversationWebsocketMessageEventTypeEnum = typeof ConversationWebsocketMessageEventTypeEnum[keyof typeof ConversationWebsocketMessageEventTypeEnum];
 
