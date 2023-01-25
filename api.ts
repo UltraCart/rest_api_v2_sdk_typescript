@@ -29315,6 +29315,44 @@ export interface OrderInternal {
 /**
  * 
  * @export
+ * @interface OrderInvoiceResponse
+ */
+export interface OrderInvoiceResponse {
+    /**
+     * 
+     * @type {ModelError}
+     * @memberof OrderInvoiceResponse
+     */
+    error?: ModelError;
+    /**
+     * 
+     * @type {ResponseMetadata}
+     * @memberof OrderInvoiceResponse
+     */
+    metadata?: ResponseMetadata;
+    /**
+     * pdf_base64
+     * @type {string}
+     * @memberof OrderInvoiceResponse
+     */
+    pdfBase64?: string;
+    /**
+     * Indicates if API call was successful
+     * @type {boolean}
+     * @memberof OrderInvoiceResponse
+     */
+    success?: boolean;
+    /**
+     * 
+     * @type {Warning}
+     * @memberof OrderInvoiceResponse
+     */
+    warning?: Warning;
+}
+
+/**
+ * 
+ * @export
  * @interface OrderItem
  */
 export interface OrderItem {
@@ -56936,6 +56974,58 @@ export const OrderApiFetchParamCreator = function (configuration?: Configuration
             };
         },
         /**
+         * The invoice PDF that is returned is base 64 encoded 
+         * @summary Generate an invoice for this order.
+         * @param {string} order_id Order ID
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        generateInvoice(order_id: string, options: any = {}): FetchArgs {
+            // verify required parameter 'order_id' is not null or undefined
+            if (order_id === null || order_id === undefined) {
+                throw new RequiredError('order_id','Required parameter order_id was null or undefined when calling generateInvoice.');
+            }
+            const localVarPath = `/order/orders/{order_id}/invoice`
+                .replace(`{${"order_id"}}`, encodeURIComponent(String(order_id)));
+            const localVarUrlObj = url.parse(localVarPath, true);
+            const localVarRequestOptions = Object.assign({ method: 'GET' }, options);
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+    if(configuration && configuration.apiVersion) {
+      localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+    }
+
+
+
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+				const localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+					? configuration.accessToken("ultraCartOauth", ["order_read"])
+					: configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
+					? configuration.apiKey("x-ultracart-simple-key")
+					: configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
          * Retrieves a single order token for a given order id.  The token can be used with the getOrderByToken API. 
          * @summary Generate an order token for a given order id
          * @param {string} order_id The order id to generate a token for.
@@ -58325,6 +58415,27 @@ export const OrderApiFp = function(configuration?: Configuration) {
             };
         },
         /**
+         * The invoice PDF that is returned is base 64 encoded 
+         * @summary Generate an invoice for this order.
+         * @param {string} order_id Order ID
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        generateInvoice(order_id: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<OrderInvoiceResponse> {
+            const localVarFetchArgs = OrderApiFetchParamCreator(configuration).generateInvoice(order_id, options);
+            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
+                    if (response.status >= 200 && response.status < 300) {
+                      return response.json();
+                      
+                    } else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
          * Retrieves a single order token for a given order id.  The token can be used with the getOrderByToken API. 
          * @summary Generate an order token for a given order id
          * @param {string} order_id The order id to generate a token for.
@@ -58837,6 +58948,16 @@ export const OrderApiFactory = function (configuration?: Configuration, fetch?: 
             return OrderApiFp(configuration).format(order_id, format_options, options)(fetch, basePath);
         },
         /**
+         * The invoice PDF that is returned is base 64 encoded 
+         * @summary Generate an invoice for this order.
+         * @param {string} order_id Order ID
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        generateInvoice(order_id: string, options?: any) {
+            return OrderApiFp(configuration).generateInvoice(order_id, options)(fetch, basePath);
+        },
+        /**
          * Retrieves a single order token for a given order id.  The token can be used with the getOrderByToken API. 
          * @summary Generate an order token for a given order id
          * @param {string} order_id The order id to generate a token for.
@@ -59138,6 +59259,16 @@ export interface OrderApiInterface {
      * @memberof OrderApiInterface
      */
     format(order_id: string, format_options: OrderFormat, options?: any): Promise<OrderFormatResponse>;
+
+    /**
+     * The invoice PDF that is returned is base 64 encoded 
+     * @summary Generate an invoice for this order.
+     * @param {string} order_id Order ID
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof OrderApiInterface
+     */
+    generateInvoice(order_id: string, options?: any): Promise<OrderInvoiceResponse>;
 
     /**
      * Retrieves a single order token for a given order id.  The token can be used with the getOrderByToken API. 
@@ -59450,6 +59581,18 @@ export class OrderApi extends BaseAPI implements OrderApiInterface {
      */
     public format(order_id: string, format_options: OrderFormat, options?: any) {
         return OrderApiFp(this.configuration).format(order_id, format_options, options)(this.fetch, this.basePath);
+    }
+
+    /**
+     * The invoice PDF that is returned is base 64 encoded 
+     * @summary Generate an invoice for this order.
+     * @param {string} order_id Order ID
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof OrderApi
+     */
+    public generateInvoice(order_id: string, options?: any) {
+        return OrderApiFp(this.configuration).generateInvoice(order_id, options)(this.fetch, this.basePath);
     }
 
     /**

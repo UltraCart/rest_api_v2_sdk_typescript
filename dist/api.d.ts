@@ -28693,6 +28693,43 @@ export interface OrderInternal {
 /**
  *
  * @export
+ * @interface OrderInvoiceResponse
+ */
+export interface OrderInvoiceResponse {
+    /**
+     *
+     * @type {ModelError}
+     * @memberof OrderInvoiceResponse
+     */
+    error?: ModelError;
+    /**
+     *
+     * @type {ResponseMetadata}
+     * @memberof OrderInvoiceResponse
+     */
+    metadata?: ResponseMetadata;
+    /**
+     * pdf_base64
+     * @type {string}
+     * @memberof OrderInvoiceResponse
+     */
+    pdfBase64?: string;
+    /**
+     * Indicates if API call was successful
+     * @type {boolean}
+     * @memberof OrderInvoiceResponse
+     */
+    success?: boolean;
+    /**
+     *
+     * @type {Warning}
+     * @memberof OrderInvoiceResponse
+     */
+    warning?: Warning;
+}
+/**
+ *
+ * @export
  * @interface OrderItem
  */
 export interface OrderItem {
@@ -45024,6 +45061,14 @@ export declare const OrderApiFetchParamCreator: (configuration?: Configuration) 
      */
     format(order_id: string, format_options: OrderFormat, options?: any): FetchArgs;
     /**
+     * The invoice PDF that is returned is base 64 encoded
+     * @summary Generate an invoice for this order.
+     * @param {string} order_id Order ID
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    generateInvoice(order_id: string, options?: any): FetchArgs;
+    /**
      * Retrieves a single order token for a given order id.  The token can be used with the getOrderByToken API.
      * @summary Generate an order token for a given order id
      * @param {string} order_id The order id to generate a token for.
@@ -45276,6 +45321,14 @@ export declare const OrderApiFp: (configuration?: Configuration) => {
      */
     format(order_id: string, format_options: OrderFormat, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<OrderFormatResponse>;
     /**
+     * The invoice PDF that is returned is base 64 encoded
+     * @summary Generate an invoice for this order.
+     * @param {string} order_id Order ID
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    generateInvoice(order_id: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<OrderInvoiceResponse>;
+    /**
      * Retrieves a single order token for a given order id.  The token can be used with the getOrderByToken API.
      * @summary Generate an order token for a given order id
      * @param {string} order_id The order id to generate a token for.
@@ -45527,6 +45580,14 @@ export declare const OrderApiFactory: (configuration?: Configuration, fetch?: Fe
      * @throws {RequiredError}
      */
     format(order_id: string, format_options: OrderFormat, options?: any): Promise<OrderFormatResponse>;
+    /**
+     * The invoice PDF that is returned is base 64 encoded
+     * @summary Generate an invoice for this order.
+     * @param {string} order_id Order ID
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    generateInvoice(order_id: string, options?: any): Promise<OrderInvoiceResponse>;
     /**
      * Retrieves a single order token for a given order id.  The token can be used with the getOrderByToken API.
      * @summary Generate an order token for a given order id
@@ -45785,6 +45846,15 @@ export interface OrderApiInterface {
      * @memberof OrderApiInterface
      */
     format(order_id: string, format_options: OrderFormat, options?: any): Promise<OrderFormatResponse>;
+    /**
+     * The invoice PDF that is returned is base 64 encoded
+     * @summary Generate an invoice for this order.
+     * @param {string} order_id Order ID
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof OrderApiInterface
+     */
+    generateInvoice(order_id: string, options?: any): Promise<OrderInvoiceResponse>;
     /**
      * Retrieves a single order token for a given order id.  The token can be used with the getOrderByToken API.
      * @summary Generate an order token for a given order id
@@ -46063,6 +46133,15 @@ export declare class OrderApi extends BaseAPI implements OrderApiInterface {
      * @memberof OrderApi
      */
     format(order_id: string, format_options: OrderFormat, options?: any): Promise<OrderFormatResponse>;
+    /**
+     * The invoice PDF that is returned is base 64 encoded
+     * @summary Generate an invoice for this order.
+     * @param {string} order_id Order ID
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof OrderApi
+     */
+    generateInvoice(order_id: string, options?: any): Promise<OrderInvoiceResponse>;
     /**
      * Retrieves a single order token for a given order id.  The token can be used with the getOrderByToken API.
      * @summary Generate an order token for a given order id
