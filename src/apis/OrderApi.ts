@@ -42,6 +42,9 @@ import {
     OrderFormatResponse,
     OrderFormatResponseFromJSON,
     OrderFormatResponseToJSON,
+    OrderInvoiceResponse,
+    OrderInvoiceResponseFromJSON,
+    OrderInvoiceResponseToJSON,
     OrderPackingSlipResponse,
     OrderPackingSlipResponseFromJSON,
     OrderPackingSlipResponseToJSON,
@@ -98,6 +101,10 @@ export interface DuplicateOrderRequest {
 export interface FormatRequest {
     orderId: string;
     formatOptions: OrderFormat;
+}
+
+export interface GenerateInvoiceRequest {
+    orderId: string;
 }
 
 export interface GenerateOrderTokenRequest {
@@ -313,6 +320,22 @@ export interface OrderApiInterface {
      * Format order
      */
     format(requestParameters: FormatRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<OrderFormatResponse>;
+
+    /**
+     * The invoice PDF that is returned is base 64 encoded 
+     * @summary Generate an invoice for this order.
+     * @param {string} orderId Order ID
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof OrderApiInterface
+     */
+    generateInvoiceRaw(requestParameters: GenerateInvoiceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<OrderInvoiceResponse>>;
+
+    /**
+     * The invoice PDF that is returned is base 64 encoded 
+     * Generate an invoice for this order.
+     */
+    generateInvoice(requestParameters: GenerateInvoiceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<OrderInvoiceResponse>;
 
     /**
      * Retrieves a single order token for a given order id.  The token can be used with the getOrderByToken API. 
@@ -892,6 +915,47 @@ export class OrderApi extends runtime.BaseAPI implements OrderApiInterface {
      */
     async format(requestParameters: FormatRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<OrderFormatResponse> {
         const response = await this.formatRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * The invoice PDF that is returned is base 64 encoded 
+     * Generate an invoice for this order.
+     */
+    async generateInvoiceRaw(requestParameters: GenerateInvoiceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<OrderInvoiceResponse>> {
+        if (requestParameters.orderId === null || requestParameters.orderId === undefined) {
+            throw new runtime.RequiredError('orderId','Required parameter requestParameters.orderId was null or undefined when calling generateInvoice.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", ["order_read"]);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/order/orders/{order_id}/invoice`.replace(`{${"order_id"}}`, encodeURIComponent(String(requestParameters.orderId))),
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => OrderInvoiceResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * The invoice PDF that is returned is base 64 encoded 
+     * Generate an invoice for this order.
+     */
+    async generateInvoice(requestParameters: GenerateInvoiceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<OrderInvoiceResponse> {
+        const response = await this.generateInvoiceRaw(requestParameters, initOverrides);
         return await response.value();
     }
 

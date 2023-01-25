@@ -560,6 +560,7 @@ export * from './OrderFraudScore';
 export * from './OrderGift';
 export * from './OrderGiftCertificate';
 export * from './OrderInternal';
+export * from './OrderInvoiceResponse';
 export * from './OrderItem';
 export * from './OrderItemEdi';
 export * from './OrderItemEdiIdentification';

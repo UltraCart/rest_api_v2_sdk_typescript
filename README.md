@@ -1,4 +1,4 @@
-## ultracart_rest_api_v2_typescript@4.0.122-RC
+## ultracart_rest_api_v2_typescript@4.0.123-RC
 
 This generator creates TypeScript/JavaScript client that utilizes [Fetch API](https://fetch.spec.whatwg.org/). The generated Node module can be used in the following environments:
 
@@ -36,7 +36,7 @@ navigate to the folder of your consuming project and run one of the following co
 _published:_
 
 ```
-npm install ultracart_rest_api_v2_typescript@4.0.122-RC --save
+npm install ultracart_rest_api_v2_typescript@4.0.123-RC --save
 ```
 
 _unPublished (not recommended):_
@@ -54,6 +54,7 @@ Not every change is committed to every SDK.
 
 | Version | Date | Comments |
 | --: | :-: | --- |
+| 4.0.123-RC | 01/25/2023 | order api method generateInvoice |
 | 4.0.122-RC | 01/24/2023 | auto order - cancel minimum and change balance options |
 | 4.0.121-RC | 01/23/2023 | conversation - method to fetch single engagement record |
 | 4.0.120-RC | 01/19/2023 | added skip_on_rebill field to coupon object |
