@@ -7653,7 +7653,8 @@ export declare namespace ConversationMessage {
      */
     enum TypeEnum {
         Message,
-        Notice
+        Notice,
+        EngagementPrompt
     }
 }
 /**

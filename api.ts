@@ -7841,7 +7841,8 @@ export namespace ConversationMessage {
      */
     export enum TypeEnum {
         Message = <any> 'message',
-        Notice = <any> 'notice'
+        Notice = <any> 'notice',
+        EngagementPrompt = <any> 'engagement prompt'
     }
 }
 

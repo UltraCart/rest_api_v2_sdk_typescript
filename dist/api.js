@@ -506,6 +506,7 @@ var ConversationMessage;
     (function (TypeEnum) {
         TypeEnum[TypeEnum["Message"] = 'message'] = "Message";
         TypeEnum[TypeEnum["Notice"] = 'notice'] = "Notice";
+        TypeEnum[TypeEnum["EngagementPrompt"] = 'engagement prompt'] = "EngagementPrompt";
     })(TypeEnum = ConversationMessage.TypeEnum || (ConversationMessage.TypeEnum = {}));
 })(ConversationMessage = exports.ConversationMessage || (exports.ConversationMessage = {}));
 /**
