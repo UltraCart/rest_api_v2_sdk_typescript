@@ -8743,12 +8743,13 @@ export declare namespace ConversationWebsocketMessage {
         Rrweb,
         ParticipantUpdate,
         ParticipantJoin,
-        ParticipantLeft,
+        ParticipantLeave,
         ReadMessage,
         Typing,
         AddCoupon,
         AddItem,
-        WebchatContext
+        WebchatContext,
+        EngageCustomer
     }
     /**
      * @export

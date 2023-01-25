@@ -8958,12 +8958,13 @@ export namespace ConversationWebsocketMessage {
         Rrweb = <any> 'rrweb',
         ParticipantUpdate = <any> 'participant update',
         ParticipantJoin = <any> 'participant join',
-        ParticipantLeft = <any> 'participant left',
+        ParticipantLeave = <any> 'participant leave',
         ReadMessage = <any> 'read message',
         Typing = <any> 'typing',
         AddCoupon = <any> 'add coupon',
         AddItem = <any> 'add item',
-        WebchatContext = <any> 'webchat context'
+        WebchatContext = <any> 'webchat context',
+        EngageCustomer = <any> 'engage customer'
     }
     /**
      * @export

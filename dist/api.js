@@ -605,12 +605,13 @@ var ConversationWebsocketMessage;
         EventTypeEnum[EventTypeEnum["Rrweb"] = 'rrweb'] = "Rrweb";
         EventTypeEnum[EventTypeEnum["ParticipantUpdate"] = 'participant update'] = "ParticipantUpdate";
         EventTypeEnum[EventTypeEnum["ParticipantJoin"] = 'participant join'] = "ParticipantJoin";
-        EventTypeEnum[EventTypeEnum["ParticipantLeft"] = 'participant left'] = "ParticipantLeft";
+        EventTypeEnum[EventTypeEnum["ParticipantLeave"] = 'participant leave'] = "ParticipantLeave";
         EventTypeEnum[EventTypeEnum["ReadMessage"] = 'read message'] = "ReadMessage";
         EventTypeEnum[EventTypeEnum["Typing"] = 'typing'] = "Typing";
         EventTypeEnum[EventTypeEnum["AddCoupon"] = 'add coupon'] = "AddCoupon";
         EventTypeEnum[EventTypeEnum["AddItem"] = 'add item'] = "AddItem";
         EventTypeEnum[EventTypeEnum["WebchatContext"] = 'webchat context'] = "WebchatContext";
+        EventTypeEnum[EventTypeEnum["EngageCustomer"] = 'engage customer'] = "EngageCustomer";
     })(EventTypeEnum = ConversationWebsocketMessage.EventTypeEnum || (ConversationWebsocketMessage.EventTypeEnum = {}));
     /**
      * @export
