@@ -105,6 +105,12 @@ export interface PricingTier {
      */
     exclude_from_free_promotion?: boolean;
     /**
+     * Exempt from Loyalty Rewards
+     * @type {boolean}
+     * @memberof PricingTier
+     */
+    exempt_loyalty_rewards?: boolean;
+    /**
      * Exempt shipping handling charge
      * @type {boolean}
      * @memberof PricingTier
@@ -237,6 +243,7 @@ export function PricingTierFromJSONTyped(json: any, ignoreDiscriminator: boolean
         'default_tier': !exists(json, 'default_tier') ? undefined : json['default_tier'],
         'display_on_wholesale_signup': !exists(json, 'display_on_wholesale_signup') ? undefined : json['display_on_wholesale_signup'],
         'exclude_from_free_promotion': !exists(json, 'exclude_from_free_promotion') ? undefined : json['exclude_from_free_promotion'],
+        'exempt_loyalty_rewards': !exists(json, 'exempt_loyalty_rewards') ? undefined : json['exempt_loyalty_rewards'],
         'exempt_shipping_handling_charge': !exists(json, 'exempt_shipping_handling_charge') ? undefined : json['exempt_shipping_handling_charge'],
         'free_shipping': !exists(json, 'free_shipping') ? undefined : json['free_shipping'],
         'free_shipping_minimum': !exists(json, 'free_shipping_minimum') ? undefined : json['free_shipping_minimum'],
@@ -280,6 +287,7 @@ export function PricingTierToJSON(value?: PricingTier | null): any {
         'default_tier': value.default_tier,
         'display_on_wholesale_signup': value.display_on_wholesale_signup,
         'exclude_from_free_promotion': value.exclude_from_free_promotion,
+        'exempt_loyalty_rewards': value.exempt_loyalty_rewards,
         'exempt_shipping_handling_charge': value.exempt_shipping_handling_charge,
         'free_shipping': value.free_shipping,
         'free_shipping_minimum': value.free_shipping_minimum,

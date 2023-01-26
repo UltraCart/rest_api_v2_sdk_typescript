@@ -229,7 +229,7 @@ export const ConversationWebsocketMessageEventTypeEnum = {
     Rrweb: 'rrweb',
     ParticipantUpdate: 'participant update',
     ParticipantJoin: 'participant join',
-    ParticipantLeave: 'participant leave',
+    ParticipantLeft: 'participant left',
     ReadMessage: 'read message',
     Typing: 'typing',
     AddCoupon: 'add coupon',
