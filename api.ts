@@ -8959,7 +8959,7 @@ export namespace ConversationWebsocketMessage {
         Rrweb = <any> 'rrweb',
         ParticipantUpdate = <any> 'participant update',
         ParticipantJoin = <any> 'participant join',
-        ParticipantLeave = <any> 'participant leave',
+        ParticipantLeft = <any> 'participant left',
         ReadMessage = <any> 'read message',
         Typing = <any> 'typing',
         AddCoupon = <any> 'add coupon',
@@ -32268,6 +32268,12 @@ export interface PricingTier {
      * @memberof PricingTier
      */
     exclude_from_free_promotion?: boolean;
+    /**
+     * Exempt from Loyalty Rewards
+     * @type {boolean}
+     * @memberof PricingTier
+     */
+    exempt_loyalty_rewards?: boolean;
     /**
      * Exempt shipping handling charge
      * @type {boolean}
