@@ -175,6 +175,9 @@ src/models/ConversationEventReadMessage.ts
 src/models/ConversationEventTyping.ts
 src/models/ConversationEventWebchatContext.ts
 src/models/ConversationJoinRequest.ts
+src/models/ConversationLocationCountry.ts
+src/models/ConversationLocationStateProvince.ts
+src/models/ConversationLocationsResponse.ts
 src/models/ConversationMessage.ts
 src/models/ConversationMessageTranslation.ts
 src/models/ConversationMessageTransportStatus.ts

@@ -60,6 +60,9 @@ import {
     ConversationJoinRequest,
     ConversationJoinRequestFromJSON,
     ConversationJoinRequestToJSON,
+    ConversationLocationsResponse,
+    ConversationLocationsResponseFromJSON,
+    ConversationLocationsResponseToJSON,
     ConversationMessagesResponse,
     ConversationMessagesResponseFromJSON,
     ConversationMessagesResponseToJSON,
@@ -512,6 +515,21 @@ export interface ConversationApiInterface {
      * Search conversations
      */
     getConversationsSearch(requestParameters: GetConversationsSearchRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ConversationSearchResponse>;
+
+    /**
+     * Get location data for engagement configuration 
+     * @summary Get location data for engagement configuration
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApiInterface
+     */
+    getLocationsForEngagementRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ConversationLocationsResponse>>;
+
+    /**
+     * Get location data for engagement configuration 
+     * Get location data for engagement configuration
+     */
+    getLocationsForEngagement(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ConversationLocationsResponse>;
 
     /**
      * Insert a canned message 
@@ -1487,6 +1505,43 @@ export class ConversationApi extends runtime.BaseAPI implements ConversationApiI
      */
     async getConversationsSearch(requestParameters: GetConversationsSearchRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ConversationSearchResponse> {
         const response = await this.getConversationsSearchRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Get location data for engagement configuration 
+     * Get location data for engagement configuration
+     */
+    async getLocationsForEngagementRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ConversationLocationsResponse>> {
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", ["conversation_read"]);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/conversation/locations`,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => ConversationLocationsResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Get location data for engagement configuration 
+     * Get location data for engagement configuration
+     */
+    async getLocationsForEngagement(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ConversationLocationsResponse> {
+        const response = await this.getLocationsForEngagementRaw(initOverrides);
         return await response.value();
     }
 
