@@ -7548,6 +7548,87 @@ export interface ConversationJoinRequest {
 /**
  *
  * @export
+ * @interface ConversationLocationCountry
+ */
+export interface ConversationLocationCountry {
+    /**
+     *
+     * @type {string}
+     * @memberof ConversationLocationCountry
+     */
+    iso2?: string;
+    /**
+     *
+     * @type {string}
+     * @memberof ConversationLocationCountry
+     */
+    name?: string;
+    /**
+     *
+     * @type {Array<ConversationLocationStateProvince>}
+     * @memberof ConversationLocationCountry
+     */
+    state_provinces?: Array<ConversationLocationStateProvince>;
+}
+/**
+ *
+ * @export
+ * @interface ConversationLocationStateProvince
+ */
+export interface ConversationLocationStateProvince {
+    /**
+     *
+     * @type {string}
+     * @memberof ConversationLocationStateProvince
+     */
+    abbreviation?: string;
+    /**
+     *
+     * @type {string}
+     * @memberof ConversationLocationStateProvince
+     */
+    name?: string;
+}
+/**
+ *
+ * @export
+ * @interface ConversationLocationsResponse
+ */
+export interface ConversationLocationsResponse {
+    /**
+     *
+     * @type {Array<ConversationLocationCountry>}
+     * @memberof ConversationLocationsResponse
+     */
+    countries?: Array<ConversationLocationCountry>;
+    /**
+     *
+     * @type {ModelError}
+     * @memberof ConversationLocationsResponse
+     */
+    error?: ModelError;
+    /**
+     *
+     * @type {ResponseMetadata}
+     * @memberof ConversationLocationsResponse
+     */
+    metadata?: ResponseMetadata;
+    /**
+     * Indicates if API call was successful
+     * @type {boolean}
+     * @memberof ConversationLocationsResponse
+     */
+    success?: boolean;
+    /**
+     *
+     * @type {Warning}
+     * @memberof ConversationLocationsResponse
+     */
+    warning?: Warning;
+}
+/**
+ *
+ * @export
  * @interface ConversationMessage
  */
 export interface ConversationMessage {
@@ -39815,6 +39896,13 @@ export declare const ConversationApiFetchParamCreator: (configuration?: Configur
      */
     getConversationsSearch(search_request: ConversationSearchRequest, options?: any): FetchArgs;
     /**
+     * Get location data for engagement configuration
+     * @summary Get location data for engagement configuration
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getLocationsForEngagement(options?: any): FetchArgs;
+    /**
      * Insert a canned message
      * @summary Insert a canned message
      * @param {ConversationCannedMessage} canned_message Canned message
@@ -40072,6 +40160,13 @@ export declare const ConversationApiFp: (configuration?: Configuration) => {
      */
     getConversationsSearch(search_request: ConversationSearchRequest, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ConversationSearchResponse>;
     /**
+     * Get location data for engagement configuration
+     * @summary Get location data for engagement configuration
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getLocationsForEngagement(options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ConversationLocationsResponse>;
+    /**
      * Insert a canned message
      * @summary Insert a canned message
      * @param {ConversationCannedMessage} canned_message Canned message
@@ -40328,6 +40423,13 @@ export declare const ConversationApiFactory: (configuration?: Configuration, fet
      * @throws {RequiredError}
      */
     getConversationsSearch(search_request: ConversationSearchRequest, options?: any): Promise<ConversationSearchResponse>;
+    /**
+     * Get location data for engagement configuration
+     * @summary Get location data for engagement configuration
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getLocationsForEngagement(options?: any): Promise<ConversationLocationsResponse>;
     /**
      * Insert a canned message
      * @summary Insert a canned message
@@ -40605,6 +40707,14 @@ export interface ConversationApiInterface {
      * @memberof ConversationApiInterface
      */
     getConversationsSearch(search_request: ConversationSearchRequest, options?: any): Promise<ConversationSearchResponse>;
+    /**
+     * Get location data for engagement configuration
+     * @summary Get location data for engagement configuration
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApiInterface
+     */
+    getLocationsForEngagement(options?: any): Promise<ConversationLocationsResponse>;
     /**
      * Insert a canned message
      * @summary Insert a canned message
@@ -40895,6 +41005,14 @@ export declare class ConversationApi extends BaseAPI implements ConversationApiI
      * @memberof ConversationApi
      */
     getConversationsSearch(search_request: ConversationSearchRequest, options?: any): Promise<ConversationSearchResponse>;
+    /**
+     * Get location data for engagement configuration
+     * @summary Get location data for engagement configuration
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApi
+     */
+    getLocationsForEngagement(options?: any): Promise<ConversationLocationsResponse>;
     /**
      * Insert a canned message
      * @summary Insert a canned message

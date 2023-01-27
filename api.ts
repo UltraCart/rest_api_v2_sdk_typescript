@@ -7735,6 +7735,90 @@ export interface ConversationJoinRequest {
 /**
  * 
  * @export
+ * @interface ConversationLocationCountry
+ */
+export interface ConversationLocationCountry {
+    /**
+     * 
+     * @type {string}
+     * @memberof ConversationLocationCountry
+     */
+    iso2?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ConversationLocationCountry
+     */
+    name?: string;
+    /**
+     * 
+     * @type {Array<ConversationLocationStateProvince>}
+     * @memberof ConversationLocationCountry
+     */
+    state_provinces?: Array<ConversationLocationStateProvince>;
+}
+
+/**
+ * 
+ * @export
+ * @interface ConversationLocationStateProvince
+ */
+export interface ConversationLocationStateProvince {
+    /**
+     * 
+     * @type {string}
+     * @memberof ConversationLocationStateProvince
+     */
+    abbreviation?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ConversationLocationStateProvince
+     */
+    name?: string;
+}
+
+/**
+ * 
+ * @export
+ * @interface ConversationLocationsResponse
+ */
+export interface ConversationLocationsResponse {
+    /**
+     * 
+     * @type {Array<ConversationLocationCountry>}
+     * @memberof ConversationLocationsResponse
+     */
+    countries?: Array<ConversationLocationCountry>;
+    /**
+     * 
+     * @type {ModelError}
+     * @memberof ConversationLocationsResponse
+     */
+    error?: ModelError;
+    /**
+     * 
+     * @type {ResponseMetadata}
+     * @memberof ConversationLocationsResponse
+     */
+    metadata?: ResponseMetadata;
+    /**
+     * Indicates if API call was successful
+     * @type {boolean}
+     * @memberof ConversationLocationsResponse
+     */
+    success?: boolean;
+    /**
+     * 
+     * @type {Warning}
+     * @memberof ConversationLocationsResponse
+     */
+    warning?: Warning;
+}
+
+/**
+ * 
+ * @export
  * @interface ConversationMessage
  */
 export interface ConversationMessage {
@@ -44838,6 +44922,52 @@ export const ConversationApiFetchParamCreator = function (configuration?: Config
             };
         },
         /**
+         * Get location data for engagement configuration 
+         * @summary Get location data for engagement configuration
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getLocationsForEngagement(options: any = {}): FetchArgs {
+            const localVarPath = `/conversation/locations`;
+            const localVarUrlObj = url.parse(localVarPath, true);
+            const localVarRequestOptions = Object.assign({ method: 'POST' }, options);
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+    if(configuration && configuration.apiVersion) {
+      localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+    }
+
+
+
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+				const localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+					? configuration.accessToken("ultraCartOauth", ["conversation_read"])
+					: configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
+					? configuration.apiKey("x-ultracart-simple-key")
+					: configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
          * Insert a canned message 
          * @summary Insert a canned message
          * @param {ConversationCannedMessage} canned_message Canned message
@@ -45924,6 +46054,26 @@ export const ConversationApiFp = function(configuration?: Configuration) {
             };
         },
         /**
+         * Get location data for engagement configuration 
+         * @summary Get location data for engagement configuration
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getLocationsForEngagement(options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ConversationLocationsResponse> {
+            const localVarFetchArgs = ConversationApiFetchParamCreator(configuration).getLocationsForEngagement(options);
+            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
+                    if (response.status >= 200 && response.status < 300) {
+                      return response.json();
+                      
+                    } else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
          * Insert a canned message 
          * @summary Insert a canned message
          * @param {ConversationCannedMessage} canned_message Canned message
@@ -46378,6 +46528,15 @@ export const ConversationApiFactory = function (configuration?: Configuration, f
             return ConversationApiFp(configuration).getConversationsSearch(search_request, options)(fetch, basePath);
         },
         /**
+         * Get location data for engagement configuration 
+         * @summary Get location data for engagement configuration
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getLocationsForEngagement(options?: any) {
+            return ConversationApiFp(configuration).getLocationsForEngagement(options)(fetch, basePath);
+        },
+        /**
          * Insert a canned message 
          * @summary Insert a canned message
          * @param {ConversationCannedMessage} canned_message Canned message
@@ -46698,6 +46857,15 @@ export interface ConversationApiInterface {
      * @memberof ConversationApiInterface
      */
     getConversationsSearch(search_request: ConversationSearchRequest, options?: any): Promise<ConversationSearchResponse>;
+
+    /**
+     * Get location data for engagement configuration 
+     * @summary Get location data for engagement configuration
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApiInterface
+     */
+    getLocationsForEngagement(options?: any): Promise<ConversationLocationsResponse>;
 
     /**
      * Insert a canned message 
@@ -47057,6 +47225,17 @@ export class ConversationApi extends BaseAPI implements ConversationApiInterface
      */
     public getConversationsSearch(search_request: ConversationSearchRequest, options?: any) {
         return ConversationApiFp(this.configuration).getConversationsSearch(search_request, options)(this.fetch, this.basePath);
+    }
+
+    /**
+     * Get location data for engagement configuration 
+     * @summary Get location data for engagement configuration
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApi
+     */
+    public getLocationsForEngagement(options?: any) {
+        return ConversationApiFp(this.configuration).getLocationsForEngagement(options)(this.fetch, this.basePath);
     }
 
     /**
