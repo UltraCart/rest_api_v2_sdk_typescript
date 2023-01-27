@@ -79,6 +79,12 @@ import {
     ConversationWebchatQueueStatusFromJSONTyped,
     ConversationWebchatQueueStatusToJSON,
 } from './ConversationWebchatQueueStatus';
+import {
+    ConversationWebchatQueueStatusQueueEntry,
+    ConversationWebchatQueueStatusQueueEntryFromJSON,
+    ConversationWebchatQueueStatusQueueEntryFromJSONTyped,
+    ConversationWebchatQueueStatusQueueEntryToJSON,
+} from './ConversationWebchatQueueStatusQueueEntry';
 
 /**
  * 
@@ -110,6 +116,12 @@ export interface ConversationWebsocketMessage {
      * @memberof ConversationWebsocketMessage
      */
     event_conversation_closed?: ConversationSummary;
+    /**
+     * 
+     * @type {ConversationWebchatQueueStatusQueueEntry}
+     * @memberof ConversationWebsocketMessage
+     */
+    event_engage_customer?: ConversationWebchatQueueStatusQueueEntry;
     /**
      * 
      * @type {ConversationSummary}
@@ -265,6 +277,7 @@ export function ConversationWebsocketMessageFromJSONTyped(json: any, ignoreDiscr
         'event_add_coupon': !exists(json, 'event_add_coupon') ? undefined : ConversationEventAddCouponFromJSON(json['event_add_coupon']),
         'event_add_item': !exists(json, 'event_add_item') ? undefined : ConversationEventAddItemFromJSON(json['event_add_item']),
         'event_conversation_closed': !exists(json, 'event_conversation_closed') ? undefined : ConversationSummaryFromJSON(json['event_conversation_closed']),
+        'event_engage_customer': !exists(json, 'event_engage_customer') ? undefined : ConversationWebchatQueueStatusQueueEntryFromJSON(json['event_engage_customer']),
         'event_new_conversation': !exists(json, 'event_new_conversation') ? undefined : ConversationSummaryFromJSON(json['event_new_conversation']),
         'event_new_message': !exists(json, 'event_new_message') ? undefined : ConversationSummaryFromJSON(json['event_new_message']),
         'event_participant_join': !exists(json, 'event_participant_join') ? undefined : ConversationSummaryFromJSON(json['event_participant_join']),
@@ -298,6 +311,7 @@ export function ConversationWebsocketMessageToJSON(value?: ConversationWebsocket
         'event_add_coupon': ConversationEventAddCouponToJSON(value.event_add_coupon),
         'event_add_item': ConversationEventAddItemToJSON(value.event_add_item),
         'event_conversation_closed': ConversationSummaryToJSON(value.event_conversation_closed),
+        'event_engage_customer': ConversationWebchatQueueStatusQueueEntryToJSON(value.event_engage_customer),
         'event_new_conversation': ConversationSummaryToJSON(value.event_new_conversation),
         'event_new_message': ConversationSummaryToJSON(value.event_new_message),
         'event_participant_join': ConversationSummaryToJSON(value.event_participant_join),
