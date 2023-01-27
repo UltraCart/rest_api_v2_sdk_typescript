@@ -8921,6 +8921,12 @@ export interface ConversationWebsocketMessage {
     event_conversation_closed?: ConversationSummary;
     /**
      * 
+     * @type {ConversationWebchatQueueStatusQueueEntry}
+     * @memberof ConversationWebsocketMessage
+     */
+    event_engage_customer?: ConversationWebchatQueueStatusQueueEntry;
+    /**
+     * 
      * @type {ConversationSummary}
      * @memberof ConversationWebsocketMessage
      */
