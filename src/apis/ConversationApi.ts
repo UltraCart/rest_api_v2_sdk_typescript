@@ -18,6 +18,12 @@ import {
     ConversationAgentAuthResponse,
     ConversationAgentAuthResponseFromJSON,
     ConversationAgentAuthResponseToJSON,
+    ConversationAgentProfile,
+    ConversationAgentProfileFromJSON,
+    ConversationAgentProfileToJSON,
+    ConversationAgentProfileResponse,
+    ConversationAgentProfileResponseFromJSON,
+    ConversationAgentProfileResponseToJSON,
     ConversationAutocompleteRequest,
     ConversationAutocompleteRequestFromJSON,
     ConversationAutocompleteRequestToJSON,
@@ -187,6 +193,10 @@ export interface StartConversationRequest {
     startRequest: ConversationStartRequest;
 }
 
+export interface UpdateAgentProfileRequest {
+    profileRequest: ConversationAgentProfile;
+}
+
 export interface UpdateConversationCannedMessageRequest {
     conversationCannedMessageOid: number;
     cannedMessage: ConversationCannedMessage;
@@ -276,6 +286,21 @@ export interface ConversationApiInterface {
      * Agent keep alive
      */
     getAgentKeepAlive(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+
+    /**
+     * Retrieve the agents profile 
+     * @summary Get agent profile
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApiInterface
+     */
+    getAgentProfileRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ConversationAgentProfileResponse>>;
+
+    /**
+     * Retrieve the agents profile 
+     * Get agent profile
+     */
+    getAgentProfile(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ConversationAgentProfileResponse>;
 
     /**
      * Retrieve a JWT to authorize an agent to make a websocket connection. 
@@ -661,6 +686,22 @@ export interface ConversationApiInterface {
     startConversation(requestParameters: StartConversationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ConversationStartResponse>;
 
     /**
+     * Update agent profile 
+     * @summary Update agent profile
+     * @param {ConversationAgentProfile} profileRequest Profile request
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApiInterface
+     */
+    updateAgentProfileRaw(requestParameters: UpdateAgentProfileRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ConversationAgentProfileResponse>>;
+
+    /**
+     * Update agent profile 
+     * Update agent profile
+     */
+    updateAgentProfile(requestParameters: UpdateAgentProfileRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ConversationAgentProfileResponse>;
+
+    /**
      * Update a canned message 
      * @summary Update a canned message
      * @param {number} conversationCannedMessageOid 
@@ -889,6 +930,43 @@ export class ConversationApi extends runtime.BaseAPI implements ConversationApiI
      */
     async getAgentKeepAlive(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.getAgentKeepAliveRaw(initOverrides);
+    }
+
+    /**
+     * Retrieve the agents profile 
+     * Get agent profile
+     */
+    async getAgentProfileRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ConversationAgentProfileResponse>> {
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", ["conversation_read"]);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/conversation/agent/profile`,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => ConversationAgentProfileResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Retrieve the agents profile 
+     * Get agent profile
+     */
+    async getAgentProfile(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ConversationAgentProfileResponse> {
+        const response = await this.getAgentProfileRaw(initOverrides);
+        return await response.value();
     }
 
     /**
@@ -1885,6 +1963,50 @@ export class ConversationApi extends runtime.BaseAPI implements ConversationApiI
      */
     async startConversation(requestParameters: StartConversationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ConversationStartResponse> {
         const response = await this.startConversationRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Update agent profile 
+     * Update agent profile
+     */
+    async updateAgentProfileRaw(requestParameters: UpdateAgentProfileRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ConversationAgentProfileResponse>> {
+        if (requestParameters.profileRequest === null || requestParameters.profileRequest === undefined) {
+            throw new runtime.RequiredError('profileRequest','Required parameter requestParameters.profileRequest was null or undefined when calling updateAgentProfile.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", ["conversation_write"]);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/conversation/agent/profile`,
+            method: 'PUT',
+            headers: headerParameters,
+            query: queryParameters,
+            body: ConversationAgentProfileToJSON(requestParameters.profileRequest),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => ConversationAgentProfileResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Update agent profile 
+     * Update agent profile
+     */
+    async updateAgentProfile(requestParameters: UpdateAgentProfileRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ConversationAgentProfileResponse> {
+        const response = await this.updateAgentProfileRaw(requestParameters, initOverrides);
         return await response.value();
     }
 

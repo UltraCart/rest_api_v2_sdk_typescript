@@ -126,6 +126,8 @@ export * from './CityStateZip';
 export * from './Conversation';
 export * from './ConversationAgentAuth';
 export * from './ConversationAgentAuthResponse';
+export * from './ConversationAgentProfile';
+export * from './ConversationAgentProfileResponse';
 export * from './ConversationAutocompleteRequest';
 export * from './ConversationAutocompleteResponse';
 export * from './ConversationAutocompleteValue';
