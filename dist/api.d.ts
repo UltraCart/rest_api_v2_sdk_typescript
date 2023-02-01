@@ -6600,6 +6600,107 @@ export interface ConversationAgentAuthResponse {
 /**
  *
  * @export
+ * @interface ConversationAgentProfile
+ */
+export interface ConversationAgentProfile {
+    /**
+     * The number of engagement chats that can be pushed on them at any given time.
+     * @type {number}
+     * @memberof ConversationAgentProfile
+     */
+    chat_limit?: number;
+    /**
+     * The default language the agent is chatting in
+     * @type {string}
+     * @memberof ConversationAgentProfile
+     */
+    default_language_iso_code?: string;
+    /**
+     * Default status when the agent loads conversations app.
+     * @type {string}
+     * @memberof ConversationAgentProfile
+     */
+    default_status?: ConversationAgentProfile.DefaultStatusEnum;
+    /**
+     * An alternate name that the agent wants to use in chat.
+     * @type {string}
+     * @memberof ConversationAgentProfile
+     */
+    display_name?: string;
+    /**
+     * Their actual user name for profile settings display as placeholder test
+     * @type {string}
+     * @memberof ConversationAgentProfile
+     */
+    name?: string;
+    /**
+     * An upload key used to update the profile image.
+     * @type {string}
+     * @memberof ConversationAgentProfile
+     */
+    profile_image_upload_key?: string;
+    /**
+     * Their current profile image URL
+     * @type {string}
+     * @memberof ConversationAgentProfile
+     */
+    profile_image_url?: string;
+}
+/**
+ * @export
+ * @namespace ConversationAgentProfile
+ */
+export declare namespace ConversationAgentProfile {
+    /**
+     * @export
+     * @enum {string}
+     */
+    enum DefaultStatusEnum {
+        Available,
+        Busy,
+        Unavailable
+    }
+}
+/**
+ *
+ * @export
+ * @interface ConversationAgentProfileResponse
+ */
+export interface ConversationAgentProfileResponse {
+    /**
+     *
+     * @type {ConversationAgentProfile}
+     * @memberof ConversationAgentProfileResponse
+     */
+    agent_profile?: ConversationAgentProfile;
+    /**
+     *
+     * @type {ModelError}
+     * @memberof ConversationAgentProfileResponse
+     */
+    error?: ModelError;
+    /**
+     *
+     * @type {ResponseMetadata}
+     * @memberof ConversationAgentProfileResponse
+     */
+    metadata?: ResponseMetadata;
+    /**
+     * Indicates if API call was successful
+     * @type {boolean}
+     * @memberof ConversationAgentProfileResponse
+     */
+    success?: boolean;
+    /**
+     *
+     * @type {Warning}
+     * @memberof ConversationAgentProfileResponse
+     */
+    warning?: Warning;
+}
+/**
+ *
+ * @export
  * @interface ConversationAutocompleteRequest
  */
 export interface ConversationAutocompleteRequest {
@@ -39783,6 +39884,13 @@ export declare const ConversationApiFetchParamCreator: (configuration?: Configur
      */
     getAgentKeepAlive(options?: any): FetchArgs;
     /**
+     * Retrieve the agents profile
+     * @summary Get agent profile
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getAgentProfile(options?: any): FetchArgs;
+    /**
      * Retrieve a JWT to authorize an agent to make a websocket connection.
      * @summary Get agent websocket authorization
      * @param {*} [options] Override http request option.
@@ -39974,6 +40082,14 @@ export declare const ConversationApiFetchParamCreator: (configuration?: Configur
      */
     startConversation(start_request: ConversationStartRequest, options?: any): FetchArgs;
     /**
+     * Update agent profile
+     * @summary Update agent profile
+     * @param {ConversationAgentProfile} profile_request Profile request
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    updateAgentProfile(profile_request: ConversationAgentProfile, options?: any): FetchArgs;
+    /**
      * Update a canned message
      * @summary Update a canned message
      * @param {number} conversation_canned_message_oid
@@ -40046,6 +40162,13 @@ export declare const ConversationApiFp: (configuration?: Configuration) => {
      * @throws {RequiredError}
      */
     getAgentKeepAlive(options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Response>;
+    /**
+     * Retrieve the agents profile
+     * @summary Get agent profile
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getAgentProfile(options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ConversationAgentProfileResponse>;
     /**
      * Retrieve a JWT to authorize an agent to make a websocket connection.
      * @summary Get agent websocket authorization
@@ -40238,6 +40361,14 @@ export declare const ConversationApiFp: (configuration?: Configuration) => {
      */
     startConversation(start_request: ConversationStartRequest, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ConversationStartResponse>;
     /**
+     * Update agent profile
+     * @summary Update agent profile
+     * @param {ConversationAgentProfile} profile_request Profile request
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    updateAgentProfile(profile_request: ConversationAgentProfile, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ConversationAgentProfileResponse>;
+    /**
      * Update a canned message
      * @summary Update a canned message
      * @param {number} conversation_canned_message_oid
@@ -40310,6 +40441,13 @@ export declare const ConversationApiFactory: (configuration?: Configuration, fet
      * @throws {RequiredError}
      */
     getAgentKeepAlive(options?: any): Promise<Response>;
+    /**
+     * Retrieve the agents profile
+     * @summary Get agent profile
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getAgentProfile(options?: any): Promise<ConversationAgentProfileResponse>;
     /**
      * Retrieve a JWT to authorize an agent to make a websocket connection.
      * @summary Get agent websocket authorization
@@ -40502,6 +40640,14 @@ export declare const ConversationApiFactory: (configuration?: Configuration, fet
      */
     startConversation(start_request: ConversationStartRequest, options?: any): Promise<ConversationStartResponse>;
     /**
+     * Update agent profile
+     * @summary Update agent profile
+     * @param {ConversationAgentProfile} profile_request Profile request
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    updateAgentProfile(profile_request: ConversationAgentProfile, options?: any): Promise<ConversationAgentProfileResponse>;
+    /**
      * Update a canned message
      * @summary Update a canned message
      * @param {number} conversation_canned_message_oid
@@ -40579,6 +40725,14 @@ export interface ConversationApiInterface {
      * @memberof ConversationApiInterface
      */
     getAgentKeepAlive(options?: any): Promise<{}>;
+    /**
+     * Retrieve the agents profile
+     * @summary Get agent profile
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApiInterface
+     */
+    getAgentProfile(options?: any): Promise<ConversationAgentProfileResponse>;
     /**
      * Retrieve a JWT to authorize an agent to make a websocket connection.
      * @summary Get agent websocket authorization
@@ -40795,6 +40949,15 @@ export interface ConversationApiInterface {
      */
     startConversation(start_request: ConversationStartRequest, options?: any): Promise<ConversationStartResponse>;
     /**
+     * Update agent profile
+     * @summary Update agent profile
+     * @param {ConversationAgentProfile} profile_request Profile request
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApiInterface
+     */
+    updateAgentProfile(profile_request: ConversationAgentProfile, options?: any): Promise<ConversationAgentProfileResponse>;
+    /**
      * Update a canned message
      * @summary Update a canned message
      * @param {number} conversation_canned_message_oid
@@ -40877,6 +41040,14 @@ export declare class ConversationApi extends BaseAPI implements ConversationApiI
      * @memberof ConversationApi
      */
     getAgentKeepAlive(options?: any): Promise<Response>;
+    /**
+     * Retrieve the agents profile
+     * @summary Get agent profile
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApi
+     */
+    getAgentProfile(options?: any): Promise<ConversationAgentProfileResponse>;
     /**
      * Retrieve a JWT to authorize an agent to make a websocket connection.
      * @summary Get agent websocket authorization
@@ -41092,6 +41263,15 @@ export declare class ConversationApi extends BaseAPI implements ConversationApiI
      * @memberof ConversationApi
      */
     startConversation(start_request: ConversationStartRequest, options?: any): Promise<ConversationStartResponse>;
+    /**
+     * Update agent profile
+     * @summary Update agent profile
+     * @param {ConversationAgentProfile} profile_request Profile request
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApi
+     */
+    updateAgentProfile(profile_request: ConversationAgentProfile, options?: any): Promise<ConversationAgentProfileResponse>;
     /**
      * Update a canned message
      * @summary Update a canned message

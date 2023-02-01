@@ -6757,6 +6757,110 @@ export interface ConversationAgentAuthResponse {
 /**
  * 
  * @export
+ * @interface ConversationAgentProfile
+ */
+export interface ConversationAgentProfile {
+    /**
+     * The number of engagement chats that can be pushed on them at any given time.
+     * @type {number}
+     * @memberof ConversationAgentProfile
+     */
+    chat_limit?: number;
+    /**
+     * The default language the agent is chatting in
+     * @type {string}
+     * @memberof ConversationAgentProfile
+     */
+    default_language_iso_code?: string;
+    /**
+     * Default status when the agent loads conversations app.
+     * @type {string}
+     * @memberof ConversationAgentProfile
+     */
+    default_status?: ConversationAgentProfile.DefaultStatusEnum;
+    /**
+     * An alternate name that the agent wants to use in chat.
+     * @type {string}
+     * @memberof ConversationAgentProfile
+     */
+    display_name?: string;
+    /**
+     * Their actual user name for profile settings display as placeholder test
+     * @type {string}
+     * @memberof ConversationAgentProfile
+     */
+    name?: string;
+    /**
+     * An upload key used to update the profile image.
+     * @type {string}
+     * @memberof ConversationAgentProfile
+     */
+    profile_image_upload_key?: string;
+    /**
+     * Their current profile image URL
+     * @type {string}
+     * @memberof ConversationAgentProfile
+     */
+    profile_image_url?: string;
+}
+
+/**
+ * @export
+ * @namespace ConversationAgentProfile
+ */
+export namespace ConversationAgentProfile {
+    /**
+     * @export
+     * @enum {string}
+     */
+    export enum DefaultStatusEnum {
+        Available = <any> 'available',
+        Busy = <any> 'busy',
+        Unavailable = <any> 'unavailable'
+    }
+}
+
+/**
+ * 
+ * @export
+ * @interface ConversationAgentProfileResponse
+ */
+export interface ConversationAgentProfileResponse {
+    /**
+     * 
+     * @type {ConversationAgentProfile}
+     * @memberof ConversationAgentProfileResponse
+     */
+    agent_profile?: ConversationAgentProfile;
+    /**
+     * 
+     * @type {ModelError}
+     * @memberof ConversationAgentProfileResponse
+     */
+    error?: ModelError;
+    /**
+     * 
+     * @type {ResponseMetadata}
+     * @memberof ConversationAgentProfileResponse
+     */
+    metadata?: ResponseMetadata;
+    /**
+     * Indicates if API call was successful
+     * @type {boolean}
+     * @memberof ConversationAgentProfileResponse
+     */
+    success?: boolean;
+    /**
+     * 
+     * @type {Warning}
+     * @memberof ConversationAgentProfileResponse
+     */
+    warning?: Warning;
+}
+
+/**
+ * 
+ * @export
  * @interface ConversationAutocompleteRequest
  */
 export interface ConversationAutocompleteRequest {
@@ -44154,6 +44258,52 @@ export const ConversationApiFetchParamCreator = function (configuration?: Config
             };
         },
         /**
+         * Retrieve the agents profile 
+         * @summary Get agent profile
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getAgentProfile(options: any = {}): FetchArgs {
+            const localVarPath = `/conversation/agent/profile`;
+            const localVarUrlObj = url.parse(localVarPath, true);
+            const localVarRequestOptions = Object.assign({ method: 'GET' }, options);
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+    if(configuration && configuration.apiVersion) {
+      localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+    }
+
+
+
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+				const localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+					? configuration.accessToken("ultraCartOauth", ["conversation_read"])
+					: configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
+					? configuration.apiKey("x-ultracart-simple-key")
+					: configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
          * Retrieve a JWT to authorize an agent to make a websocket connection. 
          * @summary Get agent websocket authorization
          * @param {*} [options] Override http request option.
@@ -45410,6 +45560,61 @@ export const ConversationApiFetchParamCreator = function (configuration?: Config
             };
         },
         /**
+         * Update agent profile 
+         * @summary Update agent profile
+         * @param {ConversationAgentProfile} profile_request Profile request
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        updateAgentProfile(profile_request: ConversationAgentProfile, options: any = {}): FetchArgs {
+            // verify required parameter 'profile_request' is not null or undefined
+            if (profile_request === null || profile_request === undefined) {
+                throw new RequiredError('profile_request','Required parameter profile_request was null or undefined when calling updateAgentProfile.');
+            }
+            const localVarPath = `/conversation/agent/profile`;
+            const localVarUrlObj = url.parse(localVarPath, true);
+            const localVarRequestOptions = Object.assign({ method: 'PUT' }, options);
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+    if(configuration && configuration.apiVersion) {
+      localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+    }
+
+
+
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+				const localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+					? configuration.accessToken("ultraCartOauth", ["conversation_write"])
+					: configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
+					? configuration.apiKey("x-ultracart-simple-key")
+					: configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+            const needsSerialization = (<any>"ConversationAgentProfile" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
+            localVarRequestOptions.body =  needsSerialization ? JSON.stringify(profile_request || {}) : (profile_request || "");
+
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
          * Update a canned message 
          * @summary Update a canned message
          * @param {number} conversation_canned_message_oid 
@@ -45738,6 +45943,26 @@ export const ConversationApiFp = function(configuration?: Configuration) {
 
                     if (response.status >= 200 && response.status < 300) {
                       return response;
+                      
+                    } else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
+         * Retrieve the agents profile 
+         * @summary Get agent profile
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getAgentProfile(options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ConversationAgentProfileResponse> {
+            const localVarFetchArgs = ConversationApiFetchParamCreator(configuration).getAgentProfile(options);
+            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
+                    if (response.status >= 200 && response.status < 300) {
+                      return response.json();
                       
                     } else {
                         throw response;
@@ -46249,6 +46474,27 @@ export const ConversationApiFp = function(configuration?: Configuration) {
             };
         },
         /**
+         * Update agent profile 
+         * @summary Update agent profile
+         * @param {ConversationAgentProfile} profile_request Profile request
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        updateAgentProfile(profile_request: ConversationAgentProfile, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ConversationAgentProfileResponse> {
+            const localVarFetchArgs = ConversationApiFetchParamCreator(configuration).updateAgentProfile(profile_request, options);
+            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
+                    if (response.status >= 200 && response.status < 300) {
+                      return response.json();
+                      
+                    } else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
          * Update a canned message 
          * @summary Update a canned message
          * @param {number} conversation_canned_message_oid 
@@ -46383,6 +46629,15 @@ export const ConversationApiFactory = function (configuration?: Configuration, f
          */
         getAgentKeepAlive(options?: any) {
             return ConversationApiFp(configuration).getAgentKeepAlive(options)(fetch, basePath);
+        },
+        /**
+         * Retrieve the agents profile 
+         * @summary Get agent profile
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getAgentProfile(options?: any) {
+            return ConversationApiFp(configuration).getAgentProfile(options)(fetch, basePath);
         },
         /**
          * Retrieve a JWT to authorize an agent to make a websocket connection. 
@@ -46624,6 +46879,16 @@ export const ConversationApiFactory = function (configuration?: Configuration, f
             return ConversationApiFp(configuration).startConversation(start_request, options)(fetch, basePath);
         },
         /**
+         * Update agent profile 
+         * @summary Update agent profile
+         * @param {ConversationAgentProfile} profile_request Profile request
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        updateAgentProfile(profile_request: ConversationAgentProfile, options?: any) {
+            return ConversationApiFp(configuration).updateAgentProfile(profile_request, options)(fetch, basePath);
+        },
+        /**
          * Update a canned message 
          * @summary Update a canned message
          * @param {number} conversation_canned_message_oid 
@@ -46714,6 +46979,15 @@ export interface ConversationApiInterface {
      * @memberof ConversationApiInterface
      */
     getAgentKeepAlive(options?: any): Promise<{}>;
+
+    /**
+     * Retrieve the agents profile 
+     * @summary Get agent profile
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApiInterface
+     */
+    getAgentProfile(options?: any): Promise<ConversationAgentProfileResponse>;
 
     /**
      * Retrieve a JWT to authorize an agent to make a websocket connection. 
@@ -46955,6 +47229,16 @@ export interface ConversationApiInterface {
     startConversation(start_request: ConversationStartRequest, options?: any): Promise<ConversationStartResponse>;
 
     /**
+     * Update agent profile 
+     * @summary Update agent profile
+     * @param {ConversationAgentProfile} profile_request Profile request
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApiInterface
+     */
+    updateAgentProfile(profile_request: ConversationAgentProfile, options?: any): Promise<ConversationAgentProfileResponse>;
+
+    /**
      * Update a canned message 
      * @summary Update a canned message
      * @param {number} conversation_canned_message_oid 
@@ -47052,6 +47336,17 @@ export class ConversationApi extends BaseAPI implements ConversationApiInterface
      */
     public getAgentKeepAlive(options?: any) {
         return ConversationApiFp(this.configuration).getAgentKeepAlive(options)(this.fetch, this.basePath);
+    }
+
+    /**
+     * Retrieve the agents profile 
+     * @summary Get agent profile
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApi
+     */
+    public getAgentProfile(options?: any) {
+        return ConversationApiFp(this.configuration).getAgentProfile(options)(this.fetch, this.basePath);
     }
 
     /**
@@ -47339,6 +47634,18 @@ export class ConversationApi extends BaseAPI implements ConversationApiInterface
      */
     public startConversation(start_request: ConversationStartRequest, options?: any) {
         return ConversationApiFp(this.configuration).startConversation(start_request, options)(this.fetch, this.basePath);
+    }
+
+    /**
+     * Update agent profile 
+     * @summary Update agent profile
+     * @param {ConversationAgentProfile} profile_request Profile request
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApi
+     */
+    public updateAgentProfile(profile_request: ConversationAgentProfile, options?: any) {
+        return ConversationApiFp(this.configuration).updateAgentProfile(profile_request, options)(this.fetch, this.basePath);
     }
 
     /**
