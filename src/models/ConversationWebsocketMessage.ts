@@ -93,6 +93,12 @@ import {
  */
 export interface ConversationWebsocketMessage {
     /**
+     * Conversation ARN
+     * @type {string}
+     * @memberof ConversationWebsocketMessage
+     */
+    conversation_arn?: string;
+    /**
      * Conversation UUID if the websocket message is tied to a specific conversation
      * @type {string}
      * @memberof ConversationWebsocketMessage
@@ -273,6 +279,7 @@ export function ConversationWebsocketMessageFromJSONTyped(json: any, ignoreDiscr
     }
     return {
         
+        'conversation_arn': !exists(json, 'conversation_arn') ? undefined : json['conversation_arn'],
         'conversation_uuid': !exists(json, 'conversation_uuid') ? undefined : json['conversation_uuid'],
         'event_add_coupon': !exists(json, 'event_add_coupon') ? undefined : ConversationEventAddCouponFromJSON(json['event_add_coupon']),
         'event_add_item': !exists(json, 'event_add_item') ? undefined : ConversationEventAddItemFromJSON(json['event_add_item']),
@@ -307,6 +314,7 @@ export function ConversationWebsocketMessageToJSON(value?: ConversationWebsocket
     }
     return {
         
+        'conversation_arn': value.conversation_arn,
         'conversation_uuid': value.conversation_uuid,
         'event_add_coupon': ConversationEventAddCouponToJSON(value.event_add_coupon),
         'event_add_item': ConversationEventAddItemToJSON(value.event_add_item),
