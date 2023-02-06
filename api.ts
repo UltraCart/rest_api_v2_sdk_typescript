@@ -9000,6 +9000,12 @@ export interface ConversationWebchatQueueStatusesResponse {
  */
 export interface ConversationWebsocketMessage {
     /**
+     * Conversation ARN
+     * @type {string}
+     * @memberof ConversationWebsocketMessage
+     */
+    conversation_arn?: string;
+    /**
      * Conversation UUID if the websocket message is tied to a specific conversation
      * @type {string}
      * @memberof ConversationWebsocketMessage
