@@ -61,6 +61,12 @@ export interface ConversationWebchatQueueStatusQueueEntry {
      * @memberof ConversationWebchatQueueStatusQueueEntry
      */
     question?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ConversationWebchatQueueStatusQueueEntry
+     */
+    queue_name?: string;
 }
 
 export function ConversationWebchatQueueStatusQueueEntryFromJSON(json: any): ConversationWebchatQueueStatusQueueEntry {
@@ -80,6 +86,7 @@ export function ConversationWebchatQueueStatusQueueEntryFromJSONTyped(json: any,
         'join_dts': !exists(json, 'join_dts') ? undefined : json['join_dts'],
         'participant_language_iso_code': !exists(json, 'participant_language_iso_code') ? undefined : json['participant_language_iso_code'],
         'question': !exists(json, 'question') ? undefined : json['question'],
+        'queue_name': !exists(json, 'queue_name') ? undefined : json['queue_name'],
     };
 }
 
@@ -99,6 +106,7 @@ export function ConversationWebchatQueueStatusQueueEntryToJSON(value?: Conversat
         'join_dts': value.join_dts,
         'participant_language_iso_code': value.participant_language_iso_code,
         'question': value.question,
+        'queue_name': value.queue_name,
     };
 }
 
