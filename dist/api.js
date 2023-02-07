@@ -630,6 +630,7 @@ var ConversationWebsocketMessage;
         EventTypeEnum[EventTypeEnum["AddItem"] = 'add item'] = "AddItem";
         EventTypeEnum[EventTypeEnum["WebchatContext"] = 'webchat context'] = "WebchatContext";
         EventTypeEnum[EventTypeEnum["EngageCustomer"] = 'engage customer'] = "EngageCustomer";
+        EventTypeEnum[EventTypeEnum["QueueNewMember"] = 'queue new member'] = "QueueNewMember";
     })(EventTypeEnum = ConversationWebsocketMessage.EventTypeEnum || (ConversationWebsocketMessage.EventTypeEnum = {}));
     /**
      * @export

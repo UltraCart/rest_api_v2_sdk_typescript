@@ -8923,6 +8923,12 @@ export interface ConversationWebchatQueueStatusQueueEntry {
      * @memberof ConversationWebchatQueueStatusQueueEntry
      */
     question?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ConversationWebchatQueueStatusQueueEntry
+     */
+    queue_name?: string;
 }
 
 /**
@@ -9079,6 +9085,12 @@ export interface ConversationWebsocketMessage {
     event_participant_update?: ConversationSummary;
     /**
      * 
+     * @type {ConversationWebchatQueueStatusQueueEntry}
+     * @memberof ConversationWebsocketMessage
+     */
+    event_queue_new_member?: ConversationWebchatQueueStatusQueueEntry;
+    /**
+     * 
      * @type {ConversationEventQueuePosition}
      * @memberof ConversationWebsocketMessage
      */
@@ -9165,7 +9177,8 @@ export namespace ConversationWebsocketMessage {
         AddCoupon = <any> 'add coupon',
         AddItem = <any> 'add item',
         WebchatContext = <any> 'webchat context',
-        EngageCustomer = <any> 'engage customer'
+        EngageCustomer = <any> 'engage customer',
+        QueueNewMember = <any> 'queue new member'
     }
     /**
      * @export

@@ -8707,6 +8707,12 @@ export interface ConversationWebchatQueueStatusQueueEntry {
      * @memberof ConversationWebchatQueueStatusQueueEntry
      */
     question?: string;
+    /**
+     *
+     * @type {string}
+     * @memberof ConversationWebchatQueueStatusQueueEntry
+     */
+    queue_name?: string;
 }
 /**
  *
@@ -8859,6 +8865,12 @@ export interface ConversationWebsocketMessage {
     event_participant_update?: ConversationSummary;
     /**
      *
+     * @type {ConversationWebchatQueueStatusQueueEntry}
+     * @memberof ConversationWebsocketMessage
+     */
+    event_queue_new_member?: ConversationWebchatQueueStatusQueueEntry;
+    /**
+     *
      * @type {ConversationEventQueuePosition}
      * @memberof ConversationWebsocketMessage
      */
@@ -8944,7 +8956,8 @@ export declare namespace ConversationWebsocketMessage {
         AddCoupon,
         AddItem,
         WebchatContext,
-        EngageCustomer
+        EngageCustomer,
+        QueueNewMember
     }
     /**
      * @export
