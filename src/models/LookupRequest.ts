@@ -39,6 +39,12 @@ export interface LookupRequest {
     max_hits?: number;
     /**
      * 
+     * @type {string}
+     * @memberof LookupRequest
+     */
+    storefront_host_name?: string;
+    /**
+     * 
      * @type {number}
      * @memberof LookupRequest
      */
@@ -64,6 +70,7 @@ export function LookupRequestFromJSONTyped(json: any, ignoreDiscriminator: boole
         'category': !exists(json, 'category') ? undefined : json['category'],
         'matches': !exists(json, 'matches') ? undefined : json['matches'],
         'max_hits': !exists(json, 'max_hits') ? undefined : json['max_hits'],
+        'storefront_host_name': !exists(json, 'storefront_host_name') ? undefined : json['storefront_host_name'],
         'storefront_oid': !exists(json, 'storefront_oid') ? undefined : json['storefront_oid'],
         'subcategory': !exists(json, 'subcategory') ? undefined : json['subcategory'],
     };
@@ -81,6 +88,7 @@ export function LookupRequestToJSON(value?: LookupRequest | null): any {
         'category': value.category,
         'matches': value.matches,
         'max_hits': value.max_hits,
+        'storefront_host_name': value.storefront_host_name,
         'storefront_oid': value.storefront_oid,
         'subcategory': value.subcategory,
     };
