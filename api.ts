@@ -27783,6 +27783,12 @@ export interface LookupRequest {
     max_hits?: number;
     /**
      * 
+     * @type {string}
+     * @memberof LookupRequest
+     */
+    storefront_host_name?: string;
+    /**
+     * 
      * @type {number}
      * @memberof LookupRequest
      */
