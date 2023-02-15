@@ -189,6 +189,12 @@ export interface PricingTier {
      */
     realtime_percentage_discount?: number;
     /**
+     * Restrict inventory to this distribution center oid
+     * @type {number}
+     * @memberof PricingTier
+     */
+    restrict_to_distribution_center_oid?: number;
+    /**
      * 
      * @type {PricingTierNotification}
      * @memberof PricingTier
@@ -257,6 +263,7 @@ export function PricingTierFromJSONTyped(json: any, ignoreDiscriminator: boolean
         'not_valid_when_coupon_present': !exists(json, 'not_valid_when_coupon_present') ? undefined : json['not_valid_when_coupon_present'],
         'pricing_tier_oid': !exists(json, 'pricing_tier_oid') ? undefined : json['pricing_tier_oid'],
         'realtime_percentage_discount': !exists(json, 'realtime_percentage_discount') ? undefined : json['realtime_percentage_discount'],
+        'restrict_to_distribution_center_oid': !exists(json, 'restrict_to_distribution_center_oid') ? undefined : json['restrict_to_distribution_center_oid'],
         'signup_notification': !exists(json, 'signup_notification') ? undefined : PricingTierNotificationFromJSON(json['signup_notification']),
         'suppress_buysafe': !exists(json, 'suppress_buysafe') ? undefined : json['suppress_buysafe'],
         'suppress_mailing_list': !exists(json, 'suppress_mailing_list') ? undefined : json['suppress_mailing_list'],
@@ -301,6 +308,7 @@ export function PricingTierToJSON(value?: PricingTier | null): any {
         'not_valid_when_coupon_present': value.not_valid_when_coupon_present,
         'pricing_tier_oid': value.pricing_tier_oid,
         'realtime_percentage_discount': value.realtime_percentage_discount,
+        'restrict_to_distribution_center_oid': value.restrict_to_distribution_center_oid,
         'signup_notification': PricingTierNotificationToJSON(value.signup_notification),
         'suppress_buysafe': value.suppress_buysafe,
         'suppress_mailing_list': value.suppress_mailing_list,

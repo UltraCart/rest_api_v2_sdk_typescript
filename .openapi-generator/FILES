@@ -629,6 +629,7 @@ src/models/OrderTokenResponse.ts
 src/models/OrderTrackingNumberDetail.ts
 src/models/OrderTrackingNumberDetails.ts
 src/models/OrderTransactionalMerchantNote.ts
+src/models/OrderUtm.ts
 src/models/OrdersResponse.ts
 src/models/Permission.ts
 src/models/PointOfSaleLocation.ts

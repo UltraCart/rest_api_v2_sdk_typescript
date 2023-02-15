@@ -606,6 +606,7 @@ export * from './OrderTokenResponse';
 export * from './OrderTrackingNumberDetail';
 export * from './OrderTrackingNumberDetails';
 export * from './OrderTransactionalMerchantNote';
+export * from './OrderUtm';
 export * from './OrdersResponse';
 export * from './Permission';
 export * from './PointOfSaleLocation';

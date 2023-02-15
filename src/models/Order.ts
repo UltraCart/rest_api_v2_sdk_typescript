@@ -169,6 +169,12 @@ import {
     OrderTaxesFromJSONTyped,
     OrderTaxesToJSON,
 } from './OrderTaxes';
+import {
+    OrderUtm,
+    OrderUtmFromJSON,
+    OrderUtmFromJSONTyped,
+    OrderUtmToJSON,
+} from './OrderUtm';
 
 /**
  * 
@@ -386,6 +392,12 @@ export interface Order {
      * @memberof Order
      */
     taxes?: OrderTaxes;
+    /**
+     * UTM clicks.  The zero index is the most recent (last) UTM click
+     * @type {Array<OrderUtm>}
+     * @memberof Order
+     */
+    utms?: Array<OrderUtm>;
 }
 
 
@@ -454,6 +466,7 @@ export function OrderFromJSONTyped(json: any, ignoreDiscriminator: boolean): Ord
         'summary': !exists(json, 'summary') ? undefined : OrderSummaryFromJSON(json['summary']),
         'Tags': !exists(json, 'Tags') ? undefined : ((json['Tags'] as Array<any>).map(OrderTagFromJSON)),
         'taxes': !exists(json, 'taxes') ? undefined : OrderTaxesFromJSON(json['taxes']),
+        'utms': !exists(json, 'utms') ? undefined : ((json['utms'] as Array<any>).map(OrderUtmFromJSON)),
     };
 }
 
@@ -501,6 +514,7 @@ export function OrderToJSON(value?: Order | null): any {
         'summary': OrderSummaryToJSON(value.summary),
         'Tags': value.Tags === undefined ? undefined : ((value.Tags as Array<any>).map(OrderTagToJSON)),
         'taxes': OrderTaxesToJSON(value.taxes),
+        'utms': value.utms === undefined ? undefined : ((value.utms as Array<any>).map(OrderUtmToJSON)),
     };
 }
 

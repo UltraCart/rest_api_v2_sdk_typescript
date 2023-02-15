@@ -32,6 +32,12 @@ export interface CartCheckout {
      */
     custom_field1?: string;
     /**
+     * Custom field 10
+     * @type {string}
+     * @memberof CartCheckout
+     */
+    custom_field10?: string;
+    /**
      * Custom field 2
      * @type {string}
      * @memberof CartCheckout
@@ -67,6 +73,18 @@ export interface CartCheckout {
      * @memberof CartCheckout
      */
     custom_field7?: string;
+    /**
+     * Custom field 8
+     * @type {string}
+     * @memberof CartCheckout
+     */
+    custom_field8?: string;
+    /**
+     * Custom field 9
+     * @type {string}
+     * @memberof CartCheckout
+     */
+    custom_field9?: string;
     /**
      * IP Address (read only unless non-browser key authenticated)
      * @type {string}
@@ -117,12 +135,15 @@ export function CartCheckoutFromJSONTyped(json: any, ignoreDiscriminator: boolea
         
         'comments': !exists(json, 'comments') ? undefined : json['comments'],
         'custom_field1': !exists(json, 'custom_field1') ? undefined : json['custom_field1'],
+        'custom_field10': !exists(json, 'custom_field10') ? undefined : json['custom_field10'],
         'custom_field2': !exists(json, 'custom_field2') ? undefined : json['custom_field2'],
         'custom_field3': !exists(json, 'custom_field3') ? undefined : json['custom_field3'],
         'custom_field4': !exists(json, 'custom_field4') ? undefined : json['custom_field4'],
         'custom_field5': !exists(json, 'custom_field5') ? undefined : json['custom_field5'],
         'custom_field6': !exists(json, 'custom_field6') ? undefined : json['custom_field6'],
         'custom_field7': !exists(json, 'custom_field7') ? undefined : json['custom_field7'],
+        'custom_field8': !exists(json, 'custom_field8') ? undefined : json['custom_field8'],
+        'custom_field9': !exists(json, 'custom_field9') ? undefined : json['custom_field9'],
         'ip_address': !exists(json, 'ip_address') ? undefined : json['ip_address'],
         'return_code': !exists(json, 'return_code') ? undefined : json['return_code'],
         'return_url': !exists(json, 'return_url') ? undefined : json['return_url'],
@@ -143,12 +164,15 @@ export function CartCheckoutToJSON(value?: CartCheckout | null): any {
         
         'comments': value.comments,
         'custom_field1': value.custom_field1,
+        'custom_field10': value.custom_field10,
         'custom_field2': value.custom_field2,
         'custom_field3': value.custom_field3,
         'custom_field4': value.custom_field4,
         'custom_field5': value.custom_field5,
         'custom_field6': value.custom_field6,
         'custom_field7': value.custom_field7,
+        'custom_field8': value.custom_field8,
+        'custom_field9': value.custom_field9,
         'ip_address': value.ip_address,
         'return_code': value.return_code,
         'return_url': value.return_url,
