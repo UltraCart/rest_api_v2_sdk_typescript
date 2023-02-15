@@ -2562,6 +2562,12 @@ export interface CartCheckout {
      */
     custom_field1?: string;
     /**
+     * Custom field 10
+     * @type {string}
+     * @memberof CartCheckout
+     */
+    custom_field10?: string;
+    /**
      * Custom field 2
      * @type {string}
      * @memberof CartCheckout
@@ -2597,6 +2603,18 @@ export interface CartCheckout {
      * @memberof CartCheckout
      */
     custom_field7?: string;
+    /**
+     * Custom field 8
+     * @type {string}
+     * @memberof CartCheckout
+     */
+    custom_field8?: string;
+    /**
+     * Custom field 9
+     * @type {string}
+     * @memberof CartCheckout
+     */
+    custom_field9?: string;
     /**
      * IP Address (read only unless non-browser key authenticated)
      * @type {string}
@@ -27723,6 +27741,12 @@ export interface Order {
      * @memberof Order
      */
     taxes?: OrderTaxes;
+    /**
+     * UTM clicks.  The zero index is the most recent (last) UTM click
+     * @type {Array<OrderUtm>}
+     * @memberof Order
+     */
+    utms?: Array<OrderUtm>;
 }
 /**
  * @export
@@ -28263,6 +28287,12 @@ export interface OrderCheckout {
      */
     custom_field1?: string;
     /**
+     * Custom field 10
+     * @type {string}
+     * @memberof OrderCheckout
+     */
+    custom_field10?: string;
+    /**
      * Custom field 2
      * @type {string}
      * @memberof OrderCheckout
@@ -28298,6 +28328,18 @@ export interface OrderCheckout {
      * @memberof OrderCheckout
      */
     custom_field7?: string;
+    /**
+     * Custom field 8
+     * @type {string}
+     * @memberof OrderCheckout
+     */
+    custom_field8?: string;
+    /**
+     * Custom field 9
+     * @type {string}
+     * @memberof OrderCheckout
+     */
+    custom_field9?: string;
     /**
      * IP address of the customer when placing the order
      * @type {string}
@@ -31491,6 +31533,157 @@ export interface OrderTransactionalMerchantNote {
 /**
  *
  * @export
+ * @interface OrderUtm
+ */
+export interface OrderUtm {
+    /**
+     *
+     * @type {number}
+     * @memberof OrderUtm
+     */
+    attribution_first_click_subtotal?: number;
+    /**
+     *
+     * @type {number}
+     * @memberof OrderUtm
+     */
+    attribution_first_click_total?: number;
+    /**
+     *
+     * @type {number}
+     * @memberof OrderUtm
+     */
+    attribution_last_click_subtotal?: number;
+    /**
+     *
+     * @type {number}
+     * @memberof OrderUtm
+     */
+    attribution_last_click_total?: number;
+    /**
+     *
+     * @type {number}
+     * @memberof OrderUtm
+     */
+    attribution_linear_subtotal?: number;
+    /**
+     *
+     * @type {number}
+     * @memberof OrderUtm
+     */
+    attribution_linear_total?: number;
+    /**
+     *
+     * @type {number}
+     * @memberof OrderUtm
+     */
+    attribution_position_based_subtotal?: number;
+    /**
+     *
+     * @type {number}
+     * @memberof OrderUtm
+     */
+    attribution_position_based_total?: number;
+    /**
+     * Date/time that the click happened
+     * @type {string}
+     * @memberof OrderUtm
+     */
+    click_dts?: string;
+    /**
+     *
+     * @type {string}
+     * @memberof OrderUtm
+     */
+    facebook_ad_id?: string;
+    /**
+     *
+     * @type {string}
+     * @memberof OrderUtm
+     */
+    fbclid?: string;
+    /**
+     *
+     * @type {string}
+     * @memberof OrderUtm
+     */
+    gbraid?: string;
+    /**
+     *
+     * @type {string}
+     * @memberof OrderUtm
+     */
+    glcid?: string;
+    /**
+     *
+     * @type {string}
+     * @memberof OrderUtm
+     */
+    msclkid?: string;
+    /**
+     *
+     * @type {string}
+     * @memberof OrderUtm
+     */
+    ttclid?: string;
+    /**
+     *
+     * @type {string}
+     * @memberof OrderUtm
+     */
+    uc_message_id?: string;
+    /**
+     *
+     * @type {string}
+     * @memberof OrderUtm
+     */
+    utm_campaign?: string;
+    /**
+     *
+     * @type {string}
+     * @memberof OrderUtm
+     */
+    utm_content?: string;
+    /**
+     *
+     * @type {string}
+     * @memberof OrderUtm
+     */
+    utm_id?: string;
+    /**
+     *
+     * @type {string}
+     * @memberof OrderUtm
+     */
+    utm_medium?: string;
+    /**
+     *
+     * @type {string}
+     * @memberof OrderUtm
+     */
+    utm_source?: string;
+    /**
+     *
+     * @type {string}
+     * @memberof OrderUtm
+     */
+    utm_term?: string;
+    /**
+     *
+     * @type {string}
+     * @memberof OrderUtm
+     */
+    vmcid?: string;
+    /**
+     *
+     * @type {string}
+     * @memberof OrderUtm
+     */
+    wbraid?: string;
+}
+/**
+ *
+ * @export
  * @interface OrdersResponse
  */
 export interface OrdersResponse {
@@ -31890,6 +32083,12 @@ export interface PricingTier {
      * @memberof PricingTier
      */
     realtime_percentage_discount?: number;
+    /**
+     * Restrict inventory to this distribution center oid
+     * @type {number}
+     * @memberof PricingTier
+     */
+    restrict_to_distribution_center_oid?: number;
     /**
      *
      * @type {PricingTierNotification}
