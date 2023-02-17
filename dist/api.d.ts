@@ -40298,6 +40298,14 @@ export declare const ConversationApiFetchParamCreator: (configuration?: Configur
      */
     searchConversationCannedMessages(search_request: ConversationCannedMessagesSearch, options?: any): FetchArgs;
     /**
+     * Unsubscribe any SMS participants in this conversation
+     * @summary Unsubscribe any SMS participants in this conversation
+     * @param {string} conversation_uuid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    smsUnsubscribeConversation(conversation_uuid: string, options?: any): FetchArgs;
+    /**
      * Start a new conversation
      * @summary Start a conversation
      * @param {ConversationStartRequest} start_request Start request
@@ -40577,6 +40585,14 @@ export declare const ConversationApiFp: (configuration?: Configuration) => {
      */
     searchConversationCannedMessages(search_request: ConversationCannedMessagesSearch, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ConversationCannedMessagesResponse>;
     /**
+     * Unsubscribe any SMS participants in this conversation
+     * @summary Unsubscribe any SMS participants in this conversation
+     * @param {string} conversation_uuid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    smsUnsubscribeConversation(conversation_uuid: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Response>;
+    /**
      * Start a new conversation
      * @summary Start a conversation
      * @param {ConversationStartRequest} start_request Start request
@@ -40855,6 +40871,14 @@ export declare const ConversationApiFactory: (configuration?: Configuration, fet
      * @throws {RequiredError}
      */
     searchConversationCannedMessages(search_request: ConversationCannedMessagesSearch, options?: any): Promise<ConversationCannedMessagesResponse>;
+    /**
+     * Unsubscribe any SMS participants in this conversation
+     * @summary Unsubscribe any SMS participants in this conversation
+     * @param {string} conversation_uuid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    smsUnsubscribeConversation(conversation_uuid: string, options?: any): Promise<Response>;
     /**
      * Start a new conversation
      * @summary Start a conversation
@@ -41163,6 +41187,15 @@ export interface ConversationApiInterface {
      * @memberof ConversationApiInterface
      */
     searchConversationCannedMessages(search_request: ConversationCannedMessagesSearch, options?: any): Promise<ConversationCannedMessagesResponse>;
+    /**
+     * Unsubscribe any SMS participants in this conversation
+     * @summary Unsubscribe any SMS participants in this conversation
+     * @param {string} conversation_uuid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApiInterface
+     */
+    smsUnsubscribeConversation(conversation_uuid: string, options?: any): Promise<{}>;
     /**
      * Start a new conversation
      * @summary Start a conversation
@@ -41478,6 +41511,15 @@ export declare class ConversationApi extends BaseAPI implements ConversationApiI
      * @memberof ConversationApi
      */
     searchConversationCannedMessages(search_request: ConversationCannedMessagesSearch, options?: any): Promise<ConversationCannedMessagesResponse>;
+    /**
+     * Unsubscribe any SMS participants in this conversation
+     * @summary Unsubscribe any SMS participants in this conversation
+     * @param {string} conversation_uuid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApi
+     */
+    smsUnsubscribeConversation(conversation_uuid: string, options?: any): Promise<Response>;
     /**
      * Start a new conversation
      * @summary Start a conversation
