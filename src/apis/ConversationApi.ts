@@ -189,6 +189,10 @@ export interface SearchConversationCannedMessagesRequest {
     searchRequest: ConversationCannedMessagesSearch;
 }
 
+export interface SmsUnsubscribeConversationRequest {
+    conversationUuid: string;
+}
+
 export interface StartConversationRequest {
     startRequest: ConversationStartRequest;
 }
@@ -668,6 +672,22 @@ export interface ConversationApiInterface {
      * Search for canned messages by short_code
      */
     searchConversationCannedMessages(requestParameters: SearchConversationCannedMessagesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ConversationCannedMessagesResponse>;
+
+    /**
+     * Unsubscribe any SMS participants in this conversation 
+     * @summary Unsubscribe any SMS participants in this conversation
+     * @param {string} conversationUuid 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApiInterface
+     */
+    smsUnsubscribeConversationRaw(requestParameters: SmsUnsubscribeConversationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+
+    /**
+     * Unsubscribe any SMS participants in this conversation 
+     * Unsubscribe any SMS participants in this conversation
+     */
+    smsUnsubscribeConversation(requestParameters: SmsUnsubscribeConversationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
      * Start a new conversation 
@@ -1920,6 +1940,46 @@ export class ConversationApi extends runtime.BaseAPI implements ConversationApiI
     async searchConversationCannedMessages(requestParameters: SearchConversationCannedMessagesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ConversationCannedMessagesResponse> {
         const response = await this.searchConversationCannedMessagesRaw(requestParameters, initOverrides);
         return await response.value();
+    }
+
+    /**
+     * Unsubscribe any SMS participants in this conversation 
+     * Unsubscribe any SMS participants in this conversation
+     */
+    async smsUnsubscribeConversationRaw(requestParameters: SmsUnsubscribeConversationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        if (requestParameters.conversationUuid === null || requestParameters.conversationUuid === undefined) {
+            throw new runtime.RequiredError('conversationUuid','Required parameter requestParameters.conversationUuid was null or undefined when calling smsUnsubscribeConversation.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", ["conversation_write"]);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/conversation/conversations/{conversation_uuid}/sms_unsubscribe`.replace(`{${"conversation_uuid"}}`, encodeURIComponent(String(requestParameters.conversationUuid))),
+            method: 'PUT',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     * Unsubscribe any SMS participants in this conversation 
+     * Unsubscribe any SMS participants in this conversation
+     */
+    async smsUnsubscribeConversation(requestParameters: SmsUnsubscribeConversationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.smsUnsubscribeConversationRaw(requestParameters, initOverrides);
     }
 
     /**
