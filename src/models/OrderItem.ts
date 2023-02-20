@@ -321,6 +321,18 @@ export interface OrderItem {
      */
     quickbooks_class?: string;
     /**
+     * Refund reason code.  This can only be written during a refund operation otherwise this field is read only.
+     * @type {string}
+     * @memberof OrderItem
+     */
+    refund_reason?: string;
+    /**
+     * Return reason code.  This can only be written during a refund operation otherwise this field is read only.
+     * @type {string}
+     * @memberof OrderItem
+     */
+    return_reason?: string;
+    /**
      * True if this item ships in a separate box
      * @type {boolean}
      * @memberof OrderItem
@@ -484,6 +496,8 @@ export function OrderItemFromJSONTyped(json: any, ignoreDiscriminator: boolean):
         'quantity': !exists(json, 'quantity') ? undefined : json['quantity'],
         'quantity_refunded': !exists(json, 'quantity_refunded') ? undefined : json['quantity_refunded'],
         'quickbooks_class': !exists(json, 'quickbooks_class') ? undefined : json['quickbooks_class'],
+        'refund_reason': !exists(json, 'refund_reason') ? undefined : json['refund_reason'],
+        'return_reason': !exists(json, 'return_reason') ? undefined : json['return_reason'],
         'ship_separately': !exists(json, 'ship_separately') ? undefined : json['ship_separately'],
         'shipped_by_user': !exists(json, 'shipped_by_user') ? undefined : json['shipped_by_user'],
         'shipped_dts': !exists(json, 'shipped_dts') ? undefined : json['shipped_dts'],
@@ -555,6 +569,8 @@ export function OrderItemToJSON(value?: OrderItem | null): any {
         'quantity': value.quantity,
         'quantity_refunded': value.quantity_refunded,
         'quickbooks_class': value.quickbooks_class,
+        'refund_reason': value.refund_reason,
+        'return_reason': value.return_reason,
         'ship_separately': value.ship_separately,
         'shipped_by_user': value.shipped_by_user,
         'shipped_dts': value.shipped_dts,

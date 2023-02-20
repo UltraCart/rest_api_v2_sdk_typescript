@@ -357,11 +357,23 @@ export interface Order {
      */
     refund_dts?: string;
     /**
+     * Refund reason code.  This can only be written during a refund operation otherwise this field is read only.
+     * @type {string}
+     * @memberof Order
+     */
+    refund_reason?: string;
+    /**
      * If the order was rejected, the date/time that the rejection occurred
      * @type {string}
      * @memberof Order
      */
     reject_dts?: string;
+    /**
+     * Reject reason code.  This can only be written during a reject operation otherwise this field is read only.
+     * @type {string}
+     * @memberof Order
+     */
+    reject_reason?: string;
     /**
      * 
      * @type {OrderSalesforce}
@@ -460,7 +472,9 @@ export function OrderFromJSONTyped(json: any, ignoreDiscriminator: boolean): Ord
         'properties': !exists(json, 'properties') ? undefined : ((json['properties'] as Array<any>).map(OrderPropertyFromJSON)),
         'quote': !exists(json, 'quote') ? undefined : OrderQuoteFromJSON(json['quote']),
         'refund_dts': !exists(json, 'refund_dts') ? undefined : json['refund_dts'],
+        'refund_reason': !exists(json, 'refund_reason') ? undefined : json['refund_reason'],
         'reject_dts': !exists(json, 'reject_dts') ? undefined : json['reject_dts'],
+        'reject_reason': !exists(json, 'reject_reason') ? undefined : json['reject_reason'],
         'salesforce': !exists(json, 'salesforce') ? undefined : OrderSalesforceFromJSON(json['salesforce']),
         'shipping': !exists(json, 'shipping') ? undefined : OrderShippingFromJSON(json['shipping']),
         'summary': !exists(json, 'summary') ? undefined : OrderSummaryFromJSON(json['summary']),
@@ -508,7 +522,9 @@ export function OrderToJSON(value?: Order | null): any {
         'properties': value.properties === undefined ? undefined : ((value.properties as Array<any>).map(OrderPropertyToJSON)),
         'quote': OrderQuoteToJSON(value.quote),
         'refund_dts': value.refund_dts,
+        'refund_reason': value.refund_reason,
         'reject_dts': value.reject_dts,
+        'reject_reason': value.reject_reason,
         'salesforce': OrderSalesforceToJSON(value.salesforce),
         'shipping': OrderShippingToJSON(value.shipping),
         'summary': OrderSummaryToJSON(value.summary),
