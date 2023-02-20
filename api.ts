@@ -28310,11 +28310,23 @@ export interface Order {
      */
     refund_dts?: string;
     /**
+     * Refund reason code.  This can only be written during a refund operation otherwise this field is read only.
+     * @type {string}
+     * @memberof Order
+     */
+    refund_reason?: string;
+    /**
      * If the order was rejected, the date/time that the rejection occurred
      * @type {string}
      * @memberof Order
      */
     reject_dts?: string;
+    /**
+     * Reject reason code.  This can only be written during a reject operation otherwise this field is read only.
+     * @type {string}
+     * @memberof Order
+     */
+    reject_reason?: string;
     /**
      * 
      * @type {OrderSalesforce}
@@ -29878,6 +29890,18 @@ export interface OrderItem {
      */
     quickbooks_class?: string;
     /**
+     * Refund reason code.  This can only be written during a refund operation otherwise this field is read only.
+     * @type {string}
+     * @memberof OrderItem
+     */
+    refund_reason?: string;
+    /**
+     * Return reason code.  This can only be written during a refund operation otherwise this field is read only.
+     * @type {string}
+     * @memberof OrderItem
+     */
+    return_reason?: string;
+    /**
      * True if this item ships in a separate box
      * @type {boolean}
      * @memberof OrderItem
@@ -31244,6 +31268,32 @@ export interface OrderQuote {
 /**
  * 
  * @export
+ * @interface OrderReason
+ */
+export interface OrderReason {
+    /**
+     * Default reason
+     * @type {boolean}
+     * @memberof OrderReason
+     */
+    default_reason?: boolean;
+    /**
+     * Reason description.  This is the friendly description of the reason that should be displayed to the user.
+     * @type {string}
+     * @memberof OrderReason
+     */
+    description?: string;
+    /**
+     * Reason value.  This is what should be submitted with a refund operation.
+     * @type {string}
+     * @memberof OrderReason
+     */
+    value?: string;
+}
+
+/**
+ * 
+ * @export
  * @interface OrderRefundableResponse
  */
 export interface OrderRefundableResponse {
@@ -31254,11 +31304,47 @@ export interface OrderRefundableResponse {
      */
     error?: ModelError;
     /**
+     * True if the item level refund reason is required
+     * @type {boolean}
+     * @memberof OrderRefundableResponse
+     */
+    item_level_refund_reason_required?: boolean;
+    /**
+     * Reason codes available at the item level.
+     * @type {Array<OrderReason>}
+     * @memberof OrderRefundableResponse
+     */
+    item_level_refund_reasons?: Array<OrderReason>;
+    /**
+     * Return codes available at the item level.
+     * @type {Array<OrderReason>}
+     * @memberof OrderRefundableResponse
+     */
+    item_level_return_reasons?: Array<OrderReason>;
+    /**
      * 
      * @type {ResponseMetadata}
      * @memberof OrderRefundableResponse
      */
     metadata?: ResponseMetadata;
+    /**
+     * True if the order level refund reason is required
+     * @type {boolean}
+     * @memberof OrderRefundableResponse
+     */
+    order_level_refund_reason_required?: boolean;
+    /**
+     * Reason codes available at the order level.
+     * @type {Array<OrderReason>}
+     * @memberof OrderRefundableResponse
+     */
+    order_level_refund_reasons?: Array<OrderReason>;
+    /**
+     * Reject codes available at the order level.
+     * @type {Array<OrderReason>}
+     * @memberof OrderRefundableResponse
+     */
+    order_level_reject_reasons?: Array<OrderReason>;
     /**
      * Whether the order is refundable or not.  Null should be interpreted as false.
      * @type {boolean}
