@@ -7306,6 +7306,12 @@ export interface ConversationEngagement {
     customer_greeting?: string;
     /**
      * 
+     * @type {boolean}
+     * @memberof ConversationEngagement
+     */
+    customer_initiated?: boolean;
+    /**
+     * 
      * @type {Array<number>}
      * @memberof ConversationEngagement
      */
