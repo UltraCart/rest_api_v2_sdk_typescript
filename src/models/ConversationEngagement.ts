@@ -46,6 +46,12 @@ export interface ConversationEngagement {
     customer_greeting?: string;
     /**
      * 
+     * @type {boolean}
+     * @memberof ConversationEngagement
+     */
+    customer_initiated?: boolean;
+    /**
+     * 
      * @type {Array<number>}
      * @memberof ConversationEngagement
      */
@@ -101,6 +107,7 @@ export function ConversationEngagementFromJSONTyped(json: any, ignoreDiscriminat
         'active': !exists(json, 'active') ? undefined : json['active'],
         'conversation_engagement_oid': !exists(json, 'conversation_engagement_oid') ? undefined : json['conversation_engagement_oid'],
         'customer_greeting': !exists(json, 'customer_greeting') ? undefined : json['customer_greeting'],
+        'customer_initiated': !exists(json, 'customer_initiated') ? undefined : json['customer_initiated'],
         'department_oids': !exists(json, 'department_oids') ? undefined : json['department_oids'],
         'engagement_name': !exists(json, 'engagement_name') ? undefined : json['engagement_name'],
         'equation': !exists(json, 'equation') ? undefined : ConversationEngagementEquationFromJSON(json['equation']),
@@ -121,6 +128,7 @@ export function ConversationEngagementToJSON(value?: ConversationEngagement | nu
         'active': value.active,
         'conversation_engagement_oid': value.conversation_engagement_oid,
         'customer_greeting': value.customer_greeting,
+        'customer_initiated': value.customer_initiated,
         'department_oids': value.department_oids,
         'engagement_name': value.engagement_name,
         'equation': ConversationEngagementEquationToJSON(value.equation),
