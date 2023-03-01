@@ -192,6 +192,7 @@ src/models/ConversationPermissionsResponse.ts
 src/models/ConversationResponse.ts
 src/models/ConversationSearchRequest.ts
 src/models/ConversationSearchResponse.ts
+src/models/ConversationSentiment.ts
 src/models/ConversationStartRequest.ts
 src/models/ConversationStartResponse.ts
 src/models/ConversationSummary.ts

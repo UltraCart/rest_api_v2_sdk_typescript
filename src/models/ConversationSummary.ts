@@ -19,6 +19,12 @@ import {
     ConversationParticipantFromJSONTyped,
     ConversationParticipantToJSON,
 } from './ConversationParticipant';
+import {
+    ConversationSentiment,
+    ConversationSentimentFromJSON,
+    ConversationSentimentFromJSONTyped,
+    ConversationSentimentToJSON,
+} from './ConversationSentiment';
 
 /**
  * 
@@ -105,6 +111,12 @@ export interface ConversationSummary {
      */
     participants?: Array<ConversationParticipant>;
     /**
+     * 
+     * @type {ConversationSentiment}
+     * @memberof ConversationSummary
+     */
+    sentiment?: ConversationSentiment;
+    /**
      * Start of the conversation date/time
      * @type {string}
      * @memberof ConversationSummary
@@ -158,6 +170,7 @@ export function ConversationSummaryFromJSONTyped(json: any, ignoreDiscriminator:
         'merchant_id': !exists(json, 'merchant_id') ? undefined : json['merchant_id'],
         'message_count': !exists(json, 'message_count') ? undefined : json['message_count'],
         'participants': !exists(json, 'participants') ? undefined : ((json['participants'] as Array<any>).map(ConversationParticipantFromJSON)),
+        'sentiment': !exists(json, 'sentiment') ? undefined : ConversationSentimentFromJSON(json['sentiment']),
         'start_dts': !exists(json, 'start_dts') ? undefined : json['start_dts'],
         'unread_messages': !exists(json, 'unread_messages') ? undefined : json['unread_messages'],
         'visible': !exists(json, 'visible') ? undefined : json['visible'],
@@ -186,6 +199,7 @@ export function ConversationSummaryToJSON(value?: ConversationSummary | null): a
         'merchant_id': value.merchant_id,
         'message_count': value.message_count,
         'participants': value.participants === undefined ? undefined : ((value.participants as Array<any>).map(ConversationParticipantToJSON)),
+        'sentiment': ConversationSentimentToJSON(value.sentiment),
         'start_dts': value.start_dts,
         'unread_messages': value.unread_messages,
         'visible': value.visible,

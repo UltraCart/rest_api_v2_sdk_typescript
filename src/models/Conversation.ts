@@ -25,6 +25,12 @@ import {
     ConversationParticipantFromJSONTyped,
     ConversationParticipantToJSON,
 } from './ConversationParticipant';
+import {
+    ConversationSentiment,
+    ConversationSentimentFromJSON,
+    ConversationSentimentFromJSONTyped,
+    ConversationSentimentToJSON,
+} from './ConversationSentiment';
 
 /**
  * 
@@ -123,6 +129,12 @@ export interface Conversation {
      */
     participants?: Array<ConversationParticipant>;
     /**
+     * 
+     * @type {ConversationSentiment}
+     * @memberof Conversation
+     */
+    sentiment?: ConversationSentiment;
+    /**
      * Start of the conversation date/time
      * @type {string}
      * @memberof Conversation
@@ -178,6 +190,7 @@ export function ConversationFromJSONTyped(json: any, ignoreDiscriminator: boolea
         'message_count': !exists(json, 'message_count') ? undefined : json['message_count'],
         'messages': !exists(json, 'messages') ? undefined : ((json['messages'] as Array<any>).map(ConversationMessageFromJSON)),
         'participants': !exists(json, 'participants') ? undefined : ((json['participants'] as Array<any>).map(ConversationParticipantFromJSON)),
+        'sentiment': !exists(json, 'sentiment') ? undefined : ConversationSentimentFromJSON(json['sentiment']),
         'start_dts': !exists(json, 'start_dts') ? undefined : json['start_dts'],
         'unread_messages': !exists(json, 'unread_messages') ? undefined : json['unread_messages'],
         'visible': !exists(json, 'visible') ? undefined : json['visible'],
@@ -208,6 +221,7 @@ export function ConversationToJSON(value?: Conversation | null): any {
         'message_count': value.message_count,
         'messages': value.messages === undefined ? undefined : ((value.messages as Array<any>).map(ConversationMessageToJSON)),
         'participants': value.participants === undefined ? undefined : ((value.participants as Array<any>).map(ConversationParticipantToJSON)),
+        'sentiment': ConversationSentimentToJSON(value.sentiment),
         'start_dts': value.start_dts,
         'unread_messages': value.unread_messages,
         'visible': value.visible,

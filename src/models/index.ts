@@ -169,6 +169,7 @@ export * from './ConversationPermissionsResponse';
 export * from './ConversationResponse';
 export * from './ConversationSearchRequest';
 export * from './ConversationSearchResponse';
+export * from './ConversationSentiment';
 export * from './ConversationStartRequest';
 export * from './ConversationStartResponse';
 export * from './ConversationSummary';
