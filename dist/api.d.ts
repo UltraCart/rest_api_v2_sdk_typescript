@@ -6503,6 +6503,12 @@ export interface Conversation {
      */
     participants?: Array<ConversationParticipant>;
     /**
+     *
+     * @type {ConversationSentiment}
+     * @memberof Conversation
+     */
+    sentiment?: ConversationSentiment;
+    /**
      * Start of the conversation date/time
      * @type {string}
      * @memberof Conversation
@@ -8302,6 +8308,65 @@ export interface ConversationSearchResponse {
 /**
  *
  * @export
+ * @interface ConversationSentiment
+ */
+export interface ConversationSentiment {
+    /**
+     * The last time the detect sentiment was run on this conversation
+     * @type {string}
+     * @memberof ConversationSentiment
+     */
+    last_detect_sentiment?: string;
+    /**
+     * The mixed score
+     * @type {number}
+     * @memberof ConversationSentiment
+     */
+    mixed?: number;
+    /**
+     * The negative score
+     * @type {number}
+     * @memberof ConversationSentiment
+     */
+    negative?: number;
+    /**
+     * The neutral score
+     * @type {number}
+     * @memberof ConversationSentiment
+     */
+    neutral?: number;
+    /**
+     * The positive score
+     * @type {number}
+     * @memberof ConversationSentiment
+     */
+    positive?: number;
+    /**
+     * The overall sentiment
+     * @type {string}
+     * @memberof ConversationSentiment
+     */
+    sentiment?: ConversationSentiment.SentimentEnum;
+}
+/**
+ * @export
+ * @namespace ConversationSentiment
+ */
+export declare namespace ConversationSentiment {
+    /**
+     * @export
+     * @enum {string}
+     */
+    enum SentimentEnum {
+        POSITIVE,
+        NEUTRAL,
+        NEGATIVE,
+        MIXED
+    }
+}
+/**
+ *
+ * @export
  * @interface ConversationStartRequest
  */
 export interface ConversationStartRequest {
@@ -8421,6 +8486,12 @@ export interface ConversationSummary {
      * @memberof ConversationSummary
      */
     participants?: Array<ConversationParticipant>;
+    /**
+     *
+     * @type {ConversationSentiment}
+     * @memberof ConversationSummary
+     */
+    sentiment?: ConversationSentiment;
     /**
      * Start of the conversation date/time
      * @type {string}
