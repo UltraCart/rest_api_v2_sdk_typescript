@@ -29245,6 +29245,151 @@ export interface OrderEdi {
 /**
  * 
  * @export
+ * @interface OrderEdiDocument
+ */
+export interface OrderEdiDocument {
+    /**
+     * Direction the document flowed
+     * @type {string}
+     * @memberof OrderEdiDocument
+     */
+    direction?: OrderEdiDocument.DirectionEnum;
+    /**
+     * Date/time the document was created/received
+     * @type {string}
+     * @memberof OrderEdiDocument
+     */
+    doc_dts?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof OrderEdiDocument
+     */
+    document?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof OrderEdiDocument
+     */
+    document_type_description?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof OrderEdiDocument
+     */
+    document_type_number?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof OrderEdiDocument
+     */
+    external_id?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof OrderEdiDocument
+     */
+    functional_acknowledgement?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof OrderEdiDocument
+     */
+    functional_acknowledgement_dts?: string;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof OrderEdiDocument
+     */
+    functional_acknowledgement_pending?: boolean;
+    /**
+     * 
+     * @type {number}
+     * @memberof OrderEdiDocument
+     */
+    group_control_number?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof OrderEdiDocument
+     */
+    internal_id?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof OrderEdiDocument
+     */
+    merchant_id?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof OrderEdiDocument
+     */
+    order_id?: string;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof OrderEdiDocument
+     */
+    test_mode?: boolean;
+}
+
+/**
+ * @export
+ * @namespace OrderEdiDocument
+ */
+export namespace OrderEdiDocument {
+    /**
+     * @export
+     * @enum {string}
+     */
+    export enum DirectionEnum {
+        Inbound = <any> 'inbound',
+        Outbound = <any> 'outbound'
+    }
+}
+
+/**
+ * 
+ * @export
+ * @interface OrderEdiDocumentsResponse
+ */
+export interface OrderEdiDocumentsResponse {
+    /**
+     * edi_documents
+     * @type {Array<OrderEdiDocument>}
+     * @memberof OrderEdiDocumentsResponse
+     */
+    ediDocuments?: Array<OrderEdiDocument>;
+    /**
+     * 
+     * @type {ModelError}
+     * @memberof OrderEdiDocumentsResponse
+     */
+    error?: ModelError;
+    /**
+     * 
+     * @type {ResponseMetadata}
+     * @memberof OrderEdiDocumentsResponse
+     */
+    metadata?: ResponseMetadata;
+    /**
+     * Indicates if API call was successful
+     * @type {boolean}
+     * @memberof OrderEdiDocumentsResponse
+     */
+    success?: boolean;
+    /**
+     * 
+     * @type {Warning}
+     * @memberof OrderEdiDocumentsResponse
+     */
+    warning?: Warning;
+}
+
+/**
+ * 
+ * @export
  * @interface OrderFormat
  */
 export interface OrderFormat {
@@ -58402,6 +58547,58 @@ export const OrderApiFetchParamCreator = function (configuration?: Configuration
             };
         },
         /**
+         * Retrieve EDI documents associated with this order. 
+         * @summary Retrieve EDI documents associated with this order.
+         * @param {string} order_id The order id to retrieve EDI documents for.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getOrderEdiDocuments(order_id: string, options: any = {}): FetchArgs {
+            // verify required parameter 'order_id' is not null or undefined
+            if (order_id === null || order_id === undefined) {
+                throw new RequiredError('order_id','Required parameter order_id was null or undefined when calling getOrderEdiDocuments.');
+            }
+            const localVarPath = `/order/orders/{order_id}/edi`
+                .replace(`{${"order_id"}}`, encodeURIComponent(String(order_id)));
+            const localVarUrlObj = url.parse(localVarPath, true);
+            const localVarRequestOptions = Object.assign({ method: 'GET' }, options);
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+    if(configuration && configuration.apiVersion) {
+      localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+    }
+
+
+
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+				const localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+					? configuration.accessToken("ultraCartOauth", ["order_write"])
+					: configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
+					? configuration.apiKey("x-ultracart-simple-key")
+					: configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
          * Retrieves a group of orders from the account.  If no parameters are specified, the API call will fail with a bad request error.  Always specify some parameters to limit the scope of the orders returned to ones you are truly interested in.  You will need to make multiple API calls in order to retrieve the entire result set since this API performs result set pagination. 
          * @summary Retrieve orders
          * @param {string} [order_id] Order Id
@@ -59581,6 +59778,27 @@ export const OrderApiFp = function(configuration?: Configuration) {
             };
         },
         /**
+         * Retrieve EDI documents associated with this order. 
+         * @summary Retrieve EDI documents associated with this order.
+         * @param {string} order_id The order id to retrieve EDI documents for.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getOrderEdiDocuments(order_id: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<OrderEdiDocumentsResponse> {
+            const localVarFetchArgs = OrderApiFetchParamCreator(configuration).getOrderEdiDocuments(order_id, options);
+            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
+                    if (response.status >= 200 && response.status < 300) {
+                      return response.json();
+                      
+                    } else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
          * Retrieves a group of orders from the account.  If no parameters are specified, the API call will fail with a bad request error.  Always specify some parameters to limit the scope of the orders returned to ones you are truly interested in.  You will need to make multiple API calls in order to retrieve the entire result set since this API performs result set pagination. 
          * @summary Retrieve orders
          * @param {string} [order_id] Order Id
@@ -60026,6 +60244,16 @@ export const OrderApiFactory = function (configuration?: Configuration, fetch?: 
             return OrderApiFp(configuration).getOrderByToken(order_by_token_query, _expand, options)(fetch, basePath);
         },
         /**
+         * Retrieve EDI documents associated with this order. 
+         * @summary Retrieve EDI documents associated with this order.
+         * @param {string} order_id The order id to retrieve EDI documents for.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getOrderEdiDocuments(order_id: string, options?: any) {
+            return OrderApiFp(configuration).getOrderEdiDocuments(order_id, options)(fetch, basePath);
+        },
+        /**
          * Retrieves a group of orders from the account.  If no parameters are specified, the API call will fail with a bad request error.  Always specify some parameters to limit the scope of the orders returned to ones you are truly interested in.  You will need to make multiple API calls in order to retrieve the entire result set since this API performs result set pagination. 
          * @summary Retrieve orders
          * @param {string} [order_id] Order Id
@@ -60337,6 +60565,16 @@ export interface OrderApiInterface {
      * @memberof OrderApiInterface
      */
     getOrderByToken(order_by_token_query: OrderByTokenQuery, _expand?: string, options?: any): Promise<OrderResponse>;
+
+    /**
+     * Retrieve EDI documents associated with this order. 
+     * @summary Retrieve EDI documents associated with this order.
+     * @param {string} order_id The order id to retrieve EDI documents for.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof OrderApiInterface
+     */
+    getOrderEdiDocuments(order_id: string, options?: any): Promise<OrderEdiDocumentsResponse>;
 
     /**
      * Retrieves a group of orders from the account.  If no parameters are specified, the API call will fail with a bad request error.  Always specify some parameters to limit the scope of the orders returned to ones you are truly interested in.  You will need to make multiple API calls in order to retrieve the entire result set since this API performs result set pagination. 
@@ -60675,6 +60913,18 @@ export class OrderApi extends BaseAPI implements OrderApiInterface {
      */
     public getOrderByToken(order_by_token_query: OrderByTokenQuery, _expand?: string, options?: any) {
         return OrderApiFp(this.configuration).getOrderByToken(order_by_token_query, _expand, options)(this.fetch, this.basePath);
+    }
+
+    /**
+     * Retrieve EDI documents associated with this order. 
+     * @summary Retrieve EDI documents associated with this order.
+     * @param {string} order_id The order id to retrieve EDI documents for.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof OrderApi
+     */
+    public getOrderEdiDocuments(order_id: string, options?: any) {
+        return OrderApiFp(this.configuration).getOrderEdiDocuments(order_id, options)(this.fetch, this.basePath);
     }
 
     /**

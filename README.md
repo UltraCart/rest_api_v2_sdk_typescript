@@ -1,4 +1,4 @@
-## ultracart_rest_api_v2_typescript@3.10.121
+## ultracart_rest_api_v2_typescript@3.10.122
 
 This generator creates TypeScript/JavaScript client that utilizes [Fetch API](https://fetch.spec.whatwg.org/). The generated Node module can be used in the following environments:
 
@@ -36,7 +36,7 @@ navigate to the folder of your consuming project and run one of the following co
 _published:_
 
 ```
-npm install ultracart_rest_api_v2_typescript@3.10.121 --save
+npm install ultracart_rest_api_v2_typescript@3.10.122 --save
 ```
 
 _unPublished (not recommended):_
@@ -54,6 +54,7 @@ Not every change is committed to every SDK.
 
 | Version | Date | Comments |
 | --: | :-: | --- |
+| 3.10.122 | 03/14/2023 | order.getOrderEdiDocuments |
 | 3.10.121 | 03/01/2023 | convo - add sentiment record to conversation obj |
 | 3.10.120 | 02/22/2023 | convo - customer initiated flag on engagement |
 | 3.10.119 | 02/20/2023 | refund reasons |

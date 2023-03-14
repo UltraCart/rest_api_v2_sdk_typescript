@@ -28623,6 +28623,148 @@ export interface OrderEdi {
 /**
  *
  * @export
+ * @interface OrderEdiDocument
+ */
+export interface OrderEdiDocument {
+    /**
+     * Direction the document flowed
+     * @type {string}
+     * @memberof OrderEdiDocument
+     */
+    direction?: OrderEdiDocument.DirectionEnum;
+    /**
+     * Date/time the document was created/received
+     * @type {string}
+     * @memberof OrderEdiDocument
+     */
+    doc_dts?: string;
+    /**
+     *
+     * @type {string}
+     * @memberof OrderEdiDocument
+     */
+    document?: string;
+    /**
+     *
+     * @type {string}
+     * @memberof OrderEdiDocument
+     */
+    document_type_description?: string;
+    /**
+     *
+     * @type {number}
+     * @memberof OrderEdiDocument
+     */
+    document_type_number?: number;
+    /**
+     *
+     * @type {string}
+     * @memberof OrderEdiDocument
+     */
+    external_id?: string;
+    /**
+     *
+     * @type {string}
+     * @memberof OrderEdiDocument
+     */
+    functional_acknowledgement?: string;
+    /**
+     *
+     * @type {string}
+     * @memberof OrderEdiDocument
+     */
+    functional_acknowledgement_dts?: string;
+    /**
+     *
+     * @type {boolean}
+     * @memberof OrderEdiDocument
+     */
+    functional_acknowledgement_pending?: boolean;
+    /**
+     *
+     * @type {number}
+     * @memberof OrderEdiDocument
+     */
+    group_control_number?: number;
+    /**
+     *
+     * @type {string}
+     * @memberof OrderEdiDocument
+     */
+    internal_id?: string;
+    /**
+     *
+     * @type {string}
+     * @memberof OrderEdiDocument
+     */
+    merchant_id?: string;
+    /**
+     *
+     * @type {string}
+     * @memberof OrderEdiDocument
+     */
+    order_id?: string;
+    /**
+     *
+     * @type {boolean}
+     * @memberof OrderEdiDocument
+     */
+    test_mode?: boolean;
+}
+/**
+ * @export
+ * @namespace OrderEdiDocument
+ */
+export declare namespace OrderEdiDocument {
+    /**
+     * @export
+     * @enum {string}
+     */
+    enum DirectionEnum {
+        Inbound,
+        Outbound
+    }
+}
+/**
+ *
+ * @export
+ * @interface OrderEdiDocumentsResponse
+ */
+export interface OrderEdiDocumentsResponse {
+    /**
+     * edi_documents
+     * @type {Array<OrderEdiDocument>}
+     * @memberof OrderEdiDocumentsResponse
+     */
+    ediDocuments?: Array<OrderEdiDocument>;
+    /**
+     *
+     * @type {ModelError}
+     * @memberof OrderEdiDocumentsResponse
+     */
+    error?: ModelError;
+    /**
+     *
+     * @type {ResponseMetadata}
+     * @memberof OrderEdiDocumentsResponse
+     */
+    metadata?: ResponseMetadata;
+    /**
+     * Indicates if API call was successful
+     * @type {boolean}
+     * @memberof OrderEdiDocumentsResponse
+     */
+    success?: boolean;
+    /**
+     *
+     * @type {Warning}
+     * @memberof OrderEdiDocumentsResponse
+     */
+    warning?: Warning;
+}
+/**
+ *
+ * @export
  * @interface OrderFormat
  */
 export interface OrderFormat {
@@ -45868,6 +46010,14 @@ export declare const OrderApiFetchParamCreator: (configuration?: Configuration) 
      */
     getOrderByToken(order_by_token_query: OrderByTokenQuery, _expand?: string, options?: any): FetchArgs;
     /**
+     * Retrieve EDI documents associated with this order.
+     * @summary Retrieve EDI documents associated with this order.
+     * @param {string} order_id The order id to retrieve EDI documents for.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getOrderEdiDocuments(order_id: string, options?: any): FetchArgs;
+    /**
      * Retrieves a group of orders from the account.  If no parameters are specified, the API call will fail with a bad request error.  Always specify some parameters to limit the scope of the orders returned to ones you are truly interested in.  You will need to make multiple API calls in order to retrieve the entire result set since this API performs result set pagination.
      * @summary Retrieve orders
      * @param {string} [order_id] Order Id
@@ -46128,6 +46278,14 @@ export declare const OrderApiFp: (configuration?: Configuration) => {
      */
     getOrderByToken(order_by_token_query: OrderByTokenQuery, _expand?: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<OrderResponse>;
     /**
+     * Retrieve EDI documents associated with this order.
+     * @summary Retrieve EDI documents associated with this order.
+     * @param {string} order_id The order id to retrieve EDI documents for.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getOrderEdiDocuments(order_id: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<OrderEdiDocumentsResponse>;
+    /**
      * Retrieves a group of orders from the account.  If no parameters are specified, the API call will fail with a bad request error.  Always specify some parameters to limit the scope of the orders returned to ones you are truly interested in.  You will need to make multiple API calls in order to retrieve the entire result set since this API performs result set pagination.
      * @summary Retrieve orders
      * @param {string} [order_id] Order Id
@@ -46387,6 +46545,14 @@ export declare const OrderApiFactory: (configuration?: Configuration, fetch?: Fe
      * @throws {RequiredError}
      */
     getOrderByToken(order_by_token_query: OrderByTokenQuery, _expand?: string, options?: any): Promise<OrderResponse>;
+    /**
+     * Retrieve EDI documents associated with this order.
+     * @summary Retrieve EDI documents associated with this order.
+     * @param {string} order_id The order id to retrieve EDI documents for.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getOrderEdiDocuments(order_id: string, options?: any): Promise<OrderEdiDocumentsResponse>;
     /**
      * Retrieves a group of orders from the account.  If no parameters are specified, the API call will fail with a bad request error.  Always specify some parameters to limit the scope of the orders returned to ones you are truly interested in.  You will need to make multiple API calls in order to retrieve the entire result set since this API performs result set pagination.
      * @summary Retrieve orders
@@ -46661,6 +46827,15 @@ export interface OrderApiInterface {
      * @memberof OrderApiInterface
      */
     getOrderByToken(order_by_token_query: OrderByTokenQuery, _expand?: string, options?: any): Promise<OrderResponse>;
+    /**
+     * Retrieve EDI documents associated with this order.
+     * @summary Retrieve EDI documents associated with this order.
+     * @param {string} order_id The order id to retrieve EDI documents for.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof OrderApiInterface
+     */
+    getOrderEdiDocuments(order_id: string, options?: any): Promise<OrderEdiDocumentsResponse>;
     /**
      * Retrieves a group of orders from the account.  If no parameters are specified, the API call will fail with a bad request error.  Always specify some parameters to limit the scope of the orders returned to ones you are truly interested in.  You will need to make multiple API calls in order to retrieve the entire result set since this API performs result set pagination.
      * @summary Retrieve orders
@@ -46948,6 +47123,15 @@ export declare class OrderApi extends BaseAPI implements OrderApiInterface {
      * @memberof OrderApi
      */
     getOrderByToken(order_by_token_query: OrderByTokenQuery, _expand?: string, options?: any): Promise<OrderResponse>;
+    /**
+     * Retrieve EDI documents associated with this order.
+     * @summary Retrieve EDI documents associated with this order.
+     * @param {string} order_id The order id to retrieve EDI documents for.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof OrderApi
+     */
+    getOrderEdiDocuments(order_id: string, options?: any): Promise<OrderEdiDocumentsResponse>;
     /**
      * Retrieves a group of orders from the account.  If no parameters are specified, the API call will fail with a bad request error.  Always specify some parameters to limit the scope of the orders returned to ones you are truly interested in.  You will need to make multiple API calls in order to retrieve the entire result set since this API performs result set pagination.
      * @summary Retrieve orders
