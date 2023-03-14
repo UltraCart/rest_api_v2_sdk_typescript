@@ -560,6 +560,8 @@ export * from './OrderCoupon';
 export * from './OrderDigitalItem';
 export * from './OrderDigitalOrder';
 export * from './OrderEdi';
+export * from './OrderEdiDocument';
+export * from './OrderEdiDocumentsResponse';
 export * from './OrderFormat';
 export * from './OrderFormatResponse';
 export * from './OrderFraudScore';

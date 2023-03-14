@@ -36,6 +36,9 @@ import {
     OrderByTokenQuery,
     OrderByTokenQueryFromJSON,
     OrderByTokenQueryToJSON,
+    OrderEdiDocumentsResponse,
+    OrderEdiDocumentsResponseFromJSON,
+    OrderEdiDocumentsResponseToJSON,
     OrderFormat,
     OrderFormatFromJSON,
     OrderFormatToJSON,
@@ -133,6 +136,10 @@ export interface GetOrderRequest {
 export interface GetOrderByTokenRequest {
     orderByTokenQuery: OrderByTokenQuery;
     expand?: string;
+}
+
+export interface GetOrderEdiDocumentsRequest {
+    orderId: string;
 }
 
 export interface GetOrdersRequest {
@@ -451,6 +458,22 @@ export interface OrderApiInterface {
      * Retrieve an order using a token
      */
     getOrderByToken(requestParameters: GetOrderByTokenRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<OrderResponse>;
+
+    /**
+     * Retrieve EDI documents associated with this order. 
+     * @summary Retrieve EDI documents associated with this order.
+     * @param {string} orderId The order id to retrieve EDI documents for.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof OrderApiInterface
+     */
+    getOrderEdiDocumentsRaw(requestParameters: GetOrderEdiDocumentsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<OrderEdiDocumentsResponse>>;
+
+    /**
+     * Retrieve EDI documents associated with this order. 
+     * Retrieve EDI documents associated with this order.
+     */
+    getOrderEdiDocuments(requestParameters: GetOrderEdiDocumentsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<OrderEdiDocumentsResponse>;
 
     /**
      * Retrieves a group of orders from the account.  If no parameters are specified, the API call will fail with a bad request error.  Always specify some parameters to limit the scope of the orders returned to ones you are truly interested in.  You will need to make multiple API calls in order to retrieve the entire result set since this API performs result set pagination. 
@@ -1258,6 +1281,47 @@ export class OrderApi extends runtime.BaseAPI implements OrderApiInterface {
      */
     async getOrderByToken(requestParameters: GetOrderByTokenRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<OrderResponse> {
         const response = await this.getOrderByTokenRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Retrieve EDI documents associated with this order. 
+     * Retrieve EDI documents associated with this order.
+     */
+    async getOrderEdiDocumentsRaw(requestParameters: GetOrderEdiDocumentsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<OrderEdiDocumentsResponse>> {
+        if (requestParameters.orderId === null || requestParameters.orderId === undefined) {
+            throw new runtime.RequiredError('orderId','Required parameter requestParameters.orderId was null or undefined when calling getOrderEdiDocuments.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", ["order_write"]);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/order/orders/{order_id}/edi`.replace(`{${"order_id"}}`, encodeURIComponent(String(requestParameters.orderId))),
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => OrderEdiDocumentsResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Retrieve EDI documents associated with this order. 
+     * Retrieve EDI documents associated with this order.
+     */
+    async getOrderEdiDocuments(requestParameters: GetOrderEdiDocumentsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<OrderEdiDocumentsResponse> {
+        const response = await this.getOrderEdiDocumentsRaw(requestParameters, initOverrides);
         return await response.value();
     }
 

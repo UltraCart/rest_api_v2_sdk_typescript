@@ -583,6 +583,8 @@ src/models/OrderCoupon.ts
 src/models/OrderDigitalItem.ts
 src/models/OrderDigitalOrder.ts
 src/models/OrderEdi.ts
+src/models/OrderEdiDocument.ts
+src/models/OrderEdiDocumentsResponse.ts
 src/models/OrderFormat.ts
 src/models/OrderFormatResponse.ts
 src/models/OrderFraudScore.ts
