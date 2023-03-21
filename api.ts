@@ -28465,7 +28465,8 @@ export namespace Order {
         LeastCostRouting = <any> 'Least Cost Routing',
         Unknown = <any> 'Unknown',
         PreOrdered = <any> 'Pre-ordered',
-        AdvancedOrderRouting = <any> 'Advanced Order Routing'
+        AdvancedOrderRouting = <any> 'Advanced Order Routing',
+        Hold = <any> 'Hold'
     }
 }
 

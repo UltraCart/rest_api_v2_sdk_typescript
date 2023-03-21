@@ -27858,7 +27858,8 @@ export declare namespace Order {
         LeastCostRouting,
         Unknown,
         PreOrdered,
-        AdvancedOrderRouting
+        AdvancedOrderRouting,
+        Hold
     }
 }
 /**

@@ -973,6 +973,7 @@ var Order;
         CurrentStageEnum[CurrentStageEnum["Unknown"] = 'Unknown'] = "Unknown";
         CurrentStageEnum[CurrentStageEnum["PreOrdered"] = 'Pre-ordered'] = "PreOrdered";
         CurrentStageEnum[CurrentStageEnum["AdvancedOrderRouting"] = 'Advanced Order Routing'] = "AdvancedOrderRouting";
+        CurrentStageEnum[CurrentStageEnum["Hold"] = 'Hold'] = "Hold";
     })(CurrentStageEnum = Order.CurrentStageEnum || (Order.CurrentStageEnum = {}));
 })(Order = exports.Order || (exports.Order = {}));
 /**
