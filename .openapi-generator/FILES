@@ -658,6 +658,7 @@ src/models/ReportDataSetQuery.ts
 src/models/ReportDataSetResponse.ts
 src/models/ReportDataSetRow.ts
 src/models/ReportDataSetSchema.ts
+src/models/ReportDataSetSummary.ts
 src/models/ReportDataSource.ts
 src/models/ReportDataSourceSchema.ts
 src/models/ReportExecuteQueriesRequest.ts
@@ -668,6 +669,7 @@ src/models/ReportPageVisualization.ts
 src/models/ReportPageVisualizationDimension.ts
 src/models/ReportPageVisualizationMetric.ts
 src/models/ReportResponse.ts
+src/models/ReportWebsocketEvent.ts
 src/models/ReportsResponse.ts
 src/models/ResponseMetadata.ts
 src/models/ResultSet.ts
