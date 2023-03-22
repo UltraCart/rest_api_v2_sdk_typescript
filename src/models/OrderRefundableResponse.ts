@@ -69,6 +69,12 @@ export interface OrderRefundableResponse {
      */
     item_level_return_reasons?: Array<OrderReason>;
     /**
+     * If true, this refund will have to be manually done because of additional charges with the virtual terminal were made
+     * @type {boolean}
+     * @memberof OrderRefundableResponse
+     */
+    manual_because_multiple_charges?: boolean;
+    /**
      * 
      * @type {ResponseMetadata}
      * @memberof OrderRefundableResponse
@@ -126,6 +132,7 @@ export function OrderRefundableResponseFromJSONTyped(json: any, ignoreDiscrimina
         'item_level_refund_reason_required': !exists(json, 'item_level_refund_reason_required') ? undefined : json['item_level_refund_reason_required'],
         'item_level_refund_reasons': !exists(json, 'item_level_refund_reasons') ? undefined : ((json['item_level_refund_reasons'] as Array<any>).map(OrderReasonFromJSON)),
         'item_level_return_reasons': !exists(json, 'item_level_return_reasons') ? undefined : ((json['item_level_return_reasons'] as Array<any>).map(OrderReasonFromJSON)),
+        'manual_because_multiple_charges': !exists(json, 'manual_because_multiple_charges') ? undefined : json['manual_because_multiple_charges'],
         'metadata': !exists(json, 'metadata') ? undefined : ResponseMetadataFromJSON(json['metadata']),
         'order_level_refund_reason_required': !exists(json, 'order_level_refund_reason_required') ? undefined : json['order_level_refund_reason_required'],
         'order_level_refund_reasons': !exists(json, 'order_level_refund_reasons') ? undefined : ((json['order_level_refund_reasons'] as Array<any>).map(OrderReasonFromJSON)),
@@ -149,6 +156,7 @@ export function OrderRefundableResponseToJSON(value?: OrderRefundableResponse | 
         'item_level_refund_reason_required': value.item_level_refund_reason_required,
         'item_level_refund_reasons': value.item_level_refund_reasons === undefined ? undefined : ((value.item_level_refund_reasons as Array<any>).map(OrderReasonToJSON)),
         'item_level_return_reasons': value.item_level_return_reasons === undefined ? undefined : ((value.item_level_return_reasons as Array<any>).map(OrderReasonToJSON)),
+        'manual_because_multiple_charges': value.manual_because_multiple_charges,
         'metadata': ResponseMetadataToJSON(value.metadata),
         'order_level_refund_reason_required': value.order_level_refund_reason_required,
         'order_level_refund_reasons': value.order_level_refund_reasons === undefined ? undefined : ((value.order_level_refund_reasons as Array<any>).map(OrderReasonToJSON)),
