@@ -32602,6 +32602,1086 @@ export interface RegisterAffiliateClickResponse {
 /**
  *
  * @export
+ * @interface Report
+ */
+export interface Report {
+    /**
+     *
+     * @type {boolean}
+     * @memberof Report
+     */
+    active?: boolean;
+    /**
+     *
+     * @type {Array<ReportDataSource>}
+     * @memberof Report
+     */
+    data_sources?: Array<ReportDataSource>;
+    /**
+     *
+     * @type {string}
+     * @memberof Report
+     */
+    default_dataset_id?: string;
+    /**
+     *
+     * @type {string}
+     * @memberof Report
+     */
+    default_project_id?: string;
+    /**
+     *
+     * @type {Array<ReportFilter>}
+     * @memberof Report
+     */
+    filters?: Array<ReportFilter>;
+    /**
+     *
+     * @type {string}
+     * @memberof Report
+     */
+    merchant_id?: string;
+    /**
+     *
+     * @type {string}
+     * @memberof Report
+     */
+    name?: string;
+    /**
+     *
+     * @type {Array<ReportPage>}
+     * @memberof Report
+     */
+    pages?: Array<ReportPage>;
+    /**
+     * Object identifier for this report.
+     * @type {number}
+     * @memberof Report
+     */
+    report_oid?: number;
+    /**
+     * Security level to execute report under
+     * @type {string}
+     * @memberof Report
+     */
+    security_level?: Report.SecurityLevelEnum;
+}
+/**
+ * @export
+ * @namespace Report
+ */
+export declare namespace Report {
+    /**
+     * @export
+     * @enum {string}
+     */
+    enum SecurityLevelEnum {
+        Standard,
+        Low,
+        Medium,
+        High
+    }
+}
+/**
+ *
+ * @export
+ * @interface ReportAuth
+ */
+export interface ReportAuth {
+    /**
+     * Unique UUID assigned to this client
+     * @type {string}
+     * @memberof ReportAuth
+     */
+    client_uuid?: string;
+    /**
+     *
+     * @type {string}
+     * @memberof ReportAuth
+     */
+    jwt?: string;
+    /**
+     *
+     * @type {string}
+     * @memberof ReportAuth
+     */
+    merchant_id?: string;
+    /**
+     *
+     * @type {string}
+     * @memberof ReportAuth
+     */
+    websocket_url?: string;
+}
+/**
+ *
+ * @export
+ * @interface ReportAuthResponse
+ */
+export interface ReportAuthResponse {
+    /**
+     *
+     * @type {ModelError}
+     * @memberof ReportAuthResponse
+     */
+    error?: ModelError;
+    /**
+     *
+     * @type {ResponseMetadata}
+     * @memberof ReportAuthResponse
+     */
+    metadata?: ResponseMetadata;
+    /**
+     *
+     * @type {ReportAuth}
+     * @memberof ReportAuthResponse
+     */
+    report_auth?: ReportAuth;
+    /**
+     * Indicates if API call was successful
+     * @type {boolean}
+     * @memberof ReportAuthResponse
+     */
+    success?: boolean;
+    /**
+     *
+     * @type {Warning}
+     * @memberof ReportAuthResponse
+     */
+    warning?: Warning;
+}
+/**
+ *
+ * @export
+ * @interface ReportDataSet
+ */
+export interface ReportDataSet {
+    /**
+     * A unique identifier assigned to the data set query that is returned.
+     * @type {string}
+     * @memberof ReportDataSet
+     */
+    data_set_query_uuid?: string;
+    /**
+     * A unique identifier assigned to the data set that is returned.
+     * @type {string}
+     * @memberof ReportDataSet
+     */
+    data_set_uuid?: string;
+    /**
+     * The BigQuery destination table id that contains the result.
+     * @type {string}
+     * @memberof ReportDataSet
+     */
+    destination_table_id?: string;
+    /**
+     * Error message if the query failed.
+     * @type {string}
+     * @memberof ReportDataSet
+     */
+    error_message?: string;
+    /**
+     * An identifier that can be used to help match up the returned data set
+     * @type {string}
+     * @memberof ReportDataSet
+     */
+    for_object_id?: string;
+    /**
+     * The type of object this data set is for
+     * @type {string}
+     * @memberof ReportDataSet
+     */
+    for_object_type?: ReportDataSet.ForObjectTypeEnum;
+    /**
+     * Initial pages returned in the dataset
+     * @type {Array<ReportDataSetPage>}
+     * @memberof ReportDataSet
+     */
+    initial_pages?: Array<ReportDataSetPage>;
+    /**
+     * The total number of results
+     * @type {number}
+     * @memberof ReportDataSet
+     */
+    max_results?: number;
+    /**
+     * Merchant that owns this data set
+     * @type {string}
+     * @memberof ReportDataSet
+     */
+    merchant_id?: string;
+    /**
+     * The size of the pages
+     * @type {number}
+     * @memberof ReportDataSet
+     */
+    page_count?: number;
+    /**
+     * The size of the pages
+     * @type {number}
+     * @memberof ReportDataSet
+     */
+    page_size?: number;
+    /**
+     * The schema associated with the data set.
+     * @type {Array<ReportDataSetSchema>}
+     * @memberof ReportDataSet
+     */
+    schema?: Array<ReportDataSetSchema>;
+    /**
+     * Security level this dataset was read from.
+     * @type {string}
+     * @memberof ReportDataSet
+     */
+    security_level?: string;
+    /**
+     *
+     * @type {string}
+     * @memberof ReportDataSet
+     */
+    timezone?: string;
+    /**
+     * Any other data that needs to be returned with the response to help the UI
+     * @type {string}
+     * @memberof ReportDataSet
+     */
+    user_data?: string;
+}
+/**
+ * @export
+ * @namespace ReportDataSet
+ */
+export declare namespace ReportDataSet {
+    /**
+     * @export
+     * @enum {string}
+     */
+    enum ForObjectTypeEnum {
+        Schema,
+        Filter,
+        Visualization
+    }
+}
+/**
+ *
+ * @export
+ * @interface ReportDataSetColumn
+ */
+export interface ReportDataSetColumn {
+    /**
+     *
+     * @type {string}
+     * @memberof ReportDataSetColumn
+     */
+    name?: string;
+}
+/**
+ *
+ * @export
+ * @interface ReportDataSetPage
+ */
+export interface ReportDataSetPage {
+    /**
+     * A unique identifier assigned to the data set that is returned.
+     * @type {string}
+     * @memberof ReportDataSetPage
+     */
+    data_set_uuid?: string;
+    /**
+     * Merchant that owns this data set
+     * @type {string}
+     * @memberof ReportDataSetPage
+     */
+    merchant_id?: string;
+    /**
+     *
+     * @type {string}
+     * @memberof ReportDataSetPage
+     */
+    next_page_token?: string;
+    /**
+     *
+     * @type {number}
+     * @memberof ReportDataSetPage
+     */
+    next_start_index?: number;
+    /**
+     *
+     * @type {number}
+     * @memberof ReportDataSetPage
+     */
+    page_number?: number;
+    /**
+     *
+     * @type {number}
+     * @memberof ReportDataSetPage
+     */
+    row_count?: number;
+    /**
+     * Rows returned for the data set
+     * @type {Array<ReportDataSetRow>}
+     * @memberof ReportDataSetPage
+     */
+    rows?: Array<ReportDataSetRow>;
+    /**
+     * Signed S3 URL where the page rows can be downloaded from
+     * @type {string}
+     * @memberof ReportDataSetPage
+     */
+    rows_s3_url?: string;
+    /**
+     * Zero based index of the starting row
+     * @type {number}
+     * @memberof ReportDataSetPage
+     */
+    start_index?: number;
+    /**
+     * The BigQuery destination table id that contains the result.
+     * @type {string}
+     * @memberof ReportDataSetPage
+     */
+    table_id?: string;
+}
+/**
+ *
+ * @export
+ * @interface ReportDataSetPageResponse
+ */
+export interface ReportDataSetPageResponse {
+    /**
+     *
+     * @type {ModelError}
+     * @memberof ReportDataSetPageResponse
+     */
+    error?: ModelError;
+    /**
+     *
+     * @type {ResponseMetadata}
+     * @memberof ReportDataSetPageResponse
+     */
+    metadata?: ResponseMetadata;
+    /**
+     *
+     * @type {ReportDataSetPage}
+     * @memberof ReportDataSetPageResponse
+     */
+    page?: ReportDataSetPage;
+    /**
+     * Indicates if API call was successful
+     * @type {boolean}
+     * @memberof ReportDataSetPageResponse
+     */
+    success?: boolean;
+    /**
+     *
+     * @type {Warning}
+     * @memberof ReportDataSetPageResponse
+     */
+    warning?: Warning;
+}
+/**
+ *
+ * @export
+ * @interface ReportDataSetQuery
+ */
+export interface ReportDataSetQuery {
+    /**
+     * True if a date range filter is provided with comparison date ranges and two results should be returned for the query.
+     * @type {boolean}
+     * @memberof ReportDataSetQuery
+     */
+    comparison_results?: boolean;
+    /**
+     * A unique identifier assigned to the data set query that is returned.
+     * @type {string}
+     * @memberof ReportDataSetQuery
+     */
+    data_set_query_uuid?: string;
+    /**
+     *
+     * @type {ReportDataSource}
+     * @memberof ReportDataSetQuery
+     */
+    data_source?: ReportDataSource;
+    /**
+     *
+     * @type {Array<ReportPageVisualizationDimension>}
+     * @memberof ReportDataSetQuery
+     */
+    dimensions?: Array<ReportPageVisualizationDimension>;
+    /**
+     *
+     * @type {ReportFilter}
+     * @memberof ReportDataSetQuery
+     */
+    filter?: ReportFilter;
+    /**
+     * An identifier that can be used to help match up the returned data set
+     * @type {string}
+     * @memberof ReportDataSetQuery
+     */
+    for_object_id?: string;
+    /**
+     * The type of object this data set is for
+     * @type {string}
+     * @memberof ReportDataSetQuery
+     */
+    for_object_type?: ReportDataSetQuery.ForObjectTypeEnum;
+    /**
+     *
+     * @type {Array<ReportPageVisualizationMetric>}
+     * @memberof ReportDataSetQuery
+     */
+    metrics?: Array<ReportPageVisualizationMetric>;
+    /**
+     * Result set page size.  The default value is 200 records.  Max is 10000.
+     * @type {number}
+     * @memberof ReportDataSetQuery
+     */
+    page_size?: number;
+    /**
+     *
+     * @type {Array<ReportFilter>}
+     * @memberof ReportDataSetQuery
+     */
+    selected_filters?: Array<ReportFilter>;
+    /**
+     * True if the 15 minute cache should be skipped.
+     * @type {boolean}
+     * @memberof ReportDataSetQuery
+     */
+    skip_cache?: boolean;
+    /**
+     * Any other data that needs to be returned with the response to help the UI
+     * @type {string}
+     * @memberof ReportDataSetQuery
+     */
+    user_data?: string;
+}
+/**
+ * @export
+ * @namespace ReportDataSetQuery
+ */
+export declare namespace ReportDataSetQuery {
+    /**
+     * @export
+     * @enum {string}
+     */
+    enum ForObjectTypeEnum {
+        Schema,
+        Filter,
+        Visualization
+    }
+}
+/**
+ *
+ * @export
+ * @interface ReportDataSetResponse
+ */
+export interface ReportDataSetResponse {
+    /**
+     *
+     * @type {ReportDataSet}
+     * @memberof ReportDataSetResponse
+     */
+    data_set?: ReportDataSet;
+    /**
+     *
+     * @type {ModelError}
+     * @memberof ReportDataSetResponse
+     */
+    error?: ModelError;
+    /**
+     *
+     * @type {ResponseMetadata}
+     * @memberof ReportDataSetResponse
+     */
+    metadata?: ResponseMetadata;
+    /**
+     * Indicates if API call was successful
+     * @type {boolean}
+     * @memberof ReportDataSetResponse
+     */
+    success?: boolean;
+    /**
+     *
+     * @type {Warning}
+     * @memberof ReportDataSetResponse
+     */
+    warning?: Warning;
+}
+/**
+ *
+ * @export
+ * @interface ReportDataSetRow
+ */
+export interface ReportDataSetRow {
+    /**
+     *
+     * @type {Array<ReportDataSetColumn>}
+     * @memberof ReportDataSetRow
+     */
+    columns?: Array<ReportDataSetColumn>;
+}
+/**
+ *
+ * @export
+ * @interface ReportDataSetSchema
+ */
+export interface ReportDataSetSchema {
+    /**
+     *
+     * @type {string}
+     * @memberof ReportDataSetSchema
+     */
+    name?: string;
+    /**
+     * Type of the column.
+     * @type {string}
+     * @memberof ReportDataSetSchema
+     */
+    type?: ReportDataSetSchema.TypeEnum;
+}
+/**
+ * @export
+ * @namespace ReportDataSetSchema
+ */
+export declare namespace ReportDataSetSchema {
+    /**
+     * @export
+     * @enum {string}
+     */
+    enum TypeEnum {
+        BIGNUMERIC,
+        BOOL,
+        DATE,
+        DATETIME,
+        FLOAT64,
+        INT64,
+        JSON,
+        NUMERIC,
+        STRING,
+        TIME,
+        TIMESTAMP
+    }
+}
+/**
+ *
+ * @export
+ * @interface ReportDataSource
+ */
+export interface ReportDataSource {
+    /**
+     *
+     * @type {string}
+     * @memberof ReportDataSource
+     */
+    name?: string;
+    /**
+     *
+     * @type {string}
+     * @memberof ReportDataSource
+     */
+    partition_date_column?: string;
+    /**
+     *
+     * @type {number}
+     * @memberof ReportDataSource
+     */
+    partition_date_safety_days?: number;
+    /**
+     * The partition date strategy, defaults to weekly sunday
+     * @type {string}
+     * @memberof ReportDataSource
+     */
+    partition_date_strategy?: string;
+    /**
+     *
+     * @type {Array<ReportDataSourceSchema>}
+     * @memberof ReportDataSource
+     */
+    schema?: Array<ReportDataSourceSchema>;
+    /**
+     *
+     * @type {string}
+     * @memberof ReportDataSource
+     */
+    sql?: string;
+}
+/**
+ *
+ * @export
+ * @interface ReportDataSourceSchema
+ */
+export interface ReportDataSourceSchema {
+    /**
+     * Whether or not this column can be used as a dimension within a visualization
+     * @type {boolean}
+     * @memberof ReportDataSourceSchema
+     */
+    dimension?: boolean;
+    /**
+     *
+     * @type {string}
+     * @memberof ReportDataSourceSchema
+     */
+    name?: string;
+    /**
+     * Type of the column.  Only supporting the allowed values.  Any other types will be ignored.
+     * @type {string}
+     * @memberof ReportDataSourceSchema
+     */
+    type?: ReportDataSourceSchema.TypeEnum;
+}
+/**
+ * @export
+ * @namespace ReportDataSourceSchema
+ */
+export declare namespace ReportDataSourceSchema {
+    /**
+     * @export
+     * @enum {string}
+     */
+    enum TypeEnum {
+        BIGNUMERIC,
+        BOOL,
+        DATE,
+        DATETIME,
+        FLOAT64,
+        INT64,
+        JSON,
+        NUMERIC,
+        STRING,
+        TIME,
+        TIMESTAMP
+    }
+}
+/**
+ *
+ * @export
+ * @interface ReportExecuteQueriesRequest
+ */
+export interface ReportExecuteQueriesRequest {
+    /**
+     * Unique UUID assigned to this client during the auth.  This will be used to locate the websocket connect id.
+     * @type {string}
+     * @memberof ReportExecuteQueriesRequest
+     */
+    client_uuid?: string;
+    /**
+     * The websocket connection id that should receive back notices of query completion.
+     * @type {string}
+     * @memberof ReportExecuteQueriesRequest
+     */
+    connection_id?: string;
+    /**
+     *
+     * @type {string}
+     * @memberof ReportExecuteQueriesRequest
+     */
+    default_dataset_id?: string;
+    /**
+     *
+     * @type {string}
+     * @memberof ReportExecuteQueriesRequest
+     */
+    default_project_id?: string;
+    /**
+     *
+     * @type {string}
+     * @memberof ReportExecuteQueriesRequest
+     */
+    merchant_id?: string;
+    /**
+     * An array of queries that we want the lambda function to execute.
+     * @type {Array<ReportDataSetQuery>}
+     * @memberof ReportExecuteQueriesRequest
+     */
+    queries?: Array<ReportDataSetQuery>;
+    /**
+     * Security level to execute report under
+     * @type {string}
+     * @memberof ReportExecuteQueriesRequest
+     */
+    security_level?: ReportExecuteQueriesRequest.SecurityLevelEnum;
+}
+/**
+ * @export
+ * @namespace ReportExecuteQueriesRequest
+ */
+export declare namespace ReportExecuteQueriesRequest {
+    /**
+     * @export
+     * @enum {string}
+     */
+    enum SecurityLevelEnum {
+        Standard,
+        Low,
+        Medium,
+        High
+    }
+}
+/**
+ *
+ * @export
+ * @interface ReportFilter
+ */
+export interface ReportFilter {
+    /**
+     * How this filter connects to the data sources and columns
+     * @type {Array<ReportFilterConnection>}
+     * @memberof ReportFilter
+     */
+    connections?: Array<ReportFilterConnection>;
+    /**
+     *
+     * @type {string}
+     * @memberof ReportFilter
+     */
+    name?: string;
+    /**
+     * The timezone that the date range is querying on.
+     * @type {string}
+     * @memberof ReportFilter
+     */
+    timezone?: string;
+    /**
+     * Type of filter
+     * @type {string}
+     * @memberof ReportFilter
+     */
+    type?: ReportFilter.TypeEnum;
+    /**
+     * Unique UUID assigned to the filter.  Assists when returning values that the filter can use.
+     * @type {string}
+     * @memberof ReportFilter
+     */
+    uuid?: string;
+    /**
+     * The selected values for the filter.  When used, some type conversion will need to occur.
+     * @type {Array<string>}
+     * @memberof ReportFilter
+     */
+    values?: Array<string>;
+}
+/**
+ * @export
+ * @namespace ReportFilter
+ */
+export declare namespace ReportFilter {
+    /**
+     * @export
+     * @enum {string}
+     */
+    enum TypeEnum {
+        DateRange,
+        DateComparison,
+        SingleValue,
+        MultipleValues
+    }
+}
+/**
+ *
+ * @export
+ * @interface ReportFilterConnection
+ */
+export interface ReportFilterConnection {
+    /**
+     *
+     * @type {string}
+     * @memberof ReportFilterConnection
+     */
+    column?: string;
+    /**
+     *
+     * @type {string}
+     * @memberof ReportFilterConnection
+     */
+    data_source_name?: string;
+}
+/**
+ *
+ * @export
+ * @interface ReportPage
+ */
+export interface ReportPage {
+    /**
+     * Height of the report page in inches
+     * @type {number}
+     * @memberof ReportPage
+     */
+    height?: number;
+    /**
+     *
+     * @type {string}
+     * @memberof ReportPage
+     */
+    title?: string;
+    /**
+     * Visualizations on the report page.
+     * @type {Array<ReportPageVisualization>}
+     * @memberof ReportPage
+     */
+    visualizations?: Array<ReportPageVisualization>;
+    /**
+     * Width of the report page in inches
+     * @type {number}
+     * @memberof ReportPage
+     */
+    width?: number;
+}
+/**
+ *
+ * @export
+ * @interface ReportPageVisualization
+ */
+export interface ReportPageVisualization {
+    /**
+     * A JSON representation of the configuration for this visualization
+     * @type {string}
+     * @memberof ReportPageVisualization
+     */
+    config?: string;
+    /**
+     *
+     * @type {string}
+     * @memberof ReportPageVisualization
+     */
+    data_source_name?: string;
+    /**
+     *
+     * @type {Array<ReportPageVisualizationDimension>}
+     * @memberof ReportPageVisualization
+     */
+    dimensions?: Array<ReportPageVisualizationDimension>;
+    /**
+     *
+     * @type {Array<ReportPageVisualizationMetric>}
+     * @memberof ReportPageVisualization
+     */
+    metrics?: Array<ReportPageVisualizationMetric>;
+    /**
+     *
+     * @type {string}
+     * @memberof ReportPageVisualization
+     */
+    name?: string;
+    /**
+     * True if the visualization should show a comparison based upon the date range
+     * @type {boolean}
+     * @memberof ReportPageVisualization
+     */
+    show_comparison?: boolean;
+    /**
+     * A JSON representation of the style configuration for this visualization
+     * @type {string}
+     * @memberof ReportPageVisualization
+     */
+    styles?: string;
+    /**
+     * Type of visualization
+     * @type {string}
+     * @memberof ReportPageVisualization
+     */
+    type?: ReportPageVisualization.TypeEnum;
+    /**
+     * A UUID for the visualization
+     * @type {string}
+     * @memberof ReportPageVisualization
+     */
+    visualization_uuid?: string;
+}
+/**
+ * @export
+ * @namespace ReportPageVisualization
+ */
+export declare namespace ReportPageVisualization {
+    /**
+     * @export
+     * @enum {string}
+     */
+    enum TypeEnum {
+        ScoreCard,
+        LineChart,
+        BarChart,
+        Text,
+        Table
+    }
+}
+/**
+ *
+ * @export
+ * @interface ReportPageVisualizationDimension
+ */
+export interface ReportPageVisualizationDimension {
+    /**
+     * Return the column as a different name
+     * @type {string}
+     * @memberof ReportPageVisualizationDimension
+     */
+    as?: string;
+    /**
+     * Cast the column to a different data type such as DATETIME -> DATE
+     * @type {string}
+     * @memberof ReportPageVisualizationDimension
+     */
+    cast?: string;
+    /**
+     *
+     * @type {string}
+     * @memberof ReportPageVisualizationDimension
+     */
+    column?: string;
+    /**
+     * The timezone to shift the date to
+     * @type {string}
+     * @memberof ReportPageVisualizationDimension
+     */
+    datetime_timezone?: string;
+    /**
+     * The type of truncation to perform on the date, DAY, WEEK(MONDAY), etc.
+     * @type {string}
+     * @memberof ReportPageVisualizationDimension
+     */
+    datetime_trunc?: string;
+    /**
+     * Part of a datetime to extract
+     * @type {string}
+     * @memberof ReportPageVisualizationDimension
+     */
+    extract?: string;
+    /**
+     * The function to perform around the column such as DATE_TRUNC(@column, day)
+     * @type {string}
+     * @memberof ReportPageVisualizationDimension
+     */
+    _function?: string;
+}
+/**
+ *
+ * @export
+ * @interface ReportPageVisualizationMetric
+ */
+export interface ReportPageVisualizationMetric {
+    /**
+     * Aggregation to perform
+     * @type {string}
+     * @memberof ReportPageVisualizationMetric
+     */
+    aggregation?: ReportPageVisualizationMetric.AggregationEnum;
+    /**
+     * Return the column as a different name
+     * @type {string}
+     * @memberof ReportPageVisualizationMetric
+     */
+    as?: string;
+    /**
+     *
+     * @type {string}
+     * @memberof ReportPageVisualizationMetric
+     */
+    column?: string;
+    /**
+     * Number of places after the decimal point to round the number to.
+     * @type {number}
+     * @memberof ReportPageVisualizationMetric
+     */
+    round?: number;
+}
+/**
+ * @export
+ * @namespace ReportPageVisualizationMetric
+ */
+export declare namespace ReportPageVisualizationMetric {
+    /**
+     * @export
+     * @enum {string}
+     */
+    enum AggregationEnum {
+        Sum,
+        Count,
+        Min,
+        Max,
+        Avg
+    }
+}
+/**
+ *
+ * @export
+ * @interface ReportResponse
+ */
+export interface ReportResponse {
+    /**
+     *
+     * @type {ModelError}
+     * @memberof ReportResponse
+     */
+    error?: ModelError;
+    /**
+     *
+     * @type {ResponseMetadata}
+     * @memberof ReportResponse
+     */
+    metadata?: ResponseMetadata;
+    /**
+     *
+     * @type {Report}
+     * @memberof ReportResponse
+     */
+    report?: Report;
+    /**
+     * Indicates if API call was successful
+     * @type {boolean}
+     * @memberof ReportResponse
+     */
+    success?: boolean;
+    /**
+     *
+     * @type {Warning}
+     * @memberof ReportResponse
+     */
+    warning?: Warning;
+}
+/**
+ *
+ * @export
+ * @interface ReportsResponse
+ */
+export interface ReportsResponse {
+    /**
+     *
+     * @type {ModelError}
+     * @memberof ReportsResponse
+     */
+    error?: ModelError;
+    /**
+     *
+     * @type {ResponseMetadata}
+     * @memberof ReportsResponse
+     */
+    metadata?: ResponseMetadata;
+    /**
+     *
+     * @type {Array<Report>}
+     * @memberof ReportsResponse
+     */
+    reports?: Array<Report>;
+    /**
+     * Indicates if API call was successful
+     * @type {boolean}
+     * @memberof ReportsResponse
+     */
+    success?: boolean;
+    /**
+     *
+     * @type {Warning}
+     * @memberof ReportsResponse
+     */
+    warning?: Warning;
+}
+/**
+ *
+ * @export
  * @interface ResponseMetadata
  */
 export interface ResponseMetadata {
@@ -43916,6 +44996,417 @@ export declare class CustomerApi extends BaseAPI implements CustomerApiInterface
      * @memberof CustomerApi
      */
     validateEmailVerificationToken(validation_request: EmailVerifyTokenValidateRequest, options?: any): Promise<EmailVerifyTokenValidateResponse>;
+}
+/**
+ * DatawarehouseApi - fetch parameter creator
+ * @export
+ */
+export declare const DatawarehouseApiFetchParamCreator: (configuration?: Configuration) => {
+    /**
+     * Delete a report on the UltraCart account.
+     * @summary Delete a report
+     * @param {number} report_oid The report oid to delete.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    deleteReport(report_oid: number, options?: any): FetchArgs;
+    /**
+     * Execute the report queries
+     * @summary Execute the report queries
+     * @param {ReportExecuteQueriesRequest} query_request Query request
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    executeReportQueries(query_request: ReportExecuteQueriesRequest, options?: any): FetchArgs;
+    /**
+     * Retrieve a report
+     * @summary Get a report
+     * @param {number} report_oid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getReport(report_oid: number, options?: any): FetchArgs;
+    /**
+     * Retrieve a report data set
+     * @summary Get a report data set
+     * @param {string} dataset_uuid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getReportDataSet(dataset_uuid: string, options?: any): FetchArgs;
+    /**
+     * Retrieve a report data set page
+     * @summary Get a report data set page
+     * @param {string} dataset_uuid
+     * @param {number} page_number
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getReportDataSetPage(dataset_uuid: string, page_number: number, options?: any): FetchArgs;
+    /**
+     * Retrieve a JWT to authorize a report to make a websocket connection.
+     * @summary Get report websocket authorization
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getReportWebsocketAuthorization(options?: any): FetchArgs;
+    /**
+     * Retrieve a list of reports available
+     * @summary Get list of reports available
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getReports(options?: any): FetchArgs;
+    /**
+     * Create a new report on the UltraCart account.
+     * @summary Create a report
+     * @param {Report} report Report to create
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    insertReport(report: Report, options?: any): FetchArgs;
+    /**
+     * Update a report on the UltraCart account.
+     * @summary Update a report
+     * @param {Report} report Report to update
+     * @param {number} report_oid The report oid to update.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    updateReport(report: Report, report_oid: number, options?: any): FetchArgs;
+};
+/**
+ * DatawarehouseApi - functional programming interface
+ * @export
+ */
+export declare const DatawarehouseApiFp: (configuration?: Configuration) => {
+    /**
+     * Delete a report on the UltraCart account.
+     * @summary Delete a report
+     * @param {number} report_oid The report oid to delete.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    deleteReport(report_oid: number, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Response>;
+    /**
+     * Execute the report queries
+     * @summary Execute the report queries
+     * @param {ReportExecuteQueriesRequest} query_request Query request
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    executeReportQueries(query_request: ReportExecuteQueriesRequest, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Response>;
+    /**
+     * Retrieve a report
+     * @summary Get a report
+     * @param {number} report_oid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getReport(report_oid: number, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ReportResponse>;
+    /**
+     * Retrieve a report data set
+     * @summary Get a report data set
+     * @param {string} dataset_uuid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getReportDataSet(dataset_uuid: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ReportDataSetResponse>;
+    /**
+     * Retrieve a report data set page
+     * @summary Get a report data set page
+     * @param {string} dataset_uuid
+     * @param {number} page_number
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getReportDataSetPage(dataset_uuid: string, page_number: number, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ReportDataSetPageResponse>;
+    /**
+     * Retrieve a JWT to authorize a report to make a websocket connection.
+     * @summary Get report websocket authorization
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getReportWebsocketAuthorization(options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ReportAuthResponse>;
+    /**
+     * Retrieve a list of reports available
+     * @summary Get list of reports available
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getReports(options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ReportsResponse>;
+    /**
+     * Create a new report on the UltraCart account.
+     * @summary Create a report
+     * @param {Report} report Report to create
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    insertReport(report: Report, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ReportResponse>;
+    /**
+     * Update a report on the UltraCart account.
+     * @summary Update a report
+     * @param {Report} report Report to update
+     * @param {number} report_oid The report oid to update.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    updateReport(report: Report, report_oid: number, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ReportResponse>;
+};
+/**
+ * DatawarehouseApi - factory interface
+ * @export
+ */
+export declare const DatawarehouseApiFactory: (configuration?: Configuration, fetch?: FetchAPI, basePath?: string) => {
+    /**
+     * Delete a report on the UltraCart account.
+     * @summary Delete a report
+     * @param {number} report_oid The report oid to delete.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    deleteReport(report_oid: number, options?: any): Promise<Response>;
+    /**
+     * Execute the report queries
+     * @summary Execute the report queries
+     * @param {ReportExecuteQueriesRequest} query_request Query request
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    executeReportQueries(query_request: ReportExecuteQueriesRequest, options?: any): Promise<Response>;
+    /**
+     * Retrieve a report
+     * @summary Get a report
+     * @param {number} report_oid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getReport(report_oid: number, options?: any): Promise<ReportResponse>;
+    /**
+     * Retrieve a report data set
+     * @summary Get a report data set
+     * @param {string} dataset_uuid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getReportDataSet(dataset_uuid: string, options?: any): Promise<ReportDataSetResponse>;
+    /**
+     * Retrieve a report data set page
+     * @summary Get a report data set page
+     * @param {string} dataset_uuid
+     * @param {number} page_number
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getReportDataSetPage(dataset_uuid: string, page_number: number, options?: any): Promise<ReportDataSetPageResponse>;
+    /**
+     * Retrieve a JWT to authorize a report to make a websocket connection.
+     * @summary Get report websocket authorization
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getReportWebsocketAuthorization(options?: any): Promise<ReportAuthResponse>;
+    /**
+     * Retrieve a list of reports available
+     * @summary Get list of reports available
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getReports(options?: any): Promise<ReportsResponse>;
+    /**
+     * Create a new report on the UltraCart account.
+     * @summary Create a report
+     * @param {Report} report Report to create
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    insertReport(report: Report, options?: any): Promise<ReportResponse>;
+    /**
+     * Update a report on the UltraCart account.
+     * @summary Update a report
+     * @param {Report} report Report to update
+     * @param {number} report_oid The report oid to update.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    updateReport(report: Report, report_oid: number, options?: any): Promise<ReportResponse>;
+};
+/**
+ * DatawarehouseApi - interface
+ * @export
+ * @interface DatawarehouseApi
+ */
+export interface DatawarehouseApiInterface {
+    /**
+     * Delete a report on the UltraCart account.
+     * @summary Delete a report
+     * @param {number} report_oid The report oid to delete.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DatawarehouseApiInterface
+     */
+    deleteReport(report_oid: number, options?: any): Promise<{}>;
+    /**
+     * Execute the report queries
+     * @summary Execute the report queries
+     * @param {ReportExecuteQueriesRequest} query_request Query request
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DatawarehouseApiInterface
+     */
+    executeReportQueries(query_request: ReportExecuteQueriesRequest, options?: any): Promise<{}>;
+    /**
+     * Retrieve a report
+     * @summary Get a report
+     * @param {number} report_oid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DatawarehouseApiInterface
+     */
+    getReport(report_oid: number, options?: any): Promise<ReportResponse>;
+    /**
+     * Retrieve a report data set
+     * @summary Get a report data set
+     * @param {string} dataset_uuid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DatawarehouseApiInterface
+     */
+    getReportDataSet(dataset_uuid: string, options?: any): Promise<ReportDataSetResponse>;
+    /**
+     * Retrieve a report data set page
+     * @summary Get a report data set page
+     * @param {string} dataset_uuid
+     * @param {number} page_number
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DatawarehouseApiInterface
+     */
+    getReportDataSetPage(dataset_uuid: string, page_number: number, options?: any): Promise<ReportDataSetPageResponse>;
+    /**
+     * Retrieve a JWT to authorize a report to make a websocket connection.
+     * @summary Get report websocket authorization
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DatawarehouseApiInterface
+     */
+    getReportWebsocketAuthorization(options?: any): Promise<ReportAuthResponse>;
+    /**
+     * Retrieve a list of reports available
+     * @summary Get list of reports available
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DatawarehouseApiInterface
+     */
+    getReports(options?: any): Promise<ReportsResponse>;
+    /**
+     * Create a new report on the UltraCart account.
+     * @summary Create a report
+     * @param {Report} report Report to create
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DatawarehouseApiInterface
+     */
+    insertReport(report: Report, options?: any): Promise<ReportResponse>;
+    /**
+     * Update a report on the UltraCart account.
+     * @summary Update a report
+     * @param {Report} report Report to update
+     * @param {number} report_oid The report oid to update.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DatawarehouseApiInterface
+     */
+    updateReport(report: Report, report_oid: number, options?: any): Promise<ReportResponse>;
+}
+/**
+ * DatawarehouseApi - object-oriented interface
+ * @export
+ * @class DatawarehouseApi
+ * @extends {BaseAPI}
+ */
+export declare class DatawarehouseApi extends BaseAPI implements DatawarehouseApiInterface {
+    /**
+     * Delete a report on the UltraCart account.
+     * @summary Delete a report
+     * @param {number} report_oid The report oid to delete.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DatawarehouseApi
+     */
+    deleteReport(report_oid: number, options?: any): Promise<Response>;
+    /**
+     * Execute the report queries
+     * @summary Execute the report queries
+     * @param {ReportExecuteQueriesRequest} query_request Query request
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DatawarehouseApi
+     */
+    executeReportQueries(query_request: ReportExecuteQueriesRequest, options?: any): Promise<Response>;
+    /**
+     * Retrieve a report
+     * @summary Get a report
+     * @param {number} report_oid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DatawarehouseApi
+     */
+    getReport(report_oid: number, options?: any): Promise<ReportResponse>;
+    /**
+     * Retrieve a report data set
+     * @summary Get a report data set
+     * @param {string} dataset_uuid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DatawarehouseApi
+     */
+    getReportDataSet(dataset_uuid: string, options?: any): Promise<ReportDataSetResponse>;
+    /**
+     * Retrieve a report data set page
+     * @summary Get a report data set page
+     * @param {string} dataset_uuid
+     * @param {number} page_number
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DatawarehouseApi
+     */
+    getReportDataSetPage(dataset_uuid: string, page_number: number, options?: any): Promise<ReportDataSetPageResponse>;
+    /**
+     * Retrieve a JWT to authorize a report to make a websocket connection.
+     * @summary Get report websocket authorization
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DatawarehouseApi
+     */
+    getReportWebsocketAuthorization(options?: any): Promise<ReportAuthResponse>;
+    /**
+     * Retrieve a list of reports available
+     * @summary Get list of reports available
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DatawarehouseApi
+     */
+    getReports(options?: any): Promise<ReportsResponse>;
+    /**
+     * Create a new report on the UltraCart account.
+     * @summary Create a report
+     * @param {Report} report Report to create
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DatawarehouseApi
+     */
+    insertReport(report: Report, options?: any): Promise<ReportResponse>;
+    /**
+     * Update a report on the UltraCart account.
+     * @summary Update a report
+     * @param {Report} report Report to update
+     * @param {number} report_oid The report oid to update.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DatawarehouseApi
+     */
+    updateReport(report: Report, report_oid: number, options?: any): Promise<ReportResponse>;
 }
 /**
  * FulfillmentApi - fetch parameter creator

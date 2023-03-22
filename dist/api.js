@@ -29,8 +29,8 @@ var __extends = (this && this.__extends) || (function () {
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.OrderItem = exports.OrderFraudScore = exports.OrderFormat = exports.OrderEdiDocument = exports.OrderAutoOrder = exports.OrderAffiliateLedger = exports.Order = exports.OauthTokenResponse = exports.ItemThirdPartyEmailMarketing = exports.ItemTax = exports.ItemTag = exports.ItemShippingMethod = exports.ItemShippingDestinationRestriction = exports.ItemRestrictionItem = exports.ItemRelatedItem = exports.ItemOptionValue = exports.ItemOption = exports.ItemContentMultimedia = exports.ItemAutoOrderStep = exports.Experiment = exports.EmailPerformance = exports.EmailCommseqStep = exports.Distance = exports.ConversationWebsocketMessage = exports.ConversationWebchatQueueStatusUpdateRequest = exports.ConversationWebchatQueueStatusAgent = exports.ConversationSummary = exports.ConversationSentiment = exports.ConversationMessageTransportStatus = exports.ConversationMessage = exports.ConversationEventRRWeb = exports.ConversationEngagementEquationFunction = exports.ConversationEngagement = exports.ConversationAgentProfile = exports.Conversation = exports.CheckoutHandoffRequest = exports.ChannelPartnerOrderItem = exports.ChannelPartnerOrder = exports.CartKitComponentOption = exports.CartItemOption = exports.CartItemMultimedia = exports.CartCustomerProfileCreditCard = exports.AutoOrderItemSimpleSchedule = exports.AutoOrderItem = exports.AutoOrder = exports.AffiliateLink = exports.AffiliateLedger = exports.RequiredError = exports.BaseAPI = exports.COLLECTION_FORMATS = void 0;
-exports.IntegrationLogApiFetchParamCreator = exports.GiftCertificateApi = exports.GiftCertificateApiFactory = exports.GiftCertificateApiFp = exports.GiftCertificateApiFetchParamCreator = exports.FulfillmentApi = exports.FulfillmentApiFactory = exports.FulfillmentApiFp = exports.FulfillmentApiFetchParamCreator = exports.CustomerApi = exports.CustomerApiFactory = exports.CustomerApiFp = exports.CustomerApiFetchParamCreator = exports.CouponApi = exports.CouponApiFactory = exports.CouponApiFp = exports.CouponApiFetchParamCreator = exports.ConversationApi = exports.ConversationApiFactory = exports.ConversationApiFp = exports.ConversationApiFetchParamCreator = exports.CheckoutApi = exports.CheckoutApiFactory = exports.CheckoutApiFp = exports.CheckoutApiFetchParamCreator = exports.ChargebackApi = exports.ChargebackApiFactory = exports.ChargebackApiFp = exports.ChargebackApiFetchParamCreator = exports.ChannelPartnerApi = exports.ChannelPartnerApiFactory = exports.ChannelPartnerApiFp = exports.ChannelPartnerApiFetchParamCreator = exports.AutoOrderApi = exports.AutoOrderApiFactory = exports.AutoOrderApiFp = exports.AutoOrderApiFetchParamCreator = exports.AffiliateApi = exports.AffiliateApiFactory = exports.AffiliateApiFp = exports.AffiliateApiFetchParamCreator = exports.Weight = exports.Webhook = exports.TempMultimedia = exports.PointOfSaleReader = exports.OrderQuery = exports.OrderPaymentECheck = exports.OrderPaymentCreditCard = exports.OrderPayment = exports.OrderItemOption = void 0;
-exports.WebhookApi = exports.WebhookApiFactory = exports.WebhookApiFp = exports.WebhookApiFetchParamCreator = exports.UserApi = exports.UserApiFactory = exports.UserApiFp = exports.UserApiFetchParamCreator = exports.TaxApi = exports.TaxApiFactory = exports.TaxApiFp = exports.TaxApiFetchParamCreator = exports.StorefrontApi = exports.StorefrontApiFactory = exports.StorefrontApiFp = exports.StorefrontApiFetchParamCreator = exports.SsoApi = exports.SsoApiFactory = exports.SsoApiFp = exports.SsoApiFetchParamCreator = exports.OrderApi = exports.OrderApiFactory = exports.OrderApiFp = exports.OrderApiFetchParamCreator = exports.OauthApi = exports.OauthApiFactory = exports.OauthApiFp = exports.OauthApiFetchParamCreator = exports.ItemApi = exports.ItemApiFactory = exports.ItemApiFp = exports.ItemApiFetchParamCreator = exports.IntegrationLogApi = exports.IntegrationLogApiFactory = exports.IntegrationLogApiFp = void 0;
+exports.CustomerApi = exports.CustomerApiFactory = exports.CustomerApiFp = exports.CustomerApiFetchParamCreator = exports.CouponApi = exports.CouponApiFactory = exports.CouponApiFp = exports.CouponApiFetchParamCreator = exports.ConversationApi = exports.ConversationApiFactory = exports.ConversationApiFp = exports.ConversationApiFetchParamCreator = exports.CheckoutApi = exports.CheckoutApiFactory = exports.CheckoutApiFp = exports.CheckoutApiFetchParamCreator = exports.ChargebackApi = exports.ChargebackApiFactory = exports.ChargebackApiFp = exports.ChargebackApiFetchParamCreator = exports.ChannelPartnerApi = exports.ChannelPartnerApiFactory = exports.ChannelPartnerApiFp = exports.ChannelPartnerApiFetchParamCreator = exports.AutoOrderApi = exports.AutoOrderApiFactory = exports.AutoOrderApiFp = exports.AutoOrderApiFetchParamCreator = exports.AffiliateApi = exports.AffiliateApiFactory = exports.AffiliateApiFp = exports.AffiliateApiFetchParamCreator = exports.Weight = exports.Webhook = exports.TempMultimedia = exports.ReportPageVisualizationMetric = exports.ReportPageVisualization = exports.ReportFilter = exports.ReportExecuteQueriesRequest = exports.ReportDataSourceSchema = exports.ReportDataSetSchema = exports.ReportDataSetQuery = exports.ReportDataSet = exports.Report = exports.PointOfSaleReader = exports.OrderQuery = exports.OrderPaymentECheck = exports.OrderPaymentCreditCard = exports.OrderPayment = exports.OrderItemOption = void 0;
+exports.WebhookApi = exports.WebhookApiFactory = exports.WebhookApiFp = exports.WebhookApiFetchParamCreator = exports.UserApi = exports.UserApiFactory = exports.UserApiFp = exports.UserApiFetchParamCreator = exports.TaxApi = exports.TaxApiFactory = exports.TaxApiFp = exports.TaxApiFetchParamCreator = exports.StorefrontApi = exports.StorefrontApiFactory = exports.StorefrontApiFp = exports.StorefrontApiFetchParamCreator = exports.SsoApi = exports.SsoApiFactory = exports.SsoApiFp = exports.SsoApiFetchParamCreator = exports.OrderApi = exports.OrderApiFactory = exports.OrderApiFp = exports.OrderApiFetchParamCreator = exports.OauthApi = exports.OauthApiFactory = exports.OauthApiFp = exports.OauthApiFetchParamCreator = exports.ItemApi = exports.ItemApiFactory = exports.ItemApiFp = exports.ItemApiFetchParamCreator = exports.IntegrationLogApi = exports.IntegrationLogApiFactory = exports.IntegrationLogApiFp = exports.IntegrationLogApiFetchParamCreator = exports.GiftCertificateApi = exports.GiftCertificateApiFactory = exports.GiftCertificateApiFp = exports.GiftCertificateApiFetchParamCreator = exports.FulfillmentApi = exports.FulfillmentApiFactory = exports.FulfillmentApiFp = exports.FulfillmentApiFetchParamCreator = exports.DatawarehouseApi = exports.DatawarehouseApiFactory = exports.DatawarehouseApiFp = exports.DatawarehouseApiFetchParamCreator = void 0;
 var url = require("url");
 var portableFetch = require("portable-fetch");
 var BASE_PATH = "https://secure.ultracart.com/rest/v2".replace(/\/+$/, "");
@@ -1255,6 +1255,182 @@ var PointOfSaleReader;
         PaymentProviderEnum[PaymentProviderEnum["Stripe"] = 'stripe'] = "Stripe";
     })(PaymentProviderEnum = PointOfSaleReader.PaymentProviderEnum || (PointOfSaleReader.PaymentProviderEnum = {}));
 })(PointOfSaleReader = exports.PointOfSaleReader || (exports.PointOfSaleReader = {}));
+/**
+ * @export
+ * @namespace Report
+ */
+var Report;
+(function (Report) {
+    /**
+     * @export
+     * @enum {string}
+     */
+    var SecurityLevelEnum;
+    (function (SecurityLevelEnum) {
+        SecurityLevelEnum[SecurityLevelEnum["Standard"] = 'standard'] = "Standard";
+        SecurityLevelEnum[SecurityLevelEnum["Low"] = 'low'] = "Low";
+        SecurityLevelEnum[SecurityLevelEnum["Medium"] = 'medium'] = "Medium";
+        SecurityLevelEnum[SecurityLevelEnum["High"] = 'high'] = "High";
+    })(SecurityLevelEnum = Report.SecurityLevelEnum || (Report.SecurityLevelEnum = {}));
+})(Report = exports.Report || (exports.Report = {}));
+/**
+ * @export
+ * @namespace ReportDataSet
+ */
+var ReportDataSet;
+(function (ReportDataSet) {
+    /**
+     * @export
+     * @enum {string}
+     */
+    var ForObjectTypeEnum;
+    (function (ForObjectTypeEnum) {
+        ForObjectTypeEnum[ForObjectTypeEnum["Schema"] = 'schema'] = "Schema";
+        ForObjectTypeEnum[ForObjectTypeEnum["Filter"] = 'filter'] = "Filter";
+        ForObjectTypeEnum[ForObjectTypeEnum["Visualization"] = 'visualization'] = "Visualization";
+    })(ForObjectTypeEnum = ReportDataSet.ForObjectTypeEnum || (ReportDataSet.ForObjectTypeEnum = {}));
+})(ReportDataSet = exports.ReportDataSet || (exports.ReportDataSet = {}));
+/**
+ * @export
+ * @namespace ReportDataSetQuery
+ */
+var ReportDataSetQuery;
+(function (ReportDataSetQuery) {
+    /**
+     * @export
+     * @enum {string}
+     */
+    var ForObjectTypeEnum;
+    (function (ForObjectTypeEnum) {
+        ForObjectTypeEnum[ForObjectTypeEnum["Schema"] = 'schema'] = "Schema";
+        ForObjectTypeEnum[ForObjectTypeEnum["Filter"] = 'filter'] = "Filter";
+        ForObjectTypeEnum[ForObjectTypeEnum["Visualization"] = 'visualization'] = "Visualization";
+    })(ForObjectTypeEnum = ReportDataSetQuery.ForObjectTypeEnum || (ReportDataSetQuery.ForObjectTypeEnum = {}));
+})(ReportDataSetQuery = exports.ReportDataSetQuery || (exports.ReportDataSetQuery = {}));
+/**
+ * @export
+ * @namespace ReportDataSetSchema
+ */
+var ReportDataSetSchema;
+(function (ReportDataSetSchema) {
+    /**
+     * @export
+     * @enum {string}
+     */
+    var TypeEnum;
+    (function (TypeEnum) {
+        TypeEnum[TypeEnum["BIGNUMERIC"] = 'BIGNUMERIC'] = "BIGNUMERIC";
+        TypeEnum[TypeEnum["BOOL"] = 'BOOL'] = "BOOL";
+        TypeEnum[TypeEnum["DATE"] = 'DATE'] = "DATE";
+        TypeEnum[TypeEnum["DATETIME"] = 'DATETIME'] = "DATETIME";
+        TypeEnum[TypeEnum["FLOAT64"] = 'FLOAT64'] = "FLOAT64";
+        TypeEnum[TypeEnum["INT64"] = 'INT64'] = "INT64";
+        TypeEnum[TypeEnum["JSON"] = 'JSON'] = "JSON";
+        TypeEnum[TypeEnum["NUMERIC"] = 'NUMERIC'] = "NUMERIC";
+        TypeEnum[TypeEnum["STRING"] = 'STRING'] = "STRING";
+        TypeEnum[TypeEnum["TIME"] = 'TIME'] = "TIME";
+        TypeEnum[TypeEnum["TIMESTAMP"] = 'TIMESTAMP'] = "TIMESTAMP";
+    })(TypeEnum = ReportDataSetSchema.TypeEnum || (ReportDataSetSchema.TypeEnum = {}));
+})(ReportDataSetSchema = exports.ReportDataSetSchema || (exports.ReportDataSetSchema = {}));
+/**
+ * @export
+ * @namespace ReportDataSourceSchema
+ */
+var ReportDataSourceSchema;
+(function (ReportDataSourceSchema) {
+    /**
+     * @export
+     * @enum {string}
+     */
+    var TypeEnum;
+    (function (TypeEnum) {
+        TypeEnum[TypeEnum["BIGNUMERIC"] = 'BIGNUMERIC'] = "BIGNUMERIC";
+        TypeEnum[TypeEnum["BOOL"] = 'BOOL'] = "BOOL";
+        TypeEnum[TypeEnum["DATE"] = 'DATE'] = "DATE";
+        TypeEnum[TypeEnum["DATETIME"] = 'DATETIME'] = "DATETIME";
+        TypeEnum[TypeEnum["FLOAT64"] = 'FLOAT64'] = "FLOAT64";
+        TypeEnum[TypeEnum["INT64"] = 'INT64'] = "INT64";
+        TypeEnum[TypeEnum["JSON"] = 'JSON'] = "JSON";
+        TypeEnum[TypeEnum["NUMERIC"] = 'NUMERIC'] = "NUMERIC";
+        TypeEnum[TypeEnum["STRING"] = 'STRING'] = "STRING";
+        TypeEnum[TypeEnum["TIME"] = 'TIME'] = "TIME";
+        TypeEnum[TypeEnum["TIMESTAMP"] = 'TIMESTAMP'] = "TIMESTAMP";
+    })(TypeEnum = ReportDataSourceSchema.TypeEnum || (ReportDataSourceSchema.TypeEnum = {}));
+})(ReportDataSourceSchema = exports.ReportDataSourceSchema || (exports.ReportDataSourceSchema = {}));
+/**
+ * @export
+ * @namespace ReportExecuteQueriesRequest
+ */
+var ReportExecuteQueriesRequest;
+(function (ReportExecuteQueriesRequest) {
+    /**
+     * @export
+     * @enum {string}
+     */
+    var SecurityLevelEnum;
+    (function (SecurityLevelEnum) {
+        SecurityLevelEnum[SecurityLevelEnum["Standard"] = 'standard'] = "Standard";
+        SecurityLevelEnum[SecurityLevelEnum["Low"] = 'low'] = "Low";
+        SecurityLevelEnum[SecurityLevelEnum["Medium"] = 'medium'] = "Medium";
+        SecurityLevelEnum[SecurityLevelEnum["High"] = 'high'] = "High";
+    })(SecurityLevelEnum = ReportExecuteQueriesRequest.SecurityLevelEnum || (ReportExecuteQueriesRequest.SecurityLevelEnum = {}));
+})(ReportExecuteQueriesRequest = exports.ReportExecuteQueriesRequest || (exports.ReportExecuteQueriesRequest = {}));
+/**
+ * @export
+ * @namespace ReportFilter
+ */
+var ReportFilter;
+(function (ReportFilter) {
+    /**
+     * @export
+     * @enum {string}
+     */
+    var TypeEnum;
+    (function (TypeEnum) {
+        TypeEnum[TypeEnum["DateRange"] = 'date range'] = "DateRange";
+        TypeEnum[TypeEnum["DateComparison"] = 'date comparison'] = "DateComparison";
+        TypeEnum[TypeEnum["SingleValue"] = 'single value'] = "SingleValue";
+        TypeEnum[TypeEnum["MultipleValues"] = 'multiple values'] = "MultipleValues";
+    })(TypeEnum = ReportFilter.TypeEnum || (ReportFilter.TypeEnum = {}));
+})(ReportFilter = exports.ReportFilter || (exports.ReportFilter = {}));
+/**
+ * @export
+ * @namespace ReportPageVisualization
+ */
+var ReportPageVisualization;
+(function (ReportPageVisualization) {
+    /**
+     * @export
+     * @enum {string}
+     */
+    var TypeEnum;
+    (function (TypeEnum) {
+        TypeEnum[TypeEnum["ScoreCard"] = 'score card'] = "ScoreCard";
+        TypeEnum[TypeEnum["LineChart"] = 'line chart'] = "LineChart";
+        TypeEnum[TypeEnum["BarChart"] = 'bar chart'] = "BarChart";
+        TypeEnum[TypeEnum["Text"] = 'text'] = "Text";
+        TypeEnum[TypeEnum["Table"] = 'table'] = "Table";
+    })(TypeEnum = ReportPageVisualization.TypeEnum || (ReportPageVisualization.TypeEnum = {}));
+})(ReportPageVisualization = exports.ReportPageVisualization || (exports.ReportPageVisualization = {}));
+/**
+ * @export
+ * @namespace ReportPageVisualizationMetric
+ */
+var ReportPageVisualizationMetric;
+(function (ReportPageVisualizationMetric) {
+    /**
+     * @export
+     * @enum {string}
+     */
+    var AggregationEnum;
+    (function (AggregationEnum) {
+        AggregationEnum[AggregationEnum["Sum"] = 'sum'] = "Sum";
+        AggregationEnum[AggregationEnum["Count"] = 'count'] = "Count";
+        AggregationEnum[AggregationEnum["Min"] = 'min'] = "Min";
+        AggregationEnum[AggregationEnum["Max"] = 'max'] = "Max";
+        AggregationEnum[AggregationEnum["Avg"] = 'avg'] = "Avg";
+    })(AggregationEnum = ReportPageVisualizationMetric.AggregationEnum || (ReportPageVisualizationMetric.AggregationEnum = {}));
+})(ReportPageVisualizationMetric = exports.ReportPageVisualizationMetric || (exports.ReportPageVisualizationMetric = {}));
 /**
  * @export
  * @namespace TempMultimedia
@@ -13405,6 +13581,854 @@ var CustomerApi = /** @class */ (function (_super) {
     return CustomerApi;
 }(BaseAPI));
 exports.CustomerApi = CustomerApi;
+/**
+ * DatawarehouseApi - fetch parameter creator
+ * @export
+ */
+var DatawarehouseApiFetchParamCreator = function (configuration) {
+    return {
+        /**
+         * Delete a report on the UltraCart account.
+         * @summary Delete a report
+         * @param {number} report_oid The report oid to delete.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        deleteReport: function (report_oid, options) {
+            if (options === void 0) { options = {}; }
+            // verify required parameter 'report_oid' is not null or undefined
+            if (report_oid === null || report_oid === undefined) {
+                throw new RequiredError('report_oid', 'Required parameter report_oid was null or undefined when calling deleteReport.');
+            }
+            var localVarPath = "/datawarehouse/reports/{report_oid}"
+                .replace("{".concat("report_oid", "}"), encodeURIComponent(String(report_oid)));
+            var localVarUrlObj = url.parse(localVarPath, true);
+            var localVarRequestOptions = Object.assign({ method: 'DELETE' }, options);
+            var localVarHeaderParameter = {};
+            var localVarQueryParameter = {};
+            if (configuration && configuration.apiVersion) {
+                localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+            }
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+                var localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+                    ? configuration.accessToken("ultraCartOauth", [])
+                    : configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                var localVarApiKeyValue = typeof configuration.apiKey === 'function'
+                    ? configuration.apiKey("x-ultracart-simple-key")
+                    : configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Execute the report queries
+         * @summary Execute the report queries
+         * @param {ReportExecuteQueriesRequest} query_request Query request
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        executeReportQueries: function (query_request, options) {
+            if (options === void 0) { options = {}; }
+            // verify required parameter 'query_request' is not null or undefined
+            if (query_request === null || query_request === undefined) {
+                throw new RequiredError('query_request', 'Required parameter query_request was null or undefined when calling executeReportQueries.');
+            }
+            var localVarPath = "/datawarehouse/reports/execute";
+            var localVarUrlObj = url.parse(localVarPath, true);
+            var localVarRequestOptions = Object.assign({ method: 'PUT' }, options);
+            var localVarHeaderParameter = {};
+            var localVarQueryParameter = {};
+            if (configuration && configuration.apiVersion) {
+                localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+            }
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+                var localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+                    ? configuration.accessToken("ultraCartOauth", [])
+                    : configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                var localVarApiKeyValue = typeof configuration.apiKey === 'function'
+                    ? configuration.apiKey("x-ultracart-simple-key")
+                    : configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+            var needsSerialization = ("ReportExecuteQueriesRequest" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
+            localVarRequestOptions.body = needsSerialization ? JSON.stringify(query_request || {}) : (query_request || "");
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Retrieve a report
+         * @summary Get a report
+         * @param {number} report_oid
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getReport: function (report_oid, options) {
+            if (options === void 0) { options = {}; }
+            // verify required parameter 'report_oid' is not null or undefined
+            if (report_oid === null || report_oid === undefined) {
+                throw new RequiredError('report_oid', 'Required parameter report_oid was null or undefined when calling getReport.');
+            }
+            var localVarPath = "/datawarehouse/reports/{report_oid}"
+                .replace("{".concat("report_oid", "}"), encodeURIComponent(String(report_oid)));
+            var localVarUrlObj = url.parse(localVarPath, true);
+            var localVarRequestOptions = Object.assign({ method: 'GET' }, options);
+            var localVarHeaderParameter = {};
+            var localVarQueryParameter = {};
+            if (configuration && configuration.apiVersion) {
+                localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+            }
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+                var localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+                    ? configuration.accessToken("ultraCartOauth", [])
+                    : configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                var localVarApiKeyValue = typeof configuration.apiKey === 'function'
+                    ? configuration.apiKey("x-ultracart-simple-key")
+                    : configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Retrieve a report data set
+         * @summary Get a report data set
+         * @param {string} dataset_uuid
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getReportDataSet: function (dataset_uuid, options) {
+            if (options === void 0) { options = {}; }
+            // verify required parameter 'dataset_uuid' is not null or undefined
+            if (dataset_uuid === null || dataset_uuid === undefined) {
+                throw new RequiredError('dataset_uuid', 'Required parameter dataset_uuid was null or undefined when calling getReportDataSet.');
+            }
+            var localVarPath = "/datawarehouse/reports/dataset/{dataset_uuid}"
+                .replace("{".concat("dataset_uuid", "}"), encodeURIComponent(String(dataset_uuid)));
+            var localVarUrlObj = url.parse(localVarPath, true);
+            var localVarRequestOptions = Object.assign({ method: 'GET' }, options);
+            var localVarHeaderParameter = {};
+            var localVarQueryParameter = {};
+            if (configuration && configuration.apiVersion) {
+                localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+            }
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+                var localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+                    ? configuration.accessToken("ultraCartOauth", [])
+                    : configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                var localVarApiKeyValue = typeof configuration.apiKey === 'function'
+                    ? configuration.apiKey("x-ultracart-simple-key")
+                    : configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Retrieve a report data set page
+         * @summary Get a report data set page
+         * @param {string} dataset_uuid
+         * @param {number} page_number
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getReportDataSetPage: function (dataset_uuid, page_number, options) {
+            if (options === void 0) { options = {}; }
+            // verify required parameter 'dataset_uuid' is not null or undefined
+            if (dataset_uuid === null || dataset_uuid === undefined) {
+                throw new RequiredError('dataset_uuid', 'Required parameter dataset_uuid was null or undefined when calling getReportDataSetPage.');
+            }
+            // verify required parameter 'page_number' is not null or undefined
+            if (page_number === null || page_number === undefined) {
+                throw new RequiredError('page_number', 'Required parameter page_number was null or undefined when calling getReportDataSetPage.');
+            }
+            var localVarPath = "/datawarehouse/reports/dataset/{dataset_uuid}/pages/{page_number}"
+                .replace("{".concat("dataset_uuid", "}"), encodeURIComponent(String(dataset_uuid)))
+                .replace("{".concat("page_number", "}"), encodeURIComponent(String(page_number)));
+            var localVarUrlObj = url.parse(localVarPath, true);
+            var localVarRequestOptions = Object.assign({ method: 'GET' }, options);
+            var localVarHeaderParameter = {};
+            var localVarQueryParameter = {};
+            if (configuration && configuration.apiVersion) {
+                localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+            }
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+                var localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+                    ? configuration.accessToken("ultraCartOauth", [])
+                    : configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                var localVarApiKeyValue = typeof configuration.apiKey === 'function'
+                    ? configuration.apiKey("x-ultracart-simple-key")
+                    : configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Retrieve a JWT to authorize a report to make a websocket connection.
+         * @summary Get report websocket authorization
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getReportWebsocketAuthorization: function (options) {
+            if (options === void 0) { options = {}; }
+            var localVarPath = "/datawarehouse/reports/auth";
+            var localVarUrlObj = url.parse(localVarPath, true);
+            var localVarRequestOptions = Object.assign({ method: 'PUT' }, options);
+            var localVarHeaderParameter = {};
+            var localVarQueryParameter = {};
+            if (configuration && configuration.apiVersion) {
+                localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+            }
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+                var localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+                    ? configuration.accessToken("ultraCartOauth", [])
+                    : configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                var localVarApiKeyValue = typeof configuration.apiKey === 'function'
+                    ? configuration.apiKey("x-ultracart-simple-key")
+                    : configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Retrieve a list of reports available
+         * @summary Get list of reports available
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getReports: function (options) {
+            if (options === void 0) { options = {}; }
+            var localVarPath = "/datawarehouse/reports";
+            var localVarUrlObj = url.parse(localVarPath, true);
+            var localVarRequestOptions = Object.assign({ method: 'GET' }, options);
+            var localVarHeaderParameter = {};
+            var localVarQueryParameter = {};
+            if (configuration && configuration.apiVersion) {
+                localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+            }
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+                var localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+                    ? configuration.accessToken("ultraCartOauth", [])
+                    : configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                var localVarApiKeyValue = typeof configuration.apiKey === 'function'
+                    ? configuration.apiKey("x-ultracart-simple-key")
+                    : configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Create a new report on the UltraCart account.
+         * @summary Create a report
+         * @param {Report} report Report to create
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        insertReport: function (report, options) {
+            if (options === void 0) { options = {}; }
+            // verify required parameter 'report' is not null or undefined
+            if (report === null || report === undefined) {
+                throw new RequiredError('report', 'Required parameter report was null or undefined when calling insertReport.');
+            }
+            var localVarPath = "/datawarehouse/reports";
+            var localVarUrlObj = url.parse(localVarPath, true);
+            var localVarRequestOptions = Object.assign({ method: 'POST' }, options);
+            var localVarHeaderParameter = {};
+            var localVarQueryParameter = {};
+            if (configuration && configuration.apiVersion) {
+                localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+            }
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+                var localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+                    ? configuration.accessToken("ultraCartOauth", [])
+                    : configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                var localVarApiKeyValue = typeof configuration.apiKey === 'function'
+                    ? configuration.apiKey("x-ultracart-simple-key")
+                    : configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+            localVarHeaderParameter['Content-Type'] = 'application/json; charset=UTF-8';
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+            var needsSerialization = ("Report" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
+            localVarRequestOptions.body = needsSerialization ? JSON.stringify(report || {}) : (report || "");
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Update a report on the UltraCart account.
+         * @summary Update a report
+         * @param {Report} report Report to update
+         * @param {number} report_oid The report oid to update.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        updateReport: function (report, report_oid, options) {
+            if (options === void 0) { options = {}; }
+            // verify required parameter 'report' is not null or undefined
+            if (report === null || report === undefined) {
+                throw new RequiredError('report', 'Required parameter report was null or undefined when calling updateReport.');
+            }
+            // verify required parameter 'report_oid' is not null or undefined
+            if (report_oid === null || report_oid === undefined) {
+                throw new RequiredError('report_oid', 'Required parameter report_oid was null or undefined when calling updateReport.');
+            }
+            var localVarPath = "/datawarehouse/reports/{report_oid}"
+                .replace("{".concat("report_oid", "}"), encodeURIComponent(String(report_oid)));
+            var localVarUrlObj = url.parse(localVarPath, true);
+            var localVarRequestOptions = Object.assign({ method: 'PUT' }, options);
+            var localVarHeaderParameter = {};
+            var localVarQueryParameter = {};
+            if (configuration && configuration.apiVersion) {
+                localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+            }
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+                var localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+                    ? configuration.accessToken("ultraCartOauth", [])
+                    : configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                var localVarApiKeyValue = typeof configuration.apiKey === 'function'
+                    ? configuration.apiKey("x-ultracart-simple-key")
+                    : configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+            localVarHeaderParameter['Content-Type'] = 'application/json; charset=UTF-8';
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+            var needsSerialization = ("Report" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
+            localVarRequestOptions.body = needsSerialization ? JSON.stringify(report || {}) : (report || "");
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+    };
+};
+exports.DatawarehouseApiFetchParamCreator = DatawarehouseApiFetchParamCreator;
+/**
+ * DatawarehouseApi - functional programming interface
+ * @export
+ */
+var DatawarehouseApiFp = function (configuration) {
+    return {
+        /**
+         * Delete a report on the UltraCart account.
+         * @summary Delete a report
+         * @param {number} report_oid The report oid to delete.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        deleteReport: function (report_oid, options) {
+            var localVarFetchArgs = (0, exports.DatawarehouseApiFetchParamCreator)(configuration).deleteReport(report_oid, options);
+            return function (fetch, basePath) {
+                if (fetch === void 0) { fetch = portableFetch; }
+                if (basePath === void 0) { basePath = BASE_PATH; }
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(function (response) {
+                    if (response.status >= 200 && response.status < 300) {
+                        return response;
+                    }
+                    else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
+         * Execute the report queries
+         * @summary Execute the report queries
+         * @param {ReportExecuteQueriesRequest} query_request Query request
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        executeReportQueries: function (query_request, options) {
+            var localVarFetchArgs = (0, exports.DatawarehouseApiFetchParamCreator)(configuration).executeReportQueries(query_request, options);
+            return function (fetch, basePath) {
+                if (fetch === void 0) { fetch = portableFetch; }
+                if (basePath === void 0) { basePath = BASE_PATH; }
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(function (response) {
+                    if (response.status >= 200 && response.status < 300) {
+                        return response;
+                    }
+                    else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
+         * Retrieve a report
+         * @summary Get a report
+         * @param {number} report_oid
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getReport: function (report_oid, options) {
+            var localVarFetchArgs = (0, exports.DatawarehouseApiFetchParamCreator)(configuration).getReport(report_oid, options);
+            return function (fetch, basePath) {
+                if (fetch === void 0) { fetch = portableFetch; }
+                if (basePath === void 0) { basePath = BASE_PATH; }
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(function (response) {
+                    if (response.status >= 200 && response.status < 300) {
+                        return response.json();
+                    }
+                    else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
+         * Retrieve a report data set
+         * @summary Get a report data set
+         * @param {string} dataset_uuid
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getReportDataSet: function (dataset_uuid, options) {
+            var localVarFetchArgs = (0, exports.DatawarehouseApiFetchParamCreator)(configuration).getReportDataSet(dataset_uuid, options);
+            return function (fetch, basePath) {
+                if (fetch === void 0) { fetch = portableFetch; }
+                if (basePath === void 0) { basePath = BASE_PATH; }
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(function (response) {
+                    if (response.status >= 200 && response.status < 300) {
+                        return response.json();
+                    }
+                    else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
+         * Retrieve a report data set page
+         * @summary Get a report data set page
+         * @param {string} dataset_uuid
+         * @param {number} page_number
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getReportDataSetPage: function (dataset_uuid, page_number, options) {
+            var localVarFetchArgs = (0, exports.DatawarehouseApiFetchParamCreator)(configuration).getReportDataSetPage(dataset_uuid, page_number, options);
+            return function (fetch, basePath) {
+                if (fetch === void 0) { fetch = portableFetch; }
+                if (basePath === void 0) { basePath = BASE_PATH; }
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(function (response) {
+                    if (response.status >= 200 && response.status < 300) {
+                        return response.json();
+                    }
+                    else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
+         * Retrieve a JWT to authorize a report to make a websocket connection.
+         * @summary Get report websocket authorization
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getReportWebsocketAuthorization: function (options) {
+            var localVarFetchArgs = (0, exports.DatawarehouseApiFetchParamCreator)(configuration).getReportWebsocketAuthorization(options);
+            return function (fetch, basePath) {
+                if (fetch === void 0) { fetch = portableFetch; }
+                if (basePath === void 0) { basePath = BASE_PATH; }
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(function (response) {
+                    if (response.status >= 200 && response.status < 300) {
+                        return response.json();
+                    }
+                    else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
+         * Retrieve a list of reports available
+         * @summary Get list of reports available
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getReports: function (options) {
+            var localVarFetchArgs = (0, exports.DatawarehouseApiFetchParamCreator)(configuration).getReports(options);
+            return function (fetch, basePath) {
+                if (fetch === void 0) { fetch = portableFetch; }
+                if (basePath === void 0) { basePath = BASE_PATH; }
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(function (response) {
+                    if (response.status >= 200 && response.status < 300) {
+                        return response.json();
+                    }
+                    else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
+         * Create a new report on the UltraCart account.
+         * @summary Create a report
+         * @param {Report} report Report to create
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        insertReport: function (report, options) {
+            var localVarFetchArgs = (0, exports.DatawarehouseApiFetchParamCreator)(configuration).insertReport(report, options);
+            return function (fetch, basePath) {
+                if (fetch === void 0) { fetch = portableFetch; }
+                if (basePath === void 0) { basePath = BASE_PATH; }
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(function (response) {
+                    if (response.status >= 200 && response.status < 300) {
+                        return response.json();
+                    }
+                    else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
+         * Update a report on the UltraCart account.
+         * @summary Update a report
+         * @param {Report} report Report to update
+         * @param {number} report_oid The report oid to update.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        updateReport: function (report, report_oid, options) {
+            var localVarFetchArgs = (0, exports.DatawarehouseApiFetchParamCreator)(configuration).updateReport(report, report_oid, options);
+            return function (fetch, basePath) {
+                if (fetch === void 0) { fetch = portableFetch; }
+                if (basePath === void 0) { basePath = BASE_PATH; }
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(function (response) {
+                    if (response.status >= 200 && response.status < 300) {
+                        return response.json();
+                    }
+                    else {
+                        throw response;
+                    }
+                });
+            };
+        },
+    };
+};
+exports.DatawarehouseApiFp = DatawarehouseApiFp;
+/**
+ * DatawarehouseApi - factory interface
+ * @export
+ */
+var DatawarehouseApiFactory = function (configuration, fetch, basePath) {
+    return {
+        /**
+         * Delete a report on the UltraCart account.
+         * @summary Delete a report
+         * @param {number} report_oid The report oid to delete.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        deleteReport: function (report_oid, options) {
+            return (0, exports.DatawarehouseApiFp)(configuration).deleteReport(report_oid, options)(fetch, basePath);
+        },
+        /**
+         * Execute the report queries
+         * @summary Execute the report queries
+         * @param {ReportExecuteQueriesRequest} query_request Query request
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        executeReportQueries: function (query_request, options) {
+            return (0, exports.DatawarehouseApiFp)(configuration).executeReportQueries(query_request, options)(fetch, basePath);
+        },
+        /**
+         * Retrieve a report
+         * @summary Get a report
+         * @param {number} report_oid
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getReport: function (report_oid, options) {
+            return (0, exports.DatawarehouseApiFp)(configuration).getReport(report_oid, options)(fetch, basePath);
+        },
+        /**
+         * Retrieve a report data set
+         * @summary Get a report data set
+         * @param {string} dataset_uuid
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getReportDataSet: function (dataset_uuid, options) {
+            return (0, exports.DatawarehouseApiFp)(configuration).getReportDataSet(dataset_uuid, options)(fetch, basePath);
+        },
+        /**
+         * Retrieve a report data set page
+         * @summary Get a report data set page
+         * @param {string} dataset_uuid
+         * @param {number} page_number
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getReportDataSetPage: function (dataset_uuid, page_number, options) {
+            return (0, exports.DatawarehouseApiFp)(configuration).getReportDataSetPage(dataset_uuid, page_number, options)(fetch, basePath);
+        },
+        /**
+         * Retrieve a JWT to authorize a report to make a websocket connection.
+         * @summary Get report websocket authorization
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getReportWebsocketAuthorization: function (options) {
+            return (0, exports.DatawarehouseApiFp)(configuration).getReportWebsocketAuthorization(options)(fetch, basePath);
+        },
+        /**
+         * Retrieve a list of reports available
+         * @summary Get list of reports available
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getReports: function (options) {
+            return (0, exports.DatawarehouseApiFp)(configuration).getReports(options)(fetch, basePath);
+        },
+        /**
+         * Create a new report on the UltraCart account.
+         * @summary Create a report
+         * @param {Report} report Report to create
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        insertReport: function (report, options) {
+            return (0, exports.DatawarehouseApiFp)(configuration).insertReport(report, options)(fetch, basePath);
+        },
+        /**
+         * Update a report on the UltraCart account.
+         * @summary Update a report
+         * @param {Report} report Report to update
+         * @param {number} report_oid The report oid to update.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        updateReport: function (report, report_oid, options) {
+            return (0, exports.DatawarehouseApiFp)(configuration).updateReport(report, report_oid, options)(fetch, basePath);
+        },
+    };
+};
+exports.DatawarehouseApiFactory = DatawarehouseApiFactory;
+/**
+ * DatawarehouseApi - object-oriented interface
+ * @export
+ * @class DatawarehouseApi
+ * @extends {BaseAPI}
+ */
+var DatawarehouseApi = /** @class */ (function (_super) {
+    __extends(DatawarehouseApi, _super);
+    function DatawarehouseApi() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    /**
+     * Delete a report on the UltraCart account.
+     * @summary Delete a report
+     * @param {number} report_oid The report oid to delete.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DatawarehouseApi
+     */
+    DatawarehouseApi.prototype.deleteReport = function (report_oid, options) {
+        return (0, exports.DatawarehouseApiFp)(this.configuration).deleteReport(report_oid, options)(this.fetch, this.basePath);
+    };
+    /**
+     * Execute the report queries
+     * @summary Execute the report queries
+     * @param {ReportExecuteQueriesRequest} query_request Query request
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DatawarehouseApi
+     */
+    DatawarehouseApi.prototype.executeReportQueries = function (query_request, options) {
+        return (0, exports.DatawarehouseApiFp)(this.configuration).executeReportQueries(query_request, options)(this.fetch, this.basePath);
+    };
+    /**
+     * Retrieve a report
+     * @summary Get a report
+     * @param {number} report_oid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DatawarehouseApi
+     */
+    DatawarehouseApi.prototype.getReport = function (report_oid, options) {
+        return (0, exports.DatawarehouseApiFp)(this.configuration).getReport(report_oid, options)(this.fetch, this.basePath);
+    };
+    /**
+     * Retrieve a report data set
+     * @summary Get a report data set
+     * @param {string} dataset_uuid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DatawarehouseApi
+     */
+    DatawarehouseApi.prototype.getReportDataSet = function (dataset_uuid, options) {
+        return (0, exports.DatawarehouseApiFp)(this.configuration).getReportDataSet(dataset_uuid, options)(this.fetch, this.basePath);
+    };
+    /**
+     * Retrieve a report data set page
+     * @summary Get a report data set page
+     * @param {string} dataset_uuid
+     * @param {number} page_number
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DatawarehouseApi
+     */
+    DatawarehouseApi.prototype.getReportDataSetPage = function (dataset_uuid, page_number, options) {
+        return (0, exports.DatawarehouseApiFp)(this.configuration).getReportDataSetPage(dataset_uuid, page_number, options)(this.fetch, this.basePath);
+    };
+    /**
+     * Retrieve a JWT to authorize a report to make a websocket connection.
+     * @summary Get report websocket authorization
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DatawarehouseApi
+     */
+    DatawarehouseApi.prototype.getReportWebsocketAuthorization = function (options) {
+        return (0, exports.DatawarehouseApiFp)(this.configuration).getReportWebsocketAuthorization(options)(this.fetch, this.basePath);
+    };
+    /**
+     * Retrieve a list of reports available
+     * @summary Get list of reports available
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DatawarehouseApi
+     */
+    DatawarehouseApi.prototype.getReports = function (options) {
+        return (0, exports.DatawarehouseApiFp)(this.configuration).getReports(options)(this.fetch, this.basePath);
+    };
+    /**
+     * Create a new report on the UltraCart account.
+     * @summary Create a report
+     * @param {Report} report Report to create
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DatawarehouseApi
+     */
+    DatawarehouseApi.prototype.insertReport = function (report, options) {
+        return (0, exports.DatawarehouseApiFp)(this.configuration).insertReport(report, options)(this.fetch, this.basePath);
+    };
+    /**
+     * Update a report on the UltraCart account.
+     * @summary Update a report
+     * @param {Report} report Report to update
+     * @param {number} report_oid The report oid to update.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DatawarehouseApi
+     */
+    DatawarehouseApi.prototype.updateReport = function (report, report_oid, options) {
+        return (0, exports.DatawarehouseApiFp)(this.configuration).updateReport(report, report_oid, options)(this.fetch, this.basePath);
+    };
+    return DatawarehouseApi;
+}(BaseAPI));
+exports.DatawarehouseApi = DatawarehouseApi;
 /**
  * FulfillmentApi - fetch parameter creator
  * @export

@@ -33297,6 +33297,1117 @@ export interface RegisterAffiliateClickResponse {
 /**
  * 
  * @export
+ * @interface Report
+ */
+export interface Report {
+    /**
+     * 
+     * @type {boolean}
+     * @memberof Report
+     */
+    active?: boolean;
+    /**
+     * 
+     * @type {Array<ReportDataSource>}
+     * @memberof Report
+     */
+    data_sources?: Array<ReportDataSource>;
+    /**
+     * 
+     * @type {string}
+     * @memberof Report
+     */
+    default_dataset_id?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof Report
+     */
+    default_project_id?: string;
+    /**
+     * 
+     * @type {Array<ReportFilter>}
+     * @memberof Report
+     */
+    filters?: Array<ReportFilter>;
+    /**
+     * 
+     * @type {string}
+     * @memberof Report
+     */
+    merchant_id?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof Report
+     */
+    name?: string;
+    /**
+     * 
+     * @type {Array<ReportPage>}
+     * @memberof Report
+     */
+    pages?: Array<ReportPage>;
+    /**
+     * Object identifier for this report.
+     * @type {number}
+     * @memberof Report
+     */
+    report_oid?: number;
+    /**
+     * Security level to execute report under
+     * @type {string}
+     * @memberof Report
+     */
+    security_level?: Report.SecurityLevelEnum;
+}
+
+/**
+ * @export
+ * @namespace Report
+ */
+export namespace Report {
+    /**
+     * @export
+     * @enum {string}
+     */
+    export enum SecurityLevelEnum {
+        Standard = <any> 'standard',
+        Low = <any> 'low',
+        Medium = <any> 'medium',
+        High = <any> 'high'
+    }
+}
+
+/**
+ * 
+ * @export
+ * @interface ReportAuth
+ */
+export interface ReportAuth {
+    /**
+     * Unique UUID assigned to this client
+     * @type {string}
+     * @memberof ReportAuth
+     */
+    client_uuid?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ReportAuth
+     */
+    jwt?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ReportAuth
+     */
+    merchant_id?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ReportAuth
+     */
+    websocket_url?: string;
+}
+
+/**
+ * 
+ * @export
+ * @interface ReportAuthResponse
+ */
+export interface ReportAuthResponse {
+    /**
+     * 
+     * @type {ModelError}
+     * @memberof ReportAuthResponse
+     */
+    error?: ModelError;
+    /**
+     * 
+     * @type {ResponseMetadata}
+     * @memberof ReportAuthResponse
+     */
+    metadata?: ResponseMetadata;
+    /**
+     * 
+     * @type {ReportAuth}
+     * @memberof ReportAuthResponse
+     */
+    report_auth?: ReportAuth;
+    /**
+     * Indicates if API call was successful
+     * @type {boolean}
+     * @memberof ReportAuthResponse
+     */
+    success?: boolean;
+    /**
+     * 
+     * @type {Warning}
+     * @memberof ReportAuthResponse
+     */
+    warning?: Warning;
+}
+
+/**
+ * 
+ * @export
+ * @interface ReportDataSet
+ */
+export interface ReportDataSet {
+    /**
+     * A unique identifier assigned to the data set query that is returned.
+     * @type {string}
+     * @memberof ReportDataSet
+     */
+    data_set_query_uuid?: string;
+    /**
+     * A unique identifier assigned to the data set that is returned.
+     * @type {string}
+     * @memberof ReportDataSet
+     */
+    data_set_uuid?: string;
+    /**
+     * The BigQuery destination table id that contains the result.
+     * @type {string}
+     * @memberof ReportDataSet
+     */
+    destination_table_id?: string;
+    /**
+     * Error message if the query failed.
+     * @type {string}
+     * @memberof ReportDataSet
+     */
+    error_message?: string;
+    /**
+     * An identifier that can be used to help match up the returned data set
+     * @type {string}
+     * @memberof ReportDataSet
+     */
+    for_object_id?: string;
+    /**
+     * The type of object this data set is for
+     * @type {string}
+     * @memberof ReportDataSet
+     */
+    for_object_type?: ReportDataSet.ForObjectTypeEnum;
+    /**
+     * Initial pages returned in the dataset
+     * @type {Array<ReportDataSetPage>}
+     * @memberof ReportDataSet
+     */
+    initial_pages?: Array<ReportDataSetPage>;
+    /**
+     * The total number of results
+     * @type {number}
+     * @memberof ReportDataSet
+     */
+    max_results?: number;
+    /**
+     * Merchant that owns this data set
+     * @type {string}
+     * @memberof ReportDataSet
+     */
+    merchant_id?: string;
+    /**
+     * The size of the pages
+     * @type {number}
+     * @memberof ReportDataSet
+     */
+    page_count?: number;
+    /**
+     * The size of the pages
+     * @type {number}
+     * @memberof ReportDataSet
+     */
+    page_size?: number;
+    /**
+     * The schema associated with the data set.
+     * @type {Array<ReportDataSetSchema>}
+     * @memberof ReportDataSet
+     */
+    schema?: Array<ReportDataSetSchema>;
+    /**
+     * Security level this dataset was read from.
+     * @type {string}
+     * @memberof ReportDataSet
+     */
+    security_level?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ReportDataSet
+     */
+    timezone?: string;
+    /**
+     * Any other data that needs to be returned with the response to help the UI
+     * @type {string}
+     * @memberof ReportDataSet
+     */
+    user_data?: string;
+}
+
+/**
+ * @export
+ * @namespace ReportDataSet
+ */
+export namespace ReportDataSet {
+    /**
+     * @export
+     * @enum {string}
+     */
+    export enum ForObjectTypeEnum {
+        Schema = <any> 'schema',
+        Filter = <any> 'filter',
+        Visualization = <any> 'visualization'
+    }
+}
+
+/**
+ * 
+ * @export
+ * @interface ReportDataSetColumn
+ */
+export interface ReportDataSetColumn {
+    /**
+     * 
+     * @type {string}
+     * @memberof ReportDataSetColumn
+     */
+    name?: string;
+}
+
+/**
+ * 
+ * @export
+ * @interface ReportDataSetPage
+ */
+export interface ReportDataSetPage {
+    /**
+     * A unique identifier assigned to the data set that is returned.
+     * @type {string}
+     * @memberof ReportDataSetPage
+     */
+    data_set_uuid?: string;
+    /**
+     * Merchant that owns this data set
+     * @type {string}
+     * @memberof ReportDataSetPage
+     */
+    merchant_id?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ReportDataSetPage
+     */
+    next_page_token?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof ReportDataSetPage
+     */
+    next_start_index?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof ReportDataSetPage
+     */
+    page_number?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof ReportDataSetPage
+     */
+    row_count?: number;
+    /**
+     * Rows returned for the data set
+     * @type {Array<ReportDataSetRow>}
+     * @memberof ReportDataSetPage
+     */
+    rows?: Array<ReportDataSetRow>;
+    /**
+     * Signed S3 URL where the page rows can be downloaded from
+     * @type {string}
+     * @memberof ReportDataSetPage
+     */
+    rows_s3_url?: string;
+    /**
+     * Zero based index of the starting row
+     * @type {number}
+     * @memberof ReportDataSetPage
+     */
+    start_index?: number;
+    /**
+     * The BigQuery destination table id that contains the result.
+     * @type {string}
+     * @memberof ReportDataSetPage
+     */
+    table_id?: string;
+}
+
+/**
+ * 
+ * @export
+ * @interface ReportDataSetPageResponse
+ */
+export interface ReportDataSetPageResponse {
+    /**
+     * 
+     * @type {ModelError}
+     * @memberof ReportDataSetPageResponse
+     */
+    error?: ModelError;
+    /**
+     * 
+     * @type {ResponseMetadata}
+     * @memberof ReportDataSetPageResponse
+     */
+    metadata?: ResponseMetadata;
+    /**
+     * 
+     * @type {ReportDataSetPage}
+     * @memberof ReportDataSetPageResponse
+     */
+    page?: ReportDataSetPage;
+    /**
+     * Indicates if API call was successful
+     * @type {boolean}
+     * @memberof ReportDataSetPageResponse
+     */
+    success?: boolean;
+    /**
+     * 
+     * @type {Warning}
+     * @memberof ReportDataSetPageResponse
+     */
+    warning?: Warning;
+}
+
+/**
+ * 
+ * @export
+ * @interface ReportDataSetQuery
+ */
+export interface ReportDataSetQuery {
+    /**
+     * True if a date range filter is provided with comparison date ranges and two results should be returned for the query.
+     * @type {boolean}
+     * @memberof ReportDataSetQuery
+     */
+    comparison_results?: boolean;
+    /**
+     * A unique identifier assigned to the data set query that is returned.
+     * @type {string}
+     * @memberof ReportDataSetQuery
+     */
+    data_set_query_uuid?: string;
+    /**
+     * 
+     * @type {ReportDataSource}
+     * @memberof ReportDataSetQuery
+     */
+    data_source?: ReportDataSource;
+    /**
+     * 
+     * @type {Array<ReportPageVisualizationDimension>}
+     * @memberof ReportDataSetQuery
+     */
+    dimensions?: Array<ReportPageVisualizationDimension>;
+    /**
+     * 
+     * @type {ReportFilter}
+     * @memberof ReportDataSetQuery
+     */
+    filter?: ReportFilter;
+    /**
+     * An identifier that can be used to help match up the returned data set
+     * @type {string}
+     * @memberof ReportDataSetQuery
+     */
+    for_object_id?: string;
+    /**
+     * The type of object this data set is for
+     * @type {string}
+     * @memberof ReportDataSetQuery
+     */
+    for_object_type?: ReportDataSetQuery.ForObjectTypeEnum;
+    /**
+     * 
+     * @type {Array<ReportPageVisualizationMetric>}
+     * @memberof ReportDataSetQuery
+     */
+    metrics?: Array<ReportPageVisualizationMetric>;
+    /**
+     * Result set page size.  The default value is 200 records.  Max is 10000.
+     * @type {number}
+     * @memberof ReportDataSetQuery
+     */
+    page_size?: number;
+    /**
+     * 
+     * @type {Array<ReportFilter>}
+     * @memberof ReportDataSetQuery
+     */
+    selected_filters?: Array<ReportFilter>;
+    /**
+     * True if the 15 minute cache should be skipped.
+     * @type {boolean}
+     * @memberof ReportDataSetQuery
+     */
+    skip_cache?: boolean;
+    /**
+     * Any other data that needs to be returned with the response to help the UI
+     * @type {string}
+     * @memberof ReportDataSetQuery
+     */
+    user_data?: string;
+}
+
+/**
+ * @export
+ * @namespace ReportDataSetQuery
+ */
+export namespace ReportDataSetQuery {
+    /**
+     * @export
+     * @enum {string}
+     */
+    export enum ForObjectTypeEnum {
+        Schema = <any> 'schema',
+        Filter = <any> 'filter',
+        Visualization = <any> 'visualization'
+    }
+}
+
+/**
+ * 
+ * @export
+ * @interface ReportDataSetResponse
+ */
+export interface ReportDataSetResponse {
+    /**
+     * 
+     * @type {ReportDataSet}
+     * @memberof ReportDataSetResponse
+     */
+    data_set?: ReportDataSet;
+    /**
+     * 
+     * @type {ModelError}
+     * @memberof ReportDataSetResponse
+     */
+    error?: ModelError;
+    /**
+     * 
+     * @type {ResponseMetadata}
+     * @memberof ReportDataSetResponse
+     */
+    metadata?: ResponseMetadata;
+    /**
+     * Indicates if API call was successful
+     * @type {boolean}
+     * @memberof ReportDataSetResponse
+     */
+    success?: boolean;
+    /**
+     * 
+     * @type {Warning}
+     * @memberof ReportDataSetResponse
+     */
+    warning?: Warning;
+}
+
+/**
+ * 
+ * @export
+ * @interface ReportDataSetRow
+ */
+export interface ReportDataSetRow {
+    /**
+     * 
+     * @type {Array<ReportDataSetColumn>}
+     * @memberof ReportDataSetRow
+     */
+    columns?: Array<ReportDataSetColumn>;
+}
+
+/**
+ * 
+ * @export
+ * @interface ReportDataSetSchema
+ */
+export interface ReportDataSetSchema {
+    /**
+     * 
+     * @type {string}
+     * @memberof ReportDataSetSchema
+     */
+    name?: string;
+    /**
+     * Type of the column.
+     * @type {string}
+     * @memberof ReportDataSetSchema
+     */
+    type?: ReportDataSetSchema.TypeEnum;
+}
+
+/**
+ * @export
+ * @namespace ReportDataSetSchema
+ */
+export namespace ReportDataSetSchema {
+    /**
+     * @export
+     * @enum {string}
+     */
+    export enum TypeEnum {
+        BIGNUMERIC = <any> 'BIGNUMERIC',
+        BOOL = <any> 'BOOL',
+        DATE = <any> 'DATE',
+        DATETIME = <any> 'DATETIME',
+        FLOAT64 = <any> 'FLOAT64',
+        INT64 = <any> 'INT64',
+        JSON = <any> 'JSON',
+        NUMERIC = <any> 'NUMERIC',
+        STRING = <any> 'STRING',
+        TIME = <any> 'TIME',
+        TIMESTAMP = <any> 'TIMESTAMP'
+    }
+}
+
+/**
+ * 
+ * @export
+ * @interface ReportDataSource
+ */
+export interface ReportDataSource {
+    /**
+     * 
+     * @type {string}
+     * @memberof ReportDataSource
+     */
+    name?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ReportDataSource
+     */
+    partition_date_column?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof ReportDataSource
+     */
+    partition_date_safety_days?: number;
+    /**
+     * The partition date strategy, defaults to weekly sunday
+     * @type {string}
+     * @memberof ReportDataSource
+     */
+    partition_date_strategy?: string;
+    /**
+     * 
+     * @type {Array<ReportDataSourceSchema>}
+     * @memberof ReportDataSource
+     */
+    schema?: Array<ReportDataSourceSchema>;
+    /**
+     * 
+     * @type {string}
+     * @memberof ReportDataSource
+     */
+    sql?: string;
+}
+
+/**
+ * 
+ * @export
+ * @interface ReportDataSourceSchema
+ */
+export interface ReportDataSourceSchema {
+    /**
+     * Whether or not this column can be used as a dimension within a visualization
+     * @type {boolean}
+     * @memberof ReportDataSourceSchema
+     */
+    dimension?: boolean;
+    /**
+     * 
+     * @type {string}
+     * @memberof ReportDataSourceSchema
+     */
+    name?: string;
+    /**
+     * Type of the column.  Only supporting the allowed values.  Any other types will be ignored.
+     * @type {string}
+     * @memberof ReportDataSourceSchema
+     */
+    type?: ReportDataSourceSchema.TypeEnum;
+}
+
+/**
+ * @export
+ * @namespace ReportDataSourceSchema
+ */
+export namespace ReportDataSourceSchema {
+    /**
+     * @export
+     * @enum {string}
+     */
+    export enum TypeEnum {
+        BIGNUMERIC = <any> 'BIGNUMERIC',
+        BOOL = <any> 'BOOL',
+        DATE = <any> 'DATE',
+        DATETIME = <any> 'DATETIME',
+        FLOAT64 = <any> 'FLOAT64',
+        INT64 = <any> 'INT64',
+        JSON = <any> 'JSON',
+        NUMERIC = <any> 'NUMERIC',
+        STRING = <any> 'STRING',
+        TIME = <any> 'TIME',
+        TIMESTAMP = <any> 'TIMESTAMP'
+    }
+}
+
+/**
+ * 
+ * @export
+ * @interface ReportExecuteQueriesRequest
+ */
+export interface ReportExecuteQueriesRequest {
+    /**
+     * Unique UUID assigned to this client during the auth.  This will be used to locate the websocket connect id.
+     * @type {string}
+     * @memberof ReportExecuteQueriesRequest
+     */
+    client_uuid?: string;
+    /**
+     * The websocket connection id that should receive back notices of query completion.
+     * @type {string}
+     * @memberof ReportExecuteQueriesRequest
+     */
+    connection_id?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ReportExecuteQueriesRequest
+     */
+    default_dataset_id?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ReportExecuteQueriesRequest
+     */
+    default_project_id?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ReportExecuteQueriesRequest
+     */
+    merchant_id?: string;
+    /**
+     * An array of queries that we want the lambda function to execute.
+     * @type {Array<ReportDataSetQuery>}
+     * @memberof ReportExecuteQueriesRequest
+     */
+    queries?: Array<ReportDataSetQuery>;
+    /**
+     * Security level to execute report under
+     * @type {string}
+     * @memberof ReportExecuteQueriesRequest
+     */
+    security_level?: ReportExecuteQueriesRequest.SecurityLevelEnum;
+}
+
+/**
+ * @export
+ * @namespace ReportExecuteQueriesRequest
+ */
+export namespace ReportExecuteQueriesRequest {
+    /**
+     * @export
+     * @enum {string}
+     */
+    export enum SecurityLevelEnum {
+        Standard = <any> 'standard',
+        Low = <any> 'low',
+        Medium = <any> 'medium',
+        High = <any> 'high'
+    }
+}
+
+/**
+ * 
+ * @export
+ * @interface ReportFilter
+ */
+export interface ReportFilter {
+    /**
+     * How this filter connects to the data sources and columns
+     * @type {Array<ReportFilterConnection>}
+     * @memberof ReportFilter
+     */
+    connections?: Array<ReportFilterConnection>;
+    /**
+     * 
+     * @type {string}
+     * @memberof ReportFilter
+     */
+    name?: string;
+    /**
+     * The timezone that the date range is querying on.
+     * @type {string}
+     * @memberof ReportFilter
+     */
+    timezone?: string;
+    /**
+     * Type of filter
+     * @type {string}
+     * @memberof ReportFilter
+     */
+    type?: ReportFilter.TypeEnum;
+    /**
+     * Unique UUID assigned to the filter.  Assists when returning values that the filter can use.
+     * @type {string}
+     * @memberof ReportFilter
+     */
+    uuid?: string;
+    /**
+     * The selected values for the filter.  When used, some type conversion will need to occur.
+     * @type {Array<string>}
+     * @memberof ReportFilter
+     */
+    values?: Array<string>;
+}
+
+/**
+ * @export
+ * @namespace ReportFilter
+ */
+export namespace ReportFilter {
+    /**
+     * @export
+     * @enum {string}
+     */
+    export enum TypeEnum {
+        DateRange = <any> 'date range',
+        DateComparison = <any> 'date comparison',
+        SingleValue = <any> 'single value',
+        MultipleValues = <any> 'multiple values'
+    }
+}
+
+/**
+ * 
+ * @export
+ * @interface ReportFilterConnection
+ */
+export interface ReportFilterConnection {
+    /**
+     * 
+     * @type {string}
+     * @memberof ReportFilterConnection
+     */
+    column?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ReportFilterConnection
+     */
+    data_source_name?: string;
+}
+
+/**
+ * 
+ * @export
+ * @interface ReportPage
+ */
+export interface ReportPage {
+    /**
+     * Height of the report page in inches
+     * @type {number}
+     * @memberof ReportPage
+     */
+    height?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof ReportPage
+     */
+    title?: string;
+    /**
+     * Visualizations on the report page.
+     * @type {Array<ReportPageVisualization>}
+     * @memberof ReportPage
+     */
+    visualizations?: Array<ReportPageVisualization>;
+    /**
+     * Width of the report page in inches
+     * @type {number}
+     * @memberof ReportPage
+     */
+    width?: number;
+}
+
+/**
+ * 
+ * @export
+ * @interface ReportPageVisualization
+ */
+export interface ReportPageVisualization {
+    /**
+     * A JSON representation of the configuration for this visualization
+     * @type {string}
+     * @memberof ReportPageVisualization
+     */
+    config?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ReportPageVisualization
+     */
+    data_source_name?: string;
+    /**
+     * 
+     * @type {Array<ReportPageVisualizationDimension>}
+     * @memberof ReportPageVisualization
+     */
+    dimensions?: Array<ReportPageVisualizationDimension>;
+    /**
+     * 
+     * @type {Array<ReportPageVisualizationMetric>}
+     * @memberof ReportPageVisualization
+     */
+    metrics?: Array<ReportPageVisualizationMetric>;
+    /**
+     * 
+     * @type {string}
+     * @memberof ReportPageVisualization
+     */
+    name?: string;
+    /**
+     * True if the visualization should show a comparison based upon the date range
+     * @type {boolean}
+     * @memberof ReportPageVisualization
+     */
+    show_comparison?: boolean;
+    /**
+     * A JSON representation of the style configuration for this visualization
+     * @type {string}
+     * @memberof ReportPageVisualization
+     */
+    styles?: string;
+    /**
+     * Type of visualization
+     * @type {string}
+     * @memberof ReportPageVisualization
+     */
+    type?: ReportPageVisualization.TypeEnum;
+    /**
+     * A UUID for the visualization
+     * @type {string}
+     * @memberof ReportPageVisualization
+     */
+    visualization_uuid?: string;
+}
+
+/**
+ * @export
+ * @namespace ReportPageVisualization
+ */
+export namespace ReportPageVisualization {
+    /**
+     * @export
+     * @enum {string}
+     */
+    export enum TypeEnum {
+        ScoreCard = <any> 'score card',
+        LineChart = <any> 'line chart',
+        BarChart = <any> 'bar chart',
+        Text = <any> 'text',
+        Table = <any> 'table'
+    }
+}
+
+/**
+ * 
+ * @export
+ * @interface ReportPageVisualizationDimension
+ */
+export interface ReportPageVisualizationDimension {
+    /**
+     * Return the column as a different name
+     * @type {string}
+     * @memberof ReportPageVisualizationDimension
+     */
+    as?: string;
+    /**
+     * Cast the column to a different data type such as DATETIME -> DATE
+     * @type {string}
+     * @memberof ReportPageVisualizationDimension
+     */
+    cast?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ReportPageVisualizationDimension
+     */
+    column?: string;
+    /**
+     * The timezone to shift the date to
+     * @type {string}
+     * @memberof ReportPageVisualizationDimension
+     */
+    datetime_timezone?: string;
+    /**
+     * The type of truncation to perform on the date, DAY, WEEK(MONDAY), etc.
+     * @type {string}
+     * @memberof ReportPageVisualizationDimension
+     */
+    datetime_trunc?: string;
+    /**
+     * Part of a datetime to extract
+     * @type {string}
+     * @memberof ReportPageVisualizationDimension
+     */
+    extract?: string;
+    /**
+     * The function to perform around the column such as DATE_TRUNC(@column, day)
+     * @type {string}
+     * @memberof ReportPageVisualizationDimension
+     */
+    _function?: string;
+}
+
+/**
+ * 
+ * @export
+ * @interface ReportPageVisualizationMetric
+ */
+export interface ReportPageVisualizationMetric {
+    /**
+     * Aggregation to perform
+     * @type {string}
+     * @memberof ReportPageVisualizationMetric
+     */
+    aggregation?: ReportPageVisualizationMetric.AggregationEnum;
+    /**
+     * Return the column as a different name
+     * @type {string}
+     * @memberof ReportPageVisualizationMetric
+     */
+    as?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ReportPageVisualizationMetric
+     */
+    column?: string;
+    /**
+     * Number of places after the decimal point to round the number to.
+     * @type {number}
+     * @memberof ReportPageVisualizationMetric
+     */
+    round?: number;
+}
+
+/**
+ * @export
+ * @namespace ReportPageVisualizationMetric
+ */
+export namespace ReportPageVisualizationMetric {
+    /**
+     * @export
+     * @enum {string}
+     */
+    export enum AggregationEnum {
+        Sum = <any> 'sum',
+        Count = <any> 'count',
+        Min = <any> 'min',
+        Max = <any> 'max',
+        Avg = <any> 'avg'
+    }
+}
+
+/**
+ * 
+ * @export
+ * @interface ReportResponse
+ */
+export interface ReportResponse {
+    /**
+     * 
+     * @type {ModelError}
+     * @memberof ReportResponse
+     */
+    error?: ModelError;
+    /**
+     * 
+     * @type {ResponseMetadata}
+     * @memberof ReportResponse
+     */
+    metadata?: ResponseMetadata;
+    /**
+     * 
+     * @type {Report}
+     * @memberof ReportResponse
+     */
+    report?: Report;
+    /**
+     * Indicates if API call was successful
+     * @type {boolean}
+     * @memberof ReportResponse
+     */
+    success?: boolean;
+    /**
+     * 
+     * @type {Warning}
+     * @memberof ReportResponse
+     */
+    warning?: Warning;
+}
+
+/**
+ * 
+ * @export
+ * @interface ReportsResponse
+ */
+export interface ReportsResponse {
+    /**
+     * 
+     * @type {ModelError}
+     * @memberof ReportsResponse
+     */
+    error?: ModelError;
+    /**
+     * 
+     * @type {ResponseMetadata}
+     * @memberof ReportsResponse
+     */
+    metadata?: ResponseMetadata;
+    /**
+     * 
+     * @type {Array<Report>}
+     * @memberof ReportsResponse
+     */
+    reports?: Array<Report>;
+    /**
+     * Indicates if API call was successful
+     * @type {boolean}
+     * @memberof ReportsResponse
+     */
+    success?: boolean;
+    /**
+     * 
+     * @type {Warning}
+     * @memberof ReportsResponse
+     */
+    warning?: Warning;
+}
+
+/**
+ * 
+ * @export
  * @interface ResponseMetadata
  */
 export interface ResponseMetadata {
@@ -53153,6 +54264,1004 @@ export class CustomerApi extends BaseAPI implements CustomerApiInterface {
      */
     public validateEmailVerificationToken(validation_request: EmailVerifyTokenValidateRequest, options?: any) {
         return CustomerApiFp(this.configuration).validateEmailVerificationToken(validation_request, options)(this.fetch, this.basePath);
+    }
+
+}
+
+/**
+ * DatawarehouseApi - fetch parameter creator
+ * @export
+ */
+export const DatawarehouseApiFetchParamCreator = function (configuration?: Configuration) {
+    return {
+        /**
+         * Delete a report on the UltraCart account. 
+         * @summary Delete a report
+         * @param {number} report_oid The report oid to delete.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        deleteReport(report_oid: number, options: any = {}): FetchArgs {
+            // verify required parameter 'report_oid' is not null or undefined
+            if (report_oid === null || report_oid === undefined) {
+                throw new RequiredError('report_oid','Required parameter report_oid was null or undefined when calling deleteReport.');
+            }
+            const localVarPath = `/datawarehouse/reports/{report_oid}`
+                .replace(`{${"report_oid"}}`, encodeURIComponent(String(report_oid)));
+            const localVarUrlObj = url.parse(localVarPath, true);
+            const localVarRequestOptions = Object.assign({ method: 'DELETE' }, options);
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+    if(configuration && configuration.apiVersion) {
+      localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+    }
+
+
+
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+				const localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+					? configuration.accessToken("ultraCartOauth", [])
+					: configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
+					? configuration.apiKey("x-ultracart-simple-key")
+					: configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Execute the report queries 
+         * @summary Execute the report queries
+         * @param {ReportExecuteQueriesRequest} query_request Query request
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        executeReportQueries(query_request: ReportExecuteQueriesRequest, options: any = {}): FetchArgs {
+            // verify required parameter 'query_request' is not null or undefined
+            if (query_request === null || query_request === undefined) {
+                throw new RequiredError('query_request','Required parameter query_request was null or undefined when calling executeReportQueries.');
+            }
+            const localVarPath = `/datawarehouse/reports/execute`;
+            const localVarUrlObj = url.parse(localVarPath, true);
+            const localVarRequestOptions = Object.assign({ method: 'PUT' }, options);
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+    if(configuration && configuration.apiVersion) {
+      localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+    }
+
+
+
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+				const localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+					? configuration.accessToken("ultraCartOauth", [])
+					: configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
+					? configuration.apiKey("x-ultracart-simple-key")
+					: configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+            const needsSerialization = (<any>"ReportExecuteQueriesRequest" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
+            localVarRequestOptions.body =  needsSerialization ? JSON.stringify(query_request || {}) : (query_request || "");
+
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Retrieve a report 
+         * @summary Get a report
+         * @param {number} report_oid 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getReport(report_oid: number, options: any = {}): FetchArgs {
+            // verify required parameter 'report_oid' is not null or undefined
+            if (report_oid === null || report_oid === undefined) {
+                throw new RequiredError('report_oid','Required parameter report_oid was null or undefined when calling getReport.');
+            }
+            const localVarPath = `/datawarehouse/reports/{report_oid}`
+                .replace(`{${"report_oid"}}`, encodeURIComponent(String(report_oid)));
+            const localVarUrlObj = url.parse(localVarPath, true);
+            const localVarRequestOptions = Object.assign({ method: 'GET' }, options);
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+    if(configuration && configuration.apiVersion) {
+      localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+    }
+
+
+
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+				const localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+					? configuration.accessToken("ultraCartOauth", [])
+					: configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
+					? configuration.apiKey("x-ultracart-simple-key")
+					: configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Retrieve a report data set 
+         * @summary Get a report data set
+         * @param {string} dataset_uuid 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getReportDataSet(dataset_uuid: string, options: any = {}): FetchArgs {
+            // verify required parameter 'dataset_uuid' is not null or undefined
+            if (dataset_uuid === null || dataset_uuid === undefined) {
+                throw new RequiredError('dataset_uuid','Required parameter dataset_uuid was null or undefined when calling getReportDataSet.');
+            }
+            const localVarPath = `/datawarehouse/reports/dataset/{dataset_uuid}`
+                .replace(`{${"dataset_uuid"}}`, encodeURIComponent(String(dataset_uuid)));
+            const localVarUrlObj = url.parse(localVarPath, true);
+            const localVarRequestOptions = Object.assign({ method: 'GET' }, options);
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+    if(configuration && configuration.apiVersion) {
+      localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+    }
+
+
+
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+				const localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+					? configuration.accessToken("ultraCartOauth", [])
+					: configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
+					? configuration.apiKey("x-ultracart-simple-key")
+					: configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Retrieve a report data set page 
+         * @summary Get a report data set page
+         * @param {string} dataset_uuid 
+         * @param {number} page_number 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getReportDataSetPage(dataset_uuid: string, page_number: number, options: any = {}): FetchArgs {
+            // verify required parameter 'dataset_uuid' is not null or undefined
+            if (dataset_uuid === null || dataset_uuid === undefined) {
+                throw new RequiredError('dataset_uuid','Required parameter dataset_uuid was null or undefined when calling getReportDataSetPage.');
+            }
+            // verify required parameter 'page_number' is not null or undefined
+            if (page_number === null || page_number === undefined) {
+                throw new RequiredError('page_number','Required parameter page_number was null or undefined when calling getReportDataSetPage.');
+            }
+            const localVarPath = `/datawarehouse/reports/dataset/{dataset_uuid}/pages/{page_number}`
+                .replace(`{${"dataset_uuid"}}`, encodeURIComponent(String(dataset_uuid)))
+                .replace(`{${"page_number"}}`, encodeURIComponent(String(page_number)));
+            const localVarUrlObj = url.parse(localVarPath, true);
+            const localVarRequestOptions = Object.assign({ method: 'GET' }, options);
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+    if(configuration && configuration.apiVersion) {
+      localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+    }
+
+
+
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+				const localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+					? configuration.accessToken("ultraCartOauth", [])
+					: configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
+					? configuration.apiKey("x-ultracart-simple-key")
+					: configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Retrieve a JWT to authorize a report to make a websocket connection. 
+         * @summary Get report websocket authorization
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getReportWebsocketAuthorization(options: any = {}): FetchArgs {
+            const localVarPath = `/datawarehouse/reports/auth`;
+            const localVarUrlObj = url.parse(localVarPath, true);
+            const localVarRequestOptions = Object.assign({ method: 'PUT' }, options);
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+    if(configuration && configuration.apiVersion) {
+      localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+    }
+
+
+
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+				const localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+					? configuration.accessToken("ultraCartOauth", [])
+					: configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
+					? configuration.apiKey("x-ultracart-simple-key")
+					: configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Retrieve a list of reports available 
+         * @summary Get list of reports available
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getReports(options: any = {}): FetchArgs {
+            const localVarPath = `/datawarehouse/reports`;
+            const localVarUrlObj = url.parse(localVarPath, true);
+            const localVarRequestOptions = Object.assign({ method: 'GET' }, options);
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+    if(configuration && configuration.apiVersion) {
+      localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+    }
+
+
+
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+				const localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+					? configuration.accessToken("ultraCartOauth", [])
+					: configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
+					? configuration.apiKey("x-ultracart-simple-key")
+					: configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Create a new report on the UltraCart account. 
+         * @summary Create a report
+         * @param {Report} report Report to create
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        insertReport(report: Report, options: any = {}): FetchArgs {
+            // verify required parameter 'report' is not null or undefined
+            if (report === null || report === undefined) {
+                throw new RequiredError('report','Required parameter report was null or undefined when calling insertReport.');
+            }
+            const localVarPath = `/datawarehouse/reports`;
+            const localVarUrlObj = url.parse(localVarPath, true);
+            const localVarRequestOptions = Object.assign({ method: 'POST' }, options);
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+    if(configuration && configuration.apiVersion) {
+      localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+    }
+
+
+
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+				const localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+					? configuration.accessToken("ultraCartOauth", [])
+					: configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
+					? configuration.apiKey("x-ultracart-simple-key")
+					: configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+
+            localVarHeaderParameter['Content-Type'] = 'application/json; charset=UTF-8';
+
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+            const needsSerialization = (<any>"Report" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
+            localVarRequestOptions.body =  needsSerialization ? JSON.stringify(report || {}) : (report || "");
+
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Update a report on the UltraCart account. 
+         * @summary Update a report
+         * @param {Report} report Report to update
+         * @param {number} report_oid The report oid to update.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        updateReport(report: Report, report_oid: number, options: any = {}): FetchArgs {
+            // verify required parameter 'report' is not null or undefined
+            if (report === null || report === undefined) {
+                throw new RequiredError('report','Required parameter report was null or undefined when calling updateReport.');
+            }
+            // verify required parameter 'report_oid' is not null or undefined
+            if (report_oid === null || report_oid === undefined) {
+                throw new RequiredError('report_oid','Required parameter report_oid was null or undefined when calling updateReport.');
+            }
+            const localVarPath = `/datawarehouse/reports/{report_oid}`
+                .replace(`{${"report_oid"}}`, encodeURIComponent(String(report_oid)));
+            const localVarUrlObj = url.parse(localVarPath, true);
+            const localVarRequestOptions = Object.assign({ method: 'PUT' }, options);
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+    if(configuration && configuration.apiVersion) {
+      localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+    }
+
+
+
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+				const localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+					? configuration.accessToken("ultraCartOauth", [])
+					: configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
+					? configuration.apiKey("x-ultracart-simple-key")
+					: configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+
+            localVarHeaderParameter['Content-Type'] = 'application/json; charset=UTF-8';
+
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+            const needsSerialization = (<any>"Report" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
+            localVarRequestOptions.body =  needsSerialization ? JSON.stringify(report || {}) : (report || "");
+
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+    }
+};
+
+/**
+ * DatawarehouseApi - functional programming interface
+ * @export
+ */
+export const DatawarehouseApiFp = function(configuration?: Configuration) {
+    return {
+        /**
+         * Delete a report on the UltraCart account. 
+         * @summary Delete a report
+         * @param {number} report_oid The report oid to delete.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        deleteReport(report_oid: number, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Response> {
+            const localVarFetchArgs = DatawarehouseApiFetchParamCreator(configuration).deleteReport(report_oid, options);
+            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
+                    if (response.status >= 200 && response.status < 300) {
+                      return response;
+                      
+                    } else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
+         * Execute the report queries 
+         * @summary Execute the report queries
+         * @param {ReportExecuteQueriesRequest} query_request Query request
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        executeReportQueries(query_request: ReportExecuteQueriesRequest, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Response> {
+            const localVarFetchArgs = DatawarehouseApiFetchParamCreator(configuration).executeReportQueries(query_request, options);
+            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
+                    if (response.status >= 200 && response.status < 300) {
+                      return response;
+                      
+                    } else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
+         * Retrieve a report 
+         * @summary Get a report
+         * @param {number} report_oid 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getReport(report_oid: number, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ReportResponse> {
+            const localVarFetchArgs = DatawarehouseApiFetchParamCreator(configuration).getReport(report_oid, options);
+            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
+                    if (response.status >= 200 && response.status < 300) {
+                      return response.json();
+                      
+                    } else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
+         * Retrieve a report data set 
+         * @summary Get a report data set
+         * @param {string} dataset_uuid 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getReportDataSet(dataset_uuid: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ReportDataSetResponse> {
+            const localVarFetchArgs = DatawarehouseApiFetchParamCreator(configuration).getReportDataSet(dataset_uuid, options);
+            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
+                    if (response.status >= 200 && response.status < 300) {
+                      return response.json();
+                      
+                    } else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
+         * Retrieve a report data set page 
+         * @summary Get a report data set page
+         * @param {string} dataset_uuid 
+         * @param {number} page_number 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getReportDataSetPage(dataset_uuid: string, page_number: number, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ReportDataSetPageResponse> {
+            const localVarFetchArgs = DatawarehouseApiFetchParamCreator(configuration).getReportDataSetPage(dataset_uuid, page_number, options);
+            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
+                    if (response.status >= 200 && response.status < 300) {
+                      return response.json();
+                      
+                    } else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
+         * Retrieve a JWT to authorize a report to make a websocket connection. 
+         * @summary Get report websocket authorization
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getReportWebsocketAuthorization(options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ReportAuthResponse> {
+            const localVarFetchArgs = DatawarehouseApiFetchParamCreator(configuration).getReportWebsocketAuthorization(options);
+            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
+                    if (response.status >= 200 && response.status < 300) {
+                      return response.json();
+                      
+                    } else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
+         * Retrieve a list of reports available 
+         * @summary Get list of reports available
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getReports(options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ReportsResponse> {
+            const localVarFetchArgs = DatawarehouseApiFetchParamCreator(configuration).getReports(options);
+            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
+                    if (response.status >= 200 && response.status < 300) {
+                      return response.json();
+                      
+                    } else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
+         * Create a new report on the UltraCart account. 
+         * @summary Create a report
+         * @param {Report} report Report to create
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        insertReport(report: Report, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ReportResponse> {
+            const localVarFetchArgs = DatawarehouseApiFetchParamCreator(configuration).insertReport(report, options);
+            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
+                    if (response.status >= 200 && response.status < 300) {
+                      return response.json();
+                      
+                    } else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
+         * Update a report on the UltraCart account. 
+         * @summary Update a report
+         * @param {Report} report Report to update
+         * @param {number} report_oid The report oid to update.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        updateReport(report: Report, report_oid: number, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ReportResponse> {
+            const localVarFetchArgs = DatawarehouseApiFetchParamCreator(configuration).updateReport(report, report_oid, options);
+            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
+                    if (response.status >= 200 && response.status < 300) {
+                      return response.json();
+                      
+                    } else {
+                        throw response;
+                    }
+                });
+            };
+        },
+    }
+};
+
+/**
+ * DatawarehouseApi - factory interface
+ * @export
+ */
+export const DatawarehouseApiFactory = function (configuration?: Configuration, fetch?: FetchAPI, basePath?: string) {
+    return {
+        /**
+         * Delete a report on the UltraCart account. 
+         * @summary Delete a report
+         * @param {number} report_oid The report oid to delete.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        deleteReport(report_oid: number, options?: any) {
+            return DatawarehouseApiFp(configuration).deleteReport(report_oid, options)(fetch, basePath);
+        },
+        /**
+         * Execute the report queries 
+         * @summary Execute the report queries
+         * @param {ReportExecuteQueriesRequest} query_request Query request
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        executeReportQueries(query_request: ReportExecuteQueriesRequest, options?: any) {
+            return DatawarehouseApiFp(configuration).executeReportQueries(query_request, options)(fetch, basePath);
+        },
+        /**
+         * Retrieve a report 
+         * @summary Get a report
+         * @param {number} report_oid 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getReport(report_oid: number, options?: any) {
+            return DatawarehouseApiFp(configuration).getReport(report_oid, options)(fetch, basePath);
+        },
+        /**
+         * Retrieve a report data set 
+         * @summary Get a report data set
+         * @param {string} dataset_uuid 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getReportDataSet(dataset_uuid: string, options?: any) {
+            return DatawarehouseApiFp(configuration).getReportDataSet(dataset_uuid, options)(fetch, basePath);
+        },
+        /**
+         * Retrieve a report data set page 
+         * @summary Get a report data set page
+         * @param {string} dataset_uuid 
+         * @param {number} page_number 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getReportDataSetPage(dataset_uuid: string, page_number: number, options?: any) {
+            return DatawarehouseApiFp(configuration).getReportDataSetPage(dataset_uuid, page_number, options)(fetch, basePath);
+        },
+        /**
+         * Retrieve a JWT to authorize a report to make a websocket connection. 
+         * @summary Get report websocket authorization
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getReportWebsocketAuthorization(options?: any) {
+            return DatawarehouseApiFp(configuration).getReportWebsocketAuthorization(options)(fetch, basePath);
+        },
+        /**
+         * Retrieve a list of reports available 
+         * @summary Get list of reports available
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getReports(options?: any) {
+            return DatawarehouseApiFp(configuration).getReports(options)(fetch, basePath);
+        },
+        /**
+         * Create a new report on the UltraCart account. 
+         * @summary Create a report
+         * @param {Report} report Report to create
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        insertReport(report: Report, options?: any) {
+            return DatawarehouseApiFp(configuration).insertReport(report, options)(fetch, basePath);
+        },
+        /**
+         * Update a report on the UltraCart account. 
+         * @summary Update a report
+         * @param {Report} report Report to update
+         * @param {number} report_oid The report oid to update.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        updateReport(report: Report, report_oid: number, options?: any) {
+            return DatawarehouseApiFp(configuration).updateReport(report, report_oid, options)(fetch, basePath);
+        },
+    };
+};
+
+/**
+ * DatawarehouseApi - interface
+ * @export
+ * @interface DatawarehouseApi
+ */
+export interface DatawarehouseApiInterface {
+    /**
+     * Delete a report on the UltraCart account. 
+     * @summary Delete a report
+     * @param {number} report_oid The report oid to delete.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DatawarehouseApiInterface
+     */
+    deleteReport(report_oid: number, options?: any): Promise<{}>;
+
+    /**
+     * Execute the report queries 
+     * @summary Execute the report queries
+     * @param {ReportExecuteQueriesRequest} query_request Query request
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DatawarehouseApiInterface
+     */
+    executeReportQueries(query_request: ReportExecuteQueriesRequest, options?: any): Promise<{}>;
+
+    /**
+     * Retrieve a report 
+     * @summary Get a report
+     * @param {number} report_oid 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DatawarehouseApiInterface
+     */
+    getReport(report_oid: number, options?: any): Promise<ReportResponse>;
+
+    /**
+     * Retrieve a report data set 
+     * @summary Get a report data set
+     * @param {string} dataset_uuid 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DatawarehouseApiInterface
+     */
+    getReportDataSet(dataset_uuid: string, options?: any): Promise<ReportDataSetResponse>;
+
+    /**
+     * Retrieve a report data set page 
+     * @summary Get a report data set page
+     * @param {string} dataset_uuid 
+     * @param {number} page_number 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DatawarehouseApiInterface
+     */
+    getReportDataSetPage(dataset_uuid: string, page_number: number, options?: any): Promise<ReportDataSetPageResponse>;
+
+    /**
+     * Retrieve a JWT to authorize a report to make a websocket connection. 
+     * @summary Get report websocket authorization
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DatawarehouseApiInterface
+     */
+    getReportWebsocketAuthorization(options?: any): Promise<ReportAuthResponse>;
+
+    /**
+     * Retrieve a list of reports available 
+     * @summary Get list of reports available
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DatawarehouseApiInterface
+     */
+    getReports(options?: any): Promise<ReportsResponse>;
+
+    /**
+     * Create a new report on the UltraCart account. 
+     * @summary Create a report
+     * @param {Report} report Report to create
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DatawarehouseApiInterface
+     */
+    insertReport(report: Report, options?: any): Promise<ReportResponse>;
+
+    /**
+     * Update a report on the UltraCart account. 
+     * @summary Update a report
+     * @param {Report} report Report to update
+     * @param {number} report_oid The report oid to update.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DatawarehouseApiInterface
+     */
+    updateReport(report: Report, report_oid: number, options?: any): Promise<ReportResponse>;
+
+}
+
+/**
+ * DatawarehouseApi - object-oriented interface
+ * @export
+ * @class DatawarehouseApi
+ * @extends {BaseAPI}
+ */
+export class DatawarehouseApi extends BaseAPI implements DatawarehouseApiInterface {
+    /**
+     * Delete a report on the UltraCart account. 
+     * @summary Delete a report
+     * @param {number} report_oid The report oid to delete.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DatawarehouseApi
+     */
+    public deleteReport(report_oid: number, options?: any) {
+        return DatawarehouseApiFp(this.configuration).deleteReport(report_oid, options)(this.fetch, this.basePath);
+    }
+
+    /**
+     * Execute the report queries 
+     * @summary Execute the report queries
+     * @param {ReportExecuteQueriesRequest} query_request Query request
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DatawarehouseApi
+     */
+    public executeReportQueries(query_request: ReportExecuteQueriesRequest, options?: any) {
+        return DatawarehouseApiFp(this.configuration).executeReportQueries(query_request, options)(this.fetch, this.basePath);
+    }
+
+    /**
+     * Retrieve a report 
+     * @summary Get a report
+     * @param {number} report_oid 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DatawarehouseApi
+     */
+    public getReport(report_oid: number, options?: any) {
+        return DatawarehouseApiFp(this.configuration).getReport(report_oid, options)(this.fetch, this.basePath);
+    }
+
+    /**
+     * Retrieve a report data set 
+     * @summary Get a report data set
+     * @param {string} dataset_uuid 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DatawarehouseApi
+     */
+    public getReportDataSet(dataset_uuid: string, options?: any) {
+        return DatawarehouseApiFp(this.configuration).getReportDataSet(dataset_uuid, options)(this.fetch, this.basePath);
+    }
+
+    /**
+     * Retrieve a report data set page 
+     * @summary Get a report data set page
+     * @param {string} dataset_uuid 
+     * @param {number} page_number 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DatawarehouseApi
+     */
+    public getReportDataSetPage(dataset_uuid: string, page_number: number, options?: any) {
+        return DatawarehouseApiFp(this.configuration).getReportDataSetPage(dataset_uuid, page_number, options)(this.fetch, this.basePath);
+    }
+
+    /**
+     * Retrieve a JWT to authorize a report to make a websocket connection. 
+     * @summary Get report websocket authorization
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DatawarehouseApi
+     */
+    public getReportWebsocketAuthorization(options?: any) {
+        return DatawarehouseApiFp(this.configuration).getReportWebsocketAuthorization(options)(this.fetch, this.basePath);
+    }
+
+    /**
+     * Retrieve a list of reports available 
+     * @summary Get list of reports available
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DatawarehouseApi
+     */
+    public getReports(options?: any) {
+        return DatawarehouseApiFp(this.configuration).getReports(options)(this.fetch, this.basePath);
+    }
+
+    /**
+     * Create a new report on the UltraCart account. 
+     * @summary Create a report
+     * @param {Report} report Report to create
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DatawarehouseApi
+     */
+    public insertReport(report: Report, options?: any) {
+        return DatawarehouseApiFp(this.configuration).insertReport(report, options)(this.fetch, this.basePath);
+    }
+
+    /**
+     * Update a report on the UltraCart account. 
+     * @summary Update a report
+     * @param {Report} report Report to update
+     * @param {number} report_oid The report oid to update.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DatawarehouseApi
+     */
+    public updateReport(report: Report, report_oid: number, options?: any) {
+        return DatawarehouseApiFp(this.configuration).updateReport(report, report_oid, options)(this.fetch, this.basePath);
     }
 
 }
