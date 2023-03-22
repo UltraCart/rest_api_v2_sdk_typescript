@@ -8,6 +8,7 @@ export * from './CheckoutApi';
 export * from './ConversationApi';
 export * from './CouponApi';
 export * from './CustomerApi';
+export * from './DatawarehouseApi';
 export * from './FulfillmentApi';
 export * from './GiftCertificateApi';
 export * from './IntegrationLogApi';
