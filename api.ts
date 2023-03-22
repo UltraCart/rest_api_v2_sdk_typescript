@@ -31547,6 +31547,12 @@ export interface OrderRefundableResponse {
      */
     item_level_return_reasons?: Array<OrderReason>;
     /**
+     * If true, this refund will have to be manually done because of additional charges with the virtual terminal were made
+     * @type {boolean}
+     * @memberof OrderRefundableResponse
+     */
+    manual_because_multiple_charges?: boolean;
+    /**
      * 
      * @type {ResponseMetadata}
      * @memberof OrderRefundableResponse
