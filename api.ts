@@ -20064,11 +20064,41 @@ export interface Experiment {
      */
     objective_parameter?: string;
     /**
+     * The current iteration of the OpenAI related experiment
+     * @type {number}
+     * @memberof Experiment
+     */
+    openai_current_iteration?: number;
+    /**
+     * The type of OpenAI element being experimented on
+     * @type {string}
+     * @memberof Experiment
+     */
+    openai_element_type?: Experiment.OpenaiElementTypeEnum;
+    /**
+     * The type of OpenAI model used
+     * @type {string}
+     * @memberof Experiment
+     */
+    openai_model?: string;
+    /**
+     * The total number of iterations to perform on the experiment
+     * @type {number}
+     * @memberof Experiment
+     */
+    openai_total_iterations?: number;
+    /**
      * Type of optimization
      * @type {string}
      * @memberof Experiment
      */
     optimization_type?: string;
+    /**
+     * Statistics p-value for the experiment
+     * @type {number}
+     * @memberof Experiment
+     */
+    p_value?: number;
     /**
      * Total number of sessions in the experiment
      * @type {number}
@@ -20118,6 +20148,15 @@ export interface Experiment {
  * @namespace Experiment
  */
 export namespace Experiment {
+    /**
+     * @export
+     * @enum {string}
+     */
+    export enum OpenaiElementTypeEnum {
+        Headline = <any> 'headline',
+        Text = <any> 'text',
+        Textblock = <any> 'textblock'
+    }
     /**
      * @export
      * @enum {string}
@@ -33878,72 +33917,6 @@ export namespace ReportDataSetSchema {
 /**
  * 
  * @export
- * @interface ReportDataSetSummary
- */
-export interface ReportDataSetSummary {
-    /**
-     * A unique identifier assigned to the data set that is returned.
-     * @type {string}
-     * @memberof ReportDataSetSummary
-     */
-    data_set_uuid?: string;
-    /**
-     * Error message if the query failed.
-     * @type {string}
-     * @memberof ReportDataSetSummary
-     */
-    error_message?: string;
-    /**
-     * An identifier that can be used to help match up the returned data set
-     * @type {string}
-     * @memberof ReportDataSetSummary
-     */
-    for_object_id?: string;
-    /**
-     * The type of object this data set is for
-     * @type {string}
-     * @memberof ReportDataSetSummary
-     */
-    for_object_type?: ReportDataSetSummary.ForObjectTypeEnum;
-    /**
-     * The total number of results
-     * @type {number}
-     * @memberof ReportDataSetSummary
-     */
-    max_results?: number;
-    /**
-     * The schema associated with the data set.
-     * @type {Array<ReportDataSetSchema>}
-     * @memberof ReportDataSetSummary
-     */
-    schema?: Array<ReportDataSetSchema>;
-    /**
-     * Any other data that needs to be returned with the response to help the UI
-     * @type {string}
-     * @memberof ReportDataSetSummary
-     */
-    user_data?: string;
-}
-
-/**
- * @export
- * @namespace ReportDataSetSummary
- */
-export namespace ReportDataSetSummary {
-    /**
-     * @export
-     * @enum {string}
-     */
-    export enum ForObjectTypeEnum {
-        Schema = <any> 'schema',
-        Filter = <any> 'filter',
-        Visualization = <any> 'visualization'
-    }
-}
-
-/**
- * 
- * @export
  * @interface ReportDataSource
  */
 export interface ReportDataSource {
@@ -34447,10 +34420,10 @@ export interface ReportWebsocketEvent {
     event_type?: ReportWebsocketEvent.EventTypeEnum;
     /**
      * 
-     * @type {ReportDataSetSummary}
+     * @type {ReportDataSet}
      * @memberof ReportWebsocketEvent
      */
-    query_completion?: ReportDataSetSummary;
+    query_completion?: ReportDataSet;
 }
 
 /**
