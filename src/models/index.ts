@@ -634,7 +634,6 @@ export * from './ReportDataSetQuery';
 export * from './ReportDataSetResponse';
 export * from './ReportDataSetRow';
 export * from './ReportDataSetSchema';
-export * from './ReportDataSetSummary';
 export * from './ReportDataSource';
 export * from './ReportDataSourceSchema';
 export * from './ReportExecuteQueriesRequest';

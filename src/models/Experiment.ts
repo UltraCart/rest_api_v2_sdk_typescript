@@ -87,11 +87,41 @@ export interface Experiment {
      */
     objective_parameter?: string;
     /**
+     * The current iteration of the OpenAI related experiment
+     * @type {number}
+     * @memberof Experiment
+     */
+    openai_current_iteration?: number;
+    /**
+     * The type of OpenAI element being experimented on
+     * @type {string}
+     * @memberof Experiment
+     */
+    openai_element_type?: ExperimentOpenaiElementTypeEnum;
+    /**
+     * The type of OpenAI model used
+     * @type {string}
+     * @memberof Experiment
+     */
+    openai_model?: string;
+    /**
+     * The total number of iterations to perform on the experiment
+     * @type {number}
+     * @memberof Experiment
+     */
+    openai_total_iterations?: number;
+    /**
      * Type of optimization
      * @type {string}
      * @memberof Experiment
      */
     optimization_type?: string;
+    /**
+     * Statistics p-value for the experiment
+     * @type {number}
+     * @memberof Experiment
+     */
+    p_value?: number;
     /**
      * Total number of sessions in the experiment
      * @type {number}
@@ -140,6 +170,16 @@ export interface Experiment {
 /**
  * @export
  */
+export const ExperimentOpenaiElementTypeEnum = {
+    Headline: 'headline',
+    Text: 'text',
+    Textblock: 'textblock'
+} as const;
+export type ExperimentOpenaiElementTypeEnum = typeof ExperimentOpenaiElementTypeEnum[keyof typeof ExperimentOpenaiElementTypeEnum];
+
+/**
+ * @export
+ */
 export const ExperimentStatusEnum = {
     Running: 'Running',
     Ended: 'Ended',
@@ -168,7 +208,12 @@ export function ExperimentFromJSONTyped(json: any, ignoreDiscriminator: boolean)
         'notes': !exists(json, 'notes') ? undefined : json['notes'],
         'objective': !exists(json, 'objective') ? undefined : json['objective'],
         'objective_parameter': !exists(json, 'objective_parameter') ? undefined : json['objective_parameter'],
+        'openai_current_iteration': !exists(json, 'openai_current_iteration') ? undefined : json['openai_current_iteration'],
+        'openai_element_type': !exists(json, 'openai_element_type') ? undefined : json['openai_element_type'],
+        'openai_model': !exists(json, 'openai_model') ? undefined : json['openai_model'],
+        'openai_total_iterations': !exists(json, 'openai_total_iterations') ? undefined : json['openai_total_iterations'],
         'optimization_type': !exists(json, 'optimization_type') ? undefined : json['optimization_type'],
+        'p_value': !exists(json, 'p_value') ? undefined : json['p_value'],
         'session_count': !exists(json, 'session_count') ? undefined : json['session_count'],
         'start_dts': !exists(json, 'start_dts') ? undefined : json['start_dts'],
         'status': !exists(json, 'status') ? undefined : json['status'],
@@ -198,7 +243,12 @@ export function ExperimentToJSON(value?: Experiment | null): any {
         'notes': value.notes,
         'objective': value.objective,
         'objective_parameter': value.objective_parameter,
+        'openai_current_iteration': value.openai_current_iteration,
+        'openai_element_type': value.openai_element_type,
+        'openai_model': value.openai_model,
+        'openai_total_iterations': value.openai_total_iterations,
         'optimization_type': value.optimization_type,
+        'p_value': value.p_value,
         'session_count': value.session_count,
         'start_dts': value.start_dts,
         'status': value.status,

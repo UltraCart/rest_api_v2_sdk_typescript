@@ -14,11 +14,11 @@
 
 import { exists, mapValues } from '../runtime';
 import {
-    ReportDataSetSummary,
-    ReportDataSetSummaryFromJSON,
-    ReportDataSetSummaryFromJSONTyped,
-    ReportDataSetSummaryToJSON,
-} from './ReportDataSetSummary';
+    ReportDataSet,
+    ReportDataSetFromJSON,
+    ReportDataSetFromJSONTyped,
+    ReportDataSetToJSON,
+} from './ReportDataSet';
 
 /**
  * 
@@ -34,10 +34,10 @@ export interface ReportWebsocketEvent {
     event_type?: ReportWebsocketEventEventTypeEnum;
     /**
      * 
-     * @type {ReportDataSetSummary}
+     * @type {ReportDataSet}
      * @memberof ReportWebsocketEvent
      */
-    query_completion?: ReportDataSetSummary;
+    query_completion?: ReportDataSet;
 }
 
 
@@ -62,7 +62,7 @@ export function ReportWebsocketEventFromJSONTyped(json: any, ignoreDiscriminator
     return {
         
         'event_type': !exists(json, 'event_type') ? undefined : json['event_type'],
-        'query_completion': !exists(json, 'query_completion') ? undefined : ReportDataSetSummaryFromJSON(json['query_completion']),
+        'query_completion': !exists(json, 'query_completion') ? undefined : ReportDataSetFromJSON(json['query_completion']),
     };
 }
 
@@ -76,7 +76,7 @@ export function ReportWebsocketEventToJSON(value?: ReportWebsocketEvent | null):
     return {
         
         'event_type': value.event_type,
-        'query_completion': ReportDataSetSummaryToJSON(value.query_completion),
+        'query_completion': ReportDataSetToJSON(value.query_completion),
     };
 }
 
