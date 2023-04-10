@@ -19,6 +19,12 @@ import {
     AccountsReceivableRetryDayActivityFromJSONTyped,
     AccountsReceivableRetryDayActivityToJSON,
 } from './AccountsReceivableRetryDayActivity';
+import {
+    AccountsReceivableRetryTransactionReject,
+    AccountsReceivableRetryTransactionRejectFromJSON,
+    AccountsReceivableRetryTransactionRejectFromJSONTyped,
+    AccountsReceivableRetryTransactionRejectToJSON,
+} from './AccountsReceivableRetryTransactionReject';
 
 /**
  * 
@@ -105,6 +111,12 @@ export interface AccountsReceivableRetryConfig {
      */
     reject_at_end?: boolean;
     /**
+     * Array of key/value pairs that when found in the response cause the rejection of the transaction.
+     * @type {Array<AccountsReceivableRetryTransactionReject>}
+     * @memberof AccountsReceivableRetryConfig
+     */
+    transaction_rejects?: Array<AccountsReceivableRetryTransactionReject>;
+    /**
      * True if the account is currently in trial mode.  Set to false to exit trial mode.
      * @type {boolean}
      * @memberof AccountsReceivableRetryConfig
@@ -141,6 +153,7 @@ export function AccountsReceivableRetryConfigFromJSONTyped(json: any, ignoreDisc
         'process_linked_accounts': !exists(json, 'process_linked_accounts') ? undefined : json['process_linked_accounts'],
         'processing_percentage': !exists(json, 'processing_percentage') ? undefined : json['processing_percentage'],
         'reject_at_end': !exists(json, 'reject_at_end') ? undefined : json['reject_at_end'],
+        'transaction_rejects': !exists(json, 'transaction_rejects') ? undefined : ((json['transaction_rejects'] as Array<any>).map(AccountsReceivableRetryTransactionRejectFromJSON)),
         'trial_mode': !exists(json, 'trial_mode') ? undefined : json['trial_mode'],
         'trial_mode_expiration_dts': !exists(json, 'trial_mode_expiration_dts') ? undefined : json['trial_mode_expiration_dts'],
     };
@@ -168,6 +181,7 @@ export function AccountsReceivableRetryConfigToJSON(value?: AccountsReceivableRe
         'process_linked_accounts': value.process_linked_accounts,
         'processing_percentage': value.processing_percentage,
         'reject_at_end': value.reject_at_end,
+        'transaction_rejects': value.transaction_rejects === undefined ? undefined : ((value.transaction_rejects as Array<any>).map(AccountsReceivableRetryTransactionRejectToJSON)),
         'trial_mode': value.trial_mode,
         'trial_mode_expiration_dts': value.trial_mode_expiration_dts,
     };

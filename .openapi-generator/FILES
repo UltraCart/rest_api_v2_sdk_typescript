@@ -31,6 +31,7 @@ src/models/AccountsReceivableRetryStatAccount.ts
 src/models/AccountsReceivableRetryStatMetrics.ts
 src/models/AccountsReceivableRetryStatRevenue.ts
 src/models/AccountsReceivableRetryStatsResponse.ts
+src/models/AccountsReceivableRetryTransactionReject.ts
 src/models/Activity.ts
 src/models/AddLibraryItemRequest.ts
 src/models/AdjustInternalCertificateRequest.ts
@@ -660,6 +661,9 @@ src/models/ReportDataSetRow.ts
 src/models/ReportDataSetSchema.ts
 src/models/ReportDataSource.ts
 src/models/ReportDataSourceSchema.ts
+src/models/ReportDryRunQueriesRequest.ts
+src/models/ReportDryRunQueriesResponse.ts
+src/models/ReportDryRunQueryResult.ts
 src/models/ReportExecuteQueriesRequest.ts
 src/models/ReportFilter.ts
 src/models/ReportFilterConnection.ts

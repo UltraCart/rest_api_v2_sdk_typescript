@@ -30,6 +30,12 @@ import {
     ReportDataSetResponse,
     ReportDataSetResponseFromJSON,
     ReportDataSetResponseToJSON,
+    ReportDryRunQueriesRequest,
+    ReportDryRunQueriesRequestFromJSON,
+    ReportDryRunQueriesRequestToJSON,
+    ReportDryRunQueriesResponse,
+    ReportDryRunQueriesResponseFromJSON,
+    ReportDryRunQueriesResponseToJSON,
     ReportExecuteQueriesRequest,
     ReportExecuteQueriesRequestFromJSON,
     ReportExecuteQueriesRequestToJSON,
@@ -43,6 +49,10 @@ import {
 
 export interface DeleteReportRequest {
     reportOid: number;
+}
+
+export interface DryRunReportQueriesRequest {
+    queryRequest: ReportDryRunQueriesRequest;
 }
 
 export interface ExecuteReportQueriesRequest {
@@ -93,6 +103,22 @@ export interface DatawarehouseApiInterface {
      * Delete a report
      */
     deleteReport(requestParameters: DeleteReportRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+
+    /**
+     * Dry run the report queries 
+     * @summary Dry run the report queries
+     * @param {ReportDryRunQueriesRequest} queryRequest Dry run request
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DatawarehouseApiInterface
+     */
+    dryRunReportQueriesRaw(requestParameters: DryRunReportQueriesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ReportDryRunQueriesResponse>>;
+
+    /**
+     * Dry run the report queries 
+     * Dry run the report queries
+     */
+    dryRunReportQueries(requestParameters: DryRunReportQueriesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ReportDryRunQueriesResponse>;
 
     /**
      * Execute the report queries 
@@ -267,6 +293,50 @@ export class DatawarehouseApi extends runtime.BaseAPI implements DatawarehouseAp
      */
     async deleteReport(requestParameters: DeleteReportRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.deleteReportRaw(requestParameters, initOverrides);
+    }
+
+    /**
+     * Dry run the report queries 
+     * Dry run the report queries
+     */
+    async dryRunReportQueriesRaw(requestParameters: DryRunReportQueriesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ReportDryRunQueriesResponse>> {
+        if (requestParameters.queryRequest === null || requestParameters.queryRequest === undefined) {
+            throw new runtime.RequiredError('queryRequest','Required parameter requestParameters.queryRequest was null or undefined when calling dryRunReportQueries.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", []);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/datawarehouse/reports/dryrun`,
+            method: 'PUT',
+            headers: headerParameters,
+            query: queryParameters,
+            body: ReportDryRunQueriesRequestToJSON(requestParameters.queryRequest),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => ReportDryRunQueriesResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Dry run the report queries 
+     * Dry run the report queries
+     */
+    async dryRunReportQueries(requestParameters: DryRunReportQueriesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ReportDryRunQueriesResponse> {
+        const response = await this.dryRunReportQueriesRaw(requestParameters, initOverrides);
+        return await response.value();
     }
 
     /**
