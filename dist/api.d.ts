@@ -145,6 +145,12 @@ export interface AccountsReceivableRetryConfig {
      */
     reject_at_end?: boolean;
     /**
+     * Array of key/value pairs that when found in the response cause the rejection of the transaction.
+     * @type {Array<AccountsReceivableRetryTransactionReject>}
+     * @memberof AccountsReceivableRetryConfig
+     */
+    transaction_rejects?: Array<AccountsReceivableRetryTransactionReject>;
+    /**
      * True if the account is currently in trial mode.  Set to false to exit trial mode.
      * @type {boolean}
      * @memberof AccountsReceivableRetryConfig
@@ -402,6 +408,25 @@ export interface AccountsReceivableRetryStatsResponse {
      * @memberof AccountsReceivableRetryStatsResponse
      */
     warning?: Warning;
+}
+/**
+ *
+ * @export
+ * @interface AccountsReceivableRetryTransactionReject
+ */
+export interface AccountsReceivableRetryTransactionReject {
+    /**
+     * Transaction response name
+     * @type {string}
+     * @memberof AccountsReceivableRetryTransactionReject
+     */
+    name?: string;
+    /**
+     * Transaction response value
+     * @type {string}
+     * @memberof AccountsReceivableRetryTransactionReject
+     */
+    value?: string;
 }
 /**
  *
@@ -33298,6 +33323,81 @@ export declare namespace ReportDataSourceSchema {
 /**
  *
  * @export
+ * @interface ReportDryRunQueriesRequest
+ */
+export interface ReportDryRunQueriesRequest {
+    /**
+     *
+     * @type {string}
+     * @memberof ReportDryRunQueriesRequest
+     */
+    connection_id?: string;
+    /**
+     *
+     * @type {string}
+     * @memberof ReportDryRunQueriesRequest
+     */
+    default_dataset_id?: string;
+    /**
+     *
+     * @type {string}
+     * @memberof ReportDryRunQueriesRequest
+     */
+    default_project_id?: string;
+    /**
+     *
+     * @type {string}
+     * @memberof ReportDryRunQueriesRequest
+     */
+    merchant_id?: string;
+    /**
+     *
+     * @type {Array<ReportDataSetQuery>}
+     * @memberof ReportDryRunQueriesRequest
+     */
+    queries?: Array<ReportDataSetQuery>;
+    /**
+     *
+     * @type {string}
+     * @memberof ReportDryRunQueriesRequest
+     */
+    security_level?: string;
+}
+/**
+ *
+ * @export
+ * @interface ReportDryRunQueriesResponse
+ */
+export interface ReportDryRunQueriesResponse {
+    /**
+     *
+     * @type {Array<ReportDryRunQueryResult>}
+     * @memberof ReportDryRunQueriesResponse
+     */
+    dry_run_query_results?: Array<ReportDryRunQueryResult>;
+}
+/**
+ *
+ * @export
+ * @interface ReportDryRunQueryResult
+ */
+export interface ReportDryRunQueryResult {
+    /**
+     *
+     * @type {string}
+     * @memberof ReportDryRunQueryResult
+     */
+    error_message?: string;
+    /**
+     *
+     * @type {number}
+     * @memberof ReportDryRunQueryResult
+     */
+    total_bytes_processed?: number;
+}
+/**
+ *
+ * @export
  * @interface ReportExecuteQueriesRequest
  */
 export interface ReportExecuteQueriesRequest {
@@ -45083,6 +45183,14 @@ export declare const DatawarehouseApiFetchParamCreator: (configuration?: Configu
      */
     deleteReport(report_oid: number, options?: any): FetchArgs;
     /**
+     * Dry run the report queries
+     * @summary Dry run the report queries
+     * @param {ReportDryRunQueriesRequest} query_request Dry run request
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    dryRunReportQueries(query_request: ReportDryRunQueriesRequest, options?: any): FetchArgs;
+    /**
      * Execute the report queries
      * @summary Execute the report queries
      * @param {ReportExecuteQueriesRequest} query_request Query request
@@ -45161,6 +45269,14 @@ export declare const DatawarehouseApiFp: (configuration?: Configuration) => {
      */
     deleteReport(report_oid: number, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Response>;
     /**
+     * Dry run the report queries
+     * @summary Dry run the report queries
+     * @param {ReportDryRunQueriesRequest} query_request Dry run request
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    dryRunReportQueries(query_request: ReportDryRunQueriesRequest, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ReportDryRunQueriesResponse>;
+    /**
      * Execute the report queries
      * @summary Execute the report queries
      * @param {ReportExecuteQueriesRequest} query_request Query request
@@ -45238,6 +45354,14 @@ export declare const DatawarehouseApiFactory: (configuration?: Configuration, fe
      * @throws {RequiredError}
      */
     deleteReport(report_oid: number, options?: any): Promise<Response>;
+    /**
+     * Dry run the report queries
+     * @summary Dry run the report queries
+     * @param {ReportDryRunQueriesRequest} query_request Dry run request
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    dryRunReportQueries(query_request: ReportDryRunQueriesRequest, options?: any): Promise<ReportDryRunQueriesResponse>;
     /**
      * Execute the report queries
      * @summary Execute the report queries
@@ -45318,6 +45442,15 @@ export interface DatawarehouseApiInterface {
      * @memberof DatawarehouseApiInterface
      */
     deleteReport(report_oid: number, options?: any): Promise<{}>;
+    /**
+     * Dry run the report queries
+     * @summary Dry run the report queries
+     * @param {ReportDryRunQueriesRequest} query_request Dry run request
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DatawarehouseApiInterface
+     */
+    dryRunReportQueries(query_request: ReportDryRunQueriesRequest, options?: any): Promise<ReportDryRunQueriesResponse>;
     /**
      * Execute the report queries
      * @summary Execute the report queries
@@ -45407,6 +45540,15 @@ export declare class DatawarehouseApi extends BaseAPI implements DatawarehouseAp
      * @memberof DatawarehouseApi
      */
     deleteReport(report_oid: number, options?: any): Promise<Response>;
+    /**
+     * Dry run the report queries
+     * @summary Dry run the report queries
+     * @param {ReportDryRunQueriesRequest} query_request Dry run request
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DatawarehouseApi
+     */
+    dryRunReportQueries(query_request: ReportDryRunQueriesRequest, options?: any): Promise<ReportDryRunQueriesResponse>;
     /**
      * Execute the report queries
      * @summary Execute the report queries

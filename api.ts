@@ -163,6 +163,12 @@ export interface AccountsReceivableRetryConfig {
      */
     reject_at_end?: boolean;
     /**
+     * Array of key/value pairs that when found in the response cause the rejection of the transaction.
+     * @type {Array<AccountsReceivableRetryTransactionReject>}
+     * @memberof AccountsReceivableRetryConfig
+     */
+    transaction_rejects?: Array<AccountsReceivableRetryTransactionReject>;
+    /**
      * True if the account is currently in trial mode.  Set to false to exit trial mode.
      * @type {boolean}
      * @memberof AccountsReceivableRetryConfig
@@ -426,6 +432,26 @@ export interface AccountsReceivableRetryStatsResponse {
      * @memberof AccountsReceivableRetryStatsResponse
      */
     warning?: Warning;
+}
+
+/**
+ * 
+ * @export
+ * @interface AccountsReceivableRetryTransactionReject
+ */
+export interface AccountsReceivableRetryTransactionReject {
+    /**
+     * Transaction response name
+     * @type {string}
+     * @memberof AccountsReceivableRetryTransactionReject
+     */
+    name?: string;
+    /**
+     * Transaction response value
+     * @type {string}
+     * @memberof AccountsReceivableRetryTransactionReject
+     */
+    value?: string;
 }
 
 /**
@@ -34011,6 +34037,84 @@ export namespace ReportDataSourceSchema {
 /**
  * 
  * @export
+ * @interface ReportDryRunQueriesRequest
+ */
+export interface ReportDryRunQueriesRequest {
+    /**
+     * 
+     * @type {string}
+     * @memberof ReportDryRunQueriesRequest
+     */
+    connection_id?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ReportDryRunQueriesRequest
+     */
+    default_dataset_id?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ReportDryRunQueriesRequest
+     */
+    default_project_id?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ReportDryRunQueriesRequest
+     */
+    merchant_id?: string;
+    /**
+     * 
+     * @type {Array<ReportDataSetQuery>}
+     * @memberof ReportDryRunQueriesRequest
+     */
+    queries?: Array<ReportDataSetQuery>;
+    /**
+     * 
+     * @type {string}
+     * @memberof ReportDryRunQueriesRequest
+     */
+    security_level?: string;
+}
+
+/**
+ * 
+ * @export
+ * @interface ReportDryRunQueriesResponse
+ */
+export interface ReportDryRunQueriesResponse {
+    /**
+     * 
+     * @type {Array<ReportDryRunQueryResult>}
+     * @memberof ReportDryRunQueriesResponse
+     */
+    dry_run_query_results?: Array<ReportDryRunQueryResult>;
+}
+
+/**
+ * 
+ * @export
+ * @interface ReportDryRunQueryResult
+ */
+export interface ReportDryRunQueryResult {
+    /**
+     * 
+     * @type {string}
+     * @memberof ReportDryRunQueryResult
+     */
+    error_message?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof ReportDryRunQueryResult
+     */
+    total_bytes_processed?: number;
+}
+
+/**
+ * 
+ * @export
  * @interface ReportExecuteQueriesRequest
  */
 export interface ReportExecuteQueriesRequest {
@@ -54401,6 +54505,61 @@ export const DatawarehouseApiFetchParamCreator = function (configuration?: Confi
             };
         },
         /**
+         * Dry run the report queries 
+         * @summary Dry run the report queries
+         * @param {ReportDryRunQueriesRequest} query_request Dry run request
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        dryRunReportQueries(query_request: ReportDryRunQueriesRequest, options: any = {}): FetchArgs {
+            // verify required parameter 'query_request' is not null or undefined
+            if (query_request === null || query_request === undefined) {
+                throw new RequiredError('query_request','Required parameter query_request was null or undefined when calling dryRunReportQueries.');
+            }
+            const localVarPath = `/datawarehouse/reports/dryrun`;
+            const localVarUrlObj = url.parse(localVarPath, true);
+            const localVarRequestOptions = Object.assign({ method: 'PUT' }, options);
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+    if(configuration && configuration.apiVersion) {
+      localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+    }
+
+
+
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+				const localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+					? configuration.accessToken("ultraCartOauth", [])
+					: configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
+					? configuration.apiKey("x-ultracart-simple-key")
+					: configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+            const needsSerialization = (<any>"ReportDryRunQueriesRequest" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
+            localVarRequestOptions.body =  needsSerialization ? JSON.stringify(query_request || {}) : (query_request || "");
+
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
          * Execute the report queries 
          * @summary Execute the report queries
          * @param {ReportExecuteQueriesRequest} query_request Query request
@@ -54856,6 +55015,27 @@ export const DatawarehouseApiFp = function(configuration?: Configuration) {
             };
         },
         /**
+         * Dry run the report queries 
+         * @summary Dry run the report queries
+         * @param {ReportDryRunQueriesRequest} query_request Dry run request
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        dryRunReportQueries(query_request: ReportDryRunQueriesRequest, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ReportDryRunQueriesResponse> {
+            const localVarFetchArgs = DatawarehouseApiFetchParamCreator(configuration).dryRunReportQueries(query_request, options);
+            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
+                    if (response.status >= 200 && response.status < 300) {
+                      return response.json();
+                      
+                    } else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
          * Execute the report queries 
          * @summary Execute the report queries
          * @param {ReportExecuteQueriesRequest} query_request Query request
@@ -55043,6 +55223,16 @@ export const DatawarehouseApiFactory = function (configuration?: Configuration, 
             return DatawarehouseApiFp(configuration).deleteReport(report_oid, options)(fetch, basePath);
         },
         /**
+         * Dry run the report queries 
+         * @summary Dry run the report queries
+         * @param {ReportDryRunQueriesRequest} query_request Dry run request
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        dryRunReportQueries(query_request: ReportDryRunQueriesRequest, options?: any) {
+            return DatawarehouseApiFp(configuration).dryRunReportQueries(query_request, options)(fetch, basePath);
+        },
+        /**
          * Execute the report queries 
          * @summary Execute the report queries
          * @param {ReportExecuteQueriesRequest} query_request Query request
@@ -55140,6 +55330,16 @@ export interface DatawarehouseApiInterface {
      * @memberof DatawarehouseApiInterface
      */
     deleteReport(report_oid: number, options?: any): Promise<{}>;
+
+    /**
+     * Dry run the report queries 
+     * @summary Dry run the report queries
+     * @param {ReportDryRunQueriesRequest} query_request Dry run request
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DatawarehouseApiInterface
+     */
+    dryRunReportQueries(query_request: ReportDryRunQueriesRequest, options?: any): Promise<ReportDryRunQueriesResponse>;
 
     /**
      * Execute the report queries 
@@ -55240,6 +55440,18 @@ export class DatawarehouseApi extends BaseAPI implements DatawarehouseApiInterfa
      */
     public deleteReport(report_oid: number, options?: any) {
         return DatawarehouseApiFp(this.configuration).deleteReport(report_oid, options)(this.fetch, this.basePath);
+    }
+
+    /**
+     * Dry run the report queries 
+     * @summary Dry run the report queries
+     * @param {ReportDryRunQueriesRequest} query_request Dry run request
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DatawarehouseApi
+     */
+    public dryRunReportQueries(query_request: ReportDryRunQueriesRequest, options?: any) {
+        return DatawarehouseApiFp(this.configuration).dryRunReportQueries(query_request, options)(this.fetch, this.basePath);
     }
 
     /**
