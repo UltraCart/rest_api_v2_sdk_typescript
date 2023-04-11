@@ -117,6 +117,12 @@ export interface Experiment {
      */
     optimization_type?: string;
     /**
+     * Estimated sessions needed to achieve P95
+     * @type {number}
+     * @memberof Experiment
+     */
+    p95_sessions_needed?: number;
+    /**
      * Statistics p-value for the experiment
      * @type {number}
      * @memberof Experiment
@@ -213,6 +219,7 @@ export function ExperimentFromJSONTyped(json: any, ignoreDiscriminator: boolean)
         'openai_model': !exists(json, 'openai_model') ? undefined : json['openai_model'],
         'openai_total_iterations': !exists(json, 'openai_total_iterations') ? undefined : json['openai_total_iterations'],
         'optimization_type': !exists(json, 'optimization_type') ? undefined : json['optimization_type'],
+        'p95_sessions_needed': !exists(json, 'p95_sessions_needed') ? undefined : json['p95_sessions_needed'],
         'p_value': !exists(json, 'p_value') ? undefined : json['p_value'],
         'session_count': !exists(json, 'session_count') ? undefined : json['session_count'],
         'start_dts': !exists(json, 'start_dts') ? undefined : json['start_dts'],
@@ -248,6 +255,7 @@ export function ExperimentToJSON(value?: Experiment | null): any {
         'openai_model': value.openai_model,
         'openai_total_iterations': value.openai_total_iterations,
         'optimization_type': value.optimization_type,
+        'p95_sessions_needed': value.p95_sessions_needed,
         'p_value': value.p_value,
         'session_count': value.session_count,
         'start_dts': value.start_dts,
