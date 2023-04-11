@@ -19669,6 +19669,12 @@ export interface Experiment {
      */
     optimization_type?: string;
     /**
+     * Estimated sessions needed to achieve P95
+     * @type {number}
+     * @memberof Experiment
+     */
+    p95_sessions_needed?: number;
+    /**
      * Statistics p-value for the experiment
      * @type {number}
      * @memberof Experiment
@@ -30144,7 +30150,8 @@ export declare namespace OrderPayment {
         Unknown,
         WireTransfer,
         Walmart,
-        ShopCom
+        ShopCom,
+        Sezzle
     }
     /**
      * @export

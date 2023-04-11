@@ -1142,6 +1142,7 @@ var OrderPayment;
         PaymentMethodEnum[PaymentMethodEnum["WireTransfer"] = 'Wire Transfer'] = "WireTransfer";
         PaymentMethodEnum[PaymentMethodEnum["Walmart"] = 'Walmart'] = "Walmart";
         PaymentMethodEnum[PaymentMethodEnum["ShopCom"] = 'Shop.com'] = "ShopCom";
+        PaymentMethodEnum[PaymentMethodEnum["Sezzle"] = 'Sezzle'] = "Sezzle";
     })(PaymentMethodEnum = OrderPayment.PaymentMethodEnum || (OrderPayment.PaymentMethodEnum = {}));
     /**
      * @export
