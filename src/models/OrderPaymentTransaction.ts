@@ -45,6 +45,12 @@ export interface OrderPaymentTransaction {
      */
     transaction_gateway?: string;
     /**
+     * Transaction ID
+     * @type {number}
+     * @memberof OrderPaymentTransaction
+     */
+    transaction_id?: number;
+    /**
      * Transaction date/time
      * @type {string}
      * @memberof OrderPaymentTransaction
@@ -65,6 +71,7 @@ export function OrderPaymentTransactionFromJSONTyped(json: any, ignoreDiscrimina
         'details': !exists(json, 'details') ? undefined : ((json['details'] as Array<any>).map(OrderPaymentTransactionDetailFromJSON)),
         'successful': !exists(json, 'successful') ? undefined : json['successful'],
         'transaction_gateway': !exists(json, 'transaction_gateway') ? undefined : json['transaction_gateway'],
+        'transaction_id': !exists(json, 'transaction_id') ? undefined : json['transaction_id'],
         'transaction_timestamp': !exists(json, 'transaction_timestamp') ? undefined : json['transaction_timestamp'],
     };
 }
@@ -81,6 +88,7 @@ export function OrderPaymentTransactionToJSON(value?: OrderPaymentTransaction | 
         'details': value.details === undefined ? undefined : ((value.details as Array<any>).map(OrderPaymentTransactionDetailToJSON)),
         'successful': value.successful,
         'transaction_gateway': value.transaction_gateway,
+        'transaction_id': value.transaction_id,
         'transaction_timestamp': value.transaction_timestamp,
     };
 }
