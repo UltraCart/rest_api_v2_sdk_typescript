@@ -30430,6 +30430,12 @@ export interface OrderPaymentTransaction {
      */
     transaction_gateway?: string;
     /**
+     * Transaction ID
+     * @type {number}
+     * @memberof OrderPaymentTransaction
+     */
+    transaction_id?: number;
+    /**
      * Transaction date/time
      * @type {string}
      * @memberof OrderPaymentTransaction
