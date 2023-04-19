@@ -14,6 +14,12 @@
 
 import { exists, mapValues } from '../runtime';
 import {
+    ReportFilter,
+    ReportFilterFromJSON,
+    ReportFilterFromJSONTyped,
+    ReportFilterToJSON,
+} from './ReportFilter';
+import {
     ReportPageVisualization,
     ReportPageVisualizationFromJSON,
     ReportPageVisualizationFromJSONTyped,
@@ -26,6 +32,12 @@ import {
  * @interface ReportPage
  */
 export interface ReportPage {
+    /**
+     * 
+     * @type {Array<ReportFilter>}
+     * @memberof ReportPage
+     */
+    filters?: Array<ReportFilter>;
     /**
      * Height of the report page in inches
      * @type {number}
@@ -62,6 +74,7 @@ export function ReportPageFromJSONTyped(json: any, ignoreDiscriminator: boolean)
     }
     return {
         
+        'filters': !exists(json, 'filters') ? undefined : ((json['filters'] as Array<any>).map(ReportFilterFromJSON)),
         'height': !exists(json, 'height') ? undefined : json['height'],
         'title': !exists(json, 'title') ? undefined : json['title'],
         'visualizations': !exists(json, 'visualizations') ? undefined : ((json['visualizations'] as Array<any>).map(ReportPageVisualizationFromJSON)),
@@ -78,6 +91,7 @@ export function ReportPageToJSON(value?: ReportPage | null): any {
     }
     return {
         
+        'filters': value.filters === undefined ? undefined : ((value.filters as Array<any>).map(ReportFilterToJSON)),
         'height': value.height,
         'title': value.title,
         'visualizations': value.visualizations === undefined ? undefined : ((value.visualizations as Array<any>).map(ReportPageVisualizationToJSON)),

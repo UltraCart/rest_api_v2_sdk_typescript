@@ -20,12 +20,6 @@ import {
     ReportDataSourceToJSON,
 } from './ReportDataSource';
 import {
-    ReportFilter,
-    ReportFilterFromJSON,
-    ReportFilterFromJSONTyped,
-    ReportFilterToJSON,
-} from './ReportFilter';
-import {
     ReportPage,
     ReportPageFromJSON,
     ReportPageFromJSONTyped,
@@ -62,12 +56,6 @@ export interface Report {
      * @memberof Report
      */
     default_project_id?: string;
-    /**
-     * 
-     * @type {Array<ReportFilter>}
-     * @memberof Report
-     */
-    filters?: Array<ReportFilter>;
     /**
      * 
      * @type {string}
@@ -127,7 +115,6 @@ export function ReportFromJSONTyped(json: any, ignoreDiscriminator: boolean): Re
         'data_sources': !exists(json, 'data_sources') ? undefined : ((json['data_sources'] as Array<any>).map(ReportDataSourceFromJSON)),
         'default_dataset_id': !exists(json, 'default_dataset_id') ? undefined : json['default_dataset_id'],
         'default_project_id': !exists(json, 'default_project_id') ? undefined : json['default_project_id'],
-        'filters': !exists(json, 'filters') ? undefined : ((json['filters'] as Array<any>).map(ReportFilterFromJSON)),
         'merchant_id': !exists(json, 'merchant_id') ? undefined : json['merchant_id'],
         'name': !exists(json, 'name') ? undefined : json['name'],
         'pages': !exists(json, 'pages') ? undefined : ((json['pages'] as Array<any>).map(ReportPageFromJSON)),
@@ -149,7 +136,6 @@ export function ReportToJSON(value?: Report | null): any {
         'data_sources': value.data_sources === undefined ? undefined : ((value.data_sources as Array<any>).map(ReportDataSourceToJSON)),
         'default_dataset_id': value.default_dataset_id,
         'default_project_id': value.default_project_id,
-        'filters': value.filters === undefined ? undefined : ((value.filters as Array<any>).map(ReportFilterToJSON)),
         'merchant_id': value.merchant_id,
         'name': value.name,
         'pages': value.pages === undefined ? undefined : ((value.pages as Array<any>).map(ReportPageToJSON)),

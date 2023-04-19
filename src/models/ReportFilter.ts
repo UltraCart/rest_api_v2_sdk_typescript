@@ -27,6 +27,12 @@ import {
  */
 export interface ReportFilter {
     /**
+     * A JSON representation of the configuration for this visualization
+     * @type {string}
+     * @memberof ReportFilter
+     */
+    config?: string;
+    /**
      * How this filter connects to the data sources and columns
      * @type {Array<ReportFilterConnection>}
      * @memberof ReportFilter
@@ -38,6 +44,12 @@ export interface ReportFilter {
      * @memberof ReportFilter
      */
     name?: string;
+    /**
+     * A JSON representation of the style configuration for this visualization
+     * @type {string}
+     * @memberof ReportFilter
+     */
+    styles?: string;
     /**
      * The timezone that the date range is querying on.
      * @type {string}
@@ -87,8 +99,10 @@ export function ReportFilterFromJSONTyped(json: any, ignoreDiscriminator: boolea
     }
     return {
         
+        'config': !exists(json, 'config') ? undefined : json['config'],
         'connections': !exists(json, 'connections') ? undefined : ((json['connections'] as Array<any>).map(ReportFilterConnectionFromJSON)),
         'name': !exists(json, 'name') ? undefined : json['name'],
+        'styles': !exists(json, 'styles') ? undefined : json['styles'],
         'timezone': !exists(json, 'timezone') ? undefined : json['timezone'],
         'type': !exists(json, 'type') ? undefined : json['type'],
         'uuid': !exists(json, 'uuid') ? undefined : json['uuid'],
@@ -105,8 +119,10 @@ export function ReportFilterToJSON(value?: ReportFilter | null): any {
     }
     return {
         
+        'config': value.config,
         'connections': value.connections === undefined ? undefined : ((value.connections as Array<any>).map(ReportFilterConnectionToJSON)),
         'name': value.name,
+        'styles': value.styles,
         'timezone': value.timezone,
         'type': value.type,
         'uuid': value.uuid,
