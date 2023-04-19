@@ -668,6 +668,7 @@ src/models/ReportExecuteQueriesRequest.ts
 src/models/ReportFilter.ts
 src/models/ReportFilterConnection.ts
 src/models/ReportPage.ts
+src/models/ReportPageFilter.ts
 src/models/ReportPageVisualization.ts
 src/models/ReportPageVisualizationDimension.ts
 src/models/ReportPageVisualizationMetric.ts

@@ -644,6 +644,7 @@ export * from './ReportExecuteQueriesRequest';
 export * from './ReportFilter';
 export * from './ReportFilterConnection';
 export * from './ReportPage';
+export * from './ReportPageFilter';
 export * from './ReportPageVisualization';
 export * from './ReportPageVisualizationDimension';
 export * from './ReportPageVisualizationMetric';
