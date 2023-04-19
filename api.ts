@@ -33404,12 +33404,6 @@ export interface Report {
     default_project_id?: string;
     /**
      * 
-     * @type {Array<ReportFilter>}
-     * @memberof Report
-     */
-    filters?: Array<ReportFilter>;
-    /**
-     * 
      * @type {string}
      * @memberof Report
      */
@@ -34199,6 +34193,12 @@ export namespace ReportExecuteQueriesRequest {
  */
 export interface ReportFilter {
     /**
+     * A JSON representation of the configuration for this visualization
+     * @type {string}
+     * @memberof ReportFilter
+     */
+    config?: string;
+    /**
      * How this filter connects to the data sources and columns
      * @type {Array<ReportFilterConnection>}
      * @memberof ReportFilter
@@ -34210,6 +34210,12 @@ export interface ReportFilter {
      * @memberof ReportFilter
      */
     name?: string;
+    /**
+     * A JSON representation of the style configuration for this visualization
+     * @type {string}
+     * @memberof ReportFilter
+     */
+    styles?: string;
     /**
      * The timezone that the date range is querying on.
      * @type {string}
@@ -34279,6 +34285,12 @@ export interface ReportFilterConnection {
  * @interface ReportPage
  */
 export interface ReportPage {
+    /**
+     * 
+     * @type {Array<ReportFilter>}
+     * @memberof ReportPage
+     */
+    filters?: Array<ReportFilter>;
     /**
      * Height of the report page in inches
      * @type {number}
