@@ -33404,6 +33404,12 @@ export interface Report {
     default_project_id?: string;
     /**
      * 
+     * @type {Array<ReportFilter>}
+     * @memberof Report
+     */
+    filters?: Array<ReportFilter>;
+    /**
+     * 
      * @type {string}
      * @memberof Report
      */
@@ -34287,10 +34293,10 @@ export interface ReportFilterConnection {
 export interface ReportPage {
     /**
      * 
-     * @type {Array<ReportFilter>}
+     * @type {Array<ReportPageFilter>}
      * @memberof ReportPage
      */
-    filters?: Array<ReportFilter>;
+    filters?: Array<ReportPageFilter>;
     /**
      * Height of the report page in inches
      * @type {number}
@@ -34315,6 +34321,38 @@ export interface ReportPage {
      * @memberof ReportPage
      */
     width?: number;
+}
+
+/**
+ * 
+ * @export
+ * @interface ReportPageFilter
+ */
+export interface ReportPageFilter {
+    /**
+     * A JSON representation of the configuration for this visualization
+     * @type {string}
+     * @memberof ReportPageFilter
+     */
+    config?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ReportPageFilter
+     */
+    name?: string;
+    /**
+     * A JSON representation of the style configuration for this visualization
+     * @type {string}
+     * @memberof ReportPageFilter
+     */
+    styles?: string;
+    /**
+     * Unique UUID assigned to the filter.  Assists when returning values that the filter can use.
+     * @type {string}
+     * @memberof ReportPageFilter
+     */
+    uuid?: string;
 }
 
 /**
