@@ -32947,10 +32947,40 @@ export declare namespace ReportDataSet {
 export interface ReportDataSetColumn {
     /**
      *
+     * @type {boolean}
+     * @memberof ReportDataSetColumn
+     */
+    _in?: boolean;
+    /**
+     *
      * @type {string}
      * @memberof ReportDataSetColumn
      */
-    name?: string;
+    n?: string;
+    /**
+     *
+     * @type {string}
+     * @memberof ReportDataSetColumn
+     */
+    vd?: string;
+    /**
+     *
+     * @type {string}
+     * @memberof ReportDataSetColumn
+     */
+    vdt?: string;
+    /**
+     *
+     * @type {number}
+     * @memberof ReportDataSetColumn
+     */
+    vn?: number;
+    /**
+     *
+     * @type {string}
+     * @memberof ReportDataSetColumn
+     */
+    vs?: string;
 }
 /**
  *
@@ -33198,7 +33228,7 @@ export interface ReportDataSetRow {
      * @type {Array<ReportDataSetColumn>}
      * @memberof ReportDataSetRow
      */
-    columns?: Array<ReportDataSetColumn>;
+    c?: Array<ReportDataSetColumn>;
 }
 /**
  *
@@ -33480,12 +33510,6 @@ export declare namespace ReportExecuteQueriesRequest {
  */
 export interface ReportFilter {
     /**
-     * A JSON representation of the configuration for this visualization
-     * @type {string}
-     * @memberof ReportFilter
-     */
-    config?: string;
-    /**
      * How this filter connects to the data sources and columns
      * @type {Array<ReportFilterConnection>}
      * @memberof ReportFilter
@@ -33497,12 +33521,6 @@ export interface ReportFilter {
      * @memberof ReportFilter
      */
     name?: string;
-    /**
-     * A JSON representation of the style configuration for this visualization
-     * @type {string}
-     * @memberof ReportFilter
-     */
-    styles?: string;
     /**
      * The timezone that the date range is querying on.
      * @type {string}
