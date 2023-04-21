@@ -31,7 +31,7 @@ export interface ReportDataSetRow {
      * @type {Array<ReportDataSetColumn>}
      * @memberof ReportDataSetRow
      */
-    columns?: Array<ReportDataSetColumn>;
+    c?: Array<ReportDataSetColumn>;
 }
 
 export function ReportDataSetRowFromJSON(json: any): ReportDataSetRow {
@@ -44,7 +44,7 @@ export function ReportDataSetRowFromJSONTyped(json: any, ignoreDiscriminator: bo
     }
     return {
         
-        'columns': !exists(json, 'columns') ? undefined : ((json['columns'] as Array<any>).map(ReportDataSetColumnFromJSON)),
+        'c': !exists(json, 'c') ? undefined : ((json['c'] as Array<any>).map(ReportDataSetColumnFromJSON)),
     };
 }
 
@@ -57,7 +57,7 @@ export function ReportDataSetRowToJSON(value?: ReportDataSetRow | null): any {
     }
     return {
         
-        'columns': value.columns === undefined ? undefined : ((value.columns as Array<any>).map(ReportDataSetColumnToJSON)),
+        'c': value.c === undefined ? undefined : ((value.c as Array<any>).map(ReportDataSetColumnToJSON)),
     };
 }
 

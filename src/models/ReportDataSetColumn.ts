@@ -21,10 +21,40 @@ import { exists, mapValues } from '../runtime';
 export interface ReportDataSetColumn {
     /**
      * 
+     * @type {boolean}
+     * @memberof ReportDataSetColumn
+     */
+    _in?: boolean;
+    /**
+     * 
      * @type {string}
      * @memberof ReportDataSetColumn
      */
-    name?: string;
+    n?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ReportDataSetColumn
+     */
+    vd?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ReportDataSetColumn
+     */
+    vdt?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof ReportDataSetColumn
+     */
+    vn?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof ReportDataSetColumn
+     */
+    vs?: string;
 }
 
 export function ReportDataSetColumnFromJSON(json: any): ReportDataSetColumn {
@@ -37,7 +67,12 @@ export function ReportDataSetColumnFromJSONTyped(json: any, ignoreDiscriminator:
     }
     return {
         
-        'name': !exists(json, 'name') ? undefined : json['name'],
+        '_in': !exists(json, 'in') ? undefined : json['in'],
+        'n': !exists(json, 'n') ? undefined : json['n'],
+        'vd': !exists(json, 'vd') ? undefined : json['vd'],
+        'vdt': !exists(json, 'vdt') ? undefined : json['vdt'],
+        'vn': !exists(json, 'vn') ? undefined : json['vn'],
+        'vs': !exists(json, 'vs') ? undefined : json['vs'],
     };
 }
 
@@ -50,7 +85,12 @@ export function ReportDataSetColumnToJSON(value?: ReportDataSetColumn | null): a
     }
     return {
         
-        'name': value.name,
+        'in': value._in,
+        'n': value.n,
+        'vd': value.vd,
+        'vdt': value.vdt,
+        'vn': value.vn,
+        'vs': value.vs,
     };
 }
 
