@@ -33588,7 +33588,7 @@ export interface ReportDataSet {
      */
     merchant_id?: string;
     /**
-     * The size of the pages
+     * The total number of pages in the result set
      * @type {number}
      * @memberof ReportDataSet
      */
@@ -33946,6 +33946,12 @@ export interface ReportDataSetRow {
  */
 export interface ReportDataSetSchema {
     /**
+     * A JSON representation of the configuration for this visualization
+     * @type {string}
+     * @memberof ReportDataSetSchema
+     */
+    config?: string;
+    /**
      * 
      * @type {string}
      * @memberof ReportDataSetSchema
@@ -34033,6 +34039,12 @@ export interface ReportDataSource {
  * @interface ReportDataSourceSchema
  */
 export interface ReportDataSourceSchema {
+    /**
+     * A JSON representation of the configuration for this visualization
+     * @type {string}
+     * @memberof ReportDataSourceSchema
+     */
+    config?: string;
     /**
      * Whether or not this column can be used as a dimension within a visualization
      * @type {boolean}
