@@ -87,7 +87,7 @@ export interface ReportDataSet {
      */
     merchant_id?: string;
     /**
-     * The size of the pages
+     * The total number of pages in the result set
      * @type {number}
      * @memberof ReportDataSet
      */

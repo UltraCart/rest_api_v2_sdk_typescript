@@ -20,6 +20,12 @@ import { exists, mapValues } from '../runtime';
  */
 export interface ReportDataSourceSchema {
     /**
+     * A JSON representation of the configuration for this visualization
+     * @type {string}
+     * @memberof ReportDataSourceSchema
+     */
+    config?: string;
+    /**
      * Whether or not this column can be used as a dimension within a visualization
      * @type {boolean}
      * @memberof ReportDataSourceSchema
@@ -69,6 +75,7 @@ export function ReportDataSourceSchemaFromJSONTyped(json: any, ignoreDiscriminat
     }
     return {
         
+        'config': !exists(json, 'config') ? undefined : json['config'],
         'dimension': !exists(json, 'dimension') ? undefined : json['dimension'],
         'name': !exists(json, 'name') ? undefined : json['name'],
         'type': !exists(json, 'type') ? undefined : json['type'],
@@ -84,6 +91,7 @@ export function ReportDataSourceSchemaToJSON(value?: ReportDataSourceSchema | nu
     }
     return {
         
+        'config': value.config,
         'dimension': value.dimension,
         'name': value.name,
         'type': value.type,

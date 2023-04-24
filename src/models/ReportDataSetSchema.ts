@@ -20,6 +20,12 @@ import { exists, mapValues } from '../runtime';
  */
 export interface ReportDataSetSchema {
     /**
+     * A JSON representation of the configuration for this visualization
+     * @type {string}
+     * @memberof ReportDataSetSchema
+     */
+    config?: string;
+    /**
      * 
      * @type {string}
      * @memberof ReportDataSetSchema
@@ -63,6 +69,7 @@ export function ReportDataSetSchemaFromJSONTyped(json: any, ignoreDiscriminator:
     }
     return {
         
+        'config': !exists(json, 'config') ? undefined : json['config'],
         'name': !exists(json, 'name') ? undefined : json['name'],
         'type': !exists(json, 'type') ? undefined : json['type'],
     };
@@ -77,6 +84,7 @@ export function ReportDataSetSchemaToJSON(value?: ReportDataSetSchema | null): a
     }
     return {
         
+        'config': value.config,
         'name': value.name,
         'type': value.type,
     };
