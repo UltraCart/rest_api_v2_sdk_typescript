@@ -584,6 +584,8 @@ export * from './OrderPackingSlipResponse';
 export * from './OrderPayment';
 export * from './OrderPaymentCheck';
 export * from './OrderPaymentCreditCard';
+export * from './OrderPaymentCreditCardDualVaulted';
+export * from './OrderPaymentCreditCardDualVaultedProperty';
 export * from './OrderPaymentECheck';
 export * from './OrderPaymentInsurance';
 export * from './OrderPaymentPurchaseOrder';

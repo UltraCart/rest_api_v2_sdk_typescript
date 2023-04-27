@@ -608,6 +608,8 @@ src/models/OrderPackingSlipResponse.ts
 src/models/OrderPayment.ts
 src/models/OrderPaymentCheck.ts
 src/models/OrderPaymentCreditCard.ts
+src/models/OrderPaymentCreditCardDualVaulted.ts
+src/models/OrderPaymentCreditCardDualVaultedProperty.ts
 src/models/OrderPaymentECheck.ts
 src/models/OrderPaymentInsurance.ts
 src/models/OrderPaymentPurchaseOrder.ts

@@ -13,6 +13,13 @@
  */
 
 import { exists, mapValues } from '../runtime';
+import {
+    OrderPaymentCreditCardDualVaulted,
+    OrderPaymentCreditCardDualVaultedFromJSON,
+    OrderPaymentCreditCardDualVaultedFromJSONTyped,
+    OrderPaymentCreditCardDualVaultedToJSON,
+} from './OrderPaymentCreditCardDualVaulted';
+
 /**
  * 
  * @export
@@ -85,6 +92,12 @@ export interface OrderPaymentCreditCard {
      * @memberof OrderPaymentCreditCard
      */
     card_verification_number_token?: string;
+    /**
+     * 
+     * @type {OrderPaymentCreditCardDualVaulted}
+     * @memberof OrderPaymentCreditCard
+     */
+    dual_vaulted?: OrderPaymentCreditCardDualVaulted;
 }
 
 
@@ -123,6 +136,7 @@ export function OrderPaymentCreditCardFromJSONTyped(json: any, ignoreDiscriminat
         'card_number_truncated': !exists(json, 'card_number_truncated') ? undefined : json['card_number_truncated'],
         'card_type': !exists(json, 'card_type') ? undefined : json['card_type'],
         'card_verification_number_token': !exists(json, 'card_verification_number_token') ? undefined : json['card_verification_number_token'],
+        'dual_vaulted': !exists(json, 'dual_vaulted') ? undefined : OrderPaymentCreditCardDualVaultedFromJSON(json['dual_vaulted']),
     };
 }
 
@@ -146,6 +160,7 @@ export function OrderPaymentCreditCardToJSON(value?: OrderPaymentCreditCard | nu
         'card_number_truncated': value.card_number_truncated,
         'card_type': value.card_type,
         'card_verification_number_token': value.card_verification_number_token,
+        'dual_vaulted': OrderPaymentCreditCardDualVaultedToJSON(value.dual_vaulted),
     };
 }
 
