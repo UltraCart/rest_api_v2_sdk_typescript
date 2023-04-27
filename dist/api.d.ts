@@ -30253,6 +30253,12 @@ export interface OrderPaymentCreditCard {
      * @memberof OrderPaymentCreditCard
      */
     card_verification_number_token?: string;
+    /**
+     *
+     * @type {OrderPaymentCreditCardDualVaulted}
+     * @memberof OrderPaymentCreditCard
+     */
+    dual_vaulted?: OrderPaymentCreditCardDualVaulted;
 }
 /**
  * @export
@@ -30271,6 +30277,50 @@ export declare namespace OrderPaymentCreditCard {
         MasterCard,
         VISA
     }
+}
+/**
+ *
+ * @export
+ * @interface OrderPaymentCreditCardDualVaulted
+ */
+export interface OrderPaymentCreditCardDualVaulted {
+    /**
+     *
+     * @type {string}
+     * @memberof OrderPaymentCreditCardDualVaulted
+     */
+    gateway_name?: string;
+    /**
+     *
+     * @type {Array<OrderPaymentCreditCardDualVaultedProperty>}
+     * @memberof OrderPaymentCreditCardDualVaulted
+     */
+    properties?: Array<OrderPaymentCreditCardDualVaultedProperty>;
+    /**
+     *
+     * @type {string}
+     * @memberof OrderPaymentCreditCardDualVaulted
+     */
+    rotating_transaction_gateway_code?: string;
+}
+/**
+ *
+ * @export
+ * @interface OrderPaymentCreditCardDualVaultedProperty
+ */
+export interface OrderPaymentCreditCardDualVaultedProperty {
+    /**
+     *
+     * @type {string}
+     * @memberof OrderPaymentCreditCardDualVaultedProperty
+     */
+    name?: string;
+    /**
+     *
+     * @type {string}
+     * @memberof OrderPaymentCreditCardDualVaultedProperty
+     */
+    value?: string;
 }
 /**
  *
