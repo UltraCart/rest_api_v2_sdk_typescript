@@ -26,6 +26,12 @@ export interface ItemPricingTierLimit {
      */
     cumulative_order_limit?: number;
     /**
+     * Exempt from Minimum Item Count
+     * @type {boolean}
+     * @memberof ItemPricingTierLimit
+     */
+    exempt_from_minimum_item_count?: boolean;
+    /**
      * Individual order limit
      * @type {number}
      * @memberof ItemPricingTierLimit
@@ -50,6 +56,7 @@ export function ItemPricingTierLimitFromJSONTyped(json: any, ignoreDiscriminator
     return {
         
         'cumulative_order_limit': !exists(json, 'cumulative_order_limit') ? undefined : json['cumulative_order_limit'],
+        'exempt_from_minimum_item_count': !exists(json, 'exempt_from_minimum_item_count') ? undefined : json['exempt_from_minimum_item_count'],
         'individual_order_limit': !exists(json, 'individual_order_limit') ? undefined : json['individual_order_limit'],
         'multiple_quantity': !exists(json, 'multiple_quantity') ? undefined : json['multiple_quantity'],
     };
@@ -65,6 +72,7 @@ export function ItemPricingTierLimitToJSON(value?: ItemPricingTierLimit | null):
     return {
         
         'cumulative_order_limit': value.cumulative_order_limit,
+        'exempt_from_minimum_item_count': value.exempt_from_minimum_item_count,
         'individual_order_limit': value.individual_order_limit,
         'multiple_quantity': value.multiple_quantity,
     };
