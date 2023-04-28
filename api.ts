@@ -25492,6 +25492,12 @@ export interface ItemPricingTierLimit {
      */
     cumulative_order_limit?: number;
     /**
+     * Exempt from Minimum Item Count
+     * @type {boolean}
+     * @memberof ItemPricingTierLimit
+     */
+    exempt_from_minimum_item_count?: boolean;
+    /**
      * Individual order limit
      * @type {number}
      * @memberof ItemPricingTierLimit
