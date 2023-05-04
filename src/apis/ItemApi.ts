@@ -33,6 +33,15 @@ import {
     ItemResponse,
     ItemResponseFromJSON,
     ItemResponseToJSON,
+    ItemReview,
+    ItemReviewFromJSON,
+    ItemReviewToJSON,
+    ItemReviewResponse,
+    ItemReviewResponseFromJSON,
+    ItemReviewResponseToJSON,
+    ItemReviewsResponse,
+    ItemReviewsResponseFromJSON,
+    ItemReviewsResponseToJSON,
     ItemsRequest,
     ItemsRequestFromJSON,
     ItemsRequestToJSON,
@@ -52,6 +61,11 @@ export interface DeleteDigitalItemRequest {
 }
 
 export interface DeleteItemRequest {
+    merchantItemOid: number;
+}
+
+export interface DeleteReviewRequest {
+    reviewOid: number;
     merchantItemOid: number;
 }
 
@@ -99,6 +113,15 @@ export interface GetPricingTiersRequest {
     expand?: string;
 }
 
+export interface GetReviewRequest {
+    reviewOid: number;
+    merchantItemOid: number;
+}
+
+export interface GetReviewsRequest {
+    merchantItemOid: number;
+}
+
 export interface GetUnassociatedDigitalItemsRequest {
     limit?: number;
     offset?: number;
@@ -118,6 +141,11 @@ export interface InsertItemRequest {
     placeholders?: boolean;
 }
 
+export interface InsertReviewRequest {
+    merchantItemOid: number;
+    review: ItemReview;
+}
+
 export interface UpdateDigitalItemRequest {
     digitalItemOid: number;
     digitalItem: ItemDigitalItem;
@@ -135,6 +163,12 @@ export interface UpdateItemsRequest {
     expand?: string;
     placeholders?: boolean;
     async?: boolean;
+}
+
+export interface UpdateReviewRequest {
+    reviewOid: number;
+    merchantItemOid: number;
+    review: ItemReview;
 }
 
 export interface UploadTemporaryMultimediaRequest {
@@ -179,6 +213,23 @@ export interface ItemApiInterface {
      * Delete an item
      */
     deleteItem(requestParameters: DeleteItemRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+
+    /**
+     * Delete an item review. 
+     * @summary Delete a review
+     * @param {number} reviewOid The review oid to delete.
+     * @param {number} merchantItemOid The item oid the review is associated with.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ItemApiInterface
+     */
+    deleteReviewRaw(requestParameters: DeleteReviewRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+
+    /**
+     * Delete an item review. 
+     * Delete a review
+     */
+    deleteReview(requestParameters: DeleteReviewRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
      * Retrieves a digital item (file information) from the account.  Be aware that these are not normal items that can be added to a shopping cart. Rather, they are digital files that may be associated with normal items. 
@@ -309,6 +360,39 @@ export interface ItemApiInterface {
     getPricingTiers(requestParameters: GetPricingTiersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PricingTiersResponse>;
 
     /**
+     * Retrieve an item review. 
+     * @summary get a review
+     * @param {number} reviewOid The review oid to retrieve.
+     * @param {number} merchantItemOid The item oid the review is associated with.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ItemApiInterface
+     */
+    getReviewRaw(requestParameters: GetReviewRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ItemReviewResponse>>;
+
+    /**
+     * Retrieve an item review. 
+     * get a review
+     */
+    getReview(requestParameters: GetReviewRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ItemReviewResponse>;
+
+    /**
+     * Retrieve item reviews. 
+     * @summary get reviews for an item
+     * @param {number} merchantItemOid The item oid the review is associated with.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ItemApiInterface
+     */
+    getReviewsRaw(requestParameters: GetReviewsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ItemReviewsResponse>>;
+
+    /**
+     * Retrieve item reviews. 
+     * get reviews for an item
+     */
+    getReviews(requestParameters: GetReviewsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ItemReviewsResponse>;
+
+    /**
      * Retrieves a group of digital items (file information) from the account that are not yet associated with any actual items.  If no parameters are specified, all digital items will be returned.  Be aware that these are not normal items that can be added to a shopping cart. Rather, they are digital files that may be associated with normal items.  You will need to make multiple API calls in order to retrieve the entire result set since this API performs result set pagination. 
      * @summary Retrieve digital items from the digital library (which are digital files that may be attached to normal items) not yet associated with actual items
      * @param {number} [limit] The maximum number of records to return on this one API call. (Default 100, Max 2000)
@@ -364,6 +448,23 @@ export interface ItemApiInterface {
     insertItem(requestParameters: InsertItemRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ItemResponse>;
 
     /**
+     * Insert a item review. 
+     * @summary Insert a review
+     * @param {number} merchantItemOid The item oid the review is associated with.
+     * @param {ItemReview} review Review to insert
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ItemApiInterface
+     */
+    insertReviewRaw(requestParameters: InsertReviewRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ItemReviewResponse>>;
+
+    /**
+     * Insert a item review. 
+     * Insert a review
+     */
+    insertReview(requestParameters: InsertReviewRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ItemReviewResponse>;
+
+    /**
      * Updates a file within the digital library.  This does not update an item, but updates a digital file available and selectable as part (or all) of an item. 
      * @summary Updates a file within the digital library
      * @param {number} digitalItemOid The digital item oid to update.
@@ -417,6 +518,24 @@ export interface ItemApiInterface {
      * Update multiple items
      */
     updateItems(requestParameters: UpdateItemsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ItemsResponse>;
+
+    /**
+     * Update an item review. 
+     * @summary Update a review
+     * @param {number} reviewOid The review oid to update.
+     * @param {number} merchantItemOid The item oid the review is associated with.
+     * @param {ItemReview} review Review to update
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ItemApiInterface
+     */
+    updateReviewRaw(requestParameters: UpdateReviewRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ItemReviewResponse>>;
+
+    /**
+     * Update an item review. 
+     * Update a review
+     */
+    updateReview(requestParameters: UpdateReviewRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ItemReviewResponse>;
 
     /**
      * Uploads an image and returns back meta information about the image as well as the identifier needed for the item update. 
@@ -519,6 +638,50 @@ export class ItemApi extends runtime.BaseAPI implements ItemApiInterface {
      */
     async deleteItem(requestParameters: DeleteItemRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.deleteItemRaw(requestParameters, initOverrides);
+    }
+
+    /**
+     * Delete an item review. 
+     * Delete a review
+     */
+    async deleteReviewRaw(requestParameters: DeleteReviewRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        if (requestParameters.reviewOid === null || requestParameters.reviewOid === undefined) {
+            throw new runtime.RequiredError('reviewOid','Required parameter requestParameters.reviewOid was null or undefined when calling deleteReview.');
+        }
+
+        if (requestParameters.merchantItemOid === null || requestParameters.merchantItemOid === undefined) {
+            throw new runtime.RequiredError('merchantItemOid','Required parameter requestParameters.merchantItemOid was null or undefined when calling deleteReview.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", ["item_write"]);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/item/items/{merchant_item_oid}/reviews/{review_oid}`.replace(`{${"review_oid"}}`, encodeURIComponent(String(requestParameters.reviewOid))).replace(`{${"merchant_item_oid"}}`, encodeURIComponent(String(requestParameters.merchantItemOid))),
+            method: 'DELETE',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     * Delete an item review. 
+     * Delete a review
+     */
+    async deleteReview(requestParameters: DeleteReviewRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.deleteReviewRaw(requestParameters, initOverrides);
     }
 
     /**
@@ -873,6 +1036,92 @@ export class ItemApi extends runtime.BaseAPI implements ItemApiInterface {
     }
 
     /**
+     * Retrieve an item review. 
+     * get a review
+     */
+    async getReviewRaw(requestParameters: GetReviewRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ItemReviewResponse>> {
+        if (requestParameters.reviewOid === null || requestParameters.reviewOid === undefined) {
+            throw new runtime.RequiredError('reviewOid','Required parameter requestParameters.reviewOid was null or undefined when calling getReview.');
+        }
+
+        if (requestParameters.merchantItemOid === null || requestParameters.merchantItemOid === undefined) {
+            throw new runtime.RequiredError('merchantItemOid','Required parameter requestParameters.merchantItemOid was null or undefined when calling getReview.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", ["item_read"]);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/item/items/{merchant_item_oid}/reviews/{review_oid}`.replace(`{${"review_oid"}}`, encodeURIComponent(String(requestParameters.reviewOid))).replace(`{${"merchant_item_oid"}}`, encodeURIComponent(String(requestParameters.merchantItemOid))),
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => ItemReviewResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Retrieve an item review. 
+     * get a review
+     */
+    async getReview(requestParameters: GetReviewRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ItemReviewResponse> {
+        const response = await this.getReviewRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Retrieve item reviews. 
+     * get reviews for an item
+     */
+    async getReviewsRaw(requestParameters: GetReviewsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ItemReviewsResponse>> {
+        if (requestParameters.merchantItemOid === null || requestParameters.merchantItemOid === undefined) {
+            throw new runtime.RequiredError('merchantItemOid','Required parameter requestParameters.merchantItemOid was null or undefined when calling getReviews.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", ["item_read"]);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/item/items/{merchant_item_oid}/reviews`.replace(`{${"merchant_item_oid"}}`, encodeURIComponent(String(requestParameters.merchantItemOid))),
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => ItemReviewsResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Retrieve item reviews. 
+     * get reviews for an item
+     */
+    async getReviews(requestParameters: GetReviewsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ItemReviewsResponse> {
+        const response = await this.getReviewsRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
      * Retrieves a group of digital items (file information) from the account that are not yet associated with any actual items.  If no parameters are specified, all digital items will be returned.  Be aware that these are not normal items that can be added to a shopping cart. Rather, they are digital files that may be associated with normal items.  You will need to make multiple API calls in order to retrieve the entire result set since this API performs result set pagination. 
      * Retrieve digital items from the digital library (which are digital files that may be attached to normal items) not yet associated with actual items
      */
@@ -1026,6 +1275,54 @@ export class ItemApi extends runtime.BaseAPI implements ItemApiInterface {
      */
     async insertItem(requestParameters: InsertItemRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ItemResponse> {
         const response = await this.insertItemRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Insert a item review. 
+     * Insert a review
+     */
+    async insertReviewRaw(requestParameters: InsertReviewRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ItemReviewResponse>> {
+        if (requestParameters.merchantItemOid === null || requestParameters.merchantItemOid === undefined) {
+            throw new runtime.RequiredError('merchantItemOid','Required parameter requestParameters.merchantItemOid was null or undefined when calling insertReview.');
+        }
+
+        if (requestParameters.review === null || requestParameters.review === undefined) {
+            throw new runtime.RequiredError('review','Required parameter requestParameters.review was null or undefined when calling insertReview.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json; charset=UTF-8';
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", ["item_write"]);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/item/items/{merchant_item_oid}/reviews`.replace(`{${"merchant_item_oid"}}`, encodeURIComponent(String(requestParameters.merchantItemOid))),
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: ItemReviewToJSON(requestParameters.review),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => ItemReviewResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Insert a item review. 
+     * Insert a review
+     */
+    async insertReview(requestParameters: InsertReviewRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ItemReviewResponse> {
+        const response = await this.insertReviewRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
@@ -1186,6 +1483,58 @@ export class ItemApi extends runtime.BaseAPI implements ItemApiInterface {
      */
     async updateItems(requestParameters: UpdateItemsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ItemsResponse> {
         const response = await this.updateItemsRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Update an item review. 
+     * Update a review
+     */
+    async updateReviewRaw(requestParameters: UpdateReviewRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ItemReviewResponse>> {
+        if (requestParameters.reviewOid === null || requestParameters.reviewOid === undefined) {
+            throw new runtime.RequiredError('reviewOid','Required parameter requestParameters.reviewOid was null or undefined when calling updateReview.');
+        }
+
+        if (requestParameters.merchantItemOid === null || requestParameters.merchantItemOid === undefined) {
+            throw new runtime.RequiredError('merchantItemOid','Required parameter requestParameters.merchantItemOid was null or undefined when calling updateReview.');
+        }
+
+        if (requestParameters.review === null || requestParameters.review === undefined) {
+            throw new runtime.RequiredError('review','Required parameter requestParameters.review was null or undefined when calling updateReview.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json; charset=UTF-8';
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", ["item_write"]);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/item/items/{merchant_item_oid}/reviews/{review_oid}`.replace(`{${"review_oid"}}`, encodeURIComponent(String(requestParameters.reviewOid))).replace(`{${"merchant_item_oid"}}`, encodeURIComponent(String(requestParameters.merchantItemOid))),
+            method: 'PUT',
+            headers: headerParameters,
+            query: queryParameters,
+            body: ItemReviewToJSON(requestParameters.review),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => ItemReviewResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Update an item review. 
+     * Update a review
+     */
+    async updateReview(requestParameters: UpdateReviewRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ItemReviewResponse> {
+        const response = await this.updateReviewRaw(requestParameters, initOverrides);
         return await response.value();
     }
 

@@ -56,61 +56,61 @@ export interface ItemReview {
      */
     overall?: number;
     /**
-     * 
+     * Rating Name 1
      * @type {string}
      * @memberof ItemReview
      */
     rating_name1?: string;
     /**
-     * 
+     * Rating Name 10
      * @type {string}
      * @memberof ItemReview
      */
     rating_name10?: string;
     /**
-     * 
+     * Rating Name 2
      * @type {string}
      * @memberof ItemReview
      */
     rating_name2?: string;
     /**
-     * 
+     * Rating Name 3
      * @type {string}
      * @memberof ItemReview
      */
     rating_name3?: string;
     /**
-     * 
+     * Rating Name 4
      * @type {string}
      * @memberof ItemReview
      */
     rating_name4?: string;
     /**
-     * 
+     * Rating Name 5
      * @type {string}
      * @memberof ItemReview
      */
     rating_name5?: string;
     /**
-     * 
+     * Rating Name 6
      * @type {string}
      * @memberof ItemReview
      */
     rating_name6?: string;
     /**
-     * 
+     * Rating Name 7
      * @type {string}
      * @memberof ItemReview
      */
     rating_name7?: string;
     /**
-     * 
+     * Rating Name 8
      * @type {string}
      * @memberof ItemReview
      */
     rating_name8?: string;
     /**
-     * 
+     * Rating Name 9
      * @type {string}
      * @memberof ItemReview
      */
@@ -188,7 +188,7 @@ export interface ItemReview {
      */
     recommend_to_friend?: boolean;
     /**
-     * 
+     * Review
      * @type {string}
      * @memberof ItemReview
      */
@@ -200,31 +200,31 @@ export interface ItemReview {
      */
     review_oid?: number;
     /**
-     * 
+     * Nickname
      * @type {string}
      * @memberof ItemReview
      */
     reviewed_nickname?: string;
     /**
-     * 
+     * Reviewer Email
      * @type {string}
      * @memberof ItemReview
      */
     reviewer_email?: string;
     /**
-     * 
+     * Location
      * @type {string}
      * @memberof ItemReview
      */
     reviewer_location?: string;
     /**
-     * 
+     * Status of the review
      * @type {string}
      * @memberof ItemReview
      */
-    status?: string;
+    status?: ItemReviewStatusEnum;
     /**
-     * 
+     * Store Feedback
      * @type {string}
      * @memberof ItemReview
      */
@@ -236,12 +236,25 @@ export interface ItemReview {
      */
     submitted_dts?: string;
     /**
-     * 
+     * Title
      * @type {string}
      * @memberof ItemReview
      */
     title?: string;
 }
+
+
+/**
+ * @export
+ */
+export const ItemReviewStatusEnum = {
+    Approved: 'approved',
+    Unapproved: 'unapproved',
+    Rejected: 'rejected',
+    MultimediaProcessing: 'multimedia processing'
+} as const;
+export type ItemReviewStatusEnum = typeof ItemReviewStatusEnum[keyof typeof ItemReviewStatusEnum];
+
 
 export function ItemReviewFromJSON(json: any): ItemReview {
     return ItemReviewFromJSONTyped(json, false);

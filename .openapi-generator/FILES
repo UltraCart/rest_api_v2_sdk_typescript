@@ -528,7 +528,9 @@ src/models/ItemRestriction.ts
 src/models/ItemRestrictionItem.ts
 src/models/ItemRevguard.ts
 src/models/ItemReview.ts
+src/models/ItemReviewResponse.ts
 src/models/ItemReviews.ts
+src/models/ItemReviewsResponse.ts
 src/models/ItemSalesforce.ts
 src/models/ItemShipping.ts
 src/models/ItemShippingCase.ts
