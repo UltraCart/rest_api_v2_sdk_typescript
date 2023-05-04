@@ -25879,61 +25879,61 @@ export interface ItemReview {
      */
     overall?: number;
     /**
-     * 
+     * Rating Name 1
      * @type {string}
      * @memberof ItemReview
      */
     rating_name1?: string;
     /**
-     * 
+     * Rating Name 10
      * @type {string}
      * @memberof ItemReview
      */
     rating_name10?: string;
     /**
-     * 
+     * Rating Name 2
      * @type {string}
      * @memberof ItemReview
      */
     rating_name2?: string;
     /**
-     * 
+     * Rating Name 3
      * @type {string}
      * @memberof ItemReview
      */
     rating_name3?: string;
     /**
-     * 
+     * Rating Name 4
      * @type {string}
      * @memberof ItemReview
      */
     rating_name4?: string;
     /**
-     * 
+     * Rating Name 5
      * @type {string}
      * @memberof ItemReview
      */
     rating_name5?: string;
     /**
-     * 
+     * Rating Name 6
      * @type {string}
      * @memberof ItemReview
      */
     rating_name6?: string;
     /**
-     * 
+     * Rating Name 7
      * @type {string}
      * @memberof ItemReview
      */
     rating_name7?: string;
     /**
-     * 
+     * Rating Name 8
      * @type {string}
      * @memberof ItemReview
      */
     rating_name8?: string;
     /**
-     * 
+     * Rating Name 9
      * @type {string}
      * @memberof ItemReview
      */
@@ -26011,7 +26011,7 @@ export interface ItemReview {
      */
     recommend_to_friend?: boolean;
     /**
-     * 
+     * Review
      * @type {string}
      * @memberof ItemReview
      */
@@ -26023,31 +26023,31 @@ export interface ItemReview {
      */
     review_oid?: number;
     /**
-     * 
+     * Nickname
      * @type {string}
      * @memberof ItemReview
      */
     reviewed_nickname?: string;
     /**
-     * 
+     * Reviewer Email
      * @type {string}
      * @memberof ItemReview
      */
     reviewer_email?: string;
     /**
-     * 
+     * Location
      * @type {string}
      * @memberof ItemReview
      */
     reviewer_location?: string;
     /**
-     * 
+     * Status of the review
      * @type {string}
      * @memberof ItemReview
      */
-    status?: string;
+    status?: ItemReview.StatusEnum;
     /**
-     * 
+     * Store Feedback
      * @type {string}
      * @memberof ItemReview
      */
@@ -26059,11 +26059,66 @@ export interface ItemReview {
      */
     submitted_dts?: string;
     /**
-     * 
+     * Title
      * @type {string}
      * @memberof ItemReview
      */
     title?: string;
+}
+
+/**
+ * @export
+ * @namespace ItemReview
+ */
+export namespace ItemReview {
+    /**
+     * @export
+     * @enum {string}
+     */
+    export enum StatusEnum {
+        Approved = <any> 'approved',
+        Unapproved = <any> 'unapproved',
+        Rejected = <any> 'rejected',
+        MultimediaProcessing = <any> 'multimedia processing'
+    }
+}
+
+/**
+ * 
+ * @export
+ * @interface ItemReviewResponse
+ */
+export interface ItemReviewResponse {
+    /**
+     * 
+     * @type {ModelError}
+     * @memberof ItemReviewResponse
+     */
+    error?: ModelError;
+    /**
+     * 
+     * @type {ResponseMetadata}
+     * @memberof ItemReviewResponse
+     */
+    metadata?: ResponseMetadata;
+    /**
+     * 
+     * @type {ItemReview}
+     * @memberof ItemReviewResponse
+     */
+    review?: ItemReview;
+    /**
+     * Indicates if API call was successful
+     * @type {boolean}
+     * @memberof ItemReviewResponse
+     */
+    success?: boolean;
+    /**
+     * 
+     * @type {Warning}
+     * @memberof ItemReviewResponse
+     */
+    warning?: Warning;
 }
 
 /**
@@ -26132,6 +26187,44 @@ export interface ItemReviews {
      * @memberof ItemReviews
      */
     share_reviews_with_merchant_item_oid?: number;
+}
+
+/**
+ * 
+ * @export
+ * @interface ItemReviewsResponse
+ */
+export interface ItemReviewsResponse {
+    /**
+     * 
+     * @type {ModelError}
+     * @memberof ItemReviewsResponse
+     */
+    error?: ModelError;
+    /**
+     * 
+     * @type {ResponseMetadata}
+     * @memberof ItemReviewsResponse
+     */
+    metadata?: ResponseMetadata;
+    /**
+     * reviews
+     * @type {Array<ItemReview>}
+     * @memberof ItemReviewsResponse
+     */
+    reviews?: Array<ItemReview>;
+    /**
+     * Indicates if API call was successful
+     * @type {boolean}
+     * @memberof ItemReviewsResponse
+     */
+    success?: boolean;
+    /**
+     * 
+     * @type {Warning}
+     * @memberof ItemReviewsResponse
+     */
+    warning?: Warning;
 }
 
 /**
@@ -58140,6 +58233,64 @@ export const ItemApiFetchParamCreator = function (configuration?: Configuration)
             };
         },
         /**
+         * Delete an item review. 
+         * @summary Delete a review
+         * @param {number} review_oid The review oid to delete.
+         * @param {number} merchant_item_oid The item oid the review is associated with.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        deleteReview(review_oid: number, merchant_item_oid: number, options: any = {}): FetchArgs {
+            // verify required parameter 'review_oid' is not null or undefined
+            if (review_oid === null || review_oid === undefined) {
+                throw new RequiredError('review_oid','Required parameter review_oid was null or undefined when calling deleteReview.');
+            }
+            // verify required parameter 'merchant_item_oid' is not null or undefined
+            if (merchant_item_oid === null || merchant_item_oid === undefined) {
+                throw new RequiredError('merchant_item_oid','Required parameter merchant_item_oid was null or undefined when calling deleteReview.');
+            }
+            const localVarPath = `/item/items/{merchant_item_oid}/reviews/{review_oid}`
+                .replace(`{${"review_oid"}}`, encodeURIComponent(String(review_oid)))
+                .replace(`{${"merchant_item_oid"}}`, encodeURIComponent(String(merchant_item_oid)));
+            const localVarUrlObj = url.parse(localVarPath, true);
+            const localVarRequestOptions = Object.assign({ method: 'DELETE' }, options);
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+    if(configuration && configuration.apiVersion) {
+      localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+    }
+
+
+
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+				const localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+					? configuration.accessToken("ultraCartOauth", ["item_write"])
+					: configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
+					? configuration.apiKey("x-ultracart-simple-key")
+					: configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
          * Retrieves a digital item (file information) from the account.  Be aware that these are not normal items that can be added to a shopping cart. Rather, they are digital files that may be associated with normal items. 
          * @summary Retrieve a digital item from the digital library, which are digital files that may be attached to normal items
          * @param {number} digital_item_oid The digital item oid to retrieve.
@@ -58581,6 +58732,116 @@ export const ItemApiFetchParamCreator = function (configuration?: Configuration)
             };
         },
         /**
+         * Retrieve an item review. 
+         * @summary get a review
+         * @param {number} review_oid The review oid to retrieve.
+         * @param {number} merchant_item_oid The item oid the review is associated with.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getReview(review_oid: number, merchant_item_oid: number, options: any = {}): FetchArgs {
+            // verify required parameter 'review_oid' is not null or undefined
+            if (review_oid === null || review_oid === undefined) {
+                throw new RequiredError('review_oid','Required parameter review_oid was null or undefined when calling getReview.');
+            }
+            // verify required parameter 'merchant_item_oid' is not null or undefined
+            if (merchant_item_oid === null || merchant_item_oid === undefined) {
+                throw new RequiredError('merchant_item_oid','Required parameter merchant_item_oid was null or undefined when calling getReview.');
+            }
+            const localVarPath = `/item/items/{merchant_item_oid}/reviews/{review_oid}`
+                .replace(`{${"review_oid"}}`, encodeURIComponent(String(review_oid)))
+                .replace(`{${"merchant_item_oid"}}`, encodeURIComponent(String(merchant_item_oid)));
+            const localVarUrlObj = url.parse(localVarPath, true);
+            const localVarRequestOptions = Object.assign({ method: 'GET' }, options);
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+    if(configuration && configuration.apiVersion) {
+      localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+    }
+
+
+
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+				const localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+					? configuration.accessToken("ultraCartOauth", ["item_read"])
+					: configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
+					? configuration.apiKey("x-ultracart-simple-key")
+					: configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Retrieve item reviews. 
+         * @summary get reviews for an item
+         * @param {number} merchant_item_oid The item oid the review is associated with.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getReviews(merchant_item_oid: number, options: any = {}): FetchArgs {
+            // verify required parameter 'merchant_item_oid' is not null or undefined
+            if (merchant_item_oid === null || merchant_item_oid === undefined) {
+                throw new RequiredError('merchant_item_oid','Required parameter merchant_item_oid was null or undefined when calling getReviews.');
+            }
+            const localVarPath = `/item/items/{merchant_item_oid}/reviews`
+                .replace(`{${"merchant_item_oid"}}`, encodeURIComponent(String(merchant_item_oid)));
+            const localVarUrlObj = url.parse(localVarPath, true);
+            const localVarRequestOptions = Object.assign({ method: 'GET' }, options);
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+    if(configuration && configuration.apiVersion) {
+      localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+    }
+
+
+
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+				const localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+					? configuration.accessToken("ultraCartOauth", ["item_read"])
+					: configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
+					? configuration.apiKey("x-ultracart-simple-key")
+					: configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
          * Retrieves a group of digital items (file information) from the account that are not yet associated with any actual items.  If no parameters are specified, all digital items will be returned.  Be aware that these are not normal items that can be added to a shopping cart. Rather, they are digital files that may be associated with normal items.  You will need to make multiple API calls in order to retrieve the entire result set since this API performs result set pagination. 
          * @summary Retrieve digital items from the digital library (which are digital files that may be attached to normal items) not yet associated with actual items
          * @param {number} [_limit] The maximum number of records to return on this one API call. (Default 100, Max 2000)
@@ -58770,6 +59031,67 @@ export const ItemApiFetchParamCreator = function (configuration?: Configuration)
             localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
             const needsSerialization = (<any>"Item" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
             localVarRequestOptions.body =  needsSerialization ? JSON.stringify(item || {}) : (item || "");
+
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Insert a item review. 
+         * @summary Insert a review
+         * @param {ItemReview} review Review to insert
+         * @param {number} merchant_item_oid The item oid the review is associated with.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        insertReview(review: ItemReview, merchant_item_oid: number, options: any = {}): FetchArgs {
+            // verify required parameter 'review' is not null or undefined
+            if (review === null || review === undefined) {
+                throw new RequiredError('review','Required parameter review was null or undefined when calling insertReview.');
+            }
+            // verify required parameter 'merchant_item_oid' is not null or undefined
+            if (merchant_item_oid === null || merchant_item_oid === undefined) {
+                throw new RequiredError('merchant_item_oid','Required parameter merchant_item_oid was null or undefined when calling insertReview.');
+            }
+            const localVarPath = `/item/items/{merchant_item_oid}/reviews`
+                .replace(`{${"merchant_item_oid"}}`, encodeURIComponent(String(merchant_item_oid)));
+            const localVarUrlObj = url.parse(localVarPath, true);
+            const localVarRequestOptions = Object.assign({ method: 'POST' }, options);
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+    if(configuration && configuration.apiVersion) {
+      localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+    }
+
+
+
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+				const localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+					? configuration.accessToken("ultraCartOauth", ["item_write"])
+					: configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
+					? configuration.apiKey("x-ultracart-simple-key")
+					: configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+
+            localVarHeaderParameter['Content-Type'] = 'application/json; charset=UTF-8';
+
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+            const needsSerialization = (<any>"ItemReview" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
+            localVarRequestOptions.body =  needsSerialization ? JSON.stringify(review || {}) : (review || "");
 
             return {
                 url: url.format(localVarUrlObj),
@@ -58979,6 +59301,73 @@ export const ItemApiFetchParamCreator = function (configuration?: Configuration)
             };
         },
         /**
+         * Update an item review. 
+         * @summary Update a review
+         * @param {ItemReview} review Review to update
+         * @param {number} review_oid The review oid to update.
+         * @param {number} merchant_item_oid The item oid the review is associated with.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        updateReview(review: ItemReview, review_oid: number, merchant_item_oid: number, options: any = {}): FetchArgs {
+            // verify required parameter 'review' is not null or undefined
+            if (review === null || review === undefined) {
+                throw new RequiredError('review','Required parameter review was null or undefined when calling updateReview.');
+            }
+            // verify required parameter 'review_oid' is not null or undefined
+            if (review_oid === null || review_oid === undefined) {
+                throw new RequiredError('review_oid','Required parameter review_oid was null or undefined when calling updateReview.');
+            }
+            // verify required parameter 'merchant_item_oid' is not null or undefined
+            if (merchant_item_oid === null || merchant_item_oid === undefined) {
+                throw new RequiredError('merchant_item_oid','Required parameter merchant_item_oid was null or undefined when calling updateReview.');
+            }
+            const localVarPath = `/item/items/{merchant_item_oid}/reviews/{review_oid}`
+                .replace(`{${"review_oid"}}`, encodeURIComponent(String(review_oid)))
+                .replace(`{${"merchant_item_oid"}}`, encodeURIComponent(String(merchant_item_oid)));
+            const localVarUrlObj = url.parse(localVarPath, true);
+            const localVarRequestOptions = Object.assign({ method: 'PUT' }, options);
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+    if(configuration && configuration.apiVersion) {
+      localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+    }
+
+
+
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+				const localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+					? configuration.accessToken("ultraCartOauth", ["item_write"])
+					: configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
+					? configuration.apiKey("x-ultracart-simple-key")
+					: configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+
+            localVarHeaderParameter['Content-Type'] = 'application/json; charset=UTF-8';
+
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+            const needsSerialization = (<any>"ItemReview" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
+            localVarRequestOptions.body =  needsSerialization ? JSON.stringify(review || {}) : (review || "");
+
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
          * Uploads an image and returns back meta information about the image as well as the identifier needed for the item update. 
          * @summary Upload an image to the temporary multimedia.
          * @param {Blob} file File to upload
@@ -59076,6 +59465,28 @@ export const ItemApiFp = function(configuration?: Configuration) {
          */
         deleteItem(merchant_item_oid: number, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Response> {
             const localVarFetchArgs = ItemApiFetchParamCreator(configuration).deleteItem(merchant_item_oid, options);
+            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
+                    if (response.status >= 200 && response.status < 300) {
+                      return response;
+                      
+                    } else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
+         * Delete an item review. 
+         * @summary Delete a review
+         * @param {number} review_oid The review oid to delete.
+         * @param {number} merchant_item_oid The item oid the review is associated with.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        deleteReview(review_oid: number, merchant_item_oid: number, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Response> {
+            const localVarFetchArgs = ItemApiFetchParamCreator(configuration).deleteReview(review_oid, merchant_item_oid, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
 
@@ -59252,6 +59663,49 @@ export const ItemApiFp = function(configuration?: Configuration) {
             };
         },
         /**
+         * Retrieve an item review. 
+         * @summary get a review
+         * @param {number} review_oid The review oid to retrieve.
+         * @param {number} merchant_item_oid The item oid the review is associated with.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getReview(review_oid: number, merchant_item_oid: number, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ItemReviewResponse> {
+            const localVarFetchArgs = ItemApiFetchParamCreator(configuration).getReview(review_oid, merchant_item_oid, options);
+            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
+                    if (response.status >= 200 && response.status < 300) {
+                      return response.json();
+                      
+                    } else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
+         * Retrieve item reviews. 
+         * @summary get reviews for an item
+         * @param {number} merchant_item_oid The item oid the review is associated with.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getReviews(merchant_item_oid: number, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ItemReviewsResponse> {
+            const localVarFetchArgs = ItemApiFetchParamCreator(configuration).getReviews(merchant_item_oid, options);
+            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
+                    if (response.status >= 200 && response.status < 300) {
+                      return response.json();
+                      
+                    } else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
          * Retrieves a group of digital items (file information) from the account that are not yet associated with any actual items.  If no parameters are specified, all digital items will be returned.  Be aware that these are not normal items that can be added to a shopping cart. Rather, they are digital files that may be associated with normal items.  You will need to make multiple API calls in order to retrieve the entire result set since this API performs result set pagination. 
          * @summary Retrieve digital items from the digital library (which are digital files that may be attached to normal items) not yet associated with actual items
          * @param {number} [_limit] The maximum number of records to return on this one API call. (Default 100, Max 2000)
@@ -59309,6 +59763,28 @@ export const ItemApiFp = function(configuration?: Configuration) {
          */
         insertItem(item: Item, _expand?: string, _placeholders?: boolean, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ItemResponse> {
             const localVarFetchArgs = ItemApiFetchParamCreator(configuration).insertItem(item, _expand, _placeholders, options);
+            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
+                    if (response.status >= 200 && response.status < 300) {
+                      return response.json();
+                      
+                    } else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
+         * Insert a item review. 
+         * @summary Insert a review
+         * @param {ItemReview} review Review to insert
+         * @param {number} merchant_item_oid The item oid the review is associated with.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        insertReview(review: ItemReview, merchant_item_oid: number, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ItemReviewResponse> {
+            const localVarFetchArgs = ItemApiFetchParamCreator(configuration).insertReview(review, merchant_item_oid, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
 
@@ -59392,6 +59868,29 @@ export const ItemApiFp = function(configuration?: Configuration) {
             };
         },
         /**
+         * Update an item review. 
+         * @summary Update a review
+         * @param {ItemReview} review Review to update
+         * @param {number} review_oid The review oid to update.
+         * @param {number} merchant_item_oid The item oid the review is associated with.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        updateReview(review: ItemReview, review_oid: number, merchant_item_oid: number, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ItemReviewResponse> {
+            const localVarFetchArgs = ItemApiFetchParamCreator(configuration).updateReview(review, review_oid, merchant_item_oid, options);
+            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
+                    if (response.status >= 200 && response.status < 300) {
+                      return response.json();
+                      
+                    } else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
          * Uploads an image and returns back meta information about the image as well as the identifier needed for the item update. 
          * @summary Upload an image to the temporary multimedia.
          * @param {Blob} file File to upload
@@ -59440,6 +59939,17 @@ export const ItemApiFactory = function (configuration?: Configuration, fetch?: F
          */
         deleteItem(merchant_item_oid: number, options?: any) {
             return ItemApiFp(configuration).deleteItem(merchant_item_oid, options)(fetch, basePath);
+        },
+        /**
+         * Delete an item review. 
+         * @summary Delete a review
+         * @param {number} review_oid The review oid to delete.
+         * @param {number} merchant_item_oid The item oid the review is associated with.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        deleteReview(review_oid: number, merchant_item_oid: number, options?: any) {
+            return ItemApiFp(configuration).deleteReview(review_oid, merchant_item_oid, options)(fetch, basePath);
         },
         /**
          * Retrieves a digital item (file information) from the account.  Be aware that these are not normal items that can be added to a shopping cart. Rather, they are digital files that may be associated with normal items. 
@@ -59528,6 +60038,27 @@ export const ItemApiFactory = function (configuration?: Configuration, fetch?: F
             return ItemApiFp(configuration).getPricingTiers(_expand, options)(fetch, basePath);
         },
         /**
+         * Retrieve an item review. 
+         * @summary get a review
+         * @param {number} review_oid The review oid to retrieve.
+         * @param {number} merchant_item_oid The item oid the review is associated with.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getReview(review_oid: number, merchant_item_oid: number, options?: any) {
+            return ItemApiFp(configuration).getReview(review_oid, merchant_item_oid, options)(fetch, basePath);
+        },
+        /**
+         * Retrieve item reviews. 
+         * @summary get reviews for an item
+         * @param {number} merchant_item_oid The item oid the review is associated with.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getReviews(merchant_item_oid: number, options?: any) {
+            return ItemApiFp(configuration).getReviews(merchant_item_oid, options)(fetch, basePath);
+        },
+        /**
          * Retrieves a group of digital items (file information) from the account that are not yet associated with any actual items.  If no parameters are specified, all digital items will be returned.  Be aware that these are not normal items that can be added to a shopping cart. Rather, they are digital files that may be associated with normal items.  You will need to make multiple API calls in order to retrieve the entire result set since this API performs result set pagination. 
          * @summary Retrieve digital items from the digital library (which are digital files that may be attached to normal items) not yet associated with actual items
          * @param {number} [_limit] The maximum number of records to return on this one API call. (Default 100, Max 2000)
@@ -59563,6 +60094,17 @@ export const ItemApiFactory = function (configuration?: Configuration, fetch?: F
          */
         insertItem(item: Item, _expand?: string, _placeholders?: boolean, options?: any) {
             return ItemApiFp(configuration).insertItem(item, _expand, _placeholders, options)(fetch, basePath);
+        },
+        /**
+         * Insert a item review. 
+         * @summary Insert a review
+         * @param {ItemReview} review Review to insert
+         * @param {number} merchant_item_oid The item oid the review is associated with.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        insertReview(review: ItemReview, merchant_item_oid: number, options?: any) {
+            return ItemApiFp(configuration).insertReview(review, merchant_item_oid, options)(fetch, basePath);
         },
         /**
          * Updates a file within the digital library.  This does not update an item, but updates a digital file available and selectable as part (or all) of an item. 
@@ -59602,6 +60144,18 @@ export const ItemApiFactory = function (configuration?: Configuration, fetch?: F
             return ItemApiFp(configuration).updateItems(items_request, _expand, _placeholders, _async, options)(fetch, basePath);
         },
         /**
+         * Update an item review. 
+         * @summary Update a review
+         * @param {ItemReview} review Review to update
+         * @param {number} review_oid The review oid to update.
+         * @param {number} merchant_item_oid The item oid the review is associated with.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        updateReview(review: ItemReview, review_oid: number, merchant_item_oid: number, options?: any) {
+            return ItemApiFp(configuration).updateReview(review, review_oid, merchant_item_oid, options)(fetch, basePath);
+        },
+        /**
          * Uploads an image and returns back meta information about the image as well as the identifier needed for the item update. 
          * @summary Upload an image to the temporary multimedia.
          * @param {Blob} file File to upload
@@ -59639,6 +60193,17 @@ export interface ItemApiInterface {
      * @memberof ItemApiInterface
      */
     deleteItem(merchant_item_oid: number, options?: any): Promise<{}>;
+
+    /**
+     * Delete an item review. 
+     * @summary Delete a review
+     * @param {number} review_oid The review oid to delete.
+     * @param {number} merchant_item_oid The item oid the review is associated with.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ItemApiInterface
+     */
+    deleteReview(review_oid: number, merchant_item_oid: number, options?: any): Promise<{}>;
 
     /**
      * Retrieves a digital item (file information) from the account.  Be aware that these are not normal items that can be added to a shopping cart. Rather, they are digital files that may be associated with normal items. 
@@ -59727,6 +60292,27 @@ export interface ItemApiInterface {
     getPricingTiers(_expand?: string, options?: any): Promise<PricingTiersResponse>;
 
     /**
+     * Retrieve an item review. 
+     * @summary get a review
+     * @param {number} review_oid The review oid to retrieve.
+     * @param {number} merchant_item_oid The item oid the review is associated with.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ItemApiInterface
+     */
+    getReview(review_oid: number, merchant_item_oid: number, options?: any): Promise<ItemReviewResponse>;
+
+    /**
+     * Retrieve item reviews. 
+     * @summary get reviews for an item
+     * @param {number} merchant_item_oid The item oid the review is associated with.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ItemApiInterface
+     */
+    getReviews(merchant_item_oid: number, options?: any): Promise<ItemReviewsResponse>;
+
+    /**
      * Retrieves a group of digital items (file information) from the account that are not yet associated with any actual items.  If no parameters are specified, all digital items will be returned.  Be aware that these are not normal items that can be added to a shopping cart. Rather, they are digital files that may be associated with normal items.  You will need to make multiple API calls in order to retrieve the entire result set since this API performs result set pagination. 
      * @summary Retrieve digital items from the digital library (which are digital files that may be attached to normal items) not yet associated with actual items
      * @param {number} [_limit] The maximum number of records to return on this one API call. (Default 100, Max 2000)
@@ -59764,6 +60350,17 @@ export interface ItemApiInterface {
     insertItem(item: Item, _expand?: string, _placeholders?: boolean, options?: any): Promise<ItemResponse>;
 
     /**
+     * Insert a item review. 
+     * @summary Insert a review
+     * @param {ItemReview} review Review to insert
+     * @param {number} merchant_item_oid The item oid the review is associated with.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ItemApiInterface
+     */
+    insertReview(review: ItemReview, merchant_item_oid: number, options?: any): Promise<ItemReviewResponse>;
+
+    /**
      * Updates a file within the digital library.  This does not update an item, but updates a digital file available and selectable as part (or all) of an item. 
      * @summary Updates a file within the digital library
      * @param {number} digital_item_oid The digital item oid to update.
@@ -59799,6 +60396,18 @@ export interface ItemApiInterface {
      * @memberof ItemApiInterface
      */
     updateItems(items_request: ItemsRequest, _expand?: string, _placeholders?: boolean, _async?: boolean, options?: any): Promise<ItemsResponse>;
+
+    /**
+     * Update an item review. 
+     * @summary Update a review
+     * @param {ItemReview} review Review to update
+     * @param {number} review_oid The review oid to update.
+     * @param {number} merchant_item_oid The item oid the review is associated with.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ItemApiInterface
+     */
+    updateReview(review: ItemReview, review_oid: number, merchant_item_oid: number, options?: any): Promise<ItemReviewResponse>;
 
     /**
      * Uploads an image and returns back meta information about the image as well as the identifier needed for the item update. 
@@ -59841,6 +60450,19 @@ export class ItemApi extends BaseAPI implements ItemApiInterface {
      */
     public deleteItem(merchant_item_oid: number, options?: any) {
         return ItemApiFp(this.configuration).deleteItem(merchant_item_oid, options)(this.fetch, this.basePath);
+    }
+
+    /**
+     * Delete an item review. 
+     * @summary Delete a review
+     * @param {number} review_oid The review oid to delete.
+     * @param {number} merchant_item_oid The item oid the review is associated with.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ItemApi
+     */
+    public deleteReview(review_oid: number, merchant_item_oid: number, options?: any) {
+        return ItemApiFp(this.configuration).deleteReview(review_oid, merchant_item_oid, options)(this.fetch, this.basePath);
     }
 
     /**
@@ -59944,6 +60566,31 @@ export class ItemApi extends BaseAPI implements ItemApiInterface {
     }
 
     /**
+     * Retrieve an item review. 
+     * @summary get a review
+     * @param {number} review_oid The review oid to retrieve.
+     * @param {number} merchant_item_oid The item oid the review is associated with.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ItemApi
+     */
+    public getReview(review_oid: number, merchant_item_oid: number, options?: any) {
+        return ItemApiFp(this.configuration).getReview(review_oid, merchant_item_oid, options)(this.fetch, this.basePath);
+    }
+
+    /**
+     * Retrieve item reviews. 
+     * @summary get reviews for an item
+     * @param {number} merchant_item_oid The item oid the review is associated with.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ItemApi
+     */
+    public getReviews(merchant_item_oid: number, options?: any) {
+        return ItemApiFp(this.configuration).getReviews(merchant_item_oid, options)(this.fetch, this.basePath);
+    }
+
+    /**
      * Retrieves a group of digital items (file information) from the account that are not yet associated with any actual items.  If no parameters are specified, all digital items will be returned.  Be aware that these are not normal items that can be added to a shopping cart. Rather, they are digital files that may be associated with normal items.  You will need to make multiple API calls in order to retrieve the entire result set since this API performs result set pagination. 
      * @summary Retrieve digital items from the digital library (which are digital files that may be attached to normal items) not yet associated with actual items
      * @param {number} [_limit] The maximum number of records to return on this one API call. (Default 100, Max 2000)
@@ -59987,6 +60634,19 @@ export class ItemApi extends BaseAPI implements ItemApiInterface {
     }
 
     /**
+     * Insert a item review. 
+     * @summary Insert a review
+     * @param {ItemReview} review Review to insert
+     * @param {number} merchant_item_oid The item oid the review is associated with.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ItemApi
+     */
+    public insertReview(review: ItemReview, merchant_item_oid: number, options?: any) {
+        return ItemApiFp(this.configuration).insertReview(review, merchant_item_oid, options)(this.fetch, this.basePath);
+    }
+
+    /**
      * Updates a file within the digital library.  This does not update an item, but updates a digital file available and selectable as part (or all) of an item. 
      * @summary Updates a file within the digital library
      * @param {number} digital_item_oid The digital item oid to update.
@@ -60027,6 +60687,20 @@ export class ItemApi extends BaseAPI implements ItemApiInterface {
      */
     public updateItems(items_request: ItemsRequest, _expand?: string, _placeholders?: boolean, _async?: boolean, options?: any) {
         return ItemApiFp(this.configuration).updateItems(items_request, _expand, _placeholders, _async, options)(this.fetch, this.basePath);
+    }
+
+    /**
+     * Update an item review. 
+     * @summary Update a review
+     * @param {ItemReview} review Review to update
+     * @param {number} review_oid The review oid to update.
+     * @param {number} merchant_item_oid The item oid the review is associated with.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ItemApi
+     */
+    public updateReview(review: ItemReview, review_oid: number, merchant_item_oid: number, options?: any) {
+        return ItemApiFp(this.configuration).updateReview(review, review_oid, merchant_item_oid, options)(this.fetch, this.basePath);
     }
 
     /**

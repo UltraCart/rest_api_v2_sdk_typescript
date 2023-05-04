@@ -28,9 +28,9 @@ var __extends = (this && this.__extends) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.OrderItem = exports.OrderFraudScore = exports.OrderFormat = exports.OrderEdiDocument = exports.OrderAutoOrder = exports.OrderAffiliateLedger = exports.Order = exports.OauthTokenResponse = exports.ItemThirdPartyEmailMarketing = exports.ItemTax = exports.ItemTag = exports.ItemShippingMethod = exports.ItemShippingDestinationRestriction = exports.ItemRestrictionItem = exports.ItemRelatedItem = exports.ItemOptionValue = exports.ItemOption = exports.ItemContentMultimedia = exports.ItemAutoOrderStep = exports.Experiment = exports.EmailPerformance = exports.EmailCommseqStep = exports.Distance = exports.ConversationWebsocketMessage = exports.ConversationWebchatQueueStatusUpdateRequest = exports.ConversationWebchatQueueStatusAgent = exports.ConversationSummary = exports.ConversationSentiment = exports.ConversationMessageTransportStatus = exports.ConversationMessage = exports.ConversationEventRRWeb = exports.ConversationEngagementEquationFunction = exports.ConversationEngagement = exports.ConversationAgentProfile = exports.Conversation = exports.CheckoutHandoffRequest = exports.ChannelPartnerOrderItem = exports.ChannelPartnerOrder = exports.CartKitComponentOption = exports.CartItemOption = exports.CartItemMultimedia = exports.CartCustomerProfileCreditCard = exports.AutoOrderItemSimpleSchedule = exports.AutoOrderItem = exports.AutoOrder = exports.AffiliateLink = exports.AffiliateLedger = exports.RequiredError = exports.BaseAPI = exports.COLLECTION_FORMATS = void 0;
-exports.CustomerApiFactory = exports.CustomerApiFp = exports.CustomerApiFetchParamCreator = exports.CouponApi = exports.CouponApiFactory = exports.CouponApiFp = exports.CouponApiFetchParamCreator = exports.ConversationApi = exports.ConversationApiFactory = exports.ConversationApiFp = exports.ConversationApiFetchParamCreator = exports.CheckoutApi = exports.CheckoutApiFactory = exports.CheckoutApiFp = exports.CheckoutApiFetchParamCreator = exports.ChargebackApi = exports.ChargebackApiFactory = exports.ChargebackApiFp = exports.ChargebackApiFetchParamCreator = exports.ChannelPartnerApi = exports.ChannelPartnerApiFactory = exports.ChannelPartnerApiFp = exports.ChannelPartnerApiFetchParamCreator = exports.AutoOrderApi = exports.AutoOrderApiFactory = exports.AutoOrderApiFp = exports.AutoOrderApiFetchParamCreator = exports.AffiliateApi = exports.AffiliateApiFactory = exports.AffiliateApiFp = exports.AffiliateApiFetchParamCreator = exports.Weight = exports.Webhook = exports.TempMultimedia = exports.ReportWebsocketEvent = exports.ReportPageVisualizationMetric = exports.ReportPageVisualization = exports.ReportFilter = exports.ReportExecuteQueriesRequest = exports.ReportDataSourceSchema = exports.ReportDataSetSchema = exports.ReportDataSetQuery = exports.ReportDataSet = exports.Report = exports.PointOfSaleReader = exports.OrderQuery = exports.OrderPaymentECheck = exports.OrderPaymentCreditCard = exports.OrderPayment = exports.OrderItemOption = void 0;
-exports.WebhookApi = exports.WebhookApiFactory = exports.WebhookApiFp = exports.WebhookApiFetchParamCreator = exports.UserApi = exports.UserApiFactory = exports.UserApiFp = exports.UserApiFetchParamCreator = exports.TaxApi = exports.TaxApiFactory = exports.TaxApiFp = exports.TaxApiFetchParamCreator = exports.StorefrontApi = exports.StorefrontApiFactory = exports.StorefrontApiFp = exports.StorefrontApiFetchParamCreator = exports.SsoApi = exports.SsoApiFactory = exports.SsoApiFp = exports.SsoApiFetchParamCreator = exports.OrderApi = exports.OrderApiFactory = exports.OrderApiFp = exports.OrderApiFetchParamCreator = exports.OauthApi = exports.OauthApiFactory = exports.OauthApiFp = exports.OauthApiFetchParamCreator = exports.ItemApi = exports.ItemApiFactory = exports.ItemApiFp = exports.ItemApiFetchParamCreator = exports.IntegrationLogApi = exports.IntegrationLogApiFactory = exports.IntegrationLogApiFp = exports.IntegrationLogApiFetchParamCreator = exports.GiftCertificateApi = exports.GiftCertificateApiFactory = exports.GiftCertificateApiFp = exports.GiftCertificateApiFetchParamCreator = exports.FulfillmentApi = exports.FulfillmentApiFactory = exports.FulfillmentApiFp = exports.FulfillmentApiFetchParamCreator = exports.DatawarehouseApi = exports.DatawarehouseApiFactory = exports.DatawarehouseApiFp = exports.DatawarehouseApiFetchParamCreator = exports.CustomerApi = void 0;
+exports.OrderFraudScore = exports.OrderFormat = exports.OrderEdiDocument = exports.OrderAutoOrder = exports.OrderAffiliateLedger = exports.Order = exports.OauthTokenResponse = exports.ItemThirdPartyEmailMarketing = exports.ItemTax = exports.ItemTag = exports.ItemShippingMethod = exports.ItemShippingDestinationRestriction = exports.ItemReview = exports.ItemRestrictionItem = exports.ItemRelatedItem = exports.ItemOptionValue = exports.ItemOption = exports.ItemContentMultimedia = exports.ItemAutoOrderStep = exports.Experiment = exports.EmailPerformance = exports.EmailCommseqStep = exports.Distance = exports.ConversationWebsocketMessage = exports.ConversationWebchatQueueStatusUpdateRequest = exports.ConversationWebchatQueueStatusAgent = exports.ConversationSummary = exports.ConversationSentiment = exports.ConversationMessageTransportStatus = exports.ConversationMessage = exports.ConversationEventRRWeb = exports.ConversationEngagementEquationFunction = exports.ConversationEngagement = exports.ConversationAgentProfile = exports.Conversation = exports.CheckoutHandoffRequest = exports.ChannelPartnerOrderItem = exports.ChannelPartnerOrder = exports.CartKitComponentOption = exports.CartItemOption = exports.CartItemMultimedia = exports.CartCustomerProfileCreditCard = exports.AutoOrderItemSimpleSchedule = exports.AutoOrderItem = exports.AutoOrder = exports.AffiliateLink = exports.AffiliateLedger = exports.RequiredError = exports.BaseAPI = exports.COLLECTION_FORMATS = void 0;
+exports.CustomerApiFp = exports.CustomerApiFetchParamCreator = exports.CouponApi = exports.CouponApiFactory = exports.CouponApiFp = exports.CouponApiFetchParamCreator = exports.ConversationApi = exports.ConversationApiFactory = exports.ConversationApiFp = exports.ConversationApiFetchParamCreator = exports.CheckoutApi = exports.CheckoutApiFactory = exports.CheckoutApiFp = exports.CheckoutApiFetchParamCreator = exports.ChargebackApi = exports.ChargebackApiFactory = exports.ChargebackApiFp = exports.ChargebackApiFetchParamCreator = exports.ChannelPartnerApi = exports.ChannelPartnerApiFactory = exports.ChannelPartnerApiFp = exports.ChannelPartnerApiFetchParamCreator = exports.AutoOrderApi = exports.AutoOrderApiFactory = exports.AutoOrderApiFp = exports.AutoOrderApiFetchParamCreator = exports.AffiliateApi = exports.AffiliateApiFactory = exports.AffiliateApiFp = exports.AffiliateApiFetchParamCreator = exports.Weight = exports.Webhook = exports.TempMultimedia = exports.ReportWebsocketEvent = exports.ReportPageVisualizationMetric = exports.ReportPageVisualization = exports.ReportFilter = exports.ReportExecuteQueriesRequest = exports.ReportDataSourceSchema = exports.ReportDataSetSchema = exports.ReportDataSetQuery = exports.ReportDataSet = exports.Report = exports.PointOfSaleReader = exports.OrderQuery = exports.OrderPaymentECheck = exports.OrderPaymentCreditCard = exports.OrderPayment = exports.OrderItemOption = exports.OrderItem = void 0;
+exports.WebhookApi = exports.WebhookApiFactory = exports.WebhookApiFp = exports.WebhookApiFetchParamCreator = exports.UserApi = exports.UserApiFactory = exports.UserApiFp = exports.UserApiFetchParamCreator = exports.TaxApi = exports.TaxApiFactory = exports.TaxApiFp = exports.TaxApiFetchParamCreator = exports.StorefrontApi = exports.StorefrontApiFactory = exports.StorefrontApiFp = exports.StorefrontApiFetchParamCreator = exports.SsoApi = exports.SsoApiFactory = exports.SsoApiFp = exports.SsoApiFetchParamCreator = exports.OrderApi = exports.OrderApiFactory = exports.OrderApiFp = exports.OrderApiFetchParamCreator = exports.OauthApi = exports.OauthApiFactory = exports.OauthApiFp = exports.OauthApiFetchParamCreator = exports.ItemApi = exports.ItemApiFactory = exports.ItemApiFp = exports.ItemApiFetchParamCreator = exports.IntegrationLogApi = exports.IntegrationLogApiFactory = exports.IntegrationLogApiFp = exports.IntegrationLogApiFetchParamCreator = exports.GiftCertificateApi = exports.GiftCertificateApiFactory = exports.GiftCertificateApiFp = exports.GiftCertificateApiFetchParamCreator = exports.FulfillmentApi = exports.FulfillmentApiFactory = exports.FulfillmentApiFp = exports.FulfillmentApiFetchParamCreator = exports.DatawarehouseApi = exports.DatawarehouseApiFactory = exports.DatawarehouseApiFp = exports.DatawarehouseApiFetchParamCreator = exports.CustomerApi = exports.CustomerApiFactory = void 0;
 var url = require("url");
 var portableFetch = require("portable-fetch");
 var BASE_PATH = "https://secure.ultracart.com/rest/v2".replace(/\/+$/, "");
@@ -850,6 +850,24 @@ var ItemRestrictionItem;
         TypeEnum[TypeEnum["MustBePurchasedWith"] = 'must be purchased with'] = "MustBePurchasedWith";
     })(TypeEnum = ItemRestrictionItem.TypeEnum || (ItemRestrictionItem.TypeEnum = {}));
 })(ItemRestrictionItem = exports.ItemRestrictionItem || (exports.ItemRestrictionItem = {}));
+/**
+ * @export
+ * @namespace ItemReview
+ */
+var ItemReview;
+(function (ItemReview) {
+    /**
+     * @export
+     * @enum {string}
+     */
+    var StatusEnum;
+    (function (StatusEnum) {
+        StatusEnum[StatusEnum["Approved"] = 'approved'] = "Approved";
+        StatusEnum[StatusEnum["Unapproved"] = 'unapproved'] = "Unapproved";
+        StatusEnum[StatusEnum["Rejected"] = 'rejected'] = "Rejected";
+        StatusEnum[StatusEnum["MultimediaProcessing"] = 'multimedia processing'] = "MultimediaProcessing";
+    })(StatusEnum = ItemReview.StatusEnum || (ItemReview.StatusEnum = {}));
+})(ItemReview = exports.ItemReview || (exports.ItemReview = {}));
 /**
  * @export
  * @namespace ItemShippingDestinationRestriction
@@ -16624,6 +16642,58 @@ var ItemApiFetchParamCreator = function (configuration) {
             };
         },
         /**
+         * Delete an item review.
+         * @summary Delete a review
+         * @param {number} review_oid The review oid to delete.
+         * @param {number} merchant_item_oid The item oid the review is associated with.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        deleteReview: function (review_oid, merchant_item_oid, options) {
+            if (options === void 0) { options = {}; }
+            // verify required parameter 'review_oid' is not null or undefined
+            if (review_oid === null || review_oid === undefined) {
+                throw new RequiredError('review_oid', 'Required parameter review_oid was null or undefined when calling deleteReview.');
+            }
+            // verify required parameter 'merchant_item_oid' is not null or undefined
+            if (merchant_item_oid === null || merchant_item_oid === undefined) {
+                throw new RequiredError('merchant_item_oid', 'Required parameter merchant_item_oid was null or undefined when calling deleteReview.');
+            }
+            var localVarPath = "/item/items/{merchant_item_oid}/reviews/{review_oid}"
+                .replace("{".concat("review_oid", "}"), encodeURIComponent(String(review_oid)))
+                .replace("{".concat("merchant_item_oid", "}"), encodeURIComponent(String(merchant_item_oid)));
+            var localVarUrlObj = url.parse(localVarPath, true);
+            var localVarRequestOptions = Object.assign({ method: 'DELETE' }, options);
+            var localVarHeaderParameter = {};
+            var localVarQueryParameter = {};
+            if (configuration && configuration.apiVersion) {
+                localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+            }
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+                var localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+                    ? configuration.accessToken("ultraCartOauth", ["item_write"])
+                    : configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                var localVarApiKeyValue = typeof configuration.apiKey === 'function'
+                    ? configuration.apiKey("x-ultracart-simple-key")
+                    : configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
          * Retrieves a digital item (file information) from the account.  Be aware that these are not normal items that can be added to a shopping cart. Rather, they are digital files that may be associated with normal items.
          * @summary Retrieve a digital item from the digital library, which are digital files that may be attached to normal items
          * @param {number} digital_item_oid The digital item oid to retrieve.
@@ -17004,6 +17074,104 @@ var ItemApiFetchParamCreator = function (configuration) {
             };
         },
         /**
+         * Retrieve an item review.
+         * @summary get a review
+         * @param {number} review_oid The review oid to retrieve.
+         * @param {number} merchant_item_oid The item oid the review is associated with.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getReview: function (review_oid, merchant_item_oid, options) {
+            if (options === void 0) { options = {}; }
+            // verify required parameter 'review_oid' is not null or undefined
+            if (review_oid === null || review_oid === undefined) {
+                throw new RequiredError('review_oid', 'Required parameter review_oid was null or undefined when calling getReview.');
+            }
+            // verify required parameter 'merchant_item_oid' is not null or undefined
+            if (merchant_item_oid === null || merchant_item_oid === undefined) {
+                throw new RequiredError('merchant_item_oid', 'Required parameter merchant_item_oid was null or undefined when calling getReview.');
+            }
+            var localVarPath = "/item/items/{merchant_item_oid}/reviews/{review_oid}"
+                .replace("{".concat("review_oid", "}"), encodeURIComponent(String(review_oid)))
+                .replace("{".concat("merchant_item_oid", "}"), encodeURIComponent(String(merchant_item_oid)));
+            var localVarUrlObj = url.parse(localVarPath, true);
+            var localVarRequestOptions = Object.assign({ method: 'GET' }, options);
+            var localVarHeaderParameter = {};
+            var localVarQueryParameter = {};
+            if (configuration && configuration.apiVersion) {
+                localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+            }
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+                var localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+                    ? configuration.accessToken("ultraCartOauth", ["item_read"])
+                    : configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                var localVarApiKeyValue = typeof configuration.apiKey === 'function'
+                    ? configuration.apiKey("x-ultracart-simple-key")
+                    : configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Retrieve item reviews.
+         * @summary get reviews for an item
+         * @param {number} merchant_item_oid The item oid the review is associated with.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getReviews: function (merchant_item_oid, options) {
+            if (options === void 0) { options = {}; }
+            // verify required parameter 'merchant_item_oid' is not null or undefined
+            if (merchant_item_oid === null || merchant_item_oid === undefined) {
+                throw new RequiredError('merchant_item_oid', 'Required parameter merchant_item_oid was null or undefined when calling getReviews.');
+            }
+            var localVarPath = "/item/items/{merchant_item_oid}/reviews"
+                .replace("{".concat("merchant_item_oid", "}"), encodeURIComponent(String(merchant_item_oid)));
+            var localVarUrlObj = url.parse(localVarPath, true);
+            var localVarRequestOptions = Object.assign({ method: 'GET' }, options);
+            var localVarHeaderParameter = {};
+            var localVarQueryParameter = {};
+            if (configuration && configuration.apiVersion) {
+                localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+            }
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+                var localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+                    ? configuration.accessToken("ultraCartOauth", ["item_read"])
+                    : configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                var localVarApiKeyValue = typeof configuration.apiKey === 'function'
+                    ? configuration.apiKey("x-ultracart-simple-key")
+                    : configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
          * Retrieves a group of digital items (file information) from the account that are not yet associated with any actual items.  If no parameters are specified, all digital items will be returned.  Be aware that these are not normal items that can be added to a shopping cart. Rather, they are digital files that may be associated with normal items.  You will need to make multiple API calls in order to retrieve the entire result set since this API performs result set pagination.
          * @summary Retrieve digital items from the digital library (which are digital files that may be attached to normal items) not yet associated with actual items
          * @param {number} [_limit] The maximum number of records to return on this one API call. (Default 100, Max 2000)
@@ -17166,6 +17334,60 @@ var ItemApiFetchParamCreator = function (configuration) {
             localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
             var needsSerialization = ("Item" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
             localVarRequestOptions.body = needsSerialization ? JSON.stringify(item || {}) : (item || "");
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Insert a item review.
+         * @summary Insert a review
+         * @param {ItemReview} review Review to insert
+         * @param {number} merchant_item_oid The item oid the review is associated with.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        insertReview: function (review, merchant_item_oid, options) {
+            if (options === void 0) { options = {}; }
+            // verify required parameter 'review' is not null or undefined
+            if (review === null || review === undefined) {
+                throw new RequiredError('review', 'Required parameter review was null or undefined when calling insertReview.');
+            }
+            // verify required parameter 'merchant_item_oid' is not null or undefined
+            if (merchant_item_oid === null || merchant_item_oid === undefined) {
+                throw new RequiredError('merchant_item_oid', 'Required parameter merchant_item_oid was null or undefined when calling insertReview.');
+            }
+            var localVarPath = "/item/items/{merchant_item_oid}/reviews"
+                .replace("{".concat("merchant_item_oid", "}"), encodeURIComponent(String(merchant_item_oid)));
+            var localVarUrlObj = url.parse(localVarPath, true);
+            var localVarRequestOptions = Object.assign({ method: 'POST' }, options);
+            var localVarHeaderParameter = {};
+            var localVarQueryParameter = {};
+            if (configuration && configuration.apiVersion) {
+                localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+            }
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+                var localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+                    ? configuration.accessToken("ultraCartOauth", ["item_write"])
+                    : configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                var localVarApiKeyValue = typeof configuration.apiKey === 'function'
+                    ? configuration.apiKey("x-ultracart-simple-key")
+                    : configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+            localVarHeaderParameter['Content-Type'] = 'application/json; charset=UTF-8';
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+            var needsSerialization = ("ItemReview" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
+            localVarRequestOptions.body = needsSerialization ? JSON.stringify(review || {}) : (review || "");
             return {
                 url: url.format(localVarUrlObj),
                 options: localVarRequestOptions,
@@ -17348,6 +17570,66 @@ var ItemApiFetchParamCreator = function (configuration) {
             };
         },
         /**
+         * Update an item review.
+         * @summary Update a review
+         * @param {ItemReview} review Review to update
+         * @param {number} review_oid The review oid to update.
+         * @param {number} merchant_item_oid The item oid the review is associated with.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        updateReview: function (review, review_oid, merchant_item_oid, options) {
+            if (options === void 0) { options = {}; }
+            // verify required parameter 'review' is not null or undefined
+            if (review === null || review === undefined) {
+                throw new RequiredError('review', 'Required parameter review was null or undefined when calling updateReview.');
+            }
+            // verify required parameter 'review_oid' is not null or undefined
+            if (review_oid === null || review_oid === undefined) {
+                throw new RequiredError('review_oid', 'Required parameter review_oid was null or undefined when calling updateReview.');
+            }
+            // verify required parameter 'merchant_item_oid' is not null or undefined
+            if (merchant_item_oid === null || merchant_item_oid === undefined) {
+                throw new RequiredError('merchant_item_oid', 'Required parameter merchant_item_oid was null or undefined when calling updateReview.');
+            }
+            var localVarPath = "/item/items/{merchant_item_oid}/reviews/{review_oid}"
+                .replace("{".concat("review_oid", "}"), encodeURIComponent(String(review_oid)))
+                .replace("{".concat("merchant_item_oid", "}"), encodeURIComponent(String(merchant_item_oid)));
+            var localVarUrlObj = url.parse(localVarPath, true);
+            var localVarRequestOptions = Object.assign({ method: 'PUT' }, options);
+            var localVarHeaderParameter = {};
+            var localVarQueryParameter = {};
+            if (configuration && configuration.apiVersion) {
+                localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+            }
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+                var localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+                    ? configuration.accessToken("ultraCartOauth", ["item_write"])
+                    : configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                var localVarApiKeyValue = typeof configuration.apiKey === 'function'
+                    ? configuration.apiKey("x-ultracart-simple-key")
+                    : configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+            localVarHeaderParameter['Content-Type'] = 'application/json; charset=UTF-8';
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+            var needsSerialization = ("ItemReview" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
+            localVarRequestOptions.body = needsSerialization ? JSON.stringify(review || {}) : (review || "");
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
          * Uploads an image and returns back meta information about the image as well as the identifier needed for the item update.
          * @summary Upload an image to the temporary multimedia.
          * @param {Blob} file File to upload
@@ -17438,6 +17720,29 @@ var ItemApiFp = function (configuration) {
          */
         deleteItem: function (merchant_item_oid, options) {
             var localVarFetchArgs = (0, exports.ItemApiFetchParamCreator)(configuration).deleteItem(merchant_item_oid, options);
+            return function (fetch, basePath) {
+                if (fetch === void 0) { fetch = portableFetch; }
+                if (basePath === void 0) { basePath = BASE_PATH; }
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(function (response) {
+                    if (response.status >= 200 && response.status < 300) {
+                        return response;
+                    }
+                    else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
+         * Delete an item review.
+         * @summary Delete a review
+         * @param {number} review_oid The review oid to delete.
+         * @param {number} merchant_item_oid The item oid the review is associated with.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        deleteReview: function (review_oid, merchant_item_oid, options) {
+            var localVarFetchArgs = (0, exports.ItemApiFetchParamCreator)(configuration).deleteReview(review_oid, merchant_item_oid, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -17622,6 +17927,51 @@ var ItemApiFp = function (configuration) {
             };
         },
         /**
+         * Retrieve an item review.
+         * @summary get a review
+         * @param {number} review_oid The review oid to retrieve.
+         * @param {number} merchant_item_oid The item oid the review is associated with.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getReview: function (review_oid, merchant_item_oid, options) {
+            var localVarFetchArgs = (0, exports.ItemApiFetchParamCreator)(configuration).getReview(review_oid, merchant_item_oid, options);
+            return function (fetch, basePath) {
+                if (fetch === void 0) { fetch = portableFetch; }
+                if (basePath === void 0) { basePath = BASE_PATH; }
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(function (response) {
+                    if (response.status >= 200 && response.status < 300) {
+                        return response.json();
+                    }
+                    else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
+         * Retrieve item reviews.
+         * @summary get reviews for an item
+         * @param {number} merchant_item_oid The item oid the review is associated with.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getReviews: function (merchant_item_oid, options) {
+            var localVarFetchArgs = (0, exports.ItemApiFetchParamCreator)(configuration).getReviews(merchant_item_oid, options);
+            return function (fetch, basePath) {
+                if (fetch === void 0) { fetch = portableFetch; }
+                if (basePath === void 0) { basePath = BASE_PATH; }
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(function (response) {
+                    if (response.status >= 200 && response.status < 300) {
+                        return response.json();
+                    }
+                    else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
          * Retrieves a group of digital items (file information) from the account that are not yet associated with any actual items.  If no parameters are specified, all digital items will be returned.  Be aware that these are not normal items that can be added to a shopping cart. Rather, they are digital files that may be associated with normal items.  You will need to make multiple API calls in order to retrieve the entire result set since this API performs result set pagination.
          * @summary Retrieve digital items from the digital library (which are digital files that may be attached to normal items) not yet associated with actual items
          * @param {number} [_limit] The maximum number of records to return on this one API call. (Default 100, Max 2000)
@@ -17681,6 +18031,29 @@ var ItemApiFp = function (configuration) {
          */
         insertItem: function (item, _expand, _placeholders, options) {
             var localVarFetchArgs = (0, exports.ItemApiFetchParamCreator)(configuration).insertItem(item, _expand, _placeholders, options);
+            return function (fetch, basePath) {
+                if (fetch === void 0) { fetch = portableFetch; }
+                if (basePath === void 0) { basePath = BASE_PATH; }
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(function (response) {
+                    if (response.status >= 200 && response.status < 300) {
+                        return response.json();
+                    }
+                    else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
+         * Insert a item review.
+         * @summary Insert a review
+         * @param {ItemReview} review Review to insert
+         * @param {number} merchant_item_oid The item oid the review is associated with.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        insertReview: function (review, merchant_item_oid, options) {
+            var localVarFetchArgs = (0, exports.ItemApiFetchParamCreator)(configuration).insertReview(review, merchant_item_oid, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -17768,6 +18141,30 @@ var ItemApiFp = function (configuration) {
             };
         },
         /**
+         * Update an item review.
+         * @summary Update a review
+         * @param {ItemReview} review Review to update
+         * @param {number} review_oid The review oid to update.
+         * @param {number} merchant_item_oid The item oid the review is associated with.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        updateReview: function (review, review_oid, merchant_item_oid, options) {
+            var localVarFetchArgs = (0, exports.ItemApiFetchParamCreator)(configuration).updateReview(review, review_oid, merchant_item_oid, options);
+            return function (fetch, basePath) {
+                if (fetch === void 0) { fetch = portableFetch; }
+                if (basePath === void 0) { basePath = BASE_PATH; }
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(function (response) {
+                    if (response.status >= 200 && response.status < 300) {
+                        return response.json();
+                    }
+                    else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
          * Uploads an image and returns back meta information about the image as well as the identifier needed for the item update.
          * @summary Upload an image to the temporary multimedia.
          * @param {Blob} file File to upload
@@ -17817,6 +18214,17 @@ var ItemApiFactory = function (configuration, fetch, basePath) {
          */
         deleteItem: function (merchant_item_oid, options) {
             return (0, exports.ItemApiFp)(configuration).deleteItem(merchant_item_oid, options)(fetch, basePath);
+        },
+        /**
+         * Delete an item review.
+         * @summary Delete a review
+         * @param {number} review_oid The review oid to delete.
+         * @param {number} merchant_item_oid The item oid the review is associated with.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        deleteReview: function (review_oid, merchant_item_oid, options) {
+            return (0, exports.ItemApiFp)(configuration).deleteReview(review_oid, merchant_item_oid, options)(fetch, basePath);
         },
         /**
          * Retrieves a digital item (file information) from the account.  Be aware that these are not normal items that can be added to a shopping cart. Rather, they are digital files that may be associated with normal items.
@@ -17905,6 +18313,27 @@ var ItemApiFactory = function (configuration, fetch, basePath) {
             return (0, exports.ItemApiFp)(configuration).getPricingTiers(_expand, options)(fetch, basePath);
         },
         /**
+         * Retrieve an item review.
+         * @summary get a review
+         * @param {number} review_oid The review oid to retrieve.
+         * @param {number} merchant_item_oid The item oid the review is associated with.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getReview: function (review_oid, merchant_item_oid, options) {
+            return (0, exports.ItemApiFp)(configuration).getReview(review_oid, merchant_item_oid, options)(fetch, basePath);
+        },
+        /**
+         * Retrieve item reviews.
+         * @summary get reviews for an item
+         * @param {number} merchant_item_oid The item oid the review is associated with.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getReviews: function (merchant_item_oid, options) {
+            return (0, exports.ItemApiFp)(configuration).getReviews(merchant_item_oid, options)(fetch, basePath);
+        },
+        /**
          * Retrieves a group of digital items (file information) from the account that are not yet associated with any actual items.  If no parameters are specified, all digital items will be returned.  Be aware that these are not normal items that can be added to a shopping cart. Rather, they are digital files that may be associated with normal items.  You will need to make multiple API calls in order to retrieve the entire result set since this API performs result set pagination.
          * @summary Retrieve digital items from the digital library (which are digital files that may be attached to normal items) not yet associated with actual items
          * @param {number} [_limit] The maximum number of records to return on this one API call. (Default 100, Max 2000)
@@ -17942,6 +18371,17 @@ var ItemApiFactory = function (configuration, fetch, basePath) {
             return (0, exports.ItemApiFp)(configuration).insertItem(item, _expand, _placeholders, options)(fetch, basePath);
         },
         /**
+         * Insert a item review.
+         * @summary Insert a review
+         * @param {ItemReview} review Review to insert
+         * @param {number} merchant_item_oid The item oid the review is associated with.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        insertReview: function (review, merchant_item_oid, options) {
+            return (0, exports.ItemApiFp)(configuration).insertReview(review, merchant_item_oid, options)(fetch, basePath);
+        },
+        /**
          * Updates a file within the digital library.  This does not update an item, but updates a digital file available and selectable as part (or all) of an item.
          * @summary Updates a file within the digital library
          * @param {number} digital_item_oid The digital item oid to update.
@@ -17977,6 +18417,18 @@ var ItemApiFactory = function (configuration, fetch, basePath) {
          */
         updateItems: function (items_request, _expand, _placeholders, _async, options) {
             return (0, exports.ItemApiFp)(configuration).updateItems(items_request, _expand, _placeholders, _async, options)(fetch, basePath);
+        },
+        /**
+         * Update an item review.
+         * @summary Update a review
+         * @param {ItemReview} review Review to update
+         * @param {number} review_oid The review oid to update.
+         * @param {number} merchant_item_oid The item oid the review is associated with.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        updateReview: function (review, review_oid, merchant_item_oid, options) {
+            return (0, exports.ItemApiFp)(configuration).updateReview(review, review_oid, merchant_item_oid, options)(fetch, basePath);
         },
         /**
          * Uploads an image and returns back meta information about the image as well as the identifier needed for the item update.
@@ -18023,6 +18475,18 @@ var ItemApi = /** @class */ (function (_super) {
      */
     ItemApi.prototype.deleteItem = function (merchant_item_oid, options) {
         return (0, exports.ItemApiFp)(this.configuration).deleteItem(merchant_item_oid, options)(this.fetch, this.basePath);
+    };
+    /**
+     * Delete an item review.
+     * @summary Delete a review
+     * @param {number} review_oid The review oid to delete.
+     * @param {number} merchant_item_oid The item oid the review is associated with.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ItemApi
+     */
+    ItemApi.prototype.deleteReview = function (review_oid, merchant_item_oid, options) {
+        return (0, exports.ItemApiFp)(this.configuration).deleteReview(review_oid, merchant_item_oid, options)(this.fetch, this.basePath);
     };
     /**
      * Retrieves a digital item (file information) from the account.  Be aware that these are not normal items that can be added to a shopping cart. Rather, they are digital files that may be associated with normal items.
@@ -18118,6 +18582,29 @@ var ItemApi = /** @class */ (function (_super) {
         return (0, exports.ItemApiFp)(this.configuration).getPricingTiers(_expand, options)(this.fetch, this.basePath);
     };
     /**
+     * Retrieve an item review.
+     * @summary get a review
+     * @param {number} review_oid The review oid to retrieve.
+     * @param {number} merchant_item_oid The item oid the review is associated with.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ItemApi
+     */
+    ItemApi.prototype.getReview = function (review_oid, merchant_item_oid, options) {
+        return (0, exports.ItemApiFp)(this.configuration).getReview(review_oid, merchant_item_oid, options)(this.fetch, this.basePath);
+    };
+    /**
+     * Retrieve item reviews.
+     * @summary get reviews for an item
+     * @param {number} merchant_item_oid The item oid the review is associated with.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ItemApi
+     */
+    ItemApi.prototype.getReviews = function (merchant_item_oid, options) {
+        return (0, exports.ItemApiFp)(this.configuration).getReviews(merchant_item_oid, options)(this.fetch, this.basePath);
+    };
+    /**
      * Retrieves a group of digital items (file information) from the account that are not yet associated with any actual items.  If no parameters are specified, all digital items will be returned.  Be aware that these are not normal items that can be added to a shopping cart. Rather, they are digital files that may be associated with normal items.  You will need to make multiple API calls in order to retrieve the entire result set since this API performs result set pagination.
      * @summary Retrieve digital items from the digital library (which are digital files that may be attached to normal items) not yet associated with actual items
      * @param {number} [_limit] The maximum number of records to return on this one API call. (Default 100, Max 2000)
@@ -18158,6 +18645,18 @@ var ItemApi = /** @class */ (function (_super) {
         return (0, exports.ItemApiFp)(this.configuration).insertItem(item, _expand, _placeholders, options)(this.fetch, this.basePath);
     };
     /**
+     * Insert a item review.
+     * @summary Insert a review
+     * @param {ItemReview} review Review to insert
+     * @param {number} merchant_item_oid The item oid the review is associated with.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ItemApi
+     */
+    ItemApi.prototype.insertReview = function (review, merchant_item_oid, options) {
+        return (0, exports.ItemApiFp)(this.configuration).insertReview(review, merchant_item_oid, options)(this.fetch, this.basePath);
+    };
+    /**
      * Updates a file within the digital library.  This does not update an item, but updates a digital file available and selectable as part (or all) of an item.
      * @summary Updates a file within the digital library
      * @param {number} digital_item_oid The digital item oid to update.
@@ -18196,6 +18695,19 @@ var ItemApi = /** @class */ (function (_super) {
      */
     ItemApi.prototype.updateItems = function (items_request, _expand, _placeholders, _async, options) {
         return (0, exports.ItemApiFp)(this.configuration).updateItems(items_request, _expand, _placeholders, _async, options)(this.fetch, this.basePath);
+    };
+    /**
+     * Update an item review.
+     * @summary Update a review
+     * @param {ItemReview} review Review to update
+     * @param {number} review_oid The review oid to update.
+     * @param {number} merchant_item_oid The item oid the review is associated with.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ItemApi
+     */
+    ItemApi.prototype.updateReview = function (review, review_oid, merchant_item_oid, options) {
+        return (0, exports.ItemApiFp)(this.configuration).updateReview(review, review_oid, merchant_item_oid, options)(this.fetch, this.basePath);
     };
     /**
      * Uploads an image and returns back meta information about the image as well as the identifier needed for the item update.

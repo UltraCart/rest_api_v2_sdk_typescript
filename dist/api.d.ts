@@ -25323,61 +25323,61 @@ export interface ItemReview {
      */
     overall?: number;
     /**
-     *
+     * Rating Name 1
      * @type {string}
      * @memberof ItemReview
      */
     rating_name1?: string;
     /**
-     *
+     * Rating Name 10
      * @type {string}
      * @memberof ItemReview
      */
     rating_name10?: string;
     /**
-     *
+     * Rating Name 2
      * @type {string}
      * @memberof ItemReview
      */
     rating_name2?: string;
     /**
-     *
+     * Rating Name 3
      * @type {string}
      * @memberof ItemReview
      */
     rating_name3?: string;
     /**
-     *
+     * Rating Name 4
      * @type {string}
      * @memberof ItemReview
      */
     rating_name4?: string;
     /**
-     *
+     * Rating Name 5
      * @type {string}
      * @memberof ItemReview
      */
     rating_name5?: string;
     /**
-     *
+     * Rating Name 6
      * @type {string}
      * @memberof ItemReview
      */
     rating_name6?: string;
     /**
-     *
+     * Rating Name 7
      * @type {string}
      * @memberof ItemReview
      */
     rating_name7?: string;
     /**
-     *
+     * Rating Name 8
      * @type {string}
      * @memberof ItemReview
      */
     rating_name8?: string;
     /**
-     *
+     * Rating Name 9
      * @type {string}
      * @memberof ItemReview
      */
@@ -25455,7 +25455,7 @@ export interface ItemReview {
      */
     recommend_to_friend?: boolean;
     /**
-     *
+     * Review
      * @type {string}
      * @memberof ItemReview
      */
@@ -25467,31 +25467,31 @@ export interface ItemReview {
      */
     review_oid?: number;
     /**
-     *
+     * Nickname
      * @type {string}
      * @memberof ItemReview
      */
     reviewed_nickname?: string;
     /**
-     *
+     * Reviewer Email
      * @type {string}
      * @memberof ItemReview
      */
     reviewer_email?: string;
     /**
-     *
+     * Location
      * @type {string}
      * @memberof ItemReview
      */
     reviewer_location?: string;
     /**
-     *
+     * Status of the review
      * @type {string}
      * @memberof ItemReview
      */
-    status?: string;
+    status?: ItemReview.StatusEnum;
     /**
-     *
+     * Store Feedback
      * @type {string}
      * @memberof ItemReview
      */
@@ -25503,11 +25503,64 @@ export interface ItemReview {
      */
     submitted_dts?: string;
     /**
-     *
+     * Title
      * @type {string}
      * @memberof ItemReview
      */
     title?: string;
+}
+/**
+ * @export
+ * @namespace ItemReview
+ */
+export declare namespace ItemReview {
+    /**
+     * @export
+     * @enum {string}
+     */
+    enum StatusEnum {
+        Approved,
+        Unapproved,
+        Rejected,
+        MultimediaProcessing
+    }
+}
+/**
+ *
+ * @export
+ * @interface ItemReviewResponse
+ */
+export interface ItemReviewResponse {
+    /**
+     *
+     * @type {ModelError}
+     * @memberof ItemReviewResponse
+     */
+    error?: ModelError;
+    /**
+     *
+     * @type {ResponseMetadata}
+     * @memberof ItemReviewResponse
+     */
+    metadata?: ResponseMetadata;
+    /**
+     *
+     * @type {ItemReview}
+     * @memberof ItemReviewResponse
+     */
+    review?: ItemReview;
+    /**
+     * Indicates if API call was successful
+     * @type {boolean}
+     * @memberof ItemReviewResponse
+     */
+    success?: boolean;
+    /**
+     *
+     * @type {Warning}
+     * @memberof ItemReviewResponse
+     */
+    warning?: Warning;
 }
 /**
  *
@@ -25575,6 +25628,43 @@ export interface ItemReviews {
      * @memberof ItemReviews
      */
     share_reviews_with_merchant_item_oid?: number;
+}
+/**
+ *
+ * @export
+ * @interface ItemReviewsResponse
+ */
+export interface ItemReviewsResponse {
+    /**
+     *
+     * @type {ModelError}
+     * @memberof ItemReviewsResponse
+     */
+    error?: ModelError;
+    /**
+     *
+     * @type {ResponseMetadata}
+     * @memberof ItemReviewsResponse
+     */
+    metadata?: ResponseMetadata;
+    /**
+     * reviews
+     * @type {Array<ItemReview>}
+     * @memberof ItemReviewsResponse
+     */
+    reviews?: Array<ItemReview>;
+    /**
+     * Indicates if API call was successful
+     * @type {boolean}
+     * @memberof ItemReviewsResponse
+     */
+    success?: boolean;
+    /**
+     *
+     * @type {Warning}
+     * @memberof ItemReviewsResponse
+     */
+    warning?: Warning;
 }
 /**
  *
@@ -46779,6 +46869,15 @@ export declare const ItemApiFetchParamCreator: (configuration?: Configuration) =
      */
     deleteItem(merchant_item_oid: number, options?: any): FetchArgs;
     /**
+     * Delete an item review.
+     * @summary Delete a review
+     * @param {number} review_oid The review oid to delete.
+     * @param {number} merchant_item_oid The item oid the review is associated with.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    deleteReview(review_oid: number, merchant_item_oid: number, options?: any): FetchArgs;
+    /**
      * Retrieves a digital item (file information) from the account.  Be aware that these are not normal items that can be added to a shopping cart. Rather, they are digital files that may be associated with normal items.
      * @summary Retrieve a digital item from the digital library, which are digital files that may be attached to normal items
      * @param {number} digital_item_oid The digital item oid to retrieve.
@@ -46851,6 +46950,23 @@ export declare const ItemApiFetchParamCreator: (configuration?: Configuration) =
      */
     getPricingTiers(_expand?: string, options?: any): FetchArgs;
     /**
+     * Retrieve an item review.
+     * @summary get a review
+     * @param {number} review_oid The review oid to retrieve.
+     * @param {number} merchant_item_oid The item oid the review is associated with.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getReview(review_oid: number, merchant_item_oid: number, options?: any): FetchArgs;
+    /**
+     * Retrieve item reviews.
+     * @summary get reviews for an item
+     * @param {number} merchant_item_oid The item oid the review is associated with.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getReviews(merchant_item_oid: number, options?: any): FetchArgs;
+    /**
      * Retrieves a group of digital items (file information) from the account that are not yet associated with any actual items.  If no parameters are specified, all digital items will be returned.  Be aware that these are not normal items that can be added to a shopping cart. Rather, they are digital files that may be associated with normal items.  You will need to make multiple API calls in order to retrieve the entire result set since this API performs result set pagination.
      * @summary Retrieve digital items from the digital library (which are digital files that may be attached to normal items) not yet associated with actual items
      * @param {number} [_limit] The maximum number of records to return on this one API call. (Default 100, Max 2000)
@@ -46881,6 +46997,15 @@ export declare const ItemApiFetchParamCreator: (configuration?: Configuration) =
      * @throws {RequiredError}
      */
     insertItem(item: Item, _expand?: string, _placeholders?: boolean, options?: any): FetchArgs;
+    /**
+     * Insert a item review.
+     * @summary Insert a review
+     * @param {ItemReview} review Review to insert
+     * @param {number} merchant_item_oid The item oid the review is associated with.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    insertReview(review: ItemReview, merchant_item_oid: number, options?: any): FetchArgs;
     /**
      * Updates a file within the digital library.  This does not update an item, but updates a digital file available and selectable as part (or all) of an item.
      * @summary Updates a file within the digital library
@@ -46913,6 +47038,16 @@ export declare const ItemApiFetchParamCreator: (configuration?: Configuration) =
      */
     updateItems(items_request: ItemsRequest, _expand?: string, _placeholders?: boolean, _async?: boolean, options?: any): FetchArgs;
     /**
+     * Update an item review.
+     * @summary Update a review
+     * @param {ItemReview} review Review to update
+     * @param {number} review_oid The review oid to update.
+     * @param {number} merchant_item_oid The item oid the review is associated with.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    updateReview(review: ItemReview, review_oid: number, merchant_item_oid: number, options?: any): FetchArgs;
+    /**
      * Uploads an image and returns back meta information about the image as well as the identifier needed for the item update.
      * @summary Upload an image to the temporary multimedia.
      * @param {Blob} file File to upload
@@ -46942,6 +47077,15 @@ export declare const ItemApiFp: (configuration?: Configuration) => {
      * @throws {RequiredError}
      */
     deleteItem(merchant_item_oid: number, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Response>;
+    /**
+     * Delete an item review.
+     * @summary Delete a review
+     * @param {number} review_oid The review oid to delete.
+     * @param {number} merchant_item_oid The item oid the review is associated with.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    deleteReview(review_oid: number, merchant_item_oid: number, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Response>;
     /**
      * Retrieves a digital item (file information) from the account.  Be aware that these are not normal items that can be added to a shopping cart. Rather, they are digital files that may be associated with normal items.
      * @summary Retrieve a digital item from the digital library, which are digital files that may be attached to normal items
@@ -47015,6 +47159,23 @@ export declare const ItemApiFp: (configuration?: Configuration) => {
      */
     getPricingTiers(_expand?: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<PricingTiersResponse>;
     /**
+     * Retrieve an item review.
+     * @summary get a review
+     * @param {number} review_oid The review oid to retrieve.
+     * @param {number} merchant_item_oid The item oid the review is associated with.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getReview(review_oid: number, merchant_item_oid: number, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ItemReviewResponse>;
+    /**
+     * Retrieve item reviews.
+     * @summary get reviews for an item
+     * @param {number} merchant_item_oid The item oid the review is associated with.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getReviews(merchant_item_oid: number, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ItemReviewsResponse>;
+    /**
      * Retrieves a group of digital items (file information) from the account that are not yet associated with any actual items.  If no parameters are specified, all digital items will be returned.  Be aware that these are not normal items that can be added to a shopping cart. Rather, they are digital files that may be associated with normal items.  You will need to make multiple API calls in order to retrieve the entire result set since this API performs result set pagination.
      * @summary Retrieve digital items from the digital library (which are digital files that may be attached to normal items) not yet associated with actual items
      * @param {number} [_limit] The maximum number of records to return on this one API call. (Default 100, Max 2000)
@@ -47045,6 +47206,15 @@ export declare const ItemApiFp: (configuration?: Configuration) => {
      * @throws {RequiredError}
      */
     insertItem(item: Item, _expand?: string, _placeholders?: boolean, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ItemResponse>;
+    /**
+     * Insert a item review.
+     * @summary Insert a review
+     * @param {ItemReview} review Review to insert
+     * @param {number} merchant_item_oid The item oid the review is associated with.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    insertReview(review: ItemReview, merchant_item_oid: number, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ItemReviewResponse>;
     /**
      * Updates a file within the digital library.  This does not update an item, but updates a digital file available and selectable as part (or all) of an item.
      * @summary Updates a file within the digital library
@@ -47077,6 +47247,16 @@ export declare const ItemApiFp: (configuration?: Configuration) => {
      */
     updateItems(items_request: ItemsRequest, _expand?: string, _placeholders?: boolean, _async?: boolean, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ItemsResponse>;
     /**
+     * Update an item review.
+     * @summary Update a review
+     * @param {ItemReview} review Review to update
+     * @param {number} review_oid The review oid to update.
+     * @param {number} merchant_item_oid The item oid the review is associated with.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    updateReview(review: ItemReview, review_oid: number, merchant_item_oid: number, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ItemReviewResponse>;
+    /**
      * Uploads an image and returns back meta information about the image as well as the identifier needed for the item update.
      * @summary Upload an image to the temporary multimedia.
      * @param {Blob} file File to upload
@@ -47106,6 +47286,15 @@ export declare const ItemApiFactory: (configuration?: Configuration, fetch?: Fet
      * @throws {RequiredError}
      */
     deleteItem(merchant_item_oid: number, options?: any): Promise<Response>;
+    /**
+     * Delete an item review.
+     * @summary Delete a review
+     * @param {number} review_oid The review oid to delete.
+     * @param {number} merchant_item_oid The item oid the review is associated with.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    deleteReview(review_oid: number, merchant_item_oid: number, options?: any): Promise<Response>;
     /**
      * Retrieves a digital item (file information) from the account.  Be aware that these are not normal items that can be added to a shopping cart. Rather, they are digital files that may be associated with normal items.
      * @summary Retrieve a digital item from the digital library, which are digital files that may be attached to normal items
@@ -47179,6 +47368,23 @@ export declare const ItemApiFactory: (configuration?: Configuration, fetch?: Fet
      */
     getPricingTiers(_expand?: string, options?: any): Promise<PricingTiersResponse>;
     /**
+     * Retrieve an item review.
+     * @summary get a review
+     * @param {number} review_oid The review oid to retrieve.
+     * @param {number} merchant_item_oid The item oid the review is associated with.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getReview(review_oid: number, merchant_item_oid: number, options?: any): Promise<ItemReviewResponse>;
+    /**
+     * Retrieve item reviews.
+     * @summary get reviews for an item
+     * @param {number} merchant_item_oid The item oid the review is associated with.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getReviews(merchant_item_oid: number, options?: any): Promise<ItemReviewsResponse>;
+    /**
      * Retrieves a group of digital items (file information) from the account that are not yet associated with any actual items.  If no parameters are specified, all digital items will be returned.  Be aware that these are not normal items that can be added to a shopping cart. Rather, they are digital files that may be associated with normal items.  You will need to make multiple API calls in order to retrieve the entire result set since this API performs result set pagination.
      * @summary Retrieve digital items from the digital library (which are digital files that may be attached to normal items) not yet associated with actual items
      * @param {number} [_limit] The maximum number of records to return on this one API call. (Default 100, Max 2000)
@@ -47210,6 +47416,15 @@ export declare const ItemApiFactory: (configuration?: Configuration, fetch?: Fet
      */
     insertItem(item: Item, _expand?: string, _placeholders?: boolean, options?: any): Promise<ItemResponse>;
     /**
+     * Insert a item review.
+     * @summary Insert a review
+     * @param {ItemReview} review Review to insert
+     * @param {number} merchant_item_oid The item oid the review is associated with.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    insertReview(review: ItemReview, merchant_item_oid: number, options?: any): Promise<ItemReviewResponse>;
+    /**
      * Updates a file within the digital library.  This does not update an item, but updates a digital file available and selectable as part (or all) of an item.
      * @summary Updates a file within the digital library
      * @param {number} digital_item_oid The digital item oid to update.
@@ -47240,6 +47455,16 @@ export declare const ItemApiFactory: (configuration?: Configuration, fetch?: Fet
      * @throws {RequiredError}
      */
     updateItems(items_request: ItemsRequest, _expand?: string, _placeholders?: boolean, _async?: boolean, options?: any): Promise<ItemsResponse>;
+    /**
+     * Update an item review.
+     * @summary Update a review
+     * @param {ItemReview} review Review to update
+     * @param {number} review_oid The review oid to update.
+     * @param {number} merchant_item_oid The item oid the review is associated with.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    updateReview(review: ItemReview, review_oid: number, merchant_item_oid: number, options?: any): Promise<ItemReviewResponse>;
     /**
      * Uploads an image and returns back meta information about the image as well as the identifier needed for the item update.
      * @summary Upload an image to the temporary multimedia.
@@ -47274,6 +47499,16 @@ export interface ItemApiInterface {
      */
     deleteItem(merchant_item_oid: number, options?: any): Promise<{}>;
     /**
+     * Delete an item review.
+     * @summary Delete a review
+     * @param {number} review_oid The review oid to delete.
+     * @param {number} merchant_item_oid The item oid the review is associated with.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ItemApiInterface
+     */
+    deleteReview(review_oid: number, merchant_item_oid: number, options?: any): Promise<{}>;
+    /**
      * Retrieves a digital item (file information) from the account.  Be aware that these are not normal items that can be added to a shopping cart. Rather, they are digital files that may be associated with normal items.
      * @summary Retrieve a digital item from the digital library, which are digital files that may be attached to normal items
      * @param {number} digital_item_oid The digital item oid to retrieve.
@@ -47353,6 +47588,25 @@ export interface ItemApiInterface {
      */
     getPricingTiers(_expand?: string, options?: any): Promise<PricingTiersResponse>;
     /**
+     * Retrieve an item review.
+     * @summary get a review
+     * @param {number} review_oid The review oid to retrieve.
+     * @param {number} merchant_item_oid The item oid the review is associated with.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ItemApiInterface
+     */
+    getReview(review_oid: number, merchant_item_oid: number, options?: any): Promise<ItemReviewResponse>;
+    /**
+     * Retrieve item reviews.
+     * @summary get reviews for an item
+     * @param {number} merchant_item_oid The item oid the review is associated with.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ItemApiInterface
+     */
+    getReviews(merchant_item_oid: number, options?: any): Promise<ItemReviewsResponse>;
+    /**
      * Retrieves a group of digital items (file information) from the account that are not yet associated with any actual items.  If no parameters are specified, all digital items will be returned.  Be aware that these are not normal items that can be added to a shopping cart. Rather, they are digital files that may be associated with normal items.  You will need to make multiple API calls in order to retrieve the entire result set since this API performs result set pagination.
      * @summary Retrieve digital items from the digital library (which are digital files that may be attached to normal items) not yet associated with actual items
      * @param {number} [_limit] The maximum number of records to return on this one API call. (Default 100, Max 2000)
@@ -47387,6 +47641,16 @@ export interface ItemApiInterface {
      */
     insertItem(item: Item, _expand?: string, _placeholders?: boolean, options?: any): Promise<ItemResponse>;
     /**
+     * Insert a item review.
+     * @summary Insert a review
+     * @param {ItemReview} review Review to insert
+     * @param {number} merchant_item_oid The item oid the review is associated with.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ItemApiInterface
+     */
+    insertReview(review: ItemReview, merchant_item_oid: number, options?: any): Promise<ItemReviewResponse>;
+    /**
      * Updates a file within the digital library.  This does not update an item, but updates a digital file available and selectable as part (or all) of an item.
      * @summary Updates a file within the digital library
      * @param {number} digital_item_oid The digital item oid to update.
@@ -47420,6 +47684,17 @@ export interface ItemApiInterface {
      * @memberof ItemApiInterface
      */
     updateItems(items_request: ItemsRequest, _expand?: string, _placeholders?: boolean, _async?: boolean, options?: any): Promise<ItemsResponse>;
+    /**
+     * Update an item review.
+     * @summary Update a review
+     * @param {ItemReview} review Review to update
+     * @param {number} review_oid The review oid to update.
+     * @param {number} merchant_item_oid The item oid the review is associated with.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ItemApiInterface
+     */
+    updateReview(review: ItemReview, review_oid: number, merchant_item_oid: number, options?: any): Promise<ItemReviewResponse>;
     /**
      * Uploads an image and returns back meta information about the image as well as the identifier needed for the item update.
      * @summary Upload an image to the temporary multimedia.
@@ -47456,6 +47731,16 @@ export declare class ItemApi extends BaseAPI implements ItemApiInterface {
      */
     deleteItem(merchant_item_oid: number, options?: any): Promise<Response>;
     /**
+     * Delete an item review.
+     * @summary Delete a review
+     * @param {number} review_oid The review oid to delete.
+     * @param {number} merchant_item_oid The item oid the review is associated with.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ItemApi
+     */
+    deleteReview(review_oid: number, merchant_item_oid: number, options?: any): Promise<Response>;
+    /**
      * Retrieves a digital item (file information) from the account.  Be aware that these are not normal items that can be added to a shopping cart. Rather, they are digital files that may be associated with normal items.
      * @summary Retrieve a digital item from the digital library, which are digital files that may be attached to normal items
      * @param {number} digital_item_oid The digital item oid to retrieve.
@@ -47535,6 +47820,25 @@ export declare class ItemApi extends BaseAPI implements ItemApiInterface {
      */
     getPricingTiers(_expand?: string, options?: any): Promise<PricingTiersResponse>;
     /**
+     * Retrieve an item review.
+     * @summary get a review
+     * @param {number} review_oid The review oid to retrieve.
+     * @param {number} merchant_item_oid The item oid the review is associated with.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ItemApi
+     */
+    getReview(review_oid: number, merchant_item_oid: number, options?: any): Promise<ItemReviewResponse>;
+    /**
+     * Retrieve item reviews.
+     * @summary get reviews for an item
+     * @param {number} merchant_item_oid The item oid the review is associated with.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ItemApi
+     */
+    getReviews(merchant_item_oid: number, options?: any): Promise<ItemReviewsResponse>;
+    /**
      * Retrieves a group of digital items (file information) from the account that are not yet associated with any actual items.  If no parameters are specified, all digital items will be returned.  Be aware that these are not normal items that can be added to a shopping cart. Rather, they are digital files that may be associated with normal items.  You will need to make multiple API calls in order to retrieve the entire result set since this API performs result set pagination.
      * @summary Retrieve digital items from the digital library (which are digital files that may be attached to normal items) not yet associated with actual items
      * @param {number} [_limit] The maximum number of records to return on this one API call. (Default 100, Max 2000)
@@ -47569,6 +47873,16 @@ export declare class ItemApi extends BaseAPI implements ItemApiInterface {
      */
     insertItem(item: Item, _expand?: string, _placeholders?: boolean, options?: any): Promise<ItemResponse>;
     /**
+     * Insert a item review.
+     * @summary Insert a review
+     * @param {ItemReview} review Review to insert
+     * @param {number} merchant_item_oid The item oid the review is associated with.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ItemApi
+     */
+    insertReview(review: ItemReview, merchant_item_oid: number, options?: any): Promise<ItemReviewResponse>;
+    /**
      * Updates a file within the digital library.  This does not update an item, but updates a digital file available and selectable as part (or all) of an item.
      * @summary Updates a file within the digital library
      * @param {number} digital_item_oid The digital item oid to update.
@@ -47602,6 +47916,17 @@ export declare class ItemApi extends BaseAPI implements ItemApiInterface {
      * @memberof ItemApi
      */
     updateItems(items_request: ItemsRequest, _expand?: string, _placeholders?: boolean, _async?: boolean, options?: any): Promise<ItemsResponse>;
+    /**
+     * Update an item review.
+     * @summary Update a review
+     * @param {ItemReview} review Review to update
+     * @param {number} review_oid The review oid to update.
+     * @param {number} merchant_item_oid The item oid the review is associated with.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ItemApi
+     */
+    updateReview(review: ItemReview, review_oid: number, merchant_item_oid: number, options?: any): Promise<ItemReviewResponse>;
     /**
      * Uploads an image and returns back meta information about the image as well as the identifier needed for the item update.
      * @summary Upload an image to the temporary multimedia.
