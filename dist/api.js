@@ -17075,7 +17075,7 @@ var ItemApiFetchParamCreator = function (configuration) {
         },
         /**
          * Retrieve an item review.
-         * @summary get a review
+         * @summary Get a review
          * @param {number} review_oid The review oid to retrieve.
          * @param {number} merchant_item_oid The item oid the review is associated with.
          * @param {*} [options] Override http request option.
@@ -17127,7 +17127,7 @@ var ItemApiFetchParamCreator = function (configuration) {
         },
         /**
          * Retrieve item reviews.
-         * @summary get reviews for an item
+         * @summary Get reviews for an item
          * @param {number} merchant_item_oid The item oid the review is associated with.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -17928,7 +17928,7 @@ var ItemApiFp = function (configuration) {
         },
         /**
          * Retrieve an item review.
-         * @summary get a review
+         * @summary Get a review
          * @param {number} review_oid The review oid to retrieve.
          * @param {number} merchant_item_oid The item oid the review is associated with.
          * @param {*} [options] Override http request option.
@@ -17951,7 +17951,7 @@ var ItemApiFp = function (configuration) {
         },
         /**
          * Retrieve item reviews.
-         * @summary get reviews for an item
+         * @summary Get reviews for an item
          * @param {number} merchant_item_oid The item oid the review is associated with.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -18314,7 +18314,7 @@ var ItemApiFactory = function (configuration, fetch, basePath) {
         },
         /**
          * Retrieve an item review.
-         * @summary get a review
+         * @summary Get a review
          * @param {number} review_oid The review oid to retrieve.
          * @param {number} merchant_item_oid The item oid the review is associated with.
          * @param {*} [options] Override http request option.
@@ -18325,7 +18325,7 @@ var ItemApiFactory = function (configuration, fetch, basePath) {
         },
         /**
          * Retrieve item reviews.
-         * @summary get reviews for an item
+         * @summary Get reviews for an item
          * @param {number} merchant_item_oid The item oid the review is associated with.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -18583,7 +18583,7 @@ var ItemApi = /** @class */ (function (_super) {
     };
     /**
      * Retrieve an item review.
-     * @summary get a review
+     * @summary Get a review
      * @param {number} review_oid The review oid to retrieve.
      * @param {number} merchant_item_oid The item oid the review is associated with.
      * @param {*} [options] Override http request option.
@@ -18595,7 +18595,7 @@ var ItemApi = /** @class */ (function (_super) {
     };
     /**
      * Retrieve item reviews.
-     * @summary get reviews for an item
+     * @summary Get reviews for an item
      * @param {number} merchant_item_oid The item oid the review is associated with.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}

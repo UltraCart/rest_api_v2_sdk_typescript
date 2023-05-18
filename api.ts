@@ -1545,6 +1545,12 @@ export interface AutoOrderItem {
      */
     auto_order_item_oid?: number;
     /**
+     * Date/time of the first order of this item.  Null if item added to auto order and has not been rebilled yet.
+     * @type {string}
+     * @memberof AutoOrderItem
+     */
+    first_order_dts?: string;
+    /**
      * Frequency of the rebill if not a fixed schedule
      * @type {string}
      * @memberof AutoOrderItem
@@ -1610,6 +1616,12 @@ export interface AutoOrderItem {
      * @memberof AutoOrderItem
      */
     original_quantity?: number;
+    /**
+     * True if paused.  This field is an object instead of a primitive for backwards compatibility.
+     * @type {boolean}
+     * @memberof AutoOrderItem
+     */
+    paused?: boolean;
     /**
      * The PayPal Payer ID tied to this item
      * @type {string}
@@ -25509,6 +25521,12 @@ export interface ItemPricingTierLimit {
      * @memberof ItemPricingTierLimit
      */
     multiple_quantity?: number;
+    /**
+     * Payment method validity
+     * @type {Array<string>}
+     * @memberof ItemPricingTierLimit
+     */
+    payment_method_validity?: Array<string>;
 }
 
 /**
@@ -33708,6 +33726,12 @@ export interface ReportDataSet {
      * @memberof ReportDataSet
      */
     error_message?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ReportDataSet
+     */
+    executed_sql?: string;
     /**
      * An identifier that can be used to help match up the returned data set
      * @type {string}
@@ -58733,7 +58757,7 @@ export const ItemApiFetchParamCreator = function (configuration?: Configuration)
         },
         /**
          * Retrieve an item review. 
-         * @summary get a review
+         * @summary Get a review
          * @param {number} review_oid The review oid to retrieve.
          * @param {number} merchant_item_oid The item oid the review is associated with.
          * @param {*} [options] Override http request option.
@@ -58791,7 +58815,7 @@ export const ItemApiFetchParamCreator = function (configuration?: Configuration)
         },
         /**
          * Retrieve item reviews. 
-         * @summary get reviews for an item
+         * @summary Get reviews for an item
          * @param {number} merchant_item_oid The item oid the review is associated with.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -59664,7 +59688,7 @@ export const ItemApiFp = function(configuration?: Configuration) {
         },
         /**
          * Retrieve an item review. 
-         * @summary get a review
+         * @summary Get a review
          * @param {number} review_oid The review oid to retrieve.
          * @param {number} merchant_item_oid The item oid the review is associated with.
          * @param {*} [options] Override http request option.
@@ -59686,7 +59710,7 @@ export const ItemApiFp = function(configuration?: Configuration) {
         },
         /**
          * Retrieve item reviews. 
-         * @summary get reviews for an item
+         * @summary Get reviews for an item
          * @param {number} merchant_item_oid The item oid the review is associated with.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -60039,7 +60063,7 @@ export const ItemApiFactory = function (configuration?: Configuration, fetch?: F
         },
         /**
          * Retrieve an item review. 
-         * @summary get a review
+         * @summary Get a review
          * @param {number} review_oid The review oid to retrieve.
          * @param {number} merchant_item_oid The item oid the review is associated with.
          * @param {*} [options] Override http request option.
@@ -60050,7 +60074,7 @@ export const ItemApiFactory = function (configuration?: Configuration, fetch?: F
         },
         /**
          * Retrieve item reviews. 
-         * @summary get reviews for an item
+         * @summary Get reviews for an item
          * @param {number} merchant_item_oid The item oid the review is associated with.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -60293,7 +60317,7 @@ export interface ItemApiInterface {
 
     /**
      * Retrieve an item review. 
-     * @summary get a review
+     * @summary Get a review
      * @param {number} review_oid The review oid to retrieve.
      * @param {number} merchant_item_oid The item oid the review is associated with.
      * @param {*} [options] Override http request option.
@@ -60304,7 +60328,7 @@ export interface ItemApiInterface {
 
     /**
      * Retrieve item reviews. 
-     * @summary get reviews for an item
+     * @summary Get reviews for an item
      * @param {number} merchant_item_oid The item oid the review is associated with.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -60567,7 +60591,7 @@ export class ItemApi extends BaseAPI implements ItemApiInterface {
 
     /**
      * Retrieve an item review. 
-     * @summary get a review
+     * @summary Get a review
      * @param {number} review_oid The review oid to retrieve.
      * @param {number} merchant_item_oid The item oid the review is associated with.
      * @param {*} [options] Override http request option.
@@ -60580,7 +60604,7 @@ export class ItemApi extends BaseAPI implements ItemApiInterface {
 
     /**
      * Retrieve item reviews. 
-     * @summary get reviews for an item
+     * @summary Get reviews for an item
      * @param {number} merchant_item_oid The item oid the review is associated with.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
