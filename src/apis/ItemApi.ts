@@ -361,7 +361,7 @@ export interface ItemApiInterface {
 
     /**
      * Retrieve an item review. 
-     * @summary get a review
+     * @summary Get a review
      * @param {number} reviewOid The review oid to retrieve.
      * @param {number} merchantItemOid The item oid the review is associated with.
      * @param {*} [options] Override http request option.
@@ -372,13 +372,13 @@ export interface ItemApiInterface {
 
     /**
      * Retrieve an item review. 
-     * get a review
+     * Get a review
      */
     getReview(requestParameters: GetReviewRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ItemReviewResponse>;
 
     /**
      * Retrieve item reviews. 
-     * @summary get reviews for an item
+     * @summary Get reviews for an item
      * @param {number} merchantItemOid The item oid the review is associated with.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -388,7 +388,7 @@ export interface ItemApiInterface {
 
     /**
      * Retrieve item reviews. 
-     * get reviews for an item
+     * Get reviews for an item
      */
     getReviews(requestParameters: GetReviewsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ItemReviewsResponse>;
 
@@ -1037,7 +1037,7 @@ export class ItemApi extends runtime.BaseAPI implements ItemApiInterface {
 
     /**
      * Retrieve an item review. 
-     * get a review
+     * Get a review
      */
     async getReviewRaw(requestParameters: GetReviewRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ItemReviewResponse>> {
         if (requestParameters.reviewOid === null || requestParameters.reviewOid === undefined) {
@@ -1073,7 +1073,7 @@ export class ItemApi extends runtime.BaseAPI implements ItemApiInterface {
 
     /**
      * Retrieve an item review. 
-     * get a review
+     * Get a review
      */
     async getReview(requestParameters: GetReviewRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ItemReviewResponse> {
         const response = await this.getReviewRaw(requestParameters, initOverrides);
@@ -1082,7 +1082,7 @@ export class ItemApi extends runtime.BaseAPI implements ItemApiInterface {
 
     /**
      * Retrieve item reviews. 
-     * get reviews for an item
+     * Get reviews for an item
      */
     async getReviewsRaw(requestParameters: GetReviewsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ItemReviewsResponse>> {
         if (requestParameters.merchantItemOid === null || requestParameters.merchantItemOid === undefined) {
@@ -1114,7 +1114,7 @@ export class ItemApi extends runtime.BaseAPI implements ItemApiInterface {
 
     /**
      * Retrieve item reviews. 
-     * get reviews for an item
+     * Get reviews for an item
      */
     async getReviews(requestParameters: GetReviewsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ItemReviewsResponse> {
         const response = await this.getReviewsRaw(requestParameters, initOverrides);

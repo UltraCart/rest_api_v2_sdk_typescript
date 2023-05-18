@@ -57,6 +57,12 @@ export interface ReportDataSet {
      */
     error_message?: string;
     /**
+     * 
+     * @type {string}
+     * @memberof ReportDataSet
+     */
+    executed_sql?: string;
+    /**
      * An identifier that can be used to help match up the returned data set
      * @type {string}
      * @memberof ReportDataSet
@@ -150,6 +156,7 @@ export function ReportDataSetFromJSONTyped(json: any, ignoreDiscriminator: boole
         'data_set_uuid': !exists(json, 'data_set_uuid') ? undefined : json['data_set_uuid'],
         'destination_table_id': !exists(json, 'destination_table_id') ? undefined : json['destination_table_id'],
         'error_message': !exists(json, 'error_message') ? undefined : json['error_message'],
+        'executed_sql': !exists(json, 'executed_sql') ? undefined : json['executed_sql'],
         'for_object_id': !exists(json, 'for_object_id') ? undefined : json['for_object_id'],
         'for_object_type': !exists(json, 'for_object_type') ? undefined : json['for_object_type'],
         'initial_pages': !exists(json, 'initial_pages') ? undefined : ((json['initial_pages'] as Array<any>).map(ReportDataSetPageFromJSON)),
@@ -177,6 +184,7 @@ export function ReportDataSetToJSON(value?: ReportDataSet | null): any {
         'data_set_uuid': value.data_set_uuid,
         'destination_table_id': value.destination_table_id,
         'error_message': value.error_message,
+        'executed_sql': value.executed_sql,
         'for_object_id': value.for_object_id,
         'for_object_type': value.for_object_type,
         'initial_pages': value.initial_pages === undefined ? undefined : ((value.initial_pages as Array<any>).map(ReportDataSetPageToJSON)),

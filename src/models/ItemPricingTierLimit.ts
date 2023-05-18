@@ -43,6 +43,12 @@ export interface ItemPricingTierLimit {
      * @memberof ItemPricingTierLimit
      */
     multiple_quantity?: number;
+    /**
+     * Payment method validity
+     * @type {Array<string>}
+     * @memberof ItemPricingTierLimit
+     */
+    payment_method_validity?: Array<string>;
 }
 
 export function ItemPricingTierLimitFromJSON(json: any): ItemPricingTierLimit {
@@ -59,6 +65,7 @@ export function ItemPricingTierLimitFromJSONTyped(json: any, ignoreDiscriminator
         'exempt_from_minimum_item_count': !exists(json, 'exempt_from_minimum_item_count') ? undefined : json['exempt_from_minimum_item_count'],
         'individual_order_limit': !exists(json, 'individual_order_limit') ? undefined : json['individual_order_limit'],
         'multiple_quantity': !exists(json, 'multiple_quantity') ? undefined : json['multiple_quantity'],
+        'payment_method_validity': !exists(json, 'payment_method_validity') ? undefined : json['payment_method_validity'],
     };
 }
 
@@ -75,6 +82,7 @@ export function ItemPricingTierLimitToJSON(value?: ItemPricingTierLimit | null):
         'exempt_from_minimum_item_count': value.exempt_from_minimum_item_count,
         'individual_order_limit': value.individual_order_limit,
         'multiple_quantity': value.multiple_quantity,
+        'payment_method_validity': value.payment_method_validity,
     };
 }
 
