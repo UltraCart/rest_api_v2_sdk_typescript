@@ -30265,7 +30265,8 @@ export declare namespace OrderPayment {
         WireTransfer,
         Walmart,
         ShopCom,
-        Sezzle
+        Sezzle,
+        Venmo
     }
     /**
      * @export

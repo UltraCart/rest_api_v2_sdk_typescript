@@ -30917,7 +30917,8 @@ export namespace OrderPayment {
         WireTransfer = <any> 'Wire Transfer',
         Walmart = <any> 'Walmart',
         ShopCom = <any> 'Shop.com',
-        Sezzle = <any> 'Sezzle'
+        Sezzle = <any> 'Sezzle',
+        Venmo = <any> 'Venmo'
     }
     /**
      * @export
