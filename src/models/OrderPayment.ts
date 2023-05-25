@@ -197,7 +197,8 @@ export const OrderPaymentPaymentMethodEnum = {
     WireTransfer: 'Wire Transfer',
     Walmart: 'Walmart',
     ShopCom: 'Shop.com',
-    Sezzle: 'Sezzle'
+    Sezzle: 'Sezzle',
+    Venmo: 'Venmo'
 } as const;
 export type OrderPaymentPaymentMethodEnum = typeof OrderPaymentPaymentMethodEnum[keyof typeof OrderPaymentPaymentMethodEnum];
 
