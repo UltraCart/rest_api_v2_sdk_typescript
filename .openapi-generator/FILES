@@ -47,6 +47,8 @@ src/models/ApiUserApplicationProfile.ts
 src/models/ApplyLibraryItemRequest.ts
 src/models/ApplyLibraryItemResponse.ts
 src/models/AutoOrder.ts
+src/models/AutoOrderAddonItem.ts
+src/models/AutoOrderAddonItemOption.ts
 src/models/AutoOrderItem.ts
 src/models/AutoOrderItemFutureSchedule.ts
 src/models/AutoOrderItemOption.ts

@@ -14,6 +14,12 @@
 
 import { exists, mapValues } from '../runtime';
 import {
+    AutoOrderAddonItem,
+    AutoOrderAddonItemFromJSON,
+    AutoOrderAddonItemFromJSONTyped,
+    AutoOrderAddonItemToJSON,
+} from './AutoOrderAddonItem';
+import {
     AutoOrderItem,
     AutoOrderItemFromJSON,
     AutoOrderItemFromJSONTyped,
@@ -44,6 +50,12 @@ import {
  * @interface AutoOrder
  */
 export interface AutoOrder {
+    /**
+     * Array of addon objects instructing which items to add to auto order and how many times they should be added.
+     * @type {Array<AutoOrderAddonItem>}
+     * @memberof AutoOrder
+     */
+    add_ons?: Array<AutoOrderAddonItem>;
     /**
      * Unique code assigned to this auto order
      * @type {string}
@@ -206,6 +218,7 @@ export function AutoOrderFromJSONTyped(json: any, ignoreDiscriminator: boolean):
     }
     return {
         
+        'add_ons': !exists(json, 'add_ons') ? undefined : ((json['add_ons'] as Array<any>).map(AutoOrderAddonItemFromJSON)),
         'auto_order_code': !exists(json, 'auto_order_code') ? undefined : json['auto_order_code'],
         'auto_order_oid': !exists(json, 'auto_order_oid') ? undefined : json['auto_order_oid'],
         'cancel_after_next_x_orders': !exists(json, 'cancel_after_next_x_orders') ? undefined : json['cancel_after_next_x_orders'],
@@ -241,6 +254,7 @@ export function AutoOrderToJSON(value?: AutoOrder | null): any {
     }
     return {
         
+        'add_ons': value.add_ons === undefined ? undefined : ((value.add_ons as Array<any>).map(AutoOrderAddonItemToJSON)),
         'auto_order_code': value.auto_order_code,
         'auto_order_oid': value.auto_order_oid,
         'cancel_after_next_x_orders': value.cancel_after_next_x_orders,

@@ -23,6 +23,8 @@ export * from './ApiUserApplicationProfile';
 export * from './ApplyLibraryItemRequest';
 export * from './ApplyLibraryItemResponse';
 export * from './AutoOrder';
+export * from './AutoOrderAddonItem';
+export * from './AutoOrderAddonItemOption';
 export * from './AutoOrderItem';
 export * from './AutoOrderItemFutureSchedule';
 export * from './AutoOrderItemOption';
