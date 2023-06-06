@@ -1299,6 +1299,12 @@ export interface ApplyLibraryItemResponse {
  */
 export interface AutoOrder {
     /**
+     * Array of addon objects instructing which items to add to auto order and how many times they should be added.
+     * @type {Array<AutoOrderAddonItem>}
+     * @memberof AutoOrder
+     */
+    add_ons?: Array<AutoOrderAddonItem>;
+    /**
      * Unique code assigned to this auto order
      * @type {string}
      * @memberof AutoOrder
@@ -1451,6 +1457,68 @@ export declare namespace AutoOrder {
         Canceled,
         Disabled
     }
+}
+/**
+ *
+ * @export
+ * @interface AutoOrderAddonItem
+ */
+export interface AutoOrderAddonItem {
+    /**
+     *
+     * @type {number}
+     * @memberof AutoOrderAddonItem
+     */
+    arbitrary_unit_cost?: number;
+    /**
+     *
+     * @type {boolean}
+     * @memberof AutoOrderAddonItem
+     */
+    free_shipping?: boolean;
+    /**
+     *
+     * @type {string}
+     * @memberof AutoOrderAddonItem
+     */
+    item_id?: string;
+    /**
+     *
+     * @type {number}
+     * @memberof AutoOrderAddonItem
+     */
+    next_x_orders?: number;
+    /**
+     * Options associated with this item
+     * @type {Array<AutoOrderAddonItemOption>}
+     * @memberof AutoOrderAddonItem
+     */
+    options?: Array<AutoOrderAddonItemOption>;
+    /**
+     *
+     * @type {number}
+     * @memberof AutoOrderAddonItem
+     */
+    quantity?: number;
+}
+/**
+ *
+ * @export
+ * @interface AutoOrderAddonItemOption
+ */
+export interface AutoOrderAddonItemOption {
+    /**
+     * Label
+     * @type {string}
+     * @memberof AutoOrderAddonItemOption
+     */
+    label?: string;
+    /**
+     * Value
+     * @type {string}
+     * @memberof AutoOrderAddonItemOption
+     */
+    value?: string;
 }
 /**
  *
@@ -22305,11 +22373,23 @@ export interface ItemAutoOrder {
      */
     auto_order_cancel_item_oid?: number;
     /**
+     * The minimum life time count that must be billed in order to not be charged the cancellation item.
+     * @type {number}
+     * @memberof ItemAutoOrder
+     */
+    auto_order_cancel_minimum_life_time_count?: number;
+    /**
      * The minimum life time value that must be paid in order to not be charged the cancellation item.
      * @type {number}
      * @memberof ItemAutoOrder
      */
     auto_order_cancel_minimum_life_time_value?: number;
+    /**
+     * The minimum rebill count that must be billed in order to not be charged the cancellation item.
+     * @type {number}
+     * @memberof ItemAutoOrder
+     */
+    auto_order_cancel_minimum_rebill_count?: number;
     /**
      * The minimum rebill value that must be paid in order to not be charged the cancellation item.
      * @type {number}
