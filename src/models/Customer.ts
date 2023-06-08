@@ -375,6 +375,12 @@ export interface Customer {
      */
     qb_code?: string;
     /**
+     * QuickBooks tax exemption reason code
+     * @type {number}
+     * @memberof Customer
+     */
+    qb_tax_exemption_reason_code?: number;
+    /**
      * Quotes associated with this customer profile
      * @type {Array<Order>}
      * @memberof Customer
@@ -542,6 +548,7 @@ export function CustomerFromJSONTyped(json: any, ignoreDiscriminator: boolean): 
         'privacy': !exists(json, 'privacy') ? undefined : CustomerPrivacyFromJSON(json['privacy']),
         'qb_class': !exists(json, 'qb_class') ? undefined : json['qb_class'],
         'qb_code': !exists(json, 'qb_code') ? undefined : json['qb_code'],
+        'qb_tax_exemption_reason_code': !exists(json, 'qb_tax_exemption_reason_code') ? undefined : json['qb_tax_exemption_reason_code'],
         'quotes': !exists(json, 'quotes') ? undefined : ((json['quotes'] as Array<any>).map(OrderFromJSON)),
         'quotes_summary': !exists(json, 'quotes_summary') ? undefined : CustomerQuotesSummaryFromJSON(json['quotes_summary']),
         'referral_source': !exists(json, 'referral_source') ? undefined : json['referral_source'],
@@ -615,6 +622,7 @@ export function CustomerToJSON(value?: Customer | null): any {
         'privacy': CustomerPrivacyToJSON(value.privacy),
         'qb_class': value.qb_class,
         'qb_code': value.qb_code,
+        'qb_tax_exemption_reason_code': value.qb_tax_exemption_reason_code,
         'quotes': value.quotes === undefined ? undefined : ((value.quotes as Array<any>).map(OrderToJSON)),
         'quotes_summary': CustomerQuotesSummaryToJSON(value.quotes_summary),
         'referral_source': value.referral_source,
