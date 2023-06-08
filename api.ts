@@ -12098,6 +12098,12 @@ export interface Customer {
      */
     qb_code?: string;
     /**
+     * QuickBooks tax exemption reason code
+     * @type {number}
+     * @memberof Customer
+     */
+    qb_tax_exemption_reason_code?: number;
+    /**
      * Quotes associated with this customer profile
      * @type {Array<Order>}
      * @memberof Customer
