@@ -134,6 +134,96 @@ export interface DistributionCenter {
      */
     no_split_shipment?: boolean;
     /**
+     * The time (EST) after which pickups will not be available on Friday
+     * @type {string}
+     * @memberof DistributionCenter
+     */
+    pickup_cutoff_time_friday?: string;
+    /**
+     * The time (EST) after which pickups will not be available on Monday
+     * @type {string}
+     * @memberof DistributionCenter
+     */
+    pickup_cutoff_time_monday?: string;
+    /**
+     * The time (EST) after which pickups will not be available on Saturday
+     * @type {string}
+     * @memberof DistributionCenter
+     */
+    pickup_cutoff_time_saturday?: string;
+    /**
+     * The time (EST) after which pickups will not be available on Sunday
+     * @type {string}
+     * @memberof DistributionCenter
+     */
+    pickup_cutoff_time_sunday?: string;
+    /**
+     * The time (EST) after which pickups will not be available on Thursday
+     * @type {string}
+     * @memberof DistributionCenter
+     */
+    pickup_cutoff_time_thursday?: string;
+    /**
+     * The time (EST) after which pickups will not be available on Tuesday
+     * @type {string}
+     * @memberof DistributionCenter
+     */
+    pickup_cutoff_time_tuesday?: string;
+    /**
+     * The time (EST) after which pickups will not be available on Wednesday
+     * @type {string}
+     * @memberof DistributionCenter
+     */
+    pickup_cutoff_time_wednesday?: string;
+    /**
+     * The time (EST) after which pickups are available on Friday
+     * @type {string}
+     * @memberof DistributionCenter
+     */
+    pickup_start_time_friday?: string;
+    /**
+     * The time (EST) after which pickups are available on Monday
+     * @type {string}
+     * @memberof DistributionCenter
+     */
+    pickup_start_time_monday?: string;
+    /**
+     * The time (EST) after which pickups are available on Saturday
+     * @type {string}
+     * @memberof DistributionCenter
+     */
+    pickup_start_time_saturday?: string;
+    /**
+     * The time (EST) after which pickups are available on Sunday
+     * @type {string}
+     * @memberof DistributionCenter
+     */
+    pickup_start_time_sunday?: string;
+    /**
+     * The time (EST) after which pickups are available on Thursday
+     * @type {string}
+     * @memberof DistributionCenter
+     */
+    pickup_start_time_thursday?: string;
+    /**
+     * The time (EST) after which pickups are available on Tuesday
+     * @type {string}
+     * @memberof DistributionCenter
+     */
+    pickup_start_time_tuesday?: string;
+    /**
+     * The time (EST) after which pickups are available on Wednesday
+     * @type {string}
+     * @memberof DistributionCenter
+     */
+    pickup_start_time_wednesday?: string;
+    /**
+     * The IANA timezone for all pickup times
+     * @type {string}
+     * @memberof DistributionCenter
+     */
+    pickup_tz?: string;
+    /**
      * Postal code of the distribution center
      * @type {string}
      * @memberof DistributionCenter
@@ -260,6 +350,21 @@ export function DistributionCenterFromJSONTyped(json: any, ignoreDiscriminator: 
         'name': !exists(json, 'name') ? undefined : json['name'],
         'no_customer_direct_shipments': !exists(json, 'no_customer_direct_shipments') ? undefined : json['no_customer_direct_shipments'],
         'no_split_shipment': !exists(json, 'no_split_shipment') ? undefined : json['no_split_shipment'],
+        'pickup_cutoff_time_friday': !exists(json, 'pickup_cutoff_time_friday') ? undefined : json['pickup_cutoff_time_friday'],
+        'pickup_cutoff_time_monday': !exists(json, 'pickup_cutoff_time_monday') ? undefined : json['pickup_cutoff_time_monday'],
+        'pickup_cutoff_time_saturday': !exists(json, 'pickup_cutoff_time_saturday') ? undefined : json['pickup_cutoff_time_saturday'],
+        'pickup_cutoff_time_sunday': !exists(json, 'pickup_cutoff_time_sunday') ? undefined : json['pickup_cutoff_time_sunday'],
+        'pickup_cutoff_time_thursday': !exists(json, 'pickup_cutoff_time_thursday') ? undefined : json['pickup_cutoff_time_thursday'],
+        'pickup_cutoff_time_tuesday': !exists(json, 'pickup_cutoff_time_tuesday') ? undefined : json['pickup_cutoff_time_tuesday'],
+        'pickup_cutoff_time_wednesday': !exists(json, 'pickup_cutoff_time_wednesday') ? undefined : json['pickup_cutoff_time_wednesday'],
+        'pickup_start_time_friday': !exists(json, 'pickup_start_time_friday') ? undefined : json['pickup_start_time_friday'],
+        'pickup_start_time_monday': !exists(json, 'pickup_start_time_monday') ? undefined : json['pickup_start_time_monday'],
+        'pickup_start_time_saturday': !exists(json, 'pickup_start_time_saturday') ? undefined : json['pickup_start_time_saturday'],
+        'pickup_start_time_sunday': !exists(json, 'pickup_start_time_sunday') ? undefined : json['pickup_start_time_sunday'],
+        'pickup_start_time_thursday': !exists(json, 'pickup_start_time_thursday') ? undefined : json['pickup_start_time_thursday'],
+        'pickup_start_time_tuesday': !exists(json, 'pickup_start_time_tuesday') ? undefined : json['pickup_start_time_tuesday'],
+        'pickup_start_time_wednesday': !exists(json, 'pickup_start_time_wednesday') ? undefined : json['pickup_start_time_wednesday'],
+        'pickup_tz': !exists(json, 'pickup_tz') ? undefined : json['pickup_tz'],
         'postal_code': !exists(json, 'postal_code') ? undefined : json['postal_code'],
         'process_days': !exists(json, 'process_days') ? undefined : json['process_days'],
         'process_inventory_start_time': !exists(json, 'process_inventory_start_time') ? undefined : json['process_inventory_start_time'],
@@ -307,6 +412,21 @@ export function DistributionCenterToJSON(value?: DistributionCenter | null): any
         'name': value.name,
         'no_customer_direct_shipments': value.no_customer_direct_shipments,
         'no_split_shipment': value.no_split_shipment,
+        'pickup_cutoff_time_friday': value.pickup_cutoff_time_friday,
+        'pickup_cutoff_time_monday': value.pickup_cutoff_time_monday,
+        'pickup_cutoff_time_saturday': value.pickup_cutoff_time_saturday,
+        'pickup_cutoff_time_sunday': value.pickup_cutoff_time_sunday,
+        'pickup_cutoff_time_thursday': value.pickup_cutoff_time_thursday,
+        'pickup_cutoff_time_tuesday': value.pickup_cutoff_time_tuesday,
+        'pickup_cutoff_time_wednesday': value.pickup_cutoff_time_wednesday,
+        'pickup_start_time_friday': value.pickup_start_time_friday,
+        'pickup_start_time_monday': value.pickup_start_time_monday,
+        'pickup_start_time_saturday': value.pickup_start_time_saturday,
+        'pickup_start_time_sunday': value.pickup_start_time_sunday,
+        'pickup_start_time_thursday': value.pickup_start_time_thursday,
+        'pickup_start_time_tuesday': value.pickup_start_time_tuesday,
+        'pickup_start_time_wednesday': value.pickup_start_time_wednesday,
+        'pickup_tz': value.pickup_tz,
         'postal_code': value.postal_code,
         'process_days': value.process_days,
         'process_inventory_start_time': value.process_inventory_start_time,
