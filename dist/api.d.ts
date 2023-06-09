@@ -13652,6 +13652,96 @@ export interface DistributionCenter {
      */
     no_split_shipment?: boolean;
     /**
+     * The time (EST) after which pickups will not be available on Friday
+     * @type {string}
+     * @memberof DistributionCenter
+     */
+    pickup_cutoff_time_friday?: string;
+    /**
+     * The time (EST) after which pickups will not be available on Monday
+     * @type {string}
+     * @memberof DistributionCenter
+     */
+    pickup_cutoff_time_monday?: string;
+    /**
+     * The time (EST) after which pickups will not be available on Saturday
+     * @type {string}
+     * @memberof DistributionCenter
+     */
+    pickup_cutoff_time_saturday?: string;
+    /**
+     * The time (EST) after which pickups will not be available on Sunday
+     * @type {string}
+     * @memberof DistributionCenter
+     */
+    pickup_cutoff_time_sunday?: string;
+    /**
+     * The time (EST) after which pickups will not be available on Thursday
+     * @type {string}
+     * @memberof DistributionCenter
+     */
+    pickup_cutoff_time_thursday?: string;
+    /**
+     * The time (EST) after which pickups will not be available on Tuesday
+     * @type {string}
+     * @memberof DistributionCenter
+     */
+    pickup_cutoff_time_tuesday?: string;
+    /**
+     * The time (EST) after which pickups will not be available on Wednesday
+     * @type {string}
+     * @memberof DistributionCenter
+     */
+    pickup_cutoff_time_wednesday?: string;
+    /**
+     * The time (EST) after which pickups are available on Friday
+     * @type {string}
+     * @memberof DistributionCenter
+     */
+    pickup_start_time_friday?: string;
+    /**
+     * The time (EST) after which pickups are available on Monday
+     * @type {string}
+     * @memberof DistributionCenter
+     */
+    pickup_start_time_monday?: string;
+    /**
+     * The time (EST) after which pickups are available on Saturday
+     * @type {string}
+     * @memberof DistributionCenter
+     */
+    pickup_start_time_saturday?: string;
+    /**
+     * The time (EST) after which pickups are available on Sunday
+     * @type {string}
+     * @memberof DistributionCenter
+     */
+    pickup_start_time_sunday?: string;
+    /**
+     * The time (EST) after which pickups are available on Thursday
+     * @type {string}
+     * @memberof DistributionCenter
+     */
+    pickup_start_time_thursday?: string;
+    /**
+     * The time (EST) after which pickups are available on Tuesday
+     * @type {string}
+     * @memberof DistributionCenter
+     */
+    pickup_start_time_tuesday?: string;
+    /**
+     * The time (EST) after which pickups are available on Wednesday
+     * @type {string}
+     * @memberof DistributionCenter
+     */
+    pickup_start_time_wednesday?: string;
+    /**
+     * The IANA timezone for all pickup times
+     * @type {string}
+     * @memberof DistributionCenter
+     */
+    pickup_tz?: string;
+    /**
      * Postal code of the distribution center
      * @type {string}
      * @memberof DistributionCenter

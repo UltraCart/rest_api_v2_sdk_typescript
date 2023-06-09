@@ -1,4 +1,4 @@
-## ultracart_rest_api_v2_typescript@3.10.141
+## ultracart_rest_api_v2_typescript@3.10.142
 
 This generator creates TypeScript/JavaScript client that utilizes [Fetch API](https://fetch.spec.whatwg.org/). The generated Node module can be used in the following environments:
 
@@ -36,7 +36,7 @@ navigate to the folder of your consuming project and run one of the following co
 _published:_
 
 ```
-npm install ultracart_rest_api_v2_typescript@3.10.141 --save
+npm install ultracart_rest_api_v2_typescript@3.10.142 --save
 ```
 
 _unPublished (not recommended):_
@@ -54,6 +54,7 @@ Not every change is committed to every SDK.
 
 | Version | Date | Comments |
 | --: | :-: | --- |
+| 3.10.142 | 06/09/2023 | distribution center pickup times |
 | 3.10.141 | 06/08/2023 | customer profile qb tax exempt reason code field |
 | 3.10.140 | 06/06/2023 | auto order add_ons |
 | 3.10.139 | 05/25/2023 | added venmo constants for payment type |
