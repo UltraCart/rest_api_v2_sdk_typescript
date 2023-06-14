@@ -105,6 +105,12 @@ export interface ReportDataSet {
      */
     page_size?: number;
     /**
+     * Date/Time of the client submitted the request.  Can be used to resolve out of order query completion results
+     * @type {string}
+     * @memberof ReportDataSet
+     */
+    request_dts?: string;
+    /**
      * The schema associated with the data set.
      * @type {Array<ReportDataSetSchema>}
      * @memberof ReportDataSet
@@ -164,6 +170,7 @@ export function ReportDataSetFromJSONTyped(json: any, ignoreDiscriminator: boole
         'merchant_id': !exists(json, 'merchant_id') ? undefined : json['merchant_id'],
         'page_count': !exists(json, 'page_count') ? undefined : json['page_count'],
         'page_size': !exists(json, 'page_size') ? undefined : json['page_size'],
+        'request_dts': !exists(json, 'request_dts') ? undefined : json['request_dts'],
         'schema': !exists(json, 'schema') ? undefined : ((json['schema'] as Array<any>).map(ReportDataSetSchemaFromJSON)),
         'security_level': !exists(json, 'security_level') ? undefined : json['security_level'],
         'timezone': !exists(json, 'timezone') ? undefined : json['timezone'],
@@ -192,6 +199,7 @@ export function ReportDataSetToJSON(value?: ReportDataSet | null): any {
         'merchant_id': value.merchant_id,
         'page_count': value.page_count,
         'page_size': value.page_size,
+        'request_dts': value.request_dts,
         'schema': value.schema === undefined ? undefined : ((value.schema as Array<any>).map(ReportDataSetSchemaToJSON)),
         'security_level': value.security_level,
         'timezone': value.timezone,

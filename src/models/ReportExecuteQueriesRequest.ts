@@ -63,6 +63,12 @@ export interface ReportExecuteQueriesRequest {
      */
     queries?: Array<ReportDataSetQuery>;
     /**
+     * Date/Time of the client submitted the request.  Can be used to resolve out of order query completion results
+     * @type {string}
+     * @memberof ReportExecuteQueriesRequest
+     */
+    request_dts?: string;
+    /**
      * Security level to execute report under
      * @type {string}
      * @memberof ReportExecuteQueriesRequest
@@ -99,6 +105,7 @@ export function ReportExecuteQueriesRequestFromJSONTyped(json: any, ignoreDiscri
         'default_project_id': !exists(json, 'default_project_id') ? undefined : json['default_project_id'],
         'merchant_id': !exists(json, 'merchant_id') ? undefined : json['merchant_id'],
         'queries': !exists(json, 'queries') ? undefined : ((json['queries'] as Array<any>).map(ReportDataSetQueryFromJSON)),
+        'request_dts': !exists(json, 'request_dts') ? undefined : json['request_dts'],
         'security_level': !exists(json, 'security_level') ? undefined : json['security_level'],
     };
 }
@@ -118,6 +125,7 @@ export function ReportExecuteQueriesRequestToJSON(value?: ReportExecuteQueriesRe
         'default_project_id': value.default_project_id,
         'merchant_id': value.merchant_id,
         'queries': value.queries === undefined ? undefined : ((value.queries as Array<any>).map(ReportDataSetQueryToJSON)),
+        'request_dts': value.request_dts,
         'security_level': value.security_level,
     };
 }
