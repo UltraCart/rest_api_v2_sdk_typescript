@@ -33954,6 +33954,12 @@ export interface ReportDataSet {
      */
     page_size?: number;
     /**
+     * Date/Time of the client submitted the request.  Can be used to resolve out of order query completion results
+     * @type {string}
+     * @memberof ReportDataSet
+     */
+    request_dts?: string;
+    /**
      * The schema associated with the data set.
      * @type {Array<ReportDataSetSchema>}
      * @memberof ReportDataSet
@@ -34563,6 +34569,12 @@ export interface ReportExecuteQueriesRequest {
      * @memberof ReportExecuteQueriesRequest
      */
     queries?: Array<ReportDataSetQuery>;
+    /**
+     * Date/Time of the client submitted the request.  Can be used to resolve out of order query completion results
+     * @type {string}
+     * @memberof ReportExecuteQueriesRequest
+     */
+    request_dts?: string;
     /**
      * Security level to execute report under
      * @type {string}
