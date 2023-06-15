@@ -123,6 +123,12 @@ export interface OrderShipping {
      */
     lift_gate?: boolean;
     /**
+     * Date/time the order should be picked up locally.
+     * @type {string}
+     * @memberof OrderShipping
+     */
+    pickup_dts?: string;
+    /**
      * Postal code
      * @type {string}
      * @memberof OrderShipping
@@ -239,6 +245,7 @@ export function OrderShippingFromJSONTyped(json: any, ignoreDiscriminator: boole
         'least_cost_route': !exists(json, 'least_cost_route') ? undefined : json['least_cost_route'],
         'least_cost_route_shipping_methods': !exists(json, 'least_cost_route_shipping_methods') ? undefined : json['least_cost_route_shipping_methods'],
         'lift_gate': !exists(json, 'lift_gate') ? undefined : json['lift_gate'],
+        'pickup_dts': !exists(json, 'pickup_dts') ? undefined : json['pickup_dts'],
         'postal_code': !exists(json, 'postal_code') ? undefined : json['postal_code'],
         'rma': !exists(json, 'rma') ? undefined : json['rma'],
         'ship_on_date': !exists(json, 'ship_on_date') ? undefined : json['ship_on_date'],
@@ -281,6 +288,7 @@ export function OrderShippingToJSON(value?: OrderShipping | null): any {
         'least_cost_route': value.least_cost_route,
         'least_cost_route_shipping_methods': value.least_cost_route_shipping_methods,
         'lift_gate': value.lift_gate,
+        'pickup_dts': value.pickup_dts,
         'postal_code': value.postal_code,
         'rma': value.rma,
         'ship_on_date': value.ship_on_date,

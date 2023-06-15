@@ -90,6 +90,8 @@ export interface AdjustOrderTotalRequest {
 
 export interface CancelOrderRequest {
     orderId: string;
+    lockSelfShipOrders?: boolean;
+    skipRefundAndHold?: boolean;
 }
 
 export interface DeleteOrderRequest {
@@ -266,6 +268,8 @@ export interface OrderApiInterface {
      * Cancel an order on the UltraCart account.  If the success flag is false, then consult the error message for why it failed. 
      * @summary Cancel an order
      * @param {string} orderId The order id to cancel.
+     * @param {boolean} [lockSelfShipOrders] Flag to prevent a order shipping during a refund process
+     * @param {boolean} [skipRefundAndHold] Skip refund and move order to Held Orders department
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof OrderApiInterface
@@ -777,6 +781,14 @@ export class OrderApi extends runtime.BaseAPI implements OrderApiInterface {
         }
 
         const queryParameters: any = {};
+
+        if (requestParameters.lockSelfShipOrders !== undefined) {
+            queryParameters['lock_self_ship_orders'] = requestParameters.lockSelfShipOrders;
+        }
+
+        if (requestParameters.skipRefundAndHold !== undefined) {
+            queryParameters['skip_refund_and_hold'] = requestParameters.skipRefundAndHold;
+        }
 
         const headerParameters: runtime.HTTPHeaders = {};
 
