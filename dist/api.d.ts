@@ -31658,6 +31658,12 @@ export interface OrderShipping {
      */
     lift_gate?: boolean;
     /**
+     * Date/time the order should be picked up locally.
+     * @type {string}
+     * @memberof OrderShipping
+     */
+    pickup_dts?: string;
+    /**
      * Postal code
      * @type {string}
      * @memberof OrderShipping
@@ -48310,10 +48316,12 @@ export declare const OrderApiFetchParamCreator: (configuration?: Configuration) 
      * Cancel an order on the UltraCart account.  If the success flag is false, then consult the error message for why it failed.
      * @summary Cancel an order
      * @param {string} order_id The order id to cancel.
+     * @param {boolean} [lock_self_ship_orders] Flag to prevent a order shipping during a refund process
+     * @param {boolean} [skip_refund_and_hold] Skip refund and move order to Held Orders department
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    cancelOrder(order_id: string, options?: any): FetchArgs;
+    cancelOrder(order_id: string, lock_self_ship_orders?: boolean, skip_refund_and_hold?: boolean, options?: any): FetchArgs;
     /**
      * Delete an order on the UltraCart account.
      * @summary Delete an order
@@ -48578,10 +48586,12 @@ export declare const OrderApiFp: (configuration?: Configuration) => {
      * Cancel an order on the UltraCart account.  If the success flag is false, then consult the error message for why it failed.
      * @summary Cancel an order
      * @param {string} order_id The order id to cancel.
+     * @param {boolean} [lock_self_ship_orders] Flag to prevent a order shipping during a refund process
+     * @param {boolean} [skip_refund_and_hold] Skip refund and move order to Held Orders department
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    cancelOrder(order_id: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<BaseResponse>;
+    cancelOrder(order_id: string, lock_self_ship_orders?: boolean, skip_refund_and_hold?: boolean, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<BaseResponse>;
     /**
      * Delete an order on the UltraCart account.
      * @summary Delete an order
@@ -48846,10 +48856,12 @@ export declare const OrderApiFactory: (configuration?: Configuration, fetch?: Fe
      * Cancel an order on the UltraCart account.  If the success flag is false, then consult the error message for why it failed.
      * @summary Cancel an order
      * @param {string} order_id The order id to cancel.
+     * @param {boolean} [lock_self_ship_orders] Flag to prevent a order shipping during a refund process
+     * @param {boolean} [skip_refund_and_hold] Skip refund and move order to Held Orders department
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    cancelOrder(order_id: string, options?: any): Promise<BaseResponse>;
+    cancelOrder(order_id: string, lock_self_ship_orders?: boolean, skip_refund_and_hold?: boolean, options?: any): Promise<BaseResponse>;
     /**
      * Delete an order on the UltraCart account.
      * @summary Delete an order
@@ -49116,11 +49128,13 @@ export interface OrderApiInterface {
      * Cancel an order on the UltraCart account.  If the success flag is false, then consult the error message for why it failed.
      * @summary Cancel an order
      * @param {string} order_id The order id to cancel.
+     * @param {boolean} [lock_self_ship_orders] Flag to prevent a order shipping during a refund process
+     * @param {boolean} [skip_refund_and_hold] Skip refund and move order to Held Orders department
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof OrderApiInterface
      */
-    cancelOrder(order_id: string, options?: any): Promise<BaseResponse>;
+    cancelOrder(order_id: string, lock_self_ship_orders?: boolean, skip_refund_and_hold?: boolean, options?: any): Promise<BaseResponse>;
     /**
      * Delete an order on the UltraCart account.
      * @summary Delete an order
@@ -49412,11 +49426,13 @@ export declare class OrderApi extends BaseAPI implements OrderApiInterface {
      * Cancel an order on the UltraCart account.  If the success flag is false, then consult the error message for why it failed.
      * @summary Cancel an order
      * @param {string} order_id The order id to cancel.
+     * @param {boolean} [lock_self_ship_orders] Flag to prevent a order shipping during a refund process
+     * @param {boolean} [skip_refund_and_hold] Skip refund and move order to Held Orders department
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof OrderApi
      */
-    cancelOrder(order_id: string, options?: any): Promise<BaseResponse>;
+    cancelOrder(order_id: string, lock_self_ship_orders?: boolean, skip_refund_and_hold?: boolean, options?: any): Promise<BaseResponse>;
     /**
      * Delete an order on the UltraCart account.
      * @summary Delete an order
