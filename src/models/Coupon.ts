@@ -703,8 +703,22 @@ export interface Coupon {
      * @type {string}
      * @memberof Coupon
      */
-    usable_by?: string;
+    usable_by?: CouponUsableByEnum;
 }
+
+
+/**
+ * @export
+ */
+export const CouponUsableByEnum = {
+    Anyone: 'Anyone',
+    UniqueCode: 'UniqueCode',
+    OncePerCustomer: 'OncePerCustomer',
+    OncePerNewCustomer: 'OncePerNewCustomer',
+    OncePerNewCustomerForItem: 'OncePerNewCustomerForItem'
+} as const;
+export type CouponUsableByEnum = typeof CouponUsableByEnum[keyof typeof CouponUsableByEnum];
+
 
 export function CouponFromJSON(json: any): Coupon {
     return CouponFromJSONTyped(json, false);
