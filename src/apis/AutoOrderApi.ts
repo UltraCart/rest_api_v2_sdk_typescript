@@ -38,6 +38,11 @@ import {
     ErrorResponseToJSON,
 } from '../models';
 
+export interface EstablishAutoOrderByReferenceOrderIdRequest {
+    referenceOrderId: string;
+    expand?: string;
+}
+
 export interface GetAutoOrderRequest {
     autoOrderOid: number;
     expand?: string;
@@ -112,6 +117,23 @@ export interface UpdateAutoOrdersBatchRequest {
  * @interface AutoOrderApiInterface
  */
 export interface AutoOrderApiInterface {
+    /**
+     * Establish an auto order by referencing a regular order id.  The result will be an auto order without any items.  You should add the items and perform an update call.  Orders must be less than 60 days old and use a credit card payment. 
+     * @summary Establish an auto order by referencing a regular order id
+     * @param {string} referenceOrderId The order id to attach this auto order to
+     * @param {string} [expand] The object expansion to perform on the result.  See documentation for examples
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AutoOrderApiInterface
+     */
+    establishAutoOrderByReferenceOrderIdRaw(requestParameters: EstablishAutoOrderByReferenceOrderIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AutoOrderResponse>>;
+
+    /**
+     * Establish an auto order by referencing a regular order id.  The result will be an auto order without any items.  You should add the items and perform an update call.  Orders must be less than 60 days old and use a credit card payment. 
+     * Establish an auto order by referencing a regular order id
+     */
+    establishAutoOrderByReferenceOrderId(requestParameters: EstablishAutoOrderByReferenceOrderIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AutoOrderResponse>;
+
     /**
      * Retrieves a single auto order using the specified auto order oid. 
      * @summary Retrieve an auto order by oid
@@ -281,6 +303,51 @@ export interface AutoOrderApiInterface {
  * 
  */
 export class AutoOrderApi extends runtime.BaseAPI implements AutoOrderApiInterface {
+
+    /**
+     * Establish an auto order by referencing a regular order id.  The result will be an auto order without any items.  You should add the items and perform an update call.  Orders must be less than 60 days old and use a credit card payment. 
+     * Establish an auto order by referencing a regular order id
+     */
+    async establishAutoOrderByReferenceOrderIdRaw(requestParameters: EstablishAutoOrderByReferenceOrderIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AutoOrderResponse>> {
+        if (requestParameters.referenceOrderId === null || requestParameters.referenceOrderId === undefined) {
+            throw new runtime.RequiredError('referenceOrderId','Required parameter requestParameters.referenceOrderId was null or undefined when calling establishAutoOrderByReferenceOrderId.');
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters.expand !== undefined) {
+            queryParameters['_expand'] = requestParameters.expand;
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", ["auto_order_write"]);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/auto_order/auto_orders/reference_order_id/{reference_order_id}`.replace(`{${"reference_order_id"}}`, encodeURIComponent(String(requestParameters.referenceOrderId))),
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => AutoOrderResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Establish an auto order by referencing a regular order id.  The result will be an auto order without any items.  You should add the items and perform an update call.  Orders must be less than 60 days old and use a credit card payment. 
+     * Establish an auto order by referencing a regular order id
+     */
+    async establishAutoOrderByReferenceOrderId(requestParameters: EstablishAutoOrderByReferenceOrderIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AutoOrderResponse> {
+        const response = await this.establishAutoOrderByReferenceOrderIdRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
 
     /**
      * Retrieves a single auto order using the specified auto order oid. 
