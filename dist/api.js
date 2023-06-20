@@ -1829,6 +1829,56 @@ exports.AffiliateApi = AffiliateApi;
 var AutoOrderApiFetchParamCreator = function (configuration) {
     return {
         /**
+         * Establish an auto order by referencing a regular order id.  The result will be an auto order without any items.  You should add the items and perform an update call.  Orders must be less than 60 days old and use a credit card payment.
+         * @summary Establish an auto order by referencing a regular order id
+         * @param {string} reference_order_id The order id to attach this auto order to
+         * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        establishAutoOrderByReferenceOrderId: function (reference_order_id, _expand, options) {
+            if (options === void 0) { options = {}; }
+            // verify required parameter 'reference_order_id' is not null or undefined
+            if (reference_order_id === null || reference_order_id === undefined) {
+                throw new RequiredError('reference_order_id', 'Required parameter reference_order_id was null or undefined when calling establishAutoOrderByReferenceOrderId.');
+            }
+            var localVarPath = "/auto_order/auto_orders/reference_order_id/{reference_order_id}"
+                .replace("{".concat("reference_order_id", "}"), encodeURIComponent(String(reference_order_id)));
+            var localVarUrlObj = url.parse(localVarPath, true);
+            var localVarRequestOptions = Object.assign({ method: 'POST' }, options);
+            var localVarHeaderParameter = {};
+            var localVarQueryParameter = {};
+            if (configuration && configuration.apiVersion) {
+                localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+            }
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+                var localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+                    ? configuration.accessToken("ultraCartOauth", ["auto_order_write"])
+                    : configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                var localVarApiKeyValue = typeof configuration.apiKey === 'function'
+                    ? configuration.apiKey("x-ultracart-simple-key")
+                    : configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+            if (_expand !== undefined) {
+                localVarQueryParameter['_expand'] = _expand;
+            }
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
          * Retrieves a single auto order using the specified auto order oid.
          * @summary Retrieve an auto order by oid
          * @param {number} auto_order_oid The auto order oid to retrieve.
@@ -2354,6 +2404,29 @@ exports.AutoOrderApiFetchParamCreator = AutoOrderApiFetchParamCreator;
 var AutoOrderApiFp = function (configuration) {
     return {
         /**
+         * Establish an auto order by referencing a regular order id.  The result will be an auto order without any items.  You should add the items and perform an update call.  Orders must be less than 60 days old and use a credit card payment.
+         * @summary Establish an auto order by referencing a regular order id
+         * @param {string} reference_order_id The order id to attach this auto order to
+         * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        establishAutoOrderByReferenceOrderId: function (reference_order_id, _expand, options) {
+            var localVarFetchArgs = (0, exports.AutoOrderApiFetchParamCreator)(configuration).establishAutoOrderByReferenceOrderId(reference_order_id, _expand, options);
+            return function (fetch, basePath) {
+                if (fetch === void 0) { fetch = portableFetch; }
+                if (basePath === void 0) { basePath = BASE_PATH; }
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(function (response) {
+                    if (response.status >= 200 && response.status < 300) {
+                        return response.json();
+                    }
+                    else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
          * Retrieves a single auto order using the specified auto order oid.
          * @summary Retrieve an auto order by oid
          * @param {number} auto_order_oid The auto order oid to retrieve.
@@ -2574,6 +2647,17 @@ exports.AutoOrderApiFp = AutoOrderApiFp;
 var AutoOrderApiFactory = function (configuration, fetch, basePath) {
     return {
         /**
+         * Establish an auto order by referencing a regular order id.  The result will be an auto order without any items.  You should add the items and perform an update call.  Orders must be less than 60 days old and use a credit card payment.
+         * @summary Establish an auto order by referencing a regular order id
+         * @param {string} reference_order_id The order id to attach this auto order to
+         * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        establishAutoOrderByReferenceOrderId: function (reference_order_id, _expand, options) {
+            return (0, exports.AutoOrderApiFp)(configuration).establishAutoOrderByReferenceOrderId(reference_order_id, _expand, options)(fetch, basePath);
+        },
+        /**
          * Retrieves a single auto order using the specified auto order oid.
          * @summary Retrieve an auto order by oid
          * @param {number} auto_order_oid The auto order oid to retrieve.
@@ -2702,6 +2786,18 @@ var AutoOrderApi = /** @class */ (function (_super) {
     function AutoOrderApi() {
         return _super !== null && _super.apply(this, arguments) || this;
     }
+    /**
+     * Establish an auto order by referencing a regular order id.  The result will be an auto order without any items.  You should add the items and perform an update call.  Orders must be less than 60 days old and use a credit card payment.
+     * @summary Establish an auto order by referencing a regular order id
+     * @param {string} reference_order_id The order id to attach this auto order to
+     * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AutoOrderApi
+     */
+    AutoOrderApi.prototype.establishAutoOrderByReferenceOrderId = function (reference_order_id, _expand, options) {
+        return (0, exports.AutoOrderApiFp)(this.configuration).establishAutoOrderByReferenceOrderId(reference_order_id, _expand, options)(this.fetch, this.basePath);
+    };
     /**
      * Retrieves a single auto order using the specified auto order oid.
      * @summary Retrieve an auto order by oid

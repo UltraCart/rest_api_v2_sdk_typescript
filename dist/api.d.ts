@@ -39846,6 +39846,15 @@ export declare class AffiliateApi extends BaseAPI implements AffiliateApiInterfa
  */
 export declare const AutoOrderApiFetchParamCreator: (configuration?: Configuration) => {
     /**
+     * Establish an auto order by referencing a regular order id.  The result will be an auto order without any items.  You should add the items and perform an update call.  Orders must be less than 60 days old and use a credit card payment.
+     * @summary Establish an auto order by referencing a regular order id
+     * @param {string} reference_order_id The order id to attach this auto order to
+     * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    establishAutoOrderByReferenceOrderId(reference_order_id: string, _expand?: string, options?: any): FetchArgs;
+    /**
      * Retrieves a single auto order using the specified auto order oid.
      * @summary Retrieve an auto order by oid
      * @param {number} auto_order_oid The auto order oid to retrieve.
@@ -39950,6 +39959,15 @@ export declare const AutoOrderApiFetchParamCreator: (configuration?: Configurati
  * @export
  */
 export declare const AutoOrderApiFp: (configuration?: Configuration) => {
+    /**
+     * Establish an auto order by referencing a regular order id.  The result will be an auto order without any items.  You should add the items and perform an update call.  Orders must be less than 60 days old and use a credit card payment.
+     * @summary Establish an auto order by referencing a regular order id
+     * @param {string} reference_order_id The order id to attach this auto order to
+     * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    establishAutoOrderByReferenceOrderId(reference_order_id: string, _expand?: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<AutoOrderResponse>;
     /**
      * Retrieves a single auto order using the specified auto order oid.
      * @summary Retrieve an auto order by oid
@@ -40056,6 +40074,15 @@ export declare const AutoOrderApiFp: (configuration?: Configuration) => {
  */
 export declare const AutoOrderApiFactory: (configuration?: Configuration, fetch?: FetchAPI, basePath?: string) => {
     /**
+     * Establish an auto order by referencing a regular order id.  The result will be an auto order without any items.  You should add the items and perform an update call.  Orders must be less than 60 days old and use a credit card payment.
+     * @summary Establish an auto order by referencing a regular order id
+     * @param {string} reference_order_id The order id to attach this auto order to
+     * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    establishAutoOrderByReferenceOrderId(reference_order_id: string, _expand?: string, options?: any): Promise<AutoOrderResponse>;
+    /**
      * Retrieves a single auto order using the specified auto order oid.
      * @summary Retrieve an auto order by oid
      * @param {number} auto_order_oid The auto order oid to retrieve.
@@ -40161,6 +40188,16 @@ export declare const AutoOrderApiFactory: (configuration?: Configuration, fetch?
  * @interface AutoOrderApi
  */
 export interface AutoOrderApiInterface {
+    /**
+     * Establish an auto order by referencing a regular order id.  The result will be an auto order without any items.  You should add the items and perform an update call.  Orders must be less than 60 days old and use a credit card payment.
+     * @summary Establish an auto order by referencing a regular order id
+     * @param {string} reference_order_id The order id to attach this auto order to
+     * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AutoOrderApiInterface
+     */
+    establishAutoOrderByReferenceOrderId(reference_order_id: string, _expand?: string, options?: any): Promise<AutoOrderResponse>;
     /**
      * Retrieves a single auto order using the specified auto order oid.
      * @summary Retrieve an auto order by oid
@@ -40276,6 +40313,16 @@ export interface AutoOrderApiInterface {
  * @extends {BaseAPI}
  */
 export declare class AutoOrderApi extends BaseAPI implements AutoOrderApiInterface {
+    /**
+     * Establish an auto order by referencing a regular order id.  The result will be an auto order without any items.  You should add the items and perform an update call.  Orders must be less than 60 days old and use a credit card payment.
+     * @summary Establish an auto order by referencing a regular order id
+     * @param {string} reference_order_id The order id to attach this auto order to
+     * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AutoOrderApi
+     */
+    establishAutoOrderByReferenceOrderId(reference_order_id: string, _expand?: string, options?: any): Promise<AutoOrderResponse>;
     /**
      * Retrieves a single auto order using the specified auto order oid.
      * @summary Retrieve an auto order by oid
