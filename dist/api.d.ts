@@ -9640,7 +9640,24 @@ export interface Coupon {
      * @type {string}
      * @memberof Coupon
      */
-    usable_by?: string;
+    usable_by?: Coupon.UsableByEnum;
+}
+/**
+ * @export
+ * @namespace Coupon
+ */
+export declare namespace Coupon {
+    /**
+     * @export
+     * @enum {string}
+     */
+    enum UsableByEnum {
+        Anyone,
+        UniqueCode,
+        OncePerCustomer,
+        OncePerNewCustomer,
+        OncePerNewCustomerForItem
+    }
 }
 /**
  *
