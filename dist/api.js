@@ -1460,6 +1460,7 @@ var ReportPageVisualization;
         TypeEnum[TypeEnum["BarChart"] = 'bar chart'] = "BarChart";
         TypeEnum[TypeEnum["Text"] = 'text'] = "Text";
         TypeEnum[TypeEnum["Table"] = 'table'] = "Table";
+        TypeEnum[TypeEnum["Gauge"] = 'gauge'] = "Gauge";
     })(TypeEnum = ReportPageVisualization.TypeEnum || (ReportPageVisualization.TypeEnum = {}));
 })(ReportPageVisualization = exports.ReportPageVisualization || (exports.ReportPageVisualization = {}));
 /**

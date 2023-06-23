@@ -34851,7 +34851,8 @@ export namespace ReportPageVisualization {
         LineChart = <any> 'line chart',
         BarChart = <any> 'bar chart',
         Text = <any> 'text',
-        Table = <any> 'table'
+        Table = <any> 'table',
+        Gauge = <any> 'gauge'
     }
 }
 
