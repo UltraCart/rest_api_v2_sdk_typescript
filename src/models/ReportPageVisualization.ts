@@ -97,7 +97,8 @@ export const ReportPageVisualizationTypeEnum = {
     LineChart: 'line chart',
     BarChart: 'bar chart',
     Text: 'text',
-    Table: 'table'
+    Table: 'table',
+    Gauge: 'gauge'
 } as const;
 export type ReportPageVisualizationTypeEnum = typeof ReportPageVisualizationTypeEnum[keyof typeof ReportPageVisualizationTypeEnum];
 
