@@ -1461,6 +1461,7 @@ var ReportPageVisualization;
         TypeEnum[TypeEnum["Text"] = 'text'] = "Text";
         TypeEnum[TypeEnum["Table"] = 'table'] = "Table";
         TypeEnum[TypeEnum["Gauge"] = 'gauge'] = "Gauge";
+        TypeEnum[TypeEnum["PieChart"] = 'pie chart'] = "PieChart";
     })(TypeEnum = ReportPageVisualization.TypeEnum || (ReportPageVisualization.TypeEnum = {}));
 })(ReportPageVisualization = exports.ReportPageVisualization || (exports.ReportPageVisualization = {}));
 /**

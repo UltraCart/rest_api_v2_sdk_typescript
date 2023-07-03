@@ -34119,7 +34119,8 @@ export declare namespace ReportPageVisualization {
         BarChart,
         Text,
         Table,
-        Gauge
+        Gauge,
+        PieChart
     }
 }
 /**
