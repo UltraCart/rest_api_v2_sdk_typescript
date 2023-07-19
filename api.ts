@@ -34715,6 +34715,12 @@ export interface ReportFilterConnection {
      * @memberof ReportFilterConnection
      */
     data_source_name?: string;
+    /**
+     * A unique identifier assigned to the data source.
+     * @type {string}
+     * @memberof ReportFilterConnection
+     */
+    data_source_uuid?: string;
 }
 
 /**
