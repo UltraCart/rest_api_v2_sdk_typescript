@@ -1,4 +1,4 @@
-## ultracart_rest_api_v2_typescript@3.10.149
+## ultracart_rest_api_v2_typescript@3.10.150
 
 This generator creates TypeScript/JavaScript client that utilizes [Fetch API](https://fetch.spec.whatwg.org/). The generated Node module can be used in the following environments:
 
@@ -36,7 +36,7 @@ navigate to the folder of your consuming project and run one of the following co
 _published:_
 
 ```
-npm install ultracart_rest_api_v2_typescript@3.10.149 --save
+npm install ultracart_rest_api_v2_typescript@3.10.150 --save
 ```
 
 _unPublished (not recommended):_
@@ -54,6 +54,7 @@ Not every change is committed to every SDK.
 
 | Version | Date | Comments |
 | --: | :-: | --- |
+| 3.10.150 | 07/19/2023 | dw bi - add data_source_uuid to page visualization obj |
 | 3.10.149 | 07/19/2023 | dw bi - add data_source_uuid to report data source |
 | 3.10.148 | 07/03/2023 | chart constant for dw report tool |
 | 3.10.147 | 06/23/2023 | gauge constant for page visualization library |

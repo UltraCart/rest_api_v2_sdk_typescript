@@ -34074,6 +34074,12 @@ export interface ReportPageVisualization {
      */
     data_source_name?: string;
     /**
+     * A unique identifier assigned to the data source.
+     * @type {string}
+     * @memberof ReportPageVisualization
+     */
+    data_source_uuid?: string;
+    /**
      *
      * @type {Array<ReportPageVisualizationDimension>}
      * @memberof ReportPageVisualization
