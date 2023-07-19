@@ -27,6 +27,12 @@ import {
  */
 export interface ReportDataSource {
     /**
+     * A unique identifier assigned to the data source.
+     * @type {string}
+     * @memberof ReportDataSource
+     */
+    data_source_uuid?: string;
+    /**
      * 
      * @type {string}
      * @memberof ReportDataSource
@@ -74,6 +80,7 @@ export function ReportDataSourceFromJSONTyped(json: any, ignoreDiscriminator: bo
     }
     return {
         
+        'data_source_uuid': !exists(json, 'data_source_uuid') ? undefined : json['data_source_uuid'],
         'name': !exists(json, 'name') ? undefined : json['name'],
         'partition_date_column': !exists(json, 'partition_date_column') ? undefined : json['partition_date_column'],
         'partition_date_safety_days': !exists(json, 'partition_date_safety_days') ? undefined : json['partition_date_safety_days'],
@@ -92,6 +99,7 @@ export function ReportDataSourceToJSON(value?: ReportDataSource | null): any {
     }
     return {
         
+        'data_source_uuid': value.data_source_uuid,
         'name': value.name,
         'partition_date_column': value.partition_date_column,
         'partition_date_safety_days': value.partition_date_safety_days,

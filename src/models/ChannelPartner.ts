@@ -38,6 +38,12 @@ export interface ChannelPartner {
      */
     communication_method?: string;
     /**
+     * True if shipments should immediately process for this channel partner.
+     * @type {boolean}
+     * @memberof ChannelPartner
+     */
+    dont_hold_shipment?: boolean;
+    /**
      * True if the channel partner is inactive
      * @type {boolean}
      * @memberof ChannelPartner
@@ -76,6 +82,7 @@ export function ChannelPartnerFromJSONTyped(json: any, ignoreDiscriminator: bool
         'channel_partner_oid': !exists(json, 'channel_partner_oid') ? undefined : json['channel_partner_oid'],
         'code': !exists(json, 'code') ? undefined : json['code'],
         'communication_method': !exists(json, 'communication_method') ? undefined : json['communication_method'],
+        'dont_hold_shipment': !exists(json, 'dont_hold_shipment') ? undefined : json['dont_hold_shipment'],
         'inactive': !exists(json, 'inactive') ? undefined : json['inactive'],
         'merchant_id': !exists(json, 'merchant_id') ? undefined : json['merchant_id'],
         'name': !exists(json, 'name') ? undefined : json['name'],
@@ -95,6 +102,7 @@ export function ChannelPartnerToJSON(value?: ChannelPartner | null): any {
         'channel_partner_oid': value.channel_partner_oid,
         'code': value.code,
         'communication_method': value.communication_method,
+        'dont_hold_shipment': value.dont_hold_shipment,
         'inactive': value.inactive,
         'merchant_id': value.merchant_id,
         'name': value.name,
