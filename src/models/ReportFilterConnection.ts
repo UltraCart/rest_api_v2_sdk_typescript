@@ -31,6 +31,12 @@ export interface ReportFilterConnection {
      * @memberof ReportFilterConnection
      */
     data_source_name?: string;
+    /**
+     * A unique identifier assigned to the data source.
+     * @type {string}
+     * @memberof ReportFilterConnection
+     */
+    data_source_uuid?: string;
 }
 
 export function ReportFilterConnectionFromJSON(json: any): ReportFilterConnection {
@@ -45,6 +51,7 @@ export function ReportFilterConnectionFromJSONTyped(json: any, ignoreDiscriminat
         
         'column': !exists(json, 'column') ? undefined : json['column'],
         'data_source_name': !exists(json, 'data_source_name') ? undefined : json['data_source_name'],
+        'data_source_uuid': !exists(json, 'data_source_uuid') ? undefined : json['data_source_uuid'],
     };
 }
 
@@ -59,6 +66,7 @@ export function ReportFilterConnectionToJSON(value?: ReportFilterConnection | nu
         
         'column': value.column,
         'data_source_name': value.data_source_name,
+        'data_source_uuid': value.data_source_uuid,
     };
 }
 
