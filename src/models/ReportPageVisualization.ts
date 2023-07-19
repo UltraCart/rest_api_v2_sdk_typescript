@@ -45,6 +45,12 @@ export interface ReportPageVisualization {
      */
     data_source_name?: string;
     /**
+     * A unique identifier assigned to the data source.
+     * @type {string}
+     * @memberof ReportPageVisualization
+     */
+    data_source_uuid?: string;
+    /**
      * 
      * @type {Array<ReportPageVisualizationDimension>}
      * @memberof ReportPageVisualization
@@ -116,6 +122,7 @@ export function ReportPageVisualizationFromJSONTyped(json: any, ignoreDiscrimina
         
         'config': !exists(json, 'config') ? undefined : json['config'],
         'data_source_name': !exists(json, 'data_source_name') ? undefined : json['data_source_name'],
+        'data_source_uuid': !exists(json, 'data_source_uuid') ? undefined : json['data_source_uuid'],
         'dimensions': !exists(json, 'dimensions') ? undefined : ((json['dimensions'] as Array<any>).map(ReportPageVisualizationDimensionFromJSON)),
         'metrics': !exists(json, 'metrics') ? undefined : ((json['metrics'] as Array<any>).map(ReportPageVisualizationMetricFromJSON)),
         'name': !exists(json, 'name') ? undefined : json['name'],
@@ -137,6 +144,7 @@ export function ReportPageVisualizationToJSON(value?: ReportPageVisualization | 
         
         'config': value.config,
         'data_source_name': value.data_source_name,
+        'data_source_uuid': value.data_source_uuid,
         'dimensions': value.dimensions === undefined ? undefined : ((value.dimensions as Array<any>).map(ReportPageVisualizationDimensionToJSON)),
         'metrics': value.metrics === undefined ? undefined : ((value.metrics as Array<any>).map(ReportPageVisualizationMetricToJSON)),
         'name': value.name,
