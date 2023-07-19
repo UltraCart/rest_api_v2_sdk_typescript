@@ -5102,6 +5102,12 @@ export interface ChannelPartner {
      */
     communication_method?: string;
     /**
+     * True if shipments should immediately process for this channel partner.
+     * @type {boolean}
+     * @memberof ChannelPartner
+     */
+    dont_hold_shipment?: boolean;
+    /**
      * True if the channel partner is inactive
      * @type {boolean}
      * @memberof ChannelPartner
@@ -33660,6 +33666,12 @@ export declare namespace ReportDataSetSchema {
  * @interface ReportDataSource
  */
 export interface ReportDataSource {
+    /**
+     * A unique identifier assigned to the data source.
+     * @type {string}
+     * @memberof ReportDataSource
+     */
+    data_source_uuid?: string;
     /**
      *
      * @type {string}
