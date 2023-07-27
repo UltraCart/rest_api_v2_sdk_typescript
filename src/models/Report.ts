@@ -98,6 +98,12 @@ export interface Report {
      * @memberof Report
      */
     security_level?: ReportSecurityLevelEnum;
+    /**
+     * A JSON representation of the settings for this report
+     * @type {string}
+     * @memberof Report
+     */
+    settings?: string;
 }
 
 
@@ -133,6 +139,7 @@ export function ReportFromJSONTyped(json: any, ignoreDiscriminator: boolean): Re
         'pages': !exists(json, 'pages') ? undefined : ((json['pages'] as Array<any>).map(ReportPageFromJSON)),
         'report_oid': !exists(json, 'report_oid') ? undefined : json['report_oid'],
         'security_level': !exists(json, 'security_level') ? undefined : json['security_level'],
+        'settings': !exists(json, 'settings') ? undefined : json['settings'],
     };
 }
 
@@ -155,6 +162,7 @@ export function ReportToJSON(value?: Report | null): any {
         'pages': value.pages === undefined ? undefined : ((value.pages as Array<any>).map(ReportPageToJSON)),
         'report_oid': value.report_oid,
         'security_level': value.security_level,
+        'settings': value.settings,
     };
 }
 

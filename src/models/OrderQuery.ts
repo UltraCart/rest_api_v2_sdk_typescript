@@ -291,7 +291,10 @@ export const OrderQueryPaymentMethodEnum = {
     PurchaseOrder: 'Purchase Order',
     QuoteRequest: 'Quote Request',
     Unknown: 'Unknown',
-    WireTransfer: 'Wire Transfer'
+    WireTransfer: 'Wire Transfer',
+    Venmo: 'Venmo',
+    ApplePay: 'Apple Pay',
+    GooglePay: ' Google Pay'
 } as const;
 export type OrderQueryPaymentMethodEnum = typeof OrderQueryPaymentMethodEnum[keyof typeof OrderQueryPaymentMethodEnum];
 

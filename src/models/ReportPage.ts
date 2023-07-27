@@ -45,6 +45,12 @@ export interface ReportPage {
      */
     height?: number;
     /**
+     * A JSON representation of the settings for this report
+     * @type {string}
+     * @memberof ReportPage
+     */
+    settings?: string;
+    /**
      * 
      * @type {string}
      * @memberof ReportPage
@@ -76,6 +82,7 @@ export function ReportPageFromJSONTyped(json: any, ignoreDiscriminator: boolean)
         
         'filters': !exists(json, 'filters') ? undefined : ((json['filters'] as Array<any>).map(ReportPageFilterFromJSON)),
         'height': !exists(json, 'height') ? undefined : json['height'],
+        'settings': !exists(json, 'settings') ? undefined : json['settings'],
         'title': !exists(json, 'title') ? undefined : json['title'],
         'visualizations': !exists(json, 'visualizations') ? undefined : ((json['visualizations'] as Array<any>).map(ReportPageVisualizationFromJSON)),
         'width': !exists(json, 'width') ? undefined : json['width'],
@@ -93,6 +100,7 @@ export function ReportPageToJSON(value?: ReportPage | null): any {
         
         'filters': value.filters === undefined ? undefined : ((value.filters as Array<any>).map(ReportPageFilterToJSON)),
         'height': value.height,
+        'settings': value.settings,
         'title': value.title,
         'visualizations': value.visualizations === undefined ? undefined : ((value.visualizations as Array<any>).map(ReportPageVisualizationToJSON)),
         'width': value.width,
