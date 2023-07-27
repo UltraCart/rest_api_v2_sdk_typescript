@@ -31120,7 +31120,9 @@ export namespace OrderPayment {
         Walmart = <any> 'Walmart',
         ShopCom = <any> 'Shop.com',
         Sezzle = <any> 'Sezzle',
-        Venmo = <any> 'Venmo'
+        Venmo = <any> 'Venmo',
+        ApplePay = <any> 'Apple Pay',
+        GooglePay = <any> 'Google Pay'
     }
     /**
      * @export
@@ -31896,7 +31898,10 @@ export namespace OrderQuery {
         PurchaseOrder = <any> 'Purchase Order',
         QuoteRequest = <any> 'Quote Request',
         Unknown = <any> 'Unknown',
-        WireTransfer = <any> 'Wire Transfer'
+        WireTransfer = <any> 'Wire Transfer',
+        Venmo = <any> 'Venmo',
+        ApplePay = <any> 'Apple Pay',
+        GooglePay = <any> ' Google Pay'
     }
 }
 
@@ -33816,6 +33821,12 @@ export interface Report {
      * @memberof Report
      */
     security_level?: Report.SecurityLevelEnum;
+    /**
+     * A JSON representation of the settings for this report
+     * @type {string}
+     * @memberof Report
+     */
+    settings?: string;
 }
 
 /**
@@ -34741,6 +34752,12 @@ export interface ReportPage {
      * @memberof ReportPage
      */
     height?: number;
+    /**
+     * A JSON representation of the settings for this report
+     * @type {string}
+     * @memberof ReportPage
+     */
+    settings?: string;
     /**
      * 
      * @type {string}

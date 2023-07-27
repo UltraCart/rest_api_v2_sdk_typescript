@@ -1182,6 +1182,8 @@ var OrderPayment;
         PaymentMethodEnum[PaymentMethodEnum["ShopCom"] = 'Shop.com'] = "ShopCom";
         PaymentMethodEnum[PaymentMethodEnum["Sezzle"] = 'Sezzle'] = "Sezzle";
         PaymentMethodEnum[PaymentMethodEnum["Venmo"] = 'Venmo'] = "Venmo";
+        PaymentMethodEnum[PaymentMethodEnum["ApplePay"] = 'Apple Pay'] = "ApplePay";
+        PaymentMethodEnum[PaymentMethodEnum["GooglePay"] = 'Google Pay'] = "GooglePay";
     })(PaymentMethodEnum = OrderPayment.PaymentMethodEnum || (OrderPayment.PaymentMethodEnum = {}));
     /**
      * @export
@@ -1288,6 +1290,9 @@ var OrderQuery;
         PaymentMethodEnum[PaymentMethodEnum["QuoteRequest"] = 'Quote Request'] = "QuoteRequest";
         PaymentMethodEnum[PaymentMethodEnum["Unknown"] = 'Unknown'] = "Unknown";
         PaymentMethodEnum[PaymentMethodEnum["WireTransfer"] = 'Wire Transfer'] = "WireTransfer";
+        PaymentMethodEnum[PaymentMethodEnum["Venmo"] = 'Venmo'] = "Venmo";
+        PaymentMethodEnum[PaymentMethodEnum["ApplePay"] = 'Apple Pay'] = "ApplePay";
+        PaymentMethodEnum[PaymentMethodEnum["GooglePay"] = ' Google Pay'] = "GooglePay";
     })(PaymentMethodEnum = OrderQuery.PaymentMethodEnum || (OrderQuery.PaymentMethodEnum = {}));
 })(OrderQuery = exports.OrderQuery || (exports.OrderQuery = {}));
 /**

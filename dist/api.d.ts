@@ -30465,7 +30465,9 @@ export declare namespace OrderPayment {
         Walmart,
         ShopCom,
         Sezzle,
-        Venmo
+        Venmo,
+        ApplePay,
+        GooglePay
     }
     /**
      * @export
@@ -31224,7 +31226,10 @@ export declare namespace OrderQuery {
         PurchaseOrder,
         QuoteRequest,
         Unknown,
-        WireTransfer
+        WireTransfer,
+        Venmo,
+        ApplePay,
+        GooglePay
     }
 }
 /**
@@ -33112,6 +33117,12 @@ export interface Report {
      * @memberof Report
      */
     security_level?: Report.SecurityLevelEnum;
+    /**
+     * A JSON representation of the settings for this report
+     * @type {string}
+     * @memberof Report
+     */
+    settings?: string;
 }
 /**
  * @export
@@ -34011,6 +34022,12 @@ export interface ReportPage {
      * @memberof ReportPage
      */
     height?: number;
+    /**
+     * A JSON representation of the settings for this report
+     * @type {string}
+     * @memberof ReportPage
+     */
+    settings?: string;
     /**
      *
      * @type {string}
