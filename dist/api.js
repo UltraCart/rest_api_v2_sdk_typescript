@@ -20587,6 +20587,54 @@ var OrderApiFetchParamCreator = function (configuration) {
                 options: localVarRequestOptions,
             };
         },
+        /**
+         * Validate the order for errors.  Specific checks can be passed to fine tune what is validated. Read and write permissions are required because the validate method may fix obvious address issues automatically which require update permission.This rest call makes use of the built-in translation of rest objects to UltraCart internal objects which also contains a multitude of validation checks that cannot be trapped.  Therefore any time this call is made, you should also trap api exceptions and examine their content because it may contain validation issues.  So check the response object and trap any exceptions.
+         * @summary Validate
+         * @param {OrderValidationRequest} validation_request Validation request
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        validateOrder: function (validation_request, options) {
+            if (options === void 0) { options = {}; }
+            // verify required parameter 'validation_request' is not null or undefined
+            if (validation_request === null || validation_request === undefined) {
+                throw new RequiredError('validation_request', 'Required parameter validation_request was null or undefined when calling validateOrder.');
+            }
+            var localVarPath = "/order/validate";
+            var localVarUrlObj = url.parse(localVarPath, true);
+            var localVarRequestOptions = Object.assign({ method: 'POST' }, options);
+            var localVarHeaderParameter = {};
+            var localVarQueryParameter = {};
+            if (configuration && configuration.apiVersion) {
+                localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+            }
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+                var localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+                    ? configuration.accessToken("ultraCartOauth", ["order_read", "order_write"])
+                    : configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                var localVarApiKeyValue = typeof configuration.apiKey === 'function'
+                    ? configuration.apiKey("x-ultracart-simple-key")
+                    : configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+            var needsSerialization = ("OrderValidationRequest" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
+            localVarRequestOptions.body = needsSerialization ? JSON.stringify(validation_request || {}) : (validation_request || "");
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
     };
 };
 exports.OrderApiFetchParamCreator = OrderApiFetchParamCreator;
@@ -21224,6 +21272,28 @@ var OrderApiFp = function (configuration) {
                 });
             };
         },
+        /**
+         * Validate the order for errors.  Specific checks can be passed to fine tune what is validated. Read and write permissions are required because the validate method may fix obvious address issues automatically which require update permission.This rest call makes use of the built-in translation of rest objects to UltraCart internal objects which also contains a multitude of validation checks that cannot be trapped.  Therefore any time this call is made, you should also trap api exceptions and examine their content because it may contain validation issues.  So check the response object and trap any exceptions.
+         * @summary Validate
+         * @param {OrderValidationRequest} validation_request Validation request
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        validateOrder: function (validation_request, options) {
+            var localVarFetchArgs = (0, exports.OrderApiFetchParamCreator)(configuration).validateOrder(validation_request, options);
+            return function (fetch, basePath) {
+                if (fetch === void 0) { fetch = portableFetch; }
+                if (basePath === void 0) { basePath = BASE_PATH; }
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(function (response) {
+                    if (response.status >= 200 && response.status < 300) {
+                        return response.json();
+                    }
+                    else {
+                        throw response;
+                    }
+                });
+            };
+        },
     };
 };
 exports.OrderApiFp = OrderApiFp;
@@ -21548,6 +21618,16 @@ var OrderApiFactory = function (configuration, fetch, basePath) {
          */
         updateOrder: function (order, order_id, _expand, options) {
             return (0, exports.OrderApiFp)(configuration).updateOrder(order, order_id, _expand, options)(fetch, basePath);
+        },
+        /**
+         * Validate the order for errors.  Specific checks can be passed to fine tune what is validated. Read and write permissions are required because the validate method may fix obvious address issues automatically which require update permission.This rest call makes use of the built-in translation of rest objects to UltraCart internal objects which also contains a multitude of validation checks that cannot be trapped.  Therefore any time this call is made, you should also trap api exceptions and examine their content because it may contain validation issues.  So check the response object and trap any exceptions.
+         * @summary Validate
+         * @param {OrderValidationRequest} validation_request Validation request
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        validateOrder: function (validation_request, options) {
+            return (0, exports.OrderApiFp)(configuration).validateOrder(validation_request, options)(fetch, basePath);
         },
     };
 };
@@ -21904,6 +21984,17 @@ var OrderApi = /** @class */ (function (_super) {
      */
     OrderApi.prototype.updateOrder = function (order, order_id, _expand, options) {
         return (0, exports.OrderApiFp)(this.configuration).updateOrder(order, order_id, _expand, options)(this.fetch, this.basePath);
+    };
+    /**
+     * Validate the order for errors.  Specific checks can be passed to fine tune what is validated. Read and write permissions are required because the validate method may fix obvious address issues automatically which require update permission.This rest call makes use of the built-in translation of rest objects to UltraCart internal objects which also contains a multitude of validation checks that cannot be trapped.  Therefore any time this call is made, you should also trap api exceptions and examine their content because it may contain validation issues.  So check the response object and trap any exceptions.
+     * @summary Validate
+     * @param {OrderValidationRequest} validation_request Validation request
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof OrderApi
+     */
+    OrderApi.prototype.validateOrder = function (validation_request, options) {
+        return (0, exports.OrderApiFp)(this.configuration).validateOrder(validation_request, options)(this.fetch, this.basePath);
     };
     return OrderApi;
 }(BaseAPI));

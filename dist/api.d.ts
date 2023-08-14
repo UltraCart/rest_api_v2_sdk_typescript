@@ -18571,6 +18571,24 @@ export interface EmailSendingDomainsResponse {
  */
 export interface EmailSettings {
     /**
+     * Emails per day allowed
+     * @type {number}
+     * @memberof EmailSettings
+     */
+    emails_per_day?: number;
+    /**
+     * Emails per hour allowed
+     * @type {number}
+     * @memberof EmailSettings
+     */
+    emails_per_hour?: number;
+    /**
+     * Emails per month allowed
+     * @type {number}
+     * @memberof EmailSettings
+     */
+    emails_per_month?: number;
+    /**
      *
      * @type {string}
      * @memberof EmailSettings
@@ -32443,6 +32461,50 @@ export interface OrderUtm {
      * @memberof OrderUtm
      */
     wbraid?: string;
+}
+/**
+ *
+ * @export
+ * @interface OrderValidationRequest
+ */
+export interface OrderValidationRequest {
+    /**
+     * Checks to perform
+     * @type {Array<string>}
+     * @memberof OrderValidationRequest
+     */
+    checks?: Array<string>;
+    /**
+     *
+     * @type {Order}
+     * @memberof OrderValidationRequest
+     */
+    order?: Order;
+}
+/**
+ *
+ * @export
+ * @interface OrderValidationResponse
+ */
+export interface OrderValidationResponse {
+    /**
+     * Errors to display to the merchant if they failed any of the validations checked
+     * @type {Array<string>}
+     * @memberof OrderValidationResponse
+     */
+    errors?: Array<string>;
+    /**
+     * Informational messages
+     * @type {Array<string>}
+     * @memberof OrderValidationResponse
+     */
+    messages?: Array<string>;
+    /**
+     * If true, this order was updated during the validation call.  This may happen during address standardization fixes.
+     * @type {boolean}
+     * @memberof OrderValidationResponse
+     */
+    order_was_updated?: boolean;
 }
 /**
  *
@@ -48674,6 +48736,14 @@ export declare const OrderApiFetchParamCreator: (configuration?: Configuration) 
      * @throws {RequiredError}
      */
     updateOrder(order: Order, order_id: string, _expand?: string, options?: any): FetchArgs;
+    /**
+     * Validate the order for errors.  Specific checks can be passed to fine tune what is validated. Read and write permissions are required because the validate method may fix obvious address issues automatically which require update permission.This rest call makes use of the built-in translation of rest objects to UltraCart internal objects which also contains a multitude of validation checks that cannot be trapped.  Therefore any time this call is made, you should also trap api exceptions and examine their content because it may contain validation issues.  So check the response object and trap any exceptions.
+     * @summary Validate
+     * @param {OrderValidationRequest} validation_request Validation request
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    validateOrder(validation_request: OrderValidationRequest, options?: any): FetchArgs;
 };
 /**
  * OrderApi - functional programming interface
@@ -48944,6 +49014,14 @@ export declare const OrderApiFp: (configuration?: Configuration) => {
      * @throws {RequiredError}
      */
     updateOrder(order: Order, order_id: string, _expand?: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<OrderResponse>;
+    /**
+     * Validate the order for errors.  Specific checks can be passed to fine tune what is validated. Read and write permissions are required because the validate method may fix obvious address issues automatically which require update permission.This rest call makes use of the built-in translation of rest objects to UltraCart internal objects which also contains a multitude of validation checks that cannot be trapped.  Therefore any time this call is made, you should also trap api exceptions and examine their content because it may contain validation issues.  So check the response object and trap any exceptions.
+     * @summary Validate
+     * @param {OrderValidationRequest} validation_request Validation request
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    validateOrder(validation_request: OrderValidationRequest, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<OrderValidationResponse>;
 };
 /**
  * OrderApi - factory interface
@@ -49214,6 +49292,14 @@ export declare const OrderApiFactory: (configuration?: Configuration, fetch?: Fe
      * @throws {RequiredError}
      */
     updateOrder(order: Order, order_id: string, _expand?: string, options?: any): Promise<OrderResponse>;
+    /**
+     * Validate the order for errors.  Specific checks can be passed to fine tune what is validated. Read and write permissions are required because the validate method may fix obvious address issues automatically which require update permission.This rest call makes use of the built-in translation of rest objects to UltraCart internal objects which also contains a multitude of validation checks that cannot be trapped.  Therefore any time this call is made, you should also trap api exceptions and examine their content because it may contain validation issues.  So check the response object and trap any exceptions.
+     * @summary Validate
+     * @param {OrderValidationRequest} validation_request Validation request
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    validateOrder(validation_request: OrderValidationRequest, options?: any): Promise<OrderValidationResponse>;
 };
 /**
  * OrderApi - interface
@@ -49511,6 +49597,15 @@ export interface OrderApiInterface {
      * @memberof OrderApiInterface
      */
     updateOrder(order: Order, order_id: string, _expand?: string, options?: any): Promise<OrderResponse>;
+    /**
+     * Validate the order for errors.  Specific checks can be passed to fine tune what is validated. Read and write permissions are required because the validate method may fix obvious address issues automatically which require update permission.This rest call makes use of the built-in translation of rest objects to UltraCart internal objects which also contains a multitude of validation checks that cannot be trapped.  Therefore any time this call is made, you should also trap api exceptions and examine their content because it may contain validation issues.  So check the response object and trap any exceptions.
+     * @summary Validate
+     * @param {OrderValidationRequest} validation_request Validation request
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof OrderApiInterface
+     */
+    validateOrder(validation_request: OrderValidationRequest, options?: any): Promise<OrderValidationResponse>;
 }
 /**
  * OrderApi - object-oriented interface
@@ -49809,6 +49904,15 @@ export declare class OrderApi extends BaseAPI implements OrderApiInterface {
      * @memberof OrderApi
      */
     updateOrder(order: Order, order_id: string, _expand?: string, options?: any): Promise<OrderResponse>;
+    /**
+     * Validate the order for errors.  Specific checks can be passed to fine tune what is validated. Read and write permissions are required because the validate method may fix obvious address issues automatically which require update permission.This rest call makes use of the built-in translation of rest objects to UltraCart internal objects which also contains a multitude of validation checks that cannot be trapped.  Therefore any time this call is made, you should also trap api exceptions and examine their content because it may contain validation issues.  So check the response object and trap any exceptions.
+     * @summary Validate
+     * @param {OrderValidationRequest} validation_request Validation request
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof OrderApi
+     */
+    validateOrder(validation_request: OrderValidationRequest, options?: any): Promise<OrderValidationResponse>;
 }
 /**
  * SsoApi - fetch parameter creator
