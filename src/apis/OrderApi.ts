@@ -78,6 +78,12 @@ import {
     OrderTokenResponse,
     OrderTokenResponseFromJSON,
     OrderTokenResponseToJSON,
+    OrderValidationRequest,
+    OrderValidationRequestFromJSON,
+    OrderValidationRequestToJSON,
+    OrderValidationResponse,
+    OrderValidationResponseFromJSON,
+    OrderValidationResponseToJSON,
     OrdersResponse,
     OrdersResponseFromJSON,
     OrdersResponseToJSON,
@@ -238,6 +244,10 @@ export interface UpdateOrderRequest {
     orderId: string;
     order: Order;
     expand?: string;
+}
+
+export interface ValidateOrderRequest {
+    validationRequest: OrderValidationRequest;
 }
 
 /**
@@ -718,6 +728,22 @@ export interface OrderApiInterface {
      * Update an order
      */
     updateOrder(requestParameters: UpdateOrderRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<OrderResponse>;
+
+    /**
+     * Validate the order for errors.  Specific checks can be passed to fine tune what is validated. Read and write permissions are required because the validate method may fix obvious address issues automatically which require update permission.This rest call makes use of the built-in translation of rest objects to UltraCart internal objects which also contains a multitude of validation checks that cannot be trapped.  Therefore any time this call is made, you should also trap api exceptions and examine their content because it may contain validation issues.  So check the response object and trap any exceptions. 
+     * @summary Validate
+     * @param {OrderValidationRequest} validationRequest Validation request
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof OrderApiInterface
+     */
+    validateOrderRaw(requestParameters: ValidateOrderRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<OrderValidationResponse>>;
+
+    /**
+     * Validate the order for errors.  Specific checks can be passed to fine tune what is validated. Read and write permissions are required because the validate method may fix obvious address issues automatically which require update permission.This rest call makes use of the built-in translation of rest objects to UltraCart internal objects which also contains a multitude of validation checks that cannot be trapped.  Therefore any time this call is made, you should also trap api exceptions and examine their content because it may contain validation issues.  So check the response object and trap any exceptions. 
+     * Validate
+     */
+    validateOrder(requestParameters: ValidateOrderRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<OrderValidationResponse>;
 
 }
 
@@ -2042,6 +2068,50 @@ export class OrderApi extends runtime.BaseAPI implements OrderApiInterface {
      */
     async updateOrder(requestParameters: UpdateOrderRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<OrderResponse> {
         const response = await this.updateOrderRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Validate the order for errors.  Specific checks can be passed to fine tune what is validated. Read and write permissions are required because the validate method may fix obvious address issues automatically which require update permission.This rest call makes use of the built-in translation of rest objects to UltraCart internal objects which also contains a multitude of validation checks that cannot be trapped.  Therefore any time this call is made, you should also trap api exceptions and examine their content because it may contain validation issues.  So check the response object and trap any exceptions. 
+     * Validate
+     */
+    async validateOrderRaw(requestParameters: ValidateOrderRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<OrderValidationResponse>> {
+        if (requestParameters.validationRequest === null || requestParameters.validationRequest === undefined) {
+            throw new runtime.RequiredError('validationRequest','Required parameter requestParameters.validationRequest was null or undefined when calling validateOrder.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", ["order_read", "order_write"]);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/order/validate`,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: OrderValidationRequestToJSON(requestParameters.validationRequest),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => OrderValidationResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Validate the order for errors.  Specific checks can be passed to fine tune what is validated. Read and write permissions are required because the validate method may fix obvious address issues automatically which require update permission.This rest call makes use of the built-in translation of rest objects to UltraCart internal objects which also contains a multitude of validation checks that cannot be trapped.  Therefore any time this call is made, you should also trap api exceptions and examine their content because it may contain validation issues.  So check the response object and trap any exceptions. 
+     * Validate
+     */
+    async validateOrder(requestParameters: ValidateOrderRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<OrderValidationResponse> {
+        const response = await this.validateOrderRaw(requestParameters, initOverrides);
         return await response.value();
     }
 

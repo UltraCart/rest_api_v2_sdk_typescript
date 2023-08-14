@@ -20,6 +20,24 @@ import { exists, mapValues } from '../runtime';
  */
 export interface EmailSettings {
     /**
+     * Emails per day allowed
+     * @type {number}
+     * @memberof EmailSettings
+     */
+    emails_per_day?: number;
+    /**
+     * Emails per hour allowed
+     * @type {number}
+     * @memberof EmailSettings
+     */
+    emails_per_hour?: number;
+    /**
+     * Emails per month allowed
+     * @type {number}
+     * @memberof EmailSettings
+     */
+    emails_per_month?: number;
+    /**
      * 
      * @type {string}
      * @memberof EmailSettings
@@ -121,6 +139,9 @@ export function EmailSettingsFromJSONTyped(json: any, ignoreDiscriminator: boole
     }
     return {
         
+        'emails_per_day': !exists(json, 'emails_per_day') ? undefined : json['emails_per_day'],
+        'emails_per_hour': !exists(json, 'emails_per_hour') ? undefined : json['emails_per_hour'],
+        'emails_per_month': !exists(json, 'emails_per_month') ? undefined : json['emails_per_month'],
         'marketing_esp_domain_user': !exists(json, 'marketing_esp_domain_user') ? undefined : json['marketing_esp_domain_user'],
         'marketing_esp_domain_uuid': !exists(json, 'marketing_esp_domain_uuid') ? undefined : json['marketing_esp_domain_uuid'],
         'marketing_esp_friendly_name': !exists(json, 'marketing_esp_friendly_name') ? undefined : json['marketing_esp_friendly_name'],
@@ -148,6 +169,9 @@ export function EmailSettingsToJSON(value?: EmailSettings | null): any {
     }
     return {
         
+        'emails_per_day': value.emails_per_day,
+        'emails_per_hour': value.emails_per_hour,
+        'emails_per_month': value.emails_per_month,
         'marketing_esp_domain_user': value.marketing_esp_domain_user,
         'marketing_esp_domain_uuid': value.marketing_esp_domain_uuid,
         'marketing_esp_friendly_name': value.marketing_esp_friendly_name,
