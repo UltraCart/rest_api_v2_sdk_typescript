@@ -18643,6 +18643,12 @@ export interface EmailSettings {
      */
     postcard_from_state?: string;
     /**
+     * Require order within last
+     * @type {number}
+     * @memberof EmailSettings
+     */
+    require_order_within_last?: number;
+    /**
      * True if the Reviews.io integration is configured
      * @type {boolean}
      * @memberof EmailSettings
