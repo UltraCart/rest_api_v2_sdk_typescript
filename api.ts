@@ -41519,11 +41519,12 @@ export const AutoOrderApiFetchParamCreator = function (configuration?: Configura
          * @summary Update an auto order
          * @param {AutoOrder} auto_order Auto order to update
          * @param {number} auto_order_oid The auto order oid to update.
+         * @param {string} [validate_original_order] Validate original order before updating
          * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        updateAutoOrder(auto_order: AutoOrder, auto_order_oid: number, _expand?: string, options: any = {}): FetchArgs {
+        updateAutoOrder(auto_order: AutoOrder, auto_order_oid: number, validate_original_order?: string, _expand?: string, options: any = {}): FetchArgs {
             // verify required parameter 'auto_order' is not null or undefined
             if (auto_order === null || auto_order === undefined) {
                 throw new RequiredError('auto_order','Required parameter auto_order was null or undefined when calling updateAutoOrder.');
@@ -41560,6 +41561,10 @@ export const AutoOrderApiFetchParamCreator = function (configuration?: Configura
 					? configuration.apiKey("x-ultracart-simple-key")
 					: configuration.apiKey;
                 localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+
+            if (validate_original_order !== undefined) {
+                localVarQueryParameter['validate_original_order'] = validate_original_order;
             }
 
             if (_expand !== undefined) {
@@ -41842,12 +41847,13 @@ export const AutoOrderApiFp = function(configuration?: Configuration) {
          * @summary Update an auto order
          * @param {AutoOrder} auto_order Auto order to update
          * @param {number} auto_order_oid The auto order oid to update.
+         * @param {string} [validate_original_order] Validate original order before updating
          * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        updateAutoOrder(auto_order: AutoOrder, auto_order_oid: number, _expand?: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<AutoOrderResponse> {
-            const localVarFetchArgs = AutoOrderApiFetchParamCreator(configuration).updateAutoOrder(auto_order, auto_order_oid, _expand, options);
+        updateAutoOrder(auto_order: AutoOrder, auto_order_oid: number, validate_original_order?: string, _expand?: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<AutoOrderResponse> {
+            const localVarFetchArgs = AutoOrderApiFetchParamCreator(configuration).updateAutoOrder(auto_order, auto_order_oid, validate_original_order, _expand, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
 
@@ -41999,12 +42005,13 @@ export const AutoOrderApiFactory = function (configuration?: Configuration, fetc
          * @summary Update an auto order
          * @param {AutoOrder} auto_order Auto order to update
          * @param {number} auto_order_oid The auto order oid to update.
+         * @param {string} [validate_original_order] Validate original order before updating
          * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        updateAutoOrder(auto_order: AutoOrder, auto_order_oid: number, _expand?: string, options?: any) {
-            return AutoOrderApiFp(configuration).updateAutoOrder(auto_order, auto_order_oid, _expand, options)(fetch, basePath);
+        updateAutoOrder(auto_order: AutoOrder, auto_order_oid: number, validate_original_order?: string, _expand?: string, options?: any) {
+            return AutoOrderApiFp(configuration).updateAutoOrder(auto_order, auto_order_oid, validate_original_order, _expand, options)(fetch, basePath);
         },
         /**
          * Update multiple auto orders on the UltraCart account. 
@@ -42134,12 +42141,13 @@ export interface AutoOrderApiInterface {
      * @summary Update an auto order
      * @param {AutoOrder} auto_order Auto order to update
      * @param {number} auto_order_oid The auto order oid to update.
+     * @param {string} [validate_original_order] Validate original order before updating
      * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof AutoOrderApiInterface
      */
-    updateAutoOrder(auto_order: AutoOrder, auto_order_oid: number, _expand?: string, options?: any): Promise<AutoOrderResponse>;
+    updateAutoOrder(auto_order: AutoOrder, auto_order_oid: number, validate_original_order?: string, _expand?: string, options?: any): Promise<AutoOrderResponse>;
 
     /**
      * Update multiple auto orders on the UltraCart account. 
@@ -42283,13 +42291,14 @@ export class AutoOrderApi extends BaseAPI implements AutoOrderApiInterface {
      * @summary Update an auto order
      * @param {AutoOrder} auto_order Auto order to update
      * @param {number} auto_order_oid The auto order oid to update.
+     * @param {string} [validate_original_order] Validate original order before updating
      * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof AutoOrderApi
      */
-    public updateAutoOrder(auto_order: AutoOrder, auto_order_oid: number, _expand?: string, options?: any) {
-        return AutoOrderApiFp(this.configuration).updateAutoOrder(auto_order, auto_order_oid, _expand, options)(this.fetch, this.basePath);
+    public updateAutoOrder(auto_order: AutoOrder, auto_order_oid: number, validate_original_order?: string, _expand?: string, options?: any) {
+        return AutoOrderApiFp(this.configuration).updateAutoOrder(auto_order, auto_order_oid, validate_original_order, _expand, options)(this.fetch, this.basePath);
     }
 
     /**

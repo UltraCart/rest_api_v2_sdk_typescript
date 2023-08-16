@@ -40048,11 +40048,12 @@ export declare const AutoOrderApiFetchParamCreator: (configuration?: Configurati
      * @summary Update an auto order
      * @param {AutoOrder} auto_order Auto order to update
      * @param {number} auto_order_oid The auto order oid to update.
+     * @param {string} [validate_original_order] Validate original order before updating
      * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    updateAutoOrder(auto_order: AutoOrder, auto_order_oid: number, _expand?: string, options?: any): FetchArgs;
+    updateAutoOrder(auto_order: AutoOrder, auto_order_oid: number, validate_original_order?: string, _expand?: string, options?: any): FetchArgs;
     /**
      * Update multiple auto orders on the UltraCart account.
      * @summary Update multiple auto orders
@@ -40162,11 +40163,12 @@ export declare const AutoOrderApiFp: (configuration?: Configuration) => {
      * @summary Update an auto order
      * @param {AutoOrder} auto_order Auto order to update
      * @param {number} auto_order_oid The auto order oid to update.
+     * @param {string} [validate_original_order] Validate original order before updating
      * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    updateAutoOrder(auto_order: AutoOrder, auto_order_oid: number, _expand?: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<AutoOrderResponse>;
+    updateAutoOrder(auto_order: AutoOrder, auto_order_oid: number, validate_original_order?: string, _expand?: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<AutoOrderResponse>;
     /**
      * Update multiple auto orders on the UltraCart account.
      * @summary Update multiple auto orders
@@ -40276,11 +40278,12 @@ export declare const AutoOrderApiFactory: (configuration?: Configuration, fetch?
      * @summary Update an auto order
      * @param {AutoOrder} auto_order Auto order to update
      * @param {number} auto_order_oid The auto order oid to update.
+     * @param {string} [validate_original_order] Validate original order before updating
      * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    updateAutoOrder(auto_order: AutoOrder, auto_order_oid: number, _expand?: string, options?: any): Promise<AutoOrderResponse>;
+    updateAutoOrder(auto_order: AutoOrder, auto_order_oid: number, validate_original_order?: string, _expand?: string, options?: any): Promise<AutoOrderResponse>;
     /**
      * Update multiple auto orders on the UltraCart account.
      * @summary Update multiple auto orders
@@ -40398,12 +40401,13 @@ export interface AutoOrderApiInterface {
      * @summary Update an auto order
      * @param {AutoOrder} auto_order Auto order to update
      * @param {number} auto_order_oid The auto order oid to update.
+     * @param {string} [validate_original_order] Validate original order before updating
      * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof AutoOrderApiInterface
      */
-    updateAutoOrder(auto_order: AutoOrder, auto_order_oid: number, _expand?: string, options?: any): Promise<AutoOrderResponse>;
+    updateAutoOrder(auto_order: AutoOrder, auto_order_oid: number, validate_original_order?: string, _expand?: string, options?: any): Promise<AutoOrderResponse>;
     /**
      * Update multiple auto orders on the UltraCart account.
      * @summary Update multiple auto orders
@@ -40523,12 +40527,13 @@ export declare class AutoOrderApi extends BaseAPI implements AutoOrderApiInterfa
      * @summary Update an auto order
      * @param {AutoOrder} auto_order Auto order to update
      * @param {number} auto_order_oid The auto order oid to update.
+     * @param {string} [validate_original_order] Validate original order before updating
      * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof AutoOrderApi
      */
-    updateAutoOrder(auto_order: AutoOrder, auto_order_oid: number, _expand?: string, options?: any): Promise<AutoOrderResponse>;
+    updateAutoOrder(auto_order: AutoOrder, auto_order_oid: number, validate_original_order?: string, _expand?: string, options?: any): Promise<AutoOrderResponse>;
     /**
      * Update multiple auto orders on the UltraCart account.
      * @summary Update multiple auto orders

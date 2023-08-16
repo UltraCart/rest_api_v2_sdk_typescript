@@ -2288,11 +2288,12 @@ var AutoOrderApiFetchParamCreator = function (configuration) {
          * @summary Update an auto order
          * @param {AutoOrder} auto_order Auto order to update
          * @param {number} auto_order_oid The auto order oid to update.
+         * @param {string} [validate_original_order] Validate original order before updating
          * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        updateAutoOrder: function (auto_order, auto_order_oid, _expand, options) {
+        updateAutoOrder: function (auto_order, auto_order_oid, validate_original_order, _expand, options) {
             if (options === void 0) { options = {}; }
             // verify required parameter 'auto_order' is not null or undefined
             if (auto_order === null || auto_order === undefined) {
@@ -2325,6 +2326,9 @@ var AutoOrderApiFetchParamCreator = function (configuration) {
                     ? configuration.apiKey("x-ultracart-simple-key")
                     : configuration.apiKey;
                 localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+            if (validate_original_order !== undefined) {
+                localVarQueryParameter['validate_original_order'] = validate_original_order;
             }
             if (_expand !== undefined) {
                 localVarQueryParameter['_expand'] = _expand;
@@ -2600,12 +2604,13 @@ var AutoOrderApiFp = function (configuration) {
          * @summary Update an auto order
          * @param {AutoOrder} auto_order Auto order to update
          * @param {number} auto_order_oid The auto order oid to update.
+         * @param {string} [validate_original_order] Validate original order before updating
          * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        updateAutoOrder: function (auto_order, auto_order_oid, _expand, options) {
-            var localVarFetchArgs = (0, exports.AutoOrderApiFetchParamCreator)(configuration).updateAutoOrder(auto_order, auto_order_oid, _expand, options);
+        updateAutoOrder: function (auto_order, auto_order_oid, validate_original_order, _expand, options) {
+            var localVarFetchArgs = (0, exports.AutoOrderApiFetchParamCreator)(configuration).updateAutoOrder(auto_order, auto_order_oid, validate_original_order, _expand, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -2759,12 +2764,13 @@ var AutoOrderApiFactory = function (configuration, fetch, basePath) {
          * @summary Update an auto order
          * @param {AutoOrder} auto_order Auto order to update
          * @param {number} auto_order_oid The auto order oid to update.
+         * @param {string} [validate_original_order] Validate original order before updating
          * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        updateAutoOrder: function (auto_order, auto_order_oid, _expand, options) {
-            return (0, exports.AutoOrderApiFp)(configuration).updateAutoOrder(auto_order, auto_order_oid, _expand, options)(fetch, basePath);
+        updateAutoOrder: function (auto_order, auto_order_oid, validate_original_order, _expand, options) {
+            return (0, exports.AutoOrderApiFp)(configuration).updateAutoOrder(auto_order, auto_order_oid, validate_original_order, _expand, options)(fetch, basePath);
         },
         /**
          * Update multiple auto orders on the UltraCart account.
@@ -2906,13 +2912,14 @@ var AutoOrderApi = /** @class */ (function (_super) {
      * @summary Update an auto order
      * @param {AutoOrder} auto_order Auto order to update
      * @param {number} auto_order_oid The auto order oid to update.
+     * @param {string} [validate_original_order] Validate original order before updating
      * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof AutoOrderApi
      */
-    AutoOrderApi.prototype.updateAutoOrder = function (auto_order, auto_order_oid, _expand, options) {
-        return (0, exports.AutoOrderApiFp)(this.configuration).updateAutoOrder(auto_order, auto_order_oid, _expand, options)(this.fetch, this.basePath);
+    AutoOrderApi.prototype.updateAutoOrder = function (auto_order, auto_order_oid, validate_original_order, _expand, options) {
+        return (0, exports.AutoOrderApiFp)(this.configuration).updateAutoOrder(auto_order, auto_order_oid, validate_original_order, _expand, options)(this.fetch, this.basePath);
     };
     /**
      * Update multiple auto orders on the UltraCart account.
