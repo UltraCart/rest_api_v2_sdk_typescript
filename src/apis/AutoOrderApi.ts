@@ -100,6 +100,7 @@ export interface GetAutoOrdersByQueryRequest {
 export interface UpdateAutoOrderRequest {
     autoOrderOid: number;
     autoOrder: AutoOrder;
+    validateOriginalOrder?: string;
     expand?: string;
 }
 
@@ -265,6 +266,7 @@ export interface AutoOrderApiInterface {
      * @summary Update an auto order
      * @param {number} autoOrderOid The auto order oid to update.
      * @param {AutoOrder} autoOrder Auto order to update
+     * @param {string} [validateOriginalOrder] Validate original order before updating
      * @param {string} [expand] The object expansion to perform on the result.  See documentation for examples
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -735,6 +737,10 @@ export class AutoOrderApi extends runtime.BaseAPI implements AutoOrderApiInterfa
         }
 
         const queryParameters: any = {};
+
+        if (requestParameters.validateOriginalOrder !== undefined) {
+            queryParameters['validate_original_order'] = requestParameters.validateOriginalOrder;
+        }
 
         if (requestParameters.expand !== undefined) {
             queryParameters['_expand'] = requestParameters.expand;
