@@ -235,6 +235,7 @@ src/models/CouponEditorValues.ts
 src/models/CouponExistsResponse.ts
 src/models/CouponFreeItemAndShippingWithSubtotal.ts
 src/models/CouponFreeItemWithItemPurchase.ts
+src/models/CouponFreeItemWithItemPurchaseAndFreeShipping.ts
 src/models/CouponFreeItemWithSubtotal.ts
 src/models/CouponFreeItemsWithItemPurchase.ts
 src/models/CouponFreeItemsWithMixMatchPurchase.ts
@@ -298,6 +299,7 @@ src/models/CustomerMergeRequest.ts
 src/models/CustomerOrdersSummary.ts
 src/models/CustomerPricingTier.ts
 src/models/CustomerPrivacy.ts
+src/models/CustomerProperty.ts
 src/models/CustomerQuery.ts
 src/models/CustomerQuotesSummary.ts
 src/models/CustomerResponse.ts

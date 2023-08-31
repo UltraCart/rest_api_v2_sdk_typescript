@@ -74,6 +74,12 @@ import {
     CustomerPrivacyToJSON,
 } from './CustomerPrivacy';
 import {
+    CustomerProperty,
+    CustomerPropertyFromJSON,
+    CustomerPropertyFromJSONTyped,
+    CustomerPropertyToJSON,
+} from './CustomerProperty';
+import {
     CustomerQuotesSummary,
     CustomerQuotesSummaryFromJSON,
     CustomerQuotesSummaryFromJSONTyped,
@@ -363,6 +369,12 @@ export interface Customer {
      */
     privacy?: CustomerPrivacy;
     /**
+     * Properties for this customer
+     * @type {Array<CustomerProperty>}
+     * @memberof Customer
+     */
+    properties?: Array<CustomerProperty>;
+    /**
      * QuickBooks class to import this customer as
      * @type {string}
      * @memberof Customer
@@ -546,6 +558,7 @@ export function CustomerFromJSONTyped(json: any, ignoreDiscriminator: boolean): 
         'password': !exists(json, 'password') ? undefined : json['password'],
         'pricing_tiers': !exists(json, 'pricing_tiers') ? undefined : ((json['pricing_tiers'] as Array<any>).map(CustomerPricingTierFromJSON)),
         'privacy': !exists(json, 'privacy') ? undefined : CustomerPrivacyFromJSON(json['privacy']),
+        'properties': !exists(json, 'properties') ? undefined : ((json['properties'] as Array<any>).map(CustomerPropertyFromJSON)),
         'qb_class': !exists(json, 'qb_class') ? undefined : json['qb_class'],
         'qb_code': !exists(json, 'qb_code') ? undefined : json['qb_code'],
         'qb_tax_exemption_reason_code': !exists(json, 'qb_tax_exemption_reason_code') ? undefined : json['qb_tax_exemption_reason_code'],
@@ -620,6 +633,7 @@ export function CustomerToJSON(value?: Customer | null): any {
         'password': value.password,
         'pricing_tiers': value.pricing_tiers === undefined ? undefined : ((value.pricing_tiers as Array<any>).map(CustomerPricingTierToJSON)),
         'privacy': CustomerPrivacyToJSON(value.privacy),
+        'properties': value.properties === undefined ? undefined : ((value.properties as Array<any>).map(CustomerPropertyToJSON)),
         'qb_class': value.qb_class,
         'qb_code': value.qb_code,
         'qb_tax_exemption_reason_code': value.qb_tax_exemption_reason_code,

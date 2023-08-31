@@ -110,6 +110,12 @@ import {
     CouponFreeItemWithItemPurchaseToJSON,
 } from './CouponFreeItemWithItemPurchase';
 import {
+    CouponFreeItemWithItemPurchaseAndFreeShipping,
+    CouponFreeItemWithItemPurchaseAndFreeShippingFromJSON,
+    CouponFreeItemWithItemPurchaseAndFreeShippingFromJSONTyped,
+    CouponFreeItemWithItemPurchaseAndFreeShippingToJSON,
+} from './CouponFreeItemWithItemPurchaseAndFreeShipping';
+import {
     CouponFreeItemWithSubtotal,
     CouponFreeItemWithSubtotalFromJSON,
     CouponFreeItemWithSubtotalFromJSONTyped,
@@ -454,6 +460,12 @@ export interface Coupon {
     free_item_with_item_purchase?: CouponFreeItemWithItemPurchase;
     /**
      * 
+     * @type {CouponFreeItemWithItemPurchaseAndFreeShipping}
+     * @memberof Coupon
+     */
+    free_item_with_item_purchase_and_free_shipping?: CouponFreeItemWithItemPurchaseAndFreeShipping;
+    /**
+     * 
      * @type {CouponFreeItemWithSubtotal}
      * @memberof Coupon
      */
@@ -754,6 +766,7 @@ export function CouponFromJSONTyped(json: any, ignoreDiscriminator: boolean): Co
         'expiration_dts': !exists(json, 'expiration_dts') ? undefined : json['expiration_dts'],
         'free_item_and_shipping_with_subtotal': !exists(json, 'free_item_and_shipping_with_subtotal') ? undefined : CouponFreeItemAndShippingWithSubtotalFromJSON(json['free_item_and_shipping_with_subtotal']),
         'free_item_with_item_purchase': !exists(json, 'free_item_with_item_purchase') ? undefined : CouponFreeItemWithItemPurchaseFromJSON(json['free_item_with_item_purchase']),
+        'free_item_with_item_purchase_and_free_shipping': !exists(json, 'free_item_with_item_purchase_and_free_shipping') ? undefined : CouponFreeItemWithItemPurchaseAndFreeShippingFromJSON(json['free_item_with_item_purchase_and_free_shipping']),
         'free_item_with_subtotal': !exists(json, 'free_item_with_subtotal') ? undefined : CouponFreeItemWithSubtotalFromJSON(json['free_item_with_subtotal']),
         'free_items_with_item_purchase': !exists(json, 'free_items_with_item_purchase') ? undefined : CouponFreeItemsWithItemPurchaseFromJSON(json['free_items_with_item_purchase']),
         'free_items_with_mixmatch_purchase': !exists(json, 'free_items_with_mixmatch_purchase') ? undefined : CouponFreeItemsWithMixMatchPurchaseFromJSON(json['free_items_with_mixmatch_purchase']),
@@ -832,6 +845,7 @@ export function CouponToJSON(value?: Coupon | null): any {
         'expiration_dts': value.expiration_dts,
         'free_item_and_shipping_with_subtotal': CouponFreeItemAndShippingWithSubtotalToJSON(value.free_item_and_shipping_with_subtotal),
         'free_item_with_item_purchase': CouponFreeItemWithItemPurchaseToJSON(value.free_item_with_item_purchase),
+        'free_item_with_item_purchase_and_free_shipping': CouponFreeItemWithItemPurchaseAndFreeShippingToJSON(value.free_item_with_item_purchase_and_free_shipping),
         'free_item_with_subtotal': CouponFreeItemWithSubtotalToJSON(value.free_item_with_subtotal),
         'free_items_with_item_purchase': CouponFreeItemsWithItemPurchaseToJSON(value.free_items_with_item_purchase),
         'free_items_with_mixmatch_purchase': CouponFreeItemsWithMixMatchPurchaseToJSON(value.free_items_with_mixmatch_purchase),
