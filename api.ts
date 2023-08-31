@@ -9627,6 +9627,12 @@ export interface Coupon {
     free_item_with_item_purchase?: CouponFreeItemWithItemPurchase;
     /**
      * 
+     * @type {CouponFreeItemWithItemPurchaseAndFreeShipping}
+     * @memberof Coupon
+     */
+    free_item_with_item_purchase_and_free_shipping?: CouponFreeItemWithItemPurchaseAndFreeShipping;
+    /**
+     * 
      * @type {CouponFreeItemWithSubtotal}
      * @memberof Coupon
      */
@@ -10647,6 +10653,38 @@ export interface CouponFreeItemWithItemPurchase {
      * Required items (at least one from the list) that must be purchased for coupon to be valid
      * @type {Array<string>}
      * @memberof CouponFreeItemWithItemPurchase
+     */
+    required_purchase_items?: Array<string>;
+}
+
+/**
+ * 
+ * @export
+ * @interface CouponFreeItemWithItemPurchaseAndFreeShipping
+ */
+export interface CouponFreeItemWithItemPurchaseAndFreeShipping {
+    /**
+     * A list of free items which will receive a discount if one of the required purchase items is purchased.
+     * @type {Array<string>}
+     * @memberof CouponFreeItemWithItemPurchaseAndFreeShipping
+     */
+    items?: Array<string>;
+    /**
+     * The (optional) maximum quantity of discounted items.  Free shipping will apply to all units of the free item ids though.
+     * @type {number}
+     * @memberof CouponFreeItemWithItemPurchaseAndFreeShipping
+     */
+    limit?: number;
+    /**
+     * If true then the free item is matched 1:1 with the free item in the list.
+     * @type {boolean}
+     * @memberof CouponFreeItemWithItemPurchaseAndFreeShipping
+     */
+    match_required_purchase_item_to_free_item?: boolean;
+    /**
+     * Required items (at least one from the list) that must be purchased for coupon to be valid
+     * @type {Array<string>}
+     * @memberof CouponFreeItemWithItemPurchaseAndFreeShipping
      */
     required_purchase_items?: Array<string>;
 }
@@ -12110,6 +12148,12 @@ export interface Customer {
      */
     privacy?: CustomerPrivacy;
     /**
+     * Properties for this customer
+     * @type {Array<CustomerProperty>}
+     * @memberof Customer
+     */
+    properties?: Array<CustomerProperty>;
+    /**
      * QuickBooks class to import this customer as
      * @type {string}
      * @memberof Customer
@@ -13079,6 +13123,32 @@ export interface CustomerPrivacy {
      * @memberof CustomerPrivacy
      */
     statistics?: boolean;
+}
+
+/**
+ * 
+ * @export
+ * @interface CustomerProperty
+ */
+export interface CustomerProperty {
+    /**
+     * The date/time that the property expires and is deleted
+     * @type {string}
+     * @memberof CustomerProperty
+     */
+    expiration_dts?: string;
+    /**
+     * Name
+     * @type {string}
+     * @memberof CustomerProperty
+     */
+    name?: string;
+    /**
+     * Value
+     * @type {string}
+     * @memberof CustomerProperty
+     */
+    value?: string;
 }
 
 /**
