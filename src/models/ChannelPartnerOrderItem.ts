@@ -86,7 +86,10 @@ export const ChannelPartnerOrderItemAutoOrderScheduleEnum = {
     Every3Months: 'Every 3 Months',
     Every4Months: 'Every 4 Months',
     Every6Months: 'Every 6 Months',
-    Yearly: 'Yearly'
+    Yearly: 'Yearly',
+    Every4Weeks: 'Every 4 Weeks',
+    Every6Weeks: 'Every 6 Weeks',
+    Every8Weeks: 'Every 8 Weeks'
 } as const;
 export type ChannelPartnerOrderItemAutoOrderScheduleEnum = typeof ChannelPartnerOrderItemAutoOrderScheduleEnum[keyof typeof ChannelPartnerOrderItemAutoOrderScheduleEnum];
 
