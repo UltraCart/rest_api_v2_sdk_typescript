@@ -181,6 +181,9 @@ var AutoOrderItem;
         FrequencyEnum[FrequencyEnum["Every4Months"] = 'Every 4 Months'] = "Every4Months";
         FrequencyEnum[FrequencyEnum["Every6Months"] = 'Every 6 Months'] = "Every6Months";
         FrequencyEnum[FrequencyEnum["Yearly"] = 'Yearly'] = "Yearly";
+        FrequencyEnum[FrequencyEnum["Every4Weeks"] = 'Every 4 Weeks'] = "Every4Weeks";
+        FrequencyEnum[FrequencyEnum["Every6Weeks"] = 'Every 6 Weeks'] = "Every6Weeks";
+        FrequencyEnum[FrequencyEnum["Every8Weeks"] = 'Every 8 Weeks'] = "Every8Weeks";
     })(FrequencyEnum = AutoOrderItem.FrequencyEnum || (AutoOrderItem.FrequencyEnum = {}));
 })(AutoOrderItem = exports.AutoOrderItem || (exports.AutoOrderItem = {}));
 /**
@@ -208,6 +211,9 @@ var AutoOrderItemSimpleSchedule;
         FrequencyEnum[FrequencyEnum["Every4Months"] = 'Every 4 Months'] = "Every4Months";
         FrequencyEnum[FrequencyEnum["Every6Months"] = 'Every 6 Months'] = "Every6Months";
         FrequencyEnum[FrequencyEnum["Yearly"] = 'Yearly'] = "Yearly";
+        FrequencyEnum[FrequencyEnum["Every4Weeks"] = 'Every 4 Weeks'] = "Every4Weeks";
+        FrequencyEnum[FrequencyEnum["Every6Weeks"] = 'Every 6 Weeks'] = "Every6Weeks";
+        FrequencyEnum[FrequencyEnum["Every8Weeks"] = 'Every 8 Weeks'] = "Every8Weeks";
     })(FrequencyEnum = AutoOrderItemSimpleSchedule.FrequencyEnum || (AutoOrderItemSimpleSchedule.FrequencyEnum = {}));
 })(AutoOrderItemSimpleSchedule = exports.AutoOrderItemSimpleSchedule || (exports.AutoOrderItemSimpleSchedule = {}));
 /**
@@ -338,6 +344,9 @@ var ChannelPartnerOrderItem;
         AutoOrderScheduleEnum[AutoOrderScheduleEnum["Every4Months"] = 'Every 4 Months'] = "Every4Months";
         AutoOrderScheduleEnum[AutoOrderScheduleEnum["Every6Months"] = 'Every 6 Months'] = "Every6Months";
         AutoOrderScheduleEnum[AutoOrderScheduleEnum["Yearly"] = 'Yearly'] = "Yearly";
+        AutoOrderScheduleEnum[AutoOrderScheduleEnum["Every4Weeks"] = 'Every 4 Weeks'] = "Every4Weeks";
+        AutoOrderScheduleEnum[AutoOrderScheduleEnum["Every6Weeks"] = 'Every 6 Weeks'] = "Every6Weeks";
+        AutoOrderScheduleEnum[AutoOrderScheduleEnum["Every8Weeks"] = 'Every 8 Weeks'] = "Every8Weeks";
     })(AutoOrderScheduleEnum = ChannelPartnerOrderItem.AutoOrderScheduleEnum || (ChannelPartnerOrderItem.AutoOrderScheduleEnum = {}));
 })(ChannelPartnerOrderItem = exports.ChannelPartnerOrderItem || (exports.ChannelPartnerOrderItem = {}));
 /**

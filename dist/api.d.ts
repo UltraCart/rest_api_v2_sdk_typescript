@@ -1705,7 +1705,10 @@ export declare namespace AutoOrderItem {
         Every3Months,
         Every4Months,
         Every6Months,
-        Yearly
+        Yearly,
+        Every4Weeks,
+        Every6Weeks,
+        Every8Weeks
     }
 }
 /**
@@ -1805,7 +1808,10 @@ export declare namespace AutoOrderItemSimpleSchedule {
         Every3Months,
         Every4Months,
         Every6Months,
-        Yearly
+        Yearly,
+        Every4Weeks,
+        Every6Weeks,
+        Every8Weeks
     }
 }
 /**
@@ -5872,7 +5878,10 @@ export declare namespace ChannelPartnerOrderItem {
         Every3Months,
         Every4Months,
         Every6Months,
-        Yearly
+        Yearly,
+        Every4Weeks,
+        Every6Weeks,
+        Every8Weeks
     }
 }
 /**

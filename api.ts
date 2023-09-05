@@ -1752,7 +1752,10 @@ export namespace AutoOrderItem {
         Every3Months = <any> 'Every 3 Months',
         Every4Months = <any> 'Every 4 Months',
         Every6Months = <any> 'Every 6 Months',
-        Yearly = <any> 'Yearly'
+        Yearly = <any> 'Yearly',
+        Every4Weeks = <any> 'Every 4 Weeks',
+        Every6Weeks = <any> 'Every 6 Weeks',
+        Every8Weeks = <any> 'Every 8 Weeks'
     }
 }
 
@@ -1856,7 +1859,10 @@ export namespace AutoOrderItemSimpleSchedule {
         Every3Months = <any> 'Every 3 Months',
         Every4Months = <any> 'Every 4 Months',
         Every6Months = <any> 'Every 6 Months',
-        Yearly = <any> 'Yearly'
+        Yearly = <any> 'Yearly',
+        Every4Weeks = <any> 'Every 4 Weeks',
+        Every6Weeks = <any> 'Every 6 Weeks',
+        Every8Weeks = <any> 'Every 8 Weeks'
     }
 }
 
@@ -6008,7 +6014,10 @@ export namespace ChannelPartnerOrderItem {
         Every3Months = <any> 'Every 3 Months',
         Every4Months = <any> 'Every 4 Months',
         Every6Months = <any> 'Every 6 Months',
-        Yearly = <any> 'Yearly'
+        Yearly = <any> 'Yearly',
+        Every4Weeks = <any> 'Every 4 Weeks',
+        Every6Weeks = <any> 'Every 6 Weeks',
+        Every8Weeks = <any> 'Every 8 Weeks'
     }
 }
 
