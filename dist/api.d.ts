@@ -12822,6 +12822,12 @@ export interface CustomerPrivacy {
  */
 export interface CustomerProperty {
     /**
+     * Customer profile property oid
+     * @type {number}
+     * @memberof CustomerProperty
+     */
+    customer_profile_property_oid?: number;
+    /**
      * The date/time that the property expires and is deleted
      * @type {string}
      * @memberof CustomerProperty
