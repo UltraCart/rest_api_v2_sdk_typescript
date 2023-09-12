@@ -20,6 +20,12 @@ import { exists, mapValues } from '../runtime';
  */
 export interface CustomerProperty {
     /**
+     * Customer profile property oid
+     * @type {number}
+     * @memberof CustomerProperty
+     */
+    customer_profile_property_oid?: number;
+    /**
      * The date/time that the property expires and is deleted
      * @type {string}
      * @memberof CustomerProperty
@@ -49,6 +55,7 @@ export function CustomerPropertyFromJSONTyped(json: any, ignoreDiscriminator: bo
     }
     return {
         
+        'customer_profile_property_oid': !exists(json, 'customer_profile_property_oid') ? undefined : json['customer_profile_property_oid'],
         'expiration_dts': !exists(json, 'expiration_dts') ? undefined : json['expiration_dts'],
         'name': !exists(json, 'name') ? undefined : json['name'],
         'value': !exists(json, 'value') ? undefined : json['value'],
@@ -64,6 +71,7 @@ export function CustomerPropertyToJSON(value?: CustomerProperty | null): any {
     }
     return {
         
+        'customer_profile_property_oid': value.customer_profile_property_oid,
         'expiration_dts': value.expiration_dts,
         'name': value.name,
         'value': value.value,
