@@ -24635,6 +24635,30 @@ export interface ItemIdentifiers {
      */
     barcode?: string;
     /**
+     * Barcode - GTIN 12
+     * @type {string}
+     * @memberof ItemIdentifiers
+     */
+    barcode_gtin12?: string;
+    /**
+     * Barcode - GTIN 14
+     * @type {string}
+     * @memberof ItemIdentifiers
+     */
+    barcode_gtin14?: string;
+    /**
+     * Barcode - UPC 11
+     * @type {string}
+     * @memberof ItemIdentifiers
+     */
+    barcode_upc11?: string;
+    /**
+     * Barcode - UPC 12
+     * @type {string}
+     * @memberof ItemIdentifiers
+     */
+    barcode_upc12?: string;
+    /**
      * Manufacturer Name
      * @type {string}
      * @memberof ItemIdentifiers
@@ -29748,6 +29772,30 @@ export interface OrderItem {
      * @memberof OrderItem
      */
     barcode?: string;
+    /**
+     * Barcode - GTIN 12
+     * @type {string}
+     * @memberof OrderItem
+     */
+    barcode_gtin12?: string;
+    /**
+     * Barcode - GTIN 14
+     * @type {string}
+     * @memberof OrderItem
+     */
+    barcode_gtin14?: string;
+    /**
+     * Barcode - UPC 11
+     * @type {string}
+     * @memberof OrderItem
+     */
+    barcode_upc11?: string;
+    /**
+     * Barcode - UPC 12
+     * @type {string}
+     * @memberof OrderItem
+     */
+    barcode_upc12?: string;
     /**
      * Channel partner item id if this order came through a channel partner and the channel partner item id was mapped to an internal item id
      * @type {string}
