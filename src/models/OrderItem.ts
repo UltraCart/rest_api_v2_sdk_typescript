@@ -99,6 +99,30 @@ export interface OrderItem {
      */
     barcode?: string;
     /**
+     * Barcode - GTIN 12
+     * @type {string}
+     * @memberof OrderItem
+     */
+    barcode_gtin12?: string;
+    /**
+     * Barcode - GTIN 14
+     * @type {string}
+     * @memberof OrderItem
+     */
+    barcode_gtin14?: string;
+    /**
+     * Barcode - UPC 11
+     * @type {string}
+     * @memberof OrderItem
+     */
+    barcode_upc11?: string;
+    /**
+     * Barcode - UPC 12
+     * @type {string}
+     * @memberof OrderItem
+     */
+    barcode_upc12?: string;
+    /**
      * Channel partner item id if this order came through a channel partner and the channel partner item id was mapped to an internal item id
      * @type {string}
      * @memberof OrderItem
@@ -459,6 +483,10 @@ export function OrderItemFromJSONTyped(json: any, ignoreDiscriminator: boolean):
         'auto_order_last_rebill_dts': !exists(json, 'auto_order_last_rebill_dts') ? undefined : json['auto_order_last_rebill_dts'],
         'auto_order_schedule': !exists(json, 'auto_order_schedule') ? undefined : json['auto_order_schedule'],
         'barcode': !exists(json, 'barcode') ? undefined : json['barcode'],
+        'barcode_gtin12': !exists(json, 'barcode_gtin12') ? undefined : json['barcode_gtin12'],
+        'barcode_gtin14': !exists(json, 'barcode_gtin14') ? undefined : json['barcode_gtin14'],
+        'barcode_upc11': !exists(json, 'barcode_upc11') ? undefined : json['barcode_upc11'],
+        'barcode_upc12': !exists(json, 'barcode_upc12') ? undefined : json['barcode_upc12'],
         'channel_partner_item_id': !exists(json, 'channel_partner_item_id') ? undefined : json['channel_partner_item_id'],
         'cogs': !exists(json, 'cogs') ? undefined : json['cogs'],
         'component_unit_value': !exists(json, 'component_unit_value') ? undefined : json['component_unit_value'],
@@ -532,6 +560,10 @@ export function OrderItemToJSON(value?: OrderItem | null): any {
         'auto_order_last_rebill_dts': value.auto_order_last_rebill_dts,
         'auto_order_schedule': value.auto_order_schedule,
         'barcode': value.barcode,
+        'barcode_gtin12': value.barcode_gtin12,
+        'barcode_gtin14': value.barcode_gtin14,
+        'barcode_upc11': value.barcode_upc11,
+        'barcode_upc12': value.barcode_upc12,
         'channel_partner_item_id': value.channel_partner_item_id,
         'cogs': value.cogs,
         'component_unit_value': value.component_unit_value,

@@ -26,6 +26,30 @@ export interface ItemIdentifiers {
      */
     barcode?: string;
     /**
+     * Barcode - GTIN 12
+     * @type {string}
+     * @memberof ItemIdentifiers
+     */
+    barcode_gtin12?: string;
+    /**
+     * Barcode - GTIN 14
+     * @type {string}
+     * @memberof ItemIdentifiers
+     */
+    barcode_gtin14?: string;
+    /**
+     * Barcode - UPC 11
+     * @type {string}
+     * @memberof ItemIdentifiers
+     */
+    barcode_upc11?: string;
+    /**
+     * Barcode - UPC 12
+     * @type {string}
+     * @memberof ItemIdentifiers
+     */
+    barcode_upc12?: string;
+    /**
      * Manufacturer Name
      * @type {string}
      * @memberof ItemIdentifiers
@@ -56,6 +80,10 @@ export function ItemIdentifiersFromJSONTyped(json: any, ignoreDiscriminator: boo
     return {
         
         'barcode': !exists(json, 'barcode') ? undefined : json['barcode'],
+        'barcode_gtin12': !exists(json, 'barcode_gtin12') ? undefined : json['barcode_gtin12'],
+        'barcode_gtin14': !exists(json, 'barcode_gtin14') ? undefined : json['barcode_gtin14'],
+        'barcode_upc11': !exists(json, 'barcode_upc11') ? undefined : json['barcode_upc11'],
+        'barcode_upc12': !exists(json, 'barcode_upc12') ? undefined : json['barcode_upc12'],
         'manufacturer_name': !exists(json, 'manufacturer_name') ? undefined : json['manufacturer_name'],
         'manufacturer_sku': !exists(json, 'manufacturer_sku') ? undefined : json['manufacturer_sku'],
         'unspsc': !exists(json, 'unspsc') ? undefined : json['unspsc'],
@@ -72,6 +100,10 @@ export function ItemIdentifiersToJSON(value?: ItemIdentifiers | null): any {
     return {
         
         'barcode': value.barcode,
+        'barcode_gtin12': value.barcode_gtin12,
+        'barcode_gtin14': value.barcode_gtin14,
+        'barcode_upc11': value.barcode_upc11,
+        'barcode_upc12': value.barcode_upc12,
         'manufacturer_name': value.manufacturer_name,
         'manufacturer_sku': value.manufacturer_sku,
         'unspsc': value.unspsc,
