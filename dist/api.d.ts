@@ -33733,6 +33733,12 @@ export interface ReportDataSetQuery {
      */
     metrics?: Array<ReportPageVisualizationMetric>;
     /**
+     * The columns to order by in the final result.  If not specified the dimensions will be used
+     * @type {Array<ReportDataSetQueryOrderByColumn>}
+     * @memberof ReportDataSetQuery
+     */
+    order_by_columns?: Array<ReportDataSetQueryOrderByColumn>;
+    /**
      * Result set page size.  The default value is 200 records.  Max is 10000.
      * @type {number}
      * @memberof ReportDataSetQuery
@@ -33771,6 +33777,25 @@ export declare namespace ReportDataSetQuery {
         Filter,
         Visualization
     }
+}
+/**
+ *
+ * @export
+ * @interface ReportDataSetQueryOrderByColumn
+ */
+export interface ReportDataSetQueryOrderByColumn {
+    /**
+     *
+     * @type {boolean}
+     * @memberof ReportDataSetQueryOrderByColumn
+     */
+    ascending?: boolean;
+    /**
+     *
+     * @type {string}
+     * @memberof ReportDataSetQueryOrderByColumn
+     */
+    column_name?: string;
 }
 /**
  *
