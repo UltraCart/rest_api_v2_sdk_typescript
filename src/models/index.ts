@@ -642,6 +642,7 @@ export * from './ReportDataSetColumn';
 export * from './ReportDataSetPage';
 export * from './ReportDataSetPageResponse';
 export * from './ReportDataSetQuery';
+export * from './ReportDataSetQueryOrderByColumn';
 export * from './ReportDataSetResponse';
 export * from './ReportDataSetRow';
 export * from './ReportDataSetSchema';

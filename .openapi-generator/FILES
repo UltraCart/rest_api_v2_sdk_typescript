@@ -666,6 +666,7 @@ src/models/ReportDataSetColumn.ts
 src/models/ReportDataSetPage.ts
 src/models/ReportDataSetPageResponse.ts
 src/models/ReportDataSetQuery.ts
+src/models/ReportDataSetQueryOrderByColumn.ts
 src/models/ReportDataSetResponse.ts
 src/models/ReportDataSetRow.ts
 src/models/ReportDataSetSchema.ts

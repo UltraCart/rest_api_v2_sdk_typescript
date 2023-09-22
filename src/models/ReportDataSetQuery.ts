@@ -14,6 +14,12 @@
 
 import { exists, mapValues } from '../runtime';
 import {
+    ReportDataSetQueryOrderByColumn,
+    ReportDataSetQueryOrderByColumnFromJSON,
+    ReportDataSetQueryOrderByColumnFromJSONTyped,
+    ReportDataSetQueryOrderByColumnToJSON,
+} from './ReportDataSetQueryOrderByColumn';
+import {
     ReportDataSource,
     ReportDataSourceFromJSON,
     ReportDataSourceFromJSONTyped,
@@ -93,6 +99,12 @@ export interface ReportDataSetQuery {
      */
     metrics?: Array<ReportPageVisualizationMetric>;
     /**
+     * The columns to order by in the final result.  If not specified the dimensions will be used
+     * @type {Array<ReportDataSetQueryOrderByColumn>}
+     * @memberof ReportDataSetQuery
+     */
+    order_by_columns?: Array<ReportDataSetQueryOrderByColumn>;
+    /**
      * Result set page size.  The default value is 200 records.  Max is 10000.
      * @type {number}
      * @memberof ReportDataSetQuery
@@ -148,6 +160,7 @@ export function ReportDataSetQueryFromJSONTyped(json: any, ignoreDiscriminator: 
         'for_object_id': !exists(json, 'for_object_id') ? undefined : json['for_object_id'],
         'for_object_type': !exists(json, 'for_object_type') ? undefined : json['for_object_type'],
         'metrics': !exists(json, 'metrics') ? undefined : ((json['metrics'] as Array<any>).map(ReportPageVisualizationMetricFromJSON)),
+        'order_by_columns': !exists(json, 'order_by_columns') ? undefined : ((json['order_by_columns'] as Array<any>).map(ReportDataSetQueryOrderByColumnFromJSON)),
         'page_size': !exists(json, 'page_size') ? undefined : json['page_size'],
         'selected_filters': !exists(json, 'selected_filters') ? undefined : ((json['selected_filters'] as Array<any>).map(ReportFilterFromJSON)),
         'skip_cache': !exists(json, 'skip_cache') ? undefined : json['skip_cache'],
@@ -172,6 +185,7 @@ export function ReportDataSetQueryToJSON(value?: ReportDataSetQuery | null): any
         'for_object_id': value.for_object_id,
         'for_object_type': value.for_object_type,
         'metrics': value.metrics === undefined ? undefined : ((value.metrics as Array<any>).map(ReportPageVisualizationMetricToJSON)),
+        'order_by_columns': value.order_by_columns === undefined ? undefined : ((value.order_by_columns as Array<any>).map(ReportDataSetQueryOrderByColumnToJSON)),
         'page_size': value.page_size,
         'selected_filters': value.selected_filters === undefined ? undefined : ((value.selected_filters as Array<any>).map(ReportFilterToJSON)),
         'skip_cache': value.skip_cache,
