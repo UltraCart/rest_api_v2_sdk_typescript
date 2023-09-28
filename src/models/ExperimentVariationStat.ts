@@ -56,6 +56,12 @@ export interface ExperimentVariationStat {
      */
     order_count?: number;
     /**
+     * Order ID thats converted on this variation
+     * @type {Array<string>}
+     * @memberof ExperimentVariationStat
+     */
+    order_ids?: Array<string>;
+    /**
      * Total order item count for this variation
      * @type {number}
      * @memberof ExperimentVariationStat
@@ -109,6 +115,7 @@ export function ExperimentVariationStatFromJSONTyped(json: any, ignoreDiscrimina
         'event_count': !exists(json, 'event_count') ? undefined : json['event_count'],
         'initiate_checkout_count': !exists(json, 'initiate_checkout_count') ? undefined : json['initiate_checkout_count'],
         'order_count': !exists(json, 'order_count') ? undefined : json['order_count'],
+        'order_ids': !exists(json, 'order_ids') ? undefined : json['order_ids'],
         'order_item_count': !exists(json, 'order_item_count') ? undefined : json['order_item_count'],
         'page_view_count': !exists(json, 'page_view_count') ? undefined : json['page_view_count'],
         'revenue': !exists(json, 'revenue') ? undefined : json['revenue'],
@@ -133,6 +140,7 @@ export function ExperimentVariationStatToJSON(value?: ExperimentVariationStat | 
         'event_count': value.event_count,
         'initiate_checkout_count': value.initiate_checkout_count,
         'order_count': value.order_count,
+        'order_ids': value.order_ids,
         'order_item_count': value.order_item_count,
         'page_view_count': value.page_view_count,
         'revenue': value.revenue,

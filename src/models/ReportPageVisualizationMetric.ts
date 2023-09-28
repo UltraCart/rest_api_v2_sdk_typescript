@@ -54,7 +54,8 @@ export const ReportPageVisualizationMetricAggregationEnum = {
     Count: 'count',
     Min: 'min',
     Max: 'max',
-    Avg: 'avg'
+    Avg: 'avg',
+    None: 'none'
 } as const;
 export type ReportPageVisualizationMetricAggregationEnum = typeof ReportPageVisualizationMetricAggregationEnum[keyof typeof ReportPageVisualizationMetricAggregationEnum];
 
