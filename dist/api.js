@@ -1495,6 +1495,7 @@ var ReportPageVisualizationMetric;
         AggregationEnum[AggregationEnum["Min"] = 'min'] = "Min";
         AggregationEnum[AggregationEnum["Max"] = 'max'] = "Max";
         AggregationEnum[AggregationEnum["Avg"] = 'avg'] = "Avg";
+        AggregationEnum[AggregationEnum["None"] = 'none'] = "None";
     })(AggregationEnum = ReportPageVisualizationMetric.AggregationEnum || (ReportPageVisualizationMetric.AggregationEnum = {}));
 })(ReportPageVisualizationMetric = exports.ReportPageVisualizationMetric || (exports.ReportPageVisualizationMetric = {}));
 /**

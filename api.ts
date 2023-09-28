@@ -20738,6 +20738,12 @@ export interface ExperimentVariationStat {
      */
     order_count?: number;
     /**
+     * Order ID thats converted on this variation
+     * @type {Array<string>}
+     * @memberof ExperimentVariationStat
+     */
+    order_ids?: Array<string>;
+    /**
      * Total order item count for this variation
      * @type {number}
      * @memberof ExperimentVariationStat
@@ -35223,7 +35229,8 @@ export namespace ReportPageVisualizationMetric {
         Count = <any> 'count',
         Min = <any> 'min',
         Max = <any> 'max',
-        Avg = <any> 'avg'
+        Avg = <any> 'avg',
+        None = <any> 'none'
     }
 }
 
