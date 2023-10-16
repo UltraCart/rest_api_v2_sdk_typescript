@@ -4506,6 +4506,12 @@ export interface CartSettingsPaymentCreditCard {
      */
     collect_credit_card_verification_number?: boolean;
     /**
+     * If this field is null or the total is greater than or equal to this value then collect the CVV2.
+     * @type {number}
+     * @memberof CartSettingsPaymentCreditCard
+     */
+    collect_credit_card_verification_number_minimum?: number;
+    /**
      * Available credit card types
      * @type {Array<string>}
      * @memberof CartSettingsPaymentCreditCard
