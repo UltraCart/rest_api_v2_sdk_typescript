@@ -26,6 +26,12 @@ export interface CartSettingsPaymentCreditCard {
      */
     collect_credit_card_verification_number?: boolean;
     /**
+     * If this field is null or the total is greater than or equal to this value then collect the CVV2.
+     * @type {number}
+     * @memberof CartSettingsPaymentCreditCard
+     */
+    collect_credit_card_verification_number_minimum?: number;
+    /**
      * Available credit card types
      * @type {Array<string>}
      * @memberof CartSettingsPaymentCreditCard
@@ -50,6 +56,7 @@ export function CartSettingsPaymentCreditCardFromJSONTyped(json: any, ignoreDisc
     return {
         
         'collect_credit_card_verification_number': !exists(json, 'collect_credit_card_verification_number') ? undefined : json['collect_credit_card_verification_number'],
+        'collect_credit_card_verification_number_minimum': !exists(json, 'collect_credit_card_verification_number_minimum') ? undefined : json['collect_credit_card_verification_number_minimum'],
         'credit_card_types': !exists(json, 'credit_card_types') ? undefined : json['credit_card_types'],
         'hosted_fields_shopping_cart_token': !exists(json, 'hosted_fields_shopping_cart_token') ? undefined : json['hosted_fields_shopping_cart_token'],
     };
@@ -65,6 +72,7 @@ export function CartSettingsPaymentCreditCardToJSON(value?: CartSettingsPaymentC
     return {
         
         'collect_credit_card_verification_number': value.collect_credit_card_verification_number,
+        'collect_credit_card_verification_number_minimum': value.collect_credit_card_verification_number_minimum,
         'credit_card_types': value.credit_card_types,
         'hosted_fields_shopping_cart_token': value.hosted_fields_shopping_cart_token,
     };
