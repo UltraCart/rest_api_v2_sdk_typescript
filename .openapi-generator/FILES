@@ -22,6 +22,7 @@ src/apis/StorefrontApi.ts
 src/apis/TaxApi.ts
 src/apis/UserApi.ts
 src/apis/WebhookApi.ts
+src/apis/WorkflowApi.ts
 src/apis/index.ts
 src/index.ts
 src/models/AccountsReceivableRetryConfig.ts
@@ -805,6 +806,19 @@ src/models/WebhookSampleRequest.ts
 src/models/WebhookSampleRequestResponse.ts
 src/models/WebhooksResponse.ts
 src/models/Weight.ts
+src/models/WorkflowAttachment.ts
+src/models/WorkflowAttachmentUploadUrl.ts
+src/models/WorkflowAttachmentUploadUrlResponse.ts
+src/models/WorkflowGroup.ts
+src/models/WorkflowGroupsResponse.ts
+src/models/WorkflowNote.ts
+src/models/WorkflowTask.ts
+src/models/WorkflowTaskHistory.ts
+src/models/WorkflowTaskResponse.ts
+src/models/WorkflowTasksRequest.ts
+src/models/WorkflowTasksResponse.ts
+src/models/WorkflowUser.ts
+src/models/WorkflowUsersResponse.ts
 src/models/index.ts
 src/runtime.ts
 tsconfig.json

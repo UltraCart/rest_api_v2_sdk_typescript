@@ -20,3 +20,4 @@ export * from './StorefrontApi';
 export * from './TaxApi';
 export * from './UserApi';
 export * from './WebhookApi';
+export * from './WorkflowApi';
