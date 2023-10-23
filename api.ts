@@ -47480,8 +47480,8 @@ export const ConversationApiFetchParamCreator = function (configuration?: Config
             };
         },
         /**
-         * Get a presigned conersation multimedia upload URL 
-         * @summary Get a presigned conersation multimedia upload URL
+         * Get a presigned conversation multimedia upload URL 
+         * @summary Get a presigned conversation multimedia upload URL
          * @param {string} extension 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -48932,8 +48932,8 @@ export const ConversationApiFp = function(configuration?: Configuration) {
             };
         },
         /**
-         * Get a presigned conersation multimedia upload URL 
-         * @summary Get a presigned conersation multimedia upload URL
+         * Get a presigned conversation multimedia upload URL 
+         * @summary Get a presigned conversation multimedia upload URL
          * @param {string} extension 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -49523,8 +49523,8 @@ export const ConversationApiFactory = function (configuration?: Configuration, f
             return ConversationApiFp(configuration).getConversationMessages(conversation_uuid, since, limit, options)(fetch, basePath);
         },
         /**
-         * Get a presigned conersation multimedia upload URL 
-         * @summary Get a presigned conersation multimedia upload URL
+         * Get a presigned conversation multimedia upload URL 
+         * @summary Get a presigned conversation multimedia upload URL
          * @param {string} extension 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -49883,8 +49883,8 @@ export interface ConversationApiInterface {
     getConversationMessages(conversation_uuid: string, since: number, limit?: number, options?: any): Promise<ConversationMessagesResponse>;
 
     /**
-     * Get a presigned conersation multimedia upload URL 
-     * @summary Get a presigned conersation multimedia upload URL
+     * Get a presigned conversation multimedia upload URL 
+     * @summary Get a presigned conversation multimedia upload URL
      * @param {string} extension 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -50271,8 +50271,8 @@ export class ConversationApi extends BaseAPI implements ConversationApiInterface
     }
 
     /**
-     * Get a presigned conersation multimedia upload URL 
-     * @summary Get a presigned conersation multimedia upload URL
+     * Get a presigned conversation multimedia upload URL 
+     * @summary Get a presigned conversation multimedia upload URL
      * @param {string} extension 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -61415,7 +61415,7 @@ export const OauthApiFetchParamCreator = function (configuration?: Configuration
             // oauth required
             if (configuration && configuration.accessToken) {
 				const localVarAccessTokenValue = typeof configuration.accessToken === 'function'
-					? configuration.accessToken("ultraCartOauth", ["ultrabooks_write", "auto_order_write", "coupon_read", "affiliate_read", "coupon_write", "channel_partner_read", "tax_read", "conversation_write", "fulfillment_write", "tax_write", "gift_certificate_write", "channel_partner_write", "item_read", "fulfillment_read", "webhook_write", "chargeback_write", "user_write", "gift_certificate_read", "checkout_write", "storefront_read", "webhook_read", "item_write", "auto_order_read", "customer_read", "user_read", "configuration_read", "customer_write", "order_read", "conversation_read", "affiliate_write", "storefront_write", "ultrabooks_read", "order_write", "chargeback_read", "integration_log_write", "configuration_write", "checkout_read", "integration_log_read"])
+					? configuration.accessToken("ultraCartOauth", ["ultrabooks_write", "auto_order_write", "coupon_read", "affiliate_read", "workflow_read", "coupon_write", "channel_partner_read", "tax_read", "conversation_write", "fulfillment_write", "tax_write", "gift_certificate_write", "workflow_write", "channel_partner_write", "item_read", "fulfillment_read", "webhook_write", "chargeback_write", "user_write", "gift_certificate_read", "checkout_write", "storefront_read", "webhook_read", "item_write", "auto_order_read", "customer_read", "user_read", "configuration_read", "customer_write", "order_read", "conversation_read", "affiliate_write", "storefront_write", "ultrabooks_read", "order_write", "chargeback_read", "integration_log_write", "configuration_write", "checkout_read", "integration_log_read"])
 					: configuration.accessToken;
                 localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
             }
@@ -61503,7 +61503,7 @@ export const OauthApiFetchParamCreator = function (configuration?: Configuration
             // oauth required
             if (configuration && configuration.accessToken) {
 				const localVarAccessTokenValue = typeof configuration.accessToken === 'function'
-					? configuration.accessToken("ultraCartOauth", ["ultrabooks_write", "auto_order_write", "coupon_read", "affiliate_read", "coupon_write", "channel_partner_read", "tax_read", "conversation_write", "fulfillment_write", "tax_write", "gift_certificate_write", "channel_partner_write", "item_read", "fulfillment_read", "webhook_write", "chargeback_write", "user_write", "gift_certificate_read", "checkout_write", "storefront_read", "webhook_read", "item_write", "auto_order_read", "customer_read", "user_read", "configuration_read", "customer_write", "order_read", "conversation_read", "affiliate_write", "storefront_write", "ultrabooks_read", "order_write", "chargeback_read", "integration_log_write", "configuration_write", "checkout_read", "integration_log_read"])
+					? configuration.accessToken("ultraCartOauth", ["ultrabooks_write", "auto_order_write", "coupon_read", "affiliate_read", "workflow_read", "coupon_write", "channel_partner_read", "tax_read", "conversation_write", "fulfillment_write", "tax_write", "gift_certificate_write", "workflow_write", "channel_partner_write", "item_read", "fulfillment_read", "webhook_write", "chargeback_write", "user_write", "gift_certificate_read", "checkout_write", "storefront_read", "webhook_read", "item_write", "auto_order_read", "customer_read", "user_read", "configuration_read", "customer_write", "order_read", "conversation_read", "affiliate_write", "storefront_write", "ultrabooks_read", "order_write", "chargeback_read", "integration_log_write", "configuration_write", "checkout_read", "integration_log_read"])
 					: configuration.accessToken;
                 localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
             }
@@ -72465,7 +72465,7 @@ export const StorefrontApiFetchParamCreator = function (configuration?: Configur
             // oauth required
             if (configuration && configuration.accessToken) {
 				const localVarAccessTokenValue = typeof configuration.accessToken === 'function'
-					? configuration.accessToken("ultraCartOauth", ["ultrabooks_write", "auto_order_write", "coupon_read", "affiliate_read", "coupon_write", "channel_partner_read", "tax_read", "conversation_write", "fulfillment_write", "tax_write", "gift_certificate_write", "channel_partner_write", "item_read", "fulfillment_read", "webhook_write", "chargeback_write", "user_write", "gift_certificate_read", "checkout_write", "storefront_read", "webhook_read", "item_write", "auto_order_read", "customer_read", "user_read", "configuration_read", "customer_write", "order_read", "conversation_read", "affiliate_write", "storefront_write", "ultrabooks_read", "order_write", "chargeback_read", "integration_log_write", "configuration_write", "checkout_read", "integration_log_read"])
+					? configuration.accessToken("ultraCartOauth", ["ultrabooks_write", "auto_order_write", "coupon_read", "affiliate_read", "workflow_read", "coupon_write", "channel_partner_read", "tax_read", "conversation_write", "fulfillment_write", "tax_write", "gift_certificate_write", "workflow_write", "channel_partner_write", "item_read", "fulfillment_read", "webhook_write", "chargeback_write", "user_write", "gift_certificate_read", "checkout_write", "storefront_read", "webhook_read", "item_write", "auto_order_read", "customer_read", "user_read", "configuration_read", "customer_write", "order_read", "conversation_read", "affiliate_write", "storefront_write", "ultrabooks_read", "order_write", "chargeback_read", "integration_log_write", "configuration_write", "checkout_read", "integration_log_read"])
 					: configuration.accessToken;
                 localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
             }

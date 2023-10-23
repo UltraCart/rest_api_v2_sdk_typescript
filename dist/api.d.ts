@@ -42554,8 +42554,8 @@ export declare const ConversationApiFetchParamCreator: (configuration?: Configur
      */
     getConversationMessages(conversation_uuid: string, since: number, limit?: number, options?: any): FetchArgs;
     /**
-     * Get a presigned conersation multimedia upload URL
-     * @summary Get a presigned conersation multimedia upload URL
+     * Get a presigned conversation multimedia upload URL
+     * @summary Get a presigned conversation multimedia upload URL
      * @param {string} extension
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -42841,8 +42841,8 @@ export declare const ConversationApiFp: (configuration?: Configuration) => {
      */
     getConversationMessages(conversation_uuid: string, since: number, limit?: number, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ConversationMessagesResponse>;
     /**
-     * Get a presigned conersation multimedia upload URL
-     * @summary Get a presigned conersation multimedia upload URL
+     * Get a presigned conversation multimedia upload URL
+     * @summary Get a presigned conversation multimedia upload URL
      * @param {string} extension
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -43128,8 +43128,8 @@ export declare const ConversationApiFactory: (configuration?: Configuration, fet
      */
     getConversationMessages(conversation_uuid: string, since: number, limit?: number, options?: any): Promise<ConversationMessagesResponse>;
     /**
-     * Get a presigned conersation multimedia upload URL
-     * @summary Get a presigned conersation multimedia upload URL
+     * Get a presigned conversation multimedia upload URL
+     * @summary Get a presigned conversation multimedia upload URL
      * @param {string} extension
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -43430,8 +43430,8 @@ export interface ConversationApiInterface {
      */
     getConversationMessages(conversation_uuid: string, since: number, limit?: number, options?: any): Promise<ConversationMessagesResponse>;
     /**
-     * Get a presigned conersation multimedia upload URL
-     * @summary Get a presigned conersation multimedia upload URL
+     * Get a presigned conversation multimedia upload URL
+     * @summary Get a presigned conversation multimedia upload URL
      * @param {string} extension
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -43754,8 +43754,8 @@ export declare class ConversationApi extends BaseAPI implements ConversationApiI
      */
     getConversationMessages(conversation_uuid: string, since: number, limit?: number, options?: any): Promise<ConversationMessagesResponse>;
     /**
-     * Get a presigned conersation multimedia upload URL
-     * @summary Get a presigned conersation multimedia upload URL
+     * Get a presigned conversation multimedia upload URL
+     * @summary Get a presigned conversation multimedia upload URL
      * @param {string} extension
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
