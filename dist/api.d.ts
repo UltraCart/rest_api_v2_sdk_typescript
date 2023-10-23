@@ -39974,6 +39974,679 @@ export declare namespace Weight {
     }
 }
 /**
+ *
+ * @export
+ * @interface WorkflowAttachment
+ */
+export interface WorkflowAttachment {
+    /**
+     * Temporary download URL
+     * @type {string}
+     * @memberof WorkflowAttachment
+     */
+    download_key?: string;
+    /**
+     * File name
+     * @type {string}
+     * @memberof WorkflowAttachment
+     */
+    file_name?: string;
+    /**
+     * File UUID
+     * @type {string}
+     * @memberof WorkflowAttachment
+     */
+    file_uuid?: string;
+    /**
+     * Mime Type
+     * @type {string}
+     * @memberof WorkflowAttachment
+     */
+    mime_type?: string;
+    /**
+     * Temporary upload key
+     * @type {string}
+     * @memberof WorkflowAttachment
+     */
+    upload_key?: string;
+}
+/**
+ *
+ * @export
+ * @interface WorkflowAttachmentUploadUrl
+ */
+export interface WorkflowAttachmentUploadUrl {
+    /**
+     *
+     * @type {string}
+     * @memberof WorkflowAttachmentUploadUrl
+     */
+    key?: string;
+    /**
+     *
+     * @type {string}
+     * @memberof WorkflowAttachmentUploadUrl
+     */
+    url?: string;
+}
+/**
+ *
+ * @export
+ * @interface WorkflowAttachmentUploadUrlResponse
+ */
+export interface WorkflowAttachmentUploadUrlResponse {
+    /**
+     *
+     * @type {ModelError}
+     * @memberof WorkflowAttachmentUploadUrlResponse
+     */
+    error?: ModelError;
+    /**
+     *
+     * @type {ResponseMetadata}
+     * @memberof WorkflowAttachmentUploadUrlResponse
+     */
+    metadata?: ResponseMetadata;
+    /**
+     * Indicates if API call was successful
+     * @type {boolean}
+     * @memberof WorkflowAttachmentUploadUrlResponse
+     */
+    success?: boolean;
+    /**
+     *
+     * @type {Warning}
+     * @memberof WorkflowAttachmentUploadUrlResponse
+     */
+    warning?: Warning;
+    /**
+     *
+     * @type {WorkflowAttachmentUploadUrl}
+     * @memberof WorkflowAttachmentUploadUrlResponse
+     */
+    workflow_attachment_upload_url?: WorkflowAttachmentUploadUrl;
+}
+/**
+ *
+ * @export
+ * @interface WorkflowGroup
+ */
+export interface WorkflowGroup {
+    /**
+     * The group
+     * @type {string}
+     * @memberof WorkflowGroup
+     */
+    group?: string;
+    /**
+     * Group ID
+     * @type {number}
+     * @memberof WorkflowGroup
+     */
+    group_id?: number;
+}
+/**
+ *
+ * @export
+ * @interface WorkflowGroupsResponse
+ */
+export interface WorkflowGroupsResponse {
+    /**
+     *
+     * @type {ModelError}
+     * @memberof WorkflowGroupsResponse
+     */
+    error?: ModelError;
+    /**
+     * groups
+     * @type {Array<WorkflowGroup>}
+     * @memberof WorkflowGroupsResponse
+     */
+    groups?: Array<WorkflowGroup>;
+    /**
+     *
+     * @type {ResponseMetadata}
+     * @memberof WorkflowGroupsResponse
+     */
+    metadata?: ResponseMetadata;
+    /**
+     * Indicates if API call was successful
+     * @type {boolean}
+     * @memberof WorkflowGroupsResponse
+     */
+    success?: boolean;
+    /**
+     *
+     * @type {Warning}
+     * @memberof WorkflowGroupsResponse
+     */
+    warning?: Warning;
+}
+/**
+ *
+ * @export
+ * @interface WorkflowNote
+ */
+export interface WorkflowNote {
+    /**
+     * Attachments to the Workflow Task
+     * @type {Array<WorkflowAttachment>}
+     * @memberof WorkflowNote
+     */
+    attachments?: Array<WorkflowAttachment>;
+    /**
+     * Date/time that the note was edited
+     * @type {string}
+     * @memberof WorkflowNote
+     */
+    edit_dts?: string;
+    /**
+     * Note
+     * @type {string}
+     * @memberof WorkflowNote
+     */
+    note?: string;
+    /**
+     * Date/time that the note was written
+     * @type {string}
+     * @memberof WorkflowNote
+     */
+    note_dts?: string;
+    /**
+     * Note originally written before any edits
+     * @type {string}
+     * @memberof WorkflowNote
+     */
+    original_note?: string;
+    /**
+     *
+     * @type {WorkflowUser}
+     * @memberof WorkflowNote
+     */
+    user?: WorkflowUser;
+}
+/**
+ *
+ * @export
+ * @interface WorkflowTask
+ */
+export interface WorkflowTask {
+    /**
+     * Assigned to group
+     * @type {string}
+     * @memberof WorkflowTask
+     */
+    assigned_to_group?: string;
+    /**
+     * Assigned to group ID
+     * @type {number}
+     * @memberof WorkflowTask
+     */
+    assigned_to_group_id?: number;
+    /**
+     * Assigned to user
+     * @type {string}
+     * @memberof WorkflowTask
+     */
+    assigned_to_user?: string;
+    /**
+     * Assigned to user ID
+     * @type {number}
+     * @memberof WorkflowTask
+     */
+    assigned_to_user_id?: number;
+    /**
+     * Attachments to the Workflow Task
+     * @type {Array<WorkflowAttachment>}
+     * @memberof WorkflowTask
+     */
+    attachments?: Array<WorkflowAttachment>;
+    /**
+     *
+     * @type {WorkflowUser}
+     * @memberof WorkflowTask
+     */
+    created_by?: WorkflowUser;
+    /**
+     * Date/time that the workflow task was created
+     * @type {string}
+     * @memberof WorkflowTask
+     */
+    created_dts?: string;
+    /**
+     * Date/time that the workflow task should delay until
+     * @type {string}
+     * @memberof WorkflowTask
+     */
+    delay_until_dts?: string;
+    /**
+     * Date/time that the workflow task is due
+     * @type {string}
+     * @memberof WorkflowTask
+     */
+    due_dts?: string;
+    /**
+     * Array of history records for the task
+     * @type {Array<WorkflowTaskHistory>}
+     * @memberof WorkflowTask
+     */
+    histories?: Array<WorkflowTaskHistory>;
+    /**
+     * Date/time that the workflow task was last updated
+     * @type {string}
+     * @memberof WorkflowTask
+     */
+    last_update_dts?: string;
+    /**
+     * Merchant ID
+     * @type {string}
+     * @memberof WorkflowTask
+     */
+    merchant_id?: string;
+    /**
+     * Notes on the Workflow Task
+     * @type {Array<WorkflowNote>}
+     * @memberof WorkflowTask
+     */
+    notes?: Array<WorkflowNote>;
+    /**
+     * Object is associated with customer email
+     * @type {string}
+     * @memberof WorkflowTask
+     */
+    object_email?: string;
+    /**
+     * Object ID
+     * @type {string}
+     * @memberof WorkflowTask
+     */
+    object_id?: string;
+    /**
+     * Object Type
+     * @type {string}
+     * @memberof WorkflowTask
+     */
+    object_type?: WorkflowTask.ObjectTypeEnum;
+    /**
+     * Object URL
+     * @type {string}
+     * @memberof WorkflowTask
+     */
+    object_url?: string;
+    /**
+     * Priority
+     * @type {string}
+     * @memberof WorkflowTask
+     */
+    priority?: WorkflowTask.PriorityEnum;
+    /**
+     * Status of the workflow task
+     * @type {string}
+     * @memberof WorkflowTask
+     */
+    status?: WorkflowTask.StatusEnum;
+    /**
+     * Task Details
+     * @type {string}
+     * @memberof WorkflowTask
+     */
+    task_details?: string;
+    /**
+     * Task Name
+     * @type {string}
+     * @memberof WorkflowTask
+     */
+    task_name?: string;
+    /**
+     * Workflow Task UUID
+     * @type {string}
+     * @memberof WorkflowTask
+     */
+    workflow_task_uuid?: string;
+}
+/**
+ * @export
+ * @namespace WorkflowTask
+ */
+export declare namespace WorkflowTask {
+    /**
+     * @export
+     * @enum {string}
+     */
+    enum ObjectTypeEnum {
+        Order,
+        AutoOrder,
+        Item,
+        CustomerProfile
+    }
+    /**
+     * @export
+     * @enum {string}
+     */
+    enum PriorityEnum {
+        _1Low,
+        _2Medium,
+        _3High,
+        _4Critical
+    }
+    /**
+     * @export
+     * @enum {string}
+     */
+    enum StatusEnum {
+        Open,
+        Closed,
+        Delayed,
+        AwaitingCustomerFeedback
+    }
+}
+/**
+ *
+ * @export
+ * @interface WorkflowTaskHistory
+ */
+export interface WorkflowTaskHistory {
+    /**
+     * Date/time that the workflow task history record was created
+     * @type {string}
+     * @memberof WorkflowTaskHistory
+     */
+    activity_dts?: string;
+    /**
+     * Description of the activity
+     * @type {string}
+     * @memberof WorkflowTaskHistory
+     */
+    description?: string;
+    /**
+     * IP Address that originated the activity
+     * @type {string}
+     * @memberof WorkflowTaskHistory
+     */
+    ip_address?: string;
+    /**
+     *
+     * @type {WorkflowUser}
+     * @memberof WorkflowTaskHistory
+     */
+    user?: WorkflowUser;
+}
+/**
+ *
+ * @export
+ * @interface WorkflowTaskResponse
+ */
+export interface WorkflowTaskResponse {
+    /**
+     *
+     * @type {ModelError}
+     * @memberof WorkflowTaskResponse
+     */
+    error?: ModelError;
+    /**
+     *
+     * @type {ResponseMetadata}
+     * @memberof WorkflowTaskResponse
+     */
+    metadata?: ResponseMetadata;
+    /**
+     * Indicates if API call was successful
+     * @type {boolean}
+     * @memberof WorkflowTaskResponse
+     */
+    success?: boolean;
+    /**
+     *
+     * @type {WorkflowTask}
+     * @memberof WorkflowTaskResponse
+     */
+    task?: WorkflowTask;
+    /**
+     *
+     * @type {Warning}
+     * @memberof WorkflowTaskResponse
+     */
+    warning?: Warning;
+}
+/**
+ *
+ * @export
+ * @interface WorkflowTasksRequest
+ */
+export interface WorkflowTasksRequest {
+    /**
+     * Assigned to group ID
+     * @type {number}
+     * @memberof WorkflowTasksRequest
+     */
+    assigned_to_group_id?: number;
+    /**
+     * Tasks are assigned to me either by direct user id or a group that the user is a member of
+     * @type {boolean}
+     * @memberof WorkflowTasksRequest
+     */
+    assigned_to_me?: boolean;
+    /**
+     * Assigned to user ID
+     * @type {number}
+     * @memberof WorkflowTasksRequest
+     */
+    assigned_to_user_id?: number;
+    /**
+     *
+     * @type {WorkflowUser}
+     * @memberof WorkflowTasksRequest
+     */
+    created_by?: WorkflowUser;
+    /**
+     * Date/time that the workflow task was created
+     * @type {string}
+     * @memberof WorkflowTasksRequest
+     */
+    created_dts_begin?: string;
+    /**
+     * Date/time that the workflow task was created
+     * @type {string}
+     * @memberof WorkflowTasksRequest
+     */
+    created_dts_end?: string;
+    /**
+     * Date/time that the workflow task should delay until
+     * @type {string}
+     * @memberof WorkflowTasksRequest
+     */
+    delay_until_dts?: string;
+    /**
+     * Date/time that the workflow task is due
+     * @type {string}
+     * @memberof WorkflowTasksRequest
+     */
+    due_dts_begin?: string;
+    /**
+     * Date/time that the workflow task is due
+     * @type {string}
+     * @memberof WorkflowTasksRequest
+     */
+    due_dts_end?: string;
+    /**
+     * Date/time that the workflow task was last updated
+     * @type {string}
+     * @memberof WorkflowTasksRequest
+     */
+    last_update_dts_begin?: string;
+    /**
+     * Date/time that the workflow task was last updated
+     * @type {string}
+     * @memberof WorkflowTasksRequest
+     */
+    last_update_dts_end?: string;
+    /**
+     * Object is associated with customer email
+     * @type {string}
+     * @memberof WorkflowTasksRequest
+     */
+    object_email?: string;
+    /**
+     * Object Type
+     * @type {string}
+     * @memberof WorkflowTasksRequest
+     */
+    object_type?: WorkflowTasksRequest.ObjectTypeEnum;
+    /**
+     * Priority
+     * @type {string}
+     * @memberof WorkflowTasksRequest
+     */
+    priority?: WorkflowTasksRequest.PriorityEnum;
+    /**
+     * Status of the workflow task
+     * @type {string}
+     * @memberof WorkflowTasksRequest
+     */
+    status?: WorkflowTasksRequest.StatusEnum;
+    /**
+     * Tasks that are unassigned to a user or group
+     * @type {boolean}
+     * @memberof WorkflowTasksRequest
+     */
+    unassigned?: boolean;
+}
+/**
+ * @export
+ * @namespace WorkflowTasksRequest
+ */
+export declare namespace WorkflowTasksRequest {
+    /**
+     * @export
+     * @enum {string}
+     */
+    enum ObjectTypeEnum {
+        Order,
+        AutoOrder,
+        Item,
+        CustomerProfile
+    }
+    /**
+     * @export
+     * @enum {string}
+     */
+    enum PriorityEnum {
+        _1Low,
+        _2Medium,
+        _3High,
+        _4Critical
+    }
+    /**
+     * @export
+     * @enum {string}
+     */
+    enum StatusEnum {
+        Open,
+        Closed,
+        Delayed,
+        AwaitingCustomerFeedback
+    }
+}
+/**
+ *
+ * @export
+ * @interface WorkflowTasksResponse
+ */
+export interface WorkflowTasksResponse {
+    /**
+     *
+     * @type {ModelError}
+     * @memberof WorkflowTasksResponse
+     */
+    error?: ModelError;
+    /**
+     *
+     * @type {ResponseMetadata}
+     * @memberof WorkflowTasksResponse
+     */
+    metadata?: ResponseMetadata;
+    /**
+     * Indicates if API call was successful
+     * @type {boolean}
+     * @memberof WorkflowTasksResponse
+     */
+    success?: boolean;
+    /**
+     * tasks
+     * @type {Array<WorkflowTask>}
+     * @memberof WorkflowTasksResponse
+     */
+    tasks?: Array<WorkflowTask>;
+    /**
+     *
+     * @type {Warning}
+     * @memberof WorkflowTasksResponse
+     */
+    warning?: Warning;
+}
+/**
+ *
+ * @export
+ * @interface WorkflowUser
+ */
+export interface WorkflowUser {
+    /**
+     * The user
+     * @type {string}
+     * @memberof WorkflowUser
+     */
+    user?: string;
+    /**
+     * The user icon URL if available
+     * @type {string}
+     * @memberof WorkflowUser
+     */
+    user_icon_url?: string;
+    /**
+     * User ID
+     * @type {number}
+     * @memberof WorkflowUser
+     */
+    user_id?: number;
+}
+/**
+ *
+ * @export
+ * @interface WorkflowUsersResponse
+ */
+export interface WorkflowUsersResponse {
+    /**
+     *
+     * @type {ModelError}
+     * @memberof WorkflowUsersResponse
+     */
+    error?: ModelError;
+    /**
+     *
+     * @type {ResponseMetadata}
+     * @memberof WorkflowUsersResponse
+     */
+    metadata?: ResponseMetadata;
+    /**
+     * Indicates if API call was successful
+     * @type {boolean}
+     * @memberof WorkflowUsersResponse
+     */
+    success?: boolean;
+    /**
+     * users
+     * @type {Array<WorkflowUser>}
+     * @memberof WorkflowUsersResponse
+     */
+    users?: Array<WorkflowUser>;
+    /**
+     *
+     * @type {Warning}
+     * @memberof WorkflowUsersResponse
+     */
+    warning?: Warning;
+}
+/**
  * AffiliateApi - fetch parameter creator
  * @export
  */
@@ -60674,4 +61347,408 @@ export declare class WebhookApi extends BaseAPI implements WebhookApiInterface {
      * @memberof WebhookApi
      */
     updateWebhook(webhook: Webhook, webhookOid: number, _placeholders?: boolean, options?: any): Promise<WebhookResponse>;
+}
+/**
+ * WorkflowApi - fetch parameter creator
+ * @export
+ */
+export declare const WorkflowApiFetchParamCreator: (configuration?: Configuration) => {
+    /**
+     * Retrieve a list of groups that workflow tasks can be assigned to
+     * @summary Retrieve a list of groups that workflow tasks can be assigned to
+     * @param {number} [_limit] The maximum number of records to return on this one API call. (Max 200)
+     * @param {number} [_offset] Pagination of the record set.  Offset is a zero based index.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getWorkflowAssignmentGroups(_limit?: number, _offset?: number, options?: any): FetchArgs;
+    /**
+     * Retrieve a list of users that workflow tasks can be assigned to
+     * @summary Retrieve a list of users that workflow tasks can be assigned to
+     * @param {number} [_limit] The maximum number of records to return on this one API call. (Max 200)
+     * @param {number} [_offset] Pagination of the record set.  Offset is a zero based index.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getWorkflowAssignmentUsers(_limit?: number, _offset?: number, options?: any): FetchArgs;
+    /**
+     * Retrieve a workflow task
+     * @summary Retrieve a workflow task
+     * @param {string} task_uuid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getWorkflowTask(task_uuid: string, options?: any): FetchArgs;
+    /**
+     * Get a presigned workflow task attachment upload URL
+     * @summary Get a presigned workflow task attachment upload URL
+     * @param {string} extension
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getWorkflowTaskAttachmentUploadUrl(extension: string, options?: any): FetchArgs;
+    /**
+     * Retrieve a workflow task by object type and id
+     * @summary Retrieve a workflow task by object type and id
+     * @param {string} object_type
+     * @param {string} object_id
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getWorkflowTaskByObjectType(object_type: string, object_id: string, options?: any): FetchArgs;
+    /**
+     * Retrieves a set of workflow tasks from the account based on a query object.
+     * @summary Search workflow tasks
+     * @param {WorkflowTasksRequest} workflow_tasks_query Workflow tasks query
+     * @param {number} [_limit] The maximum number of records to return on this one API call. (Default 100, Max 500)
+     * @param {number} [_offset] Pagination of the record set.  Offset is a zero based index.
+     * @param {string} [_sort] The sort order of the items.  See Sorting documentation for examples of using multiple values and sorting by ascending and descending.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getWorkflowTasks(workflow_tasks_query: WorkflowTasksRequest, _limit?: number, _offset?: number, _sort?: string, options?: any): FetchArgs;
+    /**
+     * Insert a workflow task
+     * @summary Insert a workflow task
+     * @param {WorkflowTask} workflow_task workflow task
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    insertWorkflowTask(workflow_task: WorkflowTask, options?: any): FetchArgs;
+    /**
+     * Update a workflow task
+     * @summary Update a workflow task
+     * @param {string} task_uuid
+     * @param {WorkflowTask} workflow_task Workflow task
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    updateWorkflowTask(task_uuid: string, workflow_task: WorkflowTask, options?: any): FetchArgs;
+};
+/**
+ * WorkflowApi - functional programming interface
+ * @export
+ */
+export declare const WorkflowApiFp: (configuration?: Configuration) => {
+    /**
+     * Retrieve a list of groups that workflow tasks can be assigned to
+     * @summary Retrieve a list of groups that workflow tasks can be assigned to
+     * @param {number} [_limit] The maximum number of records to return on this one API call. (Max 200)
+     * @param {number} [_offset] Pagination of the record set.  Offset is a zero based index.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getWorkflowAssignmentGroups(_limit?: number, _offset?: number, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<WorkflowGroupsResponse>;
+    /**
+     * Retrieve a list of users that workflow tasks can be assigned to
+     * @summary Retrieve a list of users that workflow tasks can be assigned to
+     * @param {number} [_limit] The maximum number of records to return on this one API call. (Max 200)
+     * @param {number} [_offset] Pagination of the record set.  Offset is a zero based index.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getWorkflowAssignmentUsers(_limit?: number, _offset?: number, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<WorkflowUsersResponse>;
+    /**
+     * Retrieve a workflow task
+     * @summary Retrieve a workflow task
+     * @param {string} task_uuid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getWorkflowTask(task_uuid: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<WorkflowTaskResponse>;
+    /**
+     * Get a presigned workflow task attachment upload URL
+     * @summary Get a presigned workflow task attachment upload URL
+     * @param {string} extension
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getWorkflowTaskAttachmentUploadUrl(extension: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<WorkflowAttachmentUploadUrlResponse>;
+    /**
+     * Retrieve a workflow task by object type and id
+     * @summary Retrieve a workflow task by object type and id
+     * @param {string} object_type
+     * @param {string} object_id
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getWorkflowTaskByObjectType(object_type: string, object_id: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<WorkflowTaskResponse>;
+    /**
+     * Retrieves a set of workflow tasks from the account based on a query object.
+     * @summary Search workflow tasks
+     * @param {WorkflowTasksRequest} workflow_tasks_query Workflow tasks query
+     * @param {number} [_limit] The maximum number of records to return on this one API call. (Default 100, Max 500)
+     * @param {number} [_offset] Pagination of the record set.  Offset is a zero based index.
+     * @param {string} [_sort] The sort order of the items.  See Sorting documentation for examples of using multiple values and sorting by ascending and descending.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getWorkflowTasks(workflow_tasks_query: WorkflowTasksRequest, _limit?: number, _offset?: number, _sort?: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<WorkflowTasksResponse>;
+    /**
+     * Insert a workflow task
+     * @summary Insert a workflow task
+     * @param {WorkflowTask} workflow_task workflow task
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    insertWorkflowTask(workflow_task: WorkflowTask, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<WorkflowTaskResponse>;
+    /**
+     * Update a workflow task
+     * @summary Update a workflow task
+     * @param {string} task_uuid
+     * @param {WorkflowTask} workflow_task Workflow task
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    updateWorkflowTask(task_uuid: string, workflow_task: WorkflowTask, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<WorkflowTaskResponse>;
+};
+/**
+ * WorkflowApi - factory interface
+ * @export
+ */
+export declare const WorkflowApiFactory: (configuration?: Configuration, fetch?: FetchAPI, basePath?: string) => {
+    /**
+     * Retrieve a list of groups that workflow tasks can be assigned to
+     * @summary Retrieve a list of groups that workflow tasks can be assigned to
+     * @param {number} [_limit] The maximum number of records to return on this one API call. (Max 200)
+     * @param {number} [_offset] Pagination of the record set.  Offset is a zero based index.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getWorkflowAssignmentGroups(_limit?: number, _offset?: number, options?: any): Promise<WorkflowGroupsResponse>;
+    /**
+     * Retrieve a list of users that workflow tasks can be assigned to
+     * @summary Retrieve a list of users that workflow tasks can be assigned to
+     * @param {number} [_limit] The maximum number of records to return on this one API call. (Max 200)
+     * @param {number} [_offset] Pagination of the record set.  Offset is a zero based index.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getWorkflowAssignmentUsers(_limit?: number, _offset?: number, options?: any): Promise<WorkflowUsersResponse>;
+    /**
+     * Retrieve a workflow task
+     * @summary Retrieve a workflow task
+     * @param {string} task_uuid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getWorkflowTask(task_uuid: string, options?: any): Promise<WorkflowTaskResponse>;
+    /**
+     * Get a presigned workflow task attachment upload URL
+     * @summary Get a presigned workflow task attachment upload URL
+     * @param {string} extension
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getWorkflowTaskAttachmentUploadUrl(extension: string, options?: any): Promise<WorkflowAttachmentUploadUrlResponse>;
+    /**
+     * Retrieve a workflow task by object type and id
+     * @summary Retrieve a workflow task by object type and id
+     * @param {string} object_type
+     * @param {string} object_id
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getWorkflowTaskByObjectType(object_type: string, object_id: string, options?: any): Promise<WorkflowTaskResponse>;
+    /**
+     * Retrieves a set of workflow tasks from the account based on a query object.
+     * @summary Search workflow tasks
+     * @param {WorkflowTasksRequest} workflow_tasks_query Workflow tasks query
+     * @param {number} [_limit] The maximum number of records to return on this one API call. (Default 100, Max 500)
+     * @param {number} [_offset] Pagination of the record set.  Offset is a zero based index.
+     * @param {string} [_sort] The sort order of the items.  See Sorting documentation for examples of using multiple values and sorting by ascending and descending.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getWorkflowTasks(workflow_tasks_query: WorkflowTasksRequest, _limit?: number, _offset?: number, _sort?: string, options?: any): Promise<WorkflowTasksResponse>;
+    /**
+     * Insert a workflow task
+     * @summary Insert a workflow task
+     * @param {WorkflowTask} workflow_task workflow task
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    insertWorkflowTask(workflow_task: WorkflowTask, options?: any): Promise<WorkflowTaskResponse>;
+    /**
+     * Update a workflow task
+     * @summary Update a workflow task
+     * @param {string} task_uuid
+     * @param {WorkflowTask} workflow_task Workflow task
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    updateWorkflowTask(task_uuid: string, workflow_task: WorkflowTask, options?: any): Promise<WorkflowTaskResponse>;
+};
+/**
+ * WorkflowApi - interface
+ * @export
+ * @interface WorkflowApi
+ */
+export interface WorkflowApiInterface {
+    /**
+     * Retrieve a list of groups that workflow tasks can be assigned to
+     * @summary Retrieve a list of groups that workflow tasks can be assigned to
+     * @param {number} [_limit] The maximum number of records to return on this one API call. (Max 200)
+     * @param {number} [_offset] Pagination of the record set.  Offset is a zero based index.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof WorkflowApiInterface
+     */
+    getWorkflowAssignmentGroups(_limit?: number, _offset?: number, options?: any): Promise<WorkflowGroupsResponse>;
+    /**
+     * Retrieve a list of users that workflow tasks can be assigned to
+     * @summary Retrieve a list of users that workflow tasks can be assigned to
+     * @param {number} [_limit] The maximum number of records to return on this one API call. (Max 200)
+     * @param {number} [_offset] Pagination of the record set.  Offset is a zero based index.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof WorkflowApiInterface
+     */
+    getWorkflowAssignmentUsers(_limit?: number, _offset?: number, options?: any): Promise<WorkflowUsersResponse>;
+    /**
+     * Retrieve a workflow task
+     * @summary Retrieve a workflow task
+     * @param {string} task_uuid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof WorkflowApiInterface
+     */
+    getWorkflowTask(task_uuid: string, options?: any): Promise<WorkflowTaskResponse>;
+    /**
+     * Get a presigned workflow task attachment upload URL
+     * @summary Get a presigned workflow task attachment upload URL
+     * @param {string} extension
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof WorkflowApiInterface
+     */
+    getWorkflowTaskAttachmentUploadUrl(extension: string, options?: any): Promise<WorkflowAttachmentUploadUrlResponse>;
+    /**
+     * Retrieve a workflow task by object type and id
+     * @summary Retrieve a workflow task by object type and id
+     * @param {string} object_type
+     * @param {string} object_id
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof WorkflowApiInterface
+     */
+    getWorkflowTaskByObjectType(object_type: string, object_id: string, options?: any): Promise<WorkflowTaskResponse>;
+    /**
+     * Retrieves a set of workflow tasks from the account based on a query object.
+     * @summary Search workflow tasks
+     * @param {WorkflowTasksRequest} workflow_tasks_query Workflow tasks query
+     * @param {number} [_limit] The maximum number of records to return on this one API call. (Default 100, Max 500)
+     * @param {number} [_offset] Pagination of the record set.  Offset is a zero based index.
+     * @param {string} [_sort] The sort order of the items.  See Sorting documentation for examples of using multiple values and sorting by ascending and descending.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof WorkflowApiInterface
+     */
+    getWorkflowTasks(workflow_tasks_query: WorkflowTasksRequest, _limit?: number, _offset?: number, _sort?: string, options?: any): Promise<WorkflowTasksResponse>;
+    /**
+     * Insert a workflow task
+     * @summary Insert a workflow task
+     * @param {WorkflowTask} workflow_task workflow task
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof WorkflowApiInterface
+     */
+    insertWorkflowTask(workflow_task: WorkflowTask, options?: any): Promise<WorkflowTaskResponse>;
+    /**
+     * Update a workflow task
+     * @summary Update a workflow task
+     * @param {string} task_uuid
+     * @param {WorkflowTask} workflow_task Workflow task
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof WorkflowApiInterface
+     */
+    updateWorkflowTask(task_uuid: string, workflow_task: WorkflowTask, options?: any): Promise<WorkflowTaskResponse>;
+}
+/**
+ * WorkflowApi - object-oriented interface
+ * @export
+ * @class WorkflowApi
+ * @extends {BaseAPI}
+ */
+export declare class WorkflowApi extends BaseAPI implements WorkflowApiInterface {
+    /**
+     * Retrieve a list of groups that workflow tasks can be assigned to
+     * @summary Retrieve a list of groups that workflow tasks can be assigned to
+     * @param {number} [_limit] The maximum number of records to return on this one API call. (Max 200)
+     * @param {number} [_offset] Pagination of the record set.  Offset is a zero based index.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof WorkflowApi
+     */
+    getWorkflowAssignmentGroups(_limit?: number, _offset?: number, options?: any): Promise<WorkflowGroupsResponse>;
+    /**
+     * Retrieve a list of users that workflow tasks can be assigned to
+     * @summary Retrieve a list of users that workflow tasks can be assigned to
+     * @param {number} [_limit] The maximum number of records to return on this one API call. (Max 200)
+     * @param {number} [_offset] Pagination of the record set.  Offset is a zero based index.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof WorkflowApi
+     */
+    getWorkflowAssignmentUsers(_limit?: number, _offset?: number, options?: any): Promise<WorkflowUsersResponse>;
+    /**
+     * Retrieve a workflow task
+     * @summary Retrieve a workflow task
+     * @param {string} task_uuid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof WorkflowApi
+     */
+    getWorkflowTask(task_uuid: string, options?: any): Promise<WorkflowTaskResponse>;
+    /**
+     * Get a presigned workflow task attachment upload URL
+     * @summary Get a presigned workflow task attachment upload URL
+     * @param {string} extension
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof WorkflowApi
+     */
+    getWorkflowTaskAttachmentUploadUrl(extension: string, options?: any): Promise<WorkflowAttachmentUploadUrlResponse>;
+    /**
+     * Retrieve a workflow task by object type and id
+     * @summary Retrieve a workflow task by object type and id
+     * @param {string} object_type
+     * @param {string} object_id
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof WorkflowApi
+     */
+    getWorkflowTaskByObjectType(object_type: string, object_id: string, options?: any): Promise<WorkflowTaskResponse>;
+    /**
+     * Retrieves a set of workflow tasks from the account based on a query object.
+     * @summary Search workflow tasks
+     * @param {WorkflowTasksRequest} workflow_tasks_query Workflow tasks query
+     * @param {number} [_limit] The maximum number of records to return on this one API call. (Default 100, Max 500)
+     * @param {number} [_offset] Pagination of the record set.  Offset is a zero based index.
+     * @param {string} [_sort] The sort order of the items.  See Sorting documentation for examples of using multiple values and sorting by ascending and descending.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof WorkflowApi
+     */
+    getWorkflowTasks(workflow_tasks_query: WorkflowTasksRequest, _limit?: number, _offset?: number, _sort?: string, options?: any): Promise<WorkflowTasksResponse>;
+    /**
+     * Insert a workflow task
+     * @summary Insert a workflow task
+     * @param {WorkflowTask} workflow_task workflow task
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof WorkflowApi
+     */
+    insertWorkflowTask(workflow_task: WorkflowTask, options?: any): Promise<WorkflowTaskResponse>;
+    /**
+     * Update a workflow task
+     * @summary Update a workflow task
+     * @param {string} task_uuid
+     * @param {WorkflowTask} workflow_task Workflow task
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof WorkflowApi
+     */
+    updateWorkflowTask(task_uuid: string, workflow_task: WorkflowTask, options?: any): Promise<WorkflowTaskResponse>;
 }

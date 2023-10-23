@@ -29,9 +29,9 @@ var __extends = (this && this.__extends) || (function () {
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.OrderFormat = exports.OrderEdiDocument = exports.OrderAutoOrder = exports.OrderAffiliateLedger = exports.Order = exports.OauthTokenResponse = exports.ItemThirdPartyEmailMarketing = exports.ItemTax = exports.ItemTag = exports.ItemShippingMethod = exports.ItemShippingDestinationRestriction = exports.ItemReview = exports.ItemRestrictionItem = exports.ItemRelatedItem = exports.ItemOptionValue = exports.ItemOption = exports.ItemContentMultimedia = exports.ItemAutoOrderStep = exports.Experiment = exports.EmailPerformance = exports.EmailCommseqStep = exports.Distance = exports.Coupon = exports.ConversationWebsocketMessage = exports.ConversationWebchatQueueStatusUpdateRequest = exports.ConversationWebchatQueueStatusAgent = exports.ConversationSummary = exports.ConversationSentiment = exports.ConversationMessageTransportStatus = exports.ConversationMessage = exports.ConversationEventRRWeb = exports.ConversationEngagementEquationFunction = exports.ConversationEngagement = exports.ConversationAgentProfile = exports.Conversation = exports.CheckoutHandoffRequest = exports.ChannelPartnerOrderItem = exports.ChannelPartnerOrder = exports.CartKitComponentOption = exports.CartItemOption = exports.CartItemMultimedia = exports.CartCustomerProfileCreditCard = exports.AutoOrderItemSimpleSchedule = exports.AutoOrderItem = exports.AutoOrder = exports.AffiliateLink = exports.AffiliateLedger = exports.RequiredError = exports.BaseAPI = exports.COLLECTION_FORMATS = void 0;
-exports.CustomerApiFetchParamCreator = exports.CouponApi = exports.CouponApiFactory = exports.CouponApiFp = exports.CouponApiFetchParamCreator = exports.ConversationApi = exports.ConversationApiFactory = exports.ConversationApiFp = exports.ConversationApiFetchParamCreator = exports.CheckoutApi = exports.CheckoutApiFactory = exports.CheckoutApiFp = exports.CheckoutApiFetchParamCreator = exports.ChargebackApi = exports.ChargebackApiFactory = exports.ChargebackApiFp = exports.ChargebackApiFetchParamCreator = exports.ChannelPartnerApi = exports.ChannelPartnerApiFactory = exports.ChannelPartnerApiFp = exports.ChannelPartnerApiFetchParamCreator = exports.AutoOrderApi = exports.AutoOrderApiFactory = exports.AutoOrderApiFp = exports.AutoOrderApiFetchParamCreator = exports.AffiliateApi = exports.AffiliateApiFactory = exports.AffiliateApiFp = exports.AffiliateApiFetchParamCreator = exports.Weight = exports.Webhook = exports.TempMultimedia = exports.ReportWebsocketEvent = exports.ReportPageVisualizationMetric = exports.ReportPageVisualization = exports.ReportFilter = exports.ReportExecuteQueriesRequest = exports.ReportDataSourceSchema = exports.ReportDataSetSchema = exports.ReportDataSetQuery = exports.ReportDataSet = exports.Report = exports.PointOfSaleReader = exports.OrderQuery = exports.OrderPaymentECheck = exports.OrderPaymentCreditCard = exports.OrderPayment = exports.OrderItemOption = exports.OrderItem = exports.OrderFraudScore = void 0;
-exports.WebhookApiFactory = exports.WebhookApiFp = exports.WebhookApiFetchParamCreator = exports.UserApi = exports.UserApiFactory = exports.UserApiFp = exports.UserApiFetchParamCreator = exports.TaxApi = exports.TaxApiFactory = exports.TaxApiFp = exports.TaxApiFetchParamCreator = exports.StorefrontApi = exports.StorefrontApiFactory = exports.StorefrontApiFp = exports.StorefrontApiFetchParamCreator = exports.SsoApi = exports.SsoApiFactory = exports.SsoApiFp = exports.SsoApiFetchParamCreator = exports.OrderApi = exports.OrderApiFactory = exports.OrderApiFp = exports.OrderApiFetchParamCreator = exports.OauthApi = exports.OauthApiFactory = exports.OauthApiFp = exports.OauthApiFetchParamCreator = exports.ItemApi = exports.ItemApiFactory = exports.ItemApiFp = exports.ItemApiFetchParamCreator = exports.IntegrationLogApi = exports.IntegrationLogApiFactory = exports.IntegrationLogApiFp = exports.IntegrationLogApiFetchParamCreator = exports.GiftCertificateApi = exports.GiftCertificateApiFactory = exports.GiftCertificateApiFp = exports.GiftCertificateApiFetchParamCreator = exports.FulfillmentApi = exports.FulfillmentApiFactory = exports.FulfillmentApiFp = exports.FulfillmentApiFetchParamCreator = exports.DatawarehouseApi = exports.DatawarehouseApiFactory = exports.DatawarehouseApiFp = exports.DatawarehouseApiFetchParamCreator = exports.CustomerApi = exports.CustomerApiFactory = exports.CustomerApiFp = void 0;
-exports.WebhookApi = void 0;
+exports.CouponApiFactory = exports.CouponApiFp = exports.CouponApiFetchParamCreator = exports.ConversationApi = exports.ConversationApiFactory = exports.ConversationApiFp = exports.ConversationApiFetchParamCreator = exports.CheckoutApi = exports.CheckoutApiFactory = exports.CheckoutApiFp = exports.CheckoutApiFetchParamCreator = exports.ChargebackApi = exports.ChargebackApiFactory = exports.ChargebackApiFp = exports.ChargebackApiFetchParamCreator = exports.ChannelPartnerApi = exports.ChannelPartnerApiFactory = exports.ChannelPartnerApiFp = exports.ChannelPartnerApiFetchParamCreator = exports.AutoOrderApi = exports.AutoOrderApiFactory = exports.AutoOrderApiFp = exports.AutoOrderApiFetchParamCreator = exports.AffiliateApi = exports.AffiliateApiFactory = exports.AffiliateApiFp = exports.AffiliateApiFetchParamCreator = exports.WorkflowTasksRequest = exports.WorkflowTask = exports.Weight = exports.Webhook = exports.TempMultimedia = exports.ReportWebsocketEvent = exports.ReportPageVisualizationMetric = exports.ReportPageVisualization = exports.ReportFilter = exports.ReportExecuteQueriesRequest = exports.ReportDataSourceSchema = exports.ReportDataSetSchema = exports.ReportDataSetQuery = exports.ReportDataSet = exports.Report = exports.PointOfSaleReader = exports.OrderQuery = exports.OrderPaymentECheck = exports.OrderPaymentCreditCard = exports.OrderPayment = exports.OrderItemOption = exports.OrderItem = exports.OrderFraudScore = void 0;
+exports.WebhookApiFetchParamCreator = exports.UserApi = exports.UserApiFactory = exports.UserApiFp = exports.UserApiFetchParamCreator = exports.TaxApi = exports.TaxApiFactory = exports.TaxApiFp = exports.TaxApiFetchParamCreator = exports.StorefrontApi = exports.StorefrontApiFactory = exports.StorefrontApiFp = exports.StorefrontApiFetchParamCreator = exports.SsoApi = exports.SsoApiFactory = exports.SsoApiFp = exports.SsoApiFetchParamCreator = exports.OrderApi = exports.OrderApiFactory = exports.OrderApiFp = exports.OrderApiFetchParamCreator = exports.OauthApi = exports.OauthApiFactory = exports.OauthApiFp = exports.OauthApiFetchParamCreator = exports.ItemApi = exports.ItemApiFactory = exports.ItemApiFp = exports.ItemApiFetchParamCreator = exports.IntegrationLogApi = exports.IntegrationLogApiFactory = exports.IntegrationLogApiFp = exports.IntegrationLogApiFetchParamCreator = exports.GiftCertificateApi = exports.GiftCertificateApiFactory = exports.GiftCertificateApiFp = exports.GiftCertificateApiFetchParamCreator = exports.FulfillmentApi = exports.FulfillmentApiFactory = exports.FulfillmentApiFp = exports.FulfillmentApiFetchParamCreator = exports.DatawarehouseApi = exports.DatawarehouseApiFactory = exports.DatawarehouseApiFp = exports.DatawarehouseApiFetchParamCreator = exports.CustomerApi = exports.CustomerApiFactory = exports.CustomerApiFp = exports.CustomerApiFetchParamCreator = exports.CouponApi = void 0;
+exports.WorkflowApi = exports.WorkflowApiFactory = exports.WorkflowApiFp = exports.WorkflowApiFetchParamCreator = exports.WebhookApi = exports.WebhookApiFactory = exports.WebhookApiFp = void 0;
 var url = require("url");
 var portableFetch = require("portable-fetch");
 var BASE_PATH = "https://secure.ultracart.com/rest/v2".replace(/\/+$/, "");
@@ -1574,6 +1574,86 @@ var Weight;
         UomEnum[UomEnum["OZ"] = 'OZ'] = "OZ";
     })(UomEnum = Weight.UomEnum || (Weight.UomEnum = {}));
 })(Weight = exports.Weight || (exports.Weight = {}));
+/**
+ * @export
+ * @namespace WorkflowTask
+ */
+var WorkflowTask;
+(function (WorkflowTask) {
+    /**
+     * @export
+     * @enum {string}
+     */
+    var ObjectTypeEnum;
+    (function (ObjectTypeEnum) {
+        ObjectTypeEnum[ObjectTypeEnum["Order"] = 'order'] = "Order";
+        ObjectTypeEnum[ObjectTypeEnum["AutoOrder"] = 'auto order'] = "AutoOrder";
+        ObjectTypeEnum[ObjectTypeEnum["Item"] = 'item'] = "Item";
+        ObjectTypeEnum[ObjectTypeEnum["CustomerProfile"] = 'customer profile'] = "CustomerProfile";
+    })(ObjectTypeEnum = WorkflowTask.ObjectTypeEnum || (WorkflowTask.ObjectTypeEnum = {}));
+    /**
+     * @export
+     * @enum {string}
+     */
+    var PriorityEnum;
+    (function (PriorityEnum) {
+        PriorityEnum[PriorityEnum["_1Low"] = '1 - low'] = "_1Low";
+        PriorityEnum[PriorityEnum["_2Medium"] = '2 - medium'] = "_2Medium";
+        PriorityEnum[PriorityEnum["_3High"] = '3 - high'] = "_3High";
+        PriorityEnum[PriorityEnum["_4Critical"] = '4 - critical'] = "_4Critical";
+    })(PriorityEnum = WorkflowTask.PriorityEnum || (WorkflowTask.PriorityEnum = {}));
+    /**
+     * @export
+     * @enum {string}
+     */
+    var StatusEnum;
+    (function (StatusEnum) {
+        StatusEnum[StatusEnum["Open"] = 'open'] = "Open";
+        StatusEnum[StatusEnum["Closed"] = 'closed'] = "Closed";
+        StatusEnum[StatusEnum["Delayed"] = 'delayed'] = "Delayed";
+        StatusEnum[StatusEnum["AwaitingCustomerFeedback"] = 'awaiting customer feedback'] = "AwaitingCustomerFeedback";
+    })(StatusEnum = WorkflowTask.StatusEnum || (WorkflowTask.StatusEnum = {}));
+})(WorkflowTask = exports.WorkflowTask || (exports.WorkflowTask = {}));
+/**
+ * @export
+ * @namespace WorkflowTasksRequest
+ */
+var WorkflowTasksRequest;
+(function (WorkflowTasksRequest) {
+    /**
+     * @export
+     * @enum {string}
+     */
+    var ObjectTypeEnum;
+    (function (ObjectTypeEnum) {
+        ObjectTypeEnum[ObjectTypeEnum["Order"] = 'order'] = "Order";
+        ObjectTypeEnum[ObjectTypeEnum["AutoOrder"] = 'auto order'] = "AutoOrder";
+        ObjectTypeEnum[ObjectTypeEnum["Item"] = 'item'] = "Item";
+        ObjectTypeEnum[ObjectTypeEnum["CustomerProfile"] = 'customer profile'] = "CustomerProfile";
+    })(ObjectTypeEnum = WorkflowTasksRequest.ObjectTypeEnum || (WorkflowTasksRequest.ObjectTypeEnum = {}));
+    /**
+     * @export
+     * @enum {string}
+     */
+    var PriorityEnum;
+    (function (PriorityEnum) {
+        PriorityEnum[PriorityEnum["_1Low"] = '1 - low'] = "_1Low";
+        PriorityEnum[PriorityEnum["_2Medium"] = '2 - medium'] = "_2Medium";
+        PriorityEnum[PriorityEnum["_3High"] = '3 - high'] = "_3High";
+        PriorityEnum[PriorityEnum["_4Critical"] = '4 - critical'] = "_4Critical";
+    })(PriorityEnum = WorkflowTasksRequest.PriorityEnum || (WorkflowTasksRequest.PriorityEnum = {}));
+    /**
+     * @export
+     * @enum {string}
+     */
+    var StatusEnum;
+    (function (StatusEnum) {
+        StatusEnum[StatusEnum["Open"] = 'open'] = "Open";
+        StatusEnum[StatusEnum["Closed"] = 'closed'] = "Closed";
+        StatusEnum[StatusEnum["Delayed"] = 'delayed'] = "Delayed";
+        StatusEnum[StatusEnum["AwaitingCustomerFeedback"] = 'awaiting customer feedback'] = "AwaitingCustomerFeedback";
+    })(StatusEnum = WorkflowTasksRequest.StatusEnum || (WorkflowTasksRequest.StatusEnum = {}));
+})(WorkflowTasksRequest = exports.WorkflowTasksRequest || (exports.WorkflowTasksRequest = {}));
 /**
  * AffiliateApi - fetch parameter creator
  * @export
@@ -45095,3 +45175,811 @@ var WebhookApi = /** @class */ (function (_super) {
     return WebhookApi;
 }(BaseAPI));
 exports.WebhookApi = WebhookApi;
+/**
+ * WorkflowApi - fetch parameter creator
+ * @export
+ */
+var WorkflowApiFetchParamCreator = function (configuration) {
+    return {
+        /**
+         * Retrieve a list of groups that workflow tasks can be assigned to
+         * @summary Retrieve a list of groups that workflow tasks can be assigned to
+         * @param {number} [_limit] The maximum number of records to return on this one API call. (Max 200)
+         * @param {number} [_offset] Pagination of the record set.  Offset is a zero based index.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getWorkflowAssignmentGroups: function (_limit, _offset, options) {
+            if (options === void 0) { options = {}; }
+            var localVarPath = "/workflow/assignment_groups";
+            var localVarUrlObj = url.parse(localVarPath, true);
+            var localVarRequestOptions = Object.assign({ method: 'GET' }, options);
+            var localVarHeaderParameter = {};
+            var localVarQueryParameter = {};
+            if (configuration && configuration.apiVersion) {
+                localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+            }
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+                var localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+                    ? configuration.accessToken("ultraCartOauth", ["workflow_read"])
+                    : configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                var localVarApiKeyValue = typeof configuration.apiKey === 'function'
+                    ? configuration.apiKey("x-ultracart-simple-key")
+                    : configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+            if (_limit !== undefined) {
+                localVarQueryParameter['_limit'] = _limit;
+            }
+            if (_offset !== undefined) {
+                localVarQueryParameter['_offset'] = _offset;
+            }
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Retrieve a list of users that workflow tasks can be assigned to
+         * @summary Retrieve a list of users that workflow tasks can be assigned to
+         * @param {number} [_limit] The maximum number of records to return on this one API call. (Max 200)
+         * @param {number} [_offset] Pagination of the record set.  Offset is a zero based index.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getWorkflowAssignmentUsers: function (_limit, _offset, options) {
+            if (options === void 0) { options = {}; }
+            var localVarPath = "/workflow/assignment_users";
+            var localVarUrlObj = url.parse(localVarPath, true);
+            var localVarRequestOptions = Object.assign({ method: 'GET' }, options);
+            var localVarHeaderParameter = {};
+            var localVarQueryParameter = {};
+            if (configuration && configuration.apiVersion) {
+                localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+            }
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+                var localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+                    ? configuration.accessToken("ultraCartOauth", ["workflow_read"])
+                    : configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                var localVarApiKeyValue = typeof configuration.apiKey === 'function'
+                    ? configuration.apiKey("x-ultracart-simple-key")
+                    : configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+            if (_limit !== undefined) {
+                localVarQueryParameter['_limit'] = _limit;
+            }
+            if (_offset !== undefined) {
+                localVarQueryParameter['_offset'] = _offset;
+            }
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Retrieve a workflow task
+         * @summary Retrieve a workflow task
+         * @param {string} task_uuid
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getWorkflowTask: function (task_uuid, options) {
+            if (options === void 0) { options = {}; }
+            // verify required parameter 'task_uuid' is not null or undefined
+            if (task_uuid === null || task_uuid === undefined) {
+                throw new RequiredError('task_uuid', 'Required parameter task_uuid was null or undefined when calling getWorkflowTask.');
+            }
+            var localVarPath = "/workflow/tasks/{task_uuid}"
+                .replace("{".concat("task_uuid", "}"), encodeURIComponent(String(task_uuid)));
+            var localVarUrlObj = url.parse(localVarPath, true);
+            var localVarRequestOptions = Object.assign({ method: 'GET' }, options);
+            var localVarHeaderParameter = {};
+            var localVarQueryParameter = {};
+            if (configuration && configuration.apiVersion) {
+                localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+            }
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+                var localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+                    ? configuration.accessToken("ultraCartOauth", ["workflow_read"])
+                    : configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                var localVarApiKeyValue = typeof configuration.apiKey === 'function'
+                    ? configuration.apiKey("x-ultracart-simple-key")
+                    : configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Get a presigned workflow task attachment upload URL
+         * @summary Get a presigned workflow task attachment upload URL
+         * @param {string} extension
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getWorkflowTaskAttachmentUploadUrl: function (extension, options) {
+            if (options === void 0) { options = {}; }
+            // verify required parameter 'extension' is not null or undefined
+            if (extension === null || extension === undefined) {
+                throw new RequiredError('extension', 'Required parameter extension was null or undefined when calling getWorkflowTaskAttachmentUploadUrl.');
+            }
+            var localVarPath = "/workflow/tasks/attachments/{extension}"
+                .replace("{".concat("extension", "}"), encodeURIComponent(String(extension)));
+            var localVarUrlObj = url.parse(localVarPath, true);
+            var localVarRequestOptions = Object.assign({ method: 'GET' }, options);
+            var localVarHeaderParameter = {};
+            var localVarQueryParameter = {};
+            if (configuration && configuration.apiVersion) {
+                localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+            }
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+                var localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+                    ? configuration.accessToken("ultraCartOauth", ["workflow_write"])
+                    : configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                var localVarApiKeyValue = typeof configuration.apiKey === 'function'
+                    ? configuration.apiKey("x-ultracart-simple-key")
+                    : configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Retrieve a workflow task by object type and id
+         * @summary Retrieve a workflow task by object type and id
+         * @param {string} object_type
+         * @param {string} object_id
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getWorkflowTaskByObjectType: function (object_type, object_id, options) {
+            if (options === void 0) { options = {}; }
+            // verify required parameter 'object_type' is not null or undefined
+            if (object_type === null || object_type === undefined) {
+                throw new RequiredError('object_type', 'Required parameter object_type was null or undefined when calling getWorkflowTaskByObjectType.');
+            }
+            // verify required parameter 'object_id' is not null or undefined
+            if (object_id === null || object_id === undefined) {
+                throw new RequiredError('object_id', 'Required parameter object_id was null or undefined when calling getWorkflowTaskByObjectType.');
+            }
+            var localVarPath = "/workflow/tasks/by/{object_type}/{object_id}"
+                .replace("{".concat("object_type", "}"), encodeURIComponent(String(object_type)))
+                .replace("{".concat("object_id", "}"), encodeURIComponent(String(object_id)));
+            var localVarUrlObj = url.parse(localVarPath, true);
+            var localVarRequestOptions = Object.assign({ method: 'GET' }, options);
+            var localVarHeaderParameter = {};
+            var localVarQueryParameter = {};
+            if (configuration && configuration.apiVersion) {
+                localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+            }
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+                var localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+                    ? configuration.accessToken("ultraCartOauth", ["workflow_read"])
+                    : configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                var localVarApiKeyValue = typeof configuration.apiKey === 'function'
+                    ? configuration.apiKey("x-ultracart-simple-key")
+                    : configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Retrieves a set of workflow tasks from the account based on a query object.
+         * @summary Search workflow tasks
+         * @param {WorkflowTasksRequest} workflow_tasks_query Workflow tasks query
+         * @param {number} [_limit] The maximum number of records to return on this one API call. (Default 100, Max 500)
+         * @param {number} [_offset] Pagination of the record set.  Offset is a zero based index.
+         * @param {string} [_sort] The sort order of the items.  See Sorting documentation for examples of using multiple values and sorting by ascending and descending.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getWorkflowTasks: function (workflow_tasks_query, _limit, _offset, _sort, options) {
+            if (options === void 0) { options = {}; }
+            // verify required parameter 'workflow_tasks_query' is not null or undefined
+            if (workflow_tasks_query === null || workflow_tasks_query === undefined) {
+                throw new RequiredError('workflow_tasks_query', 'Required parameter workflow_tasks_query was null or undefined when calling getWorkflowTasks.');
+            }
+            var localVarPath = "/workflow/tasks/search";
+            var localVarUrlObj = url.parse(localVarPath, true);
+            var localVarRequestOptions = Object.assign({ method: 'POST' }, options);
+            var localVarHeaderParameter = {};
+            var localVarQueryParameter = {};
+            if (configuration && configuration.apiVersion) {
+                localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+            }
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+                var localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+                    ? configuration.accessToken("ultraCartOauth", ["workflow_read"])
+                    : configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                var localVarApiKeyValue = typeof configuration.apiKey === 'function'
+                    ? configuration.apiKey("x-ultracart-simple-key")
+                    : configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+            if (_limit !== undefined) {
+                localVarQueryParameter['_limit'] = _limit;
+            }
+            if (_offset !== undefined) {
+                localVarQueryParameter['_offset'] = _offset;
+            }
+            if (_sort !== undefined) {
+                localVarQueryParameter['_sort'] = _sort;
+            }
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+            var needsSerialization = ("WorkflowTasksRequest" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
+            localVarRequestOptions.body = needsSerialization ? JSON.stringify(workflow_tasks_query || {}) : (workflow_tasks_query || "");
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Insert a workflow task
+         * @summary Insert a workflow task
+         * @param {WorkflowTask} workflow_task workflow task
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        insertWorkflowTask: function (workflow_task, options) {
+            if (options === void 0) { options = {}; }
+            // verify required parameter 'workflow_task' is not null or undefined
+            if (workflow_task === null || workflow_task === undefined) {
+                throw new RequiredError('workflow_task', 'Required parameter workflow_task was null or undefined when calling insertWorkflowTask.');
+            }
+            var localVarPath = "/workflow/tasks";
+            var localVarUrlObj = url.parse(localVarPath, true);
+            var localVarRequestOptions = Object.assign({ method: 'POST' }, options);
+            var localVarHeaderParameter = {};
+            var localVarQueryParameter = {};
+            if (configuration && configuration.apiVersion) {
+                localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+            }
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+                var localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+                    ? configuration.accessToken("ultraCartOauth", ["workflow_write"])
+                    : configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                var localVarApiKeyValue = typeof configuration.apiKey === 'function'
+                    ? configuration.apiKey("x-ultracart-simple-key")
+                    : configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+            var needsSerialization = ("WorkflowTask" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
+            localVarRequestOptions.body = needsSerialization ? JSON.stringify(workflow_task || {}) : (workflow_task || "");
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Update a workflow task
+         * @summary Update a workflow task
+         * @param {string} task_uuid
+         * @param {WorkflowTask} workflow_task Workflow task
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        updateWorkflowTask: function (task_uuid, workflow_task, options) {
+            if (options === void 0) { options = {}; }
+            // verify required parameter 'task_uuid' is not null or undefined
+            if (task_uuid === null || task_uuid === undefined) {
+                throw new RequiredError('task_uuid', 'Required parameter task_uuid was null or undefined when calling updateWorkflowTask.');
+            }
+            // verify required parameter 'workflow_task' is not null or undefined
+            if (workflow_task === null || workflow_task === undefined) {
+                throw new RequiredError('workflow_task', 'Required parameter workflow_task was null or undefined when calling updateWorkflowTask.');
+            }
+            var localVarPath = "/workflow/tasks/{task_uuid}"
+                .replace("{".concat("task_uuid", "}"), encodeURIComponent(String(task_uuid)));
+            var localVarUrlObj = url.parse(localVarPath, true);
+            var localVarRequestOptions = Object.assign({ method: 'PUT' }, options);
+            var localVarHeaderParameter = {};
+            var localVarQueryParameter = {};
+            if (configuration && configuration.apiVersion) {
+                localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+            }
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+                var localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+                    ? configuration.accessToken("ultraCartOauth", ["workflow_write"])
+                    : configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                var localVarApiKeyValue = typeof configuration.apiKey === 'function'
+                    ? configuration.apiKey("x-ultracart-simple-key")
+                    : configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+            var needsSerialization = ("WorkflowTask" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
+            localVarRequestOptions.body = needsSerialization ? JSON.stringify(workflow_task || {}) : (workflow_task || "");
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+    };
+};
+exports.WorkflowApiFetchParamCreator = WorkflowApiFetchParamCreator;
+/**
+ * WorkflowApi - functional programming interface
+ * @export
+ */
+var WorkflowApiFp = function (configuration) {
+    return {
+        /**
+         * Retrieve a list of groups that workflow tasks can be assigned to
+         * @summary Retrieve a list of groups that workflow tasks can be assigned to
+         * @param {number} [_limit] The maximum number of records to return on this one API call. (Max 200)
+         * @param {number} [_offset] Pagination of the record set.  Offset is a zero based index.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getWorkflowAssignmentGroups: function (_limit, _offset, options) {
+            var localVarFetchArgs = (0, exports.WorkflowApiFetchParamCreator)(configuration).getWorkflowAssignmentGroups(_limit, _offset, options);
+            return function (fetch, basePath) {
+                if (fetch === void 0) { fetch = portableFetch; }
+                if (basePath === void 0) { basePath = BASE_PATH; }
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(function (response) {
+                    if (response.status >= 200 && response.status < 300) {
+                        return response.json();
+                    }
+                    else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
+         * Retrieve a list of users that workflow tasks can be assigned to
+         * @summary Retrieve a list of users that workflow tasks can be assigned to
+         * @param {number} [_limit] The maximum number of records to return on this one API call. (Max 200)
+         * @param {number} [_offset] Pagination of the record set.  Offset is a zero based index.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getWorkflowAssignmentUsers: function (_limit, _offset, options) {
+            var localVarFetchArgs = (0, exports.WorkflowApiFetchParamCreator)(configuration).getWorkflowAssignmentUsers(_limit, _offset, options);
+            return function (fetch, basePath) {
+                if (fetch === void 0) { fetch = portableFetch; }
+                if (basePath === void 0) { basePath = BASE_PATH; }
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(function (response) {
+                    if (response.status >= 200 && response.status < 300) {
+                        return response.json();
+                    }
+                    else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
+         * Retrieve a workflow task
+         * @summary Retrieve a workflow task
+         * @param {string} task_uuid
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getWorkflowTask: function (task_uuid, options) {
+            var localVarFetchArgs = (0, exports.WorkflowApiFetchParamCreator)(configuration).getWorkflowTask(task_uuid, options);
+            return function (fetch, basePath) {
+                if (fetch === void 0) { fetch = portableFetch; }
+                if (basePath === void 0) { basePath = BASE_PATH; }
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(function (response) {
+                    if (response.status >= 200 && response.status < 300) {
+                        return response.json();
+                    }
+                    else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
+         * Get a presigned workflow task attachment upload URL
+         * @summary Get a presigned workflow task attachment upload URL
+         * @param {string} extension
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getWorkflowTaskAttachmentUploadUrl: function (extension, options) {
+            var localVarFetchArgs = (0, exports.WorkflowApiFetchParamCreator)(configuration).getWorkflowTaskAttachmentUploadUrl(extension, options);
+            return function (fetch, basePath) {
+                if (fetch === void 0) { fetch = portableFetch; }
+                if (basePath === void 0) { basePath = BASE_PATH; }
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(function (response) {
+                    if (response.status >= 200 && response.status < 300) {
+                        return response.json();
+                    }
+                    else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
+         * Retrieve a workflow task by object type and id
+         * @summary Retrieve a workflow task by object type and id
+         * @param {string} object_type
+         * @param {string} object_id
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getWorkflowTaskByObjectType: function (object_type, object_id, options) {
+            var localVarFetchArgs = (0, exports.WorkflowApiFetchParamCreator)(configuration).getWorkflowTaskByObjectType(object_type, object_id, options);
+            return function (fetch, basePath) {
+                if (fetch === void 0) { fetch = portableFetch; }
+                if (basePath === void 0) { basePath = BASE_PATH; }
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(function (response) {
+                    if (response.status >= 200 && response.status < 300) {
+                        return response.json();
+                    }
+                    else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
+         * Retrieves a set of workflow tasks from the account based on a query object.
+         * @summary Search workflow tasks
+         * @param {WorkflowTasksRequest} workflow_tasks_query Workflow tasks query
+         * @param {number} [_limit] The maximum number of records to return on this one API call. (Default 100, Max 500)
+         * @param {number} [_offset] Pagination of the record set.  Offset is a zero based index.
+         * @param {string} [_sort] The sort order of the items.  See Sorting documentation for examples of using multiple values and sorting by ascending and descending.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getWorkflowTasks: function (workflow_tasks_query, _limit, _offset, _sort, options) {
+            var localVarFetchArgs = (0, exports.WorkflowApiFetchParamCreator)(configuration).getWorkflowTasks(workflow_tasks_query, _limit, _offset, _sort, options);
+            return function (fetch, basePath) {
+                if (fetch === void 0) { fetch = portableFetch; }
+                if (basePath === void 0) { basePath = BASE_PATH; }
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(function (response) {
+                    if (response.status >= 200 && response.status < 300) {
+                        return response.json();
+                    }
+                    else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
+         * Insert a workflow task
+         * @summary Insert a workflow task
+         * @param {WorkflowTask} workflow_task workflow task
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        insertWorkflowTask: function (workflow_task, options) {
+            var localVarFetchArgs = (0, exports.WorkflowApiFetchParamCreator)(configuration).insertWorkflowTask(workflow_task, options);
+            return function (fetch, basePath) {
+                if (fetch === void 0) { fetch = portableFetch; }
+                if (basePath === void 0) { basePath = BASE_PATH; }
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(function (response) {
+                    if (response.status >= 200 && response.status < 300) {
+                        return response.json();
+                    }
+                    else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
+         * Update a workflow task
+         * @summary Update a workflow task
+         * @param {string} task_uuid
+         * @param {WorkflowTask} workflow_task Workflow task
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        updateWorkflowTask: function (task_uuid, workflow_task, options) {
+            var localVarFetchArgs = (0, exports.WorkflowApiFetchParamCreator)(configuration).updateWorkflowTask(task_uuid, workflow_task, options);
+            return function (fetch, basePath) {
+                if (fetch === void 0) { fetch = portableFetch; }
+                if (basePath === void 0) { basePath = BASE_PATH; }
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(function (response) {
+                    if (response.status >= 200 && response.status < 300) {
+                        return response.json();
+                    }
+                    else {
+                        throw response;
+                    }
+                });
+            };
+        },
+    };
+};
+exports.WorkflowApiFp = WorkflowApiFp;
+/**
+ * WorkflowApi - factory interface
+ * @export
+ */
+var WorkflowApiFactory = function (configuration, fetch, basePath) {
+    return {
+        /**
+         * Retrieve a list of groups that workflow tasks can be assigned to
+         * @summary Retrieve a list of groups that workflow tasks can be assigned to
+         * @param {number} [_limit] The maximum number of records to return on this one API call. (Max 200)
+         * @param {number} [_offset] Pagination of the record set.  Offset is a zero based index.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getWorkflowAssignmentGroups: function (_limit, _offset, options) {
+            return (0, exports.WorkflowApiFp)(configuration).getWorkflowAssignmentGroups(_limit, _offset, options)(fetch, basePath);
+        },
+        /**
+         * Retrieve a list of users that workflow tasks can be assigned to
+         * @summary Retrieve a list of users that workflow tasks can be assigned to
+         * @param {number} [_limit] The maximum number of records to return on this one API call. (Max 200)
+         * @param {number} [_offset] Pagination of the record set.  Offset is a zero based index.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getWorkflowAssignmentUsers: function (_limit, _offset, options) {
+            return (0, exports.WorkflowApiFp)(configuration).getWorkflowAssignmentUsers(_limit, _offset, options)(fetch, basePath);
+        },
+        /**
+         * Retrieve a workflow task
+         * @summary Retrieve a workflow task
+         * @param {string} task_uuid
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getWorkflowTask: function (task_uuid, options) {
+            return (0, exports.WorkflowApiFp)(configuration).getWorkflowTask(task_uuid, options)(fetch, basePath);
+        },
+        /**
+         * Get a presigned workflow task attachment upload URL
+         * @summary Get a presigned workflow task attachment upload URL
+         * @param {string} extension
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getWorkflowTaskAttachmentUploadUrl: function (extension, options) {
+            return (0, exports.WorkflowApiFp)(configuration).getWorkflowTaskAttachmentUploadUrl(extension, options)(fetch, basePath);
+        },
+        /**
+         * Retrieve a workflow task by object type and id
+         * @summary Retrieve a workflow task by object type and id
+         * @param {string} object_type
+         * @param {string} object_id
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getWorkflowTaskByObjectType: function (object_type, object_id, options) {
+            return (0, exports.WorkflowApiFp)(configuration).getWorkflowTaskByObjectType(object_type, object_id, options)(fetch, basePath);
+        },
+        /**
+         * Retrieves a set of workflow tasks from the account based on a query object.
+         * @summary Search workflow tasks
+         * @param {WorkflowTasksRequest} workflow_tasks_query Workflow tasks query
+         * @param {number} [_limit] The maximum number of records to return on this one API call. (Default 100, Max 500)
+         * @param {number} [_offset] Pagination of the record set.  Offset is a zero based index.
+         * @param {string} [_sort] The sort order of the items.  See Sorting documentation for examples of using multiple values and sorting by ascending and descending.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getWorkflowTasks: function (workflow_tasks_query, _limit, _offset, _sort, options) {
+            return (0, exports.WorkflowApiFp)(configuration).getWorkflowTasks(workflow_tasks_query, _limit, _offset, _sort, options)(fetch, basePath);
+        },
+        /**
+         * Insert a workflow task
+         * @summary Insert a workflow task
+         * @param {WorkflowTask} workflow_task workflow task
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        insertWorkflowTask: function (workflow_task, options) {
+            return (0, exports.WorkflowApiFp)(configuration).insertWorkflowTask(workflow_task, options)(fetch, basePath);
+        },
+        /**
+         * Update a workflow task
+         * @summary Update a workflow task
+         * @param {string} task_uuid
+         * @param {WorkflowTask} workflow_task Workflow task
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        updateWorkflowTask: function (task_uuid, workflow_task, options) {
+            return (0, exports.WorkflowApiFp)(configuration).updateWorkflowTask(task_uuid, workflow_task, options)(fetch, basePath);
+        },
+    };
+};
+exports.WorkflowApiFactory = WorkflowApiFactory;
+/**
+ * WorkflowApi - object-oriented interface
+ * @export
+ * @class WorkflowApi
+ * @extends {BaseAPI}
+ */
+var WorkflowApi = /** @class */ (function (_super) {
+    __extends(WorkflowApi, _super);
+    function WorkflowApi() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    /**
+     * Retrieve a list of groups that workflow tasks can be assigned to
+     * @summary Retrieve a list of groups that workflow tasks can be assigned to
+     * @param {number} [_limit] The maximum number of records to return on this one API call. (Max 200)
+     * @param {number} [_offset] Pagination of the record set.  Offset is a zero based index.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof WorkflowApi
+     */
+    WorkflowApi.prototype.getWorkflowAssignmentGroups = function (_limit, _offset, options) {
+        return (0, exports.WorkflowApiFp)(this.configuration).getWorkflowAssignmentGroups(_limit, _offset, options)(this.fetch, this.basePath);
+    };
+    /**
+     * Retrieve a list of users that workflow tasks can be assigned to
+     * @summary Retrieve a list of users that workflow tasks can be assigned to
+     * @param {number} [_limit] The maximum number of records to return on this one API call. (Max 200)
+     * @param {number} [_offset] Pagination of the record set.  Offset is a zero based index.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof WorkflowApi
+     */
+    WorkflowApi.prototype.getWorkflowAssignmentUsers = function (_limit, _offset, options) {
+        return (0, exports.WorkflowApiFp)(this.configuration).getWorkflowAssignmentUsers(_limit, _offset, options)(this.fetch, this.basePath);
+    };
+    /**
+     * Retrieve a workflow task
+     * @summary Retrieve a workflow task
+     * @param {string} task_uuid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof WorkflowApi
+     */
+    WorkflowApi.prototype.getWorkflowTask = function (task_uuid, options) {
+        return (0, exports.WorkflowApiFp)(this.configuration).getWorkflowTask(task_uuid, options)(this.fetch, this.basePath);
+    };
+    /**
+     * Get a presigned workflow task attachment upload URL
+     * @summary Get a presigned workflow task attachment upload URL
+     * @param {string} extension
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof WorkflowApi
+     */
+    WorkflowApi.prototype.getWorkflowTaskAttachmentUploadUrl = function (extension, options) {
+        return (0, exports.WorkflowApiFp)(this.configuration).getWorkflowTaskAttachmentUploadUrl(extension, options)(this.fetch, this.basePath);
+    };
+    /**
+     * Retrieve a workflow task by object type and id
+     * @summary Retrieve a workflow task by object type and id
+     * @param {string} object_type
+     * @param {string} object_id
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof WorkflowApi
+     */
+    WorkflowApi.prototype.getWorkflowTaskByObjectType = function (object_type, object_id, options) {
+        return (0, exports.WorkflowApiFp)(this.configuration).getWorkflowTaskByObjectType(object_type, object_id, options)(this.fetch, this.basePath);
+    };
+    /**
+     * Retrieves a set of workflow tasks from the account based on a query object.
+     * @summary Search workflow tasks
+     * @param {WorkflowTasksRequest} workflow_tasks_query Workflow tasks query
+     * @param {number} [_limit] The maximum number of records to return on this one API call. (Default 100, Max 500)
+     * @param {number} [_offset] Pagination of the record set.  Offset is a zero based index.
+     * @param {string} [_sort] The sort order of the items.  See Sorting documentation for examples of using multiple values and sorting by ascending and descending.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof WorkflowApi
+     */
+    WorkflowApi.prototype.getWorkflowTasks = function (workflow_tasks_query, _limit, _offset, _sort, options) {
+        return (0, exports.WorkflowApiFp)(this.configuration).getWorkflowTasks(workflow_tasks_query, _limit, _offset, _sort, options)(this.fetch, this.basePath);
+    };
+    /**
+     * Insert a workflow task
+     * @summary Insert a workflow task
+     * @param {WorkflowTask} workflow_task workflow task
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof WorkflowApi
+     */
+    WorkflowApi.prototype.insertWorkflowTask = function (workflow_task, options) {
+        return (0, exports.WorkflowApiFp)(this.configuration).insertWorkflowTask(workflow_task, options)(this.fetch, this.basePath);
+    };
+    /**
+     * Update a workflow task
+     * @summary Update a workflow task
+     * @param {string} task_uuid
+     * @param {WorkflowTask} workflow_task Workflow task
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof WorkflowApi
+     */
+    WorkflowApi.prototype.updateWorkflowTask = function (task_uuid, workflow_task, options) {
+        return (0, exports.WorkflowApiFp)(this.configuration).updateWorkflowTask(task_uuid, workflow_task, options)(this.fetch, this.basePath);
+    };
+    return WorkflowApi;
+}(BaseAPI));
+exports.WorkflowApi = WorkflowApi;
