@@ -449,8 +449,8 @@ export interface ConversationApiInterface {
     getConversationMessages(requestParameters: GetConversationMessagesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ConversationMessagesResponse>;
 
     /**
-     * Get a presigned conersation multimedia upload URL 
-     * @summary Get a presigned conersation multimedia upload URL
+     * Get a presigned conversation multimedia upload URL 
+     * @summary Get a presigned conversation multimedia upload URL
      * @param {string} extension 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -459,8 +459,8 @@ export interface ConversationApiInterface {
     getConversationMultimediaUploadUrlRaw(requestParameters: GetConversationMultimediaUploadUrlRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ConversationMultimediaUploadUrlResponse>>;
 
     /**
-     * Get a presigned conersation multimedia upload URL 
-     * Get a presigned conersation multimedia upload URL
+     * Get a presigned conversation multimedia upload URL 
+     * Get a presigned conversation multimedia upload URL
      */
     getConversationMultimediaUploadUrl(requestParameters: GetConversationMultimediaUploadUrlRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ConversationMultimediaUploadUrlResponse>;
 
@@ -1351,8 +1351,8 @@ export class ConversationApi extends runtime.BaseAPI implements ConversationApiI
     }
 
     /**
-     * Get a presigned conersation multimedia upload URL 
-     * Get a presigned conersation multimedia upload URL
+     * Get a presigned conversation multimedia upload URL 
+     * Get a presigned conversation multimedia upload URL
      */
     async getConversationMultimediaUploadUrlRaw(requestParameters: GetConversationMultimediaUploadUrlRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ConversationMultimediaUploadUrlResponse>> {
         if (requestParameters.extension === null || requestParameters.extension === undefined) {
@@ -1383,8 +1383,8 @@ export class ConversationApi extends runtime.BaseAPI implements ConversationApiI
     }
 
     /**
-     * Get a presigned conersation multimedia upload URL 
-     * Get a presigned conersation multimedia upload URL
+     * Get a presigned conversation multimedia upload URL 
+     * Get a presigned conversation multimedia upload URL
      */
     async getConversationMultimediaUploadUrl(requestParameters: GetConversationMultimediaUploadUrlRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ConversationMultimediaUploadUrlResponse> {
         const response = await this.getConversationMultimediaUploadUrlRaw(requestParameters, initOverrides);
