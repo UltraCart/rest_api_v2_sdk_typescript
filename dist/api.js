@@ -1193,6 +1193,7 @@ var OrderPayment;
         PaymentMethodEnum[PaymentMethodEnum["Venmo"] = 'Venmo'] = "Venmo";
         PaymentMethodEnum[PaymentMethodEnum["ApplePay"] = 'Apple Pay'] = "ApplePay";
         PaymentMethodEnum[PaymentMethodEnum["GooglePay"] = 'Google Pay'] = "GooglePay";
+        PaymentMethodEnum[PaymentMethodEnum["HealthBenefitCard"] = 'Health Benefit Card'] = "HealthBenefitCard";
     })(PaymentMethodEnum = OrderPayment.PaymentMethodEnum || (OrderPayment.PaymentMethodEnum = {}));
     /**
      * @export

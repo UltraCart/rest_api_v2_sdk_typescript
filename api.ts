@@ -4104,6 +4104,12 @@ export interface CartPayment {
      */
     credit_card?: CartPaymentCreditCard;
     /**
+     * 
+     * @type {CartPaymentHealthBenefitCard}
+     * @memberof CartPayment
+     */
+    health_benefit_card?: CartPaymentHealthBenefitCard;
+    /**
      * Payment method
      * @type {string}
      * @memberof CartPayment
@@ -4225,6 +4231,50 @@ export interface CartPaymentCreditCard {
      * @memberof CartPaymentCreditCard
      */
     store_credit_card?: boolean;
+}
+
+/**
+ * 
+ * @export
+ * @interface CartPaymentHealthBenefitCard
+ */
+export interface CartPaymentHealthBenefitCard {
+    /**
+     * Health benefit expiration month (1-12)
+     * @type {number}
+     * @memberof CartPaymentHealthBenefitCard
+     */
+    health_benefit_card_expiration_month?: number;
+    /**
+     * Health benefit card expiration year (four digit year)
+     * @type {number}
+     * @memberof CartPaymentHealthBenefitCard
+     */
+    health_benefit_card_expiration_year?: number;
+    /**
+     * Health benefit card number (masked to the last 4)
+     * @type {string}
+     * @memberof CartPaymentHealthBenefitCard
+     */
+    health_benefit_card_number?: string;
+    /**
+     * Hosted field token for the card number
+     * @type {string}
+     * @memberof CartPaymentHealthBenefitCard
+     */
+    health_benefit_card_number_token?: string;
+    /**
+     * Health benefit card verification number (masked)
+     * @type {string}
+     * @memberof CartPaymentHealthBenefitCard
+     */
+    health_benefit_card_verification_number?: string;
+    /**
+     * Hosted field token for the health benefit card verification number
+     * @type {string}
+     * @memberof CartPaymentHealthBenefitCard
+     */
+    health_benefit_card_verification_number_token?: string;
 }
 
 /**
@@ -31167,6 +31217,12 @@ export interface OrderPayment {
      */
     echeck?: OrderPaymentECheck;
     /**
+     * 
+     * @type {OrderPaymentHealthBenefitCard}
+     * @memberof OrderPayment
+     */
+    health_benefit_card?: OrderPaymentHealthBenefitCard;
+    /**
      * True if order has been held for fraud review
      * @type {boolean}
      * @memberof OrderPayment
@@ -31291,7 +31347,8 @@ export namespace OrderPayment {
         Sezzle = <any> 'Sezzle',
         Venmo = <any> 'Venmo',
         ApplePay = <any> 'Apple Pay',
-        GooglePay = <any> 'Google Pay'
+        GooglePay = <any> 'Google Pay',
+        HealthBenefitCard = <any> 'Health Benefit Card'
     }
     /**
      * @export
@@ -31557,6 +31614,50 @@ export namespace OrderPaymentECheck {
         Personal = <any> 'Personal',
         Business = <any> 'Business'
     }
+}
+
+/**
+ * 
+ * @export
+ * @interface OrderPaymentHealthBenefitCard
+ */
+export interface OrderPaymentHealthBenefitCard {
+    /**
+     * Health benefit card expiration month (1-12)
+     * @type {number}
+     * @memberof OrderPaymentHealthBenefitCard
+     */
+    health_benefit_card_expiration_month?: number;
+    /**
+     * Health benefit card expiration year (Four digit year)
+     * @type {number}
+     * @memberof OrderPaymentHealthBenefitCard
+     */
+    health_benefit_card_expiration_year?: number;
+    /**
+     * Health benefit card number (masked to last 4)
+     * @type {string}
+     * @memberof OrderPaymentHealthBenefitCard
+     */
+    health_benefit_card_number?: string;
+    /**
+     * Health benefit card number token from hosted fields used to update the health benefit card number
+     * @type {string}
+     * @memberof OrderPaymentHealthBenefitCard
+     */
+    health_benefit_card_number_token?: string;
+    /**
+     * True if the health benefit card has been truncated
+     * @type {boolean}
+     * @memberof OrderPaymentHealthBenefitCard
+     */
+    health_benefit_card_number_truncated?: boolean;
+    /**
+     * Health benefit card verification number token from hosted fields, only for import/insert of new orders, completely ignored for updates, and always null/empty for queries
+     * @type {string}
+     * @memberof OrderPaymentHealthBenefitCard
+     */
+    health_benefit_card_verification_number_token?: string;
 }
 
 /**
@@ -41333,7 +41434,13 @@ export interface WorkflowTasksRequest {
      * @type {string}
      * @memberof WorkflowTasksRequest
      */
-    delay_until_dts?: string;
+    delay_until_dts_begin?: string;
+    /**
+     * Date/time that the workflow task should delay until
+     * @type {string}
+     * @memberof WorkflowTasksRequest
+     */
+    delay_until_dts_end?: string;
     /**
      * Date/time that the workflow task is due
      * @type {string}
