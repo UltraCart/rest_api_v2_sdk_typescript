@@ -38,6 +38,12 @@ import {
     CartPaymentCreditCardToJSON,
 } from './CartPaymentCreditCard';
 import {
+    CartPaymentHealthBenefitCard,
+    CartPaymentHealthBenefitCardFromJSON,
+    CartPaymentHealthBenefitCardFromJSONTyped,
+    CartPaymentHealthBenefitCardToJSON,
+} from './CartPaymentHealthBenefitCard';
+import {
     CartPaymentPurchaseOrder,
     CartPaymentPurchaseOrderFromJSON,
     CartPaymentPurchaseOrderFromJSONTyped,
@@ -75,6 +81,12 @@ export interface CartPayment {
      */
     credit_card?: CartPaymentCreditCard;
     /**
+     * 
+     * @type {CartPaymentHealthBenefitCard}
+     * @memberof CartPayment
+     */
+    health_benefit_card?: CartPaymentHealthBenefitCard;
+    /**
      * Payment method
      * @type {string}
      * @memberof CartPayment
@@ -108,6 +120,7 @@ export function CartPaymentFromJSONTyped(json: any, ignoreDiscriminator: boolean
         'amazon': !exists(json, 'amazon') ? undefined : CartPaymentAmazonFromJSON(json['amazon']),
         'check': !exists(json, 'check') ? undefined : CartPaymentCheckFromJSON(json['check']),
         'credit_card': !exists(json, 'credit_card') ? undefined : CartPaymentCreditCardFromJSON(json['credit_card']),
+        'health_benefit_card': !exists(json, 'health_benefit_card') ? undefined : CartPaymentHealthBenefitCardFromJSON(json['health_benefit_card']),
         'payment_method': !exists(json, 'payment_method') ? undefined : json['payment_method'],
         'purchase_order': !exists(json, 'purchase_order') ? undefined : CartPaymentPurchaseOrderFromJSON(json['purchase_order']),
         'rtg_code': !exists(json, 'rtg_code') ? undefined : json['rtg_code'],
@@ -127,6 +140,7 @@ export function CartPaymentToJSON(value?: CartPayment | null): any {
         'amazon': CartPaymentAmazonToJSON(value.amazon),
         'check': CartPaymentCheckToJSON(value.check),
         'credit_card': CartPaymentCreditCardToJSON(value.credit_card),
+        'health_benefit_card': CartPaymentHealthBenefitCardToJSON(value.health_benefit_card),
         'payment_method': value.payment_method,
         'purchase_order': CartPaymentPurchaseOrderToJSON(value.purchase_order),
         'rtg_code': value.rtg_code,

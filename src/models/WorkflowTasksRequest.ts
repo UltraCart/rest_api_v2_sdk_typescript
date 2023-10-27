@@ -67,7 +67,13 @@ export interface WorkflowTasksRequest {
      * @type {string}
      * @memberof WorkflowTasksRequest
      */
-    delay_until_dts?: string;
+    delay_until_dts_begin?: string;
+    /**
+     * Date/time that the workflow task should delay until
+     * @type {string}
+     * @memberof WorkflowTasksRequest
+     */
+    delay_until_dts_end?: string;
     /**
      * Date/time that the workflow task is due
      * @type {string}
@@ -175,7 +181,8 @@ export function WorkflowTasksRequestFromJSONTyped(json: any, ignoreDiscriminator
         'created_by': !exists(json, 'created_by') ? undefined : WorkflowUserFromJSON(json['created_by']),
         'created_dts_begin': !exists(json, 'created_dts_begin') ? undefined : json['created_dts_begin'],
         'created_dts_end': !exists(json, 'created_dts_end') ? undefined : json['created_dts_end'],
-        'delay_until_dts': !exists(json, 'delay_until_dts') ? undefined : json['delay_until_dts'],
+        'delay_until_dts_begin': !exists(json, 'delay_until_dts_begin') ? undefined : json['delay_until_dts_begin'],
+        'delay_until_dts_end': !exists(json, 'delay_until_dts_end') ? undefined : json['delay_until_dts_end'],
         'due_dts_begin': !exists(json, 'due_dts_begin') ? undefined : json['due_dts_begin'],
         'due_dts_end': !exists(json, 'due_dts_end') ? undefined : json['due_dts_end'],
         'last_update_dts_begin': !exists(json, 'last_update_dts_begin') ? undefined : json['last_update_dts_begin'],
@@ -203,7 +210,8 @@ export function WorkflowTasksRequestToJSON(value?: WorkflowTasksRequest | null):
         'created_by': WorkflowUserToJSON(value.created_by),
         'created_dts_begin': value.created_dts_begin,
         'created_dts_end': value.created_dts_end,
-        'delay_until_dts': value.delay_until_dts,
+        'delay_until_dts_begin': value.delay_until_dts_begin,
+        'delay_until_dts_end': value.delay_until_dts_end,
         'due_dts_begin': value.due_dts_begin,
         'due_dts_end': value.due_dts_end,
         'last_update_dts_begin': value.last_update_dts_begin,

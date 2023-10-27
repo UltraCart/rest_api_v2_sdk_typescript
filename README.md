@@ -1,4 +1,4 @@
-## ultracart_rest_api_v2_typescript@4.0.182
+## ultracart_rest_api_v2_typescript@4.0.183
 
 This generator creates TypeScript/JavaScript client that utilizes [Fetch API](https://fetch.spec.whatwg.org/). The generated Node module can be used in the following environments:
 
@@ -36,7 +36,7 @@ navigate to the folder of your consuming project and run one of the following co
 _published:_
 
 ```
-npm install ultracart_rest_api_v2_typescript@4.0.182 --save
+npm install ultracart_rest_api_v2_typescript@4.0.183 --save
 ```
 
 _unPublished (not recommended):_
@@ -54,6 +54,7 @@ Not every change is committed to every SDK.
 
 | Version | Date | Comments |
 | --: | :-: | --- |
+| 4.0.183 | 10/27/2023 | workflow task object model refinement |
 | 4.0.182 | 10/23/2023 | workflow tasks api |
 | 4.0.181 | 10/23/2023 | workflow tasks api |
 | 4.0.180 | 10/16/2023 | CartSettingsPaymentCreditCard - add collect_credit_card_verification_number_minimum |

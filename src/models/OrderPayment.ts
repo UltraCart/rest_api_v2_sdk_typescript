@@ -38,6 +38,12 @@ import {
     OrderPaymentECheckToJSON,
 } from './OrderPaymentECheck';
 import {
+    OrderPaymentHealthBenefitCard,
+    OrderPaymentHealthBenefitCardFromJSON,
+    OrderPaymentHealthBenefitCardFromJSONTyped,
+    OrderPaymentHealthBenefitCardToJSON,
+} from './OrderPaymentHealthBenefitCard';
+import {
     OrderPaymentInsurance,
     OrderPaymentInsuranceFromJSON,
     OrderPaymentInsuranceFromJSONTyped,
@@ -80,6 +86,12 @@ export interface OrderPayment {
      * @memberof OrderPayment
      */
     echeck?: OrderPaymentECheck;
+    /**
+     * 
+     * @type {OrderPaymentHealthBenefitCard}
+     * @memberof OrderPayment
+     */
+    health_benefit_card?: OrderPaymentHealthBenefitCard;
     /**
      * True if order has been held for fraud review
      * @type {boolean}
@@ -200,7 +212,8 @@ export const OrderPaymentPaymentMethodEnum = {
     Sezzle: 'Sezzle',
     Venmo: 'Venmo',
     ApplePay: 'Apple Pay',
-    GooglePay: 'Google Pay'
+    GooglePay: 'Google Pay',
+    HealthBenefitCard: 'Health Benefit Card'
 } as const;
 export type OrderPaymentPaymentMethodEnum = typeof OrderPaymentPaymentMethodEnum[keyof typeof OrderPaymentPaymentMethodEnum];
 
@@ -233,6 +246,7 @@ export function OrderPaymentFromJSONTyped(json: any, ignoreDiscriminator: boolea
         'check': !exists(json, 'check') ? undefined : OrderPaymentCheckFromJSON(json['check']),
         'credit_card': !exists(json, 'credit_card') ? undefined : OrderPaymentCreditCardFromJSON(json['credit_card']),
         'echeck': !exists(json, 'echeck') ? undefined : OrderPaymentECheckFromJSON(json['echeck']),
+        'health_benefit_card': !exists(json, 'health_benefit_card') ? undefined : OrderPaymentHealthBenefitCardFromJSON(json['health_benefit_card']),
         'hold_for_fraud_review': !exists(json, 'hold_for_fraud_review') ? undefined : json['hold_for_fraud_review'],
         'insurance': !exists(json, 'insurance') ? undefined : OrderPaymentInsuranceFromJSON(json['insurance']),
         'payment_dts': !exists(json, 'payment_dts') ? undefined : json['payment_dts'],
@@ -263,6 +277,7 @@ export function OrderPaymentToJSON(value?: OrderPayment | null): any {
         'check': OrderPaymentCheckToJSON(value.check),
         'credit_card': OrderPaymentCreditCardToJSON(value.credit_card),
         'echeck': OrderPaymentECheckToJSON(value.echeck),
+        'health_benefit_card': OrderPaymentHealthBenefitCardToJSON(value.health_benefit_card),
         'hold_for_fraud_review': value.hold_for_fraud_review,
         'insurance': OrderPaymentInsuranceToJSON(value.insurance),
         'payment_dts': value.payment_dts,
