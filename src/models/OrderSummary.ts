@@ -55,6 +55,18 @@ export interface OrderSummary {
      * @type {Currency}
      * @memberof OrderSummary
      */
+    health_benefit_card_amount?: Currency;
+    /**
+     * 
+     * @type {Currency}
+     * @memberof OrderSummary
+     */
+    health_benefit_card_refunded?: Currency;
+    /**
+     * 
+     * @type {Currency}
+     * @memberof OrderSummary
+     */
     internal_gift_certificate_amount?: Currency;
     /**
      * 
@@ -162,6 +174,8 @@ export function OrderSummaryFromJSONTyped(json: any, ignoreDiscriminator: boolea
         'actual_payment_processing': !exists(json, 'actual_payment_processing') ? undefined : CurrencyFromJSON(json['actual_payment_processing']),
         'actual_shipping': !exists(json, 'actual_shipping') ? undefined : CurrencyFromJSON(json['actual_shipping']),
         'arbitrary_shipping_handling_total': !exists(json, 'arbitrary_shipping_handling_total') ? undefined : CurrencyFromJSON(json['arbitrary_shipping_handling_total']),
+        'health_benefit_card_amount': !exists(json, 'health_benefit_card_amount') ? undefined : CurrencyFromJSON(json['health_benefit_card_amount']),
+        'health_benefit_card_refunded': !exists(json, 'health_benefit_card_refunded') ? undefined : CurrencyFromJSON(json['health_benefit_card_refunded']),
         'internal_gift_certificate_amount': !exists(json, 'internal_gift_certificate_amount') ? undefined : CurrencyFromJSON(json['internal_gift_certificate_amount']),
         'internal_gift_certificate_refunded': !exists(json, 'internal_gift_certificate_refunded') ? undefined : CurrencyFromJSON(json['internal_gift_certificate_refunded']),
         'other_refunded': !exists(json, 'other_refunded') ? undefined : CurrencyFromJSON(json['other_refunded']),
@@ -194,6 +208,8 @@ export function OrderSummaryToJSON(value?: OrderSummary | null): any {
         'actual_payment_processing': CurrencyToJSON(value.actual_payment_processing),
         'actual_shipping': CurrencyToJSON(value.actual_shipping),
         'arbitrary_shipping_handling_total': CurrencyToJSON(value.arbitrary_shipping_handling_total),
+        'health_benefit_card_amount': CurrencyToJSON(value.health_benefit_card_amount),
+        'health_benefit_card_refunded': CurrencyToJSON(value.health_benefit_card_refunded),
         'internal_gift_certificate_amount': CurrencyToJSON(value.internal_gift_certificate_amount),
         'internal_gift_certificate_refunded': CurrencyToJSON(value.internal_gift_certificate_refunded),
         'other_refunded': CurrencyToJSON(value.other_refunded),

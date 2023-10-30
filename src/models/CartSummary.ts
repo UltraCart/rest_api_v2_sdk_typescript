@@ -55,6 +55,18 @@ export interface CartSummary {
      * @type {Currency}
      * @memberof CartSummary
      */
+    health_benefit_card_amount?: Currency;
+    /**
+     * 
+     * @type {Currency}
+     * @memberof CartSummary
+     */
+    internal_gift_certificate_amount?: Currency;
+    /**
+     * 
+     * @type {Currency}
+     * @memberof CartSummary
+     */
     shipping_handling?: Currency;
     /**
      * 
@@ -138,6 +150,8 @@ export function CartSummaryFromJSONTyped(json: any, ignoreDiscriminator: boolean
         'arbitrary_tax': !exists(json, 'arbitrary_tax') ? undefined : CurrencyFromJSON(json['arbitrary_tax']),
         'arbitrary_tax_rate': !exists(json, 'arbitrary_tax_rate') ? undefined : CurrencyFromJSON(json['arbitrary_tax_rate']),
         'arbitrary_taxable_subtotal': !exists(json, 'arbitrary_taxable_subtotal') ? undefined : CurrencyFromJSON(json['arbitrary_taxable_subtotal']),
+        'health_benefit_card_amount': !exists(json, 'health_benefit_card_amount') ? undefined : CurrencyFromJSON(json['health_benefit_card_amount']),
+        'internal_gift_certificate_amount': !exists(json, 'internal_gift_certificate_amount') ? undefined : CurrencyFromJSON(json['internal_gift_certificate_amount']),
         'shipping_handling': !exists(json, 'shipping_handling') ? undefined : CurrencyFromJSON(json['shipping_handling']),
         'shipping_handling_discount': !exists(json, 'shipping_handling_discount') ? undefined : CurrencyFromJSON(json['shipping_handling_discount']),
         'shipping_handling_with_discount': !exists(json, 'shipping_handling_with_discount') ? undefined : CurrencyFromJSON(json['shipping_handling_with_discount']),
@@ -166,6 +180,8 @@ export function CartSummaryToJSON(value?: CartSummary | null): any {
         'arbitrary_tax': CurrencyToJSON(value.arbitrary_tax),
         'arbitrary_tax_rate': CurrencyToJSON(value.arbitrary_tax_rate),
         'arbitrary_taxable_subtotal': CurrencyToJSON(value.arbitrary_taxable_subtotal),
+        'health_benefit_card_amount': CurrencyToJSON(value.health_benefit_card_amount),
+        'internal_gift_certificate_amount': CurrencyToJSON(value.internal_gift_certificate_amount),
         'shipping_handling': CurrencyToJSON(value.shipping_handling),
         'shipping_handling_discount': CurrencyToJSON(value.shipping_handling_discount),
         'shipping_handling_with_discount': CurrencyToJSON(value.shipping_handling_with_discount),
