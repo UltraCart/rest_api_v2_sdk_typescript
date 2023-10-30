@@ -4982,6 +4982,18 @@ export interface CartSummary {
      * @type {Currency}
      * @memberof CartSummary
      */
+    health_benefit_card_amount?: Currency;
+    /**
+     *
+     * @type {Currency}
+     * @memberof CartSummary
+     */
+    internal_gift_certificate_amount?: Currency;
+    /**
+     *
+     * @type {Currency}
+     * @memberof CartSummary
+     */
     shipping_handling?: Currency;
     /**
      *
@@ -32078,6 +32090,18 @@ export interface OrderSummary {
      * @memberof OrderSummary
      */
     arbitrary_shipping_handling_total?: Currency;
+    /**
+     *
+     * @type {Currency}
+     * @memberof OrderSummary
+     */
+    health_benefit_card_amount?: Currency;
+    /**
+     *
+     * @type {Currency}
+     * @memberof OrderSummary
+     */
+    health_benefit_card_refunded?: Currency;
     /**
      *
      * @type {Currency}
