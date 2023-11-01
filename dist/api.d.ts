@@ -11797,6 +11797,12 @@ export interface Customer {
      */
     dhl_duty_account_number?: string;
     /**
+     * Do not send mail (null will not update)
+     * @type {boolean}
+     * @memberof Customer
+     */
+    do_not_send_mail?: boolean;
+    /**
      *
      * @type {CustomerEDI}
      * @memberof Customer
