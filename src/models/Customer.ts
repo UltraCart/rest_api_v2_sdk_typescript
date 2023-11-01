@@ -243,6 +243,12 @@ export interface Customer {
      */
     dhl_duty_account_number?: string;
     /**
+     * Do not send mail (null will not update)
+     * @type {boolean}
+     * @memberof Customer
+     */
+    do_not_send_mail?: boolean;
+    /**
      * 
      * @type {CustomerEDI}
      * @memberof Customer
@@ -537,6 +543,7 @@ export function CustomerFromJSONTyped(json: any, ignoreDiscriminator: boolean): 
         'customer_profile_oid': !exists(json, 'customer_profile_oid') ? undefined : json['customer_profile_oid'],
         'dhl_account_number': !exists(json, 'dhl_account_number') ? undefined : json['dhl_account_number'],
         'dhl_duty_account_number': !exists(json, 'dhl_duty_account_number') ? undefined : json['dhl_duty_account_number'],
+        'do_not_send_mail': !exists(json, 'do_not_send_mail') ? undefined : json['do_not_send_mail'],
         'edi': !exists(json, 'edi') ? undefined : CustomerEDIFromJSON(json['edi']),
         'email': !exists(json, 'email') ? undefined : json['email'],
         'exempt_shipping_handling_charge': !exists(json, 'exempt_shipping_handling_charge') ? undefined : json['exempt_shipping_handling_charge'],
@@ -612,6 +619,7 @@ export function CustomerToJSON(value?: Customer | null): any {
         'customer_profile_oid': value.customer_profile_oid,
         'dhl_account_number': value.dhl_account_number,
         'dhl_duty_account_number': value.dhl_duty_account_number,
+        'do_not_send_mail': value.do_not_send_mail,
         'edi': CustomerEDIToJSON(value.edi),
         'email': value.email,
         'exempt_shipping_handling_charge': value.exempt_shipping_handling_charge,
