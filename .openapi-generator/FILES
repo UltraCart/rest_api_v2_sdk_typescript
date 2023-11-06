@@ -314,6 +314,9 @@ src/models/CustomerStoreCreditLedgerEntry.ts
 src/models/CustomerStoreCreditResponse.ts
 src/models/CustomerTag.ts
 src/models/CustomerTaxCodes.ts
+src/models/CustomerWishListItem.ts
+src/models/CustomerWishListItemResponse.ts
+src/models/CustomerWishListItemsResponse.ts
 src/models/CustomersResponse.ts
 src/models/DataTablesServerSideResponse.ts
 src/models/Distance.ts

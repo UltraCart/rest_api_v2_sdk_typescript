@@ -51,6 +51,15 @@ import {
     CustomerStoreCreditResponse,
     CustomerStoreCreditResponseFromJSON,
     CustomerStoreCreditResponseToJSON,
+    CustomerWishListItem,
+    CustomerWishListItemFromJSON,
+    CustomerWishListItemToJSON,
+    CustomerWishListItemResponse,
+    CustomerWishListItemResponseFromJSON,
+    CustomerWishListItemResponseToJSON,
+    CustomerWishListItemsResponse,
+    CustomerWishListItemsResponseFromJSON,
+    CustomerWishListItemsResponseToJSON,
     CustomersResponse,
     CustomersResponseFromJSON,
     CustomersResponseToJSON,
@@ -97,6 +106,11 @@ export interface DeleteCustomerRequest {
     customerProfileOid: number;
 }
 
+export interface DeleteWishListItemRequest {
+    customerProfileOid: number;
+    customerWishlistItemOid: number;
+}
+
 export interface GetCustomerRequest {
     customerProfileOid: number;
     expand?: string;
@@ -109,6 +123,15 @@ export interface GetCustomerByEmailRequest {
 
 export interface GetCustomerStoreCreditRequest {
     customerProfileOid: number;
+}
+
+export interface GetCustomerWishListRequest {
+    customerProfileOid: number;
+}
+
+export interface GetCustomerWishListItemRequest {
+    customerProfileOid: number;
+    customerWishlistItemOid: number;
 }
 
 export interface GetCustomersRequest {
@@ -173,6 +196,11 @@ export interface InsertCustomerRequest {
     expand?: string;
 }
 
+export interface InsertWishListItemRequest {
+    customerProfileOid: number;
+    wishlistItem: CustomerWishListItem;
+}
+
 export interface MergeCustomerRequest {
     customerProfileOid: number;
     customer: CustomerMergeRequest;
@@ -192,6 +220,12 @@ export interface UpdateCustomerRequest {
 export interface UpdateCustomerEmailListsRequest {
     customerProfileOid: number;
     listChanges: CustomerEmailListChanges;
+}
+
+export interface UpdateWishListItemRequest {
+    customerProfileOid: number;
+    customerWishlistItemOid: number;
+    wishlistItem: CustomerWishListItem;
 }
 
 export interface ValidateEmailVerificationTokenRequest {
@@ -254,6 +288,23 @@ export interface CustomerApiInterface {
      * Delete a customer
      */
     deleteCustomer(requestParameters: DeleteCustomerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+
+    /**
+     * Delete a customer wishlist item 
+     * @summary Delete a customer wishlist item
+     * @param {number} customerProfileOid The customer oid for this wishlist.
+     * @param {number} customerWishlistItemOid The wishlist oid for this wishlist item to delete.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof CustomerApiInterface
+     */
+    deleteWishListItemRaw(requestParameters: DeleteWishListItemRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CustomerWishListItem>>;
+
+    /**
+     * Delete a customer wishlist item 
+     * Delete a customer wishlist item
+     */
+    deleteWishListItem(requestParameters: DeleteWishListItemRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomerWishListItem>;
 
     /**
      * Retrieves a single customer using the specified customer profile oid. 
@@ -334,6 +385,39 @@ export interface CustomerApiInterface {
      * Retrieve the customer store credit accumulated through loyalty programs
      */
     getCustomerStoreCredit(requestParameters: GetCustomerStoreCreditRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomerStoreCreditResponse>;
+
+    /**
+     * Retrieve wishlist items for customer. 
+     * @summary Retrieve wishlist items for customer
+     * @param {number} customerProfileOid The customer oid for this wishlist.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof CustomerApiInterface
+     */
+    getCustomerWishListRaw(requestParameters: GetCustomerWishListRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CustomerWishListItemsResponse>>;
+
+    /**
+     * Retrieve wishlist items for customer. 
+     * Retrieve wishlist items for customer
+     */
+    getCustomerWishList(requestParameters: GetCustomerWishListRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomerWishListItemsResponse>;
+
+    /**
+     * Retrieve wishlist item for customer. 
+     * @summary Retrieve wishlist item for customer
+     * @param {number} customerProfileOid The customer oid for this wishlist.
+     * @param {number} customerWishlistItemOid The wishlist oid for this wishlist item.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof CustomerApiInterface
+     */
+    getCustomerWishListItemRaw(requestParameters: GetCustomerWishListItemRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CustomerWishListItemResponse>>;
+
+    /**
+     * Retrieve wishlist item for customer. 
+     * Retrieve wishlist item for customer
+     */
+    getCustomerWishListItem(requestParameters: GetCustomerWishListItemRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomerWishListItemResponse>;
 
     /**
      * Retrieves customers from the account.  If no parameters are specified, all customers will be returned.  You will need to make multiple API calls in order to retrieve the entire result set since this API performs result set pagination. 
@@ -470,6 +554,23 @@ export interface CustomerApiInterface {
     insertCustomer(requestParameters: InsertCustomerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomerResponse>;
 
     /**
+     * Insert a customer wishlist item 
+     * @summary Insert a customer wishlist item
+     * @param {number} customerProfileOid The customer oid for this wishlist.
+     * @param {CustomerWishListItem} wishlistItem Wishlist item to insert
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof CustomerApiInterface
+     */
+    insertWishListItemRaw(requestParameters: InsertWishListItemRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CustomerWishListItem>>;
+
+    /**
+     * Insert a customer wishlist item 
+     * Insert a customer wishlist item
+     */
+    insertWishListItem(requestParameters: InsertWishListItemRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomerWishListItem>;
+
+    /**
      * Merge customer into this customer. 
      * @summary Merge customer into this customer
      * @param {number} customerProfileOid The customer_profile_oid to update.
@@ -536,6 +637,24 @@ export interface CustomerApiInterface {
      * Update email list subscriptions for a customer
      */
     updateCustomerEmailLists(requestParameters: UpdateCustomerEmailListsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomerEmailListChanges>;
+
+    /**
+     * Update a customer wishlist item 
+     * @summary Update a customer wishlist item
+     * @param {number} customerProfileOid The customer oid for this wishlist.
+     * @param {number} customerWishlistItemOid The wishlist oid for this wishlist item.
+     * @param {CustomerWishListItem} wishlistItem Wishlist item to update
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof CustomerApiInterface
+     */
+    updateWishListItemRaw(requestParameters: UpdateWishListItemRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CustomerWishListItem>>;
+
+    /**
+     * Update a customer wishlist item 
+     * Update a customer wishlist item
+     */
+    updateWishListItem(requestParameters: UpdateWishListItemRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomerWishListItem>;
 
     /**
      * Validate a token that can be used to verify a customer email address.  The implementation of how a customer interacts with this token is left to the merchant. 
@@ -694,6 +813,51 @@ export class CustomerApi extends runtime.BaseAPI implements CustomerApiInterface
      */
     async deleteCustomer(requestParameters: DeleteCustomerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.deleteCustomerRaw(requestParameters, initOverrides);
+    }
+
+    /**
+     * Delete a customer wishlist item 
+     * Delete a customer wishlist item
+     */
+    async deleteWishListItemRaw(requestParameters: DeleteWishListItemRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CustomerWishListItem>> {
+        if (requestParameters.customerProfileOid === null || requestParameters.customerProfileOid === undefined) {
+            throw new runtime.RequiredError('customerProfileOid','Required parameter requestParameters.customerProfileOid was null or undefined when calling deleteWishListItem.');
+        }
+
+        if (requestParameters.customerWishlistItemOid === null || requestParameters.customerWishlistItemOid === undefined) {
+            throw new runtime.RequiredError('customerWishlistItemOid','Required parameter requestParameters.customerWishlistItemOid was null or undefined when calling deleteWishListItem.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", ["customer_write"]);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/customer/customers/{customer_profile_oid}/wishlist/{customer_wishlist_item_oid}`.replace(`{${"customer_profile_oid"}}`, encodeURIComponent(String(requestParameters.customerProfileOid))).replace(`{${"customer_wishlist_item_oid"}}`, encodeURIComponent(String(requestParameters.customerWishlistItemOid))),
+            method: 'DELETE',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => CustomerWishListItemFromJSON(jsonValue));
+    }
+
+    /**
+     * Delete a customer wishlist item 
+     * Delete a customer wishlist item
+     */
+    async deleteWishListItem(requestParameters: DeleteWishListItemRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomerWishListItem> {
+        const response = await this.deleteWishListItemRaw(requestParameters, initOverrides);
+        return await response.value();
     }
 
     /**
@@ -898,6 +1062,92 @@ export class CustomerApi extends runtime.BaseAPI implements CustomerApiInterface
      */
     async getCustomerStoreCredit(requestParameters: GetCustomerStoreCreditRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomerStoreCreditResponse> {
         const response = await this.getCustomerStoreCreditRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Retrieve wishlist items for customer. 
+     * Retrieve wishlist items for customer
+     */
+    async getCustomerWishListRaw(requestParameters: GetCustomerWishListRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CustomerWishListItemsResponse>> {
+        if (requestParameters.customerProfileOid === null || requestParameters.customerProfileOid === undefined) {
+            throw new runtime.RequiredError('customerProfileOid','Required parameter requestParameters.customerProfileOid was null or undefined when calling getCustomerWishList.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", ["customer_read"]);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/customer/customers/{customer_profile_oid}/wishlist`.replace(`{${"customer_profile_oid"}}`, encodeURIComponent(String(requestParameters.customerProfileOid))),
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => CustomerWishListItemsResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Retrieve wishlist items for customer. 
+     * Retrieve wishlist items for customer
+     */
+    async getCustomerWishList(requestParameters: GetCustomerWishListRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomerWishListItemsResponse> {
+        const response = await this.getCustomerWishListRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Retrieve wishlist item for customer. 
+     * Retrieve wishlist item for customer
+     */
+    async getCustomerWishListItemRaw(requestParameters: GetCustomerWishListItemRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CustomerWishListItemResponse>> {
+        if (requestParameters.customerProfileOid === null || requestParameters.customerProfileOid === undefined) {
+            throw new runtime.RequiredError('customerProfileOid','Required parameter requestParameters.customerProfileOid was null or undefined when calling getCustomerWishListItem.');
+        }
+
+        if (requestParameters.customerWishlistItemOid === null || requestParameters.customerWishlistItemOid === undefined) {
+            throw new runtime.RequiredError('customerWishlistItemOid','Required parameter requestParameters.customerWishlistItemOid was null or undefined when calling getCustomerWishListItem.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", ["customer_read"]);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/customer/customers/{customer_profile_oid}/wishlist/{customer_wishlist_item_oid}`.replace(`{${"customer_profile_oid"}}`, encodeURIComponent(String(requestParameters.customerProfileOid))).replace(`{${"customer_wishlist_item_oid"}}`, encodeURIComponent(String(requestParameters.customerWishlistItemOid))),
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => CustomerWishListItemResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Retrieve wishlist item for customer. 
+     * Retrieve wishlist item for customer
+     */
+    async getCustomerWishListItem(requestParameters: GetCustomerWishListItemRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomerWishListItemResponse> {
+        const response = await this.getCustomerWishListItemRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
@@ -1309,6 +1559,54 @@ export class CustomerApi extends runtime.BaseAPI implements CustomerApiInterface
     }
 
     /**
+     * Insert a customer wishlist item 
+     * Insert a customer wishlist item
+     */
+    async insertWishListItemRaw(requestParameters: InsertWishListItemRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CustomerWishListItem>> {
+        if (requestParameters.customerProfileOid === null || requestParameters.customerProfileOid === undefined) {
+            throw new runtime.RequiredError('customerProfileOid','Required parameter requestParameters.customerProfileOid was null or undefined when calling insertWishListItem.');
+        }
+
+        if (requestParameters.wishlistItem === null || requestParameters.wishlistItem === undefined) {
+            throw new runtime.RequiredError('wishlistItem','Required parameter requestParameters.wishlistItem was null or undefined when calling insertWishListItem.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json; charset=UTF-8';
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", ["customer_write"]);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/customer/customers/{customer_profile_oid}/wishlist`.replace(`{${"customer_profile_oid"}}`, encodeURIComponent(String(requestParameters.customerProfileOid))),
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: CustomerWishListItemToJSON(requestParameters.wishlistItem),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => CustomerWishListItemFromJSON(jsonValue));
+    }
+
+    /**
+     * Insert a customer wishlist item 
+     * Insert a customer wishlist item
+     */
+    async insertWishListItem(requestParameters: InsertWishListItemRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomerWishListItem> {
+        const response = await this.insertWishListItemRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
      * Merge customer into this customer. 
      * Merge customer into this customer
      */
@@ -1502,6 +1800,58 @@ export class CustomerApi extends runtime.BaseAPI implements CustomerApiInterface
      */
     async updateCustomerEmailLists(requestParameters: UpdateCustomerEmailListsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomerEmailListChanges> {
         const response = await this.updateCustomerEmailListsRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Update a customer wishlist item 
+     * Update a customer wishlist item
+     */
+    async updateWishListItemRaw(requestParameters: UpdateWishListItemRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CustomerWishListItem>> {
+        if (requestParameters.customerProfileOid === null || requestParameters.customerProfileOid === undefined) {
+            throw new runtime.RequiredError('customerProfileOid','Required parameter requestParameters.customerProfileOid was null or undefined when calling updateWishListItem.');
+        }
+
+        if (requestParameters.customerWishlistItemOid === null || requestParameters.customerWishlistItemOid === undefined) {
+            throw new runtime.RequiredError('customerWishlistItemOid','Required parameter requestParameters.customerWishlistItemOid was null or undefined when calling updateWishListItem.');
+        }
+
+        if (requestParameters.wishlistItem === null || requestParameters.wishlistItem === undefined) {
+            throw new runtime.RequiredError('wishlistItem','Required parameter requestParameters.wishlistItem was null or undefined when calling updateWishListItem.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json; charset=UTF-8';
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", ["customer_write"]);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/customer/customers/{customer_profile_oid}/wishlist/{customer_wishlist_item_oid}`.replace(`{${"customer_profile_oid"}}`, encodeURIComponent(String(requestParameters.customerProfileOid))).replace(`{${"customer_wishlist_item_oid"}}`, encodeURIComponent(String(requestParameters.customerWishlistItemOid))),
+            method: 'PUT',
+            headers: headerParameters,
+            query: queryParameters,
+            body: CustomerWishListItemToJSON(requestParameters.wishlistItem),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => CustomerWishListItemFromJSON(jsonValue));
+    }
+
+    /**
+     * Update a customer wishlist item 
+     * Update a customer wishlist item
+     */
+    async updateWishListItem(requestParameters: UpdateWishListItemRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomerWishListItem> {
+        const response = await this.updateWishListItemRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
