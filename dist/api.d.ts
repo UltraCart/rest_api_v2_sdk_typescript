@@ -13612,6 +13612,129 @@ export interface CustomerTaxCodes {
 /**
  *
  * @export
+ * @interface CustomerWishListItem
+ */
+export interface CustomerWishListItem {
+    /**
+     * Add date
+     * @type {string}
+     * @memberof CustomerWishListItem
+     */
+    add_dts?: string;
+    /**
+     * Comments
+     * @type {string}
+     * @memberof CustomerWishListItem
+     */
+    comments?: string;
+    /**
+     * Customer profile object identifier
+     * @type {number}
+     * @memberof CustomerWishListItem
+     */
+    customer_profile_oid?: number;
+    /**
+     * Customer wishlist item object identifier
+     * @type {number}
+     * @memberof CustomerWishListItem
+     */
+    customer_wishlist_item_oid?: number;
+    /**
+     * Merchant item object identifier
+     * @type {number}
+     * @memberof CustomerWishListItem
+     */
+    merchant_item_oid?: number;
+    /**
+     * Position in wishlist
+     * @type {number}
+     * @memberof CustomerWishListItem
+     */
+    position?: number;
+    /**
+     * Priority of wishlist item, 3 being low priority and 5 is high priority.
+     * @type {number}
+     * @memberof CustomerWishListItem
+     */
+    priority?: number;
+}
+/**
+ *
+ * @export
+ * @interface CustomerWishListItemResponse
+ */
+export interface CustomerWishListItemResponse {
+    /**
+     *
+     * @type {ModelError}
+     * @memberof CustomerWishListItemResponse
+     */
+    error?: ModelError;
+    /**
+     *
+     * @type {ResponseMetadata}
+     * @memberof CustomerWishListItemResponse
+     */
+    metadata?: ResponseMetadata;
+    /**
+     * Indicates if API call was successful
+     * @type {boolean}
+     * @memberof CustomerWishListItemResponse
+     */
+    success?: boolean;
+    /**
+     *
+     * @type {Warning}
+     * @memberof CustomerWishListItemResponse
+     */
+    warning?: Warning;
+    /**
+     *
+     * @type {CustomerWishListItem}
+     * @memberof CustomerWishListItemResponse
+     */
+    wishlist_item?: CustomerWishListItem;
+}
+/**
+ *
+ * @export
+ * @interface CustomerWishListItemsResponse
+ */
+export interface CustomerWishListItemsResponse {
+    /**
+     *
+     * @type {ModelError}
+     * @memberof CustomerWishListItemsResponse
+     */
+    error?: ModelError;
+    /**
+     *
+     * @type {ResponseMetadata}
+     * @memberof CustomerWishListItemsResponse
+     */
+    metadata?: ResponseMetadata;
+    /**
+     * Indicates if API call was successful
+     * @type {boolean}
+     * @memberof CustomerWishListItemsResponse
+     */
+    success?: boolean;
+    /**
+     *
+     * @type {Warning}
+     * @memberof CustomerWishListItemsResponse
+     */
+    warning?: Warning;
+    /**
+     *
+     * @type {Array<CustomerWishListItem>}
+     * @memberof CustomerWishListItemsResponse
+     */
+    wishlist_items?: Array<CustomerWishListItem>;
+}
+/**
+ *
+ * @export
  * @interface CustomersResponse
  */
 export interface CustomersResponse {
@@ -45759,6 +45882,15 @@ export declare const CustomerApiFetchParamCreator: (configuration?: Configuratio
      */
     deleteCustomer(customer_profile_oid: number, options?: any): FetchArgs;
     /**
+     * Delete a customer wishlist item
+     * @summary Delete a customer wishlist item
+     * @param {number} customer_profile_oid The customer oid for this wishlist.
+     * @param {number} customer_wishlist_item_oid The wishlist oid for this wishlist item to delete.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    deleteWishListItem(customer_profile_oid: number, customer_wishlist_item_oid: number, options?: any): FetchArgs;
+    /**
      * Retrieves a single customer using the specified customer profile oid.
      * @summary Retrieve a customer
      * @param {number} customer_profile_oid The customer oid to retrieve.
@@ -45798,6 +45930,23 @@ export declare const CustomerApiFetchParamCreator: (configuration?: Configuratio
      * @throws {RequiredError}
      */
     getCustomerStoreCredit(customer_profile_oid: number, options?: any): FetchArgs;
+    /**
+     * Retrieve wishlist items for customer.
+     * @summary Retrieve wishlist items for customer
+     * @param {number} customer_profile_oid The customer oid for this wishlist.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getCustomerWishList(customer_profile_oid: number, options?: any): FetchArgs;
+    /**
+     * Retrieve wishlist item for customer.
+     * @summary Retrieve wishlist item for customer
+     * @param {number} customer_profile_oid The customer oid for this wishlist.
+     * @param {number} customer_wishlist_item_oid The wishlist oid for this wishlist item.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getCustomerWishListItem(customer_profile_oid: number, customer_wishlist_item_oid: number, options?: any): FetchArgs;
     /**
      * Retrieves customers from the account.  If no parameters are specified, all customers will be returned.  You will need to make multiple API calls in order to retrieve the entire result set since this API performs result set pagination.
      * @summary Retrieve customers
@@ -45885,6 +46034,15 @@ export declare const CustomerApiFetchParamCreator: (configuration?: Configuratio
      */
     insertCustomer(customer: Customer, _expand?: string, options?: any): FetchArgs;
     /**
+     * Insert a customer wishlist item
+     * @summary Insert a customer wishlist item
+     * @param {CustomerWishListItem} wishlist_item Wishlist item to insert
+     * @param {number} customer_profile_oid The customer oid for this wishlist.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    insertWishListItem(wishlist_item: CustomerWishListItem, customer_profile_oid: number, options?: any): FetchArgs;
+    /**
      * Merge customer into this customer.
      * @summary Merge customer into this customer
      * @param {CustomerMergeRequest} customer Customer to merge into this profile.
@@ -45921,6 +46079,16 @@ export declare const CustomerApiFetchParamCreator: (configuration?: Configuratio
      * @throws {RequiredError}
      */
     updateCustomerEmailLists(customer_profile_oid: number, list_changes: CustomerEmailListChanges, options?: any): FetchArgs;
+    /**
+     * Update a customer wishlist item
+     * @summary Update a customer wishlist item
+     * @param {CustomerWishListItem} wishlist_item Wishlist item to update
+     * @param {number} customer_profile_oid The customer oid for this wishlist.
+     * @param {number} customer_wishlist_item_oid The wishlist oid for this wishlist item.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    updateWishListItem(wishlist_item: CustomerWishListItem, customer_profile_oid: number, customer_wishlist_item_oid: number, options?: any): FetchArgs;
     /**
      * Validate a token that can be used to verify a customer email address.  The implementation of how a customer interacts with this token is left to the merchant.
      * @summary Validate a token that can be used to verify a customer email address
@@ -45962,6 +46130,15 @@ export declare const CustomerApiFp: (configuration?: Configuration) => {
      */
     deleteCustomer(customer_profile_oid: number, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Response>;
     /**
+     * Delete a customer wishlist item
+     * @summary Delete a customer wishlist item
+     * @param {number} customer_profile_oid The customer oid for this wishlist.
+     * @param {number} customer_wishlist_item_oid The wishlist oid for this wishlist item to delete.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    deleteWishListItem(customer_profile_oid: number, customer_wishlist_item_oid: number, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<CustomerWishListItem>;
+    /**
      * Retrieves a single customer using the specified customer profile oid.
      * @summary Retrieve a customer
      * @param {number} customer_profile_oid The customer oid to retrieve.
@@ -46001,6 +46178,23 @@ export declare const CustomerApiFp: (configuration?: Configuration) => {
      * @throws {RequiredError}
      */
     getCustomerStoreCredit(customer_profile_oid: number, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<CustomerStoreCreditResponse>;
+    /**
+     * Retrieve wishlist items for customer.
+     * @summary Retrieve wishlist items for customer
+     * @param {number} customer_profile_oid The customer oid for this wishlist.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getCustomerWishList(customer_profile_oid: number, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<CustomerWishListItemsResponse>;
+    /**
+     * Retrieve wishlist item for customer.
+     * @summary Retrieve wishlist item for customer
+     * @param {number} customer_profile_oid The customer oid for this wishlist.
+     * @param {number} customer_wishlist_item_oid The wishlist oid for this wishlist item.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getCustomerWishListItem(customer_profile_oid: number, customer_wishlist_item_oid: number, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<CustomerWishListItemResponse>;
     /**
      * Retrieves customers from the account.  If no parameters are specified, all customers will be returned.  You will need to make multiple API calls in order to retrieve the entire result set since this API performs result set pagination.
      * @summary Retrieve customers
@@ -46088,6 +46282,15 @@ export declare const CustomerApiFp: (configuration?: Configuration) => {
      */
     insertCustomer(customer: Customer, _expand?: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<CustomerResponse>;
     /**
+     * Insert a customer wishlist item
+     * @summary Insert a customer wishlist item
+     * @param {CustomerWishListItem} wishlist_item Wishlist item to insert
+     * @param {number} customer_profile_oid The customer oid for this wishlist.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    insertWishListItem(wishlist_item: CustomerWishListItem, customer_profile_oid: number, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<CustomerWishListItem>;
+    /**
      * Merge customer into this customer.
      * @summary Merge customer into this customer
      * @param {CustomerMergeRequest} customer Customer to merge into this profile.
@@ -46124,6 +46327,16 @@ export declare const CustomerApiFp: (configuration?: Configuration) => {
      * @throws {RequiredError}
      */
     updateCustomerEmailLists(customer_profile_oid: number, list_changes: CustomerEmailListChanges, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<CustomerEmailListChanges>;
+    /**
+     * Update a customer wishlist item
+     * @summary Update a customer wishlist item
+     * @param {CustomerWishListItem} wishlist_item Wishlist item to update
+     * @param {number} customer_profile_oid The customer oid for this wishlist.
+     * @param {number} customer_wishlist_item_oid The wishlist oid for this wishlist item.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    updateWishListItem(wishlist_item: CustomerWishListItem, customer_profile_oid: number, customer_wishlist_item_oid: number, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<CustomerWishListItem>;
     /**
      * Validate a token that can be used to verify a customer email address.  The implementation of how a customer interacts with this token is left to the merchant.
      * @summary Validate a token that can be used to verify a customer email address
@@ -46165,6 +46378,15 @@ export declare const CustomerApiFactory: (configuration?: Configuration, fetch?:
      */
     deleteCustomer(customer_profile_oid: number, options?: any): Promise<Response>;
     /**
+     * Delete a customer wishlist item
+     * @summary Delete a customer wishlist item
+     * @param {number} customer_profile_oid The customer oid for this wishlist.
+     * @param {number} customer_wishlist_item_oid The wishlist oid for this wishlist item to delete.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    deleteWishListItem(customer_profile_oid: number, customer_wishlist_item_oid: number, options?: any): Promise<CustomerWishListItem>;
+    /**
      * Retrieves a single customer using the specified customer profile oid.
      * @summary Retrieve a customer
      * @param {number} customer_profile_oid The customer oid to retrieve.
@@ -46204,6 +46426,23 @@ export declare const CustomerApiFactory: (configuration?: Configuration, fetch?:
      * @throws {RequiredError}
      */
     getCustomerStoreCredit(customer_profile_oid: number, options?: any): Promise<CustomerStoreCreditResponse>;
+    /**
+     * Retrieve wishlist items for customer.
+     * @summary Retrieve wishlist items for customer
+     * @param {number} customer_profile_oid The customer oid for this wishlist.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getCustomerWishList(customer_profile_oid: number, options?: any): Promise<CustomerWishListItemsResponse>;
+    /**
+     * Retrieve wishlist item for customer.
+     * @summary Retrieve wishlist item for customer
+     * @param {number} customer_profile_oid The customer oid for this wishlist.
+     * @param {number} customer_wishlist_item_oid The wishlist oid for this wishlist item.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getCustomerWishListItem(customer_profile_oid: number, customer_wishlist_item_oid: number, options?: any): Promise<CustomerWishListItemResponse>;
     /**
      * Retrieves customers from the account.  If no parameters are specified, all customers will be returned.  You will need to make multiple API calls in order to retrieve the entire result set since this API performs result set pagination.
      * @summary Retrieve customers
@@ -46291,6 +46530,15 @@ export declare const CustomerApiFactory: (configuration?: Configuration, fetch?:
      */
     insertCustomer(customer: Customer, _expand?: string, options?: any): Promise<CustomerResponse>;
     /**
+     * Insert a customer wishlist item
+     * @summary Insert a customer wishlist item
+     * @param {CustomerWishListItem} wishlist_item Wishlist item to insert
+     * @param {number} customer_profile_oid The customer oid for this wishlist.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    insertWishListItem(wishlist_item: CustomerWishListItem, customer_profile_oid: number, options?: any): Promise<CustomerWishListItem>;
+    /**
      * Merge customer into this customer.
      * @summary Merge customer into this customer
      * @param {CustomerMergeRequest} customer Customer to merge into this profile.
@@ -46327,6 +46575,16 @@ export declare const CustomerApiFactory: (configuration?: Configuration, fetch?:
      * @throws {RequiredError}
      */
     updateCustomerEmailLists(customer_profile_oid: number, list_changes: CustomerEmailListChanges, options?: any): Promise<CustomerEmailListChanges>;
+    /**
+     * Update a customer wishlist item
+     * @summary Update a customer wishlist item
+     * @param {CustomerWishListItem} wishlist_item Wishlist item to update
+     * @param {number} customer_profile_oid The customer oid for this wishlist.
+     * @param {number} customer_wishlist_item_oid The wishlist oid for this wishlist item.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    updateWishListItem(wishlist_item: CustomerWishListItem, customer_profile_oid: number, customer_wishlist_item_oid: number, options?: any): Promise<CustomerWishListItem>;
     /**
      * Validate a token that can be used to verify a customer email address.  The implementation of how a customer interacts with this token is left to the merchant.
      * @summary Validate a token that can be used to verify a customer email address
@@ -46372,6 +46630,16 @@ export interface CustomerApiInterface {
      */
     deleteCustomer(customer_profile_oid: number, options?: any): Promise<{}>;
     /**
+     * Delete a customer wishlist item
+     * @summary Delete a customer wishlist item
+     * @param {number} customer_profile_oid The customer oid for this wishlist.
+     * @param {number} customer_wishlist_item_oid The wishlist oid for this wishlist item to delete.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof CustomerApiInterface
+     */
+    deleteWishListItem(customer_profile_oid: number, customer_wishlist_item_oid: number, options?: any): Promise<CustomerWishListItem>;
+    /**
      * Retrieves a single customer using the specified customer profile oid.
      * @summary Retrieve a customer
      * @param {number} customer_profile_oid The customer oid to retrieve.
@@ -46416,6 +46684,25 @@ export interface CustomerApiInterface {
      * @memberof CustomerApiInterface
      */
     getCustomerStoreCredit(customer_profile_oid: number, options?: any): Promise<CustomerStoreCreditResponse>;
+    /**
+     * Retrieve wishlist items for customer.
+     * @summary Retrieve wishlist items for customer
+     * @param {number} customer_profile_oid The customer oid for this wishlist.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof CustomerApiInterface
+     */
+    getCustomerWishList(customer_profile_oid: number, options?: any): Promise<CustomerWishListItemsResponse>;
+    /**
+     * Retrieve wishlist item for customer.
+     * @summary Retrieve wishlist item for customer
+     * @param {number} customer_profile_oid The customer oid for this wishlist.
+     * @param {number} customer_wishlist_item_oid The wishlist oid for this wishlist item.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof CustomerApiInterface
+     */
+    getCustomerWishListItem(customer_profile_oid: number, customer_wishlist_item_oid: number, options?: any): Promise<CustomerWishListItemResponse>;
     /**
      * Retrieves customers from the account.  If no parameters are specified, all customers will be returned.  You will need to make multiple API calls in order to retrieve the entire result set since this API performs result set pagination.
      * @summary Retrieve customers
@@ -46509,6 +46796,16 @@ export interface CustomerApiInterface {
      */
     insertCustomer(customer: Customer, _expand?: string, options?: any): Promise<CustomerResponse>;
     /**
+     * Insert a customer wishlist item
+     * @summary Insert a customer wishlist item
+     * @param {CustomerWishListItem} wishlist_item Wishlist item to insert
+     * @param {number} customer_profile_oid The customer oid for this wishlist.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof CustomerApiInterface
+     */
+    insertWishListItem(wishlist_item: CustomerWishListItem, customer_profile_oid: number, options?: any): Promise<CustomerWishListItem>;
+    /**
      * Merge customer into this customer.
      * @summary Merge customer into this customer
      * @param {CustomerMergeRequest} customer Customer to merge into this profile.
@@ -46549,6 +46846,17 @@ export interface CustomerApiInterface {
      * @memberof CustomerApiInterface
      */
     updateCustomerEmailLists(customer_profile_oid: number, list_changes: CustomerEmailListChanges, options?: any): Promise<CustomerEmailListChanges>;
+    /**
+     * Update a customer wishlist item
+     * @summary Update a customer wishlist item
+     * @param {CustomerWishListItem} wishlist_item Wishlist item to update
+     * @param {number} customer_profile_oid The customer oid for this wishlist.
+     * @param {number} customer_wishlist_item_oid The wishlist oid for this wishlist item.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof CustomerApiInterface
+     */
+    updateWishListItem(wishlist_item: CustomerWishListItem, customer_profile_oid: number, customer_wishlist_item_oid: number, options?: any): Promise<CustomerWishListItem>;
     /**
      * Validate a token that can be used to verify a customer email address.  The implementation of how a customer interacts with this token is left to the merchant.
      * @summary Validate a token that can be used to verify a customer email address
@@ -46596,6 +46904,16 @@ export declare class CustomerApi extends BaseAPI implements CustomerApiInterface
      */
     deleteCustomer(customer_profile_oid: number, options?: any): Promise<Response>;
     /**
+     * Delete a customer wishlist item
+     * @summary Delete a customer wishlist item
+     * @param {number} customer_profile_oid The customer oid for this wishlist.
+     * @param {number} customer_wishlist_item_oid The wishlist oid for this wishlist item to delete.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof CustomerApi
+     */
+    deleteWishListItem(customer_profile_oid: number, customer_wishlist_item_oid: number, options?: any): Promise<CustomerWishListItem>;
+    /**
      * Retrieves a single customer using the specified customer profile oid.
      * @summary Retrieve a customer
      * @param {number} customer_profile_oid The customer oid to retrieve.
@@ -46640,6 +46958,25 @@ export declare class CustomerApi extends BaseAPI implements CustomerApiInterface
      * @memberof CustomerApi
      */
     getCustomerStoreCredit(customer_profile_oid: number, options?: any): Promise<CustomerStoreCreditResponse>;
+    /**
+     * Retrieve wishlist items for customer.
+     * @summary Retrieve wishlist items for customer
+     * @param {number} customer_profile_oid The customer oid for this wishlist.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof CustomerApi
+     */
+    getCustomerWishList(customer_profile_oid: number, options?: any): Promise<CustomerWishListItemsResponse>;
+    /**
+     * Retrieve wishlist item for customer.
+     * @summary Retrieve wishlist item for customer
+     * @param {number} customer_profile_oid The customer oid for this wishlist.
+     * @param {number} customer_wishlist_item_oid The wishlist oid for this wishlist item.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof CustomerApi
+     */
+    getCustomerWishListItem(customer_profile_oid: number, customer_wishlist_item_oid: number, options?: any): Promise<CustomerWishListItemResponse>;
     /**
      * Retrieves customers from the account.  If no parameters are specified, all customers will be returned.  You will need to make multiple API calls in order to retrieve the entire result set since this API performs result set pagination.
      * @summary Retrieve customers
@@ -46733,6 +47070,16 @@ export declare class CustomerApi extends BaseAPI implements CustomerApiInterface
      */
     insertCustomer(customer: Customer, _expand?: string, options?: any): Promise<CustomerResponse>;
     /**
+     * Insert a customer wishlist item
+     * @summary Insert a customer wishlist item
+     * @param {CustomerWishListItem} wishlist_item Wishlist item to insert
+     * @param {number} customer_profile_oid The customer oid for this wishlist.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof CustomerApi
+     */
+    insertWishListItem(wishlist_item: CustomerWishListItem, customer_profile_oid: number, options?: any): Promise<CustomerWishListItem>;
+    /**
      * Merge customer into this customer.
      * @summary Merge customer into this customer
      * @param {CustomerMergeRequest} customer Customer to merge into this profile.
@@ -46773,6 +47120,17 @@ export declare class CustomerApi extends BaseAPI implements CustomerApiInterface
      * @memberof CustomerApi
      */
     updateCustomerEmailLists(customer_profile_oid: number, list_changes: CustomerEmailListChanges, options?: any): Promise<CustomerEmailListChanges>;
+    /**
+     * Update a customer wishlist item
+     * @summary Update a customer wishlist item
+     * @param {CustomerWishListItem} wishlist_item Wishlist item to update
+     * @param {number} customer_profile_oid The customer oid for this wishlist.
+     * @param {number} customer_wishlist_item_oid The wishlist oid for this wishlist item.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof CustomerApi
+     */
+    updateWishListItem(wishlist_item: CustomerWishListItem, customer_profile_oid: number, customer_wishlist_item_oid: number, options?: any): Promise<CustomerWishListItem>;
     /**
      * Validate a token that can be used to verify a customer email address.  The implementation of how a customer interacts with this token is left to the merchant.
      * @summary Validate a token that can be used to verify a customer email address

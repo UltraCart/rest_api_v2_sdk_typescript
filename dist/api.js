@@ -11931,6 +11931,58 @@ var CustomerApiFetchParamCreator = function (configuration) {
             };
         },
         /**
+         * Delete a customer wishlist item
+         * @summary Delete a customer wishlist item
+         * @param {number} customer_profile_oid The customer oid for this wishlist.
+         * @param {number} customer_wishlist_item_oid The wishlist oid for this wishlist item to delete.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        deleteWishListItem: function (customer_profile_oid, customer_wishlist_item_oid, options) {
+            if (options === void 0) { options = {}; }
+            // verify required parameter 'customer_profile_oid' is not null or undefined
+            if (customer_profile_oid === null || customer_profile_oid === undefined) {
+                throw new RequiredError('customer_profile_oid', 'Required parameter customer_profile_oid was null or undefined when calling deleteWishListItem.');
+            }
+            // verify required parameter 'customer_wishlist_item_oid' is not null or undefined
+            if (customer_wishlist_item_oid === null || customer_wishlist_item_oid === undefined) {
+                throw new RequiredError('customer_wishlist_item_oid', 'Required parameter customer_wishlist_item_oid was null or undefined when calling deleteWishListItem.');
+            }
+            var localVarPath = "/customer/customers/{customer_profile_oid}/wishlist/{customer_wishlist_item_oid}"
+                .replace("{".concat("customer_profile_oid", "}"), encodeURIComponent(String(customer_profile_oid)))
+                .replace("{".concat("customer_wishlist_item_oid", "}"), encodeURIComponent(String(customer_wishlist_item_oid)));
+            var localVarUrlObj = url.parse(localVarPath, true);
+            var localVarRequestOptions = Object.assign({ method: 'DELETE' }, options);
+            var localVarHeaderParameter = {};
+            var localVarQueryParameter = {};
+            if (configuration && configuration.apiVersion) {
+                localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+            }
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+                var localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+                    ? configuration.accessToken("ultraCartOauth", ["customer_write"])
+                    : configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                var localVarApiKeyValue = typeof configuration.apiKey === 'function'
+                    ? configuration.apiKey("x-ultracart-simple-key")
+                    : configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
          * Retrieves a single customer using the specified customer profile oid.
          * @summary Retrieve a customer
          * @param {number} customer_profile_oid The customer oid to retrieve.
@@ -12125,6 +12177,104 @@ var CustomerApiFetchParamCreator = function (configuration) {
             }
             var localVarPath = "/customer/customers/{customer_profile_oid}/store_credit"
                 .replace("{".concat("customer_profile_oid", "}"), encodeURIComponent(String(customer_profile_oid)));
+            var localVarUrlObj = url.parse(localVarPath, true);
+            var localVarRequestOptions = Object.assign({ method: 'GET' }, options);
+            var localVarHeaderParameter = {};
+            var localVarQueryParameter = {};
+            if (configuration && configuration.apiVersion) {
+                localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+            }
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+                var localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+                    ? configuration.accessToken("ultraCartOauth", ["customer_read"])
+                    : configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                var localVarApiKeyValue = typeof configuration.apiKey === 'function'
+                    ? configuration.apiKey("x-ultracart-simple-key")
+                    : configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Retrieve wishlist items for customer.
+         * @summary Retrieve wishlist items for customer
+         * @param {number} customer_profile_oid The customer oid for this wishlist.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getCustomerWishList: function (customer_profile_oid, options) {
+            if (options === void 0) { options = {}; }
+            // verify required parameter 'customer_profile_oid' is not null or undefined
+            if (customer_profile_oid === null || customer_profile_oid === undefined) {
+                throw new RequiredError('customer_profile_oid', 'Required parameter customer_profile_oid was null or undefined when calling getCustomerWishList.');
+            }
+            var localVarPath = "/customer/customers/{customer_profile_oid}/wishlist"
+                .replace("{".concat("customer_profile_oid", "}"), encodeURIComponent(String(customer_profile_oid)));
+            var localVarUrlObj = url.parse(localVarPath, true);
+            var localVarRequestOptions = Object.assign({ method: 'GET' }, options);
+            var localVarHeaderParameter = {};
+            var localVarQueryParameter = {};
+            if (configuration && configuration.apiVersion) {
+                localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+            }
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+                var localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+                    ? configuration.accessToken("ultraCartOauth", ["customer_read"])
+                    : configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                var localVarApiKeyValue = typeof configuration.apiKey === 'function'
+                    ? configuration.apiKey("x-ultracart-simple-key")
+                    : configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Retrieve wishlist item for customer.
+         * @summary Retrieve wishlist item for customer
+         * @param {number} customer_profile_oid The customer oid for this wishlist.
+         * @param {number} customer_wishlist_item_oid The wishlist oid for this wishlist item.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getCustomerWishListItem: function (customer_profile_oid, customer_wishlist_item_oid, options) {
+            if (options === void 0) { options = {}; }
+            // verify required parameter 'customer_profile_oid' is not null or undefined
+            if (customer_profile_oid === null || customer_profile_oid === undefined) {
+                throw new RequiredError('customer_profile_oid', 'Required parameter customer_profile_oid was null or undefined when calling getCustomerWishListItem.');
+            }
+            // verify required parameter 'customer_wishlist_item_oid' is not null or undefined
+            if (customer_wishlist_item_oid === null || customer_wishlist_item_oid === undefined) {
+                throw new RequiredError('customer_wishlist_item_oid', 'Required parameter customer_wishlist_item_oid was null or undefined when calling getCustomerWishListItem.');
+            }
+            var localVarPath = "/customer/customers/{customer_profile_oid}/wishlist/{customer_wishlist_item_oid}"
+                .replace("{".concat("customer_profile_oid", "}"), encodeURIComponent(String(customer_profile_oid)))
+                .replace("{".concat("customer_wishlist_item_oid", "}"), encodeURIComponent(String(customer_wishlist_item_oid)));
             var localVarUrlObj = url.parse(localVarPath, true);
             var localVarRequestOptions = Object.assign({ method: 'GET' }, options);
             var localVarHeaderParameter = {};
@@ -12589,6 +12739,60 @@ var CustomerApiFetchParamCreator = function (configuration) {
             };
         },
         /**
+         * Insert a customer wishlist item
+         * @summary Insert a customer wishlist item
+         * @param {CustomerWishListItem} wishlist_item Wishlist item to insert
+         * @param {number} customer_profile_oid The customer oid for this wishlist.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        insertWishListItem: function (wishlist_item, customer_profile_oid, options) {
+            if (options === void 0) { options = {}; }
+            // verify required parameter 'wishlist_item' is not null or undefined
+            if (wishlist_item === null || wishlist_item === undefined) {
+                throw new RequiredError('wishlist_item', 'Required parameter wishlist_item was null or undefined when calling insertWishListItem.');
+            }
+            // verify required parameter 'customer_profile_oid' is not null or undefined
+            if (customer_profile_oid === null || customer_profile_oid === undefined) {
+                throw new RequiredError('customer_profile_oid', 'Required parameter customer_profile_oid was null or undefined when calling insertWishListItem.');
+            }
+            var localVarPath = "/customer/customers/{customer_profile_oid}/wishlist"
+                .replace("{".concat("customer_profile_oid", "}"), encodeURIComponent(String(customer_profile_oid)));
+            var localVarUrlObj = url.parse(localVarPath, true);
+            var localVarRequestOptions = Object.assign({ method: 'POST' }, options);
+            var localVarHeaderParameter = {};
+            var localVarQueryParameter = {};
+            if (configuration && configuration.apiVersion) {
+                localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+            }
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+                var localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+                    ? configuration.accessToken("ultraCartOauth", ["customer_write"])
+                    : configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                var localVarApiKeyValue = typeof configuration.apiKey === 'function'
+                    ? configuration.apiKey("x-ultracart-simple-key")
+                    : configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+            localVarHeaderParameter['Content-Type'] = 'application/json; charset=UTF-8';
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+            var needsSerialization = ("CustomerWishListItem" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
+            localVarRequestOptions.body = needsSerialization ? JSON.stringify(wishlist_item || {}) : (wishlist_item || "");
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
          * Merge customer into this customer.
          * @summary Merge customer into this customer
          * @param {CustomerMergeRequest} customer Customer to merge into this profile.
@@ -12814,6 +13018,66 @@ var CustomerApiFetchParamCreator = function (configuration) {
             };
         },
         /**
+         * Update a customer wishlist item
+         * @summary Update a customer wishlist item
+         * @param {CustomerWishListItem} wishlist_item Wishlist item to update
+         * @param {number} customer_profile_oid The customer oid for this wishlist.
+         * @param {number} customer_wishlist_item_oid The wishlist oid for this wishlist item.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        updateWishListItem: function (wishlist_item, customer_profile_oid, customer_wishlist_item_oid, options) {
+            if (options === void 0) { options = {}; }
+            // verify required parameter 'wishlist_item' is not null or undefined
+            if (wishlist_item === null || wishlist_item === undefined) {
+                throw new RequiredError('wishlist_item', 'Required parameter wishlist_item was null or undefined when calling updateWishListItem.');
+            }
+            // verify required parameter 'customer_profile_oid' is not null or undefined
+            if (customer_profile_oid === null || customer_profile_oid === undefined) {
+                throw new RequiredError('customer_profile_oid', 'Required parameter customer_profile_oid was null or undefined when calling updateWishListItem.');
+            }
+            // verify required parameter 'customer_wishlist_item_oid' is not null or undefined
+            if (customer_wishlist_item_oid === null || customer_wishlist_item_oid === undefined) {
+                throw new RequiredError('customer_wishlist_item_oid', 'Required parameter customer_wishlist_item_oid was null or undefined when calling updateWishListItem.');
+            }
+            var localVarPath = "/customer/customers/{customer_profile_oid}/wishlist/{customer_wishlist_item_oid}"
+                .replace("{".concat("customer_profile_oid", "}"), encodeURIComponent(String(customer_profile_oid)))
+                .replace("{".concat("customer_wishlist_item_oid", "}"), encodeURIComponent(String(customer_wishlist_item_oid)));
+            var localVarUrlObj = url.parse(localVarPath, true);
+            var localVarRequestOptions = Object.assign({ method: 'PUT' }, options);
+            var localVarHeaderParameter = {};
+            var localVarQueryParameter = {};
+            if (configuration && configuration.apiVersion) {
+                localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+            }
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+                var localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+                    ? configuration.accessToken("ultraCartOauth", ["customer_write"])
+                    : configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                var localVarApiKeyValue = typeof configuration.apiKey === 'function'
+                    ? configuration.apiKey("x-ultracart-simple-key")
+                    : configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+            localVarHeaderParameter['Content-Type'] = 'application/json; charset=UTF-8';
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+            var needsSerialization = ("CustomerWishListItem" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
+            localVarRequestOptions.body = needsSerialization ? JSON.stringify(wishlist_item || {}) : (wishlist_item || "");
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
          * Validate a token that can be used to verify a customer email address.  The implementation of how a customer interacts with this token is left to the merchant.
          * @summary Validate a token that can be used to verify a customer email address
          * @param {EmailVerifyTokenValidateRequest} validation_request Token validation request
@@ -12939,6 +13203,29 @@ var CustomerApiFp = function (configuration) {
             };
         },
         /**
+         * Delete a customer wishlist item
+         * @summary Delete a customer wishlist item
+         * @param {number} customer_profile_oid The customer oid for this wishlist.
+         * @param {number} customer_wishlist_item_oid The wishlist oid for this wishlist item to delete.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        deleteWishListItem: function (customer_profile_oid, customer_wishlist_item_oid, options) {
+            var localVarFetchArgs = (0, exports.CustomerApiFetchParamCreator)(configuration).deleteWishListItem(customer_profile_oid, customer_wishlist_item_oid, options);
+            return function (fetch, basePath) {
+                if (fetch === void 0) { fetch = portableFetch; }
+                if (basePath === void 0) { basePath = BASE_PATH; }
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(function (response) {
+                    if (response.status >= 200 && response.status < 300) {
+                        return response.json();
+                    }
+                    else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
          * Retrieves a single customer using the specified customer profile oid.
          * @summary Retrieve a customer
          * @param {number} customer_profile_oid The customer oid to retrieve.
@@ -13035,6 +13322,51 @@ var CustomerApiFp = function (configuration) {
          */
         getCustomerStoreCredit: function (customer_profile_oid, options) {
             var localVarFetchArgs = (0, exports.CustomerApiFetchParamCreator)(configuration).getCustomerStoreCredit(customer_profile_oid, options);
+            return function (fetch, basePath) {
+                if (fetch === void 0) { fetch = portableFetch; }
+                if (basePath === void 0) { basePath = BASE_PATH; }
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(function (response) {
+                    if (response.status >= 200 && response.status < 300) {
+                        return response.json();
+                    }
+                    else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
+         * Retrieve wishlist items for customer.
+         * @summary Retrieve wishlist items for customer
+         * @param {number} customer_profile_oid The customer oid for this wishlist.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getCustomerWishList: function (customer_profile_oid, options) {
+            var localVarFetchArgs = (0, exports.CustomerApiFetchParamCreator)(configuration).getCustomerWishList(customer_profile_oid, options);
+            return function (fetch, basePath) {
+                if (fetch === void 0) { fetch = portableFetch; }
+                if (basePath === void 0) { basePath = BASE_PATH; }
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(function (response) {
+                    if (response.status >= 200 && response.status < 300) {
+                        return response.json();
+                    }
+                    else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
+         * Retrieve wishlist item for customer.
+         * @summary Retrieve wishlist item for customer
+         * @param {number} customer_profile_oid The customer oid for this wishlist.
+         * @param {number} customer_wishlist_item_oid The wishlist oid for this wishlist item.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getCustomerWishListItem: function (customer_profile_oid, customer_wishlist_item_oid, options) {
+            var localVarFetchArgs = (0, exports.CustomerApiFetchParamCreator)(configuration).getCustomerWishListItem(customer_profile_oid, customer_wishlist_item_oid, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -13219,6 +13551,29 @@ var CustomerApiFp = function (configuration) {
             };
         },
         /**
+         * Insert a customer wishlist item
+         * @summary Insert a customer wishlist item
+         * @param {CustomerWishListItem} wishlist_item Wishlist item to insert
+         * @param {number} customer_profile_oid The customer oid for this wishlist.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        insertWishListItem: function (wishlist_item, customer_profile_oid, options) {
+            var localVarFetchArgs = (0, exports.CustomerApiFetchParamCreator)(configuration).insertWishListItem(wishlist_item, customer_profile_oid, options);
+            return function (fetch, basePath) {
+                if (fetch === void 0) { fetch = portableFetch; }
+                if (basePath === void 0) { basePath = BASE_PATH; }
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(function (response) {
+                    if (response.status >= 200 && response.status < 300) {
+                        return response.json();
+                    }
+                    else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
          * Merge customer into this customer.
          * @summary Merge customer into this customer
          * @param {CustomerMergeRequest} customer Customer to merge into this profile.
@@ -13312,6 +13667,30 @@ var CustomerApiFp = function (configuration) {
             };
         },
         /**
+         * Update a customer wishlist item
+         * @summary Update a customer wishlist item
+         * @param {CustomerWishListItem} wishlist_item Wishlist item to update
+         * @param {number} customer_profile_oid The customer oid for this wishlist.
+         * @param {number} customer_wishlist_item_oid The wishlist oid for this wishlist item.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        updateWishListItem: function (wishlist_item, customer_profile_oid, customer_wishlist_item_oid, options) {
+            var localVarFetchArgs = (0, exports.CustomerApiFetchParamCreator)(configuration).updateWishListItem(wishlist_item, customer_profile_oid, customer_wishlist_item_oid, options);
+            return function (fetch, basePath) {
+                if (fetch === void 0) { fetch = portableFetch; }
+                if (basePath === void 0) { basePath = BASE_PATH; }
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(function (response) {
+                    if (response.status >= 200 && response.status < 300) {
+                        return response.json();
+                    }
+                    else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
          * Validate a token that can be used to verify a customer email address.  The implementation of how a customer interacts with this token is left to the merchant.
          * @summary Validate a token that can be used to verify a customer email address
          * @param {EmailVerifyTokenValidateRequest} validation_request Token validation request
@@ -13375,6 +13754,17 @@ var CustomerApiFactory = function (configuration, fetch, basePath) {
             return (0, exports.CustomerApiFp)(configuration).deleteCustomer(customer_profile_oid, options)(fetch, basePath);
         },
         /**
+         * Delete a customer wishlist item
+         * @summary Delete a customer wishlist item
+         * @param {number} customer_profile_oid The customer oid for this wishlist.
+         * @param {number} customer_wishlist_item_oid The wishlist oid for this wishlist item to delete.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        deleteWishListItem: function (customer_profile_oid, customer_wishlist_item_oid, options) {
+            return (0, exports.CustomerApiFp)(configuration).deleteWishListItem(customer_profile_oid, customer_wishlist_item_oid, options)(fetch, basePath);
+        },
+        /**
          * Retrieves a single customer using the specified customer profile oid.
          * @summary Retrieve a customer
          * @param {number} customer_profile_oid The customer oid to retrieve.
@@ -13423,6 +13813,27 @@ var CustomerApiFactory = function (configuration, fetch, basePath) {
          */
         getCustomerStoreCredit: function (customer_profile_oid, options) {
             return (0, exports.CustomerApiFp)(configuration).getCustomerStoreCredit(customer_profile_oid, options)(fetch, basePath);
+        },
+        /**
+         * Retrieve wishlist items for customer.
+         * @summary Retrieve wishlist items for customer
+         * @param {number} customer_profile_oid The customer oid for this wishlist.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getCustomerWishList: function (customer_profile_oid, options) {
+            return (0, exports.CustomerApiFp)(configuration).getCustomerWishList(customer_profile_oid, options)(fetch, basePath);
+        },
+        /**
+         * Retrieve wishlist item for customer.
+         * @summary Retrieve wishlist item for customer
+         * @param {number} customer_profile_oid The customer oid for this wishlist.
+         * @param {number} customer_wishlist_item_oid The wishlist oid for this wishlist item.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getCustomerWishListItem: function (customer_profile_oid, customer_wishlist_item_oid, options) {
+            return (0, exports.CustomerApiFp)(configuration).getCustomerWishListItem(customer_profile_oid, customer_wishlist_item_oid, options)(fetch, basePath);
         },
         /**
          * Retrieves customers from the account.  If no parameters are specified, all customers will be returned.  You will need to make multiple API calls in order to retrieve the entire result set since this API performs result set pagination.
@@ -13523,6 +13934,17 @@ var CustomerApiFactory = function (configuration, fetch, basePath) {
             return (0, exports.CustomerApiFp)(configuration).insertCustomer(customer, _expand, options)(fetch, basePath);
         },
         /**
+         * Insert a customer wishlist item
+         * @summary Insert a customer wishlist item
+         * @param {CustomerWishListItem} wishlist_item Wishlist item to insert
+         * @param {number} customer_profile_oid The customer oid for this wishlist.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        insertWishListItem: function (wishlist_item, customer_profile_oid, options) {
+            return (0, exports.CustomerApiFp)(configuration).insertWishListItem(wishlist_item, customer_profile_oid, options)(fetch, basePath);
+        },
+        /**
          * Merge customer into this customer.
          * @summary Merge customer into this customer
          * @param {CustomerMergeRequest} customer Customer to merge into this profile.
@@ -13566,6 +13988,18 @@ var CustomerApiFactory = function (configuration, fetch, basePath) {
          */
         updateCustomerEmailLists: function (customer_profile_oid, list_changes, options) {
             return (0, exports.CustomerApiFp)(configuration).updateCustomerEmailLists(customer_profile_oid, list_changes, options)(fetch, basePath);
+        },
+        /**
+         * Update a customer wishlist item
+         * @summary Update a customer wishlist item
+         * @param {CustomerWishListItem} wishlist_item Wishlist item to update
+         * @param {number} customer_profile_oid The customer oid for this wishlist.
+         * @param {number} customer_wishlist_item_oid The wishlist oid for this wishlist item.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        updateWishListItem: function (wishlist_item, customer_profile_oid, customer_wishlist_item_oid, options) {
+            return (0, exports.CustomerApiFp)(configuration).updateWishListItem(wishlist_item, customer_profile_oid, customer_wishlist_item_oid, options)(fetch, basePath);
         },
         /**
          * Validate a token that can be used to verify a customer email address.  The implementation of how a customer interacts with this token is left to the merchant.
@@ -13627,6 +14061,18 @@ var CustomerApi = /** @class */ (function (_super) {
         return (0, exports.CustomerApiFp)(this.configuration).deleteCustomer(customer_profile_oid, options)(this.fetch, this.basePath);
     };
     /**
+     * Delete a customer wishlist item
+     * @summary Delete a customer wishlist item
+     * @param {number} customer_profile_oid The customer oid for this wishlist.
+     * @param {number} customer_wishlist_item_oid The wishlist oid for this wishlist item to delete.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof CustomerApi
+     */
+    CustomerApi.prototype.deleteWishListItem = function (customer_profile_oid, customer_wishlist_item_oid, options) {
+        return (0, exports.CustomerApiFp)(this.configuration).deleteWishListItem(customer_profile_oid, customer_wishlist_item_oid, options)(this.fetch, this.basePath);
+    };
+    /**
      * Retrieves a single customer using the specified customer profile oid.
      * @summary Retrieve a customer
      * @param {number} customer_profile_oid The customer oid to retrieve.
@@ -13680,6 +14126,29 @@ var CustomerApi = /** @class */ (function (_super) {
      */
     CustomerApi.prototype.getCustomerStoreCredit = function (customer_profile_oid, options) {
         return (0, exports.CustomerApiFp)(this.configuration).getCustomerStoreCredit(customer_profile_oid, options)(this.fetch, this.basePath);
+    };
+    /**
+     * Retrieve wishlist items for customer.
+     * @summary Retrieve wishlist items for customer
+     * @param {number} customer_profile_oid The customer oid for this wishlist.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof CustomerApi
+     */
+    CustomerApi.prototype.getCustomerWishList = function (customer_profile_oid, options) {
+        return (0, exports.CustomerApiFp)(this.configuration).getCustomerWishList(customer_profile_oid, options)(this.fetch, this.basePath);
+    };
+    /**
+     * Retrieve wishlist item for customer.
+     * @summary Retrieve wishlist item for customer
+     * @param {number} customer_profile_oid The customer oid for this wishlist.
+     * @param {number} customer_wishlist_item_oid The wishlist oid for this wishlist item.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof CustomerApi
+     */
+    CustomerApi.prototype.getCustomerWishListItem = function (customer_profile_oid, customer_wishlist_item_oid, options) {
+        return (0, exports.CustomerApiFp)(this.configuration).getCustomerWishListItem(customer_profile_oid, customer_wishlist_item_oid, options)(this.fetch, this.basePath);
     };
     /**
      * Retrieves customers from the account.  If no parameters are specified, all customers will be returned.  You will need to make multiple API calls in order to retrieve the entire result set since this API performs result set pagination.
@@ -13786,6 +14255,18 @@ var CustomerApi = /** @class */ (function (_super) {
         return (0, exports.CustomerApiFp)(this.configuration).insertCustomer(customer, _expand, options)(this.fetch, this.basePath);
     };
     /**
+     * Insert a customer wishlist item
+     * @summary Insert a customer wishlist item
+     * @param {CustomerWishListItem} wishlist_item Wishlist item to insert
+     * @param {number} customer_profile_oid The customer oid for this wishlist.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof CustomerApi
+     */
+    CustomerApi.prototype.insertWishListItem = function (wishlist_item, customer_profile_oid, options) {
+        return (0, exports.CustomerApiFp)(this.configuration).insertWishListItem(wishlist_item, customer_profile_oid, options)(this.fetch, this.basePath);
+    };
+    /**
      * Merge customer into this customer.
      * @summary Merge customer into this customer
      * @param {CustomerMergeRequest} customer Customer to merge into this profile.
@@ -13833,6 +14314,19 @@ var CustomerApi = /** @class */ (function (_super) {
      */
     CustomerApi.prototype.updateCustomerEmailLists = function (customer_profile_oid, list_changes, options) {
         return (0, exports.CustomerApiFp)(this.configuration).updateCustomerEmailLists(customer_profile_oid, list_changes, options)(this.fetch, this.basePath);
+    };
+    /**
+     * Update a customer wishlist item
+     * @summary Update a customer wishlist item
+     * @param {CustomerWishListItem} wishlist_item Wishlist item to update
+     * @param {number} customer_profile_oid The customer oid for this wishlist.
+     * @param {number} customer_wishlist_item_oid The wishlist oid for this wishlist item.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof CustomerApi
+     */
+    CustomerApi.prototype.updateWishListItem = function (wishlist_item, customer_profile_oid, customer_wishlist_item_oid, options) {
+        return (0, exports.CustomerApiFp)(this.configuration).updateWishListItem(wishlist_item, customer_profile_oid, customer_wishlist_item_oid, options)(this.fetch, this.basePath);
     };
     /**
      * Validate a token that can be used to verify a customer email address.  The implementation of how a customer interacts with this token is left to the merchant.
