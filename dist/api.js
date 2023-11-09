@@ -787,6 +787,7 @@ var ItemAutoOrderStep;
         TypeEnum[TypeEnum["Pause"] = 'pause'] = "Pause";
         TypeEnum[TypeEnum["Loop"] = 'loop'] = "Loop";
         TypeEnum[TypeEnum["KitOnly"] = 'kit only'] = "KitOnly";
+        TypeEnum[TypeEnum["PauseUntil"] = 'pause until'] = "PauseUntil";
     })(TypeEnum = ItemAutoOrderStep.TypeEnum || (ItemAutoOrderStep.TypeEnum = {}));
 })(ItemAutoOrderStep = exports.ItemAutoOrderStep || (exports.ItemAutoOrderStep = {}));
 /**

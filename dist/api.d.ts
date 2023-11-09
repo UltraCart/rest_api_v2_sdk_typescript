@@ -22952,6 +22952,18 @@ export interface ItemAutoOrderStep {
      */
     pause_until_date?: string;
     /**
+     * Pause until a specific day of the month
+     * @type {number}
+     * @memberof ItemAutoOrderStep
+     */
+    pause_until_day_of_month?: number;
+    /**
+     * Pause at least this many days between the last order and the calculated next day of month
+     * @type {number}
+     * @memberof ItemAutoOrderStep
+     */
+    pause_until_minimum_delay_days?: number;
+    /**
      * If set, a pre-shipment notice is sent to the customer this many days in advance
      * @type {number}
      * @memberof ItemAutoOrderStep
@@ -23013,7 +23025,8 @@ export declare namespace ItemAutoOrderStep {
         Item,
         Pause,
         Loop,
-        KitOnly
+        KitOnly,
+        PauseUntil
     }
 }
 /**
