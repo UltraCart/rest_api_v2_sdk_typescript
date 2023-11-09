@@ -75,6 +75,18 @@ export interface ItemAutoOrderStep {
      */
     pause_until_date?: string;
     /**
+     * Pause until a specific day of the month
+     * @type {number}
+     * @memberof ItemAutoOrderStep
+     */
+    pause_until_day_of_month?: number;
+    /**
+     * Pause at least this many days between the last order and the calculated next day of month
+     * @type {number}
+     * @memberof ItemAutoOrderStep
+     */
+    pause_until_minimum_delay_days?: number;
+    /**
      * If set, a pre-shipment notice is sent to the customer this many days in advance
      * @type {number}
      * @memberof ItemAutoOrderStep
@@ -132,7 +144,8 @@ export const ItemAutoOrderStepTypeEnum = {
     Item: 'item',
     Pause: 'pause',
     Loop: 'loop',
-    KitOnly: 'kit only'
+    KitOnly: 'kit only',
+    PauseUntil: 'pause until'
 } as const;
 export type ItemAutoOrderStepTypeEnum = typeof ItemAutoOrderStepTypeEnum[keyof typeof ItemAutoOrderStepTypeEnum];
 
@@ -154,6 +167,8 @@ export function ItemAutoOrderStepFromJSONTyped(json: any, ignoreDiscriminator: b
         'managed_by': !exists(json, 'managed_by') ? undefined : json['managed_by'],
         'pause_days': !exists(json, 'pause_days') ? undefined : json['pause_days'],
         'pause_until_date': !exists(json, 'pause_until_date') ? undefined : json['pause_until_date'],
+        'pause_until_day_of_month': !exists(json, 'pause_until_day_of_month') ? undefined : json['pause_until_day_of_month'],
+        'pause_until_minimum_delay_days': !exists(json, 'pause_until_minimum_delay_days') ? undefined : json['pause_until_minimum_delay_days'],
         'preshipment_notice_days': !exists(json, 'preshipment_notice_days') ? undefined : json['preshipment_notice_days'],
         'recurring_merchant_item_id': !exists(json, 'recurring_merchant_item_id') ? undefined : json['recurring_merchant_item_id'],
         'recurring_merchant_item_oid': !exists(json, 'recurring_merchant_item_oid') ? undefined : json['recurring_merchant_item_oid'],
@@ -181,6 +196,8 @@ export function ItemAutoOrderStepToJSON(value?: ItemAutoOrderStep | null): any {
         'managed_by': value.managed_by,
         'pause_days': value.pause_days,
         'pause_until_date': value.pause_until_date,
+        'pause_until_day_of_month': value.pause_until_day_of_month,
+        'pause_until_minimum_delay_days': value.pause_until_minimum_delay_days,
         'preshipment_notice_days': value.preshipment_notice_days,
         'recurring_merchant_item_id': value.recurring_merchant_item_id,
         'recurring_merchant_item_oid': value.recurring_merchant_item_oid,
