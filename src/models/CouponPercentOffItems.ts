@@ -26,11 +26,23 @@ export interface CouponPercentOffItems {
      */
     discount_percent?: number;
     /**
+     * A list of item tags which cannot be discounted.
+     * @type {Array<string>}
+     * @memberof CouponPercentOffItems
+     */
+    excluded_item_tags?: Array<string>;
+    /**
      * A list of items which cannot be discounted.
      * @type {Array<string>}
      * @memberof CouponPercentOffItems
      */
     excluded_items?: Array<string>;
+    /**
+     * An optional list of item tags which will receive a discount.  If blank, discount applies to all items except excluded items.
+     * @type {Array<string>}
+     * @memberof CouponPercentOffItems
+     */
+    item_tags?: Array<string>;
     /**
      * An optional list of items which will receive a discount.  If blank, discount applies to all items except excluded items.
      * @type {Array<string>}
@@ -56,7 +68,9 @@ export function CouponPercentOffItemsFromJSONTyped(json: any, ignoreDiscriminato
     return {
         
         'discount_percent': !exists(json, 'discount_percent') ? undefined : json['discount_percent'],
+        'excluded_item_tags': !exists(json, 'excluded_item_tags') ? undefined : json['excluded_item_tags'],
         'excluded_items': !exists(json, 'excluded_items') ? undefined : json['excluded_items'],
+        'item_tags': !exists(json, 'item_tags') ? undefined : json['item_tags'],
         'items': !exists(json, 'items') ? undefined : json['items'],
         'limit': !exists(json, 'limit') ? undefined : json['limit'],
     };
@@ -72,7 +86,9 @@ export function CouponPercentOffItemsToJSON(value?: CouponPercentOffItems | null
     return {
         
         'discount_percent': value.discount_percent,
+        'excluded_item_tags': value.excluded_item_tags,
         'excluded_items': value.excluded_items,
+        'item_tags': value.item_tags,
         'items': value.items,
         'limit': value.limit,
     };

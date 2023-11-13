@@ -1,4 +1,4 @@
-## ultracart_rest_api_v2_typescript@4.0.187
+## ultracart_rest_api_v2_typescript@4.0.188
 
 This generator creates TypeScript/JavaScript client that utilizes [Fetch API](https://fetch.spec.whatwg.org/). The generated Node module can be used in the following environments:
 
@@ -36,7 +36,7 @@ navigate to the folder of your consuming project and run one of the following co
 _published:_
 
 ```
-npm install ultracart_rest_api_v2_typescript@4.0.187 --save
+npm install ultracart_rest_api_v2_typescript@4.0.188 --save
 ```
 
 _unPublished (not recommended):_
@@ -54,6 +54,7 @@ Not every change is committed to every SDK.
 
 | Version | Date | Comments |
 | --: | :-: | --- |
+| 4.0.188 | 11/13/2023 | coupon - percent off items - add support for include/exclude by item tags |
 | 4.0.187 | 11/09/2023 | item - new auto order step type: pause until |
 | 4.0.186 | 11/06/2023 | customer api - added wishlist methods |
 | 4.0.185 | 11/01/2023 | customer - do_no_send_mail flag added |
