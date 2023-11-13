@@ -10589,6 +10589,12 @@ export interface CouponEditorValues {
      */
     deprecated_themes?: Array<SimpleValue>;
     /**
+     * Item tags
+     * @type {Array<string>}
+     * @memberof CouponEditorValues
+     */
+    item_tags?: Array<string>;
+    /**
      * mix_and_match_names
      * @type {Array<string>}
      * @memberof CouponEditorValues
