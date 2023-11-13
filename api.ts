@@ -11183,11 +11183,23 @@ export interface CouponPercentOffItems {
      */
     discount_percent?: number;
     /**
+     * A list of item tags which cannot be discounted.
+     * @type {Array<string>}
+     * @memberof CouponPercentOffItems
+     */
+    excluded_item_tags?: Array<string>;
+    /**
      * A list of items which cannot be discounted.
      * @type {Array<string>}
      * @memberof CouponPercentOffItems
      */
     excluded_items?: Array<string>;
+    /**
+     * An optional list of item tags which will receive a discount.  If blank, discount applies to all items except excluded items.
+     * @type {Array<string>}
+     * @memberof CouponPercentOffItems
+     */
+    item_tags?: Array<string>;
     /**
      * An optional list of items which will receive a discount.  If blank, discount applies to all items except excluded items.
      * @type {Array<string>}
