@@ -63,6 +63,12 @@ export interface CouponEditorValues {
      */
     deprecated_themes?: Array<SimpleValue>;
     /**
+     * Item tags
+     * @type {Array<string>}
+     * @memberof CouponEditorValues
+     */
+    item_tags?: Array<string>;
+    /**
      * mix_and_match_names
      * @type {Array<string>}
      * @memberof CouponEditorValues
@@ -109,6 +115,7 @@ export function CouponEditorValuesFromJSONTyped(json: any, ignoreDiscriminator: 
         'coupon_types_for_display': !exists(json, 'coupon_types_for_display') ? undefined : ((json['coupon_types_for_display'] as Array<any>).map(CouponTypeFromJSON)),
         'currency_codes': !exists(json, 'currency_codes') ? undefined : json['currency_codes'],
         'deprecated_themes': !exists(json, 'deprecated_themes') ? undefined : ((json['deprecated_themes'] as Array<any>).map(SimpleValueFromJSON)),
+        'item_tags': !exists(json, 'item_tags') ? undefined : json['item_tags'],
         'mix_and_match_names': !exists(json, 'mix_and_match_names') ? undefined : json['mix_and_match_names'],
         'shipping_methods': !exists(json, 'shipping_methods') ? undefined : json['shipping_methods'],
         'storefronts': !exists(json, 'storefronts') ? undefined : ((json['storefronts'] as Array<any>).map(SimpleValueFromJSON)),
@@ -131,6 +138,7 @@ export function CouponEditorValuesToJSON(value?: CouponEditorValues | null): any
         'coupon_types_for_display': value.coupon_types_for_display === undefined ? undefined : ((value.coupon_types_for_display as Array<any>).map(CouponTypeToJSON)),
         'currency_codes': value.currency_codes,
         'deprecated_themes': value.deprecated_themes === undefined ? undefined : ((value.deprecated_themes as Array<any>).map(SimpleValueToJSON)),
+        'item_tags': value.item_tags,
         'mix_and_match_names': value.mix_and_match_names,
         'shipping_methods': value.shipping_methods,
         'storefronts': value.storefronts === undefined ? undefined : ((value.storefronts as Array<any>).map(SimpleValueToJSON)),
