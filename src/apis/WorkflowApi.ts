@@ -162,13 +162,13 @@ export interface WorkflowApiInterface {
      * @throws {RequiredError}
      * @memberof WorkflowApiInterface
      */
-    getWorkflowTaskByObjectTypeRaw(requestParameters: GetWorkflowTaskByObjectTypeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<WorkflowTaskResponse>>;
+    getWorkflowTaskByObjectTypeRaw(requestParameters: GetWorkflowTaskByObjectTypeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<WorkflowTasksResponse>>;
 
     /**
      * Retrieve a workflow task by object type and id 
      * Retrieve a workflow task by object type and id
      */
-    getWorkflowTaskByObjectType(requestParameters: GetWorkflowTaskByObjectTypeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<WorkflowTaskResponse>;
+    getWorkflowTaskByObjectType(requestParameters: GetWorkflowTaskByObjectTypeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<WorkflowTasksResponse>;
 
     /**
      * Retrieves a set of workflow tasks from the account based on a query object. 
@@ -405,7 +405,7 @@ export class WorkflowApi extends runtime.BaseAPI implements WorkflowApiInterface
      * Retrieve a workflow task by object type and id 
      * Retrieve a workflow task by object type and id
      */
-    async getWorkflowTaskByObjectTypeRaw(requestParameters: GetWorkflowTaskByObjectTypeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<WorkflowTaskResponse>> {
+    async getWorkflowTaskByObjectTypeRaw(requestParameters: GetWorkflowTaskByObjectTypeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<WorkflowTasksResponse>> {
         if (requestParameters.objectType === null || requestParameters.objectType === undefined) {
             throw new runtime.RequiredError('objectType','Required parameter requestParameters.objectType was null or undefined when calling getWorkflowTaskByObjectType.');
         }
@@ -434,14 +434,14 @@ export class WorkflowApi extends runtime.BaseAPI implements WorkflowApiInterface
             query: queryParameters,
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => WorkflowTaskResponseFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => WorkflowTasksResponseFromJSON(jsonValue));
     }
 
     /**
      * Retrieve a workflow task by object type and id 
      * Retrieve a workflow task by object type and id
      */
-    async getWorkflowTaskByObjectType(requestParameters: GetWorkflowTaskByObjectTypeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<WorkflowTaskResponse> {
+    async getWorkflowTaskByObjectType(requestParameters: GetWorkflowTaskByObjectTypeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<WorkflowTasksResponse> {
         const response = await this.getWorkflowTaskByObjectTypeRaw(requestParameters, initOverrides);
         return await response.value();
     }
