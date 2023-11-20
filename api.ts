@@ -94440,7 +94440,7 @@ export const WorkflowApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getWorkflowTaskByObjectType(object_type: string, object_id: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<WorkflowTaskResponse> {
+        getWorkflowTaskByObjectType(object_type: string, object_id: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<WorkflowTasksResponse> {
             const localVarFetchArgs = WorkflowApiFetchParamCreator(configuration).getWorkflowTaskByObjectType(object_type, object_id, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
@@ -94677,7 +94677,7 @@ export interface WorkflowApiInterface {
      * @throws {RequiredError}
      * @memberof WorkflowApiInterface
      */
-    getWorkflowTaskByObjectType(object_type: string, object_id: string, options?: any): Promise<WorkflowTaskResponse>;
+    getWorkflowTaskByObjectType(object_type: string, object_id: string, options?: any): Promise<WorkflowTasksResponse>;
 
     /**
      * Retrieves a set of workflow tasks from the account based on a query object. 

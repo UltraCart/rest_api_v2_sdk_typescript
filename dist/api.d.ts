@@ -61996,7 +61996,7 @@ export declare const WorkflowApiFp: (configuration?: Configuration) => {
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getWorkflowTaskByObjectType(object_type: string, object_id: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<WorkflowTaskResponse>;
+    getWorkflowTaskByObjectType(object_type: string, object_id: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<WorkflowTasksResponse>;
     /**
      * Retrieves a set of workflow tasks from the account based on a query object.
      * @summary Search workflow tasks
@@ -62073,7 +62073,7 @@ export declare const WorkflowApiFactory: (configuration?: Configuration, fetch?:
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getWorkflowTaskByObjectType(object_type: string, object_id: string, options?: any): Promise<WorkflowTaskResponse>;
+    getWorkflowTaskByObjectType(object_type: string, object_id: string, options?: any): Promise<WorkflowTasksResponse>;
     /**
      * Retrieves a set of workflow tasks from the account based on a query object.
      * @summary Search workflow tasks
@@ -62156,7 +62156,7 @@ export interface WorkflowApiInterface {
      * @throws {RequiredError}
      * @memberof WorkflowApiInterface
      */
-    getWorkflowTaskByObjectType(object_type: string, object_id: string, options?: any): Promise<WorkflowTaskResponse>;
+    getWorkflowTaskByObjectType(object_type: string, object_id: string, options?: any): Promise<WorkflowTasksResponse>;
     /**
      * Retrieves a set of workflow tasks from the account based on a query object.
      * @summary Search workflow tasks
@@ -62243,7 +62243,7 @@ export declare class WorkflowApi extends BaseAPI implements WorkflowApiInterface
      * @throws {RequiredError}
      * @memberof WorkflowApi
      */
-    getWorkflowTaskByObjectType(object_type: string, object_id: string, options?: any): Promise<WorkflowTaskResponse>;
+    getWorkflowTaskByObjectType(object_type: string, object_id: string, options?: any): Promise<WorkflowTasksResponse>;
     /**
      * Retrieves a set of workflow tasks from the account based on a query object.
      * @summary Search workflow tasks
