@@ -27,6 +27,12 @@ import {
  */
 export interface CouponTieredAmountOffItems {
     /**
+     * An optional list of item tags which will receive a discount.  If blank, discount applies to all items except excluded items.
+     * @type {Array<string>}
+     * @memberof CouponTieredAmountOffItems
+     */
+    item_tags?: Array<string>;
+    /**
      * The items being discounted by this coupon.
      * @type {Array<string>}
      * @memberof CouponTieredAmountOffItems
@@ -56,6 +62,7 @@ export function CouponTieredAmountOffItemsFromJSONTyped(json: any, ignoreDiscrim
     }
     return {
         
+        'item_tags': !exists(json, 'item_tags') ? undefined : json['item_tags'],
         'items': !exists(json, 'items') ? undefined : json['items'],
         'limit': !exists(json, 'limit') ? undefined : json['limit'],
         'tiers': !exists(json, 'tiers') ? undefined : ((json['tiers'] as Array<any>).map(CouponTierQuantityAmountFromJSON)),
@@ -71,6 +78,7 @@ export function CouponTieredAmountOffItemsToJSON(value?: CouponTieredAmountOffIt
     }
     return {
         
+        'item_tags': value.item_tags,
         'items': value.items,
         'limit': value.limit,
         'tiers': value.tiers === undefined ? undefined : ((value.tiers as Array<any>).map(CouponTierQuantityAmountToJSON)),

@@ -27,6 +27,12 @@ import {
  */
 export interface CouponTieredPercentOffItems {
     /**
+     * An optional list of item tags which will receive a discount.  If blank, discount applies to all items except excluded items.
+     * @type {Array<string>}
+     * @memberof CouponTieredPercentOffItems
+     */
+    item_tags?: Array<string>;
+    /**
      * A list of items of which at least one must be purchased for coupon to be valid.
      * @type {Array<string>}
      * @memberof CouponTieredPercentOffItems
@@ -56,6 +62,7 @@ export function CouponTieredPercentOffItemsFromJSONTyped(json: any, ignoreDiscri
     }
     return {
         
+        'item_tags': !exists(json, 'item_tags') ? undefined : json['item_tags'],
         'items': !exists(json, 'items') ? undefined : json['items'],
         'limit': !exists(json, 'limit') ? undefined : json['limit'],
         'tiers': !exists(json, 'tiers') ? undefined : ((json['tiers'] as Array<any>).map(CouponTierQuantityPercentFromJSON)),
@@ -71,6 +78,7 @@ export function CouponTieredPercentOffItemsToJSON(value?: CouponTieredPercentOff
     }
     return {
         
+        'item_tags': value.item_tags,
         'items': value.items,
         'limit': value.limit,
         'tiers': value.tiers === undefined ? undefined : ((value.tiers as Array<any>).map(CouponTierQuantityPercentToJSON)),
