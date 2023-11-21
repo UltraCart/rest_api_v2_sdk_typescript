@@ -11767,6 +11767,12 @@ export interface CouponTierQuantityPercent {
  */
 export interface CouponTieredAmountOffItems {
     /**
+     * An optional list of item tags which will receive a discount.  If blank, discount applies to all items except excluded items.
+     * @type {Array<string>}
+     * @memberof CouponTieredAmountOffItems
+     */
+    item_tags?: Array<string>;
+    /**
      * The items being discounted by this coupon.
      * @type {Array<string>}
      * @memberof CouponTieredAmountOffItems
@@ -11812,6 +11818,12 @@ export interface CouponTieredAmountOffSubtotal {
  * @interface CouponTieredPercentOffItems
  */
 export interface CouponTieredPercentOffItems {
+    /**
+     * An optional list of item tags which will receive a discount.  If blank, discount applies to all items except excluded items.
+     * @type {Array<string>}
+     * @memberof CouponTieredPercentOffItems
+     */
+    item_tags?: Array<string>;
     /**
      * A list of items of which at least one must be purchased for coupon to be valid.
      * @type {Array<string>}
