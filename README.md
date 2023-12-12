@@ -1,48 +1,3 @@
-## ultracart_rest_api_v2_typescript@3.10.175
-
-This generator creates TypeScript/JavaScript client that utilizes [Fetch API](https://fetch.spec.whatwg.org/). The generated Node module can be used in the following environments:
-
-Environment
-* Node.js
-* Webpack
-* Browserify
-
-Language level
-* ES5 - you must have a Promises/A+ library installed
-* ES6
-
-Module system
-* CommonJS
-* ES6 module system
-
-It can be used in both TypeScript and JavaScript. In TypeScript, the definition should be automatically resolved via `package.json`. ([Reference](http://www.typescriptlang.org/docs/handbook/typings-for-npm-packages.html))
-
-### Building
-
-To build an compile the typescript sources to javascript use:
-```
-npm install
-npm run build
-```
-
-### Publishing
-
-First build the package then run ```npm publish```
-
-### Consuming
-
-navigate to the folder of your consuming project and run one of the following commands.
-
-_published:_
-
-```
-npm install ultracart_rest_api_v2_typescript@3.10.175 --save
-```
-
-_unPublished (not recommended):_
-
-```
-npm install PATH_TO_GENERATED_PACKAGE --save
 \n\n
 ```
 \n\n
@@ -54,6 +9,7 @@ Not every change is committed to every SDK.
 
 | Version | Date | Comments |
 | --: | :-: | --- |
+| 3.10.176 | 12/12/2023 | webhook - added event ruler property |
 | 3.10.175 | 11/21/2023 | coupons - addl support on tiered amount/percent off items |
 | 3.10.174 | 11/20/2023 | coupon - add item tag support to percent off items and free shipping |
 | 3.10.173 | 11/20/2023 | item.google_product_search.color bugfix for bad length validation: 20 to 100 |
