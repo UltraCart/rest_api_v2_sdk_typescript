@@ -45774,6 +45774,46 @@ var WorkflowApiFetchParamCreator = function (configuration) {
             };
         },
         /**
+         * Retrieve a user object for myself
+         * @summary Retrieve a user object for myself
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getWorkflowMe: function (options) {
+            if (options === void 0) { options = {}; }
+            var localVarPath = "/workflow/me";
+            var localVarUrlObj = url.parse(localVarPath, true);
+            var localVarRequestOptions = Object.assign({ method: 'GET' }, options);
+            var localVarHeaderParameter = {};
+            var localVarQueryParameter = {};
+            if (configuration && configuration.apiVersion) {
+                localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+            }
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+                var localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+                    ? configuration.accessToken("ultraCartOauth", ["workflow_read"])
+                    : configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                var localVarApiKeyValue = typeof configuration.apiKey === 'function'
+                    ? configuration.apiKey("x-ultracart-simple-key")
+                    : configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
          * Retrieve a workflow task
          * @summary Retrieve a workflow task
          * @param {string} task_uuid
@@ -46135,6 +46175,27 @@ var WorkflowApiFp = function (configuration) {
             };
         },
         /**
+         * Retrieve a user object for myself
+         * @summary Retrieve a user object for myself
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getWorkflowMe: function (options) {
+            var localVarFetchArgs = (0, exports.WorkflowApiFetchParamCreator)(configuration).getWorkflowMe(options);
+            return function (fetch, basePath) {
+                if (fetch === void 0) { fetch = portableFetch; }
+                if (basePath === void 0) { basePath = BASE_PATH; }
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(function (response) {
+                    if (response.status >= 200 && response.status < 300) {
+                        return response.json();
+                    }
+                    else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
          * Retrieve a workflow task
          * @summary Retrieve a workflow task
          * @param {string} task_uuid
@@ -46303,6 +46364,15 @@ var WorkflowApiFactory = function (configuration, fetch, basePath) {
             return (0, exports.WorkflowApiFp)(configuration).getWorkflowAssignmentUsers(_limit, _offset, options)(fetch, basePath);
         },
         /**
+         * Retrieve a user object for myself
+         * @summary Retrieve a user object for myself
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getWorkflowMe: function (options) {
+            return (0, exports.WorkflowApiFp)(configuration).getWorkflowMe(options)(fetch, basePath);
+        },
+        /**
          * Retrieve a workflow task
          * @summary Retrieve a workflow task
          * @param {string} task_uuid
@@ -46404,6 +46474,16 @@ var WorkflowApi = /** @class */ (function (_super) {
      */
     WorkflowApi.prototype.getWorkflowAssignmentUsers = function (_limit, _offset, options) {
         return (0, exports.WorkflowApiFp)(this.configuration).getWorkflowAssignmentUsers(_limit, _offset, options)(this.fetch, this.basePath);
+    };
+    /**
+     * Retrieve a user object for myself
+     * @summary Retrieve a user object for myself
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof WorkflowApi
+     */
+    WorkflowApi.prototype.getWorkflowMe = function (options) {
+        return (0, exports.WorkflowApiFp)(this.configuration).getWorkflowMe(options)(this.fetch, this.basePath);
     };
     /**
      * Retrieve a workflow task
