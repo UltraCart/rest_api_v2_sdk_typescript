@@ -823,6 +823,7 @@ src/models/WorkflowTaskResponse.ts
 src/models/WorkflowTasksRequest.ts
 src/models/WorkflowTasksResponse.ts
 src/models/WorkflowUser.ts
+src/models/WorkflowUserResponse.ts
 src/models/WorkflowUsersResponse.ts
 src/models/index.ts
 src/runtime.ts
