@@ -1592,6 +1592,7 @@ var WorkflowTask;
         ObjectTypeEnum[ObjectTypeEnum["AutoOrder"] = 'auto order'] = "AutoOrder";
         ObjectTypeEnum[ObjectTypeEnum["Item"] = 'item'] = "Item";
         ObjectTypeEnum[ObjectTypeEnum["CustomerProfile"] = 'customer profile'] = "CustomerProfile";
+        ObjectTypeEnum[ObjectTypeEnum["Storefront"] = 'storefront'] = "Storefront";
     })(ObjectTypeEnum = WorkflowTask.ObjectTypeEnum || (WorkflowTask.ObjectTypeEnum = {}));
     /**
      * @export

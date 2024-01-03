@@ -40599,6 +40599,12 @@ export interface WorkflowTask {
      */
     status?: WorkflowTask.StatusEnum;
     /**
+     * User friendly string of the task context
+     * @type {string}
+     * @memberof WorkflowTask
+     */
+    task_context?: string;
+    /**
      * Task Details
      * @type {string}
      * @memberof WorkflowTask
@@ -40630,7 +40636,8 @@ export declare namespace WorkflowTask {
         Order,
         AutoOrder,
         Item,
-        CustomerProfile
+        CustomerProfile,
+        Storefront
     }
     /**
      * @export
@@ -40890,6 +40897,12 @@ export interface WorkflowTasksResponse {
      * @memberof WorkflowTasksResponse
      */
     success?: boolean;
+    /**
+     * User friendly string of the task context if querying for a specific object type/id
+     * @type {string}
+     * @memberof WorkflowTasksResponse
+     */
+    task_context?: string;
     /**
      * tasks
      * @type {Array<WorkflowTask>}
