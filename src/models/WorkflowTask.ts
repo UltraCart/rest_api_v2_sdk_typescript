@@ -159,6 +159,12 @@ export interface WorkflowTask {
      */
     status?: WorkflowTaskStatusEnum;
     /**
+     * User friendly string of the task context
+     * @type {string}
+     * @memberof WorkflowTask
+     */
+    task_context?: string;
+    /**
      * Task Details
      * @type {string}
      * @memberof WorkflowTask
@@ -186,7 +192,8 @@ export const WorkflowTaskObjectTypeEnum = {
     Order: 'order',
     AutoOrder: 'auto order',
     Item: 'item',
-    CustomerProfile: 'customer profile'
+    CustomerProfile: 'customer profile',
+    Storefront: 'storefront'
 } as const;
 export type WorkflowTaskObjectTypeEnum = typeof WorkflowTaskObjectTypeEnum[keyof typeof WorkflowTaskObjectTypeEnum];
 
@@ -242,6 +249,7 @@ export function WorkflowTaskFromJSONTyped(json: any, ignoreDiscriminator: boolea
         'object_url': !exists(json, 'object_url') ? undefined : json['object_url'],
         'priority': !exists(json, 'priority') ? undefined : json['priority'],
         'status': !exists(json, 'status') ? undefined : json['status'],
+        'task_context': !exists(json, 'task_context') ? undefined : json['task_context'],
         'task_details': !exists(json, 'task_details') ? undefined : json['task_details'],
         'task_name': !exists(json, 'task_name') ? undefined : json['task_name'],
         'workflow_task_uuid': !exists(json, 'workflow_task_uuid') ? undefined : json['workflow_task_uuid'],
@@ -276,6 +284,7 @@ export function WorkflowTaskToJSON(value?: WorkflowTask | null): any {
         'object_url': value.object_url,
         'priority': value.priority,
         'status': value.status,
+        'task_context': value.task_context,
         'task_details': value.task_details,
         'task_name': value.task_name,
         'workflow_task_uuid': value.workflow_task_uuid,

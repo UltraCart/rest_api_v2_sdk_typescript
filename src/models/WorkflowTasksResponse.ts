@@ -63,6 +63,12 @@ export interface WorkflowTasksResponse {
      */
     success?: boolean;
     /**
+     * User friendly string of the task context if querying for a specific object type/id
+     * @type {string}
+     * @memberof WorkflowTasksResponse
+     */
+    task_context?: string;
+    /**
      * tasks
      * @type {Array<WorkflowTask>}
      * @memberof WorkflowTasksResponse
@@ -89,6 +95,7 @@ export function WorkflowTasksResponseFromJSONTyped(json: any, ignoreDiscriminato
         'error': !exists(json, 'error') ? undefined : ModelErrorFromJSON(json['error']),
         'metadata': !exists(json, 'metadata') ? undefined : ResponseMetadataFromJSON(json['metadata']),
         'success': !exists(json, 'success') ? undefined : json['success'],
+        'task_context': !exists(json, 'task_context') ? undefined : json['task_context'],
         'tasks': !exists(json, 'tasks') ? undefined : ((json['tasks'] as Array<any>).map(WorkflowTaskFromJSON)),
         'warning': !exists(json, 'warning') ? undefined : WarningFromJSON(json['warning']),
     };
@@ -106,6 +113,7 @@ export function WorkflowTasksResponseToJSON(value?: WorkflowTasksResponse | null
         'error': ModelErrorToJSON(value.error),
         'metadata': ResponseMetadataToJSON(value.metadata),
         'success': value.success,
+        'task_context': value.task_context,
         'tasks': value.tasks === undefined ? undefined : ((value.tasks as Array<any>).map(WorkflowTaskToJSON)),
         'warning': WarningToJSON(value.warning),
     };
