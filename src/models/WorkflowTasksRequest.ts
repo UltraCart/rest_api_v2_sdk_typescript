@@ -123,6 +123,12 @@ export interface WorkflowTasksRequest {
      */
     status?: WorkflowTasksRequestStatusEnum;
     /**
+     * Tasks that are tagged with the specified tags
+     * @type {Array<string>}
+     * @memberof WorkflowTasksRequest
+     */
+    tags?: Array<string>;
+    /**
      * Tasks that are unassigned to a user or group
      * @type {boolean}
      * @memberof WorkflowTasksRequest
@@ -191,6 +197,7 @@ export function WorkflowTasksRequestFromJSONTyped(json: any, ignoreDiscriminator
         'object_type': !exists(json, 'object_type') ? undefined : json['object_type'],
         'priority': !exists(json, 'priority') ? undefined : json['priority'],
         'status': !exists(json, 'status') ? undefined : json['status'],
+        'tags': !exists(json, 'tags') ? undefined : json['tags'],
         'unassigned': !exists(json, 'unassigned') ? undefined : json['unassigned'],
     };
 }
@@ -220,6 +227,7 @@ export function WorkflowTasksRequestToJSON(value?: WorkflowTasksRequest | null):
         'object_type': value.object_type,
         'priority': value.priority,
         'status': value.status,
+        'tags': value.tags,
         'unassigned': value.unassigned,
     };
 }
