@@ -623,7 +623,7 @@ export interface OrderApiInterface {
     processPayment(requestParameters: ProcessPaymentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<OrderProcessPaymentResponse>;
 
     /**
-     * Perform a refund operation on an order and then update the order if successful 
+     * Perform a refund operation on an order and then update the order if successful.  All of the object properties ending in _refunded should be the TOTAL amount that should end up being refunded.  UltraCart will calculate the actual amount to refund based upon the prior refunds. 
      * @summary Refund an order
      * @param {string} orderId The order id to refund.
      * @param {Order} order Order to refund
@@ -641,7 +641,7 @@ export interface OrderApiInterface {
     refundOrderRaw(requestParameters: RefundOrderRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<OrderResponse>>;
 
     /**
-     * Perform a refund operation on an order and then update the order if successful 
+     * Perform a refund operation on an order and then update the order if successful.  All of the object properties ending in _refunded should be the TOTAL amount that should end up being refunded.  UltraCart will calculate the actual amount to refund based upon the prior refunds. 
      * Refund an order
      */
     refundOrder(requestParameters: RefundOrderRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<OrderResponse>;
@@ -1770,7 +1770,7 @@ export class OrderApi extends runtime.BaseAPI implements OrderApiInterface {
     }
 
     /**
-     * Perform a refund operation on an order and then update the order if successful 
+     * Perform a refund operation on an order and then update the order if successful.  All of the object properties ending in _refunded should be the TOTAL amount that should end up being refunded.  UltraCart will calculate the actual amount to refund based upon the prior refunds. 
      * Refund an order
      */
     async refundOrderRaw(requestParameters: RefundOrderRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<OrderResponse>> {
@@ -1837,7 +1837,7 @@ export class OrderApi extends runtime.BaseAPI implements OrderApiInterface {
     }
 
     /**
-     * Perform a refund operation on an order and then update the order if successful 
+     * Perform a refund operation on an order and then update the order if successful.  All of the object properties ending in _refunded should be the TOTAL amount that should end up being refunded.  UltraCart will calculate the actual amount to refund based upon the prior refunds. 
      * Refund an order
      */
     async refundOrder(requestParameters: RefundOrderRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<OrderResponse> {

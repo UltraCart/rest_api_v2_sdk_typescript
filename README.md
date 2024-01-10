@@ -1,4 +1,4 @@
-## ultracart_rest_api_v2_typescript@4.0.195
+## ultracart_rest_api_v2_typescript@4.0.196
 
 This generator creates TypeScript/JavaScript client that utilizes [Fetch API](https://fetch.spec.whatwg.org/). The generated Node module can be used in the following environments:
 
@@ -36,7 +36,7 @@ navigate to the folder of your consuming project and run one of the following co
 _published:_
 
 ```
-npm install ultracart_rest_api_v2_typescript@4.0.195 --save
+npm install ultracart_rest_api_v2_typescript@4.0.196 --save
 ```
 
 _unPublished (not recommended):_
@@ -54,6 +54,7 @@ Not every change is committed to every SDK.
 
 | Version | Date | Comments |
 | --: | :-: | --- |
+| 4.0.196 | 01/10/2024 | workflow task - add uuids of related tasks and tags |
 | 4.0.195 | 01/03/2024 | workflow - add task_context field to task obj |
 | 4.0.194 | 12/15/2023 | bug fix on bad docs breaking yaml schema |
 | 4.0.193 | 12/12/2023 | webhook - added event ruler property |

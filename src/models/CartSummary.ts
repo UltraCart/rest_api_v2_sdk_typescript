@@ -61,6 +61,18 @@ export interface CartSummary {
      * @type {Currency}
      * @memberof CartSummary
      */
+    health_benefit_card_balance?: Currency;
+    /**
+     * Health benefit card requirements
+     * @type {string}
+     * @memberof CartSummary
+     */
+    health_benefit_card_requirements?: string;
+    /**
+     * 
+     * @type {Currency}
+     * @memberof CartSummary
+     */
     internal_gift_certificate_amount?: Currency;
     /**
      * 
@@ -151,6 +163,8 @@ export function CartSummaryFromJSONTyped(json: any, ignoreDiscriminator: boolean
         'arbitrary_tax_rate': !exists(json, 'arbitrary_tax_rate') ? undefined : CurrencyFromJSON(json['arbitrary_tax_rate']),
         'arbitrary_taxable_subtotal': !exists(json, 'arbitrary_taxable_subtotal') ? undefined : CurrencyFromJSON(json['arbitrary_taxable_subtotal']),
         'health_benefit_card_amount': !exists(json, 'health_benefit_card_amount') ? undefined : CurrencyFromJSON(json['health_benefit_card_amount']),
+        'health_benefit_card_balance': !exists(json, 'health_benefit_card_balance') ? undefined : CurrencyFromJSON(json['health_benefit_card_balance']),
+        'health_benefit_card_requirements': !exists(json, 'health_benefit_card_requirements') ? undefined : json['health_benefit_card_requirements'],
         'internal_gift_certificate_amount': !exists(json, 'internal_gift_certificate_amount') ? undefined : CurrencyFromJSON(json['internal_gift_certificate_amount']),
         'shipping_handling': !exists(json, 'shipping_handling') ? undefined : CurrencyFromJSON(json['shipping_handling']),
         'shipping_handling_discount': !exists(json, 'shipping_handling_discount') ? undefined : CurrencyFromJSON(json['shipping_handling_discount']),
@@ -181,6 +195,8 @@ export function CartSummaryToJSON(value?: CartSummary | null): any {
         'arbitrary_tax_rate': CurrencyToJSON(value.arbitrary_tax_rate),
         'arbitrary_taxable_subtotal': CurrencyToJSON(value.arbitrary_taxable_subtotal),
         'health_benefit_card_amount': CurrencyToJSON(value.health_benefit_card_amount),
+        'health_benefit_card_balance': CurrencyToJSON(value.health_benefit_card_balance),
+        'health_benefit_card_requirements': value.health_benefit_card_requirements,
         'internal_gift_certificate_amount': CurrencyToJSON(value.internal_gift_certificate_amount),
         'shipping_handling': CurrencyToJSON(value.shipping_handling),
         'shipping_handling_discount': CurrencyToJSON(value.shipping_handling_discount),

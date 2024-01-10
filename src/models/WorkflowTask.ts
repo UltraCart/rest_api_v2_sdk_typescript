@@ -93,6 +93,12 @@ export interface WorkflowTask {
      */
     delay_until_dts?: string;
     /**
+     * Dependant Workflow Task UUID (must be completed before this task can be completed)
+     * @type {string}
+     * @memberof WorkflowTask
+     */
+    dependant_workflow_task_uuid?: string;
+    /**
      * Date/time that the workflow task is due
      * @type {string}
      * @memberof WorkflowTask
@@ -153,11 +159,23 @@ export interface WorkflowTask {
      */
     priority?: WorkflowTaskPriorityEnum;
     /**
+     * Related Workflow Task UUID
+     * @type {string}
+     * @memberof WorkflowTask
+     */
+    related_workflow_task_uuid?: string;
+    /**
      * Status of the workflow task
      * @type {string}
      * @memberof WorkflowTask
      */
     status?: WorkflowTaskStatusEnum;
+    /**
+     * Tags
+     * @type {Array<string>}
+     * @memberof WorkflowTask
+     */
+    tags?: Array<string>;
     /**
      * User friendly string of the task context
      * @type {string}
@@ -238,6 +256,7 @@ export function WorkflowTaskFromJSONTyped(json: any, ignoreDiscriminator: boolea
         'created_by': !exists(json, 'created_by') ? undefined : WorkflowUserFromJSON(json['created_by']),
         'created_dts': !exists(json, 'created_dts') ? undefined : json['created_dts'],
         'delay_until_dts': !exists(json, 'delay_until_dts') ? undefined : json['delay_until_dts'],
+        'dependant_workflow_task_uuid': !exists(json, 'dependant_workflow_task_uuid') ? undefined : json['dependant_workflow_task_uuid'],
         'due_dts': !exists(json, 'due_dts') ? undefined : json['due_dts'],
         'histories': !exists(json, 'histories') ? undefined : ((json['histories'] as Array<any>).map(WorkflowTaskHistoryFromJSON)),
         'last_update_dts': !exists(json, 'last_update_dts') ? undefined : json['last_update_dts'],
@@ -248,7 +267,9 @@ export function WorkflowTaskFromJSONTyped(json: any, ignoreDiscriminator: boolea
         'object_type': !exists(json, 'object_type') ? undefined : json['object_type'],
         'object_url': !exists(json, 'object_url') ? undefined : json['object_url'],
         'priority': !exists(json, 'priority') ? undefined : json['priority'],
+        'related_workflow_task_uuid': !exists(json, 'related_workflow_task_uuid') ? undefined : json['related_workflow_task_uuid'],
         'status': !exists(json, 'status') ? undefined : json['status'],
+        'tags': !exists(json, 'tags') ? undefined : json['tags'],
         'task_context': !exists(json, 'task_context') ? undefined : json['task_context'],
         'task_details': !exists(json, 'task_details') ? undefined : json['task_details'],
         'task_name': !exists(json, 'task_name') ? undefined : json['task_name'],
@@ -273,6 +294,7 @@ export function WorkflowTaskToJSON(value?: WorkflowTask | null): any {
         'created_by': WorkflowUserToJSON(value.created_by),
         'created_dts': value.created_dts,
         'delay_until_dts': value.delay_until_dts,
+        'dependant_workflow_task_uuid': value.dependant_workflow_task_uuid,
         'due_dts': value.due_dts,
         'histories': value.histories === undefined ? undefined : ((value.histories as Array<any>).map(WorkflowTaskHistoryToJSON)),
         'last_update_dts': value.last_update_dts,
@@ -283,7 +305,9 @@ export function WorkflowTaskToJSON(value?: WorkflowTask | null): any {
         'object_type': value.object_type,
         'object_url': value.object_url,
         'priority': value.priority,
+        'related_workflow_task_uuid': value.related_workflow_task_uuid,
         'status': value.status,
+        'tags': value.tags,
         'task_context': value.task_context,
         'task_details': value.task_details,
         'task_name': value.task_name,
