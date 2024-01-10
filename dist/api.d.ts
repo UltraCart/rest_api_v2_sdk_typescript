@@ -4988,6 +4988,18 @@ export interface CartSummary {
      * @type {Currency}
      * @memberof CartSummary
      */
+    health_benefit_card_balance?: Currency;
+    /**
+     * Health benefit card requirements
+     * @type {string}
+     * @memberof CartSummary
+     */
+    health_benefit_card_requirements?: string;
+    /**
+     *
+     * @type {Currency}
+     * @memberof CartSummary
+     */
     internal_gift_certificate_amount?: Currency;
     /**
      *
@@ -40533,6 +40545,12 @@ export interface WorkflowTask {
      */
     delay_until_dts?: string;
     /**
+     * Dependant Workflow Task UUID (must be completed before this task can be completed)
+     * @type {string}
+     * @memberof WorkflowTask
+     */
+    dependant_workflow_task_uuid?: string;
+    /**
      * Date/time that the workflow task is due
      * @type {string}
      * @memberof WorkflowTask
@@ -40593,11 +40611,23 @@ export interface WorkflowTask {
      */
     priority?: WorkflowTask.PriorityEnum;
     /**
+     * Related Workflow Task UUID
+     * @type {string}
+     * @memberof WorkflowTask
+     */
+    related_workflow_task_uuid?: string;
+    /**
      * Status of the workflow task
      * @type {string}
      * @memberof WorkflowTask
      */
     status?: WorkflowTask.StatusEnum;
+    /**
+     * Tags
+     * @type {Array<string>}
+     * @memberof WorkflowTask
+     */
+    tags?: Array<string>;
     /**
      * User friendly string of the task context
      * @type {string}
@@ -50135,7 +50165,7 @@ export declare const OrderApiFetchParamCreator: (configuration?: Configuration) 
      */
     processPayment(order_id: string, process_payment_request: OrderProcessPaymentRequest, options?: any): FetchArgs;
     /**
-     * Perform a refund operation on an order and then update the order if successful
+     * Perform a refund operation on an order and then update the order if successful.  All of the object properties ending in _refunded should be the TOTAL amount that should end up being refunded.  UltraCart will calculate the actual amount to refund based upon the prior refunds.
      * @summary Refund an order
      * @param {Order} order Order to refund
      * @param {string} order_id The order id to refund.
@@ -50413,7 +50443,7 @@ export declare const OrderApiFp: (configuration?: Configuration) => {
      */
     processPayment(order_id: string, process_payment_request: OrderProcessPaymentRequest, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<OrderProcessPaymentResponse>;
     /**
-     * Perform a refund operation on an order and then update the order if successful
+     * Perform a refund operation on an order and then update the order if successful.  All of the object properties ending in _refunded should be the TOTAL amount that should end up being refunded.  UltraCart will calculate the actual amount to refund based upon the prior refunds.
      * @summary Refund an order
      * @param {Order} order Order to refund
      * @param {string} order_id The order id to refund.
@@ -50691,7 +50721,7 @@ export declare const OrderApiFactory: (configuration?: Configuration, fetch?: Fe
      */
     processPayment(order_id: string, process_payment_request: OrderProcessPaymentRequest, options?: any): Promise<OrderProcessPaymentResponse>;
     /**
-     * Perform a refund operation on an order and then update the order if successful
+     * Perform a refund operation on an order and then update the order if successful.  All of the object properties ending in _refunded should be the TOTAL amount that should end up being refunded.  UltraCart will calculate the actual amount to refund based upon the prior refunds.
      * @summary Refund an order
      * @param {Order} order Order to refund
      * @param {string} order_id The order id to refund.
@@ -50990,7 +51020,7 @@ export interface OrderApiInterface {
      */
     processPayment(order_id: string, process_payment_request: OrderProcessPaymentRequest, options?: any): Promise<OrderProcessPaymentResponse>;
     /**
-     * Perform a refund operation on an order and then update the order if successful
+     * Perform a refund operation on an order and then update the order if successful.  All of the object properties ending in _refunded should be the TOTAL amount that should end up being refunded.  UltraCart will calculate the actual amount to refund based upon the prior refunds.
      * @summary Refund an order
      * @param {Order} order Order to refund
      * @param {string} order_id The order id to refund.
@@ -51297,7 +51327,7 @@ export declare class OrderApi extends BaseAPI implements OrderApiInterface {
      */
     processPayment(order_id: string, process_payment_request: OrderProcessPaymentRequest, options?: any): Promise<OrderProcessPaymentResponse>;
     /**
-     * Perform a refund operation on an order and then update the order if successful
+     * Perform a refund operation on an order and then update the order if successful.  All of the object properties ending in _refunded should be the TOTAL amount that should end up being refunded.  UltraCart will calculate the actual amount to refund based upon the prior refunds.
      * @summary Refund an order
      * @param {Order} order Order to refund
      * @param {string} order_id The order id to refund.

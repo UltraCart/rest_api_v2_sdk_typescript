@@ -20848,7 +20848,7 @@ var OrderApiFetchParamCreator = function (configuration) {
             };
         },
         /**
-         * Perform a refund operation on an order and then update the order if successful
+         * Perform a refund operation on an order and then update the order if successful.  All of the object properties ending in _refunded should be the TOTAL amount that should end up being refunded.  UltraCart will calculate the actual amount to refund based upon the prior refunds.
          * @summary Refund an order
          * @param {Order} order Order to refund
          * @param {string} order_id The order id to refund.
@@ -21724,7 +21724,7 @@ var OrderApiFp = function (configuration) {
             };
         },
         /**
-         * Perform a refund operation on an order and then update the order if successful
+         * Perform a refund operation on an order and then update the order if successful.  All of the object properties ending in _refunded should be the TOTAL amount that should end up being refunded.  UltraCart will calculate the actual amount to refund based upon the prior refunds.
          * @summary Refund an order
          * @param {Order} order Order to refund
          * @param {string} order_id The order id to refund.
@@ -22143,7 +22143,7 @@ var OrderApiFactory = function (configuration, fetch, basePath) {
             return (0, exports.OrderApiFp)(configuration).processPayment(order_id, process_payment_request, options)(fetch, basePath);
         },
         /**
-         * Perform a refund operation on an order and then update the order if successful
+         * Perform a refund operation on an order and then update the order if successful.  All of the object properties ending in _refunded should be the TOTAL amount that should end up being refunded.  UltraCart will calculate the actual amount to refund based upon the prior refunds.
          * @summary Refund an order
          * @param {Order} order Order to refund
          * @param {string} order_id The order id to refund.
@@ -22503,7 +22503,7 @@ var OrderApi = /** @class */ (function (_super) {
         return (0, exports.OrderApiFp)(this.configuration).processPayment(order_id, process_payment_request, options)(this.fetch, this.basePath);
     };
     /**
-     * Perform a refund operation on an order and then update the order if successful
+     * Perform a refund operation on an order and then update the order if successful.  All of the object properties ending in _refunded should be the TOTAL amount that should end up being refunded.  UltraCart will calculate the actual amount to refund based upon the prior refunds.
      * @summary Refund an order
      * @param {Order} order Order to refund
      * @param {string} order_id The order id to refund.
