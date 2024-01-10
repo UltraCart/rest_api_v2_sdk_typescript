@@ -41744,6 +41744,12 @@ export interface WorkflowTasksRequest {
      */
     status?: WorkflowTasksRequest.StatusEnum;
     /**
+     * Tasks that are tagged with the specified tags
+     * @type {Array<string>}
+     * @memberof WorkflowTasksRequest
+     */
+    tags?: Array<string>;
+    /**
      * Tasks that are unassigned to a user or group
      * @type {boolean}
      * @memberof WorkflowTasksRequest
