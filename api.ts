@@ -41490,6 +41490,12 @@ export interface WorkflowTask {
      */
     priority?: WorkflowTask.PriorityEnum;
     /**
+     * Properties
+     * @type {Array<Property>}
+     * @memberof WorkflowTask
+     */
+    properties?: Array<Property>;
+    /**
      * Related Workflow Task UUID
      * @type {string}
      * @memberof WorkflowTask
