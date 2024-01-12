@@ -14,6 +14,12 @@
 
 import { exists, mapValues } from '../runtime';
 import {
+    Property,
+    PropertyFromJSON,
+    PropertyFromJSONTyped,
+    PropertyToJSON,
+} from './Property';
+import {
     WorkflowAttachment,
     WorkflowAttachmentFromJSON,
     WorkflowAttachmentFromJSONTyped,
@@ -159,6 +165,12 @@ export interface WorkflowTask {
      */
     priority?: WorkflowTaskPriorityEnum;
     /**
+     * Properties
+     * @type {Array<Property>}
+     * @memberof WorkflowTask
+     */
+    properties?: Array<Property>;
+    /**
      * Related Workflow Task UUID
      * @type {string}
      * @memberof WorkflowTask
@@ -267,6 +279,7 @@ export function WorkflowTaskFromJSONTyped(json: any, ignoreDiscriminator: boolea
         'object_type': !exists(json, 'object_type') ? undefined : json['object_type'],
         'object_url': !exists(json, 'object_url') ? undefined : json['object_url'],
         'priority': !exists(json, 'priority') ? undefined : json['priority'],
+        'properties': !exists(json, 'properties') ? undefined : ((json['properties'] as Array<any>).map(PropertyFromJSON)),
         'related_workflow_task_uuid': !exists(json, 'related_workflow_task_uuid') ? undefined : json['related_workflow_task_uuid'],
         'status': !exists(json, 'status') ? undefined : json['status'],
         'tags': !exists(json, 'tags') ? undefined : json['tags'],
@@ -305,6 +318,7 @@ export function WorkflowTaskToJSON(value?: WorkflowTask | null): any {
         'object_type': value.object_type,
         'object_url': value.object_url,
         'priority': value.priority,
+        'properties': value.properties === undefined ? undefined : ((value.properties as Array<any>).map(PropertyToJSON)),
         'related_workflow_task_uuid': value.related_workflow_task_uuid,
         'status': value.status,
         'tags': value.tags,
