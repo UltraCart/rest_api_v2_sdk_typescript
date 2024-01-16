@@ -32164,6 +32164,12 @@ export interface OrderQuery {
      */
     custom_field_1?: string;
     /**
+     * Custom field 10
+     * @type {string}
+     * @memberof OrderQuery
+     */
+    custom_field_10?: string;
+    /**
      * Custom field 2
      * @type {string}
      * @memberof OrderQuery
@@ -32199,6 +32205,18 @@ export interface OrderQuery {
      * @memberof OrderQuery
      */
     custom_field_7?: string;
+    /**
+     * Custom field 8
+     * @type {string}
+     * @memberof OrderQuery
+     */
+    custom_field_8?: string;
+    /**
+     * Custom field 9
+     * @type {string}
+     * @memberof OrderQuery
+     */
+    custom_field_9?: string;
     /**
      * The customer profile to find associated orders for
      * @type {number}
