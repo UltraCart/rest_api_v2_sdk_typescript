@@ -80,6 +80,12 @@ export interface OrderQuery {
      */
     custom_field_1?: string;
     /**
+     * Custom field 10
+     * @type {string}
+     * @memberof OrderQuery
+     */
+    custom_field_10?: string;
+    /**
      * Custom field 2
      * @type {string}
      * @memberof OrderQuery
@@ -115,6 +121,18 @@ export interface OrderQuery {
      * @memberof OrderQuery
      */
     custom_field_7?: string;
+    /**
+     * Custom field 8
+     * @type {string}
+     * @memberof OrderQuery
+     */
+    custom_field_8?: string;
+    /**
+     * Custom field 9
+     * @type {string}
+     * @memberof OrderQuery
+     */
+    custom_field_9?: string;
     /**
      * The customer profile to find associated orders for
      * @type {number}
@@ -319,12 +337,15 @@ export function OrderQueryFromJSONTyped(json: any, ignoreDiscriminator: boolean)
         'creation_date_end': !exists(json, 'creation_date_end') ? undefined : json['creation_date_end'],
         'current_stage': !exists(json, 'current_stage') ? undefined : json['current_stage'],
         'custom_field_1': !exists(json, 'custom_field_1') ? undefined : json['custom_field_1'],
+        'custom_field_10': !exists(json, 'custom_field_10') ? undefined : json['custom_field_10'],
         'custom_field_2': !exists(json, 'custom_field_2') ? undefined : json['custom_field_2'],
         'custom_field_3': !exists(json, 'custom_field_3') ? undefined : json['custom_field_3'],
         'custom_field_4': !exists(json, 'custom_field_4') ? undefined : json['custom_field_4'],
         'custom_field_5': !exists(json, 'custom_field_5') ? undefined : json['custom_field_5'],
         'custom_field_6': !exists(json, 'custom_field_6') ? undefined : json['custom_field_6'],
         'custom_field_7': !exists(json, 'custom_field_7') ? undefined : json['custom_field_7'],
+        'custom_field_8': !exists(json, 'custom_field_8') ? undefined : json['custom_field_8'],
+        'custom_field_9': !exists(json, 'custom_field_9') ? undefined : json['custom_field_9'],
         'customer_profile_oid': !exists(json, 'customer_profile_oid') ? undefined : json['customer_profile_oid'],
         'email': !exists(json, 'email') ? undefined : json['email'],
         'first_name': !exists(json, 'first_name') ? undefined : json['first_name'],
@@ -370,12 +391,15 @@ export function OrderQueryToJSON(value?: OrderQuery | null): any {
         'creation_date_end': value.creation_date_end,
         'current_stage': value.current_stage,
         'custom_field_1': value.custom_field_1,
+        'custom_field_10': value.custom_field_10,
         'custom_field_2': value.custom_field_2,
         'custom_field_3': value.custom_field_3,
         'custom_field_4': value.custom_field_4,
         'custom_field_5': value.custom_field_5,
         'custom_field_6': value.custom_field_6,
         'custom_field_7': value.custom_field_7,
+        'custom_field_8': value.custom_field_8,
+        'custom_field_9': value.custom_field_9,
         'customer_profile_oid': value.customer_profile_oid,
         'email': value.email,
         'first_name': value.first_name,
