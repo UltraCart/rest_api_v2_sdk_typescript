@@ -6931,6 +6931,30 @@ export interface ConversationAgentAuth {
     merchant_id?: string;
     /**
      * 
+     * @type {string}
+     * @memberof ConversationAgentAuth
+     */
+    pbx_jwt?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ConversationAgentAuth
+     */
+    pbx_voice_identity?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ConversationAgentAuth
+     */
+    pbx_voice_token?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ConversationAgentAuth
+     */
+    pbx_worker_token?: string;
+    /**
+     * 
      * @type {Array<ConversationTwilioAccount>}
      * @memberof ConversationAgentAuth
      */
@@ -10011,6 +10035,12 @@ export interface CouponAmountOffItems {
      */
     discount_amount?: number;
     /**
+     * An optional list of item tags which will receive a discount.
+     * @type {Array<string>}
+     * @memberof CouponAmountOffItems
+     */
+    item_tags?: Array<string>;
+    /**
      * A list of items which are eligible for the discount amount.
      * @type {Array<string>}
      * @memberof CouponAmountOffItems
@@ -10367,6 +10397,12 @@ export interface CouponAutomaticallyApplyCouponCodes {
  */
 export interface CouponBuyOneGetOneLimit {
     /**
+     * An optional list of item tags which will receive a discount.
+     * @type {Array<string>}
+     * @memberof CouponBuyOneGetOneLimit
+     */
+    item_tags?: Array<string>;
+    /**
      * An optional list of items of which one must be purchased to receive free quantity of the same item.
      * @type {Array<string>}
      * @memberof CouponBuyOneGetOneLimit
@@ -10513,6 +10549,12 @@ export interface CouponDiscountItemWithItemPurchase {
      */
     discount_item?: string;
     /**
+     * An optional list of item tags which will receive a discount of one of the required purchased items is purchased.
+     * @type {Array<string>}
+     * @memberof CouponDiscountItemWithItemPurchase
+     */
+    discount_item_tags?: Array<string>;
+    /**
      * The price (unit cost) of the discounted item
      * @type {number}
      * @memberof CouponDiscountItemWithItemPurchase
@@ -10530,6 +10572,12 @@ export interface CouponDiscountItemWithItemPurchase {
      * @memberof CouponDiscountItemWithItemPurchase
      */
     required_purchase_item?: string;
+    /**
+     * An optional list of item tags which are required to be purchased.
+     * @type {Array<string>}
+     * @memberof CouponDiscountItemWithItemPurchase
+     */
+    required_purchase_items_tags?: Array<string>;
 }
 
 /**
@@ -10727,6 +10775,12 @@ export interface CouponFreeItemAndShippingWithSubtotal {
  */
 export interface CouponFreeItemWithItemPurchase {
     /**
+     * An optional list of item tags which will receive a discount of one of the required purchased items is purchased.
+     * @type {Array<string>}
+     * @memberof CouponFreeItemWithItemPurchase
+     */
+    item_tags?: Array<string>;
+    /**
      * A list of free items which will receive a discount if one of the required purchase items is purchased.
      * @type {Array<string>}
      * @memberof CouponFreeItemWithItemPurchase
@@ -10750,6 +10804,12 @@ export interface CouponFreeItemWithItemPurchase {
      * @memberof CouponFreeItemWithItemPurchase
      */
     required_purchase_items?: Array<string>;
+    /**
+     * An optional list of item tags which are required to be purchased.
+     * @type {Array<string>}
+     * @memberof CouponFreeItemWithItemPurchase
+     */
+    required_purchase_items_tags?: Array<string>;
 }
 
 /**
@@ -11283,6 +11343,12 @@ export interface CouponPercentOffItemsWithItemsPurchase {
      */
     discount_percent?: number;
     /**
+     * An optional list of item tags which will receive a discount of one of the required purchased items is purchased.
+     * @type {Array<string>}
+     * @memberof CouponPercentOffItemsWithItemsPurchase
+     */
+    item_tags?: Array<string>;
+    /**
      * A list of items which will receive a discount if one of the required purchase items is purchased.
      * @type {Array<string>}
      * @memberof CouponPercentOffItemsWithItemsPurchase
@@ -11300,6 +11366,12 @@ export interface CouponPercentOffItemsWithItemsPurchase {
      * @memberof CouponPercentOffItemsWithItemsPurchase
      */
     required_purchase_items?: Array<string>;
+    /**
+     * An optional list of item tags which are required to be purchased.
+     * @type {Array<string>}
+     * @memberof CouponPercentOffItemsWithItemsPurchase
+     */
+    required_purchase_items_tags?: Array<string>;
 }
 
 /**
@@ -40071,6 +40143,24 @@ export interface Twilio {
      * @type {string}
      * @memberof Twilio
      */
+    api_key_id?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof Twilio
+     */
+    api_key_name?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof Twilio
+     */
+    api_key_secret?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof Twilio
+     */
     auth_token?: string;
     /**
      * 
@@ -40080,10 +40170,46 @@ export interface Twilio {
     esp_twilio_uuid?: string;
     /**
      * 
+     * @type {string}
+     * @memberof Twilio
+     */
+    inbound_twiml_app_sid?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof Twilio
+     */
+    outbound_twiml_app_sid?: string;
+    /**
+     * 
      * @type {Array<string>}
      * @memberof Twilio
      */
     phone_numbers?: Array<string>;
+    /**
+     * 
+     * @type {string}
+     * @memberof Twilio
+     */
+    private_key_pem?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof Twilio
+     */
+    public_key_pem?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof Twilio
+     */
+    public_key_sid?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof Twilio
+     */
+    twilio_workspace_sid?: string;
 }
 
 /**
