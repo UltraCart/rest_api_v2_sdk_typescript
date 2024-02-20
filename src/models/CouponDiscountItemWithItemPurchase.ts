@@ -32,6 +32,12 @@ export interface CouponDiscountItemWithItemPurchase {
      */
     discount_item?: string;
     /**
+     * An optional list of item tags which will receive a discount of one of the required purchased items is purchased.
+     * @type {Array<string>}
+     * @memberof CouponDiscountItemWithItemPurchase
+     */
+    discount_item_tags?: Array<string>;
+    /**
      * The price (unit cost) of the discounted item
      * @type {number}
      * @memberof CouponDiscountItemWithItemPurchase
@@ -49,6 +55,12 @@ export interface CouponDiscountItemWithItemPurchase {
      * @memberof CouponDiscountItemWithItemPurchase
      */
     required_purchase_item?: string;
+    /**
+     * An optional list of item tags which are required to be purchased.
+     * @type {Array<string>}
+     * @memberof CouponDiscountItemWithItemPurchase
+     */
+    required_purchase_items_tags?: Array<string>;
 }
 
 export function CouponDiscountItemWithItemPurchaseFromJSON(json: any): CouponDiscountItemWithItemPurchase {
@@ -63,9 +75,11 @@ export function CouponDiscountItemWithItemPurchaseFromJSONTyped(json: any, ignor
         
         'currency_code': !exists(json, 'currency_code') ? undefined : json['currency_code'],
         'discount_item': !exists(json, 'discount_item') ? undefined : json['discount_item'],
+        'discount_item_tags': !exists(json, 'discount_item_tags') ? undefined : json['discount_item_tags'],
         'discount_price': !exists(json, 'discount_price') ? undefined : json['discount_price'],
         'limit': !exists(json, 'limit') ? undefined : json['limit'],
         'required_purchase_item': !exists(json, 'required_purchase_item') ? undefined : json['required_purchase_item'],
+        'required_purchase_items_tags': !exists(json, 'required_purchase_items_tags') ? undefined : json['required_purchase_items_tags'],
     };
 }
 
@@ -80,9 +94,11 @@ export function CouponDiscountItemWithItemPurchaseToJSON(value?: CouponDiscountI
         
         'currency_code': value.currency_code,
         'discount_item': value.discount_item,
+        'discount_item_tags': value.discount_item_tags,
         'discount_price': value.discount_price,
         'limit': value.limit,
         'required_purchase_item': value.required_purchase_item,
+        'required_purchase_items_tags': value.required_purchase_items_tags,
     };
 }
 

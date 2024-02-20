@@ -20,6 +20,12 @@ import { exists, mapValues } from '../runtime';
  */
 export interface CouponBuyOneGetOneLimit {
     /**
+     * An optional list of item tags which will receive a discount.
+     * @type {Array<string>}
+     * @memberof CouponBuyOneGetOneLimit
+     */
+    item_tags?: Array<string>;
+    /**
      * An optional list of items of which one must be purchased to receive free quantity of the same item.
      * @type {Array<string>}
      * @memberof CouponBuyOneGetOneLimit
@@ -43,6 +49,7 @@ export function CouponBuyOneGetOneLimitFromJSONTyped(json: any, ignoreDiscrimina
     }
     return {
         
+        'item_tags': !exists(json, 'item_tags') ? undefined : json['item_tags'],
         'items': !exists(json, 'items') ? undefined : json['items'],
         'limit': !exists(json, 'limit') ? undefined : json['limit'],
     };
@@ -57,6 +64,7 @@ export function CouponBuyOneGetOneLimitToJSON(value?: CouponBuyOneGetOneLimit | 
     }
     return {
         
+        'item_tags': value.item_tags,
         'items': value.items,
         'limit': value.limit,
     };

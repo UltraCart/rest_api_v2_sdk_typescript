@@ -52,6 +52,30 @@ export interface ConversationAgentAuth {
     merchant_id?: string;
     /**
      * 
+     * @type {string}
+     * @memberof ConversationAgentAuth
+     */
+    pbx_jwt?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ConversationAgentAuth
+     */
+    pbx_voice_identity?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ConversationAgentAuth
+     */
+    pbx_voice_token?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ConversationAgentAuth
+     */
+    pbx_worker_token?: string;
+    /**
+     * 
      * @type {Array<ConversationTwilioAccount>}
      * @memberof ConversationAgentAuth
      */
@@ -78,6 +102,10 @@ export function ConversationAgentAuthFromJSONTyped(json: any, ignoreDiscriminato
         'conversation_participant_name': !exists(json, 'conversation_participant_name') ? undefined : json['conversation_participant_name'],
         'jwt': !exists(json, 'jwt') ? undefined : json['jwt'],
         'merchant_id': !exists(json, 'merchant_id') ? undefined : json['merchant_id'],
+        'pbx_jwt': !exists(json, 'pbx_jwt') ? undefined : json['pbx_jwt'],
+        'pbx_voice_identity': !exists(json, 'pbx_voice_identity') ? undefined : json['pbx_voice_identity'],
+        'pbx_voice_token': !exists(json, 'pbx_voice_token') ? undefined : json['pbx_voice_token'],
+        'pbx_worker_token': !exists(json, 'pbx_worker_token') ? undefined : json['pbx_worker_token'],
         'twilio_accounts': !exists(json, 'twilio_accounts') ? undefined : ((json['twilio_accounts'] as Array<any>).map(ConversationTwilioAccountFromJSON)),
         'websocket_url': !exists(json, 'websocket_url') ? undefined : json['websocket_url'],
     };
@@ -96,6 +124,10 @@ export function ConversationAgentAuthToJSON(value?: ConversationAgentAuth | null
         'conversation_participant_name': value.conversation_participant_name,
         'jwt': value.jwt,
         'merchant_id': value.merchant_id,
+        'pbx_jwt': value.pbx_jwt,
+        'pbx_voice_identity': value.pbx_voice_identity,
+        'pbx_voice_token': value.pbx_voice_token,
+        'pbx_worker_token': value.pbx_worker_token,
         'twilio_accounts': value.twilio_accounts === undefined ? undefined : ((value.twilio_accounts as Array<any>).map(ConversationTwilioAccountToJSON)),
         'websocket_url': value.websocket_url,
     };

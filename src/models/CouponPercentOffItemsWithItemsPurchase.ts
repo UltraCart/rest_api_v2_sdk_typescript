@@ -26,6 +26,12 @@ export interface CouponPercentOffItemsWithItemsPurchase {
      */
     discount_percent?: number;
     /**
+     * An optional list of item tags which will receive a discount of one of the required purchased items is purchased.
+     * @type {Array<string>}
+     * @memberof CouponPercentOffItemsWithItemsPurchase
+     */
+    item_tags?: Array<string>;
+    /**
      * A list of items which will receive a discount if one of the required purchase items is purchased.
      * @type {Array<string>}
      * @memberof CouponPercentOffItemsWithItemsPurchase
@@ -43,6 +49,12 @@ export interface CouponPercentOffItemsWithItemsPurchase {
      * @memberof CouponPercentOffItemsWithItemsPurchase
      */
     required_purchase_items?: Array<string>;
+    /**
+     * An optional list of item tags which are required to be purchased.
+     * @type {Array<string>}
+     * @memberof CouponPercentOffItemsWithItemsPurchase
+     */
+    required_purchase_items_tags?: Array<string>;
 }
 
 export function CouponPercentOffItemsWithItemsPurchaseFromJSON(json: any): CouponPercentOffItemsWithItemsPurchase {
@@ -56,9 +68,11 @@ export function CouponPercentOffItemsWithItemsPurchaseFromJSONTyped(json: any, i
     return {
         
         'discount_percent': !exists(json, 'discount_percent') ? undefined : json['discount_percent'],
+        'item_tags': !exists(json, 'item_tags') ? undefined : json['item_tags'],
         'items': !exists(json, 'items') ? undefined : json['items'],
         'limit': !exists(json, 'limit') ? undefined : json['limit'],
         'required_purchase_items': !exists(json, 'required_purchase_items') ? undefined : json['required_purchase_items'],
+        'required_purchase_items_tags': !exists(json, 'required_purchase_items_tags') ? undefined : json['required_purchase_items_tags'],
     };
 }
 
@@ -72,9 +86,11 @@ export function CouponPercentOffItemsWithItemsPurchaseToJSON(value?: CouponPerce
     return {
         
         'discount_percent': value.discount_percent,
+        'item_tags': value.item_tags,
         'items': value.items,
         'limit': value.limit,
         'required_purchase_items': value.required_purchase_items,
+        'required_purchase_items_tags': value.required_purchase_items_tags,
     };
 }
 

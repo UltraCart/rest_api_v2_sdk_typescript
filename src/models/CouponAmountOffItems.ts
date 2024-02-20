@@ -32,6 +32,12 @@ export interface CouponAmountOffItems {
      */
     discount_amount?: number;
     /**
+     * An optional list of item tags which will receive a discount.
+     * @type {Array<string>}
+     * @memberof CouponAmountOffItems
+     */
+    item_tags?: Array<string>;
+    /**
      * A list of items which are eligible for the discount amount.
      * @type {Array<string>}
      * @memberof CouponAmountOffItems
@@ -57,6 +63,7 @@ export function CouponAmountOffItemsFromJSONTyped(json: any, ignoreDiscriminator
         
         'currency_code': !exists(json, 'currency_code') ? undefined : json['currency_code'],
         'discount_amount': !exists(json, 'discount_amount') ? undefined : json['discount_amount'],
+        'item_tags': !exists(json, 'item_tags') ? undefined : json['item_tags'],
         'items': !exists(json, 'items') ? undefined : json['items'],
         'limit': !exists(json, 'limit') ? undefined : json['limit'],
     };
@@ -73,6 +80,7 @@ export function CouponAmountOffItemsToJSON(value?: CouponAmountOffItems | null):
         
         'currency_code': value.currency_code,
         'discount_amount': value.discount_amount,
+        'item_tags': value.item_tags,
         'items': value.items,
         'limit': value.limit,
     };
