@@ -19130,6 +19130,261 @@ export interface EmailSettingsResponse {
 /**
  *
  * @export
+ * @interface EmailSmsOrder
+ */
+export interface EmailSmsOrder {
+    /**
+     * email
+     * @type {string}
+     * @memberof EmailSmsOrder
+     */
+    email?: string;
+    /**
+     * order_dts
+     * @type {string}
+     * @memberof EmailSmsOrder
+     */
+    order_dts?: string;
+    /**
+     * order_id
+     * @type {string}
+     * @memberof EmailSmsOrder
+     */
+    order_id?: string;
+    /**
+     *
+     * @type {Currency}
+     * @memberof EmailSmsOrder
+     */
+    total?: Currency;
+}
+/**
+ *
+ * @export
+ * @interface EmailSmsOrdersResponse
+ */
+export interface EmailSmsOrdersResponse {
+    /**
+     *
+     * @type {ModelError}
+     * @memberof EmailSmsOrdersResponse
+     */
+    error?: ModelError;
+    /**
+     *
+     * @type {ResponseMetadata}
+     * @memberof EmailSmsOrdersResponse
+     */
+    metadata?: ResponseMetadata;
+    /**
+     *
+     * @type {Array<EmailSmsOrder>}
+     * @memberof EmailSmsOrdersResponse
+     */
+    orders?: Array<EmailSmsOrder>;
+    /**
+     * Indicates if API call was successful
+     * @type {boolean}
+     * @memberof EmailSmsOrdersResponse
+     */
+    success?: boolean;
+    /**
+     *
+     * @type {Warning}
+     * @memberof EmailSmsOrdersResponse
+     */
+    warning?: Warning;
+}
+/**
+ *
+ * @export
+ * @interface EmailSmsStat
+ */
+export interface EmailSmsStat {
+    /**
+     * Count of clicked emails
+     * @type {number}
+     * @memberof EmailSmsStat
+     */
+    click_count?: number;
+    /**
+     * Count of clicked emails, formatted
+     * @type {string}
+     * @memberof EmailSmsStat
+     */
+    click_count_formatted?: string;
+    /**
+     * Count of conversions
+     * @type {number}
+     * @memberof EmailSmsStat
+     */
+    conversion_count?: number;
+    /**
+     * Count of conversions, formatted
+     * @type {string}
+     * @memberof EmailSmsStat
+     */
+    conversion_count_formatted?: string;
+    /**
+     * True if campaign/flow has been archived
+     * @type {boolean}
+     * @memberof EmailSmsStat
+     */
+    deleted?: boolean;
+    /**
+     * Count of delivered emails
+     * @type {number}
+     * @memberof EmailSmsStat
+     */
+    delivered_count?: number;
+    /**
+     * Count of delivered emails, formatted
+     * @type {string}
+     * @memberof EmailSmsStat
+     */
+    delivered_count_formatted?: string;
+    /**
+     * Merchant ID
+     * @type {string}
+     * @memberof EmailSmsStat
+     */
+    merchant_id?: string;
+    /**
+     * List or segment name
+     * @type {string}
+     * @memberof EmailSmsStat
+     */
+    name?: string;
+    /**
+     * Count of orders
+     * @type {number}
+     * @memberof EmailSmsStat
+     */
+    order_count?: number;
+    /**
+     * Count of orders, formatted
+     * @type {string}
+     * @memberof EmailSmsStat
+     */
+    order_count_formatted?: string;
+    /**
+     * Profit
+     * @type {number}
+     * @memberof EmailSmsStat
+     */
+    profit?: number;
+    /**
+     * Profit, formatted
+     * @type {string}
+     * @memberof EmailSmsStat
+     */
+    profit_formatted?: string;
+    /**
+     * Revenue
+     * @type {number}
+     * @memberof EmailSmsStat
+     */
+    revenue?: number;
+    /**
+     * Revenue, formatted
+     * @type {string}
+     * @memberof EmailSmsStat
+     */
+    revenue_formatted?: string;
+    /**
+     * Count of emails sent
+     * @type {number}
+     * @memberof EmailSmsStat
+     */
+    send_count?: number;
+    /**
+     * Count of emails sent, formatted
+     * @type {string}
+     * @memberof EmailSmsStat
+     */
+    send_count_formatted?: string;
+    /**
+     * Count of skipped emails
+     * @type {number}
+     * @memberof EmailSmsStat
+     */
+    skipped_count?: number;
+    /**
+     * Count of skipped emails, formatted
+     * @type {string}
+     * @memberof EmailSmsStat
+     */
+    skipped_count_formatted?: string;
+    /**
+     * Campaign, Flow or None (for anything else)
+     * @type {string}
+     * @memberof EmailSmsStat
+     */
+    stat_type?: string;
+    /**
+     * Status of campaign or flow
+     * @type {string}
+     * @memberof EmailSmsStat
+     */
+    status?: string;
+    /**
+     * Status dts of campaign or flow
+     * @type {string}
+     * @memberof EmailSmsStat
+     */
+    status_dts?: string;
+    /**
+     * Step UUID if the statistics are at the step/email level
+     * @type {string}
+     * @memberof EmailSmsStat
+     */
+    step_uuid?: string;
+    /**
+     *
+     * @type {Array<EmailSmsStat>}
+     * @memberof EmailSmsStat
+     */
+    steps?: Array<EmailSmsStat>;
+    /**
+     * Storefront oid
+     * @type {number}
+     * @memberof EmailSmsStat
+     */
+    storefront_oid?: number;
+    /**
+     * Count of emails classified as unsubscribe
+     * @type {number}
+     * @memberof EmailSmsStat
+     */
+    unsubscribe_count?: number;
+    /**
+     * Count of emails classified as unsubscribe, formatted
+     * @type {string}
+     * @memberof EmailSmsStat
+     */
+    unsubscribe_count_formatted?: string;
+    /**
+     * List/Segment uuid, or Flow/Campaign uuid depending on level of stat aggregation.
+     * @type {string}
+     * @memberof EmailSmsStat
+     */
+    uuid?: string;
+    /**
+     * Count of views
+     * @type {number}
+     * @memberof EmailSmsStat
+     */
+    view_count?: number;
+    /**
+     * Count of views, formatted
+     * @type {string}
+     * @memberof EmailSmsStat
+     */
+    view_count_formatted?: string;
+}
+/**
+ *
+ * @export
  * @interface EmailStat
  */
 export interface EmailStat {
@@ -19415,6 +19670,62 @@ export interface EmailStatPostcardSummaryResponse {
      *
      * @type {Warning}
      * @memberof EmailStatPostcardSummaryResponse
+     */
+    warning?: Warning;
+}
+/**
+ *
+ * @export
+ * @interface EmailStatSmsSummaryRequest
+ */
+export interface EmailStatSmsSummaryRequest {
+    /**
+     *
+     * @type {Array<string>}
+     * @memberof EmailStatSmsSummaryRequest
+     */
+    commseq_step_uuids?: Array<string>;
+    /**
+     *
+     * @type {number}
+     * @memberof EmailStatSmsSummaryRequest
+     */
+    days?: number;
+}
+/**
+ *
+ * @export
+ * @interface EmailStatSmsSummaryResponse
+ */
+export interface EmailStatSmsSummaryResponse {
+    /**
+     *
+     * @type {ModelError}
+     * @memberof EmailStatSmsSummaryResponse
+     */
+    error?: ModelError;
+    /**
+     *
+     * @type {ResponseMetadata}
+     * @memberof EmailStatSmsSummaryResponse
+     */
+    metadata?: ResponseMetadata;
+    /**
+     *
+     * @type {Array<EmailSmsStat>}
+     * @memberof EmailStatSmsSummaryResponse
+     */
+    stats?: Array<EmailSmsStat>;
+    /**
+     * Indicates if API call was successful
+     * @type {boolean}
+     * @memberof EmailStatSmsSummaryResponse
+     */
+    success?: boolean;
+    /**
+     *
+     * @type {Warning}
+     * @memberof EmailStatSmsSummaryResponse
      */
     warning?: Warning;
 }
@@ -33346,6 +33657,12 @@ export interface PricingTier {
      * @memberof PricingTier
      */
     auto_approve_purchase_order?: boolean;
+    /**
+     * Any currency code specified on this pricing tier will force a shopping cart into that currency
+     * @type {string}
+     * @memberof PricingTier
+     */
+    currency_code?: string;
     /**
      * Default on wholesale signup
      * @type {boolean}
@@ -52136,6 +52453,16 @@ export declare const StorefrontApiFetchParamCreator: (configuration?: Configurat
     getEmailCommseqPostcardTracking(storefront_oid: number, commseq_postcard_uuid: string, options?: any): FetchArgs;
     /**
      *
+     * @summary Get email communication sequence sms stats
+     * @param {number} storefront_oid
+     * @param {string} commseq_uuid
+     * @param {EmailStatSmsSummaryRequest} statsRequest StatsRequest
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getEmailCommseqSmsStats(storefront_oid: number, commseq_uuid: string, statsRequest: EmailStatSmsSummaryRequest, options?: any): FetchArgs;
+    /**
+     *
      * @summary Get communication sequence stats overall
      * @param {number} storefront_oid
      * @param {string} commseq_uuid
@@ -52504,6 +52831,17 @@ export declare const StorefrontApiFetchParamCreator: (configuration?: Configurat
      * @throws {RequiredError}
      */
     getEmailSettings(storefront_oid: number, options?: any): FetchArgs;
+    /**
+     *
+     * @summary Get email sms orders
+     * @param {number} storefront_oid
+     * @param {string} commseq_uuid
+     * @param {string} commseq_step_uuid
+     * @param {number} [days]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getEmailSmsOrders(storefront_oid: number, commseq_uuid: string, commseq_step_uuid: string, days?: number, options?: any): FetchArgs;
     /**
      *
      * @summary Get email template
@@ -53716,6 +54054,16 @@ export declare const StorefrontApiFp: (configuration?: Configuration) => {
     getEmailCommseqPostcardTracking(storefront_oid: number, commseq_postcard_uuid: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<EmailPostcardTrackingResponse>;
     /**
      *
+     * @summary Get email communication sequence sms stats
+     * @param {number} storefront_oid
+     * @param {string} commseq_uuid
+     * @param {EmailStatSmsSummaryRequest} statsRequest StatsRequest
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getEmailCommseqSmsStats(storefront_oid: number, commseq_uuid: string, statsRequest: EmailStatSmsSummaryRequest, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<EmailStatSmsSummaryResponse>;
+    /**
+     *
      * @summary Get communication sequence stats overall
      * @param {number} storefront_oid
      * @param {string} commseq_uuid
@@ -54084,6 +54432,17 @@ export declare const StorefrontApiFp: (configuration?: Configuration) => {
      * @throws {RequiredError}
      */
     getEmailSettings(storefront_oid: number, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<EmailSettingsResponse>;
+    /**
+     *
+     * @summary Get email sms orders
+     * @param {number} storefront_oid
+     * @param {string} commseq_uuid
+     * @param {string} commseq_step_uuid
+     * @param {number} [days]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getEmailSmsOrders(storefront_oid: number, commseq_uuid: string, commseq_step_uuid: string, days?: number, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<EmailSmsOrdersResponse>;
     /**
      *
      * @summary Get email template
@@ -55296,6 +55655,16 @@ export declare const StorefrontApiFactory: (configuration?: Configuration, fetch
     getEmailCommseqPostcardTracking(storefront_oid: number, commseq_postcard_uuid: string, options?: any): Promise<EmailPostcardTrackingResponse>;
     /**
      *
+     * @summary Get email communication sequence sms stats
+     * @param {number} storefront_oid
+     * @param {string} commseq_uuid
+     * @param {EmailStatSmsSummaryRequest} statsRequest StatsRequest
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getEmailCommseqSmsStats(storefront_oid: number, commseq_uuid: string, statsRequest: EmailStatSmsSummaryRequest, options?: any): Promise<EmailStatSmsSummaryResponse>;
+    /**
+     *
      * @summary Get communication sequence stats overall
      * @param {number} storefront_oid
      * @param {string} commseq_uuid
@@ -55664,6 +56033,17 @@ export declare const StorefrontApiFactory: (configuration?: Configuration, fetch
      * @throws {RequiredError}
      */
     getEmailSettings(storefront_oid: number, options?: any): Promise<EmailSettingsResponse>;
+    /**
+     *
+     * @summary Get email sms orders
+     * @param {number} storefront_oid
+     * @param {string} commseq_uuid
+     * @param {string} commseq_step_uuid
+     * @param {number} [days]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getEmailSmsOrders(storefront_oid: number, commseq_uuid: string, commseq_step_uuid: string, days?: number, options?: any): Promise<EmailSmsOrdersResponse>;
     /**
      *
      * @summary Get email template
@@ -56920,6 +57300,17 @@ export interface StorefrontApiInterface {
     getEmailCommseqPostcardTracking(storefront_oid: number, commseq_postcard_uuid: string, options?: any): Promise<EmailPostcardTrackingResponse>;
     /**
      *
+     * @summary Get email communication sequence sms stats
+     * @param {number} storefront_oid
+     * @param {string} commseq_uuid
+     * @param {EmailStatSmsSummaryRequest} statsRequest StatsRequest
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof StorefrontApiInterface
+     */
+    getEmailCommseqSmsStats(storefront_oid: number, commseq_uuid: string, statsRequest: EmailStatSmsSummaryRequest, options?: any): Promise<EmailStatSmsSummaryResponse>;
+    /**
+     *
      * @summary Get communication sequence stats overall
      * @param {number} storefront_oid
      * @param {string} commseq_uuid
@@ -57329,6 +57720,18 @@ export interface StorefrontApiInterface {
      * @memberof StorefrontApiInterface
      */
     getEmailSettings(storefront_oid: number, options?: any): Promise<EmailSettingsResponse>;
+    /**
+     *
+     * @summary Get email sms orders
+     * @param {number} storefront_oid
+     * @param {string} commseq_uuid
+     * @param {string} commseq_step_uuid
+     * @param {number} [days]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof StorefrontApiInterface
+     */
+    getEmailSmsOrders(storefront_oid: number, commseq_uuid: string, commseq_step_uuid: string, days?: number, options?: any): Promise<EmailSmsOrdersResponse>;
     /**
      *
      * @summary Get email template
@@ -58674,6 +59077,17 @@ export declare class StorefrontApi extends BaseAPI implements StorefrontApiInter
     getEmailCommseqPostcardTracking(storefront_oid: number, commseq_postcard_uuid: string, options?: any): Promise<EmailPostcardTrackingResponse>;
     /**
      *
+     * @summary Get email communication sequence sms stats
+     * @param {number} storefront_oid
+     * @param {string} commseq_uuid
+     * @param {EmailStatSmsSummaryRequest} statsRequest StatsRequest
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof StorefrontApi
+     */
+    getEmailCommseqSmsStats(storefront_oid: number, commseq_uuid: string, statsRequest: EmailStatSmsSummaryRequest, options?: any): Promise<EmailStatSmsSummaryResponse>;
+    /**
+     *
      * @summary Get communication sequence stats overall
      * @param {number} storefront_oid
      * @param {string} commseq_uuid
@@ -59083,6 +59497,18 @@ export declare class StorefrontApi extends BaseAPI implements StorefrontApiInter
      * @memberof StorefrontApi
      */
     getEmailSettings(storefront_oid: number, options?: any): Promise<EmailSettingsResponse>;
+    /**
+     *
+     * @summary Get email sms orders
+     * @param {number} storefront_oid
+     * @param {string} commseq_uuid
+     * @param {string} commseq_step_uuid
+     * @param {number} [days]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof StorefrontApi
+     */
+    getEmailSmsOrders(storefront_oid: number, commseq_uuid: string, commseq_step_uuid: string, days?: number, options?: any): Promise<EmailSmsOrdersResponse>;
     /**
      *
      * @summary Get email template

@@ -25477,6 +25477,73 @@ var StorefrontApiFetchParamCreator = function (configuration) {
         },
         /**
          *
+         * @summary Get email communication sequence sms stats
+         * @param {number} storefront_oid
+         * @param {string} commseq_uuid
+         * @param {EmailStatSmsSummaryRequest} statsRequest StatsRequest
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getEmailCommseqSmsStats: function (storefront_oid, commseq_uuid, statsRequest, options) {
+            if (options === void 0) { options = {}; }
+            // verify required parameter 'storefront_oid' is not null or undefined
+            if (storefront_oid === null || storefront_oid === undefined) {
+                throw new RequiredError('storefront_oid', 'Required parameter storefront_oid was null or undefined when calling getEmailCommseqSmsStats.');
+            }
+            // verify required parameter 'commseq_uuid' is not null or undefined
+            if (commseq_uuid === null || commseq_uuid === undefined) {
+                throw new RequiredError('commseq_uuid', 'Required parameter commseq_uuid was null or undefined when calling getEmailCommseqSmsStats.');
+            }
+            // verify required parameter 'statsRequest' is not null or undefined
+            if (statsRequest === null || statsRequest === undefined) {
+                throw new RequiredError('statsRequest', 'Required parameter statsRequest was null or undefined when calling getEmailCommseqSmsStats.');
+            }
+            var localVarPath = "/storefront/{storefront_oid}/email/commseqs/{commseq_uuid}/smsStats"
+                .replace("{".concat("storefront_oid", "}"), encodeURIComponent(String(storefront_oid)))
+                .replace("{".concat("commseq_uuid", "}"), encodeURIComponent(String(commseq_uuid)));
+            var localVarUrlObj = url.parse(localVarPath, true);
+            var localVarRequestOptions = Object.assign({ method: 'POST' }, options);
+            var localVarHeaderParameter = {};
+            var localVarQueryParameter = {};
+            if (configuration && configuration.apiVersion) {
+                localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+            }
+            // authentication ultraCartBrowserApiKey required
+            if (configuration && configuration.apiKey) {
+                var localVarApiKeyValue = typeof configuration.apiKey === 'function'
+                    ? configuration.apiKey("x-ultracart-browser-key")
+                    : configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-browser-key"] = localVarApiKeyValue;
+            }
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+                var localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+                    ? configuration.accessToken("ultraCartOauth", ["storefront_read"])
+                    : configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                var localVarApiKeyValue = typeof configuration.apiKey === 'function'
+                    ? configuration.apiKey("x-ultracart-simple-key")
+                    : configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+            var needsSerialization = ("EmailStatSmsSummaryRequest" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
+            localVarRequestOptions.body = needsSerialization ? JSON.stringify(statsRequest || {}) : (statsRequest || "");
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         *
          * @summary Get communication sequence stats overall
          * @param {number} storefront_oid
          * @param {string} commseq_uuid
@@ -27876,6 +27943,75 @@ var StorefrontApiFetchParamCreator = function (configuration) {
                     ? configuration.apiKey("x-ultracart-simple-key")
                     : configuration.apiKey;
                 localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         *
+         * @summary Get email sms orders
+         * @param {number} storefront_oid
+         * @param {string} commseq_uuid
+         * @param {string} commseq_step_uuid
+         * @param {number} [days]
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getEmailSmsOrders: function (storefront_oid, commseq_uuid, commseq_step_uuid, days, options) {
+            if (options === void 0) { options = {}; }
+            // verify required parameter 'storefront_oid' is not null or undefined
+            if (storefront_oid === null || storefront_oid === undefined) {
+                throw new RequiredError('storefront_oid', 'Required parameter storefront_oid was null or undefined when calling getEmailSmsOrders.');
+            }
+            // verify required parameter 'commseq_uuid' is not null or undefined
+            if (commseq_uuid === null || commseq_uuid === undefined) {
+                throw new RequiredError('commseq_uuid', 'Required parameter commseq_uuid was null or undefined when calling getEmailSmsOrders.');
+            }
+            // verify required parameter 'commseq_step_uuid' is not null or undefined
+            if (commseq_step_uuid === null || commseq_step_uuid === undefined) {
+                throw new RequiredError('commseq_step_uuid', 'Required parameter commseq_step_uuid was null or undefined when calling getEmailSmsOrders.');
+            }
+            var localVarPath = "/storefront/{storefront_oid}/email/commseqs/{commseq_uuid}/steps/{commseq_step_uuid}/sms/orders"
+                .replace("{".concat("storefront_oid", "}"), encodeURIComponent(String(storefront_oid)))
+                .replace("{".concat("commseq_uuid", "}"), encodeURIComponent(String(commseq_uuid)))
+                .replace("{".concat("commseq_step_uuid", "}"), encodeURIComponent(String(commseq_step_uuid)));
+            var localVarUrlObj = url.parse(localVarPath, true);
+            var localVarRequestOptions = Object.assign({ method: 'GET' }, options);
+            var localVarHeaderParameter = {};
+            var localVarQueryParameter = {};
+            if (configuration && configuration.apiVersion) {
+                localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+            }
+            // authentication ultraCartBrowserApiKey required
+            if (configuration && configuration.apiKey) {
+                var localVarApiKeyValue = typeof configuration.apiKey === 'function'
+                    ? configuration.apiKey("x-ultracart-browser-key")
+                    : configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-browser-key"] = localVarApiKeyValue;
+            }
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+                var localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+                    ? configuration.accessToken("ultraCartOauth", ["storefront_read"])
+                    : configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                var localVarApiKeyValue = typeof configuration.apiKey === 'function'
+                    ? configuration.apiKey("x-ultracart-simple-key")
+                    : configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+            if (days !== undefined) {
+                localVarQueryParameter['days'] = days;
             }
             localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
             // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
@@ -34187,6 +34323,30 @@ var StorefrontApiFp = function (configuration) {
         },
         /**
          *
+         * @summary Get email communication sequence sms stats
+         * @param {number} storefront_oid
+         * @param {string} commseq_uuid
+         * @param {EmailStatSmsSummaryRequest} statsRequest StatsRequest
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getEmailCommseqSmsStats: function (storefront_oid, commseq_uuid, statsRequest, options) {
+            var localVarFetchArgs = (0, exports.StorefrontApiFetchParamCreator)(configuration).getEmailCommseqSmsStats(storefront_oid, commseq_uuid, statsRequest, options);
+            return function (fetch, basePath) {
+                if (fetch === void 0) { fetch = portableFetch; }
+                if (basePath === void 0) { basePath = BASE_PATH; }
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(function (response) {
+                    if (response.status >= 200 && response.status < 300) {
+                        return response.json();
+                    }
+                    else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
+         *
          * @summary Get communication sequence stats overall
          * @param {number} storefront_oid
          * @param {string} commseq_uuid
@@ -35116,6 +35276,31 @@ var StorefrontApiFp = function (configuration) {
          */
         getEmailSettings: function (storefront_oid, options) {
             var localVarFetchArgs = (0, exports.StorefrontApiFetchParamCreator)(configuration).getEmailSettings(storefront_oid, options);
+            return function (fetch, basePath) {
+                if (fetch === void 0) { fetch = portableFetch; }
+                if (basePath === void 0) { basePath = BASE_PATH; }
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(function (response) {
+                    if (response.status >= 200 && response.status < 300) {
+                        return response.json();
+                    }
+                    else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
+         *
+         * @summary Get email sms orders
+         * @param {number} storefront_oid
+         * @param {string} commseq_uuid
+         * @param {string} commseq_step_uuid
+         * @param {number} [days]
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getEmailSmsOrders: function (storefront_oid, commseq_uuid, commseq_step_uuid, days, options) {
+            var localVarFetchArgs = (0, exports.StorefrontApiFetchParamCreator)(configuration).getEmailSmsOrders(storefront_oid, commseq_uuid, commseq_step_uuid, days, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -37662,6 +37847,18 @@ var StorefrontApiFactory = function (configuration, fetch, basePath) {
         },
         /**
          *
+         * @summary Get email communication sequence sms stats
+         * @param {number} storefront_oid
+         * @param {string} commseq_uuid
+         * @param {EmailStatSmsSummaryRequest} statsRequest StatsRequest
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getEmailCommseqSmsStats: function (storefront_oid, commseq_uuid, statsRequest, options) {
+            return (0, exports.StorefrontApiFp)(configuration).getEmailCommseqSmsStats(storefront_oid, commseq_uuid, statsRequest, options)(fetch, basePath);
+        },
+        /**
+         *
          * @summary Get communication sequence stats overall
          * @param {number} storefront_oid
          * @param {string} commseq_uuid
@@ -38111,6 +38308,19 @@ var StorefrontApiFactory = function (configuration, fetch, basePath) {
          */
         getEmailSettings: function (storefront_oid, options) {
             return (0, exports.StorefrontApiFp)(configuration).getEmailSettings(storefront_oid, options)(fetch, basePath);
+        },
+        /**
+         *
+         * @summary Get email sms orders
+         * @param {number} storefront_oid
+         * @param {string} commseq_uuid
+         * @param {string} commseq_step_uuid
+         * @param {number} [days]
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getEmailSmsOrders: function (storefront_oid, commseq_uuid, commseq_step_uuid, days, options) {
+            return (0, exports.StorefrontApiFp)(configuration).getEmailSmsOrders(storefront_oid, commseq_uuid, commseq_step_uuid, days, options)(fetch, basePath);
         },
         /**
          *
@@ -39637,6 +39847,19 @@ var StorefrontApi = /** @class */ (function (_super) {
     };
     /**
      *
+     * @summary Get email communication sequence sms stats
+     * @param {number} storefront_oid
+     * @param {string} commseq_uuid
+     * @param {EmailStatSmsSummaryRequest} statsRequest StatsRequest
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof StorefrontApi
+     */
+    StorefrontApi.prototype.getEmailCommseqSmsStats = function (storefront_oid, commseq_uuid, statsRequest, options) {
+        return (0, exports.StorefrontApiFp)(this.configuration).getEmailCommseqSmsStats(storefront_oid, commseq_uuid, statsRequest, options)(this.fetch, this.basePath);
+    };
+    /**
+     *
      * @summary Get communication sequence stats overall
      * @param {number} storefront_oid
      * @param {string} commseq_uuid
@@ -40127,6 +40350,20 @@ var StorefrontApi = /** @class */ (function (_super) {
      */
     StorefrontApi.prototype.getEmailSettings = function (storefront_oid, options) {
         return (0, exports.StorefrontApiFp)(this.configuration).getEmailSettings(storefront_oid, options)(this.fetch, this.basePath);
+    };
+    /**
+     *
+     * @summary Get email sms orders
+     * @param {number} storefront_oid
+     * @param {string} commseq_uuid
+     * @param {string} commseq_step_uuid
+     * @param {number} [days]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof StorefrontApi
+     */
+    StorefrontApi.prototype.getEmailSmsOrders = function (storefront_oid, commseq_uuid, commseq_step_uuid, days, options) {
+        return (0, exports.StorefrontApiFp)(this.configuration).getEmailSmsOrders(storefront_oid, commseq_uuid, commseq_step_uuid, days, options)(this.fetch, this.basePath);
     };
     /**
      *

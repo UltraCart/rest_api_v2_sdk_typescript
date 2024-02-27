@@ -1,4 +1,4 @@
-## ultracart_rest_api_v2_typescript@3.10.183
+## ultracart_rest_api_v2_typescript@3.10.184
 
 This generator creates TypeScript/JavaScript client that utilizes [Fetch API](https://fetch.spec.whatwg.org/). The generated Node module can be used in the following environments:
 
@@ -36,7 +36,7 @@ navigate to the folder of your consuming project and run one of the following co
 _published:_
 
 ```
-npm install ultracart_rest_api_v2_typescript@3.10.183 --save
+npm install ultracart_rest_api_v2_typescript@3.10.184 --save
 ```
 
 _unPublished (not recommended):_
@@ -54,6 +54,7 @@ Not every change is committed to every SDK.
 
 | Version | Date | Comments |
 | --: | :-: | --- |
+| 3.10.184 | 02/27/2024 | esp - sms statistic layer |
 | 3.10.183 | 02/20/2024 | Add tag support to CouponAmountOffItems, CouponBuyOneGetOneLimit, CouponDiscountItemWithItemPurchase, CouponFreeItemWithItemPurchase, CouponPercentOffItemsWithItemsPurchase |
 | 3.10.182 | 01/16/2024 | order query - support searching by custom fields 8 through 10 |
 | 3.10.181 | 01/12/2024 | workflow task - add properties array |
