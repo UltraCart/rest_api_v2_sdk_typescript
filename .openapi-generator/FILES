@@ -415,9 +415,14 @@ src/models/EmailSendingDomainResponse.ts
 src/models/EmailSendingDomainsResponse.ts
 src/models/EmailSettings.ts
 src/models/EmailSettingsResponse.ts
+src/models/EmailSmsOrder.ts
+src/models/EmailSmsOrdersResponse.ts
+src/models/EmailSmsStat.ts
 src/models/EmailStat.ts
 src/models/EmailStatPostcardSummaryRequest.ts
 src/models/EmailStatPostcardSummaryResponse.ts
+src/models/EmailStatSmsSummaryRequest.ts
+src/models/EmailStatSmsSummaryResponse.ts
 src/models/EmailStatSummaryRequest.ts
 src/models/EmailStatSummaryResponse.ts
 src/models/EmailStepStat.ts

@@ -69,6 +69,12 @@ export interface PricingTier {
      */
     auto_approve_purchase_order?: boolean;
     /**
+     * Any currency code specified on this pricing tier will force a shopping cart into that currency
+     * @type {string}
+     * @memberof PricingTier
+     */
+    currency_code?: string;
+    /**
      * Default on wholesale signup
      * @type {boolean}
      * @memberof PricingTier
@@ -243,6 +249,7 @@ export function PricingTierFromJSONTyped(json: any, ignoreDiscriminator: boolean
         'approval_notification': !exists(json, 'approval_notification') ? undefined : PricingTierNotificationFromJSON(json['approval_notification']),
         'auto_approve_cod': !exists(json, 'auto_approve_cod') ? undefined : json['auto_approve_cod'],
         'auto_approve_purchase_order': !exists(json, 'auto_approve_purchase_order') ? undefined : json['auto_approve_purchase_order'],
+        'currency_code': !exists(json, 'currency_code') ? undefined : json['currency_code'],
         'default_on_wholesale_signup': !exists(json, 'default_on_wholesale_signup') ? undefined : json['default_on_wholesale_signup'],
         'default_percentage_discount': !exists(json, 'default_percentage_discount') ? undefined : json['default_percentage_discount'],
         'default_shipping_method_oid': !exists(json, 'default_shipping_method_oid') ? undefined : json['default_shipping_method_oid'],
@@ -288,6 +295,7 @@ export function PricingTierToJSON(value?: PricingTier | null): any {
         'approval_notification': PricingTierNotificationToJSON(value.approval_notification),
         'auto_approve_cod': value.auto_approve_cod,
         'auto_approve_purchase_order': value.auto_approve_purchase_order,
+        'currency_code': value.currency_code,
         'default_on_wholesale_signup': value.default_on_wholesale_signup,
         'default_percentage_discount': value.default_percentage_discount,
         'default_shipping_method_oid': value.default_shipping_method_oid,

@@ -258,12 +258,21 @@ import {
     EmailSettingsResponse,
     EmailSettingsResponseFromJSON,
     EmailSettingsResponseToJSON,
+    EmailSmsOrdersResponse,
+    EmailSmsOrdersResponseFromJSON,
+    EmailSmsOrdersResponseToJSON,
     EmailStatPostcardSummaryRequest,
     EmailStatPostcardSummaryRequestFromJSON,
     EmailStatPostcardSummaryRequestToJSON,
     EmailStatPostcardSummaryResponse,
     EmailStatPostcardSummaryResponseFromJSON,
     EmailStatPostcardSummaryResponseToJSON,
+    EmailStatSmsSummaryRequest,
+    EmailStatSmsSummaryRequestFromJSON,
+    EmailStatSmsSummaryRequestToJSON,
+    EmailStatSmsSummaryResponse,
+    EmailStatSmsSummaryResponseFromJSON,
+    EmailStatSmsSummaryResponseToJSON,
     EmailStatSummaryRequest,
     EmailStatSummaryRequestFromJSON,
     EmailStatSummaryRequestToJSON,
@@ -649,6 +658,12 @@ export interface GetEmailCommseqPostcardTrackingRequest {
     commseqPostcardUuid: string;
 }
 
+export interface GetEmailCommseqSmsStatsRequest {
+    storefrontOid: number;
+    commseqUuid: string;
+    statsRequest: EmailStatSmsSummaryRequest;
+}
+
 export interface GetEmailCommseqStatOverallRequest {
     storefrontOid: number;
     commseqUuid: string;
@@ -847,6 +862,13 @@ export interface GetEmailSendingDomainStatusRequest {
 
 export interface GetEmailSettingsRequest {
     storefrontOid: number;
+}
+
+export interface GetEmailSmsOrdersRequest {
+    storefrontOid: number;
+    commseqUuid: string;
+    commseqStepUuid: string;
+    days?: number;
 }
 
 export interface GetEmailTemplateRequest {
@@ -2006,6 +2028,23 @@ export interface StorefrontApiInterface {
 
     /**
      * 
+     * @summary Get email communication sequence sms stats
+     * @param {number} storefrontOid 
+     * @param {string} commseqUuid 
+     * @param {EmailStatSmsSummaryRequest} statsRequest StatsRequest
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof StorefrontApiInterface
+     */
+    getEmailCommseqSmsStatsRaw(requestParameters: GetEmailCommseqSmsStatsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EmailStatSmsSummaryResponse>>;
+
+    /**
+     * Get email communication sequence sms stats
+     */
+    getEmailCommseqSmsStats(requestParameters: GetEmailCommseqSmsStatsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EmailStatSmsSummaryResponse>;
+
+    /**
+     * 
      * @summary Get communication sequence stats overall
      * @param {number} storefrontOid 
      * @param {string} commseqUuid 
@@ -2660,6 +2699,24 @@ export interface StorefrontApiInterface {
      * Get email settings
      */
     getEmailSettings(requestParameters: GetEmailSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EmailSettingsResponse>;
+
+    /**
+     * 
+     * @summary Get email sms orders
+     * @param {number} storefrontOid 
+     * @param {string} commseqUuid 
+     * @param {string} commseqStepUuid 
+     * @param {number} [days] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof StorefrontApiInterface
+     */
+    getEmailSmsOrdersRaw(requestParameters: GetEmailSmsOrdersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EmailSmsOrdersResponse>>;
+
+    /**
+     * Get email sms orders
+     */
+    getEmailSmsOrders(requestParameters: GetEmailSmsOrdersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EmailSmsOrdersResponse>;
 
     /**
      * 
@@ -6145,6 +6202,60 @@ export class StorefrontApi extends runtime.BaseAPI implements StorefrontApiInter
     }
 
     /**
+     * Get email communication sequence sms stats
+     */
+    async getEmailCommseqSmsStatsRaw(requestParameters: GetEmailCommseqSmsStatsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EmailStatSmsSummaryResponse>> {
+        if (requestParameters.storefrontOid === null || requestParameters.storefrontOid === undefined) {
+            throw new runtime.RequiredError('storefrontOid','Required parameter requestParameters.storefrontOid was null or undefined when calling getEmailCommseqSmsStats.');
+        }
+
+        if (requestParameters.commseqUuid === null || requestParameters.commseqUuid === undefined) {
+            throw new runtime.RequiredError('commseqUuid','Required parameter requestParameters.commseqUuid was null or undefined when calling getEmailCommseqSmsStats.');
+        }
+
+        if (requestParameters.statsRequest === null || requestParameters.statsRequest === undefined) {
+            throw new runtime.RequiredError('statsRequest','Required parameter requestParameters.statsRequest was null or undefined when calling getEmailCommseqSmsStats.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-browser-key"] = this.configuration.apiKey("x-ultracart-browser-key"); // ultraCartBrowserApiKey authentication
+        }
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", ["storefront_read"]);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/storefront/{storefront_oid}/email/commseqs/{commseq_uuid}/smsStats`.replace(`{${"storefront_oid"}}`, encodeURIComponent(String(requestParameters.storefrontOid))).replace(`{${"commseq_uuid"}}`, encodeURIComponent(String(requestParameters.commseqUuid))),
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: EmailStatSmsSummaryRequestToJSON(requestParameters.statsRequest),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => EmailStatSmsSummaryResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Get email communication sequence sms stats
+     */
+    async getEmailCommseqSmsStats(requestParameters: GetEmailCommseqSmsStatsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EmailStatSmsSummaryResponse> {
+        const response = await this.getEmailCommseqSmsStatsRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
      * Get communication sequence stats overall
      */
     async getEmailCommseqStatOverallRaw(requestParameters: GetEmailCommseqStatOverallRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EmailCommseqStatResponse>> {
@@ -8084,6 +8195,61 @@ export class StorefrontApi extends runtime.BaseAPI implements StorefrontApiInter
      */
     async getEmailSettings(requestParameters: GetEmailSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EmailSettingsResponse> {
         const response = await this.getEmailSettingsRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Get email sms orders
+     */
+    async getEmailSmsOrdersRaw(requestParameters: GetEmailSmsOrdersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EmailSmsOrdersResponse>> {
+        if (requestParameters.storefrontOid === null || requestParameters.storefrontOid === undefined) {
+            throw new runtime.RequiredError('storefrontOid','Required parameter requestParameters.storefrontOid was null or undefined when calling getEmailSmsOrders.');
+        }
+
+        if (requestParameters.commseqUuid === null || requestParameters.commseqUuid === undefined) {
+            throw new runtime.RequiredError('commseqUuid','Required parameter requestParameters.commseqUuid was null or undefined when calling getEmailSmsOrders.');
+        }
+
+        if (requestParameters.commseqStepUuid === null || requestParameters.commseqStepUuid === undefined) {
+            throw new runtime.RequiredError('commseqStepUuid','Required parameter requestParameters.commseqStepUuid was null or undefined when calling getEmailSmsOrders.');
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters.days !== undefined) {
+            queryParameters['days'] = requestParameters.days;
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-browser-key"] = this.configuration.apiKey("x-ultracart-browser-key"); // ultraCartBrowserApiKey authentication
+        }
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", ["storefront_read"]);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/storefront/{storefront_oid}/email/commseqs/{commseq_uuid}/steps/{commseq_step_uuid}/sms/orders`.replace(`{${"storefront_oid"}}`, encodeURIComponent(String(requestParameters.storefrontOid))).replace(`{${"commseq_uuid"}}`, encodeURIComponent(String(requestParameters.commseqUuid))).replace(`{${"commseq_step_uuid"}}`, encodeURIComponent(String(requestParameters.commseqStepUuid))),
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => EmailSmsOrdersResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Get email sms orders
+     */
+    async getEmailSmsOrders(requestParameters: GetEmailSmsOrdersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EmailSmsOrdersResponse> {
+        const response = await this.getEmailSmsOrdersRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
