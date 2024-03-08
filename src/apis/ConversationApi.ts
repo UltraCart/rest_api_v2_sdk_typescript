@@ -75,6 +75,84 @@ import {
     ConversationMultimediaUploadUrlResponse,
     ConversationMultimediaUploadUrlResponseFromJSON,
     ConversationMultimediaUploadUrlResponseToJSON,
+    ConversationPbxAgent,
+    ConversationPbxAgentFromJSON,
+    ConversationPbxAgentToJSON,
+    ConversationPbxAgentResponse,
+    ConversationPbxAgentResponseFromJSON,
+    ConversationPbxAgentResponseToJSON,
+    ConversationPbxAgentsResponse,
+    ConversationPbxAgentsResponseFromJSON,
+    ConversationPbxAgentsResponseToJSON,
+    ConversationPbxAudio,
+    ConversationPbxAudioFromJSON,
+    ConversationPbxAudioToJSON,
+    ConversationPbxAudioResponse,
+    ConversationPbxAudioResponseFromJSON,
+    ConversationPbxAudioResponseToJSON,
+    ConversationPbxAudiosResponse,
+    ConversationPbxAudiosResponseFromJSON,
+    ConversationPbxAudiosResponseToJSON,
+    ConversationPbxCustomerSnapshotRequest,
+    ConversationPbxCustomerSnapshotRequestFromJSON,
+    ConversationPbxCustomerSnapshotRequestToJSON,
+    ConversationPbxCustomerSnapshotResponse,
+    ConversationPbxCustomerSnapshotResponseFromJSON,
+    ConversationPbxCustomerSnapshotResponseToJSON,
+    ConversationPbxMenu,
+    ConversationPbxMenuFromJSON,
+    ConversationPbxMenuToJSON,
+    ConversationPbxMenuResponse,
+    ConversationPbxMenuResponseFromJSON,
+    ConversationPbxMenuResponseToJSON,
+    ConversationPbxMenusResponse,
+    ConversationPbxMenusResponseFromJSON,
+    ConversationPbxMenusResponseToJSON,
+    ConversationPbxPhoneNumber,
+    ConversationPbxPhoneNumberFromJSON,
+    ConversationPbxPhoneNumberToJSON,
+    ConversationPbxPhoneNumberResponse,
+    ConversationPbxPhoneNumberResponseFromJSON,
+    ConversationPbxPhoneNumberResponseToJSON,
+    ConversationPbxPhoneNumbersResponse,
+    ConversationPbxPhoneNumbersResponseFromJSON,
+    ConversationPbxPhoneNumbersResponseToJSON,
+    ConversationPbxQueue,
+    ConversationPbxQueueFromJSON,
+    ConversationPbxQueueToJSON,
+    ConversationPbxQueueResponse,
+    ConversationPbxQueueResponseFromJSON,
+    ConversationPbxQueueResponseToJSON,
+    ConversationPbxQueuesResponse,
+    ConversationPbxQueuesResponseFromJSON,
+    ConversationPbxQueuesResponseToJSON,
+    ConversationPbxTimeBased,
+    ConversationPbxTimeBasedFromJSON,
+    ConversationPbxTimeBasedToJSON,
+    ConversationPbxTimeBasedResponse,
+    ConversationPbxTimeBasedResponseFromJSON,
+    ConversationPbxTimeBasedResponseToJSON,
+    ConversationPbxTimeBasedsResponse,
+    ConversationPbxTimeBasedsResponseFromJSON,
+    ConversationPbxTimeBasedsResponseToJSON,
+    ConversationPbxTimeRange,
+    ConversationPbxTimeRangeFromJSON,
+    ConversationPbxTimeRangeToJSON,
+    ConversationPbxTimeRangeResponse,
+    ConversationPbxTimeRangeResponseFromJSON,
+    ConversationPbxTimeRangeResponseToJSON,
+    ConversationPbxTimeRangesResponse,
+    ConversationPbxTimeRangesResponseFromJSON,
+    ConversationPbxTimeRangesResponseToJSON,
+    ConversationPbxVoicemailMailbox,
+    ConversationPbxVoicemailMailboxFromJSON,
+    ConversationPbxVoicemailMailboxToJSON,
+    ConversationPbxVoicemailMailboxResponse,
+    ConversationPbxVoicemailMailboxResponseFromJSON,
+    ConversationPbxVoicemailMailboxResponseToJSON,
+    ConversationPbxVoicemailMailboxesResponse,
+    ConversationPbxVoicemailMailboxesResponseFromJSON,
+    ConversationPbxVoicemailMailboxesResponseToJSON,
     ConversationPermissionsResponse,
     ConversationPermissionsResponseFromJSON,
     ConversationPermissionsResponseToJSON,
@@ -122,6 +200,38 @@ export interface DeleteEngagementRequest {
     conversationEngagementOid: number;
 }
 
+export interface DeletePbxAgentRequest {
+    conversationPbxAgentUuid: string;
+}
+
+export interface DeletePbxAudioRequest {
+    conversationPbxAudioUuid: string;
+}
+
+export interface DeletePbxMenuRequest {
+    conversationPbxMenuUuid: string;
+}
+
+export interface DeletePbxPhoneNumberRequest {
+    conversationPbxPhoneNumberUuid: string;
+}
+
+export interface DeletePbxQueueRequest {
+    conversationPbxQueueUuid: string;
+}
+
+export interface DeletePbxTimeBasedRequest {
+    conversationPbxTimeBasedUuid: string;
+}
+
+export interface DeletePbxTimeRangeRequest {
+    conversationPbxTimeRangeUuid: string;
+}
+
+export interface DeletePbxVoicemailMailboxRequest {
+    conversationPbxVoicemailMailboxUuid: string;
+}
+
 export interface GetConversationRequest {
     conversationUuid: string;
     limit?: number;
@@ -145,6 +255,14 @@ export interface GetConversationMultimediaUploadUrlRequest {
     extension: string;
 }
 
+export interface GetConversationPbxAudioUploadUrlRequest {
+    extension: string;
+}
+
+export interface GetConversationPbxCustomerSnapshotRequest {
+    pbxCustomerSnapshotRequest: ConversationPbxCustomerSnapshotRequest;
+}
+
 export interface GetConversationsRequest {
     medium?: string;
     before?: string;
@@ -160,6 +278,38 @@ export interface GetConversationsSearchRequest {
     searchRequest: ConversationSearchRequest;
 }
 
+export interface GetPbxAgentRequest {
+    conversationPbxAgentUuid: string;
+}
+
+export interface GetPbxAudioRequest {
+    conversationPbxAudioUuid: string;
+}
+
+export interface GetPbxMenuRequest {
+    conversationPbxMenuUuid: string;
+}
+
+export interface GetPbxPhoneNumberRequest {
+    conversationPbxPhoneNumberUuid: string;
+}
+
+export interface GetPbxQueueRequest {
+    conversationPbxQueueUuid: string;
+}
+
+export interface GetPbxTimeBasedRequest {
+    conversationPbxTimeBasedUuid: string;
+}
+
+export interface GetPbxTimeRangeRequest {
+    conversationPbxTimeRangeUuid: string;
+}
+
+export interface GetPbxVoicemailMailboxRequest {
+    conversationPbxVoicemailMailboxUuid: string;
+}
+
 export interface InsertConversationCannedMessageRequest {
     cannedMessage: ConversationCannedMessage;
 }
@@ -170,6 +320,38 @@ export interface InsertConversationDepartmentRequest {
 
 export interface InsertConversationEngagementRequest {
     engagement: ConversationEngagement;
+}
+
+export interface InsertPbxAgentRequest {
+    pbxAgent: ConversationPbxAgent;
+}
+
+export interface InsertPbxAudioRequest {
+    pbxAudio: ConversationPbxAudio;
+}
+
+export interface InsertPbxMenuRequest {
+    pbxMenu: ConversationPbxMenu;
+}
+
+export interface InsertPbxPhoneNumberRequest {
+    pbxPhoneNumber: ConversationPbxPhoneNumber;
+}
+
+export interface InsertPbxQueueRequest {
+    pbxQueue: ConversationPbxQueue;
+}
+
+export interface InsertPbxTimeBasedRequest {
+    pbxTimeBased: ConversationPbxTimeBased;
+}
+
+export interface InsertPbxTimeRangeRequest {
+    pbxTimeRange: ConversationPbxTimeRange;
+}
+
+export interface InsertPbxVoicemailMailboxRequest {
+    pbxVoicemailMailbox: ConversationPbxVoicemailMailbox;
 }
 
 export interface JoinConversationRequest {
@@ -219,6 +401,46 @@ export interface UpdateConversationEngagementRequest {
 export interface UpdateConversationWebchatQueueStatusRequest {
     queueName: string;
     statusRequest: ConversationWebchatQueueStatusUpdateRequest;
+}
+
+export interface UpdatePbxAgentRequest {
+    conversationPbxAgentUuid: string;
+    pbxAgent: ConversationPbxAgent;
+}
+
+export interface UpdatePbxAudioRequest {
+    conversationPbxAudioUuid: string;
+    pbxAudio: ConversationPbxAudio;
+}
+
+export interface UpdatePbxMenuRequest {
+    conversationPbxMenuUuid: string;
+    pbxMenu: ConversationPbxMenu;
+}
+
+export interface UpdatePbxPhoneNumberRequest {
+    conversationPbxPhoneNumberUuid: string;
+    pbxPhoneNumber: ConversationPbxPhoneNumber;
+}
+
+export interface UpdatePbxQueueRequest {
+    conversationPbxQueueUuid: string;
+    pbxQueue: ConversationPbxQueue;
+}
+
+export interface UpdatePbxTimeBasedRequest {
+    conversationPbxTimeBasedUuid: string;
+    pbxTimeBased: ConversationPbxTimeBased;
+}
+
+export interface UpdatePbxTimeRangeRequest {
+    conversationPbxTimeRangeUuid: string;
+    pbxTimeRange: ConversationPbxTimeRange;
+}
+
+export interface UpdatePbxVoicemailMailboxRequest {
+    conversationPbxVoicemailMailboxUuid: string;
+    pbxVoicemailMailbox: ConversationPbxVoicemailMailbox;
 }
 
 /**
@@ -275,6 +497,134 @@ export interface ConversationApiInterface {
      * Delete a conversation engagement
      */
     deleteEngagement(requestParameters: DeleteEngagementRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+
+    /**
+     * Delete a pbx agent 
+     * @summary Delete pbx agent
+     * @param {string} conversationPbxAgentUuid 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApiInterface
+     */
+    deletePbxAgentRaw(requestParameters: DeletePbxAgentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ConversationPbxAgentResponse>>;
+
+    /**
+     * Delete a pbx agent 
+     * Delete pbx agent
+     */
+    deletePbxAgent(requestParameters: DeletePbxAgentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ConversationPbxAgentResponse>;
+
+    /**
+     * Delete a pbx audio 
+     * @summary Delete pbx audio
+     * @param {string} conversationPbxAudioUuid 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApiInterface
+     */
+    deletePbxAudioRaw(requestParameters: DeletePbxAudioRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ConversationPbxAudioResponse>>;
+
+    /**
+     * Delete a pbx audio 
+     * Delete pbx audio
+     */
+    deletePbxAudio(requestParameters: DeletePbxAudioRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ConversationPbxAudioResponse>;
+
+    /**
+     * Delete a pbx menu 
+     * @summary Delete pbx menu
+     * @param {string} conversationPbxMenuUuid 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApiInterface
+     */
+    deletePbxMenuRaw(requestParameters: DeletePbxMenuRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ConversationPbxMenuResponse>>;
+
+    /**
+     * Delete a pbx menu 
+     * Delete pbx menu
+     */
+    deletePbxMenu(requestParameters: DeletePbxMenuRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ConversationPbxMenuResponse>;
+
+    /**
+     * Delete a pbx phoneNumber 
+     * @summary Delete pbx phoneNumber
+     * @param {string} conversationPbxPhoneNumberUuid 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApiInterface
+     */
+    deletePbxPhoneNumberRaw(requestParameters: DeletePbxPhoneNumberRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ConversationPbxPhoneNumberResponse>>;
+
+    /**
+     * Delete a pbx phoneNumber 
+     * Delete pbx phoneNumber
+     */
+    deletePbxPhoneNumber(requestParameters: DeletePbxPhoneNumberRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ConversationPbxPhoneNumberResponse>;
+
+    /**
+     * Delete a pbx queue 
+     * @summary Delete pbx queue
+     * @param {string} conversationPbxQueueUuid 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApiInterface
+     */
+    deletePbxQueueRaw(requestParameters: DeletePbxQueueRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ConversationPbxQueueResponse>>;
+
+    /**
+     * Delete a pbx queue 
+     * Delete pbx queue
+     */
+    deletePbxQueue(requestParameters: DeletePbxQueueRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ConversationPbxQueueResponse>;
+
+    /**
+     * Delete a pbx timeBased 
+     * @summary Delete pbx timeBased
+     * @param {string} conversationPbxTimeBasedUuid 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApiInterface
+     */
+    deletePbxTimeBasedRaw(requestParameters: DeletePbxTimeBasedRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ConversationPbxTimeBasedResponse>>;
+
+    /**
+     * Delete a pbx timeBased 
+     * Delete pbx timeBased
+     */
+    deletePbxTimeBased(requestParameters: DeletePbxTimeBasedRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ConversationPbxTimeBasedResponse>;
+
+    /**
+     * Delete a pbx timeRange 
+     * @summary Delete pbx timeRange
+     * @param {string} conversationPbxTimeRangeUuid 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApiInterface
+     */
+    deletePbxTimeRangeRaw(requestParameters: DeletePbxTimeRangeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ConversationPbxTimeRangeResponse>>;
+
+    /**
+     * Delete a pbx timeRange 
+     * Delete pbx timeRange
+     */
+    deletePbxTimeRange(requestParameters: DeletePbxTimeRangeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ConversationPbxTimeRangeResponse>;
+
+    /**
+     * Delete a pbx voicemailMailbox 
+     * @summary Delete pbx voicemailMailbox
+     * @param {string} conversationPbxVoicemailMailboxUuid 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApiInterface
+     */
+    deletePbxVoicemailMailboxRaw(requestParameters: DeletePbxVoicemailMailboxRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ConversationPbxVoicemailMailboxResponse>>;
+
+    /**
+     * Delete a pbx voicemailMailbox 
+     * Delete pbx voicemailMailbox
+     */
+    deletePbxVoicemailMailbox(requestParameters: DeletePbxVoicemailMailboxRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ConversationPbxVoicemailMailboxResponse>;
 
     /**
      * Called periodically by the conversation API to keep the session alive. 
@@ -465,6 +815,38 @@ export interface ConversationApiInterface {
     getConversationMultimediaUploadUrl(requestParameters: GetConversationMultimediaUploadUrlRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ConversationMultimediaUploadUrlResponse>;
 
     /**
+     * Get a pre-signed conversation multimedia upload URL 
+     * @summary Get a pre-signed conversation multimedia upload URL
+     * @param {string} extension 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApiInterface
+     */
+    getConversationPbxAudioUploadUrlRaw(requestParameters: GetConversationPbxAudioUploadUrlRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ConversationMultimediaUploadUrlResponse>>;
+
+    /**
+     * Get a pre-signed conversation multimedia upload URL 
+     * Get a pre-signed conversation multimedia upload URL
+     */
+    getConversationPbxAudioUploadUrl(requestParameters: GetConversationPbxAudioUploadUrlRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ConversationMultimediaUploadUrlResponse>;
+
+    /**
+     * Retrieves all the orders, auto orders, and customer profile for a given phone number 
+     * @summary Get orders and customer information for a phone number
+     * @param {ConversationPbxCustomerSnapshotRequest} pbxCustomerSnapshotRequest Conversation pbx customer snapshot request
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApiInterface
+     */
+    getConversationPbxCustomerSnapshotRaw(requestParameters: GetConversationPbxCustomerSnapshotRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ConversationPbxCustomerSnapshotResponse>>;
+
+    /**
+     * Retrieves all the orders, auto orders, and customer profile for a given phone number 
+     * Get orders and customer information for a phone number
+     */
+    getConversationPbxCustomerSnapshot(requestParameters: GetConversationPbxCustomerSnapshotRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ConversationPbxCustomerSnapshotResponse>;
+
+    /**
      * Retrieve conversation permissions 
      * @summary Retrieve conversation permissions
      * @param {*} [options] Override http request option.
@@ -561,6 +943,254 @@ export interface ConversationApiInterface {
     getLocationsForEngagement(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ConversationLocationsResponse>;
 
     /**
+     * Retrieve a pbx agent 
+     * @summary Get pbx agent
+     * @param {string} conversationPbxAgentUuid 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApiInterface
+     */
+    getPbxAgentRaw(requestParameters: GetPbxAgentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ConversationPbxAgentResponse>>;
+
+    /**
+     * Retrieve a pbx agent 
+     * Get pbx agent
+     */
+    getPbxAgent(requestParameters: GetPbxAgentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ConversationPbxAgentResponse>;
+
+    /**
+     * Retrieve pbx agents 
+     * @summary Get pbx agents
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApiInterface
+     */
+    getPbxAgentsRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ConversationPbxAgentsResponse>>;
+
+    /**
+     * Retrieve pbx agents 
+     * Get pbx agents
+     */
+    getPbxAgents(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ConversationPbxAgentsResponse>;
+
+    /**
+     * Retrieve a pbx audio 
+     * @summary Get pbx audio
+     * @param {string} conversationPbxAudioUuid 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApiInterface
+     */
+    getPbxAudioRaw(requestParameters: GetPbxAudioRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ConversationPbxAudioResponse>>;
+
+    /**
+     * Retrieve a pbx audio 
+     * Get pbx audio
+     */
+    getPbxAudio(requestParameters: GetPbxAudioRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ConversationPbxAudioResponse>;
+
+    /**
+     * Retrieve pbx audios 
+     * @summary Get pbx audios
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApiInterface
+     */
+    getPbxAudiosRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ConversationPbxAudiosResponse>>;
+
+    /**
+     * Retrieve pbx audios 
+     * Get pbx audios
+     */
+    getPbxAudios(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ConversationPbxAudiosResponse>;
+
+    /**
+     * Retrieve a pbx menu 
+     * @summary Get pbx menu
+     * @param {string} conversationPbxMenuUuid 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApiInterface
+     */
+    getPbxMenuRaw(requestParameters: GetPbxMenuRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ConversationPbxMenuResponse>>;
+
+    /**
+     * Retrieve a pbx menu 
+     * Get pbx menu
+     */
+    getPbxMenu(requestParameters: GetPbxMenuRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ConversationPbxMenuResponse>;
+
+    /**
+     * Retrieve pbx menus 
+     * @summary Get pbx menus
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApiInterface
+     */
+    getPbxMenusRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ConversationPbxMenusResponse>>;
+
+    /**
+     * Retrieve pbx menus 
+     * Get pbx menus
+     */
+    getPbxMenus(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ConversationPbxMenusResponse>;
+
+    /**
+     * Retrieve a pbx phoneNumber 
+     * @summary Get pbx phoneNumber
+     * @param {string} conversationPbxPhoneNumberUuid 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApiInterface
+     */
+    getPbxPhoneNumberRaw(requestParameters: GetPbxPhoneNumberRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ConversationPbxPhoneNumberResponse>>;
+
+    /**
+     * Retrieve a pbx phoneNumber 
+     * Get pbx phoneNumber
+     */
+    getPbxPhoneNumber(requestParameters: GetPbxPhoneNumberRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ConversationPbxPhoneNumberResponse>;
+
+    /**
+     * Retrieve pbx phoneNumbers 
+     * @summary Get pbx phoneNumbers
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApiInterface
+     */
+    getPbxPhoneNumbersRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ConversationPbxPhoneNumbersResponse>>;
+
+    /**
+     * Retrieve pbx phoneNumbers 
+     * Get pbx phoneNumbers
+     */
+    getPbxPhoneNumbers(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ConversationPbxPhoneNumbersResponse>;
+
+    /**
+     * Retrieve a pbx queue 
+     * @summary Get pbx queue
+     * @param {string} conversationPbxQueueUuid 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApiInterface
+     */
+    getPbxQueueRaw(requestParameters: GetPbxQueueRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ConversationPbxQueueResponse>>;
+
+    /**
+     * Retrieve a pbx queue 
+     * Get pbx queue
+     */
+    getPbxQueue(requestParameters: GetPbxQueueRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ConversationPbxQueueResponse>;
+
+    /**
+     * Retrieve pbx queues 
+     * @summary Get pbx queues
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApiInterface
+     */
+    getPbxQueuesRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ConversationPbxQueuesResponse>>;
+
+    /**
+     * Retrieve pbx queues 
+     * Get pbx queues
+     */
+    getPbxQueues(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ConversationPbxQueuesResponse>;
+
+    /**
+     * Retrieve a pbx timeBased 
+     * @summary Get pbx timeBased
+     * @param {string} conversationPbxTimeBasedUuid 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApiInterface
+     */
+    getPbxTimeBasedRaw(requestParameters: GetPbxTimeBasedRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ConversationPbxTimeBasedResponse>>;
+
+    /**
+     * Retrieve a pbx timeBased 
+     * Get pbx timeBased
+     */
+    getPbxTimeBased(requestParameters: GetPbxTimeBasedRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ConversationPbxTimeBasedResponse>;
+
+    /**
+     * Retrieve pbx timeBaseds 
+     * @summary Get pbx timeBaseds
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApiInterface
+     */
+    getPbxTimeBasedsRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ConversationPbxTimeBasedsResponse>>;
+
+    /**
+     * Retrieve pbx timeBaseds 
+     * Get pbx timeBaseds
+     */
+    getPbxTimeBaseds(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ConversationPbxTimeBasedsResponse>;
+
+    /**
+     * Retrieve a pbx timeRange 
+     * @summary Get pbx timeRange
+     * @param {string} conversationPbxTimeRangeUuid 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApiInterface
+     */
+    getPbxTimeRangeRaw(requestParameters: GetPbxTimeRangeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ConversationPbxTimeRangeResponse>>;
+
+    /**
+     * Retrieve a pbx timeRange 
+     * Get pbx timeRange
+     */
+    getPbxTimeRange(requestParameters: GetPbxTimeRangeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ConversationPbxTimeRangeResponse>;
+
+    /**
+     * Retrieve pbx timeRanges 
+     * @summary Get pbx timeRanges
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApiInterface
+     */
+    getPbxTimeRangesRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ConversationPbxTimeRangesResponse>>;
+
+    /**
+     * Retrieve pbx timeRanges 
+     * Get pbx timeRanges
+     */
+    getPbxTimeRanges(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ConversationPbxTimeRangesResponse>;
+
+    /**
+     * Retrieve a pbx voicemailMailbox 
+     * @summary Get pbx voicemailMailbox
+     * @param {string} conversationPbxVoicemailMailboxUuid 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApiInterface
+     */
+    getPbxVoicemailMailboxRaw(requestParameters: GetPbxVoicemailMailboxRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ConversationPbxVoicemailMailboxResponse>>;
+
+    /**
+     * Retrieve a pbx voicemailMailbox 
+     * Get pbx voicemailMailbox
+     */
+    getPbxVoicemailMailbox(requestParameters: GetPbxVoicemailMailboxRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ConversationPbxVoicemailMailboxResponse>;
+
+    /**
+     * Retrieve pbx voicemailMailboxes 
+     * @summary Get pbx voicemailMailboxes
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApiInterface
+     */
+    getPbxVoicemailMailboxesRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ConversationPbxVoicemailMailboxesResponse>>;
+
+    /**
+     * Retrieve pbx voicemailMailboxes 
+     * Get pbx voicemailMailboxes
+     */
+    getPbxVoicemailMailboxes(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ConversationPbxVoicemailMailboxesResponse>;
+
+    /**
      * Insert a canned message 
      * @summary Insert a canned message
      * @param {ConversationCannedMessage} cannedMessage Canned message
@@ -607,6 +1237,134 @@ export interface ConversationApiInterface {
      * Insert a engagement
      */
     insertConversationEngagement(requestParameters: InsertConversationEngagementRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ConversationEngagementResponse>;
+
+    /**
+     * Insert a pbx agent 
+     * @summary Insert pbx agent
+     * @param {ConversationPbxAgent} pbxAgent Pbx Agent
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApiInterface
+     */
+    insertPbxAgentRaw(requestParameters: InsertPbxAgentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ConversationPbxAgentResponse>>;
+
+    /**
+     * Insert a pbx agent 
+     * Insert pbx agent
+     */
+    insertPbxAgent(requestParameters: InsertPbxAgentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ConversationPbxAgentResponse>;
+
+    /**
+     * Insert a pbx audio 
+     * @summary Insert pbx audio
+     * @param {ConversationPbxAudio} pbxAudio Pbx Audio
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApiInterface
+     */
+    insertPbxAudioRaw(requestParameters: InsertPbxAudioRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ConversationPbxAudioResponse>>;
+
+    /**
+     * Insert a pbx audio 
+     * Insert pbx audio
+     */
+    insertPbxAudio(requestParameters: InsertPbxAudioRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ConversationPbxAudioResponse>;
+
+    /**
+     * Insert a pbx menu 
+     * @summary Insert pbx menu
+     * @param {ConversationPbxMenu} pbxMenu Pbx Menu
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApiInterface
+     */
+    insertPbxMenuRaw(requestParameters: InsertPbxMenuRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ConversationPbxMenuResponse>>;
+
+    /**
+     * Insert a pbx menu 
+     * Insert pbx menu
+     */
+    insertPbxMenu(requestParameters: InsertPbxMenuRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ConversationPbxMenuResponse>;
+
+    /**
+     * Insert a pbx phoneNumber 
+     * @summary Insert pbx phoneNumber
+     * @param {ConversationPbxPhoneNumber} pbxPhoneNumber Pbx PhoneNumber
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApiInterface
+     */
+    insertPbxPhoneNumberRaw(requestParameters: InsertPbxPhoneNumberRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ConversationPbxPhoneNumberResponse>>;
+
+    /**
+     * Insert a pbx phoneNumber 
+     * Insert pbx phoneNumber
+     */
+    insertPbxPhoneNumber(requestParameters: InsertPbxPhoneNumberRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ConversationPbxPhoneNumberResponse>;
+
+    /**
+     * Insert a pbx queue 
+     * @summary Insert pbx queue
+     * @param {ConversationPbxQueue} pbxQueue Pbx Queue
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApiInterface
+     */
+    insertPbxQueueRaw(requestParameters: InsertPbxQueueRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ConversationPbxQueueResponse>>;
+
+    /**
+     * Insert a pbx queue 
+     * Insert pbx queue
+     */
+    insertPbxQueue(requestParameters: InsertPbxQueueRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ConversationPbxQueueResponse>;
+
+    /**
+     * Insert a pbx timeBased 
+     * @summary Insert pbx timeBased
+     * @param {ConversationPbxTimeBased} pbxTimeBased Pbx TimeBased
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApiInterface
+     */
+    insertPbxTimeBasedRaw(requestParameters: InsertPbxTimeBasedRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ConversationPbxTimeBasedResponse>>;
+
+    /**
+     * Insert a pbx timeBased 
+     * Insert pbx timeBased
+     */
+    insertPbxTimeBased(requestParameters: InsertPbxTimeBasedRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ConversationPbxTimeBasedResponse>;
+
+    /**
+     * Insert a pbx timeRange 
+     * @summary Insert pbx timeRange
+     * @param {ConversationPbxTimeRange} pbxTimeRange Pbx TimeRange
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApiInterface
+     */
+    insertPbxTimeRangeRaw(requestParameters: InsertPbxTimeRangeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ConversationPbxTimeRangeResponse>>;
+
+    /**
+     * Insert a pbx timeRange 
+     * Insert pbx timeRange
+     */
+    insertPbxTimeRange(requestParameters: InsertPbxTimeRangeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ConversationPbxTimeRangeResponse>;
+
+    /**
+     * Insert a pbx voicemailMailbox 
+     * @summary Insert pbx voicemailMailbox
+     * @param {ConversationPbxVoicemailMailbox} pbxVoicemailMailbox Pbx VoicemailMailbox
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApiInterface
+     */
+    insertPbxVoicemailMailboxRaw(requestParameters: InsertPbxVoicemailMailboxRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ConversationPbxVoicemailMailboxResponse>>;
+
+    /**
+     * Insert a pbx voicemailMailbox 
+     * Insert pbx voicemailMailbox
+     */
+    insertPbxVoicemailMailbox(requestParameters: InsertPbxVoicemailMailboxRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ConversationPbxVoicemailMailboxResponse>;
 
     /**
      * Join a conversation 
@@ -789,6 +1547,142 @@ export interface ConversationApiInterface {
      */
     updateConversationWebchatQueueStatus(requestParameters: UpdateConversationWebchatQueueStatusRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
+    /**
+     * Update a pbx agent 
+     * @summary Update pbx agent
+     * @param {string} conversationPbxAgentUuid 
+     * @param {ConversationPbxAgent} pbxAgent Pbx Agent
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApiInterface
+     */
+    updatePbxAgentRaw(requestParameters: UpdatePbxAgentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ConversationPbxAgentResponse>>;
+
+    /**
+     * Update a pbx agent 
+     * Update pbx agent
+     */
+    updatePbxAgent(requestParameters: UpdatePbxAgentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ConversationPbxAgentResponse>;
+
+    /**
+     * Update a pbx audio 
+     * @summary Update pbx audio
+     * @param {string} conversationPbxAudioUuid 
+     * @param {ConversationPbxAudio} pbxAudio Pbx Audio
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApiInterface
+     */
+    updatePbxAudioRaw(requestParameters: UpdatePbxAudioRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ConversationPbxAudioResponse>>;
+
+    /**
+     * Update a pbx audio 
+     * Update pbx audio
+     */
+    updatePbxAudio(requestParameters: UpdatePbxAudioRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ConversationPbxAudioResponse>;
+
+    /**
+     * Update a pbx menu 
+     * @summary Update pbx menu
+     * @param {string} conversationPbxMenuUuid 
+     * @param {ConversationPbxMenu} pbxMenu Pbx Menu
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApiInterface
+     */
+    updatePbxMenuRaw(requestParameters: UpdatePbxMenuRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ConversationPbxMenuResponse>>;
+
+    /**
+     * Update a pbx menu 
+     * Update pbx menu
+     */
+    updatePbxMenu(requestParameters: UpdatePbxMenuRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ConversationPbxMenuResponse>;
+
+    /**
+     * Update a pbx phoneNumber 
+     * @summary Update pbx phoneNumber
+     * @param {string} conversationPbxPhoneNumberUuid 
+     * @param {ConversationPbxPhoneNumber} pbxPhoneNumber Pbx PhoneNumber
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApiInterface
+     */
+    updatePbxPhoneNumberRaw(requestParameters: UpdatePbxPhoneNumberRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ConversationPbxPhoneNumberResponse>>;
+
+    /**
+     * Update a pbx phoneNumber 
+     * Update pbx phoneNumber
+     */
+    updatePbxPhoneNumber(requestParameters: UpdatePbxPhoneNumberRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ConversationPbxPhoneNumberResponse>;
+
+    /**
+     * Update a pbx queue 
+     * @summary Update pbx queue
+     * @param {string} conversationPbxQueueUuid 
+     * @param {ConversationPbxQueue} pbxQueue Pbx Queue
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApiInterface
+     */
+    updatePbxQueueRaw(requestParameters: UpdatePbxQueueRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ConversationPbxQueueResponse>>;
+
+    /**
+     * Update a pbx queue 
+     * Update pbx queue
+     */
+    updatePbxQueue(requestParameters: UpdatePbxQueueRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ConversationPbxQueueResponse>;
+
+    /**
+     * Update a pbx timeBased 
+     * @summary Update pbx timeBased
+     * @param {string} conversationPbxTimeBasedUuid 
+     * @param {ConversationPbxTimeBased} pbxTimeBased Pbx TimeBased
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApiInterface
+     */
+    updatePbxTimeBasedRaw(requestParameters: UpdatePbxTimeBasedRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ConversationPbxTimeBasedResponse>>;
+
+    /**
+     * Update a pbx timeBased 
+     * Update pbx timeBased
+     */
+    updatePbxTimeBased(requestParameters: UpdatePbxTimeBasedRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ConversationPbxTimeBasedResponse>;
+
+    /**
+     * Update a pbx timeRange 
+     * @summary Update pbx timeRange
+     * @param {string} conversationPbxTimeRangeUuid 
+     * @param {ConversationPbxTimeRange} pbxTimeRange Pbx TimeRange
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApiInterface
+     */
+    updatePbxTimeRangeRaw(requestParameters: UpdatePbxTimeRangeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ConversationPbxTimeRangeResponse>>;
+
+    /**
+     * Update a pbx timeRange 
+     * Update pbx timeRange
+     */
+    updatePbxTimeRange(requestParameters: UpdatePbxTimeRangeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ConversationPbxTimeRangeResponse>;
+
+    /**
+     * Update a pbx voicemailMailbox 
+     * @summary Update pbx voicemailMailbox
+     * @param {string} conversationPbxVoicemailMailboxUuid 
+     * @param {ConversationPbxVoicemailMailbox} pbxVoicemailMailbox Pbx VoicemailMailbox
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApiInterface
+     */
+    updatePbxVoicemailMailboxRaw(requestParameters: UpdatePbxVoicemailMailboxRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ConversationPbxVoicemailMailboxResponse>>;
+
+    /**
+     * Update a pbx voicemailMailbox 
+     * Update pbx voicemailMailbox
+     */
+    updatePbxVoicemailMailbox(requestParameters: UpdatePbxVoicemailMailboxRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ConversationPbxVoicemailMailboxResponse>;
+
 }
 
 /**
@@ -914,6 +1808,334 @@ export class ConversationApi extends runtime.BaseAPI implements ConversationApiI
      */
     async deleteEngagement(requestParameters: DeleteEngagementRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.deleteEngagementRaw(requestParameters, initOverrides);
+    }
+
+    /**
+     * Delete a pbx agent 
+     * Delete pbx agent
+     */
+    async deletePbxAgentRaw(requestParameters: DeletePbxAgentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ConversationPbxAgentResponse>> {
+        if (requestParameters.conversationPbxAgentUuid === null || requestParameters.conversationPbxAgentUuid === undefined) {
+            throw new runtime.RequiredError('conversationPbxAgentUuid','Required parameter requestParameters.conversationPbxAgentUuid was null or undefined when calling deletePbxAgent.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", ["conversation_write"]);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/conversation/pbx/agent/{conversationPbxAgentUuid}`.replace(`{${"conversationPbxAgentUuid"}}`, encodeURIComponent(String(requestParameters.conversationPbxAgentUuid))),
+            method: 'DELETE',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => ConversationPbxAgentResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Delete a pbx agent 
+     * Delete pbx agent
+     */
+    async deletePbxAgent(requestParameters: DeletePbxAgentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ConversationPbxAgentResponse> {
+        const response = await this.deletePbxAgentRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Delete a pbx audio 
+     * Delete pbx audio
+     */
+    async deletePbxAudioRaw(requestParameters: DeletePbxAudioRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ConversationPbxAudioResponse>> {
+        if (requestParameters.conversationPbxAudioUuid === null || requestParameters.conversationPbxAudioUuid === undefined) {
+            throw new runtime.RequiredError('conversationPbxAudioUuid','Required parameter requestParameters.conversationPbxAudioUuid was null or undefined when calling deletePbxAudio.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", ["conversation_write"]);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/conversation/pbx/audio/{conversationPbxAudioUuid}`.replace(`{${"conversationPbxAudioUuid"}}`, encodeURIComponent(String(requestParameters.conversationPbxAudioUuid))),
+            method: 'DELETE',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => ConversationPbxAudioResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Delete a pbx audio 
+     * Delete pbx audio
+     */
+    async deletePbxAudio(requestParameters: DeletePbxAudioRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ConversationPbxAudioResponse> {
+        const response = await this.deletePbxAudioRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Delete a pbx menu 
+     * Delete pbx menu
+     */
+    async deletePbxMenuRaw(requestParameters: DeletePbxMenuRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ConversationPbxMenuResponse>> {
+        if (requestParameters.conversationPbxMenuUuid === null || requestParameters.conversationPbxMenuUuid === undefined) {
+            throw new runtime.RequiredError('conversationPbxMenuUuid','Required parameter requestParameters.conversationPbxMenuUuid was null or undefined when calling deletePbxMenu.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", ["conversation_write"]);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/conversation/pbx/menu/{conversationPbxMenuUuid}`.replace(`{${"conversationPbxMenuUuid"}}`, encodeURIComponent(String(requestParameters.conversationPbxMenuUuid))),
+            method: 'DELETE',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => ConversationPbxMenuResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Delete a pbx menu 
+     * Delete pbx menu
+     */
+    async deletePbxMenu(requestParameters: DeletePbxMenuRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ConversationPbxMenuResponse> {
+        const response = await this.deletePbxMenuRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Delete a pbx phoneNumber 
+     * Delete pbx phoneNumber
+     */
+    async deletePbxPhoneNumberRaw(requestParameters: DeletePbxPhoneNumberRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ConversationPbxPhoneNumberResponse>> {
+        if (requestParameters.conversationPbxPhoneNumberUuid === null || requestParameters.conversationPbxPhoneNumberUuid === undefined) {
+            throw new runtime.RequiredError('conversationPbxPhoneNumberUuid','Required parameter requestParameters.conversationPbxPhoneNumberUuid was null or undefined when calling deletePbxPhoneNumber.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", ["conversation_write"]);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/conversation/pbx/phone_number/{conversationPbxPhoneNumberUuid}`.replace(`{${"conversationPbxPhoneNumberUuid"}}`, encodeURIComponent(String(requestParameters.conversationPbxPhoneNumberUuid))),
+            method: 'DELETE',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => ConversationPbxPhoneNumberResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Delete a pbx phoneNumber 
+     * Delete pbx phoneNumber
+     */
+    async deletePbxPhoneNumber(requestParameters: DeletePbxPhoneNumberRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ConversationPbxPhoneNumberResponse> {
+        const response = await this.deletePbxPhoneNumberRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Delete a pbx queue 
+     * Delete pbx queue
+     */
+    async deletePbxQueueRaw(requestParameters: DeletePbxQueueRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ConversationPbxQueueResponse>> {
+        if (requestParameters.conversationPbxQueueUuid === null || requestParameters.conversationPbxQueueUuid === undefined) {
+            throw new runtime.RequiredError('conversationPbxQueueUuid','Required parameter requestParameters.conversationPbxQueueUuid was null or undefined when calling deletePbxQueue.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", ["conversation_write"]);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/conversation/pbx/queue/{conversationPbxQueueUuid}`.replace(`{${"conversationPbxQueueUuid"}}`, encodeURIComponent(String(requestParameters.conversationPbxQueueUuid))),
+            method: 'DELETE',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => ConversationPbxQueueResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Delete a pbx queue 
+     * Delete pbx queue
+     */
+    async deletePbxQueue(requestParameters: DeletePbxQueueRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ConversationPbxQueueResponse> {
+        const response = await this.deletePbxQueueRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Delete a pbx timeBased 
+     * Delete pbx timeBased
+     */
+    async deletePbxTimeBasedRaw(requestParameters: DeletePbxTimeBasedRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ConversationPbxTimeBasedResponse>> {
+        if (requestParameters.conversationPbxTimeBasedUuid === null || requestParameters.conversationPbxTimeBasedUuid === undefined) {
+            throw new runtime.RequiredError('conversationPbxTimeBasedUuid','Required parameter requestParameters.conversationPbxTimeBasedUuid was null or undefined when calling deletePbxTimeBased.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", ["conversation_write"]);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/conversation/pbx/time_based/{conversationPbxTimeBasedUuid}`.replace(`{${"conversationPbxTimeBasedUuid"}}`, encodeURIComponent(String(requestParameters.conversationPbxTimeBasedUuid))),
+            method: 'DELETE',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => ConversationPbxTimeBasedResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Delete a pbx timeBased 
+     * Delete pbx timeBased
+     */
+    async deletePbxTimeBased(requestParameters: DeletePbxTimeBasedRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ConversationPbxTimeBasedResponse> {
+        const response = await this.deletePbxTimeBasedRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Delete a pbx timeRange 
+     * Delete pbx timeRange
+     */
+    async deletePbxTimeRangeRaw(requestParameters: DeletePbxTimeRangeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ConversationPbxTimeRangeResponse>> {
+        if (requestParameters.conversationPbxTimeRangeUuid === null || requestParameters.conversationPbxTimeRangeUuid === undefined) {
+            throw new runtime.RequiredError('conversationPbxTimeRangeUuid','Required parameter requestParameters.conversationPbxTimeRangeUuid was null or undefined when calling deletePbxTimeRange.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", ["conversation_write"]);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/conversation/pbx/time_range/{conversationPbxTimeRangeUuid}`.replace(`{${"conversationPbxTimeRangeUuid"}}`, encodeURIComponent(String(requestParameters.conversationPbxTimeRangeUuid))),
+            method: 'DELETE',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => ConversationPbxTimeRangeResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Delete a pbx timeRange 
+     * Delete pbx timeRange
+     */
+    async deletePbxTimeRange(requestParameters: DeletePbxTimeRangeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ConversationPbxTimeRangeResponse> {
+        const response = await this.deletePbxTimeRangeRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Delete a pbx voicemailMailbox 
+     * Delete pbx voicemailMailbox
+     */
+    async deletePbxVoicemailMailboxRaw(requestParameters: DeletePbxVoicemailMailboxRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ConversationPbxVoicemailMailboxResponse>> {
+        if (requestParameters.conversationPbxVoicemailMailboxUuid === null || requestParameters.conversationPbxVoicemailMailboxUuid === undefined) {
+            throw new runtime.RequiredError('conversationPbxVoicemailMailboxUuid','Required parameter requestParameters.conversationPbxVoicemailMailboxUuid was null or undefined when calling deletePbxVoicemailMailbox.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", ["conversation_write"]);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/conversation/pbx/voicemail_mailbox/{conversationPbxVoicemailMailboxUuid}`.replace(`{${"conversationPbxVoicemailMailboxUuid"}}`, encodeURIComponent(String(requestParameters.conversationPbxVoicemailMailboxUuid))),
+            method: 'DELETE',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => ConversationPbxVoicemailMailboxResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Delete a pbx voicemailMailbox 
+     * Delete pbx voicemailMailbox
+     */
+    async deletePbxVoicemailMailbox(requestParameters: DeletePbxVoicemailMailboxRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ConversationPbxVoicemailMailboxResponse> {
+        const response = await this.deletePbxVoicemailMailboxRaw(requestParameters, initOverrides);
+        return await response.value();
     }
 
     /**
@@ -1392,6 +2614,91 @@ export class ConversationApi extends runtime.BaseAPI implements ConversationApiI
     }
 
     /**
+     * Get a pre-signed conversation multimedia upload URL 
+     * Get a pre-signed conversation multimedia upload URL
+     */
+    async getConversationPbxAudioUploadUrlRaw(requestParameters: GetConversationPbxAudioUploadUrlRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ConversationMultimediaUploadUrlResponse>> {
+        if (requestParameters.extension === null || requestParameters.extension === undefined) {
+            throw new runtime.RequiredError('extension','Required parameter requestParameters.extension was null or undefined when calling getConversationPbxAudioUploadUrl.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", ["conversation_write"]);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/conversation/pbx/audio/upload_url/{extension}`.replace(`{${"extension"}}`, encodeURIComponent(String(requestParameters.extension))),
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => ConversationMultimediaUploadUrlResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Get a pre-signed conversation multimedia upload URL 
+     * Get a pre-signed conversation multimedia upload URL
+     */
+    async getConversationPbxAudioUploadUrl(requestParameters: GetConversationPbxAudioUploadUrlRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ConversationMultimediaUploadUrlResponse> {
+        const response = await this.getConversationPbxAudioUploadUrlRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Retrieves all the orders, auto orders, and customer profile for a given phone number 
+     * Get orders and customer information for a phone number
+     */
+    async getConversationPbxCustomerSnapshotRaw(requestParameters: GetConversationPbxCustomerSnapshotRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ConversationPbxCustomerSnapshotResponse>> {
+        if (requestParameters.pbxCustomerSnapshotRequest === null || requestParameters.pbxCustomerSnapshotRequest === undefined) {
+            throw new runtime.RequiredError('pbxCustomerSnapshotRequest','Required parameter requestParameters.pbxCustomerSnapshotRequest was null or undefined when calling getConversationPbxCustomerSnapshot.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", ["conversation_read"]);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/conversation/pbx/customer_snapshot`,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: ConversationPbxCustomerSnapshotRequestToJSON(requestParameters.pbxCustomerSnapshotRequest),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => ConversationPbxCustomerSnapshotResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Retrieves all the orders, auto orders, and customer profile for a given phone number 
+     * Get orders and customer information for a phone number
+     */
+    async getConversationPbxCustomerSnapshot(requestParameters: GetConversationPbxCustomerSnapshotRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ConversationPbxCustomerSnapshotResponse> {
+        const response = await this.getConversationPbxCustomerSnapshotRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
      * Retrieve conversation permissions 
      * Retrieve conversation permissions
      */
@@ -1644,6 +2951,630 @@ export class ConversationApi extends runtime.BaseAPI implements ConversationApiI
     }
 
     /**
+     * Retrieve a pbx agent 
+     * Get pbx agent
+     */
+    async getPbxAgentRaw(requestParameters: GetPbxAgentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ConversationPbxAgentResponse>> {
+        if (requestParameters.conversationPbxAgentUuid === null || requestParameters.conversationPbxAgentUuid === undefined) {
+            throw new runtime.RequiredError('conversationPbxAgentUuid','Required parameter requestParameters.conversationPbxAgentUuid was null or undefined when calling getPbxAgent.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", ["conversation_read"]);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/conversation/pbx/agent/{conversationPbxAgentUuid}`.replace(`{${"conversationPbxAgentUuid"}}`, encodeURIComponent(String(requestParameters.conversationPbxAgentUuid))),
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => ConversationPbxAgentResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Retrieve a pbx agent 
+     * Get pbx agent
+     */
+    async getPbxAgent(requestParameters: GetPbxAgentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ConversationPbxAgentResponse> {
+        const response = await this.getPbxAgentRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Retrieve pbx agents 
+     * Get pbx agents
+     */
+    async getPbxAgentsRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ConversationPbxAgentsResponse>> {
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", ["conversation_read"]);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/conversation/pbx/agent`,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => ConversationPbxAgentsResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Retrieve pbx agents 
+     * Get pbx agents
+     */
+    async getPbxAgents(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ConversationPbxAgentsResponse> {
+        const response = await this.getPbxAgentsRaw(initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Retrieve a pbx audio 
+     * Get pbx audio
+     */
+    async getPbxAudioRaw(requestParameters: GetPbxAudioRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ConversationPbxAudioResponse>> {
+        if (requestParameters.conversationPbxAudioUuid === null || requestParameters.conversationPbxAudioUuid === undefined) {
+            throw new runtime.RequiredError('conversationPbxAudioUuid','Required parameter requestParameters.conversationPbxAudioUuid was null or undefined when calling getPbxAudio.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", ["conversation_read"]);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/conversation/pbx/audio/{conversationPbxAudioUuid}`.replace(`{${"conversationPbxAudioUuid"}}`, encodeURIComponent(String(requestParameters.conversationPbxAudioUuid))),
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => ConversationPbxAudioResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Retrieve a pbx audio 
+     * Get pbx audio
+     */
+    async getPbxAudio(requestParameters: GetPbxAudioRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ConversationPbxAudioResponse> {
+        const response = await this.getPbxAudioRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Retrieve pbx audios 
+     * Get pbx audios
+     */
+    async getPbxAudiosRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ConversationPbxAudiosResponse>> {
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", ["conversation_read"]);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/conversation/pbx/audio`,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => ConversationPbxAudiosResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Retrieve pbx audios 
+     * Get pbx audios
+     */
+    async getPbxAudios(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ConversationPbxAudiosResponse> {
+        const response = await this.getPbxAudiosRaw(initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Retrieve a pbx menu 
+     * Get pbx menu
+     */
+    async getPbxMenuRaw(requestParameters: GetPbxMenuRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ConversationPbxMenuResponse>> {
+        if (requestParameters.conversationPbxMenuUuid === null || requestParameters.conversationPbxMenuUuid === undefined) {
+            throw new runtime.RequiredError('conversationPbxMenuUuid','Required parameter requestParameters.conversationPbxMenuUuid was null or undefined when calling getPbxMenu.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", ["conversation_read"]);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/conversation/pbx/menu/{conversationPbxMenuUuid}`.replace(`{${"conversationPbxMenuUuid"}}`, encodeURIComponent(String(requestParameters.conversationPbxMenuUuid))),
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => ConversationPbxMenuResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Retrieve a pbx menu 
+     * Get pbx menu
+     */
+    async getPbxMenu(requestParameters: GetPbxMenuRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ConversationPbxMenuResponse> {
+        const response = await this.getPbxMenuRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Retrieve pbx menus 
+     * Get pbx menus
+     */
+    async getPbxMenusRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ConversationPbxMenusResponse>> {
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", ["conversation_read"]);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/conversation/pbx/menu`,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => ConversationPbxMenusResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Retrieve pbx menus 
+     * Get pbx menus
+     */
+    async getPbxMenus(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ConversationPbxMenusResponse> {
+        const response = await this.getPbxMenusRaw(initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Retrieve a pbx phoneNumber 
+     * Get pbx phoneNumber
+     */
+    async getPbxPhoneNumberRaw(requestParameters: GetPbxPhoneNumberRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ConversationPbxPhoneNumberResponse>> {
+        if (requestParameters.conversationPbxPhoneNumberUuid === null || requestParameters.conversationPbxPhoneNumberUuid === undefined) {
+            throw new runtime.RequiredError('conversationPbxPhoneNumberUuid','Required parameter requestParameters.conversationPbxPhoneNumberUuid was null or undefined when calling getPbxPhoneNumber.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", ["conversation_read"]);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/conversation/pbx/phone_number/{conversationPbxPhoneNumberUuid}`.replace(`{${"conversationPbxPhoneNumberUuid"}}`, encodeURIComponent(String(requestParameters.conversationPbxPhoneNumberUuid))),
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => ConversationPbxPhoneNumberResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Retrieve a pbx phoneNumber 
+     * Get pbx phoneNumber
+     */
+    async getPbxPhoneNumber(requestParameters: GetPbxPhoneNumberRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ConversationPbxPhoneNumberResponse> {
+        const response = await this.getPbxPhoneNumberRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Retrieve pbx phoneNumbers 
+     * Get pbx phoneNumbers
+     */
+    async getPbxPhoneNumbersRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ConversationPbxPhoneNumbersResponse>> {
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", ["conversation_read"]);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/conversation/pbx/phone_number`,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => ConversationPbxPhoneNumbersResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Retrieve pbx phoneNumbers 
+     * Get pbx phoneNumbers
+     */
+    async getPbxPhoneNumbers(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ConversationPbxPhoneNumbersResponse> {
+        const response = await this.getPbxPhoneNumbersRaw(initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Retrieve a pbx queue 
+     * Get pbx queue
+     */
+    async getPbxQueueRaw(requestParameters: GetPbxQueueRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ConversationPbxQueueResponse>> {
+        if (requestParameters.conversationPbxQueueUuid === null || requestParameters.conversationPbxQueueUuid === undefined) {
+            throw new runtime.RequiredError('conversationPbxQueueUuid','Required parameter requestParameters.conversationPbxQueueUuid was null or undefined when calling getPbxQueue.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", ["conversation_read"]);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/conversation/pbx/queue/{conversationPbxQueueUuid}`.replace(`{${"conversationPbxQueueUuid"}}`, encodeURIComponent(String(requestParameters.conversationPbxQueueUuid))),
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => ConversationPbxQueueResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Retrieve a pbx queue 
+     * Get pbx queue
+     */
+    async getPbxQueue(requestParameters: GetPbxQueueRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ConversationPbxQueueResponse> {
+        const response = await this.getPbxQueueRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Retrieve pbx queues 
+     * Get pbx queues
+     */
+    async getPbxQueuesRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ConversationPbxQueuesResponse>> {
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", ["conversation_read"]);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/conversation/pbx/queue`,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => ConversationPbxQueuesResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Retrieve pbx queues 
+     * Get pbx queues
+     */
+    async getPbxQueues(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ConversationPbxQueuesResponse> {
+        const response = await this.getPbxQueuesRaw(initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Retrieve a pbx timeBased 
+     * Get pbx timeBased
+     */
+    async getPbxTimeBasedRaw(requestParameters: GetPbxTimeBasedRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ConversationPbxTimeBasedResponse>> {
+        if (requestParameters.conversationPbxTimeBasedUuid === null || requestParameters.conversationPbxTimeBasedUuid === undefined) {
+            throw new runtime.RequiredError('conversationPbxTimeBasedUuid','Required parameter requestParameters.conversationPbxTimeBasedUuid was null or undefined when calling getPbxTimeBased.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", ["conversation_read"]);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/conversation/pbx/time_based/{conversationPbxTimeBasedUuid}`.replace(`{${"conversationPbxTimeBasedUuid"}}`, encodeURIComponent(String(requestParameters.conversationPbxTimeBasedUuid))),
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => ConversationPbxTimeBasedResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Retrieve a pbx timeBased 
+     * Get pbx timeBased
+     */
+    async getPbxTimeBased(requestParameters: GetPbxTimeBasedRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ConversationPbxTimeBasedResponse> {
+        const response = await this.getPbxTimeBasedRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Retrieve pbx timeBaseds 
+     * Get pbx timeBaseds
+     */
+    async getPbxTimeBasedsRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ConversationPbxTimeBasedsResponse>> {
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", ["conversation_read"]);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/conversation/pbx/time_based`,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => ConversationPbxTimeBasedsResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Retrieve pbx timeBaseds 
+     * Get pbx timeBaseds
+     */
+    async getPbxTimeBaseds(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ConversationPbxTimeBasedsResponse> {
+        const response = await this.getPbxTimeBasedsRaw(initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Retrieve a pbx timeRange 
+     * Get pbx timeRange
+     */
+    async getPbxTimeRangeRaw(requestParameters: GetPbxTimeRangeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ConversationPbxTimeRangeResponse>> {
+        if (requestParameters.conversationPbxTimeRangeUuid === null || requestParameters.conversationPbxTimeRangeUuid === undefined) {
+            throw new runtime.RequiredError('conversationPbxTimeRangeUuid','Required parameter requestParameters.conversationPbxTimeRangeUuid was null or undefined when calling getPbxTimeRange.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", ["conversation_read"]);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/conversation/pbx/time_range/{conversationPbxTimeRangeUuid}`.replace(`{${"conversationPbxTimeRangeUuid"}}`, encodeURIComponent(String(requestParameters.conversationPbxTimeRangeUuid))),
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => ConversationPbxTimeRangeResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Retrieve a pbx timeRange 
+     * Get pbx timeRange
+     */
+    async getPbxTimeRange(requestParameters: GetPbxTimeRangeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ConversationPbxTimeRangeResponse> {
+        const response = await this.getPbxTimeRangeRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Retrieve pbx timeRanges 
+     * Get pbx timeRanges
+     */
+    async getPbxTimeRangesRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ConversationPbxTimeRangesResponse>> {
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", ["conversation_read"]);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/conversation/pbx/time_range`,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => ConversationPbxTimeRangesResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Retrieve pbx timeRanges 
+     * Get pbx timeRanges
+     */
+    async getPbxTimeRanges(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ConversationPbxTimeRangesResponse> {
+        const response = await this.getPbxTimeRangesRaw(initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Retrieve a pbx voicemailMailbox 
+     * Get pbx voicemailMailbox
+     */
+    async getPbxVoicemailMailboxRaw(requestParameters: GetPbxVoicemailMailboxRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ConversationPbxVoicemailMailboxResponse>> {
+        if (requestParameters.conversationPbxVoicemailMailboxUuid === null || requestParameters.conversationPbxVoicemailMailboxUuid === undefined) {
+            throw new runtime.RequiredError('conversationPbxVoicemailMailboxUuid','Required parameter requestParameters.conversationPbxVoicemailMailboxUuid was null or undefined when calling getPbxVoicemailMailbox.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", ["conversation_read"]);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/conversation/pbx/voicemail_mailbox/{conversationPbxVoicemailMailboxUuid}`.replace(`{${"conversationPbxVoicemailMailboxUuid"}}`, encodeURIComponent(String(requestParameters.conversationPbxVoicemailMailboxUuid))),
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => ConversationPbxVoicemailMailboxResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Retrieve a pbx voicemailMailbox 
+     * Get pbx voicemailMailbox
+     */
+    async getPbxVoicemailMailbox(requestParameters: GetPbxVoicemailMailboxRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ConversationPbxVoicemailMailboxResponse> {
+        const response = await this.getPbxVoicemailMailboxRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Retrieve pbx voicemailMailboxes 
+     * Get pbx voicemailMailboxes
+     */
+    async getPbxVoicemailMailboxesRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ConversationPbxVoicemailMailboxesResponse>> {
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", ["conversation_read"]);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/conversation/pbx/voicemail_mailbox`,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => ConversationPbxVoicemailMailboxesResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Retrieve pbx voicemailMailboxes 
+     * Get pbx voicemailMailboxes
+     */
+    async getPbxVoicemailMailboxes(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ConversationPbxVoicemailMailboxesResponse> {
+        const response = await this.getPbxVoicemailMailboxesRaw(initOverrides);
+        return await response.value();
+    }
+
+    /**
      * Insert a canned message 
      * Insert a canned message
      */
@@ -1772,6 +3703,358 @@ export class ConversationApi extends runtime.BaseAPI implements ConversationApiI
      */
     async insertConversationEngagement(requestParameters: InsertConversationEngagementRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ConversationEngagementResponse> {
         const response = await this.insertConversationEngagementRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Insert a pbx agent 
+     * Insert pbx agent
+     */
+    async insertPbxAgentRaw(requestParameters: InsertPbxAgentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ConversationPbxAgentResponse>> {
+        if (requestParameters.pbxAgent === null || requestParameters.pbxAgent === undefined) {
+            throw new runtime.RequiredError('pbxAgent','Required parameter requestParameters.pbxAgent was null or undefined when calling insertPbxAgent.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", ["conversation_write"]);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/conversation/pbx/agent`,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: ConversationPbxAgentToJSON(requestParameters.pbxAgent),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => ConversationPbxAgentResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Insert a pbx agent 
+     * Insert pbx agent
+     */
+    async insertPbxAgent(requestParameters: InsertPbxAgentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ConversationPbxAgentResponse> {
+        const response = await this.insertPbxAgentRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Insert a pbx audio 
+     * Insert pbx audio
+     */
+    async insertPbxAudioRaw(requestParameters: InsertPbxAudioRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ConversationPbxAudioResponse>> {
+        if (requestParameters.pbxAudio === null || requestParameters.pbxAudio === undefined) {
+            throw new runtime.RequiredError('pbxAudio','Required parameter requestParameters.pbxAudio was null or undefined when calling insertPbxAudio.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", ["conversation_write"]);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/conversation/pbx/audio`,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: ConversationPbxAudioToJSON(requestParameters.pbxAudio),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => ConversationPbxAudioResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Insert a pbx audio 
+     * Insert pbx audio
+     */
+    async insertPbxAudio(requestParameters: InsertPbxAudioRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ConversationPbxAudioResponse> {
+        const response = await this.insertPbxAudioRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Insert a pbx menu 
+     * Insert pbx menu
+     */
+    async insertPbxMenuRaw(requestParameters: InsertPbxMenuRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ConversationPbxMenuResponse>> {
+        if (requestParameters.pbxMenu === null || requestParameters.pbxMenu === undefined) {
+            throw new runtime.RequiredError('pbxMenu','Required parameter requestParameters.pbxMenu was null or undefined when calling insertPbxMenu.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", ["conversation_write"]);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/conversation/pbx/menu`,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: ConversationPbxMenuToJSON(requestParameters.pbxMenu),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => ConversationPbxMenuResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Insert a pbx menu 
+     * Insert pbx menu
+     */
+    async insertPbxMenu(requestParameters: InsertPbxMenuRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ConversationPbxMenuResponse> {
+        const response = await this.insertPbxMenuRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Insert a pbx phoneNumber 
+     * Insert pbx phoneNumber
+     */
+    async insertPbxPhoneNumberRaw(requestParameters: InsertPbxPhoneNumberRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ConversationPbxPhoneNumberResponse>> {
+        if (requestParameters.pbxPhoneNumber === null || requestParameters.pbxPhoneNumber === undefined) {
+            throw new runtime.RequiredError('pbxPhoneNumber','Required parameter requestParameters.pbxPhoneNumber was null or undefined when calling insertPbxPhoneNumber.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", ["conversation_write"]);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/conversation/pbx/phone_number`,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: ConversationPbxPhoneNumberToJSON(requestParameters.pbxPhoneNumber),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => ConversationPbxPhoneNumberResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Insert a pbx phoneNumber 
+     * Insert pbx phoneNumber
+     */
+    async insertPbxPhoneNumber(requestParameters: InsertPbxPhoneNumberRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ConversationPbxPhoneNumberResponse> {
+        const response = await this.insertPbxPhoneNumberRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Insert a pbx queue 
+     * Insert pbx queue
+     */
+    async insertPbxQueueRaw(requestParameters: InsertPbxQueueRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ConversationPbxQueueResponse>> {
+        if (requestParameters.pbxQueue === null || requestParameters.pbxQueue === undefined) {
+            throw new runtime.RequiredError('pbxQueue','Required parameter requestParameters.pbxQueue was null or undefined when calling insertPbxQueue.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", ["conversation_write"]);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/conversation/pbx/queue`,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: ConversationPbxQueueToJSON(requestParameters.pbxQueue),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => ConversationPbxQueueResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Insert a pbx queue 
+     * Insert pbx queue
+     */
+    async insertPbxQueue(requestParameters: InsertPbxQueueRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ConversationPbxQueueResponse> {
+        const response = await this.insertPbxQueueRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Insert a pbx timeBased 
+     * Insert pbx timeBased
+     */
+    async insertPbxTimeBasedRaw(requestParameters: InsertPbxTimeBasedRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ConversationPbxTimeBasedResponse>> {
+        if (requestParameters.pbxTimeBased === null || requestParameters.pbxTimeBased === undefined) {
+            throw new runtime.RequiredError('pbxTimeBased','Required parameter requestParameters.pbxTimeBased was null or undefined when calling insertPbxTimeBased.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", ["conversation_write"]);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/conversation/pbx/time_based`,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: ConversationPbxTimeBasedToJSON(requestParameters.pbxTimeBased),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => ConversationPbxTimeBasedResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Insert a pbx timeBased 
+     * Insert pbx timeBased
+     */
+    async insertPbxTimeBased(requestParameters: InsertPbxTimeBasedRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ConversationPbxTimeBasedResponse> {
+        const response = await this.insertPbxTimeBasedRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Insert a pbx timeRange 
+     * Insert pbx timeRange
+     */
+    async insertPbxTimeRangeRaw(requestParameters: InsertPbxTimeRangeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ConversationPbxTimeRangeResponse>> {
+        if (requestParameters.pbxTimeRange === null || requestParameters.pbxTimeRange === undefined) {
+            throw new runtime.RequiredError('pbxTimeRange','Required parameter requestParameters.pbxTimeRange was null or undefined when calling insertPbxTimeRange.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", ["conversation_write"]);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/conversation/pbx/time_range`,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: ConversationPbxTimeRangeToJSON(requestParameters.pbxTimeRange),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => ConversationPbxTimeRangeResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Insert a pbx timeRange 
+     * Insert pbx timeRange
+     */
+    async insertPbxTimeRange(requestParameters: InsertPbxTimeRangeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ConversationPbxTimeRangeResponse> {
+        const response = await this.insertPbxTimeRangeRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Insert a pbx voicemailMailbox 
+     * Insert pbx voicemailMailbox
+     */
+    async insertPbxVoicemailMailboxRaw(requestParameters: InsertPbxVoicemailMailboxRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ConversationPbxVoicemailMailboxResponse>> {
+        if (requestParameters.pbxVoicemailMailbox === null || requestParameters.pbxVoicemailMailbox === undefined) {
+            throw new runtime.RequiredError('pbxVoicemailMailbox','Required parameter requestParameters.pbxVoicemailMailbox was null or undefined when calling insertPbxVoicemailMailbox.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", ["conversation_write"]);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/conversation/pbx/voicemail_mailbox`,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: ConversationPbxVoicemailMailboxToJSON(requestParameters.pbxVoicemailMailbox),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => ConversationPbxVoicemailMailboxResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Insert a pbx voicemailMailbox 
+     * Insert pbx voicemailMailbox
+     */
+    async insertPbxVoicemailMailbox(requestParameters: InsertPbxVoicemailMailboxRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ConversationPbxVoicemailMailboxResponse> {
+        const response = await this.insertPbxVoicemailMailboxRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
@@ -2259,6 +4542,390 @@ export class ConversationApi extends runtime.BaseAPI implements ConversationApiI
      */
     async updateConversationWebchatQueueStatus(requestParameters: UpdateConversationWebchatQueueStatusRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.updateConversationWebchatQueueStatusRaw(requestParameters, initOverrides);
+    }
+
+    /**
+     * Update a pbx agent 
+     * Update pbx agent
+     */
+    async updatePbxAgentRaw(requestParameters: UpdatePbxAgentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ConversationPbxAgentResponse>> {
+        if (requestParameters.conversationPbxAgentUuid === null || requestParameters.conversationPbxAgentUuid === undefined) {
+            throw new runtime.RequiredError('conversationPbxAgentUuid','Required parameter requestParameters.conversationPbxAgentUuid was null or undefined when calling updatePbxAgent.');
+        }
+
+        if (requestParameters.pbxAgent === null || requestParameters.pbxAgent === undefined) {
+            throw new runtime.RequiredError('pbxAgent','Required parameter requestParameters.pbxAgent was null or undefined when calling updatePbxAgent.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", ["conversation_write"]);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/conversation/pbx/agent/{conversationPbxAgentUuid}`.replace(`{${"conversationPbxAgentUuid"}}`, encodeURIComponent(String(requestParameters.conversationPbxAgentUuid))),
+            method: 'PUT',
+            headers: headerParameters,
+            query: queryParameters,
+            body: ConversationPbxAgentToJSON(requestParameters.pbxAgent),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => ConversationPbxAgentResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Update a pbx agent 
+     * Update pbx agent
+     */
+    async updatePbxAgent(requestParameters: UpdatePbxAgentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ConversationPbxAgentResponse> {
+        const response = await this.updatePbxAgentRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Update a pbx audio 
+     * Update pbx audio
+     */
+    async updatePbxAudioRaw(requestParameters: UpdatePbxAudioRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ConversationPbxAudioResponse>> {
+        if (requestParameters.conversationPbxAudioUuid === null || requestParameters.conversationPbxAudioUuid === undefined) {
+            throw new runtime.RequiredError('conversationPbxAudioUuid','Required parameter requestParameters.conversationPbxAudioUuid was null or undefined when calling updatePbxAudio.');
+        }
+
+        if (requestParameters.pbxAudio === null || requestParameters.pbxAudio === undefined) {
+            throw new runtime.RequiredError('pbxAudio','Required parameter requestParameters.pbxAudio was null or undefined when calling updatePbxAudio.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", ["conversation_write"]);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/conversation/pbx/audio/{conversationPbxAudioUuid}`.replace(`{${"conversationPbxAudioUuid"}}`, encodeURIComponent(String(requestParameters.conversationPbxAudioUuid))),
+            method: 'PUT',
+            headers: headerParameters,
+            query: queryParameters,
+            body: ConversationPbxAudioToJSON(requestParameters.pbxAudio),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => ConversationPbxAudioResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Update a pbx audio 
+     * Update pbx audio
+     */
+    async updatePbxAudio(requestParameters: UpdatePbxAudioRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ConversationPbxAudioResponse> {
+        const response = await this.updatePbxAudioRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Update a pbx menu 
+     * Update pbx menu
+     */
+    async updatePbxMenuRaw(requestParameters: UpdatePbxMenuRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ConversationPbxMenuResponse>> {
+        if (requestParameters.conversationPbxMenuUuid === null || requestParameters.conversationPbxMenuUuid === undefined) {
+            throw new runtime.RequiredError('conversationPbxMenuUuid','Required parameter requestParameters.conversationPbxMenuUuid was null or undefined when calling updatePbxMenu.');
+        }
+
+        if (requestParameters.pbxMenu === null || requestParameters.pbxMenu === undefined) {
+            throw new runtime.RequiredError('pbxMenu','Required parameter requestParameters.pbxMenu was null or undefined when calling updatePbxMenu.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", ["conversation_write"]);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/conversation/pbx/menu/{conversationPbxMenuUuid}`.replace(`{${"conversationPbxMenuUuid"}}`, encodeURIComponent(String(requestParameters.conversationPbxMenuUuid))),
+            method: 'PUT',
+            headers: headerParameters,
+            query: queryParameters,
+            body: ConversationPbxMenuToJSON(requestParameters.pbxMenu),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => ConversationPbxMenuResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Update a pbx menu 
+     * Update pbx menu
+     */
+    async updatePbxMenu(requestParameters: UpdatePbxMenuRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ConversationPbxMenuResponse> {
+        const response = await this.updatePbxMenuRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Update a pbx phoneNumber 
+     * Update pbx phoneNumber
+     */
+    async updatePbxPhoneNumberRaw(requestParameters: UpdatePbxPhoneNumberRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ConversationPbxPhoneNumberResponse>> {
+        if (requestParameters.conversationPbxPhoneNumberUuid === null || requestParameters.conversationPbxPhoneNumberUuid === undefined) {
+            throw new runtime.RequiredError('conversationPbxPhoneNumberUuid','Required parameter requestParameters.conversationPbxPhoneNumberUuid was null or undefined when calling updatePbxPhoneNumber.');
+        }
+
+        if (requestParameters.pbxPhoneNumber === null || requestParameters.pbxPhoneNumber === undefined) {
+            throw new runtime.RequiredError('pbxPhoneNumber','Required parameter requestParameters.pbxPhoneNumber was null or undefined when calling updatePbxPhoneNumber.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", ["conversation_write"]);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/conversation/pbx/phone_number/{conversationPbxPhoneNumberUuid}`.replace(`{${"conversationPbxPhoneNumberUuid"}}`, encodeURIComponent(String(requestParameters.conversationPbxPhoneNumberUuid))),
+            method: 'PUT',
+            headers: headerParameters,
+            query: queryParameters,
+            body: ConversationPbxPhoneNumberToJSON(requestParameters.pbxPhoneNumber),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => ConversationPbxPhoneNumberResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Update a pbx phoneNumber 
+     * Update pbx phoneNumber
+     */
+    async updatePbxPhoneNumber(requestParameters: UpdatePbxPhoneNumberRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ConversationPbxPhoneNumberResponse> {
+        const response = await this.updatePbxPhoneNumberRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Update a pbx queue 
+     * Update pbx queue
+     */
+    async updatePbxQueueRaw(requestParameters: UpdatePbxQueueRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ConversationPbxQueueResponse>> {
+        if (requestParameters.conversationPbxQueueUuid === null || requestParameters.conversationPbxQueueUuid === undefined) {
+            throw new runtime.RequiredError('conversationPbxQueueUuid','Required parameter requestParameters.conversationPbxQueueUuid was null or undefined when calling updatePbxQueue.');
+        }
+
+        if (requestParameters.pbxQueue === null || requestParameters.pbxQueue === undefined) {
+            throw new runtime.RequiredError('pbxQueue','Required parameter requestParameters.pbxQueue was null or undefined when calling updatePbxQueue.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", ["conversation_write"]);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/conversation/pbx/queue/{conversationPbxQueueUuid}`.replace(`{${"conversationPbxQueueUuid"}}`, encodeURIComponent(String(requestParameters.conversationPbxQueueUuid))),
+            method: 'PUT',
+            headers: headerParameters,
+            query: queryParameters,
+            body: ConversationPbxQueueToJSON(requestParameters.pbxQueue),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => ConversationPbxQueueResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Update a pbx queue 
+     * Update pbx queue
+     */
+    async updatePbxQueue(requestParameters: UpdatePbxQueueRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ConversationPbxQueueResponse> {
+        const response = await this.updatePbxQueueRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Update a pbx timeBased 
+     * Update pbx timeBased
+     */
+    async updatePbxTimeBasedRaw(requestParameters: UpdatePbxTimeBasedRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ConversationPbxTimeBasedResponse>> {
+        if (requestParameters.conversationPbxTimeBasedUuid === null || requestParameters.conversationPbxTimeBasedUuid === undefined) {
+            throw new runtime.RequiredError('conversationPbxTimeBasedUuid','Required parameter requestParameters.conversationPbxTimeBasedUuid was null or undefined when calling updatePbxTimeBased.');
+        }
+
+        if (requestParameters.pbxTimeBased === null || requestParameters.pbxTimeBased === undefined) {
+            throw new runtime.RequiredError('pbxTimeBased','Required parameter requestParameters.pbxTimeBased was null or undefined when calling updatePbxTimeBased.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", ["conversation_write"]);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/conversation/pbx/time_based/{conversationPbxTimeBasedUuid}`.replace(`{${"conversationPbxTimeBasedUuid"}}`, encodeURIComponent(String(requestParameters.conversationPbxTimeBasedUuid))),
+            method: 'PUT',
+            headers: headerParameters,
+            query: queryParameters,
+            body: ConversationPbxTimeBasedToJSON(requestParameters.pbxTimeBased),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => ConversationPbxTimeBasedResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Update a pbx timeBased 
+     * Update pbx timeBased
+     */
+    async updatePbxTimeBased(requestParameters: UpdatePbxTimeBasedRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ConversationPbxTimeBasedResponse> {
+        const response = await this.updatePbxTimeBasedRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Update a pbx timeRange 
+     * Update pbx timeRange
+     */
+    async updatePbxTimeRangeRaw(requestParameters: UpdatePbxTimeRangeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ConversationPbxTimeRangeResponse>> {
+        if (requestParameters.conversationPbxTimeRangeUuid === null || requestParameters.conversationPbxTimeRangeUuid === undefined) {
+            throw new runtime.RequiredError('conversationPbxTimeRangeUuid','Required parameter requestParameters.conversationPbxTimeRangeUuid was null or undefined when calling updatePbxTimeRange.');
+        }
+
+        if (requestParameters.pbxTimeRange === null || requestParameters.pbxTimeRange === undefined) {
+            throw new runtime.RequiredError('pbxTimeRange','Required parameter requestParameters.pbxTimeRange was null or undefined when calling updatePbxTimeRange.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", ["conversation_write"]);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/conversation/pbx/time_range/{conversationPbxTimeRangeUuid}`.replace(`{${"conversationPbxTimeRangeUuid"}}`, encodeURIComponent(String(requestParameters.conversationPbxTimeRangeUuid))),
+            method: 'PUT',
+            headers: headerParameters,
+            query: queryParameters,
+            body: ConversationPbxTimeRangeToJSON(requestParameters.pbxTimeRange),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => ConversationPbxTimeRangeResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Update a pbx timeRange 
+     * Update pbx timeRange
+     */
+    async updatePbxTimeRange(requestParameters: UpdatePbxTimeRangeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ConversationPbxTimeRangeResponse> {
+        const response = await this.updatePbxTimeRangeRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Update a pbx voicemailMailbox 
+     * Update pbx voicemailMailbox
+     */
+    async updatePbxVoicemailMailboxRaw(requestParameters: UpdatePbxVoicemailMailboxRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ConversationPbxVoicemailMailboxResponse>> {
+        if (requestParameters.conversationPbxVoicemailMailboxUuid === null || requestParameters.conversationPbxVoicemailMailboxUuid === undefined) {
+            throw new runtime.RequiredError('conversationPbxVoicemailMailboxUuid','Required parameter requestParameters.conversationPbxVoicemailMailboxUuid was null or undefined when calling updatePbxVoicemailMailbox.');
+        }
+
+        if (requestParameters.pbxVoicemailMailbox === null || requestParameters.pbxVoicemailMailbox === undefined) {
+            throw new runtime.RequiredError('pbxVoicemailMailbox','Required parameter requestParameters.pbxVoicemailMailbox was null or undefined when calling updatePbxVoicemailMailbox.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", ["conversation_write"]);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/conversation/pbx/voicemail_mailbox/{conversationPbxVoicemailMailboxUuid}`.replace(`{${"conversationPbxVoicemailMailboxUuid"}}`, encodeURIComponent(String(requestParameters.conversationPbxVoicemailMailboxUuid))),
+            method: 'PUT',
+            headers: headerParameters,
+            query: queryParameters,
+            body: ConversationPbxVoicemailMailboxToJSON(requestParameters.pbxVoicemailMailbox),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => ConversationPbxVoicemailMailboxResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Update a pbx voicemailMailbox 
+     * Update pbx voicemailMailbox
+     */
+    async updatePbxVoicemailMailbox(requestParameters: UpdatePbxVoicemailMailboxRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ConversationPbxVoicemailMailboxResponse> {
+        const response = await this.updatePbxVoicemailMailboxRaw(requestParameters, initOverrides);
+        return await response.value();
     }
 
 }

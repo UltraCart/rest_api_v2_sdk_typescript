@@ -30,6 +30,9 @@ import {
     WorkflowTaskResponse,
     WorkflowTaskResponseFromJSON,
     WorkflowTaskResponseToJSON,
+    WorkflowTaskTagsResponse,
+    WorkflowTaskTagsResponseFromJSON,
+    WorkflowTaskTagsResponseToJSON,
     WorkflowTasksRequest,
     WorkflowTasksRequestFromJSON,
     WorkflowTasksRequestToJSON,
@@ -187,6 +190,21 @@ export interface WorkflowApiInterface {
      * Retrieve a workflow task by object type and id
      */
     getWorkflowTaskByObjectType(requestParameters: GetWorkflowTaskByObjectTypeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<WorkflowTasksResponse>;
+
+    /**
+     * Retrieves a unique list of all the existing workflow task tags. 
+     * @summary Get a list of existing workflow task tags
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof WorkflowApiInterface
+     */
+    getWorkflowTaskTagsRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<WorkflowTaskTagsResponse>>;
+
+    /**
+     * Retrieves a unique list of all the existing workflow task tags. 
+     * Get a list of existing workflow task tags
+     */
+    getWorkflowTaskTags(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<WorkflowTaskTagsResponse>;
 
     /**
      * Retrieves a set of workflow tasks from the account based on a query object. 
@@ -498,6 +516,43 @@ export class WorkflowApi extends runtime.BaseAPI implements WorkflowApiInterface
      */
     async getWorkflowTaskByObjectType(requestParameters: GetWorkflowTaskByObjectTypeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<WorkflowTasksResponse> {
         const response = await this.getWorkflowTaskByObjectTypeRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Retrieves a unique list of all the existing workflow task tags. 
+     * Get a list of existing workflow task tags
+     */
+    async getWorkflowTaskTagsRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<WorkflowTaskTagsResponse>> {
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", ["workflow_read"]);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/workflow/tasks/tags`,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => WorkflowTaskTagsResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Retrieves a unique list of all the existing workflow task tags. 
+     * Get a list of existing workflow task tags
+     */
+    async getWorkflowTaskTags(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<WorkflowTaskTagsResponse> {
+        const response = await this.getWorkflowTaskTagsRaw(initOverrides);
         return await response.value();
     }
 
