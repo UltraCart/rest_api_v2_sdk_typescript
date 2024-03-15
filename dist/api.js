@@ -49688,6 +49688,46 @@ exports.WebhookApi = WebhookApi;
 var WorkflowApiFetchParamCreator = function (configuration) {
     return {
         /**
+         * Retrieve a JWT to authorize an agent to make a websocket connection.
+         * @summary Get agent websocket authorization
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getWorkflowAgentWebsocketAuthorization: function (options) {
+            if (options === void 0) { options = {}; }
+            var localVarPath = "/workflow/agent/auth";
+            var localVarUrlObj = url.parse(localVarPath, true);
+            var localVarRequestOptions = Object.assign({ method: 'PUT' }, options);
+            var localVarHeaderParameter = {};
+            var localVarQueryParameter = {};
+            if (configuration && configuration.apiVersion) {
+                localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+            }
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+                var localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+                    ? configuration.accessToken("ultraCartOauth", ["workflow_write"])
+                    : configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                var localVarApiKeyValue = typeof configuration.apiKey === 'function'
+                    ? configuration.apiKey("x-ultracart-simple-key")
+                    : configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
          * Retrieve a list of groups that workflow tasks can be assigned to
          * @summary Retrieve a list of groups that workflow tasks can be assigned to
          * @param {number} [_limit] The maximum number of records to return on this one API call. (Max 200)
@@ -50179,6 +50219,27 @@ exports.WorkflowApiFetchParamCreator = WorkflowApiFetchParamCreator;
 var WorkflowApiFp = function (configuration) {
     return {
         /**
+         * Retrieve a JWT to authorize an agent to make a websocket connection.
+         * @summary Get agent websocket authorization
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getWorkflowAgentWebsocketAuthorization: function (options) {
+            var localVarFetchArgs = (0, exports.WorkflowApiFetchParamCreator)(configuration).getWorkflowAgentWebsocketAuthorization(options);
+            return function (fetch, basePath) {
+                if (fetch === void 0) { fetch = portableFetch; }
+                if (basePath === void 0) { basePath = BASE_PATH; }
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(function (response) {
+                    if (response.status >= 200 && response.status < 300) {
+                        return response.json();
+                    }
+                    else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
          * Retrieve a list of groups that workflow tasks can be assigned to
          * @summary Retrieve a list of groups that workflow tasks can be assigned to
          * @param {number} [_limit] The maximum number of records to return on this one API call. (Max 200)
@@ -50413,6 +50474,15 @@ exports.WorkflowApiFp = WorkflowApiFp;
 var WorkflowApiFactory = function (configuration, fetch, basePath) {
     return {
         /**
+         * Retrieve a JWT to authorize an agent to make a websocket connection.
+         * @summary Get agent websocket authorization
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getWorkflowAgentWebsocketAuthorization: function (options) {
+            return (0, exports.WorkflowApiFp)(configuration).getWorkflowAgentWebsocketAuthorization(options)(fetch, basePath);
+        },
+        /**
          * Retrieve a list of groups that workflow tasks can be assigned to
          * @summary Retrieve a list of groups that workflow tasks can be assigned to
          * @param {number} [_limit] The maximum number of records to return on this one API call. (Max 200)
@@ -50531,6 +50601,16 @@ var WorkflowApi = /** @class */ (function (_super) {
     function WorkflowApi() {
         return _super !== null && _super.apply(this, arguments) || this;
     }
+    /**
+     * Retrieve a JWT to authorize an agent to make a websocket connection.
+     * @summary Get agent websocket authorization
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof WorkflowApi
+     */
+    WorkflowApi.prototype.getWorkflowAgentWebsocketAuthorization = function (options) {
+        return (0, exports.WorkflowApiFp)(this.configuration).getWorkflowAgentWebsocketAuthorization(options)(this.fetch, this.basePath);
+    };
     /**
      * Retrieve a list of groups that workflow tasks can be assigned to
      * @summary Retrieve a list of groups that workflow tasks can be assigned to

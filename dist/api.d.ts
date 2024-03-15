@@ -9102,6 +9102,18 @@ export interface ConversationPbxQueue {
      * @memberof ConversationPbxQueue
      */
     voicemail?: boolean;
+    /**
+     * Wait time in seconds before critical
+     * @type {number}
+     * @memberof ConversationPbxQueue
+     */
+    wait_critical_seconds?: number;
+    /**
+     * Wait time in seconds before warning
+     * @type {number}
+     * @memberof ConversationPbxQueue
+     */
+    wait_warning_seconds?: number;
 }
 /**
  *
@@ -42083,6 +42095,68 @@ export declare namespace Weight {
 /**
  *
  * @export
+ * @interface WorkflowAgentAuth
+ */
+export interface WorkflowAgentAuth {
+    /**
+     *
+     * @type {string}
+     * @memberof WorkflowAgentAuth
+     */
+    jwt?: string;
+    /**
+     *
+     * @type {string}
+     * @memberof WorkflowAgentAuth
+     */
+    merchant_id?: string;
+    /**
+     *
+     * @type {string}
+     * @memberof WorkflowAgentAuth
+     */
+    websocket_url?: string;
+}
+/**
+ *
+ * @export
+ * @interface WorkflowAgentAuthResponse
+ */
+export interface WorkflowAgentAuthResponse {
+    /**
+     *
+     * @type {WorkflowAgentAuth}
+     * @memberof WorkflowAgentAuthResponse
+     */
+    agent_auth?: WorkflowAgentAuth;
+    /**
+     *
+     * @type {ModelError}
+     * @memberof WorkflowAgentAuthResponse
+     */
+    error?: ModelError;
+    /**
+     *
+     * @type {ResponseMetadata}
+     * @memberof WorkflowAgentAuthResponse
+     */
+    metadata?: ResponseMetadata;
+    /**
+     * Indicates if API call was successful
+     * @type {boolean}
+     * @memberof WorkflowAgentAuthResponse
+     */
+    success?: boolean;
+    /**
+     *
+     * @type {Warning}
+     * @memberof WorkflowAgentAuthResponse
+     */
+    warning?: Warning;
+}
+/**
+ *
+ * @export
  * @interface WorkflowAttachment
  */
 export interface WorkflowAttachment {
@@ -65692,6 +65766,13 @@ export declare class WebhookApi extends BaseAPI implements WebhookApiInterface {
  */
 export declare const WorkflowApiFetchParamCreator: (configuration?: Configuration) => {
     /**
+     * Retrieve a JWT to authorize an agent to make a websocket connection.
+     * @summary Get agent websocket authorization
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getWorkflowAgentWebsocketAuthorization(options?: any): FetchArgs;
+    /**
      * Retrieve a list of groups that workflow tasks can be assigned to
      * @summary Retrieve a list of groups that workflow tasks can be assigned to
      * @param {number} [_limit] The maximum number of records to return on this one API call. (Max 200)
@@ -65782,6 +65863,13 @@ export declare const WorkflowApiFetchParamCreator: (configuration?: Configuratio
  * @export
  */
 export declare const WorkflowApiFp: (configuration?: Configuration) => {
+    /**
+     * Retrieve a JWT to authorize an agent to make a websocket connection.
+     * @summary Get agent websocket authorization
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getWorkflowAgentWebsocketAuthorization(options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<WorkflowAgentAuthResponse>;
     /**
      * Retrieve a list of groups that workflow tasks can be assigned to
      * @summary Retrieve a list of groups that workflow tasks can be assigned to
@@ -65874,6 +65962,13 @@ export declare const WorkflowApiFp: (configuration?: Configuration) => {
  */
 export declare const WorkflowApiFactory: (configuration?: Configuration, fetch?: FetchAPI, basePath?: string) => {
     /**
+     * Retrieve a JWT to authorize an agent to make a websocket connection.
+     * @summary Get agent websocket authorization
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getWorkflowAgentWebsocketAuthorization(options?: any): Promise<WorkflowAgentAuthResponse>;
+    /**
      * Retrieve a list of groups that workflow tasks can be assigned to
      * @summary Retrieve a list of groups that workflow tasks can be assigned to
      * @param {number} [_limit] The maximum number of records to return on this one API call. (Max 200)
@@ -65965,6 +66060,14 @@ export declare const WorkflowApiFactory: (configuration?: Configuration, fetch?:
  * @interface WorkflowApi
  */
 export interface WorkflowApiInterface {
+    /**
+     * Retrieve a JWT to authorize an agent to make a websocket connection.
+     * @summary Get agent websocket authorization
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof WorkflowApiInterface
+     */
+    getWorkflowAgentWebsocketAuthorization(options?: any): Promise<WorkflowAgentAuthResponse>;
     /**
      * Retrieve a list of groups that workflow tasks can be assigned to
      * @summary Retrieve a list of groups that workflow tasks can be assigned to
@@ -66068,6 +66171,14 @@ export interface WorkflowApiInterface {
  * @extends {BaseAPI}
  */
 export declare class WorkflowApi extends BaseAPI implements WorkflowApiInterface {
+    /**
+     * Retrieve a JWT to authorize an agent to make a websocket connection.
+     * @summary Get agent websocket authorization
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof WorkflowApi
+     */
+    getWorkflowAgentWebsocketAuthorization(options?: any): Promise<WorkflowAgentAuthResponse>;
     /**
      * Retrieve a list of groups that workflow tasks can be assigned to
      * @summary Retrieve a list of groups that workflow tasks can be assigned to
