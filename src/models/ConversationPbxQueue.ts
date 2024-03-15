@@ -134,6 +134,18 @@ export interface ConversationPbxQueue {
      * @memberof ConversationPbxQueue
      */
     voicemail?: boolean;
+    /**
+     * Wait time in seconds before critical
+     * @type {number}
+     * @memberof ConversationPbxQueue
+     */
+    wait_critical_seconds?: number;
+    /**
+     * Wait time in seconds before warning
+     * @type {number}
+     * @memberof ConversationPbxQueue
+     */
+    wait_warning_seconds?: number;
 }
 
 export function ConversationPbxQueueFromJSON(json: any): ConversationPbxQueue {
@@ -164,6 +176,8 @@ export function ConversationPbxQueueFromJSONTyped(json: any, ignoreDiscriminator
         'twilio_taskrouter_workflow_sid': !exists(json, 'twilio_taskrouter_workflow_sid') ? undefined : json['twilio_taskrouter_workflow_sid'],
         'twilio_workspace_queue_sid': !exists(json, 'twilio_workspace_queue_sid') ? undefined : json['twilio_workspace_queue_sid'],
         'voicemail': !exists(json, 'voicemail') ? undefined : json['voicemail'],
+        'wait_critical_seconds': !exists(json, 'wait_critical_seconds') ? undefined : json['wait_critical_seconds'],
+        'wait_warning_seconds': !exists(json, 'wait_warning_seconds') ? undefined : json['wait_warning_seconds'],
     };
 }
 
@@ -194,6 +208,8 @@ export function ConversationPbxQueueToJSON(value?: ConversationPbxQueue | null):
         'twilio_taskrouter_workflow_sid': value.twilio_taskrouter_workflow_sid,
         'twilio_workspace_queue_sid': value.twilio_workspace_queue_sid,
         'voicemail': value.voicemail,
+        'wait_critical_seconds': value.wait_critical_seconds,
+        'wait_warning_seconds': value.wait_warning_seconds,
     };
 }
 

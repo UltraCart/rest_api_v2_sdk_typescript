@@ -822,6 +822,8 @@ export * from './WebhookSampleRequest';
 export * from './WebhookSampleRequestResponse';
 export * from './WebhooksResponse';
 export * from './Weight';
+export * from './WorkflowAgentAuth';
+export * from './WorkflowAgentAuthResponse';
 export * from './WorkflowAttachment';
 export * from './WorkflowAttachmentUploadUrl';
 export * from './WorkflowAttachmentUploadUrlResponse';

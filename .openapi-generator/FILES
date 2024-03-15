@@ -847,6 +847,8 @@ src/models/WebhookSampleRequest.ts
 src/models/WebhookSampleRequestResponse.ts
 src/models/WebhooksResponse.ts
 src/models/Weight.ts
+src/models/WorkflowAgentAuth.ts
+src/models/WorkflowAgentAuthResponse.ts
 src/models/WorkflowAttachment.ts
 src/models/WorkflowAttachmentUploadUrl.ts
 src/models/WorkflowAttachmentUploadUrlResponse.ts

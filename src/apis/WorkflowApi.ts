@@ -18,6 +18,9 @@ import {
     ErrorResponse,
     ErrorResponseFromJSON,
     ErrorResponseToJSON,
+    WorkflowAgentAuthResponse,
+    WorkflowAgentAuthResponseFromJSON,
+    WorkflowAgentAuthResponseToJSON,
     WorkflowAttachmentUploadUrlResponse,
     WorkflowAttachmentUploadUrlResponseFromJSON,
     WorkflowAttachmentUploadUrlResponseToJSON,
@@ -93,6 +96,21 @@ export interface UpdateWorkflowTaskRequest {
  * @interface WorkflowApiInterface
  */
 export interface WorkflowApiInterface {
+    /**
+     * Retrieve a JWT to authorize an agent to make a websocket connection. 
+     * @summary Get agent websocket authorization
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof WorkflowApiInterface
+     */
+    getWorkflowAgentWebsocketAuthorizationRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<WorkflowAgentAuthResponse>>;
+
+    /**
+     * Retrieve a JWT to authorize an agent to make a websocket connection. 
+     * Get agent websocket authorization
+     */
+    getWorkflowAgentWebsocketAuthorization(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<WorkflowAgentAuthResponse>;
+
     /**
      * Retrieve a list of groups that workflow tasks can be assigned to 
      * @summary Retrieve a list of groups that workflow tasks can be assigned to
@@ -264,6 +282,43 @@ export interface WorkflowApiInterface {
  * 
  */
 export class WorkflowApi extends runtime.BaseAPI implements WorkflowApiInterface {
+
+    /**
+     * Retrieve a JWT to authorize an agent to make a websocket connection. 
+     * Get agent websocket authorization
+     */
+    async getWorkflowAgentWebsocketAuthorizationRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<WorkflowAgentAuthResponse>> {
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", ["workflow_write"]);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/workflow/agent/auth`,
+            method: 'PUT',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => WorkflowAgentAuthResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Retrieve a JWT to authorize an agent to make a websocket connection. 
+     * Get agent websocket authorization
+     */
+    async getWorkflowAgentWebsocketAuthorization(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<WorkflowAgentAuthResponse> {
+        const response = await this.getWorkflowAgentWebsocketAuthorizationRaw(initOverrides);
+        return await response.value();
+    }
 
     /**
      * Retrieve a list of groups that workflow tasks can be assigned to 
