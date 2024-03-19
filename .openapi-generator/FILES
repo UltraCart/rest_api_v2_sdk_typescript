@@ -857,6 +857,7 @@ src/models/WorkflowGroupsResponse.ts
 src/models/WorkflowNote.ts
 src/models/WorkflowTask.ts
 src/models/WorkflowTaskHistory.ts
+src/models/WorkflowTaskOpenCountResponse.ts
 src/models/WorkflowTaskResponse.ts
 src/models/WorkflowTaskTagsResponse.ts
 src/models/WorkflowTasksRequest.ts

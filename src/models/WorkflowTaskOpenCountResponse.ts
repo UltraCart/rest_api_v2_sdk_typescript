@@ -31,62 +31,50 @@ import {
     WarningFromJSONTyped,
     WarningToJSON,
 } from './Warning';
-import {
-    WorkflowUser,
-    WorkflowUserFromJSON,
-    WorkflowUserFromJSONTyped,
-    WorkflowUserToJSON,
-} from './WorkflowUser';
 
 /**
  * 
  * @export
- * @interface WorkflowUsersResponse
+ * @interface WorkflowTaskOpenCountResponse
  */
-export interface WorkflowUsersResponse {
+export interface WorkflowTaskOpenCountResponse {
     /**
      * 
      * @type {ModelError}
-     * @memberof WorkflowUsersResponse
+     * @memberof WorkflowTaskOpenCountResponse
      */
     error?: ModelError;
     /**
      * 
      * @type {ResponseMetadata}
-     * @memberof WorkflowUsersResponse
+     * @memberof WorkflowTaskOpenCountResponse
      */
     metadata?: ResponseMetadata;
     /**
-     * User ID of myself
+     * Open Task Count
      * @type {number}
-     * @memberof WorkflowUsersResponse
+     * @memberof WorkflowTaskOpenCountResponse
      */
-    my_user_id?: number;
+    open_count?: number;
     /**
      * Indicates if API call was successful
      * @type {boolean}
-     * @memberof WorkflowUsersResponse
+     * @memberof WorkflowTaskOpenCountResponse
      */
     success?: boolean;
     /**
-     * users
-     * @type {Array<WorkflowUser>}
-     * @memberof WorkflowUsersResponse
-     */
-    users?: Array<WorkflowUser>;
-    /**
      * 
      * @type {Warning}
-     * @memberof WorkflowUsersResponse
+     * @memberof WorkflowTaskOpenCountResponse
      */
     warning?: Warning;
 }
 
-export function WorkflowUsersResponseFromJSON(json: any): WorkflowUsersResponse {
-    return WorkflowUsersResponseFromJSONTyped(json, false);
+export function WorkflowTaskOpenCountResponseFromJSON(json: any): WorkflowTaskOpenCountResponse {
+    return WorkflowTaskOpenCountResponseFromJSONTyped(json, false);
 }
 
-export function WorkflowUsersResponseFromJSONTyped(json: any, ignoreDiscriminator: boolean): WorkflowUsersResponse {
+export function WorkflowTaskOpenCountResponseFromJSONTyped(json: any, ignoreDiscriminator: boolean): WorkflowTaskOpenCountResponse {
     if ((json === undefined) || (json === null)) {
         return json;
     }
@@ -94,14 +82,13 @@ export function WorkflowUsersResponseFromJSONTyped(json: any, ignoreDiscriminato
         
         'error': !exists(json, 'error') ? undefined : ModelErrorFromJSON(json['error']),
         'metadata': !exists(json, 'metadata') ? undefined : ResponseMetadataFromJSON(json['metadata']),
-        'my_user_id': !exists(json, 'my_user_id') ? undefined : json['my_user_id'],
+        'open_count': !exists(json, 'open_count') ? undefined : json['open_count'],
         'success': !exists(json, 'success') ? undefined : json['success'],
-        'users': !exists(json, 'users') ? undefined : ((json['users'] as Array<any>).map(WorkflowUserFromJSON)),
         'warning': !exists(json, 'warning') ? undefined : WarningFromJSON(json['warning']),
     };
 }
 
-export function WorkflowUsersResponseToJSON(value?: WorkflowUsersResponse | null): any {
+export function WorkflowTaskOpenCountResponseToJSON(value?: WorkflowTaskOpenCountResponse | null): any {
     if (value === undefined) {
         return undefined;
     }
@@ -112,9 +99,8 @@ export function WorkflowUsersResponseToJSON(value?: WorkflowUsersResponse | null
         
         'error': ModelErrorToJSON(value.error),
         'metadata': ResponseMetadataToJSON(value.metadata),
-        'my_user_id': value.my_user_id,
+        'open_count': value.open_count,
         'success': value.success,
-        'users': value.users === undefined ? undefined : ((value.users as Array<any>).map(WorkflowUserToJSON)),
         'warning': WarningToJSON(value.warning),
     };
 }

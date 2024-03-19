@@ -30,6 +30,9 @@ import {
     WorkflowTask,
     WorkflowTaskFromJSON,
     WorkflowTaskToJSON,
+    WorkflowTaskOpenCountResponse,
+    WorkflowTaskOpenCountResponseFromJSON,
+    WorkflowTaskOpenCountResponseToJSON,
     WorkflowTaskResponse,
     WorkflowTaskResponseFromJSON,
     WorkflowTaskResponseToJSON,
@@ -208,6 +211,21 @@ export interface WorkflowApiInterface {
      * Retrieve a workflow task by object type and id
      */
     getWorkflowTaskByObjectType(requestParameters: GetWorkflowTaskByObjectTypeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<WorkflowTasksResponse>;
+
+    /**
+     * Retrieve workflow task open count 
+     * @summary Retrieve workflow task open count
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof WorkflowApiInterface
+     */
+    getWorkflowTaskOpenCountRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<WorkflowTaskOpenCountResponse>>;
+
+    /**
+     * Retrieve workflow task open count 
+     * Retrieve workflow task open count
+     */
+    getWorkflowTaskOpenCount(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<WorkflowTaskOpenCountResponse>;
 
     /**
      * Retrieves a unique list of all the existing workflow task tags. 
@@ -571,6 +589,43 @@ export class WorkflowApi extends runtime.BaseAPI implements WorkflowApiInterface
      */
     async getWorkflowTaskByObjectType(requestParameters: GetWorkflowTaskByObjectTypeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<WorkflowTasksResponse> {
         const response = await this.getWorkflowTaskByObjectTypeRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Retrieve workflow task open count 
+     * Retrieve workflow task open count
+     */
+    async getWorkflowTaskOpenCountRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<WorkflowTaskOpenCountResponse>> {
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", ["workflow_read"]);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/workflow/tasks/open_count`,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => WorkflowTaskOpenCountResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Retrieve workflow task open count 
+     * Retrieve workflow task open count
+     */
+    async getWorkflowTaskOpenCount(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<WorkflowTaskOpenCountResponse> {
+        const response = await this.getWorkflowTaskOpenCountRaw(initOverrides);
         return await response.value();
     }
 

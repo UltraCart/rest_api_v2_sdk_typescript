@@ -832,6 +832,7 @@ export * from './WorkflowGroupsResponse';
 export * from './WorkflowNote';
 export * from './WorkflowTask';
 export * from './WorkflowTaskHistory';
+export * from './WorkflowTaskOpenCountResponse';
 export * from './WorkflowTaskResponse';
 export * from './WorkflowTaskTagsResponse';
 export * from './WorkflowTasksRequest';
