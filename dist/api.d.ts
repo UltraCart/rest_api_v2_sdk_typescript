@@ -42613,6 +42613,43 @@ export interface WorkflowTaskHistory {
 /**
  *
  * @export
+ * @interface WorkflowTaskOpenCountResponse
+ */
+export interface WorkflowTaskOpenCountResponse {
+    /**
+     *
+     * @type {ModelError}
+     * @memberof WorkflowTaskOpenCountResponse
+     */
+    error?: ModelError;
+    /**
+     *
+     * @type {ResponseMetadata}
+     * @memberof WorkflowTaskOpenCountResponse
+     */
+    metadata?: ResponseMetadata;
+    /**
+     * Open Task Count
+     * @type {number}
+     * @memberof WorkflowTaskOpenCountResponse
+     */
+    open_count?: number;
+    /**
+     * Indicates if API call was successful
+     * @type {boolean}
+     * @memberof WorkflowTaskOpenCountResponse
+     */
+    success?: boolean;
+    /**
+     *
+     * @type {Warning}
+     * @memberof WorkflowTaskOpenCountResponse
+     */
+    warning?: Warning;
+}
+/**
+ *
+ * @export
  * @interface WorkflowTaskResponse
  */
 export interface WorkflowTaskResponse {
@@ -42958,6 +42995,12 @@ export interface WorkflowUsersResponse {
      * @memberof WorkflowUsersResponse
      */
     metadata?: ResponseMetadata;
+    /**
+     * User ID of myself
+     * @type {number}
+     * @memberof WorkflowUsersResponse
+     */
+    my_user_id?: number;
     /**
      * Indicates if API call was successful
      * @type {boolean}
@@ -65892,6 +65935,13 @@ export declare const WorkflowApiFetchParamCreator: (configuration?: Configuratio
      */
     getWorkflowTaskByObjectType(object_type: string, object_id: string, options?: any): FetchArgs;
     /**
+     * Retrieve workflow task open count
+     * @summary Retrieve workflow task open count
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getWorkflowTaskOpenCount(options?: any): FetchArgs;
+    /**
      * Retrieves a unique list of all the existing workflow task tags.
      * @summary Get a list of existing workflow task tags
      * @param {*} [options] Override http request option.
@@ -65990,6 +66040,13 @@ export declare const WorkflowApiFp: (configuration?: Configuration) => {
      */
     getWorkflowTaskByObjectType(object_type: string, object_id: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<WorkflowTasksResponse>;
     /**
+     * Retrieve workflow task open count
+     * @summary Retrieve workflow task open count
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getWorkflowTaskOpenCount(options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<WorkflowTaskOpenCountResponse>;
+    /**
      * Retrieves a unique list of all the existing workflow task tags.
      * @summary Get a list of existing workflow task tags
      * @param {*} [options] Override http request option.
@@ -66087,6 +66144,13 @@ export declare const WorkflowApiFactory: (configuration?: Configuration, fetch?:
      * @throws {RequiredError}
      */
     getWorkflowTaskByObjectType(object_type: string, object_id: string, options?: any): Promise<WorkflowTasksResponse>;
+    /**
+     * Retrieve workflow task open count
+     * @summary Retrieve workflow task open count
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getWorkflowTaskOpenCount(options?: any): Promise<WorkflowTaskOpenCountResponse>;
     /**
      * Retrieves a unique list of all the existing workflow task tags.
      * @summary Get a list of existing workflow task tags
@@ -66193,6 +66257,14 @@ export interface WorkflowApiInterface {
      * @memberof WorkflowApiInterface
      */
     getWorkflowTaskByObjectType(object_type: string, object_id: string, options?: any): Promise<WorkflowTasksResponse>;
+    /**
+     * Retrieve workflow task open count
+     * @summary Retrieve workflow task open count
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof WorkflowApiInterface
+     */
+    getWorkflowTaskOpenCount(options?: any): Promise<WorkflowTaskOpenCountResponse>;
     /**
      * Retrieves a unique list of all the existing workflow task tags.
      * @summary Get a list of existing workflow task tags
@@ -66304,6 +66376,14 @@ export declare class WorkflowApi extends BaseAPI implements WorkflowApiInterface
      * @memberof WorkflowApi
      */
     getWorkflowTaskByObjectType(object_type: string, object_id: string, options?: any): Promise<WorkflowTasksResponse>;
+    /**
+     * Retrieve workflow task open count
+     * @summary Retrieve workflow task open count
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof WorkflowApi
+     */
+    getWorkflowTaskOpenCount(options?: any): Promise<WorkflowTaskOpenCountResponse>;
     /**
      * Retrieves a unique list of all the existing workflow task tags.
      * @summary Get a list of existing workflow task tags

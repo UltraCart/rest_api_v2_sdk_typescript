@@ -43533,6 +43533,44 @@ export interface WorkflowTaskHistory {
 /**
  * 
  * @export
+ * @interface WorkflowTaskOpenCountResponse
+ */
+export interface WorkflowTaskOpenCountResponse {
+    /**
+     * 
+     * @type {ModelError}
+     * @memberof WorkflowTaskOpenCountResponse
+     */
+    error?: ModelError;
+    /**
+     * 
+     * @type {ResponseMetadata}
+     * @memberof WorkflowTaskOpenCountResponse
+     */
+    metadata?: ResponseMetadata;
+    /**
+     * Open Task Count
+     * @type {number}
+     * @memberof WorkflowTaskOpenCountResponse
+     */
+    open_count?: number;
+    /**
+     * Indicates if API call was successful
+     * @type {boolean}
+     * @memberof WorkflowTaskOpenCountResponse
+     */
+    success?: boolean;
+    /**
+     * 
+     * @type {Warning}
+     * @memberof WorkflowTaskOpenCountResponse
+     */
+    warning?: Warning;
+}
+
+/**
+ * 
+ * @export
  * @interface WorkflowTaskResponse
  */
 export interface WorkflowTaskResponse {
@@ -43885,6 +43923,12 @@ export interface WorkflowUsersResponse {
      * @memberof WorkflowUsersResponse
      */
     metadata?: ResponseMetadata;
+    /**
+     * User ID of myself
+     * @type {number}
+     * @memberof WorkflowUsersResponse
+     */
+    my_user_id?: number;
     /**
      * Indicates if API call was successful
      * @type {boolean}
@@ -101170,6 +101214,52 @@ export const WorkflowApiFetchParamCreator = function (configuration?: Configurat
             };
         },
         /**
+         * Retrieve workflow task open count 
+         * @summary Retrieve workflow task open count
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getWorkflowTaskOpenCount(options: any = {}): FetchArgs {
+            const localVarPath = `/workflow/tasks/open_count`;
+            const localVarUrlObj = url.parse(localVarPath, true);
+            const localVarRequestOptions = Object.assign({ method: 'GET' }, options);
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+    if(configuration && configuration.apiVersion) {
+      localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+    }
+
+
+
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+				const localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+					? configuration.accessToken("ultraCartOauth", ["workflow_read"])
+					: configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
+					? configuration.apiKey("x-ultracart-simple-key")
+					: configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
          * Retrieves a unique list of all the existing workflow task tags. 
          * @summary Get a list of existing workflow task tags
          * @param {*} [options] Override http request option.
@@ -101559,6 +101649,26 @@ export const WorkflowApiFp = function(configuration?: Configuration) {
             };
         },
         /**
+         * Retrieve workflow task open count 
+         * @summary Retrieve workflow task open count
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getWorkflowTaskOpenCount(options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<WorkflowTaskOpenCountResponse> {
+            const localVarFetchArgs = WorkflowApiFetchParamCreator(configuration).getWorkflowTaskOpenCount(options);
+            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
+                    if (response.status >= 200 && response.status < 300) {
+                      return response.json();
+                      
+                    } else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
          * Retrieves a unique list of all the existing workflow task tags. 
          * @summary Get a list of existing workflow task tags
          * @param {*} [options] Override http request option.
@@ -101726,6 +101836,15 @@ export const WorkflowApiFactory = function (configuration?: Configuration, fetch
             return WorkflowApiFp(configuration).getWorkflowTaskByObjectType(object_type, object_id, options)(fetch, basePath);
         },
         /**
+         * Retrieve workflow task open count 
+         * @summary Retrieve workflow task open count
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getWorkflowTaskOpenCount(options?: any) {
+            return WorkflowApiFp(configuration).getWorkflowTaskOpenCount(options)(fetch, basePath);
+        },
+        /**
          * Retrieves a unique list of all the existing workflow task tags. 
          * @summary Get a list of existing workflow task tags
          * @param {*} [options] Override http request option.
@@ -101847,6 +101966,15 @@ export interface WorkflowApiInterface {
      * @memberof WorkflowApiInterface
      */
     getWorkflowTaskByObjectType(object_type: string, object_id: string, options?: any): Promise<WorkflowTasksResponse>;
+
+    /**
+     * Retrieve workflow task open count 
+     * @summary Retrieve workflow task open count
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof WorkflowApiInterface
+     */
+    getWorkflowTaskOpenCount(options?: any): Promise<WorkflowTaskOpenCountResponse>;
 
     /**
      * Retrieves a unique list of all the existing workflow task tags. 
@@ -101983,6 +102111,17 @@ export class WorkflowApi extends BaseAPI implements WorkflowApiInterface {
      */
     public getWorkflowTaskByObjectType(object_type: string, object_id: string, options?: any) {
         return WorkflowApiFp(this.configuration).getWorkflowTaskByObjectType(object_type, object_id, options)(this.fetch, this.basePath);
+    }
+
+    /**
+     * Retrieve workflow task open count 
+     * @summary Retrieve workflow task open count
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof WorkflowApi
+     */
+    public getWorkflowTaskOpenCount(options?: any) {
+        return WorkflowApiFp(this.configuration).getWorkflowTaskOpenCount(options)(this.fetch, this.basePath);
     }
 
     /**

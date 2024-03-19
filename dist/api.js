@@ -50113,6 +50113,46 @@ var WorkflowApiFetchParamCreator = function (configuration) {
             };
         },
         /**
+         * Retrieve workflow task open count
+         * @summary Retrieve workflow task open count
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getWorkflowTaskOpenCount: function (options) {
+            if (options === void 0) { options = {}; }
+            var localVarPath = "/workflow/tasks/open_count";
+            var localVarUrlObj = url.parse(localVarPath, true);
+            var localVarRequestOptions = Object.assign({ method: 'GET' }, options);
+            var localVarHeaderParameter = {};
+            var localVarQueryParameter = {};
+            if (configuration && configuration.apiVersion) {
+                localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+            }
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+                var localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+                    ? configuration.accessToken("ultraCartOauth", ["workflow_read"])
+                    : configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                var localVarApiKeyValue = typeof configuration.apiKey === 'function'
+                    ? configuration.apiKey("x-ultracart-simple-key")
+                    : configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
          * Retrieves a unique list of all the existing workflow task tags.
          * @summary Get a list of existing workflow task tags
          * @param {*} [options] Override http request option.
@@ -50479,6 +50519,27 @@ var WorkflowApiFp = function (configuration) {
             };
         },
         /**
+         * Retrieve workflow task open count
+         * @summary Retrieve workflow task open count
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getWorkflowTaskOpenCount: function (options) {
+            var localVarFetchArgs = (0, exports.WorkflowApiFetchParamCreator)(configuration).getWorkflowTaskOpenCount(options);
+            return function (fetch, basePath) {
+                if (fetch === void 0) { fetch = portableFetch; }
+                if (basePath === void 0) { basePath = BASE_PATH; }
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(function (response) {
+                    if (response.status >= 200 && response.status < 300) {
+                        return response.json();
+                    }
+                    else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
          * Retrieves a unique list of all the existing workflow task tags.
          * @summary Get a list of existing workflow task tags
          * @param {*} [options] Override http request option.
@@ -50650,6 +50711,15 @@ var WorkflowApiFactory = function (configuration, fetch, basePath) {
             return (0, exports.WorkflowApiFp)(configuration).getWorkflowTaskByObjectType(object_type, object_id, options)(fetch, basePath);
         },
         /**
+         * Retrieve workflow task open count
+         * @summary Retrieve workflow task open count
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getWorkflowTaskOpenCount: function (options) {
+            return (0, exports.WorkflowApiFp)(configuration).getWorkflowTaskOpenCount(options)(fetch, basePath);
+        },
+        /**
          * Retrieves a unique list of all the existing workflow task tags.
          * @summary Get a list of existing workflow task tags
          * @param {*} [options] Override http request option.
@@ -50783,6 +50853,16 @@ var WorkflowApi = /** @class */ (function (_super) {
      */
     WorkflowApi.prototype.getWorkflowTaskByObjectType = function (object_type, object_id, options) {
         return (0, exports.WorkflowApiFp)(this.configuration).getWorkflowTaskByObjectType(object_type, object_id, options)(this.fetch, this.basePath);
+    };
+    /**
+     * Retrieve workflow task open count
+     * @summary Retrieve workflow task open count
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof WorkflowApi
+     */
+    WorkflowApi.prototype.getWorkflowTaskOpenCount = function (options) {
+        return (0, exports.WorkflowApiFp)(this.configuration).getWorkflowTaskOpenCount(options)(this.fetch, this.basePath);
     };
     /**
      * Retrieves a unique list of all the existing workflow task tags.
