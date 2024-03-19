@@ -43330,6 +43330,12 @@ export interface WorkflowTask {
      */
     due_dts?: string;
     /**
+     * Date/time that the workflow task will expire and be closed.  This is set by system generated tasks.
+     * @type {string}
+     * @memberof WorkflowTask
+     */
+    expiration_dts?: string;
+    /**
      * Array of history records for the task
      * @type {Array<WorkflowTaskHistory>}
      * @memberof WorkflowTask
@@ -43402,6 +43408,12 @@ export interface WorkflowTask {
      */
     status?: WorkflowTask.StatusEnum;
     /**
+     * Constant for the type of system generated task
+     * @type {string}
+     * @memberof WorkflowTask
+     */
+    system_task_type?: WorkflowTask.SystemTaskTypeEnum;
+    /**
      * Tags
      * @type {Array<string>}
      * @memberof WorkflowTask
@@ -43467,7 +43479,22 @@ export namespace WorkflowTask {
         Open = <any> 'open',
         Closed = <any> 'closed',
         Delayed = <any> 'delayed',
-        AwaitingCustomerFeedback = <any> 'awaiting customer feedback'
+        AwaitingCustomerFeedback = <any> 'awaiting customer feedback',
+        ClosedSystem = <any> 'closed - system',
+        ClosedCustomer = <any> 'closed - customer',
+        ClosedExpiration = <any> 'closed - expiration'
+    }
+    /**
+     * @export
+     * @enum {string}
+     */
+    export enum SystemTaskTypeEnum {
+        OrderAccountsReceivable = <any> 'order_accounts_receivable',
+        OrderFraudReview = <any> 'order_fraud_review',
+        AutoOrderCardUpdateIssue = <any> 'auto_order_card_update_issue',
+        AutoOrderCanceledPayment = <any> 'auto_order_canceled_payment',
+        ItemLowStock = <any> 'item_low_stock',
+        ItemOutOfStock = <any> 'item_out_of_stock'
     }
 }
 
@@ -52956,6 +52983,58 @@ export const ConversationApiFetchParamCreator = function (configuration?: Config
             };
         },
         /**
+         * reset statistics within the queue 
+         * @summary reset statistics within the queue
+         * @param {string} queue_uuid 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        resetConversationPbxQueueStatistics(queue_uuid: string, options: any = {}): FetchArgs {
+            // verify required parameter 'queue_uuid' is not null or undefined
+            if (queue_uuid === null || queue_uuid === undefined) {
+                throw new RequiredError('queue_uuid','Required parameter queue_uuid was null or undefined when calling resetConversationPbxQueueStatistics.');
+            }
+            const localVarPath = `/conversation/pbx/queues/{queue_uuid}/reset_statistics`
+                .replace(`{${"queue_uuid"}}`, encodeURIComponent(String(queue_uuid)));
+            const localVarUrlObj = url.parse(localVarPath, true);
+            const localVarRequestOptions = Object.assign({ method: 'POST' }, options);
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+    if(configuration && configuration.apiVersion) {
+      localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+    }
+
+
+
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+				const localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+					? configuration.accessToken("ultraCartOauth", ["conversation_write"])
+					: configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
+					? configuration.apiKey("x-ultracart-simple-key")
+					: configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
          * Search for canned messages by short_code 
          * @summary Search for canned messages by short_code
          * @param {ConversationCannedMessagesSearch} search_request Search request
@@ -55184,6 +55263,27 @@ export const ConversationApiFp = function(configuration?: Configuration) {
             };
         },
         /**
+         * reset statistics within the queue 
+         * @summary reset statistics within the queue
+         * @param {string} queue_uuid 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        resetConversationPbxQueueStatistics(queue_uuid: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Response> {
+            const localVarFetchArgs = ConversationApiFetchParamCreator(configuration).resetConversationPbxQueueStatistics(queue_uuid, options);
+            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
+                    if (response.status >= 200 && response.status < 300) {
+                      return response;
+                      
+                    } else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
          * Search for canned messages by short_code 
          * @summary Search for canned messages by short_code
          * @param {ConversationCannedMessagesSearch} search_request Search request
@@ -56140,6 +56240,16 @@ export const ConversationApiFactory = function (configuration?: Configuration, f
             return ConversationApiFp(configuration).markReadConversation(conversation_uuid, options)(fetch, basePath);
         },
         /**
+         * reset statistics within the queue 
+         * @summary reset statistics within the queue
+         * @param {string} queue_uuid 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        resetConversationPbxQueueStatistics(queue_uuid: string, options?: any) {
+            return ConversationApiFp(configuration).resetConversationPbxQueueStatistics(queue_uuid, options)(fetch, basePath);
+        },
+        /**
          * Search for canned messages by short_code 
          * @summary Search for canned messages by short_code
          * @param {ConversationCannedMessagesSearch} search_request Search request
@@ -56918,6 +57028,16 @@ export interface ConversationApiInterface {
      * @memberof ConversationApiInterface
      */
     markReadConversation(conversation_uuid: string, options?: any): Promise<{}>;
+
+    /**
+     * reset statistics within the queue 
+     * @summary reset statistics within the queue
+     * @param {string} queue_uuid 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApiInterface
+     */
+    resetConversationPbxQueueStatistics(queue_uuid: string, options?: any): Promise<{}>;
 
     /**
      * Search for canned messages by short_code 
@@ -57819,6 +57939,18 @@ export class ConversationApi extends BaseAPI implements ConversationApiInterface
      */
     public markReadConversation(conversation_uuid: string, options?: any) {
         return ConversationApiFp(this.configuration).markReadConversation(conversation_uuid, options)(this.fetch, this.basePath);
+    }
+
+    /**
+     * reset statistics within the queue 
+     * @summary reset statistics within the queue
+     * @param {string} queue_uuid 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApi
+     */
+    public resetConversationPbxQueueStatistics(queue_uuid: string, options?: any) {
+        return ConversationApiFp(this.configuration).resetConversationPbxQueueStatistics(queue_uuid, options)(this.fetch, this.basePath);
     }
 
     /**

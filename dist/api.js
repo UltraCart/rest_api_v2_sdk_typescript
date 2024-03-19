@@ -1615,7 +1615,23 @@ var WorkflowTask;
         StatusEnum[StatusEnum["Closed"] = 'closed'] = "Closed";
         StatusEnum[StatusEnum["Delayed"] = 'delayed'] = "Delayed";
         StatusEnum[StatusEnum["AwaitingCustomerFeedback"] = 'awaiting customer feedback'] = "AwaitingCustomerFeedback";
+        StatusEnum[StatusEnum["ClosedSystem"] = 'closed - system'] = "ClosedSystem";
+        StatusEnum[StatusEnum["ClosedCustomer"] = 'closed - customer'] = "ClosedCustomer";
+        StatusEnum[StatusEnum["ClosedExpiration"] = 'closed - expiration'] = "ClosedExpiration";
     })(StatusEnum = WorkflowTask.StatusEnum || (WorkflowTask.StatusEnum = {}));
+    /**
+     * @export
+     * @enum {string}
+     */
+    var SystemTaskTypeEnum;
+    (function (SystemTaskTypeEnum) {
+        SystemTaskTypeEnum[SystemTaskTypeEnum["OrderAccountsReceivable"] = 'order_accounts_receivable'] = "OrderAccountsReceivable";
+        SystemTaskTypeEnum[SystemTaskTypeEnum["OrderFraudReview"] = 'order_fraud_review'] = "OrderFraudReview";
+        SystemTaskTypeEnum[SystemTaskTypeEnum["AutoOrderCardUpdateIssue"] = 'auto_order_card_update_issue'] = "AutoOrderCardUpdateIssue";
+        SystemTaskTypeEnum[SystemTaskTypeEnum["AutoOrderCanceledPayment"] = 'auto_order_canceled_payment'] = "AutoOrderCanceledPayment";
+        SystemTaskTypeEnum[SystemTaskTypeEnum["ItemLowStock"] = 'item_low_stock'] = "ItemLowStock";
+        SystemTaskTypeEnum[SystemTaskTypeEnum["ItemOutOfStock"] = 'item_out_of_stock'] = "ItemOutOfStock";
+    })(SystemTaskTypeEnum = WorkflowTask.SystemTaskTypeEnum || (WorkflowTask.SystemTaskTypeEnum = {}));
 })(WorkflowTask = exports.WorkflowTask || (exports.WorkflowTask = {}));
 /**
  * @export
@@ -9408,6 +9424,52 @@ var ConversationApiFetchParamCreator = function (configuration) {
             };
         },
         /**
+         * reset statistics within the queue
+         * @summary reset statistics within the queue
+         * @param {string} queue_uuid
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        resetConversationPbxQueueStatistics: function (queue_uuid, options) {
+            if (options === void 0) { options = {}; }
+            // verify required parameter 'queue_uuid' is not null or undefined
+            if (queue_uuid === null || queue_uuid === undefined) {
+                throw new RequiredError('queue_uuid', 'Required parameter queue_uuid was null or undefined when calling resetConversationPbxQueueStatistics.');
+            }
+            var localVarPath = "/conversation/pbx/queues/{queue_uuid}/reset_statistics"
+                .replace("{".concat("queue_uuid", "}"), encodeURIComponent(String(queue_uuid)));
+            var localVarUrlObj = url.parse(localVarPath, true);
+            var localVarRequestOptions = Object.assign({ method: 'POST' }, options);
+            var localVarHeaderParameter = {};
+            var localVarQueryParameter = {};
+            if (configuration && configuration.apiVersion) {
+                localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+            }
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+                var localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+                    ? configuration.accessToken("ultraCartOauth", ["conversation_write"])
+                    : configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                var localVarApiKeyValue = typeof configuration.apiKey === 'function'
+                    ? configuration.apiKey("x-ultracart-simple-key")
+                    : configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
          * Search for canned messages by short_code
          * @summary Search for canned messages by short_code
          * @param {ConversationCannedMessagesSearch} search_request Search request
@@ -11586,6 +11648,28 @@ var ConversationApiFp = function (configuration) {
             };
         },
         /**
+         * reset statistics within the queue
+         * @summary reset statistics within the queue
+         * @param {string} queue_uuid
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        resetConversationPbxQueueStatistics: function (queue_uuid, options) {
+            var localVarFetchArgs = (0, exports.ConversationApiFetchParamCreator)(configuration).resetConversationPbxQueueStatistics(queue_uuid, options);
+            return function (fetch, basePath) {
+                if (fetch === void 0) { fetch = portableFetch; }
+                if (basePath === void 0) { basePath = BASE_PATH; }
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(function (response) {
+                    if (response.status >= 200 && response.status < 300) {
+                        return response;
+                    }
+                    else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
          * Search for canned messages by short_code
          * @summary Search for canned messages by short_code
          * @param {ConversationCannedMessagesSearch} search_request Search request
@@ -12558,6 +12642,16 @@ var ConversationApiFactory = function (configuration, fetch, basePath) {
             return (0, exports.ConversationApiFp)(configuration).markReadConversation(conversation_uuid, options)(fetch, basePath);
         },
         /**
+         * reset statistics within the queue
+         * @summary reset statistics within the queue
+         * @param {string} queue_uuid
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        resetConversationPbxQueueStatistics: function (queue_uuid, options) {
+            return (0, exports.ConversationApiFp)(configuration).resetConversationPbxQueueStatistics(queue_uuid, options)(fetch, basePath);
+        },
+        /**
          * Search for canned messages by short_code
          * @summary Search for canned messages by short_code
          * @param {ConversationCannedMessagesSearch} search_request Search request
@@ -13402,6 +13496,17 @@ var ConversationApi = /** @class */ (function (_super) {
      */
     ConversationApi.prototype.markReadConversation = function (conversation_uuid, options) {
         return (0, exports.ConversationApiFp)(this.configuration).markReadConversation(conversation_uuid, options)(this.fetch, this.basePath);
+    };
+    /**
+     * reset statistics within the queue
+     * @summary reset statistics within the queue
+     * @param {string} queue_uuid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApi
+     */
+    ConversationApi.prototype.resetConversationPbxQueueStatistics = function (queue_uuid, options) {
+        return (0, exports.ConversationApiFp)(this.configuration).resetConversationPbxQueueStatistics(queue_uuid, options)(this.fetch, this.basePath);
     };
     /**
      * Search for canned messages by short_code

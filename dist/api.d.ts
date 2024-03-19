@@ -42413,6 +42413,12 @@ export interface WorkflowTask {
      */
     due_dts?: string;
     /**
+     * Date/time that the workflow task will expire and be closed.  This is set by system generated tasks.
+     * @type {string}
+     * @memberof WorkflowTask
+     */
+    expiration_dts?: string;
+    /**
      * Array of history records for the task
      * @type {Array<WorkflowTaskHistory>}
      * @memberof WorkflowTask
@@ -42485,6 +42491,12 @@ export interface WorkflowTask {
      */
     status?: WorkflowTask.StatusEnum;
     /**
+     * Constant for the type of system generated task
+     * @type {string}
+     * @memberof WorkflowTask
+     */
+    system_task_type?: WorkflowTask.SystemTaskTypeEnum;
+    /**
      * Tags
      * @type {Array<string>}
      * @memberof WorkflowTask
@@ -42549,7 +42561,22 @@ export declare namespace WorkflowTask {
         Open,
         Closed,
         Delayed,
-        AwaitingCustomerFeedback
+        AwaitingCustomerFeedback,
+        ClosedSystem,
+        ClosedCustomer,
+        ClosedExpiration
+    }
+    /**
+     * @export
+     * @enum {string}
+     */
+    enum SystemTaskTypeEnum {
+        OrderAccountsReceivable,
+        OrderFraudReview,
+        AutoOrderCardUpdateIssue,
+        AutoOrderCanceledPayment,
+        ItemLowStock,
+        ItemOutOfStock
     }
 }
 /**
@@ -45900,6 +45927,14 @@ export declare const ConversationApiFetchParamCreator: (configuration?: Configur
      */
     markReadConversation(conversation_uuid: string, options?: any): FetchArgs;
     /**
+     * reset statistics within the queue
+     * @summary reset statistics within the queue
+     * @param {string} queue_uuid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    resetConversationPbxQueueStatistics(queue_uuid: string, options?: any): FetchArgs;
+    /**
      * Search for canned messages by short_code
      * @summary Search for canned messages by short_code
      * @param {ConversationCannedMessagesSearch} search_request Search request
@@ -46523,6 +46558,14 @@ export declare const ConversationApiFp: (configuration?: Configuration) => {
      */
     markReadConversation(conversation_uuid: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Response>;
     /**
+     * reset statistics within the queue
+     * @summary reset statistics within the queue
+     * @param {string} queue_uuid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    resetConversationPbxQueueStatistics(queue_uuid: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Response>;
+    /**
      * Search for canned messages by short_code
      * @summary Search for canned messages by short_code
      * @param {ConversationCannedMessagesSearch} search_request Search request
@@ -47145,6 +47188,14 @@ export declare const ConversationApiFactory: (configuration?: Configuration, fet
      * @throws {RequiredError}
      */
     markReadConversation(conversation_uuid: string, options?: any): Promise<Response>;
+    /**
+     * reset statistics within the queue
+     * @summary reset statistics within the queue
+     * @param {string} queue_uuid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    resetConversationPbxQueueStatistics(queue_uuid: string, options?: any): Promise<Response>;
     /**
      * Search for canned messages by short_code
      * @summary Search for canned messages by short_code
@@ -47830,6 +47881,15 @@ export interface ConversationApiInterface {
      * @memberof ConversationApiInterface
      */
     markReadConversation(conversation_uuid: string, options?: any): Promise<{}>;
+    /**
+     * reset statistics within the queue
+     * @summary reset statistics within the queue
+     * @param {string} queue_uuid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApiInterface
+     */
+    resetConversationPbxQueueStatistics(queue_uuid: string, options?: any): Promise<{}>;
     /**
      * Search for canned messages by short_code
      * @summary Search for canned messages by short_code
@@ -48532,6 +48592,15 @@ export declare class ConversationApi extends BaseAPI implements ConversationApiI
      * @memberof ConversationApi
      */
     markReadConversation(conversation_uuid: string, options?: any): Promise<Response>;
+    /**
+     * reset statistics within the queue
+     * @summary reset statistics within the queue
+     * @param {string} queue_uuid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApi
+     */
+    resetConversationPbxQueueStatistics(queue_uuid: string, options?: any): Promise<Response>;
     /**
      * Search for canned messages by short_code
      * @summary Search for canned messages by short_code
