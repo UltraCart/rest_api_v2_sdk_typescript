@@ -367,6 +367,10 @@ export interface MarkReadConversationRequest {
     conversationUuid: string;
 }
 
+export interface ResetConversationPbxQueueStatisticsRequest {
+    queueUuid: string;
+}
+
 export interface SearchConversationCannedMessagesRequest {
     searchRequest: ConversationCannedMessagesSearch;
 }
@@ -1414,6 +1418,22 @@ export interface ConversationApiInterface {
      * Mark a conversation as read
      */
     markReadConversation(requestParameters: MarkReadConversationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+
+    /**
+     * reset statistics within the queue 
+     * @summary reset statistics within the queue
+     * @param {string} queueUuid 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApiInterface
+     */
+    resetConversationPbxQueueStatisticsRaw(requestParameters: ResetConversationPbxQueueStatisticsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+
+    /**
+     * reset statistics within the queue 
+     * reset statistics within the queue
+     */
+    resetConversationPbxQueueStatistics(requestParameters: ResetConversationPbxQueueStatisticsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
      * Search for canned messages by short_code 
@@ -4179,6 +4199,46 @@ export class ConversationApi extends runtime.BaseAPI implements ConversationApiI
      */
     async markReadConversation(requestParameters: MarkReadConversationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.markReadConversationRaw(requestParameters, initOverrides);
+    }
+
+    /**
+     * reset statistics within the queue 
+     * reset statistics within the queue
+     */
+    async resetConversationPbxQueueStatisticsRaw(requestParameters: ResetConversationPbxQueueStatisticsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        if (requestParameters.queueUuid === null || requestParameters.queueUuid === undefined) {
+            throw new runtime.RequiredError('queueUuid','Required parameter requestParameters.queueUuid was null or undefined when calling resetConversationPbxQueueStatistics.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", ["conversation_write"]);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/conversation/pbx/queues/{queue_uuid}/reset_statistics`.replace(`{${"queue_uuid"}}`, encodeURIComponent(String(requestParameters.queueUuid))),
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     * reset statistics within the queue 
+     * reset statistics within the queue
+     */
+    async resetConversationPbxQueueStatistics(requestParameters: ResetConversationPbxQueueStatisticsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.resetConversationPbxQueueStatisticsRaw(requestParameters, initOverrides);
     }
 
     /**

@@ -111,6 +111,12 @@ export interface WorkflowTask {
      */
     due_dts?: string;
     /**
+     * Date/time that the workflow task will expire and be closed.  This is set by system generated tasks.
+     * @type {string}
+     * @memberof WorkflowTask
+     */
+    expiration_dts?: string;
+    /**
      * Array of history records for the task
      * @type {Array<WorkflowTaskHistory>}
      * @memberof WorkflowTask
@@ -183,6 +189,12 @@ export interface WorkflowTask {
      */
     status?: WorkflowTaskStatusEnum;
     /**
+     * Constant for the type of system generated task
+     * @type {string}
+     * @memberof WorkflowTask
+     */
+    system_task_type?: WorkflowTaskSystemTaskTypeEnum;
+    /**
      * Tags
      * @type {Array<string>}
      * @memberof WorkflowTask
@@ -245,9 +257,25 @@ export const WorkflowTaskStatusEnum = {
     Open: 'open',
     Closed: 'closed',
     Delayed: 'delayed',
-    AwaitingCustomerFeedback: 'awaiting customer feedback'
+    AwaitingCustomerFeedback: 'awaiting customer feedback',
+    ClosedSystem: 'closed - system',
+    ClosedCustomer: 'closed - customer',
+    ClosedExpiration: 'closed - expiration'
 } as const;
 export type WorkflowTaskStatusEnum = typeof WorkflowTaskStatusEnum[keyof typeof WorkflowTaskStatusEnum];
+
+/**
+ * @export
+ */
+export const WorkflowTaskSystemTaskTypeEnum = {
+    OrderAccountsReceivable: 'order_accounts_receivable',
+    OrderFraudReview: 'order_fraud_review',
+    AutoOrderCardUpdateIssue: 'auto_order_card_update_issue',
+    AutoOrderCanceledPayment: 'auto_order_canceled_payment',
+    ItemLowStock: 'item_low_stock',
+    ItemOutOfStock: 'item_out_of_stock'
+} as const;
+export type WorkflowTaskSystemTaskTypeEnum = typeof WorkflowTaskSystemTaskTypeEnum[keyof typeof WorkflowTaskSystemTaskTypeEnum];
 
 
 export function WorkflowTaskFromJSON(json: any): WorkflowTask {
@@ -270,6 +298,7 @@ export function WorkflowTaskFromJSONTyped(json: any, ignoreDiscriminator: boolea
         'delay_until_dts': !exists(json, 'delay_until_dts') ? undefined : json['delay_until_dts'],
         'dependant_workflow_task_uuid': !exists(json, 'dependant_workflow_task_uuid') ? undefined : json['dependant_workflow_task_uuid'],
         'due_dts': !exists(json, 'due_dts') ? undefined : json['due_dts'],
+        'expiration_dts': !exists(json, 'expiration_dts') ? undefined : json['expiration_dts'],
         'histories': !exists(json, 'histories') ? undefined : ((json['histories'] as Array<any>).map(WorkflowTaskHistoryFromJSON)),
         'last_update_dts': !exists(json, 'last_update_dts') ? undefined : json['last_update_dts'],
         'merchant_id': !exists(json, 'merchant_id') ? undefined : json['merchant_id'],
@@ -282,6 +311,7 @@ export function WorkflowTaskFromJSONTyped(json: any, ignoreDiscriminator: boolea
         'properties': !exists(json, 'properties') ? undefined : ((json['properties'] as Array<any>).map(PropertyFromJSON)),
         'related_workflow_task_uuid': !exists(json, 'related_workflow_task_uuid') ? undefined : json['related_workflow_task_uuid'],
         'status': !exists(json, 'status') ? undefined : json['status'],
+        'system_task_type': !exists(json, 'system_task_type') ? undefined : json['system_task_type'],
         'tags': !exists(json, 'tags') ? undefined : json['tags'],
         'task_context': !exists(json, 'task_context') ? undefined : json['task_context'],
         'task_details': !exists(json, 'task_details') ? undefined : json['task_details'],
@@ -309,6 +339,7 @@ export function WorkflowTaskToJSON(value?: WorkflowTask | null): any {
         'delay_until_dts': value.delay_until_dts,
         'dependant_workflow_task_uuid': value.dependant_workflow_task_uuid,
         'due_dts': value.due_dts,
+        'expiration_dts': value.expiration_dts,
         'histories': value.histories === undefined ? undefined : ((value.histories as Array<any>).map(WorkflowTaskHistoryToJSON)),
         'last_update_dts': value.last_update_dts,
         'merchant_id': value.merchant_id,
@@ -321,6 +352,7 @@ export function WorkflowTaskToJSON(value?: WorkflowTask | null): any {
         'properties': value.properties === undefined ? undefined : ((value.properties as Array<any>).map(PropertyToJSON)),
         'related_workflow_task_uuid': value.related_workflow_task_uuid,
         'status': value.status,
+        'system_task_type': value.system_task_type,
         'tags': value.tags,
         'task_context': value.task_context,
         'task_details': value.task_details,
