@@ -369,6 +369,12 @@ export interface ChannelPartnerOrder {
      */
     rotating_transaction_gateway_code?: string;
     /**
+     * Sales rep code
+     * @type {string}
+     * @memberof ChannelPartnerOrder
+     */
+    sales_rep_code?: string;
+    /**
      * Screen branding theme code
      * @type {string}
      * @memberof ChannelPartnerOrder
@@ -600,6 +606,7 @@ export function ChannelPartnerOrderFromJSONTyped(json: any, ignoreDiscriminator:
         'payment_method': !exists(json, 'payment_method') ? undefined : json['payment_method'],
         'purchase_order_number': !exists(json, 'purchase_order_number') ? undefined : json['purchase_order_number'],
         'rotating_transaction_gateway_code': !exists(json, 'rotating_transaction_gateway_code') ? undefined : json['rotating_transaction_gateway_code'],
+        'sales_rep_code': !exists(json, 'sales_rep_code') ? undefined : json['sales_rep_code'],
         'screen_branding_theme_code': !exists(json, 'screen_branding_theme_code') ? undefined : json['screen_branding_theme_code'],
         'ship_on_date': !exists(json, 'ship_on_date') ? undefined : json['ship_on_date'],
         'ship_to_residential': !exists(json, 'ship_to_residential') ? undefined : json['ship_to_residential'],
@@ -692,6 +699,7 @@ export function ChannelPartnerOrderToJSON(value?: ChannelPartnerOrder | null): a
         'payment_method': value.payment_method,
         'purchase_order_number': value.purchase_order_number,
         'rotating_transaction_gateway_code': value.rotating_transaction_gateway_code,
+        'sales_rep_code': value.sales_rep_code,
         'screen_branding_theme_code': value.screen_branding_theme_code,
         'ship_on_date': value.ship_on_date,
         'ship_to_residential': value.ship_to_residential,
