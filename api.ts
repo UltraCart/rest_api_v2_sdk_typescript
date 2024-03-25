@@ -43342,6 +43342,12 @@ export interface WorkflowTask {
      */
     expiration_dts?: string;
     /**
+     * Global task numer
+     * @type {number}
+     * @memberof WorkflowTask
+     */
+    global_task_number?: number;
+    /**
      * Array of history records for the task
      * @type {Array<WorkflowTaskHistory>}
      * @memberof WorkflowTask
@@ -43377,6 +43383,12 @@ export interface WorkflowTask {
      * @memberof WorkflowTask
      */
     object_id?: string;
+    /**
+     * Object specific task numer
+     * @type {number}
+     * @memberof WorkflowTask
+     */
+    object_task_number?: number;
     /**
      * Object Type
      * @type {string}
