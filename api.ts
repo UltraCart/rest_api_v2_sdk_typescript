@@ -5854,6 +5854,12 @@ export interface ChannelPartnerOrder {
      */
     rotating_transaction_gateway_code?: string;
     /**
+     * Sales rep code
+     * @type {string}
+     * @memberof ChannelPartnerOrder
+     */
+    sales_rep_code?: string;
+    /**
      * Screen branding theme code
      * @type {string}
      * @memberof ChannelPartnerOrder
