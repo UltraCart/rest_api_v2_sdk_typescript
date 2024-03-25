@@ -117,6 +117,12 @@ export interface WorkflowTask {
      */
     expiration_dts?: string;
     /**
+     * Global task numer
+     * @type {number}
+     * @memberof WorkflowTask
+     */
+    global_task_number?: number;
+    /**
      * Array of history records for the task
      * @type {Array<WorkflowTaskHistory>}
      * @memberof WorkflowTask
@@ -152,6 +158,12 @@ export interface WorkflowTask {
      * @memberof WorkflowTask
      */
     object_id?: string;
+    /**
+     * Object specific task numer
+     * @type {number}
+     * @memberof WorkflowTask
+     */
+    object_task_number?: number;
     /**
      * Object Type
      * @type {string}
@@ -299,12 +311,14 @@ export function WorkflowTaskFromJSONTyped(json: any, ignoreDiscriminator: boolea
         'dependant_workflow_task_uuid': !exists(json, 'dependant_workflow_task_uuid') ? undefined : json['dependant_workflow_task_uuid'],
         'due_dts': !exists(json, 'due_dts') ? undefined : json['due_dts'],
         'expiration_dts': !exists(json, 'expiration_dts') ? undefined : json['expiration_dts'],
+        'global_task_number': !exists(json, 'global_task_number') ? undefined : json['global_task_number'],
         'histories': !exists(json, 'histories') ? undefined : ((json['histories'] as Array<any>).map(WorkflowTaskHistoryFromJSON)),
         'last_update_dts': !exists(json, 'last_update_dts') ? undefined : json['last_update_dts'],
         'merchant_id': !exists(json, 'merchant_id') ? undefined : json['merchant_id'],
         'notes': !exists(json, 'notes') ? undefined : ((json['notes'] as Array<any>).map(WorkflowNoteFromJSON)),
         'object_email': !exists(json, 'object_email') ? undefined : json['object_email'],
         'object_id': !exists(json, 'object_id') ? undefined : json['object_id'],
+        'object_task_number': !exists(json, 'object_task_number') ? undefined : json['object_task_number'],
         'object_type': !exists(json, 'object_type') ? undefined : json['object_type'],
         'object_url': !exists(json, 'object_url') ? undefined : json['object_url'],
         'priority': !exists(json, 'priority') ? undefined : json['priority'],
@@ -340,12 +354,14 @@ export function WorkflowTaskToJSON(value?: WorkflowTask | null): any {
         'dependant_workflow_task_uuid': value.dependant_workflow_task_uuid,
         'due_dts': value.due_dts,
         'expiration_dts': value.expiration_dts,
+        'global_task_number': value.global_task_number,
         'histories': value.histories === undefined ? undefined : ((value.histories as Array<any>).map(WorkflowTaskHistoryToJSON)),
         'last_update_dts': value.last_update_dts,
         'merchant_id': value.merchant_id,
         'notes': value.notes === undefined ? undefined : ((value.notes as Array<any>).map(WorkflowNoteToJSON)),
         'object_email': value.object_email,
         'object_id': value.object_id,
+        'object_task_number': value.object_task_number,
         'object_type': value.object_type,
         'object_url': value.object_url,
         'priority': value.priority,
