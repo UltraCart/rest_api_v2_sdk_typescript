@@ -43300,6 +43300,12 @@ export interface WorkflowTask {
      */
     assigned_to_user_id?: number;
     /**
+     * Assigned to user or group (used for sorting)
+     * @type {string}
+     * @memberof WorkflowTask
+     */
+    assigned_to_user_or_group?: string;
+    /**
      * Attachments to the Workflow Task
      * @type {Array<WorkflowAttachment>}
      * @memberof WorkflowTask
