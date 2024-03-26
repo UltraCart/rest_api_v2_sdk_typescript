@@ -75,6 +75,12 @@ export interface WorkflowTask {
      */
     assigned_to_user_id?: number;
     /**
+     * Assigned to user or group (used for sorting)
+     * @type {string}
+     * @memberof WorkflowTask
+     */
+    assigned_to_user_or_group?: string;
+    /**
      * Attachments to the Workflow Task
      * @type {Array<WorkflowAttachment>}
      * @memberof WorkflowTask
@@ -304,6 +310,7 @@ export function WorkflowTaskFromJSONTyped(json: any, ignoreDiscriminator: boolea
         'assigned_to_group_id': !exists(json, 'assigned_to_group_id') ? undefined : json['assigned_to_group_id'],
         'assigned_to_user': !exists(json, 'assigned_to_user') ? undefined : json['assigned_to_user'],
         'assigned_to_user_id': !exists(json, 'assigned_to_user_id') ? undefined : json['assigned_to_user_id'],
+        'assigned_to_user_or_group': !exists(json, 'assigned_to_user_or_group') ? undefined : json['assigned_to_user_or_group'],
         'attachments': !exists(json, 'attachments') ? undefined : ((json['attachments'] as Array<any>).map(WorkflowAttachmentFromJSON)),
         'created_by': !exists(json, 'created_by') ? undefined : WorkflowUserFromJSON(json['created_by']),
         'created_dts': !exists(json, 'created_dts') ? undefined : json['created_dts'],
@@ -347,6 +354,7 @@ export function WorkflowTaskToJSON(value?: WorkflowTask | null): any {
         'assigned_to_group_id': value.assigned_to_group_id,
         'assigned_to_user': value.assigned_to_user,
         'assigned_to_user_id': value.assigned_to_user_id,
+        'assigned_to_user_or_group': value.assigned_to_user_or_group,
         'attachments': value.attachments === undefined ? undefined : ((value.attachments as Array<any>).map(WorkflowAttachmentToJSON)),
         'created_by': WorkflowUserToJSON(value.created_by),
         'created_dts': value.created_dts,
