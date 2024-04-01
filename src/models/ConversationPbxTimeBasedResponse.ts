@@ -67,7 +67,7 @@ export interface ConversationPbxTimeBasedResponse {
      * @type {ConversationPbxTimeBased}
      * @memberof ConversationPbxTimeBasedResponse
      */
-    timeBased?: ConversationPbxTimeBased;
+    time_based?: ConversationPbxTimeBased;
     /**
      * 
      * @type {Warning}
@@ -89,7 +89,7 @@ export function ConversationPbxTimeBasedResponseFromJSONTyped(json: any, ignoreD
         'error': !exists(json, 'error') ? undefined : ModelErrorFromJSON(json['error']),
         'metadata': !exists(json, 'metadata') ? undefined : ResponseMetadataFromJSON(json['metadata']),
         'success': !exists(json, 'success') ? undefined : json['success'],
-        'timeBased': !exists(json, 'timeBased') ? undefined : ConversationPbxTimeBasedFromJSON(json['timeBased']),
+        'time_based': !exists(json, 'time_based') ? undefined : ConversationPbxTimeBasedFromJSON(json['time_based']),
         'warning': !exists(json, 'warning') ? undefined : WarningFromJSON(json['warning']),
     };
 }
@@ -106,7 +106,7 @@ export function ConversationPbxTimeBasedResponseToJSON(value?: ConversationPbxTi
         'error': ModelErrorToJSON(value.error),
         'metadata': ResponseMetadataToJSON(value.metadata),
         'success': value.success,
-        'timeBased': ConversationPbxTimeBasedToJSON(value.timeBased),
+        'time_based': ConversationPbxTimeBasedToJSON(value.time_based),
         'warning': WarningToJSON(value.warning),
     };
 }

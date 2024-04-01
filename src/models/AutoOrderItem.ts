@@ -111,6 +111,12 @@ export interface AutoOrderItem {
      */
     life_time_value?: number;
     /**
+     * Calculated next item id
+     * @type {string}
+     * @memberof AutoOrderItem
+     */
+    next_item_id?: string;
+    /**
      * The date/time of when the next pre-shipment notice should be sent
      * @type {string}
      * @memberof AutoOrderItem
@@ -243,6 +249,7 @@ export function AutoOrderItemFromJSONTyped(json: any, ignoreDiscriminator: boole
         'future_schedules': !exists(json, 'future_schedules') ? undefined : ((json['future_schedules'] as Array<any>).map(AutoOrderItemFutureScheduleFromJSON)),
         'last_order_dts': !exists(json, 'last_order_dts') ? undefined : json['last_order_dts'],
         'life_time_value': !exists(json, 'life_time_value') ? undefined : json['life_time_value'],
+        'next_item_id': !exists(json, 'next_item_id') ? undefined : json['next_item_id'],
         'next_preshipment_notice_dts': !exists(json, 'next_preshipment_notice_dts') ? undefined : json['next_preshipment_notice_dts'],
         'next_shipment_dts': !exists(json, 'next_shipment_dts') ? undefined : json['next_shipment_dts'],
         'no_order_after_dts': !exists(json, 'no_order_after_dts') ? undefined : json['no_order_after_dts'],
@@ -281,6 +288,7 @@ export function AutoOrderItemToJSON(value?: AutoOrderItem | null): any {
         'future_schedules': value.future_schedules === undefined ? undefined : ((value.future_schedules as Array<any>).map(AutoOrderItemFutureScheduleToJSON)),
         'last_order_dts': value.last_order_dts,
         'life_time_value': value.life_time_value,
+        'next_item_id': value.next_item_id,
         'next_preshipment_notice_dts': value.next_preshipment_notice_dts,
         'next_shipment_dts': value.next_shipment_dts,
         'no_order_after_dts': value.no_order_after_dts,

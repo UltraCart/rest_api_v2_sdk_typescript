@@ -14,11 +14,11 @@
 
 import { exists, mapValues } from '../runtime';
 import {
-    ConversationPbxTimeRange,
-    ConversationPbxTimeRangeFromJSON,
-    ConversationPbxTimeRangeFromJSONTyped,
-    ConversationPbxTimeRangeToJSON,
-} from './ConversationPbxTimeRange';
+    ConversationPbxVoicemailMessageSummary,
+    ConversationPbxVoicemailMessageSummaryFromJSON,
+    ConversationPbxVoicemailMessageSummaryFromJSONTyped,
+    ConversationPbxVoicemailMessageSummaryToJSON,
+} from './ConversationPbxVoicemailMessageSummary';
 import {
     ModelError,
     ModelErrorFromJSON,
@@ -41,46 +41,46 @@ import {
 /**
  * 
  * @export
- * @interface ConversationPbxTimeRangesResponse
+ * @interface ConversationPbxVoicemailMessageSummariesResponse
  */
-export interface ConversationPbxTimeRangesResponse {
+export interface ConversationPbxVoicemailMessageSummariesResponse {
     /**
      * 
      * @type {ModelError}
-     * @memberof ConversationPbxTimeRangesResponse
+     * @memberof ConversationPbxVoicemailMessageSummariesResponse
      */
     error?: ModelError;
     /**
      * 
      * @type {ResponseMetadata}
-     * @memberof ConversationPbxTimeRangesResponse
+     * @memberof ConversationPbxVoicemailMessageSummariesResponse
      */
     metadata?: ResponseMetadata;
     /**
      * Indicates if API call was successful
      * @type {boolean}
-     * @memberof ConversationPbxTimeRangesResponse
+     * @memberof ConversationPbxVoicemailMessageSummariesResponse
      */
     success?: boolean;
     /**
      * 
-     * @type {Array<ConversationPbxTimeRange>}
-     * @memberof ConversationPbxTimeRangesResponse
+     * @type {Array<ConversationPbxVoicemailMessageSummary>}
+     * @memberof ConversationPbxVoicemailMessageSummariesResponse
      */
-    time_ranges?: Array<ConversationPbxTimeRange>;
+    voicemail_message_summaries?: Array<ConversationPbxVoicemailMessageSummary>;
     /**
      * 
      * @type {Warning}
-     * @memberof ConversationPbxTimeRangesResponse
+     * @memberof ConversationPbxVoicemailMessageSummariesResponse
      */
     warning?: Warning;
 }
 
-export function ConversationPbxTimeRangesResponseFromJSON(json: any): ConversationPbxTimeRangesResponse {
-    return ConversationPbxTimeRangesResponseFromJSONTyped(json, false);
+export function ConversationPbxVoicemailMessageSummariesResponseFromJSON(json: any): ConversationPbxVoicemailMessageSummariesResponse {
+    return ConversationPbxVoicemailMessageSummariesResponseFromJSONTyped(json, false);
 }
 
-export function ConversationPbxTimeRangesResponseFromJSONTyped(json: any, ignoreDiscriminator: boolean): ConversationPbxTimeRangesResponse {
+export function ConversationPbxVoicemailMessageSummariesResponseFromJSONTyped(json: any, ignoreDiscriminator: boolean): ConversationPbxVoicemailMessageSummariesResponse {
     if ((json === undefined) || (json === null)) {
         return json;
     }
@@ -89,12 +89,12 @@ export function ConversationPbxTimeRangesResponseFromJSONTyped(json: any, ignore
         'error': !exists(json, 'error') ? undefined : ModelErrorFromJSON(json['error']),
         'metadata': !exists(json, 'metadata') ? undefined : ResponseMetadataFromJSON(json['metadata']),
         'success': !exists(json, 'success') ? undefined : json['success'],
-        'time_ranges': !exists(json, 'time_ranges') ? undefined : ((json['time_ranges'] as Array<any>).map(ConversationPbxTimeRangeFromJSON)),
+        'voicemail_message_summaries': !exists(json, 'voicemail_message_summaries') ? undefined : ((json['voicemail_message_summaries'] as Array<any>).map(ConversationPbxVoicemailMessageSummaryFromJSON)),
         'warning': !exists(json, 'warning') ? undefined : WarningFromJSON(json['warning']),
     };
 }
 
-export function ConversationPbxTimeRangesResponseToJSON(value?: ConversationPbxTimeRangesResponse | null): any {
+export function ConversationPbxVoicemailMessageSummariesResponseToJSON(value?: ConversationPbxVoicemailMessageSummariesResponse | null): any {
     if (value === undefined) {
         return undefined;
     }
@@ -106,7 +106,7 @@ export function ConversationPbxTimeRangesResponseToJSON(value?: ConversationPbxT
         'error': ModelErrorToJSON(value.error),
         'metadata': ResponseMetadataToJSON(value.metadata),
         'success': value.success,
-        'time_ranges': value.time_ranges === undefined ? undefined : ((value.time_ranges as Array<any>).map(ConversationPbxTimeRangeToJSON)),
+        'voicemail_message_summaries': value.voicemail_message_summaries === undefined ? undefined : ((value.voicemail_message_summaries as Array<any>).map(ConversationPbxVoicemailMessageSummaryToJSON)),
         'warning': WarningToJSON(value.warning),
     };
 }

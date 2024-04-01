@@ -66,7 +66,7 @@ export interface ConversationPbxVoicemailMailbox {
      * @type {string}
      * @memberof ConversationPbxVoicemailMailbox
      */
-    voicemail_mailbox_type?: string;
+    voicemail_mailbox_type?: ConversationPbxVoicemailMailboxVoicemailMailboxTypeEnum;
     /**
      * Voicemail prompt play audio UUID
      * @type {string}
@@ -86,6 +86,17 @@ export interface ConversationPbxVoicemailMailbox {
      */
     voicemail_say_voice?: string;
 }
+
+
+/**
+ * @export
+ */
+export const ConversationPbxVoicemailMailboxVoicemailMailboxTypeEnum = {
+    Agent: 'agent',
+    Shared: 'shared'
+} as const;
+export type ConversationPbxVoicemailMailboxVoicemailMailboxTypeEnum = typeof ConversationPbxVoicemailMailboxVoicemailMailboxTypeEnum[keyof typeof ConversationPbxVoicemailMailboxVoicemailMailboxTypeEnum];
+
 
 export function ConversationPbxVoicemailMailboxFromJSON(json: any): ConversationPbxVoicemailMailbox {
     return ConversationPbxVoicemailMailboxFromJSONTyped(json, false);

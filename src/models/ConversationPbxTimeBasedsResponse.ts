@@ -67,7 +67,7 @@ export interface ConversationPbxTimeBasedsResponse {
      * @type {Array<ConversationPbxTimeBased>}
      * @memberof ConversationPbxTimeBasedsResponse
      */
-    timeBaseds?: Array<ConversationPbxTimeBased>;
+    time_baseds?: Array<ConversationPbxTimeBased>;
     /**
      * 
      * @type {Warning}
@@ -89,7 +89,7 @@ export function ConversationPbxTimeBasedsResponseFromJSONTyped(json: any, ignore
         'error': !exists(json, 'error') ? undefined : ModelErrorFromJSON(json['error']),
         'metadata': !exists(json, 'metadata') ? undefined : ResponseMetadataFromJSON(json['metadata']),
         'success': !exists(json, 'success') ? undefined : json['success'],
-        'timeBaseds': !exists(json, 'timeBaseds') ? undefined : ((json['timeBaseds'] as Array<any>).map(ConversationPbxTimeBasedFromJSON)),
+        'time_baseds': !exists(json, 'time_baseds') ? undefined : ((json['time_baseds'] as Array<any>).map(ConversationPbxTimeBasedFromJSON)),
         'warning': !exists(json, 'warning') ? undefined : WarningFromJSON(json['warning']),
     };
 }
@@ -106,7 +106,7 @@ export function ConversationPbxTimeBasedsResponseToJSON(value?: ConversationPbxT
         'error': ModelErrorToJSON(value.error),
         'metadata': ResponseMetadataToJSON(value.metadata),
         'success': value.success,
-        'timeBaseds': value.timeBaseds === undefined ? undefined : ((value.timeBaseds as Array<any>).map(ConversationPbxTimeBasedToJSON)),
+        'time_baseds': value.time_baseds === undefined ? undefined : ((value.time_baseds as Array<any>).map(ConversationPbxTimeBasedToJSON)),
         'warning': WarningToJSON(value.warning),
     };
 }

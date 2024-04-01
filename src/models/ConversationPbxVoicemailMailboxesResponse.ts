@@ -67,7 +67,7 @@ export interface ConversationPbxVoicemailMailboxesResponse {
      * @type {Array<ConversationPbxVoicemailMailbox>}
      * @memberof ConversationPbxVoicemailMailboxesResponse
      */
-    voicemailMailboxes?: Array<ConversationPbxVoicemailMailbox>;
+    voicemail_mailboxes?: Array<ConversationPbxVoicemailMailbox>;
     /**
      * 
      * @type {Warning}
@@ -89,7 +89,7 @@ export function ConversationPbxVoicemailMailboxesResponseFromJSONTyped(json: any
         'error': !exists(json, 'error') ? undefined : ModelErrorFromJSON(json['error']),
         'metadata': !exists(json, 'metadata') ? undefined : ResponseMetadataFromJSON(json['metadata']),
         'success': !exists(json, 'success') ? undefined : json['success'],
-        'voicemailMailboxes': !exists(json, 'voicemailMailboxes') ? undefined : ((json['voicemailMailboxes'] as Array<any>).map(ConversationPbxVoicemailMailboxFromJSON)),
+        'voicemail_mailboxes': !exists(json, 'voicemail_mailboxes') ? undefined : ((json['voicemail_mailboxes'] as Array<any>).map(ConversationPbxVoicemailMailboxFromJSON)),
         'warning': !exists(json, 'warning') ? undefined : WarningFromJSON(json['warning']),
     };
 }
@@ -106,7 +106,7 @@ export function ConversationPbxVoicemailMailboxesResponseToJSON(value?: Conversa
         'error': ModelErrorToJSON(value.error),
         'metadata': ResponseMetadataToJSON(value.metadata),
         'success': value.success,
-        'voicemailMailboxes': value.voicemailMailboxes === undefined ? undefined : ((value.voicemailMailboxes as Array<any>).map(ConversationPbxVoicemailMailboxToJSON)),
+        'voicemail_mailboxes': value.voicemail_mailboxes === undefined ? undefined : ((value.voicemail_mailboxes as Array<any>).map(ConversationPbxVoicemailMailboxToJSON)),
         'warning': WarningToJSON(value.warning),
     };
 }

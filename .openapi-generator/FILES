@@ -224,6 +224,10 @@ src/models/ConversationPbxTimeRangesResponse.ts
 src/models/ConversationPbxVoicemailMailbox.ts
 src/models/ConversationPbxVoicemailMailboxResponse.ts
 src/models/ConversationPbxVoicemailMailboxesResponse.ts
+src/models/ConversationPbxVoicemailMessage.ts
+src/models/ConversationPbxVoicemailMessageResponse.ts
+src/models/ConversationPbxVoicemailMessageSummariesResponse.ts
+src/models/ConversationPbxVoicemailMessageSummary.ts
 src/models/ConversationPermissions.ts
 src/models/ConversationPermissionsResponse.ts
 src/models/ConversationResponse.ts

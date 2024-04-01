@@ -61,7 +61,7 @@ export interface ConversationPbxPhoneNumbersResponse {
      * @type {Array<ConversationPbxPhoneNumber>}
      * @memberof ConversationPbxPhoneNumbersResponse
      */
-    phoneNumbers?: Array<ConversationPbxPhoneNumber>;
+    phone_numbers?: Array<ConversationPbxPhoneNumber>;
     /**
      * Indicates if API call was successful
      * @type {boolean}
@@ -88,7 +88,7 @@ export function ConversationPbxPhoneNumbersResponseFromJSONTyped(json: any, igno
         
         'error': !exists(json, 'error') ? undefined : ModelErrorFromJSON(json['error']),
         'metadata': !exists(json, 'metadata') ? undefined : ResponseMetadataFromJSON(json['metadata']),
-        'phoneNumbers': !exists(json, 'phoneNumbers') ? undefined : ((json['phoneNumbers'] as Array<any>).map(ConversationPbxPhoneNumberFromJSON)),
+        'phone_numbers': !exists(json, 'phone_numbers') ? undefined : ((json['phone_numbers'] as Array<any>).map(ConversationPbxPhoneNumberFromJSON)),
         'success': !exists(json, 'success') ? undefined : json['success'],
         'warning': !exists(json, 'warning') ? undefined : WarningFromJSON(json['warning']),
     };
@@ -105,7 +105,7 @@ export function ConversationPbxPhoneNumbersResponseToJSON(value?: ConversationPb
         
         'error': ModelErrorToJSON(value.error),
         'metadata': ResponseMetadataToJSON(value.metadata),
-        'phoneNumbers': value.phoneNumbers === undefined ? undefined : ((value.phoneNumbers as Array<any>).map(ConversationPbxPhoneNumberToJSON)),
+        'phone_numbers': value.phone_numbers === undefined ? undefined : ((value.phone_numbers as Array<any>).map(ConversationPbxPhoneNumberToJSON)),
         'success': value.success,
         'warning': WarningToJSON(value.warning),
     };

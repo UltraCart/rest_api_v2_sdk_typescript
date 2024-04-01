@@ -61,7 +61,7 @@ export interface ConversationPbxPhoneNumberResponse {
      * @type {ConversationPbxPhoneNumber}
      * @memberof ConversationPbxPhoneNumberResponse
      */
-    phoneNumber?: ConversationPbxPhoneNumber;
+    phone_number?: ConversationPbxPhoneNumber;
     /**
      * Indicates if API call was successful
      * @type {boolean}
@@ -88,7 +88,7 @@ export function ConversationPbxPhoneNumberResponseFromJSONTyped(json: any, ignor
         
         'error': !exists(json, 'error') ? undefined : ModelErrorFromJSON(json['error']),
         'metadata': !exists(json, 'metadata') ? undefined : ResponseMetadataFromJSON(json['metadata']),
-        'phoneNumber': !exists(json, 'phoneNumber') ? undefined : ConversationPbxPhoneNumberFromJSON(json['phoneNumber']),
+        'phone_number': !exists(json, 'phone_number') ? undefined : ConversationPbxPhoneNumberFromJSON(json['phone_number']),
         'success': !exists(json, 'success') ? undefined : json['success'],
         'warning': !exists(json, 'warning') ? undefined : WarningFromJSON(json['warning']),
     };
@@ -105,7 +105,7 @@ export function ConversationPbxPhoneNumberResponseToJSON(value?: ConversationPbx
         
         'error': ModelErrorToJSON(value.error),
         'metadata': ResponseMetadataToJSON(value.metadata),
-        'phoneNumber': ConversationPbxPhoneNumberToJSON(value.phoneNumber),
+        'phone_number': ConversationPbxPhoneNumberToJSON(value.phone_number),
         'success': value.success,
         'warning': WarningToJSON(value.warning),
     };

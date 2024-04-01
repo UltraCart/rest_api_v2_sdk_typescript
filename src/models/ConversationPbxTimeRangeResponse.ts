@@ -67,7 +67,7 @@ export interface ConversationPbxTimeRangeResponse {
      * @type {ConversationPbxTimeRange}
      * @memberof ConversationPbxTimeRangeResponse
      */
-    timeRange?: ConversationPbxTimeRange;
+    time_range?: ConversationPbxTimeRange;
     /**
      * 
      * @type {Warning}
@@ -89,7 +89,7 @@ export function ConversationPbxTimeRangeResponseFromJSONTyped(json: any, ignoreD
         'error': !exists(json, 'error') ? undefined : ModelErrorFromJSON(json['error']),
         'metadata': !exists(json, 'metadata') ? undefined : ResponseMetadataFromJSON(json['metadata']),
         'success': !exists(json, 'success') ? undefined : json['success'],
-        'timeRange': !exists(json, 'timeRange') ? undefined : ConversationPbxTimeRangeFromJSON(json['timeRange']),
+        'time_range': !exists(json, 'time_range') ? undefined : ConversationPbxTimeRangeFromJSON(json['time_range']),
         'warning': !exists(json, 'warning') ? undefined : WarningFromJSON(json['warning']),
     };
 }
@@ -106,7 +106,7 @@ export function ConversationPbxTimeRangeResponseToJSON(value?: ConversationPbxTi
         'error': ModelErrorToJSON(value.error),
         'metadata': ResponseMetadataToJSON(value.metadata),
         'success': value.success,
-        'timeRange': ConversationPbxTimeRangeToJSON(value.timeRange),
+        'time_range': ConversationPbxTimeRangeToJSON(value.time_range),
         'warning': WarningToJSON(value.warning),
     };
 }

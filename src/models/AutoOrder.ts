@@ -153,6 +153,12 @@ export interface AutoOrder {
      */
     management?: AutoOrderManagement;
     /**
+     * UltraCart merchant ID owning this order
+     * @type {string}
+     * @memberof AutoOrder
+     */
+    merchant_id?: string;
+    /**
      * The next time that the auto order will be attempted for processing
      * @type {string}
      * @memberof AutoOrder
@@ -235,6 +241,7 @@ export function AutoOrderFromJSONTyped(json: any, ignoreDiscriminator: boolean):
         'items': !exists(json, 'items') ? undefined : ((json['items'] as Array<any>).map(AutoOrderItemFromJSON)),
         'logs': !exists(json, 'logs') ? undefined : ((json['logs'] as Array<any>).map(AutoOrderLogFromJSON)),
         'management': !exists(json, 'management') ? undefined : AutoOrderManagementFromJSON(json['management']),
+        'merchant_id': !exists(json, 'merchant_id') ? undefined : json['merchant_id'],
         'next_attempt': !exists(json, 'next_attempt') ? undefined : json['next_attempt'],
         'original_order': !exists(json, 'original_order') ? undefined : OrderFromJSON(json['original_order']),
         'original_order_id': !exists(json, 'original_order_id') ? undefined : json['original_order_id'],
@@ -271,6 +278,7 @@ export function AutoOrderToJSON(value?: AutoOrder | null): any {
         'items': value.items === undefined ? undefined : ((value.items as Array<any>).map(AutoOrderItemToJSON)),
         'logs': value.logs === undefined ? undefined : ((value.logs as Array<any>).map(AutoOrderLogToJSON)),
         'management': AutoOrderManagementToJSON(value.management),
+        'merchant_id': value.merchant_id,
         'next_attempt': value.next_attempt,
         'original_order': OrderToJSON(value.original_order),
         'original_order_id': value.original_order_id,
