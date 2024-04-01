@@ -1443,6 +1443,12 @@ export interface AutoOrder {
      */
     management?: AutoOrderManagement;
     /**
+     * UltraCart merchant ID owning this order
+     * @type {string}
+     * @memberof AutoOrder
+     */
+    merchant_id?: string;
+    /**
      * The next time that the auto order will be attempted for processing
      * @type {string}
      * @memberof AutoOrder
@@ -1644,6 +1650,12 @@ export interface AutoOrderItem {
      * @memberof AutoOrderItem
      */
     life_time_value?: number;
+    /**
+     * Calculated next item id
+     * @type {string}
+     * @memberof AutoOrderItem
+     */
+    next_item_id?: string;
     /**
      * The date/time of when the next pre-shipment notice should be sent
      * @type {string}
@@ -9162,7 +9174,7 @@ export interface ConversationPbxPhoneNumberResponse {
      * @type {ConversationPbxPhoneNumber}
      * @memberof ConversationPbxPhoneNumberResponse
      */
-    phoneNumber?: ConversationPbxPhoneNumber;
+    phone_number?: ConversationPbxPhoneNumber;
     /**
      * Indicates if API call was successful
      * @type {boolean}
@@ -9200,7 +9212,7 @@ export interface ConversationPbxPhoneNumbersResponse {
      * @type {Array<ConversationPbxPhoneNumber>}
      * @memberof ConversationPbxPhoneNumbersResponse
      */
-    phoneNumbers?: Array<ConversationPbxPhoneNumber>;
+    phone_numbers?: Array<ConversationPbxPhoneNumber>;
     /**
      * Indicates if API call was successful
      * @type {boolean}
@@ -9552,7 +9564,7 @@ export interface ConversationPbxTimeBasedResponse {
      * @type {ConversationPbxTimeBased}
      * @memberof ConversationPbxTimeBasedResponse
      */
-    timeBased?: ConversationPbxTimeBased;
+    time_based?: ConversationPbxTimeBased;
     /**
      * 
      * @type {Warning}
@@ -9590,7 +9602,7 @@ export interface ConversationPbxTimeBasedsResponse {
      * @type {Array<ConversationPbxTimeBased>}
      * @memberof ConversationPbxTimeBasedsResponse
      */
-    timeBaseds?: Array<ConversationPbxTimeBased>;
+    time_baseds?: Array<ConversationPbxTimeBased>;
     /**
      * 
      * @type {Warning}
@@ -9710,7 +9722,7 @@ export interface ConversationPbxTimeRangeResponse {
      * @type {ConversationPbxTimeRange}
      * @memberof ConversationPbxTimeRangeResponse
      */
-    timeRange?: ConversationPbxTimeRange;
+    time_range?: ConversationPbxTimeRange;
     /**
      * 
      * @type {Warning}
@@ -9748,7 +9760,7 @@ export interface ConversationPbxTimeRangesResponse {
      * @type {Array<ConversationPbxTimeRange>}
      * @memberof ConversationPbxTimeRangesResponse
      */
-    timeRanges?: Array<ConversationPbxTimeRange>;
+    time_ranges?: Array<ConversationPbxTimeRange>;
     /**
      * 
      * @type {Warning}
@@ -9810,7 +9822,7 @@ export interface ConversationPbxVoicemailMailbox {
      * @type {string}
      * @memberof ConversationPbxVoicemailMailbox
      */
-    voicemail_mailbox_type?: string;
+    voicemail_mailbox_type?: ConversationPbxVoicemailMailbox.VoicemailMailboxTypeEnum;
     /**
      * Voicemail prompt play audio UUID
      * @type {string}
@@ -9829,6 +9841,21 @@ export interface ConversationPbxVoicemailMailbox {
      * @memberof ConversationPbxVoicemailMailbox
      */
     voicemail_say_voice?: string;
+}
+
+/**
+ * @export
+ * @namespace ConversationPbxVoicemailMailbox
+ */
+export namespace ConversationPbxVoicemailMailbox {
+    /**
+     * @export
+     * @enum {string}
+     */
+    export enum VoicemailMailboxTypeEnum {
+        Agent = <any> 'agent',
+        Shared = <any> 'shared'
+    }
 }
 
 /**
@@ -9860,7 +9887,7 @@ export interface ConversationPbxVoicemailMailboxResponse {
      * @type {ConversationPbxVoicemailMailbox}
      * @memberof ConversationPbxVoicemailMailboxResponse
      */
-    voicemailMailbox?: ConversationPbxVoicemailMailbox;
+    voicemail_mailbox?: ConversationPbxVoicemailMailbox;
     /**
      * 
      * @type {Warning}
@@ -9898,13 +9925,271 @@ export interface ConversationPbxVoicemailMailboxesResponse {
      * @type {Array<ConversationPbxVoicemailMailbox>}
      * @memberof ConversationPbxVoicemailMailboxesResponse
      */
-    voicemailMailboxes?: Array<ConversationPbxVoicemailMailbox>;
+    voicemail_mailboxes?: Array<ConversationPbxVoicemailMailbox>;
     /**
      * 
      * @type {Warning}
      * @memberof ConversationPbxVoicemailMailboxesResponse
      */
     warning?: Warning;
+}
+
+/**
+ * 
+ * @export
+ * @interface ConversationPbxVoicemailMessage
+ */
+export interface ConversationPbxVoicemailMessage {
+    /**
+     * Call SID
+     * @type {string}
+     * @memberof ConversationPbxVoicemailMessage
+     */
+    call_sid?: string;
+    /**
+     * Duration in seconds
+     * @type {number}
+     * @memberof ConversationPbxVoicemailMessage
+     */
+    duration?: number;
+    /**
+     * From phone number in E.164
+     * @type {string}
+     * @memberof ConversationPbxVoicemailMessage
+     */
+    from?: string;
+    /**
+     * From caller id (if available)
+     * @type {string}
+     * @memberof ConversationPbxVoicemailMessage
+     */
+    from_caller_id?: string;
+    /**
+     * True if the voicemail has been listened to in the user interface
+     * @type {boolean}
+     * @memberof ConversationPbxVoicemailMessage
+     */
+    listened?: boolean;
+    /**
+     * Merchant ID
+     * @type {string}
+     * @memberof ConversationPbxVoicemailMessage
+     */
+    merchant_id?: string;
+    /**
+     * Recording SID
+     * @type {string}
+     * @memberof ConversationPbxVoicemailMessage
+     */
+    recording_sid?: string;
+    /**
+     * Recording size in bytes
+     * @type {number}
+     * @memberof ConversationPbxVoicemailMessage
+     */
+    recording_size_bytes?: number;
+    /**
+     * Recording Status
+     * @type {string}
+     * @memberof ConversationPbxVoicemailMessage
+     */
+    recording_status?: ConversationPbxVoicemailMessage.RecordingStatusEnum;
+    /**
+     * Recording URL (expires in 4 hours)
+     * @type {string}
+     * @memberof ConversationPbxVoicemailMessage
+     */
+    recording_url?: string;
+    /**
+     * JSON version of the transcript
+     * @type {string}
+     * @memberof ConversationPbxVoicemailMessage
+     */
+    transcript_json?: string;
+    /**
+     * Formatted text of the transcript
+     * @type {string}
+     * @memberof ConversationPbxVoicemailMessage
+     */
+    transcript_text?: string;
+    /**
+     * Voicemail date/time
+     * @type {string}
+     * @memberof ConversationPbxVoicemailMessage
+     */
+    voicemail_dts?: string;
+}
+
+/**
+ * @export
+ * @namespace ConversationPbxVoicemailMessage
+ */
+export namespace ConversationPbxVoicemailMessage {
+    /**
+     * @export
+     * @enum {string}
+     */
+    export enum RecordingStatusEnum {
+        Completed = <any> 'completed'
+    }
+}
+
+/**
+ * 
+ * @export
+ * @interface ConversationPbxVoicemailMessageResponse
+ */
+export interface ConversationPbxVoicemailMessageResponse {
+    /**
+     * 
+     * @type {ModelError}
+     * @memberof ConversationPbxVoicemailMessageResponse
+     */
+    error?: ModelError;
+    /**
+     * 
+     * @type {ResponseMetadata}
+     * @memberof ConversationPbxVoicemailMessageResponse
+     */
+    metadata?: ResponseMetadata;
+    /**
+     * Indicates if API call was successful
+     * @type {boolean}
+     * @memberof ConversationPbxVoicemailMessageResponse
+     */
+    success?: boolean;
+    /**
+     * 
+     * @type {ConversationPbxVoicemailMessage}
+     * @memberof ConversationPbxVoicemailMessageResponse
+     */
+    voicemail_message?: ConversationPbxVoicemailMessage;
+    /**
+     * 
+     * @type {Warning}
+     * @memberof ConversationPbxVoicemailMessageResponse
+     */
+    warning?: Warning;
+}
+
+/**
+ * 
+ * @export
+ * @interface ConversationPbxVoicemailMessageSummariesResponse
+ */
+export interface ConversationPbxVoicemailMessageSummariesResponse {
+    /**
+     * 
+     * @type {ModelError}
+     * @memberof ConversationPbxVoicemailMessageSummariesResponse
+     */
+    error?: ModelError;
+    /**
+     * 
+     * @type {ResponseMetadata}
+     * @memberof ConversationPbxVoicemailMessageSummariesResponse
+     */
+    metadata?: ResponseMetadata;
+    /**
+     * Indicates if API call was successful
+     * @type {boolean}
+     * @memberof ConversationPbxVoicemailMessageSummariesResponse
+     */
+    success?: boolean;
+    /**
+     * 
+     * @type {Array<ConversationPbxVoicemailMessageSummary>}
+     * @memberof ConversationPbxVoicemailMessageSummariesResponse
+     */
+    voicemail_message_summaries?: Array<ConversationPbxVoicemailMessageSummary>;
+    /**
+     * 
+     * @type {Warning}
+     * @memberof ConversationPbxVoicemailMessageSummariesResponse
+     */
+    warning?: Warning;
+}
+
+/**
+ * 
+ * @export
+ * @interface ConversationPbxVoicemailMessageSummary
+ */
+export interface ConversationPbxVoicemailMessageSummary {
+    /**
+     * Call SID
+     * @type {string}
+     * @memberof ConversationPbxVoicemailMessageSummary
+     */
+    call_sid?: string;
+    /**
+     * Duration in seconds
+     * @type {number}
+     * @memberof ConversationPbxVoicemailMessageSummary
+     */
+    duration?: number;
+    /**
+     * From phone number in E.164
+     * @type {string}
+     * @memberof ConversationPbxVoicemailMessageSummary
+     */
+    from?: string;
+    /**
+     * From caller id (if available)
+     * @type {string}
+     * @memberof ConversationPbxVoicemailMessageSummary
+     */
+    from_caller_id?: string;
+    /**
+     * True if the voicemail has been listened to in the user interface
+     * @type {boolean}
+     * @memberof ConversationPbxVoicemailMessageSummary
+     */
+    listened?: boolean;
+    /**
+     * Merchant ID
+     * @type {string}
+     * @memberof ConversationPbxVoicemailMessageSummary
+     */
+    merchant_id?: string;
+    /**
+     * Recording SID
+     * @type {string}
+     * @memberof ConversationPbxVoicemailMessageSummary
+     */
+    recording_sid?: string;
+    /**
+     * Recording size in bytes
+     * @type {number}
+     * @memberof ConversationPbxVoicemailMessageSummary
+     */
+    recording_size_bytes?: number;
+    /**
+     * Recording Status
+     * @type {string}
+     * @memberof ConversationPbxVoicemailMessageSummary
+     */
+    recording_status?: ConversationPbxVoicemailMessageSummary.RecordingStatusEnum;
+    /**
+     * Voicemail date/time
+     * @type {string}
+     * @memberof ConversationPbxVoicemailMessageSummary
+     */
+    voicemail_dts?: string;
+}
+
+/**
+ * @export
+ * @namespace ConversationPbxVoicemailMessageSummary
+ */
+export namespace ConversationPbxVoicemailMessageSummary {
+    /**
+     * @export
+     * @enum {string}
+     */
+    export enum RecordingStatusEnum {
+        Completed = <any> 'completed'
+    }
 }
 
 /**
@@ -50118,6 +50403,58 @@ export const ConversationApiFetchParamCreator = function (configuration?: Config
             };
         },
         /**
+         * Delete pbx agent Voicemail 
+         * @summary Delete Agent Voicemail
+         * @param {string} recording_sid 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        deletePbxAgentVoicemail(recording_sid: string, options: any = {}): FetchArgs {
+            // verify required parameter 'recording_sid' is not null or undefined
+            if (recording_sid === null || recording_sid === undefined) {
+                throw new RequiredError('recording_sid','Required parameter recording_sid was null or undefined when calling deletePbxAgentVoicemail.');
+            }
+            const localVarPath = `/conversation/pbx/agent/voicemails/{recording_sid}`
+                .replace(`{${"recording_sid"}}`, encodeURIComponent(String(recording_sid)));
+            const localVarUrlObj = url.parse(localVarPath, true);
+            const localVarRequestOptions = Object.assign({ method: 'DELETE' }, options);
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+    if(configuration && configuration.apiVersion) {
+      localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+    }
+
+
+
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+				const localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+					? configuration.accessToken("ultraCartOauth", ["conversation_write"])
+					: configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
+					? configuration.apiKey("x-ultracart-simple-key")
+					: configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
          * Delete a pbx audio 
          * @summary Delete pbx audio
          * @param {string} conversationPbxAudioUuid 
@@ -51553,6 +51890,104 @@ export const ConversationApiFetchParamCreator = function (configuration?: Config
             };
         },
         /**
+         * Retrieve pbx agent Voicemail 
+         * @summary Get Agent Voicemail
+         * @param {string} recording_sid 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getPbxAgentVoicemail(recording_sid: string, options: any = {}): FetchArgs {
+            // verify required parameter 'recording_sid' is not null or undefined
+            if (recording_sid === null || recording_sid === undefined) {
+                throw new RequiredError('recording_sid','Required parameter recording_sid was null or undefined when calling getPbxAgentVoicemail.');
+            }
+            const localVarPath = `/conversation/pbx/agent/voicemails/{recording_sid}`
+                .replace(`{${"recording_sid"}}`, encodeURIComponent(String(recording_sid)));
+            const localVarUrlObj = url.parse(localVarPath, true);
+            const localVarRequestOptions = Object.assign({ method: 'GET' }, options);
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+    if(configuration && configuration.apiVersion) {
+      localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+    }
+
+
+
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+				const localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+					? configuration.accessToken("ultraCartOauth", ["conversation_read"])
+					: configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
+					? configuration.apiKey("x-ultracart-simple-key")
+					: configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Retrieve pbx agent Voicemails 
+         * @summary Get Agent Voicemails
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getPbxAgentVoicemails(options: any = {}): FetchArgs {
+            const localVarPath = `/conversation/pbx/agent/voicemails`;
+            const localVarUrlObj = url.parse(localVarPath, true);
+            const localVarRequestOptions = Object.assign({ method: 'GET' }, options);
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+    if(configuration && configuration.apiVersion) {
+      localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+    }
+
+
+
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+				const localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+					? configuration.accessToken("ultraCartOauth", ["conversation_read"])
+					: configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
+					? configuration.apiKey("x-ultracart-simple-key")
+					: configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
          * Retrieve pbx agents 
          * @summary Get pbx agents
          * @param {*} [options] Override http request option.
@@ -51906,6 +52341,116 @@ export const ConversationApiFetchParamCreator = function (configuration?: Config
             }
             const localVarPath = `/conversation/pbx/queue/{conversationPbxQueueUuid}`
                 .replace(`{${"conversationPbxQueueUuid"}}`, encodeURIComponent(String(conversationPbxQueueUuid)));
+            const localVarUrlObj = url.parse(localVarPath, true);
+            const localVarRequestOptions = Object.assign({ method: 'GET' }, options);
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+    if(configuration && configuration.apiVersion) {
+      localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+    }
+
+
+
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+				const localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+					? configuration.accessToken("ultraCartOauth", ["conversation_read"])
+					: configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
+					? configuration.apiKey("x-ultracart-simple-key")
+					: configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Retrieve pbx queue Voicemail 
+         * @summary Get Queue Voicemail
+         * @param {string} queue_uuid 
+         * @param {string} recording_sid 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getPbxQueueVoicemail(queue_uuid: string, recording_sid: string, options: any = {}): FetchArgs {
+            // verify required parameter 'queue_uuid' is not null or undefined
+            if (queue_uuid === null || queue_uuid === undefined) {
+                throw new RequiredError('queue_uuid','Required parameter queue_uuid was null or undefined when calling getPbxQueueVoicemail.');
+            }
+            // verify required parameter 'recording_sid' is not null or undefined
+            if (recording_sid === null || recording_sid === undefined) {
+                throw new RequiredError('recording_sid','Required parameter recording_sid was null or undefined when calling getPbxQueueVoicemail.');
+            }
+            const localVarPath = `/conversation/pbx/queues/{queue_uuid}/voicemails/{recording_sid}`
+                .replace(`{${"queue_uuid"}}`, encodeURIComponent(String(queue_uuid)))
+                .replace(`{${"recording_sid"}}`, encodeURIComponent(String(recording_sid)));
+            const localVarUrlObj = url.parse(localVarPath, true);
+            const localVarRequestOptions = Object.assign({ method: 'GET' }, options);
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+    if(configuration && configuration.apiVersion) {
+      localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+    }
+
+
+
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+				const localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+					? configuration.accessToken("ultraCartOauth", ["conversation_read"])
+					: configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
+					? configuration.apiKey("x-ultracart-simple-key")
+					: configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Retrieve pbx queue voicemails 
+         * @summary Get Queue Voicemails
+         * @param {string} queue_uuid 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getPbxQueueVoicemails(queue_uuid: string, options: any = {}): FetchArgs {
+            // verify required parameter 'queue_uuid' is not null or undefined
+            if (queue_uuid === null || queue_uuid === undefined) {
+                throw new RequiredError('queue_uuid','Required parameter queue_uuid was null or undefined when calling getPbxQueueVoicemails.');
+            }
+            const localVarPath = `/conversation/pbx/queues/{queue_uuid}/voicemails`
+                .replace(`{${"queue_uuid"}}`, encodeURIComponent(String(queue_uuid)));
             const localVarUrlObj = url.parse(localVarPath, true);
             const localVarRequestOptions = Object.assign({ method: 'GET' }, options);
             const localVarHeaderParameter = {} as any;
@@ -52962,6 +53507,58 @@ export const ConversationApiFetchParamCreator = function (configuration?: Config
                 .replace(`{${"conversation_uuid"}}`, encodeURIComponent(String(conversation_uuid)));
             const localVarUrlObj = url.parse(localVarPath, true);
             const localVarRequestOptions = Object.assign({ method: 'DELETE' }, options);
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+    if(configuration && configuration.apiVersion) {
+      localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+    }
+
+
+
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+				const localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+					? configuration.accessToken("ultraCartOauth", ["conversation_write"])
+					: configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
+					? configuration.apiKey("x-ultracart-simple-key")
+					: configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Listened pbx agent Voicemail 
+         * @summary Listened Agent Voicemail
+         * @param {string} recording_sid 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        listenedPbxAgentVoicemail(recording_sid: string, options: any = {}): FetchArgs {
+            // verify required parameter 'recording_sid' is not null or undefined
+            if (recording_sid === null || recording_sid === undefined) {
+                throw new RequiredError('recording_sid','Required parameter recording_sid was null or undefined when calling listenedPbxAgentVoicemail.');
+            }
+            const localVarPath = `/conversation/pbx/agent/voicemails/{recording_sid}/listened`
+                .replace(`{${"recording_sid"}}`, encodeURIComponent(String(recording_sid)));
+            const localVarUrlObj = url.parse(localVarPath, true);
+            const localVarRequestOptions = Object.assign({ method: 'GET' }, options);
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
@@ -54145,6 +54742,27 @@ export const ConversationApiFp = function(configuration?: Configuration) {
             };
         },
         /**
+         * Delete pbx agent Voicemail 
+         * @summary Delete Agent Voicemail
+         * @param {string} recording_sid 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        deletePbxAgentVoicemail(recording_sid: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Response> {
+            const localVarFetchArgs = ConversationApiFetchParamCreator(configuration).deletePbxAgentVoicemail(recording_sid, options);
+            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
+                    if (response.status >= 200 && response.status < 300) {
+                      return response;
+                      
+                    } else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
          * Delete a pbx audio 
          * @summary Delete pbx audio
          * @param {string} conversationPbxAudioUuid 
@@ -54729,6 +55347,47 @@ export const ConversationApiFp = function(configuration?: Configuration) {
             };
         },
         /**
+         * Retrieve pbx agent Voicemail 
+         * @summary Get Agent Voicemail
+         * @param {string} recording_sid 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getPbxAgentVoicemail(recording_sid: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ConversationPbxVoicemailMessageResponse> {
+            const localVarFetchArgs = ConversationApiFetchParamCreator(configuration).getPbxAgentVoicemail(recording_sid, options);
+            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
+                    if (response.status >= 200 && response.status < 300) {
+                      return response.json();
+                      
+                    } else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
+         * Retrieve pbx agent Voicemails 
+         * @summary Get Agent Voicemails
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getPbxAgentVoicemails(options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ConversationPbxVoicemailMessageSummariesResponse> {
+            const localVarFetchArgs = ConversationApiFetchParamCreator(configuration).getPbxAgentVoicemails(options);
+            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
+                    if (response.status >= 200 && response.status < 300) {
+                      return response.json();
+                      
+                    } else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
          * Retrieve pbx agents 
          * @summary Get pbx agents
          * @param {*} [options] Override http request option.
@@ -54880,6 +55539,49 @@ export const ConversationApiFp = function(configuration?: Configuration) {
          */
         getPbxQueue(conversationPbxQueueUuid: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ConversationPbxQueueResponse> {
             const localVarFetchArgs = ConversationApiFetchParamCreator(configuration).getPbxQueue(conversationPbxQueueUuid, options);
+            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
+                    if (response.status >= 200 && response.status < 300) {
+                      return response.json();
+                      
+                    } else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
+         * Retrieve pbx queue Voicemail 
+         * @summary Get Queue Voicemail
+         * @param {string} queue_uuid 
+         * @param {string} recording_sid 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getPbxQueueVoicemail(queue_uuid: string, recording_sid: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ConversationPbxVoicemailMessageResponse> {
+            const localVarFetchArgs = ConversationApiFetchParamCreator(configuration).getPbxQueueVoicemail(queue_uuid, recording_sid, options);
+            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
+                    if (response.status >= 200 && response.status < 300) {
+                      return response.json();
+                      
+                    } else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
+         * Retrieve pbx queue voicemails 
+         * @summary Get Queue Voicemails
+         * @param {string} queue_uuid 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getPbxQueueVoicemails(queue_uuid: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ConversationPbxVoicemailMessageSummariesResponse> {
+            const localVarFetchArgs = ConversationApiFetchParamCreator(configuration).getPbxQueueVoicemails(queue_uuid, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
 
@@ -55297,6 +55999,27 @@ export const ConversationApiFp = function(configuration?: Configuration) {
          */
         leaveConversation(conversation_uuid: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Response> {
             const localVarFetchArgs = ConversationApiFetchParamCreator(configuration).leaveConversation(conversation_uuid, options);
+            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
+                    if (response.status >= 200 && response.status < 300) {
+                      return response;
+                      
+                    } else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
+         * Listened pbx agent Voicemail 
+         * @summary Listened Agent Voicemail
+         * @param {string} recording_sid 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        listenedPbxAgentVoicemail(recording_sid: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Response> {
+            const localVarFetchArgs = ConversationApiFetchParamCreator(configuration).listenedPbxAgentVoicemail(recording_sid, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
 
@@ -55749,6 +56472,16 @@ export const ConversationApiFactory = function (configuration?: Configuration, f
             return ConversationApiFp(configuration).deletePbxAgent(conversationPbxAgentUuid, options)(fetch, basePath);
         },
         /**
+         * Delete pbx agent Voicemail 
+         * @summary Delete Agent Voicemail
+         * @param {string} recording_sid 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        deletePbxAgentVoicemail(recording_sid: string, options?: any) {
+            return ConversationApiFp(configuration).deletePbxAgentVoicemail(recording_sid, options)(fetch, basePath);
+        },
+        /**
          * Delete a pbx audio 
          * @summary Delete pbx audio
          * @param {string} conversationPbxAudioUuid 
@@ -56025,6 +56758,25 @@ export const ConversationApiFactory = function (configuration?: Configuration, f
             return ConversationApiFp(configuration).getPbxAgent(conversationPbxAgentUuid, options)(fetch, basePath);
         },
         /**
+         * Retrieve pbx agent Voicemail 
+         * @summary Get Agent Voicemail
+         * @param {string} recording_sid 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getPbxAgentVoicemail(recording_sid: string, options?: any) {
+            return ConversationApiFp(configuration).getPbxAgentVoicemail(recording_sid, options)(fetch, basePath);
+        },
+        /**
+         * Retrieve pbx agent Voicemails 
+         * @summary Get Agent Voicemails
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getPbxAgentVoicemails(options?: any) {
+            return ConversationApiFp(configuration).getPbxAgentVoicemails(options)(fetch, basePath);
+        },
+        /**
          * Retrieve pbx agents 
          * @summary Get pbx agents
          * @param {*} [options] Override http request option.
@@ -56099,6 +56851,27 @@ export const ConversationApiFactory = function (configuration?: Configuration, f
          */
         getPbxQueue(conversationPbxQueueUuid: string, options?: any) {
             return ConversationApiFp(configuration).getPbxQueue(conversationPbxQueueUuid, options)(fetch, basePath);
+        },
+        /**
+         * Retrieve pbx queue Voicemail 
+         * @summary Get Queue Voicemail
+         * @param {string} queue_uuid 
+         * @param {string} recording_sid 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getPbxQueueVoicemail(queue_uuid: string, recording_sid: string, options?: any) {
+            return ConversationApiFp(configuration).getPbxQueueVoicemail(queue_uuid, recording_sid, options)(fetch, basePath);
+        },
+        /**
+         * Retrieve pbx queue voicemails 
+         * @summary Get Queue Voicemails
+         * @param {string} queue_uuid 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getPbxQueueVoicemails(queue_uuid: string, options?: any) {
+            return ConversationApiFp(configuration).getPbxQueueVoicemails(queue_uuid, options)(fetch, basePath);
         },
         /**
          * Retrieve pbx queues 
@@ -56296,6 +57069,16 @@ export const ConversationApiFactory = function (configuration?: Configuration, f
          */
         leaveConversation(conversation_uuid: string, options?: any) {
             return ConversationApiFp(configuration).leaveConversation(conversation_uuid, options)(fetch, basePath);
+        },
+        /**
+         * Listened pbx agent Voicemail 
+         * @summary Listened Agent Voicemail
+         * @param {string} recording_sid 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        listenedPbxAgentVoicemail(recording_sid: string, options?: any) {
+            return ConversationApiFp(configuration).listenedPbxAgentVoicemail(recording_sid, options)(fetch, basePath);
         },
         /**
          * Mark a conversation as read 
@@ -56537,6 +57320,16 @@ export interface ConversationApiInterface {
      * @memberof ConversationApiInterface
      */
     deletePbxAgent(conversationPbxAgentUuid: string, options?: any): Promise<ConversationPbxAgentResponse>;
+
+    /**
+     * Delete pbx agent Voicemail 
+     * @summary Delete Agent Voicemail
+     * @param {string} recording_sid 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApiInterface
+     */
+    deletePbxAgentVoicemail(recording_sid: string, options?: any): Promise<{}>;
 
     /**
      * Delete a pbx audio 
@@ -56815,6 +57608,25 @@ export interface ConversationApiInterface {
     getPbxAgent(conversationPbxAgentUuid: string, options?: any): Promise<ConversationPbxAgentResponse>;
 
     /**
+     * Retrieve pbx agent Voicemail 
+     * @summary Get Agent Voicemail
+     * @param {string} recording_sid 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApiInterface
+     */
+    getPbxAgentVoicemail(recording_sid: string, options?: any): Promise<ConversationPbxVoicemailMessageResponse>;
+
+    /**
+     * Retrieve pbx agent Voicemails 
+     * @summary Get Agent Voicemails
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApiInterface
+     */
+    getPbxAgentVoicemails(options?: any): Promise<ConversationPbxVoicemailMessageSummariesResponse>;
+
+    /**
      * Retrieve pbx agents 
      * @summary Get pbx agents
      * @param {*} [options] Override http request option.
@@ -56889,6 +57701,27 @@ export interface ConversationApiInterface {
      * @memberof ConversationApiInterface
      */
     getPbxQueue(conversationPbxQueueUuid: string, options?: any): Promise<ConversationPbxQueueResponse>;
+
+    /**
+     * Retrieve pbx queue Voicemail 
+     * @summary Get Queue Voicemail
+     * @param {string} queue_uuid 
+     * @param {string} recording_sid 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApiInterface
+     */
+    getPbxQueueVoicemail(queue_uuid: string, recording_sid: string, options?: any): Promise<ConversationPbxVoicemailMessageResponse>;
+
+    /**
+     * Retrieve pbx queue voicemails 
+     * @summary Get Queue Voicemails
+     * @param {string} queue_uuid 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApiInterface
+     */
+    getPbxQueueVoicemails(queue_uuid: string, options?: any): Promise<ConversationPbxVoicemailMessageSummariesResponse>;
 
     /**
      * Retrieve pbx queues 
@@ -57086,6 +57919,16 @@ export interface ConversationApiInterface {
      * @memberof ConversationApiInterface
      */
     leaveConversation(conversation_uuid: string, options?: any): Promise<{}>;
+
+    /**
+     * Listened pbx agent Voicemail 
+     * @summary Listened Agent Voicemail
+     * @param {string} recording_sid 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApiInterface
+     */
+    listenedPbxAgentVoicemail(recording_sid: string, options?: any): Promise<{}>;
 
     /**
      * Mark a conversation as read 
@@ -57334,6 +58177,18 @@ export class ConversationApi extends BaseAPI implements ConversationApiInterface
      */
     public deletePbxAgent(conversationPbxAgentUuid: string, options?: any) {
         return ConversationApiFp(this.configuration).deletePbxAgent(conversationPbxAgentUuid, options)(this.fetch, this.basePath);
+    }
+
+    /**
+     * Delete pbx agent Voicemail 
+     * @summary Delete Agent Voicemail
+     * @param {string} recording_sid 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApi
+     */
+    public deletePbxAgentVoicemail(recording_sid: string, options?: any) {
+        return ConversationApiFp(this.configuration).deletePbxAgentVoicemail(recording_sid, options)(this.fetch, this.basePath);
     }
 
     /**
@@ -57669,6 +58524,29 @@ export class ConversationApi extends BaseAPI implements ConversationApiInterface
     }
 
     /**
+     * Retrieve pbx agent Voicemail 
+     * @summary Get Agent Voicemail
+     * @param {string} recording_sid 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApi
+     */
+    public getPbxAgentVoicemail(recording_sid: string, options?: any) {
+        return ConversationApiFp(this.configuration).getPbxAgentVoicemail(recording_sid, options)(this.fetch, this.basePath);
+    }
+
+    /**
+     * Retrieve pbx agent Voicemails 
+     * @summary Get Agent Voicemails
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApi
+     */
+    public getPbxAgentVoicemails(options?: any) {
+        return ConversationApiFp(this.configuration).getPbxAgentVoicemails(options)(this.fetch, this.basePath);
+    }
+
+    /**
      * Retrieve pbx agents 
      * @summary Get pbx agents
      * @param {*} [options] Override http request option.
@@ -57758,6 +58636,31 @@ export class ConversationApi extends BaseAPI implements ConversationApiInterface
      */
     public getPbxQueue(conversationPbxQueueUuid: string, options?: any) {
         return ConversationApiFp(this.configuration).getPbxQueue(conversationPbxQueueUuid, options)(this.fetch, this.basePath);
+    }
+
+    /**
+     * Retrieve pbx queue Voicemail 
+     * @summary Get Queue Voicemail
+     * @param {string} queue_uuid 
+     * @param {string} recording_sid 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApi
+     */
+    public getPbxQueueVoicemail(queue_uuid: string, recording_sid: string, options?: any) {
+        return ConversationApiFp(this.configuration).getPbxQueueVoicemail(queue_uuid, recording_sid, options)(this.fetch, this.basePath);
+    }
+
+    /**
+     * Retrieve pbx queue voicemails 
+     * @summary Get Queue Voicemails
+     * @param {string} queue_uuid 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApi
+     */
+    public getPbxQueueVoicemails(queue_uuid: string, options?: any) {
+        return ConversationApiFp(this.configuration).getPbxQueueVoicemails(queue_uuid, options)(this.fetch, this.basePath);
     }
 
     /**
@@ -57995,6 +58898,18 @@ export class ConversationApi extends BaseAPI implements ConversationApiInterface
      */
     public leaveConversation(conversation_uuid: string, options?: any) {
         return ConversationApiFp(this.configuration).leaveConversation(conversation_uuid, options)(this.fetch, this.basePath);
+    }
+
+    /**
+     * Listened pbx agent Voicemail 
+     * @summary Listened Agent Voicemail
+     * @param {string} recording_sid 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApi
+     */
+    public listenedPbxAgentVoicemail(recording_sid: string, options?: any) {
+        return ConversationApiFp(this.configuration).listenedPbxAgentVoicemail(recording_sid, options)(this.fetch, this.basePath);
     }
 
     /**

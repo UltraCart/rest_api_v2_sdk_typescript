@@ -28,10 +28,10 @@ var __extends = (this && this.__extends) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.OrderFormat = exports.OrderEdiDocument = exports.OrderAutoOrder = exports.OrderAffiliateLedger = exports.Order = exports.OauthTokenResponse = exports.ItemThirdPartyEmailMarketing = exports.ItemTax = exports.ItemTag = exports.ItemShippingMethod = exports.ItemShippingDestinationRestriction = exports.ItemReview = exports.ItemRestrictionItem = exports.ItemRelatedItem = exports.ItemOptionValue = exports.ItemOption = exports.ItemContentMultimedia = exports.ItemAutoOrderStep = exports.Experiment = exports.EmailPerformance = exports.EmailCommseqStep = exports.Distance = exports.Coupon = exports.ConversationWebsocketMessage = exports.ConversationWebchatQueueStatusUpdateRequest = exports.ConversationWebchatQueueStatusAgent = exports.ConversationSummary = exports.ConversationSentiment = exports.ConversationMessageTransportStatus = exports.ConversationMessage = exports.ConversationEventRRWeb = exports.ConversationEngagementEquationFunction = exports.ConversationEngagement = exports.ConversationAgentProfile = exports.Conversation = exports.CheckoutHandoffRequest = exports.ChannelPartnerOrderItem = exports.ChannelPartnerOrder = exports.CartKitComponentOption = exports.CartItemOption = exports.CartItemMultimedia = exports.CartCustomerProfileCreditCard = exports.AutoOrderItemSimpleSchedule = exports.AutoOrderItem = exports.AutoOrder = exports.AffiliateLink = exports.AffiliateLedger = exports.RequiredError = exports.BaseAPI = exports.COLLECTION_FORMATS = void 0;
-exports.CouponApiFactory = exports.CouponApiFp = exports.CouponApiFetchParamCreator = exports.ConversationApi = exports.ConversationApiFactory = exports.ConversationApiFp = exports.ConversationApiFetchParamCreator = exports.CheckoutApi = exports.CheckoutApiFactory = exports.CheckoutApiFp = exports.CheckoutApiFetchParamCreator = exports.ChargebackApi = exports.ChargebackApiFactory = exports.ChargebackApiFp = exports.ChargebackApiFetchParamCreator = exports.ChannelPartnerApi = exports.ChannelPartnerApiFactory = exports.ChannelPartnerApiFp = exports.ChannelPartnerApiFetchParamCreator = exports.AutoOrderApi = exports.AutoOrderApiFactory = exports.AutoOrderApiFp = exports.AutoOrderApiFetchParamCreator = exports.AffiliateApi = exports.AffiliateApiFactory = exports.AffiliateApiFp = exports.AffiliateApiFetchParamCreator = exports.WorkflowTasksRequest = exports.WorkflowTask = exports.Weight = exports.Webhook = exports.TempMultimedia = exports.ReportWebsocketEvent = exports.ReportPageVisualizationMetric = exports.ReportPageVisualization = exports.ReportFilter = exports.ReportExecuteQueriesRequest = exports.ReportDataSourceSchema = exports.ReportDataSetSchema = exports.ReportDataSetQuery = exports.ReportDataSet = exports.Report = exports.PointOfSaleReader = exports.OrderQuery = exports.OrderPaymentECheck = exports.OrderPaymentCreditCard = exports.OrderPayment = exports.OrderItemOption = exports.OrderItem = exports.OrderFraudScore = void 0;
-exports.WebhookApiFetchParamCreator = exports.UserApi = exports.UserApiFactory = exports.UserApiFp = exports.UserApiFetchParamCreator = exports.TaxApi = exports.TaxApiFactory = exports.TaxApiFp = exports.TaxApiFetchParamCreator = exports.StorefrontApi = exports.StorefrontApiFactory = exports.StorefrontApiFp = exports.StorefrontApiFetchParamCreator = exports.SsoApi = exports.SsoApiFactory = exports.SsoApiFp = exports.SsoApiFetchParamCreator = exports.OrderApi = exports.OrderApiFactory = exports.OrderApiFp = exports.OrderApiFetchParamCreator = exports.OauthApi = exports.OauthApiFactory = exports.OauthApiFp = exports.OauthApiFetchParamCreator = exports.ItemApi = exports.ItemApiFactory = exports.ItemApiFp = exports.ItemApiFetchParamCreator = exports.IntegrationLogApi = exports.IntegrationLogApiFactory = exports.IntegrationLogApiFp = exports.IntegrationLogApiFetchParamCreator = exports.GiftCertificateApi = exports.GiftCertificateApiFactory = exports.GiftCertificateApiFp = exports.GiftCertificateApiFetchParamCreator = exports.FulfillmentApi = exports.FulfillmentApiFactory = exports.FulfillmentApiFp = exports.FulfillmentApiFetchParamCreator = exports.DatawarehouseApi = exports.DatawarehouseApiFactory = exports.DatawarehouseApiFp = exports.DatawarehouseApiFetchParamCreator = exports.CustomerApi = exports.CustomerApiFactory = exports.CustomerApiFp = exports.CustomerApiFetchParamCreator = exports.CouponApi = void 0;
-exports.WorkflowApi = exports.WorkflowApiFactory = exports.WorkflowApiFp = exports.WorkflowApiFetchParamCreator = exports.WebhookApi = exports.WebhookApiFactory = exports.WebhookApiFp = void 0;
+exports.OrderAffiliateLedger = exports.Order = exports.OauthTokenResponse = exports.ItemThirdPartyEmailMarketing = exports.ItemTax = exports.ItemTag = exports.ItemShippingMethod = exports.ItemShippingDestinationRestriction = exports.ItemReview = exports.ItemRestrictionItem = exports.ItemRelatedItem = exports.ItemOptionValue = exports.ItemOption = exports.ItemContentMultimedia = exports.ItemAutoOrderStep = exports.Experiment = exports.EmailPerformance = exports.EmailCommseqStep = exports.Distance = exports.Coupon = exports.ConversationWebsocketMessage = exports.ConversationWebchatQueueStatusUpdateRequest = exports.ConversationWebchatQueueStatusAgent = exports.ConversationSummary = exports.ConversationSentiment = exports.ConversationPbxVoicemailMessageSummary = exports.ConversationPbxVoicemailMessage = exports.ConversationPbxVoicemailMailbox = exports.ConversationMessageTransportStatus = exports.ConversationMessage = exports.ConversationEventRRWeb = exports.ConversationEngagementEquationFunction = exports.ConversationEngagement = exports.ConversationAgentProfile = exports.Conversation = exports.CheckoutHandoffRequest = exports.ChannelPartnerOrderItem = exports.ChannelPartnerOrder = exports.CartKitComponentOption = exports.CartItemOption = exports.CartItemMultimedia = exports.CartCustomerProfileCreditCard = exports.AutoOrderItemSimpleSchedule = exports.AutoOrderItem = exports.AutoOrder = exports.AffiliateLink = exports.AffiliateLedger = exports.RequiredError = exports.BaseAPI = exports.COLLECTION_FORMATS = void 0;
+exports.ConversationApi = exports.ConversationApiFactory = exports.ConversationApiFp = exports.ConversationApiFetchParamCreator = exports.CheckoutApi = exports.CheckoutApiFactory = exports.CheckoutApiFp = exports.CheckoutApiFetchParamCreator = exports.ChargebackApi = exports.ChargebackApiFactory = exports.ChargebackApiFp = exports.ChargebackApiFetchParamCreator = exports.ChannelPartnerApi = exports.ChannelPartnerApiFactory = exports.ChannelPartnerApiFp = exports.ChannelPartnerApiFetchParamCreator = exports.AutoOrderApi = exports.AutoOrderApiFactory = exports.AutoOrderApiFp = exports.AutoOrderApiFetchParamCreator = exports.AffiliateApi = exports.AffiliateApiFactory = exports.AffiliateApiFp = exports.AffiliateApiFetchParamCreator = exports.WorkflowTasksRequest = exports.WorkflowTask = exports.Weight = exports.Webhook = exports.TempMultimedia = exports.ReportWebsocketEvent = exports.ReportPageVisualizationMetric = exports.ReportPageVisualization = exports.ReportFilter = exports.ReportExecuteQueriesRequest = exports.ReportDataSourceSchema = exports.ReportDataSetSchema = exports.ReportDataSetQuery = exports.ReportDataSet = exports.Report = exports.PointOfSaleReader = exports.OrderQuery = exports.OrderPaymentECheck = exports.OrderPaymentCreditCard = exports.OrderPayment = exports.OrderItemOption = exports.OrderItem = exports.OrderFraudScore = exports.OrderFormat = exports.OrderEdiDocument = exports.OrderAutoOrder = void 0;
+exports.UserApiFp = exports.UserApiFetchParamCreator = exports.TaxApi = exports.TaxApiFactory = exports.TaxApiFp = exports.TaxApiFetchParamCreator = exports.StorefrontApi = exports.StorefrontApiFactory = exports.StorefrontApiFp = exports.StorefrontApiFetchParamCreator = exports.SsoApi = exports.SsoApiFactory = exports.SsoApiFp = exports.SsoApiFetchParamCreator = exports.OrderApi = exports.OrderApiFactory = exports.OrderApiFp = exports.OrderApiFetchParamCreator = exports.OauthApi = exports.OauthApiFactory = exports.OauthApiFp = exports.OauthApiFetchParamCreator = exports.ItemApi = exports.ItemApiFactory = exports.ItemApiFp = exports.ItemApiFetchParamCreator = exports.IntegrationLogApi = exports.IntegrationLogApiFactory = exports.IntegrationLogApiFp = exports.IntegrationLogApiFetchParamCreator = exports.GiftCertificateApi = exports.GiftCertificateApiFactory = exports.GiftCertificateApiFp = exports.GiftCertificateApiFetchParamCreator = exports.FulfillmentApi = exports.FulfillmentApiFactory = exports.FulfillmentApiFp = exports.FulfillmentApiFetchParamCreator = exports.DatawarehouseApi = exports.DatawarehouseApiFactory = exports.DatawarehouseApiFp = exports.DatawarehouseApiFetchParamCreator = exports.CustomerApi = exports.CustomerApiFactory = exports.CustomerApiFp = exports.CustomerApiFetchParamCreator = exports.CouponApi = exports.CouponApiFactory = exports.CouponApiFp = exports.CouponApiFetchParamCreator = void 0;
+exports.WorkflowApi = exports.WorkflowApiFactory = exports.WorkflowApiFp = exports.WorkflowApiFetchParamCreator = exports.WebhookApi = exports.WebhookApiFactory = exports.WebhookApiFp = exports.WebhookApiFetchParamCreator = exports.UserApi = exports.UserApiFactory = void 0;
 var url = require("url");
 var portableFetch = require("portable-fetch");
 var BASE_PATH = "https://secure.ultracart.com/rest/v2".replace(/\/+$/, "");
@@ -561,6 +561,52 @@ var ConversationMessageTransportStatus;
         StatusEnum[StatusEnum["PINPOINTERROR"] = 'PINPOINT_ERROR'] = "PINPOINTERROR";
     })(StatusEnum = ConversationMessageTransportStatus.StatusEnum || (ConversationMessageTransportStatus.StatusEnum = {}));
 })(ConversationMessageTransportStatus = exports.ConversationMessageTransportStatus || (exports.ConversationMessageTransportStatus = {}));
+/**
+ * @export
+ * @namespace ConversationPbxVoicemailMailbox
+ */
+var ConversationPbxVoicemailMailbox;
+(function (ConversationPbxVoicemailMailbox) {
+    /**
+     * @export
+     * @enum {string}
+     */
+    var VoicemailMailboxTypeEnum;
+    (function (VoicemailMailboxTypeEnum) {
+        VoicemailMailboxTypeEnum[VoicemailMailboxTypeEnum["Agent"] = 'agent'] = "Agent";
+        VoicemailMailboxTypeEnum[VoicemailMailboxTypeEnum["Shared"] = 'shared'] = "Shared";
+    })(VoicemailMailboxTypeEnum = ConversationPbxVoicemailMailbox.VoicemailMailboxTypeEnum || (ConversationPbxVoicemailMailbox.VoicemailMailboxTypeEnum = {}));
+})(ConversationPbxVoicemailMailbox = exports.ConversationPbxVoicemailMailbox || (exports.ConversationPbxVoicemailMailbox = {}));
+/**
+ * @export
+ * @namespace ConversationPbxVoicemailMessage
+ */
+var ConversationPbxVoicemailMessage;
+(function (ConversationPbxVoicemailMessage) {
+    /**
+     * @export
+     * @enum {string}
+     */
+    var RecordingStatusEnum;
+    (function (RecordingStatusEnum) {
+        RecordingStatusEnum[RecordingStatusEnum["Completed"] = 'completed'] = "Completed";
+    })(RecordingStatusEnum = ConversationPbxVoicemailMessage.RecordingStatusEnum || (ConversationPbxVoicemailMessage.RecordingStatusEnum = {}));
+})(ConversationPbxVoicemailMessage = exports.ConversationPbxVoicemailMessage || (exports.ConversationPbxVoicemailMessage = {}));
+/**
+ * @export
+ * @namespace ConversationPbxVoicemailMessageSummary
+ */
+var ConversationPbxVoicemailMessageSummary;
+(function (ConversationPbxVoicemailMessageSummary) {
+    /**
+     * @export
+     * @enum {string}
+     */
+    var RecordingStatusEnum;
+    (function (RecordingStatusEnum) {
+        RecordingStatusEnum[RecordingStatusEnum["Completed"] = 'completed'] = "Completed";
+    })(RecordingStatusEnum = ConversationPbxVoicemailMessageSummary.RecordingStatusEnum || (ConversationPbxVoicemailMessageSummary.RecordingStatusEnum = {}));
+})(ConversationPbxVoicemailMessageSummary = exports.ConversationPbxVoicemailMessageSummary || (exports.ConversationPbxVoicemailMessageSummary = {}));
 /**
  * @export
  * @namespace ConversationSentiment
@@ -6854,6 +6900,52 @@ var ConversationApiFetchParamCreator = function (configuration) {
             };
         },
         /**
+         * Delete pbx agent Voicemail
+         * @summary Delete Agent Voicemail
+         * @param {string} recording_sid
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        deletePbxAgentVoicemail: function (recording_sid, options) {
+            if (options === void 0) { options = {}; }
+            // verify required parameter 'recording_sid' is not null or undefined
+            if (recording_sid === null || recording_sid === undefined) {
+                throw new RequiredError('recording_sid', 'Required parameter recording_sid was null or undefined when calling deletePbxAgentVoicemail.');
+            }
+            var localVarPath = "/conversation/pbx/agent/voicemails/{recording_sid}"
+                .replace("{".concat("recording_sid", "}"), encodeURIComponent(String(recording_sid)));
+            var localVarUrlObj = url.parse(localVarPath, true);
+            var localVarRequestOptions = Object.assign({ method: 'DELETE' }, options);
+            var localVarHeaderParameter = {};
+            var localVarQueryParameter = {};
+            if (configuration && configuration.apiVersion) {
+                localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+            }
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+                var localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+                    ? configuration.accessToken("ultraCartOauth", ["conversation_write"])
+                    : configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                var localVarApiKeyValue = typeof configuration.apiKey === 'function'
+                    ? configuration.apiKey("x-ultracart-simple-key")
+                    : configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
          * Delete a pbx audio
          * @summary Delete pbx audio
          * @param {string} conversationPbxAudioUuid
@@ -8112,6 +8204,92 @@ var ConversationApiFetchParamCreator = function (configuration) {
             };
         },
         /**
+         * Retrieve pbx agent Voicemail
+         * @summary Get Agent Voicemail
+         * @param {string} recording_sid
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getPbxAgentVoicemail: function (recording_sid, options) {
+            if (options === void 0) { options = {}; }
+            // verify required parameter 'recording_sid' is not null or undefined
+            if (recording_sid === null || recording_sid === undefined) {
+                throw new RequiredError('recording_sid', 'Required parameter recording_sid was null or undefined when calling getPbxAgentVoicemail.');
+            }
+            var localVarPath = "/conversation/pbx/agent/voicemails/{recording_sid}"
+                .replace("{".concat("recording_sid", "}"), encodeURIComponent(String(recording_sid)));
+            var localVarUrlObj = url.parse(localVarPath, true);
+            var localVarRequestOptions = Object.assign({ method: 'GET' }, options);
+            var localVarHeaderParameter = {};
+            var localVarQueryParameter = {};
+            if (configuration && configuration.apiVersion) {
+                localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+            }
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+                var localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+                    ? configuration.accessToken("ultraCartOauth", ["conversation_read"])
+                    : configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                var localVarApiKeyValue = typeof configuration.apiKey === 'function'
+                    ? configuration.apiKey("x-ultracart-simple-key")
+                    : configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Retrieve pbx agent Voicemails
+         * @summary Get Agent Voicemails
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getPbxAgentVoicemails: function (options) {
+            if (options === void 0) { options = {}; }
+            var localVarPath = "/conversation/pbx/agent/voicemails";
+            var localVarUrlObj = url.parse(localVarPath, true);
+            var localVarRequestOptions = Object.assign({ method: 'GET' }, options);
+            var localVarHeaderParameter = {};
+            var localVarQueryParameter = {};
+            if (configuration && configuration.apiVersion) {
+                localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+            }
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+                var localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+                    ? configuration.accessToken("ultraCartOauth", ["conversation_read"])
+                    : configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                var localVarApiKeyValue = typeof configuration.apiKey === 'function'
+                    ? configuration.apiKey("x-ultracart-simple-key")
+                    : configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
          * Retrieve pbx agents
          * @summary Get pbx agents
          * @param {*} [options] Override http request option.
@@ -8424,6 +8602,104 @@ var ConversationApiFetchParamCreator = function (configuration) {
             }
             var localVarPath = "/conversation/pbx/queue/{conversationPbxQueueUuid}"
                 .replace("{".concat("conversationPbxQueueUuid", "}"), encodeURIComponent(String(conversationPbxQueueUuid)));
+            var localVarUrlObj = url.parse(localVarPath, true);
+            var localVarRequestOptions = Object.assign({ method: 'GET' }, options);
+            var localVarHeaderParameter = {};
+            var localVarQueryParameter = {};
+            if (configuration && configuration.apiVersion) {
+                localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+            }
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+                var localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+                    ? configuration.accessToken("ultraCartOauth", ["conversation_read"])
+                    : configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                var localVarApiKeyValue = typeof configuration.apiKey === 'function'
+                    ? configuration.apiKey("x-ultracart-simple-key")
+                    : configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Retrieve pbx queue Voicemail
+         * @summary Get Queue Voicemail
+         * @param {string} queue_uuid
+         * @param {string} recording_sid
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getPbxQueueVoicemail: function (queue_uuid, recording_sid, options) {
+            if (options === void 0) { options = {}; }
+            // verify required parameter 'queue_uuid' is not null or undefined
+            if (queue_uuid === null || queue_uuid === undefined) {
+                throw new RequiredError('queue_uuid', 'Required parameter queue_uuid was null or undefined when calling getPbxQueueVoicemail.');
+            }
+            // verify required parameter 'recording_sid' is not null or undefined
+            if (recording_sid === null || recording_sid === undefined) {
+                throw new RequiredError('recording_sid', 'Required parameter recording_sid was null or undefined when calling getPbxQueueVoicemail.');
+            }
+            var localVarPath = "/conversation/pbx/queues/{queue_uuid}/voicemails/{recording_sid}"
+                .replace("{".concat("queue_uuid", "}"), encodeURIComponent(String(queue_uuid)))
+                .replace("{".concat("recording_sid", "}"), encodeURIComponent(String(recording_sid)));
+            var localVarUrlObj = url.parse(localVarPath, true);
+            var localVarRequestOptions = Object.assign({ method: 'GET' }, options);
+            var localVarHeaderParameter = {};
+            var localVarQueryParameter = {};
+            if (configuration && configuration.apiVersion) {
+                localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+            }
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+                var localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+                    ? configuration.accessToken("ultraCartOauth", ["conversation_read"])
+                    : configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                var localVarApiKeyValue = typeof configuration.apiKey === 'function'
+                    ? configuration.apiKey("x-ultracart-simple-key")
+                    : configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Retrieve pbx queue voicemails
+         * @summary Get Queue Voicemails
+         * @param {string} queue_uuid
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getPbxQueueVoicemails: function (queue_uuid, options) {
+            if (options === void 0) { options = {}; }
+            // verify required parameter 'queue_uuid' is not null or undefined
+            if (queue_uuid === null || queue_uuid === undefined) {
+                throw new RequiredError('queue_uuid', 'Required parameter queue_uuid was null or undefined when calling getPbxQueueVoicemails.');
+            }
+            var localVarPath = "/conversation/pbx/queues/{queue_uuid}/voicemails"
+                .replace("{".concat("queue_uuid", "}"), encodeURIComponent(String(queue_uuid)));
             var localVarUrlObj = url.parse(localVarPath, true);
             var localVarRequestOptions = Object.assign({ method: 'GET' }, options);
             var localVarHeaderParameter = {};
@@ -9348,6 +9624,52 @@ var ConversationApiFetchParamCreator = function (configuration) {
                 .replace("{".concat("conversation_uuid", "}"), encodeURIComponent(String(conversation_uuid)));
             var localVarUrlObj = url.parse(localVarPath, true);
             var localVarRequestOptions = Object.assign({ method: 'DELETE' }, options);
+            var localVarHeaderParameter = {};
+            var localVarQueryParameter = {};
+            if (configuration && configuration.apiVersion) {
+                localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+            }
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+                var localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+                    ? configuration.accessToken("ultraCartOauth", ["conversation_write"])
+                    : configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                var localVarApiKeyValue = typeof configuration.apiKey === 'function'
+                    ? configuration.apiKey("x-ultracart-simple-key")
+                    : configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Listened pbx agent Voicemail
+         * @summary Listened Agent Voicemail
+         * @param {string} recording_sid
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        listenedPbxAgentVoicemail: function (recording_sid, options) {
+            if (options === void 0) { options = {}; }
+            // verify required parameter 'recording_sid' is not null or undefined
+            if (recording_sid === null || recording_sid === undefined) {
+                throw new RequiredError('recording_sid', 'Required parameter recording_sid was null or undefined when calling listenedPbxAgentVoicemail.');
+            }
+            var localVarPath = "/conversation/pbx/agent/voicemails/{recording_sid}/listened"
+                .replace("{".concat("recording_sid", "}"), encodeURIComponent(String(recording_sid)));
+            var localVarUrlObj = url.parse(localVarPath, true);
+            var localVarRequestOptions = Object.assign({ method: 'GET' }, options);
             var localVarHeaderParameter = {};
             var localVarQueryParameter = {};
             if (configuration && configuration.apiVersion) {
@@ -10405,6 +10727,28 @@ var ConversationApiFp = function (configuration) {
             };
         },
         /**
+         * Delete pbx agent Voicemail
+         * @summary Delete Agent Voicemail
+         * @param {string} recording_sid
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        deletePbxAgentVoicemail: function (recording_sid, options) {
+            var localVarFetchArgs = (0, exports.ConversationApiFetchParamCreator)(configuration).deletePbxAgentVoicemail(recording_sid, options);
+            return function (fetch, basePath) {
+                if (fetch === void 0) { fetch = portableFetch; }
+                if (basePath === void 0) { basePath = BASE_PATH; }
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(function (response) {
+                    if (response.status >= 200 && response.status < 300) {
+                        return response;
+                    }
+                    else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
          * Delete a pbx audio
          * @summary Delete pbx audio
          * @param {string} conversationPbxAudioUuid
@@ -11017,6 +11361,49 @@ var ConversationApiFp = function (configuration) {
             };
         },
         /**
+         * Retrieve pbx agent Voicemail
+         * @summary Get Agent Voicemail
+         * @param {string} recording_sid
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getPbxAgentVoicemail: function (recording_sid, options) {
+            var localVarFetchArgs = (0, exports.ConversationApiFetchParamCreator)(configuration).getPbxAgentVoicemail(recording_sid, options);
+            return function (fetch, basePath) {
+                if (fetch === void 0) { fetch = portableFetch; }
+                if (basePath === void 0) { basePath = BASE_PATH; }
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(function (response) {
+                    if (response.status >= 200 && response.status < 300) {
+                        return response.json();
+                    }
+                    else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
+         * Retrieve pbx agent Voicemails
+         * @summary Get Agent Voicemails
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getPbxAgentVoicemails: function (options) {
+            var localVarFetchArgs = (0, exports.ConversationApiFetchParamCreator)(configuration).getPbxAgentVoicemails(options);
+            return function (fetch, basePath) {
+                if (fetch === void 0) { fetch = portableFetch; }
+                if (basePath === void 0) { basePath = BASE_PATH; }
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(function (response) {
+                    if (response.status >= 200 && response.status < 300) {
+                        return response.json();
+                    }
+                    else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
          * Retrieve pbx agents
          * @summary Get pbx agents
          * @param {*} [options] Override http request option.
@@ -11175,6 +11562,51 @@ var ConversationApiFp = function (configuration) {
          */
         getPbxQueue: function (conversationPbxQueueUuid, options) {
             var localVarFetchArgs = (0, exports.ConversationApiFetchParamCreator)(configuration).getPbxQueue(conversationPbxQueueUuid, options);
+            return function (fetch, basePath) {
+                if (fetch === void 0) { fetch = portableFetch; }
+                if (basePath === void 0) { basePath = BASE_PATH; }
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(function (response) {
+                    if (response.status >= 200 && response.status < 300) {
+                        return response.json();
+                    }
+                    else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
+         * Retrieve pbx queue Voicemail
+         * @summary Get Queue Voicemail
+         * @param {string} queue_uuid
+         * @param {string} recording_sid
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getPbxQueueVoicemail: function (queue_uuid, recording_sid, options) {
+            var localVarFetchArgs = (0, exports.ConversationApiFetchParamCreator)(configuration).getPbxQueueVoicemail(queue_uuid, recording_sid, options);
+            return function (fetch, basePath) {
+                if (fetch === void 0) { fetch = portableFetch; }
+                if (basePath === void 0) { basePath = BASE_PATH; }
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(function (response) {
+                    if (response.status >= 200 && response.status < 300) {
+                        return response.json();
+                    }
+                    else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
+         * Retrieve pbx queue voicemails
+         * @summary Get Queue Voicemails
+         * @param {string} queue_uuid
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getPbxQueueVoicemails: function (queue_uuid, options) {
+            var localVarFetchArgs = (0, exports.ConversationApiFetchParamCreator)(configuration).getPbxQueueVoicemails(queue_uuid, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -11612,6 +12044,28 @@ var ConversationApiFp = function (configuration) {
          */
         leaveConversation: function (conversation_uuid, options) {
             var localVarFetchArgs = (0, exports.ConversationApiFetchParamCreator)(configuration).leaveConversation(conversation_uuid, options);
+            return function (fetch, basePath) {
+                if (fetch === void 0) { fetch = portableFetch; }
+                if (basePath === void 0) { basePath = BASE_PATH; }
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(function (response) {
+                    if (response.status >= 200 && response.status < 300) {
+                        return response;
+                    }
+                    else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
+         * Listened pbx agent Voicemail
+         * @summary Listened Agent Voicemail
+         * @param {string} recording_sid
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        listenedPbxAgentVoicemail: function (recording_sid, options) {
+            var localVarFetchArgs = (0, exports.ConversationApiFetchParamCreator)(configuration).listenedPbxAgentVoicemail(recording_sid, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -12083,6 +12537,16 @@ var ConversationApiFactory = function (configuration, fetch, basePath) {
             return (0, exports.ConversationApiFp)(configuration).deletePbxAgent(conversationPbxAgentUuid, options)(fetch, basePath);
         },
         /**
+         * Delete pbx agent Voicemail
+         * @summary Delete Agent Voicemail
+         * @param {string} recording_sid
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        deletePbxAgentVoicemail: function (recording_sid, options) {
+            return (0, exports.ConversationApiFp)(configuration).deletePbxAgentVoicemail(recording_sid, options)(fetch, basePath);
+        },
+        /**
          * Delete a pbx audio
          * @summary Delete pbx audio
          * @param {string} conversationPbxAudioUuid
@@ -12359,6 +12823,25 @@ var ConversationApiFactory = function (configuration, fetch, basePath) {
             return (0, exports.ConversationApiFp)(configuration).getPbxAgent(conversationPbxAgentUuid, options)(fetch, basePath);
         },
         /**
+         * Retrieve pbx agent Voicemail
+         * @summary Get Agent Voicemail
+         * @param {string} recording_sid
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getPbxAgentVoicemail: function (recording_sid, options) {
+            return (0, exports.ConversationApiFp)(configuration).getPbxAgentVoicemail(recording_sid, options)(fetch, basePath);
+        },
+        /**
+         * Retrieve pbx agent Voicemails
+         * @summary Get Agent Voicemails
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getPbxAgentVoicemails: function (options) {
+            return (0, exports.ConversationApiFp)(configuration).getPbxAgentVoicemails(options)(fetch, basePath);
+        },
+        /**
          * Retrieve pbx agents
          * @summary Get pbx agents
          * @param {*} [options] Override http request option.
@@ -12433,6 +12916,27 @@ var ConversationApiFactory = function (configuration, fetch, basePath) {
          */
         getPbxQueue: function (conversationPbxQueueUuid, options) {
             return (0, exports.ConversationApiFp)(configuration).getPbxQueue(conversationPbxQueueUuid, options)(fetch, basePath);
+        },
+        /**
+         * Retrieve pbx queue Voicemail
+         * @summary Get Queue Voicemail
+         * @param {string} queue_uuid
+         * @param {string} recording_sid
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getPbxQueueVoicemail: function (queue_uuid, recording_sid, options) {
+            return (0, exports.ConversationApiFp)(configuration).getPbxQueueVoicemail(queue_uuid, recording_sid, options)(fetch, basePath);
+        },
+        /**
+         * Retrieve pbx queue voicemails
+         * @summary Get Queue Voicemails
+         * @param {string} queue_uuid
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getPbxQueueVoicemails: function (queue_uuid, options) {
+            return (0, exports.ConversationApiFp)(configuration).getPbxQueueVoicemails(queue_uuid, options)(fetch, basePath);
         },
         /**
          * Retrieve pbx queues
@@ -12630,6 +13134,16 @@ var ConversationApiFactory = function (configuration, fetch, basePath) {
          */
         leaveConversation: function (conversation_uuid, options) {
             return (0, exports.ConversationApiFp)(configuration).leaveConversation(conversation_uuid, options)(fetch, basePath);
+        },
+        /**
+         * Listened pbx agent Voicemail
+         * @summary Listened Agent Voicemail
+         * @param {string} recording_sid
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        listenedPbxAgentVoicemail: function (recording_sid, options) {
+            return (0, exports.ConversationApiFp)(configuration).listenedPbxAgentVoicemail(recording_sid, options)(fetch, basePath);
         },
         /**
          * Mark a conversation as read
@@ -12880,6 +13394,17 @@ var ConversationApi = /** @class */ (function (_super) {
      */
     ConversationApi.prototype.deletePbxAgent = function (conversationPbxAgentUuid, options) {
         return (0, exports.ConversationApiFp)(this.configuration).deletePbxAgent(conversationPbxAgentUuid, options)(this.fetch, this.basePath);
+    };
+    /**
+     * Delete pbx agent Voicemail
+     * @summary Delete Agent Voicemail
+     * @param {string} recording_sid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApi
+     */
+    ConversationApi.prototype.deletePbxAgentVoicemail = function (recording_sid, options) {
+        return (0, exports.ConversationApiFp)(this.configuration).deletePbxAgentVoicemail(recording_sid, options)(this.fetch, this.basePath);
     };
     /**
      * Delete a pbx audio
@@ -13186,6 +13711,27 @@ var ConversationApi = /** @class */ (function (_super) {
         return (0, exports.ConversationApiFp)(this.configuration).getPbxAgent(conversationPbxAgentUuid, options)(this.fetch, this.basePath);
     };
     /**
+     * Retrieve pbx agent Voicemail
+     * @summary Get Agent Voicemail
+     * @param {string} recording_sid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApi
+     */
+    ConversationApi.prototype.getPbxAgentVoicemail = function (recording_sid, options) {
+        return (0, exports.ConversationApiFp)(this.configuration).getPbxAgentVoicemail(recording_sid, options)(this.fetch, this.basePath);
+    };
+    /**
+     * Retrieve pbx agent Voicemails
+     * @summary Get Agent Voicemails
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApi
+     */
+    ConversationApi.prototype.getPbxAgentVoicemails = function (options) {
+        return (0, exports.ConversationApiFp)(this.configuration).getPbxAgentVoicemails(options)(this.fetch, this.basePath);
+    };
+    /**
      * Retrieve pbx agents
      * @summary Get pbx agents
      * @param {*} [options] Override http request option.
@@ -13268,6 +13814,29 @@ var ConversationApi = /** @class */ (function (_super) {
      */
     ConversationApi.prototype.getPbxQueue = function (conversationPbxQueueUuid, options) {
         return (0, exports.ConversationApiFp)(this.configuration).getPbxQueue(conversationPbxQueueUuid, options)(this.fetch, this.basePath);
+    };
+    /**
+     * Retrieve pbx queue Voicemail
+     * @summary Get Queue Voicemail
+     * @param {string} queue_uuid
+     * @param {string} recording_sid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApi
+     */
+    ConversationApi.prototype.getPbxQueueVoicemail = function (queue_uuid, recording_sid, options) {
+        return (0, exports.ConversationApiFp)(this.configuration).getPbxQueueVoicemail(queue_uuid, recording_sid, options)(this.fetch, this.basePath);
+    };
+    /**
+     * Retrieve pbx queue voicemails
+     * @summary Get Queue Voicemails
+     * @param {string} queue_uuid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApi
+     */
+    ConversationApi.prototype.getPbxQueueVoicemails = function (queue_uuid, options) {
+        return (0, exports.ConversationApiFp)(this.configuration).getPbxQueueVoicemails(queue_uuid, options)(this.fetch, this.basePath);
     };
     /**
      * Retrieve pbx queues
@@ -13485,6 +14054,17 @@ var ConversationApi = /** @class */ (function (_super) {
      */
     ConversationApi.prototype.leaveConversation = function (conversation_uuid, options) {
         return (0, exports.ConversationApiFp)(this.configuration).leaveConversation(conversation_uuid, options)(this.fetch, this.basePath);
+    };
+    /**
+     * Listened pbx agent Voicemail
+     * @summary Listened Agent Voicemail
+     * @param {string} recording_sid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApi
+     */
+    ConversationApi.prototype.listenedPbxAgentVoicemail = function (recording_sid, options) {
+        return (0, exports.ConversationApiFp)(this.configuration).listenedPbxAgentVoicemail(recording_sid, options)(this.fetch, this.basePath);
     };
     /**
      * Mark a conversation as read

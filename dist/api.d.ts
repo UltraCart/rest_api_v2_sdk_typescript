@@ -1401,6 +1401,12 @@ export interface AutoOrder {
      */
     management?: AutoOrderManagement;
     /**
+     * UltraCart merchant ID owning this order
+     * @type {string}
+     * @memberof AutoOrder
+     */
+    merchant_id?: string;
+    /**
      * The next time that the auto order will be attempted for processing
      * @type {string}
      * @memberof AutoOrder
@@ -1598,6 +1604,12 @@ export interface AutoOrderItem {
      * @memberof AutoOrderItem
      */
     life_time_value?: number;
+    /**
+     * Calculated next item id
+     * @type {string}
+     * @memberof AutoOrderItem
+     */
+    next_item_id?: string;
     /**
      * The date/time of when the next pre-shipment notice should be sent
      * @type {string}
@@ -8943,7 +8955,7 @@ export interface ConversationPbxPhoneNumberResponse {
      * @type {ConversationPbxPhoneNumber}
      * @memberof ConversationPbxPhoneNumberResponse
      */
-    phoneNumber?: ConversationPbxPhoneNumber;
+    phone_number?: ConversationPbxPhoneNumber;
     /**
      * Indicates if API call was successful
      * @type {boolean}
@@ -8980,7 +8992,7 @@ export interface ConversationPbxPhoneNumbersResponse {
      * @type {Array<ConversationPbxPhoneNumber>}
      * @memberof ConversationPbxPhoneNumbersResponse
      */
-    phoneNumbers?: Array<ConversationPbxPhoneNumber>;
+    phone_numbers?: Array<ConversationPbxPhoneNumber>;
     /**
      * Indicates if API call was successful
      * @type {boolean}
@@ -9324,7 +9336,7 @@ export interface ConversationPbxTimeBasedResponse {
      * @type {ConversationPbxTimeBased}
      * @memberof ConversationPbxTimeBasedResponse
      */
-    timeBased?: ConversationPbxTimeBased;
+    time_based?: ConversationPbxTimeBased;
     /**
      *
      * @type {Warning}
@@ -9361,7 +9373,7 @@ export interface ConversationPbxTimeBasedsResponse {
      * @type {Array<ConversationPbxTimeBased>}
      * @memberof ConversationPbxTimeBasedsResponse
      */
-    timeBaseds?: Array<ConversationPbxTimeBased>;
+    time_baseds?: Array<ConversationPbxTimeBased>;
     /**
      *
      * @type {Warning}
@@ -9478,7 +9490,7 @@ export interface ConversationPbxTimeRangeResponse {
      * @type {ConversationPbxTimeRange}
      * @memberof ConversationPbxTimeRangeResponse
      */
-    timeRange?: ConversationPbxTimeRange;
+    time_range?: ConversationPbxTimeRange;
     /**
      *
      * @type {Warning}
@@ -9515,7 +9527,7 @@ export interface ConversationPbxTimeRangesResponse {
      * @type {Array<ConversationPbxTimeRange>}
      * @memberof ConversationPbxTimeRangesResponse
      */
-    timeRanges?: Array<ConversationPbxTimeRange>;
+    time_ranges?: Array<ConversationPbxTimeRange>;
     /**
      *
      * @type {Warning}
@@ -9576,7 +9588,7 @@ export interface ConversationPbxVoicemailMailbox {
      * @type {string}
      * @memberof ConversationPbxVoicemailMailbox
      */
-    voicemail_mailbox_type?: string;
+    voicemail_mailbox_type?: ConversationPbxVoicemailMailbox.VoicemailMailboxTypeEnum;
     /**
      * Voicemail prompt play audio UUID
      * @type {string}
@@ -9595,6 +9607,20 @@ export interface ConversationPbxVoicemailMailbox {
      * @memberof ConversationPbxVoicemailMailbox
      */
     voicemail_say_voice?: string;
+}
+/**
+ * @export
+ * @namespace ConversationPbxVoicemailMailbox
+ */
+export declare namespace ConversationPbxVoicemailMailbox {
+    /**
+     * @export
+     * @enum {string}
+     */
+    enum VoicemailMailboxTypeEnum {
+        Agent,
+        Shared
+    }
 }
 /**
  *
@@ -9625,7 +9651,7 @@ export interface ConversationPbxVoicemailMailboxResponse {
      * @type {ConversationPbxVoicemailMailbox}
      * @memberof ConversationPbxVoicemailMailboxResponse
      */
-    voicemailMailbox?: ConversationPbxVoicemailMailbox;
+    voicemail_mailbox?: ConversationPbxVoicemailMailbox;
     /**
      *
      * @type {Warning}
@@ -9662,13 +9688,265 @@ export interface ConversationPbxVoicemailMailboxesResponse {
      * @type {Array<ConversationPbxVoicemailMailbox>}
      * @memberof ConversationPbxVoicemailMailboxesResponse
      */
-    voicemailMailboxes?: Array<ConversationPbxVoicemailMailbox>;
+    voicemail_mailboxes?: Array<ConversationPbxVoicemailMailbox>;
     /**
      *
      * @type {Warning}
      * @memberof ConversationPbxVoicemailMailboxesResponse
      */
     warning?: Warning;
+}
+/**
+ *
+ * @export
+ * @interface ConversationPbxVoicemailMessage
+ */
+export interface ConversationPbxVoicemailMessage {
+    /**
+     * Call SID
+     * @type {string}
+     * @memberof ConversationPbxVoicemailMessage
+     */
+    call_sid?: string;
+    /**
+     * Duration in seconds
+     * @type {number}
+     * @memberof ConversationPbxVoicemailMessage
+     */
+    duration?: number;
+    /**
+     * From phone number in E.164
+     * @type {string}
+     * @memberof ConversationPbxVoicemailMessage
+     */
+    from?: string;
+    /**
+     * From caller id (if available)
+     * @type {string}
+     * @memberof ConversationPbxVoicemailMessage
+     */
+    from_caller_id?: string;
+    /**
+     * True if the voicemail has been listened to in the user interface
+     * @type {boolean}
+     * @memberof ConversationPbxVoicemailMessage
+     */
+    listened?: boolean;
+    /**
+     * Merchant ID
+     * @type {string}
+     * @memberof ConversationPbxVoicemailMessage
+     */
+    merchant_id?: string;
+    /**
+     * Recording SID
+     * @type {string}
+     * @memberof ConversationPbxVoicemailMessage
+     */
+    recording_sid?: string;
+    /**
+     * Recording size in bytes
+     * @type {number}
+     * @memberof ConversationPbxVoicemailMessage
+     */
+    recording_size_bytes?: number;
+    /**
+     * Recording Status
+     * @type {string}
+     * @memberof ConversationPbxVoicemailMessage
+     */
+    recording_status?: ConversationPbxVoicemailMessage.RecordingStatusEnum;
+    /**
+     * Recording URL (expires in 4 hours)
+     * @type {string}
+     * @memberof ConversationPbxVoicemailMessage
+     */
+    recording_url?: string;
+    /**
+     * JSON version of the transcript
+     * @type {string}
+     * @memberof ConversationPbxVoicemailMessage
+     */
+    transcript_json?: string;
+    /**
+     * Formatted text of the transcript
+     * @type {string}
+     * @memberof ConversationPbxVoicemailMessage
+     */
+    transcript_text?: string;
+    /**
+     * Voicemail date/time
+     * @type {string}
+     * @memberof ConversationPbxVoicemailMessage
+     */
+    voicemail_dts?: string;
+}
+/**
+ * @export
+ * @namespace ConversationPbxVoicemailMessage
+ */
+export declare namespace ConversationPbxVoicemailMessage {
+    /**
+     * @export
+     * @enum {string}
+     */
+    enum RecordingStatusEnum {
+        Completed
+    }
+}
+/**
+ *
+ * @export
+ * @interface ConversationPbxVoicemailMessageResponse
+ */
+export interface ConversationPbxVoicemailMessageResponse {
+    /**
+     *
+     * @type {ModelError}
+     * @memberof ConversationPbxVoicemailMessageResponse
+     */
+    error?: ModelError;
+    /**
+     *
+     * @type {ResponseMetadata}
+     * @memberof ConversationPbxVoicemailMessageResponse
+     */
+    metadata?: ResponseMetadata;
+    /**
+     * Indicates if API call was successful
+     * @type {boolean}
+     * @memberof ConversationPbxVoicemailMessageResponse
+     */
+    success?: boolean;
+    /**
+     *
+     * @type {ConversationPbxVoicemailMessage}
+     * @memberof ConversationPbxVoicemailMessageResponse
+     */
+    voicemail_message?: ConversationPbxVoicemailMessage;
+    /**
+     *
+     * @type {Warning}
+     * @memberof ConversationPbxVoicemailMessageResponse
+     */
+    warning?: Warning;
+}
+/**
+ *
+ * @export
+ * @interface ConversationPbxVoicemailMessageSummariesResponse
+ */
+export interface ConversationPbxVoicemailMessageSummariesResponse {
+    /**
+     *
+     * @type {ModelError}
+     * @memberof ConversationPbxVoicemailMessageSummariesResponse
+     */
+    error?: ModelError;
+    /**
+     *
+     * @type {ResponseMetadata}
+     * @memberof ConversationPbxVoicemailMessageSummariesResponse
+     */
+    metadata?: ResponseMetadata;
+    /**
+     * Indicates if API call was successful
+     * @type {boolean}
+     * @memberof ConversationPbxVoicemailMessageSummariesResponse
+     */
+    success?: boolean;
+    /**
+     *
+     * @type {Array<ConversationPbxVoicemailMessageSummary>}
+     * @memberof ConversationPbxVoicemailMessageSummariesResponse
+     */
+    voicemail_message_summaries?: Array<ConversationPbxVoicemailMessageSummary>;
+    /**
+     *
+     * @type {Warning}
+     * @memberof ConversationPbxVoicemailMessageSummariesResponse
+     */
+    warning?: Warning;
+}
+/**
+ *
+ * @export
+ * @interface ConversationPbxVoicemailMessageSummary
+ */
+export interface ConversationPbxVoicemailMessageSummary {
+    /**
+     * Call SID
+     * @type {string}
+     * @memberof ConversationPbxVoicemailMessageSummary
+     */
+    call_sid?: string;
+    /**
+     * Duration in seconds
+     * @type {number}
+     * @memberof ConversationPbxVoicemailMessageSummary
+     */
+    duration?: number;
+    /**
+     * From phone number in E.164
+     * @type {string}
+     * @memberof ConversationPbxVoicemailMessageSummary
+     */
+    from?: string;
+    /**
+     * From caller id (if available)
+     * @type {string}
+     * @memberof ConversationPbxVoicemailMessageSummary
+     */
+    from_caller_id?: string;
+    /**
+     * True if the voicemail has been listened to in the user interface
+     * @type {boolean}
+     * @memberof ConversationPbxVoicemailMessageSummary
+     */
+    listened?: boolean;
+    /**
+     * Merchant ID
+     * @type {string}
+     * @memberof ConversationPbxVoicemailMessageSummary
+     */
+    merchant_id?: string;
+    /**
+     * Recording SID
+     * @type {string}
+     * @memberof ConversationPbxVoicemailMessageSummary
+     */
+    recording_sid?: string;
+    /**
+     * Recording size in bytes
+     * @type {number}
+     * @memberof ConversationPbxVoicemailMessageSummary
+     */
+    recording_size_bytes?: number;
+    /**
+     * Recording Status
+     * @type {string}
+     * @memberof ConversationPbxVoicemailMessageSummary
+     */
+    recording_status?: ConversationPbxVoicemailMessageSummary.RecordingStatusEnum;
+    /**
+     * Voicemail date/time
+     * @type {string}
+     * @memberof ConversationPbxVoicemailMessageSummary
+     */
+    voicemail_dts?: string;
+}
+/**
+ * @export
+ * @namespace ConversationPbxVoicemailMessageSummary
+ */
+export declare namespace ConversationPbxVoicemailMessageSummary {
+    /**
+     * @export
+     * @enum {string}
+     */
+    enum RecordingStatusEnum {
+        Completed
+    }
 }
 /**
  *
@@ -45549,6 +45827,14 @@ export declare const ConversationApiFetchParamCreator: (configuration?: Configur
      */
     deletePbxAgent(conversationPbxAgentUuid: string, options?: any): FetchArgs;
     /**
+     * Delete pbx agent Voicemail
+     * @summary Delete Agent Voicemail
+     * @param {string} recording_sid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    deletePbxAgentVoicemail(recording_sid: string, options?: any): FetchArgs;
+    /**
      * Delete a pbx audio
      * @summary Delete pbx audio
      * @param {string} conversationPbxAudioUuid
@@ -45769,6 +46055,21 @@ export declare const ConversationApiFetchParamCreator: (configuration?: Configur
      */
     getPbxAgent(conversationPbxAgentUuid: string, options?: any): FetchArgs;
     /**
+     * Retrieve pbx agent Voicemail
+     * @summary Get Agent Voicemail
+     * @param {string} recording_sid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getPbxAgentVoicemail(recording_sid: string, options?: any): FetchArgs;
+    /**
+     * Retrieve pbx agent Voicemails
+     * @summary Get Agent Voicemails
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getPbxAgentVoicemails(options?: any): FetchArgs;
+    /**
      * Retrieve pbx agents
      * @summary Get pbx agents
      * @param {*} [options] Override http request option.
@@ -45828,6 +46129,23 @@ export declare const ConversationApiFetchParamCreator: (configuration?: Configur
      * @throws {RequiredError}
      */
     getPbxQueue(conversationPbxQueueUuid: string, options?: any): FetchArgs;
+    /**
+     * Retrieve pbx queue Voicemail
+     * @summary Get Queue Voicemail
+     * @param {string} queue_uuid
+     * @param {string} recording_sid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getPbxQueueVoicemail(queue_uuid: string, recording_sid: string, options?: any): FetchArgs;
+    /**
+     * Retrieve pbx queue voicemails
+     * @summary Get Queue Voicemails
+     * @param {string} queue_uuid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getPbxQueueVoicemails(queue_uuid: string, options?: any): FetchArgs;
     /**
      * Retrieve pbx queues
      * @summary Get pbx queues
@@ -45985,6 +46303,14 @@ export declare const ConversationApiFetchParamCreator: (configuration?: Configur
      * @throws {RequiredError}
      */
     leaveConversation(conversation_uuid: string, options?: any): FetchArgs;
+    /**
+     * Listened pbx agent Voicemail
+     * @summary Listened Agent Voicemail
+     * @param {string} recording_sid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    listenedPbxAgentVoicemail(recording_sid: string, options?: any): FetchArgs;
     /**
      * Mark a conversation as read
      * @summary Mark a conversation as read
@@ -46179,6 +46505,14 @@ export declare const ConversationApiFp: (configuration?: Configuration) => {
      * @throws {RequiredError}
      */
     deletePbxAgent(conversationPbxAgentUuid: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ConversationPbxAgentResponse>;
+    /**
+     * Delete pbx agent Voicemail
+     * @summary Delete Agent Voicemail
+     * @param {string} recording_sid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    deletePbxAgentVoicemail(recording_sid: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Response>;
     /**
      * Delete a pbx audio
      * @summary Delete pbx audio
@@ -46400,6 +46734,21 @@ export declare const ConversationApiFp: (configuration?: Configuration) => {
      */
     getPbxAgent(conversationPbxAgentUuid: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ConversationPbxAgentResponse>;
     /**
+     * Retrieve pbx agent Voicemail
+     * @summary Get Agent Voicemail
+     * @param {string} recording_sid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getPbxAgentVoicemail(recording_sid: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ConversationPbxVoicemailMessageResponse>;
+    /**
+     * Retrieve pbx agent Voicemails
+     * @summary Get Agent Voicemails
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getPbxAgentVoicemails(options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ConversationPbxVoicemailMessageSummariesResponse>;
+    /**
      * Retrieve pbx agents
      * @summary Get pbx agents
      * @param {*} [options] Override http request option.
@@ -46459,6 +46808,23 @@ export declare const ConversationApiFp: (configuration?: Configuration) => {
      * @throws {RequiredError}
      */
     getPbxQueue(conversationPbxQueueUuid: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ConversationPbxQueueResponse>;
+    /**
+     * Retrieve pbx queue Voicemail
+     * @summary Get Queue Voicemail
+     * @param {string} queue_uuid
+     * @param {string} recording_sid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getPbxQueueVoicemail(queue_uuid: string, recording_sid: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ConversationPbxVoicemailMessageResponse>;
+    /**
+     * Retrieve pbx queue voicemails
+     * @summary Get Queue Voicemails
+     * @param {string} queue_uuid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getPbxQueueVoicemails(queue_uuid: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ConversationPbxVoicemailMessageSummariesResponse>;
     /**
      * Retrieve pbx queues
      * @summary Get pbx queues
@@ -46616,6 +46982,14 @@ export declare const ConversationApiFp: (configuration?: Configuration) => {
      * @throws {RequiredError}
      */
     leaveConversation(conversation_uuid: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Response>;
+    /**
+     * Listened pbx agent Voicemail
+     * @summary Listened Agent Voicemail
+     * @param {string} recording_sid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    listenedPbxAgentVoicemail(recording_sid: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Response>;
     /**
      * Mark a conversation as read
      * @summary Mark a conversation as read
@@ -46810,6 +47184,14 @@ export declare const ConversationApiFactory: (configuration?: Configuration, fet
      * @throws {RequiredError}
      */
     deletePbxAgent(conversationPbxAgentUuid: string, options?: any): Promise<ConversationPbxAgentResponse>;
+    /**
+     * Delete pbx agent Voicemail
+     * @summary Delete Agent Voicemail
+     * @param {string} recording_sid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    deletePbxAgentVoicemail(recording_sid: string, options?: any): Promise<Response>;
     /**
      * Delete a pbx audio
      * @summary Delete pbx audio
@@ -47031,6 +47413,21 @@ export declare const ConversationApiFactory: (configuration?: Configuration, fet
      */
     getPbxAgent(conversationPbxAgentUuid: string, options?: any): Promise<ConversationPbxAgentResponse>;
     /**
+     * Retrieve pbx agent Voicemail
+     * @summary Get Agent Voicemail
+     * @param {string} recording_sid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getPbxAgentVoicemail(recording_sid: string, options?: any): Promise<ConversationPbxVoicemailMessageResponse>;
+    /**
+     * Retrieve pbx agent Voicemails
+     * @summary Get Agent Voicemails
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getPbxAgentVoicemails(options?: any): Promise<ConversationPbxVoicemailMessageSummariesResponse>;
+    /**
      * Retrieve pbx agents
      * @summary Get pbx agents
      * @param {*} [options] Override http request option.
@@ -47090,6 +47487,23 @@ export declare const ConversationApiFactory: (configuration?: Configuration, fet
      * @throws {RequiredError}
      */
     getPbxQueue(conversationPbxQueueUuid: string, options?: any): Promise<ConversationPbxQueueResponse>;
+    /**
+     * Retrieve pbx queue Voicemail
+     * @summary Get Queue Voicemail
+     * @param {string} queue_uuid
+     * @param {string} recording_sid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getPbxQueueVoicemail(queue_uuid: string, recording_sid: string, options?: any): Promise<ConversationPbxVoicemailMessageResponse>;
+    /**
+     * Retrieve pbx queue voicemails
+     * @summary Get Queue Voicemails
+     * @param {string} queue_uuid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getPbxQueueVoicemails(queue_uuid: string, options?: any): Promise<ConversationPbxVoicemailMessageSummariesResponse>;
     /**
      * Retrieve pbx queues
      * @summary Get pbx queues
@@ -47247,6 +47661,14 @@ export declare const ConversationApiFactory: (configuration?: Configuration, fet
      * @throws {RequiredError}
      */
     leaveConversation(conversation_uuid: string, options?: any): Promise<Response>;
+    /**
+     * Listened pbx agent Voicemail
+     * @summary Listened Agent Voicemail
+     * @param {string} recording_sid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    listenedPbxAgentVoicemail(recording_sid: string, options?: any): Promise<Response>;
     /**
      * Mark a conversation as read
      * @summary Mark a conversation as read
@@ -47446,6 +47868,15 @@ export interface ConversationApiInterface {
      * @memberof ConversationApiInterface
      */
     deletePbxAgent(conversationPbxAgentUuid: string, options?: any): Promise<ConversationPbxAgentResponse>;
+    /**
+     * Delete pbx agent Voicemail
+     * @summary Delete Agent Voicemail
+     * @param {string} recording_sid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApiInterface
+     */
+    deletePbxAgentVoicemail(recording_sid: string, options?: any): Promise<{}>;
     /**
      * Delete a pbx audio
      * @summary Delete pbx audio
@@ -47695,6 +48126,23 @@ export interface ConversationApiInterface {
      */
     getPbxAgent(conversationPbxAgentUuid: string, options?: any): Promise<ConversationPbxAgentResponse>;
     /**
+     * Retrieve pbx agent Voicemail
+     * @summary Get Agent Voicemail
+     * @param {string} recording_sid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApiInterface
+     */
+    getPbxAgentVoicemail(recording_sid: string, options?: any): Promise<ConversationPbxVoicemailMessageResponse>;
+    /**
+     * Retrieve pbx agent Voicemails
+     * @summary Get Agent Voicemails
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApiInterface
+     */
+    getPbxAgentVoicemails(options?: any): Promise<ConversationPbxVoicemailMessageSummariesResponse>;
+    /**
      * Retrieve pbx agents
      * @summary Get pbx agents
      * @param {*} [options] Override http request option.
@@ -47762,6 +48210,25 @@ export interface ConversationApiInterface {
      * @memberof ConversationApiInterface
      */
     getPbxQueue(conversationPbxQueueUuid: string, options?: any): Promise<ConversationPbxQueueResponse>;
+    /**
+     * Retrieve pbx queue Voicemail
+     * @summary Get Queue Voicemail
+     * @param {string} queue_uuid
+     * @param {string} recording_sid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApiInterface
+     */
+    getPbxQueueVoicemail(queue_uuid: string, recording_sid: string, options?: any): Promise<ConversationPbxVoicemailMessageResponse>;
+    /**
+     * Retrieve pbx queue voicemails
+     * @summary Get Queue Voicemails
+     * @param {string} queue_uuid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApiInterface
+     */
+    getPbxQueueVoicemails(queue_uuid: string, options?: any): Promise<ConversationPbxVoicemailMessageSummariesResponse>;
     /**
      * Retrieve pbx queues
      * @summary Get pbx queues
@@ -47939,6 +48406,15 @@ export interface ConversationApiInterface {
      * @memberof ConversationApiInterface
      */
     leaveConversation(conversation_uuid: string, options?: any): Promise<{}>;
+    /**
+     * Listened pbx agent Voicemail
+     * @summary Listened Agent Voicemail
+     * @param {string} recording_sid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApiInterface
+     */
+    listenedPbxAgentVoicemail(recording_sid: string, options?: any): Promise<{}>;
     /**
      * Mark a conversation as read
      * @summary Mark a conversation as read
@@ -48157,6 +48633,15 @@ export declare class ConversationApi extends BaseAPI implements ConversationApiI
      * @memberof ConversationApi
      */
     deletePbxAgent(conversationPbxAgentUuid: string, options?: any): Promise<ConversationPbxAgentResponse>;
+    /**
+     * Delete pbx agent Voicemail
+     * @summary Delete Agent Voicemail
+     * @param {string} recording_sid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApi
+     */
+    deletePbxAgentVoicemail(recording_sid: string, options?: any): Promise<Response>;
     /**
      * Delete a pbx audio
      * @summary Delete pbx audio
@@ -48406,6 +48891,23 @@ export declare class ConversationApi extends BaseAPI implements ConversationApiI
      */
     getPbxAgent(conversationPbxAgentUuid: string, options?: any): Promise<ConversationPbxAgentResponse>;
     /**
+     * Retrieve pbx agent Voicemail
+     * @summary Get Agent Voicemail
+     * @param {string} recording_sid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApi
+     */
+    getPbxAgentVoicemail(recording_sid: string, options?: any): Promise<ConversationPbxVoicemailMessageResponse>;
+    /**
+     * Retrieve pbx agent Voicemails
+     * @summary Get Agent Voicemails
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApi
+     */
+    getPbxAgentVoicemails(options?: any): Promise<ConversationPbxVoicemailMessageSummariesResponse>;
+    /**
      * Retrieve pbx agents
      * @summary Get pbx agents
      * @param {*} [options] Override http request option.
@@ -48473,6 +48975,25 @@ export declare class ConversationApi extends BaseAPI implements ConversationApiI
      * @memberof ConversationApi
      */
     getPbxQueue(conversationPbxQueueUuid: string, options?: any): Promise<ConversationPbxQueueResponse>;
+    /**
+     * Retrieve pbx queue Voicemail
+     * @summary Get Queue Voicemail
+     * @param {string} queue_uuid
+     * @param {string} recording_sid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApi
+     */
+    getPbxQueueVoicemail(queue_uuid: string, recording_sid: string, options?: any): Promise<ConversationPbxVoicemailMessageResponse>;
+    /**
+     * Retrieve pbx queue voicemails
+     * @summary Get Queue Voicemails
+     * @param {string} queue_uuid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApi
+     */
+    getPbxQueueVoicemails(queue_uuid: string, options?: any): Promise<ConversationPbxVoicemailMessageSummariesResponse>;
     /**
      * Retrieve pbx queues
      * @summary Get pbx queues
@@ -48650,6 +49171,15 @@ export declare class ConversationApi extends BaseAPI implements ConversationApiI
      * @memberof ConversationApi
      */
     leaveConversation(conversation_uuid: string, options?: any): Promise<Response>;
+    /**
+     * Listened pbx agent Voicemail
+     * @summary Listened Agent Voicemail
+     * @param {string} recording_sid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApi
+     */
+    listenedPbxAgentVoicemail(recording_sid: string, options?: any): Promise<Response>;
     /**
      * Mark a conversation as read
      * @summary Mark a conversation as read
