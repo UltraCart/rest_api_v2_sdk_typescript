@@ -27,6 +27,12 @@ import {
  */
 export interface WorkflowTasksRequest {
     /**
+     * Assigned to group
+     * @type {string}
+     * @memberof WorkflowTasksRequest
+     */
+    assigned_to_group?: string;
+    /**
      * Assigned to group ID
      * @type {number}
      * @memberof WorkflowTasksRequest
@@ -38,6 +44,12 @@ export interface WorkflowTasksRequest {
      * @memberof WorkflowTasksRequest
      */
     assigned_to_me?: boolean;
+    /**
+     * Assigned to user
+     * @type {string}
+     * @memberof WorkflowTasksRequest
+     */
+    assigned_to_user?: string;
     /**
      * Assigned to user ID
      * @type {number}
@@ -181,8 +193,10 @@ export function WorkflowTasksRequestFromJSONTyped(json: any, ignoreDiscriminator
     }
     return {
         
+        'assigned_to_group': !exists(json, 'assigned_to_group') ? undefined : json['assigned_to_group'],
         'assigned_to_group_id': !exists(json, 'assigned_to_group_id') ? undefined : json['assigned_to_group_id'],
         'assigned_to_me': !exists(json, 'assigned_to_me') ? undefined : json['assigned_to_me'],
+        'assigned_to_user': !exists(json, 'assigned_to_user') ? undefined : json['assigned_to_user'],
         'assigned_to_user_id': !exists(json, 'assigned_to_user_id') ? undefined : json['assigned_to_user_id'],
         'created_by': !exists(json, 'created_by') ? undefined : WorkflowUserFromJSON(json['created_by']),
         'created_dts_begin': !exists(json, 'created_dts_begin') ? undefined : json['created_dts_begin'],
@@ -211,8 +225,10 @@ export function WorkflowTasksRequestToJSON(value?: WorkflowTasksRequest | null):
     }
     return {
         
+        'assigned_to_group': value.assigned_to_group,
         'assigned_to_group_id': value.assigned_to_group_id,
         'assigned_to_me': value.assigned_to_me,
+        'assigned_to_user': value.assigned_to_user,
         'assigned_to_user_id': value.assigned_to_user_id,
         'created_by': WorkflowUserToJSON(value.created_by),
         'created_dts_begin': value.created_dts_begin,

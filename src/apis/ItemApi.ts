@@ -21,6 +21,9 @@ import {
     Item,
     ItemFromJSON,
     ItemToJSON,
+    ItemContentAttribute,
+    ItemContentAttributeFromJSON,
+    ItemContentAttributeToJSON,
     ItemDigitalItem,
     ItemDigitalItemFromJSON,
     ItemDigitalItemToJSON,
@@ -144,6 +147,11 @@ export interface InsertItemRequest {
 export interface InsertReviewRequest {
     merchantItemOid: number;
     review: ItemReview;
+}
+
+export interface InsertUpdateItemContentAttributeRequest {
+    merchantItemOid: number;
+    itemAttribute: ItemContentAttribute;
 }
 
 export interface UpdateDigitalItemRequest {
@@ -463,6 +471,23 @@ export interface ItemApiInterface {
      * Insert a review
      */
     insertReview(requestParameters: InsertReviewRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ItemReviewResponse>;
+
+    /**
+     * Update an item content attribute, creating it new if it does not yet exist. 
+     * @summary Upsert an item content attribute
+     * @param {number} merchantItemOid The item oid to modify.
+     * @param {ItemContentAttribute} itemAttribute Item content attribute to upsert
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ItemApiInterface
+     */
+    insertUpdateItemContentAttributeRaw(requestParameters: InsertUpdateItemContentAttributeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+
+    /**
+     * Update an item content attribute, creating it new if it does not yet exist. 
+     * Upsert an item content attribute
+     */
+    insertUpdateItemContentAttribute(requestParameters: InsertUpdateItemContentAttributeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
      * Updates a file within the digital library.  This does not update an item, but updates a digital file available and selectable as part (or all) of an item. 
@@ -1324,6 +1349,53 @@ export class ItemApi extends runtime.BaseAPI implements ItemApiInterface {
     async insertReview(requestParameters: InsertReviewRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ItemReviewResponse> {
         const response = await this.insertReviewRaw(requestParameters, initOverrides);
         return await response.value();
+    }
+
+    /**
+     * Update an item content attribute, creating it new if it does not yet exist. 
+     * Upsert an item content attribute
+     */
+    async insertUpdateItemContentAttributeRaw(requestParameters: InsertUpdateItemContentAttributeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        if (requestParameters.merchantItemOid === null || requestParameters.merchantItemOid === undefined) {
+            throw new runtime.RequiredError('merchantItemOid','Required parameter requestParameters.merchantItemOid was null or undefined when calling insertUpdateItemContentAttribute.');
+        }
+
+        if (requestParameters.itemAttribute === null || requestParameters.itemAttribute === undefined) {
+            throw new runtime.RequiredError('itemAttribute','Required parameter requestParameters.itemAttribute was null or undefined when calling insertUpdateItemContentAttribute.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json; charset=UTF-8';
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", ["item_write"]);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/item/items/{merchant_item_oid}/content/attributes`.replace(`{${"merchant_item_oid"}}`, encodeURIComponent(String(requestParameters.merchantItemOid))),
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: ItemContentAttributeToJSON(requestParameters.itemAttribute),
+        }, initOverrides);
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     * Update an item content attribute, creating it new if it does not yet exist. 
+     * Upsert an item content attribute
+     */
+    async insertUpdateItemContentAttribute(requestParameters: InsertUpdateItemContentAttributeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.insertUpdateItemContentAttributeRaw(requestParameters, initOverrides);
     }
 
     /**

@@ -230,6 +230,11 @@ export interface DeletePbxQueueRequest {
     conversationPbxQueueUuid: string;
 }
 
+export interface DeletePbxQueueVoicemailRequest {
+    queueUuid: string;
+    recordingSid: string;
+}
+
 export interface DeletePbxTimeBasedRequest {
     conversationPbxTimeBasedUuid: string;
 }
@@ -387,6 +392,11 @@ export interface LeaveConversationRequest {
 }
 
 export interface ListenedPbxAgentVoicemailRequest {
+    recordingSid: string;
+}
+
+export interface ListenedPbxQueueVoicemailRequest {
+    queueUuid: string;
     recordingSid: string;
 }
 
@@ -624,6 +634,23 @@ export interface ConversationApiInterface {
      * Delete pbx queue
      */
     deletePbxQueue(requestParameters: DeletePbxQueueRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ConversationPbxQueueResponse>;
+
+    /**
+     * Delete pbx queue Voicemail 
+     * @summary Delete Queue Voicemail
+     * @param {string} queueUuid 
+     * @param {string} recordingSid 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApiInterface
+     */
+    deletePbxQueueVoicemailRaw(requestParameters: DeletePbxQueueVoicemailRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+
+    /**
+     * Delete pbx queue Voicemail 
+     * Delete Queue Voicemail
+     */
+    deletePbxQueueVoicemail(requestParameters: DeletePbxQueueVoicemailRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
      * Delete a pbx timeBased 
@@ -1527,6 +1554,23 @@ export interface ConversationApiInterface {
     listenedPbxAgentVoicemail(requestParameters: ListenedPbxAgentVoicemailRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
+     * Listened pbx queue Voicemail 
+     * @summary Listened Queue Voicemail
+     * @param {string} queueUuid 
+     * @param {string} recordingSid 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApiInterface
+     */
+    listenedPbxQueueVoicemailRaw(requestParameters: ListenedPbxQueueVoicemailRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+
+    /**
+     * Listened pbx queue Voicemail 
+     * Listened Queue Voicemail
+     */
+    listenedPbxQueueVoicemail(requestParameters: ListenedPbxQueueVoicemailRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+
+    /**
      * Mark a conversation as read 
      * @summary Mark a conversation as read
      * @param {string} conversationUuid 
@@ -2196,6 +2240,50 @@ export class ConversationApi extends runtime.BaseAPI implements ConversationApiI
     async deletePbxQueue(requestParameters: DeletePbxQueueRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ConversationPbxQueueResponse> {
         const response = await this.deletePbxQueueRaw(requestParameters, initOverrides);
         return await response.value();
+    }
+
+    /**
+     * Delete pbx queue Voicemail 
+     * Delete Queue Voicemail
+     */
+    async deletePbxQueueVoicemailRaw(requestParameters: DeletePbxQueueVoicemailRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        if (requestParameters.queueUuid === null || requestParameters.queueUuid === undefined) {
+            throw new runtime.RequiredError('queueUuid','Required parameter requestParameters.queueUuid was null or undefined when calling deletePbxQueueVoicemail.');
+        }
+
+        if (requestParameters.recordingSid === null || requestParameters.recordingSid === undefined) {
+            throw new runtime.RequiredError('recordingSid','Required parameter requestParameters.recordingSid was null or undefined when calling deletePbxQueueVoicemail.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", ["conversation_write"]);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/conversation/pbx/queues/{queue_uuid}/voicemails/{recording_sid}`.replace(`{${"queue_uuid"}}`, encodeURIComponent(String(requestParameters.queueUuid))).replace(`{${"recording_sid"}}`, encodeURIComponent(String(requestParameters.recordingSid))),
+            method: 'DELETE',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     * Delete pbx queue Voicemail 
+     * Delete Queue Voicemail
+     */
+    async deletePbxQueueVoicemail(requestParameters: DeletePbxQueueVoicemailRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.deletePbxQueueVoicemailRaw(requestParameters, initOverrides);
     }
 
     /**
@@ -4526,6 +4614,50 @@ export class ConversationApi extends runtime.BaseAPI implements ConversationApiI
      */
     async listenedPbxAgentVoicemail(requestParameters: ListenedPbxAgentVoicemailRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.listenedPbxAgentVoicemailRaw(requestParameters, initOverrides);
+    }
+
+    /**
+     * Listened pbx queue Voicemail 
+     * Listened Queue Voicemail
+     */
+    async listenedPbxQueueVoicemailRaw(requestParameters: ListenedPbxQueueVoicemailRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        if (requestParameters.queueUuid === null || requestParameters.queueUuid === undefined) {
+            throw new runtime.RequiredError('queueUuid','Required parameter requestParameters.queueUuid was null or undefined when calling listenedPbxQueueVoicemail.');
+        }
+
+        if (requestParameters.recordingSid === null || requestParameters.recordingSid === undefined) {
+            throw new runtime.RequiredError('recordingSid','Required parameter requestParameters.recordingSid was null or undefined when calling listenedPbxQueueVoicemail.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", ["conversation_write"]);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/conversation/pbx/{queue_uuid}/voicemails/voicemails/{recording_sid}/listened`.replace(`{${"queue_uuid"}}`, encodeURIComponent(String(requestParameters.queueUuid))).replace(`{${"recording_sid"}}`, encodeURIComponent(String(requestParameters.recordingSid))),
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     * Listened pbx queue Voicemail 
+     * Listened Queue Voicemail
+     */
+    async listenedPbxQueueVoicemail(requestParameters: ListenedPbxQueueVoicemailRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.listenedPbxQueueVoicemailRaw(requestParameters, initOverrides);
     }
 
     /**

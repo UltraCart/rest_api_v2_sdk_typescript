@@ -81,6 +81,12 @@ export interface AutoOrderItem {
      */
     auto_order_item_oid?: number;
     /**
+     * Calculated Date/time that this item is scheduled to rebill.  Will be null if no more shipments are going to occur on this item
+     * @type {string}
+     * @memberof AutoOrderItem
+     */
+    calculated_next_shipment_dts?: string;
+    /**
      * Date/time of the first order of this item.  Null if item added to auto order and has not been rebilled yet.
      * @type {string}
      * @memberof AutoOrderItem
@@ -244,6 +250,7 @@ export function AutoOrderItemFromJSONTyped(json: any, ignoreDiscriminator: boole
         'arbitrary_unit_cost': !exists(json, 'arbitrary_unit_cost') ? undefined : json['arbitrary_unit_cost'],
         'arbitrary_unit_cost_remaining_orders': !exists(json, 'arbitrary_unit_cost_remaining_orders') ? undefined : json['arbitrary_unit_cost_remaining_orders'],
         'auto_order_item_oid': !exists(json, 'auto_order_item_oid') ? undefined : json['auto_order_item_oid'],
+        'calculated_next_shipment_dts': !exists(json, 'calculated_next_shipment_dts') ? undefined : json['calculated_next_shipment_dts'],
         'first_order_dts': !exists(json, 'first_order_dts') ? undefined : json['first_order_dts'],
         'frequency': !exists(json, 'frequency') ? undefined : json['frequency'],
         'future_schedules': !exists(json, 'future_schedules') ? undefined : ((json['future_schedules'] as Array<any>).map(AutoOrderItemFutureScheduleFromJSON)),
@@ -283,6 +290,7 @@ export function AutoOrderItemToJSON(value?: AutoOrderItem | null): any {
         'arbitrary_unit_cost': value.arbitrary_unit_cost,
         'arbitrary_unit_cost_remaining_orders': value.arbitrary_unit_cost_remaining_orders,
         'auto_order_item_oid': value.auto_order_item_oid,
+        'calculated_next_shipment_dts': value.calculated_next_shipment_dts,
         'first_order_dts': value.first_order_dts,
         'frequency': value.frequency,
         'future_schedules': value.future_schedules === undefined ? undefined : ((value.future_schedules as Array<any>).map(AutoOrderItemFutureScheduleToJSON)),

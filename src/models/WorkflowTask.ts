@@ -123,7 +123,7 @@ export interface WorkflowTask {
      */
     expiration_dts?: string;
     /**
-     * Global task numer
+     * Global task number
      * @type {number}
      * @memberof WorkflowTask
      */
@@ -165,7 +165,7 @@ export interface WorkflowTask {
      */
     object_id?: string;
     /**
-     * Object specific task numer
+     * Object specific task number
      * @type {number}
      * @memberof WorkflowTask
      */
