@@ -7130,6 +7130,58 @@ var ConversationApiFetchParamCreator = function (configuration) {
             };
         },
         /**
+         * Delete pbx queue Voicemail
+         * @summary Delete Queue Voicemail
+         * @param {string} queue_uuid
+         * @param {string} recording_sid
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        deletePbxQueueVoicemail: function (queue_uuid, recording_sid, options) {
+            if (options === void 0) { options = {}; }
+            // verify required parameter 'queue_uuid' is not null or undefined
+            if (queue_uuid === null || queue_uuid === undefined) {
+                throw new RequiredError('queue_uuid', 'Required parameter queue_uuid was null or undefined when calling deletePbxQueueVoicemail.');
+            }
+            // verify required parameter 'recording_sid' is not null or undefined
+            if (recording_sid === null || recording_sid === undefined) {
+                throw new RequiredError('recording_sid', 'Required parameter recording_sid was null or undefined when calling deletePbxQueueVoicemail.');
+            }
+            var localVarPath = "/conversation/pbx/queues/{queue_uuid}/voicemails/{recording_sid}"
+                .replace("{".concat("queue_uuid", "}"), encodeURIComponent(String(queue_uuid)))
+                .replace("{".concat("recording_sid", "}"), encodeURIComponent(String(recording_sid)));
+            var localVarUrlObj = url.parse(localVarPath, true);
+            var localVarRequestOptions = Object.assign({ method: 'DELETE' }, options);
+            var localVarHeaderParameter = {};
+            var localVarQueryParameter = {};
+            if (configuration && configuration.apiVersion) {
+                localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+            }
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+                var localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+                    ? configuration.accessToken("ultraCartOauth", ["conversation_write"])
+                    : configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                var localVarApiKeyValue = typeof configuration.apiKey === 'function'
+                    ? configuration.apiKey("x-ultracart-simple-key")
+                    : configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
          * Delete a pbx timeBased
          * @summary Delete pbx timeBased
          * @param {string} conversationPbxTimeBasedUuid
@@ -9700,6 +9752,58 @@ var ConversationApiFetchParamCreator = function (configuration) {
             };
         },
         /**
+         * Listened pbx queue Voicemail
+         * @summary Listened Queue Voicemail
+         * @param {string} queue_uuid
+         * @param {string} recording_sid
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        listenedPbxQueueVoicemail: function (queue_uuid, recording_sid, options) {
+            if (options === void 0) { options = {}; }
+            // verify required parameter 'queue_uuid' is not null or undefined
+            if (queue_uuid === null || queue_uuid === undefined) {
+                throw new RequiredError('queue_uuid', 'Required parameter queue_uuid was null or undefined when calling listenedPbxQueueVoicemail.');
+            }
+            // verify required parameter 'recording_sid' is not null or undefined
+            if (recording_sid === null || recording_sid === undefined) {
+                throw new RequiredError('recording_sid', 'Required parameter recording_sid was null or undefined when calling listenedPbxQueueVoicemail.');
+            }
+            var localVarPath = "/conversation/pbx/{queue_uuid}/voicemails/voicemails/{recording_sid}/listened"
+                .replace("{".concat("queue_uuid", "}"), encodeURIComponent(String(queue_uuid)))
+                .replace("{".concat("recording_sid", "}"), encodeURIComponent(String(recording_sid)));
+            var localVarUrlObj = url.parse(localVarPath, true);
+            var localVarRequestOptions = Object.assign({ method: 'GET' }, options);
+            var localVarHeaderParameter = {};
+            var localVarQueryParameter = {};
+            if (configuration && configuration.apiVersion) {
+                localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+            }
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+                var localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+                    ? configuration.accessToken("ultraCartOauth", ["conversation_write"])
+                    : configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                var localVarApiKeyValue = typeof configuration.apiKey === 'function'
+                    ? configuration.apiKey("x-ultracart-simple-key")
+                    : configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
          * Mark a conversation as read
          * @summary Mark a conversation as read
          * @param {string} conversation_uuid
@@ -10829,6 +10933,29 @@ var ConversationApiFp = function (configuration) {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(function (response) {
                     if (response.status >= 200 && response.status < 300) {
                         return response.json();
+                    }
+                    else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
+         * Delete pbx queue Voicemail
+         * @summary Delete Queue Voicemail
+         * @param {string} queue_uuid
+         * @param {string} recording_sid
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        deletePbxQueueVoicemail: function (queue_uuid, recording_sid, options) {
+            var localVarFetchArgs = (0, exports.ConversationApiFetchParamCreator)(configuration).deletePbxQueueVoicemail(queue_uuid, recording_sid, options);
+            return function (fetch, basePath) {
+                if (fetch === void 0) { fetch = portableFetch; }
+                if (basePath === void 0) { basePath = BASE_PATH; }
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(function (response) {
+                    if (response.status >= 200 && response.status < 300) {
+                        return response;
                     }
                     else {
                         throw response;
@@ -12080,6 +12207,29 @@ var ConversationApiFp = function (configuration) {
             };
         },
         /**
+         * Listened pbx queue Voicemail
+         * @summary Listened Queue Voicemail
+         * @param {string} queue_uuid
+         * @param {string} recording_sid
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        listenedPbxQueueVoicemail: function (queue_uuid, recording_sid, options) {
+            var localVarFetchArgs = (0, exports.ConversationApiFetchParamCreator)(configuration).listenedPbxQueueVoicemail(queue_uuid, recording_sid, options);
+            return function (fetch, basePath) {
+                if (fetch === void 0) { fetch = portableFetch; }
+                if (basePath === void 0) { basePath = BASE_PATH; }
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(function (response) {
+                    if (response.status >= 200 && response.status < 300) {
+                        return response;
+                    }
+                    else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
          * Mark a conversation as read
          * @summary Mark a conversation as read
          * @param {string} conversation_uuid
@@ -12585,6 +12735,17 @@ var ConversationApiFactory = function (configuration, fetch, basePath) {
          */
         deletePbxQueue: function (conversationPbxQueueUuid, options) {
             return (0, exports.ConversationApiFp)(configuration).deletePbxQueue(conversationPbxQueueUuid, options)(fetch, basePath);
+        },
+        /**
+         * Delete pbx queue Voicemail
+         * @summary Delete Queue Voicemail
+         * @param {string} queue_uuid
+         * @param {string} recording_sid
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        deletePbxQueueVoicemail: function (queue_uuid, recording_sid, options) {
+            return (0, exports.ConversationApiFp)(configuration).deletePbxQueueVoicemail(queue_uuid, recording_sid, options)(fetch, basePath);
         },
         /**
          * Delete a pbx timeBased
@@ -13146,6 +13307,17 @@ var ConversationApiFactory = function (configuration, fetch, basePath) {
             return (0, exports.ConversationApiFp)(configuration).listenedPbxAgentVoicemail(recording_sid, options)(fetch, basePath);
         },
         /**
+         * Listened pbx queue Voicemail
+         * @summary Listened Queue Voicemail
+         * @param {string} queue_uuid
+         * @param {string} recording_sid
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        listenedPbxQueueVoicemail: function (queue_uuid, recording_sid, options) {
+            return (0, exports.ConversationApiFp)(configuration).listenedPbxQueueVoicemail(queue_uuid, recording_sid, options)(fetch, basePath);
+        },
+        /**
          * Mark a conversation as read
          * @summary Mark a conversation as read
          * @param {string} conversation_uuid
@@ -13449,6 +13621,18 @@ var ConversationApi = /** @class */ (function (_super) {
      */
     ConversationApi.prototype.deletePbxQueue = function (conversationPbxQueueUuid, options) {
         return (0, exports.ConversationApiFp)(this.configuration).deletePbxQueue(conversationPbxQueueUuid, options)(this.fetch, this.basePath);
+    };
+    /**
+     * Delete pbx queue Voicemail
+     * @summary Delete Queue Voicemail
+     * @param {string} queue_uuid
+     * @param {string} recording_sid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApi
+     */
+    ConversationApi.prototype.deletePbxQueueVoicemail = function (queue_uuid, recording_sid, options) {
+        return (0, exports.ConversationApiFp)(this.configuration).deletePbxQueueVoicemail(queue_uuid, recording_sid, options)(this.fetch, this.basePath);
     };
     /**
      * Delete a pbx timeBased
@@ -14065,6 +14249,18 @@ var ConversationApi = /** @class */ (function (_super) {
      */
     ConversationApi.prototype.listenedPbxAgentVoicemail = function (recording_sid, options) {
         return (0, exports.ConversationApiFp)(this.configuration).listenedPbxAgentVoicemail(recording_sid, options)(this.fetch, this.basePath);
+    };
+    /**
+     * Listened pbx queue Voicemail
+     * @summary Listened Queue Voicemail
+     * @param {string} queue_uuid
+     * @param {string} recording_sid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApi
+     */
+    ConversationApi.prototype.listenedPbxQueueVoicemail = function (queue_uuid, recording_sid, options) {
+        return (0, exports.ConversationApiFp)(this.configuration).listenedPbxQueueVoicemail(queue_uuid, recording_sid, options)(this.fetch, this.basePath);
     };
     /**
      * Mark a conversation as read
@@ -22569,6 +22765,60 @@ var ItemApiFetchParamCreator = function (configuration) {
             };
         },
         /**
+         * Update an item content attribute, creating it new if it does not yet exist.
+         * @summary Upsert an item content attribute
+         * @param {ItemContentAttribute} item_attribute Item content attribute to upsert
+         * @param {number} merchant_item_oid The item oid to modify.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        insertUpdateItemContentAttribute: function (item_attribute, merchant_item_oid, options) {
+            if (options === void 0) { options = {}; }
+            // verify required parameter 'item_attribute' is not null or undefined
+            if (item_attribute === null || item_attribute === undefined) {
+                throw new RequiredError('item_attribute', 'Required parameter item_attribute was null or undefined when calling insertUpdateItemContentAttribute.');
+            }
+            // verify required parameter 'merchant_item_oid' is not null or undefined
+            if (merchant_item_oid === null || merchant_item_oid === undefined) {
+                throw new RequiredError('merchant_item_oid', 'Required parameter merchant_item_oid was null or undefined when calling insertUpdateItemContentAttribute.');
+            }
+            var localVarPath = "/item/items/{merchant_item_oid}/content/attributes"
+                .replace("{".concat("merchant_item_oid", "}"), encodeURIComponent(String(merchant_item_oid)));
+            var localVarUrlObj = url.parse(localVarPath, true);
+            var localVarRequestOptions = Object.assign({ method: 'POST' }, options);
+            var localVarHeaderParameter = {};
+            var localVarQueryParameter = {};
+            if (configuration && configuration.apiVersion) {
+                localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+            }
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+                var localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+                    ? configuration.accessToken("ultraCartOauth", ["item_write"])
+                    : configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                var localVarApiKeyValue = typeof configuration.apiKey === 'function'
+                    ? configuration.apiKey("x-ultracart-simple-key")
+                    : configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+            localVarHeaderParameter['Content-Type'] = 'application/json; charset=UTF-8';
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+            var needsSerialization = ("ItemContentAttribute" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
+            localVarRequestOptions.body = needsSerialization ? JSON.stringify(item_attribute || {}) : (item_attribute || "");
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
          * Updates a file within the digital library.  This does not update an item, but updates a digital file available and selectable as part (or all) of an item.
          * @summary Updates a file within the digital library
          * @param {number} digital_item_oid The digital item oid to update.
@@ -23243,6 +23493,29 @@ var ItemApiFp = function (configuration) {
             };
         },
         /**
+         * Update an item content attribute, creating it new if it does not yet exist.
+         * @summary Upsert an item content attribute
+         * @param {ItemContentAttribute} item_attribute Item content attribute to upsert
+         * @param {number} merchant_item_oid The item oid to modify.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        insertUpdateItemContentAttribute: function (item_attribute, merchant_item_oid, options) {
+            var localVarFetchArgs = (0, exports.ItemApiFetchParamCreator)(configuration).insertUpdateItemContentAttribute(item_attribute, merchant_item_oid, options);
+            return function (fetch, basePath) {
+                if (fetch === void 0) { fetch = portableFetch; }
+                if (basePath === void 0) { basePath = BASE_PATH; }
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(function (response) {
+                    if (response.status >= 200 && response.status < 300) {
+                        return response;
+                    }
+                    else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
          * Updates a file within the digital library.  This does not update an item, but updates a digital file available and selectable as part (or all) of an item.
          * @summary Updates a file within the digital library
          * @param {number} digital_item_oid The digital item oid to update.
@@ -23557,6 +23830,17 @@ var ItemApiFactory = function (configuration, fetch, basePath) {
             return (0, exports.ItemApiFp)(configuration).insertReview(review, merchant_item_oid, options)(fetch, basePath);
         },
         /**
+         * Update an item content attribute, creating it new if it does not yet exist.
+         * @summary Upsert an item content attribute
+         * @param {ItemContentAttribute} item_attribute Item content attribute to upsert
+         * @param {number} merchant_item_oid The item oid to modify.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        insertUpdateItemContentAttribute: function (item_attribute, merchant_item_oid, options) {
+            return (0, exports.ItemApiFp)(configuration).insertUpdateItemContentAttribute(item_attribute, merchant_item_oid, options)(fetch, basePath);
+        },
+        /**
          * Updates a file within the digital library.  This does not update an item, but updates a digital file available and selectable as part (or all) of an item.
          * @summary Updates a file within the digital library
          * @param {number} digital_item_oid The digital item oid to update.
@@ -23830,6 +24114,18 @@ var ItemApi = /** @class */ (function (_super) {
      */
     ItemApi.prototype.insertReview = function (review, merchant_item_oid, options) {
         return (0, exports.ItemApiFp)(this.configuration).insertReview(review, merchant_item_oid, options)(this.fetch, this.basePath);
+    };
+    /**
+     * Update an item content attribute, creating it new if it does not yet exist.
+     * @summary Upsert an item content attribute
+     * @param {ItemContentAttribute} item_attribute Item content attribute to upsert
+     * @param {number} merchant_item_oid The item oid to modify.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ItemApi
+     */
+    ItemApi.prototype.insertUpdateItemContentAttribute = function (item_attribute, merchant_item_oid, options) {
+        return (0, exports.ItemApiFp)(this.configuration).insertUpdateItemContentAttribute(item_attribute, merchant_item_oid, options)(this.fetch, this.basePath);
     };
     /**
      * Updates a file within the digital library.  This does not update an item, but updates a digital file available and selectable as part (or all) of an item.

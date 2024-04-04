@@ -1575,6 +1575,12 @@ export interface AutoOrderItem {
      */
     auto_order_item_oid?: number;
     /**
+     * Calculated Date/time that this item is scheduled to rebill.  Will be null if no more shipments are going to occur on this item
+     * @type {string}
+     * @memberof AutoOrderItem
+     */
+    calculated_next_shipment_dts?: string;
+    /**
      * Date/time of the first order of this item.  Null if item added to auto order and has not been rebilled yet.
      * @type {string}
      * @memberof AutoOrderItem
@@ -42709,7 +42715,7 @@ export interface WorkflowTask {
      */
     expiration_dts?: string;
     /**
-     * Global task numer
+     * Global task number
      * @type {number}
      * @memberof WorkflowTask
      */
@@ -42751,7 +42757,7 @@ export interface WorkflowTask {
      */
     object_id?: string;
     /**
-     * Object specific task numer
+     * Object specific task number
      * @type {number}
      * @memberof WorkflowTask
      */
@@ -43030,6 +43036,12 @@ export interface WorkflowTaskTagsResponse {
  */
 export interface WorkflowTasksRequest {
     /**
+     * Assigned to group
+     * @type {string}
+     * @memberof WorkflowTasksRequest
+     */
+    assigned_to_group?: string;
+    /**
      * Assigned to group ID
      * @type {number}
      * @memberof WorkflowTasksRequest
@@ -43041,6 +43053,12 @@ export interface WorkflowTasksRequest {
      * @memberof WorkflowTasksRequest
      */
     assigned_to_me?: boolean;
+    /**
+     * Assigned to user
+     * @type {string}
+     * @memberof WorkflowTasksRequest
+     */
+    assigned_to_user?: string;
     /**
      * Assigned to user ID
      * @type {number}
@@ -45867,6 +45885,15 @@ export declare const ConversationApiFetchParamCreator: (configuration?: Configur
      */
     deletePbxQueue(conversationPbxQueueUuid: string, options?: any): FetchArgs;
     /**
+     * Delete pbx queue Voicemail
+     * @summary Delete Queue Voicemail
+     * @param {string} queue_uuid
+     * @param {string} recording_sid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    deletePbxQueueVoicemail(queue_uuid: string, recording_sid: string, options?: any): FetchArgs;
+    /**
      * Delete a pbx timeBased
      * @summary Delete pbx timeBased
      * @param {string} conversationPbxTimeBasedUuid
@@ -46312,6 +46339,15 @@ export declare const ConversationApiFetchParamCreator: (configuration?: Configur
      */
     listenedPbxAgentVoicemail(recording_sid: string, options?: any): FetchArgs;
     /**
+     * Listened pbx queue Voicemail
+     * @summary Listened Queue Voicemail
+     * @param {string} queue_uuid
+     * @param {string} recording_sid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    listenedPbxQueueVoicemail(queue_uuid: string, recording_sid: string, options?: any): FetchArgs;
+    /**
      * Mark a conversation as read
      * @summary Mark a conversation as read
      * @param {string} conversation_uuid
@@ -46545,6 +46581,15 @@ export declare const ConversationApiFp: (configuration?: Configuration) => {
      * @throws {RequiredError}
      */
     deletePbxQueue(conversationPbxQueueUuid: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ConversationPbxQueueResponse>;
+    /**
+     * Delete pbx queue Voicemail
+     * @summary Delete Queue Voicemail
+     * @param {string} queue_uuid
+     * @param {string} recording_sid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    deletePbxQueueVoicemail(queue_uuid: string, recording_sid: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Response>;
     /**
      * Delete a pbx timeBased
      * @summary Delete pbx timeBased
@@ -46991,6 +47036,15 @@ export declare const ConversationApiFp: (configuration?: Configuration) => {
      */
     listenedPbxAgentVoicemail(recording_sid: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Response>;
     /**
+     * Listened pbx queue Voicemail
+     * @summary Listened Queue Voicemail
+     * @param {string} queue_uuid
+     * @param {string} recording_sid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    listenedPbxQueueVoicemail(queue_uuid: string, recording_sid: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Response>;
+    /**
      * Mark a conversation as read
      * @summary Mark a conversation as read
      * @param {string} conversation_uuid
@@ -47224,6 +47278,15 @@ export declare const ConversationApiFactory: (configuration?: Configuration, fet
      * @throws {RequiredError}
      */
     deletePbxQueue(conversationPbxQueueUuid: string, options?: any): Promise<ConversationPbxQueueResponse>;
+    /**
+     * Delete pbx queue Voicemail
+     * @summary Delete Queue Voicemail
+     * @param {string} queue_uuid
+     * @param {string} recording_sid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    deletePbxQueueVoicemail(queue_uuid: string, recording_sid: string, options?: any): Promise<Response>;
     /**
      * Delete a pbx timeBased
      * @summary Delete pbx timeBased
@@ -47670,6 +47733,15 @@ export declare const ConversationApiFactory: (configuration?: Configuration, fet
      */
     listenedPbxAgentVoicemail(recording_sid: string, options?: any): Promise<Response>;
     /**
+     * Listened pbx queue Voicemail
+     * @summary Listened Queue Voicemail
+     * @param {string} queue_uuid
+     * @param {string} recording_sid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    listenedPbxQueueVoicemail(queue_uuid: string, recording_sid: string, options?: any): Promise<Response>;
+    /**
      * Mark a conversation as read
      * @summary Mark a conversation as read
      * @param {string} conversation_uuid
@@ -47913,6 +47985,16 @@ export interface ConversationApiInterface {
      * @memberof ConversationApiInterface
      */
     deletePbxQueue(conversationPbxQueueUuid: string, options?: any): Promise<ConversationPbxQueueResponse>;
+    /**
+     * Delete pbx queue Voicemail
+     * @summary Delete Queue Voicemail
+     * @param {string} queue_uuid
+     * @param {string} recording_sid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApiInterface
+     */
+    deletePbxQueueVoicemail(queue_uuid: string, recording_sid: string, options?: any): Promise<{}>;
     /**
      * Delete a pbx timeBased
      * @summary Delete pbx timeBased
@@ -48416,6 +48498,16 @@ export interface ConversationApiInterface {
      */
     listenedPbxAgentVoicemail(recording_sid: string, options?: any): Promise<{}>;
     /**
+     * Listened pbx queue Voicemail
+     * @summary Listened Queue Voicemail
+     * @param {string} queue_uuid
+     * @param {string} recording_sid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApiInterface
+     */
+    listenedPbxQueueVoicemail(queue_uuid: string, recording_sid: string, options?: any): Promise<{}>;
+    /**
      * Mark a conversation as read
      * @summary Mark a conversation as read
      * @param {string} conversation_uuid
@@ -48678,6 +48770,16 @@ export declare class ConversationApi extends BaseAPI implements ConversationApiI
      * @memberof ConversationApi
      */
     deletePbxQueue(conversationPbxQueueUuid: string, options?: any): Promise<ConversationPbxQueueResponse>;
+    /**
+     * Delete pbx queue Voicemail
+     * @summary Delete Queue Voicemail
+     * @param {string} queue_uuid
+     * @param {string} recording_sid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApi
+     */
+    deletePbxQueueVoicemail(queue_uuid: string, recording_sid: string, options?: any): Promise<Response>;
     /**
      * Delete a pbx timeBased
      * @summary Delete pbx timeBased
@@ -49180,6 +49282,16 @@ export declare class ConversationApi extends BaseAPI implements ConversationApiI
      * @memberof ConversationApi
      */
     listenedPbxAgentVoicemail(recording_sid: string, options?: any): Promise<Response>;
+    /**
+     * Listened pbx queue Voicemail
+     * @summary Listened Queue Voicemail
+     * @param {string} queue_uuid
+     * @param {string} recording_sid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApi
+     */
+    listenedPbxQueueVoicemail(queue_uuid: string, recording_sid: string, options?: any): Promise<Response>;
     /**
      * Mark a conversation as read
      * @summary Mark a conversation as read
@@ -53217,6 +53329,15 @@ export declare const ItemApiFetchParamCreator: (configuration?: Configuration) =
      */
     insertReview(review: ItemReview, merchant_item_oid: number, options?: any): FetchArgs;
     /**
+     * Update an item content attribute, creating it new if it does not yet exist.
+     * @summary Upsert an item content attribute
+     * @param {ItemContentAttribute} item_attribute Item content attribute to upsert
+     * @param {number} merchant_item_oid The item oid to modify.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    insertUpdateItemContentAttribute(item_attribute: ItemContentAttribute, merchant_item_oid: number, options?: any): FetchArgs;
+    /**
      * Updates a file within the digital library.  This does not update an item, but updates a digital file available and selectable as part (or all) of an item.
      * @summary Updates a file within the digital library
      * @param {number} digital_item_oid The digital item oid to update.
@@ -53426,6 +53547,15 @@ export declare const ItemApiFp: (configuration?: Configuration) => {
      */
     insertReview(review: ItemReview, merchant_item_oid: number, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ItemReviewResponse>;
     /**
+     * Update an item content attribute, creating it new if it does not yet exist.
+     * @summary Upsert an item content attribute
+     * @param {ItemContentAttribute} item_attribute Item content attribute to upsert
+     * @param {number} merchant_item_oid The item oid to modify.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    insertUpdateItemContentAttribute(item_attribute: ItemContentAttribute, merchant_item_oid: number, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Response>;
+    /**
      * Updates a file within the digital library.  This does not update an item, but updates a digital file available and selectable as part (or all) of an item.
      * @summary Updates a file within the digital library
      * @param {number} digital_item_oid The digital item oid to update.
@@ -53634,6 +53764,15 @@ export declare const ItemApiFactory: (configuration?: Configuration, fetch?: Fet
      * @throws {RequiredError}
      */
     insertReview(review: ItemReview, merchant_item_oid: number, options?: any): Promise<ItemReviewResponse>;
+    /**
+     * Update an item content attribute, creating it new if it does not yet exist.
+     * @summary Upsert an item content attribute
+     * @param {ItemContentAttribute} item_attribute Item content attribute to upsert
+     * @param {number} merchant_item_oid The item oid to modify.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    insertUpdateItemContentAttribute(item_attribute: ItemContentAttribute, merchant_item_oid: number, options?: any): Promise<Response>;
     /**
      * Updates a file within the digital library.  This does not update an item, but updates a digital file available and selectable as part (or all) of an item.
      * @summary Updates a file within the digital library
@@ -53860,6 +53999,16 @@ export interface ItemApiInterface {
      * @memberof ItemApiInterface
      */
     insertReview(review: ItemReview, merchant_item_oid: number, options?: any): Promise<ItemReviewResponse>;
+    /**
+     * Update an item content attribute, creating it new if it does not yet exist.
+     * @summary Upsert an item content attribute
+     * @param {ItemContentAttribute} item_attribute Item content attribute to upsert
+     * @param {number} merchant_item_oid The item oid to modify.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ItemApiInterface
+     */
+    insertUpdateItemContentAttribute(item_attribute: ItemContentAttribute, merchant_item_oid: number, options?: any): Promise<{}>;
     /**
      * Updates a file within the digital library.  This does not update an item, but updates a digital file available and selectable as part (or all) of an item.
      * @summary Updates a file within the digital library
@@ -54092,6 +54241,16 @@ export declare class ItemApi extends BaseAPI implements ItemApiInterface {
      * @memberof ItemApi
      */
     insertReview(review: ItemReview, merchant_item_oid: number, options?: any): Promise<ItemReviewResponse>;
+    /**
+     * Update an item content attribute, creating it new if it does not yet exist.
+     * @summary Upsert an item content attribute
+     * @param {ItemContentAttribute} item_attribute Item content attribute to upsert
+     * @param {number} merchant_item_oid The item oid to modify.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ItemApi
+     */
+    insertUpdateItemContentAttribute(item_attribute: ItemContentAttribute, merchant_item_oid: number, options?: any): Promise<Response>;
     /**
      * Updates a file within the digital library.  This does not update an item, but updates a digital file available and selectable as part (or all) of an item.
      * @summary Updates a file within the digital library
