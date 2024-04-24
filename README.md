@@ -1,4 +1,4 @@
-## ultracart_rest_api_v2_typescript@3.10.193
+## ultracart_rest_api_v2_typescript@3.10.194
 
 This generator creates TypeScript/JavaScript client that utilizes [Fetch API](https://fetch.spec.whatwg.org/). The generated Node module can be used in the following environments:
 
@@ -36,7 +36,7 @@ navigate to the folder of your consuming project and run one of the following co
 _published:_
 
 ```
-npm install ultracart_rest_api_v2_typescript@3.10.193 --save
+npm install ultracart_rest_api_v2_typescript@3.10.194 --save
 ```
 
 _unPublished (not recommended):_
@@ -54,6 +54,7 @@ Not every change is committed to every SDK.
 
 | Version | Date | Comments |
 | --: | :-: | --- |
+| 3.10.194 | 04/24/2024 | esp - add fields for external generation on email |
 | 3.10.193 | 04/04/2024 | AutoOrder.calculated_next_shipment_dts |
 | 3.10.192 | 04/01/2024 | added merchant_id as read-only top level property of AutoOrder object |
 | 3.10.191 | 03/26/2024 | WorkflowTask - added assigned_to_user_or_group field |

@@ -9769,7 +9769,7 @@ var ConversationApiFetchParamCreator = function (configuration) {
             if (recording_sid === null || recording_sid === undefined) {
                 throw new RequiredError('recording_sid', 'Required parameter recording_sid was null or undefined when calling listenedPbxQueueVoicemail.');
             }
-            var localVarPath = "/conversation/pbx/{queue_uuid}/voicemails/voicemails/{recording_sid}/listened"
+            var localVarPath = "/conversation/pbx/queues/{queue_uuid}/voicemails/{recording_sid}/listened"
                 .replace("{".concat("queue_uuid", "}"), encodeURIComponent(String(queue_uuid)))
                 .replace("{".concat("recording_sid", "}"), encodeURIComponent(String(recording_sid)));
             var localVarUrlObj = url.parse(localVarPath, true);

@@ -6955,10 +6955,28 @@ export interface ConversationAgentAuth {
     merchant_id?: string;
     /**
      * 
+     * @type {boolean}
+     * @memberof ConversationAgentAuth
+     */
+    pbx_admin?: boolean;
+    /**
+     * 
      * @type {string}
      * @memberof ConversationAgentAuth
      */
     pbx_jwt?: string;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof ConversationAgentAuth
+     */
+    pbx_supervisor?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof ConversationAgentAuth
+     */
+    pbx_user?: boolean;
     /**
      * 
      * @type {string}
@@ -9359,6 +9377,12 @@ export interface ConversationPbxQueue {
      * @memberof ConversationPbxQueue
      */
     wait_warning_seconds?: number;
+    /**
+     * Wrap up time in seconds
+     * @type {number}
+     * @memberof ConversationPbxQueue
+     */
+    wrap_up_seconds?: number;
 }
 
 /**
@@ -16812,6 +16836,54 @@ export interface EmailCommseqEmail {
      * @memberof EmailCommseqEmail
      */
     email_template_vm_path?: string;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof EmailCommseqEmail
+     */
+    external_generation?: boolean;
+    /**
+     * 
+     * @type {string}
+     * @memberof EmailCommseqEmail
+     */
+    external_generation_authentication?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof EmailCommseqEmail
+     */
+    external_generation_basic_password?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof EmailCommseqEmail
+     */
+    external_generation_basic_username?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof EmailCommseqEmail
+     */
+    external_generation_header_name?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof EmailCommseqEmail
+     */
+    external_generation_header_value?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof EmailCommseqEmail
+     */
+    external_generation_id?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof EmailCommseqEmail
+     */
+    external_generation_url?: string;
     /**
      * Filter profile equation json
      * @type {string}
@@ -25853,13 +25925,13 @@ export interface ItemChannelPartnerMapping {
  */
 export interface ItemChargeback {
     /**
-     * Addendums
+     * Addendums (deprecated)
      * @type {Array<ItemChargebackAddendum>}
      * @memberof ItemChargeback
      */
     addendums?: Array<ItemChargebackAddendum>;
     /**
-     * Adjustment requests
+     * Adjustment requests (deprecated)
      * @type {Array<ItemChargebackAdjustmentRequest>}
      * @memberof ItemChargeback
      */
@@ -34573,6 +34645,12 @@ export interface OrderRefundableResponse {
      * @memberof OrderRefundableResponse
      */
     order_level_refund_reasons?: Array<OrderReason>;
+    /**
+     * True if the order level reject reason is required
+     * @type {boolean}
+     * @memberof OrderRefundableResponse
+     */
+    order_level_reject_reason_required?: boolean;
     /**
      * Reject codes available at the order level.
      * @type {Array<OrderReason>}
@@ -53688,7 +53766,7 @@ export const ConversationApiFetchParamCreator = function (configuration?: Config
             if (recording_sid === null || recording_sid === undefined) {
                 throw new RequiredError('recording_sid','Required parameter recording_sid was null or undefined when calling listenedPbxQueueVoicemail.');
             }
-            const localVarPath = `/conversation/pbx/{queue_uuid}/voicemails/voicemails/{recording_sid}/listened`
+            const localVarPath = `/conversation/pbx/queues/{queue_uuid}/voicemails/{recording_sid}/listened`
                 .replace(`{${"queue_uuid"}}`, encodeURIComponent(String(queue_uuid)))
                 .replace(`{${"recording_sid"}}`, encodeURIComponent(String(recording_sid)));
             const localVarUrlObj = url.parse(localVarPath, true);
