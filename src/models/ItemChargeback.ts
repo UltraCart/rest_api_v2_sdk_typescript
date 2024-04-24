@@ -33,13 +33,13 @@ import {
  */
 export interface ItemChargeback {
     /**
-     * Addendums
+     * Addendums (deprecated)
      * @type {Array<ItemChargebackAddendum>}
      * @memberof ItemChargeback
      */
     addendums?: Array<ItemChargebackAddendum>;
     /**
-     * Adjustment requests
+     * Adjustment requests (deprecated)
      * @type {Array<ItemChargebackAdjustmentRequest>}
      * @memberof ItemChargeback
      */

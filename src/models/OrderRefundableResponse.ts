@@ -93,6 +93,12 @@ export interface OrderRefundableResponse {
      */
     order_level_refund_reasons?: Array<OrderReason>;
     /**
+     * True if the order level reject reason is required
+     * @type {boolean}
+     * @memberof OrderRefundableResponse
+     */
+    order_level_reject_reason_required?: boolean;
+    /**
      * Reject codes available at the order level.
      * @type {Array<OrderReason>}
      * @memberof OrderRefundableResponse
@@ -136,6 +142,7 @@ export function OrderRefundableResponseFromJSONTyped(json: any, ignoreDiscrimina
         'metadata': !exists(json, 'metadata') ? undefined : ResponseMetadataFromJSON(json['metadata']),
         'order_level_refund_reason_required': !exists(json, 'order_level_refund_reason_required') ? undefined : json['order_level_refund_reason_required'],
         'order_level_refund_reasons': !exists(json, 'order_level_refund_reasons') ? undefined : ((json['order_level_refund_reasons'] as Array<any>).map(OrderReasonFromJSON)),
+        'order_level_reject_reason_required': !exists(json, 'order_level_reject_reason_required') ? undefined : json['order_level_reject_reason_required'],
         'order_level_reject_reasons': !exists(json, 'order_level_reject_reasons') ? undefined : ((json['order_level_reject_reasons'] as Array<any>).map(OrderReasonFromJSON)),
         'refundable': !exists(json, 'refundable') ? undefined : json['refundable'],
         'success': !exists(json, 'success') ? undefined : json['success'],
@@ -160,6 +167,7 @@ export function OrderRefundableResponseToJSON(value?: OrderRefundableResponse | 
         'metadata': ResponseMetadataToJSON(value.metadata),
         'order_level_refund_reason_required': value.order_level_refund_reason_required,
         'order_level_refund_reasons': value.order_level_refund_reasons === undefined ? undefined : ((value.order_level_refund_reasons as Array<any>).map(OrderReasonToJSON)),
+        'order_level_reject_reason_required': value.order_level_reject_reason_required,
         'order_level_reject_reasons': value.order_level_reject_reasons === undefined ? undefined : ((value.order_level_reject_reasons as Array<any>).map(OrderReasonToJSON)),
         'refundable': value.refundable,
         'success': value.success,

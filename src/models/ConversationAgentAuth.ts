@@ -52,10 +52,28 @@ export interface ConversationAgentAuth {
     merchant_id?: string;
     /**
      * 
+     * @type {boolean}
+     * @memberof ConversationAgentAuth
+     */
+    pbx_admin?: boolean;
+    /**
+     * 
      * @type {string}
      * @memberof ConversationAgentAuth
      */
     pbx_jwt?: string;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof ConversationAgentAuth
+     */
+    pbx_supervisor?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof ConversationAgentAuth
+     */
+    pbx_user?: boolean;
     /**
      * 
      * @type {string}
@@ -102,7 +120,10 @@ export function ConversationAgentAuthFromJSONTyped(json: any, ignoreDiscriminato
         'conversation_participant_name': !exists(json, 'conversation_participant_name') ? undefined : json['conversation_participant_name'],
         'jwt': !exists(json, 'jwt') ? undefined : json['jwt'],
         'merchant_id': !exists(json, 'merchant_id') ? undefined : json['merchant_id'],
+        'pbx_admin': !exists(json, 'pbx_admin') ? undefined : json['pbx_admin'],
         'pbx_jwt': !exists(json, 'pbx_jwt') ? undefined : json['pbx_jwt'],
+        'pbx_supervisor': !exists(json, 'pbx_supervisor') ? undefined : json['pbx_supervisor'],
+        'pbx_user': !exists(json, 'pbx_user') ? undefined : json['pbx_user'],
         'pbx_voice_identity': !exists(json, 'pbx_voice_identity') ? undefined : json['pbx_voice_identity'],
         'pbx_voice_token': !exists(json, 'pbx_voice_token') ? undefined : json['pbx_voice_token'],
         'pbx_worker_token': !exists(json, 'pbx_worker_token') ? undefined : json['pbx_worker_token'],
@@ -124,7 +145,10 @@ export function ConversationAgentAuthToJSON(value?: ConversationAgentAuth | null
         'conversation_participant_name': value.conversation_participant_name,
         'jwt': value.jwt,
         'merchant_id': value.merchant_id,
+        'pbx_admin': value.pbx_admin,
         'pbx_jwt': value.pbx_jwt,
+        'pbx_supervisor': value.pbx_supervisor,
+        'pbx_user': value.pbx_user,
         'pbx_voice_identity': value.pbx_voice_identity,
         'pbx_voice_token': value.pbx_voice_token,
         'pbx_worker_token': value.pbx_worker_token,

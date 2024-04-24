@@ -62,6 +62,54 @@ export interface EmailCommseqEmail {
      */
     email_template_vm_path?: string;
     /**
+     * 
+     * @type {boolean}
+     * @memberof EmailCommseqEmail
+     */
+    external_generation?: boolean;
+    /**
+     * 
+     * @type {string}
+     * @memberof EmailCommseqEmail
+     */
+    external_generation_authentication?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof EmailCommseqEmail
+     */
+    external_generation_basic_password?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof EmailCommseqEmail
+     */
+    external_generation_basic_username?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof EmailCommseqEmail
+     */
+    external_generation_header_name?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof EmailCommseqEmail
+     */
+    external_generation_header_value?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof EmailCommseqEmail
+     */
+    external_generation_id?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof EmailCommseqEmail
+     */
+    external_generation_url?: string;
+    /**
      * Filter profile equation json
      * @type {string}
      * @memberof EmailCommseqEmail
@@ -194,6 +242,14 @@ export function EmailCommseqEmailFromJSONTyped(json: any, ignoreDiscriminator: b
         'email_container_cjson': !exists(json, 'email_container_cjson') ? undefined : json['email_container_cjson'],
         'email_container_cjson_last_modified_dts': !exists(json, 'email_container_cjson_last_modified_dts') ? undefined : json['email_container_cjson_last_modified_dts'],
         'email_template_vm_path': !exists(json, 'email_template_vm_path') ? undefined : json['email_template_vm_path'],
+        'external_generation': !exists(json, 'external_generation') ? undefined : json['external_generation'],
+        'external_generation_authentication': !exists(json, 'external_generation_authentication') ? undefined : json['external_generation_authentication'],
+        'external_generation_basic_password': !exists(json, 'external_generation_basic_password') ? undefined : json['external_generation_basic_password'],
+        'external_generation_basic_username': !exists(json, 'external_generation_basic_username') ? undefined : json['external_generation_basic_username'],
+        'external_generation_header_name': !exists(json, 'external_generation_header_name') ? undefined : json['external_generation_header_name'],
+        'external_generation_header_value': !exists(json, 'external_generation_header_value') ? undefined : json['external_generation_header_value'],
+        'external_generation_id': !exists(json, 'external_generation_id') ? undefined : json['external_generation_id'],
+        'external_generation_url': !exists(json, 'external_generation_url') ? undefined : json['external_generation_url'],
         'filter_profile_equation_json': !exists(json, 'filter_profile_equation_json') ? undefined : json['filter_profile_equation_json'],
         'individually_render': !exists(json, 'individually_render') ? undefined : json['individually_render'],
         'library_item_oid': !exists(json, 'library_item_oid') ? undefined : json['library_item_oid'],
@@ -232,6 +288,14 @@ export function EmailCommseqEmailToJSON(value?: EmailCommseqEmail | null): any {
         'email_container_cjson': value.email_container_cjson,
         'email_container_cjson_last_modified_dts': value.email_container_cjson_last_modified_dts,
         'email_template_vm_path': value.email_template_vm_path,
+        'external_generation': value.external_generation,
+        'external_generation_authentication': value.external_generation_authentication,
+        'external_generation_basic_password': value.external_generation_basic_password,
+        'external_generation_basic_username': value.external_generation_basic_username,
+        'external_generation_header_name': value.external_generation_header_name,
+        'external_generation_header_value': value.external_generation_header_value,
+        'external_generation_id': value.external_generation_id,
+        'external_generation_url': value.external_generation_url,
         'filter_profile_equation_json': value.filter_profile_equation_json,
         'individually_render': value.individually_render,
         'library_item_oid': value.library_item_oid,

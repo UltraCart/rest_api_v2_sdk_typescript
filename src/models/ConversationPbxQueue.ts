@@ -146,6 +146,12 @@ export interface ConversationPbxQueue {
      * @memberof ConversationPbxQueue
      */
     wait_warning_seconds?: number;
+    /**
+     * Wrap up time in seconds
+     * @type {number}
+     * @memberof ConversationPbxQueue
+     */
+    wrap_up_seconds?: number;
 }
 
 export function ConversationPbxQueueFromJSON(json: any): ConversationPbxQueue {
@@ -178,6 +184,7 @@ export function ConversationPbxQueueFromJSONTyped(json: any, ignoreDiscriminator
         'voicemail': !exists(json, 'voicemail') ? undefined : json['voicemail'],
         'wait_critical_seconds': !exists(json, 'wait_critical_seconds') ? undefined : json['wait_critical_seconds'],
         'wait_warning_seconds': !exists(json, 'wait_warning_seconds') ? undefined : json['wait_warning_seconds'],
+        'wrap_up_seconds': !exists(json, 'wrap_up_seconds') ? undefined : json['wrap_up_seconds'],
     };
 }
 
@@ -210,6 +217,7 @@ export function ConversationPbxQueueToJSON(value?: ConversationPbxQueue | null):
         'voicemail': value.voicemail,
         'wait_critical_seconds': value.wait_critical_seconds,
         'wait_warning_seconds': value.wait_warning_seconds,
+        'wrap_up_seconds': value.wrap_up_seconds,
     };
 }
 

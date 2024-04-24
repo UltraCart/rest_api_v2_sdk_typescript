@@ -4643,7 +4643,7 @@ export class ConversationApi extends runtime.BaseAPI implements ConversationApiI
         }
 
         const response = await this.request({
-            path: `/conversation/pbx/{queue_uuid}/voicemails/voicemails/{recording_sid}/listened`.replace(`{${"queue_uuid"}}`, encodeURIComponent(String(requestParameters.queueUuid))).replace(`{${"recording_sid"}}`, encodeURIComponent(String(requestParameters.recordingSid))),
+            path: `/conversation/pbx/queues/{queue_uuid}/voicemails/{recording_sid}/listened`.replace(`{${"queue_uuid"}}`, encodeURIComponent(String(requestParameters.queueUuid))).replace(`{${"recording_sid"}}`, encodeURIComponent(String(requestParameters.recordingSid))),
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
