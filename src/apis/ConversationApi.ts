@@ -90,6 +90,9 @@ import {
     ConversationPbxAudioResponse,
     ConversationPbxAudioResponseFromJSON,
     ConversationPbxAudioResponseToJSON,
+    ConversationPbxAudioUploadUrlResponse,
+    ConversationPbxAudioUploadUrlResponseFromJSON,
+    ConversationPbxAudioUploadUrlResponseToJSON,
     ConversationPbxAudiosResponse,
     ConversationPbxAudiosResponseFromJSON,
     ConversationPbxAudiosResponseToJSON,
@@ -896,13 +899,13 @@ export interface ConversationApiInterface {
      * @throws {RequiredError}
      * @memberof ConversationApiInterface
      */
-    getConversationPbxAudioUploadUrlRaw(requestParameters: GetConversationPbxAudioUploadUrlRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ConversationMultimediaUploadUrlResponse>>;
+    getConversationPbxAudioUploadUrlRaw(requestParameters: GetConversationPbxAudioUploadUrlRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ConversationPbxAudioUploadUrlResponse>>;
 
     /**
      * Get a pre-signed conversation multimedia upload URL 
      * Get a pre-signed conversation multimedia upload URL
      */
-    getConversationPbxAudioUploadUrl(requestParameters: GetConversationPbxAudioUploadUrlRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ConversationMultimediaUploadUrlResponse>;
+    getConversationPbxAudioUploadUrl(requestParameters: GetConversationPbxAudioUploadUrlRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ConversationPbxAudioUploadUrlResponse>;
 
     /**
      * Retrieves all the orders, auto orders, and customer profile for a given phone number 
@@ -2888,7 +2891,7 @@ export class ConversationApi extends runtime.BaseAPI implements ConversationApiI
      * Get a pre-signed conversation multimedia upload URL 
      * Get a pre-signed conversation multimedia upload URL
      */
-    async getConversationPbxAudioUploadUrlRaw(requestParameters: GetConversationPbxAudioUploadUrlRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ConversationMultimediaUploadUrlResponse>> {
+    async getConversationPbxAudioUploadUrlRaw(requestParameters: GetConversationPbxAudioUploadUrlRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ConversationPbxAudioUploadUrlResponse>> {
         if (requestParameters.extension === null || requestParameters.extension === undefined) {
             throw new runtime.RequiredError('extension','Required parameter requestParameters.extension was null or undefined when calling getConversationPbxAudioUploadUrl.');
         }
@@ -2913,14 +2916,14 @@ export class ConversationApi extends runtime.BaseAPI implements ConversationApiI
             query: queryParameters,
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => ConversationMultimediaUploadUrlResponseFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => ConversationPbxAudioUploadUrlResponseFromJSON(jsonValue));
     }
 
     /**
      * Get a pre-signed conversation multimedia upload URL 
      * Get a pre-signed conversation multimedia upload URL
      */
-    async getConversationPbxAudioUploadUrl(requestParameters: GetConversationPbxAudioUploadUrlRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ConversationMultimediaUploadUrlResponse> {
+    async getConversationPbxAudioUploadUrl(requestParameters: GetConversationPbxAudioUploadUrlRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ConversationPbxAudioUploadUrlResponse> {
         const response = await this.getConversationPbxAudioUploadUrlRaw(requestParameters, initOverrides);
         return await response.value();
     }

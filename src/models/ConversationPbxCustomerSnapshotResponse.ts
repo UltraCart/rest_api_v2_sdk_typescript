@@ -64,10 +64,10 @@ export interface ConversationPbxCustomerSnapshotResponse {
     auto_orders?: Array<AutoOrder>;
     /**
      * 
-     * @type {Customer}
+     * @type {Array<Customer>}
      * @memberof ConversationPbxCustomerSnapshotResponse
      */
-    customer?: Customer;
+    customers?: Array<Customer>;
     /**
      * 
      * @type {ModelError}
@@ -111,7 +111,7 @@ export function ConversationPbxCustomerSnapshotResponseFromJSONTyped(json: any, 
     return {
         
         'auto_orders': !exists(json, 'auto_orders') ? undefined : ((json['auto_orders'] as Array<any>).map(AutoOrderFromJSON)),
-        'customer': !exists(json, 'customer') ? undefined : CustomerFromJSON(json['customer']),
+        'customers': !exists(json, 'customers') ? undefined : ((json['customers'] as Array<any>).map(CustomerFromJSON)),
         'error': !exists(json, 'error') ? undefined : ModelErrorFromJSON(json['error']),
         'metadata': !exists(json, 'metadata') ? undefined : ResponseMetadataFromJSON(json['metadata']),
         'orders': !exists(json, 'orders') ? undefined : ((json['orders'] as Array<any>).map(OrderFromJSON)),
@@ -130,7 +130,7 @@ export function ConversationPbxCustomerSnapshotResponseToJSON(value?: Conversati
     return {
         
         'auto_orders': value.auto_orders === undefined ? undefined : ((value.auto_orders as Array<any>).map(AutoOrderToJSON)),
-        'customer': CustomerToJSON(value.customer),
+        'customers': value.customers === undefined ? undefined : ((value.customers as Array<any>).map(CustomerToJSON)),
         'error': ModelErrorToJSON(value.error),
         'metadata': ResponseMetadataToJSON(value.metadata),
         'orders': value.orders === undefined ? undefined : ((value.orders as Array<any>).map(OrderToJSON)),

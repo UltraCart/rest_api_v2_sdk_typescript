@@ -50,6 +50,7 @@ src/models/ApplyLibraryItemResponse.ts
 src/models/AutoOrder.ts
 src/models/AutoOrderAddonItem.ts
 src/models/AutoOrderAddonItemOption.ts
+src/models/AutoOrderConsolidate.ts
 src/models/AutoOrderItem.ts
 src/models/AutoOrderItemFutureSchedule.ts
 src/models/AutoOrderItemOption.ts
@@ -198,6 +199,8 @@ src/models/ConversationPbxAgentResponse.ts
 src/models/ConversationPbxAgentsResponse.ts
 src/models/ConversationPbxAudio.ts
 src/models/ConversationPbxAudioResponse.ts
+src/models/ConversationPbxAudioUploadUrl.ts
+src/models/ConversationPbxAudioUploadUrlResponse.ts
 src/models/ConversationPbxAudiosResponse.ts
 src/models/ConversationPbxCustomerSnapshotRequest.ts
 src/models/ConversationPbxCustomerSnapshotResponse.ts

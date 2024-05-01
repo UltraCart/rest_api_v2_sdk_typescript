@@ -18,6 +18,9 @@ import {
     AutoOrder,
     AutoOrderFromJSON,
     AutoOrderToJSON,
+    AutoOrderConsolidate,
+    AutoOrderConsolidateFromJSON,
+    AutoOrderConsolidateToJSON,
     AutoOrderQuery,
     AutoOrderQueryFromJSON,
     AutoOrderQueryToJSON,
@@ -37,6 +40,12 @@ import {
     ErrorResponseFromJSON,
     ErrorResponseToJSON,
 } from '../models';
+
+export interface ConsolidateAutoOrdersRequest {
+    autoOrderOid: number;
+    autoOrderConsolidate: AutoOrderConsolidate;
+    expand?: string;
+}
 
 export interface EstablishAutoOrderByReferenceOrderIdRequest {
     referenceOrderId: string;
@@ -118,6 +127,24 @@ export interface UpdateAutoOrdersBatchRequest {
  * @interface AutoOrderApiInterface
  */
 export interface AutoOrderApiInterface {
+    /**
+     * Consolidates mutliple auto orders on the UltraCart account. 
+     * @summary Consolidates multiple auto orders
+     * @param {number} autoOrderOid The auto order oid to consolidate into.
+     * @param {AutoOrderConsolidate} autoOrderConsolidate Auto orders to consolidate
+     * @param {string} [expand] The object expansion to perform on the result.  See documentation for examples
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AutoOrderApiInterface
+     */
+    consolidateAutoOrdersRaw(requestParameters: ConsolidateAutoOrdersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AutoOrderResponse>>;
+
+    /**
+     * Consolidates mutliple auto orders on the UltraCart account. 
+     * Consolidates multiple auto orders
+     */
+    consolidateAutoOrders(requestParameters: ConsolidateAutoOrdersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AutoOrderResponse>;
+
     /**
      * Establish an auto order by referencing a regular order id.  The result will be an auto order without any items.  You should add the items and perform an update call.  Orders must be less than 60 days old and use a credit card payment. 
      * @summary Establish an auto order by referencing a regular order id
@@ -305,6 +332,58 @@ export interface AutoOrderApiInterface {
  * 
  */
 export class AutoOrderApi extends runtime.BaseAPI implements AutoOrderApiInterface {
+
+    /**
+     * Consolidates mutliple auto orders on the UltraCart account. 
+     * Consolidates multiple auto orders
+     */
+    async consolidateAutoOrdersRaw(requestParameters: ConsolidateAutoOrdersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AutoOrderResponse>> {
+        if (requestParameters.autoOrderOid === null || requestParameters.autoOrderOid === undefined) {
+            throw new runtime.RequiredError('autoOrderOid','Required parameter requestParameters.autoOrderOid was null or undefined when calling consolidateAutoOrders.');
+        }
+
+        if (requestParameters.autoOrderConsolidate === null || requestParameters.autoOrderConsolidate === undefined) {
+            throw new runtime.RequiredError('autoOrderConsolidate','Required parameter requestParameters.autoOrderConsolidate was null or undefined when calling consolidateAutoOrders.');
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters.expand !== undefined) {
+            queryParameters['_expand'] = requestParameters.expand;
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json; charset=UTF-8';
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", ["auto_order_write"]);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/auto_order/auto_orders/{auto_order_oid}/consolidate`.replace(`{${"auto_order_oid"}}`, encodeURIComponent(String(requestParameters.autoOrderOid))),
+            method: 'PUT',
+            headers: headerParameters,
+            query: queryParameters,
+            body: AutoOrderConsolidateToJSON(requestParameters.autoOrderConsolidate),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => AutoOrderResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Consolidates mutliple auto orders on the UltraCart account. 
+     * Consolidates multiple auto orders
+     */
+    async consolidateAutoOrders(requestParameters: ConsolidateAutoOrdersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AutoOrderResponse> {
+        const response = await this.consolidateAutoOrdersRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
 
     /**
      * Establish an auto order by referencing a regular order id.  The result will be an auto order without any items.  You should add the items and perform an update call.  Orders must be less than 60 days old and use a credit card payment. 
