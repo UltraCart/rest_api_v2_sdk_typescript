@@ -1529,6 +1529,19 @@ export interface AutoOrderAddonItemOption {
 /**
  *
  * @export
+ * @interface AutoOrderConsolidate
+ */
+export interface AutoOrderConsolidate {
+    /**
+     *
+     * @type {Array<number>}
+     * @memberof AutoOrderConsolidate
+     */
+    source_auto_order_oids?: Array<number>;
+}
+/**
+ *
+ * @export
  * @interface AutoOrderItem
  */
 export interface AutoOrderItem {
@@ -8609,6 +8622,62 @@ export interface ConversationPbxAudioResponse {
 /**
  *
  * @export
+ * @interface ConversationPbxAudioUploadUrl
+ */
+export interface ConversationPbxAudioUploadUrl {
+    /**
+     *
+     * @type {string}
+     * @memberof ConversationPbxAudioUploadUrl
+     */
+    key?: string;
+    /**
+     *
+     * @type {string}
+     * @memberof ConversationPbxAudioUploadUrl
+     */
+    url?: string;
+}
+/**
+ *
+ * @export
+ * @interface ConversationPbxAudioUploadUrlResponse
+ */
+export interface ConversationPbxAudioUploadUrlResponse {
+    /**
+     *
+     * @type {ConversationPbxAudioUploadUrl}
+     * @memberof ConversationPbxAudioUploadUrlResponse
+     */
+    conversation_pbx_audio_upload_url?: ConversationPbxAudioUploadUrl;
+    /**
+     *
+     * @type {ModelError}
+     * @memberof ConversationPbxAudioUploadUrlResponse
+     */
+    error?: ModelError;
+    /**
+     *
+     * @type {ResponseMetadata}
+     * @memberof ConversationPbxAudioUploadUrlResponse
+     */
+    metadata?: ResponseMetadata;
+    /**
+     * Indicates if API call was successful
+     * @type {boolean}
+     * @memberof ConversationPbxAudioUploadUrlResponse
+     */
+    success?: boolean;
+    /**
+     *
+     * @type {Warning}
+     * @memberof ConversationPbxAudioUploadUrlResponse
+     */
+    warning?: Warning;
+}
+/**
+ *
+ * @export
  * @interface ConversationPbxAudiosResponse
  */
 export interface ConversationPbxAudiosResponse {
@@ -8712,10 +8781,10 @@ export interface ConversationPbxCustomerSnapshotResponse {
     auto_orders?: Array<AutoOrder>;
     /**
      *
-     * @type {Customer}
+     * @type {Array<Customer>}
      * @memberof ConversationPbxCustomerSnapshotResponse
      */
-    customer?: Customer;
+    customers?: Array<Customer>;
     /**
      *
      * @type {ModelError}
@@ -43571,6 +43640,16 @@ export declare class AffiliateApi extends BaseAPI implements AffiliateApiInterfa
  */
 export declare const AutoOrderApiFetchParamCreator: (configuration?: Configuration) => {
     /**
+     * Consolidates mutliple auto orders on the UltraCart account.
+     * @summary Consolidates multiple auto orders
+     * @param {AutoOrderConsolidate} auto_order_consolidate Auto orders to consolidate
+     * @param {number} auto_order_oid The auto order oid to consolidate into.
+     * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    consolidateAutoOrders(auto_order_consolidate: AutoOrderConsolidate, auto_order_oid: number, _expand?: string, options?: any): FetchArgs;
+    /**
      * Establish an auto order by referencing a regular order id.  The result will be an auto order without any items.  You should add the items and perform an update call.  Orders must be less than 60 days old and use a credit card payment.
      * @summary Establish an auto order by referencing a regular order id
      * @param {string} reference_order_id The order id to attach this auto order to
@@ -43685,6 +43764,16 @@ export declare const AutoOrderApiFetchParamCreator: (configuration?: Configurati
  * @export
  */
 export declare const AutoOrderApiFp: (configuration?: Configuration) => {
+    /**
+     * Consolidates mutliple auto orders on the UltraCart account.
+     * @summary Consolidates multiple auto orders
+     * @param {AutoOrderConsolidate} auto_order_consolidate Auto orders to consolidate
+     * @param {number} auto_order_oid The auto order oid to consolidate into.
+     * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    consolidateAutoOrders(auto_order_consolidate: AutoOrderConsolidate, auto_order_oid: number, _expand?: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<AutoOrderResponse>;
     /**
      * Establish an auto order by referencing a regular order id.  The result will be an auto order without any items.  You should add the items and perform an update call.  Orders must be less than 60 days old and use a credit card payment.
      * @summary Establish an auto order by referencing a regular order id
@@ -43801,6 +43890,16 @@ export declare const AutoOrderApiFp: (configuration?: Configuration) => {
  */
 export declare const AutoOrderApiFactory: (configuration?: Configuration, fetch?: FetchAPI, basePath?: string) => {
     /**
+     * Consolidates mutliple auto orders on the UltraCart account.
+     * @summary Consolidates multiple auto orders
+     * @param {AutoOrderConsolidate} auto_order_consolidate Auto orders to consolidate
+     * @param {number} auto_order_oid The auto order oid to consolidate into.
+     * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    consolidateAutoOrders(auto_order_consolidate: AutoOrderConsolidate, auto_order_oid: number, _expand?: string, options?: any): Promise<AutoOrderResponse>;
+    /**
      * Establish an auto order by referencing a regular order id.  The result will be an auto order without any items.  You should add the items and perform an update call.  Orders must be less than 60 days old and use a credit card payment.
      * @summary Establish an auto order by referencing a regular order id
      * @param {string} reference_order_id The order id to attach this auto order to
@@ -43916,6 +44015,17 @@ export declare const AutoOrderApiFactory: (configuration?: Configuration, fetch?
  * @interface AutoOrderApi
  */
 export interface AutoOrderApiInterface {
+    /**
+     * Consolidates mutliple auto orders on the UltraCart account.
+     * @summary Consolidates multiple auto orders
+     * @param {AutoOrderConsolidate} auto_order_consolidate Auto orders to consolidate
+     * @param {number} auto_order_oid The auto order oid to consolidate into.
+     * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AutoOrderApiInterface
+     */
+    consolidateAutoOrders(auto_order_consolidate: AutoOrderConsolidate, auto_order_oid: number, _expand?: string, options?: any): Promise<AutoOrderResponse>;
     /**
      * Establish an auto order by referencing a regular order id.  The result will be an auto order without any items.  You should add the items and perform an update call.  Orders must be less than 60 days old and use a credit card payment.
      * @summary Establish an auto order by referencing a regular order id
@@ -44042,6 +44152,17 @@ export interface AutoOrderApiInterface {
  * @extends {BaseAPI}
  */
 export declare class AutoOrderApi extends BaseAPI implements AutoOrderApiInterface {
+    /**
+     * Consolidates mutliple auto orders on the UltraCart account.
+     * @summary Consolidates multiple auto orders
+     * @param {AutoOrderConsolidate} auto_order_consolidate Auto orders to consolidate
+     * @param {number} auto_order_oid The auto order oid to consolidate into.
+     * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AutoOrderApi
+     */
+    consolidateAutoOrders(auto_order_consolidate: AutoOrderConsolidate, auto_order_oid: number, _expand?: string, options?: any): Promise<AutoOrderResponse>;
     /**
      * Establish an auto order by referencing a regular order id.  The result will be an auto order without any items.  You should add the items and perform an update call.  Orders must be less than 60 days old and use a credit card payment.
      * @summary Establish an auto order by referencing a regular order id
@@ -46791,7 +46912,7 @@ export declare const ConversationApiFp: (configuration?: Configuration) => {
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getConversationPbxAudioUploadUrl(extension: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ConversationMultimediaUploadUrlResponse>;
+    getConversationPbxAudioUploadUrl(extension: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ConversationPbxAudioUploadUrlResponse>;
     /**
      * Retrieves all the orders, auto orders, and customer profile for a given phone number
      * @summary Get orders and customer information for a phone number
@@ -47488,7 +47609,7 @@ export declare const ConversationApiFactory: (configuration?: Configuration, fet
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getConversationPbxAudioUploadUrl(extension: string, options?: any): Promise<ConversationMultimediaUploadUrlResponse>;
+    getConversationPbxAudioUploadUrl(extension: string, options?: any): Promise<ConversationPbxAudioUploadUrlResponse>;
     /**
      * Retrieves all the orders, auto orders, and customer profile for a given phone number
      * @summary Get orders and customer information for a phone number
@@ -48212,7 +48333,7 @@ export interface ConversationApiInterface {
      * @throws {RequiredError}
      * @memberof ConversationApiInterface
      */
-    getConversationPbxAudioUploadUrl(extension: string, options?: any): Promise<ConversationMultimediaUploadUrlResponse>;
+    getConversationPbxAudioUploadUrl(extension: string, options?: any): Promise<ConversationPbxAudioUploadUrlResponse>;
     /**
      * Retrieves all the orders, auto orders, and customer profile for a given phone number
      * @summary Get orders and customer information for a phone number
@@ -48997,7 +49118,7 @@ export declare class ConversationApi extends BaseAPI implements ConversationApiI
      * @throws {RequiredError}
      * @memberof ConversationApi
      */
-    getConversationPbxAudioUploadUrl(extension: string, options?: any): Promise<ConversationMultimediaUploadUrlResponse>;
+    getConversationPbxAudioUploadUrl(extension: string, options?: any): Promise<ConversationPbxAudioUploadUrlResponse>;
     /**
      * Retrieves all the orders, auto orders, and customer profile for a given phone number
      * @summary Get orders and customer information for a phone number

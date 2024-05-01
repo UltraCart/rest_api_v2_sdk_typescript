@@ -1991,6 +1991,64 @@ exports.AffiliateApi = AffiliateApi;
 var AutoOrderApiFetchParamCreator = function (configuration) {
     return {
         /**
+         * Consolidates mutliple auto orders on the UltraCart account.
+         * @summary Consolidates multiple auto orders
+         * @param {AutoOrderConsolidate} auto_order_consolidate Auto orders to consolidate
+         * @param {number} auto_order_oid The auto order oid to consolidate into.
+         * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        consolidateAutoOrders: function (auto_order_consolidate, auto_order_oid, _expand, options) {
+            if (options === void 0) { options = {}; }
+            // verify required parameter 'auto_order_consolidate' is not null or undefined
+            if (auto_order_consolidate === null || auto_order_consolidate === undefined) {
+                throw new RequiredError('auto_order_consolidate', 'Required parameter auto_order_consolidate was null or undefined when calling consolidateAutoOrders.');
+            }
+            // verify required parameter 'auto_order_oid' is not null or undefined
+            if (auto_order_oid === null || auto_order_oid === undefined) {
+                throw new RequiredError('auto_order_oid', 'Required parameter auto_order_oid was null or undefined when calling consolidateAutoOrders.');
+            }
+            var localVarPath = "/auto_order/auto_orders/{auto_order_oid}/consolidate"
+                .replace("{".concat("auto_order_oid", "}"), encodeURIComponent(String(auto_order_oid)));
+            var localVarUrlObj = url.parse(localVarPath, true);
+            var localVarRequestOptions = Object.assign({ method: 'PUT' }, options);
+            var localVarHeaderParameter = {};
+            var localVarQueryParameter = {};
+            if (configuration && configuration.apiVersion) {
+                localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+            }
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+                var localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+                    ? configuration.accessToken("ultraCartOauth", ["auto_order_write"])
+                    : configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                var localVarApiKeyValue = typeof configuration.apiKey === 'function'
+                    ? configuration.apiKey("x-ultracart-simple-key")
+                    : configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+            if (_expand !== undefined) {
+                localVarQueryParameter['_expand'] = _expand;
+            }
+            localVarHeaderParameter['Content-Type'] = 'application/json; charset=UTF-8';
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+            var needsSerialization = ("AutoOrderConsolidate" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
+            localVarRequestOptions.body = needsSerialization ? JSON.stringify(auto_order_consolidate || {}) : (auto_order_consolidate || "");
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
          * Establish an auto order by referencing a regular order id.  The result will be an auto order without any items.  You should add the items and perform an update call.  Orders must be less than 60 days old and use a credit card payment.
          * @summary Establish an auto order by referencing a regular order id
          * @param {string} reference_order_id The order id to attach this auto order to
@@ -2570,6 +2628,30 @@ exports.AutoOrderApiFetchParamCreator = AutoOrderApiFetchParamCreator;
 var AutoOrderApiFp = function (configuration) {
     return {
         /**
+         * Consolidates mutliple auto orders on the UltraCart account.
+         * @summary Consolidates multiple auto orders
+         * @param {AutoOrderConsolidate} auto_order_consolidate Auto orders to consolidate
+         * @param {number} auto_order_oid The auto order oid to consolidate into.
+         * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        consolidateAutoOrders: function (auto_order_consolidate, auto_order_oid, _expand, options) {
+            var localVarFetchArgs = (0, exports.AutoOrderApiFetchParamCreator)(configuration).consolidateAutoOrders(auto_order_consolidate, auto_order_oid, _expand, options);
+            return function (fetch, basePath) {
+                if (fetch === void 0) { fetch = portableFetch; }
+                if (basePath === void 0) { basePath = BASE_PATH; }
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(function (response) {
+                    if (response.status >= 200 && response.status < 300) {
+                        return response.json();
+                    }
+                    else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
          * Establish an auto order by referencing a regular order id.  The result will be an auto order without any items.  You should add the items and perform an update call.  Orders must be less than 60 days old and use a credit card payment.
          * @summary Establish an auto order by referencing a regular order id
          * @param {string} reference_order_id The order id to attach this auto order to
@@ -2814,6 +2896,18 @@ exports.AutoOrderApiFp = AutoOrderApiFp;
 var AutoOrderApiFactory = function (configuration, fetch, basePath) {
     return {
         /**
+         * Consolidates mutliple auto orders on the UltraCart account.
+         * @summary Consolidates multiple auto orders
+         * @param {AutoOrderConsolidate} auto_order_consolidate Auto orders to consolidate
+         * @param {number} auto_order_oid The auto order oid to consolidate into.
+         * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        consolidateAutoOrders: function (auto_order_consolidate, auto_order_oid, _expand, options) {
+            return (0, exports.AutoOrderApiFp)(configuration).consolidateAutoOrders(auto_order_consolidate, auto_order_oid, _expand, options)(fetch, basePath);
+        },
+        /**
          * Establish an auto order by referencing a regular order id.  The result will be an auto order without any items.  You should add the items and perform an update call.  Orders must be less than 60 days old and use a credit card payment.
          * @summary Establish an auto order by referencing a regular order id
          * @param {string} reference_order_id The order id to attach this auto order to
@@ -2954,6 +3048,19 @@ var AutoOrderApi = /** @class */ (function (_super) {
     function AutoOrderApi() {
         return _super !== null && _super.apply(this, arguments) || this;
     }
+    /**
+     * Consolidates mutliple auto orders on the UltraCart account.
+     * @summary Consolidates multiple auto orders
+     * @param {AutoOrderConsolidate} auto_order_consolidate Auto orders to consolidate
+     * @param {number} auto_order_oid The auto order oid to consolidate into.
+     * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AutoOrderApi
+     */
+    AutoOrderApi.prototype.consolidateAutoOrders = function (auto_order_consolidate, auto_order_oid, _expand, options) {
+        return (0, exports.AutoOrderApiFp)(this.configuration).consolidateAutoOrders(auto_order_consolidate, auto_order_oid, _expand, options)(this.fetch, this.basePath);
+    };
     /**
      * Establish an auto order by referencing a regular order id.  The result will be an auto order without any items.  You should add the items and perform an update call.  Orders must be less than 60 days old and use a credit card payment.
      * @summary Establish an auto order by referencing a regular order id
