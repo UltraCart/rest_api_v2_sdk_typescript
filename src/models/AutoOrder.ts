@@ -159,6 +159,18 @@ export interface AutoOrder {
      */
     merchant_id?: string;
     /**
+     * The date/time the auto order was merged into another auto order
+     * @type {string}
+     * @memberof AutoOrder
+     */
+    merged_dts?: string;
+    /**
+     * The auto order that this auto order was merged into
+     * @type {number}
+     * @memberof AutoOrder
+     */
+    merged_into_auto_order_oid?: number;
+    /**
      * The next time that the auto order will be attempted for processing
      * @type {string}
      * @memberof AutoOrder
@@ -209,7 +221,8 @@ export interface AutoOrder {
 export const AutoOrderStatusEnum = {
     Active: 'active',
     Canceled: 'canceled',
-    Disabled: 'disabled'
+    Disabled: 'disabled',
+    Merged: 'merged'
 } as const;
 export type AutoOrderStatusEnum = typeof AutoOrderStatusEnum[keyof typeof AutoOrderStatusEnum];
 
@@ -242,6 +255,8 @@ export function AutoOrderFromJSONTyped(json: any, ignoreDiscriminator: boolean):
         'logs': !exists(json, 'logs') ? undefined : ((json['logs'] as Array<any>).map(AutoOrderLogFromJSON)),
         'management': !exists(json, 'management') ? undefined : AutoOrderManagementFromJSON(json['management']),
         'merchant_id': !exists(json, 'merchant_id') ? undefined : json['merchant_id'],
+        'merged_dts': !exists(json, 'merged_dts') ? undefined : json['merged_dts'],
+        'merged_into_auto_order_oid': !exists(json, 'merged_into_auto_order_oid') ? undefined : json['merged_into_auto_order_oid'],
         'next_attempt': !exists(json, 'next_attempt') ? undefined : json['next_attempt'],
         'original_order': !exists(json, 'original_order') ? undefined : OrderFromJSON(json['original_order']),
         'original_order_id': !exists(json, 'original_order_id') ? undefined : json['original_order_id'],
@@ -279,6 +294,8 @@ export function AutoOrderToJSON(value?: AutoOrder | null): any {
         'logs': value.logs === undefined ? undefined : ((value.logs as Array<any>).map(AutoOrderLogToJSON)),
         'management': AutoOrderManagementToJSON(value.management),
         'merchant_id': value.merchant_id,
+        'merged_dts': value.merged_dts,
+        'merged_into_auto_order_oid': value.merged_into_auto_order_oid,
         'next_attempt': value.next_attempt,
         'original_order': OrderToJSON(value.original_order),
         'original_order_id': value.original_order_id,
