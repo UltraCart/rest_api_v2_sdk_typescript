@@ -154,6 +154,7 @@ var AutoOrder;
         StatusEnum[StatusEnum["Active"] = 'active'] = "Active";
         StatusEnum[StatusEnum["Canceled"] = 'canceled'] = "Canceled";
         StatusEnum[StatusEnum["Disabled"] = 'disabled'] = "Disabled";
+        StatusEnum[StatusEnum["Merged"] = 'merged'] = "Merged";
     })(StatusEnum = AutoOrder.StatusEnum || (AutoOrder.StatusEnum = {}));
 })(AutoOrder = exports.AutoOrder || (exports.AutoOrder = {}));
 /**

@@ -1407,6 +1407,18 @@ export interface AutoOrder {
      */
     merchant_id?: string;
     /**
+     * The date/time the auto order was merged into another auto order
+     * @type {string}
+     * @memberof AutoOrder
+     */
+    merged_dts?: string;
+    /**
+     * The auto order that this auto order was merged into
+     * @type {number}
+     * @memberof AutoOrder
+     */
+    merged_into_auto_order_oid?: number;
+    /**
      * The next time that the auto order will be attempted for processing
      * @type {string}
      * @memberof AutoOrder
@@ -1461,7 +1473,8 @@ export declare namespace AutoOrder {
     enum StatusEnum {
         Active,
         Canceled,
-        Disabled
+        Disabled,
+        Merged
     }
 }
 /**
