@@ -8691,6 +8691,55 @@ export interface ConversationPbxAudioUploadUrlResponse {
 /**
  *
  * @export
+ * @interface ConversationPbxAudioUsageResponse
+ */
+export interface ConversationPbxAudioUsageResponse {
+    /**
+     *
+     * @type {ModelError}
+     * @memberof ConversationPbxAudioUsageResponse
+     */
+    error?: ModelError;
+    /**
+     *
+     * @type {Array<ConversationPbxMenu>}
+     * @memberof ConversationPbxAudioUsageResponse
+     */
+    menus?: Array<ConversationPbxMenu>;
+    /**
+     *
+     * @type {ResponseMetadata}
+     * @memberof ConversationPbxAudioUsageResponse
+     */
+    metadata?: ResponseMetadata;
+    /**
+     *
+     * @type {Array<ConversationPbxQueue>}
+     * @memberof ConversationPbxAudioUsageResponse
+     */
+    queues?: Array<ConversationPbxQueue>;
+    /**
+     * Indicates if API call was successful
+     * @type {boolean}
+     * @memberof ConversationPbxAudioUsageResponse
+     */
+    success?: boolean;
+    /**
+     *
+     * @type {Array<ConversationPbxVoicemailMailbox>}
+     * @memberof ConversationPbxAudioUsageResponse
+     */
+    voicemail_mailboxes?: Array<ConversationPbxVoicemailMailbox>;
+    /**
+     *
+     * @type {Warning}
+     * @memberof ConversationPbxAudioUsageResponse
+     */
+    warning?: Warning;
+}
+/**
+ *
+ * @export
  * @interface ConversationPbxAudiosResponse
  */
 export interface ConversationPbxAudiosResponse {
@@ -46324,6 +46373,14 @@ export declare const ConversationApiFetchParamCreator: (configuration?: Configur
      */
     getPbxAudio(conversationPbxAudioUuid: string, options?: any): FetchArgs;
     /**
+     * Retrieve a pbx audio usage
+     * @summary Get pbx audio usage
+     * @param {string} conversationPbxAudioUuid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getPbxAudioUsage(conversationPbxAudioUuid: string, options?: any): FetchArgs;
+    /**
      * Retrieve pbx audios
      * @summary Get pbx audios
      * @param {*} [options] Override http request option.
@@ -47021,6 +47078,14 @@ export declare const ConversationApiFp: (configuration?: Configuration) => {
      */
     getPbxAudio(conversationPbxAudioUuid: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ConversationPbxAudioResponse>;
     /**
+     * Retrieve a pbx audio usage
+     * @summary Get pbx audio usage
+     * @param {string} conversationPbxAudioUuid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getPbxAudioUsage(conversationPbxAudioUuid: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ConversationPbxAudioUsageResponse>;
+    /**
      * Retrieve pbx audios
      * @summary Get pbx audios
      * @param {*} [options] Override http request option.
@@ -47717,6 +47782,14 @@ export declare const ConversationApiFactory: (configuration?: Configuration, fet
      * @throws {RequiredError}
      */
     getPbxAudio(conversationPbxAudioUuid: string, options?: any): Promise<ConversationPbxAudioResponse>;
+    /**
+     * Retrieve a pbx audio usage
+     * @summary Get pbx audio usage
+     * @param {string} conversationPbxAudioUuid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getPbxAudioUsage(conversationPbxAudioUuid: string, options?: any): Promise<ConversationPbxAudioUsageResponse>;
     /**
      * Retrieve pbx audios
      * @summary Get pbx audios
@@ -48453,6 +48526,15 @@ export interface ConversationApiInterface {
      * @memberof ConversationApiInterface
      */
     getPbxAudio(conversationPbxAudioUuid: string, options?: any): Promise<ConversationPbxAudioResponse>;
+    /**
+     * Retrieve a pbx audio usage
+     * @summary Get pbx audio usage
+     * @param {string} conversationPbxAudioUuid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApiInterface
+     */
+    getPbxAudioUsage(conversationPbxAudioUuid: string, options?: any): Promise<ConversationPbxAudioUsageResponse>;
     /**
      * Retrieve pbx audios
      * @summary Get pbx audios
@@ -49238,6 +49320,15 @@ export declare class ConversationApi extends BaseAPI implements ConversationApiI
      * @memberof ConversationApi
      */
     getPbxAudio(conversationPbxAudioUuid: string, options?: any): Promise<ConversationPbxAudioResponse>;
+    /**
+     * Retrieve a pbx audio usage
+     * @summary Get pbx audio usage
+     * @param {string} conversationPbxAudioUuid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApi
+     */
+    getPbxAudioUsage(conversationPbxAudioUuid: string, options?: any): Promise<ConversationPbxAudioUsageResponse>;
     /**
      * Retrieve pbx audios
      * @summary Get pbx audios

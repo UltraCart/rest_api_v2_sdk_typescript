@@ -8905,6 +8905,56 @@ export interface ConversationPbxAudioUploadUrlResponse {
 /**
  * 
  * @export
+ * @interface ConversationPbxAudioUsageResponse
+ */
+export interface ConversationPbxAudioUsageResponse {
+    /**
+     * 
+     * @type {ModelError}
+     * @memberof ConversationPbxAudioUsageResponse
+     */
+    error?: ModelError;
+    /**
+     * 
+     * @type {Array<ConversationPbxMenu>}
+     * @memberof ConversationPbxAudioUsageResponse
+     */
+    menus?: Array<ConversationPbxMenu>;
+    /**
+     * 
+     * @type {ResponseMetadata}
+     * @memberof ConversationPbxAudioUsageResponse
+     */
+    metadata?: ResponseMetadata;
+    /**
+     * 
+     * @type {Array<ConversationPbxQueue>}
+     * @memberof ConversationPbxAudioUsageResponse
+     */
+    queues?: Array<ConversationPbxQueue>;
+    /**
+     * Indicates if API call was successful
+     * @type {boolean}
+     * @memberof ConversationPbxAudioUsageResponse
+     */
+    success?: boolean;
+    /**
+     * 
+     * @type {Array<ConversationPbxVoicemailMailbox>}
+     * @memberof ConversationPbxAudioUsageResponse
+     */
+    voicemail_mailboxes?: Array<ConversationPbxVoicemailMailbox>;
+    /**
+     * 
+     * @type {Warning}
+     * @memberof ConversationPbxAudioUsageResponse
+     */
+    warning?: Warning;
+}
+
+/**
+ * 
+ * @export
  * @interface ConversationPbxAudiosResponse
  */
 export interface ConversationPbxAudiosResponse {
@@ -52452,6 +52502,58 @@ export const ConversationApiFetchParamCreator = function (configuration?: Config
             };
         },
         /**
+         * Retrieve a pbx audio usage 
+         * @summary Get pbx audio usage
+         * @param {string} conversationPbxAudioUuid 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getPbxAudioUsage(conversationPbxAudioUuid: string, options: any = {}): FetchArgs {
+            // verify required parameter 'conversationPbxAudioUuid' is not null or undefined
+            if (conversationPbxAudioUuid === null || conversationPbxAudioUuid === undefined) {
+                throw new RequiredError('conversationPbxAudioUuid','Required parameter conversationPbxAudioUuid was null or undefined when calling getPbxAudioUsage.');
+            }
+            const localVarPath = `/conversation/pbx/audio/{conversationPbxAudioUuid}/usage`
+                .replace(`{${"conversationPbxAudioUuid"}}`, encodeURIComponent(String(conversationPbxAudioUuid)));
+            const localVarUrlObj = url.parse(localVarPath, true);
+            const localVarRequestOptions = Object.assign({ method: 'GET' }, options);
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+    if(configuration && configuration.apiVersion) {
+      localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+    }
+
+
+
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+				const localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+					? configuration.accessToken("ultraCartOauth", ["conversation_read"])
+					: configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
+					? configuration.apiKey("x-ultracart-simple-key")
+					: configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
          * Retrieve pbx audios 
          * @summary Get pbx audios
          * @param {*} [options] Override http request option.
@@ -55875,6 +55977,27 @@ export const ConversationApiFp = function(configuration?: Configuration) {
             };
         },
         /**
+         * Retrieve a pbx audio usage 
+         * @summary Get pbx audio usage
+         * @param {string} conversationPbxAudioUuid 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getPbxAudioUsage(conversationPbxAudioUuid: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ConversationPbxAudioUsageResponse> {
+            const localVarFetchArgs = ConversationApiFetchParamCreator(configuration).getPbxAudioUsage(conversationPbxAudioUuid, options);
+            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
+                    if (response.status >= 200 && response.status < 300) {
+                      return response.json();
+                      
+                    } else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
          * Retrieve pbx audios 
          * @summary Get pbx audios
          * @param {*} [options] Override http request option.
@@ -57275,6 +57398,16 @@ export const ConversationApiFactory = function (configuration?: Configuration, f
             return ConversationApiFp(configuration).getPbxAudio(conversationPbxAudioUuid, options)(fetch, basePath);
         },
         /**
+         * Retrieve a pbx audio usage 
+         * @summary Get pbx audio usage
+         * @param {string} conversationPbxAudioUuid 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getPbxAudioUsage(conversationPbxAudioUuid: string, options?: any) {
+            return ConversationApiFp(configuration).getPbxAudioUsage(conversationPbxAudioUuid, options)(fetch, basePath);
+        },
+        /**
          * Retrieve pbx audios 
          * @summary Get pbx audios
          * @param {*} [options] Override http request option.
@@ -58145,6 +58278,16 @@ export interface ConversationApiInterface {
      * @memberof ConversationApiInterface
      */
     getPbxAudio(conversationPbxAudioUuid: string, options?: any): Promise<ConversationPbxAudioResponse>;
+
+    /**
+     * Retrieve a pbx audio usage 
+     * @summary Get pbx audio usage
+     * @param {string} conversationPbxAudioUuid 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApiInterface
+     */
+    getPbxAudioUsage(conversationPbxAudioUuid: string, options?: any): Promise<ConversationPbxAudioUsageResponse>;
 
     /**
      * Retrieve pbx audios 
@@ -59092,6 +59235,18 @@ export class ConversationApi extends BaseAPI implements ConversationApiInterface
      */
     public getPbxAudio(conversationPbxAudioUuid: string, options?: any) {
         return ConversationApiFp(this.configuration).getPbxAudio(conversationPbxAudioUuid, options)(this.fetch, this.basePath);
+    }
+
+    /**
+     * Retrieve a pbx audio usage 
+     * @summary Get pbx audio usage
+     * @param {string} conversationPbxAudioUuid 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApi
+     */
+    public getPbxAudioUsage(conversationPbxAudioUuid: string, options?: any) {
+        return ConversationApiFp(this.configuration).getPbxAudioUsage(conversationPbxAudioUuid, options)(this.fetch, this.basePath);
     }
 
     /**
