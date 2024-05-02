@@ -201,6 +201,7 @@ src/models/ConversationPbxAudio.ts
 src/models/ConversationPbxAudioResponse.ts
 src/models/ConversationPbxAudioUploadUrl.ts
 src/models/ConversationPbxAudioUploadUrlResponse.ts
+src/models/ConversationPbxAudioUsageResponse.ts
 src/models/ConversationPbxAudiosResponse.ts
 src/models/ConversationPbxCustomerSnapshotRequest.ts
 src/models/ConversationPbxCustomerSnapshotResponse.ts

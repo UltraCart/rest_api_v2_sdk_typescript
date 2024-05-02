@@ -93,6 +93,9 @@ import {
     ConversationPbxAudioUploadUrlResponse,
     ConversationPbxAudioUploadUrlResponseFromJSON,
     ConversationPbxAudioUploadUrlResponseToJSON,
+    ConversationPbxAudioUsageResponse,
+    ConversationPbxAudioUsageResponseFromJSON,
+    ConversationPbxAudioUsageResponseToJSON,
     ConversationPbxAudiosResponse,
     ConversationPbxAudiosResponseFromJSON,
     ConversationPbxAudiosResponseToJSON,
@@ -305,6 +308,10 @@ export interface GetPbxAgentVoicemailRequest {
 }
 
 export interface GetPbxAudioRequest {
+    conversationPbxAudioUuid: string;
+}
+
+export interface GetPbxAudioUsageRequest {
     conversationPbxAudioUuid: string;
 }
 
@@ -1096,6 +1103,22 @@ export interface ConversationApiInterface {
      * Get pbx audio
      */
     getPbxAudio(requestParameters: GetPbxAudioRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ConversationPbxAudioResponse>;
+
+    /**
+     * Retrieve a pbx audio usage 
+     * @summary Get pbx audio usage
+     * @param {string} conversationPbxAudioUuid 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApiInterface
+     */
+    getPbxAudioUsageRaw(requestParameters: GetPbxAudioUsageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ConversationPbxAudioUsageResponse>>;
+
+    /**
+     * Retrieve a pbx audio usage 
+     * Get pbx audio usage
+     */
+    getPbxAudioUsage(requestParameters: GetPbxAudioUsageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ConversationPbxAudioUsageResponse>;
 
     /**
      * Retrieve pbx audios 
@@ -3418,6 +3441,47 @@ export class ConversationApi extends runtime.BaseAPI implements ConversationApiI
      */
     async getPbxAudio(requestParameters: GetPbxAudioRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ConversationPbxAudioResponse> {
         const response = await this.getPbxAudioRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Retrieve a pbx audio usage 
+     * Get pbx audio usage
+     */
+    async getPbxAudioUsageRaw(requestParameters: GetPbxAudioUsageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ConversationPbxAudioUsageResponse>> {
+        if (requestParameters.conversationPbxAudioUuid === null || requestParameters.conversationPbxAudioUuid === undefined) {
+            throw new runtime.RequiredError('conversationPbxAudioUuid','Required parameter requestParameters.conversationPbxAudioUuid was null or undefined when calling getPbxAudioUsage.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", ["conversation_read"]);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/conversation/pbx/audio/{conversationPbxAudioUuid}/usage`.replace(`{${"conversationPbxAudioUuid"}}`, encodeURIComponent(String(requestParameters.conversationPbxAudioUuid))),
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => ConversationPbxAudioUsageResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Retrieve a pbx audio usage 
+     * Get pbx audio usage
+     */
+    async getPbxAudioUsage(requestParameters: GetPbxAudioUsageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ConversationPbxAudioUsageResponse> {
+        const response = await this.getPbxAudioUsageRaw(requestParameters, initOverrides);
         return await response.value();
     }
 

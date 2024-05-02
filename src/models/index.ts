@@ -176,6 +176,7 @@ export * from './ConversationPbxAudio';
 export * from './ConversationPbxAudioResponse';
 export * from './ConversationPbxAudioUploadUrl';
 export * from './ConversationPbxAudioUploadUrlResponse';
+export * from './ConversationPbxAudioUsageResponse';
 export * from './ConversationPbxAudiosResponse';
 export * from './ConversationPbxCustomerSnapshotRequest';
 export * from './ConversationPbxCustomerSnapshotResponse';
