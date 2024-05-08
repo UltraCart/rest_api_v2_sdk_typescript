@@ -102,6 +102,42 @@ export interface OrderUtm {
      * @type {string}
      * @memberof OrderUtm
      */
+    itm_campaign?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof OrderUtm
+     */
+    itm_content?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof OrderUtm
+     */
+    itm_id?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof OrderUtm
+     */
+    itm_medium?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof OrderUtm
+     */
+    itm_source?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof OrderUtm
+     */
+    itm_term?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof OrderUtm
+     */
     msclkid?: string;
     /**
      * 
@@ -188,6 +224,12 @@ export function OrderUtmFromJSONTyped(json: any, ignoreDiscriminator: boolean): 
         'fbclid': !exists(json, 'fbclid') ? undefined : json['fbclid'],
         'gbraid': !exists(json, 'gbraid') ? undefined : json['gbraid'],
         'glcid': !exists(json, 'glcid') ? undefined : json['glcid'],
+        'itm_campaign': !exists(json, 'itm_campaign') ? undefined : json['itm_campaign'],
+        'itm_content': !exists(json, 'itm_content') ? undefined : json['itm_content'],
+        'itm_id': !exists(json, 'itm_id') ? undefined : json['itm_id'],
+        'itm_medium': !exists(json, 'itm_medium') ? undefined : json['itm_medium'],
+        'itm_source': !exists(json, 'itm_source') ? undefined : json['itm_source'],
+        'itm_term': !exists(json, 'itm_term') ? undefined : json['itm_term'],
         'msclkid': !exists(json, 'msclkid') ? undefined : json['msclkid'],
         'ttclid': !exists(json, 'ttclid') ? undefined : json['ttclid'],
         'uc_message_id': !exists(json, 'uc_message_id') ? undefined : json['uc_message_id'],
@@ -224,6 +266,12 @@ export function OrderUtmToJSON(value?: OrderUtm | null): any {
         'fbclid': value.fbclid,
         'gbraid': value.gbraid,
         'glcid': value.glcid,
+        'itm_campaign': value.itm_campaign,
+        'itm_content': value.itm_content,
+        'itm_id': value.itm_id,
+        'itm_medium': value.itm_medium,
+        'itm_source': value.itm_source,
+        'itm_term': value.itm_term,
         'msclkid': value.msclkid,
         'ttclid': value.ttclid,
         'uc_message_id': value.uc_message_id,

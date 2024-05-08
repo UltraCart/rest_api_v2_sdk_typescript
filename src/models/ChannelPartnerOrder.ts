@@ -267,6 +267,66 @@ export interface ChannelPartnerOrder {
      */
     delivery_date?: string;
     /**
+     * eCheck bank ABA code
+     * @type {string}
+     * @memberof ChannelPartnerOrder
+     */
+    echeck_bank_aba_code?: string;
+    /**
+     * eCheck bank account name
+     * @type {string}
+     * @memberof ChannelPartnerOrder
+     */
+    echeck_bank_account_name?: string;
+    /**
+     * eCheck bank account number
+     * @type {string}
+     * @memberof ChannelPartnerOrder
+     */
+    echeck_bank_account_number?: string;
+    /**
+     * eCheck bank account type
+     * @type {string}
+     * @memberof ChannelPartnerOrder
+     */
+    echeck_bank_account_type?: ChannelPartnerOrderEcheckBankAccountTypeEnum;
+    /**
+     * eCheck bank name
+     * @type {string}
+     * @memberof ChannelPartnerOrder
+     */
+    echeck_bank_name?: string;
+    /**
+     * eCheck bank owner type
+     * @type {string}
+     * @memberof ChannelPartnerOrder
+     */
+    echeck_bank_owner_type?: ChannelPartnerOrderEcheckBankOwnerTypeEnum;
+    /**
+     * eCheck customer tax id
+     * @type {string}
+     * @memberof ChannelPartnerOrder
+     */
+    echeck_customer_tax_id?: string;
+    /**
+     * eCheck drivers license dob
+     * @type {string}
+     * @memberof ChannelPartnerOrder
+     */
+    echeck_drivers_license_dob?: string;
+    /**
+     * eCheck drivers license number
+     * @type {string}
+     * @memberof ChannelPartnerOrder
+     */
+    echeck_drivers_license_number?: string;
+    /**
+     * eCheck drivers license state
+     * @type {string}
+     * @memberof ChannelPartnerOrder
+     */
+    echeck_drivers_license_state?: string;
+    /**
      * Email
      * @type {string}
      * @memberof ChannelPartnerOrder
@@ -524,12 +584,31 @@ export interface ChannelPartnerOrder {
 /**
  * @export
  */
+export const ChannelPartnerOrderEcheckBankAccountTypeEnum = {
+    Checking: 'Checking',
+    Savings: 'Savings'
+} as const;
+export type ChannelPartnerOrderEcheckBankAccountTypeEnum = typeof ChannelPartnerOrderEcheckBankAccountTypeEnum[keyof typeof ChannelPartnerOrderEcheckBankAccountTypeEnum];
+
+/**
+ * @export
+ */
+export const ChannelPartnerOrderEcheckBankOwnerTypeEnum = {
+    Business: 'Business',
+    Personal: 'Personal'
+} as const;
+export type ChannelPartnerOrderEcheckBankOwnerTypeEnum = typeof ChannelPartnerOrderEcheckBankOwnerTypeEnum[keyof typeof ChannelPartnerOrderEcheckBankOwnerTypeEnum];
+
+/**
+ * @export
+ */
 export const ChannelPartnerOrderPaymentMethodEnum = {
     Affirm: 'Affirm',
     Amazon: 'Amazon',
     Check: 'Check',
     Cod: 'COD',
     CreditCard: 'Credit Card',
+    ECheck: 'eCheck',
     LoanHero: 'LoanHero',
     MoneyOrder: 'Money Order',
     PayPal: 'PayPal',
@@ -589,6 +668,16 @@ export function ChannelPartnerOrderFromJSONTyped(json: any, ignoreDiscriminator:
         'custom_field6': !exists(json, 'custom_field6') ? undefined : json['custom_field6'],
         'custom_field7': !exists(json, 'custom_field7') ? undefined : json['custom_field7'],
         'delivery_date': !exists(json, 'delivery_date') ? undefined : json['delivery_date'],
+        'echeck_bank_aba_code': !exists(json, 'echeck_bank_aba_code') ? undefined : json['echeck_bank_aba_code'],
+        'echeck_bank_account_name': !exists(json, 'echeck_bank_account_name') ? undefined : json['echeck_bank_account_name'],
+        'echeck_bank_account_number': !exists(json, 'echeck_bank_account_number') ? undefined : json['echeck_bank_account_number'],
+        'echeck_bank_account_type': !exists(json, 'echeck_bank_account_type') ? undefined : json['echeck_bank_account_type'],
+        'echeck_bank_name': !exists(json, 'echeck_bank_name') ? undefined : json['echeck_bank_name'],
+        'echeck_bank_owner_type': !exists(json, 'echeck_bank_owner_type') ? undefined : json['echeck_bank_owner_type'],
+        'echeck_customer_tax_id': !exists(json, 'echeck_customer_tax_id') ? undefined : json['echeck_customer_tax_id'],
+        'echeck_drivers_license_dob': !exists(json, 'echeck_drivers_license_dob') ? undefined : json['echeck_drivers_license_dob'],
+        'echeck_drivers_license_number': !exists(json, 'echeck_drivers_license_number') ? undefined : json['echeck_drivers_license_number'],
+        'echeck_drivers_license_state': !exists(json, 'echeck_drivers_license_state') ? undefined : json['echeck_drivers_license_state'],
         'email': !exists(json, 'email') ? undefined : json['email'],
         'gift': !exists(json, 'gift') ? undefined : json['gift'],
         'gift_email': !exists(json, 'gift_email') ? undefined : json['gift_email'],
@@ -682,6 +771,16 @@ export function ChannelPartnerOrderToJSON(value?: ChannelPartnerOrder | null): a
         'custom_field6': value.custom_field6,
         'custom_field7': value.custom_field7,
         'delivery_date': value.delivery_date,
+        'echeck_bank_aba_code': value.echeck_bank_aba_code,
+        'echeck_bank_account_name': value.echeck_bank_account_name,
+        'echeck_bank_account_number': value.echeck_bank_account_number,
+        'echeck_bank_account_type': value.echeck_bank_account_type,
+        'echeck_bank_name': value.echeck_bank_name,
+        'echeck_bank_owner_type': value.echeck_bank_owner_type,
+        'echeck_customer_tax_id': value.echeck_customer_tax_id,
+        'echeck_drivers_license_dob': value.echeck_drivers_license_dob,
+        'echeck_drivers_license_number': value.echeck_drivers_license_number,
+        'echeck_drivers_license_state': value.echeck_drivers_license_state,
         'email': value.email,
         'gift': value.gift,
         'gift_email': value.gift_email,

@@ -62,6 +62,12 @@ export interface ConversationPbxAudio {
      */
     mime_type?: string;
     /**
+     * URL
+     * @type {string}
+     * @memberof ConversationPbxAudio
+     */
+    url?: string;
+    /**
      * User Id
      * @type {number}
      * @memberof ConversationPbxAudio
@@ -92,6 +98,7 @@ export function ConversationPbxAudioFromJSONTyped(json: any, ignoreDiscriminator
         'filename': !exists(json, 'filename') ? undefined : json['filename'],
         'merchant_id': !exists(json, 'merchant_id') ? undefined : json['merchant_id'],
         'mime_type': !exists(json, 'mime_type') ? undefined : json['mime_type'],
+        'url': !exists(json, 'url') ? undefined : json['url'],
         'user_id': !exists(json, 'user_id') ? undefined : json['user_id'],
         'version': !exists(json, 'version') ? undefined : json['version'],
     };
@@ -113,6 +120,7 @@ export function ConversationPbxAudioToJSON(value?: ConversationPbxAudio | null):
         'filename': value.filename,
         'merchant_id': value.merchant_id,
         'mime_type': value.mime_type,
+        'url': value.url,
         'user_id': value.user_id,
         'version': value.version,
     };
