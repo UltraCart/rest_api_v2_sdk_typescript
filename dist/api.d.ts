@@ -5662,6 +5662,66 @@ export interface ChannelPartnerOrder {
      */
     delivery_date?: string;
     /**
+     * eCheck bank ABA code
+     * @type {string}
+     * @memberof ChannelPartnerOrder
+     */
+    echeck_bank_aba_code?: string;
+    /**
+     * eCheck bank account name
+     * @type {string}
+     * @memberof ChannelPartnerOrder
+     */
+    echeck_bank_account_name?: string;
+    /**
+     * eCheck bank account number
+     * @type {string}
+     * @memberof ChannelPartnerOrder
+     */
+    echeck_bank_account_number?: string;
+    /**
+     * eCheck bank account type
+     * @type {string}
+     * @memberof ChannelPartnerOrder
+     */
+    echeck_bank_account_type?: ChannelPartnerOrder.EcheckBankAccountTypeEnum;
+    /**
+     * eCheck bank name
+     * @type {string}
+     * @memberof ChannelPartnerOrder
+     */
+    echeck_bank_name?: string;
+    /**
+     * eCheck bank owner type
+     * @type {string}
+     * @memberof ChannelPartnerOrder
+     */
+    echeck_bank_owner_type?: ChannelPartnerOrder.EcheckBankOwnerTypeEnum;
+    /**
+     * eCheck customer tax id
+     * @type {string}
+     * @memberof ChannelPartnerOrder
+     */
+    echeck_customer_tax_id?: string;
+    /**
+     * eCheck drivers license dob
+     * @type {string}
+     * @memberof ChannelPartnerOrder
+     */
+    echeck_drivers_license_dob?: string;
+    /**
+     * eCheck drivers license number
+     * @type {string}
+     * @memberof ChannelPartnerOrder
+     */
+    echeck_drivers_license_number?: string;
+    /**
+     * eCheck drivers license state
+     * @type {string}
+     * @memberof ChannelPartnerOrder
+     */
+    echeck_drivers_license_state?: string;
+    /**
      * Email
      * @type {string}
      * @memberof ChannelPartnerOrder
@@ -5923,12 +5983,29 @@ export declare namespace ChannelPartnerOrder {
      * @export
      * @enum {string}
      */
+    enum EcheckBankAccountTypeEnum {
+        Checking,
+        Savings
+    }
+    /**
+     * @export
+     * @enum {string}
+     */
+    enum EcheckBankOwnerTypeEnum {
+        Business,
+        Personal
+    }
+    /**
+     * @export
+     * @enum {string}
+     */
     enum PaymentMethodEnum {
         Affirm,
         Amazon,
         Check,
         COD,
         CreditCard,
+        ECheck,
         LoanHero,
         MoneyOrder,
         PayPal,
@@ -8582,6 +8659,12 @@ export interface ConversationPbxAudio {
      * @memberof ConversationPbxAudio
      */
     mime_type?: string;
+    /**
+     * URL
+     * @type {string}
+     * @memberof ConversationPbxAudio
+     */
+    url?: string;
     /**
      * User Id
      * @type {number}
@@ -35096,6 +35179,42 @@ export interface OrderUtm {
      * @memberof OrderUtm
      */
     glcid?: string;
+    /**
+     *
+     * @type {string}
+     * @memberof OrderUtm
+     */
+    itm_campaign?: string;
+    /**
+     *
+     * @type {string}
+     * @memberof OrderUtm
+     */
+    itm_content?: string;
+    /**
+     *
+     * @type {string}
+     * @memberof OrderUtm
+     */
+    itm_id?: string;
+    /**
+     *
+     * @type {string}
+     * @memberof OrderUtm
+     */
+    itm_medium?: string;
+    /**
+     *
+     * @type {string}
+     * @memberof OrderUtm
+     */
+    itm_source?: string;
+    /**
+     *
+     * @type {string}
+     * @memberof OrderUtm
+     */
+    itm_term?: string;
     /**
      *
      * @type {string}

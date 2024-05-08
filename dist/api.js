@@ -306,6 +306,24 @@ var ChannelPartnerOrder;
      * @export
      * @enum {string}
      */
+    var EcheckBankAccountTypeEnum;
+    (function (EcheckBankAccountTypeEnum) {
+        EcheckBankAccountTypeEnum[EcheckBankAccountTypeEnum["Checking"] = 'Checking'] = "Checking";
+        EcheckBankAccountTypeEnum[EcheckBankAccountTypeEnum["Savings"] = 'Savings'] = "Savings";
+    })(EcheckBankAccountTypeEnum = ChannelPartnerOrder.EcheckBankAccountTypeEnum || (ChannelPartnerOrder.EcheckBankAccountTypeEnum = {}));
+    /**
+     * @export
+     * @enum {string}
+     */
+    var EcheckBankOwnerTypeEnum;
+    (function (EcheckBankOwnerTypeEnum) {
+        EcheckBankOwnerTypeEnum[EcheckBankOwnerTypeEnum["Business"] = 'Business'] = "Business";
+        EcheckBankOwnerTypeEnum[EcheckBankOwnerTypeEnum["Personal"] = 'Personal'] = "Personal";
+    })(EcheckBankOwnerTypeEnum = ChannelPartnerOrder.EcheckBankOwnerTypeEnum || (ChannelPartnerOrder.EcheckBankOwnerTypeEnum = {}));
+    /**
+     * @export
+     * @enum {string}
+     */
     var PaymentMethodEnum;
     (function (PaymentMethodEnum) {
         PaymentMethodEnum[PaymentMethodEnum["Affirm"] = 'Affirm'] = "Affirm";
@@ -313,6 +331,7 @@ var ChannelPartnerOrder;
         PaymentMethodEnum[PaymentMethodEnum["Check"] = 'Check'] = "Check";
         PaymentMethodEnum[PaymentMethodEnum["COD"] = 'COD'] = "COD";
         PaymentMethodEnum[PaymentMethodEnum["CreditCard"] = 'Credit Card'] = "CreditCard";
+        PaymentMethodEnum[PaymentMethodEnum["ECheck"] = 'eCheck'] = "ECheck";
         PaymentMethodEnum[PaymentMethodEnum["LoanHero"] = 'LoanHero'] = "LoanHero";
         PaymentMethodEnum[PaymentMethodEnum["MoneyOrder"] = 'Money Order'] = "MoneyOrder";
         PaymentMethodEnum[PaymentMethodEnum["PayPal"] = 'PayPal'] = "PayPal";
