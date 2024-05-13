@@ -2782,6 +2782,12 @@ export interface CartCheckout {
      */
     comments?: string;
     /**
+     * Current step of the checkout (read only)
+     * @type {string}
+     * @memberof CartCheckout
+     */
+    current_step?: string;
+    /**
      * Custom field 1
      * @type {string}
      * @memberof CartCheckout
