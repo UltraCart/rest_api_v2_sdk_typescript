@@ -26,6 +26,12 @@ export interface CartCheckout {
      */
     comments?: string;
     /**
+     * Current step of the checkout (read only)
+     * @type {string}
+     * @memberof CartCheckout
+     */
+    current_step?: string;
+    /**
      * Custom field 1
      * @type {string}
      * @memberof CartCheckout
@@ -134,6 +140,7 @@ export function CartCheckoutFromJSONTyped(json: any, ignoreDiscriminator: boolea
     return {
         
         'comments': !exists(json, 'comments') ? undefined : json['comments'],
+        'current_step': !exists(json, 'current_step') ? undefined : json['current_step'],
         'custom_field1': !exists(json, 'custom_field1') ? undefined : json['custom_field1'],
         'custom_field10': !exists(json, 'custom_field10') ? undefined : json['custom_field10'],
         'custom_field2': !exists(json, 'custom_field2') ? undefined : json['custom_field2'],
@@ -163,6 +170,7 @@ export function CartCheckoutToJSON(value?: CartCheckout | null): any {
     return {
         
         'comments': value.comments,
+        'current_step': value.current_step,
         'custom_field1': value.custom_field1,
         'custom_field10': value.custom_field10,
         'custom_field2': value.custom_field2,
