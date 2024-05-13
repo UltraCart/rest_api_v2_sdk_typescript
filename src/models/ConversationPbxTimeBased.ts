@@ -31,25 +31,25 @@ export interface ConversationPbxTimeBased {
      * @type {string}
      * @memberof ConversationPbxTimeBased
      */
-    conversationPbxTimeBasedUuid?: string;
+    conversation_pbx_time_based_uuid?: string;
     /**
      * 
      * @type {ConversationPbxTimeBasedMappingConfig}
      * @memberof ConversationPbxTimeBased
      */
-    mappingConfig?: ConversationPbxTimeBasedMappingConfig;
+    mapping_config?: ConversationPbxTimeBasedMappingConfig;
     /**
      * 
      * @type {string}
      * @memberof ConversationPbxTimeBased
      */
-    merchantId?: string;
+    merchant_id?: string;
     /**
      * 
      * @type {string}
      * @memberof ConversationPbxTimeBased
      */
-    timeBasedName?: string;
+    time_based_name?: string;
 }
 
 export function ConversationPbxTimeBasedFromJSON(json: any): ConversationPbxTimeBased {
@@ -62,10 +62,10 @@ export function ConversationPbxTimeBasedFromJSONTyped(json: any, ignoreDiscrimin
     }
     return {
         
-        'conversationPbxTimeBasedUuid': !exists(json, 'conversationPbxTimeBasedUuid') ? undefined : json['conversationPbxTimeBasedUuid'],
-        'mappingConfig': !exists(json, 'mappingConfig') ? undefined : ConversationPbxTimeBasedMappingConfigFromJSON(json['mappingConfig']),
-        'merchantId': !exists(json, 'merchantId') ? undefined : json['merchantId'],
-        'timeBasedName': !exists(json, 'timeBasedName') ? undefined : json['timeBasedName'],
+        'conversation_pbx_time_based_uuid': !exists(json, 'conversation_pbx_time_based_uuid') ? undefined : json['conversation_pbx_time_based_uuid'],
+        'mapping_config': !exists(json, 'mapping_config') ? undefined : ConversationPbxTimeBasedMappingConfigFromJSON(json['mapping_config']),
+        'merchant_id': !exists(json, 'merchant_id') ? undefined : json['merchant_id'],
+        'time_based_name': !exists(json, 'time_based_name') ? undefined : json['time_based_name'],
     };
 }
 
@@ -78,10 +78,10 @@ export function ConversationPbxTimeBasedToJSON(value?: ConversationPbxTimeBased 
     }
     return {
         
-        'conversationPbxTimeBasedUuid': value.conversationPbxTimeBasedUuid,
-        'mappingConfig': ConversationPbxTimeBasedMappingConfigToJSON(value.mappingConfig),
-        'merchantId': value.merchantId,
-        'timeBasedName': value.timeBasedName,
+        'conversation_pbx_time_based_uuid': value.conversation_pbx_time_based_uuid,
+        'mapping_config': ConversationPbxTimeBasedMappingConfigToJSON(value.mapping_config),
+        'merchant_id': value.merchant_id,
+        'time_based_name': value.time_based_name,
     };
 }
 
