@@ -24,9 +24,9 @@ export interface ConversationPbxTimeBasedMapping {
      * @type {string}
      * @memberof ConversationPbxTimeBasedMapping
      */
-    action?: string;
+    action?: ConversationPbxTimeBasedMappingActionEnum;
     /**
-     * Action target
+     * Action target.  This is the UUID associated with the configuration object of that particular type.
      * @type {string}
      * @memberof ConversationPbxTimeBasedMapping
      */
@@ -44,6 +44,20 @@ export interface ConversationPbxTimeBasedMapping {
      */
     time_range_uuid?: string;
 }
+
+
+/**
+ * @export
+ */
+export const ConversationPbxTimeBasedMappingActionEnum = {
+    TimeBased: 'time based',
+    Menu: 'menu',
+    Queue: 'queue',
+    Voicemail: 'voicemail',
+    Agent: 'agent'
+} as const;
+export type ConversationPbxTimeBasedMappingActionEnum = typeof ConversationPbxTimeBasedMappingActionEnum[keyof typeof ConversationPbxTimeBasedMappingActionEnum];
+
 
 export function ConversationPbxTimeBasedMappingFromJSON(json: any): ConversationPbxTimeBasedMapping {
     return ConversationPbxTimeBasedMappingFromJSONTyped(json, false);

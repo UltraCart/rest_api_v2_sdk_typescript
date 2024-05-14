@@ -24,9 +24,9 @@ export interface ConversationPbxPhoneNumber {
      * @type {string}
      * @memberof ConversationPbxPhoneNumber
      */
-    action?: string;
+    action?: ConversationPbxPhoneNumberActionEnum;
     /**
-     * Action target
+     * Action target.  This is the UUID associated with the configuration object of that particular type.
      * @type {string}
      * @memberof ConversationPbxPhoneNumber
      */
@@ -50,6 +50,20 @@ export interface ConversationPbxPhoneNumber {
      */
     phone_number?: string;
 }
+
+
+/**
+ * @export
+ */
+export const ConversationPbxPhoneNumberActionEnum = {
+    TimeBased: 'time based',
+    Menu: 'menu',
+    Queue: 'queue',
+    Voicemail: 'voicemail',
+    Agent: 'agent'
+} as const;
+export type ConversationPbxPhoneNumberActionEnum = typeof ConversationPbxPhoneNumberActionEnum[keyof typeof ConversationPbxPhoneNumberActionEnum];
+
 
 export function ConversationPbxPhoneNumberFromJSON(json: any): ConversationPbxPhoneNumber {
     return ConversationPbxPhoneNumberFromJSONTyped(json, false);
