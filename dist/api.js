@@ -28,10 +28,10 @@ var __extends = (this && this.__extends) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.OrderAffiliateLedger = exports.Order = exports.OauthTokenResponse = exports.ItemThirdPartyEmailMarketing = exports.ItemTax = exports.ItemTag = exports.ItemShippingMethod = exports.ItemShippingDestinationRestriction = exports.ItemReview = exports.ItemRestrictionItem = exports.ItemRelatedItem = exports.ItemOptionValue = exports.ItemOption = exports.ItemContentMultimedia = exports.ItemAutoOrderStep = exports.Experiment = exports.EmailPerformance = exports.EmailCommseqStep = exports.Distance = exports.Coupon = exports.ConversationWebsocketMessage = exports.ConversationWebchatQueueStatusUpdateRequest = exports.ConversationWebchatQueueStatusAgent = exports.ConversationSummary = exports.ConversationSentiment = exports.ConversationPbxVoicemailMessageSummary = exports.ConversationPbxVoicemailMessage = exports.ConversationPbxVoicemailMailbox = exports.ConversationMessageTransportStatus = exports.ConversationMessage = exports.ConversationEventRRWeb = exports.ConversationEngagementEquationFunction = exports.ConversationEngagement = exports.ConversationAgentProfile = exports.Conversation = exports.CheckoutHandoffRequest = exports.ChannelPartnerOrderItem = exports.ChannelPartnerOrder = exports.CartKitComponentOption = exports.CartItemOption = exports.CartItemMultimedia = exports.CartCustomerProfileCreditCard = exports.AutoOrderItemSimpleSchedule = exports.AutoOrderItem = exports.AutoOrder = exports.AffiliateLink = exports.AffiliateLedger = exports.RequiredError = exports.BaseAPI = exports.COLLECTION_FORMATS = void 0;
-exports.ConversationApi = exports.ConversationApiFactory = exports.ConversationApiFp = exports.ConversationApiFetchParamCreator = exports.CheckoutApi = exports.CheckoutApiFactory = exports.CheckoutApiFp = exports.CheckoutApiFetchParamCreator = exports.ChargebackApi = exports.ChargebackApiFactory = exports.ChargebackApiFp = exports.ChargebackApiFetchParamCreator = exports.ChannelPartnerApi = exports.ChannelPartnerApiFactory = exports.ChannelPartnerApiFp = exports.ChannelPartnerApiFetchParamCreator = exports.AutoOrderApi = exports.AutoOrderApiFactory = exports.AutoOrderApiFp = exports.AutoOrderApiFetchParamCreator = exports.AffiliateApi = exports.AffiliateApiFactory = exports.AffiliateApiFp = exports.AffiliateApiFetchParamCreator = exports.WorkflowTasksRequest = exports.WorkflowTask = exports.Weight = exports.Webhook = exports.TempMultimedia = exports.ReportWebsocketEvent = exports.ReportPageVisualizationMetric = exports.ReportPageVisualization = exports.ReportFilter = exports.ReportExecuteQueriesRequest = exports.ReportDataSourceSchema = exports.ReportDataSetSchema = exports.ReportDataSetQuery = exports.ReportDataSet = exports.Report = exports.PointOfSaleReader = exports.OrderQuery = exports.OrderPaymentECheck = exports.OrderPaymentCreditCard = exports.OrderPayment = exports.OrderItemOption = exports.OrderItem = exports.OrderFraudScore = exports.OrderFormat = exports.OrderEdiDocument = exports.OrderAutoOrder = void 0;
-exports.UserApiFp = exports.UserApiFetchParamCreator = exports.TaxApi = exports.TaxApiFactory = exports.TaxApiFp = exports.TaxApiFetchParamCreator = exports.StorefrontApi = exports.StorefrontApiFactory = exports.StorefrontApiFp = exports.StorefrontApiFetchParamCreator = exports.SsoApi = exports.SsoApiFactory = exports.SsoApiFp = exports.SsoApiFetchParamCreator = exports.OrderApi = exports.OrderApiFactory = exports.OrderApiFp = exports.OrderApiFetchParamCreator = exports.OauthApi = exports.OauthApiFactory = exports.OauthApiFp = exports.OauthApiFetchParamCreator = exports.ItemApi = exports.ItemApiFactory = exports.ItemApiFp = exports.ItemApiFetchParamCreator = exports.IntegrationLogApi = exports.IntegrationLogApiFactory = exports.IntegrationLogApiFp = exports.IntegrationLogApiFetchParamCreator = exports.GiftCertificateApi = exports.GiftCertificateApiFactory = exports.GiftCertificateApiFp = exports.GiftCertificateApiFetchParamCreator = exports.FulfillmentApi = exports.FulfillmentApiFactory = exports.FulfillmentApiFp = exports.FulfillmentApiFetchParamCreator = exports.DatawarehouseApi = exports.DatawarehouseApiFactory = exports.DatawarehouseApiFp = exports.DatawarehouseApiFetchParamCreator = exports.CustomerApi = exports.CustomerApiFactory = exports.CustomerApiFp = exports.CustomerApiFetchParamCreator = exports.CouponApi = exports.CouponApiFactory = exports.CouponApiFp = exports.CouponApiFetchParamCreator = void 0;
-exports.WorkflowApi = exports.WorkflowApiFactory = exports.WorkflowApiFp = exports.WorkflowApiFetchParamCreator = exports.WebhookApi = exports.WebhookApiFactory = exports.WebhookApiFp = exports.WebhookApiFetchParamCreator = exports.UserApi = exports.UserApiFactory = void 0;
+exports.ItemThirdPartyEmailMarketing = exports.ItemTax = exports.ItemTag = exports.ItemShippingMethod = exports.ItemShippingDestinationRestriction = exports.ItemReview = exports.ItemRestrictionItem = exports.ItemRelatedItem = exports.ItemOptionValue = exports.ItemOption = exports.ItemContentMultimedia = exports.ItemAutoOrderStep = exports.Experiment = exports.EmailPerformance = exports.EmailCommseqStep = exports.Distance = exports.Coupon = exports.ConversationWebsocketMessage = exports.ConversationWebchatQueueStatusUpdateRequest = exports.ConversationWebchatQueueStatusAgent = exports.ConversationSummary = exports.ConversationSentiment = exports.ConversationPbxVoicemailMessageSummary = exports.ConversationPbxVoicemailMessage = exports.ConversationPbxVoicemailMailbox = exports.ConversationPbxTimeBasedMapping = exports.ConversationPbxPhoneNumber = exports.ConversationPbxMenuMapping = exports.ConversationMessageTransportStatus = exports.ConversationMessage = exports.ConversationEventRRWeb = exports.ConversationEngagementEquationFunction = exports.ConversationEngagement = exports.ConversationAgentProfile = exports.Conversation = exports.CheckoutHandoffRequest = exports.ChannelPartnerOrderItem = exports.ChannelPartnerOrder = exports.CartKitComponentOption = exports.CartItemOption = exports.CartItemMultimedia = exports.CartCustomerProfileCreditCard = exports.AutoOrderItemSimpleSchedule = exports.AutoOrderItem = exports.AutoOrder = exports.AffiliateLink = exports.AffiliateLedger = exports.RequiredError = exports.BaseAPI = exports.COLLECTION_FORMATS = void 0;
+exports.ConversationApiFetchParamCreator = exports.CheckoutApi = exports.CheckoutApiFactory = exports.CheckoutApiFp = exports.CheckoutApiFetchParamCreator = exports.ChargebackApi = exports.ChargebackApiFactory = exports.ChargebackApiFp = exports.ChargebackApiFetchParamCreator = exports.ChannelPartnerApi = exports.ChannelPartnerApiFactory = exports.ChannelPartnerApiFp = exports.ChannelPartnerApiFetchParamCreator = exports.AutoOrderApi = exports.AutoOrderApiFactory = exports.AutoOrderApiFp = exports.AutoOrderApiFetchParamCreator = exports.AffiliateApi = exports.AffiliateApiFactory = exports.AffiliateApiFp = exports.AffiliateApiFetchParamCreator = exports.WorkflowTasksRequest = exports.WorkflowTask = exports.Weight = exports.Webhook = exports.TempMultimedia = exports.ReportWebsocketEvent = exports.ReportPageVisualizationMetric = exports.ReportPageVisualization = exports.ReportFilter = exports.ReportExecuteQueriesRequest = exports.ReportDataSourceSchema = exports.ReportDataSetSchema = exports.ReportDataSetQuery = exports.ReportDataSet = exports.Report = exports.PointOfSaleReader = exports.OrderQuery = exports.OrderPaymentECheck = exports.OrderPaymentCreditCard = exports.OrderPayment = exports.OrderItemOption = exports.OrderItem = exports.OrderFraudScore = exports.OrderFormat = exports.OrderEdiDocument = exports.OrderAutoOrder = exports.OrderAffiliateLedger = exports.Order = exports.OauthTokenResponse = void 0;
+exports.TaxApiFactory = exports.TaxApiFp = exports.TaxApiFetchParamCreator = exports.StorefrontApi = exports.StorefrontApiFactory = exports.StorefrontApiFp = exports.StorefrontApiFetchParamCreator = exports.SsoApi = exports.SsoApiFactory = exports.SsoApiFp = exports.SsoApiFetchParamCreator = exports.OrderApi = exports.OrderApiFactory = exports.OrderApiFp = exports.OrderApiFetchParamCreator = exports.OauthApi = exports.OauthApiFactory = exports.OauthApiFp = exports.OauthApiFetchParamCreator = exports.ItemApi = exports.ItemApiFactory = exports.ItemApiFp = exports.ItemApiFetchParamCreator = exports.IntegrationLogApi = exports.IntegrationLogApiFactory = exports.IntegrationLogApiFp = exports.IntegrationLogApiFetchParamCreator = exports.GiftCertificateApi = exports.GiftCertificateApiFactory = exports.GiftCertificateApiFp = exports.GiftCertificateApiFetchParamCreator = exports.FulfillmentApi = exports.FulfillmentApiFactory = exports.FulfillmentApiFp = exports.FulfillmentApiFetchParamCreator = exports.DatawarehouseApi = exports.DatawarehouseApiFactory = exports.DatawarehouseApiFp = exports.DatawarehouseApiFetchParamCreator = exports.CustomerApi = exports.CustomerApiFactory = exports.CustomerApiFp = exports.CustomerApiFetchParamCreator = exports.CouponApi = exports.CouponApiFactory = exports.CouponApiFp = exports.CouponApiFetchParamCreator = exports.ConversationApi = exports.ConversationApiFactory = exports.ConversationApiFp = void 0;
+exports.WorkflowApi = exports.WorkflowApiFactory = exports.WorkflowApiFp = exports.WorkflowApiFetchParamCreator = exports.WebhookApi = exports.WebhookApiFactory = exports.WebhookApiFp = exports.WebhookApiFetchParamCreator = exports.UserApi = exports.UserApiFactory = exports.UserApiFp = exports.UserApiFetchParamCreator = exports.TaxApi = void 0;
 var url = require("url");
 var portableFetch = require("portable-fetch");
 var BASE_PATH = "https://secure.ultracart.com/rest/v2".replace(/\/+$/, "");
@@ -581,6 +581,63 @@ var ConversationMessageTransportStatus;
         StatusEnum[StatusEnum["PINPOINTERROR"] = 'PINPOINT_ERROR'] = "PINPOINTERROR";
     })(StatusEnum = ConversationMessageTransportStatus.StatusEnum || (ConversationMessageTransportStatus.StatusEnum = {}));
 })(ConversationMessageTransportStatus = exports.ConversationMessageTransportStatus || (exports.ConversationMessageTransportStatus = {}));
+/**
+ * @export
+ * @namespace ConversationPbxMenuMapping
+ */
+var ConversationPbxMenuMapping;
+(function (ConversationPbxMenuMapping) {
+    /**
+     * @export
+     * @enum {string}
+     */
+    var ActionEnum;
+    (function (ActionEnum) {
+        ActionEnum[ActionEnum["TimeBased"] = 'time based'] = "TimeBased";
+        ActionEnum[ActionEnum["Menu"] = 'menu'] = "Menu";
+        ActionEnum[ActionEnum["Queue"] = 'queue'] = "Queue";
+        ActionEnum[ActionEnum["Voicemail"] = 'voicemail'] = "Voicemail";
+        ActionEnum[ActionEnum["Agent"] = 'agent'] = "Agent";
+    })(ActionEnum = ConversationPbxMenuMapping.ActionEnum || (ConversationPbxMenuMapping.ActionEnum = {}));
+})(ConversationPbxMenuMapping = exports.ConversationPbxMenuMapping || (exports.ConversationPbxMenuMapping = {}));
+/**
+ * @export
+ * @namespace ConversationPbxPhoneNumber
+ */
+var ConversationPbxPhoneNumber;
+(function (ConversationPbxPhoneNumber) {
+    /**
+     * @export
+     * @enum {string}
+     */
+    var ActionEnum;
+    (function (ActionEnum) {
+        ActionEnum[ActionEnum["TimeBased"] = 'time based'] = "TimeBased";
+        ActionEnum[ActionEnum["Menu"] = 'menu'] = "Menu";
+        ActionEnum[ActionEnum["Queue"] = 'queue'] = "Queue";
+        ActionEnum[ActionEnum["Voicemail"] = 'voicemail'] = "Voicemail";
+        ActionEnum[ActionEnum["Agent"] = 'agent'] = "Agent";
+    })(ActionEnum = ConversationPbxPhoneNumber.ActionEnum || (ConversationPbxPhoneNumber.ActionEnum = {}));
+})(ConversationPbxPhoneNumber = exports.ConversationPbxPhoneNumber || (exports.ConversationPbxPhoneNumber = {}));
+/**
+ * @export
+ * @namespace ConversationPbxTimeBasedMapping
+ */
+var ConversationPbxTimeBasedMapping;
+(function (ConversationPbxTimeBasedMapping) {
+    /**
+     * @export
+     * @enum {string}
+     */
+    var ActionEnum;
+    (function (ActionEnum) {
+        ActionEnum[ActionEnum["TimeBased"] = 'time based'] = "TimeBased";
+        ActionEnum[ActionEnum["Menu"] = 'menu'] = "Menu";
+        ActionEnum[ActionEnum["Queue"] = 'queue'] = "Queue";
+        ActionEnum[ActionEnum["Voicemail"] = 'voicemail'] = "Voicemail";
+        ActionEnum[ActionEnum["Agent"] = 'agent'] = "Agent";
+    })(ActionEnum = ConversationPbxTimeBasedMapping.ActionEnum || (ConversationPbxTimeBasedMapping.ActionEnum = {}));
+})(ConversationPbxTimeBasedMapping = exports.ConversationPbxTimeBasedMapping || (exports.ConversationPbxTimeBasedMapping = {}));
 /**
  * @export
  * @namespace ConversationPbxVoicemailMailbox

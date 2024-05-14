@@ -9045,9 +9045,9 @@ export interface ConversationPbxMenuMapping {
      * @type {string}
      * @memberof ConversationPbxMenuMapping
      */
-    action?: string;
+    action?: ConversationPbxMenuMapping.ActionEnum;
     /**
-     * Action target
+     * Action target.  This is the UUID associated with the configuration object of that particular type.
      * @type {string}
      * @memberof ConversationPbxMenuMapping
      */
@@ -9064,6 +9064,23 @@ export interface ConversationPbxMenuMapping {
      * @memberof ConversationPbxMenuMapping
      */
     speech?: string;
+}
+/**
+ * @export
+ * @namespace ConversationPbxMenuMapping
+ */
+export declare namespace ConversationPbxMenuMapping {
+    /**
+     * @export
+     * @enum {string}
+     */
+    enum ActionEnum {
+        TimeBased,
+        Menu,
+        Queue,
+        Voicemail,
+        Agent
+    }
 }
 /**
  *
@@ -9150,9 +9167,9 @@ export interface ConversationPbxPhoneNumber {
      * @type {string}
      * @memberof ConversationPbxPhoneNumber
      */
-    action?: string;
+    action?: ConversationPbxPhoneNumber.ActionEnum;
     /**
-     * Action target
+     * Action target.  This is the UUID associated with the configuration object of that particular type.
      * @type {string}
      * @memberof ConversationPbxPhoneNumber
      */
@@ -9175,6 +9192,23 @@ export interface ConversationPbxPhoneNumber {
      * @memberof ConversationPbxPhoneNumber
      */
     phone_number?: string;
+}
+/**
+ * @export
+ * @namespace ConversationPbxPhoneNumber
+ */
+export declare namespace ConversationPbxPhoneNumber {
+    /**
+     * @export
+     * @enum {string}
+     */
+    enum ActionEnum {
+        TimeBased,
+        Menu,
+        Queue,
+        Voicemail,
+        Agent
+    }
 }
 /**
  *
@@ -9518,9 +9552,9 @@ export interface ConversationPbxTimeBasedMapping {
      * @type {string}
      * @memberof ConversationPbxTimeBasedMapping
      */
-    action?: string;
+    action?: ConversationPbxTimeBasedMapping.ActionEnum;
     /**
-     * Action target
+     * Action target.  This is the UUID associated with the configuration object of that particular type.
      * @type {string}
      * @memberof ConversationPbxTimeBasedMapping
      */
@@ -9537,6 +9571,23 @@ export interface ConversationPbxTimeBasedMapping {
      * @memberof ConversationPbxTimeBasedMapping
      */
     time_range_uuid?: string;
+}
+/**
+ * @export
+ * @namespace ConversationPbxTimeBasedMapping
+ */
+export declare namespace ConversationPbxTimeBasedMapping {
+    /**
+     * @export
+     * @enum {string}
+     */
+    enum ActionEnum {
+        TimeBased,
+        Menu,
+        Queue,
+        Voicemail,
+        Agent
+    }
 }
 /**
  *
