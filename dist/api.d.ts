@@ -8507,11 +8507,29 @@ export interface ConversationPbxAgent {
      */
     conversation_pbx_voicemail_mailbox_uuid?: string;
     /**
+     * Extension
+     * @type {number}
+     * @memberof ConversationPbxAgent
+     */
+    extension?: number;
+    /**
      * True if calls to this agent should be forwarded to their cellphone
      * @type {boolean}
      * @memberof ConversationPbxAgent
      */
     forward_calls_to_cellphone?: boolean;
+    /**
+     * Full name
+     * @type {string}
+     * @memberof ConversationPbxAgent
+     */
+    full_name?: string;
+    /**
+     * Agent login
+     * @type {string}
+     * @memberof ConversationPbxAgent
+     */
+    login?: string;
     /**
      * Merchant Id
      * @type {string}
@@ -8530,6 +8548,24 @@ export interface ConversationPbxAgent {
      * @memberof ConversationPbxAgent
      */
     twilio_taskrouter_worker_id?: string;
+    /**
+     * Unavailable play audio UUID
+     * @type {string}
+     * @memberof ConversationPbxAgent
+     */
+    unavailable_play_audio_uuid?: string;
+    /**
+     * Unavailable say
+     * @type {string}
+     * @memberof ConversationPbxAgent
+     */
+    unavailable_say?: string;
+    /**
+     * Unavailable say voice
+     * @type {string}
+     * @memberof ConversationPbxAgent
+     */
+    unavailable_say_voice?: string;
     /**
      * User Id
      * @type {number}
@@ -46274,14 +46310,6 @@ export declare const ConversationApiFetchParamCreator: (configuration?: Configur
      */
     deleteEngagement(conversation_engagement_oid: number, options?: any): FetchArgs;
     /**
-     * Delete a pbx agent
-     * @summary Delete pbx agent
-     * @param {string} conversationPbxAgentUuid
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    deletePbxAgent(conversationPbxAgentUuid: string, options?: any): FetchArgs;
-    /**
      * Delete pbx agent Voicemail
      * @summary Delete Agent Voicemail
      * @param {string} recording_sid
@@ -46305,14 +46333,6 @@ export declare const ConversationApiFetchParamCreator: (configuration?: Configur
      * @throws {RequiredError}
      */
     deletePbxMenu(conversationPbxMenuUuid: string, options?: any): FetchArgs;
-    /**
-     * Delete a pbx phoneNumber
-     * @summary Delete pbx phoneNumber
-     * @param {string} conversationPbxPhoneNumberUuid
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    deletePbxPhoneNumber(conversationPbxPhoneNumberUuid: string, options?: any): FetchArgs;
     /**
      * Delete a pbx queue
      * @summary Delete pbx queue
@@ -46695,14 +46715,6 @@ export declare const ConversationApiFetchParamCreator: (configuration?: Configur
      */
     insertConversationEngagement(engagement: ConversationEngagement, options?: any): FetchArgs;
     /**
-     * Insert a pbx agent
-     * @summary Insert pbx agent
-     * @param {ConversationPbxAgent} pbx_agent Pbx Agent
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    insertPbxAgent(pbx_agent: ConversationPbxAgent, options?: any): FetchArgs;
-    /**
      * Insert a pbx audio
      * @summary Insert pbx audio
      * @param {ConversationPbxAudio} pbx_audio Pbx Audio
@@ -46718,14 +46730,6 @@ export declare const ConversationApiFetchParamCreator: (configuration?: Configur
      * @throws {RequiredError}
      */
     insertPbxMenu(pbx_menu: ConversationPbxMenu, options?: any): FetchArgs;
-    /**
-     * Insert a pbx phoneNumber
-     * @summary Insert pbx phoneNumber
-     * @param {ConversationPbxPhoneNumber} pbx_phoneNumber Pbx PhoneNumber
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    insertPbxPhoneNumber(pbx_phoneNumber: ConversationPbxPhoneNumber, options?: any): FetchArgs;
     /**
      * Insert a pbx queue
      * @summary Insert pbx queue
@@ -46979,14 +46983,6 @@ export declare const ConversationApiFp: (configuration?: Configuration) => {
      */
     deleteEngagement(conversation_engagement_oid: number, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Response>;
     /**
-     * Delete a pbx agent
-     * @summary Delete pbx agent
-     * @param {string} conversationPbxAgentUuid
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    deletePbxAgent(conversationPbxAgentUuid: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ConversationPbxAgentResponse>;
-    /**
      * Delete pbx agent Voicemail
      * @summary Delete Agent Voicemail
      * @param {string} recording_sid
@@ -47010,14 +47006,6 @@ export declare const ConversationApiFp: (configuration?: Configuration) => {
      * @throws {RequiredError}
      */
     deletePbxMenu(conversationPbxMenuUuid: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ConversationPbxMenuResponse>;
-    /**
-     * Delete a pbx phoneNumber
-     * @summary Delete pbx phoneNumber
-     * @param {string} conversationPbxPhoneNumberUuid
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    deletePbxPhoneNumber(conversationPbxPhoneNumberUuid: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ConversationPbxPhoneNumberResponse>;
     /**
      * Delete a pbx queue
      * @summary Delete pbx queue
@@ -47400,14 +47388,6 @@ export declare const ConversationApiFp: (configuration?: Configuration) => {
      */
     insertConversationEngagement(engagement: ConversationEngagement, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ConversationEngagementResponse>;
     /**
-     * Insert a pbx agent
-     * @summary Insert pbx agent
-     * @param {ConversationPbxAgent} pbx_agent Pbx Agent
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    insertPbxAgent(pbx_agent: ConversationPbxAgent, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ConversationPbxAgentResponse>;
-    /**
      * Insert a pbx audio
      * @summary Insert pbx audio
      * @param {ConversationPbxAudio} pbx_audio Pbx Audio
@@ -47423,14 +47403,6 @@ export declare const ConversationApiFp: (configuration?: Configuration) => {
      * @throws {RequiredError}
      */
     insertPbxMenu(pbx_menu: ConversationPbxMenu, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ConversationPbxMenuResponse>;
-    /**
-     * Insert a pbx phoneNumber
-     * @summary Insert pbx phoneNumber
-     * @param {ConversationPbxPhoneNumber} pbx_phoneNumber Pbx PhoneNumber
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    insertPbxPhoneNumber(pbx_phoneNumber: ConversationPbxPhoneNumber, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ConversationPbxPhoneNumberResponse>;
     /**
      * Insert a pbx queue
      * @summary Insert pbx queue
@@ -47684,14 +47656,6 @@ export declare const ConversationApiFactory: (configuration?: Configuration, fet
      */
     deleteEngagement(conversation_engagement_oid: number, options?: any): Promise<Response>;
     /**
-     * Delete a pbx agent
-     * @summary Delete pbx agent
-     * @param {string} conversationPbxAgentUuid
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    deletePbxAgent(conversationPbxAgentUuid: string, options?: any): Promise<ConversationPbxAgentResponse>;
-    /**
      * Delete pbx agent Voicemail
      * @summary Delete Agent Voicemail
      * @param {string} recording_sid
@@ -47715,14 +47679,6 @@ export declare const ConversationApiFactory: (configuration?: Configuration, fet
      * @throws {RequiredError}
      */
     deletePbxMenu(conversationPbxMenuUuid: string, options?: any): Promise<ConversationPbxMenuResponse>;
-    /**
-     * Delete a pbx phoneNumber
-     * @summary Delete pbx phoneNumber
-     * @param {string} conversationPbxPhoneNumberUuid
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    deletePbxPhoneNumber(conversationPbxPhoneNumberUuid: string, options?: any): Promise<ConversationPbxPhoneNumberResponse>;
     /**
      * Delete a pbx queue
      * @summary Delete pbx queue
@@ -48105,14 +48061,6 @@ export declare const ConversationApiFactory: (configuration?: Configuration, fet
      */
     insertConversationEngagement(engagement: ConversationEngagement, options?: any): Promise<ConversationEngagementResponse>;
     /**
-     * Insert a pbx agent
-     * @summary Insert pbx agent
-     * @param {ConversationPbxAgent} pbx_agent Pbx Agent
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    insertPbxAgent(pbx_agent: ConversationPbxAgent, options?: any): Promise<ConversationPbxAgentResponse>;
-    /**
      * Insert a pbx audio
      * @summary Insert pbx audio
      * @param {ConversationPbxAudio} pbx_audio Pbx Audio
@@ -48128,14 +48076,6 @@ export declare const ConversationApiFactory: (configuration?: Configuration, fet
      * @throws {RequiredError}
      */
     insertPbxMenu(pbx_menu: ConversationPbxMenu, options?: any): Promise<ConversationPbxMenuResponse>;
-    /**
-     * Insert a pbx phoneNumber
-     * @summary Insert pbx phoneNumber
-     * @param {ConversationPbxPhoneNumber} pbx_phoneNumber Pbx PhoneNumber
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    insertPbxPhoneNumber(pbx_phoneNumber: ConversationPbxPhoneNumber, options?: any): Promise<ConversationPbxPhoneNumberResponse>;
     /**
      * Insert a pbx queue
      * @summary Insert pbx queue
@@ -48393,15 +48333,6 @@ export interface ConversationApiInterface {
      */
     deleteEngagement(conversation_engagement_oid: number, options?: any): Promise<{}>;
     /**
-     * Delete a pbx agent
-     * @summary Delete pbx agent
-     * @param {string} conversationPbxAgentUuid
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ConversationApiInterface
-     */
-    deletePbxAgent(conversationPbxAgentUuid: string, options?: any): Promise<ConversationPbxAgentResponse>;
-    /**
      * Delete pbx agent Voicemail
      * @summary Delete Agent Voicemail
      * @param {string} recording_sid
@@ -48428,15 +48359,6 @@ export interface ConversationApiInterface {
      * @memberof ConversationApiInterface
      */
     deletePbxMenu(conversationPbxMenuUuid: string, options?: any): Promise<ConversationPbxMenuResponse>;
-    /**
-     * Delete a pbx phoneNumber
-     * @summary Delete pbx phoneNumber
-     * @param {string} conversationPbxPhoneNumberUuid
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ConversationApiInterface
-     */
-    deletePbxPhoneNumber(conversationPbxPhoneNumberUuid: string, options?: any): Promise<ConversationPbxPhoneNumberResponse>;
     /**
      * Delete a pbx queue
      * @summary Delete pbx queue
@@ -48868,15 +48790,6 @@ export interface ConversationApiInterface {
      */
     insertConversationEngagement(engagement: ConversationEngagement, options?: any): Promise<ConversationEngagementResponse>;
     /**
-     * Insert a pbx agent
-     * @summary Insert pbx agent
-     * @param {ConversationPbxAgent} pbx_agent Pbx Agent
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ConversationApiInterface
-     */
-    insertPbxAgent(pbx_agent: ConversationPbxAgent, options?: any): Promise<ConversationPbxAgentResponse>;
-    /**
      * Insert a pbx audio
      * @summary Insert pbx audio
      * @param {ConversationPbxAudio} pbx_audio Pbx Audio
@@ -48894,15 +48807,6 @@ export interface ConversationApiInterface {
      * @memberof ConversationApiInterface
      */
     insertPbxMenu(pbx_menu: ConversationPbxMenu, options?: any): Promise<ConversationPbxMenuResponse>;
-    /**
-     * Insert a pbx phoneNumber
-     * @summary Insert pbx phoneNumber
-     * @param {ConversationPbxPhoneNumber} pbx_phoneNumber Pbx PhoneNumber
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ConversationApiInterface
-     */
-    insertPbxPhoneNumber(pbx_phoneNumber: ConversationPbxPhoneNumber, options?: any): Promise<ConversationPbxPhoneNumberResponse>;
     /**
      * Insert a pbx queue
      * @summary Insert pbx queue
@@ -49187,15 +49091,6 @@ export declare class ConversationApi extends BaseAPI implements ConversationApiI
      */
     deleteEngagement(conversation_engagement_oid: number, options?: any): Promise<Response>;
     /**
-     * Delete a pbx agent
-     * @summary Delete pbx agent
-     * @param {string} conversationPbxAgentUuid
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ConversationApi
-     */
-    deletePbxAgent(conversationPbxAgentUuid: string, options?: any): Promise<ConversationPbxAgentResponse>;
-    /**
      * Delete pbx agent Voicemail
      * @summary Delete Agent Voicemail
      * @param {string} recording_sid
@@ -49222,15 +49117,6 @@ export declare class ConversationApi extends BaseAPI implements ConversationApiI
      * @memberof ConversationApi
      */
     deletePbxMenu(conversationPbxMenuUuid: string, options?: any): Promise<ConversationPbxMenuResponse>;
-    /**
-     * Delete a pbx phoneNumber
-     * @summary Delete pbx phoneNumber
-     * @param {string} conversationPbxPhoneNumberUuid
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ConversationApi
-     */
-    deletePbxPhoneNumber(conversationPbxPhoneNumberUuid: string, options?: any): Promise<ConversationPbxPhoneNumberResponse>;
     /**
      * Delete a pbx queue
      * @summary Delete pbx queue
@@ -49662,15 +49548,6 @@ export declare class ConversationApi extends BaseAPI implements ConversationApiI
      */
     insertConversationEngagement(engagement: ConversationEngagement, options?: any): Promise<ConversationEngagementResponse>;
     /**
-     * Insert a pbx agent
-     * @summary Insert pbx agent
-     * @param {ConversationPbxAgent} pbx_agent Pbx Agent
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ConversationApi
-     */
-    insertPbxAgent(pbx_agent: ConversationPbxAgent, options?: any): Promise<ConversationPbxAgentResponse>;
-    /**
      * Insert a pbx audio
      * @summary Insert pbx audio
      * @param {ConversationPbxAudio} pbx_audio Pbx Audio
@@ -49688,15 +49565,6 @@ export declare class ConversationApi extends BaseAPI implements ConversationApiI
      * @memberof ConversationApi
      */
     insertPbxMenu(pbx_menu: ConversationPbxMenu, options?: any): Promise<ConversationPbxMenuResponse>;
-    /**
-     * Insert a pbx phoneNumber
-     * @summary Insert pbx phoneNumber
-     * @param {ConversationPbxPhoneNumber} pbx_phoneNumber Pbx PhoneNumber
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ConversationApi
-     */
-    insertPbxPhoneNumber(pbx_phoneNumber: ConversationPbxPhoneNumber, options?: any): Promise<ConversationPbxPhoneNumberResponse>;
     /**
      * Insert a pbx queue
      * @summary Insert pbx queue

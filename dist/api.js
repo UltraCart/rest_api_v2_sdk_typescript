@@ -7038,52 +7038,6 @@ var ConversationApiFetchParamCreator = function (configuration) {
             };
         },
         /**
-         * Delete a pbx agent
-         * @summary Delete pbx agent
-         * @param {string} conversationPbxAgentUuid
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        deletePbxAgent: function (conversationPbxAgentUuid, options) {
-            if (options === void 0) { options = {}; }
-            // verify required parameter 'conversationPbxAgentUuid' is not null or undefined
-            if (conversationPbxAgentUuid === null || conversationPbxAgentUuid === undefined) {
-                throw new RequiredError('conversationPbxAgentUuid', 'Required parameter conversationPbxAgentUuid was null or undefined when calling deletePbxAgent.');
-            }
-            var localVarPath = "/conversation/pbx/agent/{conversationPbxAgentUuid}"
-                .replace("{".concat("conversationPbxAgentUuid", "}"), encodeURIComponent(String(conversationPbxAgentUuid)));
-            var localVarUrlObj = url.parse(localVarPath, true);
-            var localVarRequestOptions = Object.assign({ method: 'DELETE' }, options);
-            var localVarHeaderParameter = {};
-            var localVarQueryParameter = {};
-            if (configuration && configuration.apiVersion) {
-                localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
-            }
-            // authentication ultraCartOauth required
-            // oauth required
-            if (configuration && configuration.accessToken) {
-                var localVarAccessTokenValue = typeof configuration.accessToken === 'function'
-                    ? configuration.accessToken("ultraCartOauth", ["conversation_write"])
-                    : configuration.accessToken;
-                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
-            }
-            // authentication ultraCartSimpleApiKey required
-            if (configuration && configuration.apiKey) {
-                var localVarApiKeyValue = typeof configuration.apiKey === 'function'
-                    ? configuration.apiKey("x-ultracart-simple-key")
-                    : configuration.apiKey;
-                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
-            }
-            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
-            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
-            delete localVarUrlObj.search;
-            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
-            return {
-                url: url.format(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
          * Delete pbx agent Voicemail
          * @summary Delete Agent Voicemail
          * @param {string} recording_sid
@@ -7190,52 +7144,6 @@ var ConversationApiFetchParamCreator = function (configuration) {
             }
             var localVarPath = "/conversation/pbx/menu/{conversationPbxMenuUuid}"
                 .replace("{".concat("conversationPbxMenuUuid", "}"), encodeURIComponent(String(conversationPbxMenuUuid)));
-            var localVarUrlObj = url.parse(localVarPath, true);
-            var localVarRequestOptions = Object.assign({ method: 'DELETE' }, options);
-            var localVarHeaderParameter = {};
-            var localVarQueryParameter = {};
-            if (configuration && configuration.apiVersion) {
-                localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
-            }
-            // authentication ultraCartOauth required
-            // oauth required
-            if (configuration && configuration.accessToken) {
-                var localVarAccessTokenValue = typeof configuration.accessToken === 'function'
-                    ? configuration.accessToken("ultraCartOauth", ["conversation_write"])
-                    : configuration.accessToken;
-                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
-            }
-            // authentication ultraCartSimpleApiKey required
-            if (configuration && configuration.apiKey) {
-                var localVarApiKeyValue = typeof configuration.apiKey === 'function'
-                    ? configuration.apiKey("x-ultracart-simple-key")
-                    : configuration.apiKey;
-                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
-            }
-            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
-            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
-            delete localVarUrlObj.search;
-            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
-            return {
-                url: url.format(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * Delete a pbx phoneNumber
-         * @summary Delete pbx phoneNumber
-         * @param {string} conversationPbxPhoneNumberUuid
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        deletePbxPhoneNumber: function (conversationPbxPhoneNumberUuid, options) {
-            if (options === void 0) { options = {}; }
-            // verify required parameter 'conversationPbxPhoneNumberUuid' is not null or undefined
-            if (conversationPbxPhoneNumberUuid === null || conversationPbxPhoneNumberUuid === undefined) {
-                throw new RequiredError('conversationPbxPhoneNumberUuid', 'Required parameter conversationPbxPhoneNumberUuid was null or undefined when calling deletePbxPhoneNumber.');
-            }
-            var localVarPath = "/conversation/pbx/phone_number/{conversationPbxPhoneNumberUuid}"
-                .replace("{".concat("conversationPbxPhoneNumberUuid", "}"), encodeURIComponent(String(conversationPbxPhoneNumberUuid)));
             var localVarUrlObj = url.parse(localVarPath, true);
             var localVarRequestOptions = Object.assign({ method: 'DELETE' }, options);
             var localVarHeaderParameter = {};
@@ -9456,54 +9364,6 @@ var ConversationApiFetchParamCreator = function (configuration) {
             };
         },
         /**
-         * Insert a pbx agent
-         * @summary Insert pbx agent
-         * @param {ConversationPbxAgent} pbx_agent Pbx Agent
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        insertPbxAgent: function (pbx_agent, options) {
-            if (options === void 0) { options = {}; }
-            // verify required parameter 'pbx_agent' is not null or undefined
-            if (pbx_agent === null || pbx_agent === undefined) {
-                throw new RequiredError('pbx_agent', 'Required parameter pbx_agent was null or undefined when calling insertPbxAgent.');
-            }
-            var localVarPath = "/conversation/pbx/agent";
-            var localVarUrlObj = url.parse(localVarPath, true);
-            var localVarRequestOptions = Object.assign({ method: 'POST' }, options);
-            var localVarHeaderParameter = {};
-            var localVarQueryParameter = {};
-            if (configuration && configuration.apiVersion) {
-                localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
-            }
-            // authentication ultraCartOauth required
-            // oauth required
-            if (configuration && configuration.accessToken) {
-                var localVarAccessTokenValue = typeof configuration.accessToken === 'function'
-                    ? configuration.accessToken("ultraCartOauth", ["conversation_write"])
-                    : configuration.accessToken;
-                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
-            }
-            // authentication ultraCartSimpleApiKey required
-            if (configuration && configuration.apiKey) {
-                var localVarApiKeyValue = typeof configuration.apiKey === 'function'
-                    ? configuration.apiKey("x-ultracart-simple-key")
-                    : configuration.apiKey;
-                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
-            }
-            localVarHeaderParameter['Content-Type'] = 'application/json';
-            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
-            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
-            delete localVarUrlObj.search;
-            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
-            var needsSerialization = ("ConversationPbxAgent" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
-            localVarRequestOptions.body = needsSerialization ? JSON.stringify(pbx_agent || {}) : (pbx_agent || "");
-            return {
-                url: url.format(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
          * Insert a pbx audio
          * @summary Insert pbx audio
          * @param {ConversationPbxAudio} pbx_audio Pbx Audio
@@ -9594,54 +9454,6 @@ var ConversationApiFetchParamCreator = function (configuration) {
             localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
             var needsSerialization = ("ConversationPbxMenu" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
             localVarRequestOptions.body = needsSerialization ? JSON.stringify(pbx_menu || {}) : (pbx_menu || "");
-            return {
-                url: url.format(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * Insert a pbx phoneNumber
-         * @summary Insert pbx phoneNumber
-         * @param {ConversationPbxPhoneNumber} pbx_phoneNumber Pbx PhoneNumber
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        insertPbxPhoneNumber: function (pbx_phoneNumber, options) {
-            if (options === void 0) { options = {}; }
-            // verify required parameter 'pbx_phoneNumber' is not null or undefined
-            if (pbx_phoneNumber === null || pbx_phoneNumber === undefined) {
-                throw new RequiredError('pbx_phoneNumber', 'Required parameter pbx_phoneNumber was null or undefined when calling insertPbxPhoneNumber.');
-            }
-            var localVarPath = "/conversation/pbx/phone_number";
-            var localVarUrlObj = url.parse(localVarPath, true);
-            var localVarRequestOptions = Object.assign({ method: 'POST' }, options);
-            var localVarHeaderParameter = {};
-            var localVarQueryParameter = {};
-            if (configuration && configuration.apiVersion) {
-                localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
-            }
-            // authentication ultraCartOauth required
-            // oauth required
-            if (configuration && configuration.accessToken) {
-                var localVarAccessTokenValue = typeof configuration.accessToken === 'function'
-                    ? configuration.accessToken("ultraCartOauth", ["conversation_write"])
-                    : configuration.accessToken;
-                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
-            }
-            // authentication ultraCartSimpleApiKey required
-            if (configuration && configuration.apiKey) {
-                var localVarApiKeyValue = typeof configuration.apiKey === 'function'
-                    ? configuration.apiKey("x-ultracart-simple-key")
-                    : configuration.apiKey;
-                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
-            }
-            localVarHeaderParameter['Content-Type'] = 'application/json';
-            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
-            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
-            delete localVarUrlObj.search;
-            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
-            var needsSerialization = ("ConversationPbxPhoneNumber" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
-            localVarRequestOptions.body = needsSerialization ? JSON.stringify(pbx_phoneNumber || {}) : (pbx_phoneNumber || "");
             return {
                 url: url.format(localVarUrlObj),
                 options: localVarRequestOptions,
@@ -11039,28 +10851,6 @@ var ConversationApiFp = function (configuration) {
             };
         },
         /**
-         * Delete a pbx agent
-         * @summary Delete pbx agent
-         * @param {string} conversationPbxAgentUuid
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        deletePbxAgent: function (conversationPbxAgentUuid, options) {
-            var localVarFetchArgs = (0, exports.ConversationApiFetchParamCreator)(configuration).deletePbxAgent(conversationPbxAgentUuid, options);
-            return function (fetch, basePath) {
-                if (fetch === void 0) { fetch = portableFetch; }
-                if (basePath === void 0) { basePath = BASE_PATH; }
-                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(function (response) {
-                    if (response.status >= 200 && response.status < 300) {
-                        return response.json();
-                    }
-                    else {
-                        throw response;
-                    }
-                });
-            };
-        },
-        /**
          * Delete pbx agent Voicemail
          * @summary Delete Agent Voicemail
          * @param {string} recording_sid
@@ -11113,28 +10903,6 @@ var ConversationApiFp = function (configuration) {
          */
         deletePbxMenu: function (conversationPbxMenuUuid, options) {
             var localVarFetchArgs = (0, exports.ConversationApiFetchParamCreator)(configuration).deletePbxMenu(conversationPbxMenuUuid, options);
-            return function (fetch, basePath) {
-                if (fetch === void 0) { fetch = portableFetch; }
-                if (basePath === void 0) { basePath = BASE_PATH; }
-                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(function (response) {
-                    if (response.status >= 200 && response.status < 300) {
-                        return response.json();
-                    }
-                    else {
-                        throw response;
-                    }
-                });
-            };
-        },
-        /**
-         * Delete a pbx phoneNumber
-         * @summary Delete pbx phoneNumber
-         * @param {string} conversationPbxPhoneNumberUuid
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        deletePbxPhoneNumber: function (conversationPbxPhoneNumberUuid, options) {
-            var localVarFetchArgs = (0, exports.ConversationApiFetchParamCreator)(configuration).deletePbxPhoneNumber(conversationPbxPhoneNumberUuid, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -12216,28 +11984,6 @@ var ConversationApiFp = function (configuration) {
             };
         },
         /**
-         * Insert a pbx agent
-         * @summary Insert pbx agent
-         * @param {ConversationPbxAgent} pbx_agent Pbx Agent
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        insertPbxAgent: function (pbx_agent, options) {
-            var localVarFetchArgs = (0, exports.ConversationApiFetchParamCreator)(configuration).insertPbxAgent(pbx_agent, options);
-            return function (fetch, basePath) {
-                if (fetch === void 0) { fetch = portableFetch; }
-                if (basePath === void 0) { basePath = BASE_PATH; }
-                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(function (response) {
-                    if (response.status >= 200 && response.status < 300) {
-                        return response.json();
-                    }
-                    else {
-                        throw response;
-                    }
-                });
-            };
-        },
-        /**
          * Insert a pbx audio
          * @summary Insert pbx audio
          * @param {ConversationPbxAudio} pbx_audio Pbx Audio
@@ -12268,28 +12014,6 @@ var ConversationApiFp = function (configuration) {
          */
         insertPbxMenu: function (pbx_menu, options) {
             var localVarFetchArgs = (0, exports.ConversationApiFetchParamCreator)(configuration).insertPbxMenu(pbx_menu, options);
-            return function (fetch, basePath) {
-                if (fetch === void 0) { fetch = portableFetch; }
-                if (basePath === void 0) { basePath = BASE_PATH; }
-                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(function (response) {
-                    if (response.status >= 200 && response.status < 300) {
-                        return response.json();
-                    }
-                    else {
-                        throw response;
-                    }
-                });
-            };
-        },
-        /**
-         * Insert a pbx phoneNumber
-         * @summary Insert pbx phoneNumber
-         * @param {ConversationPbxPhoneNumber} pbx_phoneNumber Pbx PhoneNumber
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        insertPbxPhoneNumber: function (pbx_phoneNumber, options) {
-            var localVarFetchArgs = (0, exports.ConversationApiFetchParamCreator)(configuration).insertPbxPhoneNumber(pbx_phoneNumber, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -12929,16 +12653,6 @@ var ConversationApiFactory = function (configuration, fetch, basePath) {
             return (0, exports.ConversationApiFp)(configuration).deleteEngagement(conversation_engagement_oid, options)(fetch, basePath);
         },
         /**
-         * Delete a pbx agent
-         * @summary Delete pbx agent
-         * @param {string} conversationPbxAgentUuid
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        deletePbxAgent: function (conversationPbxAgentUuid, options) {
-            return (0, exports.ConversationApiFp)(configuration).deletePbxAgent(conversationPbxAgentUuid, options)(fetch, basePath);
-        },
-        /**
          * Delete pbx agent Voicemail
          * @summary Delete Agent Voicemail
          * @param {string} recording_sid
@@ -12967,16 +12681,6 @@ var ConversationApiFactory = function (configuration, fetch, basePath) {
          */
         deletePbxMenu: function (conversationPbxMenuUuid, options) {
             return (0, exports.ConversationApiFp)(configuration).deletePbxMenu(conversationPbxMenuUuid, options)(fetch, basePath);
-        },
-        /**
-         * Delete a pbx phoneNumber
-         * @summary Delete pbx phoneNumber
-         * @param {string} conversationPbxPhoneNumberUuid
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        deletePbxPhoneNumber: function (conversationPbxPhoneNumberUuid, options) {
-            return (0, exports.ConversationApiFp)(configuration).deletePbxPhoneNumber(conversationPbxPhoneNumberUuid, options)(fetch, basePath);
         },
         /**
          * Delete a pbx queue
@@ -13458,16 +13162,6 @@ var ConversationApiFactory = function (configuration, fetch, basePath) {
             return (0, exports.ConversationApiFp)(configuration).insertConversationEngagement(engagement, options)(fetch, basePath);
         },
         /**
-         * Insert a pbx agent
-         * @summary Insert pbx agent
-         * @param {ConversationPbxAgent} pbx_agent Pbx Agent
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        insertPbxAgent: function (pbx_agent, options) {
-            return (0, exports.ConversationApiFp)(configuration).insertPbxAgent(pbx_agent, options)(fetch, basePath);
-        },
-        /**
          * Insert a pbx audio
          * @summary Insert pbx audio
          * @param {ConversationPbxAudio} pbx_audio Pbx Audio
@@ -13486,16 +13180,6 @@ var ConversationApiFactory = function (configuration, fetch, basePath) {
          */
         insertPbxMenu: function (pbx_menu, options) {
             return (0, exports.ConversationApiFp)(configuration).insertPbxMenu(pbx_menu, options)(fetch, basePath);
-        },
-        /**
-         * Insert a pbx phoneNumber
-         * @summary Insert pbx phoneNumber
-         * @param {ConversationPbxPhoneNumber} pbx_phoneNumber Pbx PhoneNumber
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        insertPbxPhoneNumber: function (pbx_phoneNumber, options) {
-            return (0, exports.ConversationApiFp)(configuration).insertPbxPhoneNumber(pbx_phoneNumber, options)(fetch, basePath);
         },
         /**
          * Insert a pbx queue
@@ -13819,17 +13503,6 @@ var ConversationApi = /** @class */ (function (_super) {
         return (0, exports.ConversationApiFp)(this.configuration).deleteEngagement(conversation_engagement_oid, options)(this.fetch, this.basePath);
     };
     /**
-     * Delete a pbx agent
-     * @summary Delete pbx agent
-     * @param {string} conversationPbxAgentUuid
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ConversationApi
-     */
-    ConversationApi.prototype.deletePbxAgent = function (conversationPbxAgentUuid, options) {
-        return (0, exports.ConversationApiFp)(this.configuration).deletePbxAgent(conversationPbxAgentUuid, options)(this.fetch, this.basePath);
-    };
-    /**
      * Delete pbx agent Voicemail
      * @summary Delete Agent Voicemail
      * @param {string} recording_sid
@@ -13861,17 +13534,6 @@ var ConversationApi = /** @class */ (function (_super) {
      */
     ConversationApi.prototype.deletePbxMenu = function (conversationPbxMenuUuid, options) {
         return (0, exports.ConversationApiFp)(this.configuration).deletePbxMenu(conversationPbxMenuUuid, options)(this.fetch, this.basePath);
-    };
-    /**
-     * Delete a pbx phoneNumber
-     * @summary Delete pbx phoneNumber
-     * @param {string} conversationPbxPhoneNumberUuid
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ConversationApi
-     */
-    ConversationApi.prototype.deletePbxPhoneNumber = function (conversationPbxPhoneNumberUuid, options) {
-        return (0, exports.ConversationApiFp)(this.configuration).deletePbxPhoneNumber(conversationPbxPhoneNumberUuid, options)(this.fetch, this.basePath);
     };
     /**
      * Delete a pbx queue
@@ -14402,17 +14064,6 @@ var ConversationApi = /** @class */ (function (_super) {
         return (0, exports.ConversationApiFp)(this.configuration).insertConversationEngagement(engagement, options)(this.fetch, this.basePath);
     };
     /**
-     * Insert a pbx agent
-     * @summary Insert pbx agent
-     * @param {ConversationPbxAgent} pbx_agent Pbx Agent
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ConversationApi
-     */
-    ConversationApi.prototype.insertPbxAgent = function (pbx_agent, options) {
-        return (0, exports.ConversationApiFp)(this.configuration).insertPbxAgent(pbx_agent, options)(this.fetch, this.basePath);
-    };
-    /**
      * Insert a pbx audio
      * @summary Insert pbx audio
      * @param {ConversationPbxAudio} pbx_audio Pbx Audio
@@ -14433,17 +14084,6 @@ var ConversationApi = /** @class */ (function (_super) {
      */
     ConversationApi.prototype.insertPbxMenu = function (pbx_menu, options) {
         return (0, exports.ConversationApiFp)(this.configuration).insertPbxMenu(pbx_menu, options)(this.fetch, this.basePath);
-    };
-    /**
-     * Insert a pbx phoneNumber
-     * @summary Insert pbx phoneNumber
-     * @param {ConversationPbxPhoneNumber} pbx_phoneNumber Pbx PhoneNumber
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ConversationApi
-     */
-    ConversationApi.prototype.insertPbxPhoneNumber = function (pbx_phoneNumber, options) {
-        return (0, exports.ConversationApiFp)(this.configuration).insertPbxPhoneNumber(pbx_phoneNumber, options)(this.fetch, this.basePath);
     };
     /**
      * Insert a pbx queue
