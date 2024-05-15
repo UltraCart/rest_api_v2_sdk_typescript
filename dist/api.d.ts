@@ -9907,13 +9907,19 @@ export interface ConversationPbxVoicemailMailbox {
      * @type {string}
      * @memberof ConversationPbxVoicemailMailbox
      */
-    voicemail_follow_play_audio_uuid?: string;
+    voicemail_followup_play_audio_uuid?: string;
     /**
      * Voicemail followup say
      * @type {string}
      * @memberof ConversationPbxVoicemailMailbox
      */
     voicemail_followup_say?: string;
+    /**
+     * Voicemail followup say voice
+     * @type {string}
+     * @memberof ConversationPbxVoicemailMailbox
+     */
+    voicemail_followup_say_voice?: string;
     /**
      * Voicemail mailbox id
      * @type {string}
@@ -9939,11 +9945,11 @@ export interface ConversationPbxVoicemailMailbox {
      */
     voicemail_prompt_say?: string;
     /**
-     * Voicemail say voice
+     * Voicemail prompt say voice
      * @type {string}
      * @memberof ConversationPbxVoicemailMailbox
      */
-    voicemail_say_voice?: string;
+    voicemail_prompt_say_voice?: string;
 }
 /**
  * @export
