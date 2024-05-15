@@ -48,13 +48,19 @@ export interface ConversationPbxVoicemailMailbox {
      * @type {string}
      * @memberof ConversationPbxVoicemailMailbox
      */
-    voicemail_follow_play_audio_uuid?: string;
+    voicemail_followup_play_audio_uuid?: string;
     /**
      * Voicemail followup say
      * @type {string}
      * @memberof ConversationPbxVoicemailMailbox
      */
     voicemail_followup_say?: string;
+    /**
+     * Voicemail followup say voice
+     * @type {string}
+     * @memberof ConversationPbxVoicemailMailbox
+     */
+    voicemail_followup_say_voice?: string;
     /**
      * Voicemail mailbox id
      * @type {string}
@@ -80,11 +86,11 @@ export interface ConversationPbxVoicemailMailbox {
      */
     voicemail_prompt_say?: string;
     /**
-     * Voicemail say voice
+     * Voicemail prompt say voice
      * @type {string}
      * @memberof ConversationPbxVoicemailMailbox
      */
-    voicemail_say_voice?: string;
+    voicemail_prompt_say_voice?: string;
 }
 
 
@@ -112,13 +118,14 @@ export function ConversationPbxVoicemailMailboxFromJSONTyped(json: any, ignoreDi
         'merchant_id': !exists(json, 'merchant_id') ? undefined : json['merchant_id'],
         'send_notices_to_email': !exists(json, 'send_notices_to_email') ? undefined : json['send_notices_to_email'],
         'user_id': !exists(json, 'user_id') ? undefined : json['user_id'],
-        'voicemail_follow_play_audio_uuid': !exists(json, 'voicemail_follow_play_audio_uuid') ? undefined : json['voicemail_follow_play_audio_uuid'],
+        'voicemail_followup_play_audio_uuid': !exists(json, 'voicemail_followup_play_audio_uuid') ? undefined : json['voicemail_followup_play_audio_uuid'],
         'voicemail_followup_say': !exists(json, 'voicemail_followup_say') ? undefined : json['voicemail_followup_say'],
+        'voicemail_followup_say_voice': !exists(json, 'voicemail_followup_say_voice') ? undefined : json['voicemail_followup_say_voice'],
         'voicemail_mailbox_id': !exists(json, 'voicemail_mailbox_id') ? undefined : json['voicemail_mailbox_id'],
         'voicemail_mailbox_type': !exists(json, 'voicemail_mailbox_type') ? undefined : json['voicemail_mailbox_type'],
         'voicemail_prompt_play_audio_uuid': !exists(json, 'voicemail_prompt_play_audio_uuid') ? undefined : json['voicemail_prompt_play_audio_uuid'],
         'voicemail_prompt_say': !exists(json, 'voicemail_prompt_say') ? undefined : json['voicemail_prompt_say'],
-        'voicemail_say_voice': !exists(json, 'voicemail_say_voice') ? undefined : json['voicemail_say_voice'],
+        'voicemail_prompt_say_voice': !exists(json, 'voicemail_prompt_say_voice') ? undefined : json['voicemail_prompt_say_voice'],
     };
 }
 
@@ -135,13 +142,14 @@ export function ConversationPbxVoicemailMailboxToJSON(value?: ConversationPbxVoi
         'merchant_id': value.merchant_id,
         'send_notices_to_email': value.send_notices_to_email,
         'user_id': value.user_id,
-        'voicemail_follow_play_audio_uuid': value.voicemail_follow_play_audio_uuid,
+        'voicemail_followup_play_audio_uuid': value.voicemail_followup_play_audio_uuid,
         'voicemail_followup_say': value.voicemail_followup_say,
+        'voicemail_followup_say_voice': value.voicemail_followup_say_voice,
         'voicemail_mailbox_id': value.voicemail_mailbox_id,
         'voicemail_mailbox_type': value.voicemail_mailbox_type,
         'voicemail_prompt_play_audio_uuid': value.voicemail_prompt_play_audio_uuid,
         'voicemail_prompt_say': value.voicemail_prompt_say,
-        'voicemail_say_voice': value.voicemail_say_voice,
+        'voicemail_prompt_say_voice': value.voicemail_prompt_say_voice,
     };
 }
 
