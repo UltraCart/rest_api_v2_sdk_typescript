@@ -33267,6 +33267,7 @@ export declare namespace OrderPayment {
     enum PaymentMethodEnum {
         Affirm,
         Amazon,
+        AmazonPay,
         AmazonSC,
         Cash,
         Check,
@@ -33276,6 +33277,7 @@ export declare namespace OrderPayment {
         ECheck,
         GoogleShopping,
         Insurance,
+        Link,
         LoanHero,
         MoneyOrder,
         PayPal,

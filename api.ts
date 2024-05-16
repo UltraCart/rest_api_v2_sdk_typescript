@@ -33978,6 +33978,7 @@ export namespace OrderPayment {
     export enum PaymentMethodEnum {
         Affirm = <any> 'Affirm',
         Amazon = <any> 'Amazon',
+        AmazonPay = <any> 'Amazon Pay',
         AmazonSC = <any> 'Amazon SC',
         Cash = <any> 'Cash',
         Check = <any> 'Check',
@@ -33987,6 +33988,7 @@ export namespace OrderPayment {
         ECheck = <any> 'eCheck',
         GoogleShopping = <any> 'Google Shopping',
         Insurance = <any> 'Insurance',
+        Link = <any> 'Link',
         LoanHero = <any> 'LoanHero',
         MoneyOrder = <any> 'Money Order',
         PayPal = <any> 'PayPal',

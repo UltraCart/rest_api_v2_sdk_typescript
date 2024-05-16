@@ -1295,6 +1295,7 @@ var OrderPayment;
     (function (PaymentMethodEnum) {
         PaymentMethodEnum[PaymentMethodEnum["Affirm"] = 'Affirm'] = "Affirm";
         PaymentMethodEnum[PaymentMethodEnum["Amazon"] = 'Amazon'] = "Amazon";
+        PaymentMethodEnum[PaymentMethodEnum["AmazonPay"] = 'Amazon Pay'] = "AmazonPay";
         PaymentMethodEnum[PaymentMethodEnum["AmazonSC"] = 'Amazon SC'] = "AmazonSC";
         PaymentMethodEnum[PaymentMethodEnum["Cash"] = 'Cash'] = "Cash";
         PaymentMethodEnum[PaymentMethodEnum["Check"] = 'Check'] = "Check";
@@ -1304,6 +1305,7 @@ var OrderPayment;
         PaymentMethodEnum[PaymentMethodEnum["ECheck"] = 'eCheck'] = "ECheck";
         PaymentMethodEnum[PaymentMethodEnum["GoogleShopping"] = 'Google Shopping'] = "GoogleShopping";
         PaymentMethodEnum[PaymentMethodEnum["Insurance"] = 'Insurance'] = "Insurance";
+        PaymentMethodEnum[PaymentMethodEnum["Link"] = 'Link'] = "Link";
         PaymentMethodEnum[PaymentMethodEnum["LoanHero"] = 'LoanHero'] = "LoanHero";
         PaymentMethodEnum[PaymentMethodEnum["MoneyOrder"] = 'Money Order'] = "MoneyOrder";
         PaymentMethodEnum[PaymentMethodEnum["PayPal"] = 'PayPal'] = "PayPal";
