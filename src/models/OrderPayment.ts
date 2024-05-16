@@ -191,6 +191,7 @@ export interface OrderPayment {
 export const OrderPaymentPaymentMethodEnum = {
     Affirm: 'Affirm',
     Amazon: 'Amazon',
+    AmazonPay: 'Amazon Pay',
     AmazonSc: 'Amazon SC',
     Cash: 'Cash',
     Check: 'Check',
@@ -200,6 +201,7 @@ export const OrderPaymentPaymentMethodEnum = {
     ECheck: 'eCheck',
     GoogleShopping: 'Google Shopping',
     Insurance: 'Insurance',
+    Link: 'Link',
     LoanHero: 'LoanHero',
     MoneyOrder: 'Money Order',
     PayPal: 'PayPal',
