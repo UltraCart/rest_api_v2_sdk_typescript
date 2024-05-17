@@ -31,7 +31,7 @@ export interface ConversationPbxTimeBasedMappingConfig {
      * @type {ConversationPbxTimeBasedMapping}
      * @memberof ConversationPbxTimeBasedMappingConfig
      */
-    _default?: ConversationPbxTimeBasedMapping;
+    default_mapping?: ConversationPbxTimeBasedMapping;
     /**
      * Mappings
      * @type {Array<ConversationPbxTimeBasedMapping>}
@@ -50,7 +50,7 @@ export function ConversationPbxTimeBasedMappingConfigFromJSONTyped(json: any, ig
     }
     return {
         
-        '_default': !exists(json, 'default') ? undefined : ConversationPbxTimeBasedMappingFromJSON(json['default']),
+        'default_mapping': !exists(json, 'default_mapping') ? undefined : ConversationPbxTimeBasedMappingFromJSON(json['default_mapping']),
         'mappings': !exists(json, 'mappings') ? undefined : ((json['mappings'] as Array<any>).map(ConversationPbxTimeBasedMappingFromJSON)),
     };
 }
@@ -64,7 +64,7 @@ export function ConversationPbxTimeBasedMappingConfigToJSON(value?: Conversation
     }
     return {
         
-        'default': ConversationPbxTimeBasedMappingToJSON(value._default),
+        'default_mapping': ConversationPbxTimeBasedMappingToJSON(value.default_mapping),
         'mappings': value.mappings === undefined ? undefined : ((value.mappings as Array<any>).map(ConversationPbxTimeBasedMappingToJSON)),
     };
 }
