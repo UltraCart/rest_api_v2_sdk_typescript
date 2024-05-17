@@ -9636,7 +9636,7 @@ export interface ConversationPbxTimeBasedMappingConfig {
      * @type {ConversationPbxTimeBasedMapping}
      * @memberof ConversationPbxTimeBasedMappingConfig
      */
-    _default?: ConversationPbxTimeBasedMapping;
+    default_mapping?: ConversationPbxTimeBasedMapping;
     /**
      * Mappings
      * @type {Array<ConversationPbxTimeBasedMapping>}
