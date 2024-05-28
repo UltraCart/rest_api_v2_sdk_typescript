@@ -34733,6 +34733,12 @@ export interface OrderQuery {
      */
     purchase_order_number?: string;
     /**
+     * Query Target
+     * @type {string}
+     * @memberof OrderQuery
+     */
+    query_target?: OrderQuery.QueryTargetEnum;
+    /**
      * Date/time that the order was refunded
      * @type {string}
      * @memberof OrderQuery
@@ -34844,6 +34850,14 @@ export namespace OrderQuery {
         Venmo = <any> 'Venmo',
         ApplePay = <any> 'Apple Pay',
         GooglePay = <any> ' Google Pay'
+    }
+    /**
+     * @export
+     * @enum {string}
+     */
+    export enum QueryTargetEnum {
+        Origin = <any> 'origin',
+        Cache = <any> 'cache'
     }
 }
 

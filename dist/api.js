@@ -1430,6 +1430,15 @@ var OrderQuery;
         PaymentMethodEnum[PaymentMethodEnum["ApplePay"] = 'Apple Pay'] = "ApplePay";
         PaymentMethodEnum[PaymentMethodEnum["GooglePay"] = ' Google Pay'] = "GooglePay";
     })(PaymentMethodEnum = OrderQuery.PaymentMethodEnum || (OrderQuery.PaymentMethodEnum = {}));
+    /**
+     * @export
+     * @enum {string}
+     */
+    var QueryTargetEnum;
+    (function (QueryTargetEnum) {
+        QueryTargetEnum[QueryTargetEnum["Origin"] = 'origin'] = "Origin";
+        QueryTargetEnum[QueryTargetEnum["Cache"] = 'cache'] = "Cache";
+    })(QueryTargetEnum = OrderQuery.QueryTargetEnum || (OrderQuery.QueryTargetEnum = {}));
 })(OrderQuery = exports.OrderQuery || (exports.OrderQuery = {}));
 /**
  * @export
