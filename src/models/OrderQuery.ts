@@ -206,6 +206,12 @@ export interface OrderQuery {
      */
     purchase_order_number?: string;
     /**
+     * Query Target
+     * @type {string}
+     * @memberof OrderQuery
+     */
+    query_target?: OrderQueryQueryTargetEnum;
+    /**
      * Date/time that the order was refunded
      * @type {string}
      * @memberof OrderQuery
@@ -316,6 +322,15 @@ export const OrderQueryPaymentMethodEnum = {
 } as const;
 export type OrderQueryPaymentMethodEnum = typeof OrderQueryPaymentMethodEnum[keyof typeof OrderQueryPaymentMethodEnum];
 
+/**
+ * @export
+ */
+export const OrderQueryQueryTargetEnum = {
+    Origin: 'origin',
+    Cache: 'cache'
+} as const;
+export type OrderQueryQueryTargetEnum = typeof OrderQueryQueryTargetEnum[keyof typeof OrderQueryQueryTargetEnum];
+
 
 export function OrderQueryFromJSON(json: any): OrderQuery {
     return OrderQueryFromJSONTyped(json, false);
@@ -358,6 +373,7 @@ export function OrderQueryFromJSONTyped(json: any, ignoreDiscriminator: boolean)
         'phone': !exists(json, 'phone') ? undefined : json['phone'],
         'postal_code': !exists(json, 'postal_code') ? undefined : json['postal_code'],
         'purchase_order_number': !exists(json, 'purchase_order_number') ? undefined : json['purchase_order_number'],
+        'query_target': !exists(json, 'query_target') ? undefined : json['query_target'],
         'refund_date_begin': !exists(json, 'refund_date_begin') ? undefined : json['refund_date_begin'],
         'refund_date_end': !exists(json, 'refund_date_end') ? undefined : json['refund_date_end'],
         'rma': !exists(json, 'rma') ? undefined : json['rma'],
@@ -412,6 +428,7 @@ export function OrderQueryToJSON(value?: OrderQuery | null): any {
         'phone': value.phone,
         'postal_code': value.postal_code,
         'purchase_order_number': value.purchase_order_number,
+        'query_target': value.query_target,
         'refund_date_begin': value.refund_date_begin,
         'refund_date_end': value.refund_date_end,
         'rma': value.rma,
