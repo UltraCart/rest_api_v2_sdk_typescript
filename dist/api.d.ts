@@ -20533,6 +20533,68 @@ export interface EmailPostcardTrackingResponse {
 /**
  *
  * @export
+ * @interface EmailRateLimiter
+ */
+export interface EmailRateLimiter {
+    /**
+     *
+     * @type {number}
+     * @memberof EmailRateLimiter
+     */
+    available?: number;
+    /**
+     *
+     * @type {number}
+     * @memberof EmailRateLimiter
+     */
+    limit?: number;
+    /**
+     *
+     * @type {string}
+     * @memberof EmailRateLimiter
+     */
+    name?: string;
+}
+/**
+ *
+ * @export
+ * @interface EmailRateLimitersResponse
+ */
+export interface EmailRateLimitersResponse {
+    /**
+     *
+     * @type {ModelError}
+     * @memberof EmailRateLimitersResponse
+     */
+    error?: ModelError;
+    /**
+     *
+     * @type {ResponseMetadata}
+     * @memberof EmailRateLimitersResponse
+     */
+    metadata?: ResponseMetadata;
+    /**
+     *
+     * @type {Array<EmailRateLimiter>}
+     * @memberof EmailRateLimitersResponse
+     */
+    rate_limiters?: Array<EmailRateLimiter>;
+    /**
+     * Indicates if API call was successful
+     * @type {boolean}
+     * @memberof EmailRateLimitersResponse
+     */
+    success?: boolean;
+    /**
+     *
+     * @type {Warning}
+     * @memberof EmailRateLimitersResponse
+     */
+    warning?: Warning;
+}
+/**
+ *
+ * @export
  * @interface EmailSegment
  */
 export interface EmailSegment {
@@ -56843,6 +56905,15 @@ export declare const StorefrontApiFetchParamCreator: (configuration?: Configurat
     getEmailCommseqPostcardTracking(storefront_oid: number, commseq_postcard_uuid: string, options?: any): FetchArgs;
     /**
      *
+     * @summary Get email commseq rate limiters
+     * @param {number} storefront_oid
+     * @param {string} commseq_uuid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getEmailCommseqRateLimiters(storefront_oid: number, commseq_uuid: string, options?: any): FetchArgs;
+    /**
+     *
      * @summary Get email communication sequence sms stats
      * @param {number} storefront_oid
      * @param {string} commseq_uuid
@@ -57646,6 +57717,15 @@ export declare const StorefrontApiFetchParamCreator: (configuration?: Configurat
     releaseEmailCommseqStepWaiting(storefront_oid: number, commseq_uuid: string, commseq_step_uuid: string, options?: any): FetchArgs;
     /**
      *
+     * @summary Reset email commseq rate limiters (only callable by UltraCart Support)
+     * @param {number} storefront_oid
+     * @param {string} commseq_uuid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    resetEmailCommseqRateLimiters(storefront_oid: number, commseq_uuid: string, options?: any): FetchArgs;
+    /**
+     *
      * @summary Request a review of an email
      * @param {number} storefront_oid
      * @param {string} commseq_email_uuid
@@ -58442,6 +58522,15 @@ export declare const StorefrontApiFp: (configuration?: Configuration) => {
      * @throws {RequiredError}
      */
     getEmailCommseqPostcardTracking(storefront_oid: number, commseq_postcard_uuid: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<EmailPostcardTrackingResponse>;
+    /**
+     *
+     * @summary Get email commseq rate limiters
+     * @param {number} storefront_oid
+     * @param {string} commseq_uuid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getEmailCommseqRateLimiters(storefront_oid: number, commseq_uuid: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<EmailRateLimitersResponse>;
     /**
      *
      * @summary Get email communication sequence sms stats
@@ -59247,6 +59336,15 @@ export declare const StorefrontApiFp: (configuration?: Configuration) => {
     releaseEmailCommseqStepWaiting(storefront_oid: number, commseq_uuid: string, commseq_step_uuid: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Response>;
     /**
      *
+     * @summary Reset email commseq rate limiters (only callable by UltraCart Support)
+     * @param {number} storefront_oid
+     * @param {string} commseq_uuid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    resetEmailCommseqRateLimiters(storefront_oid: number, commseq_uuid: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Response>;
+    /**
+     *
      * @summary Request a review of an email
      * @param {number} storefront_oid
      * @param {string} commseq_email_uuid
@@ -60043,6 +60141,15 @@ export declare const StorefrontApiFactory: (configuration?: Configuration, fetch
      * @throws {RequiredError}
      */
     getEmailCommseqPostcardTracking(storefront_oid: number, commseq_postcard_uuid: string, options?: any): Promise<EmailPostcardTrackingResponse>;
+    /**
+     *
+     * @summary Get email commseq rate limiters
+     * @param {number} storefront_oid
+     * @param {string} commseq_uuid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getEmailCommseqRateLimiters(storefront_oid: number, commseq_uuid: string, options?: any): Promise<EmailRateLimitersResponse>;
     /**
      *
      * @summary Get email communication sequence sms stats
@@ -60846,6 +60953,15 @@ export declare const StorefrontApiFactory: (configuration?: Configuration, fetch
      * @throws {RequiredError}
      */
     releaseEmailCommseqStepWaiting(storefront_oid: number, commseq_uuid: string, commseq_step_uuid: string, options?: any): Promise<Response>;
+    /**
+     *
+     * @summary Reset email commseq rate limiters (only callable by UltraCart Support)
+     * @param {number} storefront_oid
+     * @param {string} commseq_uuid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    resetEmailCommseqRateLimiters(storefront_oid: number, commseq_uuid: string, options?: any): Promise<Response>;
     /**
      *
      * @summary Request a review of an email
@@ -61688,6 +61804,16 @@ export interface StorefrontApiInterface {
      * @memberof StorefrontApiInterface
      */
     getEmailCommseqPostcardTracking(storefront_oid: number, commseq_postcard_uuid: string, options?: any): Promise<EmailPostcardTrackingResponse>;
+    /**
+     *
+     * @summary Get email commseq rate limiters
+     * @param {number} storefront_oid
+     * @param {string} commseq_uuid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof StorefrontApiInterface
+     */
+    getEmailCommseqRateLimiters(storefront_oid: number, commseq_uuid: string, options?: any): Promise<EmailRateLimitersResponse>;
     /**
      *
      * @summary Get email communication sequence sms stats
@@ -62582,6 +62708,16 @@ export interface StorefrontApiInterface {
     releaseEmailCommseqStepWaiting(storefront_oid: number, commseq_uuid: string, commseq_step_uuid: string, options?: any): Promise<{}>;
     /**
      *
+     * @summary Reset email commseq rate limiters (only callable by UltraCart Support)
+     * @param {number} storefront_oid
+     * @param {string} commseq_uuid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof StorefrontApiInterface
+     */
+    resetEmailCommseqRateLimiters(storefront_oid: number, commseq_uuid: string, options?: any): Promise<{}>;
+    /**
+     *
      * @summary Request a review of an email
      * @param {number} storefront_oid
      * @param {string} commseq_email_uuid
@@ -63465,6 +63601,16 @@ export declare class StorefrontApi extends BaseAPI implements StorefrontApiInter
      * @memberof StorefrontApi
      */
     getEmailCommseqPostcardTracking(storefront_oid: number, commseq_postcard_uuid: string, options?: any): Promise<EmailPostcardTrackingResponse>;
+    /**
+     *
+     * @summary Get email commseq rate limiters
+     * @param {number} storefront_oid
+     * @param {string} commseq_uuid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof StorefrontApi
+     */
+    getEmailCommseqRateLimiters(storefront_oid: number, commseq_uuid: string, options?: any): Promise<EmailRateLimitersResponse>;
     /**
      *
      * @summary Get email communication sequence sms stats
@@ -64357,6 +64503,16 @@ export declare class StorefrontApi extends BaseAPI implements StorefrontApiInter
      * @memberof StorefrontApi
      */
     releaseEmailCommseqStepWaiting(storefront_oid: number, commseq_uuid: string, commseq_step_uuid: string, options?: any): Promise<Response>;
+    /**
+     *
+     * @summary Reset email commseq rate limiters (only callable by UltraCart Support)
+     * @param {number} storefront_oid
+     * @param {string} commseq_uuid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof StorefrontApi
+     */
+    resetEmailCommseqRateLimiters(storefront_oid: number, commseq_uuid: string, options?: any): Promise<Response>;
     /**
      *
      * @summary Request a review of an email

@@ -30154,6 +30154,65 @@ var StorefrontApiFetchParamCreator = function (configuration) {
         },
         /**
          *
+         * @summary Get email commseq rate limiters
+         * @param {number} storefront_oid
+         * @param {string} commseq_uuid
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getEmailCommseqRateLimiters: function (storefront_oid, commseq_uuid, options) {
+            if (options === void 0) { options = {}; }
+            // verify required parameter 'storefront_oid' is not null or undefined
+            if (storefront_oid === null || storefront_oid === undefined) {
+                throw new RequiredError('storefront_oid', 'Required parameter storefront_oid was null or undefined when calling getEmailCommseqRateLimiters.');
+            }
+            // verify required parameter 'commseq_uuid' is not null or undefined
+            if (commseq_uuid === null || commseq_uuid === undefined) {
+                throw new RequiredError('commseq_uuid', 'Required parameter commseq_uuid was null or undefined when calling getEmailCommseqRateLimiters.');
+            }
+            var localVarPath = "/storefront/{storefront_oid}/email/commseqs/{commseq_uuid}/rate_limiters"
+                .replace("{".concat("storefront_oid", "}"), encodeURIComponent(String(storefront_oid)))
+                .replace("{".concat("commseq_uuid", "}"), encodeURIComponent(String(commseq_uuid)));
+            var localVarUrlObj = url.parse(localVarPath, true);
+            var localVarRequestOptions = Object.assign({ method: 'GET' }, options);
+            var localVarHeaderParameter = {};
+            var localVarQueryParameter = {};
+            if (configuration && configuration.apiVersion) {
+                localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+            }
+            // authentication ultraCartBrowserApiKey required
+            if (configuration && configuration.apiKey) {
+                var localVarApiKeyValue = typeof configuration.apiKey === 'function'
+                    ? configuration.apiKey("x-ultracart-browser-key")
+                    : configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-browser-key"] = localVarApiKeyValue;
+            }
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+                var localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+                    ? configuration.accessToken("ultraCartOauth", ["storefront_read"])
+                    : configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                var localVarApiKeyValue = typeof configuration.apiKey === 'function'
+                    ? configuration.apiKey("x-ultracart-simple-key")
+                    : configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         *
          * @summary Get email communication sequence sms stats
          * @param {number} storefront_oid
          * @param {string} commseq_uuid
@@ -35345,6 +35404,65 @@ var StorefrontApiFetchParamCreator = function (configuration) {
         },
         /**
          *
+         * @summary Reset email commseq rate limiters (only callable by UltraCart Support)
+         * @param {number} storefront_oid
+         * @param {string} commseq_uuid
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        resetEmailCommseqRateLimiters: function (storefront_oid, commseq_uuid, options) {
+            if (options === void 0) { options = {}; }
+            // verify required parameter 'storefront_oid' is not null or undefined
+            if (storefront_oid === null || storefront_oid === undefined) {
+                throw new RequiredError('storefront_oid', 'Required parameter storefront_oid was null or undefined when calling resetEmailCommseqRateLimiters.');
+            }
+            // verify required parameter 'commseq_uuid' is not null or undefined
+            if (commseq_uuid === null || commseq_uuid === undefined) {
+                throw new RequiredError('commseq_uuid', 'Required parameter commseq_uuid was null or undefined when calling resetEmailCommseqRateLimiters.');
+            }
+            var localVarPath = "/storefront/{storefront_oid}/email/commseqs/{commseq_uuid}/rate_limiters"
+                .replace("{".concat("storefront_oid", "}"), encodeURIComponent(String(storefront_oid)))
+                .replace("{".concat("commseq_uuid", "}"), encodeURIComponent(String(commseq_uuid)));
+            var localVarUrlObj = url.parse(localVarPath, true);
+            var localVarRequestOptions = Object.assign({ method: 'DELETE' }, options);
+            var localVarHeaderParameter = {};
+            var localVarQueryParameter = {};
+            if (configuration && configuration.apiVersion) {
+                localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+            }
+            // authentication ultraCartBrowserApiKey required
+            if (configuration && configuration.apiKey) {
+                var localVarApiKeyValue = typeof configuration.apiKey === 'function'
+                    ? configuration.apiKey("x-ultracart-browser-key")
+                    : configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-browser-key"] = localVarApiKeyValue;
+            }
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+                var localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+                    ? configuration.accessToken("ultraCartOauth", ["storefront_read"])
+                    : configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                var localVarApiKeyValue = typeof configuration.apiKey === 'function'
+                    ? configuration.apiKey("x-ultracart-simple-key")
+                    : configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         *
          * @summary Request a review of an email
          * @param {number} storefront_oid
          * @param {string} commseq_email_uuid
@@ -39000,6 +39118,29 @@ var StorefrontApiFp = function (configuration) {
         },
         /**
          *
+         * @summary Get email commseq rate limiters
+         * @param {number} storefront_oid
+         * @param {string} commseq_uuid
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getEmailCommseqRateLimiters: function (storefront_oid, commseq_uuid, options) {
+            var localVarFetchArgs = (0, exports.StorefrontApiFetchParamCreator)(configuration).getEmailCommseqRateLimiters(storefront_oid, commseq_uuid, options);
+            return function (fetch, basePath) {
+                if (fetch === void 0) { fetch = portableFetch; }
+                if (basePath === void 0) { basePath = BASE_PATH; }
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(function (response) {
+                    if (response.status >= 200 && response.status < 300) {
+                        return response.json();
+                    }
+                    else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
+         *
          * @summary Get email communication sequence sms stats
          * @param {number} storefront_oid
          * @param {string} commseq_uuid
@@ -41049,6 +41190,29 @@ var StorefrontApiFp = function (configuration) {
         },
         /**
          *
+         * @summary Reset email commseq rate limiters (only callable by UltraCart Support)
+         * @param {number} storefront_oid
+         * @param {string} commseq_uuid
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        resetEmailCommseqRateLimiters: function (storefront_oid, commseq_uuid, options) {
+            var localVarFetchArgs = (0, exports.StorefrontApiFetchParamCreator)(configuration).resetEmailCommseqRateLimiters(storefront_oid, commseq_uuid, options);
+            return function (fetch, basePath) {
+                if (fetch === void 0) { fetch = portableFetch; }
+                if (basePath === void 0) { basePath = BASE_PATH; }
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(function (response) {
+                    if (response.status >= 200 && response.status < 300) {
+                        return response;
+                    }
+                    else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
+         *
          * @summary Request a review of an email
          * @param {number} storefront_oid
          * @param {string} commseq_email_uuid
@@ -42524,6 +42688,17 @@ var StorefrontApiFactory = function (configuration, fetch, basePath) {
         },
         /**
          *
+         * @summary Get email commseq rate limiters
+         * @param {number} storefront_oid
+         * @param {string} commseq_uuid
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getEmailCommseqRateLimiters: function (storefront_oid, commseq_uuid, options) {
+            return (0, exports.StorefrontApiFp)(configuration).getEmailCommseqRateLimiters(storefront_oid, commseq_uuid, options)(fetch, basePath);
+        },
+        /**
+         *
          * @summary Get email communication sequence sms stats
          * @param {number} storefront_oid
          * @param {string} commseq_uuid
@@ -43502,6 +43677,17 @@ var StorefrontApiFactory = function (configuration, fetch, basePath) {
          */
         releaseEmailCommseqStepWaiting: function (storefront_oid, commseq_uuid, commseq_step_uuid, options) {
             return (0, exports.StorefrontApiFp)(configuration).releaseEmailCommseqStepWaiting(storefront_oid, commseq_uuid, commseq_step_uuid, options)(fetch, basePath);
+        },
+        /**
+         *
+         * @summary Reset email commseq rate limiters (only callable by UltraCart Support)
+         * @param {number} storefront_oid
+         * @param {string} commseq_uuid
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        resetEmailCommseqRateLimiters: function (storefront_oid, commseq_uuid, options) {
+            return (0, exports.StorefrontApiFp)(configuration).resetEmailCommseqRateLimiters(storefront_oid, commseq_uuid, options)(fetch, basePath);
         },
         /**
          *
@@ -44521,6 +44707,18 @@ var StorefrontApi = /** @class */ (function (_super) {
      */
     StorefrontApi.prototype.getEmailCommseqPostcardTracking = function (storefront_oid, commseq_postcard_uuid, options) {
         return (0, exports.StorefrontApiFp)(this.configuration).getEmailCommseqPostcardTracking(storefront_oid, commseq_postcard_uuid, options)(this.fetch, this.basePath);
+    };
+    /**
+     *
+     * @summary Get email commseq rate limiters
+     * @param {number} storefront_oid
+     * @param {string} commseq_uuid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof StorefrontApi
+     */
+    StorefrontApi.prototype.getEmailCommseqRateLimiters = function (storefront_oid, commseq_uuid, options) {
+        return (0, exports.StorefrontApiFp)(this.configuration).getEmailCommseqRateLimiters(storefront_oid, commseq_uuid, options)(this.fetch, this.basePath);
     };
     /**
      *
@@ -45591,6 +45789,18 @@ var StorefrontApi = /** @class */ (function (_super) {
      */
     StorefrontApi.prototype.releaseEmailCommseqStepWaiting = function (storefront_oid, commseq_uuid, commseq_step_uuid, options) {
         return (0, exports.StorefrontApiFp)(this.configuration).releaseEmailCommseqStepWaiting(storefront_oid, commseq_uuid, commseq_step_uuid, options)(this.fetch, this.basePath);
+    };
+    /**
+     *
+     * @summary Reset email commseq rate limiters (only callable by UltraCart Support)
+     * @param {number} storefront_oid
+     * @param {string} commseq_uuid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof StorefrontApi
+     */
+    StorefrontApi.prototype.resetEmailCommseqRateLimiters = function (storefront_oid, commseq_uuid, options) {
+        return (0, exports.StorefrontApiFp)(this.configuration).resetEmailCommseqRateLimiters(storefront_oid, commseq_uuid, options)(this.fetch, this.basePath);
     };
     /**
      *
