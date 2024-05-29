@@ -228,6 +228,9 @@ import {
     EmailPostcardTrackingResponse,
     EmailPostcardTrackingResponseFromJSON,
     EmailPostcardTrackingResponseToJSON,
+    EmailRateLimitersResponse,
+    EmailRateLimitersResponseFromJSON,
+    EmailRateLimitersResponseToJSON,
     EmailSegment,
     EmailSegmentFromJSON,
     EmailSegmentToJSON,
@@ -656,6 +659,11 @@ export interface GetEmailCommseqPostcardStatsRequest {
 export interface GetEmailCommseqPostcardTrackingRequest {
     storefrontOid: number;
     commseqPostcardUuid: string;
+}
+
+export interface GetEmailCommseqRateLimitersRequest {
+    storefrontOid: number;
+    commseqUuid: string;
 }
 
 export interface GetEmailCommseqSmsStatsRequest {
@@ -1088,6 +1096,11 @@ export interface ReleaseEmailCommseqStepWaitingRequest {
     storefrontOid: number;
     commseqUuid: string;
     commseqStepUuid: string;
+}
+
+export interface ResetEmailCommseqRateLimitersRequest {
+    storefrontOid: number;
+    commseqUuid: string;
 }
 
 export interface ReviewRequest {
@@ -2025,6 +2038,22 @@ export interface StorefrontApiInterface {
      * Get email communication postcard tracking
      */
     getEmailCommseqPostcardTracking(requestParameters: GetEmailCommseqPostcardTrackingRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EmailPostcardTrackingResponse>;
+
+    /**
+     * 
+     * @summary Get email commseq rate limiters
+     * @param {number} storefrontOid 
+     * @param {string} commseqUuid 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof StorefrontApiInterface
+     */
+    getEmailCommseqRateLimitersRaw(requestParameters: GetEmailCommseqRateLimitersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EmailRateLimitersResponse>>;
+
+    /**
+     * Get email commseq rate limiters
+     */
+    getEmailCommseqRateLimiters(requestParameters: GetEmailCommseqRateLimitersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EmailRateLimitersResponse>;
 
     /**
      * 
@@ -3463,6 +3492,22 @@ export interface StorefrontApiInterface {
      * Release email communication sequence customers waiting at the specified step
      */
     releaseEmailCommseqStepWaiting(requestParameters: ReleaseEmailCommseqStepWaitingRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+
+    /**
+     * 
+     * @summary Reset email commseq rate limiters (only callable by UltraCart Support)
+     * @param {number} storefrontOid 
+     * @param {string} commseqUuid 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof StorefrontApiInterface
+     */
+    resetEmailCommseqRateLimitersRaw(requestParameters: ResetEmailCommseqRateLimitersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+
+    /**
+     * Reset email commseq rate limiters (only callable by UltraCart Support)
+     */
+    resetEmailCommseqRateLimiters(requestParameters: ResetEmailCommseqRateLimitersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
      * 
@@ -6198,6 +6243,53 @@ export class StorefrontApi extends runtime.BaseAPI implements StorefrontApiInter
      */
     async getEmailCommseqPostcardTracking(requestParameters: GetEmailCommseqPostcardTrackingRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EmailPostcardTrackingResponse> {
         const response = await this.getEmailCommseqPostcardTrackingRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Get email commseq rate limiters
+     */
+    async getEmailCommseqRateLimitersRaw(requestParameters: GetEmailCommseqRateLimitersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EmailRateLimitersResponse>> {
+        if (requestParameters.storefrontOid === null || requestParameters.storefrontOid === undefined) {
+            throw new runtime.RequiredError('storefrontOid','Required parameter requestParameters.storefrontOid was null or undefined when calling getEmailCommseqRateLimiters.');
+        }
+
+        if (requestParameters.commseqUuid === null || requestParameters.commseqUuid === undefined) {
+            throw new runtime.RequiredError('commseqUuid','Required parameter requestParameters.commseqUuid was null or undefined when calling getEmailCommseqRateLimiters.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-browser-key"] = this.configuration.apiKey("x-ultracart-browser-key"); // ultraCartBrowserApiKey authentication
+        }
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", ["storefront_read"]);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/storefront/{storefront_oid}/email/commseqs/{commseq_uuid}/rate_limiters`.replace(`{${"storefront_oid"}}`, encodeURIComponent(String(requestParameters.storefrontOid))).replace(`{${"commseq_uuid"}}`, encodeURIComponent(String(requestParameters.commseqUuid))),
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => EmailRateLimitersResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Get email commseq rate limiters
+     */
+    async getEmailCommseqRateLimiters(requestParameters: GetEmailCommseqRateLimitersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EmailRateLimitersResponse> {
+        const response = await this.getEmailCommseqRateLimitersRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
@@ -10449,6 +10541,52 @@ export class StorefrontApi extends runtime.BaseAPI implements StorefrontApiInter
      */
     async releaseEmailCommseqStepWaiting(requestParameters: ReleaseEmailCommseqStepWaitingRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.releaseEmailCommseqStepWaitingRaw(requestParameters, initOverrides);
+    }
+
+    /**
+     * Reset email commseq rate limiters (only callable by UltraCart Support)
+     */
+    async resetEmailCommseqRateLimitersRaw(requestParameters: ResetEmailCommseqRateLimitersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        if (requestParameters.storefrontOid === null || requestParameters.storefrontOid === undefined) {
+            throw new runtime.RequiredError('storefrontOid','Required parameter requestParameters.storefrontOid was null or undefined when calling resetEmailCommseqRateLimiters.');
+        }
+
+        if (requestParameters.commseqUuid === null || requestParameters.commseqUuid === undefined) {
+            throw new runtime.RequiredError('commseqUuid','Required parameter requestParameters.commseqUuid was null or undefined when calling resetEmailCommseqRateLimiters.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-browser-key"] = this.configuration.apiKey("x-ultracart-browser-key"); // ultraCartBrowserApiKey authentication
+        }
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", ["storefront_read"]);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/storefront/{storefront_oid}/email/commseqs/{commseq_uuid}/rate_limiters`.replace(`{${"storefront_oid"}}`, encodeURIComponent(String(requestParameters.storefrontOid))).replace(`{${"commseq_uuid"}}`, encodeURIComponent(String(requestParameters.commseqUuid))),
+            method: 'DELETE',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     * Reset email commseq rate limiters (only callable by UltraCart Support)
+     */
+    async resetEmailCommseqRateLimiters(requestParameters: ResetEmailCommseqRateLimitersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.resetEmailCommseqRateLimitersRaw(requestParameters, initOverrides);
     }
 
     /**

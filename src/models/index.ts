@@ -418,6 +418,8 @@ export * from './EmailPlanResponse';
 export * from './EmailPostcardStat';
 export * from './EmailPostcardTracking';
 export * from './EmailPostcardTrackingResponse';
+export * from './EmailRateLimiter';
+export * from './EmailRateLimitersResponse';
 export * from './EmailSegment';
 export * from './EmailSegmentArchiveResponse';
 export * from './EmailSegmentCustomer';
