@@ -29713,6 +29713,12 @@ export interface ItemShippingCase {
  */
 export interface ItemShippingDestinationMarkup {
     /**
+     * Adult Signature Required (only updated if not-null value provided)
+     * @type {boolean}
+     * @memberof ItemShippingDestinationMarkup
+     */
+    adult_signature_required?: boolean;
+    /**
      * Country code (ISO-3166 two letter)
      * @type {string}
      * @memberof ItemShippingDestinationMarkup

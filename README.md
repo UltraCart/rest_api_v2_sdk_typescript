@@ -1,4 +1,4 @@
-## ultracart_rest_api_v2_typescript@3.10.207
+## ultracart_rest_api_v2_typescript@3.10.208
 
 This generator creates TypeScript/JavaScript client that utilizes [Fetch API](https://fetch.spec.whatwg.org/). The generated Node module can be used in the following environments:
 
@@ -36,7 +36,7 @@ navigate to the folder of your consuming project and run one of the following co
 _published:_
 
 ```
-npm install ultracart_rest_api_v2_typescript@3.10.207 --save
+npm install ultracart_rest_api_v2_typescript@3.10.208 --save
 ```
 
 _unPublished (not recommended):_
@@ -54,6 +54,7 @@ Not every change is committed to every SDK.
 
 | Version | Date | Comments |
 | --: | :-: | --- |
+| 3.10.208 | 05/30/2024 | add adult sig req. to the merchant item destination markup for items |
 | 3.10.207 | 05/29/2024 | added methods getEmailCommseqRateLimiters, resetEmailCommseqRateLimiters |
 | 3.10.206 | 05/28/2024 | added property to OrderQuery object to allow querying from cache |
 | 3.10.205 | 05/17/2024 | conv.pbx time based config - changed name from default to default_mapping |
