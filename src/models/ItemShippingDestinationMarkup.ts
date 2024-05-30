@@ -20,6 +20,12 @@ import { exists, mapValues } from '../runtime';
  */
 export interface ItemShippingDestinationMarkup {
     /**
+     * Adult Signature Required (only updated if not-null value provided)
+     * @type {boolean}
+     * @memberof ItemShippingDestinationMarkup
+     */
+    adult_signature_required?: boolean;
+    /**
      * Country code (ISO-3166 two letter)
      * @type {string}
      * @memberof ItemShippingDestinationMarkup
@@ -67,6 +73,7 @@ export function ItemShippingDestinationMarkupFromJSONTyped(json: any, ignoreDisc
     }
     return {
         
+        'adult_signature_required': !exists(json, 'adult_signature_required') ? undefined : json['adult_signature_required'],
         'country_code': !exists(json, 'country_code') ? undefined : json['country_code'],
         'flat_fee': !exists(json, 'flat_fee') ? undefined : json['flat_fee'],
         'per_item': !exists(json, 'per_item') ? undefined : json['per_item'],
@@ -85,6 +92,7 @@ export function ItemShippingDestinationMarkupToJSON(value?: ItemShippingDestinat
     }
     return {
         
+        'adult_signature_required': value.adult_signature_required,
         'country_code': value.country_code,
         'flat_fee': value.flat_fee,
         'per_item': value.per_item,
