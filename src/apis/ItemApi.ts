@@ -33,6 +33,9 @@ import {
     ItemDigitalItemsResponse,
     ItemDigitalItemsResponseFromJSON,
     ItemDigitalItemsResponseToJSON,
+    ItemInventorySnapshotResponse,
+    ItemInventorySnapshotResponseFromJSON,
+    ItemInventorySnapshotResponseToJSON,
     ItemResponse,
     ItemResponseFromJSON,
     ItemResponseToJSON,
@@ -488,6 +491,21 @@ export interface ItemApiInterface {
      * Upsert an item content attribute
      */
     insertUpdateItemContentAttribute(requestParameters: InsertUpdateItemContentAttributeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+
+    /**
+     * Retrieves a list of item inventories. 
+     * @summary Retrieve a list of item inventories
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ItemApiInterface
+     */
+    restItemInventorySnapshotResponseRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ItemInventorySnapshotResponse>>;
+
+    /**
+     * Retrieves a list of item inventories. 
+     * Retrieve a list of item inventories
+     */
+    restItemInventorySnapshotResponse(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ItemInventorySnapshotResponse>;
 
     /**
      * Updates a file within the digital library.  This does not update an item, but updates a digital file available and selectable as part (or all) of an item. 
@@ -1396,6 +1414,43 @@ export class ItemApi extends runtime.BaseAPI implements ItemApiInterface {
      */
     async insertUpdateItemContentAttribute(requestParameters: InsertUpdateItemContentAttributeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.insertUpdateItemContentAttributeRaw(requestParameters, initOverrides);
+    }
+
+    /**
+     * Retrieves a list of item inventories. 
+     * Retrieve a list of item inventories
+     */
+    async restItemInventorySnapshotResponseRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ItemInventorySnapshotResponse>> {
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", ["item_read"]);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/item/items/inventory_snapshot`,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => ItemInventorySnapshotResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Retrieves a list of item inventories. 
+     * Retrieve a list of item inventories
+     */
+    async restItemInventorySnapshotResponse(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ItemInventorySnapshotResponse> {
+        const response = await this.restItemInventorySnapshotResponseRaw(initOverrides);
+        return await response.value();
     }
 
     /**
