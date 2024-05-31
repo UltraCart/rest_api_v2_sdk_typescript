@@ -27453,6 +27453,123 @@ export interface ItemInternal {
 /**
  *
  * @export
+ * @interface ItemInventorySnapshot
+ */
+export interface ItemInventorySnapshot {
+    /**
+     *
+     * @type {number}
+     * @memberof ItemInventorySnapshot
+     */
+    allocated_to_placed_orders?: number;
+    /**
+     *
+     * @type {number}
+     * @memberof ItemInventorySnapshot
+     */
+    allocated_to_shopping_carts?: number;
+    /**
+     *
+     * @type {number}
+     * @memberof ItemInventorySnapshot
+     */
+    available_to_allocate?: number;
+    /**
+     *
+     * @type {Array<ItemInventorySnapshotDistributionCenter>}
+     * @memberof ItemInventorySnapshot
+     */
+    distribution_centers?: Array<ItemInventorySnapshotDistributionCenter>;
+    /**
+     *
+     * @type {string}
+     * @memberof ItemInventorySnapshot
+     */
+    merchant_item_id?: string;
+    /**
+     *
+     * @type {number}
+     * @memberof ItemInventorySnapshot
+     */
+    quantity?: number;
+}
+/**
+ *
+ * @export
+ * @interface ItemInventorySnapshotDistributionCenter
+ */
+export interface ItemInventorySnapshotDistributionCenter {
+    /**
+     *
+     * @type {number}
+     * @memberof ItemInventorySnapshotDistributionCenter
+     */
+    allocated_to_placed_orders?: number;
+    /**
+     *
+     * @type {number}
+     * @memberof ItemInventorySnapshotDistributionCenter
+     */
+    allocated_to_shopping_carts?: number;
+    /**
+     *
+     * @type {number}
+     * @memberof ItemInventorySnapshotDistributionCenter
+     */
+    available_to_allocate?: number;
+    /**
+     *
+     * @type {string}
+     * @memberof ItemInventorySnapshotDistributionCenter
+     */
+    code?: string;
+    /**
+     *
+     * @type {number}
+     * @memberof ItemInventorySnapshotDistributionCenter
+     */
+    quantity?: number;
+}
+/**
+ *
+ * @export
+ * @interface ItemInventorySnapshotResponse
+ */
+export interface ItemInventorySnapshotResponse {
+    /**
+     *
+     * @type {ModelError}
+     * @memberof ItemInventorySnapshotResponse
+     */
+    error?: ModelError;
+    /**
+     * inventories
+     * @type {Array<ItemInventorySnapshot>}
+     * @memberof ItemInventorySnapshotResponse
+     */
+    inventories?: Array<ItemInventorySnapshot>;
+    /**
+     *
+     * @type {ResponseMetadata}
+     * @memberof ItemInventorySnapshotResponse
+     */
+    metadata?: ResponseMetadata;
+    /**
+     * Indicates if API call was successful
+     * @type {boolean}
+     * @memberof ItemInventorySnapshotResponse
+     */
+    success?: boolean;
+    /**
+     *
+     * @type {Warning}
+     * @memberof ItemInventorySnapshotResponse
+     */
+    warning?: Warning;
+}
+/**
+ *
+ * @export
  * @interface ItemKitComponent
  */
 export interface ItemKitComponent {
@@ -53775,6 +53892,13 @@ export declare const ItemApiFetchParamCreator: (configuration?: Configuration) =
      */
     insertUpdateItemContentAttribute(item_attribute: ItemContentAttribute, merchant_item_oid: number, options?: any): FetchArgs;
     /**
+     * Retrieves a list of item inventories.
+     * @summary Retrieve a list of item inventories
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    restItemInventorySnapshotResponse(options?: any): FetchArgs;
+    /**
      * Updates a file within the digital library.  This does not update an item, but updates a digital file available and selectable as part (or all) of an item.
      * @summary Updates a file within the digital library
      * @param {number} digital_item_oid The digital item oid to update.
@@ -53993,6 +54117,13 @@ export declare const ItemApiFp: (configuration?: Configuration) => {
      */
     insertUpdateItemContentAttribute(item_attribute: ItemContentAttribute, merchant_item_oid: number, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Response>;
     /**
+     * Retrieves a list of item inventories.
+     * @summary Retrieve a list of item inventories
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    restItemInventorySnapshotResponse(options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ItemInventorySnapshotResponse>;
+    /**
      * Updates a file within the digital library.  This does not update an item, but updates a digital file available and selectable as part (or all) of an item.
      * @summary Updates a file within the digital library
      * @param {number} digital_item_oid The digital item oid to update.
@@ -54210,6 +54341,13 @@ export declare const ItemApiFactory: (configuration?: Configuration, fetch?: Fet
      * @throws {RequiredError}
      */
     insertUpdateItemContentAttribute(item_attribute: ItemContentAttribute, merchant_item_oid: number, options?: any): Promise<Response>;
+    /**
+     * Retrieves a list of item inventories.
+     * @summary Retrieve a list of item inventories
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    restItemInventorySnapshotResponse(options?: any): Promise<ItemInventorySnapshotResponse>;
     /**
      * Updates a file within the digital library.  This does not update an item, but updates a digital file available and selectable as part (or all) of an item.
      * @summary Updates a file within the digital library
@@ -54446,6 +54584,14 @@ export interface ItemApiInterface {
      * @memberof ItemApiInterface
      */
     insertUpdateItemContentAttribute(item_attribute: ItemContentAttribute, merchant_item_oid: number, options?: any): Promise<{}>;
+    /**
+     * Retrieves a list of item inventories.
+     * @summary Retrieve a list of item inventories
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ItemApiInterface
+     */
+    restItemInventorySnapshotResponse(options?: any): Promise<ItemInventorySnapshotResponse>;
     /**
      * Updates a file within the digital library.  This does not update an item, but updates a digital file available and selectable as part (or all) of an item.
      * @summary Updates a file within the digital library
@@ -54688,6 +54834,14 @@ export declare class ItemApi extends BaseAPI implements ItemApiInterface {
      * @memberof ItemApi
      */
     insertUpdateItemContentAttribute(item_attribute: ItemContentAttribute, merchant_item_oid: number, options?: any): Promise<Response>;
+    /**
+     * Retrieves a list of item inventories.
+     * @summary Retrieve a list of item inventories
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ItemApi
+     */
+    restItemInventorySnapshotResponse(options?: any): Promise<ItemInventorySnapshotResponse>;
     /**
      * Updates a file within the digital library.  This does not update an item, but updates a digital file available and selectable as part (or all) of an item.
      * @summary Updates a file within the digital library

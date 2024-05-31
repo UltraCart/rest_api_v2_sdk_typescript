@@ -28045,6 +28045,126 @@ export interface ItemInternal {
 /**
  * 
  * @export
+ * @interface ItemInventorySnapshot
+ */
+export interface ItemInventorySnapshot {
+    /**
+     * 
+     * @type {number}
+     * @memberof ItemInventorySnapshot
+     */
+    allocated_to_placed_orders?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof ItemInventorySnapshot
+     */
+    allocated_to_shopping_carts?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof ItemInventorySnapshot
+     */
+    available_to_allocate?: number;
+    /**
+     * 
+     * @type {Array<ItemInventorySnapshotDistributionCenter>}
+     * @memberof ItemInventorySnapshot
+     */
+    distribution_centers?: Array<ItemInventorySnapshotDistributionCenter>;
+    /**
+     * 
+     * @type {string}
+     * @memberof ItemInventorySnapshot
+     */
+    merchant_item_id?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof ItemInventorySnapshot
+     */
+    quantity?: number;
+}
+
+/**
+ * 
+ * @export
+ * @interface ItemInventorySnapshotDistributionCenter
+ */
+export interface ItemInventorySnapshotDistributionCenter {
+    /**
+     * 
+     * @type {number}
+     * @memberof ItemInventorySnapshotDistributionCenter
+     */
+    allocated_to_placed_orders?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof ItemInventorySnapshotDistributionCenter
+     */
+    allocated_to_shopping_carts?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof ItemInventorySnapshotDistributionCenter
+     */
+    available_to_allocate?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof ItemInventorySnapshotDistributionCenter
+     */
+    code?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof ItemInventorySnapshotDistributionCenter
+     */
+    quantity?: number;
+}
+
+/**
+ * 
+ * @export
+ * @interface ItemInventorySnapshotResponse
+ */
+export interface ItemInventorySnapshotResponse {
+    /**
+     * 
+     * @type {ModelError}
+     * @memberof ItemInventorySnapshotResponse
+     */
+    error?: ModelError;
+    /**
+     * inventories
+     * @type {Array<ItemInventorySnapshot>}
+     * @memberof ItemInventorySnapshotResponse
+     */
+    inventories?: Array<ItemInventorySnapshot>;
+    /**
+     * 
+     * @type {ResponseMetadata}
+     * @memberof ItemInventorySnapshotResponse
+     */
+    metadata?: ResponseMetadata;
+    /**
+     * Indicates if API call was successful
+     * @type {boolean}
+     * @memberof ItemInventorySnapshotResponse
+     */
+    success?: boolean;
+    /**
+     * 
+     * @type {Warning}
+     * @memberof ItemInventorySnapshotResponse
+     */
+    warning?: Warning;
+}
+
+/**
+ * 
+ * @export
  * @interface ItemKitComponent
  */
 export interface ItemKitComponent {
@@ -69575,6 +69695,52 @@ export const ItemApiFetchParamCreator = function (configuration?: Configuration)
             };
         },
         /**
+         * Retrieves a list of item inventories. 
+         * @summary Retrieve a list of item inventories
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        restItemInventorySnapshotResponse(options: any = {}): FetchArgs {
+            const localVarPath = `/item/items/inventory_snapshot`;
+            const localVarUrlObj = url.parse(localVarPath, true);
+            const localVarRequestOptions = Object.assign({ method: 'GET' }, options);
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+    if(configuration && configuration.apiVersion) {
+      localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+    }
+
+
+
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+				const localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+					? configuration.accessToken("ultraCartOauth", ["item_read"])
+					: configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
+					? configuration.apiKey("x-ultracart-simple-key")
+					: configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
          * Updates a file within the digital library.  This does not update an item, but updates a digital file available and selectable as part (or all) of an item. 
          * @summary Updates a file within the digital library
          * @param {number} digital_item_oid The digital item oid to update.
@@ -70296,6 +70462,26 @@ export const ItemApiFp = function(configuration?: Configuration) {
             };
         },
         /**
+         * Retrieves a list of item inventories. 
+         * @summary Retrieve a list of item inventories
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        restItemInventorySnapshotResponse(options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ItemInventorySnapshotResponse> {
+            const localVarFetchArgs = ItemApiFetchParamCreator(configuration).restItemInventorySnapshotResponse(options);
+            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
+                    if (response.status >= 200 && response.status < 300) {
+                      return response.json();
+                      
+                    } else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
          * Updates a file within the digital library.  This does not update an item, but updates a digital file available and selectable as part (or all) of an item. 
          * @summary Updates a file within the digital library
          * @param {number} digital_item_oid The digital item oid to update.
@@ -70616,6 +70802,15 @@ export const ItemApiFactory = function (configuration?: Configuration, fetch?: F
             return ItemApiFp(configuration).insertUpdateItemContentAttribute(item_attribute, merchant_item_oid, options)(fetch, basePath);
         },
         /**
+         * Retrieves a list of item inventories. 
+         * @summary Retrieve a list of item inventories
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        restItemInventorySnapshotResponse(options?: any) {
+            return ItemApiFp(configuration).restItemInventorySnapshotResponse(options)(fetch, basePath);
+        },
+        /**
          * Updates a file within the digital library.  This does not update an item, but updates a digital file available and selectable as part (or all) of an item. 
          * @summary Updates a file within the digital library
          * @param {number} digital_item_oid The digital item oid to update.
@@ -70879,6 +71074,15 @@ export interface ItemApiInterface {
      * @memberof ItemApiInterface
      */
     insertUpdateItemContentAttribute(item_attribute: ItemContentAttribute, merchant_item_oid: number, options?: any): Promise<{}>;
+
+    /**
+     * Retrieves a list of item inventories. 
+     * @summary Retrieve a list of item inventories
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ItemApiInterface
+     */
+    restItemInventorySnapshotResponse(options?: any): Promise<ItemInventorySnapshotResponse>;
 
     /**
      * Updates a file within the digital library.  This does not update an item, but updates a digital file available and selectable as part (or all) of an item. 
@@ -71177,6 +71381,17 @@ export class ItemApi extends BaseAPI implements ItemApiInterface {
      */
     public insertUpdateItemContentAttribute(item_attribute: ItemContentAttribute, merchant_item_oid: number, options?: any) {
         return ItemApiFp(this.configuration).insertUpdateItemContentAttribute(item_attribute, merchant_item_oid, options)(this.fetch, this.basePath);
+    }
+
+    /**
+     * Retrieves a list of item inventories. 
+     * @summary Retrieve a list of item inventories
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ItemApi
+     */
+    public restItemInventorySnapshotResponse(options?: any) {
+        return ItemApiFp(this.configuration).restItemInventorySnapshotResponse(options)(this.fetch, this.basePath);
     }
 
     /**
