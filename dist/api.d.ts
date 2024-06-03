@@ -9215,7 +9215,7 @@ export interface ConversationPbxPhoneNumber {
      * @type {string}
      * @memberof ConversationPbxPhoneNumber
      */
-    conversation_pbx_time_range_uuid?: string;
+    conversation_pbx_phone_number_uuid?: string;
     /**
      * Merchant Id
      * @type {string}
@@ -25501,13 +25501,13 @@ export interface ItemAutoOrderStep {
      */
     schedule?: string;
     /**
-     * Email list name to subscribe the customer to when the rebill occurs
+     * Email list name to subscribe the customer to when the rebill occurs (decommissioned email engine)
      * @type {string}
      * @memberof ItemAutoOrderStep
      */
     subscribe_email_list_name?: string;
     /**
-     * Email list identifier to subscribe the customer to when this rebill occurs
+     * Email list identifier to subscribe the customer to when this rebill occurs (decommissioned email engine)
      * @type {number}
      * @memberof ItemAutoOrderStep
      */
@@ -53892,8 +53892,8 @@ export declare const ItemApiFetchParamCreator: (configuration?: Configuration) =
      */
     insertUpdateItemContentAttribute(item_attribute: ItemContentAttribute, merchant_item_oid: number, options?: any): FetchArgs;
     /**
-     * Retrieves a list of item inventories.
-     * @summary Retrieve a list of item inventories
+     * Retrieve a list of item inventories.  This method may be called once every 15 minutes.  More than that will result in a 429 response.
+     * @summary Retrieve a list of item inventories.  This method may be called once every 15 minutes.  More than that will result in a 429 response.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -54117,8 +54117,8 @@ export declare const ItemApiFp: (configuration?: Configuration) => {
      */
     insertUpdateItemContentAttribute(item_attribute: ItemContentAttribute, merchant_item_oid: number, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Response>;
     /**
-     * Retrieves a list of item inventories.
-     * @summary Retrieve a list of item inventories
+     * Retrieve a list of item inventories.  This method may be called once every 15 minutes.  More than that will result in a 429 response.
+     * @summary Retrieve a list of item inventories.  This method may be called once every 15 minutes.  More than that will result in a 429 response.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -54342,8 +54342,8 @@ export declare const ItemApiFactory: (configuration?: Configuration, fetch?: Fet
      */
     insertUpdateItemContentAttribute(item_attribute: ItemContentAttribute, merchant_item_oid: number, options?: any): Promise<Response>;
     /**
-     * Retrieves a list of item inventories.
-     * @summary Retrieve a list of item inventories
+     * Retrieve a list of item inventories.  This method may be called once every 15 minutes.  More than that will result in a 429 response.
+     * @summary Retrieve a list of item inventories.  This method may be called once every 15 minutes.  More than that will result in a 429 response.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -54585,8 +54585,8 @@ export interface ItemApiInterface {
      */
     insertUpdateItemContentAttribute(item_attribute: ItemContentAttribute, merchant_item_oid: number, options?: any): Promise<{}>;
     /**
-     * Retrieves a list of item inventories.
-     * @summary Retrieve a list of item inventories
+     * Retrieve a list of item inventories.  This method may be called once every 15 minutes.  More than that will result in a 429 response.
+     * @summary Retrieve a list of item inventories.  This method may be called once every 15 minutes.  More than that will result in a 429 response.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ItemApiInterface
@@ -54835,8 +54835,8 @@ export declare class ItemApi extends BaseAPI implements ItemApiInterface {
      */
     insertUpdateItemContentAttribute(item_attribute: ItemContentAttribute, merchant_item_oid: number, options?: any): Promise<Response>;
     /**
-     * Retrieves a list of item inventories.
-     * @summary Retrieve a list of item inventories
+     * Retrieve a list of item inventories.  This method may be called once every 15 minutes.  More than that will result in a 429 response.
+     * @summary Retrieve a list of item inventories.  This method may be called once every 15 minutes.  More than that will result in a 429 response.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ItemApi

@@ -22743,8 +22743,8 @@ var ItemApiFetchParamCreator = function (configuration) {
             };
         },
         /**
-         * Retrieves a list of item inventories.
-         * @summary Retrieve a list of item inventories
+         * Retrieve a list of item inventories.  This method may be called once every 15 minutes.  More than that will result in a 429 response.
+         * @summary Retrieve a list of item inventories.  This method may be called once every 15 minutes.  More than that will result in a 429 response.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -23480,8 +23480,8 @@ var ItemApiFp = function (configuration) {
             };
         },
         /**
-         * Retrieves a list of item inventories.
-         * @summary Retrieve a list of item inventories
+         * Retrieve a list of item inventories.  This method may be called once every 15 minutes.  More than that will result in a 429 response.
+         * @summary Retrieve a list of item inventories.  This method may be called once every 15 minutes.  More than that will result in a 429 response.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -23826,8 +23826,8 @@ var ItemApiFactory = function (configuration, fetch, basePath) {
             return (0, exports.ItemApiFp)(configuration).insertUpdateItemContentAttribute(item_attribute, merchant_item_oid, options)(fetch, basePath);
         },
         /**
-         * Retrieves a list of item inventories.
-         * @summary Retrieve a list of item inventories
+         * Retrieve a list of item inventories.  This method may be called once every 15 minutes.  More than that will result in a 429 response.
+         * @summary Retrieve a list of item inventories.  This method may be called once every 15 minutes.  More than that will result in a 429 response.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -24122,8 +24122,8 @@ var ItemApi = /** @class */ (function (_super) {
         return (0, exports.ItemApiFp)(this.configuration).insertUpdateItemContentAttribute(item_attribute, merchant_item_oid, options)(this.fetch, this.basePath);
     };
     /**
-     * Retrieves a list of item inventories.
-     * @summary Retrieve a list of item inventories
+     * Retrieve a list of item inventories.  This method may be called once every 15 minutes.  More than that will result in a 429 response.
+     * @summary Retrieve a list of item inventories.  This method may be called once every 15 minutes.  More than that will result in a 429 response.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ItemApi
