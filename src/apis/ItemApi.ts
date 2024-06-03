@@ -493,8 +493,8 @@ export interface ItemApiInterface {
     insertUpdateItemContentAttribute(requestParameters: InsertUpdateItemContentAttributeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
-     * Retrieves a list of item inventories. 
-     * @summary Retrieve a list of item inventories
+     * Retrieve a list of item inventories.  This method may be called once every 15 minutes.  More than that will result in a 429 response. 
+     * @summary Retrieve a list of item inventories.  This method may be called once every 15 minutes.  More than that will result in a 429 response.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ItemApiInterface
@@ -502,8 +502,8 @@ export interface ItemApiInterface {
     restItemInventorySnapshotResponseRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ItemInventorySnapshotResponse>>;
 
     /**
-     * Retrieves a list of item inventories. 
-     * Retrieve a list of item inventories
+     * Retrieve a list of item inventories.  This method may be called once every 15 minutes.  More than that will result in a 429 response. 
+     * Retrieve a list of item inventories.  This method may be called once every 15 minutes.  More than that will result in a 429 response.
      */
     restItemInventorySnapshotResponse(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ItemInventorySnapshotResponse>;
 
@@ -1417,8 +1417,8 @@ export class ItemApi extends runtime.BaseAPI implements ItemApiInterface {
     }
 
     /**
-     * Retrieves a list of item inventories. 
-     * Retrieve a list of item inventories
+     * Retrieve a list of item inventories.  This method may be called once every 15 minutes.  More than that will result in a 429 response. 
+     * Retrieve a list of item inventories.  This method may be called once every 15 minutes.  More than that will result in a 429 response.
      */
     async restItemInventorySnapshotResponseRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ItemInventorySnapshotResponse>> {
         const queryParameters: any = {};
@@ -1445,8 +1445,8 @@ export class ItemApi extends runtime.BaseAPI implements ItemApiInterface {
     }
 
     /**
-     * Retrieves a list of item inventories. 
-     * Retrieve a list of item inventories
+     * Retrieve a list of item inventories.  This method may be called once every 15 minutes.  More than that will result in a 429 response. 
+     * Retrieve a list of item inventories.  This method may be called once every 15 minutes.  More than that will result in a 429 response.
      */
     async restItemInventorySnapshotResponse(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ItemInventorySnapshotResponse> {
         const response = await this.restItemInventorySnapshotResponseRaw(initOverrides);

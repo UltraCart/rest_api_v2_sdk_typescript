@@ -36,7 +36,7 @@ export interface ConversationPbxPhoneNumber {
      * @type {string}
      * @memberof ConversationPbxPhoneNumber
      */
-    conversation_pbx_time_range_uuid?: string;
+    conversation_pbx_phone_number_uuid?: string;
     /**
      * Merchant Id
      * @type {string}
@@ -77,7 +77,7 @@ export function ConversationPbxPhoneNumberFromJSONTyped(json: any, ignoreDiscrim
         
         'action': !exists(json, 'action') ? undefined : json['action'],
         'action_target': !exists(json, 'action_target') ? undefined : json['action_target'],
-        'conversation_pbx_time_range_uuid': !exists(json, 'conversation_pbx_time_range_uuid') ? undefined : json['conversation_pbx_time_range_uuid'],
+        'conversation_pbx_phone_number_uuid': !exists(json, 'conversation_pbx_phone_number_uuid') ? undefined : json['conversation_pbx_phone_number_uuid'],
         'merchant_id': !exists(json, 'merchant_id') ? undefined : json['merchant_id'],
         'phone_number': !exists(json, 'phone_number') ? undefined : json['phone_number'],
     };
@@ -94,7 +94,7 @@ export function ConversationPbxPhoneNumberToJSON(value?: ConversationPbxPhoneNum
         
         'action': value.action,
         'action_target': value.action_target,
-        'conversation_pbx_time_range_uuid': value.conversation_pbx_time_range_uuid,
+        'conversation_pbx_phone_number_uuid': value.conversation_pbx_phone_number_uuid,
         'merchant_id': value.merchant_id,
         'phone_number': value.phone_number,
     };

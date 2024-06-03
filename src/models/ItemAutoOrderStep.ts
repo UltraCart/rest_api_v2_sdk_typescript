@@ -117,13 +117,13 @@ export interface ItemAutoOrderStep {
      */
     schedule?: string;
     /**
-     * Email list name to subscribe the customer to when the rebill occurs
+     * Email list name to subscribe the customer to when the rebill occurs (decommissioned email engine)
      * @type {string}
      * @memberof ItemAutoOrderStep
      */
     subscribe_email_list_name?: string;
     /**
-     * Email list identifier to subscribe the customer to when this rebill occurs
+     * Email list identifier to subscribe the customer to when this rebill occurs (decommissioned email engine)
      * @type {number}
      * @memberof ItemAutoOrderStep
      */
