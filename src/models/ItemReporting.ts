@@ -26,7 +26,7 @@ export interface ItemReporting {
      */
     report_as_upsell?: boolean;
     /**
-     * Report pickable quantities
+     * Report pickable quantities (deprecated)
      * @type {Array<number>}
      * @memberof ItemReporting
      */

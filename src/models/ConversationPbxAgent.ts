@@ -32,12 +32,6 @@ export interface ConversationPbxAgent {
      */
     conversation_pbx_agent_uuid?: string;
     /**
-     * Conversation Pbx Voicemail Mailbox UUID
-     * @type {string}
-     * @memberof ConversationPbxAgent
-     */
-    conversation_pbx_voicemail_mailbox_uuid?: string;
-    /**
      * Extension
      * @type {number}
      * @memberof ConversationPbxAgent
@@ -68,11 +62,23 @@ export interface ConversationPbxAgent {
      */
     merchant_id?: string;
     /**
+     * Personal Conversation Pbx Voicemail Mailbox UUID
+     * @type {string}
+     * @memberof ConversationPbxAgent
+     */
+    personal_conversation_pbx_voicemail_mailbox_uuid?: string;
+    /**
      * True if outgoing calls should be automatically recorded
      * @type {boolean}
      * @memberof ConversationPbxAgent
      */
     record_outgoing_automatically?: boolean;
+    /**
+     * Shared Conversation Pbx Voicemail Mailbox UUID
+     * @type {string}
+     * @memberof ConversationPbxAgent
+     */
+    shared_conversation_pbx_voicemail_mailbox_uuid?: string;
     /**
      * Twilio taskrouter worker Id
      * @type {string}
@@ -123,13 +129,14 @@ export function ConversationPbxAgentFromJSONTyped(json: any, ignoreDiscriminator
         
         'cellphone': !exists(json, 'cellphone') ? undefined : json['cellphone'],
         'conversation_pbx_agent_uuid': !exists(json, 'conversation_pbx_agent_uuid') ? undefined : json['conversation_pbx_agent_uuid'],
-        'conversation_pbx_voicemail_mailbox_uuid': !exists(json, 'conversation_pbx_voicemail_mailbox_uuid') ? undefined : json['conversation_pbx_voicemail_mailbox_uuid'],
         'extension': !exists(json, 'extension') ? undefined : json['extension'],
         'forward_calls_to_cellphone': !exists(json, 'forward_calls_to_cellphone') ? undefined : json['forward_calls_to_cellphone'],
         'full_name': !exists(json, 'full_name') ? undefined : json['full_name'],
         'login': !exists(json, 'login') ? undefined : json['login'],
         'merchant_id': !exists(json, 'merchant_id') ? undefined : json['merchant_id'],
+        'personal_conversation_pbx_voicemail_mailbox_uuid': !exists(json, 'personal_conversation_pbx_voicemail_mailbox_uuid') ? undefined : json['personal_conversation_pbx_voicemail_mailbox_uuid'],
         'record_outgoing_automatically': !exists(json, 'record_outgoing_automatically') ? undefined : json['record_outgoing_automatically'],
+        'shared_conversation_pbx_voicemail_mailbox_uuid': !exists(json, 'shared_conversation_pbx_voicemail_mailbox_uuid') ? undefined : json['shared_conversation_pbx_voicemail_mailbox_uuid'],
         'twilio_taskrouter_worker_id': !exists(json, 'twilio_taskrouter_worker_id') ? undefined : json['twilio_taskrouter_worker_id'],
         'unavailable_play_audio_uuid': !exists(json, 'unavailable_play_audio_uuid') ? undefined : json['unavailable_play_audio_uuid'],
         'unavailable_say': !exists(json, 'unavailable_say') ? undefined : json['unavailable_say'],
@@ -150,13 +157,14 @@ export function ConversationPbxAgentToJSON(value?: ConversationPbxAgent | null):
         
         'cellphone': value.cellphone,
         'conversation_pbx_agent_uuid': value.conversation_pbx_agent_uuid,
-        'conversation_pbx_voicemail_mailbox_uuid': value.conversation_pbx_voicemail_mailbox_uuid,
         'extension': value.extension,
         'forward_calls_to_cellphone': value.forward_calls_to_cellphone,
         'full_name': value.full_name,
         'login': value.login,
         'merchant_id': value.merchant_id,
+        'personal_conversation_pbx_voicemail_mailbox_uuid': value.personal_conversation_pbx_voicemail_mailbox_uuid,
         'record_outgoing_automatically': value.record_outgoing_automatically,
+        'shared_conversation_pbx_voicemail_mailbox_uuid': value.shared_conversation_pbx_voicemail_mailbox_uuid,
         'twilio_taskrouter_worker_id': value.twilio_taskrouter_worker_id,
         'unavailable_play_audio_uuid': value.unavailable_play_audio_uuid,
         'unavailable_say': value.unavailable_say,
