@@ -8501,12 +8501,6 @@ export interface ConversationPbxAgent {
      */
     conversation_pbx_agent_uuid?: string;
     /**
-     * Conversation Pbx Voicemail Mailbox UUID
-     * @type {string}
-     * @memberof ConversationPbxAgent
-     */
-    conversation_pbx_voicemail_mailbox_uuid?: string;
-    /**
      * Extension
      * @type {number}
      * @memberof ConversationPbxAgent
@@ -8537,11 +8531,23 @@ export interface ConversationPbxAgent {
      */
     merchant_id?: string;
     /**
+     * Personal Conversation Pbx Voicemail Mailbox UUID
+     * @type {string}
+     * @memberof ConversationPbxAgent
+     */
+    personal_conversation_pbx_voicemail_mailbox_uuid?: string;
+    /**
      * True if outgoing calls should be automatically recorded
      * @type {boolean}
      * @memberof ConversationPbxAgent
      */
     record_outgoing_automatically?: boolean;
+    /**
+     * Shared Conversation Pbx Voicemail Mailbox UUID
+     * @type {string}
+     * @memberof ConversationPbxAgent
+     */
+    shared_conversation_pbx_voicemail_mailbox_uuid?: string;
     /**
      * Twilio taskrouter worker Id
      * @type {string}
@@ -28280,7 +28286,7 @@ export interface ItemReporting {
      */
     report_as_upsell?: boolean;
     /**
-     * Report pickable quantities
+     * Report pickable quantities (deprecated)
      * @type {Array<number>}
      * @memberof ItemReporting
      */

@@ -1,4 +1,4 @@
-## ultracart_rest_api_v2_typescript@3.10.210
+## ultracart_rest_api_v2_typescript@3.10.211
 
 This generator creates TypeScript/JavaScript client that utilizes [Fetch API](https://fetch.spec.whatwg.org/). The generated Node module can be used in the following environments:
 
@@ -36,7 +36,7 @@ navigate to the folder of your consuming project and run one of the following co
 _published:_
 
 ```
-npm install ultracart_rest_api_v2_typescript@3.10.210 --save
+npm install ultracart_rest_api_v2_typescript@3.10.211 --save
 ```
 
 _unPublished (not recommended):_
@@ -54,6 +54,7 @@ Not every change is committed to every SDK.
 
 | Version | Date | Comments |
 | --: | :-: | --- |
+| 3.10.211 | 06/07/2024 | conversation pbx - adjust agent voicemail box uuid fields |
 | 3.10.210 | 06/03/2024 | conversationPbxPhoneNumber - fix serialized name for phone number UUID |
 | 3.10.209 | 05/31/2024 | ItemApi.getInventorySnapshot method |
 | 3.10.208 | 05/30/2024 | add adult sig req. to the merchant item destination markup for items |
