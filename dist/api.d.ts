@@ -9070,11 +9070,31 @@ export interface ConversationPbxMenu {
      */
     say?: string;
     /**
+     * say voice
+     * @type {string}
+     * @memberof ConversationPbxMenu
+     */
+    say_voice?: ConversationPbxMenu.SayVoiceEnum;
+    /**
      * The idle seconds before this menu times out
      * @type {number}
      * @memberof ConversationPbxMenu
      */
     timeout?: number;
+}
+/**
+ * @export
+ * @namespace ConversationPbxMenu
+ */
+export declare namespace ConversationPbxMenu {
+    /**
+     * @export
+     * @enum {string}
+     */
+    enum SayVoiceEnum {
+        Man,
+        Woman
+    }
 }
 /**
  *
@@ -9925,7 +9945,7 @@ export interface ConversationPbxVoicemailMailbox {
      * @type {string}
      * @memberof ConversationPbxVoicemailMailbox
      */
-    voicemail_followup_say_voice?: string;
+    voicemail_followup_say_voice?: ConversationPbxVoicemailMailbox.VoicemailFollowupSayVoiceEnum;
     /**
      * Voicemail mailbox id
      * @type {string}
@@ -9955,7 +9975,7 @@ export interface ConversationPbxVoicemailMailbox {
      * @type {string}
      * @memberof ConversationPbxVoicemailMailbox
      */
-    voicemail_prompt_say_voice?: string;
+    voicemail_prompt_say_voice?: ConversationPbxVoicemailMailbox.VoicemailPromptSayVoiceEnum;
 }
 /**
  * @export
@@ -9966,9 +9986,25 @@ export declare namespace ConversationPbxVoicemailMailbox {
      * @export
      * @enum {string}
      */
+    enum VoicemailFollowupSayVoiceEnum {
+        Man,
+        Woman
+    }
+    /**
+     * @export
+     * @enum {string}
+     */
     enum VoicemailMailboxTypeEnum {
         Agent,
         Shared
+    }
+    /**
+     * @export
+     * @enum {string}
+     */
+    enum VoicemailPromptSayVoiceEnum {
+        Man,
+        Woman
     }
 }
 /**
