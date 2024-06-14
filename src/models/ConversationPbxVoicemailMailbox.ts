@@ -60,7 +60,7 @@ export interface ConversationPbxVoicemailMailbox {
      * @type {string}
      * @memberof ConversationPbxVoicemailMailbox
      */
-    voicemail_followup_say_voice?: string;
+    voicemail_followup_say_voice?: ConversationPbxVoicemailMailboxVoicemailFollowupSayVoiceEnum;
     /**
      * Voicemail mailbox id
      * @type {string}
@@ -90,9 +90,18 @@ export interface ConversationPbxVoicemailMailbox {
      * @type {string}
      * @memberof ConversationPbxVoicemailMailbox
      */
-    voicemail_prompt_say_voice?: string;
+    voicemail_prompt_say_voice?: ConversationPbxVoicemailMailboxVoicemailPromptSayVoiceEnum;
 }
 
+
+/**
+ * @export
+ */
+export const ConversationPbxVoicemailMailboxVoicemailFollowupSayVoiceEnum = {
+    Man: 'man',
+    Woman: 'woman'
+} as const;
+export type ConversationPbxVoicemailMailboxVoicemailFollowupSayVoiceEnum = typeof ConversationPbxVoicemailMailboxVoicemailFollowupSayVoiceEnum[keyof typeof ConversationPbxVoicemailMailboxVoicemailFollowupSayVoiceEnum];
 
 /**
  * @export
@@ -102,6 +111,15 @@ export const ConversationPbxVoicemailMailboxVoicemailMailboxTypeEnum = {
     Shared: 'shared'
 } as const;
 export type ConversationPbxVoicemailMailboxVoicemailMailboxTypeEnum = typeof ConversationPbxVoicemailMailboxVoicemailMailboxTypeEnum[keyof typeof ConversationPbxVoicemailMailboxVoicemailMailboxTypeEnum];
+
+/**
+ * @export
+ */
+export const ConversationPbxVoicemailMailboxVoicemailPromptSayVoiceEnum = {
+    Man: 'man',
+    Woman: 'woman'
+} as const;
+export type ConversationPbxVoicemailMailboxVoicemailPromptSayVoiceEnum = typeof ConversationPbxVoicemailMailboxVoicemailPromptSayVoiceEnum[keyof typeof ConversationPbxVoicemailMailboxVoicemailPromptSayVoiceEnum];
 
 
 export function ConversationPbxVoicemailMailboxFromJSON(json: any): ConversationPbxVoicemailMailbox {

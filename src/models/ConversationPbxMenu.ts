@@ -81,12 +81,29 @@ export interface ConversationPbxMenu {
      */
     say?: string;
     /**
+     * say voice
+     * @type {string}
+     * @memberof ConversationPbxMenu
+     */
+    say_voice?: ConversationPbxMenuSayVoiceEnum;
+    /**
      * The idle seconds before this menu times out
      * @type {number}
      * @memberof ConversationPbxMenu
      */
     timeout?: number;
 }
+
+
+/**
+ * @export
+ */
+export const ConversationPbxMenuSayVoiceEnum = {
+    Man: 'man',
+    Woman: 'woman'
+} as const;
+export type ConversationPbxMenuSayVoiceEnum = typeof ConversationPbxMenuSayVoiceEnum[keyof typeof ConversationPbxMenuSayVoiceEnum];
+
 
 export function ConversationPbxMenuFromJSON(json: any): ConversationPbxMenu {
     return ConversationPbxMenuFromJSONTyped(json, false);
@@ -107,6 +124,7 @@ export function ConversationPbxMenuFromJSONTyped(json: any, ignoreDiscriminator:
         'name': !exists(json, 'name') ? undefined : json['name'],
         'play_audio_uuid': !exists(json, 'play_audio_uuid') ? undefined : json['play_audio_uuid'],
         'say': !exists(json, 'say') ? undefined : json['say'],
+        'say_voice': !exists(json, 'say_voice') ? undefined : json['say_voice'],
         'timeout': !exists(json, 'timeout') ? undefined : json['timeout'],
     };
 }
@@ -129,6 +147,7 @@ export function ConversationPbxMenuToJSON(value?: ConversationPbxMenu | null): a
         'name': value.name,
         'play_audio_uuid': value.play_audio_uuid,
         'say': value.say,
+        'say_voice': value.say_voice,
         'timeout': value.timeout,
     };
 }
