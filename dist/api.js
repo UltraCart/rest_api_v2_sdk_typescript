@@ -36592,6 +36592,65 @@ var StorefrontApiFetchParamCreator = function (configuration) {
             };
         },
         /**
+         *
+         * @summary Sunset email segment
+         * @param {number} storefront_oid
+         * @param {string} email_segment_uuid
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        sunsetEmailSegment: function (storefront_oid, email_segment_uuid, options) {
+            if (options === void 0) { options = {}; }
+            // verify required parameter 'storefront_oid' is not null or undefined
+            if (storefront_oid === null || storefront_oid === undefined) {
+                throw new RequiredError('storefront_oid', 'Required parameter storefront_oid was null or undefined when calling sunsetEmailSegment.');
+            }
+            // verify required parameter 'email_segment_uuid' is not null or undefined
+            if (email_segment_uuid === null || email_segment_uuid === undefined) {
+                throw new RequiredError('email_segment_uuid', 'Required parameter email_segment_uuid was null or undefined when calling sunsetEmailSegment.');
+            }
+            var localVarPath = "/storefront/{storefront_oid}/email/segments/{email_segment_uuid}/sunset"
+                .replace("{".concat("storefront_oid", "}"), encodeURIComponent(String(storefront_oid)))
+                .replace("{".concat("email_segment_uuid", "}"), encodeURIComponent(String(email_segment_uuid)));
+            var localVarUrlObj = url.parse(localVarPath, true);
+            var localVarRequestOptions = Object.assign({ method: 'PUT' }, options);
+            var localVarHeaderParameter = {};
+            var localVarQueryParameter = {};
+            if (configuration && configuration.apiVersion) {
+                localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+            }
+            // authentication ultraCartBrowserApiKey required
+            if (configuration && configuration.apiKey) {
+                var localVarApiKeyValue = typeof configuration.apiKey === 'function'
+                    ? configuration.apiKey("x-ultracart-browser-key")
+                    : configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-browser-key"] = localVarApiKeyValue;
+            }
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+                var localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+                    ? configuration.accessToken("ultraCartOauth", ["storefront_write"])
+                    : configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                var localVarApiKeyValue = typeof configuration.apiKey === 'function'
+                    ? configuration.apiKey("x-ultracart-simple-key")
+                    : configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
          * Remove favorite flag on screen recording
          * @summary Remove favorite flag on screen recording
          * @param {number} storefront_oid
@@ -41713,6 +41772,29 @@ var StorefrontApiFp = function (configuration) {
             };
         },
         /**
+         *
+         * @summary Sunset email segment
+         * @param {number} storefront_oid
+         * @param {string} email_segment_uuid
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        sunsetEmailSegment: function (storefront_oid, email_segment_uuid, options) {
+            var localVarFetchArgs = (0, exports.StorefrontApiFetchParamCreator)(configuration).sunsetEmailSegment(storefront_oid, email_segment_uuid, options);
+            return function (fetch, basePath) {
+                if (fetch === void 0) { fetch = portableFetch; }
+                if (basePath === void 0) { basePath = BASE_PATH; }
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(function (response) {
+                    if (response.status >= 200 && response.status < 300) {
+                        return response;
+                    }
+                    else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
          * Remove favorite flag on screen recording
          * @summary Remove favorite flag on screen recording
          * @param {number} storefront_oid
@@ -43999,6 +44081,17 @@ var StorefrontApiFactory = function (configuration, fetch, basePath) {
             return (0, exports.StorefrontApiFp)(configuration).subscribeToEmailList(storefront_oid, email_list_uuid, customers, options)(fetch, basePath);
         },
         /**
+         *
+         * @summary Sunset email segment
+         * @param {number} storefront_oid
+         * @param {string} email_segment_uuid
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        sunsetEmailSegment: function (storefront_oid, email_segment_uuid, options) {
+            return (0, exports.StorefrontApiFp)(configuration).sunsetEmailSegment(storefront_oid, email_segment_uuid, options)(fetch, basePath);
+        },
+        /**
          * Remove favorite flag on screen recording
          * @summary Remove favorite flag on screen recording
          * @param {number} storefront_oid
@@ -46126,6 +46219,18 @@ var StorefrontApi = /** @class */ (function (_super) {
      */
     StorefrontApi.prototype.subscribeToEmailList = function (storefront_oid, email_list_uuid, customers, options) {
         return (0, exports.StorefrontApiFp)(this.configuration).subscribeToEmailList(storefront_oid, email_list_uuid, customers, options)(this.fetch, this.basePath);
+    };
+    /**
+     *
+     * @summary Sunset email segment
+     * @param {number} storefront_oid
+     * @param {string} email_segment_uuid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof StorefrontApi
+     */
+    StorefrontApi.prototype.sunsetEmailSegment = function (storefront_oid, email_segment_uuid, options) {
+        return (0, exports.StorefrontApiFp)(this.configuration).sunsetEmailSegment(storefront_oid, email_segment_uuid, options)(this.fetch, this.basePath);
     };
     /**
      * Remove favorite flag on screen recording

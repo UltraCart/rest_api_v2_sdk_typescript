@@ -42821,12 +42821,6 @@ export interface Twilio {
      * @type {string}
      * @memberof Twilio
      */
-    api_key_secret?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof Twilio
-     */
     auth_token?: string;
     /**
      * 
@@ -42852,24 +42846,6 @@ export interface Twilio {
      * @memberof Twilio
      */
     phone_numbers?: Array<string>;
-    /**
-     * 
-     * @type {string}
-     * @memberof Twilio
-     */
-    private_key_pem?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof Twilio
-     */
-    public_key_pem?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof Twilio
-     */
-    public_key_sid?: string;
     /**
      * 
      * @type {string}
@@ -85676,6 +85652,72 @@ export const StorefrontApiFetchParamCreator = function (configuration?: Configur
             };
         },
         /**
+         * 
+         * @summary Sunset email segment
+         * @param {number} storefront_oid 
+         * @param {string} email_segment_uuid 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        sunsetEmailSegment(storefront_oid: number, email_segment_uuid: string, options: any = {}): FetchArgs {
+            // verify required parameter 'storefront_oid' is not null or undefined
+            if (storefront_oid === null || storefront_oid === undefined) {
+                throw new RequiredError('storefront_oid','Required parameter storefront_oid was null or undefined when calling sunsetEmailSegment.');
+            }
+            // verify required parameter 'email_segment_uuid' is not null or undefined
+            if (email_segment_uuid === null || email_segment_uuid === undefined) {
+                throw new RequiredError('email_segment_uuid','Required parameter email_segment_uuid was null or undefined when calling sunsetEmailSegment.');
+            }
+            const localVarPath = `/storefront/{storefront_oid}/email/segments/{email_segment_uuid}/sunset`
+                .replace(`{${"storefront_oid"}}`, encodeURIComponent(String(storefront_oid)))
+                .replace(`{${"email_segment_uuid"}}`, encodeURIComponent(String(email_segment_uuid)));
+            const localVarUrlObj = url.parse(localVarPath, true);
+            const localVarRequestOptions = Object.assign({ method: 'PUT' }, options);
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+    if(configuration && configuration.apiVersion) {
+      localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+    }
+
+
+
+            // authentication ultraCartBrowserApiKey required
+            if (configuration && configuration.apiKey) {
+                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
+					? configuration.apiKey("x-ultracart-browser-key")
+					: configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-browser-key"] = localVarApiKeyValue;
+            }
+
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+				const localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+					? configuration.accessToken("ultraCartOauth", ["storefront_write"])
+					: configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
+					? configuration.apiKey("x-ultracart-simple-key")
+					: configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
          * Remove favorite flag on screen recording 
          * @summary Remove favorite flag on screen recording
          * @param {number} storefront_oid 
@@ -90851,6 +90893,28 @@ export const StorefrontApiFp = function(configuration?: Configuration) {
             };
         },
         /**
+         * 
+         * @summary Sunset email segment
+         * @param {number} storefront_oid 
+         * @param {string} email_segment_uuid 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        sunsetEmailSegment(storefront_oid: number, email_segment_uuid: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Response> {
+            const localVarFetchArgs = StorefrontApiFetchParamCreator(configuration).sunsetEmailSegment(storefront_oid, email_segment_uuid, options);
+            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
+                    if (response.status >= 200 && response.status < 300) {
+                      return response;
+                      
+                    } else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
          * Remove favorite flag on screen recording 
          * @summary Remove favorite flag on screen recording
          * @param {number} storefront_oid 
@@ -93111,6 +93175,17 @@ export const StorefrontApiFactory = function (configuration?: Configuration, fet
             return StorefrontApiFp(configuration).subscribeToEmailList(storefront_oid, email_list_uuid, customers, options)(fetch, basePath);
         },
         /**
+         * 
+         * @summary Sunset email segment
+         * @param {number} storefront_oid 
+         * @param {string} email_segment_uuid 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        sunsetEmailSegment(storefront_oid: number, email_segment_uuid: string, options?: any) {
+            return StorefrontApiFp(configuration).sunsetEmailSegment(storefront_oid, email_segment_uuid, options)(fetch, basePath);
+        },
+        /**
          * Remove favorite flag on screen recording 
          * @summary Remove favorite flag on screen recording
          * @param {number} storefront_oid 
@@ -95083,6 +95158,17 @@ export interface StorefrontApiInterface {
      * @memberof StorefrontApiInterface
      */
     subscribeToEmailList(storefront_oid: number, email_list_uuid: string, customers: Array<EmailCustomer>, options?: any): Promise<EmailListSubscribeResponse>;
+
+    /**
+     * 
+     * @summary Sunset email segment
+     * @param {number} storefront_oid 
+     * @param {string} email_segment_uuid 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof StorefrontApiInterface
+     */
+    sunsetEmailSegment(storefront_oid: number, email_segment_uuid: string, options?: any): Promise<{}>;
 
     /**
      * Remove favorite flag on screen recording 
@@ -97356,6 +97442,19 @@ export class StorefrontApi extends BaseAPI implements StorefrontApiInterface {
      */
     public subscribeToEmailList(storefront_oid: number, email_list_uuid: string, customers: Array<EmailCustomer>, options?: any) {
         return StorefrontApiFp(this.configuration).subscribeToEmailList(storefront_oid, email_list_uuid, customers, options)(this.fetch, this.basePath);
+    }
+
+    /**
+     * 
+     * @summary Sunset email segment
+     * @param {number} storefront_oid 
+     * @param {string} email_segment_uuid 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof StorefrontApi
+     */
+    public sunsetEmailSegment(storefront_oid: number, email_segment_uuid: string, options?: any) {
+        return StorefrontApiFp(this.configuration).sunsetEmailSegment(storefront_oid, email_segment_uuid, options)(this.fetch, this.basePath);
     }
 
     /**

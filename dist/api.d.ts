@@ -41920,12 +41920,6 @@ export interface Twilio {
      * @type {string}
      * @memberof Twilio
      */
-    api_key_secret?: string;
-    /**
-     *
-     * @type {string}
-     * @memberof Twilio
-     */
     auth_token?: string;
     /**
      *
@@ -41951,24 +41945,6 @@ export interface Twilio {
      * @memberof Twilio
      */
     phone_numbers?: Array<string>;
-    /**
-     *
-     * @type {string}
-     * @memberof Twilio
-     */
-    private_key_pem?: string;
-    /**
-     *
-     * @type {string}
-     * @memberof Twilio
-     */
-    public_key_pem?: string;
-    /**
-     *
-     * @type {string}
-     * @memberof Twilio
-     */
-    public_key_sid?: string;
     /**
      *
      * @type {string}
@@ -58090,6 +58066,15 @@ export declare const StorefrontApiFetchParamCreator: (configuration?: Configurat
      */
     subscribeToEmailList(storefront_oid: number, email_list_uuid: string, customers: Array<EmailCustomer>, options?: any): FetchArgs;
     /**
+     *
+     * @summary Sunset email segment
+     * @param {number} storefront_oid
+     * @param {string} email_segment_uuid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    sunsetEmailSegment(storefront_oid: number, email_segment_uuid: string, options?: any): FetchArgs;
+    /**
      * Remove favorite flag on screen recording
      * @summary Remove favorite flag on screen recording
      * @param {number} storefront_oid
@@ -59709,6 +59694,15 @@ export declare const StorefrontApiFp: (configuration?: Configuration) => {
      */
     subscribeToEmailList(storefront_oid: number, email_list_uuid: string, customers: Array<EmailCustomer>, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<EmailListSubscribeResponse>;
     /**
+     *
+     * @summary Sunset email segment
+     * @param {number} storefront_oid
+     * @param {string} email_segment_uuid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    sunsetEmailSegment(storefront_oid: number, email_segment_uuid: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Response>;
+    /**
      * Remove favorite flag on screen recording
      * @summary Remove favorite flag on screen recording
      * @param {number} storefront_oid
@@ -61327,6 +61321,15 @@ export declare const StorefrontApiFactory: (configuration?: Configuration, fetch
      * @throws {RequiredError}
      */
     subscribeToEmailList(storefront_oid: number, email_list_uuid: string, customers: Array<EmailCustomer>, options?: any): Promise<EmailListSubscribeResponse>;
+    /**
+     *
+     * @summary Sunset email segment
+     * @param {number} storefront_oid
+     * @param {string} email_segment_uuid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    sunsetEmailSegment(storefront_oid: number, email_segment_uuid: string, options?: any): Promise<Response>;
     /**
      * Remove favorite flag on screen recording
      * @summary Remove favorite flag on screen recording
@@ -63097,6 +63100,16 @@ export interface StorefrontApiInterface {
      * @memberof StorefrontApiInterface
      */
     subscribeToEmailList(storefront_oid: number, email_list_uuid: string, customers: Array<EmailCustomer>, options?: any): Promise<EmailListSubscribeResponse>;
+    /**
+     *
+     * @summary Sunset email segment
+     * @param {number} storefront_oid
+     * @param {string} email_segment_uuid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof StorefrontApiInterface
+     */
+    sunsetEmailSegment(storefront_oid: number, email_segment_uuid: string, options?: any): Promise<{}>;
     /**
      * Remove favorite flag on screen recording
      * @summary Remove favorite flag on screen recording
@@ -64894,6 +64907,16 @@ export declare class StorefrontApi extends BaseAPI implements StorefrontApiInter
      * @memberof StorefrontApi
      */
     subscribeToEmailList(storefront_oid: number, email_list_uuid: string, customers: Array<EmailCustomer>, options?: any): Promise<EmailListSubscribeResponse>;
+    /**
+     *
+     * @summary Sunset email segment
+     * @param {number} storefront_oid
+     * @param {string} email_segment_uuid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof StorefrontApi
+     */
+    sunsetEmailSegment(storefront_oid: number, email_segment_uuid: string, options?: any): Promise<Response>;
     /**
      * Remove favorite flag on screen recording
      * @summary Remove favorite flag on screen recording
