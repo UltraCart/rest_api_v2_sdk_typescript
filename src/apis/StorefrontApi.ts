@@ -1202,6 +1202,11 @@ export interface SubscribeToEmailListRequest {
     customers: Array<EmailCustomer>;
 }
 
+export interface SunsetEmailSegmentRequest {
+    storefrontOid: number;
+    emailSegmentUuid: string;
+}
+
 export interface UnfavoriteScreenRecordingRequest {
     storefrontOid: number;
     screenRecordingUuid: string;
@@ -3787,6 +3792,22 @@ export interface StorefrontApiInterface {
      * Subscribe customers to email list
      */
     subscribeToEmailList(requestParameters: SubscribeToEmailListRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EmailListSubscribeResponse>;
+
+    /**
+     * 
+     * @summary Sunset email segment
+     * @param {number} storefrontOid 
+     * @param {string} emailSegmentUuid 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof StorefrontApiInterface
+     */
+    sunsetEmailSegmentRaw(requestParameters: SunsetEmailSegmentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+
+    /**
+     * Sunset email segment
+     */
+    sunsetEmailSegment(requestParameters: SunsetEmailSegmentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
      * Remove favorite flag on screen recording 
@@ -11443,6 +11464,52 @@ export class StorefrontApi extends runtime.BaseAPI implements StorefrontApiInter
     async subscribeToEmailList(requestParameters: SubscribeToEmailListRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EmailListSubscribeResponse> {
         const response = await this.subscribeToEmailListRaw(requestParameters, initOverrides);
         return await response.value();
+    }
+
+    /**
+     * Sunset email segment
+     */
+    async sunsetEmailSegmentRaw(requestParameters: SunsetEmailSegmentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        if (requestParameters.storefrontOid === null || requestParameters.storefrontOid === undefined) {
+            throw new runtime.RequiredError('storefrontOid','Required parameter requestParameters.storefrontOid was null or undefined when calling sunsetEmailSegment.');
+        }
+
+        if (requestParameters.emailSegmentUuid === null || requestParameters.emailSegmentUuid === undefined) {
+            throw new runtime.RequiredError('emailSegmentUuid','Required parameter requestParameters.emailSegmentUuid was null or undefined when calling sunsetEmailSegment.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-browser-key"] = this.configuration.apiKey("x-ultracart-browser-key"); // ultraCartBrowserApiKey authentication
+        }
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", ["storefront_write"]);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/storefront/{storefront_oid}/email/segments/{email_segment_uuid}/sunset`.replace(`{${"storefront_oid"}}`, encodeURIComponent(String(requestParameters.storefrontOid))).replace(`{${"email_segment_uuid"}}`, encodeURIComponent(String(requestParameters.emailSegmentUuid))),
+            method: 'PUT',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     * Sunset email segment
+     */
+    async sunsetEmailSegment(requestParameters: SunsetEmailSegmentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.sunsetEmailSegmentRaw(requestParameters, initOverrides);
     }
 
     /**

@@ -42,12 +42,6 @@ export interface Twilio {
      * @type {string}
      * @memberof Twilio
      */
-    api_key_secret?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof Twilio
-     */
     auth_token?: string;
     /**
      * 
@@ -78,24 +72,6 @@ export interface Twilio {
      * @type {string}
      * @memberof Twilio
      */
-    private_key_pem?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof Twilio
-     */
-    public_key_pem?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof Twilio
-     */
-    public_key_sid?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof Twilio
-     */
     twilio_workspace_sid?: string;
 }
 
@@ -112,15 +88,11 @@ export function TwilioFromJSONTyped(json: any, ignoreDiscriminator: boolean): Tw
         'account_sid': !exists(json, 'account_sid') ? undefined : json['account_sid'],
         'api_key_id': !exists(json, 'api_key_id') ? undefined : json['api_key_id'],
         'api_key_name': !exists(json, 'api_key_name') ? undefined : json['api_key_name'],
-        'api_key_secret': !exists(json, 'api_key_secret') ? undefined : json['api_key_secret'],
         'auth_token': !exists(json, 'auth_token') ? undefined : json['auth_token'],
         'esp_twilio_uuid': !exists(json, 'esp_twilio_uuid') ? undefined : json['esp_twilio_uuid'],
         'inbound_twiml_app_sid': !exists(json, 'inbound_twiml_app_sid') ? undefined : json['inbound_twiml_app_sid'],
         'outbound_twiml_app_sid': !exists(json, 'outbound_twiml_app_sid') ? undefined : json['outbound_twiml_app_sid'],
         'phone_numbers': !exists(json, 'phone_numbers') ? undefined : json['phone_numbers'],
-        'private_key_pem': !exists(json, 'private_key_pem') ? undefined : json['private_key_pem'],
-        'public_key_pem': !exists(json, 'public_key_pem') ? undefined : json['public_key_pem'],
-        'public_key_sid': !exists(json, 'public_key_sid') ? undefined : json['public_key_sid'],
         'twilio_workspace_sid': !exists(json, 'twilio_workspace_sid') ? undefined : json['twilio_workspace_sid'],
     };
 }
@@ -137,15 +109,11 @@ export function TwilioToJSON(value?: Twilio | null): any {
         'account_sid': value.account_sid,
         'api_key_id': value.api_key_id,
         'api_key_name': value.api_key_name,
-        'api_key_secret': value.api_key_secret,
         'auth_token': value.auth_token,
         'esp_twilio_uuid': value.esp_twilio_uuid,
         'inbound_twiml_app_sid': value.inbound_twiml_app_sid,
         'outbound_twiml_app_sid': value.outbound_twiml_app_sid,
         'phone_numbers': value.phone_numbers,
-        'private_key_pem': value.private_key_pem,
-        'public_key_pem': value.public_key_pem,
-        'public_key_sid': value.public_key_sid,
         'twilio_workspace_sid': value.twilio_workspace_sid,
     };
 }
