@@ -220,6 +220,7 @@ export interface RefundOrderRequest {
     manualRefund?: boolean;
     reverseAffiliateTransactions?: boolean;
     issueStoreCredit?: boolean;
+    autoOrderCancelReason?: string;
     expand?: string;
 }
 
@@ -633,6 +634,7 @@ export interface OrderApiInterface {
      * @param {boolean} [manualRefund] Consider a manual refund done externally
      * @param {boolean} [reverseAffiliateTransactions] Reverse affiliate transactions
      * @param {boolean} [issueStoreCredit] Issue a store credit instead of refunding the original payment method, loyalty must be configured on merchant account
+     * @param {string} [autoOrderCancelReason] Reason for auto orders cancellation
      * @param {string} [expand] The object expansion to perform on the result.  See documentation for examples
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -1806,6 +1808,10 @@ export class OrderApi extends runtime.BaseAPI implements OrderApiInterface {
 
         if (requestParameters.issueStoreCredit !== undefined) {
             queryParameters['issue_store_credit'] = requestParameters.issueStoreCredit;
+        }
+
+        if (requestParameters.autoOrderCancelReason !== undefined) {
+            queryParameters['auto_order_cancel_reason'] = requestParameters.autoOrderCancelReason;
         }
 
         if (requestParameters.expand !== undefined) {

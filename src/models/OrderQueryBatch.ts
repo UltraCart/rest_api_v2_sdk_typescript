@@ -25,7 +25,24 @@ export interface OrderQueryBatch {
      * @memberof OrderQueryBatch
      */
     order_ids?: Array<string>;
+    /**
+     * Query Target
+     * @type {string}
+     * @memberof OrderQueryBatch
+     */
+    query_target?: OrderQueryBatchQueryTargetEnum;
 }
+
+
+/**
+ * @export
+ */
+export const OrderQueryBatchQueryTargetEnum = {
+    Origin: 'origin',
+    Cache: 'cache'
+} as const;
+export type OrderQueryBatchQueryTargetEnum = typeof OrderQueryBatchQueryTargetEnum[keyof typeof OrderQueryBatchQueryTargetEnum];
+
 
 export function OrderQueryBatchFromJSON(json: any): OrderQueryBatch {
     return OrderQueryBatchFromJSONTyped(json, false);
@@ -38,6 +55,7 @@ export function OrderQueryBatchFromJSONTyped(json: any, ignoreDiscriminator: boo
     return {
         
         'order_ids': !exists(json, 'order_ids') ? undefined : json['order_ids'],
+        'query_target': !exists(json, 'query_target') ? undefined : json['query_target'],
     };
 }
 
@@ -51,6 +69,7 @@ export function OrderQueryBatchToJSON(value?: OrderQueryBatch | null): any {
     return {
         
         'order_ids': value.order_ids,
+        'query_target': value.query_target,
     };
 }
 

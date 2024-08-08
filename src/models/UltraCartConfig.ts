@@ -20,6 +20,18 @@ import { exists, mapValues } from '../runtime';
  */
 export interface UltraCartConfig {
     /**
+     * True if the Colorado Retail Delivery Fee should not be collected
+     * @type {boolean}
+     * @memberof UltraCartConfig
+     */
+    exempt_from_colorado_retail_delivery_fee?: boolean;
+    /**
+     * True if the Minnesota Retail Delivery Fee should not be collected
+     * @type {boolean}
+     * @memberof UltraCartConfig
+     */
+    exempt_from_minnesota_retail_delivery_fee?: boolean;
+    /**
      * True if sales tax should be collected based on billing address instead of shipping address
      * @type {boolean}
      * @memberof UltraCartConfig
@@ -37,6 +49,8 @@ export function UltraCartConfigFromJSONTyped(json: any, ignoreDiscriminator: boo
     }
     return {
         
+        'exempt_from_colorado_retail_delivery_fee': !exists(json, 'exempt_from_colorado_retail_delivery_fee') ? undefined : json['exempt_from_colorado_retail_delivery_fee'],
+        'exempt_from_minnesota_retail_delivery_fee': !exists(json, 'exempt_from_minnesota_retail_delivery_fee') ? undefined : json['exempt_from_minnesota_retail_delivery_fee'],
         'tax_billing': !exists(json, 'tax_billing') ? undefined : json['tax_billing'],
     };
 }
@@ -50,6 +64,8 @@ export function UltraCartConfigToJSON(value?: UltraCartConfig | null): any {
     }
     return {
         
+        'exempt_from_colorado_retail_delivery_fee': value.exempt_from_colorado_retail_delivery_fee,
+        'exempt_from_minnesota_retail_delivery_fee': value.exempt_from_minnesota_retail_delivery_fee,
         'tax_billing': value.tax_billing,
     };
 }
