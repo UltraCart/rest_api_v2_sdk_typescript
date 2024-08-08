@@ -29,9 +29,9 @@ var __extends = (this && this.__extends) || (function () {
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.ItemTax = exports.ItemTag = exports.ItemShippingMethod = exports.ItemShippingDestinationRestriction = exports.ItemReview = exports.ItemRestrictionItem = exports.ItemRelatedItem = exports.ItemOptionValue = exports.ItemOption = exports.ItemContentMultimedia = exports.ItemAutoOrderStep = exports.Experiment = exports.EmailPerformance = exports.EmailCommseqStep = exports.Distance = exports.Coupon = exports.ConversationWebsocketMessage = exports.ConversationWebchatQueueStatusUpdateRequest = exports.ConversationWebchatQueueStatusAgent = exports.ConversationSummary = exports.ConversationSentiment = exports.ConversationPbxVoicemailMessageSummary = exports.ConversationPbxVoicemailMessage = exports.ConversationPbxVoicemailMailbox = exports.ConversationPbxTimeBasedMapping = exports.ConversationPbxPhoneNumber = exports.ConversationPbxMenuMapping = exports.ConversationPbxMenu = exports.ConversationMessageTransportStatus = exports.ConversationMessage = exports.ConversationEventRRWeb = exports.ConversationEngagementEquationFunction = exports.ConversationEngagement = exports.ConversationAgentProfile = exports.Conversation = exports.CheckoutHandoffRequest = exports.ChannelPartnerOrderItem = exports.ChannelPartnerOrder = exports.CartKitComponentOption = exports.CartItemOption = exports.CartItemMultimedia = exports.CartCustomerProfileCreditCard = exports.AutoOrderItemSimpleSchedule = exports.AutoOrderItem = exports.AutoOrder = exports.AffiliateLink = exports.AffiliateLedger = exports.RequiredError = exports.BaseAPI = exports.COLLECTION_FORMATS = void 0;
-exports.CheckoutApi = exports.CheckoutApiFactory = exports.CheckoutApiFp = exports.CheckoutApiFetchParamCreator = exports.ChargebackApi = exports.ChargebackApiFactory = exports.ChargebackApiFp = exports.ChargebackApiFetchParamCreator = exports.ChannelPartnerApi = exports.ChannelPartnerApiFactory = exports.ChannelPartnerApiFp = exports.ChannelPartnerApiFetchParamCreator = exports.AutoOrderApi = exports.AutoOrderApiFactory = exports.AutoOrderApiFp = exports.AutoOrderApiFetchParamCreator = exports.AffiliateApi = exports.AffiliateApiFactory = exports.AffiliateApiFp = exports.AffiliateApiFetchParamCreator = exports.WorkflowTasksRequest = exports.WorkflowTask = exports.Weight = exports.Webhook = exports.TempMultimedia = exports.ReportWebsocketEvent = exports.ReportPageVisualizationMetric = exports.ReportPageVisualization = exports.ReportFilter = exports.ReportExecuteQueriesRequest = exports.ReportDataSourceSchema = exports.ReportDataSetSchema = exports.ReportDataSetQuery = exports.ReportDataSet = exports.Report = exports.PointOfSaleReader = exports.OrderQuery = exports.OrderPaymentECheck = exports.OrderPaymentCreditCard = exports.OrderPayment = exports.OrderItemOption = exports.OrderItem = exports.OrderFraudScore = exports.OrderFormat = exports.OrderEdiDocument = exports.OrderAutoOrder = exports.OrderAffiliateLedger = exports.Order = exports.OauthTokenResponse = exports.ItemThirdPartyEmailMarketing = void 0;
-exports.TaxApiFp = exports.TaxApiFetchParamCreator = exports.StorefrontApi = exports.StorefrontApiFactory = exports.StorefrontApiFp = exports.StorefrontApiFetchParamCreator = exports.SsoApi = exports.SsoApiFactory = exports.SsoApiFp = exports.SsoApiFetchParamCreator = exports.OrderApi = exports.OrderApiFactory = exports.OrderApiFp = exports.OrderApiFetchParamCreator = exports.OauthApi = exports.OauthApiFactory = exports.OauthApiFp = exports.OauthApiFetchParamCreator = exports.ItemApi = exports.ItemApiFactory = exports.ItemApiFp = exports.ItemApiFetchParamCreator = exports.IntegrationLogApi = exports.IntegrationLogApiFactory = exports.IntegrationLogApiFp = exports.IntegrationLogApiFetchParamCreator = exports.GiftCertificateApi = exports.GiftCertificateApiFactory = exports.GiftCertificateApiFp = exports.GiftCertificateApiFetchParamCreator = exports.FulfillmentApi = exports.FulfillmentApiFactory = exports.FulfillmentApiFp = exports.FulfillmentApiFetchParamCreator = exports.DatawarehouseApi = exports.DatawarehouseApiFactory = exports.DatawarehouseApiFp = exports.DatawarehouseApiFetchParamCreator = exports.CustomerApi = exports.CustomerApiFactory = exports.CustomerApiFp = exports.CustomerApiFetchParamCreator = exports.CouponApi = exports.CouponApiFactory = exports.CouponApiFp = exports.CouponApiFetchParamCreator = exports.ConversationApi = exports.ConversationApiFactory = exports.ConversationApiFp = exports.ConversationApiFetchParamCreator = void 0;
-exports.WorkflowApi = exports.WorkflowApiFactory = exports.WorkflowApiFp = exports.WorkflowApiFetchParamCreator = exports.WebhookApi = exports.WebhookApiFactory = exports.WebhookApiFp = exports.WebhookApiFetchParamCreator = exports.UserApi = exports.UserApiFactory = exports.UserApiFp = exports.UserApiFetchParamCreator = exports.TaxApi = exports.TaxApiFactory = void 0;
+exports.CheckoutApiFactory = exports.CheckoutApiFp = exports.CheckoutApiFetchParamCreator = exports.ChargebackApi = exports.ChargebackApiFactory = exports.ChargebackApiFp = exports.ChargebackApiFetchParamCreator = exports.ChannelPartnerApi = exports.ChannelPartnerApiFactory = exports.ChannelPartnerApiFp = exports.ChannelPartnerApiFetchParamCreator = exports.AutoOrderApi = exports.AutoOrderApiFactory = exports.AutoOrderApiFp = exports.AutoOrderApiFetchParamCreator = exports.AffiliateApi = exports.AffiliateApiFactory = exports.AffiliateApiFp = exports.AffiliateApiFetchParamCreator = exports.WorkflowTasksRequest = exports.WorkflowTask = exports.Weight = exports.Webhook = exports.TempMultimedia = exports.ReportWebsocketEvent = exports.ReportPageVisualizationMetric = exports.ReportPageVisualization = exports.ReportFilter = exports.ReportExecuteQueriesRequest = exports.ReportDataSourceSchema = exports.ReportDataSetSchema = exports.ReportDataSetQuery = exports.ReportDataSet = exports.Report = exports.PointOfSaleReader = exports.OrderQueryBatch = exports.OrderQuery = exports.OrderPaymentECheck = exports.OrderPaymentCreditCard = exports.OrderPayment = exports.OrderItemOption = exports.OrderItem = exports.OrderFraudScore = exports.OrderFormat = exports.OrderEdiDocument = exports.OrderAutoOrder = exports.OrderAffiliateLedger = exports.Order = exports.OauthTokenResponse = exports.ItemThirdPartyEmailMarketing = void 0;
+exports.TaxApiFetchParamCreator = exports.StorefrontApi = exports.StorefrontApiFactory = exports.StorefrontApiFp = exports.StorefrontApiFetchParamCreator = exports.SsoApi = exports.SsoApiFactory = exports.SsoApiFp = exports.SsoApiFetchParamCreator = exports.OrderApi = exports.OrderApiFactory = exports.OrderApiFp = exports.OrderApiFetchParamCreator = exports.OauthApi = exports.OauthApiFactory = exports.OauthApiFp = exports.OauthApiFetchParamCreator = exports.ItemApi = exports.ItemApiFactory = exports.ItemApiFp = exports.ItemApiFetchParamCreator = exports.IntegrationLogApi = exports.IntegrationLogApiFactory = exports.IntegrationLogApiFp = exports.IntegrationLogApiFetchParamCreator = exports.GiftCertificateApi = exports.GiftCertificateApiFactory = exports.GiftCertificateApiFp = exports.GiftCertificateApiFetchParamCreator = exports.FulfillmentApi = exports.FulfillmentApiFactory = exports.FulfillmentApiFp = exports.FulfillmentApiFetchParamCreator = exports.DatawarehouseApi = exports.DatawarehouseApiFactory = exports.DatawarehouseApiFp = exports.DatawarehouseApiFetchParamCreator = exports.CustomerApi = exports.CustomerApiFactory = exports.CustomerApiFp = exports.CustomerApiFetchParamCreator = exports.CouponApi = exports.CouponApiFactory = exports.CouponApiFp = exports.CouponApiFetchParamCreator = exports.ConversationApi = exports.ConversationApiFactory = exports.ConversationApiFp = exports.ConversationApiFetchParamCreator = exports.CheckoutApi = void 0;
+exports.WorkflowApi = exports.WorkflowApiFactory = exports.WorkflowApiFp = exports.WorkflowApiFetchParamCreator = exports.WebhookApi = exports.WebhookApiFactory = exports.WebhookApiFp = exports.WebhookApiFetchParamCreator = exports.UserApi = exports.UserApiFactory = exports.UserApiFp = exports.UserApiFetchParamCreator = exports.TaxApi = exports.TaxApiFactory = exports.TaxApiFp = void 0;
 var url = require("url");
 var portableFetch = require("portable-fetch");
 var BASE_PATH = "https://secure.ultracart.com/rest/v2".replace(/\/+$/, "");
@@ -1474,6 +1474,22 @@ var OrderQuery;
         QueryTargetEnum[QueryTargetEnum["Cache"] = 'cache'] = "Cache";
     })(QueryTargetEnum = OrderQuery.QueryTargetEnum || (OrderQuery.QueryTargetEnum = {}));
 })(OrderQuery = exports.OrderQuery || (exports.OrderQuery = {}));
+/**
+ * @export
+ * @namespace OrderQueryBatch
+ */
+var OrderQueryBatch;
+(function (OrderQueryBatch) {
+    /**
+     * @export
+     * @enum {string}
+     */
+    var QueryTargetEnum;
+    (function (QueryTargetEnum) {
+        QueryTargetEnum[QueryTargetEnum["Origin"] = 'origin'] = "Origin";
+        QueryTargetEnum[QueryTargetEnum["Cache"] = 'cache'] = "Cache";
+    })(QueryTargetEnum = OrderQueryBatch.QueryTargetEnum || (OrderQueryBatch.QueryTargetEnum = {}));
+})(OrderQueryBatch = exports.OrderQueryBatch || (exports.OrderQueryBatch = {}));
 /**
  * @export
  * @namespace PointOfSaleReader
@@ -25649,11 +25665,12 @@ var OrderApiFetchParamCreator = function (configuration) {
          * @param {boolean} [manual_refund] Consider a manual refund done externally
          * @param {boolean} [reverse_affiliate_transactions] Reverse affiliate transactions
          * @param {boolean} [issue_store_credit] Issue a store credit instead of refunding the original payment method, loyalty must be configured on merchant account
+         * @param {string} [auto_order_cancel_reason] Reason for auto orders cancellation
          * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        refundOrder: function (order, order_id, reject_after_refund, skip_customer_notification, auto_order_cancel, manual_refund, reverse_affiliate_transactions, issue_store_credit, _expand, options) {
+        refundOrder: function (order, order_id, reject_after_refund, skip_customer_notification, auto_order_cancel, manual_refund, reverse_affiliate_transactions, issue_store_credit, auto_order_cancel_reason, _expand, options) {
             if (options === void 0) { options = {}; }
             // verify required parameter 'order' is not null or undefined
             if (order === null || order === undefined) {
@@ -25704,6 +25721,9 @@ var OrderApiFetchParamCreator = function (configuration) {
             }
             if (issue_store_credit !== undefined) {
                 localVarQueryParameter['issue_store_credit'] = issue_store_credit;
+            }
+            if (auto_order_cancel_reason !== undefined) {
+                localVarQueryParameter['auto_order_cancel_reason'] = auto_order_cancel_reason;
             }
             if (_expand !== undefined) {
                 localVarQueryParameter['_expand'] = _expand;
@@ -26525,12 +26545,13 @@ var OrderApiFp = function (configuration) {
          * @param {boolean} [manual_refund] Consider a manual refund done externally
          * @param {boolean} [reverse_affiliate_transactions] Reverse affiliate transactions
          * @param {boolean} [issue_store_credit] Issue a store credit instead of refunding the original payment method, loyalty must be configured on merchant account
+         * @param {string} [auto_order_cancel_reason] Reason for auto orders cancellation
          * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        refundOrder: function (order, order_id, reject_after_refund, skip_customer_notification, auto_order_cancel, manual_refund, reverse_affiliate_transactions, issue_store_credit, _expand, options) {
-            var localVarFetchArgs = (0, exports.OrderApiFetchParamCreator)(configuration).refundOrder(order, order_id, reject_after_refund, skip_customer_notification, auto_order_cancel, manual_refund, reverse_affiliate_transactions, issue_store_credit, _expand, options);
+        refundOrder: function (order, order_id, reject_after_refund, skip_customer_notification, auto_order_cancel, manual_refund, reverse_affiliate_transactions, issue_store_credit, auto_order_cancel_reason, _expand, options) {
+            var localVarFetchArgs = (0, exports.OrderApiFetchParamCreator)(configuration).refundOrder(order, order_id, reject_after_refund, skip_customer_notification, auto_order_cancel, manual_refund, reverse_affiliate_transactions, issue_store_credit, auto_order_cancel_reason, _expand, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -26944,12 +26965,13 @@ var OrderApiFactory = function (configuration, fetch, basePath) {
          * @param {boolean} [manual_refund] Consider a manual refund done externally
          * @param {boolean} [reverse_affiliate_transactions] Reverse affiliate transactions
          * @param {boolean} [issue_store_credit] Issue a store credit instead of refunding the original payment method, loyalty must be configured on merchant account
+         * @param {string} [auto_order_cancel_reason] Reason for auto orders cancellation
          * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        refundOrder: function (order, order_id, reject_after_refund, skip_customer_notification, auto_order_cancel, manual_refund, reverse_affiliate_transactions, issue_store_credit, _expand, options) {
-            return (0, exports.OrderApiFp)(configuration).refundOrder(order, order_id, reject_after_refund, skip_customer_notification, auto_order_cancel, manual_refund, reverse_affiliate_transactions, issue_store_credit, _expand, options)(fetch, basePath);
+        refundOrder: function (order, order_id, reject_after_refund, skip_customer_notification, auto_order_cancel, manual_refund, reverse_affiliate_transactions, issue_store_credit, auto_order_cancel_reason, _expand, options) {
+            return (0, exports.OrderApiFp)(configuration).refundOrder(order, order_id, reject_after_refund, skip_customer_notification, auto_order_cancel, manual_refund, reverse_affiliate_transactions, issue_store_credit, auto_order_cancel_reason, _expand, options)(fetch, basePath);
         },
         /**
          * Create a replacement order based upon a previous order
@@ -27304,13 +27326,14 @@ var OrderApi = /** @class */ (function (_super) {
      * @param {boolean} [manual_refund] Consider a manual refund done externally
      * @param {boolean} [reverse_affiliate_transactions] Reverse affiliate transactions
      * @param {boolean} [issue_store_credit] Issue a store credit instead of refunding the original payment method, loyalty must be configured on merchant account
+     * @param {string} [auto_order_cancel_reason] Reason for auto orders cancellation
      * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof OrderApi
      */
-    OrderApi.prototype.refundOrder = function (order, order_id, reject_after_refund, skip_customer_notification, auto_order_cancel, manual_refund, reverse_affiliate_transactions, issue_store_credit, _expand, options) {
-        return (0, exports.OrderApiFp)(this.configuration).refundOrder(order, order_id, reject_after_refund, skip_customer_notification, auto_order_cancel, manual_refund, reverse_affiliate_transactions, issue_store_credit, _expand, options)(this.fetch, this.basePath);
+    OrderApi.prototype.refundOrder = function (order, order_id, reject_after_refund, skip_customer_notification, auto_order_cancel, manual_refund, reverse_affiliate_transactions, issue_store_credit, auto_order_cancel_reason, _expand, options) {
+        return (0, exports.OrderApiFp)(this.configuration).refundOrder(order, order_id, reject_after_refund, skip_customer_notification, auto_order_cancel, manual_refund, reverse_affiliate_transactions, issue_store_credit, auto_order_cancel_reason, _expand, options)(this.fetch, this.basePath);
     };
     /**
      * Create a replacement order based upon a previous order

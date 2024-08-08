@@ -35106,6 +35106,27 @@ export interface OrderQueryBatch {
      * @memberof OrderQueryBatch
      */
     order_ids?: Array<string>;
+    /**
+     * Query Target
+     * @type {string}
+     * @memberof OrderQueryBatch
+     */
+    query_target?: OrderQueryBatch.QueryTargetEnum;
+}
+
+/**
+ * @export
+ * @namespace OrderQueryBatch
+ */
+export namespace OrderQueryBatch {
+    /**
+     * @export
+     * @enum {string}
+     */
+    export enum QueryTargetEnum {
+        Origin = <any> 'origin',
+        Cache = <any> 'cache'
+    }
 }
 
 /**
@@ -41130,6 +41151,18 @@ export interface ScreenshotsResponse {
  */
 export interface SelfConfig {
     /**
+     * True if the Colorado Retail Delivery Fee should not be collected
+     * @type {boolean}
+     * @memberof SelfConfig
+     */
+    exempt_from_colorado_retail_delivery_fee?: boolean;
+    /**
+     * True if the Minnesota Retail Delivery Fee should not be collected
+     * @type {boolean}
+     * @memberof SelfConfig
+     */
+    exempt_from_minnesota_retail_delivery_fee?: boolean;
+    /**
      * True if sales tax should be collected based on billing address instead of shipping address
      * @type {boolean}
      * @memberof SelfConfig
@@ -42942,6 +42975,18 @@ export interface TwiliosResponse {
  * @interface UltraCartConfig
  */
 export interface UltraCartConfig {
+    /**
+     * True if the Colorado Retail Delivery Fee should not be collected
+     * @type {boolean}
+     * @memberof UltraCartConfig
+     */
+    exempt_from_colorado_retail_delivery_fee?: boolean;
+    /**
+     * True if the Minnesota Retail Delivery Fee should not be collected
+     * @type {boolean}
+     * @memberof UltraCartConfig
+     */
+    exempt_from_minnesota_retail_delivery_fee?: boolean;
     /**
      * True if sales tax should be collected based on billing address instead of shipping address
      * @type {boolean}
@@ -73122,11 +73167,12 @@ export const OrderApiFetchParamCreator = function (configuration?: Configuration
          * @param {boolean} [manual_refund] Consider a manual refund done externally
          * @param {boolean} [reverse_affiliate_transactions] Reverse affiliate transactions
          * @param {boolean} [issue_store_credit] Issue a store credit instead of refunding the original payment method, loyalty must be configured on merchant account
+         * @param {string} [auto_order_cancel_reason] Reason for auto orders cancellation
          * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        refundOrder(order: Order, order_id: string, reject_after_refund?: boolean, skip_customer_notification?: boolean, auto_order_cancel?: boolean, manual_refund?: boolean, reverse_affiliate_transactions?: boolean, issue_store_credit?: boolean, _expand?: string, options: any = {}): FetchArgs {
+        refundOrder(order: Order, order_id: string, reject_after_refund?: boolean, skip_customer_notification?: boolean, auto_order_cancel?: boolean, manual_refund?: boolean, reverse_affiliate_transactions?: boolean, issue_store_credit?: boolean, auto_order_cancel_reason?: string, _expand?: string, options: any = {}): FetchArgs {
             // verify required parameter 'order' is not null or undefined
             if (order === null || order === undefined) {
                 throw new RequiredError('order','Required parameter order was null or undefined when calling refundOrder.');
@@ -73187,6 +73233,10 @@ export const OrderApiFetchParamCreator = function (configuration?: Configuration
 
             if (issue_store_credit !== undefined) {
                 localVarQueryParameter['issue_store_credit'] = issue_store_credit;
+            }
+
+            if (auto_order_cancel_reason !== undefined) {
+                localVarQueryParameter['auto_order_cancel_reason'] = auto_order_cancel_reason;
             }
 
             if (_expand !== undefined) {
@@ -74033,12 +74083,13 @@ export const OrderApiFp = function(configuration?: Configuration) {
          * @param {boolean} [manual_refund] Consider a manual refund done externally
          * @param {boolean} [reverse_affiliate_transactions] Reverse affiliate transactions
          * @param {boolean} [issue_store_credit] Issue a store credit instead of refunding the original payment method, loyalty must be configured on merchant account
+         * @param {string} [auto_order_cancel_reason] Reason for auto orders cancellation
          * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        refundOrder(order: Order, order_id: string, reject_after_refund?: boolean, skip_customer_notification?: boolean, auto_order_cancel?: boolean, manual_refund?: boolean, reverse_affiliate_transactions?: boolean, issue_store_credit?: boolean, _expand?: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<OrderResponse> {
-            const localVarFetchArgs = OrderApiFetchParamCreator(configuration).refundOrder(order, order_id, reject_after_refund, skip_customer_notification, auto_order_cancel, manual_refund, reverse_affiliate_transactions, issue_store_credit, _expand, options);
+        refundOrder(order: Order, order_id: string, reject_after_refund?: boolean, skip_customer_notification?: boolean, auto_order_cancel?: boolean, manual_refund?: boolean, reverse_affiliate_transactions?: boolean, issue_store_credit?: boolean, auto_order_cancel_reason?: string, _expand?: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<OrderResponse> {
+            const localVarFetchArgs = OrderApiFetchParamCreator(configuration).refundOrder(order, order_id, reject_after_refund, skip_customer_notification, auto_order_cancel, manual_refund, reverse_affiliate_transactions, issue_store_credit, auto_order_cancel_reason, _expand, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
 
@@ -74445,12 +74496,13 @@ export const OrderApiFactory = function (configuration?: Configuration, fetch?: 
          * @param {boolean} [manual_refund] Consider a manual refund done externally
          * @param {boolean} [reverse_affiliate_transactions] Reverse affiliate transactions
          * @param {boolean} [issue_store_credit] Issue a store credit instead of refunding the original payment method, loyalty must be configured on merchant account
+         * @param {string} [auto_order_cancel_reason] Reason for auto orders cancellation
          * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        refundOrder(order: Order, order_id: string, reject_after_refund?: boolean, skip_customer_notification?: boolean, auto_order_cancel?: boolean, manual_refund?: boolean, reverse_affiliate_transactions?: boolean, issue_store_credit?: boolean, _expand?: string, options?: any) {
-            return OrderApiFp(configuration).refundOrder(order, order_id, reject_after_refund, skip_customer_notification, auto_order_cancel, manual_refund, reverse_affiliate_transactions, issue_store_credit, _expand, options)(fetch, basePath);
+        refundOrder(order: Order, order_id: string, reject_after_refund?: boolean, skip_customer_notification?: boolean, auto_order_cancel?: boolean, manual_refund?: boolean, reverse_affiliate_transactions?: boolean, issue_store_credit?: boolean, auto_order_cancel_reason?: string, _expand?: string, options?: any) {
+            return OrderApiFp(configuration).refundOrder(order, order_id, reject_after_refund, skip_customer_notification, auto_order_cancel, manual_refund, reverse_affiliate_transactions, issue_store_credit, auto_order_cancel_reason, _expand, options)(fetch, basePath);
         },
         /**
          * Create a replacement order based upon a previous order 
@@ -74780,12 +74832,13 @@ export interface OrderApiInterface {
      * @param {boolean} [manual_refund] Consider a manual refund done externally
      * @param {boolean} [reverse_affiliate_transactions] Reverse affiliate transactions
      * @param {boolean} [issue_store_credit] Issue a store credit instead of refunding the original payment method, loyalty must be configured on merchant account
+     * @param {string} [auto_order_cancel_reason] Reason for auto orders cancellation
      * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof OrderApiInterface
      */
-    refundOrder(order: Order, order_id: string, reject_after_refund?: boolean, skip_customer_notification?: boolean, auto_order_cancel?: boolean, manual_refund?: boolean, reverse_affiliate_transactions?: boolean, issue_store_credit?: boolean, _expand?: string, options?: any): Promise<OrderResponse>;
+    refundOrder(order: Order, order_id: string, reject_after_refund?: boolean, skip_customer_notification?: boolean, auto_order_cancel?: boolean, manual_refund?: boolean, reverse_affiliate_transactions?: boolean, issue_store_credit?: boolean, auto_order_cancel_reason?: string, _expand?: string, options?: any): Promise<OrderResponse>;
 
     /**
      * Create a replacement order based upon a previous order 
@@ -75155,13 +75208,14 @@ export class OrderApi extends BaseAPI implements OrderApiInterface {
      * @param {boolean} [manual_refund] Consider a manual refund done externally
      * @param {boolean} [reverse_affiliate_transactions] Reverse affiliate transactions
      * @param {boolean} [issue_store_credit] Issue a store credit instead of refunding the original payment method, loyalty must be configured on merchant account
+     * @param {string} [auto_order_cancel_reason] Reason for auto orders cancellation
      * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof OrderApi
      */
-    public refundOrder(order: Order, order_id: string, reject_after_refund?: boolean, skip_customer_notification?: boolean, auto_order_cancel?: boolean, manual_refund?: boolean, reverse_affiliate_transactions?: boolean, issue_store_credit?: boolean, _expand?: string, options?: any) {
-        return OrderApiFp(this.configuration).refundOrder(order, order_id, reject_after_refund, skip_customer_notification, auto_order_cancel, manual_refund, reverse_affiliate_transactions, issue_store_credit, _expand, options)(this.fetch, this.basePath);
+    public refundOrder(order: Order, order_id: string, reject_after_refund?: boolean, skip_customer_notification?: boolean, auto_order_cancel?: boolean, manual_refund?: boolean, reverse_affiliate_transactions?: boolean, issue_store_credit?: boolean, auto_order_cancel_reason?: string, _expand?: string, options?: any) {
+        return OrderApiFp(this.configuration).refundOrder(order, order_id, reject_after_refund, skip_customer_notification, auto_order_cancel, manual_refund, reverse_affiliate_transactions, issue_store_credit, auto_order_cancel_reason, _expand, options)(this.fetch, this.basePath);
     }
 
     /**
