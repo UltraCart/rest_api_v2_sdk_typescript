@@ -29059,6 +29059,12 @@ export interface ItemShipping {
      */
     hazmat?: boolean;
     /**
+     * Hold for transmission
+     * @type {boolean}
+     * @memberof ItemShipping
+     */
+    hold_for_transmission?: boolean;
+    /**
      * True if this item is made to order
      * @type {boolean}
      * @memberof ItemShipping
