@@ -207,6 +207,12 @@ export interface ItemShipping {
      */
     hazmat?: boolean;
     /**
+     * Hold for transmission
+     * @type {boolean}
+     * @memberof ItemShipping
+     */
+    hold_for_transmission?: boolean;
+    /**
      * True if this item is made to order
      * @type {boolean}
      * @memberof ItemShipping
@@ -391,6 +397,7 @@ export function ItemShippingFromJSONTyped(json: any, ignoreDiscriminator: boolea
         'free_shipping': !exists(json, 'free_shipping') ? undefined : json['free_shipping'],
         'freight_class': !exists(json, 'freight_class') ? undefined : json['freight_class'],
         'hazmat': !exists(json, 'hazmat') ? undefined : json['hazmat'],
+        'hold_for_transmission': !exists(json, 'hold_for_transmission') ? undefined : json['hold_for_transmission'],
         'made_to_order': !exists(json, 'made_to_order') ? undefined : json['made_to_order'],
         'made_to_order_lead_time': !exists(json, 'made_to_order_lead_time') ? undefined : json['made_to_order_lead_time'],
         'max_days_time_in_transit': !exists(json, 'max_days_time_in_transit') ? undefined : json['max_days_time_in_transit'],
@@ -451,6 +458,7 @@ export function ItemShippingToJSON(value?: ItemShipping | null): any {
         'free_shipping': value.free_shipping,
         'freight_class': value.freight_class,
         'hazmat': value.hazmat,
+        'hold_for_transmission': value.hold_for_transmission,
         'made_to_order': value.made_to_order,
         'made_to_order_lead_time': value.made_to_order_lead_time,
         'max_days_time_in_transit': value.max_days_time_in_transit,
