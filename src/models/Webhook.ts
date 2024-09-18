@@ -162,7 +162,9 @@ export type WebhookApiVersionEnum = typeof WebhookApiVersionEnum[keyof typeof We
  */
 export const WebhookAuthenticationTypeEnum = {
     None: 'none',
-    Basic: 'basic'
+    Basic: 'basic',
+    ApiUser: 'api user',
+    AwsIam: 'aws iam'
 } as const;
 export type WebhookAuthenticationTypeEnum = typeof WebhookAuthenticationTypeEnum[keyof typeof WebhookAuthenticationTypeEnum];
 
