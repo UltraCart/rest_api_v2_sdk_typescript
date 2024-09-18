@@ -43539,7 +43539,9 @@ export namespace Webhook {
      */
     export enum AuthenticationTypeEnum {
         None = <any> 'none',
-        Basic = <any> 'basic'
+        Basic = <any> 'basic',
+        ApiUser = <any> 'api user',
+        AwsIam = <any> 'aws iam'
     }
 }
 

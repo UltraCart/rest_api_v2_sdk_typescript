@@ -42622,7 +42622,9 @@ export declare namespace Webhook {
      */
     enum AuthenticationTypeEnum {
         None,
-        Basic
+        Basic,
+        ApiUser,
+        AwsIam
     }
 }
 /**

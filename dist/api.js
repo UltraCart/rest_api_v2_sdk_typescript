@@ -1740,6 +1740,8 @@ var Webhook;
     (function (AuthenticationTypeEnum) {
         AuthenticationTypeEnum[AuthenticationTypeEnum["None"] = 'none'] = "None";
         AuthenticationTypeEnum[AuthenticationTypeEnum["Basic"] = 'basic'] = "Basic";
+        AuthenticationTypeEnum[AuthenticationTypeEnum["ApiUser"] = 'api user'] = "ApiUser";
+        AuthenticationTypeEnum[AuthenticationTypeEnum["AwsIam"] = 'aws iam'] = "AwsIam";
     })(AuthenticationTypeEnum = Webhook.AuthenticationTypeEnum || (Webhook.AuthenticationTypeEnum = {}));
 })(Webhook = exports.Webhook || (exports.Webhook = {}));
 /**
