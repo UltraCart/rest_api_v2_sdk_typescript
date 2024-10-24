@@ -35594,6 +35594,18 @@ export interface OrderUtm {
      * @type {string}
      * @memberof OrderUtm
      */
+    short_code?: string;
+    /**
+     *
+     * @type {boolean}
+     * @memberof OrderUtm
+     */
+    short_code_backup?: boolean;
+    /**
+     *
+     * @type {string}
+     * @memberof OrderUtm
+     */
     ttclid?: string;
     /**
      *
@@ -40574,6 +40586,37 @@ export interface StoreFront {
      * @memberof StoreFront
      */
     unlock_password?: string;
+}
+/**
+ *
+ * @export
+ * @interface StoreFrontPageContentAttribute
+ */
+export interface StoreFrontPageContentAttribute {
+    /**
+     * Attribute name
+     * @type {string}
+     * @memberof StoreFrontPageContentAttribute
+     */
+    name?: string;
+    /**
+     * Attribute translated text instance identifier
+     * @type {number}
+     * @memberof StoreFrontPageContentAttribute
+     */
+    translated_text_instance_oid?: number;
+    /**
+     * Attribute type
+     * @type {string}
+     * @memberof StoreFrontPageContentAttribute
+     */
+    type?: string;
+    /**
+     * Attribute value
+     * @type {string}
+     * @memberof StoreFrontPageContentAttribute
+     */
+    value?: string;
 }
 /**
  *
@@ -57914,6 +57957,16 @@ export declare const StorefrontApiFetchParamCreator: (configuration?: Configurat
      */
     insertScreenRecordingSegment(storefront_oid: number, segment: ScreenRecordingSegment, options?: any): FetchArgs;
     /**
+     * Update a page content attribute, creating it new if it does not yet exist.
+     * @summary Upsert a page content attribute
+     * @param {StoreFrontPageContentAttribute} page_attribute Page content attribute to upsert
+     * @param {number} storefront_oid
+     * @param {number} page_oid The page oid to modify.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    insertUpdatePageContentAttribute(page_attribute: StoreFrontPageContentAttribute, storefront_oid: number, page_oid: number, options?: any): FetchArgs;
+    /**
      *
      * @summary Prepare download of email segment
      * @param {number} storefront_oid
@@ -59542,6 +59595,16 @@ export declare const StorefrontApiFp: (configuration?: Configuration) => {
      */
     insertScreenRecordingSegment(storefront_oid: number, segment: ScreenRecordingSegment, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ScreenRecordingSegmentResponse>;
     /**
+     * Update a page content attribute, creating it new if it does not yet exist.
+     * @summary Upsert a page content attribute
+     * @param {StoreFrontPageContentAttribute} page_attribute Page content attribute to upsert
+     * @param {number} storefront_oid
+     * @param {number} page_oid The page oid to modify.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    insertUpdatePageContentAttribute(page_attribute: StoreFrontPageContentAttribute, storefront_oid: number, page_oid: number, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Response>;
+    /**
      *
      * @summary Prepare download of email segment
      * @param {number} storefront_oid
@@ -61169,6 +61232,16 @@ export declare const StorefrontApiFactory: (configuration?: Configuration, fetch
      * @throws {RequiredError}
      */
     insertScreenRecordingSegment(storefront_oid: number, segment: ScreenRecordingSegment, options?: any): Promise<ScreenRecordingSegmentResponse>;
+    /**
+     * Update a page content attribute, creating it new if it does not yet exist.
+     * @summary Upsert a page content attribute
+     * @param {StoreFrontPageContentAttribute} page_attribute Page content attribute to upsert
+     * @param {number} storefront_oid
+     * @param {number} page_oid The page oid to modify.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    insertUpdatePageContentAttribute(page_attribute: StoreFrontPageContentAttribute, storefront_oid: number, page_oid: number, options?: any): Promise<Response>;
     /**
      *
      * @summary Prepare download of email segment
@@ -62927,6 +63000,17 @@ export interface StorefrontApiInterface {
      * @memberof StorefrontApiInterface
      */
     insertScreenRecordingSegment(storefront_oid: number, segment: ScreenRecordingSegment, options?: any): Promise<ScreenRecordingSegmentResponse>;
+    /**
+     * Update a page content attribute, creating it new if it does not yet exist.
+     * @summary Upsert a page content attribute
+     * @param {StoreFrontPageContentAttribute} page_attribute Page content attribute to upsert
+     * @param {number} storefront_oid
+     * @param {number} page_oid The page oid to modify.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof StorefrontApiInterface
+     */
+    insertUpdatePageContentAttribute(page_attribute: StoreFrontPageContentAttribute, storefront_oid: number, page_oid: number, options?: any): Promise<{}>;
     /**
      *
      * @summary Prepare download of email segment
@@ -64734,6 +64818,17 @@ export declare class StorefrontApi extends BaseAPI implements StorefrontApiInter
      * @memberof StorefrontApi
      */
     insertScreenRecordingSegment(storefront_oid: number, segment: ScreenRecordingSegment, options?: any): Promise<ScreenRecordingSegmentResponse>;
+    /**
+     * Update a page content attribute, creating it new if it does not yet exist.
+     * @summary Upsert a page content attribute
+     * @param {StoreFrontPageContentAttribute} page_attribute Page content attribute to upsert
+     * @param {number} storefront_oid
+     * @param {number} page_oid The page oid to modify.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof StorefrontApi
+     */
+    insertUpdatePageContentAttribute(page_attribute: StoreFrontPageContentAttribute, storefront_oid: number, page_oid: number, options?: any): Promise<Response>;
     /**
      *
      * @summary Prepare download of email segment

@@ -36348,6 +36348,18 @@ export interface OrderUtm {
      * @type {string}
      * @memberof OrderUtm
      */
+    short_code?: string;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof OrderUtm
+     */
+    short_code_backup?: boolean;
+    /**
+     * 
+     * @type {string}
+     * @memberof OrderUtm
+     */
     ttclid?: string;
     /**
      * 
@@ -41444,6 +41456,38 @@ export interface StoreFront {
      * @memberof StoreFront
      */
     unlock_password?: string;
+}
+
+/**
+ * 
+ * @export
+ * @interface StoreFrontPageContentAttribute
+ */
+export interface StoreFrontPageContentAttribute {
+    /**
+     * Attribute name
+     * @type {string}
+     * @memberof StoreFrontPageContentAttribute
+     */
+    name?: string;
+    /**
+     * Attribute translated text instance identifier
+     * @type {number}
+     * @memberof StoreFrontPageContentAttribute
+     */
+    translated_text_instance_oid?: number;
+    /**
+     * Attribute type
+     * @type {string}
+     * @memberof StoreFrontPageContentAttribute
+     */
+    type?: string;
+    /**
+     * Attribute value
+     * @type {string}
+     * @memberof StoreFrontPageContentAttribute
+     */
+    value?: string;
 }
 
 /**
@@ -84221,6 +84265,73 @@ export const StorefrontApiFetchParamCreator = function (configuration?: Configur
             };
         },
         /**
+         * Update a page content attribute, creating it new if it does not yet exist. 
+         * @summary Upsert a page content attribute
+         * @param {StoreFrontPageContentAttribute} page_attribute Page content attribute to upsert
+         * @param {number} storefront_oid 
+         * @param {number} page_oid The page oid to modify.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        insertUpdatePageContentAttribute(page_attribute: StoreFrontPageContentAttribute, storefront_oid: number, page_oid: number, options: any = {}): FetchArgs {
+            // verify required parameter 'page_attribute' is not null or undefined
+            if (page_attribute === null || page_attribute === undefined) {
+                throw new RequiredError('page_attribute','Required parameter page_attribute was null or undefined when calling insertUpdatePageContentAttribute.');
+            }
+            // verify required parameter 'storefront_oid' is not null or undefined
+            if (storefront_oid === null || storefront_oid === undefined) {
+                throw new RequiredError('storefront_oid','Required parameter storefront_oid was null or undefined when calling insertUpdatePageContentAttribute.');
+            }
+            // verify required parameter 'page_oid' is not null or undefined
+            if (page_oid === null || page_oid === undefined) {
+                throw new RequiredError('page_oid','Required parameter page_oid was null or undefined when calling insertUpdatePageContentAttribute.');
+            }
+            const localVarPath = `/storefront/{storefront_oid}/pages/{page_oid}/content/attributes`
+                .replace(`{${"storefront_oid"}}`, encodeURIComponent(String(storefront_oid)))
+                .replace(`{${"page_oid"}}`, encodeURIComponent(String(page_oid)));
+            const localVarUrlObj = url.parse(localVarPath, true);
+            const localVarRequestOptions = Object.assign({ method: 'POST' }, options);
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+    if(configuration && configuration.apiVersion) {
+      localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+    }
+
+
+
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+				const localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+					? configuration.accessToken("ultraCartOauth", ["storefront_write"])
+					: configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
+					? configuration.apiKey("x-ultracart-simple-key")
+					: configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+
+            localVarHeaderParameter['Content-Type'] = 'application/json; charset=UTF-8';
+
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+            const needsSerialization = (<any>"StoreFrontPageContentAttribute" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
+            localVarRequestOptions.body =  needsSerialization ? JSON.stringify(page_attribute || {}) : (page_attribute || "");
+
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
          * 
          * @summary Prepare download of email segment
          * @param {number} storefront_oid 
@@ -90473,6 +90584,29 @@ export const StorefrontApiFp = function(configuration?: Configuration) {
             };
         },
         /**
+         * Update a page content attribute, creating it new if it does not yet exist. 
+         * @summary Upsert a page content attribute
+         * @param {StoreFrontPageContentAttribute} page_attribute Page content attribute to upsert
+         * @param {number} storefront_oid 
+         * @param {number} page_oid The page oid to modify.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        insertUpdatePageContentAttribute(page_attribute: StoreFrontPageContentAttribute, storefront_oid: number, page_oid: number, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Response> {
+            const localVarFetchArgs = StorefrontApiFetchParamCreator(configuration).insertUpdatePageContentAttribute(page_attribute, storefront_oid, page_oid, options);
+            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
+                    if (response.status >= 200 && response.status < 300) {
+                      return response;
+                      
+                    } else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
          * 
          * @summary Prepare download of email segment
          * @param {number} storefront_oid 
@@ -92986,6 +93120,18 @@ export const StorefrontApiFactory = function (configuration?: Configuration, fet
             return StorefrontApiFp(configuration).insertScreenRecordingSegment(storefront_oid, segment, options)(fetch, basePath);
         },
         /**
+         * Update a page content attribute, creating it new if it does not yet exist. 
+         * @summary Upsert a page content attribute
+         * @param {StoreFrontPageContentAttribute} page_attribute Page content attribute to upsert
+         * @param {number} storefront_oid 
+         * @param {number} page_oid The page oid to modify.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        insertUpdatePageContentAttribute(page_attribute: StoreFrontPageContentAttribute, storefront_oid: number, page_oid: number, options?: any) {
+            return StorefrontApiFp(configuration).insertUpdatePageContentAttribute(page_attribute, storefront_oid, page_oid, options)(fetch, basePath);
+        },
+        /**
          * 
          * @summary Prepare download of email segment
          * @param {number} storefront_oid 
@@ -94969,6 +95115,18 @@ export interface StorefrontApiInterface {
      * @memberof StorefrontApiInterface
      */
     insertScreenRecordingSegment(storefront_oid: number, segment: ScreenRecordingSegment, options?: any): Promise<ScreenRecordingSegmentResponse>;
+
+    /**
+     * Update a page content attribute, creating it new if it does not yet exist. 
+     * @summary Upsert a page content attribute
+     * @param {StoreFrontPageContentAttribute} page_attribute Page content attribute to upsert
+     * @param {number} storefront_oid 
+     * @param {number} page_oid The page oid to modify.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof StorefrontApiInterface
+     */
+    insertUpdatePageContentAttribute(page_attribute: StoreFrontPageContentAttribute, storefront_oid: number, page_oid: number, options?: any): Promise<{}>;
 
     /**
      * 
@@ -97211,6 +97369,20 @@ export class StorefrontApi extends BaseAPI implements StorefrontApiInterface {
      */
     public insertScreenRecordingSegment(storefront_oid: number, segment: ScreenRecordingSegment, options?: any) {
         return StorefrontApiFp(this.configuration).insertScreenRecordingSegment(storefront_oid, segment, options)(this.fetch, this.basePath);
+    }
+
+    /**
+     * Update a page content attribute, creating it new if it does not yet exist. 
+     * @summary Upsert a page content attribute
+     * @param {StoreFrontPageContentAttribute} page_attribute Page content attribute to upsert
+     * @param {number} storefront_oid 
+     * @param {number} page_oid The page oid to modify.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof StorefrontApi
+     */
+    public insertUpdatePageContentAttribute(page_attribute: StoreFrontPageContentAttribute, storefront_oid: number, page_oid: number, options?: any) {
+        return StorefrontApiFp(this.configuration).insertUpdatePageContentAttribute(page_attribute, storefront_oid, page_oid, options)(this.fetch, this.basePath);
     }
 
     /**

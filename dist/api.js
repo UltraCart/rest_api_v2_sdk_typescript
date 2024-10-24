@@ -35300,6 +35300,66 @@ var StorefrontApiFetchParamCreator = function (configuration) {
             };
         },
         /**
+         * Update a page content attribute, creating it new if it does not yet exist.
+         * @summary Upsert a page content attribute
+         * @param {StoreFrontPageContentAttribute} page_attribute Page content attribute to upsert
+         * @param {number} storefront_oid
+         * @param {number} page_oid The page oid to modify.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        insertUpdatePageContentAttribute: function (page_attribute, storefront_oid, page_oid, options) {
+            if (options === void 0) { options = {}; }
+            // verify required parameter 'page_attribute' is not null or undefined
+            if (page_attribute === null || page_attribute === undefined) {
+                throw new RequiredError('page_attribute', 'Required parameter page_attribute was null or undefined when calling insertUpdatePageContentAttribute.');
+            }
+            // verify required parameter 'storefront_oid' is not null or undefined
+            if (storefront_oid === null || storefront_oid === undefined) {
+                throw new RequiredError('storefront_oid', 'Required parameter storefront_oid was null or undefined when calling insertUpdatePageContentAttribute.');
+            }
+            // verify required parameter 'page_oid' is not null or undefined
+            if (page_oid === null || page_oid === undefined) {
+                throw new RequiredError('page_oid', 'Required parameter page_oid was null or undefined when calling insertUpdatePageContentAttribute.');
+            }
+            var localVarPath = "/storefront/{storefront_oid}/pages/{page_oid}/content/attributes"
+                .replace("{".concat("storefront_oid", "}"), encodeURIComponent(String(storefront_oid)))
+                .replace("{".concat("page_oid", "}"), encodeURIComponent(String(page_oid)));
+            var localVarUrlObj = url.parse(localVarPath, true);
+            var localVarRequestOptions = Object.assign({ method: 'POST' }, options);
+            var localVarHeaderParameter = {};
+            var localVarQueryParameter = {};
+            if (configuration && configuration.apiVersion) {
+                localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+            }
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+                var localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+                    ? configuration.accessToken("ultraCartOauth", ["storefront_write"])
+                    : configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                var localVarApiKeyValue = typeof configuration.apiKey === 'function'
+                    ? configuration.apiKey("x-ultracart-simple-key")
+                    : configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+            localVarHeaderParameter['Content-Type'] = 'application/json; charset=UTF-8';
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+            var needsSerialization = ("StoreFrontPageContentAttribute" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
+            localVarRequestOptions.body = needsSerialization ? JSON.stringify(page_attribute || {}) : (page_attribute || "");
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
          *
          * @summary Prepare download of email segment
          * @param {number} storefront_oid
@@ -41294,6 +41354,30 @@ var StorefrontApiFp = function (configuration) {
             };
         },
         /**
+         * Update a page content attribute, creating it new if it does not yet exist.
+         * @summary Upsert a page content attribute
+         * @param {StoreFrontPageContentAttribute} page_attribute Page content attribute to upsert
+         * @param {number} storefront_oid
+         * @param {number} page_oid The page oid to modify.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        insertUpdatePageContentAttribute: function (page_attribute, storefront_oid, page_oid, options) {
+            var localVarFetchArgs = (0, exports.StorefrontApiFetchParamCreator)(configuration).insertUpdatePageContentAttribute(page_attribute, storefront_oid, page_oid, options);
+            return function (fetch, basePath) {
+                if (fetch === void 0) { fetch = portableFetch; }
+                if (basePath === void 0) { basePath = BASE_PATH; }
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(function (response) {
+                    if (response.status >= 200 && response.status < 300) {
+                        return response;
+                    }
+                    else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
          *
          * @summary Prepare download of email segment
          * @param {number} storefront_oid
@@ -43855,6 +43939,18 @@ var StorefrontApiFactory = function (configuration, fetch, basePath) {
             return (0, exports.StorefrontApiFp)(configuration).insertScreenRecordingSegment(storefront_oid, segment, options)(fetch, basePath);
         },
         /**
+         * Update a page content attribute, creating it new if it does not yet exist.
+         * @summary Upsert a page content attribute
+         * @param {StoreFrontPageContentAttribute} page_attribute Page content attribute to upsert
+         * @param {number} storefront_oid
+         * @param {number} page_oid The page oid to modify.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        insertUpdatePageContentAttribute: function (page_attribute, storefront_oid, page_oid, options) {
+            return (0, exports.StorefrontApiFp)(configuration).insertUpdatePageContentAttribute(page_attribute, storefront_oid, page_oid, options)(fetch, basePath);
+        },
+        /**
          *
          * @summary Prepare download of email segment
          * @param {number} storefront_oid
@@ -45972,6 +46068,19 @@ var StorefrontApi = /** @class */ (function (_super) {
      */
     StorefrontApi.prototype.insertScreenRecordingSegment = function (storefront_oid, segment, options) {
         return (0, exports.StorefrontApiFp)(this.configuration).insertScreenRecordingSegment(storefront_oid, segment, options)(this.fetch, this.basePath);
+    };
+    /**
+     * Update a page content attribute, creating it new if it does not yet exist.
+     * @summary Upsert a page content attribute
+     * @param {StoreFrontPageContentAttribute} page_attribute Page content attribute to upsert
+     * @param {number} storefront_oid
+     * @param {number} page_oid The page oid to modify.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof StorefrontApi
+     */
+    StorefrontApi.prototype.insertUpdatePageContentAttribute = function (page_attribute, storefront_oid, page_oid, options) {
+        return (0, exports.StorefrontApiFp)(this.configuration).insertUpdatePageContentAttribute(page_attribute, storefront_oid, page_oid, options)(this.fetch, this.basePath);
     };
     /**
      *
