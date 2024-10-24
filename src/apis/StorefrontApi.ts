@@ -423,6 +423,9 @@ import {
     ScreenshotsResponse,
     ScreenshotsResponseFromJSON,
     ScreenshotsResponseToJSON,
+    StoreFrontPageContentAttribute,
+    StoreFrontPageContentAttributeFromJSON,
+    StoreFrontPageContentAttributeToJSON,
     StoreFrontsResponse,
     StoreFrontsResponseFromJSON,
     StoreFrontsResponseToJSON,
@@ -1075,6 +1078,12 @@ export interface InsertEmailSegmentRequest {
 export interface InsertScreenRecordingSegmentRequest {
     storefrontOid: number;
     segment: ScreenRecordingSegment;
+}
+
+export interface InsertUpdatePageContentAttributeRequest {
+    storefrontOid: number;
+    pageOid: number;
+    pageAttribute: StoreFrontPageContentAttribute;
 }
 
 export interface PrepareDownloadEmailSegmentRequest {
@@ -3432,6 +3441,24 @@ export interface StorefrontApiInterface {
      * Insert screen recording segment
      */
     insertScreenRecordingSegment(requestParameters: InsertScreenRecordingSegmentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ScreenRecordingSegmentResponse>;
+
+    /**
+     * Update a page content attribute, creating it new if it does not yet exist. 
+     * @summary Upsert a page content attribute
+     * @param {number} storefrontOid 
+     * @param {number} pageOid The page oid to modify.
+     * @param {StoreFrontPageContentAttribute} pageAttribute Page content attribute to upsert
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof StorefrontApiInterface
+     */
+    insertUpdatePageContentAttributeRaw(requestParameters: InsertUpdatePageContentAttributeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+
+    /**
+     * Update a page content attribute, creating it new if it does not yet exist. 
+     * Upsert a page content attribute
+     */
+    insertUpdatePageContentAttribute(requestParameters: InsertUpdatePageContentAttributeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
      * 
@@ -10368,6 +10395,57 @@ export class StorefrontApi extends runtime.BaseAPI implements StorefrontApiInter
     async insertScreenRecordingSegment(requestParameters: InsertScreenRecordingSegmentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ScreenRecordingSegmentResponse> {
         const response = await this.insertScreenRecordingSegmentRaw(requestParameters, initOverrides);
         return await response.value();
+    }
+
+    /**
+     * Update a page content attribute, creating it new if it does not yet exist. 
+     * Upsert a page content attribute
+     */
+    async insertUpdatePageContentAttributeRaw(requestParameters: InsertUpdatePageContentAttributeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        if (requestParameters.storefrontOid === null || requestParameters.storefrontOid === undefined) {
+            throw new runtime.RequiredError('storefrontOid','Required parameter requestParameters.storefrontOid was null or undefined when calling insertUpdatePageContentAttribute.');
+        }
+
+        if (requestParameters.pageOid === null || requestParameters.pageOid === undefined) {
+            throw new runtime.RequiredError('pageOid','Required parameter requestParameters.pageOid was null or undefined when calling insertUpdatePageContentAttribute.');
+        }
+
+        if (requestParameters.pageAttribute === null || requestParameters.pageAttribute === undefined) {
+            throw new runtime.RequiredError('pageAttribute','Required parameter requestParameters.pageAttribute was null or undefined when calling insertUpdatePageContentAttribute.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json; charset=UTF-8';
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", ["storefront_write"]);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/storefront/{storefront_oid}/pages/{page_oid}/content/attributes`.replace(`{${"storefront_oid"}}`, encodeURIComponent(String(requestParameters.storefrontOid))).replace(`{${"page_oid"}}`, encodeURIComponent(String(requestParameters.pageOid))),
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: StoreFrontPageContentAttributeToJSON(requestParameters.pageAttribute),
+        }, initOverrides);
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     * Update a page content attribute, creating it new if it does not yet exist. 
+     * Upsert a page content attribute
+     */
+    async insertUpdatePageContentAttribute(requestParameters: InsertUpdatePageContentAttributeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.insertUpdatePageContentAttributeRaw(requestParameters, initOverrides);
     }
 
     /**

@@ -804,6 +804,7 @@ src/models/SovosConfig.ts
 src/models/StateProvince.ts
 src/models/StepWaiting.ts
 src/models/StoreFront.ts
+src/models/StoreFrontPageContentAttribute.ts
 src/models/StoreFrontsResponse.ts
 src/models/TaxCity.ts
 src/models/TaxCountry.ts

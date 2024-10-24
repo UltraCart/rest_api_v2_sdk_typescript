@@ -779,6 +779,7 @@ export * from './SovosConfig';
 export * from './StateProvince';
 export * from './StepWaiting';
 export * from './StoreFront';
+export * from './StoreFrontPageContentAttribute';
 export * from './StoreFrontsResponse';
 export * from './TaxCity';
 export * from './TaxCountry';

@@ -144,6 +144,18 @@ export interface OrderUtm {
      * @type {string}
      * @memberof OrderUtm
      */
+    short_code?: string;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof OrderUtm
+     */
+    short_code_backup?: boolean;
+    /**
+     * 
+     * @type {string}
+     * @memberof OrderUtm
+     */
     ttclid?: string;
     /**
      * 
@@ -231,6 +243,8 @@ export function OrderUtmFromJSONTyped(json: any, ignoreDiscriminator: boolean): 
         'itm_source': !exists(json, 'itm_source') ? undefined : json['itm_source'],
         'itm_term': !exists(json, 'itm_term') ? undefined : json['itm_term'],
         'msclkid': !exists(json, 'msclkid') ? undefined : json['msclkid'],
+        'short_code': !exists(json, 'short_code') ? undefined : json['short_code'],
+        'short_code_backup': !exists(json, 'short_code_backup') ? undefined : json['short_code_backup'],
         'ttclid': !exists(json, 'ttclid') ? undefined : json['ttclid'],
         'uc_message_id': !exists(json, 'uc_message_id') ? undefined : json['uc_message_id'],
         'utm_campaign': !exists(json, 'utm_campaign') ? undefined : json['utm_campaign'],
@@ -273,6 +287,8 @@ export function OrderUtmToJSON(value?: OrderUtm | null): any {
         'itm_source': value.itm_source,
         'itm_term': value.itm_term,
         'msclkid': value.msclkid,
+        'short_code': value.short_code,
+        'short_code_backup': value.short_code_backup,
         'ttclid': value.ttclid,
         'uc_message_id': value.uc_message_id,
         'utm_campaign': value.utm_campaign,
