@@ -85,6 +85,7 @@ export const ChannelPartnerOrderItemAutoOrderScheduleEnum = {
     Every2Months: 'Every 2 Months',
     Every3Months: 'Every 3 Months',
     Every4Months: 'Every 4 Months',
+    Every5Months: 'Every 5 Months',
     Every6Months: 'Every 6 Months',
     Yearly: 'Yearly',
     Every4Weeks: 'Every 4 Weeks',

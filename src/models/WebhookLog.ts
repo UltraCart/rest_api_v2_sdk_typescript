@@ -92,6 +92,12 @@ export interface WebhookLog {
      * @memberof WebhookLog
      */
     uri?: string;
+    /**
+     * webhook oid
+     * @type {number}
+     * @memberof WebhookLog
+     */
+    webhook_oid?: number;
 }
 
 export function WebhookLogFromJSON(json: any): WebhookLog {
@@ -115,6 +121,7 @@ export function WebhookLogFromJSONTyped(json: any, ignoreDiscriminator: boolean)
         'status_code': !exists(json, 'status_code') ? undefined : json['status_code'],
         'success': !exists(json, 'success') ? undefined : json['success'],
         'uri': !exists(json, 'uri') ? undefined : json['uri'],
+        'webhook_oid': !exists(json, 'webhook_oid') ? undefined : json['webhook_oid'],
     };
 }
 
@@ -138,6 +145,7 @@ export function WebhookLogToJSON(value?: WebhookLog | null): any {
         'status_code': value.status_code,
         'success': value.success,
         'uri': value.uri,
+        'webhook_oid': value.webhook_oid,
     };
 }
 
