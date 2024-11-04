@@ -1748,6 +1748,7 @@ export declare namespace AutoOrderItem {
         Every2Months,
         Every3Months,
         Every4Months,
+        Every5Months,
         Every6Months,
         Yearly,
         Every4Weeks,
@@ -1851,6 +1852,7 @@ export declare namespace AutoOrderItemSimpleSchedule {
         Every2Months,
         Every3Months,
         Every4Months,
+        Every5Months,
         Every6Months,
         Yearly,
         Every4Weeks,
@@ -6089,6 +6091,7 @@ export declare namespace ChannelPartnerOrderItem {
         Every2Months,
         Every3Months,
         Every4Months,
+        Every5Months,
         Every6Months,
         Yearly,
         Every4Weeks,
@@ -42846,6 +42849,12 @@ export interface WebhookLog {
      * @memberof WebhookLog
      */
     uri?: string;
+    /**
+     * webhook oid
+     * @type {number}
+     * @memberof WebhookLog
+     */
+    webhook_oid?: number;
 }
 /**
  *

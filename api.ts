@@ -1796,6 +1796,7 @@ export namespace AutoOrderItem {
         Every2Months = <any> 'Every 2 Months',
         Every3Months = <any> 'Every 3 Months',
         Every4Months = <any> 'Every 4 Months',
+        Every5Months = <any> 'Every 5 Months',
         Every6Months = <any> 'Every 6 Months',
         Yearly = <any> 'Yearly',
         Every4Weeks = <any> 'Every 4 Weeks',
@@ -1903,6 +1904,7 @@ export namespace AutoOrderItemSimpleSchedule {
         Every2Months = <any> 'Every 2 Months',
         Every3Months = <any> 'Every 3 Months',
         Every4Months = <any> 'Every 4 Months',
+        Every5Months = <any> 'Every 5 Months',
         Every6Months = <any> 'Every 6 Months',
         Yearly = <any> 'Yearly',
         Every4Weeks = <any> 'Every 4 Weeks',
@@ -6227,6 +6229,7 @@ export namespace ChannelPartnerOrderItem {
         Every2Months = <any> 'Every 2 Months',
         Every3Months = <any> 'Every 3 Months',
         Every4Months = <any> 'Every 4 Months',
+        Every5Months = <any> 'Every 5 Months',
         Every6Months = <any> 'Every 6 Months',
         Yearly = <any> 'Yearly',
         Every4Weeks = <any> 'Every 4 Weeks',
@@ -43767,6 +43770,12 @@ export interface WebhookLog {
      * @memberof WebhookLog
      */
     uri?: string;
+    /**
+     * webhook oid
+     * @type {number}
+     * @memberof WebhookLog
+     */
+    webhook_oid?: number;
 }
 
 /**
