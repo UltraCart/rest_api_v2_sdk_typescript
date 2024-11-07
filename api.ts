@@ -13274,6 +13274,12 @@ export interface CouponPercentOffItemWithItemsQuantityPurchase {
      */
     discount_percent?: number;
     /**
+     * An optional list of item tags which will receive a discount if one of the required purchased items is purchased.
+     * @type {Array<string>}
+     * @memberof CouponPercentOffItemWithItemsQuantityPurchase
+     */
+    item_tags?: Array<string>;
+    /**
      * A list of items which will receive a discount if one of the required purchase items is purchased.
      * @type {Array<string>}
      * @memberof CouponPercentOffItemWithItemsQuantityPurchase
@@ -13291,6 +13297,12 @@ export interface CouponPercentOffItemWithItemsQuantityPurchase {
      * @memberof CouponPercentOffItemWithItemsQuantityPurchase
      */
     required_purchase_items?: Array<string>;
+    /**
+     * Required item tags (at least one from the list) that must be purchase for coupon to be valid.
+     * @type {Array<string>}
+     * @memberof CouponPercentOffItemWithItemsQuantityPurchase
+     */
+    required_purchase_items_tags?: Array<string>;
     /**
      * The quantity of items that must be purchased for the discount to be applied.
      * @type {number}
