@@ -26,6 +26,12 @@ export interface CouponPercentOffItemWithItemsQuantityPurchase {
      */
     discount_percent?: number;
     /**
+     * An optional list of item tags which will receive a discount if one of the required purchased items is purchased.
+     * @type {Array<string>}
+     * @memberof CouponPercentOffItemWithItemsQuantityPurchase
+     */
+    item_tags?: Array<string>;
+    /**
      * A list of items which will receive a discount if one of the required purchase items is purchased.
      * @type {Array<string>}
      * @memberof CouponPercentOffItemWithItemsQuantityPurchase
@@ -43,6 +49,12 @@ export interface CouponPercentOffItemWithItemsQuantityPurchase {
      * @memberof CouponPercentOffItemWithItemsQuantityPurchase
      */
     required_purchase_items?: Array<string>;
+    /**
+     * Required item tags (at least one from the list) that must be purchase for coupon to be valid.
+     * @type {Array<string>}
+     * @memberof CouponPercentOffItemWithItemsQuantityPurchase
+     */
+    required_purchase_items_tags?: Array<string>;
     /**
      * The quantity of items that must be purchased for the discount to be applied.
      * @type {number}
@@ -62,9 +74,11 @@ export function CouponPercentOffItemWithItemsQuantityPurchaseFromJSONTyped(json:
     return {
         
         'discount_percent': !exists(json, 'discount_percent') ? undefined : json['discount_percent'],
+        'item_tags': !exists(json, 'item_tags') ? undefined : json['item_tags'],
         'items': !exists(json, 'items') ? undefined : json['items'],
         'limit': !exists(json, 'limit') ? undefined : json['limit'],
         'required_purchase_items': !exists(json, 'required_purchase_items') ? undefined : json['required_purchase_items'],
+        'required_purchase_items_tags': !exists(json, 'required_purchase_items_tags') ? undefined : json['required_purchase_items_tags'],
         'required_purchase_quantity': !exists(json, 'required_purchase_quantity') ? undefined : json['required_purchase_quantity'],
     };
 }
@@ -79,9 +93,11 @@ export function CouponPercentOffItemWithItemsQuantityPurchaseToJSON(value?: Coup
     return {
         
         'discount_percent': value.discount_percent,
+        'item_tags': value.item_tags,
         'items': value.items,
         'limit': value.limit,
         'required_purchase_items': value.required_purchase_items,
+        'required_purchase_items_tags': value.required_purchase_items_tags,
         'required_purchase_quantity': value.required_purchase_quantity,
     };
 }
