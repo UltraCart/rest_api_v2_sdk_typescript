@@ -81,11 +81,29 @@ export interface ItemContent {
      */
     extended_description?: string;
     /**
-     * Extneded description text translation instance identifier
+     * Extended description text translation instance identifier
      * @type {number}
      * @memberof ItemContent
      */
     extended_description_translated_text_instance_oid?: number;
+    /**
+     * SEO meta description used by Storefronts
+     * @type {string}
+     * @memberof ItemContent
+     */
+    meta_description?: string;
+    /**
+     * SEO meta keywords used by Storefronts
+     * @type {string}
+     * @memberof ItemContent
+     */
+    meta_keywords?: string;
+    /**
+     * SEO meta title used by Storefronts
+     * @type {string}
+     * @memberof ItemContent
+     */
+    meta_title?: string;
     /**
      * Multimedia
      * @type {Array<ItemContentMultimedia>}
@@ -136,6 +154,9 @@ export function ItemContentFromJSONTyped(json: any, ignoreDiscriminator: boolean
         'exclude_from_top_sellers': !exists(json, 'exclude_from_top_sellers') ? undefined : json['exclude_from_top_sellers'],
         'extended_description': !exists(json, 'extended_description') ? undefined : json['extended_description'],
         'extended_description_translated_text_instance_oid': !exists(json, 'extended_description_translated_text_instance_oid') ? undefined : json['extended_description_translated_text_instance_oid'],
+        'meta_description': !exists(json, 'meta_description') ? undefined : json['meta_description'],
+        'meta_keywords': !exists(json, 'meta_keywords') ? undefined : json['meta_keywords'],
+        'meta_title': !exists(json, 'meta_title') ? undefined : json['meta_title'],
         'multimedia': !exists(json, 'multimedia') ? undefined : ((json['multimedia'] as Array<any>).map(ItemContentMultimediaFromJSON)),
         'new_item': !exists(json, 'new_item') ? undefined : json['new_item'],
         'new_item_end': !exists(json, 'new_item_end') ? undefined : json['new_item_end'],
@@ -161,6 +182,9 @@ export function ItemContentToJSON(value?: ItemContent | null): any {
         'exclude_from_top_sellers': value.exclude_from_top_sellers,
         'extended_description': value.extended_description,
         'extended_description_translated_text_instance_oid': value.extended_description_translated_text_instance_oid,
+        'meta_description': value.meta_description,
+        'meta_keywords': value.meta_keywords,
+        'meta_title': value.meta_title,
         'multimedia': value.multimedia === undefined ? undefined : ((value.multimedia as Array<any>).map(ItemContentMultimediaToJSON)),
         'new_item': value.new_item,
         'new_item_end': value.new_item_end,
