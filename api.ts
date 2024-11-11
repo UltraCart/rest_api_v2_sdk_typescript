@@ -26519,11 +26519,29 @@ export interface ItemContent {
      */
     extended_description?: string;
     /**
-     * Extneded description text translation instance identifier
+     * Extended description text translation instance identifier
      * @type {number}
      * @memberof ItemContent
      */
     extended_description_translated_text_instance_oid?: number;
+    /**
+     * SEO meta description used by Storefronts
+     * @type {string}
+     * @memberof ItemContent
+     */
+    meta_description?: string;
+    /**
+     * SEO meta keywords used by Storefronts
+     * @type {string}
+     * @memberof ItemContent
+     */
+    meta_keywords?: string;
+    /**
+     * SEO meta title used by Storefronts
+     * @type {string}
+     * @memberof ItemContent
+     */
+    meta_title?: string;
     /**
      * Multimedia
      * @type {Array<ItemContentMultimedia>}
