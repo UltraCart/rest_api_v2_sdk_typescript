@@ -7055,6 +7055,12 @@ export interface ConversationAgentAuth {
      */
     conversation_participant_name?: string;
     /**
+     * UltraCart Groups this user belongs to
+     * @type {Array<number>}
+     * @memberof ConversationAgentAuth
+     */
+    group_ids?: Array<number>;
+    /**
      * 
      * @type {string}
      * @memberof ConversationAgentAuth
@@ -7114,6 +7120,12 @@ export interface ConversationAgentAuth {
      * @memberof ConversationAgentAuth
      */
     twilio_accounts?: Array<ConversationTwilioAccount>;
+    /**
+     * UltraCart User ID
+     * @type {number}
+     * @memberof ConversationAgentAuth
+     */
+    user_id?: number;
     /**
      * 
      * @type {string}
