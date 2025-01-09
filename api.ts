@@ -15520,6 +15520,12 @@ export interface CustomerQuery {
      */
     email?: string;
     /**
+     * Emails allows for searching on multiple email addresses and work with our without the single email variable.  You may specify a single email address here or use the email property.
+     * @type {Array<string>}
+     * @memberof CustomerQuery
+     */
+    emails?: Array<string>;
+    /**
      * Last modified date end
      * @type {string}
      * @memberof CustomerQuery
@@ -47138,6 +47144,120 @@ export const ChannelPartnerApiFetchParamCreator = function (configuration?: Conf
             };
         },
         /**
+         * Retrieves a single order using the specified order id.  Only orders belonging to this channel partner may be retrieved. 
+         * @summary Retrieve a channel partner order
+         * @param {string} order_id The order id to retrieve.
+         * @param {string} [_expand] The object expansion to perform on the result.  See OrderApi.getOrder documentation for examples
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getChannelPartnerOrder(order_id: string, _expand?: string, options: any = {}): FetchArgs {
+            // verify required parameter 'order_id' is not null or undefined
+            if (order_id === null || order_id === undefined) {
+                throw new RequiredError('order_id','Required parameter order_id was null or undefined when calling getChannelPartnerOrder.');
+            }
+            const localVarPath = `/channel_partner/orders/{order_id}`
+                .replace(`{${"order_id"}}`, encodeURIComponent(String(order_id)));
+            const localVarUrlObj = url.parse(localVarPath, true);
+            const localVarRequestOptions = Object.assign({ method: 'GET' }, options);
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+    if(configuration && configuration.apiVersion) {
+      localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+    }
+
+
+
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+				const localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+					? configuration.accessToken("ultraCartOauth", ["channel_partner_read"])
+					: configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
+					? configuration.apiKey("x-ultracart-simple-key")
+					: configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+
+            if (_expand !== undefined) {
+                localVarQueryParameter['_expand'] = _expand;
+            }
+
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Retrieves a single order using the channel partner order id, not the ultracart order id.  Only orders belonging to this channel partner may be retrieved. 
+         * @summary Retrieve a channel partner order by the channel partner order id
+         * @param {string} order_id The channel partner order id to retrieve.
+         * @param {string} [_expand] The object expansion to perform on the result.  See OrderApi.getOrder documentation for examples
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getChannelPartnerOrderByChannelPartnerOrderId(order_id: string, _expand?: string, options: any = {}): FetchArgs {
+            // verify required parameter 'order_id' is not null or undefined
+            if (order_id === null || order_id === undefined) {
+                throw new RequiredError('order_id','Required parameter order_id was null or undefined when calling getChannelPartnerOrderByChannelPartnerOrderId.');
+            }
+            const localVarPath = `/channel_partner/orders/by_channel_partner_order_id/{order_id}`
+                .replace(`{${"order_id"}}`, encodeURIComponent(String(order_id)));
+            const localVarUrlObj = url.parse(localVarPath, true);
+            const localVarRequestOptions = Object.assign({ method: 'GET' }, options);
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+    if(configuration && configuration.apiVersion) {
+      localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+    }
+
+
+
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+				const localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+					? configuration.accessToken("ultraCartOauth", ["channel_partner_read"])
+					: configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
+					? configuration.apiKey("x-ultracart-simple-key")
+					: configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+
+            if (_expand !== undefined) {
+                localVarQueryParameter['_expand'] = _expand;
+            }
+
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
          * Retrieve the ship to preference associated with the channel partner and the specific id. 
          * @summary Retrieve the ship to preference associated with the channel partner and the specific id.
          * @param {number} channel_partner_oid 
@@ -47410,6 +47530,107 @@ export const ChannelPartnerApiFetchParamCreator = function (configuration?: Conf
             };
         },
         /**
+         * Perform a refund operation on a channel partner order and then update the order if successful.  All of the object properties ending in _refunded should be the TOTAL amount that should end up being refunded.  UltraCart will calculate the actual amount to refund based upon the prior refunds. 
+         * @summary Refund a channel partner order
+         * @param {Order} order Order to refund
+         * @param {string} order_id The order id to refund.
+         * @param {boolean} [reject_after_refund] Reject order after refund
+         * @param {boolean} [skip_customer_notification] Skip customer email notification
+         * @param {boolean} [auto_order_cancel] Cancel associated auto orders
+         * @param {boolean} [manual_refund] Consider a manual refund done externally
+         * @param {boolean} [reverse_affiliate_transactions] Reverse affiliate transactions
+         * @param {boolean} [issue_store_credit] Issue a store credit instead of refunding the original payment method, loyalty must be configured on merchant account
+         * @param {string} [auto_order_cancel_reason] Reason for auto orders cancellation
+         * @param {string} [_expand] The object expansion to perform on the result.  See OrderApi.refundOrder documentation for examples
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        refundChannelPartnerOrder(order: Order, order_id: string, reject_after_refund?: boolean, skip_customer_notification?: boolean, auto_order_cancel?: boolean, manual_refund?: boolean, reverse_affiliate_transactions?: boolean, issue_store_credit?: boolean, auto_order_cancel_reason?: string, _expand?: string, options: any = {}): FetchArgs {
+            // verify required parameter 'order' is not null or undefined
+            if (order === null || order === undefined) {
+                throw new RequiredError('order','Required parameter order was null or undefined when calling refundChannelPartnerOrder.');
+            }
+            // verify required parameter 'order_id' is not null or undefined
+            if (order_id === null || order_id === undefined) {
+                throw new RequiredError('order_id','Required parameter order_id was null or undefined when calling refundChannelPartnerOrder.');
+            }
+            const localVarPath = `/channel_partner/orders/{order_id}/refund`
+                .replace(`{${"order_id"}}`, encodeURIComponent(String(order_id)));
+            const localVarUrlObj = url.parse(localVarPath, true);
+            const localVarRequestOptions = Object.assign({ method: 'PUT' }, options);
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+    if(configuration && configuration.apiVersion) {
+      localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+    }
+
+
+
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+				const localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+					? configuration.accessToken("ultraCartOauth", ["channel_partner_write"])
+					: configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
+					? configuration.apiKey("x-ultracart-simple-key")
+					: configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+
+            if (reject_after_refund !== undefined) {
+                localVarQueryParameter['reject_after_refund'] = reject_after_refund;
+            }
+
+            if (skip_customer_notification !== undefined) {
+                localVarQueryParameter['skip_customer_notification'] = skip_customer_notification;
+            }
+
+            if (auto_order_cancel !== undefined) {
+                localVarQueryParameter['auto_order_cancel'] = auto_order_cancel;
+            }
+
+            if (manual_refund !== undefined) {
+                localVarQueryParameter['manual_refund'] = manual_refund;
+            }
+
+            if (reverse_affiliate_transactions !== undefined) {
+                localVarQueryParameter['reverse_affiliate_transactions'] = reverse_affiliate_transactions;
+            }
+
+            if (issue_store_credit !== undefined) {
+                localVarQueryParameter['issue_store_credit'] = issue_store_credit;
+            }
+
+            if (auto_order_cancel_reason !== undefined) {
+                localVarQueryParameter['auto_order_cancel_reason'] = auto_order_cancel_reason;
+            }
+
+            if (_expand !== undefined) {
+                localVarQueryParameter['_expand'] = _expand;
+            }
+
+            localVarHeaderParameter['Content-Type'] = 'application/json; charset=UTF-8';
+
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+            const needsSerialization = (<any>"Order" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
+            localVarRequestOptions.body =  needsSerialization ? JSON.stringify(order || {}) : (order || "");
+
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
          * Update a ship to preference record for the channel partner. 
          * @summary Update a ship to preference record for the channel partner.
          * @param {number} channel_partner_oid 
@@ -47592,6 +47813,50 @@ export const ChannelPartnerApiFp = function(configuration?: Configuration) {
             };
         },
         /**
+         * Retrieves a single order using the specified order id.  Only orders belonging to this channel partner may be retrieved. 
+         * @summary Retrieve a channel partner order
+         * @param {string} order_id The order id to retrieve.
+         * @param {string} [_expand] The object expansion to perform on the result.  See OrderApi.getOrder documentation for examples
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getChannelPartnerOrder(order_id: string, _expand?: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<OrderResponse> {
+            const localVarFetchArgs = ChannelPartnerApiFetchParamCreator(configuration).getChannelPartnerOrder(order_id, _expand, options);
+            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
+                    if (response.status >= 200 && response.status < 300) {
+                      return response.json();
+                      
+                    } else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
+         * Retrieves a single order using the channel partner order id, not the ultracart order id.  Only orders belonging to this channel partner may be retrieved. 
+         * @summary Retrieve a channel partner order by the channel partner order id
+         * @param {string} order_id The channel partner order id to retrieve.
+         * @param {string} [_expand] The object expansion to perform on the result.  See OrderApi.getOrder documentation for examples
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getChannelPartnerOrderByChannelPartnerOrderId(order_id: string, _expand?: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<OrderResponse> {
+            const localVarFetchArgs = ChannelPartnerApiFetchParamCreator(configuration).getChannelPartnerOrderByChannelPartnerOrderId(order_id, _expand, options);
+            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
+                    if (response.status >= 200 && response.status < 300) {
+                      return response.json();
+                      
+                    } else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
          * Retrieve the ship to preference associated with the channel partner and the specific id. 
          * @summary Retrieve the ship to preference associated with the channel partner and the specific id.
          * @param {number} channel_partner_oid 
@@ -47698,6 +47963,36 @@ export const ChannelPartnerApiFp = function(configuration?: Configuration) {
             };
         },
         /**
+         * Perform a refund operation on a channel partner order and then update the order if successful.  All of the object properties ending in _refunded should be the TOTAL amount that should end up being refunded.  UltraCart will calculate the actual amount to refund based upon the prior refunds. 
+         * @summary Refund a channel partner order
+         * @param {Order} order Order to refund
+         * @param {string} order_id The order id to refund.
+         * @param {boolean} [reject_after_refund] Reject order after refund
+         * @param {boolean} [skip_customer_notification] Skip customer email notification
+         * @param {boolean} [auto_order_cancel] Cancel associated auto orders
+         * @param {boolean} [manual_refund] Consider a manual refund done externally
+         * @param {boolean} [reverse_affiliate_transactions] Reverse affiliate transactions
+         * @param {boolean} [issue_store_credit] Issue a store credit instead of refunding the original payment method, loyalty must be configured on merchant account
+         * @param {string} [auto_order_cancel_reason] Reason for auto orders cancellation
+         * @param {string} [_expand] The object expansion to perform on the result.  See OrderApi.refundOrder documentation for examples
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        refundChannelPartnerOrder(order: Order, order_id: string, reject_after_refund?: boolean, skip_customer_notification?: boolean, auto_order_cancel?: boolean, manual_refund?: boolean, reverse_affiliate_transactions?: boolean, issue_store_credit?: boolean, auto_order_cancel_reason?: string, _expand?: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<OrderResponse> {
+            const localVarFetchArgs = ChannelPartnerApiFetchParamCreator(configuration).refundChannelPartnerOrder(order, order_id, reject_after_refund, skip_customer_notification, auto_order_cancel, manual_refund, reverse_affiliate_transactions, issue_store_credit, auto_order_cancel_reason, _expand, options);
+            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
+                    if (response.status >= 200 && response.status < 300) {
+                      return response.json();
+                      
+                    } else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
          * Update a ship to preference record for the channel partner. 
          * @summary Update a ship to preference record for the channel partner.
          * @param {number} channel_partner_oid 
@@ -47781,6 +48076,28 @@ export const ChannelPartnerApiFactory = function (configuration?: Configuration,
             return ChannelPartnerApiFp(configuration).estimateTaxForChannelPartnerOrder(channel_partner_order, options)(fetch, basePath);
         },
         /**
+         * Retrieves a single order using the specified order id.  Only orders belonging to this channel partner may be retrieved. 
+         * @summary Retrieve a channel partner order
+         * @param {string} order_id The order id to retrieve.
+         * @param {string} [_expand] The object expansion to perform on the result.  See OrderApi.getOrder documentation for examples
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getChannelPartnerOrder(order_id: string, _expand?: string, options?: any) {
+            return ChannelPartnerApiFp(configuration).getChannelPartnerOrder(order_id, _expand, options)(fetch, basePath);
+        },
+        /**
+         * Retrieves a single order using the channel partner order id, not the ultracart order id.  Only orders belonging to this channel partner may be retrieved. 
+         * @summary Retrieve a channel partner order by the channel partner order id
+         * @param {string} order_id The channel partner order id to retrieve.
+         * @param {string} [_expand] The object expansion to perform on the result.  See OrderApi.getOrder documentation for examples
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getChannelPartnerOrderByChannelPartnerOrderId(order_id: string, _expand?: string, options?: any) {
+            return ChannelPartnerApiFp(configuration).getChannelPartnerOrderByChannelPartnerOrderId(order_id, _expand, options)(fetch, basePath);
+        },
+        /**
          * Retrieve the ship to preference associated with the channel partner and the specific id. 
          * @summary Retrieve the ship to preference associated with the channel partner and the specific id.
          * @param {number} channel_partner_oid 
@@ -47830,6 +48147,25 @@ export const ChannelPartnerApiFactory = function (configuration?: Configuration,
          */
         insertChannelPartnerShipToPreference(channel_partner_oid: number, ship_to_preference: ChannelPartnerShipToPreference, options?: any) {
             return ChannelPartnerApiFp(configuration).insertChannelPartnerShipToPreference(channel_partner_oid, ship_to_preference, options)(fetch, basePath);
+        },
+        /**
+         * Perform a refund operation on a channel partner order and then update the order if successful.  All of the object properties ending in _refunded should be the TOTAL amount that should end up being refunded.  UltraCart will calculate the actual amount to refund based upon the prior refunds. 
+         * @summary Refund a channel partner order
+         * @param {Order} order Order to refund
+         * @param {string} order_id The order id to refund.
+         * @param {boolean} [reject_after_refund] Reject order after refund
+         * @param {boolean} [skip_customer_notification] Skip customer email notification
+         * @param {boolean} [auto_order_cancel] Cancel associated auto orders
+         * @param {boolean} [manual_refund] Consider a manual refund done externally
+         * @param {boolean} [reverse_affiliate_transactions] Reverse affiliate transactions
+         * @param {boolean} [issue_store_credit] Issue a store credit instead of refunding the original payment method, loyalty must be configured on merchant account
+         * @param {string} [auto_order_cancel_reason] Reason for auto orders cancellation
+         * @param {string} [_expand] The object expansion to perform on the result.  See OrderApi.refundOrder documentation for examples
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        refundChannelPartnerOrder(order: Order, order_id: string, reject_after_refund?: boolean, skip_customer_notification?: boolean, auto_order_cancel?: boolean, manual_refund?: boolean, reverse_affiliate_transactions?: boolean, issue_store_credit?: boolean, auto_order_cancel_reason?: string, _expand?: string, options?: any) {
+            return ChannelPartnerApiFp(configuration).refundChannelPartnerOrder(order, order_id, reject_after_refund, skip_customer_notification, auto_order_cancel, manual_refund, reverse_affiliate_transactions, issue_store_credit, auto_order_cancel_reason, _expand, options)(fetch, basePath);
         },
         /**
          * Update a ship to preference record for the channel partner. 
@@ -47904,6 +48240,28 @@ export interface ChannelPartnerApiInterface {
     estimateTaxForChannelPartnerOrder(channel_partner_order: ChannelPartnerOrder, options?: any): Promise<ChannelPartnerEstimateTaxResponse>;
 
     /**
+     * Retrieves a single order using the specified order id.  Only orders belonging to this channel partner may be retrieved. 
+     * @summary Retrieve a channel partner order
+     * @param {string} order_id The order id to retrieve.
+     * @param {string} [_expand] The object expansion to perform on the result.  See OrderApi.getOrder documentation for examples
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ChannelPartnerApiInterface
+     */
+    getChannelPartnerOrder(order_id: string, _expand?: string, options?: any): Promise<OrderResponse>;
+
+    /**
+     * Retrieves a single order using the channel partner order id, not the ultracart order id.  Only orders belonging to this channel partner may be retrieved. 
+     * @summary Retrieve a channel partner order by the channel partner order id
+     * @param {string} order_id The channel partner order id to retrieve.
+     * @param {string} [_expand] The object expansion to perform on the result.  See OrderApi.getOrder documentation for examples
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ChannelPartnerApiInterface
+     */
+    getChannelPartnerOrderByChannelPartnerOrderId(order_id: string, _expand?: string, options?: any): Promise<OrderResponse>;
+
+    /**
      * Retrieve the ship to preference associated with the channel partner and the specific id. 
      * @summary Retrieve the ship to preference associated with the channel partner and the specific id.
      * @param {number} channel_partner_oid 
@@ -47953,6 +48311,25 @@ export interface ChannelPartnerApiInterface {
      * @memberof ChannelPartnerApiInterface
      */
     insertChannelPartnerShipToPreference(channel_partner_oid: number, ship_to_preference: ChannelPartnerShipToPreference, options?: any): Promise<ChannelPartnerShipToPreferenceResponse>;
+
+    /**
+     * Perform a refund operation on a channel partner order and then update the order if successful.  All of the object properties ending in _refunded should be the TOTAL amount that should end up being refunded.  UltraCart will calculate the actual amount to refund based upon the prior refunds. 
+     * @summary Refund a channel partner order
+     * @param {Order} order Order to refund
+     * @param {string} order_id The order id to refund.
+     * @param {boolean} [reject_after_refund] Reject order after refund
+     * @param {boolean} [skip_customer_notification] Skip customer email notification
+     * @param {boolean} [auto_order_cancel] Cancel associated auto orders
+     * @param {boolean} [manual_refund] Consider a manual refund done externally
+     * @param {boolean} [reverse_affiliate_transactions] Reverse affiliate transactions
+     * @param {boolean} [issue_store_credit] Issue a store credit instead of refunding the original payment method, loyalty must be configured on merchant account
+     * @param {string} [auto_order_cancel_reason] Reason for auto orders cancellation
+     * @param {string} [_expand] The object expansion to perform on the result.  See OrderApi.refundOrder documentation for examples
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ChannelPartnerApiInterface
+     */
+    refundChannelPartnerOrder(order: Order, order_id: string, reject_after_refund?: boolean, skip_customer_notification?: boolean, auto_order_cancel?: boolean, manual_refund?: boolean, reverse_affiliate_transactions?: boolean, issue_store_credit?: boolean, auto_order_cancel_reason?: string, _expand?: string, options?: any): Promise<OrderResponse>;
 
     /**
      * Update a ship to preference record for the channel partner. 
@@ -48037,6 +48414,32 @@ export class ChannelPartnerApi extends BaseAPI implements ChannelPartnerApiInter
     }
 
     /**
+     * Retrieves a single order using the specified order id.  Only orders belonging to this channel partner may be retrieved. 
+     * @summary Retrieve a channel partner order
+     * @param {string} order_id The order id to retrieve.
+     * @param {string} [_expand] The object expansion to perform on the result.  See OrderApi.getOrder documentation for examples
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ChannelPartnerApi
+     */
+    public getChannelPartnerOrder(order_id: string, _expand?: string, options?: any) {
+        return ChannelPartnerApiFp(this.configuration).getChannelPartnerOrder(order_id, _expand, options)(this.fetch, this.basePath);
+    }
+
+    /**
+     * Retrieves a single order using the channel partner order id, not the ultracart order id.  Only orders belonging to this channel partner may be retrieved. 
+     * @summary Retrieve a channel partner order by the channel partner order id
+     * @param {string} order_id The channel partner order id to retrieve.
+     * @param {string} [_expand] The object expansion to perform on the result.  See OrderApi.getOrder documentation for examples
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ChannelPartnerApi
+     */
+    public getChannelPartnerOrderByChannelPartnerOrderId(order_id: string, _expand?: string, options?: any) {
+        return ChannelPartnerApiFp(this.configuration).getChannelPartnerOrderByChannelPartnerOrderId(order_id, _expand, options)(this.fetch, this.basePath);
+    }
+
+    /**
      * Retrieve the ship to preference associated with the channel partner and the specific id. 
      * @summary Retrieve the ship to preference associated with the channel partner and the specific id.
      * @param {number} channel_partner_oid 
@@ -48095,6 +48498,27 @@ export class ChannelPartnerApi extends BaseAPI implements ChannelPartnerApiInter
      */
     public insertChannelPartnerShipToPreference(channel_partner_oid: number, ship_to_preference: ChannelPartnerShipToPreference, options?: any) {
         return ChannelPartnerApiFp(this.configuration).insertChannelPartnerShipToPreference(channel_partner_oid, ship_to_preference, options)(this.fetch, this.basePath);
+    }
+
+    /**
+     * Perform a refund operation on a channel partner order and then update the order if successful.  All of the object properties ending in _refunded should be the TOTAL amount that should end up being refunded.  UltraCart will calculate the actual amount to refund based upon the prior refunds. 
+     * @summary Refund a channel partner order
+     * @param {Order} order Order to refund
+     * @param {string} order_id The order id to refund.
+     * @param {boolean} [reject_after_refund] Reject order after refund
+     * @param {boolean} [skip_customer_notification] Skip customer email notification
+     * @param {boolean} [auto_order_cancel] Cancel associated auto orders
+     * @param {boolean} [manual_refund] Consider a manual refund done externally
+     * @param {boolean} [reverse_affiliate_transactions] Reverse affiliate transactions
+     * @param {boolean} [issue_store_credit] Issue a store credit instead of refunding the original payment method, loyalty must be configured on merchant account
+     * @param {string} [auto_order_cancel_reason] Reason for auto orders cancellation
+     * @param {string} [_expand] The object expansion to perform on the result.  See OrderApi.refundOrder documentation for examples
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ChannelPartnerApi
+     */
+    public refundChannelPartnerOrder(order: Order, order_id: string, reject_after_refund?: boolean, skip_customer_notification?: boolean, auto_order_cancel?: boolean, manual_refund?: boolean, reverse_affiliate_transactions?: boolean, issue_store_credit?: boolean, auto_order_cancel_reason?: string, _expand?: string, options?: any) {
+        return ChannelPartnerApiFp(this.configuration).refundChannelPartnerOrder(order, order_id, reject_after_refund, skip_customer_notification, auto_order_cancel, manual_refund, reverse_affiliate_transactions, issue_store_credit, auto_order_cancel_reason, _expand, options)(this.fetch, this.basePath);
     }
 
     /**
@@ -62963,6 +63387,7 @@ export const CustomerApiFetchParamCreator = function (configuration?: Configurat
          * @param {string} [shipping_evening_phone] Shipping evening phone
          * @param {number} [pricing_tier_oid] Pricing tier oid
          * @param {string} [pricing_tier_name] Pricing tier name
+         * @param {any} [emails] Emails
          * @param {number} [_limit] The maximum number of records to return on this one API call. (Max 200)
          * @param {number} [_offset] Pagination of the record set.  Offset is a zero based index.
          * @param {string} [_since] Fetch customers that have been created/modified since this date/time.
@@ -62971,7 +63396,7 @@ export const CustomerApiFetchParamCreator = function (configuration?: Configurat
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getCustomers(email?: string, qb_class?: string, quickbooks_code?: string, last_modified_dts_start?: string, last_modified_dts_end?: string, signup_dts_start?: string, signup_dts_end?: string, billing_first_name?: string, billing_last_name?: string, billing_company?: string, billing_city?: string, billing_state?: string, billing_postal_code?: string, billing_country_code?: string, billing_day_phone?: string, billing_evening_phone?: string, shipping_first_name?: string, shipping_last_name?: string, shipping_company?: string, shipping_city?: string, shipping_state?: string, shipping_postal_code?: string, shipping_country_code?: string, shipping_day_phone?: string, shipping_evening_phone?: string, pricing_tier_oid?: number, pricing_tier_name?: string, _limit?: number, _offset?: number, _since?: string, _sort?: string, _expand?: string, options: any = {}): FetchArgs {
+        getCustomers(email?: string, qb_class?: string, quickbooks_code?: string, last_modified_dts_start?: string, last_modified_dts_end?: string, signup_dts_start?: string, signup_dts_end?: string, billing_first_name?: string, billing_last_name?: string, billing_company?: string, billing_city?: string, billing_state?: string, billing_postal_code?: string, billing_country_code?: string, billing_day_phone?: string, billing_evening_phone?: string, shipping_first_name?: string, shipping_last_name?: string, shipping_company?: string, shipping_city?: string, shipping_state?: string, shipping_postal_code?: string, shipping_country_code?: string, shipping_day_phone?: string, shipping_evening_phone?: string, pricing_tier_oid?: number, pricing_tier_name?: string, emails?: any, _limit?: number, _offset?: number, _since?: string, _sort?: string, _expand?: string, options: any = {}): FetchArgs {
             const localVarPath = `/customer/customers`;
             const localVarUrlObj = url.parse(localVarPath, true);
             const localVarRequestOptions = Object.assign({ method: 'GET' }, options);
@@ -63107,6 +63532,10 @@ export const CustomerApiFetchParamCreator = function (configuration?: Configurat
 
             if (pricing_tier_name !== undefined) {
                 localVarQueryParameter['pricing_tier_name'] = pricing_tier_name;
+            }
+
+            if (emails !== undefined) {
+                localVarQueryParameter['emails'] = emails;
             }
 
             if (_limit !== undefined) {
@@ -64156,6 +64585,7 @@ export const CustomerApiFp = function(configuration?: Configuration) {
          * @param {string} [shipping_evening_phone] Shipping evening phone
          * @param {number} [pricing_tier_oid] Pricing tier oid
          * @param {string} [pricing_tier_name] Pricing tier name
+         * @param {any} [emails] Emails
          * @param {number} [_limit] The maximum number of records to return on this one API call. (Max 200)
          * @param {number} [_offset] Pagination of the record set.  Offset is a zero based index.
          * @param {string} [_since] Fetch customers that have been created/modified since this date/time.
@@ -64164,8 +64594,8 @@ export const CustomerApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getCustomers(email?: string, qb_class?: string, quickbooks_code?: string, last_modified_dts_start?: string, last_modified_dts_end?: string, signup_dts_start?: string, signup_dts_end?: string, billing_first_name?: string, billing_last_name?: string, billing_company?: string, billing_city?: string, billing_state?: string, billing_postal_code?: string, billing_country_code?: string, billing_day_phone?: string, billing_evening_phone?: string, shipping_first_name?: string, shipping_last_name?: string, shipping_company?: string, shipping_city?: string, shipping_state?: string, shipping_postal_code?: string, shipping_country_code?: string, shipping_day_phone?: string, shipping_evening_phone?: string, pricing_tier_oid?: number, pricing_tier_name?: string, _limit?: number, _offset?: number, _since?: string, _sort?: string, _expand?: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<CustomersResponse> {
-            const localVarFetchArgs = CustomerApiFetchParamCreator(configuration).getCustomers(email, qb_class, quickbooks_code, last_modified_dts_start, last_modified_dts_end, signup_dts_start, signup_dts_end, billing_first_name, billing_last_name, billing_company, billing_city, billing_state, billing_postal_code, billing_country_code, billing_day_phone, billing_evening_phone, shipping_first_name, shipping_last_name, shipping_company, shipping_city, shipping_state, shipping_postal_code, shipping_country_code, shipping_day_phone, shipping_evening_phone, pricing_tier_oid, pricing_tier_name, _limit, _offset, _since, _sort, _expand, options);
+        getCustomers(email?: string, qb_class?: string, quickbooks_code?: string, last_modified_dts_start?: string, last_modified_dts_end?: string, signup_dts_start?: string, signup_dts_end?: string, billing_first_name?: string, billing_last_name?: string, billing_company?: string, billing_city?: string, billing_state?: string, billing_postal_code?: string, billing_country_code?: string, billing_day_phone?: string, billing_evening_phone?: string, shipping_first_name?: string, shipping_last_name?: string, shipping_company?: string, shipping_city?: string, shipping_state?: string, shipping_postal_code?: string, shipping_country_code?: string, shipping_day_phone?: string, shipping_evening_phone?: string, pricing_tier_oid?: number, pricing_tier_name?: string, emails?: any, _limit?: number, _offset?: number, _since?: string, _sort?: string, _expand?: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<CustomersResponse> {
+            const localVarFetchArgs = CustomerApiFetchParamCreator(configuration).getCustomers(email, qb_class, quickbooks_code, last_modified_dts_start, last_modified_dts_end, signup_dts_start, signup_dts_end, billing_first_name, billing_last_name, billing_company, billing_city, billing_state, billing_postal_code, billing_country_code, billing_day_phone, billing_evening_phone, shipping_first_name, shipping_last_name, shipping_company, shipping_city, shipping_state, shipping_postal_code, shipping_country_code, shipping_day_phone, shipping_evening_phone, pricing_tier_oid, pricing_tier_name, emails, _limit, _offset, _since, _sort, _expand, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
 
@@ -64598,6 +65028,7 @@ export const CustomerApiFactory = function (configuration?: Configuration, fetch
          * @param {string} [shipping_evening_phone] Shipping evening phone
          * @param {number} [pricing_tier_oid] Pricing tier oid
          * @param {string} [pricing_tier_name] Pricing tier name
+         * @param {any} [emails] Emails
          * @param {number} [_limit] The maximum number of records to return on this one API call. (Max 200)
          * @param {number} [_offset] Pagination of the record set.  Offset is a zero based index.
          * @param {string} [_since] Fetch customers that have been created/modified since this date/time.
@@ -64606,8 +65037,8 @@ export const CustomerApiFactory = function (configuration?: Configuration, fetch
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getCustomers(email?: string, qb_class?: string, quickbooks_code?: string, last_modified_dts_start?: string, last_modified_dts_end?: string, signup_dts_start?: string, signup_dts_end?: string, billing_first_name?: string, billing_last_name?: string, billing_company?: string, billing_city?: string, billing_state?: string, billing_postal_code?: string, billing_country_code?: string, billing_day_phone?: string, billing_evening_phone?: string, shipping_first_name?: string, shipping_last_name?: string, shipping_company?: string, shipping_city?: string, shipping_state?: string, shipping_postal_code?: string, shipping_country_code?: string, shipping_day_phone?: string, shipping_evening_phone?: string, pricing_tier_oid?: number, pricing_tier_name?: string, _limit?: number, _offset?: number, _since?: string, _sort?: string, _expand?: string, options?: any) {
-            return CustomerApiFp(configuration).getCustomers(email, qb_class, quickbooks_code, last_modified_dts_start, last_modified_dts_end, signup_dts_start, signup_dts_end, billing_first_name, billing_last_name, billing_company, billing_city, billing_state, billing_postal_code, billing_country_code, billing_day_phone, billing_evening_phone, shipping_first_name, shipping_last_name, shipping_company, shipping_city, shipping_state, shipping_postal_code, shipping_country_code, shipping_day_phone, shipping_evening_phone, pricing_tier_oid, pricing_tier_name, _limit, _offset, _since, _sort, _expand, options)(fetch, basePath);
+        getCustomers(email?: string, qb_class?: string, quickbooks_code?: string, last_modified_dts_start?: string, last_modified_dts_end?: string, signup_dts_start?: string, signup_dts_end?: string, billing_first_name?: string, billing_last_name?: string, billing_company?: string, billing_city?: string, billing_state?: string, billing_postal_code?: string, billing_country_code?: string, billing_day_phone?: string, billing_evening_phone?: string, shipping_first_name?: string, shipping_last_name?: string, shipping_company?: string, shipping_city?: string, shipping_state?: string, shipping_postal_code?: string, shipping_country_code?: string, shipping_day_phone?: string, shipping_evening_phone?: string, pricing_tier_oid?: number, pricing_tier_name?: string, emails?: any, _limit?: number, _offset?: number, _since?: string, _sort?: string, _expand?: string, options?: any) {
+            return CustomerApiFp(configuration).getCustomers(email, qb_class, quickbooks_code, last_modified_dts_start, last_modified_dts_end, signup_dts_start, signup_dts_end, billing_first_name, billing_last_name, billing_company, billing_city, billing_state, billing_postal_code, billing_country_code, billing_day_phone, billing_evening_phone, shipping_first_name, shipping_last_name, shipping_company, shipping_city, shipping_state, shipping_postal_code, shipping_country_code, shipping_day_phone, shipping_evening_phone, pricing_tier_oid, pricing_tier_name, emails, _limit, _offset, _since, _sort, _expand, options)(fetch, basePath);
         },
         /**
          * Retrieves customers from the account.  If no parameters are specified, all customers will be returned.  You will need to make multiple API calls in order to retrieve the entire result set since this API performs result set pagination. 
@@ -64897,6 +65328,7 @@ export interface CustomerApiInterface {
      * @param {string} [shipping_evening_phone] Shipping evening phone
      * @param {number} [pricing_tier_oid] Pricing tier oid
      * @param {string} [pricing_tier_name] Pricing tier name
+     * @param {any} [emails] Emails
      * @param {number} [_limit] The maximum number of records to return on this one API call. (Max 200)
      * @param {number} [_offset] Pagination of the record set.  Offset is a zero based index.
      * @param {string} [_since] Fetch customers that have been created/modified since this date/time.
@@ -64906,7 +65338,7 @@ export interface CustomerApiInterface {
      * @throws {RequiredError}
      * @memberof CustomerApiInterface
      */
-    getCustomers(email?: string, qb_class?: string, quickbooks_code?: string, last_modified_dts_start?: string, last_modified_dts_end?: string, signup_dts_start?: string, signup_dts_end?: string, billing_first_name?: string, billing_last_name?: string, billing_company?: string, billing_city?: string, billing_state?: string, billing_postal_code?: string, billing_country_code?: string, billing_day_phone?: string, billing_evening_phone?: string, shipping_first_name?: string, shipping_last_name?: string, shipping_company?: string, shipping_city?: string, shipping_state?: string, shipping_postal_code?: string, shipping_country_code?: string, shipping_day_phone?: string, shipping_evening_phone?: string, pricing_tier_oid?: number, pricing_tier_name?: string, _limit?: number, _offset?: number, _since?: string, _sort?: string, _expand?: string, options?: any): Promise<CustomersResponse>;
+    getCustomers(email?: string, qb_class?: string, quickbooks_code?: string, last_modified_dts_start?: string, last_modified_dts_end?: string, signup_dts_start?: string, signup_dts_end?: string, billing_first_name?: string, billing_last_name?: string, billing_company?: string, billing_city?: string, billing_state?: string, billing_postal_code?: string, billing_country_code?: string, billing_day_phone?: string, billing_evening_phone?: string, shipping_first_name?: string, shipping_last_name?: string, shipping_company?: string, shipping_city?: string, shipping_state?: string, shipping_postal_code?: string, shipping_country_code?: string, shipping_day_phone?: string, shipping_evening_phone?: string, pricing_tier_oid?: number, pricing_tier_name?: string, emails?: any, _limit?: number, _offset?: number, _since?: string, _sort?: string, _expand?: string, options?: any): Promise<CustomersResponse>;
 
     /**
      * Retrieves customers from the account.  If no parameters are specified, all customers will be returned.  You will need to make multiple API calls in order to retrieve the entire result set since this API performs result set pagination. 
@@ -65218,6 +65650,7 @@ export class CustomerApi extends BaseAPI implements CustomerApiInterface {
      * @param {string} [shipping_evening_phone] Shipping evening phone
      * @param {number} [pricing_tier_oid] Pricing tier oid
      * @param {string} [pricing_tier_name] Pricing tier name
+     * @param {any} [emails] Emails
      * @param {number} [_limit] The maximum number of records to return on this one API call. (Max 200)
      * @param {number} [_offset] Pagination of the record set.  Offset is a zero based index.
      * @param {string} [_since] Fetch customers that have been created/modified since this date/time.
@@ -65227,8 +65660,8 @@ export class CustomerApi extends BaseAPI implements CustomerApiInterface {
      * @throws {RequiredError}
      * @memberof CustomerApi
      */
-    public getCustomers(email?: string, qb_class?: string, quickbooks_code?: string, last_modified_dts_start?: string, last_modified_dts_end?: string, signup_dts_start?: string, signup_dts_end?: string, billing_first_name?: string, billing_last_name?: string, billing_company?: string, billing_city?: string, billing_state?: string, billing_postal_code?: string, billing_country_code?: string, billing_day_phone?: string, billing_evening_phone?: string, shipping_first_name?: string, shipping_last_name?: string, shipping_company?: string, shipping_city?: string, shipping_state?: string, shipping_postal_code?: string, shipping_country_code?: string, shipping_day_phone?: string, shipping_evening_phone?: string, pricing_tier_oid?: number, pricing_tier_name?: string, _limit?: number, _offset?: number, _since?: string, _sort?: string, _expand?: string, options?: any) {
-        return CustomerApiFp(this.configuration).getCustomers(email, qb_class, quickbooks_code, last_modified_dts_start, last_modified_dts_end, signup_dts_start, signup_dts_end, billing_first_name, billing_last_name, billing_company, billing_city, billing_state, billing_postal_code, billing_country_code, billing_day_phone, billing_evening_phone, shipping_first_name, shipping_last_name, shipping_company, shipping_city, shipping_state, shipping_postal_code, shipping_country_code, shipping_day_phone, shipping_evening_phone, pricing_tier_oid, pricing_tier_name, _limit, _offset, _since, _sort, _expand, options)(this.fetch, this.basePath);
+    public getCustomers(email?: string, qb_class?: string, quickbooks_code?: string, last_modified_dts_start?: string, last_modified_dts_end?: string, signup_dts_start?: string, signup_dts_end?: string, billing_first_name?: string, billing_last_name?: string, billing_company?: string, billing_city?: string, billing_state?: string, billing_postal_code?: string, billing_country_code?: string, billing_day_phone?: string, billing_evening_phone?: string, shipping_first_name?: string, shipping_last_name?: string, shipping_company?: string, shipping_city?: string, shipping_state?: string, shipping_postal_code?: string, shipping_country_code?: string, shipping_day_phone?: string, shipping_evening_phone?: string, pricing_tier_oid?: number, pricing_tier_name?: string, emails?: any, _limit?: number, _offset?: number, _since?: string, _sort?: string, _expand?: string, options?: any) {
+        return CustomerApiFp(this.configuration).getCustomers(email, qb_class, quickbooks_code, last_modified_dts_start, last_modified_dts_end, signup_dts_start, signup_dts_end, billing_first_name, billing_last_name, billing_company, billing_city, billing_state, billing_postal_code, billing_country_code, billing_day_phone, billing_evening_phone, shipping_first_name, shipping_last_name, shipping_company, shipping_city, shipping_state, shipping_postal_code, shipping_country_code, shipping_day_phone, shipping_evening_phone, pricing_tier_oid, pricing_tier_name, emails, _limit, _offset, _since, _sort, _expand, options)(this.fetch, this.basePath);
     }
 
     /**
