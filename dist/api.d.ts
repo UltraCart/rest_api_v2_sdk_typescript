@@ -51470,7 +51470,6 @@ export declare const CustomerApiFetchParamCreator: (configuration?: Configuratio
      * @param {string} [shipping_evening_phone] Shipping evening phone
      * @param {number} [pricing_tier_oid] Pricing tier oid
      * @param {string} [pricing_tier_name] Pricing tier name
-     * @param {any} [emails] Emails
      * @param {number} [_limit] The maximum number of records to return on this one API call. (Max 200)
      * @param {number} [_offset] Pagination of the record set.  Offset is a zero based index.
      * @param {string} [_since] Fetch customers that have been created/modified since this date/time.
@@ -51479,7 +51478,7 @@ export declare const CustomerApiFetchParamCreator: (configuration?: Configuratio
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getCustomers(email?: string, qb_class?: string, quickbooks_code?: string, last_modified_dts_start?: string, last_modified_dts_end?: string, signup_dts_start?: string, signup_dts_end?: string, billing_first_name?: string, billing_last_name?: string, billing_company?: string, billing_city?: string, billing_state?: string, billing_postal_code?: string, billing_country_code?: string, billing_day_phone?: string, billing_evening_phone?: string, shipping_first_name?: string, shipping_last_name?: string, shipping_company?: string, shipping_city?: string, shipping_state?: string, shipping_postal_code?: string, shipping_country_code?: string, shipping_day_phone?: string, shipping_evening_phone?: string, pricing_tier_oid?: number, pricing_tier_name?: string, emails?: any, _limit?: number, _offset?: number, _since?: string, _sort?: string, _expand?: string, options?: any): FetchArgs;
+    getCustomers(email?: string, qb_class?: string, quickbooks_code?: string, last_modified_dts_start?: string, last_modified_dts_end?: string, signup_dts_start?: string, signup_dts_end?: string, billing_first_name?: string, billing_last_name?: string, billing_company?: string, billing_city?: string, billing_state?: string, billing_postal_code?: string, billing_country_code?: string, billing_day_phone?: string, billing_evening_phone?: string, shipping_first_name?: string, shipping_last_name?: string, shipping_company?: string, shipping_city?: string, shipping_state?: string, shipping_postal_code?: string, shipping_country_code?: string, shipping_day_phone?: string, shipping_evening_phone?: string, pricing_tier_oid?: number, pricing_tier_name?: string, _limit?: number, _offset?: number, _since?: string, _sort?: string, _expand?: string, options?: any): FetchArgs;
     /**
      * Retrieves customers from the account.  If no parameters are specified, all customers will be returned.  You will need to make multiple API calls in order to retrieve the entire result set since this API performs result set pagination.
      * @summary Retrieve customers by query
@@ -51719,7 +51718,6 @@ export declare const CustomerApiFp: (configuration?: Configuration) => {
      * @param {string} [shipping_evening_phone] Shipping evening phone
      * @param {number} [pricing_tier_oid] Pricing tier oid
      * @param {string} [pricing_tier_name] Pricing tier name
-     * @param {any} [emails] Emails
      * @param {number} [_limit] The maximum number of records to return on this one API call. (Max 200)
      * @param {number} [_offset] Pagination of the record set.  Offset is a zero based index.
      * @param {string} [_since] Fetch customers that have been created/modified since this date/time.
@@ -51728,7 +51726,7 @@ export declare const CustomerApiFp: (configuration?: Configuration) => {
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getCustomers(email?: string, qb_class?: string, quickbooks_code?: string, last_modified_dts_start?: string, last_modified_dts_end?: string, signup_dts_start?: string, signup_dts_end?: string, billing_first_name?: string, billing_last_name?: string, billing_company?: string, billing_city?: string, billing_state?: string, billing_postal_code?: string, billing_country_code?: string, billing_day_phone?: string, billing_evening_phone?: string, shipping_first_name?: string, shipping_last_name?: string, shipping_company?: string, shipping_city?: string, shipping_state?: string, shipping_postal_code?: string, shipping_country_code?: string, shipping_day_phone?: string, shipping_evening_phone?: string, pricing_tier_oid?: number, pricing_tier_name?: string, emails?: any, _limit?: number, _offset?: number, _since?: string, _sort?: string, _expand?: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<CustomersResponse>;
+    getCustomers(email?: string, qb_class?: string, quickbooks_code?: string, last_modified_dts_start?: string, last_modified_dts_end?: string, signup_dts_start?: string, signup_dts_end?: string, billing_first_name?: string, billing_last_name?: string, billing_company?: string, billing_city?: string, billing_state?: string, billing_postal_code?: string, billing_country_code?: string, billing_day_phone?: string, billing_evening_phone?: string, shipping_first_name?: string, shipping_last_name?: string, shipping_company?: string, shipping_city?: string, shipping_state?: string, shipping_postal_code?: string, shipping_country_code?: string, shipping_day_phone?: string, shipping_evening_phone?: string, pricing_tier_oid?: number, pricing_tier_name?: string, _limit?: number, _offset?: number, _since?: string, _sort?: string, _expand?: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<CustomersResponse>;
     /**
      * Retrieves customers from the account.  If no parameters are specified, all customers will be returned.  You will need to make multiple API calls in order to retrieve the entire result set since this API performs result set pagination.
      * @summary Retrieve customers by query
@@ -51968,7 +51966,6 @@ export declare const CustomerApiFactory: (configuration?: Configuration, fetch?:
      * @param {string} [shipping_evening_phone] Shipping evening phone
      * @param {number} [pricing_tier_oid] Pricing tier oid
      * @param {string} [pricing_tier_name] Pricing tier name
-     * @param {any} [emails] Emails
      * @param {number} [_limit] The maximum number of records to return on this one API call. (Max 200)
      * @param {number} [_offset] Pagination of the record set.  Offset is a zero based index.
      * @param {string} [_since] Fetch customers that have been created/modified since this date/time.
@@ -51977,7 +51974,7 @@ export declare const CustomerApiFactory: (configuration?: Configuration, fetch?:
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getCustomers(email?: string, qb_class?: string, quickbooks_code?: string, last_modified_dts_start?: string, last_modified_dts_end?: string, signup_dts_start?: string, signup_dts_end?: string, billing_first_name?: string, billing_last_name?: string, billing_company?: string, billing_city?: string, billing_state?: string, billing_postal_code?: string, billing_country_code?: string, billing_day_phone?: string, billing_evening_phone?: string, shipping_first_name?: string, shipping_last_name?: string, shipping_company?: string, shipping_city?: string, shipping_state?: string, shipping_postal_code?: string, shipping_country_code?: string, shipping_day_phone?: string, shipping_evening_phone?: string, pricing_tier_oid?: number, pricing_tier_name?: string, emails?: any, _limit?: number, _offset?: number, _since?: string, _sort?: string, _expand?: string, options?: any): Promise<CustomersResponse>;
+    getCustomers(email?: string, qb_class?: string, quickbooks_code?: string, last_modified_dts_start?: string, last_modified_dts_end?: string, signup_dts_start?: string, signup_dts_end?: string, billing_first_name?: string, billing_last_name?: string, billing_company?: string, billing_city?: string, billing_state?: string, billing_postal_code?: string, billing_country_code?: string, billing_day_phone?: string, billing_evening_phone?: string, shipping_first_name?: string, shipping_last_name?: string, shipping_company?: string, shipping_city?: string, shipping_state?: string, shipping_postal_code?: string, shipping_country_code?: string, shipping_day_phone?: string, shipping_evening_phone?: string, pricing_tier_oid?: number, pricing_tier_name?: string, _limit?: number, _offset?: number, _since?: string, _sort?: string, _expand?: string, options?: any): Promise<CustomersResponse>;
     /**
      * Retrieves customers from the account.  If no parameters are specified, all customers will be returned.  You will need to make multiple API calls in order to retrieve the entire result set since this API performs result set pagination.
      * @summary Retrieve customers by query
@@ -52229,7 +52226,6 @@ export interface CustomerApiInterface {
      * @param {string} [shipping_evening_phone] Shipping evening phone
      * @param {number} [pricing_tier_oid] Pricing tier oid
      * @param {string} [pricing_tier_name] Pricing tier name
-     * @param {any} [emails] Emails
      * @param {number} [_limit] The maximum number of records to return on this one API call. (Max 200)
      * @param {number} [_offset] Pagination of the record set.  Offset is a zero based index.
      * @param {string} [_since] Fetch customers that have been created/modified since this date/time.
@@ -52239,7 +52235,7 @@ export interface CustomerApiInterface {
      * @throws {RequiredError}
      * @memberof CustomerApiInterface
      */
-    getCustomers(email?: string, qb_class?: string, quickbooks_code?: string, last_modified_dts_start?: string, last_modified_dts_end?: string, signup_dts_start?: string, signup_dts_end?: string, billing_first_name?: string, billing_last_name?: string, billing_company?: string, billing_city?: string, billing_state?: string, billing_postal_code?: string, billing_country_code?: string, billing_day_phone?: string, billing_evening_phone?: string, shipping_first_name?: string, shipping_last_name?: string, shipping_company?: string, shipping_city?: string, shipping_state?: string, shipping_postal_code?: string, shipping_country_code?: string, shipping_day_phone?: string, shipping_evening_phone?: string, pricing_tier_oid?: number, pricing_tier_name?: string, emails?: any, _limit?: number, _offset?: number, _since?: string, _sort?: string, _expand?: string, options?: any): Promise<CustomersResponse>;
+    getCustomers(email?: string, qb_class?: string, quickbooks_code?: string, last_modified_dts_start?: string, last_modified_dts_end?: string, signup_dts_start?: string, signup_dts_end?: string, billing_first_name?: string, billing_last_name?: string, billing_company?: string, billing_city?: string, billing_state?: string, billing_postal_code?: string, billing_country_code?: string, billing_day_phone?: string, billing_evening_phone?: string, shipping_first_name?: string, shipping_last_name?: string, shipping_company?: string, shipping_city?: string, shipping_state?: string, shipping_postal_code?: string, shipping_country_code?: string, shipping_day_phone?: string, shipping_evening_phone?: string, pricing_tier_oid?: number, pricing_tier_name?: string, _limit?: number, _offset?: number, _since?: string, _sort?: string, _expand?: string, options?: any): Promise<CustomersResponse>;
     /**
      * Retrieves customers from the account.  If no parameters are specified, all customers will be returned.  You will need to make multiple API calls in order to retrieve the entire result set since this API performs result set pagination.
      * @summary Retrieve customers by query
@@ -52504,7 +52500,6 @@ export declare class CustomerApi extends BaseAPI implements CustomerApiInterface
      * @param {string} [shipping_evening_phone] Shipping evening phone
      * @param {number} [pricing_tier_oid] Pricing tier oid
      * @param {string} [pricing_tier_name] Pricing tier name
-     * @param {any} [emails] Emails
      * @param {number} [_limit] The maximum number of records to return on this one API call. (Max 200)
      * @param {number} [_offset] Pagination of the record set.  Offset is a zero based index.
      * @param {string} [_since] Fetch customers that have been created/modified since this date/time.
@@ -52514,7 +52509,7 @@ export declare class CustomerApi extends BaseAPI implements CustomerApiInterface
      * @throws {RequiredError}
      * @memberof CustomerApi
      */
-    getCustomers(email?: string, qb_class?: string, quickbooks_code?: string, last_modified_dts_start?: string, last_modified_dts_end?: string, signup_dts_start?: string, signup_dts_end?: string, billing_first_name?: string, billing_last_name?: string, billing_company?: string, billing_city?: string, billing_state?: string, billing_postal_code?: string, billing_country_code?: string, billing_day_phone?: string, billing_evening_phone?: string, shipping_first_name?: string, shipping_last_name?: string, shipping_company?: string, shipping_city?: string, shipping_state?: string, shipping_postal_code?: string, shipping_country_code?: string, shipping_day_phone?: string, shipping_evening_phone?: string, pricing_tier_oid?: number, pricing_tier_name?: string, emails?: any, _limit?: number, _offset?: number, _since?: string, _sort?: string, _expand?: string, options?: any): Promise<CustomersResponse>;
+    getCustomers(email?: string, qb_class?: string, quickbooks_code?: string, last_modified_dts_start?: string, last_modified_dts_end?: string, signup_dts_start?: string, signup_dts_end?: string, billing_first_name?: string, billing_last_name?: string, billing_company?: string, billing_city?: string, billing_state?: string, billing_postal_code?: string, billing_country_code?: string, billing_day_phone?: string, billing_evening_phone?: string, shipping_first_name?: string, shipping_last_name?: string, shipping_company?: string, shipping_city?: string, shipping_state?: string, shipping_postal_code?: string, shipping_country_code?: string, shipping_day_phone?: string, shipping_evening_phone?: string, pricing_tier_oid?: number, pricing_tier_name?: string, _limit?: number, _offset?: number, _since?: string, _sort?: string, _expand?: string, options?: any): Promise<CustomersResponse>;
     /**
      * Retrieves customers from the account.  If no parameters are specified, all customers will be returned.  You will need to make multiple API calls in order to retrieve the entire result set since this API performs result set pagination.
      * @summary Retrieve customers by query

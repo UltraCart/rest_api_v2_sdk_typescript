@@ -63387,7 +63387,6 @@ export const CustomerApiFetchParamCreator = function (configuration?: Configurat
          * @param {string} [shipping_evening_phone] Shipping evening phone
          * @param {number} [pricing_tier_oid] Pricing tier oid
          * @param {string} [pricing_tier_name] Pricing tier name
-         * @param {any} [emails] Emails
          * @param {number} [_limit] The maximum number of records to return on this one API call. (Max 200)
          * @param {number} [_offset] Pagination of the record set.  Offset is a zero based index.
          * @param {string} [_since] Fetch customers that have been created/modified since this date/time.
@@ -63396,7 +63395,7 @@ export const CustomerApiFetchParamCreator = function (configuration?: Configurat
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getCustomers(email?: string, qb_class?: string, quickbooks_code?: string, last_modified_dts_start?: string, last_modified_dts_end?: string, signup_dts_start?: string, signup_dts_end?: string, billing_first_name?: string, billing_last_name?: string, billing_company?: string, billing_city?: string, billing_state?: string, billing_postal_code?: string, billing_country_code?: string, billing_day_phone?: string, billing_evening_phone?: string, shipping_first_name?: string, shipping_last_name?: string, shipping_company?: string, shipping_city?: string, shipping_state?: string, shipping_postal_code?: string, shipping_country_code?: string, shipping_day_phone?: string, shipping_evening_phone?: string, pricing_tier_oid?: number, pricing_tier_name?: string, emails?: any, _limit?: number, _offset?: number, _since?: string, _sort?: string, _expand?: string, options: any = {}): FetchArgs {
+        getCustomers(email?: string, qb_class?: string, quickbooks_code?: string, last_modified_dts_start?: string, last_modified_dts_end?: string, signup_dts_start?: string, signup_dts_end?: string, billing_first_name?: string, billing_last_name?: string, billing_company?: string, billing_city?: string, billing_state?: string, billing_postal_code?: string, billing_country_code?: string, billing_day_phone?: string, billing_evening_phone?: string, shipping_first_name?: string, shipping_last_name?: string, shipping_company?: string, shipping_city?: string, shipping_state?: string, shipping_postal_code?: string, shipping_country_code?: string, shipping_day_phone?: string, shipping_evening_phone?: string, pricing_tier_oid?: number, pricing_tier_name?: string, _limit?: number, _offset?: number, _since?: string, _sort?: string, _expand?: string, options: any = {}): FetchArgs {
             const localVarPath = `/customer/customers`;
             const localVarUrlObj = url.parse(localVarPath, true);
             const localVarRequestOptions = Object.assign({ method: 'GET' }, options);
@@ -63532,10 +63531,6 @@ export const CustomerApiFetchParamCreator = function (configuration?: Configurat
 
             if (pricing_tier_name !== undefined) {
                 localVarQueryParameter['pricing_tier_name'] = pricing_tier_name;
-            }
-
-            if (emails !== undefined) {
-                localVarQueryParameter['emails'] = emails;
             }
 
             if (_limit !== undefined) {
@@ -64585,7 +64580,6 @@ export const CustomerApiFp = function(configuration?: Configuration) {
          * @param {string} [shipping_evening_phone] Shipping evening phone
          * @param {number} [pricing_tier_oid] Pricing tier oid
          * @param {string} [pricing_tier_name] Pricing tier name
-         * @param {any} [emails] Emails
          * @param {number} [_limit] The maximum number of records to return on this one API call. (Max 200)
          * @param {number} [_offset] Pagination of the record set.  Offset is a zero based index.
          * @param {string} [_since] Fetch customers that have been created/modified since this date/time.
@@ -64594,8 +64588,8 @@ export const CustomerApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getCustomers(email?: string, qb_class?: string, quickbooks_code?: string, last_modified_dts_start?: string, last_modified_dts_end?: string, signup_dts_start?: string, signup_dts_end?: string, billing_first_name?: string, billing_last_name?: string, billing_company?: string, billing_city?: string, billing_state?: string, billing_postal_code?: string, billing_country_code?: string, billing_day_phone?: string, billing_evening_phone?: string, shipping_first_name?: string, shipping_last_name?: string, shipping_company?: string, shipping_city?: string, shipping_state?: string, shipping_postal_code?: string, shipping_country_code?: string, shipping_day_phone?: string, shipping_evening_phone?: string, pricing_tier_oid?: number, pricing_tier_name?: string, emails?: any, _limit?: number, _offset?: number, _since?: string, _sort?: string, _expand?: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<CustomersResponse> {
-            const localVarFetchArgs = CustomerApiFetchParamCreator(configuration).getCustomers(email, qb_class, quickbooks_code, last_modified_dts_start, last_modified_dts_end, signup_dts_start, signup_dts_end, billing_first_name, billing_last_name, billing_company, billing_city, billing_state, billing_postal_code, billing_country_code, billing_day_phone, billing_evening_phone, shipping_first_name, shipping_last_name, shipping_company, shipping_city, shipping_state, shipping_postal_code, shipping_country_code, shipping_day_phone, shipping_evening_phone, pricing_tier_oid, pricing_tier_name, emails, _limit, _offset, _since, _sort, _expand, options);
+        getCustomers(email?: string, qb_class?: string, quickbooks_code?: string, last_modified_dts_start?: string, last_modified_dts_end?: string, signup_dts_start?: string, signup_dts_end?: string, billing_first_name?: string, billing_last_name?: string, billing_company?: string, billing_city?: string, billing_state?: string, billing_postal_code?: string, billing_country_code?: string, billing_day_phone?: string, billing_evening_phone?: string, shipping_first_name?: string, shipping_last_name?: string, shipping_company?: string, shipping_city?: string, shipping_state?: string, shipping_postal_code?: string, shipping_country_code?: string, shipping_day_phone?: string, shipping_evening_phone?: string, pricing_tier_oid?: number, pricing_tier_name?: string, _limit?: number, _offset?: number, _since?: string, _sort?: string, _expand?: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<CustomersResponse> {
+            const localVarFetchArgs = CustomerApiFetchParamCreator(configuration).getCustomers(email, qb_class, quickbooks_code, last_modified_dts_start, last_modified_dts_end, signup_dts_start, signup_dts_end, billing_first_name, billing_last_name, billing_company, billing_city, billing_state, billing_postal_code, billing_country_code, billing_day_phone, billing_evening_phone, shipping_first_name, shipping_last_name, shipping_company, shipping_city, shipping_state, shipping_postal_code, shipping_country_code, shipping_day_phone, shipping_evening_phone, pricing_tier_oid, pricing_tier_name, _limit, _offset, _since, _sort, _expand, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
 
@@ -65028,7 +65022,6 @@ export const CustomerApiFactory = function (configuration?: Configuration, fetch
          * @param {string} [shipping_evening_phone] Shipping evening phone
          * @param {number} [pricing_tier_oid] Pricing tier oid
          * @param {string} [pricing_tier_name] Pricing tier name
-         * @param {any} [emails] Emails
          * @param {number} [_limit] The maximum number of records to return on this one API call. (Max 200)
          * @param {number} [_offset] Pagination of the record set.  Offset is a zero based index.
          * @param {string} [_since] Fetch customers that have been created/modified since this date/time.
@@ -65037,8 +65030,8 @@ export const CustomerApiFactory = function (configuration?: Configuration, fetch
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getCustomers(email?: string, qb_class?: string, quickbooks_code?: string, last_modified_dts_start?: string, last_modified_dts_end?: string, signup_dts_start?: string, signup_dts_end?: string, billing_first_name?: string, billing_last_name?: string, billing_company?: string, billing_city?: string, billing_state?: string, billing_postal_code?: string, billing_country_code?: string, billing_day_phone?: string, billing_evening_phone?: string, shipping_first_name?: string, shipping_last_name?: string, shipping_company?: string, shipping_city?: string, shipping_state?: string, shipping_postal_code?: string, shipping_country_code?: string, shipping_day_phone?: string, shipping_evening_phone?: string, pricing_tier_oid?: number, pricing_tier_name?: string, emails?: any, _limit?: number, _offset?: number, _since?: string, _sort?: string, _expand?: string, options?: any) {
-            return CustomerApiFp(configuration).getCustomers(email, qb_class, quickbooks_code, last_modified_dts_start, last_modified_dts_end, signup_dts_start, signup_dts_end, billing_first_name, billing_last_name, billing_company, billing_city, billing_state, billing_postal_code, billing_country_code, billing_day_phone, billing_evening_phone, shipping_first_name, shipping_last_name, shipping_company, shipping_city, shipping_state, shipping_postal_code, shipping_country_code, shipping_day_phone, shipping_evening_phone, pricing_tier_oid, pricing_tier_name, emails, _limit, _offset, _since, _sort, _expand, options)(fetch, basePath);
+        getCustomers(email?: string, qb_class?: string, quickbooks_code?: string, last_modified_dts_start?: string, last_modified_dts_end?: string, signup_dts_start?: string, signup_dts_end?: string, billing_first_name?: string, billing_last_name?: string, billing_company?: string, billing_city?: string, billing_state?: string, billing_postal_code?: string, billing_country_code?: string, billing_day_phone?: string, billing_evening_phone?: string, shipping_first_name?: string, shipping_last_name?: string, shipping_company?: string, shipping_city?: string, shipping_state?: string, shipping_postal_code?: string, shipping_country_code?: string, shipping_day_phone?: string, shipping_evening_phone?: string, pricing_tier_oid?: number, pricing_tier_name?: string, _limit?: number, _offset?: number, _since?: string, _sort?: string, _expand?: string, options?: any) {
+            return CustomerApiFp(configuration).getCustomers(email, qb_class, quickbooks_code, last_modified_dts_start, last_modified_dts_end, signup_dts_start, signup_dts_end, billing_first_name, billing_last_name, billing_company, billing_city, billing_state, billing_postal_code, billing_country_code, billing_day_phone, billing_evening_phone, shipping_first_name, shipping_last_name, shipping_company, shipping_city, shipping_state, shipping_postal_code, shipping_country_code, shipping_day_phone, shipping_evening_phone, pricing_tier_oid, pricing_tier_name, _limit, _offset, _since, _sort, _expand, options)(fetch, basePath);
         },
         /**
          * Retrieves customers from the account.  If no parameters are specified, all customers will be returned.  You will need to make multiple API calls in order to retrieve the entire result set since this API performs result set pagination. 
@@ -65328,7 +65321,6 @@ export interface CustomerApiInterface {
      * @param {string} [shipping_evening_phone] Shipping evening phone
      * @param {number} [pricing_tier_oid] Pricing tier oid
      * @param {string} [pricing_tier_name] Pricing tier name
-     * @param {any} [emails] Emails
      * @param {number} [_limit] The maximum number of records to return on this one API call. (Max 200)
      * @param {number} [_offset] Pagination of the record set.  Offset is a zero based index.
      * @param {string} [_since] Fetch customers that have been created/modified since this date/time.
@@ -65338,7 +65330,7 @@ export interface CustomerApiInterface {
      * @throws {RequiredError}
      * @memberof CustomerApiInterface
      */
-    getCustomers(email?: string, qb_class?: string, quickbooks_code?: string, last_modified_dts_start?: string, last_modified_dts_end?: string, signup_dts_start?: string, signup_dts_end?: string, billing_first_name?: string, billing_last_name?: string, billing_company?: string, billing_city?: string, billing_state?: string, billing_postal_code?: string, billing_country_code?: string, billing_day_phone?: string, billing_evening_phone?: string, shipping_first_name?: string, shipping_last_name?: string, shipping_company?: string, shipping_city?: string, shipping_state?: string, shipping_postal_code?: string, shipping_country_code?: string, shipping_day_phone?: string, shipping_evening_phone?: string, pricing_tier_oid?: number, pricing_tier_name?: string, emails?: any, _limit?: number, _offset?: number, _since?: string, _sort?: string, _expand?: string, options?: any): Promise<CustomersResponse>;
+    getCustomers(email?: string, qb_class?: string, quickbooks_code?: string, last_modified_dts_start?: string, last_modified_dts_end?: string, signup_dts_start?: string, signup_dts_end?: string, billing_first_name?: string, billing_last_name?: string, billing_company?: string, billing_city?: string, billing_state?: string, billing_postal_code?: string, billing_country_code?: string, billing_day_phone?: string, billing_evening_phone?: string, shipping_first_name?: string, shipping_last_name?: string, shipping_company?: string, shipping_city?: string, shipping_state?: string, shipping_postal_code?: string, shipping_country_code?: string, shipping_day_phone?: string, shipping_evening_phone?: string, pricing_tier_oid?: number, pricing_tier_name?: string, _limit?: number, _offset?: number, _since?: string, _sort?: string, _expand?: string, options?: any): Promise<CustomersResponse>;
 
     /**
      * Retrieves customers from the account.  If no parameters are specified, all customers will be returned.  You will need to make multiple API calls in order to retrieve the entire result set since this API performs result set pagination. 
@@ -65650,7 +65642,6 @@ export class CustomerApi extends BaseAPI implements CustomerApiInterface {
      * @param {string} [shipping_evening_phone] Shipping evening phone
      * @param {number} [pricing_tier_oid] Pricing tier oid
      * @param {string} [pricing_tier_name] Pricing tier name
-     * @param {any} [emails] Emails
      * @param {number} [_limit] The maximum number of records to return on this one API call. (Max 200)
      * @param {number} [_offset] Pagination of the record set.  Offset is a zero based index.
      * @param {string} [_since] Fetch customers that have been created/modified since this date/time.
@@ -65660,8 +65651,8 @@ export class CustomerApi extends BaseAPI implements CustomerApiInterface {
      * @throws {RequiredError}
      * @memberof CustomerApi
      */
-    public getCustomers(email?: string, qb_class?: string, quickbooks_code?: string, last_modified_dts_start?: string, last_modified_dts_end?: string, signup_dts_start?: string, signup_dts_end?: string, billing_first_name?: string, billing_last_name?: string, billing_company?: string, billing_city?: string, billing_state?: string, billing_postal_code?: string, billing_country_code?: string, billing_day_phone?: string, billing_evening_phone?: string, shipping_first_name?: string, shipping_last_name?: string, shipping_company?: string, shipping_city?: string, shipping_state?: string, shipping_postal_code?: string, shipping_country_code?: string, shipping_day_phone?: string, shipping_evening_phone?: string, pricing_tier_oid?: number, pricing_tier_name?: string, emails?: any, _limit?: number, _offset?: number, _since?: string, _sort?: string, _expand?: string, options?: any) {
-        return CustomerApiFp(this.configuration).getCustomers(email, qb_class, quickbooks_code, last_modified_dts_start, last_modified_dts_end, signup_dts_start, signup_dts_end, billing_first_name, billing_last_name, billing_company, billing_city, billing_state, billing_postal_code, billing_country_code, billing_day_phone, billing_evening_phone, shipping_first_name, shipping_last_name, shipping_company, shipping_city, shipping_state, shipping_postal_code, shipping_country_code, shipping_day_phone, shipping_evening_phone, pricing_tier_oid, pricing_tier_name, emails, _limit, _offset, _since, _sort, _expand, options)(this.fetch, this.basePath);
+    public getCustomers(email?: string, qb_class?: string, quickbooks_code?: string, last_modified_dts_start?: string, last_modified_dts_end?: string, signup_dts_start?: string, signup_dts_end?: string, billing_first_name?: string, billing_last_name?: string, billing_company?: string, billing_city?: string, billing_state?: string, billing_postal_code?: string, billing_country_code?: string, billing_day_phone?: string, billing_evening_phone?: string, shipping_first_name?: string, shipping_last_name?: string, shipping_company?: string, shipping_city?: string, shipping_state?: string, shipping_postal_code?: string, shipping_country_code?: string, shipping_day_phone?: string, shipping_evening_phone?: string, pricing_tier_oid?: number, pricing_tier_name?: string, _limit?: number, _offset?: number, _since?: string, _sort?: string, _expand?: string, options?: any) {
+        return CustomerApiFp(this.configuration).getCustomers(email, qb_class, quickbooks_code, last_modified_dts_start, last_modified_dts_end, signup_dts_start, signup_dts_end, billing_first_name, billing_last_name, billing_company, billing_city, billing_state, billing_postal_code, billing_country_code, billing_day_phone, billing_evening_phone, shipping_first_name, shipping_last_name, shipping_company, shipping_city, shipping_state, shipping_postal_code, shipping_country_code, shipping_day_phone, shipping_evening_phone, pricing_tier_oid, pricing_tier_name, _limit, _offset, _since, _sort, _expand, options)(this.fetch, this.basePath);
     }
 
     /**

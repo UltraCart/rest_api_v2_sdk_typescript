@@ -17318,7 +17318,6 @@ var CustomerApiFetchParamCreator = function (configuration) {
          * @param {string} [shipping_evening_phone] Shipping evening phone
          * @param {number} [pricing_tier_oid] Pricing tier oid
          * @param {string} [pricing_tier_name] Pricing tier name
-         * @param {any} [emails] Emails
          * @param {number} [_limit] The maximum number of records to return on this one API call. (Max 200)
          * @param {number} [_offset] Pagination of the record set.  Offset is a zero based index.
          * @param {string} [_since] Fetch customers that have been created/modified since this date/time.
@@ -17327,7 +17326,7 @@ var CustomerApiFetchParamCreator = function (configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getCustomers: function (email, qb_class, quickbooks_code, last_modified_dts_start, last_modified_dts_end, signup_dts_start, signup_dts_end, billing_first_name, billing_last_name, billing_company, billing_city, billing_state, billing_postal_code, billing_country_code, billing_day_phone, billing_evening_phone, shipping_first_name, shipping_last_name, shipping_company, shipping_city, shipping_state, shipping_postal_code, shipping_country_code, shipping_day_phone, shipping_evening_phone, pricing_tier_oid, pricing_tier_name, emails, _limit, _offset, _since, _sort, _expand, options) {
+        getCustomers: function (email, qb_class, quickbooks_code, last_modified_dts_start, last_modified_dts_end, signup_dts_start, signup_dts_end, billing_first_name, billing_last_name, billing_company, billing_city, billing_state, billing_postal_code, billing_country_code, billing_day_phone, billing_evening_phone, shipping_first_name, shipping_last_name, shipping_company, shipping_city, shipping_state, shipping_postal_code, shipping_country_code, shipping_day_phone, shipping_evening_phone, pricing_tier_oid, pricing_tier_name, _limit, _offset, _since, _sort, _expand, options) {
             if (options === void 0) { options = {}; }
             var localVarPath = "/customer/customers";
             var localVarUrlObj = url.parse(localVarPath, true);
@@ -17432,9 +17431,6 @@ var CustomerApiFetchParamCreator = function (configuration) {
             }
             if (pricing_tier_name !== undefined) {
                 localVarQueryParameter['pricing_tier_name'] = pricing_tier_name;
-            }
-            if (emails !== undefined) {
-                localVarQueryParameter['emails'] = emails;
             }
             if (_limit !== undefined) {
                 localVarQueryParameter['_limit'] = _limit;
@@ -18396,7 +18392,6 @@ var CustomerApiFp = function (configuration) {
          * @param {string} [shipping_evening_phone] Shipping evening phone
          * @param {number} [pricing_tier_oid] Pricing tier oid
          * @param {string} [pricing_tier_name] Pricing tier name
-         * @param {any} [emails] Emails
          * @param {number} [_limit] The maximum number of records to return on this one API call. (Max 200)
          * @param {number} [_offset] Pagination of the record set.  Offset is a zero based index.
          * @param {string} [_since] Fetch customers that have been created/modified since this date/time.
@@ -18405,8 +18400,8 @@ var CustomerApiFp = function (configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getCustomers: function (email, qb_class, quickbooks_code, last_modified_dts_start, last_modified_dts_end, signup_dts_start, signup_dts_end, billing_first_name, billing_last_name, billing_company, billing_city, billing_state, billing_postal_code, billing_country_code, billing_day_phone, billing_evening_phone, shipping_first_name, shipping_last_name, shipping_company, shipping_city, shipping_state, shipping_postal_code, shipping_country_code, shipping_day_phone, shipping_evening_phone, pricing_tier_oid, pricing_tier_name, emails, _limit, _offset, _since, _sort, _expand, options) {
-            var localVarFetchArgs = (0, exports.CustomerApiFetchParamCreator)(configuration).getCustomers(email, qb_class, quickbooks_code, last_modified_dts_start, last_modified_dts_end, signup_dts_start, signup_dts_end, billing_first_name, billing_last_name, billing_company, billing_city, billing_state, billing_postal_code, billing_country_code, billing_day_phone, billing_evening_phone, shipping_first_name, shipping_last_name, shipping_company, shipping_city, shipping_state, shipping_postal_code, shipping_country_code, shipping_day_phone, shipping_evening_phone, pricing_tier_oid, pricing_tier_name, emails, _limit, _offset, _since, _sort, _expand, options);
+        getCustomers: function (email, qb_class, quickbooks_code, last_modified_dts_start, last_modified_dts_end, signup_dts_start, signup_dts_end, billing_first_name, billing_last_name, billing_company, billing_city, billing_state, billing_postal_code, billing_country_code, billing_day_phone, billing_evening_phone, shipping_first_name, shipping_last_name, shipping_company, shipping_city, shipping_state, shipping_postal_code, shipping_country_code, shipping_day_phone, shipping_evening_phone, pricing_tier_oid, pricing_tier_name, _limit, _offset, _since, _sort, _expand, options) {
+            var localVarFetchArgs = (0, exports.CustomerApiFetchParamCreator)(configuration).getCustomers(email, qb_class, quickbooks_code, last_modified_dts_start, last_modified_dts_end, signup_dts_start, signup_dts_end, billing_first_name, billing_last_name, billing_company, billing_city, billing_state, billing_postal_code, billing_country_code, billing_day_phone, billing_evening_phone, shipping_first_name, shipping_last_name, shipping_company, shipping_city, shipping_state, shipping_postal_code, shipping_country_code, shipping_day_phone, shipping_evening_phone, pricing_tier_oid, pricing_tier_name, _limit, _offset, _since, _sort, _expand, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -18852,7 +18847,6 @@ var CustomerApiFactory = function (configuration, fetch, basePath) {
          * @param {string} [shipping_evening_phone] Shipping evening phone
          * @param {number} [pricing_tier_oid] Pricing tier oid
          * @param {string} [pricing_tier_name] Pricing tier name
-         * @param {any} [emails] Emails
          * @param {number} [_limit] The maximum number of records to return on this one API call. (Max 200)
          * @param {number} [_offset] Pagination of the record set.  Offset is a zero based index.
          * @param {string} [_since] Fetch customers that have been created/modified since this date/time.
@@ -18861,8 +18855,8 @@ var CustomerApiFactory = function (configuration, fetch, basePath) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getCustomers: function (email, qb_class, quickbooks_code, last_modified_dts_start, last_modified_dts_end, signup_dts_start, signup_dts_end, billing_first_name, billing_last_name, billing_company, billing_city, billing_state, billing_postal_code, billing_country_code, billing_day_phone, billing_evening_phone, shipping_first_name, shipping_last_name, shipping_company, shipping_city, shipping_state, shipping_postal_code, shipping_country_code, shipping_day_phone, shipping_evening_phone, pricing_tier_oid, pricing_tier_name, emails, _limit, _offset, _since, _sort, _expand, options) {
-            return (0, exports.CustomerApiFp)(configuration).getCustomers(email, qb_class, quickbooks_code, last_modified_dts_start, last_modified_dts_end, signup_dts_start, signup_dts_end, billing_first_name, billing_last_name, billing_company, billing_city, billing_state, billing_postal_code, billing_country_code, billing_day_phone, billing_evening_phone, shipping_first_name, shipping_last_name, shipping_company, shipping_city, shipping_state, shipping_postal_code, shipping_country_code, shipping_day_phone, shipping_evening_phone, pricing_tier_oid, pricing_tier_name, emails, _limit, _offset, _since, _sort, _expand, options)(fetch, basePath);
+        getCustomers: function (email, qb_class, quickbooks_code, last_modified_dts_start, last_modified_dts_end, signup_dts_start, signup_dts_end, billing_first_name, billing_last_name, billing_company, billing_city, billing_state, billing_postal_code, billing_country_code, billing_day_phone, billing_evening_phone, shipping_first_name, shipping_last_name, shipping_company, shipping_city, shipping_state, shipping_postal_code, shipping_country_code, shipping_day_phone, shipping_evening_phone, pricing_tier_oid, pricing_tier_name, _limit, _offset, _since, _sort, _expand, options) {
+            return (0, exports.CustomerApiFp)(configuration).getCustomers(email, qb_class, quickbooks_code, last_modified_dts_start, last_modified_dts_end, signup_dts_start, signup_dts_end, billing_first_name, billing_last_name, billing_company, billing_city, billing_state, billing_postal_code, billing_country_code, billing_day_phone, billing_evening_phone, shipping_first_name, shipping_last_name, shipping_company, shipping_city, shipping_state, shipping_postal_code, shipping_country_code, shipping_day_phone, shipping_evening_phone, pricing_tier_oid, pricing_tier_name, _limit, _offset, _since, _sort, _expand, options)(fetch, basePath);
         },
         /**
          * Retrieves customers from the account.  If no parameters are specified, all customers will be returned.  You will need to make multiple API calls in order to retrieve the entire result set since this API performs result set pagination.
@@ -19168,7 +19162,6 @@ var CustomerApi = /** @class */ (function (_super) {
      * @param {string} [shipping_evening_phone] Shipping evening phone
      * @param {number} [pricing_tier_oid] Pricing tier oid
      * @param {string} [pricing_tier_name] Pricing tier name
-     * @param {any} [emails] Emails
      * @param {number} [_limit] The maximum number of records to return on this one API call. (Max 200)
      * @param {number} [_offset] Pagination of the record set.  Offset is a zero based index.
      * @param {string} [_since] Fetch customers that have been created/modified since this date/time.
@@ -19178,8 +19171,8 @@ var CustomerApi = /** @class */ (function (_super) {
      * @throws {RequiredError}
      * @memberof CustomerApi
      */
-    CustomerApi.prototype.getCustomers = function (email, qb_class, quickbooks_code, last_modified_dts_start, last_modified_dts_end, signup_dts_start, signup_dts_end, billing_first_name, billing_last_name, billing_company, billing_city, billing_state, billing_postal_code, billing_country_code, billing_day_phone, billing_evening_phone, shipping_first_name, shipping_last_name, shipping_company, shipping_city, shipping_state, shipping_postal_code, shipping_country_code, shipping_day_phone, shipping_evening_phone, pricing_tier_oid, pricing_tier_name, emails, _limit, _offset, _since, _sort, _expand, options) {
-        return (0, exports.CustomerApiFp)(this.configuration).getCustomers(email, qb_class, quickbooks_code, last_modified_dts_start, last_modified_dts_end, signup_dts_start, signup_dts_end, billing_first_name, billing_last_name, billing_company, billing_city, billing_state, billing_postal_code, billing_country_code, billing_day_phone, billing_evening_phone, shipping_first_name, shipping_last_name, shipping_company, shipping_city, shipping_state, shipping_postal_code, shipping_country_code, shipping_day_phone, shipping_evening_phone, pricing_tier_oid, pricing_tier_name, emails, _limit, _offset, _since, _sort, _expand, options)(this.fetch, this.basePath);
+    CustomerApi.prototype.getCustomers = function (email, qb_class, quickbooks_code, last_modified_dts_start, last_modified_dts_end, signup_dts_start, signup_dts_end, billing_first_name, billing_last_name, billing_company, billing_city, billing_state, billing_postal_code, billing_country_code, billing_day_phone, billing_evening_phone, shipping_first_name, shipping_last_name, shipping_company, shipping_city, shipping_state, shipping_postal_code, shipping_country_code, shipping_day_phone, shipping_evening_phone, pricing_tier_oid, pricing_tier_name, _limit, _offset, _since, _sort, _expand, options) {
+        return (0, exports.CustomerApiFp)(this.configuration).getCustomers(email, qb_class, quickbooks_code, last_modified_dts_start, last_modified_dts_end, signup_dts_start, signup_dts_end, billing_first_name, billing_last_name, billing_company, billing_city, billing_state, billing_postal_code, billing_country_code, billing_day_phone, billing_evening_phone, shipping_first_name, shipping_last_name, shipping_company, shipping_city, shipping_state, shipping_postal_code, shipping_country_code, shipping_day_phone, shipping_evening_phone, pricing_tier_oid, pricing_tier_name, _limit, _offset, _since, _sort, _expand, options)(this.fetch, this.basePath);
     };
     /**
      * Retrieves customers from the account.  If no parameters are specified, all customers will be returned.  You will need to make multiple API calls in order to retrieve the entire result set since this API performs result set pagination.
