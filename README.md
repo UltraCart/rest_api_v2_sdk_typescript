@@ -1,3 +1,48 @@
+## ultracart_rest_api_v2_typescript@4.0.240
+
+This generator creates TypeScript/JavaScript client that utilizes [Fetch API](https://fetch.spec.whatwg.org/). The generated Node module can be used in the following environments:
+
+Environment
+* Node.js
+* Webpack
+* Browserify
+
+Language level
+* ES5 - you must have a Promises/A+ library installed
+* ES6
+
+Module system
+* CommonJS
+* ES6 module system
+
+It can be used in both TypeScript and JavaScript. In TypeScript, the definition should be automatically resolved via `package.json`. ([Reference](http://www.typescriptlang.org/docs/handbook/typings-for-npm-packages.html))
+
+### Building
+
+To build and compile the typescript sources to javascript use:
+```
+npm install
+npm run build
+```
+
+### Publishing
+
+First build the package then run ```npm publish```
+
+### Consuming
+
+navigate to the folder of your consuming project and run one of the following commands.
+
+_published:_
+
+```
+npm install ultracart_rest_api_v2_typescript@4.0.240 --save
+```
+
+_unPublished (not recommended):_
+
+```
+npm install PATH_TO_GENERATED_PACKAGE --save
 \n\n
 ```
 \n\n
@@ -9,6 +54,7 @@ Not every change is committed to every SDK.
 
 | Version | Date | Comments |
 | --: | :-: | --- |
+| 4.0.240 | 01/09/2025 | fix for broken 4.0.39 due to incorrect query sig on getCustomers |
 | 4.0.239 | 01/09/2025 | added emails parameter to customer queries, refundOrder added to Channel partner |
 | 4.0.238 | 12/13/2024 | added user and group ids to conversation agent auth object |
 | 4.0.237 | 11/11/2024 | added seo properties to item.content object |
