@@ -44,6 +44,12 @@ export interface ItemReview {
      */
     helpful_yes_votes?: number;
     /**
+     * Merchant Reply (set to an empty string to remove)
+     * @type {string}
+     * @memberof ItemReview
+     */
+    merchant_reply?: string;
+    /**
      * 
      * @type {string}
      * @memberof ItemReview
@@ -270,6 +276,7 @@ export function ItemReviewFromJSONTyped(json: any, ignoreDiscriminator: boolean)
         'featured': !exists(json, 'featured') ? undefined : json['featured'],
         'helperful_no_votes': !exists(json, 'helperful_no_votes') ? undefined : json['helperful_no_votes'],
         'helpful_yes_votes': !exists(json, 'helpful_yes_votes') ? undefined : json['helpful_yes_votes'],
+        'merchant_reply': !exists(json, 'merchant_reply') ? undefined : json['merchant_reply'],
         'order_id': !exists(json, 'order_id') ? undefined : json['order_id'],
         'overall': !exists(json, 'overall') ? undefined : json['overall'],
         'rating_name1': !exists(json, 'rating_name1') ? undefined : json['rating_name1'],
@@ -319,6 +326,7 @@ export function ItemReviewToJSON(value?: ItemReview | null): any {
         'featured': value.featured,
         'helperful_no_votes': value.helperful_no_votes,
         'helpful_yes_votes': value.helpful_yes_votes,
+        'merchant_reply': value.merchant_reply,
         'order_id': value.order_id,
         'overall': value.overall,
         'rating_name1': value.rating_name1,

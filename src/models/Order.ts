@@ -62,6 +62,12 @@ import {
     OrderCouponToJSON,
 } from './OrderCoupon';
 import {
+    OrderCurrentStageHistory,
+    OrderCurrentStageHistoryFromJSON,
+    OrderCurrentStageHistoryFromJSONTyped,
+    OrderCurrentStageHistoryToJSON,
+} from './OrderCurrentStageHistory';
+import {
     OrderDigitalOrder,
     OrderDigitalOrderFromJSON,
     OrderDigitalOrderFromJSONTyped,
@@ -242,6 +248,12 @@ export interface Order {
      * @memberof Order
      */
     current_stage?: OrderCurrentStageEnum;
+    /**
+     * History of the changes to the current_stage field
+     * @type {Array<OrderCurrentStageHistory>}
+     * @memberof Order
+     */
+    current_stage_histories?: Array<OrderCurrentStageHistory>;
     /**
      * 
      * @type {Customer}
@@ -454,6 +466,7 @@ export function OrderFromJSONTyped(json: any, ignoreDiscriminator: boolean): Ord
         'creation_dts': !exists(json, 'creation_dts') ? undefined : json['creation_dts'],
         'currency_code': !exists(json, 'currency_code') ? undefined : json['currency_code'],
         'current_stage': !exists(json, 'current_stage') ? undefined : json['current_stage'],
+        'current_stage_histories': !exists(json, 'current_stage_histories') ? undefined : ((json['current_stage_histories'] as Array<any>).map(OrderCurrentStageHistoryFromJSON)),
         'customer_profile': !exists(json, 'customer_profile') ? undefined : CustomerFromJSON(json['customer_profile']),
         'digital_order': !exists(json, 'digital_order') ? undefined : OrderDigitalOrderFromJSON(json['digital_order']),
         'edi': !exists(json, 'edi') ? undefined : OrderEdiFromJSON(json['edi']),
@@ -504,6 +517,7 @@ export function OrderToJSON(value?: Order | null): any {
         'creation_dts': value.creation_dts,
         'currency_code': value.currency_code,
         'current_stage': value.current_stage,
+        'current_stage_histories': value.current_stage_histories === undefined ? undefined : ((value.current_stage_histories as Array<any>).map(OrderCurrentStageHistoryToJSON)),
         'customer_profile': CustomerToJSON(value.customer_profile),
         'digital_order': OrderDigitalOrderToJSON(value.digital_order),
         'edi': OrderEdiToJSON(value.edi),

@@ -555,6 +555,12 @@ export interface ChannelPartnerOrder {
      */
     store_if_payment_declines?: boolean;
     /**
+     * StoreFront host name associated with the order
+     * @type {string}
+     * @memberof ChannelPartnerOrder
+     */
+    storefront_host_name?: string;
+    /**
      * The optional shipping county used to determine exact taxes
      * @type {string}
      * @memberof ChannelPartnerOrder
@@ -716,6 +722,7 @@ export function ChannelPartnerOrderFromJSONTyped(json: any, ignoreDiscriminator:
         'special_instructions': !exists(json, 'special_instructions') ? undefined : json['special_instructions'],
         'store_completed': !exists(json, 'store_completed') ? undefined : json['store_completed'],
         'store_if_payment_declines': !exists(json, 'store_if_payment_declines') ? undefined : json['store_if_payment_declines'],
+        'storefront_host_name': !exists(json, 'storefront_host_name') ? undefined : json['storefront_host_name'],
         'tax_county': !exists(json, 'tax_county') ? undefined : json['tax_county'],
         'tax_exempt': !exists(json, 'tax_exempt') ? undefined : json['tax_exempt'],
         'transaction': !exists(json, 'transaction') ? undefined : ChannelPartnerOrderTransactionFromJSON(json['transaction']),
@@ -819,6 +826,7 @@ export function ChannelPartnerOrderToJSON(value?: ChannelPartnerOrder | null): a
         'special_instructions': value.special_instructions,
         'store_completed': value.store_completed,
         'store_if_payment_declines': value.store_if_payment_declines,
+        'storefront_host_name': value.storefront_host_name,
         'tax_county': value.tax_county,
         'tax_exempt': value.tax_exempt,
         'transaction': ChannelPartnerOrderTransactionToJSON(value.transaction),

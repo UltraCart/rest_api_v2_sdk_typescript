@@ -79,6 +79,12 @@ export interface OrderItem {
      * @type {Currency}
      * @memberof OrderItem
      */
+    actual_cogs?: Currency;
+    /**
+     * 
+     * @type {Currency}
+     * @memberof OrderItem
+     */
     arbitrary_unit_cost?: Currency;
     /**
      * Date/time of the last rebill, used only during order insert to help project future rebills
@@ -479,6 +485,7 @@ export function OrderItemFromJSONTyped(json: any, ignoreDiscriminator: boolean):
         
         'accounting_code': !exists(json, 'accounting_code') ? undefined : json['accounting_code'],
         'activation_codes': !exists(json, 'activation_codes') ? undefined : json['activation_codes'],
+        'actual_cogs': !exists(json, 'actual_cogs') ? undefined : CurrencyFromJSON(json['actual_cogs']),
         'arbitrary_unit_cost': !exists(json, 'arbitrary_unit_cost') ? undefined : CurrencyFromJSON(json['arbitrary_unit_cost']),
         'auto_order_last_rebill_dts': !exists(json, 'auto_order_last_rebill_dts') ? undefined : json['auto_order_last_rebill_dts'],
         'auto_order_schedule': !exists(json, 'auto_order_schedule') ? undefined : json['auto_order_schedule'],
@@ -556,6 +563,7 @@ export function OrderItemToJSON(value?: OrderItem | null): any {
         
         'accounting_code': value.accounting_code,
         'activation_codes': value.activation_codes,
+        'actual_cogs': CurrencyToJSON(value.actual_cogs),
         'arbitrary_unit_cost': CurrencyToJSON(value.arbitrary_unit_cost),
         'auto_order_last_rebill_dts': value.auto_order_last_rebill_dts,
         'auto_order_schedule': value.auto_order_schedule,

@@ -617,6 +617,7 @@ export * from './OrderByTokenQuery';
 export * from './OrderChannelPartner';
 export * from './OrderCheckout';
 export * from './OrderCoupon';
+export * from './OrderCurrentStageHistory';
 export * from './OrderDigitalItem';
 export * from './OrderDigitalOrder';
 export * from './OrderEdi';

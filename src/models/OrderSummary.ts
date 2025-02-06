@@ -37,7 +37,31 @@ export interface OrderSummary {
      * @type {Currency}
      * @memberof OrderSummary
      */
+    actual_other_cost?: Currency;
+    /**
+     * 
+     * @type {Currency}
+     * @memberof OrderSummary
+     */
     actual_payment_processing?: Currency;
+    /**
+     * 
+     * @type {Currency}
+     * @memberof OrderSummary
+     */
+    actual_profit?: Currency;
+    /**
+     * Actual profit has been analyzed
+     * @type {boolean}
+     * @memberof OrderSummary
+     */
+    actual_profit_analyzed?: boolean;
+    /**
+     * Actual profit needs review
+     * @type {boolean}
+     * @memberof OrderSummary
+     */
+    actual_profit_review?: boolean;
     /**
      * 
      * @type {Currency}
@@ -171,7 +195,11 @@ export function OrderSummaryFromJSONTyped(json: any, ignoreDiscriminator: boolea
     return {
         
         'actual_fulfillment': !exists(json, 'actual_fulfillment') ? undefined : CurrencyFromJSON(json['actual_fulfillment']),
+        'actual_other_cost': !exists(json, 'actual_other_cost') ? undefined : CurrencyFromJSON(json['actual_other_cost']),
         'actual_payment_processing': !exists(json, 'actual_payment_processing') ? undefined : CurrencyFromJSON(json['actual_payment_processing']),
+        'actual_profit': !exists(json, 'actual_profit') ? undefined : CurrencyFromJSON(json['actual_profit']),
+        'actual_profit_analyzed': !exists(json, 'actual_profit_analyzed') ? undefined : json['actual_profit_analyzed'],
+        'actual_profit_review': !exists(json, 'actual_profit_review') ? undefined : json['actual_profit_review'],
         'actual_shipping': !exists(json, 'actual_shipping') ? undefined : CurrencyFromJSON(json['actual_shipping']),
         'arbitrary_shipping_handling_total': !exists(json, 'arbitrary_shipping_handling_total') ? undefined : CurrencyFromJSON(json['arbitrary_shipping_handling_total']),
         'health_benefit_card_amount': !exists(json, 'health_benefit_card_amount') ? undefined : CurrencyFromJSON(json['health_benefit_card_amount']),
@@ -205,7 +233,11 @@ export function OrderSummaryToJSON(value?: OrderSummary | null): any {
     return {
         
         'actual_fulfillment': CurrencyToJSON(value.actual_fulfillment),
+        'actual_other_cost': CurrencyToJSON(value.actual_other_cost),
         'actual_payment_processing': CurrencyToJSON(value.actual_payment_processing),
+        'actual_profit': CurrencyToJSON(value.actual_profit),
+        'actual_profit_analyzed': value.actual_profit_analyzed,
+        'actual_profit_review': value.actual_profit_review,
         'actual_shipping': CurrencyToJSON(value.actual_shipping),
         'arbitrary_shipping_handling_total': CurrencyToJSON(value.arbitrary_shipping_handling_total),
         'health_benefit_card_amount': CurrencyToJSON(value.health_benefit_card_amount),

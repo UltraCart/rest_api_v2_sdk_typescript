@@ -38,7 +38,7 @@ export interface CustomerAttachment {
      */
     file_name?: string;
     /**
-     * Mime typoe
+     * Mime type
      * @type {string}
      * @memberof CustomerAttachment
      */
