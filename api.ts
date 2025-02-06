@@ -6093,6 +6093,12 @@ export interface ChannelPartnerOrder {
      */
     store_if_payment_declines?: boolean;
     /**
+     * StoreFront host name associated with the order
+     * @type {string}
+     * @memberof ChannelPartnerOrder
+     */
+    storefront_host_name?: string;
+    /**
      * The optional shipping county used to determine exact taxes
      * @type {string}
      * @memberof ChannelPartnerOrder
@@ -14684,7 +14690,7 @@ export interface CustomerAttachment {
      */
     file_name?: string;
     /**
-     * Mime typoe
+     * Mime type
      * @type {string}
      * @memberof CustomerAttachment
      */
@@ -29212,6 +29218,12 @@ export interface ItemReview {
      */
     helpful_yes_votes?: number;
     /**
+     * Merchant Reply (set to an empty string to remove)
+     * @type {string}
+     * @memberof ItemReview
+     */
+    merchant_reply?: string;
+    /**
      * 
      * @type {string}
      * @memberof ItemReview
@@ -31802,6 +31814,12 @@ export interface Order {
      */
     current_stage?: Order.CurrentStageEnum;
     /**
+     * History of the changes to the current_stage field
+     * @type {Array<OrderCurrentStageHistory>}
+     * @memberof Order
+     */
+    current_stage_histories?: Array<OrderCurrentStageHistory>;
+    /**
      * 
      * @type {Customer}
      * @memberof Order
@@ -32647,6 +32665,77 @@ export interface OrderCoupon {
 /**
  * 
  * @export
+ * @interface OrderCurrentStageHistory
+ */
+export interface OrderCurrentStageHistory {
+    /**
+     * New stage that the order is in.
+     * @type {string}
+     * @memberof OrderCurrentStageHistory
+     */
+    after_stage?: OrderCurrentStageHistory.AfterStageEnum;
+    /**
+     * Previous stage that the order was in.
+     * @type {string}
+     * @memberof OrderCurrentStageHistory
+     */
+    before_stage?: OrderCurrentStageHistory.BeforeStageEnum;
+    /**
+     * Date/time that the stage transitioned
+     * @type {string}
+     * @memberof OrderCurrentStageHistory
+     */
+    transition_dts?: string;
+}
+
+/**
+ * @export
+ * @namespace OrderCurrentStageHistory
+ */
+export namespace OrderCurrentStageHistory {
+    /**
+     * @export
+     * @enum {string}
+     */
+    export enum AfterStageEnum {
+        AccountsReceivable = <any> 'Accounts Receivable',
+        PendingClearance = <any> 'Pending Clearance',
+        FraudReview = <any> 'Fraud Review',
+        Rejected = <any> 'Rejected',
+        ShippingDepartment = <any> 'Shipping Department',
+        CompletedOrder = <any> 'Completed Order',
+        QuoteRequest = <any> 'Quote Request',
+        QuoteSent = <any> 'Quote Sent',
+        LeastCostRouting = <any> 'Least Cost Routing',
+        Unknown = <any> 'Unknown',
+        PreOrdered = <any> 'Pre-ordered',
+        AdvancedOrderRouting = <any> 'Advanced Order Routing',
+        Hold = <any> 'Hold'
+    }
+    /**
+     * @export
+     * @enum {string}
+     */
+    export enum BeforeStageEnum {
+        AccountsReceivable = <any> 'Accounts Receivable',
+        PendingClearance = <any> 'Pending Clearance',
+        FraudReview = <any> 'Fraud Review',
+        Rejected = <any> 'Rejected',
+        ShippingDepartment = <any> 'Shipping Department',
+        CompletedOrder = <any> 'Completed Order',
+        QuoteRequest = <any> 'Quote Request',
+        QuoteSent = <any> 'Quote Sent',
+        LeastCostRouting = <any> 'Least Cost Routing',
+        Unknown = <any> 'Unknown',
+        PreOrdered = <any> 'Pre-ordered',
+        AdvancedOrderRouting = <any> 'Advanced Order Routing',
+        Hold = <any> 'Hold'
+    }
+}
+
+/**
+ * 
+ * @export
  * @interface OrderDigitalItem
  */
 export interface OrderDigitalItem {
@@ -33395,6 +33484,12 @@ export interface OrderItem {
      * @memberof OrderItem
      */
     activation_codes?: Array<string>;
+    /**
+     * 
+     * @type {Currency}
+     * @memberof OrderItem
+     */
+    actual_cogs?: Currency;
     /**
      * 
      * @type {Currency}
@@ -35755,7 +35850,31 @@ export interface OrderSummary {
      * @type {Currency}
      * @memberof OrderSummary
      */
+    actual_other_cost?: Currency;
+    /**
+     * 
+     * @type {Currency}
+     * @memberof OrderSummary
+     */
     actual_payment_processing?: Currency;
+    /**
+     * 
+     * @type {Currency}
+     * @memberof OrderSummary
+     */
+    actual_profit?: Currency;
+    /**
+     * Actual profit has been analyzed
+     * @type {boolean}
+     * @memberof OrderSummary
+     */
+    actual_profit_analyzed?: boolean;
+    /**
+     * Actual profit needs review
+     * @type {boolean}
+     * @memberof OrderSummary
+     */
+    actual_profit_review?: boolean;
     /**
      * 
      * @type {Currency}
