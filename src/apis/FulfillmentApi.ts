@@ -27,6 +27,9 @@ import {
     FulfillmentShipment,
     FulfillmentShipmentFromJSON,
     FulfillmentShipmentToJSON,
+    OrderPackingSlipResponse,
+    OrderPackingSlipResponseFromJSON,
+    OrderPackingSlipResponseToJSON,
     OrdersResponse,
     OrdersResponseFromJSON,
     OrdersResponseToJSON,
@@ -89,16 +92,16 @@ export interface FulfillmentApiInterface {
      * @throws {RequiredError}
      * @memberof FulfillmentApiInterface
      */
-    generatePackingSlipRaw(requestParameters: GeneratePackingSlipRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<OrdersResponse>>;
+    generatePackingSlipRaw(requestParameters: GeneratePackingSlipRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<OrderPackingSlipResponse>>;
 
     /**
      * The packing slip PDF that is returned is base 64 encoded 
      * Generate a packing slip for this order for the given distribution center.
      */
-    generatePackingSlip(requestParameters: GeneratePackingSlipRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<OrdersResponse>;
+    generatePackingSlip(requestParameters: GeneratePackingSlipRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<OrderPackingSlipResponse>;
 
     /**
-     * Retrieves up to 100 orders that are queued up in this distribution center.  You must acknowledge them before additional new orders will be returned.  There is NO record chunking.  You\'ll get the same 100 records again and again until you acknowledge orders.  The orders that are returned contain only items for this distribution center and are by default completely expanded with billing, buysafe, channel_partner, checkout, coupons, customer_profile, edi, gift, gift_certificate, internal, items, payment, shipping, summary, taxes. 
+     * Retrieves up to 100 orders that are queued up in this distribution center.  You must acknowledge them before additional new orders will be returned.  There is NO record chunking.  You\'ll get the same 100 records again and again until you acknowledge orders.  The orders that are returned contain only items for this distribution center and are by default completely expanded with billing, channel_partner, checkout, coupons, customer_profile, edi, gift, gift_certificate, internal, items, payment, shipping, summary, taxes. 
      * @summary Retrieve orders queued up for this distribution center.
      * @param {string} distributionCenterCode Distribution center code
      * @param {*} [options] Override http request option.
@@ -108,7 +111,7 @@ export interface FulfillmentApiInterface {
     getDistributionCenterOrdersRaw(requestParameters: GetDistributionCenterOrdersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<OrdersResponse>>;
 
     /**
-     * Retrieves up to 100 orders that are queued up in this distribution center.  You must acknowledge them before additional new orders will be returned.  There is NO record chunking.  You\'ll get the same 100 records again and again until you acknowledge orders.  The orders that are returned contain only items for this distribution center and are by default completely expanded with billing, buysafe, channel_partner, checkout, coupons, customer_profile, edi, gift, gift_certificate, internal, items, payment, shipping, summary, taxes. 
+     * Retrieves up to 100 orders that are queued up in this distribution center.  You must acknowledge them before additional new orders will be returned.  There is NO record chunking.  You\'ll get the same 100 records again and again until you acknowledge orders.  The orders that are returned contain only items for this distribution center and are by default completely expanded with billing, channel_partner, checkout, coupons, customer_profile, edi, gift, gift_certificate, internal, items, payment, shipping, summary, taxes. 
      * Retrieve orders queued up for this distribution center.
      */
     getDistributionCenterOrders(requestParameters: GetDistributionCenterOrdersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<OrdersResponse>;
@@ -220,7 +223,7 @@ export class FulfillmentApi extends runtime.BaseAPI implements FulfillmentApiInt
      * The packing slip PDF that is returned is base 64 encoded 
      * Generate a packing slip for this order for the given distribution center.
      */
-    async generatePackingSlipRaw(requestParameters: GeneratePackingSlipRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<OrdersResponse>> {
+    async generatePackingSlipRaw(requestParameters: GeneratePackingSlipRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<OrderPackingSlipResponse>> {
         if (requestParameters.distributionCenterCode === null || requestParameters.distributionCenterCode === undefined) {
             throw new runtime.RequiredError('distributionCenterCode','Required parameter requestParameters.distributionCenterCode was null or undefined when calling generatePackingSlip.');
         }
@@ -249,20 +252,20 @@ export class FulfillmentApi extends runtime.BaseAPI implements FulfillmentApiInt
             query: queryParameters,
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => OrdersResponseFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => OrderPackingSlipResponseFromJSON(jsonValue));
     }
 
     /**
      * The packing slip PDF that is returned is base 64 encoded 
      * Generate a packing slip for this order for the given distribution center.
      */
-    async generatePackingSlip(requestParameters: GeneratePackingSlipRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<OrdersResponse> {
+    async generatePackingSlip(requestParameters: GeneratePackingSlipRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<OrderPackingSlipResponse> {
         const response = await this.generatePackingSlipRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
-     * Retrieves up to 100 orders that are queued up in this distribution center.  You must acknowledge them before additional new orders will be returned.  There is NO record chunking.  You\'ll get the same 100 records again and again until you acknowledge orders.  The orders that are returned contain only items for this distribution center and are by default completely expanded with billing, buysafe, channel_partner, checkout, coupons, customer_profile, edi, gift, gift_certificate, internal, items, payment, shipping, summary, taxes. 
+     * Retrieves up to 100 orders that are queued up in this distribution center.  You must acknowledge them before additional new orders will be returned.  There is NO record chunking.  You\'ll get the same 100 records again and again until you acknowledge orders.  The orders that are returned contain only items for this distribution center and are by default completely expanded with billing, channel_partner, checkout, coupons, customer_profile, edi, gift, gift_certificate, internal, items, payment, shipping, summary, taxes. 
      * Retrieve orders queued up for this distribution center.
      */
     async getDistributionCenterOrdersRaw(requestParameters: GetDistributionCenterOrdersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<OrdersResponse>> {
@@ -294,7 +297,7 @@ export class FulfillmentApi extends runtime.BaseAPI implements FulfillmentApiInt
     }
 
     /**
-     * Retrieves up to 100 orders that are queued up in this distribution center.  You must acknowledge them before additional new orders will be returned.  There is NO record chunking.  You\'ll get the same 100 records again and again until you acknowledge orders.  The orders that are returned contain only items for this distribution center and are by default completely expanded with billing, buysafe, channel_partner, checkout, coupons, customer_profile, edi, gift, gift_certificate, internal, items, payment, shipping, summary, taxes. 
+     * Retrieves up to 100 orders that are queued up in this distribution center.  You must acknowledge them before additional new orders will be returned.  There is NO record chunking.  You\'ll get the same 100 records again and again until you acknowledge orders.  The orders that are returned contain only items for this distribution center and are by default completely expanded with billing, channel_partner, checkout, coupons, customer_profile, edi, gift, gift_certificate, internal, items, payment, shipping, summary, taxes. 
      * Retrieve orders queued up for this distribution center.
      */
     async getDistributionCenterOrders(requestParameters: GetDistributionCenterOrdersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<OrdersResponse> {

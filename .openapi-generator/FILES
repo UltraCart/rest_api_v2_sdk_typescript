@@ -857,9 +857,9 @@ src/models/WebhookLog.ts
 src/models/WebhookLogResponse.ts
 src/models/WebhookLogSummariesResponse.ts
 src/models/WebhookLogSummary.ts
+src/models/WebhookReflow.ts
+src/models/WebhookReflowResponse.ts
 src/models/WebhookResponse.ts
-src/models/WebhookSampleRequest.ts
-src/models/WebhookSampleRequestResponse.ts
 src/models/WebhooksResponse.ts
 src/models/Weight.ts
 src/models/WorkflowAgentAuth.ts

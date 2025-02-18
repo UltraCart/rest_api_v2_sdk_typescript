@@ -32,55 +32,55 @@ import {
     WarningToJSON,
 } from './Warning';
 import {
-    WebhookSampleRequest,
-    WebhookSampleRequestFromJSON,
-    WebhookSampleRequestFromJSONTyped,
-    WebhookSampleRequestToJSON,
-} from './WebhookSampleRequest';
+    WebhookReflow,
+    WebhookReflowFromJSON,
+    WebhookReflowFromJSONTyped,
+    WebhookReflowToJSON,
+} from './WebhookReflow';
 
 /**
  * 
  * @export
- * @interface WebhookSampleRequestResponse
+ * @interface WebhookReflowResponse
  */
-export interface WebhookSampleRequestResponse {
+export interface WebhookReflowResponse {
     /**
      * 
      * @type {ModelError}
-     * @memberof WebhookSampleRequestResponse
+     * @memberof WebhookReflowResponse
      */
     error?: ModelError;
     /**
      * 
      * @type {ResponseMetadata}
-     * @memberof WebhookSampleRequestResponse
+     * @memberof WebhookReflowResponse
      */
     metadata?: ResponseMetadata;
     /**
+     * 
+     * @type {WebhookReflow}
+     * @memberof WebhookReflowResponse
+     */
+    reflow?: WebhookReflow;
+    /**
      * Indicates if API call was successful
      * @type {boolean}
-     * @memberof WebhookSampleRequestResponse
+     * @memberof WebhookReflowResponse
      */
     success?: boolean;
     /**
      * 
      * @type {Warning}
-     * @memberof WebhookSampleRequestResponse
+     * @memberof WebhookReflowResponse
      */
     warning?: Warning;
-    /**
-     * 
-     * @type {WebhookSampleRequest}
-     * @memberof WebhookSampleRequestResponse
-     */
-    webhook_sample_request?: WebhookSampleRequest;
 }
 
-export function WebhookSampleRequestResponseFromJSON(json: any): WebhookSampleRequestResponse {
-    return WebhookSampleRequestResponseFromJSONTyped(json, false);
+export function WebhookReflowResponseFromJSON(json: any): WebhookReflowResponse {
+    return WebhookReflowResponseFromJSONTyped(json, false);
 }
 
-export function WebhookSampleRequestResponseFromJSONTyped(json: any, ignoreDiscriminator: boolean): WebhookSampleRequestResponse {
+export function WebhookReflowResponseFromJSONTyped(json: any, ignoreDiscriminator: boolean): WebhookReflowResponse {
     if ((json === undefined) || (json === null)) {
         return json;
     }
@@ -88,13 +88,13 @@ export function WebhookSampleRequestResponseFromJSONTyped(json: any, ignoreDiscr
         
         'error': !exists(json, 'error') ? undefined : ModelErrorFromJSON(json['error']),
         'metadata': !exists(json, 'metadata') ? undefined : ResponseMetadataFromJSON(json['metadata']),
+        'reflow': !exists(json, 'reflow') ? undefined : WebhookReflowFromJSON(json['reflow']),
         'success': !exists(json, 'success') ? undefined : json['success'],
         'warning': !exists(json, 'warning') ? undefined : WarningFromJSON(json['warning']),
-        'webhook_sample_request': !exists(json, 'webhook_sample_request') ? undefined : WebhookSampleRequestFromJSON(json['webhook_sample_request']),
     };
 }
 
-export function WebhookSampleRequestResponseToJSON(value?: WebhookSampleRequestResponse | null): any {
+export function WebhookReflowResponseToJSON(value?: WebhookReflowResponse | null): any {
     if (value === undefined) {
         return undefined;
     }
@@ -105,9 +105,9 @@ export function WebhookSampleRequestResponseToJSON(value?: WebhookSampleRequestR
         
         'error': ModelErrorToJSON(value.error),
         'metadata': ResponseMetadataToJSON(value.metadata),
+        'reflow': WebhookReflowToJSON(value.reflow),
         'success': value.success,
         'warning': WarningToJSON(value.warning),
-        'webhook_sample_request': WebhookSampleRequestToJSON(value.webhook_sample_request),
     };
 }
 

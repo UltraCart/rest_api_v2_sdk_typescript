@@ -27,12 +27,12 @@ import {
     WebhookLogSummariesResponse,
     WebhookLogSummariesResponseFromJSON,
     WebhookLogSummariesResponseToJSON,
+    WebhookReflowResponse,
+    WebhookReflowResponseFromJSON,
+    WebhookReflowResponseToJSON,
     WebhookResponse,
     WebhookResponseFromJSON,
     WebhookResponseToJSON,
-    WebhookSampleRequestResponse,
-    WebhookSampleRequestResponseFromJSON,
-    WebhookSampleRequestResponseToJSON,
     WebhooksResponse,
     WebhooksResponseFromJSON,
     WebhooksResponseToJSON,
@@ -201,13 +201,13 @@ export interface WebhookApiInterface {
      * @throws {RequiredError}
      * @memberof WebhookApiInterface
      */
-    resendEventRaw(requestParameters: ResendEventRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<WebhookSampleRequestResponse>>;
+    resendEventRaw(requestParameters: ResendEventRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<WebhookReflowResponse>>;
 
     /**
      * This method will resend events to the webhook endpoint.  This method can be used for example to send all the existing items on an account to a webhook. 
      * Resend events to the webhook endpoint.
      */
-    resendEvent(requestParameters: ResendEventRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<WebhookSampleRequestResponse>;
+    resendEvent(requestParameters: ResendEventRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<WebhookReflowResponse>;
 
     /**
      * Update a webhook on the account 
@@ -521,7 +521,7 @@ export class WebhookApi extends runtime.BaseAPI implements WebhookApiInterface {
      * This method will resend events to the webhook endpoint.  This method can be used for example to send all the existing items on an account to a webhook. 
      * Resend events to the webhook endpoint.
      */
-    async resendEventRaw(requestParameters: ResendEventRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<WebhookSampleRequestResponse>> {
+    async resendEventRaw(requestParameters: ResendEventRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<WebhookReflowResponse>> {
         if (requestParameters.webhookOid === null || requestParameters.webhookOid === undefined) {
             throw new runtime.RequiredError('webhookOid','Required parameter requestParameters.webhookOid was null or undefined when calling resendEvent.');
         }
@@ -550,14 +550,14 @@ export class WebhookApi extends runtime.BaseAPI implements WebhookApiInterface {
             query: queryParameters,
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => WebhookSampleRequestResponseFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => WebhookReflowResponseFromJSON(jsonValue));
     }
 
     /**
      * This method will resend events to the webhook endpoint.  This method can be used for example to send all the existing items on an account to a webhook. 
      * Resend events to the webhook endpoint.
      */
-    async resendEvent(requestParameters: ResendEventRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<WebhookSampleRequestResponse> {
+    async resendEvent(requestParameters: ResendEventRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<WebhookReflowResponse> {
         const response = await this.resendEventRaw(requestParameters, initOverrides);
         return await response.value();
     }

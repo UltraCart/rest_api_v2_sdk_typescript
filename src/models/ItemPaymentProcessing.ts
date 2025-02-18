@@ -26,6 +26,12 @@ export interface ItemPaymentProcessing {
      */
     block_prepaid?: boolean;
     /**
+     * True if this item should block any refund attempts
+     * @type {boolean}
+     * @memberof ItemPaymentProcessing
+     */
+    block_refunds?: boolean;
+    /**
      * Credit card transaction type
      * @type {string}
      * @memberof ItemPaymentProcessing
@@ -62,6 +68,7 @@ export function ItemPaymentProcessingFromJSONTyped(json: any, ignoreDiscriminato
     return {
         
         'block_prepaid': !exists(json, 'block_prepaid') ? undefined : json['block_prepaid'],
+        'block_refunds': !exists(json, 'block_refunds') ? undefined : json['block_refunds'],
         'credit_card_transaction_type': !exists(json, 'credit_card_transaction_type') ? undefined : json['credit_card_transaction_type'],
         'no_realtime_charge': !exists(json, 'no_realtime_charge') ? undefined : json['no_realtime_charge'],
         'payment_method_validity': !exists(json, 'payment_method_validity') ? undefined : json['payment_method_validity'],
@@ -79,6 +86,7 @@ export function ItemPaymentProcessingToJSON(value?: ItemPaymentProcessing | null
     return {
         
         'block_prepaid': value.block_prepaid,
+        'block_refunds': value.block_refunds,
         'credit_card_transaction_type': value.credit_card_transaction_type,
         'no_realtime_charge': value.no_realtime_charge,
         'payment_method_validity': value.payment_method_validity,

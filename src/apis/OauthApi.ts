@@ -52,7 +52,7 @@ export interface OauthApiInterface {
      * @param {string} clientId The OAuth application client_id.
      * @param {string} grantType Type of grant
      * @param {string} [code] Authorization code received back from the browser redirect
-     * @param {string} [redirectUri] The URI that you redirect the browser to to start the authorization process
+     * @param {string} [redirectUri] The URI that you redirect the browser to start the authorization process
      * @param {string} [refreshToken] The refresh token received during the original grant_type&#x3D;authorization_code that can be used to return a new access token
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
