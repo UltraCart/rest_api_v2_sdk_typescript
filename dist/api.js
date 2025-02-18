@@ -20423,7 +20423,7 @@ var FulfillmentApiFetchParamCreator = function (configuration) {
             };
         },
         /**
-         * Retrieves up to 100 orders that are queued up in this distribution center.  You must acknowledge them before additional new orders will be returned.  There is NO record chunking.  You'll get the same 100 records again and again until you acknowledge orders.  The orders that are returned contain only items for this distribution center and are by default completely expanded with billing, buysafe, channel_partner, checkout, coupons, customer_profile, edi, gift, gift_certificate, internal, items, payment, shipping, summary, taxes.
+         * Retrieves up to 100 orders that are queued up in this distribution center.  You must acknowledge them before additional new orders will be returned.  There is NO record chunking.  You'll get the same 100 records again and again until you acknowledge orders.  The orders that are returned contain only items for this distribution center and are by default completely expanded with billing, channel_partner, checkout, coupons, customer_profile, edi, gift, gift_certificate, internal, items, payment, shipping, summary, taxes.
          * @summary Retrieve orders queued up for this distribution center.
          * @param {string} distribution_center_code Distribution center code
          * @param {*} [options] Override http request option.
@@ -20672,7 +20672,7 @@ var FulfillmentApiFp = function (configuration) {
             };
         },
         /**
-         * Retrieves up to 100 orders that are queued up in this distribution center.  You must acknowledge them before additional new orders will be returned.  There is NO record chunking.  You'll get the same 100 records again and again until you acknowledge orders.  The orders that are returned contain only items for this distribution center and are by default completely expanded with billing, buysafe, channel_partner, checkout, coupons, customer_profile, edi, gift, gift_certificate, internal, items, payment, shipping, summary, taxes.
+         * Retrieves up to 100 orders that are queued up in this distribution center.  You must acknowledge them before additional new orders will be returned.  There is NO record chunking.  You'll get the same 100 records again and again until you acknowledge orders.  The orders that are returned contain only items for this distribution center and are by default completely expanded with billing, channel_partner, checkout, coupons, customer_profile, edi, gift, gift_certificate, internal, items, payment, shipping, summary, taxes.
          * @summary Retrieve orders queued up for this distribution center.
          * @param {string} distribution_center_code Distribution center code
          * @param {*} [options] Override http request option.
@@ -20792,7 +20792,7 @@ var FulfillmentApiFactory = function (configuration, fetch, basePath) {
             return (0, exports.FulfillmentApiFp)(configuration).generatePackingSlip(distribution_center_code, order_id, options)(fetch, basePath);
         },
         /**
-         * Retrieves up to 100 orders that are queued up in this distribution center.  You must acknowledge them before additional new orders will be returned.  There is NO record chunking.  You'll get the same 100 records again and again until you acknowledge orders.  The orders that are returned contain only items for this distribution center and are by default completely expanded with billing, buysafe, channel_partner, checkout, coupons, customer_profile, edi, gift, gift_certificate, internal, items, payment, shipping, summary, taxes.
+         * Retrieves up to 100 orders that are queued up in this distribution center.  You must acknowledge them before additional new orders will be returned.  There is NO record chunking.  You'll get the same 100 records again and again until you acknowledge orders.  The orders that are returned contain only items for this distribution center and are by default completely expanded with billing, channel_partner, checkout, coupons, customer_profile, edi, gift, gift_certificate, internal, items, payment, shipping, summary, taxes.
          * @summary Retrieve orders queued up for this distribution center.
          * @param {string} distribution_center_code Distribution center code
          * @param {*} [options] Override http request option.
@@ -20871,7 +20871,7 @@ var FulfillmentApi = /** @class */ (function (_super) {
         return (0, exports.FulfillmentApiFp)(this.configuration).generatePackingSlip(distribution_center_code, order_id, options)(this.fetch, this.basePath);
     };
     /**
-     * Retrieves up to 100 orders that are queued up in this distribution center.  You must acknowledge them before additional new orders will be returned.  There is NO record chunking.  You'll get the same 100 records again and again until you acknowledge orders.  The orders that are returned contain only items for this distribution center and are by default completely expanded with billing, buysafe, channel_partner, checkout, coupons, customer_profile, edi, gift, gift_certificate, internal, items, payment, shipping, summary, taxes.
+     * Retrieves up to 100 orders that are queued up in this distribution center.  You must acknowledge them before additional new orders will be returned.  There is NO record chunking.  You'll get the same 100 records again and again until you acknowledge orders.  The orders that are returned contain only items for this distribution center and are by default completely expanded with billing, channel_partner, checkout, coupons, customer_profile, edi, gift, gift_certificate, internal, items, payment, shipping, summary, taxes.
      * @summary Retrieve orders queued up for this distribution center.
      * @param {string} distribution_center_code Distribution center code
      * @param {*} [options] Override http request option.
@@ -24660,7 +24660,7 @@ var OauthApiFetchParamCreator = function (configuration) {
          * @param {string} client_id The OAuth application client_id.
          * @param {string} grant_type Type of grant
          * @param {string} [code] Authorization code received back from the browser redirect
-         * @param {string} [redirect_uri] The URI that you redirect the browser to to start the authorization process
+         * @param {string} [redirect_uri] The URI that you redirect the browser to start the authorization process
          * @param {string} [refresh_token] The refresh token received during the original grant_type&#x3D;authorization_code that can be used to return a new access token
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -24813,7 +24813,7 @@ var OauthApiFp = function (configuration) {
          * @param {string} client_id The OAuth application client_id.
          * @param {string} grant_type Type of grant
          * @param {string} [code] Authorization code received back from the browser redirect
-         * @param {string} [redirect_uri] The URI that you redirect the browser to to start the authorization process
+         * @param {string} [redirect_uri] The URI that you redirect the browser to start the authorization process
          * @param {string} [refresh_token] The refresh token received during the original grant_type&#x3D;authorization_code that can be used to return a new access token
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -24871,7 +24871,7 @@ var OauthApiFactory = function (configuration, fetch, basePath) {
          * @param {string} client_id The OAuth application client_id.
          * @param {string} grant_type Type of grant
          * @param {string} [code] Authorization code received back from the browser redirect
-         * @param {string} [redirect_uri] The URI that you redirect the browser to to start the authorization process
+         * @param {string} [redirect_uri] The URI that you redirect the browser to start the authorization process
          * @param {string} [refresh_token] The refresh token received during the original grant_type&#x3D;authorization_code that can be used to return a new access token
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -24910,7 +24910,7 @@ var OauthApi = /** @class */ (function (_super) {
      * @param {string} client_id The OAuth application client_id.
      * @param {string} grant_type Type of grant
      * @param {string} [code] Authorization code received back from the browser redirect
-     * @param {string} [redirect_uri] The URI that you redirect the browser to to start the authorization process
+     * @param {string} [redirect_uri] The URI that you redirect the browser to start the authorization process
      * @param {string} [refresh_token] The refresh token received during the original grant_type&#x3D;authorization_code that can be used to return a new access token
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}

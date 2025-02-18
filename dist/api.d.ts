@@ -27989,6 +27989,12 @@ export interface ItemPaymentProcessing {
      */
     block_prepaid?: boolean;
     /**
+     * True if this item should block any refund attempts
+     * @type {boolean}
+     * @memberof ItemPaymentProcessing
+     */
+    block_refunds?: boolean;
+    /**
      * Credit card transaction type
      * @type {string}
      * @memberof ItemPaymentProcessing
@@ -43123,6 +43129,62 @@ export interface WebhookLogSummary {
 /**
  *
  * @export
+ * @interface WebhookReflow
+ */
+export interface WebhookReflow {
+    /**
+     *
+     * @type {string}
+     * @memberof WebhookReflow
+     */
+    event_name?: string;
+    /**
+     *
+     * @type {boolean}
+     * @memberof WebhookReflow
+     */
+    queued?: boolean;
+}
+/**
+ *
+ * @export
+ * @interface WebhookReflowResponse
+ */
+export interface WebhookReflowResponse {
+    /**
+     *
+     * @type {ModelError}
+     * @memberof WebhookReflowResponse
+     */
+    error?: ModelError;
+    /**
+     *
+     * @type {ResponseMetadata}
+     * @memberof WebhookReflowResponse
+     */
+    metadata?: ResponseMetadata;
+    /**
+     *
+     * @type {WebhookReflow}
+     * @memberof WebhookReflowResponse
+     */
+    reflow?: WebhookReflow;
+    /**
+     * Indicates if API call was successful
+     * @type {boolean}
+     * @memberof WebhookReflowResponse
+     */
+    success?: boolean;
+    /**
+     *
+     * @type {Warning}
+     * @memberof WebhookReflowResponse
+     */
+    warning?: Warning;
+}
+/**
+ *
+ * @export
  * @interface WebhookResponse
  */
 export interface WebhookResponse {
@@ -43156,74 +43218,6 @@ export interface WebhookResponse {
      * @memberof WebhookResponse
      */
     webhook?: Webhook;
-}
-/**
- *
- * @export
- * @interface WebhookSampleRequest
- */
-export interface WebhookSampleRequest {
-    /**
-     * Request
-     * @type {string}
-     * @memberof WebhookSampleRequest
-     */
-    request?: string;
-    /**
-     * Request headers
-     * @type {Array<HTTPHeader>}
-     * @memberof WebhookSampleRequest
-     */
-    request_headers?: Array<HTTPHeader>;
-    /**
-     * Request id
-     * @type {string}
-     * @memberof WebhookSampleRequest
-     */
-    request_id?: string;
-    /**
-     * URI to send request to
-     * @type {string}
-     * @memberof WebhookSampleRequest
-     */
-    uri?: string;
-}
-/**
- *
- * @export
- * @interface WebhookSampleRequestResponse
- */
-export interface WebhookSampleRequestResponse {
-    /**
-     *
-     * @type {ModelError}
-     * @memberof WebhookSampleRequestResponse
-     */
-    error?: ModelError;
-    /**
-     *
-     * @type {ResponseMetadata}
-     * @memberof WebhookSampleRequestResponse
-     */
-    metadata?: ResponseMetadata;
-    /**
-     * Indicates if API call was successful
-     * @type {boolean}
-     * @memberof WebhookSampleRequestResponse
-     */
-    success?: boolean;
-    /**
-     *
-     * @type {Warning}
-     * @memberof WebhookSampleRequestResponse
-     */
-    warning?: Warning;
-    /**
-     *
-     * @type {WebhookSampleRequest}
-     * @memberof WebhookSampleRequestResponse
-     */
-    webhook_sample_request?: WebhookSampleRequest;
 }
 /**
  *
@@ -53228,7 +53222,7 @@ export declare const FulfillmentApiFetchParamCreator: (configuration?: Configura
      */
     generatePackingSlip(distribution_center_code: string, order_id: string, options?: any): FetchArgs;
     /**
-     * Retrieves up to 100 orders that are queued up in this distribution center.  You must acknowledge them before additional new orders will be returned.  There is NO record chunking.  You'll get the same 100 records again and again until you acknowledge orders.  The orders that are returned contain only items for this distribution center and are by default completely expanded with billing, buysafe, channel_partner, checkout, coupons, customer_profile, edi, gift, gift_certificate, internal, items, payment, shipping, summary, taxes.
+     * Retrieves up to 100 orders that are queued up in this distribution center.  You must acknowledge them before additional new orders will be returned.  There is NO record chunking.  You'll get the same 100 records again and again until you acknowledge orders.  The orders that are returned contain only items for this distribution center and are by default completely expanded with billing, channel_partner, checkout, coupons, customer_profile, edi, gift, gift_certificate, internal, items, payment, shipping, summary, taxes.
      * @summary Retrieve orders queued up for this distribution center.
      * @param {string} distribution_center_code Distribution center code
      * @param {*} [options] Override http request option.
@@ -53283,9 +53277,9 @@ export declare const FulfillmentApiFp: (configuration?: Configuration) => {
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    generatePackingSlip(distribution_center_code: string, order_id: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<OrdersResponse>;
+    generatePackingSlip(distribution_center_code: string, order_id: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<OrderPackingSlipResponse>;
     /**
-     * Retrieves up to 100 orders that are queued up in this distribution center.  You must acknowledge them before additional new orders will be returned.  There is NO record chunking.  You'll get the same 100 records again and again until you acknowledge orders.  The orders that are returned contain only items for this distribution center and are by default completely expanded with billing, buysafe, channel_partner, checkout, coupons, customer_profile, edi, gift, gift_certificate, internal, items, payment, shipping, summary, taxes.
+     * Retrieves up to 100 orders that are queued up in this distribution center.  You must acknowledge them before additional new orders will be returned.  There is NO record chunking.  You'll get the same 100 records again and again until you acknowledge orders.  The orders that are returned contain only items for this distribution center and are by default completely expanded with billing, channel_partner, checkout, coupons, customer_profile, edi, gift, gift_certificate, internal, items, payment, shipping, summary, taxes.
      * @summary Retrieve orders queued up for this distribution center.
      * @param {string} distribution_center_code Distribution center code
      * @param {*} [options] Override http request option.
@@ -53340,9 +53334,9 @@ export declare const FulfillmentApiFactory: (configuration?: Configuration, fetc
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    generatePackingSlip(distribution_center_code: string, order_id: string, options?: any): Promise<OrdersResponse>;
+    generatePackingSlip(distribution_center_code: string, order_id: string, options?: any): Promise<OrderPackingSlipResponse>;
     /**
-     * Retrieves up to 100 orders that are queued up in this distribution center.  You must acknowledge them before additional new orders will be returned.  There is NO record chunking.  You'll get the same 100 records again and again until you acknowledge orders.  The orders that are returned contain only items for this distribution center and are by default completely expanded with billing, buysafe, channel_partner, checkout, coupons, customer_profile, edi, gift, gift_certificate, internal, items, payment, shipping, summary, taxes.
+     * Retrieves up to 100 orders that are queued up in this distribution center.  You must acknowledge them before additional new orders will be returned.  There is NO record chunking.  You'll get the same 100 records again and again until you acknowledge orders.  The orders that are returned contain only items for this distribution center and are by default completely expanded with billing, channel_partner, checkout, coupons, customer_profile, edi, gift, gift_certificate, internal, items, payment, shipping, summary, taxes.
      * @summary Retrieve orders queued up for this distribution center.
      * @param {string} distribution_center_code Distribution center code
      * @param {*} [options] Override http request option.
@@ -53400,9 +53394,9 @@ export interface FulfillmentApiInterface {
      * @throws {RequiredError}
      * @memberof FulfillmentApiInterface
      */
-    generatePackingSlip(distribution_center_code: string, order_id: string, options?: any): Promise<OrdersResponse>;
+    generatePackingSlip(distribution_center_code: string, order_id: string, options?: any): Promise<OrderPackingSlipResponse>;
     /**
-     * Retrieves up to 100 orders that are queued up in this distribution center.  You must acknowledge them before additional new orders will be returned.  There is NO record chunking.  You'll get the same 100 records again and again until you acknowledge orders.  The orders that are returned contain only items for this distribution center and are by default completely expanded with billing, buysafe, channel_partner, checkout, coupons, customer_profile, edi, gift, gift_certificate, internal, items, payment, shipping, summary, taxes.
+     * Retrieves up to 100 orders that are queued up in this distribution center.  You must acknowledge them before additional new orders will be returned.  There is NO record chunking.  You'll get the same 100 records again and again until you acknowledge orders.  The orders that are returned contain only items for this distribution center and are by default completely expanded with billing, channel_partner, checkout, coupons, customer_profile, edi, gift, gift_certificate, internal, items, payment, shipping, summary, taxes.
      * @summary Retrieve orders queued up for this distribution center.
      * @param {string} distribution_center_code Distribution center code
      * @param {*} [options] Override http request option.
@@ -53465,9 +53459,9 @@ export declare class FulfillmentApi extends BaseAPI implements FulfillmentApiInt
      * @throws {RequiredError}
      * @memberof FulfillmentApi
      */
-    generatePackingSlip(distribution_center_code: string, order_id: string, options?: any): Promise<OrdersResponse>;
+    generatePackingSlip(distribution_center_code: string, order_id: string, options?: any): Promise<OrderPackingSlipResponse>;
     /**
-     * Retrieves up to 100 orders that are queued up in this distribution center.  You must acknowledge them before additional new orders will be returned.  There is NO record chunking.  You'll get the same 100 records again and again until you acknowledge orders.  The orders that are returned contain only items for this distribution center and are by default completely expanded with billing, buysafe, channel_partner, checkout, coupons, customer_profile, edi, gift, gift_certificate, internal, items, payment, shipping, summary, taxes.
+     * Retrieves up to 100 orders that are queued up in this distribution center.  You must acknowledge them before additional new orders will be returned.  There is NO record chunking.  You'll get the same 100 records again and again until you acknowledge orders.  The orders that are returned contain only items for this distribution center and are by default completely expanded with billing, channel_partner, checkout, coupons, customer_profile, edi, gift, gift_certificate, internal, items, payment, shipping, summary, taxes.
      * @summary Retrieve orders queued up for this distribution center.
      * @param {string} distribution_center_code Distribution center code
      * @param {*} [options] Override http request option.
@@ -55376,7 +55370,7 @@ export declare const OauthApiFetchParamCreator: (configuration?: Configuration) 
      * @param {string} client_id The OAuth application client_id.
      * @param {string} grant_type Type of grant
      * @param {string} [code] Authorization code received back from the browser redirect
-     * @param {string} [redirect_uri] The URI that you redirect the browser to to start the authorization process
+     * @param {string} [redirect_uri] The URI that you redirect the browser to start the authorization process
      * @param {string} [refresh_token] The refresh token received during the original grant_type&#x3D;authorization_code that can be used to return a new access token
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -55403,7 +55397,7 @@ export declare const OauthApiFp: (configuration?: Configuration) => {
      * @param {string} client_id The OAuth application client_id.
      * @param {string} grant_type Type of grant
      * @param {string} [code] Authorization code received back from the browser redirect
-     * @param {string} [redirect_uri] The URI that you redirect the browser to to start the authorization process
+     * @param {string} [redirect_uri] The URI that you redirect the browser to start the authorization process
      * @param {string} [refresh_token] The refresh token received during the original grant_type&#x3D;authorization_code that can be used to return a new access token
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -55430,7 +55424,7 @@ export declare const OauthApiFactory: (configuration?: Configuration, fetch?: Fe
      * @param {string} client_id The OAuth application client_id.
      * @param {string} grant_type Type of grant
      * @param {string} [code] Authorization code received back from the browser redirect
-     * @param {string} [redirect_uri] The URI that you redirect the browser to to start the authorization process
+     * @param {string} [redirect_uri] The URI that you redirect the browser to start the authorization process
      * @param {string} [refresh_token] The refresh token received during the original grant_type&#x3D;authorization_code that can be used to return a new access token
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -55458,7 +55452,7 @@ export interface OauthApiInterface {
      * @param {string} client_id The OAuth application client_id.
      * @param {string} grant_type Type of grant
      * @param {string} [code] Authorization code received back from the browser redirect
-     * @param {string} [redirect_uri] The URI that you redirect the browser to to start the authorization process
+     * @param {string} [redirect_uri] The URI that you redirect the browser to start the authorization process
      * @param {string} [refresh_token] The refresh token received during the original grant_type&#x3D;authorization_code that can be used to return a new access token
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -55489,7 +55483,7 @@ export declare class OauthApi extends BaseAPI implements OauthApiInterface {
      * @param {string} client_id The OAuth application client_id.
      * @param {string} grant_type Type of grant
      * @param {string} [code] Authorization code received back from the browser redirect
-     * @param {string} [redirect_uri] The URI that you redirect the browser to to start the authorization process
+     * @param {string} [redirect_uri] The URI that you redirect the browser to start the authorization process
      * @param {string} [refresh_token] The refresh token received during the original grant_type&#x3D;authorization_code that can be used to return a new access token
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -67568,7 +67562,7 @@ export declare const WebhookApiFp: (configuration?: Configuration) => {
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    resendEvent(webhookOid: number, eventName: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<WebhookSampleRequestResponse>;
+    resendEvent(webhookOid: number, eventName: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<WebhookReflowResponse>;
     /**
      * Update a webhook on the account
      * @summary Update a webhook
@@ -67649,7 +67643,7 @@ export declare const WebhookApiFactory: (configuration?: Configuration, fetch?: 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    resendEvent(webhookOid: number, eventName: string, options?: any): Promise<WebhookSampleRequestResponse>;
+    resendEvent(webhookOid: number, eventName: string, options?: any): Promise<WebhookReflowResponse>;
     /**
      * Update a webhook on the account
      * @summary Update a webhook
@@ -67738,7 +67732,7 @@ export interface WebhookApiInterface {
      * @throws {RequiredError}
      * @memberof WebhookApiInterface
      */
-    resendEvent(webhookOid: number, eventName: string, options?: any): Promise<WebhookSampleRequestResponse>;
+    resendEvent(webhookOid: number, eventName: string, options?: any): Promise<WebhookReflowResponse>;
     /**
      * Update a webhook on the account
      * @summary Update a webhook
@@ -67829,7 +67823,7 @@ export declare class WebhookApi extends BaseAPI implements WebhookApiInterface {
      * @throws {RequiredError}
      * @memberof WebhookApi
      */
-    resendEvent(webhookOid: number, eventName: string, options?: any): Promise<WebhookSampleRequestResponse>;
+    resendEvent(webhookOid: number, eventName: string, options?: any): Promise<WebhookReflowResponse>;
     /**
      * Update a webhook on the account
      * @summary Update a webhook
