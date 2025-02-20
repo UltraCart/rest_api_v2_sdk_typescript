@@ -649,6 +649,7 @@ export * from './OrderPaymentCreditCardDualVaultedProperty';
 export * from './OrderPaymentECheck';
 export * from './OrderPaymentHealthBenefitCard';
 export * from './OrderPaymentInsurance';
+export * from './OrderPaymentPayPal';
 export * from './OrderPaymentPurchaseOrder';
 export * from './OrderPaymentTransaction';
 export * from './OrderPaymentTransactionDetail';

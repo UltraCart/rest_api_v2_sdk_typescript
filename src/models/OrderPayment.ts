@@ -50,6 +50,12 @@ import {
     OrderPaymentInsuranceToJSON,
 } from './OrderPaymentInsurance';
 import {
+    OrderPaymentPayPal,
+    OrderPaymentPayPalFromJSON,
+    OrderPaymentPayPalFromJSONTyped,
+    OrderPaymentPayPalToJSON,
+} from './OrderPaymentPayPal';
+import {
     OrderPaymentPurchaseOrder,
     OrderPaymentPurchaseOrderFromJSON,
     OrderPaymentPurchaseOrderFromJSONTyped,
@@ -134,6 +140,12 @@ export interface OrderPayment {
      * @memberof OrderPayment
      */
     payment_status?: OrderPaymentPaymentStatusEnum;
+    /**
+     * 
+     * @type {OrderPaymentPayPal}
+     * @memberof OrderPayment
+     */
+    paypal?: OrderPaymentPayPal;
     /**
      * 
      * @type {OrderPaymentPurchaseOrder}
@@ -256,6 +268,7 @@ export function OrderPaymentFromJSONTyped(json: any, ignoreDiscriminator: boolea
         'payment_method_accounting_code': !exists(json, 'payment_method_accounting_code') ? undefined : json['payment_method_accounting_code'],
         'payment_method_deposit_to_account': !exists(json, 'payment_method_deposit_to_account') ? undefined : json['payment_method_deposit_to_account'],
         'payment_status': !exists(json, 'payment_status') ? undefined : json['payment_status'],
+        'paypal': !exists(json, 'paypal') ? undefined : OrderPaymentPayPalFromJSON(json['paypal']),
         'purchase_order': !exists(json, 'purchase_order') ? undefined : OrderPaymentPurchaseOrderFromJSON(json['purchase_order']),
         'rotating_transaction_gateway_code': !exists(json, 'rotating_transaction_gateway_code') ? undefined : json['rotating_transaction_gateway_code'],
         'surcharge': !exists(json, 'surcharge') ? undefined : CurrencyFromJSON(json['surcharge']),
@@ -287,6 +300,7 @@ export function OrderPaymentToJSON(value?: OrderPayment | null): any {
         'payment_method_accounting_code': value.payment_method_accounting_code,
         'payment_method_deposit_to_account': value.payment_method_deposit_to_account,
         'payment_status': value.payment_status,
+        'paypal': OrderPaymentPayPalToJSON(value.paypal),
         'purchase_order': OrderPaymentPurchaseOrderToJSON(value.purchase_order),
         'rotating_transaction_gateway_code': value.rotating_transaction_gateway_code,
         'surcharge': CurrencyToJSON(value.surcharge),

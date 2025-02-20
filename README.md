@@ -1,4 +1,4 @@
-## ultracart_rest_api_v2_typescript@4.0.242
+## ultracart_rest_api_v2_typescript@4.0.245
 
 This generator creates TypeScript/JavaScript client that utilizes [Fetch API](https://fetch.spec.whatwg.org/). The generated Node module can be used in the following environments:
 
@@ -36,7 +36,7 @@ navigate to the folder of your consuming project and run one of the following co
 _published:_
 
 ```
-npm install ultracart_rest_api_v2_typescript@4.0.242 --save
+npm install ultracart_rest_api_v2_typescript@4.0.245 --save
 ```
 
 _unPublished (not recommended):_
@@ -54,6 +54,9 @@ Not every change is committed to every SDK.
 
 | Version | Date | Comments |
 | --: | :-: | --- |
+| 4.0.245 | 02/20/2025 | automation fix |
+| 4.0.244 | 02/20/2025 | no change, revving sdk to troubleshoot java deployment automation |
+| 4.0.243 | 02/20/2025 | no change, revving sdk to troubleshoot java deployment automation |
 | 4.0.242 | 02/18/2025 | small bug fixes for incorrect return types on several methods |
 | 4.0.241 | 02/06/2025 | added storefront_host_name to channel partner order object |
 | 4.0.240 | 01/09/2025 | fix for broken 4.0.39 due to incorrect query sig on getCustomers |

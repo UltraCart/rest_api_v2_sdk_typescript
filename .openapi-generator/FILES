@@ -674,6 +674,7 @@ src/models/OrderPaymentCreditCardDualVaultedProperty.ts
 src/models/OrderPaymentECheck.ts
 src/models/OrderPaymentHealthBenefitCard.ts
 src/models/OrderPaymentInsurance.ts
+src/models/OrderPaymentPayPal.ts
 src/models/OrderPaymentPurchaseOrder.ts
 src/models/OrderPaymentTransaction.ts
 src/models/OrderPaymentTransactionDetail.ts
