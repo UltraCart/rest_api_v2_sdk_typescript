@@ -33591,6 +33591,12 @@ export interface OrderPayment {
     payment_status?: OrderPayment.PaymentStatusEnum;
     /**
      *
+     * @type {OrderPaymentPayPal}
+     * @memberof OrderPayment
+     */
+    paypal?: OrderPaymentPayPal;
+    /**
+     *
      * @type {OrderPaymentPurchaseOrder}
      * @memberof OrderPayment
      */
@@ -34007,6 +34013,25 @@ export interface OrderPaymentInsurance {
      * @memberof OrderPaymentInsurance
      */
     refund_claim_id?: string;
+}
+/**
+ *
+ * @export
+ * @interface OrderPaymentPayPal
+ */
+export interface OrderPaymentPayPal {
+    /**
+     * PayPal Customer ID
+     * @type {string}
+     * @memberof OrderPaymentPayPal
+     */
+    customer_id?: string;
+    /**
+     * PayPal Vault ID
+     * @type {string}
+     * @memberof OrderPaymentPayPal
+     */
+    vault_id?: string;
 }
 /**
  *
