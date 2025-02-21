@@ -296,6 +296,21 @@ export interface ItemApiInterface {
     getDigitalItemsByExternalId(requestParameters: GetDigitalItemsByExternalIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ItemDigitalItemsResponse>;
 
     /**
+     * Retrieve a list of item inventories.  This method may be called once every 15 minutes.  More than that will result in a 429 response. 
+     * @summary Retrieve a list of item inventories.  This method may be called once every 15 minutes.  More than that will result in a 429 response.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ItemApiInterface
+     */
+    getInventorySnapshotRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ItemInventorySnapshotResponse>>;
+
+    /**
+     * Retrieve a list of item inventories.  This method may be called once every 15 minutes.  More than that will result in a 429 response. 
+     * Retrieve a list of item inventories.  This method may be called once every 15 minutes.  More than that will result in a 429 response.
+     */
+    getInventorySnapshot(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ItemInventorySnapshotResponse>;
+
+    /**
      * Retrieves a single item using the specified item oid. 
      * @summary Retrieve an item
      * @param {number} merchantItemOid The item oid to retrieve.
@@ -491,21 +506,6 @@ export interface ItemApiInterface {
      * Upsert an item content attribute
      */
     insertUpdateItemContentAttribute(requestParameters: InsertUpdateItemContentAttributeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
-
-    /**
-     * Retrieve a list of item inventories.  This method may be called once every 15 minutes.  More than that will result in a 429 response. 
-     * @summary Retrieve a list of item inventories.  This method may be called once every 15 minutes.  More than that will result in a 429 response.
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ItemApiInterface
-     */
-    restItemInventorySnapshotResponseRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ItemInventorySnapshotResponse>>;
-
-    /**
-     * Retrieve a list of item inventories.  This method may be called once every 15 minutes.  More than that will result in a 429 response. 
-     * Retrieve a list of item inventories.  This method may be called once every 15 minutes.  More than that will result in a 429 response.
-     */
-    restItemInventorySnapshotResponse(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ItemInventorySnapshotResponse>;
 
     /**
      * Updates a file within the digital library.  This does not update an item, but updates a digital file available and selectable as part (or all) of an item. 
@@ -867,6 +867,43 @@ export class ItemApi extends runtime.BaseAPI implements ItemApiInterface {
      */
     async getDigitalItemsByExternalId(requestParameters: GetDigitalItemsByExternalIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ItemDigitalItemsResponse> {
         const response = await this.getDigitalItemsByExternalIdRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Retrieve a list of item inventories.  This method may be called once every 15 minutes.  More than that will result in a 429 response. 
+     * Retrieve a list of item inventories.  This method may be called once every 15 minutes.  More than that will result in a 429 response.
+     */
+    async getInventorySnapshotRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ItemInventorySnapshotResponse>> {
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", ["item_read"]);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/item/items/inventory_snapshot`,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => ItemInventorySnapshotResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Retrieve a list of item inventories.  This method may be called once every 15 minutes.  More than that will result in a 429 response. 
+     * Retrieve a list of item inventories.  This method may be called once every 15 minutes.  More than that will result in a 429 response.
+     */
+    async getInventorySnapshot(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ItemInventorySnapshotResponse> {
+        const response = await this.getInventorySnapshotRaw(initOverrides);
         return await response.value();
     }
 
@@ -1414,43 +1451,6 @@ export class ItemApi extends runtime.BaseAPI implements ItemApiInterface {
      */
     async insertUpdateItemContentAttribute(requestParameters: InsertUpdateItemContentAttributeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.insertUpdateItemContentAttributeRaw(requestParameters, initOverrides);
-    }
-
-    /**
-     * Retrieve a list of item inventories.  This method may be called once every 15 minutes.  More than that will result in a 429 response. 
-     * Retrieve a list of item inventories.  This method may be called once every 15 minutes.  More than that will result in a 429 response.
-     */
-    async restItemInventorySnapshotResponseRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ItemInventorySnapshotResponse>> {
-        const queryParameters: any = {};
-
-        const headerParameters: runtime.HTTPHeaders = {};
-
-        if (this.configuration && this.configuration.accessToken) {
-            // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", ["item_read"]);
-        }
-
-        if (this.configuration && this.configuration.apiKey) {
-            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
-        }
-
-        const response = await this.request({
-            path: `/item/items/inventory_snapshot`,
-            method: 'GET',
-            headers: headerParameters,
-            query: queryParameters,
-        }, initOverrides);
-
-        return new runtime.JSONApiResponse(response, (jsonValue) => ItemInventorySnapshotResponseFromJSON(jsonValue));
-    }
-
-    /**
-     * Retrieve a list of item inventories.  This method may be called once every 15 minutes.  More than that will result in a 429 response. 
-     * Retrieve a list of item inventories.  This method may be called once every 15 minutes.  More than that will result in a 429 response.
-     */
-    async restItemInventorySnapshotResponse(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ItemInventorySnapshotResponse> {
-        const response = await this.restItemInventorySnapshotResponseRaw(initOverrides);
-        return await response.value();
     }
 
     /**
