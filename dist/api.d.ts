@@ -54270,6 +54270,13 @@ export declare const ItemApiFetchParamCreator: (configuration?: Configuration) =
      */
     getDigitalItemsByExternalId(external_id: string, options?: any): FetchArgs;
     /**
+     * Retrieve a list of item inventories.  This method may be called once every 15 minutes.  More than that will result in a 429 response.
+     * @summary Retrieve a list of item inventories.  This method may be called once every 15 minutes.  More than that will result in a 429 response.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getInventorySnapshot(options?: any): FetchArgs;
+    /**
      * Retrieves a single item using the specified item oid.
      * @summary Retrieve an item
      * @param {number} merchant_item_oid The item oid to retrieve.
@@ -54378,13 +54385,6 @@ export declare const ItemApiFetchParamCreator: (configuration?: Configuration) =
      * @throws {RequiredError}
      */
     insertUpdateItemContentAttribute(item_attribute: ItemContentAttribute, merchant_item_oid: number, options?: any): FetchArgs;
-    /**
-     * Retrieve a list of item inventories.  This method may be called once every 15 minutes.  More than that will result in a 429 response.
-     * @summary Retrieve a list of item inventories.  This method may be called once every 15 minutes.  More than that will result in a 429 response.
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    restItemInventorySnapshotResponse(options?: any): FetchArgs;
     /**
      * Updates a file within the digital library.  This does not update an item, but updates a digital file available and selectable as part (or all) of an item.
      * @summary Updates a file within the digital library
@@ -54495,6 +54495,13 @@ export declare const ItemApiFp: (configuration?: Configuration) => {
      */
     getDigitalItemsByExternalId(external_id: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ItemDigitalItemsResponse>;
     /**
+     * Retrieve a list of item inventories.  This method may be called once every 15 minutes.  More than that will result in a 429 response.
+     * @summary Retrieve a list of item inventories.  This method may be called once every 15 minutes.  More than that will result in a 429 response.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getInventorySnapshot(options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ItemInventorySnapshotResponse>;
+    /**
      * Retrieves a single item using the specified item oid.
      * @summary Retrieve an item
      * @param {number} merchant_item_oid The item oid to retrieve.
@@ -54603,13 +54610,6 @@ export declare const ItemApiFp: (configuration?: Configuration) => {
      * @throws {RequiredError}
      */
     insertUpdateItemContentAttribute(item_attribute: ItemContentAttribute, merchant_item_oid: number, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Response>;
-    /**
-     * Retrieve a list of item inventories.  This method may be called once every 15 minutes.  More than that will result in a 429 response.
-     * @summary Retrieve a list of item inventories.  This method may be called once every 15 minutes.  More than that will result in a 429 response.
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    restItemInventorySnapshotResponse(options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ItemInventorySnapshotResponse>;
     /**
      * Updates a file within the digital library.  This does not update an item, but updates a digital file available and selectable as part (or all) of an item.
      * @summary Updates a file within the digital library
@@ -54720,6 +54720,13 @@ export declare const ItemApiFactory: (configuration?: Configuration, fetch?: Fet
      */
     getDigitalItemsByExternalId(external_id: string, options?: any): Promise<ItemDigitalItemsResponse>;
     /**
+     * Retrieve a list of item inventories.  This method may be called once every 15 minutes.  More than that will result in a 429 response.
+     * @summary Retrieve a list of item inventories.  This method may be called once every 15 minutes.  More than that will result in a 429 response.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getInventorySnapshot(options?: any): Promise<ItemInventorySnapshotResponse>;
+    /**
      * Retrieves a single item using the specified item oid.
      * @summary Retrieve an item
      * @param {number} merchant_item_oid The item oid to retrieve.
@@ -54828,13 +54835,6 @@ export declare const ItemApiFactory: (configuration?: Configuration, fetch?: Fet
      * @throws {RequiredError}
      */
     insertUpdateItemContentAttribute(item_attribute: ItemContentAttribute, merchant_item_oid: number, options?: any): Promise<Response>;
-    /**
-     * Retrieve a list of item inventories.  This method may be called once every 15 minutes.  More than that will result in a 429 response.
-     * @summary Retrieve a list of item inventories.  This method may be called once every 15 minutes.  More than that will result in a 429 response.
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    restItemInventorySnapshotResponse(options?: any): Promise<ItemInventorySnapshotResponse>;
     /**
      * Updates a file within the digital library.  This does not update an item, but updates a digital file available and selectable as part (or all) of an item.
      * @summary Updates a file within the digital library
@@ -54951,6 +54951,14 @@ export interface ItemApiInterface {
      * @memberof ItemApiInterface
      */
     getDigitalItemsByExternalId(external_id: string, options?: any): Promise<ItemDigitalItemsResponse>;
+    /**
+     * Retrieve a list of item inventories.  This method may be called once every 15 minutes.  More than that will result in a 429 response.
+     * @summary Retrieve a list of item inventories.  This method may be called once every 15 minutes.  More than that will result in a 429 response.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ItemApiInterface
+     */
+    getInventorySnapshot(options?: any): Promise<ItemInventorySnapshotResponse>;
     /**
      * Retrieves a single item using the specified item oid.
      * @summary Retrieve an item
@@ -55071,14 +55079,6 @@ export interface ItemApiInterface {
      * @memberof ItemApiInterface
      */
     insertUpdateItemContentAttribute(item_attribute: ItemContentAttribute, merchant_item_oid: number, options?: any): Promise<{}>;
-    /**
-     * Retrieve a list of item inventories.  This method may be called once every 15 minutes.  More than that will result in a 429 response.
-     * @summary Retrieve a list of item inventories.  This method may be called once every 15 minutes.  More than that will result in a 429 response.
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ItemApiInterface
-     */
-    restItemInventorySnapshotResponse(options?: any): Promise<ItemInventorySnapshotResponse>;
     /**
      * Updates a file within the digital library.  This does not update an item, but updates a digital file available and selectable as part (or all) of an item.
      * @summary Updates a file within the digital library
@@ -55202,6 +55202,14 @@ export declare class ItemApi extends BaseAPI implements ItemApiInterface {
      */
     getDigitalItemsByExternalId(external_id: string, options?: any): Promise<ItemDigitalItemsResponse>;
     /**
+     * Retrieve a list of item inventories.  This method may be called once every 15 minutes.  More than that will result in a 429 response.
+     * @summary Retrieve a list of item inventories.  This method may be called once every 15 minutes.  More than that will result in a 429 response.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ItemApi
+     */
+    getInventorySnapshot(options?: any): Promise<ItemInventorySnapshotResponse>;
+    /**
      * Retrieves a single item using the specified item oid.
      * @summary Retrieve an item
      * @param {number} merchant_item_oid The item oid to retrieve.
@@ -55321,14 +55329,6 @@ export declare class ItemApi extends BaseAPI implements ItemApiInterface {
      * @memberof ItemApi
      */
     insertUpdateItemContentAttribute(item_attribute: ItemContentAttribute, merchant_item_oid: number, options?: any): Promise<Response>;
-    /**
-     * Retrieve a list of item inventories.  This method may be called once every 15 minutes.  More than that will result in a 429 response.
-     * @summary Retrieve a list of item inventories.  This method may be called once every 15 minutes.  More than that will result in a 429 response.
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ItemApi
-     */
-    restItemInventorySnapshotResponse(options?: any): Promise<ItemInventorySnapshotResponse>;
     /**
      * Updates a file within the digital library.  This does not update an item, but updates a digital file available and selectable as part (or all) of an item.
      * @summary Updates a file within the digital library

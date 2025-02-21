@@ -69736,6 +69736,52 @@ export const ItemApiFetchParamCreator = function (configuration?: Configuration)
             };
         },
         /**
+         * Retrieve a list of item inventories.  This method may be called once every 15 minutes.  More than that will result in a 429 response. 
+         * @summary Retrieve a list of item inventories.  This method may be called once every 15 minutes.  More than that will result in a 429 response.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getInventorySnapshot(options: any = {}): FetchArgs {
+            const localVarPath = `/item/items/inventory_snapshot`;
+            const localVarUrlObj = url.parse(localVarPath, true);
+            const localVarRequestOptions = Object.assign({ method: 'GET' }, options);
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+    if(configuration && configuration.apiVersion) {
+      localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+    }
+
+
+
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+				const localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+					? configuration.accessToken("ultraCartOauth", ["item_read"])
+					: configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
+					? configuration.apiKey("x-ultracart-simple-key")
+					: configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
          * Retrieves a single item using the specified item oid. 
          * @summary Retrieve an item
          * @param {number} merchant_item_oid The item oid to retrieve.
@@ -70425,52 +70471,6 @@ export const ItemApiFetchParamCreator = function (configuration?: Configuration)
             };
         },
         /**
-         * Retrieve a list of item inventories.  This method may be called once every 15 minutes.  More than that will result in a 429 response. 
-         * @summary Retrieve a list of item inventories.  This method may be called once every 15 minutes.  More than that will result in a 429 response.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        restItemInventorySnapshotResponse(options: any = {}): FetchArgs {
-            const localVarPath = `/item/items/inventory_snapshot`;
-            const localVarUrlObj = url.parse(localVarPath, true);
-            const localVarRequestOptions = Object.assign({ method: 'GET' }, options);
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-    if(configuration && configuration.apiVersion) {
-      localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
-    }
-
-
-
-            // authentication ultraCartOauth required
-            // oauth required
-            if (configuration && configuration.accessToken) {
-				const localVarAccessTokenValue = typeof configuration.accessToken === 'function'
-					? configuration.accessToken("ultraCartOauth", ["item_read"])
-					: configuration.accessToken;
-                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
-            }
-
-            // authentication ultraCartSimpleApiKey required
-            if (configuration && configuration.apiKey) {
-                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
-					? configuration.apiKey("x-ultracart-simple-key")
-					: configuration.apiKey;
-                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
-            }
-
-            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
-            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
-            delete localVarUrlObj.search;
-            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
-
-            return {
-                url: url.format(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
          * Updates a file within the digital library.  This does not update an item, but updates a digital file available and selectable as part (or all) of an item. 
          * @summary Updates a file within the digital library
          * @param {number} digital_item_oid The digital item oid to update.
@@ -70940,6 +70940,26 @@ export const ItemApiFp = function(configuration?: Configuration) {
             };
         },
         /**
+         * Retrieve a list of item inventories.  This method may be called once every 15 minutes.  More than that will result in a 429 response. 
+         * @summary Retrieve a list of item inventories.  This method may be called once every 15 minutes.  More than that will result in a 429 response.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getInventorySnapshot(options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ItemInventorySnapshotResponse> {
+            const localVarFetchArgs = ItemApiFetchParamCreator(configuration).getInventorySnapshot(options);
+            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
+                    if (response.status >= 200 && response.status < 300) {
+                      return response.json();
+                      
+                    } else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
          * Retrieves a single item using the specified item oid. 
          * @summary Retrieve an item
          * @param {number} merchant_item_oid The item oid to retrieve.
@@ -71192,26 +71212,6 @@ export const ItemApiFp = function(configuration?: Configuration) {
             };
         },
         /**
-         * Retrieve a list of item inventories.  This method may be called once every 15 minutes.  More than that will result in a 429 response. 
-         * @summary Retrieve a list of item inventories.  This method may be called once every 15 minutes.  More than that will result in a 429 response.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        restItemInventorySnapshotResponse(options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ItemInventorySnapshotResponse> {
-            const localVarFetchArgs = ItemApiFetchParamCreator(configuration).restItemInventorySnapshotResponse(options);
-            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
-                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
-
-                    if (response.status >= 200 && response.status < 300) {
-                      return response.json();
-                      
-                    } else {
-                        throw response;
-                    }
-                });
-            };
-        },
-        /**
          * Updates a file within the digital library.  This does not update an item, but updates a digital file available and selectable as part (or all) of an item. 
          * @summary Updates a file within the digital library
          * @param {number} digital_item_oid The digital item oid to update.
@@ -71401,6 +71401,15 @@ export const ItemApiFactory = function (configuration?: Configuration, fetch?: F
             return ItemApiFp(configuration).getDigitalItemsByExternalId(external_id, options)(fetch, basePath);
         },
         /**
+         * Retrieve a list of item inventories.  This method may be called once every 15 minutes.  More than that will result in a 429 response. 
+         * @summary Retrieve a list of item inventories.  This method may be called once every 15 minutes.  More than that will result in a 429 response.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getInventorySnapshot(options?: any) {
+            return ItemApiFp(configuration).getInventorySnapshot(options)(fetch, basePath);
+        },
+        /**
          * Retrieves a single item using the specified item oid. 
          * @summary Retrieve an item
          * @param {number} merchant_item_oid The item oid to retrieve.
@@ -71530,15 +71539,6 @@ export const ItemApiFactory = function (configuration?: Configuration, fetch?: F
          */
         insertUpdateItemContentAttribute(item_attribute: ItemContentAttribute, merchant_item_oid: number, options?: any) {
             return ItemApiFp(configuration).insertUpdateItemContentAttribute(item_attribute, merchant_item_oid, options)(fetch, basePath);
-        },
-        /**
-         * Retrieve a list of item inventories.  This method may be called once every 15 minutes.  More than that will result in a 429 response. 
-         * @summary Retrieve a list of item inventories.  This method may be called once every 15 minutes.  More than that will result in a 429 response.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        restItemInventorySnapshotResponse(options?: any) {
-            return ItemApiFp(configuration).restItemInventorySnapshotResponse(options)(fetch, basePath);
         },
         /**
          * Updates a file within the digital library.  This does not update an item, but updates a digital file available and selectable as part (or all) of an item. 
@@ -71675,6 +71675,15 @@ export interface ItemApiInterface {
     getDigitalItemsByExternalId(external_id: string, options?: any): Promise<ItemDigitalItemsResponse>;
 
     /**
+     * Retrieve a list of item inventories.  This method may be called once every 15 minutes.  More than that will result in a 429 response. 
+     * @summary Retrieve a list of item inventories.  This method may be called once every 15 minutes.  More than that will result in a 429 response.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ItemApiInterface
+     */
+    getInventorySnapshot(options?: any): Promise<ItemInventorySnapshotResponse>;
+
+    /**
      * Retrieves a single item using the specified item oid. 
      * @summary Retrieve an item
      * @param {number} merchant_item_oid The item oid to retrieve.
@@ -71804,15 +71813,6 @@ export interface ItemApiInterface {
      * @memberof ItemApiInterface
      */
     insertUpdateItemContentAttribute(item_attribute: ItemContentAttribute, merchant_item_oid: number, options?: any): Promise<{}>;
-
-    /**
-     * Retrieve a list of item inventories.  This method may be called once every 15 minutes.  More than that will result in a 429 response. 
-     * @summary Retrieve a list of item inventories.  This method may be called once every 15 minutes.  More than that will result in a 429 response.
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ItemApiInterface
-     */
-    restItemInventorySnapshotResponse(options?: any): Promise<ItemInventorySnapshotResponse>;
 
     /**
      * Updates a file within the digital library.  This does not update an item, but updates a digital file available and selectable as part (or all) of an item. 
@@ -71958,6 +71958,17 @@ export class ItemApi extends BaseAPI implements ItemApiInterface {
      */
     public getDigitalItemsByExternalId(external_id: string, options?: any) {
         return ItemApiFp(this.configuration).getDigitalItemsByExternalId(external_id, options)(this.fetch, this.basePath);
+    }
+
+    /**
+     * Retrieve a list of item inventories.  This method may be called once every 15 minutes.  More than that will result in a 429 response. 
+     * @summary Retrieve a list of item inventories.  This method may be called once every 15 minutes.  More than that will result in a 429 response.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ItemApi
+     */
+    public getInventorySnapshot(options?: any) {
+        return ItemApiFp(this.configuration).getInventorySnapshot(options)(this.fetch, this.basePath);
     }
 
     /**
@@ -72111,17 +72122,6 @@ export class ItemApi extends BaseAPI implements ItemApiInterface {
      */
     public insertUpdateItemContentAttribute(item_attribute: ItemContentAttribute, merchant_item_oid: number, options?: any) {
         return ItemApiFp(this.configuration).insertUpdateItemContentAttribute(item_attribute, merchant_item_oid, options)(this.fetch, this.basePath);
-    }
-
-    /**
-     * Retrieve a list of item inventories.  This method may be called once every 15 minutes.  More than that will result in a 429 response. 
-     * @summary Retrieve a list of item inventories.  This method may be called once every 15 minutes.  More than that will result in a 429 response.
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ItemApi
-     */
-    public restItemInventorySnapshotResponse(options?: any) {
-        return ItemApiFp(this.configuration).restItemInventorySnapshotResponse(options)(this.fetch, this.basePath);
     }
 
     /**
