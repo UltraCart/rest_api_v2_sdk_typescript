@@ -27989,7 +27989,7 @@ export interface ItemPaymentProcessing {
      */
     block_prepaid?: boolean;
     /**
-     * True if this item should block any refund attempts
+     * True if this item should block any refund attempts, set to false otherwise, null value will not update the field
      * @type {boolean}
      * @memberof ItemPaymentProcessing
      */
@@ -31974,7 +31974,7 @@ export interface OrderCoupon {
      */
     coupon_code?: string;
     /**
-     * True if this coupon is hidde from the customer
+     * True if this coupon is hide from the customer
      * @type {boolean}
      * @memberof OrderCoupon
      */
@@ -44524,6 +44524,16 @@ export declare const AutoOrderApiFetchParamCreator: (configuration?: Configurati
      */
     getAutoOrdersByQuery(auto_order_query: AutoOrderQuery, _limit?: number, _offset?: number, _sort?: string, _expand?: string, options?: any): FetchArgs;
     /**
+     * Completely pause an auto order
+     * @summary Pause auto order
+     * @param {AutoOrder} auto_order Auto orders to pause
+     * @param {number} auto_order_oid The auto order oid to pause.
+     * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    pauseAutoOrder(auto_order: AutoOrder, auto_order_oid: number, _expand?: string, options?: any): FetchArgs;
+    /**
      * Update an auto order on the UltraCart account.
      * @summary Update an auto order
      * @param {AutoOrder} auto_order Auto order to update
@@ -44649,6 +44659,16 @@ export declare const AutoOrderApiFp: (configuration?: Configuration) => {
      */
     getAutoOrdersByQuery(auto_order_query: AutoOrderQuery, _limit?: number, _offset?: number, _sort?: string, _expand?: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<AutoOrdersResponse>;
     /**
+     * Completely pause an auto order
+     * @summary Pause auto order
+     * @param {AutoOrder} auto_order Auto orders to pause
+     * @param {number} auto_order_oid The auto order oid to pause.
+     * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    pauseAutoOrder(auto_order: AutoOrder, auto_order_oid: number, _expand?: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<AutoOrderResponse>;
+    /**
      * Update an auto order on the UltraCart account.
      * @summary Update an auto order
      * @param {AutoOrder} auto_order Auto order to update
@@ -44773,6 +44793,16 @@ export declare const AutoOrderApiFactory: (configuration?: Configuration, fetch?
      * @throws {RequiredError}
      */
     getAutoOrdersByQuery(auto_order_query: AutoOrderQuery, _limit?: number, _offset?: number, _sort?: string, _expand?: string, options?: any): Promise<AutoOrdersResponse>;
+    /**
+     * Completely pause an auto order
+     * @summary Pause auto order
+     * @param {AutoOrder} auto_order Auto orders to pause
+     * @param {number} auto_order_oid The auto order oid to pause.
+     * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    pauseAutoOrder(auto_order: AutoOrder, auto_order_oid: number, _expand?: string, options?: any): Promise<AutoOrderResponse>;
     /**
      * Update an auto order on the UltraCart account.
      * @summary Update an auto order
@@ -44907,6 +44937,17 @@ export interface AutoOrderApiInterface {
      * @memberof AutoOrderApiInterface
      */
     getAutoOrdersByQuery(auto_order_query: AutoOrderQuery, _limit?: number, _offset?: number, _sort?: string, _expand?: string, options?: any): Promise<AutoOrdersResponse>;
+    /**
+     * Completely pause an auto order
+     * @summary Pause auto order
+     * @param {AutoOrder} auto_order Auto orders to pause
+     * @param {number} auto_order_oid The auto order oid to pause.
+     * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AutoOrderApiInterface
+     */
+    pauseAutoOrder(auto_order: AutoOrder, auto_order_oid: number, _expand?: string, options?: any): Promise<AutoOrderResponse>;
     /**
      * Update an auto order on the UltraCart account.
      * @summary Update an auto order
@@ -45044,6 +45085,17 @@ export declare class AutoOrderApi extends BaseAPI implements AutoOrderApiInterfa
      * @memberof AutoOrderApi
      */
     getAutoOrdersByQuery(auto_order_query: AutoOrderQuery, _limit?: number, _offset?: number, _sort?: string, _expand?: string, options?: any): Promise<AutoOrdersResponse>;
+    /**
+     * Completely pause an auto order
+     * @summary Pause auto order
+     * @param {AutoOrder} auto_order Auto orders to pause
+     * @param {number} auto_order_oid The auto order oid to pause.
+     * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AutoOrderApi
+     */
+    pauseAutoOrder(auto_order: AutoOrder, auto_order_oid: number, _expand?: string, options?: any): Promise<AutoOrderResponse>;
     /**
      * Update an auto order on the UltraCart account.
      * @summary Update an auto order

@@ -28593,7 +28593,7 @@ export interface ItemPaymentProcessing {
      */
     block_prepaid?: boolean;
     /**
-     * True if this item should block any refund attempts
+     * True if this item should block any refund attempts, set to false otherwise, null value will not update the field
      * @type {boolean}
      * @memberof ItemPaymentProcessing
      */
@@ -32661,7 +32661,7 @@ export interface OrderCoupon {
      */
     coupon_code?: string;
     /**
-     * True if this coupon is hidde from the customer
+     * True if this coupon is hide from the customer
      * @type {boolean}
      * @memberof OrderCoupon
      */
@@ -46140,6 +46140,72 @@ export const AutoOrderApiFetchParamCreator = function (configuration?: Configura
             };
         },
         /**
+         * Completely pause an auto order 
+         * @summary Pause auto order
+         * @param {AutoOrder} auto_order Auto orders to pause
+         * @param {number} auto_order_oid The auto order oid to pause.
+         * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        pauseAutoOrder(auto_order: AutoOrder, auto_order_oid: number, _expand?: string, options: any = {}): FetchArgs {
+            // verify required parameter 'auto_order' is not null or undefined
+            if (auto_order === null || auto_order === undefined) {
+                throw new RequiredError('auto_order','Required parameter auto_order was null or undefined when calling pauseAutoOrder.');
+            }
+            // verify required parameter 'auto_order_oid' is not null or undefined
+            if (auto_order_oid === null || auto_order_oid === undefined) {
+                throw new RequiredError('auto_order_oid','Required parameter auto_order_oid was null or undefined when calling pauseAutoOrder.');
+            }
+            const localVarPath = `/auto_order/auto_orders/{auto_order_oid}/pause`
+                .replace(`{${"auto_order_oid"}}`, encodeURIComponent(String(auto_order_oid)));
+            const localVarUrlObj = url.parse(localVarPath, true);
+            const localVarRequestOptions = Object.assign({ method: 'PUT' }, options);
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+    if(configuration && configuration.apiVersion) {
+      localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+    }
+
+
+
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+				const localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+					? configuration.accessToken("ultraCartOauth", ["auto_order_write"])
+					: configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
+					? configuration.apiKey("x-ultracart-simple-key")
+					: configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+
+            if (_expand !== undefined) {
+                localVarQueryParameter['_expand'] = _expand;
+            }
+
+            localVarHeaderParameter['Content-Type'] = 'application/json; charset=UTF-8';
+
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+            const needsSerialization = (<any>"AutoOrder" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
+            localVarRequestOptions.body =  needsSerialization ? JSON.stringify(auto_order || {}) : (auto_order || "");
+
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
          * Update an auto order on the UltraCart account. 
          * @summary Update an auto order
          * @param {AutoOrder} auto_order Auto order to update
@@ -46491,6 +46557,29 @@ export const AutoOrderApiFp = function(configuration?: Configuration) {
             };
         },
         /**
+         * Completely pause an auto order 
+         * @summary Pause auto order
+         * @param {AutoOrder} auto_order Auto orders to pause
+         * @param {number} auto_order_oid The auto order oid to pause.
+         * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        pauseAutoOrder(auto_order: AutoOrder, auto_order_oid: number, _expand?: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<AutoOrderResponse> {
+            const localVarFetchArgs = AutoOrderApiFetchParamCreator(configuration).pauseAutoOrder(auto_order, auto_order_oid, _expand, options);
+            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
+                    if (response.status >= 200 && response.status < 300) {
+                      return response.json();
+                      
+                    } else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
          * Update an auto order on the UltraCart account. 
          * @summary Update an auto order
          * @param {AutoOrder} auto_order Auto order to update
@@ -46661,6 +46750,18 @@ export const AutoOrderApiFactory = function (configuration?: Configuration, fetc
             return AutoOrderApiFp(configuration).getAutoOrdersByQuery(auto_order_query, _limit, _offset, _sort, _expand, options)(fetch, basePath);
         },
         /**
+         * Completely pause an auto order 
+         * @summary Pause auto order
+         * @param {AutoOrder} auto_order Auto orders to pause
+         * @param {number} auto_order_oid The auto order oid to pause.
+         * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        pauseAutoOrder(auto_order: AutoOrder, auto_order_oid: number, _expand?: string, options?: any) {
+            return AutoOrderApiFp(configuration).pauseAutoOrder(auto_order, auto_order_oid, _expand, options)(fetch, basePath);
+        },
+        /**
          * Update an auto order on the UltraCart account. 
          * @summary Update an auto order
          * @param {AutoOrder} auto_order Auto order to update
@@ -46807,6 +46908,18 @@ export interface AutoOrderApiInterface {
      * @memberof AutoOrderApiInterface
      */
     getAutoOrdersByQuery(auto_order_query: AutoOrderQuery, _limit?: number, _offset?: number, _sort?: string, _expand?: string, options?: any): Promise<AutoOrdersResponse>;
+
+    /**
+     * Completely pause an auto order 
+     * @summary Pause auto order
+     * @param {AutoOrder} auto_order Auto orders to pause
+     * @param {number} auto_order_oid The auto order oid to pause.
+     * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AutoOrderApiInterface
+     */
+    pauseAutoOrder(auto_order: AutoOrder, auto_order_oid: number, _expand?: string, options?: any): Promise<AutoOrderResponse>;
 
     /**
      * Update an auto order on the UltraCart account. 
@@ -46970,6 +47083,20 @@ export class AutoOrderApi extends BaseAPI implements AutoOrderApiInterface {
      */
     public getAutoOrdersByQuery(auto_order_query: AutoOrderQuery, _limit?: number, _offset?: number, _sort?: string, _expand?: string, options?: any) {
         return AutoOrderApiFp(this.configuration).getAutoOrdersByQuery(auto_order_query, _limit, _offset, _sort, _expand, options)(this.fetch, this.basePath);
+    }
+
+    /**
+     * Completely pause an auto order 
+     * @summary Pause auto order
+     * @param {AutoOrder} auto_order Auto orders to pause
+     * @param {number} auto_order_oid The auto order oid to pause.
+     * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AutoOrderApi
+     */
+    public pauseAutoOrder(auto_order: AutoOrder, auto_order_oid: number, _expand?: string, options?: any) {
+        return AutoOrderApiFp(this.configuration).pauseAutoOrder(auto_order, auto_order_oid, _expand, options)(this.fetch, this.basePath);
     }
 
     /**
