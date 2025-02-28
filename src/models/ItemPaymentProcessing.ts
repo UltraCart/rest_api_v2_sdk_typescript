@@ -26,7 +26,7 @@ export interface ItemPaymentProcessing {
      */
     block_prepaid?: boolean;
     /**
-     * True if this item should block any refund attempts
+     * True if this item should block any refund attempts, set to false otherwise, null value will not update the field
      * @type {boolean}
      * @memberof ItemPaymentProcessing
      */

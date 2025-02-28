@@ -44,7 +44,7 @@ export interface OrderCoupon {
      */
     coupon_code?: string;
     /**
-     * True if this coupon is hidde from the customer
+     * True if this coupon is hide from the customer
      * @type {boolean}
      * @memberof OrderCoupon
      */

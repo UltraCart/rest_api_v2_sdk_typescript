@@ -106,6 +106,12 @@ export interface GetAutoOrdersByQueryRequest {
     expand?: string;
 }
 
+export interface PauseAutoOrderRequest {
+    autoOrderOid: number;
+    autoOrder: AutoOrder;
+    expand?: string;
+}
+
 export interface UpdateAutoOrderRequest {
     autoOrderOid: number;
     autoOrder: AutoOrder;
@@ -287,6 +293,24 @@ export interface AutoOrderApiInterface {
      * Retrieve auto orders by query
      */
     getAutoOrdersByQuery(requestParameters: GetAutoOrdersByQueryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AutoOrdersResponse>;
+
+    /**
+     * Completely pause an auto order 
+     * @summary Pause auto order
+     * @param {number} autoOrderOid The auto order oid to pause.
+     * @param {AutoOrder} autoOrder Auto orders to pause
+     * @param {string} [expand] The object expansion to perform on the result.  See documentation for examples
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AutoOrderApiInterface
+     */
+    pauseAutoOrderRaw(requestParameters: PauseAutoOrderRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AutoOrderResponse>>;
+
+    /**
+     * Completely pause an auto order 
+     * Pause auto order
+     */
+    pauseAutoOrder(requestParameters: PauseAutoOrderRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AutoOrderResponse>;
 
     /**
      * Update an auto order on the UltraCart account. 
@@ -799,6 +823,58 @@ export class AutoOrderApi extends runtime.BaseAPI implements AutoOrderApiInterfa
      */
     async getAutoOrdersByQuery(requestParameters: GetAutoOrdersByQueryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AutoOrdersResponse> {
         const response = await this.getAutoOrdersByQueryRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Completely pause an auto order 
+     * Pause auto order
+     */
+    async pauseAutoOrderRaw(requestParameters: PauseAutoOrderRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AutoOrderResponse>> {
+        if (requestParameters.autoOrderOid === null || requestParameters.autoOrderOid === undefined) {
+            throw new runtime.RequiredError('autoOrderOid','Required parameter requestParameters.autoOrderOid was null or undefined when calling pauseAutoOrder.');
+        }
+
+        if (requestParameters.autoOrder === null || requestParameters.autoOrder === undefined) {
+            throw new runtime.RequiredError('autoOrder','Required parameter requestParameters.autoOrder was null or undefined when calling pauseAutoOrder.');
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters.expand !== undefined) {
+            queryParameters['_expand'] = requestParameters.expand;
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json; charset=UTF-8';
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", ["auto_order_write"]);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/auto_order/auto_orders/{auto_order_oid}/pause`.replace(`{${"auto_order_oid"}}`, encodeURIComponent(String(requestParameters.autoOrderOid))),
+            method: 'PUT',
+            headers: headerParameters,
+            query: queryParameters,
+            body: AutoOrderToJSON(requestParameters.autoOrder),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => AutoOrderResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Completely pause an auto order 
+     * Pause auto order
+     */
+    async pauseAutoOrder(requestParameters: PauseAutoOrderRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AutoOrderResponse> {
+        const response = await this.pauseAutoOrderRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
