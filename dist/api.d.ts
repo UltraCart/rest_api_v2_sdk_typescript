@@ -5987,6 +5987,12 @@ export interface ChannelPartnerOrder {
      * @memberof ChannelPartnerOrder
      */
     treat_warnings_as_errors?: boolean;
+    /**
+     * An Order Id from a prior purchase of this customer which is used to retrieve vaulted payment information in order to pay for this current order.
+     * @type {string}
+     * @memberof ChannelPartnerOrder
+     */
+    use_prior_payment_information_from_order_id?: string;
 }
 /**
  * @export
