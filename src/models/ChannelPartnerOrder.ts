@@ -584,6 +584,12 @@ export interface ChannelPartnerOrder {
      * @memberof ChannelPartnerOrder
      */
     treat_warnings_as_errors?: boolean;
+    /**
+     * An Order Id from a prior purchase of this customer which is used to retrieve vaulted payment information in order to pay for this current order.
+     * @type {string}
+     * @memberof ChannelPartnerOrder
+     */
+    use_prior_payment_information_from_order_id?: string;
 }
 
 
@@ -727,6 +733,7 @@ export function ChannelPartnerOrderFromJSONTyped(json: any, ignoreDiscriminator:
         'tax_exempt': !exists(json, 'tax_exempt') ? undefined : json['tax_exempt'],
         'transaction': !exists(json, 'transaction') ? undefined : ChannelPartnerOrderTransactionFromJSON(json['transaction']),
         'treat_warnings_as_errors': !exists(json, 'treat_warnings_as_errors') ? undefined : json['treat_warnings_as_errors'],
+        'use_prior_payment_information_from_order_id': !exists(json, 'use_prior_payment_information_from_order_id') ? undefined : json['use_prior_payment_information_from_order_id'],
     };
 }
 
@@ -831,6 +838,7 @@ export function ChannelPartnerOrderToJSON(value?: ChannelPartnerOrder | null): a
         'tax_exempt': value.tax_exempt,
         'transaction': ChannelPartnerOrderTransactionToJSON(value.transaction),
         'treat_warnings_as_errors': value.treat_warnings_as_errors,
+        'use_prior_payment_information_from_order_id': value.use_prior_payment_information_from_order_id,
     };
 }
 
