@@ -46148,7 +46148,7 @@ export const AutoOrderApiFetchParamCreator = function (configuration?: Configura
         /**
          * Completely pause an auto order 
          * @summary Pause auto order
-         * @param {AutoOrder} auto_order Auto orders to pause
+         * @param {AutoOrder} auto_order Auto order to pause
          * @param {number} auto_order_oid The auto order oid to pause.
          * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
          * @param {*} [options] Override http request option.
@@ -46565,7 +46565,7 @@ export const AutoOrderApiFp = function(configuration?: Configuration) {
         /**
          * Completely pause an auto order 
          * @summary Pause auto order
-         * @param {AutoOrder} auto_order Auto orders to pause
+         * @param {AutoOrder} auto_order Auto order to pause
          * @param {number} auto_order_oid The auto order oid to pause.
          * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
          * @param {*} [options] Override http request option.
@@ -46758,7 +46758,7 @@ export const AutoOrderApiFactory = function (configuration?: Configuration, fetc
         /**
          * Completely pause an auto order 
          * @summary Pause auto order
-         * @param {AutoOrder} auto_order Auto orders to pause
+         * @param {AutoOrder} auto_order Auto order to pause
          * @param {number} auto_order_oid The auto order oid to pause.
          * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
          * @param {*} [options] Override http request option.
@@ -46918,7 +46918,7 @@ export interface AutoOrderApiInterface {
     /**
      * Completely pause an auto order 
      * @summary Pause auto order
-     * @param {AutoOrder} auto_order Auto orders to pause
+     * @param {AutoOrder} auto_order Auto order to pause
      * @param {number} auto_order_oid The auto order oid to pause.
      * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
      * @param {*} [options] Override http request option.
@@ -47094,7 +47094,7 @@ export class AutoOrderApi extends BaseAPI implements AutoOrderApiInterface {
     /**
      * Completely pause an auto order 
      * @summary Pause auto order
-     * @param {AutoOrder} auto_order Auto orders to pause
+     * @param {AutoOrder} auto_order Auto order to pause
      * @param {number} auto_order_oid The auto order oid to pause.
      * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
      * @param {*} [options] Override http request option.

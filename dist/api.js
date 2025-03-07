@@ -2689,7 +2689,7 @@ var AutoOrderApiFetchParamCreator = function (configuration) {
         /**
          * Completely pause an auto order
          * @summary Pause auto order
-         * @param {AutoOrder} auto_order Auto orders to pause
+         * @param {AutoOrder} auto_order Auto order to pause
          * @param {number} auto_order_oid The auto order oid to pause.
          * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
          * @param {*} [options] Override http request option.
@@ -3087,7 +3087,7 @@ var AutoOrderApiFp = function (configuration) {
         /**
          * Completely pause an auto order
          * @summary Pause auto order
-         * @param {AutoOrder} auto_order Auto orders to pause
+         * @param {AutoOrder} auto_order Auto order to pause
          * @param {number} auto_order_oid The auto order oid to pause.
          * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
          * @param {*} [options] Override http request option.
@@ -3283,7 +3283,7 @@ var AutoOrderApiFactory = function (configuration, fetch, basePath) {
         /**
          * Completely pause an auto order
          * @summary Pause auto order
-         * @param {AutoOrder} auto_order Auto orders to pause
+         * @param {AutoOrder} auto_order Auto order to pause
          * @param {number} auto_order_oid The auto order oid to pause.
          * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
          * @param {*} [options] Override http request option.
@@ -3456,7 +3456,7 @@ var AutoOrderApi = /** @class */ (function (_super) {
     /**
      * Completely pause an auto order
      * @summary Pause auto order
-     * @param {AutoOrder} auto_order Auto orders to pause
+     * @param {AutoOrder} auto_order Auto order to pause
      * @param {number} auto_order_oid The auto order oid to pause.
      * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
      * @param {*} [options] Override http request option.
