@@ -1,49 +1,78 @@
-## ultracart_rest_api_v2_typescript@4.1.3
+# UltraCart Typescript SDK
+## ultracart_rest_api_v2_typescript@4.1.4
 
-This generator creates TypeScript/JavaScript client that utilizes [Fetch API](https://fetch.spec.whatwg.org/). The generated Node module can be used in the following environments:
+Every API method call has a sample for every language SDK.  See https://github.com/UltraCart/sdk_samples
 
-Environment
-* Node.js
-* Webpack
-* Browserify
-
-Language level
-* ES5 - you must have a Promises/A+ library installed
-* ES6
-
-Module system
-* CommonJS
-* ES6 module system
-
-It can be used in both TypeScript and JavaScript. In TypeScript, the definition should be automatically resolved via `package.json`. ([Reference](http://www.typescriptlang.org/docs/handbook/typings-for-npm-packages.html))
-
-### Building
-
-To build and compile the typescript sources to javascript use:
-```
-npm install
-npm run build
-```
-
-### Publishing
-
-First build the package then run ```npm publish```
-
-### Consuming
-
-navigate to the folder of your consuming project and run one of the following commands.
-
-_published:_
+Installation
 
 ```
-npm install ultracart_rest_api_v2_typescript@4.1.3 --save
+npm install ultracart_rest_api_v2_typescript@4.1.4 --save
 ```
 
-_unPublished (not recommended):_
+```typescript
+import {orderApi} from '../api';
+import {OrderResponse, Order} from 'ultracart_rest_api_v2_typescript';
 
-```
-npm install PATH_TO_GENERATED_PACKAGE --save
-\n\n
+export class GetOrder {
+    /**
+     * OrderApi.getOrder() retrieves a single order for a given order_id.
+     */
+    public static async execute(): Promise<Order | undefined> {
+        // The expansion variable instructs UltraCart how much information to return.  The order object is large and
+        // while it's easily manageable for a single order, when querying thousands of orders, is useful to reduce
+        // payload size.
+        // see www.ultracart.com/api/ for all the expansion fields available (this list below may become stale)
+        /*
+        Possible Order Expansions:
+        affiliate           affiliate.ledger                    auto_order
+        billing             channel_partner                     checkout
+        coupon              customer_profile                    digital_order
+        edi                 fraud_score                         gift
+        gift_certificate    internal                            item
+        linked_shipment     marketing                           payment
+        payment.transaction quote                               salesforce
+        shipping            shipping.tracking_number_details    summary
+        taxes
+        */
+        const expansion = 'item,summary,billing,shipping,shipping.tracking_number_details';
+
+        const orderId = 'DEMO-0009104390';
+
+        try {
+            // Retrieve the order
+            const apiResponse: OrderResponse = await orderApi.getOrder({orderId, expand: expansion});
+
+            // Check for errors
+            if (apiResponse.error) {
+                console.error('Developer Message:', apiResponse.error.developer_message);
+                console.error('User Message:', apiResponse.error.user_message);
+                throw new Error('Failed to retrieve order');
+            }
+
+            // Ensure order exists
+            if (!apiResponse.order) {
+                console.error('No order found');
+                return undefined;
+            }
+
+            // Pretty print the order
+            console.log(JSON.stringify(apiResponse.order, null, 2));
+
+            return apiResponse.order;
+        } catch (error) {
+            console.error('Error retrieving order:', error);
+            process.exit(1);
+        }
+    }
+}
+
+// Optional: If you want to call the method
+// GetOrder.execute().then(order => {
+//     if (order) {
+//         // Do something with the order
+//     }
+// });
+```\n\n
 ```
 \n\n
 
@@ -54,6 +83,7 @@ Not every change is committed to every SDK.
 
 | Version | Date | Comments |
 | --: | :-: | --- |
+| 4.1.4 | 03/07/2025 | updated github readme.md |
 | 4.1.3 | 03/07/2025 | updated github readme.md files |
 | 4.1.2 | 03/05/2025 | added ChannelPartnerOrder.use_prior_payment_information_from_order_id |
 | 4.1.1 | 02/28/2025 | auto order pause method |
