@@ -39,6 +39,26 @@ export interface CouponPercentOffSubtotalLimit {
     limit?: number;
 }
 
+// Define the constant array of keys
+const MY_INTERFACE_KEYS: (keyof CouponPercentOffSubtotalLimit)[] = ["currency_code", "discount_percent", "limit"];
+
+// Exported function to check for excess properties
+export function hasExcessProperties(obj: any): boolean {
+  const objKeys = Object.keys(obj);
+  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
+}
+
+
+
+/**
+ * Check if a given object implements the CouponPercentOffSubtotalLimit interface.
+ */
+export function instanceOfCouponPercentOffSubtotalLimit(value: object): boolean {
+    let isInstance = true;
+
+    return isInstance;
+}
+
 export function CouponPercentOffSubtotalLimitFromJSON(json: any): CouponPercentOffSubtotalLimit {
     return CouponPercentOffSubtotalLimitFromJSONTyped(json, false);
 }

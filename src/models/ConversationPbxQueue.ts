@@ -154,6 +154,26 @@ export interface ConversationPbxQueue {
     wrap_up_seconds?: number;
 }
 
+// Define the constant array of keys
+const MY_INTERFACE_KEYS: (keyof ConversationPbxQueue)[] = ["announce_queue_position", "conversation_pbx_queue_uuid", "conversation_voicemail_mailbox_uuid", "hold_conversation_pbx_audio_uuid", "max_hold_seconds", "members", "merchant_id", "name", "no_agent_available_play_audio_uuid", "no_agent_available_say", "no_agent_available_say_voice", "play_audio_uuid", "record_call", "say", "say_voice", "twilio_taskrouter_workflow_sid", "twilio_workspace_queue_sid", "voicemail", "wait_critical_seconds", "wait_warning_seconds", "wrap_up_seconds"];
+
+// Exported function to check for excess properties
+export function hasExcessProperties(obj: any): boolean {
+  const objKeys = Object.keys(obj);
+  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
+}
+
+
+
+/**
+ * Check if a given object implements the ConversationPbxQueue interface.
+ */
+export function instanceOfConversationPbxQueue(value: object): boolean {
+    let isInstance = true;
+
+    return isInstance;
+}
+
 export function ConversationPbxQueueFromJSON(json: any): ConversationPbxQueue {
     return ConversationPbxQueueFromJSONTyped(json, false);
 }

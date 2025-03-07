@@ -45,6 +45,16 @@ export interface ReportPageVisualizationMetric {
     round?: number;
 }
 
+// Define the constant array of keys
+const MY_INTERFACE_KEYS: (keyof ReportPageVisualizationMetric)[] = ["aggregation", "as", "column", "round"];
+
+// Exported function to check for excess properties
+export function hasExcessProperties(obj: any): boolean {
+  const objKeys = Object.keys(obj);
+  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
+}
+
+
 
 /**
  * @export
@@ -59,6 +69,15 @@ export const ReportPageVisualizationMetricAggregationEnum = {
 } as const;
 export type ReportPageVisualizationMetricAggregationEnum = typeof ReportPageVisualizationMetricAggregationEnum[keyof typeof ReportPageVisualizationMetricAggregationEnum];
 
+
+/**
+ * Check if a given object implements the ReportPageVisualizationMetric interface.
+ */
+export function instanceOfReportPageVisualizationMetric(value: object): boolean {
+    let isInstance = true;
+
+    return isInstance;
+}
 
 export function ReportPageVisualizationMetricFromJSON(json: any): ReportPageVisualizationMetric {
     return ReportPageVisualizationMetricFromJSONTyped(json, false);

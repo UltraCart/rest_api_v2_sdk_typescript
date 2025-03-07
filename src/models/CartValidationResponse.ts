@@ -40,6 +40,26 @@ export interface CartValidationResponse {
     errors?: Array<string>;
 }
 
+// Define the constant array of keys
+const MY_INTERFACE_KEYS: (keyof CartValidationResponse)[] = ["cart", "errors"];
+
+// Exported function to check for excess properties
+export function hasExcessProperties(obj: any): boolean {
+  const objKeys = Object.keys(obj);
+  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
+}
+
+
+
+/**
+ * Check if a given object implements the CartValidationResponse interface.
+ */
+export function instanceOfCartValidationResponse(value: object): boolean {
+    let isInstance = true;
+
+    return isInstance;
+}
+
 export function CartValidationResponseFromJSON(json: any): CartValidationResponse {
     return CartValidationResponseFromJSONTyped(json, false);
 }

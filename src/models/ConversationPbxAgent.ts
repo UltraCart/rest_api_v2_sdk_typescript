@@ -117,6 +117,26 @@ export interface ConversationPbxAgent {
     voicemail?: boolean;
 }
 
+// Define the constant array of keys
+const MY_INTERFACE_KEYS: (keyof ConversationPbxAgent)[] = ["cellphone", "conversation_pbx_agent_uuid", "extension", "forward_calls_to_cellphone", "full_name", "login", "merchant_id", "personal_conversation_pbx_voicemail_mailbox_uuid", "record_outgoing_automatically", "shared_conversation_pbx_voicemail_mailbox_uuid", "twilio_taskrouter_worker_id", "unavailable_play_audio_uuid", "unavailable_say", "unavailable_say_voice", "user_id", "voicemail"];
+
+// Exported function to check for excess properties
+export function hasExcessProperties(obj: any): boolean {
+  const objKeys = Object.keys(obj);
+  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
+}
+
+
+
+/**
+ * Check if a given object implements the ConversationPbxAgent interface.
+ */
+export function instanceOfConversationPbxAgent(value: object): boolean {
+    let isInstance = true;
+
+    return isInstance;
+}
+
 export function ConversationPbxAgentFromJSON(json: any): ConversationPbxAgent {
     return ConversationPbxAgentFromJSONTyped(json, false);
 }

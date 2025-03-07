@@ -112,6 +112,16 @@ export interface OrderItemOption {
     width?: Distance;
 }
 
+// Define the constant array of keys
+const MY_INTERFACE_KEYS: (keyof OrderItemOption)[] = ["additional_dimension_application", "cost_change", "file_attachment", "height", "hidden", "label", "length", "one_time_fee", "value", "weight_change", "width"];
+
+// Exported function to check for excess properties
+export function hasExcessProperties(obj: any): boolean {
+  const objKeys = Object.keys(obj);
+  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
+}
+
+
 
 /**
  * @export
@@ -123,6 +133,15 @@ export const OrderItemOptionAdditionalDimensionApplicationEnum = {
 } as const;
 export type OrderItemOptionAdditionalDimensionApplicationEnum = typeof OrderItemOptionAdditionalDimensionApplicationEnum[keyof typeof OrderItemOptionAdditionalDimensionApplicationEnum];
 
+
+/**
+ * Check if a given object implements the OrderItemOption interface.
+ */
+export function instanceOfOrderItemOption(value: object): boolean {
+    let isInstance = true;
+
+    return isInstance;
+}
 
 export function OrderItemOptionFromJSON(json: any): OrderItemOption {
     return OrderItemOptionFromJSONTyped(json, false);

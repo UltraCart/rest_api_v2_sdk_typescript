@@ -70,6 +70,26 @@ export interface OrderPackingSlipResponse {
     warning?: Warning;
 }
 
+// Define the constant array of keys
+const MY_INTERFACE_KEYS: (keyof OrderPackingSlipResponse)[] = ["error", "metadata", "pdfBase64", "success", "warning"];
+
+// Exported function to check for excess properties
+export function hasExcessProperties(obj: any): boolean {
+  const objKeys = Object.keys(obj);
+  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
+}
+
+
+
+/**
+ * Check if a given object implements the OrderPackingSlipResponse interface.
+ */
+export function instanceOfOrderPackingSlipResponse(value: object): boolean {
+    let isInstance = true;
+
+    return isInstance;
+}
+
 export function OrderPackingSlipResponseFromJSON(json: any): OrderPackingSlipResponse {
     return OrderPackingSlipResponseFromJSONTyped(json, false);
 }

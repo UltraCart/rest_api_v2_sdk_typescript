@@ -130,6 +130,26 @@ export interface AccountsReceivableRetryConfig {
     trial_mode_expiration_dts?: string;
 }
 
+// Define the constant array of keys
+const MY_INTERFACE_KEYS: (keyof AccountsReceivableRetryConfig)[] = ["active", "allow_process_linked_accounts", "cancel_auto_order", "current_service_plan", "daily_activity_list", "managed_by_linked_account_merchant_id", "merchant_id", "notify_emails", "notify_rejections", "notify_successes", "process_linked_accounts", "processing_percentage", "reject_at_end", "transaction_rejects", "trial_mode", "trial_mode_expiration_dts"];
+
+// Exported function to check for excess properties
+export function hasExcessProperties(obj: any): boolean {
+  const objKeys = Object.keys(obj);
+  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
+}
+
+
+
+/**
+ * Check if a given object implements the AccountsReceivableRetryConfig interface.
+ */
+export function instanceOfAccountsReceivableRetryConfig(value: object): boolean {
+    let isInstance = true;
+
+    return isInstance;
+}
+
 export function AccountsReceivableRetryConfigFromJSON(json: any): AccountsReceivableRetryConfig {
     return AccountsReceivableRetryConfigFromJSONTyped(json, false);
 }

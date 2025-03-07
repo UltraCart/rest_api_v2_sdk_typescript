@@ -99,6 +99,16 @@ export interface ConversationPbxVoicemailMessage {
     voicemail_dts?: string;
 }
 
+// Define the constant array of keys
+const MY_INTERFACE_KEYS: (keyof ConversationPbxVoicemailMessage)[] = ["call_sid", "duration", "from", "from_caller_id", "listened", "merchant_id", "recording_sid", "recording_size_bytes", "recording_status", "recording_url", "transcript_json", "transcript_text", "voicemail_dts"];
+
+// Exported function to check for excess properties
+export function hasExcessProperties(obj: any): boolean {
+  const objKeys = Object.keys(obj);
+  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
+}
+
+
 
 /**
  * @export
@@ -108,6 +118,15 @@ export const ConversationPbxVoicemailMessageRecordingStatusEnum = {
 } as const;
 export type ConversationPbxVoicemailMessageRecordingStatusEnum = typeof ConversationPbxVoicemailMessageRecordingStatusEnum[keyof typeof ConversationPbxVoicemailMessageRecordingStatusEnum];
 
+
+/**
+ * Check if a given object implements the ConversationPbxVoicemailMessage interface.
+ */
+export function instanceOfConversationPbxVoicemailMessage(value: object): boolean {
+    let isInstance = true;
+
+    return isInstance;
+}
 
 export function ConversationPbxVoicemailMessageFromJSON(json: any): ConversationPbxVoicemailMessage {
     return ConversationPbxVoicemailMessageFromJSONTyped(json, false);

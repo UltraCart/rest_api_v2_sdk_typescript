@@ -45,6 +45,26 @@ export interface PointOfSaleRegister {
     pos_register_oid?: number;
 }
 
+// Define the constant array of keys
+const MY_INTERFACE_KEYS: (keyof PointOfSaleRegister)[] = ["merchant_id", "name", "pos_location_oid", "pos_register_oid"];
+
+// Exported function to check for excess properties
+export function hasExcessProperties(obj: any): boolean {
+  const objKeys = Object.keys(obj);
+  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
+}
+
+
+
+/**
+ * Check if a given object implements the PointOfSaleRegister interface.
+ */
+export function instanceOfPointOfSaleRegister(value: object): boolean {
+    let isInstance = true;
+
+    return isInstance;
+}
+
 export function PointOfSaleRegisterFromJSON(json: any): PointOfSaleRegister {
     return PointOfSaleRegisterFromJSONTyped(json, false);
 }

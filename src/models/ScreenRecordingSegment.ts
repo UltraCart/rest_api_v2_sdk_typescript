@@ -88,6 +88,26 @@ export interface ScreenRecordingSegment {
     session_count_last_update_dts?: string;
 }
 
+// Define the constant array of keys
+const MY_INTERFACE_KEYS: (keyof ScreenRecordingSegment)[] = ["create_dts", "description", "filter", "histogram_data", "histogram_interval", "histogram_start_dts", "name", "screen_recording_segment_oid", "session_count", "session_count_last_update_dts"];
+
+// Exported function to check for excess properties
+export function hasExcessProperties(obj: any): boolean {
+  const objKeys = Object.keys(obj);
+  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
+}
+
+
+
+/**
+ * Check if a given object implements the ScreenRecordingSegment interface.
+ */
+export function instanceOfScreenRecordingSegment(value: object): boolean {
+    let isInstance = true;
+
+    return isInstance;
+}
+
 export function ScreenRecordingSegmentFromJSON(json: any): ScreenRecordingSegment {
     return ScreenRecordingSegmentFromJSONTyped(json, false);
 }

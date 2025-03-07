@@ -39,6 +39,26 @@ export interface OrderQuote {
     quoted_dts?: string;
 }
 
+// Define the constant array of keys
+const MY_INTERFACE_KEYS: (keyof OrderQuote)[] = ["quote_expiration_dts", "quoted_by", "quoted_dts"];
+
+// Exported function to check for excess properties
+export function hasExcessProperties(obj: any): boolean {
+  const objKeys = Object.keys(obj);
+  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
+}
+
+
+
+/**
+ * Check if a given object implements the OrderQuote interface.
+ */
+export function instanceOfOrderQuote(value: object): boolean {
+    let isInstance = true;
+
+    return isInstance;
+}
+
 export function OrderQuoteFromJSON(json: any): OrderQuote {
     return OrderQuoteFromJSONTyped(json, false);
 }

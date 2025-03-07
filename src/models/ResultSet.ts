@@ -57,6 +57,26 @@ export interface ResultSet {
     total_records?: number;
 }
 
+// Define the constant array of keys
+const MY_INTERFACE_KEYS: (keyof ResultSet)[] = ["count", "limit", "more", "next_offset", "offset", "total_records"];
+
+// Exported function to check for excess properties
+export function hasExcessProperties(obj: any): boolean {
+  const objKeys = Object.keys(obj);
+  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
+}
+
+
+
+/**
+ * Check if a given object implements the ResultSet interface.
+ */
+export function instanceOfResultSet(value: object): boolean {
+    let isInstance = true;
+
+    return isInstance;
+}
+
 export function ResultSetFromJSON(json: any): ResultSet {
     return ResultSetFromJSONTyped(json, false);
 }

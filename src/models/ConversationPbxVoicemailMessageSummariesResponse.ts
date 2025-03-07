@@ -76,6 +76,26 @@ export interface ConversationPbxVoicemailMessageSummariesResponse {
     warning?: Warning;
 }
 
+// Define the constant array of keys
+const MY_INTERFACE_KEYS: (keyof ConversationPbxVoicemailMessageSummariesResponse)[] = ["error", "metadata", "success", "voicemail_message_summaries", "warning"];
+
+// Exported function to check for excess properties
+export function hasExcessProperties(obj: any): boolean {
+  const objKeys = Object.keys(obj);
+  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
+}
+
+
+
+/**
+ * Check if a given object implements the ConversationPbxVoicemailMessageSummariesResponse interface.
+ */
+export function instanceOfConversationPbxVoicemailMessageSummariesResponse(value: object): boolean {
+    let isInstance = true;
+
+    return isInstance;
+}
+
 export function ConversationPbxVoicemailMessageSummariesResponseFromJSON(json: any): ConversationPbxVoicemailMessageSummariesResponse {
     return ConversationPbxVoicemailMessageSummariesResponseFromJSONTyped(json, false);
 }

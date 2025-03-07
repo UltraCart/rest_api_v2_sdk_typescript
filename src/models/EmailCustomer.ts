@@ -69,6 +69,26 @@ export interface EmailCustomer {
     list_uuids?: Array<string>;
 }
 
+// Define the constant array of keys
+const MY_INTERFACE_KEYS: (keyof EmailCustomer)[] = ["active", "email", "email_customer_uuid", "first_name", "global_unsubscribe", "last_interaction_dts", "last_name", "list_uuids"];
+
+// Exported function to check for excess properties
+export function hasExcessProperties(obj: any): boolean {
+  const objKeys = Object.keys(obj);
+  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
+}
+
+
+
+/**
+ * Check if a given object implements the EmailCustomer interface.
+ */
+export function instanceOfEmailCustomer(value: object): boolean {
+    let isInstance = true;
+
+    return isInstance;
+}
+
 export function EmailCustomerFromJSON(json: any): EmailCustomer {
     return EmailCustomerFromJSONTyped(json, false);
 }

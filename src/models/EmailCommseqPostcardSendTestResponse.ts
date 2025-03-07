@@ -82,6 +82,26 @@ export interface EmailCommseqPostcardSendTestResponse {
     warning?: Warning;
 }
 
+// Define the constant array of keys
+const MY_INTERFACE_KEYS: (keyof EmailCommseqPostcardSendTestResponse)[] = ["backThumbnail", "error", "frontThumbnail", "metadata", "renderedPdf", "success", "warning"];
+
+// Exported function to check for excess properties
+export function hasExcessProperties(obj: any): boolean {
+  const objKeys = Object.keys(obj);
+  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
+}
+
+
+
+/**
+ * Check if a given object implements the EmailCommseqPostcardSendTestResponse interface.
+ */
+export function instanceOfEmailCommseqPostcardSendTestResponse(value: object): boolean {
+    let isInstance = true;
+
+    return isInstance;
+}
+
 export function EmailCommseqPostcardSendTestResponseFromJSON(json: any): EmailCommseqPostcardSendTestResponse {
     return EmailCommseqPostcardSendTestResponseFromJSONTyped(json, false);
 }

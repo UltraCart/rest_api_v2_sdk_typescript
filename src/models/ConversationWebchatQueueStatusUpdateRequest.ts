@@ -27,6 +27,16 @@ export interface ConversationWebchatQueueStatusUpdateRequest {
     agent_status?: ConversationWebchatQueueStatusUpdateRequestAgentStatusEnum;
 }
 
+// Define the constant array of keys
+const MY_INTERFACE_KEYS: (keyof ConversationWebchatQueueStatusUpdateRequest)[] = ["agent_status"];
+
+// Exported function to check for excess properties
+export function hasExcessProperties(obj: any): boolean {
+  const objKeys = Object.keys(obj);
+  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
+}
+
+
 
 /**
  * @export
@@ -38,6 +48,15 @@ export const ConversationWebchatQueueStatusUpdateRequestAgentStatusEnum = {
 } as const;
 export type ConversationWebchatQueueStatusUpdateRequestAgentStatusEnum = typeof ConversationWebchatQueueStatusUpdateRequestAgentStatusEnum[keyof typeof ConversationWebchatQueueStatusUpdateRequestAgentStatusEnum];
 
+
+/**
+ * Check if a given object implements the ConversationWebchatQueueStatusUpdateRequest interface.
+ */
+export function instanceOfConversationWebchatQueueStatusUpdateRequest(value: object): boolean {
+    let isInstance = true;
+
+    return isInstance;
+}
 
 export function ConversationWebchatQueueStatusUpdateRequestFromJSON(json: any): ConversationWebchatQueueStatusUpdateRequest {
     return ConversationWebchatQueueStatusUpdateRequestFromJSONTyped(json, false);

@@ -112,6 +112,16 @@ export interface ItemOption {
     values?: Array<ItemOptionValue>;
 }
 
+// Define the constant array of keys
+const MY_INTERFACE_KEYS: (keyof ItemOption)[] = ["cost_if_specified", "cost_per_letter", "cost_per_line", "ignore_if_default", "label", "label_translated_text_instance_oid", "name", "name_translated_text_instance_oid", "one_time_fee", "option_oid", "required", "system_option", "type", "values"];
+
+// Exported function to check for excess properties
+export function hasExcessProperties(obj: any): boolean {
+  const objKeys = Object.keys(obj);
+  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
+}
+
+
 
 /**
  * @export
@@ -127,6 +137,15 @@ export const ItemOptionTypeEnum = {
 } as const;
 export type ItemOptionTypeEnum = typeof ItemOptionTypeEnum[keyof typeof ItemOptionTypeEnum];
 
+
+/**
+ * Check if a given object implements the ItemOption interface.
+ */
+export function instanceOfItemOption(value: object): boolean {
+    let isInstance = true;
+
+    return isInstance;
+}
 
 export function ItemOptionFromJSON(json: any): ItemOption {
     return ItemOptionFromJSONTyped(json, false);

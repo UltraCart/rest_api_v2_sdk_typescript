@@ -279,6 +279,16 @@ export interface OrderQuery {
     total?: number;
 }
 
+// Define the constant array of keys
+const MY_INTERFACE_KEYS: (keyof OrderQuery)[] = ["cc_email", "channel_partner_code", "channel_partner_order_id", "city", "company", "country_code", "creation_date_begin", "creation_date_end", "current_stage", "custom_field_1", "custom_field_10", "custom_field_2", "custom_field_3", "custom_field_4", "custom_field_5", "custom_field_6", "custom_field_7", "custom_field_8", "custom_field_9", "customer_profile_oid", "email", "first_name", "item_id", "last_name", "order_id", "payment_date_begin", "payment_date_end", "payment_method", "phone", "postal_code", "purchase_order_number", "query_target", "refund_date_begin", "refund_date_end", "rma", "screen_branding_theme_code", "shipment_date_begin", "shipment_date_end", "shipped_on_date_begin", "shipped_on_date_end", "state_region", "storefront_host_name", "total"];
+
+// Exported function to check for excess properties
+export function hasExcessProperties(obj: any): boolean {
+  const objKeys = Object.keys(obj);
+  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
+}
+
+
 
 /**
  * @export
@@ -331,6 +341,15 @@ export const OrderQueryQueryTargetEnum = {
 } as const;
 export type OrderQueryQueryTargetEnum = typeof OrderQueryQueryTargetEnum[keyof typeof OrderQueryQueryTargetEnum];
 
+
+/**
+ * Check if a given object implements the OrderQuery interface.
+ */
+export function instanceOfOrderQuery(value: object): boolean {
+    let isInstance = true;
+
+    return isInstance;
+}
 
 export function OrderQueryFromJSON(json: any): OrderQuery {
     return OrderQueryFromJSONTyped(json, false);

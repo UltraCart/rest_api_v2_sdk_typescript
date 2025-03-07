@@ -111,6 +111,26 @@ export interface EmailCommseqSequenceTestRequest {
     state?: string;
 }
 
+// Define the constant array of keys
+const MY_INTERFACE_KEYS: (keyof EmailCommseqSequenceTestRequest)[] = ["address_1", "address_2", "cart_id", "cart_item_ids", "city", "esp_commseq_uuid", "mail_card", "name", "order_id", "please_review", "postal_code", "send_to_cellphone_e164", "send_to_email", "send_to_logged_in_user", "state"];
+
+// Exported function to check for excess properties
+export function hasExcessProperties(obj: any): boolean {
+  const objKeys = Object.keys(obj);
+  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
+}
+
+
+
+/**
+ * Check if a given object implements the EmailCommseqSequenceTestRequest interface.
+ */
+export function instanceOfEmailCommseqSequenceTestRequest(value: object): boolean {
+    let isInstance = true;
+
+    return isInstance;
+}
+
 export function EmailCommseqSequenceTestRequestFromJSON(json: any): EmailCommseqSequenceTestRequest {
     return EmailCommseqSequenceTestRequestFromJSONTyped(json, false);
 }

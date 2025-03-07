@@ -70,6 +70,26 @@ export interface ThumbnailParametersResponse {
     warning?: Warning;
 }
 
+// Define the constant array of keys
+const MY_INTERFACE_KEYS: (keyof ThumbnailParametersResponse)[] = ["error", "metadata", "success", "thumbnail_url_suffix", "warning"];
+
+// Exported function to check for excess properties
+export function hasExcessProperties(obj: any): boolean {
+  const objKeys = Object.keys(obj);
+  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
+}
+
+
+
+/**
+ * Check if a given object implements the ThumbnailParametersResponse interface.
+ */
+export function instanceOfThumbnailParametersResponse(value: object): boolean {
+    let isInstance = true;
+
+    return isInstance;
+}
+
 export function ThumbnailParametersResponseFromJSON(json: any): ThumbnailParametersResponse {
     return ThumbnailParametersResponseFromJSONTyped(json, false);
 }

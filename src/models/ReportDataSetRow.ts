@@ -34,6 +34,26 @@ export interface ReportDataSetRow {
     c?: Array<ReportDataSetColumn>;
 }
 
+// Define the constant array of keys
+const MY_INTERFACE_KEYS: (keyof ReportDataSetRow)[] = ["c"];
+
+// Exported function to check for excess properties
+export function hasExcessProperties(obj: any): boolean {
+  const objKeys = Object.keys(obj);
+  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
+}
+
+
+
+/**
+ * Check if a given object implements the ReportDataSetRow interface.
+ */
+export function instanceOfReportDataSetRow(value: object): boolean {
+    let isInstance = true;
+
+    return isInstance;
+}
+
 export function ReportDataSetRowFromJSON(json: any): ReportDataSetRow {
     return ReportDataSetRowFromJSONTyped(json, false);
 }

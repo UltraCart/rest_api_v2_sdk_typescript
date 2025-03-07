@@ -27,6 +27,26 @@ export interface AutoOrderManagement {
     update_billing_url?: string;
 }
 
+// Define the constant array of keys
+const MY_INTERFACE_KEYS: (keyof AutoOrderManagement)[] = ["update_billing_url"];
+
+// Exported function to check for excess properties
+export function hasExcessProperties(obj: any): boolean {
+  const objKeys = Object.keys(obj);
+  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
+}
+
+
+
+/**
+ * Check if a given object implements the AutoOrderManagement interface.
+ */
+export function instanceOfAutoOrderManagement(value: object): boolean {
+    let isInstance = true;
+
+    return isInstance;
+}
+
 export function AutoOrderManagementFromJSON(json: any): AutoOrderManagement {
     return AutoOrderManagementFromJSONTyped(json, false);
 }

@@ -64,6 +64,26 @@ export interface BaseResponse {
     warning?: Warning;
 }
 
+// Define the constant array of keys
+const MY_INTERFACE_KEYS: (keyof BaseResponse)[] = ["error", "metadata", "success", "warning"];
+
+// Exported function to check for excess properties
+export function hasExcessProperties(obj: any): boolean {
+  const objKeys = Object.keys(obj);
+  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
+}
+
+
+
+/**
+ * Check if a given object implements the BaseResponse interface.
+ */
+export function instanceOfBaseResponse(value: object): boolean {
+    let isInstance = true;
+
+    return isInstance;
+}
+
 export function BaseResponseFromJSON(json: any): BaseResponse {
     return BaseResponseFromJSONTyped(json, false);
 }

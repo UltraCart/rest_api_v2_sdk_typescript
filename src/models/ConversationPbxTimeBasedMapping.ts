@@ -45,6 +45,16 @@ export interface ConversationPbxTimeBasedMapping {
     time_range_uuid?: string;
 }
 
+// Define the constant array of keys
+const MY_INTERFACE_KEYS: (keyof ConversationPbxTimeBasedMapping)[] = ["action", "action_target", "name", "time_range_uuid"];
+
+// Exported function to check for excess properties
+export function hasExcessProperties(obj: any): boolean {
+  const objKeys = Object.keys(obj);
+  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
+}
+
+
 
 /**
  * @export
@@ -58,6 +68,15 @@ export const ConversationPbxTimeBasedMappingActionEnum = {
 } as const;
 export type ConversationPbxTimeBasedMappingActionEnum = typeof ConversationPbxTimeBasedMappingActionEnum[keyof typeof ConversationPbxTimeBasedMappingActionEnum];
 
+
+/**
+ * Check if a given object implements the ConversationPbxTimeBasedMapping interface.
+ */
+export function instanceOfConversationPbxTimeBasedMapping(value: object): boolean {
+    let isInstance = true;
+
+    return isInstance;
+}
 
 export function ConversationPbxTimeBasedMappingFromJSON(json: any): ConversationPbxTimeBasedMapping {
     return ConversationPbxTimeBasedMappingFromJSONTyped(json, false);

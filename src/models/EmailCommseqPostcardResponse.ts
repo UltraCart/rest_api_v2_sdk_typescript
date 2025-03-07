@@ -76,6 +76,26 @@ export interface EmailCommseqPostcardResponse {
     warning?: Warning;
 }
 
+// Define the constant array of keys
+const MY_INTERFACE_KEYS: (keyof EmailCommseqPostcardResponse)[] = ["error", "metadata", "postcard", "success", "warning"];
+
+// Exported function to check for excess properties
+export function hasExcessProperties(obj: any): boolean {
+  const objKeys = Object.keys(obj);
+  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
+}
+
+
+
+/**
+ * Check if a given object implements the EmailCommseqPostcardResponse interface.
+ */
+export function instanceOfEmailCommseqPostcardResponse(value: object): boolean {
+    let isInstance = true;
+
+    return isInstance;
+}
+
 export function EmailCommseqPostcardResponseFromJSON(json: any): EmailCommseqPostcardResponse {
     return EmailCommseqPostcardResponseFromJSONTyped(json, false);
 }

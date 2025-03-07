@@ -99,6 +99,26 @@ export interface ConversationParticipant {
     unread_messages?: number;
 }
 
+// Define the constant array of keys
+const MY_INTERFACE_KEYS: (keyof ConversationParticipant)[] = ["conversation_participant_arn", "conversation_participant_name", "conversation_participant_uuid", "email", "joined_dts", "language_iso_code", "last_message_dts", "left_dts", "profile_image_url", "sms_phone_number", "status", "timezone", "unread_messages"];
+
+// Exported function to check for excess properties
+export function hasExcessProperties(obj: any): boolean {
+  const objKeys = Object.keys(obj);
+  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
+}
+
+
+
+/**
+ * Check if a given object implements the ConversationParticipant interface.
+ */
+export function instanceOfConversationParticipant(value: object): boolean {
+    let isInstance = true;
+
+    return isInstance;
+}
+
 export function ConversationParticipantFromJSON(json: any): ConversationParticipant {
     return ConversationParticipantFromJSONTyped(json, false);
 }

@@ -33,6 +33,16 @@ export interface Weight {
     value?: number;
 }
 
+// Define the constant array of keys
+const MY_INTERFACE_KEYS: (keyof Weight)[] = ["uom", "value"];
+
+// Exported function to check for excess properties
+export function hasExcessProperties(obj: any): boolean {
+  const objKeys = Object.keys(obj);
+  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
+}
+
+
 
 /**
  * @export
@@ -45,6 +55,15 @@ export const WeightUomEnum = {
 } as const;
 export type WeightUomEnum = typeof WeightUomEnum[keyof typeof WeightUomEnum];
 
+
+/**
+ * Check if a given object implements the Weight interface.
+ */
+export function instanceOfWeight(value: object): boolean {
+    let isInstance = true;
+
+    return isInstance;
+}
 
 export function WeightFromJSON(json: any): Weight {
     return WeightFromJSONTyped(json, false);

@@ -154,6 +154,16 @@ export interface AffiliateLedger {
     transaction_state?: AffiliateLedgerTransactionStateEnum;
 }
 
+// Define the constant array of keys
+const MY_INTERFACE_KEYS: (keyof AffiliateLedger)[] = ["affiliate_click_oid", "affiliate_ledger_oid", "affiliate_link_oid", "affiliate_oid", "assigned_by_user", "click", "item_id", "link", "order", "order_id", "original_transaction_dts", "sub_id", "tier_number", "transaction_amount", "transaction_amount_paid", "transaction_dts", "transaction_memo", "transaction_percentage", "transaction_state"];
+
+// Exported function to check for excess properties
+export function hasExcessProperties(obj: any): boolean {
+  const objKeys = Object.keys(obj);
+  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
+}
+
+
 
 /**
  * @export
@@ -168,6 +178,15 @@ export const AffiliateLedgerTransactionStateEnum = {
 } as const;
 export type AffiliateLedgerTransactionStateEnum = typeof AffiliateLedgerTransactionStateEnum[keyof typeof AffiliateLedgerTransactionStateEnum];
 
+
+/**
+ * Check if a given object implements the AffiliateLedger interface.
+ */
+export function instanceOfAffiliateLedger(value: object): boolean {
+    let isInstance = true;
+
+    return isInstance;
+}
 
 export function AffiliateLedgerFromJSON(json: any): AffiliateLedger {
     return AffiliateLedgerFromJSONTyped(json, false);

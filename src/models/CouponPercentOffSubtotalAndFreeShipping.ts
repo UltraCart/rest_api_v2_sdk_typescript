@@ -33,6 +33,26 @@ export interface CouponPercentOffSubtotalAndFreeShipping {
     shipping_methods?: Array<string>;
 }
 
+// Define the constant array of keys
+const MY_INTERFACE_KEYS: (keyof CouponPercentOffSubtotalAndFreeShipping)[] = ["discount_percent", "shipping_methods"];
+
+// Exported function to check for excess properties
+export function hasExcessProperties(obj: any): boolean {
+  const objKeys = Object.keys(obj);
+  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
+}
+
+
+
+/**
+ * Check if a given object implements the CouponPercentOffSubtotalAndFreeShipping interface.
+ */
+export function instanceOfCouponPercentOffSubtotalAndFreeShipping(value: object): boolean {
+    let isInstance = true;
+
+    return isInstance;
+}
+
 export function CouponPercentOffSubtotalAndFreeShippingFromJSON(json: any): CouponPercentOffSubtotalAndFreeShipping {
     return CouponPercentOffSubtotalAndFreeShippingFromJSONTyped(json, false);
 }

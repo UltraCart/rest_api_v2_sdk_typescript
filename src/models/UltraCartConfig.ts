@@ -39,6 +39,26 @@ export interface UltraCartConfig {
     tax_billing?: boolean;
 }
 
+// Define the constant array of keys
+const MY_INTERFACE_KEYS: (keyof UltraCartConfig)[] = ["exempt_from_colorado_retail_delivery_fee", "exempt_from_minnesota_retail_delivery_fee", "tax_billing"];
+
+// Exported function to check for excess properties
+export function hasExcessProperties(obj: any): boolean {
+  const objKeys = Object.keys(obj);
+  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
+}
+
+
+
+/**
+ * Check if a given object implements the UltraCartConfig interface.
+ */
+export function instanceOfUltraCartConfig(value: object): boolean {
+    let isInstance = true;
+
+    return isInstance;
+}
+
 export function UltraCartConfigFromJSON(json: any): UltraCartConfig {
     return UltraCartConfigFromJSONTyped(json, false);
 }

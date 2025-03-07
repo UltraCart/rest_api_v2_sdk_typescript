@@ -309,6 +309,26 @@ export interface ItemGoogleProductSearch {
     video_starring?: string;
 }
 
+// Define the constant array of keys
+const MY_INTERFACE_KEYS: (keyof ItemGoogleProductSearch)[] = ["adwords_grouping", "adwords_label1", "adwords_label2", "adwords_label3", "adwords_label4", "adwords_label5", "age_group", "available_at_physical_store", "book_author", "book_format", "book_isbn", "book_publisher", "category_description", "color", "condition", "custom_label0", "custom_label1", "custom_label2", "custom_label3", "custom_label4", "gender", "google_product_category", "music_artist", "music_format", "music_release_date", "omit_from_feed", "product_type", "promotion_id1", "promotion_id10", "promotion_id2", "promotion_id3", "promotion_id4", "promotion_id5", "promotion_id6", "promotion_id7", "promotion_id8", "promotion_id9", "search_dts", "search_lowest_price", "search_lowest_url", "search_position", "shippingLabel", "size", "video_director", "video_format", "video_rating", "video_release_date", "video_starring"];
+
+// Exported function to check for excess properties
+export function hasExcessProperties(obj: any): boolean {
+  const objKeys = Object.keys(obj);
+  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
+}
+
+
+
+/**
+ * Check if a given object implements the ItemGoogleProductSearch interface.
+ */
+export function instanceOfItemGoogleProductSearch(value: object): boolean {
+    let isInstance = true;
+
+    return isInstance;
+}
+
 export function ItemGoogleProductSearchFromJSON(json: any): ItemGoogleProductSearch {
     return ItemGoogleProductSearchFromJSONTyped(json, false);
 }

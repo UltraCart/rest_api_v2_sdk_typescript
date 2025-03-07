@@ -63,6 +63,26 @@ export interface CouponPercentOffItemWithItemsQuantityPurchase {
     required_purchase_quantity?: number;
 }
 
+// Define the constant array of keys
+const MY_INTERFACE_KEYS: (keyof CouponPercentOffItemWithItemsQuantityPurchase)[] = ["discount_percent", "item_tags", "items", "limit", "required_purchase_items", "required_purchase_items_tags", "required_purchase_quantity"];
+
+// Exported function to check for excess properties
+export function hasExcessProperties(obj: any): boolean {
+  const objKeys = Object.keys(obj);
+  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
+}
+
+
+
+/**
+ * Check if a given object implements the CouponPercentOffItemWithItemsQuantityPurchase interface.
+ */
+export function instanceOfCouponPercentOffItemWithItemsQuantityPurchase(value: object): boolean {
+    let isInstance = true;
+
+    return isInstance;
+}
+
 export function CouponPercentOffItemWithItemsQuantityPurchaseFromJSON(json: any): CouponPercentOffItemWithItemsQuantityPurchase {
     return CouponPercentOffItemWithItemsQuantityPurchaseFromJSONTyped(json, false);
 }

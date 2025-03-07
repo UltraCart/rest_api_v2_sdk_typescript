@@ -76,6 +76,26 @@ export interface ScreenRecordingHeatmapIndexResponse {
     warning?: Warning;
 }
 
+// Define the constant array of keys
+const MY_INTERFACE_KEYS: (keyof ScreenRecordingHeatmapIndexResponse)[] = ["error", "heatmap_urls", "metadata", "success", "warning"];
+
+// Exported function to check for excess properties
+export function hasExcessProperties(obj: any): boolean {
+  const objKeys = Object.keys(obj);
+  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
+}
+
+
+
+/**
+ * Check if a given object implements the ScreenRecordingHeatmapIndexResponse interface.
+ */
+export function instanceOfScreenRecordingHeatmapIndexResponse(value: object): boolean {
+    let isInstance = true;
+
+    return isInstance;
+}
+
 export function ScreenRecordingHeatmapIndexResponseFromJSON(json: any): ScreenRecordingHeatmapIndexResponse {
     return ScreenRecordingHeatmapIndexResponseFromJSONTyped(json, false);
 }

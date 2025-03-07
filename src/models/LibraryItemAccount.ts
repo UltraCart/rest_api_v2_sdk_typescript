@@ -39,6 +39,26 @@ export interface LibraryItemAccount {
     other_merchant_id?: string;
 }
 
+// Define the constant array of keys
+const MY_INTERFACE_KEYS: (keyof LibraryItemAccount)[] = ["library_item_account_oid", "library_item_oid", "other_merchant_id"];
+
+// Exported function to check for excess properties
+export function hasExcessProperties(obj: any): boolean {
+  const objKeys = Object.keys(obj);
+  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
+}
+
+
+
+/**
+ * Check if a given object implements the LibraryItemAccount interface.
+ */
+export function instanceOfLibraryItemAccount(value: object): boolean {
+    let isInstance = true;
+
+    return isInstance;
+}
+
 export function LibraryItemAccountFromJSON(json: any): LibraryItemAccount {
     return LibraryItemAccountFromJSONTyped(json, false);
 }

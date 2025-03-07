@@ -45,6 +45,26 @@ export interface CartSettingsPaymentCreditCard {
     hosted_fields_shopping_cart_token?: string;
 }
 
+// Define the constant array of keys
+const MY_INTERFACE_KEYS: (keyof CartSettingsPaymentCreditCard)[] = ["collect_credit_card_verification_number", "collect_credit_card_verification_number_minimum", "credit_card_types", "hosted_fields_shopping_cart_token"];
+
+// Exported function to check for excess properties
+export function hasExcessProperties(obj: any): boolean {
+  const objKeys = Object.keys(obj);
+  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
+}
+
+
+
+/**
+ * Check if a given object implements the CartSettingsPaymentCreditCard interface.
+ */
+export function instanceOfCartSettingsPaymentCreditCard(value: object): boolean {
+    let isInstance = true;
+
+    return isInstance;
+}
+
 export function CartSettingsPaymentCreditCardFromJSON(json: any): CartSettingsPaymentCreditCard {
     return CartSettingsPaymentCreditCardFromJSONTyped(json, false);
 }

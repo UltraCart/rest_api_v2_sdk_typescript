@@ -184,6 +184,26 @@ export interface EmailCampaign {
     storefront_oid?: number;
 }
 
+// Define the constant array of keys
+const MY_INTERFACE_KEYS: (keyof EmailCampaign)[] = ["click_rate_formatted", "created_dts", "deleted", "email_campaign_uuid", "email_communication_sequence_uuid", "end_once_customer_purchases", "end_once_customer_purchases_anywhere", "esp_campaign_folder_uuid", "esp_domain_user", "esp_domain_uuid", "esp_friendly_name", "library_item_oid", "memberships", "merchant_id", "name", "open_rate_formatted", "prevent_sending_due_to_spam", "revenue_formatted", "revenue_per_customer_formatted", "scheduled_dts", "screenshot_large_full_url", "sms_esp_twilio_uuid", "sms_phone_number", "status", "status_dts", "storefront_oid"];
+
+// Exported function to check for excess properties
+export function hasExcessProperties(obj: any): boolean {
+  const objKeys = Object.keys(obj);
+  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
+}
+
+
+
+/**
+ * Check if a given object implements the EmailCampaign interface.
+ */
+export function instanceOfEmailCampaign(value: object): boolean {
+    let isInstance = true;
+
+    return isInstance;
+}
+
 export function EmailCampaignFromJSON(json: any): EmailCampaign {
     return EmailCampaignFromJSONTyped(json, false);
 }

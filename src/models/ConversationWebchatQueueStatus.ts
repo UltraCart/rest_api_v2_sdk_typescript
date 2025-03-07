@@ -124,6 +124,26 @@ export interface ConversationWebchatQueueStatus {
     queue_name?: string;
 }
 
+// Define the constant array of keys
+const MY_INTERFACE_KEYS: (keyof ConversationWebchatQueueStatus)[] = ["agent_available_count", "agent_busy_count", "agent_count", "agent_unavailable_count", "agents", "customer_abandon_count", "customer_active_count", "customer_average_abandon_time_seconds", "customer_average_chat_time_seconds", "customer_average_hold_time_seconds", "customer_chat_count", "customer_waiting_count", "customer_waiting_join_dts", "queue_entries", "queue_name"];
+
+// Exported function to check for excess properties
+export function hasExcessProperties(obj: any): boolean {
+  const objKeys = Object.keys(obj);
+  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
+}
+
+
+
+/**
+ * Check if a given object implements the ConversationWebchatQueueStatus interface.
+ */
+export function instanceOfConversationWebchatQueueStatus(value: object): boolean {
+    let isInstance = true;
+
+    return isInstance;
+}
+
 export function ConversationWebchatQueueStatusFromJSON(json: any): ConversationWebchatQueueStatus {
     return ConversationWebchatQueueStatusFromJSONTyped(json, false);
 }

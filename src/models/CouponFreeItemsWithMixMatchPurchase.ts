@@ -51,6 +51,26 @@ export interface CouponFreeItemsWithMixMatchPurchase {
     required_purchase_quantity?: number;
 }
 
+// Define the constant array of keys
+const MY_INTERFACE_KEYS: (keyof CouponFreeItemsWithMixMatchPurchase)[] = ["free_item", "free_quantity", "limit", "required_purchase_mix_and_match_group", "required_purchase_quantity"];
+
+// Exported function to check for excess properties
+export function hasExcessProperties(obj: any): boolean {
+  const objKeys = Object.keys(obj);
+  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
+}
+
+
+
+/**
+ * Check if a given object implements the CouponFreeItemsWithMixMatchPurchase interface.
+ */
+export function instanceOfCouponFreeItemsWithMixMatchPurchase(value: object): boolean {
+    let isInstance = true;
+
+    return isInstance;
+}
+
 export function CouponFreeItemsWithMixMatchPurchaseFromJSON(json: any): CouponFreeItemsWithMixMatchPurchase {
     return CouponFreeItemsWithMixMatchPurchaseFromJSONTyped(json, false);
 }

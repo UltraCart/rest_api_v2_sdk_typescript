@@ -58,6 +58,26 @@ export interface AccountsReceivableRetryStatAccount {
     revenue_for_period?: Array<AccountsReceivableRetryStatRevenue>;
 }
 
+// Define the constant array of keys
+const MY_INTERFACE_KEYS: (keyof AccountsReceivableRetryStatAccount)[] = ["days", "merchant_id", "overall", "revenue_for_period"];
+
+// Exported function to check for excess properties
+export function hasExcessProperties(obj: any): boolean {
+  const objKeys = Object.keys(obj);
+  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
+}
+
+
+
+/**
+ * Check if a given object implements the AccountsReceivableRetryStatAccount interface.
+ */
+export function instanceOfAccountsReceivableRetryStatAccount(value: object): boolean {
+    let isInstance = true;
+
+    return isInstance;
+}
+
 export function AccountsReceivableRetryStatAccountFromJSON(json: any): AccountsReceivableRetryStatAccount {
     return AccountsReceivableRetryStatAccountFromJSONTyped(json, false);
 }

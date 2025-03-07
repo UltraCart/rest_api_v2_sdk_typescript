@@ -34,6 +34,26 @@ export interface CartSettingsBilling {
     provinces?: Array<CartSettingsProvince>;
 }
 
+// Define the constant array of keys
+const MY_INTERFACE_KEYS: (keyof CartSettingsBilling)[] = ["provinces"];
+
+// Exported function to check for excess properties
+export function hasExcessProperties(obj: any): boolean {
+  const objKeys = Object.keys(obj);
+  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
+}
+
+
+
+/**
+ * Check if a given object implements the CartSettingsBilling interface.
+ */
+export function instanceOfCartSettingsBilling(value: object): boolean {
+    let isInstance = true;
+
+    return isInstance;
+}
+
 export function CartSettingsBillingFromJSON(json: any): CartSettingsBilling {
     return CartSettingsBillingFromJSONTyped(json, false);
 }

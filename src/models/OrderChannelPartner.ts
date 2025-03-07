@@ -87,6 +87,26 @@ export interface OrderChannelPartner {
     treat_warnings_as_errors?: boolean;
 }
 
+// Define the constant array of keys
+const MY_INTERFACE_KEYS: (keyof OrderChannelPartner)[] = ["auto_approve_purchase_order", "channel_partner_code", "channel_partner_data", "channel_partner_oid", "channel_partner_order_id", "ignore_invalid_shipping_method", "no_realtime_payment_processing", "skip_payment_processing", "store_completed", "store_if_payment_declines", "treat_warnings_as_errors"];
+
+// Exported function to check for excess properties
+export function hasExcessProperties(obj: any): boolean {
+  const objKeys = Object.keys(obj);
+  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
+}
+
+
+
+/**
+ * Check if a given object implements the OrderChannelPartner interface.
+ */
+export function instanceOfOrderChannelPartner(value: object): boolean {
+    let isInstance = true;
+
+    return isInstance;
+}
+
 export function OrderChannelPartnerFromJSON(json: any): OrderChannelPartner {
     return OrderChannelPartnerFromJSONTyped(json, false);
 }

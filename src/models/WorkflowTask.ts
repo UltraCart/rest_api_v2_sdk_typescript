@@ -244,6 +244,16 @@ export interface WorkflowTask {
     workflow_task_uuid?: string;
 }
 
+// Define the constant array of keys
+const MY_INTERFACE_KEYS: (keyof WorkflowTask)[] = ["assigned_to_group", "assigned_to_group_id", "assigned_to_user", "assigned_to_user_id", "assigned_to_user_or_group", "attachments", "created_by", "created_dts", "delay_until_dts", "dependant_workflow_task_uuid", "due_dts", "expiration_dts", "global_task_number", "histories", "last_update_dts", "merchant_id", "notes", "object_email", "object_id", "object_task_number", "object_type", "object_url", "priority", "properties", "related_workflow_task_uuid", "status", "system_task_type", "tags", "task_context", "task_details", "task_name", "workflow_task_uuid"];
+
+// Exported function to check for excess properties
+export function hasExcessProperties(obj: any): boolean {
+  const objKeys = Object.keys(obj);
+  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
+}
+
+
 
 /**
  * @export
@@ -295,6 +305,15 @@ export const WorkflowTaskSystemTaskTypeEnum = {
 } as const;
 export type WorkflowTaskSystemTaskTypeEnum = typeof WorkflowTaskSystemTaskTypeEnum[keyof typeof WorkflowTaskSystemTaskTypeEnum];
 
+
+/**
+ * Check if a given object implements the WorkflowTask interface.
+ */
+export function instanceOfWorkflowTask(value: object): boolean {
+    let isInstance = true;
+
+    return isInstance;
+}
 
 export function WorkflowTaskFromJSON(json: any): WorkflowTask {
     return WorkflowTaskFromJSONTyped(json, false);

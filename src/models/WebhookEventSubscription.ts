@@ -81,6 +81,26 @@ export interface WebhookEventSubscription {
     webhook_event_oid?: number;
 }
 
+// Define the constant array of keys
+const MY_INTERFACE_KEYS: (keyof WebhookEventSubscription)[] = ["comments", "deprecated_flag", "discontinued_flag", "event_description", "event_name", "event_ruler", "expansion", "subscribed", "supports_reflow", "webhook_event_oid"];
+
+// Exported function to check for excess properties
+export function hasExcessProperties(obj: any): boolean {
+  const objKeys = Object.keys(obj);
+  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
+}
+
+
+
+/**
+ * Check if a given object implements the WebhookEventSubscription interface.
+ */
+export function instanceOfWebhookEventSubscription(value: object): boolean {
+    let isInstance = true;
+
+    return isInstance;
+}
+
 export function WebhookEventSubscriptionFromJSON(json: any): WebhookEventSubscription {
     return WebhookEventSubscriptionFromJSONTyped(json, false);
 }

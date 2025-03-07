@@ -81,6 +81,16 @@ export interface OrderPaymentECheck {
     drivers_license_state?: string;
 }
 
+// Define the constant array of keys
+const MY_INTERFACE_KEYS: (keyof OrderPaymentECheck)[] = ["bank_aba_code", "bank_account_name", "bank_account_number", "bank_account_type", "bank_name", "bank_owner_type", "customer_tax_id", "drivers_license_dob", "drivers_license_number", "drivers_license_state"];
+
+// Exported function to check for excess properties
+export function hasExcessProperties(obj: any): boolean {
+  const objKeys = Object.keys(obj);
+  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
+}
+
+
 
 /**
  * @export
@@ -100,6 +110,15 @@ export const OrderPaymentECheckBankOwnerTypeEnum = {
 } as const;
 export type OrderPaymentECheckBankOwnerTypeEnum = typeof OrderPaymentECheckBankOwnerTypeEnum[keyof typeof OrderPaymentECheckBankOwnerTypeEnum];
 
+
+/**
+ * Check if a given object implements the OrderPaymentECheck interface.
+ */
+export function instanceOfOrderPaymentECheck(value: object): boolean {
+    let isInstance = true;
+
+    return isInstance;
+}
 
 export function OrderPaymentECheckFromJSON(json: any): OrderPaymentECheck {
     return OrderPaymentECheckFromJSONTyped(json, false);

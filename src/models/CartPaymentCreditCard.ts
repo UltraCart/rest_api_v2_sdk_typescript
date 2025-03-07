@@ -75,6 +75,26 @@ export interface CartPaymentCreditCard {
     store_credit_card?: boolean;
 }
 
+// Define the constant array of keys
+const MY_INTERFACE_KEYS: (keyof CartPaymentCreditCard)[] = ["card_expiration_month", "card_expiration_year", "card_number", "card_number_token", "card_type", "card_verification_number", "card_verification_number_token", "customer_profile_credit_card_id", "store_credit_card"];
+
+// Exported function to check for excess properties
+export function hasExcessProperties(obj: any): boolean {
+  const objKeys = Object.keys(obj);
+  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
+}
+
+
+
+/**
+ * Check if a given object implements the CartPaymentCreditCard interface.
+ */
+export function instanceOfCartPaymentCreditCard(value: object): boolean {
+    let isInstance = true;
+
+    return isInstance;
+}
+
 export function CartPaymentCreditCardFromJSON(json: any): CartPaymentCreditCard {
     return CartPaymentCreditCardFromJSONTyped(json, false);
 }

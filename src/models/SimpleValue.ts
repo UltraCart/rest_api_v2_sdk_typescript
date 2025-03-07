@@ -33,6 +33,26 @@ export interface SimpleValue {
     value?: string;
 }
 
+// Define the constant array of keys
+const MY_INTERFACE_KEYS: (keyof SimpleValue)[] = ["display", "value"];
+
+// Exported function to check for excess properties
+export function hasExcessProperties(obj: any): boolean {
+  const objKeys = Object.keys(obj);
+  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
+}
+
+
+
+/**
+ * Check if a given object implements the SimpleValue interface.
+ */
+export function instanceOfSimpleValue(value: object): boolean {
+    let isInstance = true;
+
+    return isInstance;
+}
+
 export function SimpleValueFromJSON(json: any): SimpleValue {
     return SimpleValueFromJSONTyped(json, false);
 }

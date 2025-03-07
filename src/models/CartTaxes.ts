@@ -39,6 +39,26 @@ export interface CartTaxes {
     rate?: number;
 }
 
+// Define the constant array of keys
+const MY_INTERFACE_KEYS: (keyof CartTaxes)[] = ["county", "exempt", "rate"];
+
+// Exported function to check for excess properties
+export function hasExcessProperties(obj: any): boolean {
+  const objKeys = Object.keys(obj);
+  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
+}
+
+
+
+/**
+ * Check if a given object implements the CartTaxes interface.
+ */
+export function instanceOfCartTaxes(value: object): boolean {
+    let isInstance = true;
+
+    return isInstance;
+}
+
 export function CartTaxesFromJSON(json: any): CartTaxes {
     return CartTaxesFromJSONTyped(json, false);
 }

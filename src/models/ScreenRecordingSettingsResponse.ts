@@ -76,6 +76,26 @@ export interface ScreenRecordingSettingsResponse {
     warning?: Warning;
 }
 
+// Define the constant array of keys
+const MY_INTERFACE_KEYS: (keyof ScreenRecordingSettingsResponse)[] = ["error", "metadata", "settings", "success", "warning"];
+
+// Exported function to check for excess properties
+export function hasExcessProperties(obj: any): boolean {
+  const objKeys = Object.keys(obj);
+  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
+}
+
+
+
+/**
+ * Check if a given object implements the ScreenRecordingSettingsResponse interface.
+ */
+export function instanceOfScreenRecordingSettingsResponse(value: object): boolean {
+    let isInstance = true;
+
+    return isInstance;
+}
+
 export function ScreenRecordingSettingsResponseFromJSON(json: any): ScreenRecordingSettingsResponse {
     return ScreenRecordingSettingsResponseFromJSONTyped(json, false);
 }

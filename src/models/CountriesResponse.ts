@@ -34,6 +34,26 @@ export interface CountriesResponse {
     countries?: Array<Country>;
 }
 
+// Define the constant array of keys
+const MY_INTERFACE_KEYS: (keyof CountriesResponse)[] = ["countries"];
+
+// Exported function to check for excess properties
+export function hasExcessProperties(obj: any): boolean {
+  const objKeys = Object.keys(obj);
+  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
+}
+
+
+
+/**
+ * Check if a given object implements the CountriesResponse interface.
+ */
+export function instanceOfCountriesResponse(value: object): boolean {
+    let isInstance = true;
+
+    return isInstance;
+}
+
 export function CountriesResponseFromJSON(json: any): CountriesResponse {
     return CountriesResponseFromJSONTyped(json, false);
 }

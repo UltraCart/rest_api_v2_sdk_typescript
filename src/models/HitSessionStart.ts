@@ -123,6 +123,26 @@ export interface HitSessionStart {
     user_ip?: string;
 }
 
+// Define the constant array of keys
+const MY_INTERFACE_KEYS: (keyof HitSessionStart)[] = ["bot", "bounce", "channel", "device_switch_detected", "fake_bot", "geolocation_country", "geolocation_latitude", "geolocation_longitude", "geolocation_province", "no_cookie_support", "prefetch", "referrer", "screen_height", "screen_width", "time_on_Site", "user_agent", "user_ip"];
+
+// Exported function to check for excess properties
+export function hasExcessProperties(obj: any): boolean {
+  const objKeys = Object.keys(obj);
+  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
+}
+
+
+
+/**
+ * Check if a given object implements the HitSessionStart interface.
+ */
+export function instanceOfHitSessionStart(value: object): boolean {
+    let isInstance = true;
+
+    return isInstance;
+}
+
 export function HitSessionStartFromJSON(json: any): HitSessionStart {
     return HitSessionStartFromJSONTyped(json, false);
 }

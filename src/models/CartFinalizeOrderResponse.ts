@@ -64,6 +64,26 @@ export interface CartFinalizeOrderResponse {
     successful?: boolean;
 }
 
+// Define the constant array of keys
+const MY_INTERFACE_KEYS: (keyof CartFinalizeOrderResponse)[] = ["errors", "next_cart", "order", "order_id", "successful"];
+
+// Exported function to check for excess properties
+export function hasExcessProperties(obj: any): boolean {
+  const objKeys = Object.keys(obj);
+  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
+}
+
+
+
+/**
+ * Check if a given object implements the CartFinalizeOrderResponse interface.
+ */
+export function instanceOfCartFinalizeOrderResponse(value: object): boolean {
+    let isInstance = true;
+
+    return isInstance;
+}
+
 export function CartFinalizeOrderResponseFromJSON(json: any): CartFinalizeOrderResponse {
     return CartFinalizeOrderResponseFromJSONTyped(json, false);
 }

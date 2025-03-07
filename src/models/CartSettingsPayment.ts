@@ -118,6 +118,26 @@ export interface CartSettingsPayment {
     supports_wire_transfer?: boolean;
 }
 
+// Define the constant array of keys
+const MY_INTERFACE_KEYS: (keyof CartSettingsPayment)[] = ["amazon", "credit_card", "need_payment", "paypal", "supports_amazon", "supports_check", "supports_cod", "supports_credit_card", "supports_money_order", "supports_paypal", "supports_purchase_order", "supports_quote_request", "supports_wire_transfer"];
+
+// Exported function to check for excess properties
+export function hasExcessProperties(obj: any): boolean {
+  const objKeys = Object.keys(obj);
+  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
+}
+
+
+
+/**
+ * Check if a given object implements the CartSettingsPayment interface.
+ */
+export function instanceOfCartSettingsPayment(value: object): boolean {
+    let isInstance = true;
+
+    return isInstance;
+}
+
 export function CartSettingsPaymentFromJSON(json: any): CartSettingsPayment {
     return CartSettingsPaymentFromJSONTyped(json, false);
 }

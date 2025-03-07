@@ -70,6 +70,26 @@ export interface UploadCouponCodesRequest {
     warning?: Warning;
 }
 
+// Define the constant array of keys
+const MY_INTERFACE_KEYS: (keyof UploadCouponCodesRequest)[] = ["coupon_codes", "error", "metadata", "success", "warning"];
+
+// Exported function to check for excess properties
+export function hasExcessProperties(obj: any): boolean {
+  const objKeys = Object.keys(obj);
+  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
+}
+
+
+
+/**
+ * Check if a given object implements the UploadCouponCodesRequest interface.
+ */
+export function instanceOfUploadCouponCodesRequest(value: object): boolean {
+    let isInstance = true;
+
+    return isInstance;
+}
+
 export function UploadCouponCodesRequestFromJSON(json: any): UploadCouponCodesRequest {
     return UploadCouponCodesRequestFromJSONTyped(json, false);
 }

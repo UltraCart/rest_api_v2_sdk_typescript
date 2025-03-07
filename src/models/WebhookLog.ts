@@ -100,6 +100,26 @@ export interface WebhookLog {
     webhook_oid?: number;
 }
 
+// Define the constant array of keys
+const MY_INTERFACE_KEYS: (keyof WebhookLog)[] = ["delivery_dts", "duration", "queue_delay", "request", "request_headers", "request_id", "response", "response_headers", "status_code", "success", "uri", "webhook_oid"];
+
+// Exported function to check for excess properties
+export function hasExcessProperties(obj: any): boolean {
+  const objKeys = Object.keys(obj);
+  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
+}
+
+
+
+/**
+ * Check if a given object implements the WebhookLog interface.
+ */
+export function instanceOfWebhookLog(value: object): boolean {
+    let isInstance = true;
+
+    return isInstance;
+}
+
 export function WebhookLogFromJSON(json: any): WebhookLog {
     return WebhookLogFromJSONTyped(json, false);
 }

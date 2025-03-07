@@ -64,6 +64,26 @@ export interface ItemInventorySnapshot {
     quantity?: number;
 }
 
+// Define the constant array of keys
+const MY_INTERFACE_KEYS: (keyof ItemInventorySnapshot)[] = ["allocated_to_placed_orders", "allocated_to_shopping_carts", "available_to_allocate", "distribution_centers", "merchant_item_id", "quantity"];
+
+// Exported function to check for excess properties
+export function hasExcessProperties(obj: any): boolean {
+  const objKeys = Object.keys(obj);
+  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
+}
+
+
+
+/**
+ * Check if a given object implements the ItemInventorySnapshot interface.
+ */
+export function instanceOfItemInventorySnapshot(value: object): boolean {
+    let isInstance = true;
+
+    return isInstance;
+}
+
 export function ItemInventorySnapshotFromJSON(json: any): ItemInventorySnapshot {
     return ItemInventorySnapshotFromJSONTyped(json, false);
 }

@@ -45,6 +45,26 @@ export interface OrderProperty {
     value?: string;
 }
 
+// Define the constant array of keys
+const MY_INTERFACE_KEYS: (keyof OrderProperty)[] = ["display", "expiration_dts", "name", "value"];
+
+// Exported function to check for excess properties
+export function hasExcessProperties(obj: any): boolean {
+  const objKeys = Object.keys(obj);
+  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
+}
+
+
+
+/**
+ * Check if a given object implements the OrderProperty interface.
+ */
+export function instanceOfOrderProperty(value: object): boolean {
+    let isInstance = true;
+
+    return isInstance;
+}
+
 export function OrderPropertyFromJSON(json: any): OrderProperty {
     return OrderPropertyFromJSONTyped(json, false);
 }

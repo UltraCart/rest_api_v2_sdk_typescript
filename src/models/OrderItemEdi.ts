@@ -46,6 +46,26 @@ export interface OrderItemEdi {
     lots?: Array<OrderItemEdiLot>;
 }
 
+// Define the constant array of keys
+const MY_INTERFACE_KEYS: (keyof OrderItemEdi)[] = ["identifications", "lots"];
+
+// Exported function to check for excess properties
+export function hasExcessProperties(obj: any): boolean {
+  const objKeys = Object.keys(obj);
+  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
+}
+
+
+
+/**
+ * Check if a given object implements the OrderItemEdi interface.
+ */
+export function instanceOfOrderItemEdi(value: object): boolean {
+    let isInstance = true;
+
+    return isInstance;
+}
+
 export function OrderItemEdiFromJSON(json: any): OrderItemEdi {
     return OrderItemEdiFromJSONTyped(json, false);
 }

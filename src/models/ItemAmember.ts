@@ -33,6 +33,26 @@ export interface ItemAmember {
     amember_product_id?: string;
 }
 
+// Define the constant array of keys
+const MY_INTERFACE_KEYS: (keyof ItemAmember)[] = ["amember_payment_duration_days", "amember_product_id"];
+
+// Exported function to check for excess properties
+export function hasExcessProperties(obj: any): boolean {
+  const objKeys = Object.keys(obj);
+  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
+}
+
+
+
+/**
+ * Check if a given object implements the ItemAmember interface.
+ */
+export function instanceOfItemAmember(value: object): boolean {
+    let isInstance = true;
+
+    return isInstance;
+}
+
 export function ItemAmemberFromJSON(json: any): ItemAmember {
     return ItemAmemberFromJSONTyped(json, false);
 }

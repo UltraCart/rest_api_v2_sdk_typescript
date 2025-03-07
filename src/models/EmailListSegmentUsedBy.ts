@@ -39,6 +39,26 @@ export interface EmailListSegmentUsedBy {
     name?: string;
 }
 
+// Define the constant array of keys
+const MY_INTERFACE_KEYS: (keyof EmailListSegmentUsedBy)[] = ["email_campaign_uuid", "email_flow_uuid", "name"];
+
+// Exported function to check for excess properties
+export function hasExcessProperties(obj: any): boolean {
+  const objKeys = Object.keys(obj);
+  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
+}
+
+
+
+/**
+ * Check if a given object implements the EmailListSegmentUsedBy interface.
+ */
+export function instanceOfEmailListSegmentUsedBy(value: object): boolean {
+    let isInstance = true;
+
+    return isInstance;
+}
+
 export function EmailListSegmentUsedByFromJSON(json: any): EmailListSegmentUsedBy {
     return EmailListSegmentUsedByFromJSONTyped(json, false);
 }

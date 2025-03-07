@@ -57,6 +57,26 @@ export interface CouponPercentOffMsrpItems {
     minimum_subtotal?: number;
 }
 
+// Define the constant array of keys
+const MY_INTERFACE_KEYS: (keyof CouponPercentOffMsrpItems)[] = ["discount_percent", "excluded_items", "items", "limit", "minimum_cumulative_msrp", "minimum_subtotal"];
+
+// Exported function to check for excess properties
+export function hasExcessProperties(obj: any): boolean {
+  const objKeys = Object.keys(obj);
+  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
+}
+
+
+
+/**
+ * Check if a given object implements the CouponPercentOffMsrpItems interface.
+ */
+export function instanceOfCouponPercentOffMsrpItems(value: object): boolean {
+    let isInstance = true;
+
+    return isInstance;
+}
+
 export function CouponPercentOffMsrpItemsFromJSON(json: any): CouponPercentOffMsrpItems {
     return CouponPercentOffMsrpItemsFromJSONTyped(json, false);
 }

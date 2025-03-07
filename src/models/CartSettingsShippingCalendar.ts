@@ -51,6 +51,26 @@ export interface CartSettingsShippingCalendar {
     show?: boolean;
 }
 
+// Define the constant array of keys
+const MY_INTERFACE_KEYS: (keyof CartSettingsShippingCalendar)[] = ["blackouts", "days_of_week", "earliest", "require", "show"];
+
+// Exported function to check for excess properties
+export function hasExcessProperties(obj: any): boolean {
+  const objKeys = Object.keys(obj);
+  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
+}
+
+
+
+/**
+ * Check if a given object implements the CartSettingsShippingCalendar interface.
+ */
+export function instanceOfCartSettingsShippingCalendar(value: object): boolean {
+    let isInstance = true;
+
+    return isInstance;
+}
+
 export function CartSettingsShippingCalendarFromJSON(json: any): CartSettingsShippingCalendar {
     return CartSettingsShippingCalendarFromJSONTyped(json, false);
 }

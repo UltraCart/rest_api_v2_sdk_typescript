@@ -27,6 +27,26 @@ export interface CartPaymentAmazon {
     amazon_order_reference_id?: string;
 }
 
+// Define the constant array of keys
+const MY_INTERFACE_KEYS: (keyof CartPaymentAmazon)[] = ["amazon_order_reference_id"];
+
+// Exported function to check for excess properties
+export function hasExcessProperties(obj: any): boolean {
+  const objKeys = Object.keys(obj);
+  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
+}
+
+
+
+/**
+ * Check if a given object implements the CartPaymentAmazon interface.
+ */
+export function instanceOfCartPaymentAmazon(value: object): boolean {
+    let isInstance = true;
+
+    return isInstance;
+}
+
 export function CartPaymentAmazonFromJSON(json: any): CartPaymentAmazon {
     return CartPaymentAmazonFromJSONTyped(json, false);
 }

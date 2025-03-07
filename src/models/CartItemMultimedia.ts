@@ -82,6 +82,16 @@ export interface CartItemMultimedia {
     url?: string;
 }
 
+// Define the constant array of keys
+const MY_INTERFACE_KEYS: (keyof CartItemMultimedia)[] = ["code", "description", "exclude_from_gallery", "image_height", "image_width", "is_default", "thumbnails", "type", "url"];
+
+// Exported function to check for excess properties
+export function hasExcessProperties(obj: any): boolean {
+  const objKeys = Object.keys(obj);
+  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
+}
+
+
 
 /**
  * @export
@@ -95,6 +105,15 @@ export const CartItemMultimediaTypeEnum = {
 } as const;
 export type CartItemMultimediaTypeEnum = typeof CartItemMultimediaTypeEnum[keyof typeof CartItemMultimediaTypeEnum];
 
+
+/**
+ * Check if a given object implements the CartItemMultimedia interface.
+ */
+export function instanceOfCartItemMultimedia(value: object): boolean {
+    let isInstance = true;
+
+    return isInstance;
+}
 
 export function CartItemMultimediaFromJSON(json: any): CartItemMultimedia {
     return CartItemMultimediaFromJSONTyped(json, false);

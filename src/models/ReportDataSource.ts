@@ -70,6 +70,26 @@ export interface ReportDataSource {
     sql?: string;
 }
 
+// Define the constant array of keys
+const MY_INTERFACE_KEYS: (keyof ReportDataSource)[] = ["data_source_uuid", "name", "partition_date_column", "partition_date_safety_days", "partition_date_strategy", "schema", "sql"];
+
+// Exported function to check for excess properties
+export function hasExcessProperties(obj: any): boolean {
+  const objKeys = Object.keys(obj);
+  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
+}
+
+
+
+/**
+ * Check if a given object implements the ReportDataSource interface.
+ */
+export function instanceOfReportDataSource(value: object): boolean {
+    let isInstance = true;
+
+    return isInstance;
+}
+
 export function ReportDataSourceFromJSON(json: any): ReportDataSource {
     return ReportDataSourceFromJSONTyped(json, false);
 }

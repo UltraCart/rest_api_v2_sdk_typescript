@@ -45,6 +45,26 @@ export interface ReportAuth {
     websocket_url?: string;
 }
 
+// Define the constant array of keys
+const MY_INTERFACE_KEYS: (keyof ReportAuth)[] = ["client_uuid", "jwt", "merchant_id", "websocket_url"];
+
+// Exported function to check for excess properties
+export function hasExcessProperties(obj: any): boolean {
+  const objKeys = Object.keys(obj);
+  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
+}
+
+
+
+/**
+ * Check if a given object implements the ReportAuth interface.
+ */
+export function instanceOfReportAuth(value: object): boolean {
+    let isInstance = true;
+
+    return isInstance;
+}
+
 export function ReportAuthFromJSON(json: any): ReportAuth {
     return ReportAuthFromJSONTyped(json, false);
 }

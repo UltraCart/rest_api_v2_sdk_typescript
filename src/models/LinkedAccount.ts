@@ -39,6 +39,26 @@ export interface LinkedAccount {
     selected?: boolean;
 }
 
+// Define the constant array of keys
+const MY_INTERFACE_KEYS: (keyof LinkedAccount)[] = ["company", "merchant_id", "selected"];
+
+// Exported function to check for excess properties
+export function hasExcessProperties(obj: any): boolean {
+  const objKeys = Object.keys(obj);
+  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
+}
+
+
+
+/**
+ * Check if a given object implements the LinkedAccount interface.
+ */
+export function instanceOfLinkedAccount(value: object): boolean {
+    let isInstance = true;
+
+    return isInstance;
+}
+
 export function LinkedAccountFromJSON(json: any): LinkedAccount {
     return LinkedAccountFromJSONTyped(json, false);
 }

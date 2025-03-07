@@ -112,6 +112,26 @@ export interface CustomerEditorValues {
     terms?: Array<string>;
 }
 
+// Define the constant array of keys
+const MY_INTERFACE_KEYS: (keyof CustomerEditorValues)[] = ["affiliates", "card_exp_months", "card_exp_years", "card_types", "countries", "edi_channel_partners", "loyalty_ledger_descriptions", "loyalty_program_type", "qb_classes", "sales_rep_codes", "state_optional_countries", "terms"];
+
+// Exported function to check for excess properties
+export function hasExcessProperties(obj: any): boolean {
+  const objKeys = Object.keys(obj);
+  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
+}
+
+
+
+/**
+ * Check if a given object implements the CustomerEditorValues interface.
+ */
+export function instanceOfCustomerEditorValues(value: object): boolean {
+    let isInstance = true;
+
+    return isInstance;
+}
+
 export function CustomerEditorValuesFromJSON(json: any): CustomerEditorValues {
     return CustomerEditorValuesFromJSONTyped(json, false);
 }

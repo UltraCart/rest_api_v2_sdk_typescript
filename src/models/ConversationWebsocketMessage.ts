@@ -238,6 +238,16 @@ export interface ConversationWebsocketMessage {
     type?: ConversationWebsocketMessageTypeEnum;
 }
 
+// Define the constant array of keys
+const MY_INTERFACE_KEYS: (keyof ConversationWebsocketMessage)[] = ["conversation_arn", "conversation_uuid", "event_add_coupon", "event_add_item", "event_conversation_closed", "event_engage_customer", "event_new_conversation", "event_new_message", "event_participant_join", "event_participant_join_participant", "event_participant_left", "event_participant_left_participant", "event_participant_update", "event_queue_new_member", "event_queue_position", "event_queue_status_update", "event_read_message", "event_rrweb", "event_type", "event_typing", "event_updated_message", "event_webchat_context", "message", "type"];
+
+// Exported function to check for excess properties
+export function hasExcessProperties(obj: any): boolean {
+  const objKeys = Object.keys(obj);
+  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
+}
+
+
 
 /**
  * @export
@@ -275,6 +285,15 @@ export const ConversationWebsocketMessageTypeEnum = {
 } as const;
 export type ConversationWebsocketMessageTypeEnum = typeof ConversationWebsocketMessageTypeEnum[keyof typeof ConversationWebsocketMessageTypeEnum];
 
+
+/**
+ * Check if a given object implements the ConversationWebsocketMessage interface.
+ */
+export function instanceOfConversationWebsocketMessage(value: object): boolean {
+    let isInstance = true;
+
+    return isInstance;
+}
 
 export function ConversationWebsocketMessageFromJSON(json: any): ConversationWebsocketMessage {
     return ConversationWebsocketMessageFromJSONTyped(json, false);

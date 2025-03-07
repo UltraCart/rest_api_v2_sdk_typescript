@@ -63,6 +63,26 @@ export interface CustomerWishListItem {
     priority?: number;
 }
 
+// Define the constant array of keys
+const MY_INTERFACE_KEYS: (keyof CustomerWishListItem)[] = ["add_dts", "comments", "customer_profile_oid", "customer_wishlist_item_oid", "merchant_item_oid", "position", "priority"];
+
+// Exported function to check for excess properties
+export function hasExcessProperties(obj: any): boolean {
+  const objKeys = Object.keys(obj);
+  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
+}
+
+
+
+/**
+ * Check if a given object implements the CustomerWishListItem interface.
+ */
+export function instanceOfCustomerWishListItem(value: object): boolean {
+    let isInstance = true;
+
+    return isInstance;
+}
+
 export function CustomerWishListItemFromJSON(json: any): CustomerWishListItem {
     return CustomerWishListItemFromJSONTyped(json, false);
 }

@@ -130,6 +130,26 @@ export interface EmailPlan {
     upgrade_to?: number;
 }
 
+// Define the constant array of keys
+const MY_INTERFACE_KEYS: (keyof EmailPlan)[] = ["additional_customers", "additional_emails", "additional_fee", "allow_list_import", "allow_tracking_emails", "customer_tiers", "initial_sending_limits", "plan_customers", "plan_emails", "plan_name", "plan_name_formatted", "require_order_within_last_days", "revenue_percent", "spam_percent_limit", "total_customers", "total_emails", "upgrade_to"];
+
+// Exported function to check for excess properties
+export function hasExcessProperties(obj: any): boolean {
+  const objKeys = Object.keys(obj);
+  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
+}
+
+
+
+/**
+ * Check if a given object implements the EmailPlan interface.
+ */
+export function instanceOfEmailPlan(value: object): boolean {
+    let isInstance = true;
+
+    return isInstance;
+}
+
 export function EmailPlanFromJSON(json: any): EmailPlan {
     return EmailPlanFromJSONTyped(json, false);
 }

@@ -70,6 +70,26 @@ export interface WorkflowNote {
     user?: WorkflowUser;
 }
 
+// Define the constant array of keys
+const MY_INTERFACE_KEYS: (keyof WorkflowNote)[] = ["attachments", "edit_dts", "note", "note_dts", "original_note", "user"];
+
+// Exported function to check for excess properties
+export function hasExcessProperties(obj: any): boolean {
+  const objKeys = Object.keys(obj);
+  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
+}
+
+
+
+/**
+ * Check if a given object implements the WorkflowNote interface.
+ */
+export function instanceOfWorkflowNote(value: object): boolean {
+    let isInstance = true;
+
+    return isInstance;
+}
+
 export function WorkflowNoteFromJSON(json: any): WorkflowNote {
     return WorkflowNoteFromJSONTyped(json, false);
 }

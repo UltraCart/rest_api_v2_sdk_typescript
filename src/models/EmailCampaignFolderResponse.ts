@@ -76,6 +76,26 @@ export interface EmailCampaignFolderResponse {
     warning?: Warning;
 }
 
+// Define the constant array of keys
+const MY_INTERFACE_KEYS: (keyof EmailCampaignFolderResponse)[] = ["campaign_folder", "error", "metadata", "success", "warning"];
+
+// Exported function to check for excess properties
+export function hasExcessProperties(obj: any): boolean {
+  const objKeys = Object.keys(obj);
+  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
+}
+
+
+
+/**
+ * Check if a given object implements the EmailCampaignFolderResponse interface.
+ */
+export function instanceOfEmailCampaignFolderResponse(value: object): boolean {
+    let isInstance = true;
+
+    return isInstance;
+}
+
 export function EmailCampaignFolderResponseFromJSON(json: any): EmailCampaignFolderResponse {
     return EmailCampaignFolderResponseFromJSONTyped(json, false);
 }

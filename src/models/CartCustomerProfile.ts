@@ -172,6 +172,26 @@ export interface CartCustomerProfile {
     ups_account_number?: string;
 }
 
+// Define the constant array of keys
+const MY_INTERFACE_KEYS: (keyof CartCustomerProfile)[] = ["allow_3rd_party_billing", "allow_cod", "allow_purchase_order", "billing_addresses", "credit_cards", "customer_profile_oid", "dhl_account_number", "dhl_duty_account_number", "email", "fedex_account_number", "free_shipping", "free_shipping_minimum", "maximum_item_count", "minimum_item_count", "minimum_subtotal", "no_coupons", "no_free_shipping", "no_realtime_charge", "pricing_tiers", "shipping_addresses", "signup_dts", "tax_exempt", "ups_account_number"];
+
+// Exported function to check for excess properties
+export function hasExcessProperties(obj: any): boolean {
+  const objKeys = Object.keys(obj);
+  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
+}
+
+
+
+/**
+ * Check if a given object implements the CartCustomerProfile interface.
+ */
+export function instanceOfCartCustomerProfile(value: object): boolean {
+    let isInstance = true;
+
+    return isInstance;
+}
+
 export function CartCustomerProfileFromJSON(json: any): CartCustomerProfile {
     return CartCustomerProfileFromJSONTyped(json, false);
 }

@@ -460,6 +460,16 @@ export interface OrderItem {
     width?: Distance;
 }
 
+// Define the constant array of keys
+const MY_INTERFACE_KEYS: (keyof OrderItem)[] = ["accounting_code", "activation_codes", "actual_cogs", "arbitrary_unit_cost", "auto_order_last_rebill_dts", "auto_order_schedule", "barcode", "barcode_gtin12", "barcode_gtin14", "barcode_upc11", "barcode_upc12", "channel_partner_item_id", "cogs", "component_unit_value", "cost", "country_code_of_origin", "customs_description", "description", "discount", "discount_quantity", "discount_shipping_weight", "distribution_center_code", "edi", "exclude_coupon", "free_shipping", "hazmat", "height", "item_index", "item_reference_oid", "kit", "kit_component", "length", "manufacturer_sku", "max_days_time_in_transit", "merchant_item_id", "mix_and_match_group_name", "mix_and_match_group_oid", "no_shipping_discount", "options", "packed_by_user", "parent_item_index", "parent_merchant_item_id", "perishable_class", "pricing_tier_name", "properties", "quantity", "quantity_refunded", "quickbooks_class", "refund_reason", "return_reason", "ship_separately", "shipped_by_user", "shipped_dts", "shipping_status", "special_product_type", "tags", "tax_free", "tax_product_type", "taxable_cost", "total_cost_with_discount", "total_refunded", "transmitted_to_distribution_center_dts", "unit_cost_with_discount", "upsell", "weight", "width"];
+
+// Exported function to check for excess properties
+export function hasExcessProperties(obj: any): boolean {
+  const objKeys = Object.keys(obj);
+  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
+}
+
+
 
 /**
  * @export
@@ -472,6 +482,15 @@ export const OrderItemTaxProductTypeEnum = {
 } as const;
 export type OrderItemTaxProductTypeEnum = typeof OrderItemTaxProductTypeEnum[keyof typeof OrderItemTaxProductTypeEnum];
 
+
+/**
+ * Check if a given object implements the OrderItem interface.
+ */
+export function instanceOfOrderItem(value: object): boolean {
+    let isInstance = true;
+
+    return isInstance;
+}
 
 export function OrderItemFromJSON(json: any): OrderItem {
     return OrderItemFromJSONTyped(json, false);

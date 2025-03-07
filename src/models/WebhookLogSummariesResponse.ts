@@ -76,6 +76,26 @@ export interface WebhookLogSummariesResponse {
     webhook_log_summaries?: Array<WebhookLogSummary>;
 }
 
+// Define the constant array of keys
+const MY_INTERFACE_KEYS: (keyof WebhookLogSummariesResponse)[] = ["error", "metadata", "success", "warning", "webhook_log_summaries"];
+
+// Exported function to check for excess properties
+export function hasExcessProperties(obj: any): boolean {
+  const objKeys = Object.keys(obj);
+  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
+}
+
+
+
+/**
+ * Check if a given object implements the WebhookLogSummariesResponse interface.
+ */
+export function instanceOfWebhookLogSummariesResponse(value: object): boolean {
+    let isInstance = true;
+
+    return isInstance;
+}
+
 export function WebhookLogSummariesResponseFromJSON(json: any): WebhookLogSummariesResponse {
     return WebhookLogSummariesResponseFromJSONTyped(json, false);
 }

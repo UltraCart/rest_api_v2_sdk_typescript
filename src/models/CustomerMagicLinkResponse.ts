@@ -70,6 +70,26 @@ export interface CustomerMagicLinkResponse {
     warning?: Warning;
 }
 
+// Define the constant array of keys
+const MY_INTERFACE_KEYS: (keyof CustomerMagicLinkResponse)[] = ["error", "metadata", "success", "url", "warning"];
+
+// Exported function to check for excess properties
+export function hasExcessProperties(obj: any): boolean {
+  const objKeys = Object.keys(obj);
+  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
+}
+
+
+
+/**
+ * Check if a given object implements the CustomerMagicLinkResponse interface.
+ */
+export function instanceOfCustomerMagicLinkResponse(value: object): boolean {
+    let isInstance = true;
+
+    return isInstance;
+}
+
 export function CustomerMagicLinkResponseFromJSON(json: any): CustomerMagicLinkResponse {
     return CustomerMagicLinkResponseFromJSONTyped(json, false);
 }

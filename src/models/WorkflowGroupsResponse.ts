@@ -76,6 +76,26 @@ export interface WorkflowGroupsResponse {
     warning?: Warning;
 }
 
+// Define the constant array of keys
+const MY_INTERFACE_KEYS: (keyof WorkflowGroupsResponse)[] = ["error", "groups", "metadata", "success", "warning"];
+
+// Exported function to check for excess properties
+export function hasExcessProperties(obj: any): boolean {
+  const objKeys = Object.keys(obj);
+  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
+}
+
+
+
+/**
+ * Check if a given object implements the WorkflowGroupsResponse interface.
+ */
+export function instanceOfWorkflowGroupsResponse(value: object): boolean {
+    let isInstance = true;
+
+    return isInstance;
+}
+
 export function WorkflowGroupsResponseFromJSON(json: any): WorkflowGroupsResponse {
     return WorkflowGroupsResponseFromJSONTyped(json, false);
 }

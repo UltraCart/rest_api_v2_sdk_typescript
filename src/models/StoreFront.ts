@@ -87,6 +87,26 @@ export interface StoreFront {
     unlock_password?: string;
 }
 
+// Define the constant array of keys
+const MY_INTERFACE_KEYS: (keyof StoreFront)[] = ["host_alias1", "host_alias2", "host_alias3", "host_alias4", "host_alias5", "host_name", "locked", "merchant_id", "redirect_aliases", "storefront_oid", "unlock_password"];
+
+// Exported function to check for excess properties
+export function hasExcessProperties(obj: any): boolean {
+  const objKeys = Object.keys(obj);
+  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
+}
+
+
+
+/**
+ * Check if a given object implements the StoreFront interface.
+ */
+export function instanceOfStoreFront(value: object): boolean {
+    let isInstance = true;
+
+    return isInstance;
+}
+
 export function StoreFrontFromJSON(json: any): StoreFront {
     return StoreFrontFromJSONTyped(json, false);
 }

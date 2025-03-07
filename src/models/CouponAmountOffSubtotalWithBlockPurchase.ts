@@ -45,6 +45,26 @@ export interface CouponAmountOffSubtotalWithBlockPurchase {
     required_purchase_quantity?: number;
 }
 
+// Define the constant array of keys
+const MY_INTERFACE_KEYS: (keyof CouponAmountOffSubtotalWithBlockPurchase)[] = ["currency_code", "discount_amount", "required_purchase_item", "required_purchase_quantity"];
+
+// Exported function to check for excess properties
+export function hasExcessProperties(obj: any): boolean {
+  const objKeys = Object.keys(obj);
+  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
+}
+
+
+
+/**
+ * Check if a given object implements the CouponAmountOffSubtotalWithBlockPurchase interface.
+ */
+export function instanceOfCouponAmountOffSubtotalWithBlockPurchase(value: object): boolean {
+    let isInstance = true;
+
+    return isInstance;
+}
+
 export function CouponAmountOffSubtotalWithBlockPurchaseFromJSON(json: any): CouponAmountOffSubtotalWithBlockPurchase {
     return CouponAmountOffSubtotalWithBlockPurchaseFromJSONTyped(json, false);
 }

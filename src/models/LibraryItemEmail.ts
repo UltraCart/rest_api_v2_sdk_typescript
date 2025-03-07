@@ -39,6 +39,26 @@ export interface LibraryItemEmail {
     library_item_oid?: number;
 }
 
+// Define the constant array of keys
+const MY_INTERFACE_KEYS: (keyof LibraryItemEmail)[] = ["email", "library_item_email_oid", "library_item_oid"];
+
+// Exported function to check for excess properties
+export function hasExcessProperties(obj: any): boolean {
+  const objKeys = Object.keys(obj);
+  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
+}
+
+
+
+/**
+ * Check if a given object implements the LibraryItemEmail interface.
+ */
+export function instanceOfLibraryItemEmail(value: object): boolean {
+    let isInstance = true;
+
+    return isInstance;
+}
+
 export function LibraryItemEmailFromJSON(json: any): LibraryItemEmail {
     return LibraryItemEmailFromJSONTyped(json, false);
 }

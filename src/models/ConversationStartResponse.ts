@@ -34,6 +34,26 @@ export interface ConversationStartResponse {
     conversation?: Conversation;
 }
 
+// Define the constant array of keys
+const MY_INTERFACE_KEYS: (keyof ConversationStartResponse)[] = ["conversation"];
+
+// Exported function to check for excess properties
+export function hasExcessProperties(obj: any): boolean {
+  const objKeys = Object.keys(obj);
+  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
+}
+
+
+
+/**
+ * Check if a given object implements the ConversationStartResponse interface.
+ */
+export function instanceOfConversationStartResponse(value: object): boolean {
+    let isInstance = true;
+
+    return isInstance;
+}
+
 export function ConversationStartResponseFromJSON(json: any): ConversationStartResponse {
     return ConversationStartResponseFromJSONTyped(json, false);
 }

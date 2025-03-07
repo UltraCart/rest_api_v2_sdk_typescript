@@ -88,6 +88,26 @@ export interface ItemReviews {
     share_reviews_with_merchant_item_oid?: number;
 }
 
+// Define the constant array of keys
+const MY_INTERFACE_KEYS: (keyof ItemReviews)[] = ["has_approved_review", "has_review", "individual_reviews", "review_count", "review_overall", "review_template_name", "review_template_oid", "reviewable", "share_reviews_with_merchant_item_id", "share_reviews_with_merchant_item_oid"];
+
+// Exported function to check for excess properties
+export function hasExcessProperties(obj: any): boolean {
+  const objKeys = Object.keys(obj);
+  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
+}
+
+
+
+/**
+ * Check if a given object implements the ItemReviews interface.
+ */
+export function instanceOfItemReviews(value: object): boolean {
+    let isInstance = true;
+
+    return isInstance;
+}
+
 export function ItemReviewsFromJSON(json: any): ItemReviews {
     return ItemReviewsFromJSONTyped(json, false);
 }

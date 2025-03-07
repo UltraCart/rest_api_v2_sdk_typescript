@@ -39,6 +39,26 @@ export interface ConversationEventTyping {
     value?: string;
 }
 
+// Define the constant array of keys
+const MY_INTERFACE_KEYS: (keyof ConversationEventTyping)[] = ["author_conversation_participant_arn", "author_conversation_participant_name", "value"];
+
+// Exported function to check for excess properties
+export function hasExcessProperties(obj: any): boolean {
+  const objKeys = Object.keys(obj);
+  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
+}
+
+
+
+/**
+ * Check if a given object implements the ConversationEventTyping interface.
+ */
+export function instanceOfConversationEventTyping(value: object): boolean {
+    let isInstance = true;
+
+    return isInstance;
+}
+
 export function ConversationEventTypingFromJSON(json: any): ConversationEventTyping {
     return ConversationEventTypingFromJSONTyped(json, false);
 }

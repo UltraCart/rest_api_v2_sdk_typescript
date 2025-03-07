@@ -69,6 +69,26 @@ export interface LibraryItemPublishedMeta {
     under_review?: boolean;
 }
 
+// Define the constant array of keys
+const MY_INTERFACE_KEYS: (keyof LibraryItemPublishedMeta)[] = ["count_of_versions", "library_item_published_oid", "library_item_review_oid", "rejected", "rejected_reason", "release_version", "review_version", "under_review"];
+
+// Exported function to check for excess properties
+export function hasExcessProperties(obj: any): boolean {
+  const objKeys = Object.keys(obj);
+  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
+}
+
+
+
+/**
+ * Check if a given object implements the LibraryItemPublishedMeta interface.
+ */
+export function instanceOfLibraryItemPublishedMeta(value: object): boolean {
+    let isInstance = true;
+
+    return isInstance;
+}
+
 export function LibraryItemPublishedMetaFromJSON(json: any): LibraryItemPublishedMeta {
     return LibraryItemPublishedMetaFromJSONTyped(json, false);
 }

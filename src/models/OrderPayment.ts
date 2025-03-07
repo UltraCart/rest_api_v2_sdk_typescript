@@ -196,6 +196,16 @@ export interface OrderPayment {
     transactions?: Array<OrderPaymentTransaction>;
 }
 
+// Define the constant array of keys
+const MY_INTERFACE_KEYS: (keyof OrderPayment)[] = ["check", "credit_card", "echeck", "health_benefit_card", "hold_for_fraud_review", "insurance", "payment_dts", "payment_method", "payment_method_accounting_code", "payment_method_deposit_to_account", "payment_status", "paypal", "purchase_order", "rotating_transaction_gateway_code", "surcharge", "surcharge_accounting_code", "surcharge_transaction_fee", "surcharge_transaction_percentage", "test_order", "transactions"];
+
+// Exported function to check for excess properties
+export function hasExcessProperties(obj: any): boolean {
+  const objKeys = Object.keys(obj);
+  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
+}
+
+
 
 /**
  * @export
@@ -246,6 +256,15 @@ export const OrderPaymentPaymentStatusEnum = {
 } as const;
 export type OrderPaymentPaymentStatusEnum = typeof OrderPaymentPaymentStatusEnum[keyof typeof OrderPaymentPaymentStatusEnum];
 
+
+/**
+ * Check if a given object implements the OrderPayment interface.
+ */
+export function instanceOfOrderPayment(value: object): boolean {
+    let isInstance = true;
+
+    return isInstance;
+}
 
 export function OrderPaymentFromJSON(json: any): OrderPayment {
     return OrderPaymentFromJSONTyped(json, false);

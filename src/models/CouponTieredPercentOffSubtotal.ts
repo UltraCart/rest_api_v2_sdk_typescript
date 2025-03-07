@@ -40,6 +40,26 @@ export interface CouponTieredPercentOffSubtotal {
     tiers?: Array<CouponTierPercent>;
 }
 
+// Define the constant array of keys
+const MY_INTERFACE_KEYS: (keyof CouponTieredPercentOffSubtotal)[] = ["items", "tiers"];
+
+// Exported function to check for excess properties
+export function hasExcessProperties(obj: any): boolean {
+  const objKeys = Object.keys(obj);
+  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
+}
+
+
+
+/**
+ * Check if a given object implements the CouponTieredPercentOffSubtotal interface.
+ */
+export function instanceOfCouponTieredPercentOffSubtotal(value: object): boolean {
+    let isInstance = true;
+
+    return isInstance;
+}
+
 export function CouponTieredPercentOffSubtotalFromJSON(json: any): CouponTieredPercentOffSubtotal {
     return CouponTieredPercentOffSubtotalFromJSONTyped(json, false);
 }

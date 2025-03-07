@@ -64,6 +64,26 @@ export interface ErrorResponse {
     warning?: Warning;
 }
 
+// Define the constant array of keys
+const MY_INTERFACE_KEYS: (keyof ErrorResponse)[] = ["error", "metadata", "success", "warning"];
+
+// Exported function to check for excess properties
+export function hasExcessProperties(obj: any): boolean {
+  const objKeys = Object.keys(obj);
+  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
+}
+
+
+
+/**
+ * Check if a given object implements the ErrorResponse interface.
+ */
+export function instanceOfErrorResponse(value: object): boolean {
+    let isInstance = true;
+
+    return isInstance;
+}
+
 export function ErrorResponseFromJSON(json: any): ErrorResponse {
     return ErrorResponseFromJSONTyped(json, false);
 }

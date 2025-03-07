@@ -147,6 +147,26 @@ export interface AutoOrderQuery {
     status?: string;
 }
 
+// Define the constant array of keys
+const MY_INTERFACE_KEYS: (keyof AutoOrderQuery)[] = ["auto_order_code", "card_type", "city", "company", "country_code", "customer_profile_oid", "email", "first_name", "item_id", "last_name", "next_item_id", "next_shipment_date_begin", "next_shipment_date_end", "original_item_id", "original_order_date_begin", "original_order_date_end", "original_order_id", "phone", "postal_code", "state", "status"];
+
+// Exported function to check for excess properties
+export function hasExcessProperties(obj: any): boolean {
+  const objKeys = Object.keys(obj);
+  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
+}
+
+
+
+/**
+ * Check if a given object implements the AutoOrderQuery interface.
+ */
+export function instanceOfAutoOrderQuery(value: object): boolean {
+    let isInstance = true;
+
+    return isInstance;
+}
+
 export function AutoOrderQueryFromJSON(json: any): AutoOrderQuery {
     return AutoOrderQueryFromJSONTyped(json, false);
 }

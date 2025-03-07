@@ -201,6 +201,26 @@ export interface EmailStepStat {
     right_revenue_formatted?: string;
 }
 
+// Define the constant array of keys
+const MY_INTERFACE_KEYS: (keyof EmailStepStat)[] = ["left_click_count", "left_click_count_formatted", "left_conversion_count", "left_conversion_count_formatted", "left_customer_count", "left_customer_count_formatted", "left_delivered_count", "left_delivered_count_formatted", "left_order_count", "left_order_count_formatted", "left_profit", "left_profit_formatted", "left_revenue", "left_revenue_formatted", "left_send_count", "left_send_count_formatted", "left_skipped_count", "left_skipped_count_formatted", "left_unsubscribe_count", "left_unsubscribe_count_formatted", "right_conversion_count", "right_conversion_count_formatted", "right_customer_count", "right_customer_count_formatted", "right_order_count", "right_order_count_formatted", "right_profit", "right_profit_formatted", "right_revenue", "right_revenue_formatted"];
+
+// Exported function to check for excess properties
+export function hasExcessProperties(obj: any): boolean {
+  const objKeys = Object.keys(obj);
+  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
+}
+
+
+
+/**
+ * Check if a given object implements the EmailStepStat interface.
+ */
+export function instanceOfEmailStepStat(value: object): boolean {
+    let isInstance = true;
+
+    return isInstance;
+}
+
 export function EmailStepStatFromJSON(json: any): EmailStepStat {
     return EmailStepStatFromJSONTyped(json, false);
 }

@@ -184,6 +184,26 @@ export interface OrderSummary {
     total_refunded?: Currency;
 }
 
+// Define the constant array of keys
+const MY_INTERFACE_KEYS: (keyof OrderSummary)[] = ["actual_fulfillment", "actual_other_cost", "actual_payment_processing", "actual_profit", "actual_profit_analyzed", "actual_profit_review", "actual_shipping", "arbitrary_shipping_handling_total", "health_benefit_card_amount", "health_benefit_card_refunded", "internal_gift_certificate_amount", "internal_gift_certificate_refunded", "other_refunded", "shipping_handling_refunded", "shipping_handling_total", "shipping_handling_total_discount", "subtotal", "subtotal_discount", "subtotal_discount_refunded", "subtotal_refunded", "tax", "tax_refunded", "taxable_subtotal", "taxable_subtotal_discount", "total", "total_refunded"];
+
+// Exported function to check for excess properties
+export function hasExcessProperties(obj: any): boolean {
+  const objKeys = Object.keys(obj);
+  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
+}
+
+
+
+/**
+ * Check if a given object implements the OrderSummary interface.
+ */
+export function instanceOfOrderSummary(value: object): boolean {
+    let isInstance = true;
+
+    return isInstance;
+}
+
 export function OrderSummaryFromJSON(json: any): OrderSummary {
     return OrderSummaryFromJSONTyped(json, false);
 }

@@ -64,6 +64,26 @@ export interface CartGift {
     gift_wrap_title?: string;
 }
 
+// Define the constant array of keys
+const MY_INTERFACE_KEYS: (keyof CartGift)[] = ["gift", "gift_charge", "gift_email", "gift_message", "gift_wrap_cost", "gift_wrap_title"];
+
+// Exported function to check for excess properties
+export function hasExcessProperties(obj: any): boolean {
+  const objKeys = Object.keys(obj);
+  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
+}
+
+
+
+/**
+ * Check if a given object implements the CartGift interface.
+ */
+export function instanceOfCartGift(value: object): boolean {
+    let isInstance = true;
+
+    return isInstance;
+}
+
 export function CartGiftFromJSON(json: any): CartGift {
     return CartGiftFromJSONTyped(json, false);
 }

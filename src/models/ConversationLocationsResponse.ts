@@ -76,6 +76,26 @@ export interface ConversationLocationsResponse {
     warning?: Warning;
 }
 
+// Define the constant array of keys
+const MY_INTERFACE_KEYS: (keyof ConversationLocationsResponse)[] = ["countries", "error", "metadata", "success", "warning"];
+
+// Exported function to check for excess properties
+export function hasExcessProperties(obj: any): boolean {
+  const objKeys = Object.keys(obj);
+  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
+}
+
+
+
+/**
+ * Check if a given object implements the ConversationLocationsResponse interface.
+ */
+export function instanceOfConversationLocationsResponse(value: object): boolean {
+    let isInstance = true;
+
+    return isInstance;
+}
+
 export function ConversationLocationsResponseFromJSON(json: any): ConversationLocationsResponse {
     return ConversationLocationsResponseFromJSONTyped(json, false);
 }

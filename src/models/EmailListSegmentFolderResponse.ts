@@ -76,6 +76,26 @@ export interface EmailListSegmentFolderResponse {
     warning?: Warning;
 }
 
+// Define the constant array of keys
+const MY_INTERFACE_KEYS: (keyof EmailListSegmentFolderResponse)[] = ["error", "list_segment_folder", "metadata", "success", "warning"];
+
+// Exported function to check for excess properties
+export function hasExcessProperties(obj: any): boolean {
+  const objKeys = Object.keys(obj);
+  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
+}
+
+
+
+/**
+ * Check if a given object implements the EmailListSegmentFolderResponse interface.
+ */
+export function instanceOfEmailListSegmentFolderResponse(value: object): boolean {
+    let isInstance = true;
+
+    return isInstance;
+}
+
 export function EmailListSegmentFolderResponseFromJSON(json: any): EmailListSegmentFolderResponse {
     return EmailListSegmentFolderResponseFromJSONTyped(json, false);
 }

@@ -63,6 +63,16 @@ export interface ConversationAgentProfile {
     profile_image_url?: string;
 }
 
+// Define the constant array of keys
+const MY_INTERFACE_KEYS: (keyof ConversationAgentProfile)[] = ["chat_limit", "default_language_iso_code", "default_status", "display_name", "name", "profile_image_upload_key", "profile_image_url"];
+
+// Exported function to check for excess properties
+export function hasExcessProperties(obj: any): boolean {
+  const objKeys = Object.keys(obj);
+  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
+}
+
+
 
 /**
  * @export
@@ -74,6 +84,15 @@ export const ConversationAgentProfileDefaultStatusEnum = {
 } as const;
 export type ConversationAgentProfileDefaultStatusEnum = typeof ConversationAgentProfileDefaultStatusEnum[keyof typeof ConversationAgentProfileDefaultStatusEnum];
 
+
+/**
+ * Check if a given object implements the ConversationAgentProfile interface.
+ */
+export function instanceOfConversationAgentProfile(value: object): boolean {
+    let isInstance = true;
+
+    return isInstance;
+}
 
 export function ConversationAgentProfileFromJSON(json: any): ConversationAgentProfile {
     return ConversationAgentProfileFromJSONTyped(json, false);

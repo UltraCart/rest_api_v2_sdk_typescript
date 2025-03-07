@@ -93,6 +93,26 @@ export interface OrderTrackingNumberDetail {
     zip?: string;
 }
 
+// Define the constant array of keys
+const MY_INTERFACE_KEYS: (keyof OrderTrackingNumberDetail)[] = ["city", "event_dts", "event_local_date", "event_local_time", "event_timezone_id", "state", "subtag", "subtag_message", "tag", "tag_description", "tag_icon", "zip"];
+
+// Exported function to check for excess properties
+export function hasExcessProperties(obj: any): boolean {
+  const objKeys = Object.keys(obj);
+  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
+}
+
+
+
+/**
+ * Check if a given object implements the OrderTrackingNumberDetail interface.
+ */
+export function instanceOfOrderTrackingNumberDetail(value: object): boolean {
+    let isInstance = true;
+
+    return isInstance;
+}
+
 export function OrderTrackingNumberDetailFromJSON(json: any): OrderTrackingNumberDetail {
     return OrderTrackingNumberDetailFromJSONTyped(json, false);
 }

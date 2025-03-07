@@ -82,6 +82,26 @@ export interface FileManagerPage {
     storefront_oid?: number;
 }
 
+// Define the constant array of keys
+const MY_INTERFACE_KEYS: (keyof FileManagerPage)[] = ["current_storefront_fs_directory_oid", "directories", "files", "hostname", "parent_storefront_fs_directory_oid", "path", "path_list", "storefront_oid"];
+
+// Exported function to check for excess properties
+export function hasExcessProperties(obj: any): boolean {
+  const objKeys = Object.keys(obj);
+  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
+}
+
+
+
+/**
+ * Check if a given object implements the FileManagerPage interface.
+ */
+export function instanceOfFileManagerPage(value: object): boolean {
+    let isInstance = true;
+
+    return isInstance;
+}
+
 export function FileManagerPageFromJSON(json: any): FileManagerPage {
     return FileManagerPageFromJSONTyped(json, false);
 }

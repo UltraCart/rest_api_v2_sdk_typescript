@@ -106,6 +106,16 @@ export interface CartItemOption {
     values?: Array<CartItemOptionValue>;
 }
 
+// Define the constant array of keys
+const MY_INTERFACE_KEYS: (keyof CartItemOption)[] = ["cost_if_specified", "cost_per_letter", "cost_per_line", "ignore_if_default", "label", "name", "one_time_fee", "option_oid", "required", "selected_value", "type", "values"];
+
+// Exported function to check for excess properties
+export function hasExcessProperties(obj: any): boolean {
+  const objKeys = Object.keys(obj);
+  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
+}
+
+
 
 /**
  * @export
@@ -120,6 +130,15 @@ export const CartItemOptionTypeEnum = {
 } as const;
 export type CartItemOptionTypeEnum = typeof CartItemOptionTypeEnum[keyof typeof CartItemOptionTypeEnum];
 
+
+/**
+ * Check if a given object implements the CartItemOption interface.
+ */
+export function instanceOfCartItemOption(value: object): boolean {
+    let isInstance = true;
+
+    return isInstance;
+}
 
 export function CartItemOptionFromJSON(json: any): CartItemOption {
     return CartItemOptionFromJSONTyped(json, false);

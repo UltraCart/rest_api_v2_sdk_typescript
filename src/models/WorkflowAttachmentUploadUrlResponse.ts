@@ -76,6 +76,26 @@ export interface WorkflowAttachmentUploadUrlResponse {
     workflow_attachment_upload_url?: WorkflowAttachmentUploadUrl;
 }
 
+// Define the constant array of keys
+const MY_INTERFACE_KEYS: (keyof WorkflowAttachmentUploadUrlResponse)[] = ["error", "metadata", "success", "warning", "workflow_attachment_upload_url"];
+
+// Exported function to check for excess properties
+export function hasExcessProperties(obj: any): boolean {
+  const objKeys = Object.keys(obj);
+  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
+}
+
+
+
+/**
+ * Check if a given object implements the WorkflowAttachmentUploadUrlResponse interface.
+ */
+export function instanceOfWorkflowAttachmentUploadUrlResponse(value: object): boolean {
+    let isInstance = true;
+
+    return isInstance;
+}
+
 export function WorkflowAttachmentUploadUrlResponseFromJSON(json: any): WorkflowAttachmentUploadUrlResponse {
     return WorkflowAttachmentUploadUrlResponseFromJSONTyped(json, false);
 }

@@ -63,6 +63,26 @@ export interface EmailDashboardActivity {
     is_segment?: boolean;
 }
 
+// Define the constant array of keys
+const MY_INTERFACE_KEYS: (keyof EmailDashboardActivity)[] = ["action", "activity_dts", "destination_name", "destination_uuid", "email", "is_list", "is_segment"];
+
+// Exported function to check for excess properties
+export function hasExcessProperties(obj: any): boolean {
+  const objKeys = Object.keys(obj);
+  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
+}
+
+
+
+/**
+ * Check if a given object implements the EmailDashboardActivity interface.
+ */
+export function instanceOfEmailDashboardActivity(value: object): boolean {
+    let isInstance = true;
+
+    return isInstance;
+}
+
 export function EmailDashboardActivityFromJSON(json: any): EmailDashboardActivity {
     return EmailDashboardActivityFromJSONTyped(json, false);
 }

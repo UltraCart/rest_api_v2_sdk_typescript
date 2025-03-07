@@ -76,6 +76,26 @@ export interface AutoOrderResponse {
     warning?: Warning;
 }
 
+// Define the constant array of keys
+const MY_INTERFACE_KEYS: (keyof AutoOrderResponse)[] = ["auto_order", "error", "metadata", "success", "warning"];
+
+// Exported function to check for excess properties
+export function hasExcessProperties(obj: any): boolean {
+  const objKeys = Object.keys(obj);
+  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
+}
+
+
+
+/**
+ * Check if a given object implements the AutoOrderResponse interface.
+ */
+export function instanceOfAutoOrderResponse(value: object): boolean {
+    let isInstance = true;
+
+    return isInstance;
+}
+
 export function AutoOrderResponseFromJSON(json: any): AutoOrderResponse {
     return AutoOrderResponseFromJSONTyped(json, false);
 }

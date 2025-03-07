@@ -76,6 +76,26 @@ export interface TempMultimediaResponse {
     warning?: Warning;
 }
 
+// Define the constant array of keys
+const MY_INTERFACE_KEYS: (keyof TempMultimediaResponse)[] = ["error", "metadata", "success", "temp_multimedia", "warning"];
+
+// Exported function to check for excess properties
+export function hasExcessProperties(obj: any): boolean {
+  const objKeys = Object.keys(obj);
+  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
+}
+
+
+
+/**
+ * Check if a given object implements the TempMultimediaResponse interface.
+ */
+export function instanceOfTempMultimediaResponse(value: object): boolean {
+    let isInstance = true;
+
+    return isInstance;
+}
+
 export function TempMultimediaResponseFromJSON(json: any): TempMultimediaResponse {
     return TempMultimediaResponseFromJSONTyped(json, false);
 }

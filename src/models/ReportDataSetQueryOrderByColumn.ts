@@ -33,6 +33,26 @@ export interface ReportDataSetQueryOrderByColumn {
     column_name?: string;
 }
 
+// Define the constant array of keys
+const MY_INTERFACE_KEYS: (keyof ReportDataSetQueryOrderByColumn)[] = ["ascending", "column_name"];
+
+// Exported function to check for excess properties
+export function hasExcessProperties(obj: any): boolean {
+  const objKeys = Object.keys(obj);
+  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
+}
+
+
+
+/**
+ * Check if a given object implements the ReportDataSetQueryOrderByColumn interface.
+ */
+export function instanceOfReportDataSetQueryOrderByColumn(value: object): boolean {
+    let isInstance = true;
+
+    return isInstance;
+}
+
 export function ReportDataSetQueryOrderByColumnFromJSON(json: any): ReportDataSetQueryOrderByColumn {
     return ReportDataSetQueryOrderByColumnFromJSONTyped(json, false);
 }

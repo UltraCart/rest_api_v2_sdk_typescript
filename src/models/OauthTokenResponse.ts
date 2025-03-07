@@ -69,6 +69,16 @@ export interface OauthTokenResponse {
     token_type?: OauthTokenResponseTokenTypeEnum;
 }
 
+// Define the constant array of keys
+const MY_INTERFACE_KEYS: (keyof OauthTokenResponse)[] = ["access_token", "error", "error_description", "error_uri", "expires_in", "refresh_token", "scope", "token_type"];
+
+// Exported function to check for excess properties
+export function hasExcessProperties(obj: any): boolean {
+  const objKeys = Object.keys(obj);
+  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
+}
+
+
 
 /**
  * @export
@@ -78,6 +88,15 @@ export const OauthTokenResponseTokenTypeEnum = {
 } as const;
 export type OauthTokenResponseTokenTypeEnum = typeof OauthTokenResponseTokenTypeEnum[keyof typeof OauthTokenResponseTokenTypeEnum];
 
+
+/**
+ * Check if a given object implements the OauthTokenResponse interface.
+ */
+export function instanceOfOauthTokenResponse(value: object): boolean {
+    let isInstance = true;
+
+    return isInstance;
+}
 
 export function OauthTokenResponseFromJSON(json: any): OauthTokenResponse {
     return OauthTokenResponseFromJSONTyped(json, false);

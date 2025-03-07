@@ -33,6 +33,26 @@ export interface WorkflowAttachmentUploadUrl {
     url?: string;
 }
 
+// Define the constant array of keys
+const MY_INTERFACE_KEYS: (keyof WorkflowAttachmentUploadUrl)[] = ["key", "url"];
+
+// Exported function to check for excess properties
+export function hasExcessProperties(obj: any): boolean {
+  const objKeys = Object.keys(obj);
+  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
+}
+
+
+
+/**
+ * Check if a given object implements the WorkflowAttachmentUploadUrl interface.
+ */
+export function instanceOfWorkflowAttachmentUploadUrl(value: object): boolean {
+    let isInstance = true;
+
+    return isInstance;
+}
+
 export function WorkflowAttachmentUploadUrlFromJSON(json: any): WorkflowAttachmentUploadUrl {
     return WorkflowAttachmentUploadUrlFromJSONTyped(json, false);
 }

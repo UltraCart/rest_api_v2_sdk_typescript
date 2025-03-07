@@ -118,6 +118,26 @@ export interface ConversationAgentAuth {
     websocket_url?: string;
 }
 
+// Define the constant array of keys
+const MY_INTERFACE_KEYS: (keyof ConversationAgentAuth)[] = ["conversation_participant_arn", "conversation_participant_name", "group_ids", "jwt", "merchant_id", "pbx_admin", "pbx_jwt", "pbx_supervisor", "pbx_user", "pbx_voice_identity", "pbx_voice_token", "pbx_worker_token", "twilio_accounts", "user_id", "websocket_url"];
+
+// Exported function to check for excess properties
+export function hasExcessProperties(obj: any): boolean {
+  const objKeys = Object.keys(obj);
+  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
+}
+
+
+
+/**
+ * Check if a given object implements the ConversationAgentAuth interface.
+ */
+export function instanceOfConversationAgentAuth(value: object): boolean {
+    let isInstance = true;
+
+    return isInstance;
+}
+
 export function ConversationAgentAuthFromJSON(json: any): ConversationAgentAuth {
     return ConversationAgentAuthFromJSONTyped(json, false);
 }

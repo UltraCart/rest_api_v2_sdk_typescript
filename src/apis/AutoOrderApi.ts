@@ -298,7 +298,7 @@ export interface AutoOrderApiInterface {
      * Completely pause an auto order 
      * @summary Pause auto order
      * @param {number} autoOrderOid The auto order oid to pause.
-     * @param {AutoOrder} autoOrder Auto orders to pause
+     * @param {AutoOrder} autoOrder Auto order to pause
      * @param {string} [expand] The object expansion to perform on the result.  See documentation for examples
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}

@@ -46,6 +46,26 @@ export interface CartGiftCertificate {
     gift_certificate_remaining_balance_after_order?: Currency;
 }
 
+// Define the constant array of keys
+const MY_INTERFACE_KEYS: (keyof CartGiftCertificate)[] = ["gift_certificate_amount", "gift_certificate_code", "gift_certificate_remaining_balance_after_order"];
+
+// Exported function to check for excess properties
+export function hasExcessProperties(obj: any): boolean {
+  const objKeys = Object.keys(obj);
+  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
+}
+
+
+
+/**
+ * Check if a given object implements the CartGiftCertificate interface.
+ */
+export function instanceOfCartGiftCertificate(value: object): boolean {
+    let isInstance = true;
+
+    return isInstance;
+}
+
 export function CartGiftCertificateFromJSON(json: any): CartGiftCertificate {
     return CartGiftCertificateFromJSONTyped(json, false);
 }

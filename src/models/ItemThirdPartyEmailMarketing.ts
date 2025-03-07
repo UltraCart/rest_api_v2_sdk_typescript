@@ -51,6 +51,16 @@ export interface ItemThirdPartyEmailMarketing {
     unsubscribe_lists?: Array<string>;
 }
 
+// Define the constant array of keys
+const MY_INTERFACE_KEYS: (keyof ItemThirdPartyEmailMarketing)[] = ["add_tags", "provider_name", "remove_tags", "subscribe_lists", "unsubscribe_lists"];
+
+// Exported function to check for excess properties
+export function hasExcessProperties(obj: any): boolean {
+  const objKeys = Object.keys(obj);
+  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
+}
+
+
 
 /**
  * @export
@@ -71,6 +81,15 @@ export const ItemThirdPartyEmailMarketingProviderNameEnum = {
 } as const;
 export type ItemThirdPartyEmailMarketingProviderNameEnum = typeof ItemThirdPartyEmailMarketingProviderNameEnum[keyof typeof ItemThirdPartyEmailMarketingProviderNameEnum];
 
+
+/**
+ * Check if a given object implements the ItemThirdPartyEmailMarketing interface.
+ */
+export function instanceOfItemThirdPartyEmailMarketing(value: object): boolean {
+    let isInstance = true;
+
+    return isInstance;
+}
 
 export function ItemThirdPartyEmailMarketingFromJSON(json: any): ItemThirdPartyEmailMarketing {
     return ItemThirdPartyEmailMarketingFromJSONTyped(json, false);

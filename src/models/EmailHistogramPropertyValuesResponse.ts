@@ -27,6 +27,26 @@ export interface EmailHistogramPropertyValuesResponse {
     property_values?: Array<string>;
 }
 
+// Define the constant array of keys
+const MY_INTERFACE_KEYS: (keyof EmailHistogramPropertyValuesResponse)[] = ["property_values"];
+
+// Exported function to check for excess properties
+export function hasExcessProperties(obj: any): boolean {
+  const objKeys = Object.keys(obj);
+  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
+}
+
+
+
+/**
+ * Check if a given object implements the EmailHistogramPropertyValuesResponse interface.
+ */
+export function instanceOfEmailHistogramPropertyValuesResponse(value: object): boolean {
+    let isInstance = true;
+
+    return isInstance;
+}
+
 export function EmailHistogramPropertyValuesResponseFromJSON(json: any): EmailHistogramPropertyValuesResponse {
     return EmailHistogramPropertyValuesResponseFromJSONTyped(json, false);
 }

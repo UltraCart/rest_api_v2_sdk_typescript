@@ -57,6 +57,26 @@ export interface AffiliateClickQuery {
     sub_id?: string;
 }
 
+// Define the constant array of keys
+const MY_INTERFACE_KEYS: (keyof AffiliateClickQuery)[] = ["affiliate_link_oid", "affiliate_oid", "click_dts_begin", "click_dts_end", "ip_address", "sub_id"];
+
+// Exported function to check for excess properties
+export function hasExcessProperties(obj: any): boolean {
+  const objKeys = Object.keys(obj);
+  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
+}
+
+
+
+/**
+ * Check if a given object implements the AffiliateClickQuery interface.
+ */
+export function instanceOfAffiliateClickQuery(value: object): boolean {
+    let isInstance = true;
+
+    return isInstance;
+}
+
 export function AffiliateClickQueryFromJSON(json: any): AffiliateClickQuery {
     return AffiliateClickQueryFromJSONTyped(json, false);
 }

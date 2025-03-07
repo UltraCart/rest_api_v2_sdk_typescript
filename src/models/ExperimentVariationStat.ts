@@ -99,6 +99,26 @@ export interface ExperimentVariationStat {
     stat_dts?: string;
 }
 
+// Define the constant array of keys
+const MY_INTERFACE_KEYS: (keyof ExperimentVariationStat)[] = ["add_to_cart_count", "bounce_count", "duration_seconds_sum", "event_count", "initiate_checkout_count", "order_count", "order_ids", "order_item_count", "page_view_count", "revenue", "session_count", "sms_opt_in_count", "stat_dts"];
+
+// Exported function to check for excess properties
+export function hasExcessProperties(obj: any): boolean {
+  const objKeys = Object.keys(obj);
+  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
+}
+
+
+
+/**
+ * Check if a given object implements the ExperimentVariationStat interface.
+ */
+export function instanceOfExperimentVariationStat(value: object): boolean {
+    let isInstance = true;
+
+    return isInstance;
+}
+
 export function ExperimentVariationStatFromJSON(json: any): ExperimentVariationStat {
     return ExperimentVariationStatFromJSONTyped(json, false);
 }

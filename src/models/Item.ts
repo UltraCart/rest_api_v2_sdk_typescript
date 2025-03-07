@@ -556,6 +556,26 @@ export interface Item {
     wishlist_member?: ItemWishlistMember;
 }
 
+// Define the constant array of keys
+const MY_INTERFACE_KEYS: (keyof Item)[] = ["accounting", "amember", "auto_order", "ccbill", "channel_partner_item_mappings", "chargeback", "checkout", "content", "creation_dts", "description", "description_translated_text_instance_oid", "digital_delivery", "ebay", "email_notifications", "enrollment123", "fulfillment_addons", "gift_certificate", "google_product_search", "identifiers", "inactive", "instant_payment_notifications", "internal", "kit", "kit_component_only", "kit_definition", "last_modified_dts", "merchant_id", "merchant_item_id", "merchant_item_oid", "options", "parent_category_id", "parent_category_path", "payment_processing", "physical", "pricing", "properties", "realtime_pricing", "recommend_replenishment_days", "related", "reporting", "restriction", "revguard", "reviews", "salesforce", "shipping", "tags", "tax", "third_party_email_marketing", "variant_items", "variations", "wishlist_member"];
+
+// Exported function to check for excess properties
+export function hasExcessProperties(obj: any): boolean {
+  const objKeys = Object.keys(obj);
+  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
+}
+
+
+
+/**
+ * Check if a given object implements the Item interface.
+ */
+export function instanceOfItem(value: object): boolean {
+    let isInstance = true;
+
+    return isInstance;
+}
+
 export function ItemFromJSON(json: any): Item {
     return ItemFromJSONTyped(json, false);
 }

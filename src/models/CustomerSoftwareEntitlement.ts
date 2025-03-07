@@ -69,6 +69,26 @@ export interface CustomerSoftwareEntitlement {
     software_sku?: string;
 }
 
+// Define the constant array of keys
+const MY_INTERFACE_KEYS: (keyof CustomerSoftwareEntitlement)[] = ["activation_code", "activation_dts", "customer_software_entitlement_oid", "expiration_dts", "purchased_via_item_description", "purchased_via_item_id", "purchased_via_order_id", "software_sku"];
+
+// Exported function to check for excess properties
+export function hasExcessProperties(obj: any): boolean {
+  const objKeys = Object.keys(obj);
+  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
+}
+
+
+
+/**
+ * Check if a given object implements the CustomerSoftwareEntitlement interface.
+ */
+export function instanceOfCustomerSoftwareEntitlement(value: object): boolean {
+    let isInstance = true;
+
+    return isInstance;
+}
+
 export function CustomerSoftwareEntitlementFromJSON(json: any): CustomerSoftwareEntitlement {
     return CustomerSoftwareEntitlementFromJSONTyped(json, false);
 }

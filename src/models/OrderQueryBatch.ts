@@ -33,6 +33,16 @@ export interface OrderQueryBatch {
     query_target?: OrderQueryBatchQueryTargetEnum;
 }
 
+// Define the constant array of keys
+const MY_INTERFACE_KEYS: (keyof OrderQueryBatch)[] = ["order_ids", "query_target"];
+
+// Exported function to check for excess properties
+export function hasExcessProperties(obj: any): boolean {
+  const objKeys = Object.keys(obj);
+  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
+}
+
+
 
 /**
  * @export
@@ -43,6 +53,15 @@ export const OrderQueryBatchQueryTargetEnum = {
 } as const;
 export type OrderQueryBatchQueryTargetEnum = typeof OrderQueryBatchQueryTargetEnum[keyof typeof OrderQueryBatchQueryTargetEnum];
 
+
+/**
+ * Check if a given object implements the OrderQueryBatch interface.
+ */
+export function instanceOfOrderQueryBatch(value: object): boolean {
+    let isInstance = true;
+
+    return isInstance;
+}
 
 export function OrderQueryBatchFromJSON(json: any): OrderQueryBatch {
     return OrderQueryBatchFromJSONTyped(json, false);

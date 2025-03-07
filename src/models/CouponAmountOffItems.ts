@@ -51,6 +51,26 @@ export interface CouponAmountOffItems {
     limit?: number;
 }
 
+// Define the constant array of keys
+const MY_INTERFACE_KEYS: (keyof CouponAmountOffItems)[] = ["currency_code", "discount_amount", "item_tags", "items", "limit"];
+
+// Exported function to check for excess properties
+export function hasExcessProperties(obj: any): boolean {
+  const objKeys = Object.keys(obj);
+  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
+}
+
+
+
+/**
+ * Check if a given object implements the CouponAmountOffItems interface.
+ */
+export function instanceOfCouponAmountOffItems(value: object): boolean {
+    let isInstance = true;
+
+    return isInstance;
+}
+
 export function CouponAmountOffItemsFromJSON(json: any): CouponAmountOffItems {
     return CouponAmountOffItemsFromJSONTyped(json, false);
 }

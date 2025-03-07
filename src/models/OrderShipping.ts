@@ -220,6 +220,26 @@ export interface OrderShipping {
     weight?: Weight;
 }
 
+// Define the constant array of keys
+const MY_INTERFACE_KEYS: (keyof OrderShipping)[] = ["address1", "address2", "city", "company", "country_code", "day_phone", "day_phone_e164", "delivery_date", "evening_phone", "evening_phone_e164", "first_name", "last_name", "least_cost_route", "least_cost_route_shipping_methods", "lift_gate", "pickup_dts", "postal_code", "rma", "ship_on_date", "ship_to_residential", "shipping_3rd_party_account_number", "shipping_date", "shipping_department_status", "shipping_method", "shipping_method_accounting_code", "special_instructions", "state_region", "title", "tracking_number_details", "tracking_numbers", "weight"];
+
+// Exported function to check for excess properties
+export function hasExcessProperties(obj: any): boolean {
+  const objKeys = Object.keys(obj);
+  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
+}
+
+
+
+/**
+ * Check if a given object implements the OrderShipping interface.
+ */
+export function instanceOfOrderShipping(value: object): boolean {
+    let isInstance = true;
+
+    return isInstance;
+}
+
 export function OrderShippingFromJSON(json: any): OrderShipping {
     return OrderShippingFromJSONTyped(json, false);
 }

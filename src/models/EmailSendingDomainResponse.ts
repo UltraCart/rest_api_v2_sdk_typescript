@@ -76,6 +76,26 @@ export interface EmailSendingDomainResponse {
     warning?: Warning;
 }
 
+// Define the constant array of keys
+const MY_INTERFACE_KEYS: (keyof EmailSendingDomainResponse)[] = ["domain", "error", "metadata", "success", "warning"];
+
+// Exported function to check for excess properties
+export function hasExcessProperties(obj: any): boolean {
+  const objKeys = Object.keys(obj);
+  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
+}
+
+
+
+/**
+ * Check if a given object implements the EmailSendingDomainResponse interface.
+ */
+export function instanceOfEmailSendingDomainResponse(value: object): boolean {
+    let isInstance = true;
+
+    return isInstance;
+}
+
 export function EmailSendingDomainResponseFromJSON(json: any): EmailSendingDomainResponse {
     return EmailSendingDomainResponseFromJSONTyped(json, false);
 }

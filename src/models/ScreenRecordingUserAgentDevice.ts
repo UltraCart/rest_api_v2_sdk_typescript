@@ -27,6 +27,26 @@ export interface ScreenRecordingUserAgentDevice {
     name?: string;
 }
 
+// Define the constant array of keys
+const MY_INTERFACE_KEYS: (keyof ScreenRecordingUserAgentDevice)[] = ["name"];
+
+// Exported function to check for excess properties
+export function hasExcessProperties(obj: any): boolean {
+  const objKeys = Object.keys(obj);
+  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
+}
+
+
+
+/**
+ * Check if a given object implements the ScreenRecordingUserAgentDevice interface.
+ */
+export function instanceOfScreenRecordingUserAgentDevice(value: object): boolean {
+    let isInstance = true;
+
+    return isInstance;
+}
+
 export function ScreenRecordingUserAgentDeviceFromJSON(json: any): ScreenRecordingUserAgentDevice {
     return ScreenRecordingUserAgentDeviceFromJSONTyped(json, false);
 }

@@ -51,6 +51,16 @@ export interface ConversationPbxPhoneNumber {
     phone_number?: string;
 }
 
+// Define the constant array of keys
+const MY_INTERFACE_KEYS: (keyof ConversationPbxPhoneNumber)[] = ["action", "action_target", "conversation_pbx_phone_number_uuid", "merchant_id", "phone_number"];
+
+// Exported function to check for excess properties
+export function hasExcessProperties(obj: any): boolean {
+  const objKeys = Object.keys(obj);
+  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
+}
+
+
 
 /**
  * @export
@@ -64,6 +74,15 @@ export const ConversationPbxPhoneNumberActionEnum = {
 } as const;
 export type ConversationPbxPhoneNumberActionEnum = typeof ConversationPbxPhoneNumberActionEnum[keyof typeof ConversationPbxPhoneNumberActionEnum];
 
+
+/**
+ * Check if a given object implements the ConversationPbxPhoneNumber interface.
+ */
+export function instanceOfConversationPbxPhoneNumber(value: object): boolean {
+    let isInstance = true;
+
+    return isInstance;
+}
 
 export function ConversationPbxPhoneNumberFromJSON(json: any): ConversationPbxPhoneNumber {
     return ConversationPbxPhoneNumberFromJSONTyped(json, false);

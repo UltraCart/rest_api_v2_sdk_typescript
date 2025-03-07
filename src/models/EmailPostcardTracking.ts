@@ -171,6 +171,26 @@ export interface EmailPostcardTracking {
     tracking_description?: string;
 }
 
+// Define the constant array of keys
+const MY_INTERFACE_KEYS: (keyof EmailPostcardTracking)[] = ["commseq_postcard_uuid", "commseq_step_uuid", "commseq_uuid", "conversion_dts", "cost", "customer_uuid", "delivered_dts", "from_address_line1", "from_address_line2", "from_city", "from_name", "from_state", "from_zip", "mailed_dts", "order_id", "postcard_tracking_uuid", "status", "submit_dts", "to_address_line1", "to_address_line2", "to_city", "to_name", "to_state", "to_zip", "tracking_description"];
+
+// Exported function to check for excess properties
+export function hasExcessProperties(obj: any): boolean {
+  const objKeys = Object.keys(obj);
+  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
+}
+
+
+
+/**
+ * Check if a given object implements the EmailPostcardTracking interface.
+ */
+export function instanceOfEmailPostcardTracking(value: object): boolean {
+    let isInstance = true;
+
+    return isInstance;
+}
+
 export function EmailPostcardTrackingFromJSON(json: any): EmailPostcardTracking {
     return EmailPostcardTrackingFromJSONTyped(json, false);
 }

@@ -39,6 +39,26 @@ export interface ListSegmentMembership {
     uuid?: string;
 }
 
+// Define the constant array of keys
+const MY_INTERFACE_KEYS: (keyof ListSegmentMembership)[] = ["name", "type", "uuid"];
+
+// Exported function to check for excess properties
+export function hasExcessProperties(obj: any): boolean {
+  const objKeys = Object.keys(obj);
+  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
+}
+
+
+
+/**
+ * Check if a given object implements the ListSegmentMembership interface.
+ */
+export function instanceOfListSegmentMembership(value: object): boolean {
+    let isInstance = true;
+
+    return isInstance;
+}
+
 export function ListSegmentMembershipFromJSON(json: any): ListSegmentMembership {
     return ListSegmentMembershipFromJSONTyped(json, false);
 }

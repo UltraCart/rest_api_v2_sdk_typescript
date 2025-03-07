@@ -33,6 +33,26 @@ export interface ItemPricingTierDiscount {
     quantity?: number;
 }
 
+// Define the constant array of keys
+const MY_INTERFACE_KEYS: (keyof ItemPricingTierDiscount)[] = ["cost", "quantity"];
+
+// Exported function to check for excess properties
+export function hasExcessProperties(obj: any): boolean {
+  const objKeys = Object.keys(obj);
+  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
+}
+
+
+
+/**
+ * Check if a given object implements the ItemPricingTierDiscount interface.
+ */
+export function instanceOfItemPricingTierDiscount(value: object): boolean {
+    let isInstance = true;
+
+    return isInstance;
+}
+
 export function ItemPricingTierDiscountFromJSON(json: any): ItemPricingTierDiscount {
     return ItemPricingTierDiscountFromJSONTyped(json, false);
 }

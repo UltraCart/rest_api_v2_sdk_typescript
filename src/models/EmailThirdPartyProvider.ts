@@ -100,6 +100,26 @@ export interface EmailThirdPartyProvider {
     tags?: Array<EmailThirdPartyTag>;
 }
 
+// Define the constant array of keys
+const MY_INTERFACE_KEYS: (keyof EmailThirdPartyProvider)[] = ["connect_url", "list_count", "lists", "logo_url", "name", "supports_add_tags", "supports_list_subscribe", "supports_list_unsubscribe", "supports_remove_tags", "tag_count", "tags"];
+
+// Exported function to check for excess properties
+export function hasExcessProperties(obj: any): boolean {
+  const objKeys = Object.keys(obj);
+  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
+}
+
+
+
+/**
+ * Check if a given object implements the EmailThirdPartyProvider interface.
+ */
+export function instanceOfEmailThirdPartyProvider(value: object): boolean {
+    let isInstance = true;
+
+    return isInstance;
+}
+
 export function EmailThirdPartyProviderFromJSON(json: any): EmailThirdPartyProvider {
     return EmailThirdPartyProviderFromJSONTyped(json, false);
 }

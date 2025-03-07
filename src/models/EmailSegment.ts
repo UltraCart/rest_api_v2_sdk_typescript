@@ -160,6 +160,26 @@ export interface EmailSegment {
     used_by?: Array<EmailListSegmentUsedBy>;
 }
 
+// Define the constant array of keys
+const MY_INTERFACE_KEYS: (keyof EmailSegment)[] = ["allow_csv_download", "allow_facebook_audiences", "created_dts", "deleted", "email_segment_uuid", "esp_list_segment_folder_uuid", "facebook_custom_audience", "filter_profile_equation_json", "member_count", "merchant_id", "name", "rank_json", "rebuild_percentage", "rebuild_required", "storefront_oid", "thirdparty_join_add_tags", "thirdparty_join_remove_tags", "thirdparty_leave_add_tags", "thirdparty_leave_remove_tags", "thirdparty_list_id", "thirdparty_provider_name", "used_by"];
+
+// Exported function to check for excess properties
+export function hasExcessProperties(obj: any): boolean {
+  const objKeys = Object.keys(obj);
+  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
+}
+
+
+
+/**
+ * Check if a given object implements the EmailSegment interface.
+ */
+export function instanceOfEmailSegment(value: object): boolean {
+    let isInstance = true;
+
+    return isInstance;
+}
+
 export function EmailSegmentFromJSON(json: any): EmailSegment {
     return EmailSegmentFromJSONTyped(json, false);
 }

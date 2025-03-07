@@ -70,6 +70,16 @@ export interface ChannelPartnerOrderItem {
     upsell?: boolean;
 }
 
+// Define the constant array of keys
+const MY_INTERFACE_KEYS: (keyof ChannelPartnerOrderItem)[] = ["arbitrary_unit_cost", "auto_order_last_rebill_dts", "auto_order_schedule", "merchant_item_id", "options", "quantity", "upsell"];
+
+// Exported function to check for excess properties
+export function hasExcessProperties(obj: any): boolean {
+  const objKeys = Object.keys(obj);
+  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
+}
+
+
 
 /**
  * @export
@@ -94,6 +104,15 @@ export const ChannelPartnerOrderItemAutoOrderScheduleEnum = {
 } as const;
 export type ChannelPartnerOrderItemAutoOrderScheduleEnum = typeof ChannelPartnerOrderItemAutoOrderScheduleEnum[keyof typeof ChannelPartnerOrderItemAutoOrderScheduleEnum];
 
+
+/**
+ * Check if a given object implements the ChannelPartnerOrderItem interface.
+ */
+export function instanceOfChannelPartnerOrderItem(value: object): boolean {
+    let isInstance = true;
+
+    return isInstance;
+}
 
 export function ChannelPartnerOrderItemFromJSON(json: any): ChannelPartnerOrderItem {
     return ChannelPartnerOrderItemFromJSONTyped(json, false);

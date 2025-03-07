@@ -33,6 +33,16 @@ export interface Distance {
     value?: number;
 }
 
+// Define the constant array of keys
+const MY_INTERFACE_KEYS: (keyof Distance)[] = ["uom", "value"];
+
+// Exported function to check for excess properties
+export function hasExcessProperties(obj: any): boolean {
+  const objKeys = Object.keys(obj);
+  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
+}
+
+
 
 /**
  * @export
@@ -43,6 +53,15 @@ export const DistanceUomEnum = {
 } as const;
 export type DistanceUomEnum = typeof DistanceUomEnum[keyof typeof DistanceUomEnum];
 
+
+/**
+ * Check if a given object implements the Distance interface.
+ */
+export function instanceOfDistance(value: object): boolean {
+    let isInstance = true;
+
+    return isInstance;
+}
 
 export function DistanceFromJSON(json: any): Distance {
     return DistanceFromJSONTyped(json, false);

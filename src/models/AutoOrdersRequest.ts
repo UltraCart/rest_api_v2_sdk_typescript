@@ -34,6 +34,26 @@ export interface AutoOrdersRequest {
     autoOrders?: Array<AutoOrder>;
 }
 
+// Define the constant array of keys
+const MY_INTERFACE_KEYS: (keyof AutoOrdersRequest)[] = ["autoOrders"];
+
+// Exported function to check for excess properties
+export function hasExcessProperties(obj: any): boolean {
+  const objKeys = Object.keys(obj);
+  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
+}
+
+
+
+/**
+ * Check if a given object implements the AutoOrdersRequest interface.
+ */
+export function instanceOfAutoOrdersRequest(value: object): boolean {
+    let isInstance = true;
+
+    return isInstance;
+}
+
 export function AutoOrdersRequestFromJSON(json: any): AutoOrdersRequest {
     return AutoOrdersRequestFromJSONTyped(json, false);
 }

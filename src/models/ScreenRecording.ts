@@ -358,6 +358,26 @@ export interface ScreenRecording {
     window_width?: number;
 }
 
+// Define the constant array of keys
+const MY_INTERFACE_KEYS: (keyof ScreenRecording)[] = ["ad_platform", "analytics_client_oid", "analytics_session_dts", "analytics_session_oid", "communications_campaign_name", "communications_campaign_uuid", "communications_email_subject", "communications_email_uuid", "communications_flow_name", "communications_flow_uuid", "email", "email_domain", "end_timestamp", "esp_customer_uuid", "events_gz_size", "events_json_key", "favorite", "favorites", "geolocation", "geolocation_country", "geolocation_state", "language_iso_code", "merchant_id", "merchant_notes", "missing_external_tracking", "order_id", "page_view_count", "page_views", "preferred_language", "referrer_domain", "rrweb_version", "screen_recording_uuid", "signed_download_url", "start_timestamp", "storefront_oids", "storefronts", "tags", "time_on_site", "ucacid", "user_agent", "user_agent_raw", "user_ip", "user_properties", "utm_campaign", "utm_source", "visitor_first_seen", "visitor_number", "watched", "window_height", "window_width"];
+
+// Exported function to check for excess properties
+export function hasExcessProperties(obj: any): boolean {
+  const objKeys = Object.keys(obj);
+  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
+}
+
+
+
+/**
+ * Check if a given object implements the ScreenRecording interface.
+ */
+export function instanceOfScreenRecording(value: object): boolean {
+    let isInstance = true;
+
+    return isInstance;
+}
+
 export function ScreenRecordingFromJSON(json: any): ScreenRecording {
     return ScreenRecordingFromJSONTyped(json, false);
 }

@@ -514,6 +514,26 @@ export interface Customer {
     website_url?: string;
 }
 
+// Define the constant array of keys
+const MY_INTERFACE_KEYS: (keyof Customer)[] = ["activity", "affiliate_oid", "allow_3rd_party_billing", "allow_cod", "allow_drop_shipping", "allow_purchase_order", "allow_quote_request", "allow_selection_of_address_type", "attachments", "auto_approve_cod", "auto_approve_purchase_order", "automatic_merchant_notes", "billing", "business_notes", "cards", "cc_emails", "customer_profile_oid", "dhl_account_number", "dhl_duty_account_number", "do_not_send_mail", "edi", "email", "exempt_shipping_handling_charge", "fedex_account_number", "free_shipping", "free_shipping_minimum", "last_modified_by", "last_modified_dts", "loyalty", "maximum_item_count", "merchant_id", "minimum_item_count", "minimum_subtotal", "no_coupons", "no_free_shipping", "no_realtime_charge", "orders", "orders_summary", "password", "pricing_tiers", "privacy", "properties", "qb_class", "qb_code", "qb_tax_exemption_reason_code", "quotes", "quotes_summary", "referral_source", "reviewer", "sales_rep_code", "send_signup_notification", "shipping", "signup_dts", "software_entitlements", "suppress_buysafe", "tags", "tax_codes", "tax_exempt", "tax_id", "terms", "track_separately", "unapproved", "ups_account_number", "website_url"];
+
+// Exported function to check for excess properties
+export function hasExcessProperties(obj: any): boolean {
+  const objKeys = Object.keys(obj);
+  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
+}
+
+
+
+/**
+ * Check if a given object implements the Customer interface.
+ */
+export function instanceOfCustomer(value: object): boolean {
+    let isInstance = true;
+
+    return isInstance;
+}
+
 export function CustomerFromJSON(json: any): Customer {
     return CustomerFromJSONTyped(json, false);
 }

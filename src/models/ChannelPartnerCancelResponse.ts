@@ -70,6 +70,26 @@ export interface ChannelPartnerCancelResponse {
     warning?: Warning;
 }
 
+// Define the constant array of keys
+const MY_INTERFACE_KEYS: (keyof ChannelPartnerCancelResponse)[] = ["cancel_errors", "error", "metadata", "success", "warning"];
+
+// Exported function to check for excess properties
+export function hasExcessProperties(obj: any): boolean {
+  const objKeys = Object.keys(obj);
+  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
+}
+
+
+
+/**
+ * Check if a given object implements the ChannelPartnerCancelResponse interface.
+ */
+export function instanceOfChannelPartnerCancelResponse(value: object): boolean {
+    let isInstance = true;
+
+    return isInstance;
+}
+
 export function ChannelPartnerCancelResponseFromJSON(json: any): ChannelPartnerCancelResponse {
     return ChannelPartnerCancelResponseFromJSONTyped(json, false);
 }

@@ -136,6 +136,26 @@ export interface TaxState {
     use_ultracart_managed_rates?: boolean;
 }
 
+// Define the constant array of keys
+const MY_INTERFACE_KEYS: (keyof TaxState)[] = ["accounting_code", "counties", "country_oid", "dont_collect_city", "dont_collect_county", "dont_collect_postal_code", "dont_collect_state", "exempt_digital_items", "exempt_physical_items", "exempt_service_items", "state_code", "state_oid", "tax_gift_charge", "tax_gift_wrap", "tax_rate", "tax_rate_formatted", "tax_shipping", "use_ultracart_managed_rates"];
+
+// Exported function to check for excess properties
+export function hasExcessProperties(obj: any): boolean {
+  const objKeys = Object.keys(obj);
+  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
+}
+
+
+
+/**
+ * Check if a given object implements the TaxState interface.
+ */
+export function instanceOfTaxState(value: object): boolean {
+    let isInstance = true;
+
+    return isInstance;
+}
+
 export function TaxStateFromJSON(json: any): TaxState {
     return TaxStateFromJSONTyped(json, false);
 }

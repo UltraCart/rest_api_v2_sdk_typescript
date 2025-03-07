@@ -40,6 +40,16 @@ export interface ReportWebsocketEvent {
     query_completion?: ReportDataSet;
 }
 
+// Define the constant array of keys
+const MY_INTERFACE_KEYS: (keyof ReportWebsocketEvent)[] = ["event_type", "query_completion"];
+
+// Exported function to check for excess properties
+export function hasExcessProperties(obj: any): boolean {
+  const objKeys = Object.keys(obj);
+  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
+}
+
+
 
 /**
  * @export
@@ -50,6 +60,15 @@ export const ReportWebsocketEventEventTypeEnum = {
 } as const;
 export type ReportWebsocketEventEventTypeEnum = typeof ReportWebsocketEventEventTypeEnum[keyof typeof ReportWebsocketEventEventTypeEnum];
 
+
+/**
+ * Check if a given object implements the ReportWebsocketEvent interface.
+ */
+export function instanceOfReportWebsocketEvent(value: object): boolean {
+    let isInstance = true;
+
+    return isInstance;
+}
 
 export function ReportWebsocketEventFromJSON(json: any): ReportWebsocketEvent {
     return ReportWebsocketEventFromJSONTyped(json, false);

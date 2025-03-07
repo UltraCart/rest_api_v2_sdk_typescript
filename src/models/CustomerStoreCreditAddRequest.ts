@@ -45,6 +45,26 @@ export interface CustomerStoreCreditAddRequest {
     vesting_days?: number;
 }
 
+// Define the constant array of keys
+const MY_INTERFACE_KEYS: (keyof CustomerStoreCreditAddRequest)[] = ["amount", "description", "expiration_days", "vesting_days"];
+
+// Exported function to check for excess properties
+export function hasExcessProperties(obj: any): boolean {
+  const objKeys = Object.keys(obj);
+  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
+}
+
+
+
+/**
+ * Check if a given object implements the CustomerStoreCreditAddRequest interface.
+ */
+export function instanceOfCustomerStoreCreditAddRequest(value: object): boolean {
+    let isInstance = true;
+
+    return isInstance;
+}
+
 export function CustomerStoreCreditAddRequestFromJSON(json: any): CustomerStoreCreditAddRequest {
     return CustomerStoreCreditAddRequestFromJSONTyped(json, false);
 }

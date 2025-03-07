@@ -27,6 +27,26 @@ export interface CouponMoreLoyaltyCashback {
     loyalty_cashback?: number;
 }
 
+// Define the constant array of keys
+const MY_INTERFACE_KEYS: (keyof CouponMoreLoyaltyCashback)[] = ["loyalty_cashback"];
+
+// Exported function to check for excess properties
+export function hasExcessProperties(obj: any): boolean {
+  const objKeys = Object.keys(obj);
+  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
+}
+
+
+
+/**
+ * Check if a given object implements the CouponMoreLoyaltyCashback interface.
+ */
+export function instanceOfCouponMoreLoyaltyCashback(value: object): boolean {
+    let isInstance = true;
+
+    return isInstance;
+}
+
 export function CouponMoreLoyaltyCashbackFromJSON(json: any): CouponMoreLoyaltyCashback {
     return CouponMoreLoyaltyCashbackFromJSONTyped(json, false);
 }

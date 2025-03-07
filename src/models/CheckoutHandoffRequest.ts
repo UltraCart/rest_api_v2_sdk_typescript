@@ -76,6 +76,16 @@ export interface CheckoutHandoffRequest {
     ucacid?: string;
 }
 
+// Define the constant array of keys
+const MY_INTERFACE_KEYS: (keyof CheckoutHandoffRequest)[] = ["cart", "error_parameter_name", "error_return_url", "operation", "paypal_maximum_upsell_revenue", "paypal_return_url", "secure_host_name", "ucacid"];
+
+// Exported function to check for excess properties
+export function hasExcessProperties(obj: any): boolean {
+  const objKeys = Object.keys(obj);
+  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
+}
+
+
 
 /**
  * @export
@@ -90,6 +100,15 @@ export const CheckoutHandoffRequestOperationEnum = {
 } as const;
 export type CheckoutHandoffRequestOperationEnum = typeof CheckoutHandoffRequestOperationEnum[keyof typeof CheckoutHandoffRequestOperationEnum];
 
+
+/**
+ * Check if a given object implements the CheckoutHandoffRequest interface.
+ */
+export function instanceOfCheckoutHandoffRequest(value: object): boolean {
+    let isInstance = true;
+
+    return isInstance;
+}
 
 export function CheckoutHandoffRequestFromJSON(json: any): CheckoutHandoffRequest {
     return CheckoutHandoffRequestFromJSONTyped(json, false);

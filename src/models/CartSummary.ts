@@ -148,6 +148,26 @@ export interface CartSummary {
     total?: Currency;
 }
 
+// Define the constant array of keys
+const MY_INTERFACE_KEYS: (keyof CartSummary)[] = ["arbitrary_shipping_handling_total", "arbitrary_tax", "arbitrary_tax_rate", "arbitrary_taxable_subtotal", "health_benefit_card_amount", "health_benefit_card_balance", "health_benefit_card_requirements", "internal_gift_certificate_amount", "shipping_handling", "shipping_handling_discount", "shipping_handling_with_discount", "subtotal", "subtotal_discount", "subtotal_with_discount", "surcharge", "tax", "taxable_subtotal", "taxable_subtotal_discount", "taxable_subtotal_with_discount", "total"];
+
+// Exported function to check for excess properties
+export function hasExcessProperties(obj: any): boolean {
+  const objKeys = Object.keys(obj);
+  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
+}
+
+
+
+/**
+ * Check if a given object implements the CartSummary interface.
+ */
+export function instanceOfCartSummary(value: object): boolean {
+    let isInstance = true;
+
+    return isInstance;
+}
+
 export function CartSummaryFromJSON(json: any): CartSummary {
     return CartSummaryFromJSONTyped(json, false);
 }

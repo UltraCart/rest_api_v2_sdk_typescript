@@ -45,6 +45,26 @@ export interface CustomerQuotesSummary {
     total?: number;
 }
 
+// Define the constant array of keys
+const MY_INTERFACE_KEYS: (keyof CustomerQuotesSummary)[] = ["first_quote_dts", "last_quote_dts", "quote_count", "total"];
+
+// Exported function to check for excess properties
+export function hasExcessProperties(obj: any): boolean {
+  const objKeys = Object.keys(obj);
+  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
+}
+
+
+
+/**
+ * Check if a given object implements the CustomerQuotesSummary interface.
+ */
+export function instanceOfCustomerQuotesSummary(value: object): boolean {
+    let isInstance = true;
+
+    return isInstance;
+}
+
 export function CustomerQuotesSummaryFromJSON(json: any): CustomerQuotesSummary {
     return CustomerQuotesSummaryFromJSONTyped(json, false);
 }

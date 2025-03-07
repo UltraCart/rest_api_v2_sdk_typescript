@@ -57,6 +57,16 @@ export interface ConversationSentiment {
     sentiment?: ConversationSentimentSentimentEnum;
 }
 
+// Define the constant array of keys
+const MY_INTERFACE_KEYS: (keyof ConversationSentiment)[] = ["last_detect_sentiment", "mixed", "negative", "neutral", "positive", "sentiment"];
+
+// Exported function to check for excess properties
+export function hasExcessProperties(obj: any): boolean {
+  const objKeys = Object.keys(obj);
+  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
+}
+
+
 
 /**
  * @export
@@ -69,6 +79,15 @@ export const ConversationSentimentSentimentEnum = {
 } as const;
 export type ConversationSentimentSentimentEnum = typeof ConversationSentimentSentimentEnum[keyof typeof ConversationSentimentSentimentEnum];
 
+
+/**
+ * Check if a given object implements the ConversationSentiment interface.
+ */
+export function instanceOfConversationSentiment(value: object): boolean {
+    let isInstance = true;
+
+    return isInstance;
+}
 
 export function ConversationSentimentFromJSON(json: any): ConversationSentiment {
     return ConversationSentimentFromJSONTyped(json, false);

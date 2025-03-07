@@ -33,6 +33,26 @@ export interface ConversationPbxQueueMembers {
     users?: Array<number>;
 }
 
+// Define the constant array of keys
+const MY_INTERFACE_KEYS: (keyof ConversationPbxQueueMembers)[] = ["groups", "users"];
+
+// Exported function to check for excess properties
+export function hasExcessProperties(obj: any): boolean {
+  const objKeys = Object.keys(obj);
+  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
+}
+
+
+
+/**
+ * Check if a given object implements the ConversationPbxQueueMembers interface.
+ */
+export function instanceOfConversationPbxQueueMembers(value: object): boolean {
+    let isInstance = true;
+
+    return isInstance;
+}
+
 export function ConversationPbxQueueMembersFromJSON(json: any): ConversationPbxQueueMembers {
     return ConversationPbxQueueMembersFromJSONTyped(json, false);
 }

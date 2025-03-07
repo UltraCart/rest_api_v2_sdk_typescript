@@ -87,6 +87,26 @@ export interface Notification {
     selected?: boolean;
 }
 
+// Define the constant array of keys
+const MY_INTERFACE_KEYS: (keyof Notification)[] = ["can_filter_by_distribution_centers", "can_include_affiliate", "can_include_order", "can_include_order_plain_text", "distribution_center_filters", "include_affiliate", "include_order", "include_order_plain_text", "name", "notification_group", "selected"];
+
+// Exported function to check for excess properties
+export function hasExcessProperties(obj: any): boolean {
+  const objKeys = Object.keys(obj);
+  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
+}
+
+
+
+/**
+ * Check if a given object implements the Notification interface.
+ */
+export function instanceOfNotification(value: object): boolean {
+    let isInstance = true;
+
+    return isInstance;
+}
+
 export function NotificationFromJSON(json: any): Notification {
     return NotificationFromJSONTyped(json, false);
 }

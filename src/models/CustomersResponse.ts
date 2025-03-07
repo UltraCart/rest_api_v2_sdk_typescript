@@ -76,6 +76,26 @@ export interface CustomersResponse {
     warning?: Warning;
 }
 
+// Define the constant array of keys
+const MY_INTERFACE_KEYS: (keyof CustomersResponse)[] = ["customers", "error", "metadata", "success", "warning"];
+
+// Exported function to check for excess properties
+export function hasExcessProperties(obj: any): boolean {
+  const objKeys = Object.keys(obj);
+  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
+}
+
+
+
+/**
+ * Check if a given object implements the CustomersResponse interface.
+ */
+export function instanceOfCustomersResponse(value: object): boolean {
+    let isInstance = true;
+
+    return isInstance;
+}
+
 export function CustomersResponseFromJSON(json: any): CustomersResponse {
     return CustomersResponseFromJSONTyped(json, false);
 }

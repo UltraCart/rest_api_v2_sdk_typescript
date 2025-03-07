@@ -45,6 +45,26 @@ export interface IntegrationLogFile {
     uuid?: string;
 }
 
+// Define the constant array of keys
+const MY_INTERFACE_KEYS: (keyof IntegrationLogFile)[] = ["mime_type", "name", "size", "uuid"];
+
+// Exported function to check for excess properties
+export function hasExcessProperties(obj: any): boolean {
+  const objKeys = Object.keys(obj);
+  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
+}
+
+
+
+/**
+ * Check if a given object implements the IntegrationLogFile interface.
+ */
+export function instanceOfIntegrationLogFile(value: object): boolean {
+    let isInstance = true;
+
+    return isInstance;
+}
+
 export function IntegrationLogFileFromJSON(json: any): IntegrationLogFile {
     return IntegrationLogFileFromJSONTyped(json, false);
 }

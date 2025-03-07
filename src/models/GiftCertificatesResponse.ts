@@ -76,6 +76,26 @@ export interface GiftCertificatesResponse {
     warning?: Warning;
 }
 
+// Define the constant array of keys
+const MY_INTERFACE_KEYS: (keyof GiftCertificatesResponse)[] = ["error", "gift_certificates", "metadata", "success", "warning"];
+
+// Exported function to check for excess properties
+export function hasExcessProperties(obj: any): boolean {
+  const objKeys = Object.keys(obj);
+  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
+}
+
+
+
+/**
+ * Check if a given object implements the GiftCertificatesResponse interface.
+ */
+export function instanceOfGiftCertificatesResponse(value: object): boolean {
+    let isInstance = true;
+
+    return isInstance;
+}
+
 export function GiftCertificatesResponseFromJSON(json: any): GiftCertificatesResponse {
     return GiftCertificatesResponseFromJSONTyped(json, false);
 }

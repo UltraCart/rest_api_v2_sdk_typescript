@@ -45,6 +45,26 @@ export interface ItemVariationOption {
     value?: string;
 }
 
+// Define the constant array of keys
+const MY_INTERFACE_KEYS: (keyof ItemVariationOption)[] = ["default_option", "merchant_item_multimedia_oid", "translated_text_instance_oid", "value"];
+
+// Exported function to check for excess properties
+export function hasExcessProperties(obj: any): boolean {
+  const objKeys = Object.keys(obj);
+  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
+}
+
+
+
+/**
+ * Check if a given object implements the ItemVariationOption interface.
+ */
+export function instanceOfItemVariationOption(value: object): boolean {
+    let isInstance = true;
+
+    return isInstance;
+}
+
 export function ItemVariationOptionFromJSON(json: any): ItemVariationOption {
     return ItemVariationOptionFromJSONTyped(json, false);
 }

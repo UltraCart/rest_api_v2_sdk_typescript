@@ -148,6 +148,26 @@ export interface TransactionEmail {
     theme_relative_path?: string;
 }
 
+// Define the constant array of keys
+const MY_INTERFACE_KEYS: (keyof TransactionEmail)[] = ["content", "esp_domain_uuid", "esp_friendly_name", "esp_user", "file_exists", "file_name", "group", "handlebar_variables", "invalid", "last_modified", "library_item_oid", "options", "path", "size", "store_front_fs_directory_oid", "store_front_fs_file_oid", "subject", "syntax_errors", "template_path_relative_path", "theme_relative_path"];
+
+// Exported function to check for excess properties
+export function hasExcessProperties(obj: any): boolean {
+  const objKeys = Object.keys(obj);
+  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
+}
+
+
+
+/**
+ * Check if a given object implements the TransactionEmail interface.
+ */
+export function instanceOfTransactionEmail(value: object): boolean {
+    let isInstance = true;
+
+    return isInstance;
+}
+
 export function TransactionEmailFromJSON(json: any): TransactionEmail {
     return TransactionEmailFromJSONTyped(json, false);
 }

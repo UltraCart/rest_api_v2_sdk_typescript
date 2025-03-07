@@ -51,6 +51,26 @@ export interface CartSettingsPaymentPayPal {
     paypal_credit_legal_url?: string;
 }
 
+// Define the constant array of keys
+const MY_INTERFACE_KEYS: (keyof CartSettingsPaymentPayPal)[] = ["paypal_button_alt_text", "paypal_button_url", "paypal_credit_button_url", "paypal_credit_legal_image_url", "paypal_credit_legal_url"];
+
+// Exported function to check for excess properties
+export function hasExcessProperties(obj: any): boolean {
+  const objKeys = Object.keys(obj);
+  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
+}
+
+
+
+/**
+ * Check if a given object implements the CartSettingsPaymentPayPal interface.
+ */
+export function instanceOfCartSettingsPaymentPayPal(value: object): boolean {
+    let isInstance = true;
+
+    return isInstance;
+}
+
 export function CartSettingsPaymentPayPalFromJSON(json: any): CartSettingsPaymentPayPal {
     return CartSettingsPaymentPayPalFromJSONTyped(json, false);
 }

@@ -105,6 +105,16 @@ export interface ConversationEngagementEquationFunction {
     type?: ConversationEngagementEquationFunctionTypeEnum;
 }
 
+// Define the constant array of keys
+const MY_INTERFACE_KEYS: (keyof ConversationEngagementEquationFunction)[] = ["any_page_url_logic", "any_page_url_value", "current_page_url_logic", "current_page_url_value", "customers_browsing_time_logic", "customers_browsing_time_seconds", "customers_location_country", "customers_location_logic", "customers_location_state", "number_of_viewed_pages_logic", "number_of_viewed_pages_value", "referring_website_logic", "referring_website_value", "type"];
+
+// Exported function to check for excess properties
+export function hasExcessProperties(obj: any): boolean {
+  const objKeys = Object.keys(obj);
+  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
+}
+
+
 
 /**
  * @export
@@ -183,6 +193,15 @@ export const ConversationEngagementEquationFunctionTypeEnum = {
 } as const;
 export type ConversationEngagementEquationFunctionTypeEnum = typeof ConversationEngagementEquationFunctionTypeEnum[keyof typeof ConversationEngagementEquationFunctionTypeEnum];
 
+
+/**
+ * Check if a given object implements the ConversationEngagementEquationFunction interface.
+ */
+export function instanceOfConversationEngagementEquationFunction(value: object): boolean {
+    let isInstance = true;
+
+    return isInstance;
+}
 
 export function ConversationEngagementEquationFunctionFromJSON(json: any): ConversationEngagementEquationFunction {
     return ConversationEngagementEquationFunctionFromJSONTyped(json, false);

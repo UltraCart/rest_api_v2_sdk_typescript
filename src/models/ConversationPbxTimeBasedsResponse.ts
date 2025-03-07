@@ -76,6 +76,26 @@ export interface ConversationPbxTimeBasedsResponse {
     warning?: Warning;
 }
 
+// Define the constant array of keys
+const MY_INTERFACE_KEYS: (keyof ConversationPbxTimeBasedsResponse)[] = ["error", "metadata", "success", "time_baseds", "warning"];
+
+// Exported function to check for excess properties
+export function hasExcessProperties(obj: any): boolean {
+  const objKeys = Object.keys(obj);
+  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
+}
+
+
+
+/**
+ * Check if a given object implements the ConversationPbxTimeBasedsResponse interface.
+ */
+export function instanceOfConversationPbxTimeBasedsResponse(value: object): boolean {
+    let isInstance = true;
+
+    return isInstance;
+}
+
 export function ConversationPbxTimeBasedsResponseFromJSON(json: any): ConversationPbxTimeBasedsResponse {
     return ConversationPbxTimeBasedsResponseFromJSONTyped(json, false);
 }

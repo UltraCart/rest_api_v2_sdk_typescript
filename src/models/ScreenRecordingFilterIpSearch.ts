@@ -45,6 +45,26 @@ export interface ScreenRecordingFilterIpSearch {
     is_not?: string;
 }
 
+// Define the constant array of keys
+const MY_INTERFACE_KEYS: (keyof ScreenRecordingFilterIpSearch)[] = ["does_not_exist", "_exists", "is", "is_not"];
+
+// Exported function to check for excess properties
+export function hasExcessProperties(obj: any): boolean {
+  const objKeys = Object.keys(obj);
+  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
+}
+
+
+
+/**
+ * Check if a given object implements the ScreenRecordingFilterIpSearch interface.
+ */
+export function instanceOfScreenRecordingFilterIpSearch(value: object): boolean {
+    let isInstance = true;
+
+    return isInstance;
+}
+
 export function ScreenRecordingFilterIpSearchFromJSON(json: any): ScreenRecordingFilterIpSearch {
     return ScreenRecordingFilterIpSearchFromJSONTyped(json, false);
 }

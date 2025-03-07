@@ -76,6 +76,26 @@ export interface ConversationAgentProfileResponse {
     warning?: Warning;
 }
 
+// Define the constant array of keys
+const MY_INTERFACE_KEYS: (keyof ConversationAgentProfileResponse)[] = ["agent_profile", "error", "metadata", "success", "warning"];
+
+// Exported function to check for excess properties
+export function hasExcessProperties(obj: any): boolean {
+  const objKeys = Object.keys(obj);
+  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
+}
+
+
+
+/**
+ * Check if a given object implements the ConversationAgentProfileResponse interface.
+ */
+export function instanceOfConversationAgentProfileResponse(value: object): boolean {
+    let isInstance = true;
+
+    return isInstance;
+}
+
 export function ConversationAgentProfileResponseFromJSON(json: any): ConversationAgentProfileResponse {
     return ConversationAgentProfileResponseFromJSONTyped(json, false);
 }

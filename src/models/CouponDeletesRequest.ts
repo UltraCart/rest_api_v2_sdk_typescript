@@ -33,6 +33,26 @@ export interface CouponDeletesRequest {
     coupon_oids?: Array<number>;
 }
 
+// Define the constant array of keys
+const MY_INTERFACE_KEYS: (keyof CouponDeletesRequest)[] = ["coupon_codes", "coupon_oids"];
+
+// Exported function to check for excess properties
+export function hasExcessProperties(obj: any): boolean {
+  const objKeys = Object.keys(obj);
+  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
+}
+
+
+
+/**
+ * Check if a given object implements the CouponDeletesRequest interface.
+ */
+export function instanceOfCouponDeletesRequest(value: object): boolean {
+    let isInstance = true;
+
+    return isInstance;
+}
+
 export function CouponDeletesRequestFromJSON(json: any): CouponDeletesRequest {
     return CouponDeletesRequestFromJSONTyped(json, false);
 }

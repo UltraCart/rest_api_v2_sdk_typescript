@@ -364,6 +364,26 @@ export interface ItemShipping {
     track_inventory?: boolean;
 }
 
+// Define the constant array of keys
+const MY_INTERFACE_KEYS: (keyof ItemShipping)[] = ["allow_back_order", "amazon_fba", "case_inner_packs", "case_units", "cases", "collect_serial_numbers", "country_code_of_origin", "customs_description", "customs_value", "delivery_on_friday", "delivery_on_monday", "delivery_on_saturday", "delivery_on_sunday", "delivery_on_thursday", "delivery_on_tuesday", "delivery_on_wednesday", "destination_markups", "destination_restrictions", "distribution_centers", "eta", "free_shipping", "freight_class", "hazmat", "hold_for_transmission", "made_to_order", "made_to_order_lead_time", "max_days_time_in_transit", "methods", "no_shipping_discount", "package_requirements", "perishable_class_name", "perishable_class_oid", "preorder", "require_delivery_date", "restrict_shipment_on_friday", "restrict_shipment_on_monday", "restrict_shipment_on_saturday", "restrict_shipment_on_sunday", "restrict_shipment_on_thursday", "restrict_shipment_on_tuesday", "restrict_shipment_on_wednesday", "ship_separately", "ship_separately_additional_weight", "ship_separately_height", "ship_separately_length", "ship_separately_package_special_type", "ship_separately_width", "special_product_type", "track_inventory"];
+
+// Exported function to check for excess properties
+export function hasExcessProperties(obj: any): boolean {
+  const objKeys = Object.keys(obj);
+  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
+}
+
+
+
+/**
+ * Check if a given object implements the ItemShipping interface.
+ */
+export function instanceOfItemShipping(value: object): boolean {
+    let isInstance = true;
+
+    return isInstance;
+}
+
 export function ItemShippingFromJSON(json: any): ItemShipping {
     return ItemShippingFromJSONTyped(json, false);
 }

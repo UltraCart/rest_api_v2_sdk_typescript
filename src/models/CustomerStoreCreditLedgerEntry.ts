@@ -63,6 +63,26 @@ export interface CustomerStoreCreditLedgerEntry {
     reference_order_id?: string;
 }
 
+// Define the constant array of keys
+const MY_INTERFACE_KEYS: (keyof CustomerStoreCreditLedgerEntry)[] = ["action", "amount", "description", "entry_dts", "gift_certificate_ledger_oid", "gift_certificate_oid", "reference_order_id"];
+
+// Exported function to check for excess properties
+export function hasExcessProperties(obj: any): boolean {
+  const objKeys = Object.keys(obj);
+  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
+}
+
+
+
+/**
+ * Check if a given object implements the CustomerStoreCreditLedgerEntry interface.
+ */
+export function instanceOfCustomerStoreCreditLedgerEntry(value: object): boolean {
+    let isInstance = true;
+
+    return isInstance;
+}
+
 export function CustomerStoreCreditLedgerEntryFromJSON(json: any): CustomerStoreCreditLedgerEntry {
     return CustomerStoreCreditLedgerEntryFromJSONTyped(json, false);
 }

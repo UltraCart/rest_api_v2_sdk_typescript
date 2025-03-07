@@ -99,6 +99,26 @@ export interface FileManagerDirectory {
     type?: string;
 }
 
+// Define the constant array of keys
+const MY_INTERFACE_KEYS: (keyof FileManagerDirectory)[] = ["active_theme_directory", "favorite", "hostname", "icon", "last_modified", "name", "parent_storefront_fs_directory_oid", "part_of_active_theme", "selected", "storefront_fs_directory_oid", "storefront_fs_file_oid", "storefront_oid", "type"];
+
+// Exported function to check for excess properties
+export function hasExcessProperties(obj: any): boolean {
+  const objKeys = Object.keys(obj);
+  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
+}
+
+
+
+/**
+ * Check if a given object implements the FileManagerDirectory interface.
+ */
+export function instanceOfFileManagerDirectory(value: object): boolean {
+    let isInstance = true;
+
+    return isInstance;
+}
+
 export function FileManagerDirectoryFromJSON(json: any): FileManagerDirectory {
     return FileManagerDirectoryFromJSONTyped(json, false);
 }

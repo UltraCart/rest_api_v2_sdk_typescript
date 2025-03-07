@@ -69,6 +69,26 @@ export interface ItemIdentifiers {
     unspsc?: string;
 }
 
+// Define the constant array of keys
+const MY_INTERFACE_KEYS: (keyof ItemIdentifiers)[] = ["barcode", "barcode_gtin12", "barcode_gtin14", "barcode_upc11", "barcode_upc12", "manufacturer_name", "manufacturer_sku", "unspsc"];
+
+// Exported function to check for excess properties
+export function hasExcessProperties(obj: any): boolean {
+  const objKeys = Object.keys(obj);
+  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
+}
+
+
+
+/**
+ * Check if a given object implements the ItemIdentifiers interface.
+ */
+export function instanceOfItemIdentifiers(value: object): boolean {
+    let isInstance = true;
+
+    return isInstance;
+}
+
 export function ItemIdentifiersFromJSON(json: any): ItemIdentifiers {
     return ItemIdentifiersFromJSONTyped(json, false);
 }

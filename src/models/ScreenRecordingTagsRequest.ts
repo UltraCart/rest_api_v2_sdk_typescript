@@ -27,6 +27,26 @@ export interface ScreenRecordingTagsRequest {
     tags?: Array<string>;
 }
 
+// Define the constant array of keys
+const MY_INTERFACE_KEYS: (keyof ScreenRecordingTagsRequest)[] = ["tags"];
+
+// Exported function to check for excess properties
+export function hasExcessProperties(obj: any): boolean {
+  const objKeys = Object.keys(obj);
+  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
+}
+
+
+
+/**
+ * Check if a given object implements the ScreenRecordingTagsRequest interface.
+ */
+export function instanceOfScreenRecordingTagsRequest(value: object): boolean {
+    let isInstance = true;
+
+    return isInstance;
+}
+
 export function ScreenRecordingTagsRequestFromJSON(json: any): ScreenRecordingTagsRequest {
     return ScreenRecordingTagsRequestFromJSONTyped(json, false);
 }

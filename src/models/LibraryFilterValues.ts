@@ -45,6 +45,26 @@ export interface LibraryFilterValues {
     types?: Array<string>;
 }
 
+// Define the constant array of keys
+const MY_INTERFACE_KEYS: (keyof LibraryFilterValues)[] = ["categories", "industries", "styles", "types"];
+
+// Exported function to check for excess properties
+export function hasExcessProperties(obj: any): boolean {
+  const objKeys = Object.keys(obj);
+  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
+}
+
+
+
+/**
+ * Check if a given object implements the LibraryFilterValues interface.
+ */
+export function instanceOfLibraryFilterValues(value: object): boolean {
+    let isInstance = true;
+
+    return isInstance;
+}
+
 export function LibraryFilterValuesFromJSON(json: any): LibraryFilterValues {
     return LibraryFilterValuesFromJSONTyped(json, false);
 }

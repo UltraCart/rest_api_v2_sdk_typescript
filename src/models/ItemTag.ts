@@ -33,6 +33,16 @@ export interface ItemTag {
     tagValue?: string;
 }
 
+// Define the constant array of keys
+const MY_INTERFACE_KEYS: (keyof ItemTag)[] = ["tagType", "tagValue"];
+
+// Exported function to check for excess properties
+export function hasExcessProperties(obj: any): boolean {
+  const objKeys = Object.keys(obj);
+  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
+}
+
+
 
 /**
  * @export
@@ -44,6 +54,15 @@ export const ItemTagTagTypeEnum = {
 } as const;
 export type ItemTagTagTypeEnum = typeof ItemTagTagTypeEnum[keyof typeof ItemTagTagTypeEnum];
 
+
+/**
+ * Check if a given object implements the ItemTag interface.
+ */
+export function instanceOfItemTag(value: object): boolean {
+    let isInstance = true;
+
+    return isInstance;
+}
 
 export function ItemTagFromJSON(json: any): ItemTag {
     return ItemTagFromJSONTyped(json, false);

@@ -63,6 +63,16 @@ export interface ConversationEventRRWeb {
     type?: ConversationEventRRWebTypeEnum;
 }
 
+// Define the constant array of keys
+const MY_INTERFACE_KEYS: (keyof ConversationEventRRWeb)[] = ["data", "data_part", "data_sha256", "data_total_parts", "data_total_sha256", "event_index", "type"];
+
+// Exported function to check for excess properties
+export function hasExcessProperties(obj: any): boolean {
+  const objKeys = Object.keys(obj);
+  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
+}
+
+
 
 /**
  * @export
@@ -73,6 +83,15 @@ export const ConversationEventRRWebTypeEnum = {
 } as const;
 export type ConversationEventRRWebTypeEnum = typeof ConversationEventRRWebTypeEnum[keyof typeof ConversationEventRRWebTypeEnum];
 
+
+/**
+ * Check if a given object implements the ConversationEventRRWeb interface.
+ */
+export function instanceOfConversationEventRRWeb(value: object): boolean {
+    let isInstance = true;
+
+    return isInstance;
+}
 
 export function ConversationEventRRWebFromJSON(json: any): ConversationEventRRWeb {
     return ConversationEventRRWebFromJSONTyped(json, false);

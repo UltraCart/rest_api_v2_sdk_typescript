@@ -46,6 +46,26 @@ export interface OrderPaymentCreditCardDualVaulted {
     rotating_transaction_gateway_code?: string;
 }
 
+// Define the constant array of keys
+const MY_INTERFACE_KEYS: (keyof OrderPaymentCreditCardDualVaulted)[] = ["gateway_name", "properties", "rotating_transaction_gateway_code"];
+
+// Exported function to check for excess properties
+export function hasExcessProperties(obj: any): boolean {
+  const objKeys = Object.keys(obj);
+  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
+}
+
+
+
+/**
+ * Check if a given object implements the OrderPaymentCreditCardDualVaulted interface.
+ */
+export function instanceOfOrderPaymentCreditCardDualVaulted(value: object): boolean {
+    let isInstance = true;
+
+    return isInstance;
+}
+
 export function OrderPaymentCreditCardDualVaultedFromJSON(json: any): OrderPaymentCreditCardDualVaulted {
     return OrderPaymentCreditCardDualVaultedFromJSONTyped(json, false);
 }

@@ -136,6 +136,26 @@ export interface ItemPricing {
     tiers?: Array<ItemPricingTier>;
 }
 
+// Define the constant array of keys
+const MY_INTERFACE_KEYS: (keyof ItemPricing)[] = ["allow_arbitrary_cost", "arbitrary_cost_velocity_code", "auto_order_cost", "automatic_pricing_tier_name", "automatic_pricing_tier_oid", "cogs", "cost", "currency_code", "manufacturer_suggested_retail_price", "maximum_arbitrary_cost", "minimum_advertised_price", "minimum_arbitrary_cost", "mix_and_match_group", "mix_and_match_group_oid", "sale_cost", "sale_end", "sale_start", "tiers"];
+
+// Exported function to check for excess properties
+export function hasExcessProperties(obj: any): boolean {
+  const objKeys = Object.keys(obj);
+  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
+}
+
+
+
+/**
+ * Check if a given object implements the ItemPricing interface.
+ */
+export function instanceOfItemPricing(value: object): boolean {
+    let isInstance = true;
+
+    return isInstance;
+}
+
 export function ItemPricingFromJSON(json: any): ItemPricing {
     return ItemPricingFromJSONTyped(json, false);
 }

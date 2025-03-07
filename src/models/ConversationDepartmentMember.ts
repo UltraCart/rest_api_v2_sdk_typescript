@@ -39,6 +39,26 @@ export interface ConversationDepartmentMember {
     user_id?: number;
 }
 
+// Define the constant array of keys
+const MY_INTERFACE_KEYS: (keyof ConversationDepartmentMember)[] = ["member", "name", "user_id"];
+
+// Exported function to check for excess properties
+export function hasExcessProperties(obj: any): boolean {
+  const objKeys = Object.keys(obj);
+  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
+}
+
+
+
+/**
+ * Check if a given object implements the ConversationDepartmentMember interface.
+ */
+export function instanceOfConversationDepartmentMember(value: object): boolean {
+    let isInstance = true;
+
+    return isInstance;
+}
+
 export function ConversationDepartmentMemberFromJSON(json: any): ConversationDepartmentMember {
     return ConversationDepartmentMemberFromJSONTyped(json, false);
 }

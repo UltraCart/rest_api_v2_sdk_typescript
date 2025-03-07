@@ -33,6 +33,26 @@ export interface Country {
     name?: string;
 }
 
+// Define the constant array of keys
+const MY_INTERFACE_KEYS: (keyof Country)[] = ["iso_2_code", "name"];
+
+// Exported function to check for excess properties
+export function hasExcessProperties(obj: any): boolean {
+  const objKeys = Object.keys(obj);
+  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
+}
+
+
+
+/**
+ * Check if a given object implements the Country interface.
+ */
+export function instanceOfCountry(value: object): boolean {
+    let isInstance = true;
+
+    return isInstance;
+}
+
 export function CountryFromJSON(json: any): Country {
     return CountryFromJSONTyped(json, false);
 }

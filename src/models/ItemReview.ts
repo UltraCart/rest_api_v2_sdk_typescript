@@ -249,6 +249,16 @@ export interface ItemReview {
     title?: string;
 }
 
+// Define the constant array of keys
+const MY_INTERFACE_KEYS: (keyof ItemReview)[] = ["customer_profile_oid", "featured", "helperful_no_votes", "helpful_yes_votes", "merchant_reply", "order_id", "overall", "rating_name1", "rating_name10", "rating_name2", "rating_name3", "rating_name4", "rating_name5", "rating_name6", "rating_name7", "rating_name8", "rating_name9", "rating_score1", "rating_score10", "rating_score2", "rating_score3", "rating_score4", "rating_score5", "rating_score6", "rating_score7", "rating_score8", "rating_score9", "recommend_store_to_friend", "recommend_to_friend", "review", "review_oid", "reviewed_nickname", "reviewer_email", "reviewer_location", "status", "store_feedback", "submitted_dts", "title"];
+
+// Exported function to check for excess properties
+export function hasExcessProperties(obj: any): boolean {
+  const objKeys = Object.keys(obj);
+  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
+}
+
+
 
 /**
  * @export
@@ -261,6 +271,15 @@ export const ItemReviewStatusEnum = {
 } as const;
 export type ItemReviewStatusEnum = typeof ItemReviewStatusEnum[keyof typeof ItemReviewStatusEnum];
 
+
+/**
+ * Check if a given object implements the ItemReview interface.
+ */
+export function instanceOfItemReview(value: object): boolean {
+    let isInstance = true;
+
+    return isInstance;
+}
 
 export function ItemReviewFromJSON(json: any): ItemReview {
     return ItemReviewFromJSONTyped(json, false);

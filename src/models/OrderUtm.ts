@@ -213,6 +213,26 @@ export interface OrderUtm {
     wbraid?: string;
 }
 
+// Define the constant array of keys
+const MY_INTERFACE_KEYS: (keyof OrderUtm)[] = ["attribution_first_click_subtotal", "attribution_first_click_total", "attribution_last_click_subtotal", "attribution_last_click_total", "attribution_linear_subtotal", "attribution_linear_total", "attribution_position_based_subtotal", "attribution_position_based_total", "click_dts", "facebook_ad_id", "fbclid", "gbraid", "glcid", "itm_campaign", "itm_content", "itm_id", "itm_medium", "itm_source", "itm_term", "msclkid", "short_code", "short_code_backup", "ttclid", "uc_message_id", "utm_campaign", "utm_content", "utm_id", "utm_medium", "utm_source", "utm_term", "vmcid", "wbraid"];
+
+// Exported function to check for excess properties
+export function hasExcessProperties(obj: any): boolean {
+  const objKeys = Object.keys(obj);
+  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
+}
+
+
+
+/**
+ * Check if a given object implements the OrderUtm interface.
+ */
+export function instanceOfOrderUtm(value: object): boolean {
+    let isInstance = true;
+
+    return isInstance;
+}
+
 export function OrderUtmFromJSON(json: any): OrderUtm {
     return OrderUtmFromJSONTyped(json, false);
 }

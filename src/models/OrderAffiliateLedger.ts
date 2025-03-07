@@ -75,6 +75,16 @@ export interface OrderAffiliateLedger {
     transaction_state?: OrderAffiliateLedgerTransactionStateEnum;
 }
 
+// Define the constant array of keys
+const MY_INTERFACE_KEYS: (keyof OrderAffiliateLedger)[] = ["assigned_by_user", "item_id", "tier_number", "transaction_amount", "transaction_amount_paid", "transaction_dts", "transaction_memo", "transaction_percentage", "transaction_state"];
+
+// Exported function to check for excess properties
+export function hasExcessProperties(obj: any): boolean {
+  const objKeys = Object.keys(obj);
+  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
+}
+
+
 
 /**
  * @export
@@ -89,6 +99,15 @@ export const OrderAffiliateLedgerTransactionStateEnum = {
 } as const;
 export type OrderAffiliateLedgerTransactionStateEnum = typeof OrderAffiliateLedgerTransactionStateEnum[keyof typeof OrderAffiliateLedgerTransactionStateEnum];
 
+
+/**
+ * Check if a given object implements the OrderAffiliateLedger interface.
+ */
+export function instanceOfOrderAffiliateLedger(value: object): boolean {
+    let isInstance = true;
+
+    return isInstance;
+}
 
 export function OrderAffiliateLedgerFromJSON(json: any): OrderAffiliateLedger {
     return OrderAffiliateLedgerFromJSONTyped(json, false);

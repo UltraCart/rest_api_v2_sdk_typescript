@@ -39,6 +39,16 @@ export interface ItemShippingDestinationRestriction {
     validity?: ItemShippingDestinationRestrictionValidityEnum;
 }
 
+// Define the constant array of keys
+const MY_INTERFACE_KEYS: (keyof ItemShippingDestinationRestriction)[] = ["country_code", "state", "validity"];
+
+// Exported function to check for excess properties
+export function hasExcessProperties(obj: any): boolean {
+  const objKeys = Object.keys(obj);
+  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
+}
+
+
 
 /**
  * @export
@@ -49,6 +59,15 @@ export const ItemShippingDestinationRestrictionValidityEnum = {
 } as const;
 export type ItemShippingDestinationRestrictionValidityEnum = typeof ItemShippingDestinationRestrictionValidityEnum[keyof typeof ItemShippingDestinationRestrictionValidityEnum];
 
+
+/**
+ * Check if a given object implements the ItemShippingDestinationRestriction interface.
+ */
+export function instanceOfItemShippingDestinationRestriction(value: object): boolean {
+    let isInstance = true;
+
+    return isInstance;
+}
 
 export function ItemShippingDestinationRestrictionFromJSON(json: any): ItemShippingDestinationRestriction {
     return ItemShippingDestinationRestrictionFromJSONTyped(json, false);

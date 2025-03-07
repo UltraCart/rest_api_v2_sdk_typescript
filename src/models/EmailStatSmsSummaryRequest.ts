@@ -33,6 +33,26 @@ export interface EmailStatSmsSummaryRequest {
     days?: number;
 }
 
+// Define the constant array of keys
+const MY_INTERFACE_KEYS: (keyof EmailStatSmsSummaryRequest)[] = ["commseq_step_uuids", "days"];
+
+// Exported function to check for excess properties
+export function hasExcessProperties(obj: any): boolean {
+  const objKeys = Object.keys(obj);
+  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
+}
+
+
+
+/**
+ * Check if a given object implements the EmailStatSmsSummaryRequest interface.
+ */
+export function instanceOfEmailStatSmsSummaryRequest(value: object): boolean {
+    let isInstance = true;
+
+    return isInstance;
+}
+
 export function EmailStatSmsSummaryRequestFromJSON(json: any): EmailStatSmsSummaryRequest {
     return EmailStatSmsSummaryRequestFromJSONTyped(json, false);
 }

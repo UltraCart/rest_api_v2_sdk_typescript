@@ -148,6 +148,26 @@ export interface ScreenRecordingPageView {
     url?: string;
 }
 
+// Define the constant array of keys
+const MY_INTERFACE_KEYS: (keyof ScreenRecordingPageView)[] = ["domain", "events", "first_event_timestamp", "http_post", "last_event_timestamp", "missing_events", "params", "range_end", "range_start", "referrer", "referrer_params", "referrer_raw", "screen_recording_page_view_uuid", "time_on_page", "timing_dom_content_loaded", "timing_loaded", "truncated_events", "ucapv", "url"];
+
+// Exported function to check for excess properties
+export function hasExcessProperties(obj: any): boolean {
+  const objKeys = Object.keys(obj);
+  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
+}
+
+
+
+/**
+ * Check if a given object implements the ScreenRecordingPageView interface.
+ */
+export function instanceOfScreenRecordingPageView(value: object): boolean {
+    let isInstance = true;
+
+    return isInstance;
+}
+
 export function ScreenRecordingPageViewFromJSON(json: any): ScreenRecordingPageView {
     return ScreenRecordingPageViewFromJSONTyped(json, false);
 }

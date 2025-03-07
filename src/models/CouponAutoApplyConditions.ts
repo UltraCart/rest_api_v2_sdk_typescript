@@ -82,6 +82,26 @@ export interface CouponAutoApplyConditions {
     warning?: Warning;
 }
 
+// Define the constant array of keys
+const MY_INTERFACE_KEYS: (keyof CouponAutoApplyConditions)[] = ["error", "metadata", "required_items", "subtotal_levels", "success", "warning"];
+
+// Exported function to check for excess properties
+export function hasExcessProperties(obj: any): boolean {
+  const objKeys = Object.keys(obj);
+  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
+}
+
+
+
+/**
+ * Check if a given object implements the CouponAutoApplyConditions interface.
+ */
+export function instanceOfCouponAutoApplyConditions(value: object): boolean {
+    let isInstance = true;
+
+    return isInstance;
+}
+
 export function CouponAutoApplyConditionsFromJSON(json: any): CouponAutoApplyConditions {
     return CouponAutoApplyConditionsFromJSONTyped(json, false);
 }

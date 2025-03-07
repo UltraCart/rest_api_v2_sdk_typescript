@@ -33,6 +33,26 @@ export interface OrderProcessPaymentRequest {
     card_verification_number_token?: string;
 }
 
+// Define the constant array of keys
+const MY_INTERFACE_KEYS: (keyof OrderProcessPaymentRequest)[] = ["amount", "card_verification_number_token"];
+
+// Exported function to check for excess properties
+export function hasExcessProperties(obj: any): boolean {
+  const objKeys = Object.keys(obj);
+  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
+}
+
+
+
+/**
+ * Check if a given object implements the OrderProcessPaymentRequest interface.
+ */
+export function instanceOfOrderProcessPaymentRequest(value: object): boolean {
+    let isInstance = true;
+
+    return isInstance;
+}
+
 export function OrderProcessPaymentRequestFromJSON(json: any): OrderProcessPaymentRequest {
     return OrderProcessPaymentRequestFromJSONTyped(json, false);
 }

@@ -40,6 +40,26 @@ export interface ConversationPbxTimeBasedMappingConfig {
     mappings?: Array<ConversationPbxTimeBasedMapping>;
 }
 
+// Define the constant array of keys
+const MY_INTERFACE_KEYS: (keyof ConversationPbxTimeBasedMappingConfig)[] = ["default_mapping", "mappings"];
+
+// Exported function to check for excess properties
+export function hasExcessProperties(obj: any): boolean {
+  const objKeys = Object.keys(obj);
+  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
+}
+
+
+
+/**
+ * Check if a given object implements the ConversationPbxTimeBasedMappingConfig interface.
+ */
+export function instanceOfConversationPbxTimeBasedMappingConfig(value: object): boolean {
+    let isInstance = true;
+
+    return isInstance;
+}
+
 export function ConversationPbxTimeBasedMappingConfigFromJSON(json: any): ConversationPbxTimeBasedMappingConfig {
     return ConversationPbxTimeBasedMappingConfigFromJSONTyped(json, false);
 }

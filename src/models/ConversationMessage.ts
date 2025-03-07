@@ -124,6 +124,16 @@ export interface ConversationMessage {
     upload_keys?: Array<string>;
 }
 
+// Define the constant array of keys
+const MY_INTERFACE_KEYS: (keyof ConversationMessage)[] = ["author_conversation_participant_arn", "author_conversation_participant_name", "body", "client_message_id", "conversation_message_uuid", "delay_until_dts", "language_iso_code", "media_urls", "merchant_id", "message_dts", "message_epoch", "translations", "transport_statuses", "type", "upload_keys"];
+
+// Exported function to check for excess properties
+export function hasExcessProperties(obj: any): boolean {
+  const objKeys = Object.keys(obj);
+  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
+}
+
+
 
 /**
  * @export
@@ -135,6 +145,15 @@ export const ConversationMessageTypeEnum = {
 } as const;
 export type ConversationMessageTypeEnum = typeof ConversationMessageTypeEnum[keyof typeof ConversationMessageTypeEnum];
 
+
+/**
+ * Check if a given object implements the ConversationMessage interface.
+ */
+export function instanceOfConversationMessage(value: object): boolean {
+    let isInstance = true;
+
+    return isInstance;
+}
 
 export function ConversationMessageFromJSON(json: any): ConversationMessage {
     return ConversationMessageFromJSONTyped(json, false);

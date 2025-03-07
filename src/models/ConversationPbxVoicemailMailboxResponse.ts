@@ -76,6 +76,26 @@ export interface ConversationPbxVoicemailMailboxResponse {
     warning?: Warning;
 }
 
+// Define the constant array of keys
+const MY_INTERFACE_KEYS: (keyof ConversationPbxVoicemailMailboxResponse)[] = ["error", "metadata", "success", "voicemail_mailbox", "warning"];
+
+// Exported function to check for excess properties
+export function hasExcessProperties(obj: any): boolean {
+  const objKeys = Object.keys(obj);
+  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
+}
+
+
+
+/**
+ * Check if a given object implements the ConversationPbxVoicemailMailboxResponse interface.
+ */
+export function instanceOfConversationPbxVoicemailMailboxResponse(value: object): boolean {
+    let isInstance = true;
+
+    return isInstance;
+}
+
 export function ConversationPbxVoicemailMailboxResponseFromJSON(json: any): ConversationPbxVoicemailMailboxResponse {
     return ConversationPbxVoicemailMailboxResponseFromJSONTyped(json, false);
 }

@@ -64,6 +64,26 @@ export interface ItemPricingTier {
     pricing_tier_oid?: number;
 }
 
+// Define the constant array of keys
+const MY_INTERFACE_KEYS: (keyof ItemPricingTier)[] = ["default_tier", "discounts", "limit", "name", "pricing_tier_oid"];
+
+// Exported function to check for excess properties
+export function hasExcessProperties(obj: any): boolean {
+  const objKeys = Object.keys(obj);
+  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
+}
+
+
+
+/**
+ * Check if a given object implements the ItemPricingTier interface.
+ */
+export function instanceOfItemPricingTier(value: object): boolean {
+    let isInstance = true;
+
+    return isInstance;
+}
+
 export function ItemPricingTierFromJSON(json: any): ItemPricingTier {
     return ItemPricingTierFromJSONTyped(json, false);
 }

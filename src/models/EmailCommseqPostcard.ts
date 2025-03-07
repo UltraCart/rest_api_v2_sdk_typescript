@@ -99,6 +99,26 @@ export interface EmailCommseqPostcard {
     storefront_oid?: number;
 }
 
+// Define the constant array of keys
+const MY_INTERFACE_KEYS: (keyof EmailCommseqPostcard)[] = ["deleted", "edited_by_user", "email_communication_sequence_postcard_uuid", "filter_profile_equation_json", "merchant_id", "postcard_back_container_cjson", "postcard_back_container_uuid", "postcard_container_cjson_last_modified_dts", "postcard_front_container_cjson", "postcard_front_container_uuid", "screenshot_back_url", "screenshot_front_url", "storefront_oid"];
+
+// Exported function to check for excess properties
+export function hasExcessProperties(obj: any): boolean {
+  const objKeys = Object.keys(obj);
+  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
+}
+
+
+
+/**
+ * Check if a given object implements the EmailCommseqPostcard interface.
+ */
+export function instanceOfEmailCommseqPostcard(value: object): boolean {
+    let isInstance = true;
+
+    return isInstance;
+}
+
 export function EmailCommseqPostcardFromJSON(json: any): EmailCommseqPostcard {
     return EmailCommseqPostcardFromJSONTyped(json, false);
 }

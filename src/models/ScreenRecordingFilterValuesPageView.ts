@@ -70,6 +70,26 @@ export interface ScreenRecordingFilterValuesPageView {
     urls?: Array<string>;
 }
 
+// Define the constant array of keys
+const MY_INTERFACE_KEYS: (keyof ScreenRecordingFilterValuesPageView)[] = ["domains", "events", "page_params", "time_on_page_max", "time_on_page_min", "urls"];
+
+// Exported function to check for excess properties
+export function hasExcessProperties(obj: any): boolean {
+  const objKeys = Object.keys(obj);
+  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
+}
+
+
+
+/**
+ * Check if a given object implements the ScreenRecordingFilterValuesPageView interface.
+ */
+export function instanceOfScreenRecordingFilterValuesPageView(value: object): boolean {
+    let isInstance = true;
+
+    return isInstance;
+}
+
 export function ScreenRecordingFilterValuesPageViewFromJSON(json: any): ScreenRecordingFilterValuesPageView {
     return ScreenRecordingFilterValuesPageViewFromJSONTyped(json, false);
 }

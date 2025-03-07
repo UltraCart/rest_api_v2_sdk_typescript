@@ -34,6 +34,26 @@ export interface EmailStepWaitingResponse {
     step_waitings?: Array<StepWaiting>;
 }
 
+// Define the constant array of keys
+const MY_INTERFACE_KEYS: (keyof EmailStepWaitingResponse)[] = ["step_waitings"];
+
+// Exported function to check for excess properties
+export function hasExcessProperties(obj: any): boolean {
+  const objKeys = Object.keys(obj);
+  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
+}
+
+
+
+/**
+ * Check if a given object implements the EmailStepWaitingResponse interface.
+ */
+export function instanceOfEmailStepWaitingResponse(value: object): boolean {
+    let isInstance = true;
+
+    return isInstance;
+}
+
 export function EmailStepWaitingResponseFromJSON(json: any): EmailStepWaitingResponse {
     return EmailStepWaitingResponseFromJSONTyped(json, false);
 }

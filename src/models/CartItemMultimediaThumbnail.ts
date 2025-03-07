@@ -51,6 +51,26 @@ export interface CartItemMultimediaThumbnail {
     width?: number;
 }
 
+// Define the constant array of keys
+const MY_INTERFACE_KEYS: (keyof CartItemMultimediaThumbnail)[] = ["height", "png", "square", "url", "width"];
+
+// Exported function to check for excess properties
+export function hasExcessProperties(obj: any): boolean {
+  const objKeys = Object.keys(obj);
+  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
+}
+
+
+
+/**
+ * Check if a given object implements the CartItemMultimediaThumbnail interface.
+ */
+export function instanceOfCartItemMultimediaThumbnail(value: object): boolean {
+    let isInstance = true;
+
+    return isInstance;
+}
+
 export function CartItemMultimediaThumbnailFromJSON(json: any): CartItemMultimediaThumbnail {
     return CartItemMultimediaThumbnailFromJSONTyped(json, false);
 }

@@ -136,6 +136,16 @@ export interface ItemOptionValue {
     width?: Distance;
 }
 
+// Define the constant array of keys
+const MY_INTERFACE_KEYS: (keyof ItemOptionValue)[] = ["additional_dimension_application", "additional_items", "cost_change", "default_value", "digital_items", "height", "length", "merchant_item_multimedia_oid", "option_value_oid", "percent_cost_change", "translated_text_instance_oid", "value", "weight_change", "weight_change_percent", "width"];
+
+// Exported function to check for excess properties
+export function hasExcessProperties(obj: any): boolean {
+  const objKeys = Object.keys(obj);
+  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
+}
+
+
 
 /**
  * @export
@@ -147,6 +157,15 @@ export const ItemOptionValueAdditionalDimensionApplicationEnum = {
 } as const;
 export type ItemOptionValueAdditionalDimensionApplicationEnum = typeof ItemOptionValueAdditionalDimensionApplicationEnum[keyof typeof ItemOptionValueAdditionalDimensionApplicationEnum];
 
+
+/**
+ * Check if a given object implements the ItemOptionValue interface.
+ */
+export function instanceOfItemOptionValue(value: object): boolean {
+    let isInstance = true;
+
+    return isInstance;
+}
 
 export function ItemOptionValueFromJSON(json: any): ItemOptionValue {
     return ItemOptionValueFromJSONTyped(json, false);

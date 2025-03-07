@@ -112,6 +112,26 @@ export interface CartSettingsShippingEstimate {
     total_tax?: Currency;
 }
 
+// Define the constant array of keys
+const MY_INTERFACE_KEYS: (keyof CartSettingsShippingEstimate)[] = ["allow_3rd_party_billing", "comment", "cost", "cost_before_discount", "default_method", "discount", "discounted", "display_name", "estimated_delivery", "lift_gate_option", "name", "pickup", "tax", "total_tax"];
+
+// Exported function to check for excess properties
+export function hasExcessProperties(obj: any): boolean {
+  const objKeys = Object.keys(obj);
+  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
+}
+
+
+
+/**
+ * Check if a given object implements the CartSettingsShippingEstimate interface.
+ */
+export function instanceOfCartSettingsShippingEstimate(value: object): boolean {
+    let isInstance = true;
+
+    return isInstance;
+}
+
 export function CartSettingsShippingEstimateFromJSON(json: any): CartSettingsShippingEstimate {
     return CartSettingsShippingEstimateFromJSONTyped(json, false);
 }

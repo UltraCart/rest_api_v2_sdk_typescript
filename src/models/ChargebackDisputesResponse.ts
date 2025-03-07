@@ -76,6 +76,26 @@ export interface ChargebackDisputesResponse {
     warning?: Warning;
 }
 
+// Define the constant array of keys
+const MY_INTERFACE_KEYS: (keyof ChargebackDisputesResponse)[] = ["chargebacks", "error", "metadata", "success", "warning"];
+
+// Exported function to check for excess properties
+export function hasExcessProperties(obj: any): boolean {
+  const objKeys = Object.keys(obj);
+  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
+}
+
+
+
+/**
+ * Check if a given object implements the ChargebackDisputesResponse interface.
+ */
+export function instanceOfChargebackDisputesResponse(value: object): boolean {
+    let isInstance = true;
+
+    return isInstance;
+}
+
 export function ChargebackDisputesResponseFromJSON(json: any): ChargebackDisputesResponse {
     return ChargebackDisputesResponseFromJSONTyped(json, false);
 }

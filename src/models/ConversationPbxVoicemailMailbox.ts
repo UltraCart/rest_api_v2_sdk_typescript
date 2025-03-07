@@ -93,6 +93,16 @@ export interface ConversationPbxVoicemailMailbox {
     voicemail_prompt_say_voice?: ConversationPbxVoicemailMailboxVoicemailPromptSayVoiceEnum;
 }
 
+// Define the constant array of keys
+const MY_INTERFACE_KEYS: (keyof ConversationPbxVoicemailMailbox)[] = ["conversation_pbx_voicemail_mailbox_uuid", "merchant_id", "send_notices_to_email", "user_id", "voicemail_followup_play_audio_uuid", "voicemail_followup_say", "voicemail_followup_say_voice", "voicemail_mailbox_id", "voicemail_mailbox_type", "voicemail_prompt_play_audio_uuid", "voicemail_prompt_say", "voicemail_prompt_say_voice"];
+
+// Exported function to check for excess properties
+export function hasExcessProperties(obj: any): boolean {
+  const objKeys = Object.keys(obj);
+  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
+}
+
+
 
 /**
  * @export
@@ -121,6 +131,15 @@ export const ConversationPbxVoicemailMailboxVoicemailPromptSayVoiceEnum = {
 } as const;
 export type ConversationPbxVoicemailMailboxVoicemailPromptSayVoiceEnum = typeof ConversationPbxVoicemailMailboxVoicemailPromptSayVoiceEnum[keyof typeof ConversationPbxVoicemailMailboxVoicemailPromptSayVoiceEnum];
 
+
+/**
+ * Check if a given object implements the ConversationPbxVoicemailMailbox interface.
+ */
+export function instanceOfConversationPbxVoicemailMailbox(value: object): boolean {
+    let isInstance = true;
+
+    return isInstance;
+}
 
 export function ConversationPbxVoicemailMailboxFromJSON(json: any): ConversationPbxVoicemailMailbox {
     return ConversationPbxVoicemailMailboxFromJSONTyped(json, false);

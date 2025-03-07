@@ -39,6 +39,26 @@ export interface CartUpsellAfter {
     upsell_path_code?: string;
 }
 
+// Define the constant array of keys
+const MY_INTERFACE_KEYS: (keyof CartUpsellAfter)[] = ["finalize_after_dts", "finalize_after_minutes", "upsell_path_code"];
+
+// Exported function to check for excess properties
+export function hasExcessProperties(obj: any): boolean {
+  const objKeys = Object.keys(obj);
+  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
+}
+
+
+
+/**
+ * Check if a given object implements the CartUpsellAfter interface.
+ */
+export function instanceOfCartUpsellAfter(value: object): boolean {
+    let isInstance = true;
+
+    return isInstance;
+}
+
 export function CartUpsellAfterFromJSON(json: any): CartUpsellAfter {
     return CartUpsellAfterFromJSONTyped(json, false);
 }

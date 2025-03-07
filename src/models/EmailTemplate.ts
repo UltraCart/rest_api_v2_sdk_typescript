@@ -87,6 +87,26 @@ export interface EmailTemplate {
     trigger_type?: string;
 }
 
+// Define the constant array of keys
+const MY_INTERFACE_KEYS: (keyof EmailTemplate)[] = ["container_cjson", "description", "email_template_oid", "email_template_vm_path", "merchant_id", "name", "preview_amazon_listing_key", "sort_order", "storefront_oid", "system", "trigger_type"];
+
+// Exported function to check for excess properties
+export function hasExcessProperties(obj: any): boolean {
+  const objKeys = Object.keys(obj);
+  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
+}
+
+
+
+/**
+ * Check if a given object implements the EmailTemplate interface.
+ */
+export function instanceOfEmailTemplate(value: object): boolean {
+    let isInstance = true;
+
+    return isInstance;
+}
+
 export function EmailTemplateFromJSON(json: any): EmailTemplate {
     return EmailTemplateFromJSONTyped(json, false);
 }

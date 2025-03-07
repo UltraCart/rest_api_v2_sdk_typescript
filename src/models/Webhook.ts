@@ -148,6 +148,16 @@ export interface Webhook {
     webhook_url?: string;
 }
 
+// Define the constant array of keys
+const MY_INTERFACE_KEYS: (keyof Webhook)[] = ["api_user_oid", "api_version", "application_profile", "authentication_type", "basic_password", "basic_username", "compress_events", "consecutive_failures", "disabled", "event_categories", "iam_access_key", "iam_secret_key", "maximum_events", "maximum_size", "merchant_id", "next_retry_after", "pending", "webhook_oid", "webhook_url"];
+
+// Exported function to check for excess properties
+export function hasExcessProperties(obj: any): boolean {
+  const objKeys = Object.keys(obj);
+  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
+}
+
+
 
 /**
  * @export
@@ -168,6 +178,15 @@ export const WebhookAuthenticationTypeEnum = {
 } as const;
 export type WebhookAuthenticationTypeEnum = typeof WebhookAuthenticationTypeEnum[keyof typeof WebhookAuthenticationTypeEnum];
 
+
+/**
+ * Check if a given object implements the Webhook interface.
+ */
+export function instanceOfWebhook(value: object): boolean {
+    let isInstance = true;
+
+    return isInstance;
+}
 
 export function WebhookFromJSON(json: any): Webhook {
     return WebhookFromJSONTyped(json, false);

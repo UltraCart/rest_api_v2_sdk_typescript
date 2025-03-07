@@ -45,6 +45,26 @@ export interface AutoOrderItemFutureSchedule {
     unit_cost?: number;
 }
 
+// Define the constant array of keys
+const MY_INTERFACE_KEYS: (keyof AutoOrderItemFutureSchedule)[] = ["item_id", "rebill_count", "shipment_dts", "unit_cost"];
+
+// Exported function to check for excess properties
+export function hasExcessProperties(obj: any): boolean {
+  const objKeys = Object.keys(obj);
+  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
+}
+
+
+
+/**
+ * Check if a given object implements the AutoOrderItemFutureSchedule interface.
+ */
+export function instanceOfAutoOrderItemFutureSchedule(value: object): boolean {
+    let isInstance = true;
+
+    return isInstance;
+}
+
 export function AutoOrderItemFutureScheduleFromJSON(json: any): AutoOrderItemFutureSchedule {
     return AutoOrderItemFutureScheduleFromJSONTyped(json, false);
 }

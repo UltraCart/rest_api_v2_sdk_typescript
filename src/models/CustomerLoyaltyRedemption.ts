@@ -99,6 +99,26 @@ export interface CustomerLoyaltyRedemption {
     remaining_balance?: number;
 }
 
+// Define the constant array of keys
+const MY_INTERFACE_KEYS: (keyof CustomerLoyaltyRedemption)[] = ["coupon_code", "coupon_code_oid", "coupon_used", "description_for_customer", "expiration_dts", "gift_certificate_code", "gift_certificate_oid", "loyalty_ledger_oid", "loyalty_points", "loyalty_redemption_oid", "order_id", "redemption_dts", "remaining_balance"];
+
+// Exported function to check for excess properties
+export function hasExcessProperties(obj: any): boolean {
+  const objKeys = Object.keys(obj);
+  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
+}
+
+
+
+/**
+ * Check if a given object implements the CustomerLoyaltyRedemption interface.
+ */
+export function instanceOfCustomerLoyaltyRedemption(value: object): boolean {
+    let isInstance = true;
+
+    return isInstance;
+}
+
 export function CustomerLoyaltyRedemptionFromJSON(json: any): CustomerLoyaltyRedemption {
     return CustomerLoyaltyRedemptionFromJSONTyped(json, false);
 }

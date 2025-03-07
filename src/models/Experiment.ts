@@ -172,6 +172,16 @@ export interface Experiment {
     variations?: Array<ExperimentVariation>;
 }
 
+// Define the constant array of keys
+const MY_INTERFACE_KEYS: (keyof Experiment)[] = ["container_id", "duration_days", "end_dts", "equal_weighting", "experiment_type", "id", "name", "notes", "objective", "objective_parameter", "openai_current_iteration", "openai_element_type", "openai_model", "openai_total_iterations", "optimization_type", "p95_sessions_needed", "p_value", "session_count", "start_dts", "status", "storefront_experiment_oid", "storefront_oid", "uri", "variations"];
+
+// Exported function to check for excess properties
+export function hasExcessProperties(obj: any): boolean {
+  const objKeys = Object.keys(obj);
+  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
+}
+
+
 
 /**
  * @export
@@ -193,6 +203,15 @@ export const ExperimentStatusEnum = {
 } as const;
 export type ExperimentStatusEnum = typeof ExperimentStatusEnum[keyof typeof ExperimentStatusEnum];
 
+
+/**
+ * Check if a given object implements the Experiment interface.
+ */
+export function instanceOfExperiment(value: object): boolean {
+    let isInstance = true;
+
+    return isInstance;
+}
 
 export function ExperimentFromJSON(json: any): Experiment {
     return ExperimentFromJSONTyped(json, false);

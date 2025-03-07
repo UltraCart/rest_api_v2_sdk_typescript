@@ -64,6 +64,16 @@ export interface ReportFilter {
     values?: Array<string>;
 }
 
+// Define the constant array of keys
+const MY_INTERFACE_KEYS: (keyof ReportFilter)[] = ["connections", "name", "timezone", "type", "uuid", "values"];
+
+// Exported function to check for excess properties
+export function hasExcessProperties(obj: any): boolean {
+  const objKeys = Object.keys(obj);
+  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
+}
+
+
 
 /**
  * @export
@@ -76,6 +86,15 @@ export const ReportFilterTypeEnum = {
 } as const;
 export type ReportFilterTypeEnum = typeof ReportFilterTypeEnum[keyof typeof ReportFilterTypeEnum];
 
+
+/**
+ * Check if a given object implements the ReportFilter interface.
+ */
+export function instanceOfReportFilter(value: object): boolean {
+    let isInstance = true;
+
+    return isInstance;
+}
 
 export function ReportFilterFromJSON(json: any): ReportFilter {
     return ReportFilterFromJSONTyped(json, false);

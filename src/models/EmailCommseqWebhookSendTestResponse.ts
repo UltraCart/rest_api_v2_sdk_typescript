@@ -82,6 +82,26 @@ export interface EmailCommseqWebhookSendTestResponse {
     warning?: Warning;
 }
 
+// Define the constant array of keys
+const MY_INTERFACE_KEYS: (keyof EmailCommseqWebhookSendTestResponse)[] = ["error", "metadata", "request", "response", "status_code", "success", "warning"];
+
+// Exported function to check for excess properties
+export function hasExcessProperties(obj: any): boolean {
+  const objKeys = Object.keys(obj);
+  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
+}
+
+
+
+/**
+ * Check if a given object implements the EmailCommseqWebhookSendTestResponse interface.
+ */
+export function instanceOfEmailCommseqWebhookSendTestResponse(value: object): boolean {
+    let isInstance = true;
+
+    return isInstance;
+}
+
 export function EmailCommseqWebhookSendTestResponseFromJSON(json: any): EmailCommseqWebhookSendTestResponse {
     return EmailCommseqWebhookSendTestResponseFromJSONTyped(json, false);
 }

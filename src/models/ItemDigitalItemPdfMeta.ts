@@ -87,6 +87,26 @@ export interface ItemDigitalItemPdfMeta {
     tagged?: boolean;
 }
 
+// Define the constant array of keys
+const MY_INTERFACE_KEYS: (keyof ItemDigitalItemPdfMeta)[] = ["assembly_allowed", "copy_allowed", "custom_footer", "custom_header", "degraded_printing_allowed", "fillin_allowed", "modify_annotations_allowed", "modify_contents_allowed", "printing_allowed", "screen_readers_allowed", "tagged"];
+
+// Exported function to check for excess properties
+export function hasExcessProperties(obj: any): boolean {
+  const objKeys = Object.keys(obj);
+  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
+}
+
+
+
+/**
+ * Check if a given object implements the ItemDigitalItemPdfMeta interface.
+ */
+export function instanceOfItemDigitalItemPdfMeta(value: object): boolean {
+    let isInstance = true;
+
+    return isInstance;
+}
+
 export function ItemDigitalItemPdfMetaFromJSON(json: any): ItemDigitalItemPdfMeta {
     return ItemDigitalItemPdfMetaFromJSONTyped(json, false);
 }

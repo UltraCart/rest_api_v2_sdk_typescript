@@ -75,6 +75,26 @@ export interface GiftCertificateQuery {
     remaining_balance_start?: number;
 }
 
+// Define the constant array of keys
+const MY_INTERFACE_KEYS: (keyof GiftCertificateQuery)[] = ["code", "email", "expiration_dts_end", "expiration_dts_start", "original_balance_end", "original_balance_start", "reference_order_id", "remaining_balance_end", "remaining_balance_start"];
+
+// Exported function to check for excess properties
+export function hasExcessProperties(obj: any): boolean {
+  const objKeys = Object.keys(obj);
+  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
+}
+
+
+
+/**
+ * Check if a given object implements the GiftCertificateQuery interface.
+ */
+export function instanceOfGiftCertificateQuery(value: object): boolean {
+    let isInstance = true;
+
+    return isInstance;
+}
+
 export function GiftCertificateQueryFromJSON(json: any): GiftCertificateQuery {
     return GiftCertificateQueryFromJSONTyped(json, false);
 }

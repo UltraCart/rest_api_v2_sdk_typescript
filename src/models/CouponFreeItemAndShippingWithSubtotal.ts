@@ -51,6 +51,26 @@ export interface CouponFreeItemAndShippingWithSubtotal {
     subtotal_amount?: number;
 }
 
+// Define the constant array of keys
+const MY_INTERFACE_KEYS: (keyof CouponFreeItemAndShippingWithSubtotal)[] = ["currency_code", "items", "limit", "shipping_methods", "subtotal_amount"];
+
+// Exported function to check for excess properties
+export function hasExcessProperties(obj: any): boolean {
+  const objKeys = Object.keys(obj);
+  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
+}
+
+
+
+/**
+ * Check if a given object implements the CouponFreeItemAndShippingWithSubtotal interface.
+ */
+export function instanceOfCouponFreeItemAndShippingWithSubtotal(value: object): boolean {
+    let isInstance = true;
+
+    return isInstance;
+}
+
 export function CouponFreeItemAndShippingWithSubtotalFromJSON(json: any): CouponFreeItemAndShippingWithSubtotal {
     return CouponFreeItemAndShippingWithSubtotalFromJSONTyped(json, false);
 }

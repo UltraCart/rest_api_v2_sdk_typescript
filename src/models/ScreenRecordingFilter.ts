@@ -418,6 +418,26 @@ export interface ScreenRecordingFilter {
     watched?: boolean;
 }
 
+// Define the constant array of keys
+const MY_INTERFACE_KEYS: (keyof ScreenRecordingFilter)[] = ["affiliate_email", "affiliate_id", "communications_campaign_name", "communications_campaign_name_filter", "communications_email_subject", "communications_email_subject_filter", "communications_flow_name", "communications_flow_name_filter", "email", "email_domain", "email_domain_filter", "email_identified", "end_timestamp", "esp_customer_uuid", "favorite", "geolocation", "geolocation_country", "geolocation_country_filter", "geolocation_state", "geolocation_state_filter", "language_iso_code", "language_iso_code_filter", "last_x_days", "max_filter_values", "order_id", "page_view_count", "page_views", "placed_order", "preferred_language", "preferred_language_filter", "referrer_domain", "referrer_domain_filter", "screen_recording_uuids", "screen_sizes", "skip_filter_values", "skip_histogram", "skip_hits", "start_timestamp", "tags", "time_on_site", "time_on_site_max_filter", "time_on_site_min_filter", "url_filter", "user_agent_device_name", "user_agent_device_name_filter", "user_agent_device_os_name_filter", "user_agent_device_os_version_filter", "user_agent_name", "user_agent_name_filter", "user_agent_original", "user_agent_original_filter", "user_agent_os_name", "user_agent_os_version", "user_ip", "utm_campaign", "utm_campaign_filter", "utm_source", "utm_source_filter", "visitor_number", "watched"];
+
+// Exported function to check for excess properties
+export function hasExcessProperties(obj: any): boolean {
+  const objKeys = Object.keys(obj);
+  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
+}
+
+
+
+/**
+ * Check if a given object implements the ScreenRecordingFilter interface.
+ */
+export function instanceOfScreenRecordingFilter(value: object): boolean {
+    let isInstance = true;
+
+    return isInstance;
+}
+
 export function ScreenRecordingFilterFromJSON(json: any): ScreenRecordingFilter {
     return ScreenRecordingFilterFromJSONTyped(json, false);
 }

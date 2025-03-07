@@ -33,6 +33,26 @@ export interface ChannelPartnerShippingEstimate {
     shipping_method?: string;
 }
 
+// Define the constant array of keys
+const MY_INTERFACE_KEYS: (keyof ChannelPartnerShippingEstimate)[] = ["shipping_handling_total", "shipping_method"];
+
+// Exported function to check for excess properties
+export function hasExcessProperties(obj: any): boolean {
+  const objKeys = Object.keys(obj);
+  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
+}
+
+
+
+/**
+ * Check if a given object implements the ChannelPartnerShippingEstimate interface.
+ */
+export function instanceOfChannelPartnerShippingEstimate(value: object): boolean {
+    let isInstance = true;
+
+    return isInstance;
+}
+
 export function ChannelPartnerShippingEstimateFromJSON(json: any): ChannelPartnerShippingEstimate {
     return ChannelPartnerShippingEstimateFromJSONTyped(json, false);
 }

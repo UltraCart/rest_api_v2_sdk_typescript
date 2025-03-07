@@ -70,6 +70,26 @@ export interface EmailSegmentArchiveResponse {
     warning?: Warning;
 }
 
+// Define the constant array of keys
+const MY_INTERFACE_KEYS: (keyof EmailSegmentArchiveResponse)[] = ["error", "metadata", "segment_in_use", "success", "warning"];
+
+// Exported function to check for excess properties
+export function hasExcessProperties(obj: any): boolean {
+  const objKeys = Object.keys(obj);
+  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
+}
+
+
+
+/**
+ * Check if a given object implements the EmailSegmentArchiveResponse interface.
+ */
+export function instanceOfEmailSegmentArchiveResponse(value: object): boolean {
+    let isInstance = true;
+
+    return isInstance;
+}
+
 export function EmailSegmentArchiveResponseFromJSON(json: any): EmailSegmentArchiveResponse {
     return EmailSegmentArchiveResponseFromJSONTyped(json, false);
 }

@@ -141,6 +141,16 @@ export interface OrderFraudScore {
     transparent_proxy?: boolean;
 }
 
+// Define the constant array of keys
+const MY_INTERFACE_KEYS: (keyof OrderFraudScore)[] = ["anonymous_proxy", "bin_match", "carder_email", "country_code", "country_match", "customer_phone_in_billing_location", "distance_km", "free_email", "high_risk_country", "ip_city", "ip_isp", "ip_latitude", "ip_longitude", "ip_org", "ip_region", "proxy_score", "score", "ship_forwarder", "spam_score", "transparent_proxy"];
+
+// Exported function to check for excess properties
+export function hasExcessProperties(obj: any): boolean {
+  const objKeys = Object.keys(obj);
+  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
+}
+
+
 
 /**
  * @export
@@ -153,6 +163,15 @@ export const OrderFraudScoreBinMatchEnum = {
 } as const;
 export type OrderFraudScoreBinMatchEnum = typeof OrderFraudScoreBinMatchEnum[keyof typeof OrderFraudScoreBinMatchEnum];
 
+
+/**
+ * Check if a given object implements the OrderFraudScore interface.
+ */
+export function instanceOfOrderFraudScore(value: object): boolean {
+    let isInstance = true;
+
+    return isInstance;
+}
 
 export function OrderFraudScoreFromJSON(json: any): OrderFraudScore {
     return OrderFraudScoreFromJSONTyped(json, false);

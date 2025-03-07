@@ -69,6 +69,26 @@ export interface CustomerCard {
     last_used_dts?: string;
 }
 
+// Define the constant array of keys
+const MY_INTERFACE_KEYS: (keyof CustomerCard)[] = ["card_expiration_month", "card_expiration_year", "card_number", "card_number_token", "card_type", "customer_profile_credit_card_id", "customer_profile_oid", "last_used_dts"];
+
+// Exported function to check for excess properties
+export function hasExcessProperties(obj: any): boolean {
+  const objKeys = Object.keys(obj);
+  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
+}
+
+
+
+/**
+ * Check if a given object implements the CustomerCard interface.
+ */
+export function instanceOfCustomerCard(value: object): boolean {
+    let isInstance = true;
+
+    return isInstance;
+}
+
 export function CustomerCardFromJSON(json: any): CustomerCard {
     return CustomerCardFromJSONTyped(json, false);
 }

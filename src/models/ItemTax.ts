@@ -52,6 +52,16 @@ export interface ItemTax {
     taxable_cost?: number;
 }
 
+// Define the constant array of keys
+const MY_INTERFACE_KEYS: (keyof ItemTax)[] = ["exemptions", "tax_free", "tax_product_type", "taxable_cost"];
+
+// Exported function to check for excess properties
+export function hasExcessProperties(obj: any): boolean {
+  const objKeys = Object.keys(obj);
+  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
+}
+
+
 
 /**
  * @export
@@ -64,6 +74,15 @@ export const ItemTaxTaxProductTypeEnum = {
 } as const;
 export type ItemTaxTaxProductTypeEnum = typeof ItemTaxTaxProductTypeEnum[keyof typeof ItemTaxTaxProductTypeEnum];
 
+
+/**
+ * Check if a given object implements the ItemTax interface.
+ */
+export function instanceOfItemTax(value: object): boolean {
+    let isInstance = true;
+
+    return isInstance;
+}
 
 export function ItemTaxFromJSON(json: any): ItemTax {
     return ItemTaxFromJSONTyped(json, false);

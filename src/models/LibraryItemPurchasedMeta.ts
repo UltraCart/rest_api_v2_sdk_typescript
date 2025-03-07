@@ -39,6 +39,26 @@ export interface LibraryItemPurchasedMeta {
     upgrade_available?: boolean;
 }
 
+// Define the constant array of keys
+const MY_INTERFACE_KEYS: (keyof LibraryItemPurchasedMeta)[] = ["most_recent_version", "my_purchased_version", "upgrade_available"];
+
+// Exported function to check for excess properties
+export function hasExcessProperties(obj: any): boolean {
+  const objKeys = Object.keys(obj);
+  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
+}
+
+
+
+/**
+ * Check if a given object implements the LibraryItemPurchasedMeta interface.
+ */
+export function instanceOfLibraryItemPurchasedMeta(value: object): boolean {
+    let isInstance = true;
+
+    return isInstance;
+}
+
 export function LibraryItemPurchasedMetaFromJSON(json: any): LibraryItemPurchasedMeta {
     return LibraryItemPurchasedMetaFromJSONTyped(json, false);
 }

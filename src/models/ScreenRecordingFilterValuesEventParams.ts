@@ -51,6 +51,26 @@ export interface ScreenRecordingFilterValuesEventParams {
     values_text?: Array<string>;
 }
 
+// Define the constant array of keys
+const MY_INTERFACE_KEYS: (keyof ScreenRecordingFilterValuesEventParams)[] = ["name", "values_bd", "values_bool", "values_num", "values_text"];
+
+// Exported function to check for excess properties
+export function hasExcessProperties(obj: any): boolean {
+  const objKeys = Object.keys(obj);
+  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
+}
+
+
+
+/**
+ * Check if a given object implements the ScreenRecordingFilterValuesEventParams interface.
+ */
+export function instanceOfScreenRecordingFilterValuesEventParams(value: object): boolean {
+    let isInstance = true;
+
+    return isInstance;
+}
+
 export function ScreenRecordingFilterValuesEventParamsFromJSON(json: any): ScreenRecordingFilterValuesEventParams {
     return ScreenRecordingFilterValuesEventParamsFromJSONTyped(json, false);
 }

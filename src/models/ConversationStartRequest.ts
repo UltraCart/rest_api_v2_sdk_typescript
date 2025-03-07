@@ -39,6 +39,26 @@ export interface ConversationStartRequest {
     conversation_webchat_queue_uuid?: string;
 }
 
+// Define the constant array of keys
+const MY_INTERFACE_KEYS: (keyof ConversationStartRequest)[] = ["add_conversation_participant_arns", "conversation_arn", "conversation_webchat_queue_uuid"];
+
+// Exported function to check for excess properties
+export function hasExcessProperties(obj: any): boolean {
+  const objKeys = Object.keys(obj);
+  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
+}
+
+
+
+/**
+ * Check if a given object implements the ConversationStartRequest interface.
+ */
+export function instanceOfConversationStartRequest(value: object): boolean {
+    let isInstance = true;
+
+    return isInstance;
+}
+
 export function ConversationStartRequestFromJSON(json: any): ConversationStartRequest {
     return ConversationStartRequestFromJSONTyped(json, false);
 }

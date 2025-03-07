@@ -76,6 +76,26 @@ export interface ConversationPbxPhoneNumberResponse {
     warning?: Warning;
 }
 
+// Define the constant array of keys
+const MY_INTERFACE_KEYS: (keyof ConversationPbxPhoneNumberResponse)[] = ["error", "metadata", "phone_number", "success", "warning"];
+
+// Exported function to check for excess properties
+export function hasExcessProperties(obj: any): boolean {
+  const objKeys = Object.keys(obj);
+  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
+}
+
+
+
+/**
+ * Check if a given object implements the ConversationPbxPhoneNumberResponse interface.
+ */
+export function instanceOfConversationPbxPhoneNumberResponse(value: object): boolean {
+    let isInstance = true;
+
+    return isInstance;
+}
+
 export function ConversationPbxPhoneNumberResponseFromJSON(json: any): ConversationPbxPhoneNumberResponse {
     return ConversationPbxPhoneNumberResponseFromJSONTyped(json, false);
 }

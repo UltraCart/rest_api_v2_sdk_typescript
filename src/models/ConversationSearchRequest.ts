@@ -93,6 +93,26 @@ export interface ConversationSearchRequest {
     visible_filter?: boolean;
 }
 
+// Define the constant array of keys
+const MY_INTERFACE_KEYS: (keyof ConversationSearchRequest)[] = ["date_end", "date_start", "email_filter", "language_filter", "medium_filter", "order_by_newest", "order_by_oldest", "range_begin", "range_end", "sms_phone_number_filter", "text_search", "visible_filter"];
+
+// Exported function to check for excess properties
+export function hasExcessProperties(obj: any): boolean {
+  const objKeys = Object.keys(obj);
+  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
+}
+
+
+
+/**
+ * Check if a given object implements the ConversationSearchRequest interface.
+ */
+export function instanceOfConversationSearchRequest(value: object): boolean {
+    let isInstance = true;
+
+    return isInstance;
+}
+
 export function ConversationSearchRequestFromJSON(json: any): ConversationSearchRequest {
     return ConversationSearchRequestFromJSONTyped(json, false);
 }

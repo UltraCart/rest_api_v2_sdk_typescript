@@ -123,6 +123,26 @@ export interface CustomerShipping {
     title?: string;
 }
 
+// Define the constant array of keys
+const MY_INTERFACE_KEYS: (keyof CustomerShipping)[] = ["address1", "address2", "city", "company", "country_code", "customer_profile_oid", "customer_shipping_oid", "day_phone", "default_shipping", "evening_phone", "first_name", "last_name", "last_used_dts", "postal_code", "state_region", "tax_county", "title"];
+
+// Exported function to check for excess properties
+export function hasExcessProperties(obj: any): boolean {
+  const objKeys = Object.keys(obj);
+  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
+}
+
+
+
+/**
+ * Check if a given object implements the CustomerShipping interface.
+ */
+export function instanceOfCustomerShipping(value: object): boolean {
+    let isInstance = true;
+
+    return isInstance;
+}
+
 export function CustomerShippingFromJSON(json: any): CustomerShipping {
     return CustomerShippingFromJSONTyped(json, false);
 }

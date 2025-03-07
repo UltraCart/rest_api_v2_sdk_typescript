@@ -39,6 +39,16 @@ export interface ReportDataSetSchema {
     type?: ReportDataSetSchemaTypeEnum;
 }
 
+// Define the constant array of keys
+const MY_INTERFACE_KEYS: (keyof ReportDataSetSchema)[] = ["config", "name", "type"];
+
+// Exported function to check for excess properties
+export function hasExcessProperties(obj: any): boolean {
+  const objKeys = Object.keys(obj);
+  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
+}
+
+
 
 /**
  * @export
@@ -58,6 +68,15 @@ export const ReportDataSetSchemaTypeEnum = {
 } as const;
 export type ReportDataSetSchemaTypeEnum = typeof ReportDataSetSchemaTypeEnum[keyof typeof ReportDataSetSchemaTypeEnum];
 
+
+/**
+ * Check if a given object implements the ReportDataSetSchema interface.
+ */
+export function instanceOfReportDataSetSchema(value: object): boolean {
+    let isInstance = true;
+
+    return isInstance;
+}
 
 export function ReportDataSetSchemaFromJSON(json: any): ReportDataSetSchema {
     return ReportDataSetSchemaFromJSONTyped(json, false);

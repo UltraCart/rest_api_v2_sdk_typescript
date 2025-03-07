@@ -45,6 +45,26 @@ export interface RegisterAffiliateClickResponse {
     registered?: boolean;
 }
 
+// Define the constant array of keys
+const MY_INTERFACE_KEYS: (keyof RegisterAffiliateClickResponse)[] = ["cookie_max_age", "cookie_names", "cookie_values", "registered"];
+
+// Exported function to check for excess properties
+export function hasExcessProperties(obj: any): boolean {
+  const objKeys = Object.keys(obj);
+  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
+}
+
+
+
+/**
+ * Check if a given object implements the RegisterAffiliateClickResponse interface.
+ */
+export function instanceOfRegisterAffiliateClickResponse(value: object): boolean {
+    let isInstance = true;
+
+    return isInstance;
+}
+
 export function RegisterAffiliateClickResponseFromJSON(json: any): RegisterAffiliateClickResponse {
     return RegisterAffiliateClickResponseFromJSONTyped(json, false);
 }

@@ -69,6 +69,26 @@ export interface Activity {
     uuid?: string;
 }
 
+// Define the constant array of keys
+const MY_INTERFACE_KEYS: (keyof Activity)[] = ["action", "channel", "metric", "storefront_oid", "subject", "ts", "type", "uuid"];
+
+// Exported function to check for excess properties
+export function hasExcessProperties(obj: any): boolean {
+  const objKeys = Object.keys(obj);
+  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
+}
+
+
+
+/**
+ * Check if a given object implements the Activity interface.
+ */
+export function instanceOfActivity(value: object): boolean {
+    let isInstance = true;
+
+    return isInstance;
+}
+
 export function ActivityFromJSON(json: any): Activity {
     return ActivityFromJSONTyped(json, false);
 }

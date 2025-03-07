@@ -27,6 +27,26 @@ export interface ScreenRecordingHeatmapReset {
     url?: string;
 }
 
+// Define the constant array of keys
+const MY_INTERFACE_KEYS: (keyof ScreenRecordingHeatmapReset)[] = ["url"];
+
+// Exported function to check for excess properties
+export function hasExcessProperties(obj: any): boolean {
+  const objKeys = Object.keys(obj);
+  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
+}
+
+
+
+/**
+ * Check if a given object implements the ScreenRecordingHeatmapReset interface.
+ */
+export function instanceOfScreenRecordingHeatmapReset(value: object): boolean {
+    let isInstance = true;
+
+    return isInstance;
+}
+
 export function ScreenRecordingHeatmapResetFromJSON(json: any): ScreenRecordingHeatmapReset {
     return ScreenRecordingHeatmapResetFromJSONTyped(json, false);
 }

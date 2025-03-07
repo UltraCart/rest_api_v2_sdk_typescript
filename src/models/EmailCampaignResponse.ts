@@ -76,6 +76,26 @@ export interface EmailCampaignResponse {
     warning?: Warning;
 }
 
+// Define the constant array of keys
+const MY_INTERFACE_KEYS: (keyof EmailCampaignResponse)[] = ["campaign", "error", "metadata", "success", "warning"];
+
+// Exported function to check for excess properties
+export function hasExcessProperties(obj: any): boolean {
+  const objKeys = Object.keys(obj);
+  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
+}
+
+
+
+/**
+ * Check if a given object implements the EmailCampaignResponse interface.
+ */
+export function instanceOfEmailCampaignResponse(value: object): boolean {
+    let isInstance = true;
+
+    return isInstance;
+}
+
 export function EmailCampaignResponseFromJSON(json: any): EmailCampaignResponse {
     return EmailCampaignResponseFromJSONTyped(json, false);
 }

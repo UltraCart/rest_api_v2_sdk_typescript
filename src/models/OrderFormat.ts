@@ -117,6 +117,16 @@ export interface OrderFormat {
     translate?: boolean;
 }
 
+// Define the constant array of keys
+const MY_INTERFACE_KEYS: (keyof OrderFormat)[] = ["context", "dont_link_email_to_search", "email_as_link", "filter_distribution_center_oid", "filter_to_items_in_container_oid", "format", "hide_bill_to_address", "hide_price_information", "link_file_attachments", "show_contact_info", "show_in_merchant_currency", "show_internal_information", "show_merchant_notes", "show_non_sensitive_payment_info", "show_payment_info", "translate"];
+
+// Exported function to check for excess properties
+export function hasExcessProperties(obj: any): boolean {
+  const objKeys = Object.keys(obj);
+  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
+}
+
+
 
 /**
  * @export
@@ -129,6 +139,15 @@ export const OrderFormatFormatEnum = {
 } as const;
 export type OrderFormatFormatEnum = typeof OrderFormatFormatEnum[keyof typeof OrderFormatFormatEnum];
 
+
+/**
+ * Check if a given object implements the OrderFormat interface.
+ */
+export function instanceOfOrderFormat(value: object): boolean {
+    let isInstance = true;
+
+    return isInstance;
+}
 
 export function OrderFormatFromJSON(json: any): OrderFormat {
     return OrderFormatFromJSONTyped(json, false);

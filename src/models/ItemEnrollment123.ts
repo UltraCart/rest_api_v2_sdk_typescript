@@ -27,6 +27,26 @@ export interface ItemEnrollment123 {
     enrollment123_product_code?: string;
 }
 
+// Define the constant array of keys
+const MY_INTERFACE_KEYS: (keyof ItemEnrollment123)[] = ["enrollment123_product_code"];
+
+// Exported function to check for excess properties
+export function hasExcessProperties(obj: any): boolean {
+  const objKeys = Object.keys(obj);
+  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
+}
+
+
+
+/**
+ * Check if a given object implements the ItemEnrollment123 interface.
+ */
+export function instanceOfItemEnrollment123(value: object): boolean {
+    let isInstance = true;
+
+    return isInstance;
+}
+
 export function ItemEnrollment123FromJSON(json: any): ItemEnrollment123 {
     return ItemEnrollment123FromJSONTyped(json, false);
 }

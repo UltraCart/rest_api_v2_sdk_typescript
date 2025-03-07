@@ -99,6 +99,26 @@ export interface AvalaraConfig {
     test_results?: string;
 }
 
+// Define the constant array of keys
+const MY_INTERFACE_KEYS: (keyof AvalaraConfig)[] = ["account_id", "active", "avalara_oid", "company_id", "enable_upc", "estimate_only", "guest_customer_code", "last_test_dts", "license_key", "sandbox", "send_test_orders", "service_url", "test_results"];
+
+// Exported function to check for excess properties
+export function hasExcessProperties(obj: any): boolean {
+  const objKeys = Object.keys(obj);
+  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
+}
+
+
+
+/**
+ * Check if a given object implements the AvalaraConfig interface.
+ */
+export function instanceOfAvalaraConfig(value: object): boolean {
+    let isInstance = true;
+
+    return isInstance;
+}
+
 export function AvalaraConfigFromJSON(json: any): AvalaraConfig {
     return AvalaraConfigFromJSONTyped(json, false);
 }

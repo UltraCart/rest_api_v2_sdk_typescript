@@ -76,6 +76,16 @@ export interface ReportExecuteQueriesRequest {
     security_level?: ReportExecuteQueriesRequestSecurityLevelEnum;
 }
 
+// Define the constant array of keys
+const MY_INTERFACE_KEYS: (keyof ReportExecuteQueriesRequest)[] = ["client_uuid", "connection_id", "default_dataset_id", "default_project_id", "merchant_id", "queries", "request_dts", "security_level"];
+
+// Exported function to check for excess properties
+export function hasExcessProperties(obj: any): boolean {
+  const objKeys = Object.keys(obj);
+  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
+}
+
+
 
 /**
  * @export
@@ -88,6 +98,15 @@ export const ReportExecuteQueriesRequestSecurityLevelEnum = {
 } as const;
 export type ReportExecuteQueriesRequestSecurityLevelEnum = typeof ReportExecuteQueriesRequestSecurityLevelEnum[keyof typeof ReportExecuteQueriesRequestSecurityLevelEnum];
 
+
+/**
+ * Check if a given object implements the ReportExecuteQueriesRequest interface.
+ */
+export function instanceOfReportExecuteQueriesRequest(value: object): boolean {
+    let isInstance = true;
+
+    return isInstance;
+}
 
 export function ReportExecuteQueriesRequestFromJSON(json: any): ReportExecuteQueriesRequest {
     return ReportExecuteQueriesRequestFromJSONTyped(json, false);

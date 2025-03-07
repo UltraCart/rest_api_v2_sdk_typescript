@@ -33,6 +33,26 @@ export interface ChannelPartnerOrderTransactionDetail {
     value?: string;
 }
 
+// Define the constant array of keys
+const MY_INTERFACE_KEYS: (keyof ChannelPartnerOrderTransactionDetail)[] = ["name", "value"];
+
+// Exported function to check for excess properties
+export function hasExcessProperties(obj: any): boolean {
+  const objKeys = Object.keys(obj);
+  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
+}
+
+
+
+/**
+ * Check if a given object implements the ChannelPartnerOrderTransactionDetail interface.
+ */
+export function instanceOfChannelPartnerOrderTransactionDetail(value: object): boolean {
+    let isInstance = true;
+
+    return isInstance;
+}
+
 export function ChannelPartnerOrderTransactionDetailFromJSON(json: any): ChannelPartnerOrderTransactionDetail {
     return ChannelPartnerOrderTransactionDetailFromJSONTyped(json, false);
 }

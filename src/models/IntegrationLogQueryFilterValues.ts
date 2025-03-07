@@ -93,6 +93,26 @@ export interface IntegrationLogQueryFilterValues {
     statuses?: Array<string>;
 }
 
+// Define the constant array of keys
+const MY_INTERFACE_KEYS: (keyof IntegrationLogQueryFilterValues)[] = ["actions", "directions", "emails", "file_names", "item_ids", "item_ipn_oids", "log_dts_max", "log_dts_min", "log_types", "logger_names", "order_ids", "statuses"];
+
+// Exported function to check for excess properties
+export function hasExcessProperties(obj: any): boolean {
+  const objKeys = Object.keys(obj);
+  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
+}
+
+
+
+/**
+ * Check if a given object implements the IntegrationLogQueryFilterValues interface.
+ */
+export function instanceOfIntegrationLogQueryFilterValues(value: object): boolean {
+    let isInstance = true;
+
+    return isInstance;
+}
+
 export function IntegrationLogQueryFilterValuesFromJSON(json: any): IntegrationLogQueryFilterValues {
     return IntegrationLogQueryFilterValuesFromJSONTyped(json, false);
 }

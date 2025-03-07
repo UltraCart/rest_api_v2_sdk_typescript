@@ -64,6 +64,26 @@ export interface ItemDigitalDelivery {
     digital_items?: Array<ItemDigitalItem>;
 }
 
+// Define the constant array of keys
+const MY_INTERFACE_KEYS: (keyof ItemDigitalDelivery)[] = ["activation_code_description", "activation_code_low_warning", "activation_code_realtime_url", "activation_code_shared_secret", "activation_code_type", "digital_items"];
+
+// Exported function to check for excess properties
+export function hasExcessProperties(obj: any): boolean {
+  const objKeys = Object.keys(obj);
+  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
+}
+
+
+
+/**
+ * Check if a given object implements the ItemDigitalDelivery interface.
+ */
+export function instanceOfItemDigitalDelivery(value: object): boolean {
+    let isInstance = true;
+
+    return isInstance;
+}
+
 export function ItemDigitalDeliveryFromJSON(json: any): ItemDigitalDelivery {
     return ItemDigitalDeliveryFromJSONTyped(json, false);
 }

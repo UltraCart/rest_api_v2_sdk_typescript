@@ -100,6 +100,16 @@ export interface OrderPaymentCreditCard {
     dual_vaulted?: OrderPaymentCreditCardDualVaulted;
 }
 
+// Define the constant array of keys
+const MY_INTERFACE_KEYS: (keyof OrderPaymentCreditCard)[] = ["card_auth_ticket", "card_authorization_amount", "card_authorization_dts", "card_authorization_reference_number", "card_expiration_month", "card_expiration_year", "card_number", "card_number_token", "card_number_truncated", "card_type", "card_verification_number_token", "dual_vaulted"];
+
+// Exported function to check for excess properties
+export function hasExcessProperties(obj: any): boolean {
+  const objKeys = Object.keys(obj);
+  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
+}
+
+
 
 /**
  * @export
@@ -114,6 +124,15 @@ export const OrderPaymentCreditCardCardTypeEnum = {
 } as const;
 export type OrderPaymentCreditCardCardTypeEnum = typeof OrderPaymentCreditCardCardTypeEnum[keyof typeof OrderPaymentCreditCardCardTypeEnum];
 
+
+/**
+ * Check if a given object implements the OrderPaymentCreditCard interface.
+ */
+export function instanceOfOrderPaymentCreditCard(value: object): boolean {
+    let isInstance = true;
+
+    return isInstance;
+}
 
 export function OrderPaymentCreditCardFromJSON(json: any): OrderPaymentCreditCard {
     return OrderPaymentCreditCardFromJSONTyped(json, false);

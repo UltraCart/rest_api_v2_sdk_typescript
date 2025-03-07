@@ -64,6 +64,26 @@ export interface OrderBuysafe {
     buysafe_shopping_cart_id?: string;
 }
 
+// Define the constant array of keys
+const MY_INTERFACE_KEYS: (keyof OrderBuysafe)[] = ["buysafe_bond_available", "buysafe_bond_cost", "buysafe_bond_free", "buysafe_bond_refunded", "buysafe_bond_wanted", "buysafe_shopping_cart_id"];
+
+// Exported function to check for excess properties
+export function hasExcessProperties(obj: any): boolean {
+  const objKeys = Object.keys(obj);
+  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
+}
+
+
+
+/**
+ * Check if a given object implements the OrderBuysafe interface.
+ */
+export function instanceOfOrderBuysafe(value: object): boolean {
+    let isInstance = true;
+
+    return isInstance;
+}
+
 export function OrderBuysafeFromJSON(json: any): OrderBuysafe {
     return OrderBuysafeFromJSONTyped(json, false);
 }

@@ -33,6 +33,26 @@ export interface ItemGiftCertificate {
     gift_certificate_expiration_days?: number;
 }
 
+// Define the constant array of keys
+const MY_INTERFACE_KEYS: (keyof ItemGiftCertificate)[] = ["gift_certificate", "gift_certificate_expiration_days"];
+
+// Exported function to check for excess properties
+export function hasExcessProperties(obj: any): boolean {
+  const objKeys = Object.keys(obj);
+  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
+}
+
+
+
+/**
+ * Check if a given object implements the ItemGiftCertificate interface.
+ */
+export function instanceOfItemGiftCertificate(value: object): boolean {
+    let isInstance = true;
+
+    return isInstance;
+}
+
 export function ItemGiftCertificateFromJSON(json: any): ItemGiftCertificate {
     return ItemGiftCertificateFromJSONTyped(json, false);
 }

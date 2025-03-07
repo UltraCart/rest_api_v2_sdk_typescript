@@ -39,6 +39,16 @@ export interface ItemRelatedItem {
     type?: ItemRelatedItemTypeEnum;
 }
 
+// Define the constant array of keys
+const MY_INTERFACE_KEYS: (keyof ItemRelatedItem)[] = ["related_merchant_item_id", "related_merchant_item_oid", "type"];
+
+// Exported function to check for excess properties
+export function hasExcessProperties(obj: any): boolean {
+  const objKeys = Object.keys(obj);
+  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
+}
+
+
 
 /**
  * @export
@@ -49,6 +59,15 @@ export const ItemRelatedItemTypeEnum = {
 } as const;
 export type ItemRelatedItemTypeEnum = typeof ItemRelatedItemTypeEnum[keyof typeof ItemRelatedItemTypeEnum];
 
+
+/**
+ * Check if a given object implements the ItemRelatedItem interface.
+ */
+export function instanceOfItemRelatedItem(value: object): boolean {
+    let isInstance = true;
+
+    return isInstance;
+}
 
 export function ItemRelatedItemFromJSON(json: any): ItemRelatedItem {
     return ItemRelatedItemFromJSONTyped(json, false);

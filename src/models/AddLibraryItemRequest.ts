@@ -100,6 +100,26 @@ export interface AddLibraryItemRequest {
     uuid?: string;
 }
 
+// Define the constant array of keys
+const MY_INTERFACE_KEYS: (keyof AddLibraryItemRequest)[] = ["attributes", "cjson", "content_type", "description", "email_name", "email_path", "screenshots", "storefront_oid", "title", "upsell_offer_oid", "uuid"];
+
+// Exported function to check for excess properties
+export function hasExcessProperties(obj: any): boolean {
+  const objKeys = Object.keys(obj);
+  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
+}
+
+
+
+/**
+ * Check if a given object implements the AddLibraryItemRequest interface.
+ */
+export function instanceOfAddLibraryItemRequest(value: object): boolean {
+    let isInstance = true;
+
+    return isInstance;
+}
+
 export function AddLibraryItemRequestFromJSON(json: any): AddLibraryItemRequest {
     return AddLibraryItemRequestFromJSONTyped(json, false);
 }

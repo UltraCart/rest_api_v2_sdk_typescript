@@ -57,6 +57,26 @@ export interface AffiliateLedgerQuery {
     transaction_dts_end?: string;
 }
 
+// Define the constant array of keys
+const MY_INTERFACE_KEYS: (keyof AffiliateLedgerQuery)[] = ["affiliate_oid", "item_id", "order_id", "sub_id", "transaction_dts_begin", "transaction_dts_end"];
+
+// Exported function to check for excess properties
+export function hasExcessProperties(obj: any): boolean {
+  const objKeys = Object.keys(obj);
+  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
+}
+
+
+
+/**
+ * Check if a given object implements the AffiliateLedgerQuery interface.
+ */
+export function instanceOfAffiliateLedgerQuery(value: object): boolean {
+    let isInstance = true;
+
+    return isInstance;
+}
+
 export function AffiliateLedgerQueryFromJSON(json: any): AffiliateLedgerQuery {
     return AffiliateLedgerQueryFromJSONTyped(json, false);
 }

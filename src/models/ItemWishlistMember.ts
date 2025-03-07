@@ -39,6 +39,26 @@ export interface ItemWishlistMember {
     wishlist_member_sku?: string;
 }
 
+// Define the constant array of keys
+const MY_INTERFACE_KEYS: (keyof ItemWishlistMember)[] = ["wishlist_member_instance_description", "wishlist_member_instance_oid", "wishlist_member_sku"];
+
+// Exported function to check for excess properties
+export function hasExcessProperties(obj: any): boolean {
+  const objKeys = Object.keys(obj);
+  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
+}
+
+
+
+/**
+ * Check if a given object implements the ItemWishlistMember interface.
+ */
+export function instanceOfItemWishlistMember(value: object): boolean {
+    let isInstance = true;
+
+    return isInstance;
+}
+
 export function ItemWishlistMemberFromJSON(json: any): ItemWishlistMember {
     return ItemWishlistMemberFromJSONTyped(json, false);
 }

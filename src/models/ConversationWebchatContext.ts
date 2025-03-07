@@ -106,6 +106,26 @@ export interface ConversationWebchatContext {
     session_utm?: HitSessionUtm;
 }
 
+// Define the constant array of keys
+const MY_INTERFACE_KEYS: (keyof ConversationWebchatContext)[] = ["auto_orders", "cart", "current_url", "orders", "page_view", "session_start", "session_start_dts", "session_utm"];
+
+// Exported function to check for excess properties
+export function hasExcessProperties(obj: any): boolean {
+  const objKeys = Object.keys(obj);
+  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
+}
+
+
+
+/**
+ * Check if a given object implements the ConversationWebchatContext interface.
+ */
+export function instanceOfConversationWebchatContext(value: object): boolean {
+    let isInstance = true;
+
+    return isInstance;
+}
+
 export function ConversationWebchatContextFromJSON(json: any): ConversationWebchatContext {
     return ConversationWebchatContextFromJSONTyped(json, false);
 }

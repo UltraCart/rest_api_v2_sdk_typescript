@@ -46,6 +46,26 @@ export interface CheckoutHandoffResponse {
     redirect_to_url?: string;
 }
 
+// Define the constant array of keys
+const MY_INTERFACE_KEYS: (keyof CheckoutHandoffResponse)[] = ["cart", "errors", "redirect_to_url"];
+
+// Exported function to check for excess properties
+export function hasExcessProperties(obj: any): boolean {
+  const objKeys = Object.keys(obj);
+  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
+}
+
+
+
+/**
+ * Check if a given object implements the CheckoutHandoffResponse interface.
+ */
+export function instanceOfCheckoutHandoffResponse(value: object): boolean {
+    let isInstance = true;
+
+    return isInstance;
+}
+
 export function CheckoutHandoffResponseFromJSON(json: any): CheckoutHandoffResponse {
     return CheckoutHandoffResponseFromJSONTyped(json, false);
 }

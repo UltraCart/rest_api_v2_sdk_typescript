@@ -82,6 +82,26 @@ export interface TaxCity {
     tax_rate_formatted?: string;
 }
 
+// Define the constant array of keys
+const MY_INTERFACE_KEYS: (keyof TaxCity)[] = ["accounting_code", "city", "city_oid", "county_oid", "dont_collect_city", "dont_collect_postal_code", "postal_codes", "tax_rate", "tax_rate_formatted"];
+
+// Exported function to check for excess properties
+export function hasExcessProperties(obj: any): boolean {
+  const objKeys = Object.keys(obj);
+  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
+}
+
+
+
+/**
+ * Check if a given object implements the TaxCity interface.
+ */
+export function instanceOfTaxCity(value: object): boolean {
+    let isInstance = true;
+
+    return isInstance;
+}
+
 export function TaxCityFromJSON(json: any): TaxCity {
     return TaxCityFromJSONTyped(json, false);
 }

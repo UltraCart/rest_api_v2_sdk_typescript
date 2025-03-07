@@ -57,6 +57,26 @@ export interface LookupRequest {
     subcategory?: string;
 }
 
+// Define the constant array of keys
+const MY_INTERFACE_KEYS: (keyof LookupRequest)[] = ["category", "matches", "max_hits", "storefront_host_name", "storefront_oid", "subcategory"];
+
+// Exported function to check for excess properties
+export function hasExcessProperties(obj: any): boolean {
+  const objKeys = Object.keys(obj);
+  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
+}
+
+
+
+/**
+ * Check if a given object implements the LookupRequest interface.
+ */
+export function instanceOfLookupRequest(value: object): boolean {
+    let isInstance = true;
+
+    return isInstance;
+}
+
 export function LookupRequestFromJSON(json: any): LookupRequest {
     return LookupRequestFromJSONTyped(json, false);
 }

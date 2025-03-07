@@ -75,6 +75,26 @@ export interface IntegrationLogSummary {
     warning?: number;
 }
 
+// Define the constant array of keys
+const MY_INTERFACE_KEYS: (keyof IntegrationLogSummary)[] = ["critical", "error", "events", "log_type", "logger_id", "logger_name", "success", "view_url", "warning"];
+
+// Exported function to check for excess properties
+export function hasExcessProperties(obj: any): boolean {
+  const objKeys = Object.keys(obj);
+  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
+}
+
+
+
+/**
+ * Check if a given object implements the IntegrationLogSummary interface.
+ */
+export function instanceOfIntegrationLogSummary(value: object): boolean {
+    let isInstance = true;
+
+    return isInstance;
+}
+
 export function IntegrationLogSummaryFromJSON(json: any): IntegrationLogSummary {
     return IntegrationLogSummaryFromJSONTyped(json, false);
 }
