@@ -1,12 +1,12 @@
 # UltraCart Typescript SDK
-## ultracart_rest_api_v2_typescript@4.1.4
+## ultracart_rest_api_v2_typescript@4.1.5
 
 Every API method call has a sample for every language SDK.  See https://github.com/UltraCart/sdk_samples
 
 Installation
 
 ```
-npm install ultracart_rest_api_v2_typescript@4.1.4 --save
+npm install ultracart_rest_api_v2_typescript@4.1.5 --save
 ```
 
 ```typescript
@@ -83,6 +83,7 @@ Not every change is committed to every SDK.
 
 | Version | Date | Comments |
 | --: | :-: | --- |
+| 4.1.5 | 03/28/2025 | added paypal fastlane constants for payments |
 | 4.1.4 | 03/07/2025 | updated github readme.md |
 | 4.1.3 | 03/07/2025 | updated github readme.md files |
 | 4.1.2 | 03/05/2025 | added ChannelPartnerOrder.use_prior_payment_information_from_order_id |

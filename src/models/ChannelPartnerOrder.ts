@@ -636,7 +636,8 @@ export const ChannelPartnerOrderPaymentMethodEnum = {
     PayPal: 'PayPal',
     PurchaseOrder: 'Purchase Order',
     QuoteRequest: 'Quote Request',
-    WireTransfer: 'Wire Transfer'
+    WireTransfer: 'Wire Transfer',
+    PayPalFastlane: 'PayPal Fastlane'
 } as const;
 export type ChannelPartnerOrderPaymentMethodEnum = typeof ChannelPartnerOrderPaymentMethodEnum[keyof typeof ChannelPartnerOrderPaymentMethodEnum];
 
