@@ -6031,7 +6031,8 @@ export declare namespace ChannelPartnerOrder {
         PayPal,
         PurchaseOrder,
         QuoteRequest,
-        WireTransfer
+        WireTransfer,
+        PayPalFastlane
     }
 }
 /**
@@ -33686,7 +33687,8 @@ export declare namespace OrderPayment {
         Venmo,
         ApplePay,
         GooglePay,
-        HealthBenefitCard
+        HealthBenefitCard,
+        PayPalFastlane
     }
     /**
      * @export
@@ -34534,7 +34536,8 @@ export declare namespace OrderQuery {
         WireTransfer,
         Venmo,
         ApplePay,
-        GooglePay
+        GooglePay,
+        PayPalFastlane
     }
     /**
      * @export

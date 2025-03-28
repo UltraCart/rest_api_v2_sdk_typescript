@@ -6167,7 +6167,8 @@ export namespace ChannelPartnerOrder {
         PayPal = <any> 'PayPal',
         PurchaseOrder = <any> 'Purchase Order',
         QuoteRequest = <any> 'Quote Request',
-        WireTransfer = <any> 'Wire Transfer'
+        WireTransfer = <any> 'Wire Transfer',
+        PayPalFastlane = <any> 'PayPal Fastlane'
     }
 }
 
@@ -34405,7 +34406,8 @@ export namespace OrderPayment {
         Venmo = <any> 'Venmo',
         ApplePay = <any> 'Apple Pay',
         GooglePay = <any> 'Google Pay',
-        HealthBenefitCard = <any> 'Health Benefit Card'
+        HealthBenefitCard = <any> 'Health Benefit Card',
+        PayPalFastlane = <any> 'PayPal Fastlane'
     }
     /**
      * @export
@@ -35272,7 +35274,8 @@ export namespace OrderQuery {
         WireTransfer = <any> 'Wire Transfer',
         Venmo = <any> 'Venmo',
         ApplePay = <any> 'Apple Pay',
-        GooglePay = <any> ' Google Pay'
+        GooglePay = <any> ' Google Pay',
+        PayPalFastlane = <any> 'PayPal Fastlane'
     }
     /**
      * @export

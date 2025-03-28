@@ -340,6 +340,7 @@ var ChannelPartnerOrder;
         PaymentMethodEnum[PaymentMethodEnum["PurchaseOrder"] = 'Purchase Order'] = "PurchaseOrder";
         PaymentMethodEnum[PaymentMethodEnum["QuoteRequest"] = 'Quote Request'] = "QuoteRequest";
         PaymentMethodEnum[PaymentMethodEnum["WireTransfer"] = 'Wire Transfer'] = "WireTransfer";
+        PaymentMethodEnum[PaymentMethodEnum["PayPalFastlane"] = 'PayPal Fastlane'] = "PayPalFastlane";
     })(PaymentMethodEnum = ChannelPartnerOrder.PaymentMethodEnum || (ChannelPartnerOrder.PaymentMethodEnum = {}));
 })(ChannelPartnerOrder = exports.ChannelPartnerOrder || (exports.ChannelPartnerOrder = {}));
 /**
@@ -1404,6 +1405,7 @@ var OrderPayment;
         PaymentMethodEnum[PaymentMethodEnum["ApplePay"] = 'Apple Pay'] = "ApplePay";
         PaymentMethodEnum[PaymentMethodEnum["GooglePay"] = 'Google Pay'] = "GooglePay";
         PaymentMethodEnum[PaymentMethodEnum["HealthBenefitCard"] = 'Health Benefit Card'] = "HealthBenefitCard";
+        PaymentMethodEnum[PaymentMethodEnum["PayPalFastlane"] = 'PayPal Fastlane'] = "PayPalFastlane";
     })(PaymentMethodEnum = OrderPayment.PaymentMethodEnum || (OrderPayment.PaymentMethodEnum = {}));
     /**
      * @export
@@ -1513,6 +1515,7 @@ var OrderQuery;
         PaymentMethodEnum[PaymentMethodEnum["Venmo"] = 'Venmo'] = "Venmo";
         PaymentMethodEnum[PaymentMethodEnum["ApplePay"] = 'Apple Pay'] = "ApplePay";
         PaymentMethodEnum[PaymentMethodEnum["GooglePay"] = ' Google Pay'] = "GooglePay";
+        PaymentMethodEnum[PaymentMethodEnum["PayPalFastlane"] = 'PayPal Fastlane'] = "PayPalFastlane";
     })(PaymentMethodEnum = OrderQuery.PaymentMethodEnum || (OrderQuery.PaymentMethodEnum = {}));
     /**
      * @export
