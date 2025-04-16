@@ -19,6 +19,12 @@ import {
     ChannelPartnerOrderItemOptionFromJSONTyped,
     ChannelPartnerOrderItemOptionToJSON,
 } from './ChannelPartnerOrderItemOption';
+import {
+    ChannelPartnerOrderItemProperty,
+    ChannelPartnerOrderItemPropertyFromJSON,
+    ChannelPartnerOrderItemPropertyFromJSONTyped,
+    ChannelPartnerOrderItemPropertyToJSON,
+} from './ChannelPartnerOrderItemProperty';
 
 /**
  * 
@@ -57,6 +63,12 @@ export interface ChannelPartnerOrderItem {
      */
     options?: Array<ChannelPartnerOrderItemOption>;
     /**
+     * Properties
+     * @type {Array<ChannelPartnerOrderItemProperty>}
+     * @memberof ChannelPartnerOrderItem
+     */
+    properties?: Array<ChannelPartnerOrderItemProperty>;
+    /**
      * Quantity
      * @type {number}
      * @memberof ChannelPartnerOrderItem
@@ -71,7 +83,7 @@ export interface ChannelPartnerOrderItem {
 }
 
 // Define the constant array of keys
-const MY_INTERFACE_KEYS: (keyof ChannelPartnerOrderItem)[] = ["arbitrary_unit_cost", "auto_order_last_rebill_dts", "auto_order_schedule", "merchant_item_id", "options", "quantity", "upsell"];
+const MY_INTERFACE_KEYS: (keyof ChannelPartnerOrderItem)[] = ["arbitrary_unit_cost", "auto_order_last_rebill_dts", "auto_order_schedule", "merchant_item_id", "options", "properties", "quantity", "upsell"];
 
 // Exported function to check for excess properties
 export function hasExcessProperties(obj: any): boolean {
@@ -129,6 +141,7 @@ export function ChannelPartnerOrderItemFromJSONTyped(json: any, ignoreDiscrimina
         'auto_order_schedule': !exists(json, 'auto_order_schedule') ? undefined : json['auto_order_schedule'],
         'merchant_item_id': !exists(json, 'merchant_item_id') ? undefined : json['merchant_item_id'],
         'options': !exists(json, 'options') ? undefined : ((json['options'] as Array<any>).map(ChannelPartnerOrderItemOptionFromJSON)),
+        'properties': !exists(json, 'properties') ? undefined : ((json['properties'] as Array<any>).map(ChannelPartnerOrderItemPropertyFromJSON)),
         'quantity': !exists(json, 'quantity') ? undefined : json['quantity'],
         'upsell': !exists(json, 'upsell') ? undefined : json['upsell'],
     };
@@ -148,6 +161,7 @@ export function ChannelPartnerOrderItemToJSON(value?: ChannelPartnerOrderItem | 
         'auto_order_schedule': value.auto_order_schedule,
         'merchant_item_id': value.merchant_item_id,
         'options': value.options === undefined ? undefined : ((value.options as Array<any>).map(ChannelPartnerOrderItemOptionToJSON)),
+        'properties': value.properties === undefined ? undefined : ((value.properties as Array<any>).map(ChannelPartnerOrderItemPropertyToJSON)),
         'quantity': value.quantity,
         'upsell': value.upsell,
     };

@@ -136,6 +136,7 @@ src/models/ChannelPartnerImportResponse.ts
 src/models/ChannelPartnerOrder.ts
 src/models/ChannelPartnerOrderItem.ts
 src/models/ChannelPartnerOrderItemOption.ts
+src/models/ChannelPartnerOrderItemProperty.ts
 src/models/ChannelPartnerOrderTransaction.ts
 src/models/ChannelPartnerOrderTransactionDetail.ts
 src/models/ChannelPartnerShipToPreference.ts

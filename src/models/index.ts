@@ -111,6 +111,7 @@ export * from './ChannelPartnerImportResponse';
 export * from './ChannelPartnerOrder';
 export * from './ChannelPartnerOrderItem';
 export * from './ChannelPartnerOrderItemOption';
+export * from './ChannelPartnerOrderItemProperty';
 export * from './ChannelPartnerOrderTransaction';
 export * from './ChannelPartnerOrderTransactionDetail';
 export * from './ChannelPartnerShipToPreference';
