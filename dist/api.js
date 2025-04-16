@@ -26251,6 +26251,88 @@ var OrderApiFetchParamCreator = function (configuration) {
             };
         },
         /**
+         * Perform a refund operation on an order and then update the order if successful.
+         * @summary Refund an order completely
+         * @param {string} order_id The order id to refund.
+         * @param {boolean} [reject_after_refund] Reject order after refund
+         * @param {boolean} [skip_customer_notification] Skip customer email notification
+         * @param {boolean} [auto_order_cancel] Cancel associated auto orders
+         * @param {boolean} [manual_refund] Consider a manual refund done externally
+         * @param {boolean} [reverse_affiliate_transactions] Reverse affiliate transactions
+         * @param {boolean} [issue_store_credit] Issue a store credit instead of refunding the original payment method, loyalty must be configured on merchant account
+         * @param {string} [auto_order_cancel_reason] Reason for auto orders cancellation
+         * @param {string} [refund_reason] Reason for refund
+         * @param {string} [reject_reason] Reason for reject
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        refundOrderCompletely: function (order_id, reject_after_refund, skip_customer_notification, auto_order_cancel, manual_refund, reverse_affiliate_transactions, issue_store_credit, auto_order_cancel_reason, refund_reason, reject_reason, options) {
+            if (options === void 0) { options = {}; }
+            // verify required parameter 'order_id' is not null or undefined
+            if (order_id === null || order_id === undefined) {
+                throw new RequiredError('order_id', 'Required parameter order_id was null or undefined when calling refundOrderCompletely.');
+            }
+            var localVarPath = "/order/orders/{order_id}/refund_completely"
+                .replace("{".concat("order_id", "}"), encodeURIComponent(String(order_id)));
+            var localVarUrlObj = url.parse(localVarPath, true);
+            var localVarRequestOptions = Object.assign({ method: 'PUT' }, options);
+            var localVarHeaderParameter = {};
+            var localVarQueryParameter = {};
+            if (configuration && configuration.apiVersion) {
+                localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+            }
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+                var localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+                    ? configuration.accessToken("ultraCartOauth", ["order_write"])
+                    : configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                var localVarApiKeyValue = typeof configuration.apiKey === 'function'
+                    ? configuration.apiKey("x-ultracart-simple-key")
+                    : configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+            if (reject_after_refund !== undefined) {
+                localVarQueryParameter['reject_after_refund'] = reject_after_refund;
+            }
+            if (skip_customer_notification !== undefined) {
+                localVarQueryParameter['skip_customer_notification'] = skip_customer_notification;
+            }
+            if (auto_order_cancel !== undefined) {
+                localVarQueryParameter['auto_order_cancel'] = auto_order_cancel;
+            }
+            if (manual_refund !== undefined) {
+                localVarQueryParameter['manual_refund'] = manual_refund;
+            }
+            if (reverse_affiliate_transactions !== undefined) {
+                localVarQueryParameter['reverse_affiliate_transactions'] = reverse_affiliate_transactions;
+            }
+            if (issue_store_credit !== undefined) {
+                localVarQueryParameter['issue_store_credit'] = issue_store_credit;
+            }
+            if (auto_order_cancel_reason !== undefined) {
+                localVarQueryParameter['auto_order_cancel_reason'] = auto_order_cancel_reason;
+            }
+            if (refund_reason !== undefined) {
+                localVarQueryParameter['refund_reason'] = refund_reason;
+            }
+            if (reject_reason !== undefined) {
+                localVarQueryParameter['reject_reason'] = reject_reason;
+            }
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
          * Create a replacement order based upon a previous order
          * @summary Replacement order
          * @param {string} order_id The order id to generate a replacement for.
@@ -27076,6 +27158,37 @@ var OrderApiFp = function (configuration) {
             };
         },
         /**
+         * Perform a refund operation on an order and then update the order if successful.
+         * @summary Refund an order completely
+         * @param {string} order_id The order id to refund.
+         * @param {boolean} [reject_after_refund] Reject order after refund
+         * @param {boolean} [skip_customer_notification] Skip customer email notification
+         * @param {boolean} [auto_order_cancel] Cancel associated auto orders
+         * @param {boolean} [manual_refund] Consider a manual refund done externally
+         * @param {boolean} [reverse_affiliate_transactions] Reverse affiliate transactions
+         * @param {boolean} [issue_store_credit] Issue a store credit instead of refunding the original payment method, loyalty must be configured on merchant account
+         * @param {string} [auto_order_cancel_reason] Reason for auto orders cancellation
+         * @param {string} [refund_reason] Reason for refund
+         * @param {string} [reject_reason] Reason for reject
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        refundOrderCompletely: function (order_id, reject_after_refund, skip_customer_notification, auto_order_cancel, manual_refund, reverse_affiliate_transactions, issue_store_credit, auto_order_cancel_reason, refund_reason, reject_reason, options) {
+            var localVarFetchArgs = (0, exports.OrderApiFetchParamCreator)(configuration).refundOrderCompletely(order_id, reject_after_refund, skip_customer_notification, auto_order_cancel, manual_refund, reverse_affiliate_transactions, issue_store_credit, auto_order_cancel_reason, refund_reason, reject_reason, options);
+            return function (fetch, basePath) {
+                if (fetch === void 0) { fetch = portableFetch; }
+                if (basePath === void 0) { basePath = BASE_PATH; }
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(function (response) {
+                    if (response.status >= 200 && response.status < 300) {
+                        return response.json();
+                    }
+                    else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
          * Create a replacement order based upon a previous order
          * @summary Replacement order
          * @param {string} order_id The order id to generate a replacement for.
@@ -27484,6 +27597,25 @@ var OrderApiFactory = function (configuration, fetch, basePath) {
             return (0, exports.OrderApiFp)(configuration).refundOrder(order, order_id, reject_after_refund, skip_customer_notification, auto_order_cancel, manual_refund, reverse_affiliate_transactions, issue_store_credit, auto_order_cancel_reason, _expand, options)(fetch, basePath);
         },
         /**
+         * Perform a refund operation on an order and then update the order if successful.
+         * @summary Refund an order completely
+         * @param {string} order_id The order id to refund.
+         * @param {boolean} [reject_after_refund] Reject order after refund
+         * @param {boolean} [skip_customer_notification] Skip customer email notification
+         * @param {boolean} [auto_order_cancel] Cancel associated auto orders
+         * @param {boolean} [manual_refund] Consider a manual refund done externally
+         * @param {boolean} [reverse_affiliate_transactions] Reverse affiliate transactions
+         * @param {boolean} [issue_store_credit] Issue a store credit instead of refunding the original payment method, loyalty must be configured on merchant account
+         * @param {string} [auto_order_cancel_reason] Reason for auto orders cancellation
+         * @param {string} [refund_reason] Reason for refund
+         * @param {string} [reject_reason] Reason for reject
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        refundOrderCompletely: function (order_id, reject_after_refund, skip_customer_notification, auto_order_cancel, manual_refund, reverse_affiliate_transactions, issue_store_credit, auto_order_cancel_reason, refund_reason, reject_reason, options) {
+            return (0, exports.OrderApiFp)(configuration).refundOrderCompletely(order_id, reject_after_refund, skip_customer_notification, auto_order_cancel, manual_refund, reverse_affiliate_transactions, issue_store_credit, auto_order_cancel_reason, refund_reason, reject_reason, options)(fetch, basePath);
+        },
+        /**
          * Create a replacement order based upon a previous order
          * @summary Replacement order
          * @param {string} order_id The order id to generate a replacement for.
@@ -27844,6 +27976,26 @@ var OrderApi = /** @class */ (function (_super) {
      */
     OrderApi.prototype.refundOrder = function (order, order_id, reject_after_refund, skip_customer_notification, auto_order_cancel, manual_refund, reverse_affiliate_transactions, issue_store_credit, auto_order_cancel_reason, _expand, options) {
         return (0, exports.OrderApiFp)(this.configuration).refundOrder(order, order_id, reject_after_refund, skip_customer_notification, auto_order_cancel, manual_refund, reverse_affiliate_transactions, issue_store_credit, auto_order_cancel_reason, _expand, options)(this.fetch, this.basePath);
+    };
+    /**
+     * Perform a refund operation on an order and then update the order if successful.
+     * @summary Refund an order completely
+     * @param {string} order_id The order id to refund.
+     * @param {boolean} [reject_after_refund] Reject order after refund
+     * @param {boolean} [skip_customer_notification] Skip customer email notification
+     * @param {boolean} [auto_order_cancel] Cancel associated auto orders
+     * @param {boolean} [manual_refund] Consider a manual refund done externally
+     * @param {boolean} [reverse_affiliate_transactions] Reverse affiliate transactions
+     * @param {boolean} [issue_store_credit] Issue a store credit instead of refunding the original payment method, loyalty must be configured on merchant account
+     * @param {string} [auto_order_cancel_reason] Reason for auto orders cancellation
+     * @param {string} [refund_reason] Reason for refund
+     * @param {string} [reject_reason] Reason for reject
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof OrderApi
+     */
+    OrderApi.prototype.refundOrderCompletely = function (order_id, reject_after_refund, skip_customer_notification, auto_order_cancel, manual_refund, reverse_affiliate_transactions, issue_store_credit, auto_order_cancel_reason, refund_reason, reject_reason, options) {
+        return (0, exports.OrderApiFp)(this.configuration).refundOrderCompletely(order_id, reject_after_refund, skip_customer_notification, auto_order_cancel, manual_refund, reverse_affiliate_transactions, issue_store_credit, auto_order_cancel_reason, refund_reason, reject_reason, options)(this.fetch, this.basePath);
     };
     /**
      * Create a replacement order based upon a previous order

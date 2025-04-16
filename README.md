@@ -1,4 +1,4 @@
-## ultracart_rest_api_v2_typescript@3.11.5
+## ultracart_rest_api_v2_typescript@3.11.6
 
 This generator creates TypeScript/JavaScript client that utilizes [Fetch API](https://fetch.spec.whatwg.org/). The generated Node module can be used in the following environments:
 
@@ -36,7 +36,7 @@ navigate to the folder of your consuming project and run one of the following co
 _published:_
 
 ```
-npm install ultracart_rest_api_v2_typescript@3.11.5 --save
+npm install ultracart_rest_api_v2_typescript@3.11.6 --save
 ```
 
 _unPublished (not recommended):_
@@ -54,6 +54,7 @@ Not every change is committed to every SDK.
 
 | Version | Date | Comments |
 | --: | :-: | --- |
+| 3.11.6 | 04/16/2025 | added channel partner order item properties |
 | 3.11.5 | 03/28/2025 | added paypal fastlane constants for payments |
 | 3.11.4 | 03/07/2025 | updated github readme.md |
 | 3.11.3 | 03/07/2025 | updated github readme.md files |
