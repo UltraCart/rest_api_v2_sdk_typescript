@@ -7067,6 +7067,30 @@ export interface ConversationAgentAuthResponse {
  */
 export interface ConversationAgentProfile {
     /**
+     * AI powered chat bot
+     * @type {boolean}
+     * @memberof ConversationAgentProfile
+     */
+    ai?: boolean;
+    /**
+     * Additional instructions for this AI when handle web chats
+     * @type {string}
+     * @memberof ConversationAgentProfile
+     */
+    ai_chat_instructions?: string;
+    /**
+     * Persona of this AI agent
+     * @type {string}
+     * @memberof ConversationAgentProfile
+     */
+    ai_persona?: string;
+    /**
+     * Additional instructions for this AI when handle SMS messages
+     * @type {string}
+     * @memberof ConversationAgentProfile
+     */
+    ai_sms_instructions?: string;
+    /**
      * The number of engagement chats that can be pushed on them at any given time.
      * @type {number}
      * @memberof ConversationAgentProfile
