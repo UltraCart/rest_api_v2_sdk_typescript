@@ -20,6 +20,30 @@ import { exists, mapValues } from '../runtime';
  */
 export interface ConversationAgentProfile {
     /**
+     * AI powered chat bot
+     * @type {boolean}
+     * @memberof ConversationAgentProfile
+     */
+    ai?: boolean;
+    /**
+     * Additional instructions for this AI when handle web chats
+     * @type {string}
+     * @memberof ConversationAgentProfile
+     */
+    ai_chat_instructions?: string;
+    /**
+     * Persona of this AI agent
+     * @type {string}
+     * @memberof ConversationAgentProfile
+     */
+    ai_persona?: string;
+    /**
+     * Additional instructions for this AI when handle SMS messages
+     * @type {string}
+     * @memberof ConversationAgentProfile
+     */
+    ai_sms_instructions?: string;
+    /**
      * The number of engagement chats that can be pushed on them at any given time.
      * @type {number}
      * @memberof ConversationAgentProfile
@@ -64,7 +88,7 @@ export interface ConversationAgentProfile {
 }
 
 // Define the constant array of keys
-const MY_INTERFACE_KEYS: (keyof ConversationAgentProfile)[] = ["chat_limit", "default_language_iso_code", "default_status", "display_name", "name", "profile_image_upload_key", "profile_image_url"];
+const MY_INTERFACE_KEYS: (keyof ConversationAgentProfile)[] = ["ai", "ai_chat_instructions", "ai_persona", "ai_sms_instructions", "chat_limit", "default_language_iso_code", "default_status", "display_name", "name", "profile_image_upload_key", "profile_image_url"];
 
 // Exported function to check for excess properties
 export function hasExcessProperties(obj: any): boolean {
@@ -104,6 +128,10 @@ export function ConversationAgentProfileFromJSONTyped(json: any, ignoreDiscrimin
     }
     return {
         
+        'ai': !exists(json, 'ai') ? undefined : json['ai'],
+        'ai_chat_instructions': !exists(json, 'ai_chat_instructions') ? undefined : json['ai_chat_instructions'],
+        'ai_persona': !exists(json, 'ai_persona') ? undefined : json['ai_persona'],
+        'ai_sms_instructions': !exists(json, 'ai_sms_instructions') ? undefined : json['ai_sms_instructions'],
         'chat_limit': !exists(json, 'chat_limit') ? undefined : json['chat_limit'],
         'default_language_iso_code': !exists(json, 'default_language_iso_code') ? undefined : json['default_language_iso_code'],
         'default_status': !exists(json, 'default_status') ? undefined : json['default_status'],
@@ -123,6 +151,10 @@ export function ConversationAgentProfileToJSON(value?: ConversationAgentProfile 
     }
     return {
         
+        'ai': value.ai,
+        'ai_chat_instructions': value.ai_chat_instructions,
+        'ai_persona': value.ai_persona,
+        'ai_sms_instructions': value.ai_sms_instructions,
         'chat_limit': value.chat_limit,
         'default_language_iso_code': value.default_language_iso_code,
         'default_status': value.default_status,
