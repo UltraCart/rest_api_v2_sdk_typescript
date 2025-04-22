@@ -5217,6 +5217,79 @@ export interface CartValidationResponse {
 /**
  *
  * @export
+ * @interface ChanelPartnerReasonCodesResponse
+ */
+export interface ChanelPartnerReasonCodesResponse {
+    /**
+     *
+     * @type {ModelError}
+     * @memberof ChanelPartnerReasonCodesResponse
+     */
+    error?: ModelError;
+    /**
+     * True if the item level refund reason is required
+     * @type {boolean}
+     * @memberof ChanelPartnerReasonCodesResponse
+     */
+    item_level_refund_reason_required?: boolean;
+    /**
+     * Reason codes available at the item level.
+     * @type {Array<OrderReason>}
+     * @memberof ChanelPartnerReasonCodesResponse
+     */
+    item_level_refund_reasons?: Array<OrderReason>;
+    /**
+     * Return codes available at the item level.
+     * @type {Array<OrderReason>}
+     * @memberof ChanelPartnerReasonCodesResponse
+     */
+    item_level_return_reasons?: Array<OrderReason>;
+    /**
+     *
+     * @type {ResponseMetadata}
+     * @memberof ChanelPartnerReasonCodesResponse
+     */
+    metadata?: ResponseMetadata;
+    /**
+     * True if the order level refund reason is required
+     * @type {boolean}
+     * @memberof ChanelPartnerReasonCodesResponse
+     */
+    order_level_refund_reason_required?: boolean;
+    /**
+     * Reason codes available at the order level.
+     * @type {Array<OrderReason>}
+     * @memberof ChanelPartnerReasonCodesResponse
+     */
+    order_level_refund_reasons?: Array<OrderReason>;
+    /**
+     * True if the order level reject reason is required
+     * @type {boolean}
+     * @memberof ChanelPartnerReasonCodesResponse
+     */
+    order_level_reject_reason_required?: boolean;
+    /**
+     * Reject codes available at the order level.
+     * @type {Array<OrderReason>}
+     * @memberof ChanelPartnerReasonCodesResponse
+     */
+    order_level_reject_reasons?: Array<OrderReason>;
+    /**
+     * Indicates if API call was successful
+     * @type {boolean}
+     * @memberof ChanelPartnerReasonCodesResponse
+     */
+    success?: boolean;
+    /**
+     *
+     * @type {Warning}
+     * @memberof ChanelPartnerReasonCodesResponse
+     */
+    warning?: Warning;
+}
+/**
+ *
+ * @export
  * @interface ChannelPartner
  */
 export interface ChannelPartner {
@@ -34265,6 +34338,18 @@ export interface OrderProcessPaymentResponse {
  */
 export interface OrderProperty {
     /**
+     * Created by user
+     * @type {string}
+     * @memberof OrderProperty
+     */
+    created_by?: string;
+    /**
+     * The date/time that the property was created by the user
+     * @type {string}
+     * @memberof OrderProperty
+     */
+    created_dts?: string;
+    /**
      * True if this property is displayed to the customer
      * @type {boolean}
      * @memberof OrderProperty
@@ -45256,6 +45341,14 @@ export declare const ChannelPartnerApiFetchParamCreator: (configuration?: Config
      */
     getChannelPartnerOrderByChannelPartnerOrderId(order_id: string, _expand?: string, options?: any): FetchArgs;
     /**
+     * Retrieve reject and refund reason codes.
+     * @summary Retrieve reject and refund reason codes.
+     * @param {number} channel_partner_oid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getChannelPartnerReasonCodes(channel_partner_oid: number, options?: any): FetchArgs;
+    /**
      * Retrieve the ship to preference associated with the channel partner and the specific id.
      * @summary Retrieve the ship to preference associated with the channel partner and the specific id.
      * @param {number} channel_partner_oid
@@ -45389,6 +45482,14 @@ export declare const ChannelPartnerApiFp: (configuration?: Configuration) => {
      */
     getChannelPartnerOrderByChannelPartnerOrderId(order_id: string, _expand?: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<OrderResponse>;
     /**
+     * Retrieve reject and refund reason codes.
+     * @summary Retrieve reject and refund reason codes.
+     * @param {number} channel_partner_oid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getChannelPartnerReasonCodes(channel_partner_oid: number, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ChanelPartnerReasonCodesResponse>;
+    /**
      * Retrieve the ship to preference associated with the channel partner and the specific id.
      * @summary Retrieve the ship to preference associated with the channel partner and the specific id.
      * @param {number} channel_partner_oid
@@ -45521,6 +45622,14 @@ export declare const ChannelPartnerApiFactory: (configuration?: Configuration, f
      * @throws {RequiredError}
      */
     getChannelPartnerOrderByChannelPartnerOrderId(order_id: string, _expand?: string, options?: any): Promise<OrderResponse>;
+    /**
+     * Retrieve reject and refund reason codes.
+     * @summary Retrieve reject and refund reason codes.
+     * @param {number} channel_partner_oid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getChannelPartnerReasonCodes(channel_partner_oid: number, options?: any): Promise<ChanelPartnerReasonCodesResponse>;
     /**
      * Retrieve the ship to preference associated with the channel partner and the specific id.
      * @summary Retrieve the ship to preference associated with the channel partner and the specific id.
@@ -45662,6 +45771,15 @@ export interface ChannelPartnerApiInterface {
      * @memberof ChannelPartnerApiInterface
      */
     getChannelPartnerOrderByChannelPartnerOrderId(order_id: string, _expand?: string, options?: any): Promise<OrderResponse>;
+    /**
+     * Retrieve reject and refund reason codes.
+     * @summary Retrieve reject and refund reason codes.
+     * @param {number} channel_partner_oid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ChannelPartnerApiInterface
+     */
+    getChannelPartnerReasonCodes(channel_partner_oid: number, options?: any): Promise<ChanelPartnerReasonCodesResponse>;
     /**
      * Retrieve the ship to preference associated with the channel partner and the specific id.
      * @summary Retrieve the ship to preference associated with the channel partner and the specific id.
@@ -45811,6 +45929,15 @@ export declare class ChannelPartnerApi extends BaseAPI implements ChannelPartner
      * @memberof ChannelPartnerApi
      */
     getChannelPartnerOrderByChannelPartnerOrderId(order_id: string, _expand?: string, options?: any): Promise<OrderResponse>;
+    /**
+     * Retrieve reject and refund reason codes.
+     * @summary Retrieve reject and refund reason codes.
+     * @param {number} channel_partner_oid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ChannelPartnerApi
+     */
+    getChannelPartnerReasonCodes(channel_partner_oid: number, options?: any): Promise<ChanelPartnerReasonCodesResponse>;
     /**
      * Retrieve the ship to preference associated with the channel partner and the specific id.
      * @summary Retrieve the ship to preference associated with the channel partner and the specific id.

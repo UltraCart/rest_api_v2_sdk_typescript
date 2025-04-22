@@ -5347,6 +5347,80 @@ export interface CartValidationResponse {
 /**
  * 
  * @export
+ * @interface ChanelPartnerReasonCodesResponse
+ */
+export interface ChanelPartnerReasonCodesResponse {
+    /**
+     * 
+     * @type {ModelError}
+     * @memberof ChanelPartnerReasonCodesResponse
+     */
+    error?: ModelError;
+    /**
+     * True if the item level refund reason is required
+     * @type {boolean}
+     * @memberof ChanelPartnerReasonCodesResponse
+     */
+    item_level_refund_reason_required?: boolean;
+    /**
+     * Reason codes available at the item level.
+     * @type {Array<OrderReason>}
+     * @memberof ChanelPartnerReasonCodesResponse
+     */
+    item_level_refund_reasons?: Array<OrderReason>;
+    /**
+     * Return codes available at the item level.
+     * @type {Array<OrderReason>}
+     * @memberof ChanelPartnerReasonCodesResponse
+     */
+    item_level_return_reasons?: Array<OrderReason>;
+    /**
+     * 
+     * @type {ResponseMetadata}
+     * @memberof ChanelPartnerReasonCodesResponse
+     */
+    metadata?: ResponseMetadata;
+    /**
+     * True if the order level refund reason is required
+     * @type {boolean}
+     * @memberof ChanelPartnerReasonCodesResponse
+     */
+    order_level_refund_reason_required?: boolean;
+    /**
+     * Reason codes available at the order level.
+     * @type {Array<OrderReason>}
+     * @memberof ChanelPartnerReasonCodesResponse
+     */
+    order_level_refund_reasons?: Array<OrderReason>;
+    /**
+     * True if the order level reject reason is required
+     * @type {boolean}
+     * @memberof ChanelPartnerReasonCodesResponse
+     */
+    order_level_reject_reason_required?: boolean;
+    /**
+     * Reject codes available at the order level.
+     * @type {Array<OrderReason>}
+     * @memberof ChanelPartnerReasonCodesResponse
+     */
+    order_level_reject_reasons?: Array<OrderReason>;
+    /**
+     * Indicates if API call was successful
+     * @type {boolean}
+     * @memberof ChanelPartnerReasonCodesResponse
+     */
+    success?: boolean;
+    /**
+     * 
+     * @type {Warning}
+     * @memberof ChanelPartnerReasonCodesResponse
+     */
+    warning?: Warning;
+}
+
+/**
+ * 
+ * @export
  * @interface ChannelPartner
  */
 export interface ChannelPartner {
@@ -35002,6 +35076,18 @@ export interface OrderProcessPaymentResponse {
  */
 export interface OrderProperty {
     /**
+     * Created by user
+     * @type {string}
+     * @memberof OrderProperty
+     */
+    created_by?: string;
+    /**
+     * The date/time that the property was created by the user
+     * @type {string}
+     * @memberof OrderProperty
+     */
+    created_dts?: string;
+    /**
      * True if this property is displayed to the customer
      * @type {boolean}
      * @memberof OrderProperty
@@ -47595,6 +47681,58 @@ export const ChannelPartnerApiFetchParamCreator = function (configuration?: Conf
             };
         },
         /**
+         * Retrieve reject and refund reason codes. 
+         * @summary Retrieve reject and refund reason codes.
+         * @param {number} channel_partner_oid 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getChannelPartnerReasonCodes(channel_partner_oid: number, options: any = {}): FetchArgs {
+            // verify required parameter 'channel_partner_oid' is not null or undefined
+            if (channel_partner_oid === null || channel_partner_oid === undefined) {
+                throw new RequiredError('channel_partner_oid','Required parameter channel_partner_oid was null or undefined when calling getChannelPartnerReasonCodes.');
+            }
+            const localVarPath = `/channel_partner/channel_partners/{channel_partner_oid}/reason_codes`
+                .replace(`{${"channel_partner_oid"}}`, encodeURIComponent(String(channel_partner_oid)));
+            const localVarUrlObj = url.parse(localVarPath, true);
+            const localVarRequestOptions = Object.assign({ method: 'GET' }, options);
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+    if(configuration && configuration.apiVersion) {
+      localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+    }
+
+
+
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+				const localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+					? configuration.accessToken("ultraCartOauth", ["channel_partner_read"])
+					: configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
+					? configuration.apiKey("x-ultracart-simple-key")
+					: configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
          * Retrieve the ship to preference associated with the channel partner and the specific id. 
          * @summary Retrieve the ship to preference associated with the channel partner and the specific id.
          * @param {number} channel_partner_oid 
@@ -48194,6 +48332,27 @@ export const ChannelPartnerApiFp = function(configuration?: Configuration) {
             };
         },
         /**
+         * Retrieve reject and refund reason codes. 
+         * @summary Retrieve reject and refund reason codes.
+         * @param {number} channel_partner_oid 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getChannelPartnerReasonCodes(channel_partner_oid: number, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ChanelPartnerReasonCodesResponse> {
+            const localVarFetchArgs = ChannelPartnerApiFetchParamCreator(configuration).getChannelPartnerReasonCodes(channel_partner_oid, options);
+            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
+                    if (response.status >= 200 && response.status < 300) {
+                      return response.json();
+                      
+                    } else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
          * Retrieve the ship to preference associated with the channel partner and the specific id. 
          * @summary Retrieve the ship to preference associated with the channel partner and the specific id.
          * @param {number} channel_partner_oid 
@@ -48435,6 +48594,16 @@ export const ChannelPartnerApiFactory = function (configuration?: Configuration,
             return ChannelPartnerApiFp(configuration).getChannelPartnerOrderByChannelPartnerOrderId(order_id, _expand, options)(fetch, basePath);
         },
         /**
+         * Retrieve reject and refund reason codes. 
+         * @summary Retrieve reject and refund reason codes.
+         * @param {number} channel_partner_oid 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getChannelPartnerReasonCodes(channel_partner_oid: number, options?: any) {
+            return ChannelPartnerApiFp(configuration).getChannelPartnerReasonCodes(channel_partner_oid, options)(fetch, basePath);
+        },
+        /**
          * Retrieve the ship to preference associated with the channel partner and the specific id. 
          * @summary Retrieve the ship to preference associated with the channel partner and the specific id.
          * @param {number} channel_partner_oid 
@@ -48597,6 +48766,16 @@ export interface ChannelPartnerApiInterface {
      * @memberof ChannelPartnerApiInterface
      */
     getChannelPartnerOrderByChannelPartnerOrderId(order_id: string, _expand?: string, options?: any): Promise<OrderResponse>;
+
+    /**
+     * Retrieve reject and refund reason codes. 
+     * @summary Retrieve reject and refund reason codes.
+     * @param {number} channel_partner_oid 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ChannelPartnerApiInterface
+     */
+    getChannelPartnerReasonCodes(channel_partner_oid: number, options?: any): Promise<ChanelPartnerReasonCodesResponse>;
 
     /**
      * Retrieve the ship to preference associated with the channel partner and the specific id. 
@@ -48774,6 +48953,18 @@ export class ChannelPartnerApi extends BaseAPI implements ChannelPartnerApiInter
      */
     public getChannelPartnerOrderByChannelPartnerOrderId(order_id: string, _expand?: string, options?: any) {
         return ChannelPartnerApiFp(this.configuration).getChannelPartnerOrderByChannelPartnerOrderId(order_id, _expand, options)(this.fetch, this.basePath);
+    }
+
+    /**
+     * Retrieve reject and refund reason codes. 
+     * @summary Retrieve reject and refund reason codes.
+     * @param {number} channel_partner_oid 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ChannelPartnerApi
+     */
+    public getChannelPartnerReasonCodes(channel_partner_oid: number, options?: any) {
+        return ChannelPartnerApiFp(this.configuration).getChannelPartnerReasonCodes(channel_partner_oid, options)(this.fetch, this.basePath);
     }
 
     /**

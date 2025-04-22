@@ -3847,6 +3847,52 @@ var ChannelPartnerApiFetchParamCreator = function (configuration) {
             };
         },
         /**
+         * Retrieve reject and refund reason codes.
+         * @summary Retrieve reject and refund reason codes.
+         * @param {number} channel_partner_oid
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getChannelPartnerReasonCodes: function (channel_partner_oid, options) {
+            if (options === void 0) { options = {}; }
+            // verify required parameter 'channel_partner_oid' is not null or undefined
+            if (channel_partner_oid === null || channel_partner_oid === undefined) {
+                throw new RequiredError('channel_partner_oid', 'Required parameter channel_partner_oid was null or undefined when calling getChannelPartnerReasonCodes.');
+            }
+            var localVarPath = "/channel_partner/channel_partners/{channel_partner_oid}/reason_codes"
+                .replace("{".concat("channel_partner_oid", "}"), encodeURIComponent(String(channel_partner_oid)));
+            var localVarUrlObj = url.parse(localVarPath, true);
+            var localVarRequestOptions = Object.assign({ method: 'GET' }, options);
+            var localVarHeaderParameter = {};
+            var localVarQueryParameter = {};
+            if (configuration && configuration.apiVersion) {
+                localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+            }
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+                var localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+                    ? configuration.accessToken("ultraCartOauth", ["channel_partner_read"])
+                    : configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                var localVarApiKeyValue = typeof configuration.apiKey === 'function'
+                    ? configuration.apiKey("x-ultracart-simple-key")
+                    : configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
          * Retrieve the ship to preference associated with the channel partner and the specific id.
          * @summary Retrieve the ship to preference associated with the channel partner and the specific id.
          * @param {number} channel_partner_oid
@@ -4399,6 +4445,28 @@ var ChannelPartnerApiFp = function (configuration) {
             };
         },
         /**
+         * Retrieve reject and refund reason codes.
+         * @summary Retrieve reject and refund reason codes.
+         * @param {number} channel_partner_oid
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getChannelPartnerReasonCodes: function (channel_partner_oid, options) {
+            var localVarFetchArgs = (0, exports.ChannelPartnerApiFetchParamCreator)(configuration).getChannelPartnerReasonCodes(channel_partner_oid, options);
+            return function (fetch, basePath) {
+                if (fetch === void 0) { fetch = portableFetch; }
+                if (basePath === void 0) { basePath = BASE_PATH; }
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(function (response) {
+                    if (response.status >= 200 && response.status < 300) {
+                        return response.json();
+                    }
+                    else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
          * Retrieve the ship to preference associated with the channel partner and the specific id.
          * @summary Retrieve the ship to preference associated with the channel partner and the specific id.
          * @param {number} channel_partner_oid
@@ -4647,6 +4715,16 @@ var ChannelPartnerApiFactory = function (configuration, fetch, basePath) {
             return (0, exports.ChannelPartnerApiFp)(configuration).getChannelPartnerOrderByChannelPartnerOrderId(order_id, _expand, options)(fetch, basePath);
         },
         /**
+         * Retrieve reject and refund reason codes.
+         * @summary Retrieve reject and refund reason codes.
+         * @param {number} channel_partner_oid
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getChannelPartnerReasonCodes: function (channel_partner_oid, options) {
+            return (0, exports.ChannelPartnerApiFp)(configuration).getChannelPartnerReasonCodes(channel_partner_oid, options)(fetch, basePath);
+        },
+        /**
          * Retrieve the ship to preference associated with the channel partner and the specific id.
          * @summary Retrieve the ship to preference associated with the channel partner and the specific id.
          * @param {number} channel_partner_oid
@@ -4821,6 +4899,17 @@ var ChannelPartnerApi = /** @class */ (function (_super) {
      */
     ChannelPartnerApi.prototype.getChannelPartnerOrderByChannelPartnerOrderId = function (order_id, _expand, options) {
         return (0, exports.ChannelPartnerApiFp)(this.configuration).getChannelPartnerOrderByChannelPartnerOrderId(order_id, _expand, options)(this.fetch, this.basePath);
+    };
+    /**
+     * Retrieve reject and refund reason codes.
+     * @summary Retrieve reject and refund reason codes.
+     * @param {number} channel_partner_oid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ChannelPartnerApi
+     */
+    ChannelPartnerApi.prototype.getChannelPartnerReasonCodes = function (channel_partner_oid, options) {
+        return (0, exports.ChannelPartnerApiFp)(this.configuration).getChannelPartnerReasonCodes(channel_partner_oid, options)(this.fetch, this.basePath);
     };
     /**
      * Retrieve the ship to preference associated with the channel partner and the specific id.
