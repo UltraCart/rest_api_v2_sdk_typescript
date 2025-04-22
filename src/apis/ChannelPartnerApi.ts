@@ -15,6 +15,9 @@
 
 import * as runtime from '../runtime';
 import {
+    ChanelPartnerReasonCodesResponse,
+    ChanelPartnerReasonCodesResponseFromJSON,
+    ChanelPartnerReasonCodesResponseToJSON,
     ChannelPartnerCancelResponse,
     ChannelPartnerCancelResponseFromJSON,
     ChannelPartnerCancelResponseToJSON,
@@ -82,6 +85,10 @@ export interface GetChannelPartnerOrderRequest {
 export interface GetChannelPartnerOrderByChannelPartnerOrderIdRequest {
     orderId: string;
     expand?: string;
+}
+
+export interface GetChannelPartnerReasonCodesRequest {
+    channelPartnerOid: number;
 }
 
 export interface GetChannelPartnerShipToPreferenceRequest {
@@ -242,6 +249,22 @@ export interface ChannelPartnerApiInterface {
      * Retrieve a channel partner order by the channel partner order id
      */
     getChannelPartnerOrderByChannelPartnerOrderId(requestParameters: GetChannelPartnerOrderByChannelPartnerOrderIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<OrderResponse>;
+
+    /**
+     * Retrieve reject and refund reason codes. 
+     * @summary Retrieve reject and refund reason codes.
+     * @param {number} channelPartnerOid 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ChannelPartnerApiInterface
+     */
+    getChannelPartnerReasonCodesRaw(requestParameters: GetChannelPartnerReasonCodesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ChanelPartnerReasonCodesResponse>>;
+
+    /**
+     * Retrieve reject and refund reason codes. 
+     * Retrieve reject and refund reason codes.
+     */
+    getChannelPartnerReasonCodes(requestParameters: GetChannelPartnerReasonCodesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ChanelPartnerReasonCodesResponse>;
 
     /**
      * Retrieve the ship to preference associated with the channel partner and the specific id. 
@@ -675,6 +698,47 @@ export class ChannelPartnerApi extends runtime.BaseAPI implements ChannelPartner
      */
     async getChannelPartnerOrderByChannelPartnerOrderId(requestParameters: GetChannelPartnerOrderByChannelPartnerOrderIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<OrderResponse> {
         const response = await this.getChannelPartnerOrderByChannelPartnerOrderIdRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Retrieve reject and refund reason codes. 
+     * Retrieve reject and refund reason codes.
+     */
+    async getChannelPartnerReasonCodesRaw(requestParameters: GetChannelPartnerReasonCodesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ChanelPartnerReasonCodesResponse>> {
+        if (requestParameters.channelPartnerOid === null || requestParameters.channelPartnerOid === undefined) {
+            throw new runtime.RequiredError('channelPartnerOid','Required parameter requestParameters.channelPartnerOid was null or undefined when calling getChannelPartnerReasonCodes.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", ["channel_partner_read"]);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/channel_partner/channel_partners/{channel_partner_oid}/reason_codes`.replace(`{${"channel_partner_oid"}}`, encodeURIComponent(String(requestParameters.channelPartnerOid))),
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => ChanelPartnerReasonCodesResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Retrieve reject and refund reason codes. 
+     * Retrieve reject and refund reason codes.
+     */
+    async getChannelPartnerReasonCodes(requestParameters: GetChannelPartnerReasonCodesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ChanelPartnerReasonCodesResponse> {
+        const response = await this.getChannelPartnerReasonCodesRaw(requestParameters, initOverrides);
         return await response.value();
     }
 

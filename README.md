@@ -1,12 +1,12 @@
 # UltraCart Typescript SDK
-## ultracart_rest_api_v2_typescript@4.1.7
+## ultracart_rest_api_v2_typescript@4.1.8
 
 Every API method call has a sample for every language SDK.  See https://github.com/UltraCart/sdk_samples
 
 Installation
 
 ```
-npm install ultracart_rest_api_v2_typescript@4.1.7 --save
+npm install ultracart_rest_api_v2_typescript@4.1.8 --save
 ```
 
 ```typescript
@@ -83,6 +83,7 @@ Not every change is committed to every SDK.
 
 | Version | Date | Comments |
 | --: | :-: | --- |
+| 4.1.8 | 04/22/2025 | order property fields for created_by and created_dts |
 | 4.1.7 | 04/21/2025 | conversation agent additional fields |
 | 4.1.6 | 04/16/2025 | added channel partner order item properties |
 | 4.1.5 | 03/28/2025 | added paypal fastlane constants for payments |

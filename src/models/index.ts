@@ -103,6 +103,7 @@ export * from './CartTaxes';
 export * from './CartUpsellAfter';
 export * from './CartValidationRequest';
 export * from './CartValidationResponse';
+export * from './ChanelPartnerReasonCodesResponse';
 export * from './ChannelPartner';
 export * from './ChannelPartnerCancelResponse';
 export * from './ChannelPartnerEstimateShippingResponse';

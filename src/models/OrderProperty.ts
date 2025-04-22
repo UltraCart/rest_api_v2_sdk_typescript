@@ -20,6 +20,18 @@ import { exists, mapValues } from '../runtime';
  */
 export interface OrderProperty {
     /**
+     * Created by user
+     * @type {string}
+     * @memberof OrderProperty
+     */
+    created_by?: string;
+    /**
+     * The date/time that the property was created by the user
+     * @type {string}
+     * @memberof OrderProperty
+     */
+    created_dts?: string;
+    /**
      * True if this property is displayed to the customer
      * @type {boolean}
      * @memberof OrderProperty
@@ -46,7 +58,7 @@ export interface OrderProperty {
 }
 
 // Define the constant array of keys
-const MY_INTERFACE_KEYS: (keyof OrderProperty)[] = ["display", "expiration_dts", "name", "value"];
+const MY_INTERFACE_KEYS: (keyof OrderProperty)[] = ["created_by", "created_dts", "display", "expiration_dts", "name", "value"];
 
 // Exported function to check for excess properties
 export function hasExcessProperties(obj: any): boolean {
@@ -75,6 +87,8 @@ export function OrderPropertyFromJSONTyped(json: any, ignoreDiscriminator: boole
     }
     return {
         
+        'created_by': !exists(json, 'created_by') ? undefined : json['created_by'],
+        'created_dts': !exists(json, 'created_dts') ? undefined : json['created_dts'],
         'display': !exists(json, 'display') ? undefined : json['display'],
         'expiration_dts': !exists(json, 'expiration_dts') ? undefined : json['expiration_dts'],
         'name': !exists(json, 'name') ? undefined : json['name'],
@@ -91,6 +105,8 @@ export function OrderPropertyToJSON(value?: OrderProperty | null): any {
     }
     return {
         
+        'created_by': value.created_by,
+        'created_dts': value.created_dts,
         'display': value.display,
         'expiration_dts': value.expiration_dts,
         'name': value.name,
