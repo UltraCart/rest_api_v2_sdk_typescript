@@ -75,15 +75,6 @@ export interface PointOfSaleReader {
     stripe_reader_id?: string;
 }
 
-// Define the constant array of keys
-const MY_INTERFACE_KEYS: (keyof PointOfSaleReader)[] = ["device_type", "label", "merchant_id", "payment_provider", "pos_reader_id", "pos_register_oid", "serial_number", "stripe_account_id", "stripe_reader_id"];
-
-// Exported function to check for excess properties
-export function hasExcessProperties(obj: any): boolean {
-  const objKeys = Object.keys(obj);
-  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
-}
-
 
 
 /**

@@ -45,15 +45,6 @@ export interface CouponRestriction {
     validOnlyForThis?: boolean;
 }
 
-// Define the constant array of keys
-const MY_INTERFACE_KEYS: (keyof CouponRestriction)[] = ["invalidForThis", "name", "validForThis", "validOnlyForThis"];
-
-// Exported function to check for excess properties
-export function hasExcessProperties(obj: any): boolean {
-  const objKeys = Object.keys(obj);
-  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
-}
-
 
 
 /**

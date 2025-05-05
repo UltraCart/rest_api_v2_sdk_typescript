@@ -94,15 +94,6 @@ export interface ReportPageVisualization {
     visualization_uuid?: string;
 }
 
-// Define the constant array of keys
-const MY_INTERFACE_KEYS: (keyof ReportPageVisualization)[] = ["config", "data_source_name", "data_source_uuid", "dimensions", "metrics", "name", "show_comparison", "styles", "type", "visualization_uuid"];
-
-// Exported function to check for excess properties
-export function hasExcessProperties(obj: any): boolean {
-  const objKeys = Object.keys(obj);
-  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
-}
-
 
 
 /**

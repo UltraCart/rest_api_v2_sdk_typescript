@@ -448,15 +448,6 @@ export interface ItemEbay {
     target_dispatch_time_max?: number;
 }
 
-// Define the constant array of keys
-const MY_INTERFACE_KEYS: (keyof ItemEbay)[] = ["active", "category_id", "category_specifics", "condition_description", "condition_id", "consecutive_failures", "custom_category1", "custom_category2", "dispatch_time_max", "domestic_1_additional_cost", "domestic_1_first_cost", "domestic_2_additional_cost", "domestic_2_first_cost", "domestic_3_additional_cost", "domestic_3_first_cost", "domestic_4_additional_cost", "domestic_4_first_cost", "ebay_auction_id", "ebay_specific_inventory", "ebay_template_name", "ebay_template_oid", "end_time", "free_shipping", "free_shipping_method", "international_1_additional_cost", "international_1_first_cost", "international_2_additional_cost", "international_2_first_cost", "international_3_additional_cost", "international_3_first_cost", "international_4_additional_cost", "international_4_first_cost", "last_status_dts", "listed_dispatch_time_max", "listed_ebay_template_oid", "listing_dts", "listing_duration", "listing_price", "listing_price_override", "listing_type", "marketplace_analysis", "marketplace_analysis_perform", "marketplace_final_value_fee_percentage", "marketplace_last_check_dts", "marketplace_lowest", "marketplace_map_violation", "marketplace_multiplier", "marketplace_other_price", "marketplace_other_seller", "marketplace_other_shipping", "marketplace_other_total", "marketplace_our_additional_profit_potential", "marketplace_our_price", "marketplace_our_profit", "marketplace_our_shipping", "marketplace_our_total", "marketplace_overhead", "marketplace_profitable", "next_attempt_dts", "next_listing_duration", "no_promotional_shipping", "packaging_handling_costs", "previous_ebay_auction_id", "quantity", "reserve_price", "send_dimensions_and_weight", "start_time", "status", "target_dispatch_time_max"];
-
-// Exported function to check for excess properties
-export function hasExcessProperties(obj: any): boolean {
-  const objKeys = Object.keys(obj);
-  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
-}
-
 
 
 /**

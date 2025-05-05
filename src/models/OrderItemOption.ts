@@ -112,15 +112,6 @@ export interface OrderItemOption {
     width?: Distance;
 }
 
-// Define the constant array of keys
-const MY_INTERFACE_KEYS: (keyof OrderItemOption)[] = ["additional_dimension_application", "cost_change", "file_attachment", "height", "hidden", "label", "length", "one_time_fee", "value", "weight_change", "width"];
-
-// Exported function to check for excess properties
-export function hasExcessProperties(obj: any): boolean {
-  const objKeys = Object.keys(obj);
-  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
-}
-
 
 
 /**

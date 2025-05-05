@@ -82,15 +82,6 @@ export interface ConversationEngagement {
     visitor_type?: ConversationEngagementVisitorTypeEnum;
 }
 
-// Define the constant array of keys
-const MY_INTERFACE_KEYS: (keyof ConversationEngagement)[] = ["active", "conversation_engagement_oid", "customer_greeting", "customer_initiated", "department_oids", "engagement_name", "equation", "time_on_page", "visitor_type"];
-
-// Exported function to check for excess properties
-export function hasExcessProperties(obj: any): boolean {
-  const objKeys = Object.keys(obj);
-  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
-}
-
 
 
 /**

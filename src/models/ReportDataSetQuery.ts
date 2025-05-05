@@ -130,15 +130,6 @@ export interface ReportDataSetQuery {
     user_data?: string;
 }
 
-// Define the constant array of keys
-const MY_INTERFACE_KEYS: (keyof ReportDataSetQuery)[] = ["comparison_results", "data_set_query_uuid", "data_source", "dimensions", "filter", "for_object_id", "for_object_type", "metrics", "order_by_columns", "page_size", "selected_filters", "skip_cache", "user_data"];
-
-// Exported function to check for excess properties
-export function hasExcessProperties(obj: any): boolean {
-  const objKeys = Object.keys(obj);
-  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
-}
-
 
 
 /**

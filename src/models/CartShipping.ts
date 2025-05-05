@@ -135,15 +135,6 @@ export interface CartShipping {
     title?: string;
 }
 
-// Define the constant array of keys
-const MY_INTERFACE_KEYS: (keyof CartShipping)[] = ["address1", "address2", "city", "company", "country_code", "day_phone", "delivery_date", "evening_phone", "first_name", "last_name", "lift_gate", "postal_code", "ship_on_date", "ship_to_residential", "shipping_3rd_party_account_number", "shipping_method", "special_instructions", "state_region", "title"];
-
-// Exported function to check for excess properties
-export function hasExcessProperties(obj: any): boolean {
-  const objKeys = Object.keys(obj);
-  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
-}
-
 
 
 /**

@@ -63,15 +63,6 @@ export interface ConversationEventRRWeb {
     type?: ConversationEventRRWebTypeEnum;
 }
 
-// Define the constant array of keys
-const MY_INTERFACE_KEYS: (keyof ConversationEventRRWeb)[] = ["data", "data_part", "data_sha256", "data_total_parts", "data_total_sha256", "event_index", "type"];
-
-// Exported function to check for excess properties
-export function hasExcessProperties(obj: any): boolean {
-  const objKeys = Object.keys(obj);
-  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
-}
-
 
 
 /**

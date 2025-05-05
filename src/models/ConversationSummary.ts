@@ -136,15 +136,6 @@ export interface ConversationSummary {
     visible?: boolean;
 }
 
-// Define the constant array of keys
-const MY_INTERFACE_KEYS: (keyof ConversationSummary)[] = ["closed", "conversation_arn", "conversation_uuid", "customer_first_message_unresponded_to_dts", "last_conversation_message_body", "last_conversation_participant_arn", "last_conversation_participant_name", "last_interactive_message_dts", "last_message_dts", "medium", "merchant_id", "message_count", "participants", "sentiment", "start_dts", "unread_messages", "visible"];
-
-// Exported function to check for excess properties
-export function hasExcessProperties(obj: any): boolean {
-  const objKeys = Object.keys(obj);
-  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
-}
-
 
 
 /**

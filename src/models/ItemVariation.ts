@@ -58,15 +58,6 @@ export interface ItemVariation {
     options?: Array<ItemVariationOption>;
 }
 
-// Define the constant array of keys
-const MY_INTERFACE_KEYS: (keyof ItemVariation)[] = ["default_text", "default_text_translated_text_instance_oid", "name", "name_translated_text_instance_oid", "options"];
-
-// Exported function to check for excess properties
-export function hasExcessProperties(obj: any): boolean {
-  const objKeys = Object.keys(obj);
-  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
-}
-
 
 
 /**

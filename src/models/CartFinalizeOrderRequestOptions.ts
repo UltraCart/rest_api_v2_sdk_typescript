@@ -99,15 +99,6 @@ export interface CartFinalizeOrderRequestOptions {
     store_if_payment_declines?: boolean;
 }
 
-// Define the constant array of keys
-const MY_INTERFACE_KEYS: (keyof CartFinalizeOrderRequestOptions)[] = ["auto_approve_purchase_order", "channel_partner_code", "channel_partner_oid", "channel_partner_order_id", "consider_recurring", "credit_card_authorization_amount", "credit_card_authorization_date", "credit_card_authorization_reference_number", "no_realtime_payment_processing", "setup_next_cart", "skip_payment_processing", "store_completed", "store_if_payment_declines"];
-
-// Exported function to check for excess properties
-export function hasExcessProperties(obj: any): boolean {
-  const objKeys = Object.keys(obj);
-  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
-}
-
 
 
 /**

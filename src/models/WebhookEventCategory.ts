@@ -58,15 +58,6 @@ export interface WebhookEventCategory {
     subscribed?: boolean;
 }
 
-// Define the constant array of keys
-const MY_INTERFACE_KEYS: (keyof WebhookEventCategory)[] = ["any_subscribed", "available_expansions", "event_category", "events", "subscribed"];
-
-// Exported function to check for excess properties
-export function hasExcessProperties(obj: any): boolean {
-  const objKeys = Object.keys(obj);
-  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
-}
-
 
 
 /**

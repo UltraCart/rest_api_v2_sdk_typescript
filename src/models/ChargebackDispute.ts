@@ -166,15 +166,6 @@ export interface ChargebackDispute {
     website_url?: string;
 }
 
-// Define the constant array of keys
-const MY_INTERFACE_KEYS: (keyof ChargebackDispute)[] = ["account_number", "adjustment_request_text", "amount", "auth_code", "case_number", "chargeback_dispute_oid", "chargeback_dts", "currency", "customer_care_notes", "encryption_key", "expiration_dts", "fax_failure_reason", "fax_number", "fax_transaction_id", "icsid", "merchant_account_profile_oid", "order", "order_id", "partial_card_number", "pdf_file_oid", "reason_code", "status", "website_url"];
-
-// Exported function to check for excess properties
-export function hasExcessProperties(obj: any): boolean {
-  const objKeys = Object.keys(obj);
-  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
-}
-
 
 
 /**

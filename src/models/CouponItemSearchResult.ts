@@ -69,15 +69,6 @@ export interface CouponItemSearchResult {
     thumbnail_url?: string;
 }
 
-// Define the constant array of keys
-const MY_INTERFACE_KEYS: (keyof CouponItemSearchResult)[] = ["cost", "description", "manufacturer_name", "manufacturer_sku", "merchant_item_id", "merchant_item_oid", "score", "thumbnail_url"];
-
-// Exported function to check for excess properties
-export function hasExcessProperties(obj: any): boolean {
-  const objKeys = Object.keys(obj);
-  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
-}
-
 
 
 /**

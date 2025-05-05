@@ -40,15 +40,6 @@ export interface OrderValidationRequest {
     order?: Order;
 }
 
-// Define the constant array of keys
-const MY_INTERFACE_KEYS: (keyof OrderValidationRequest)[] = ["checks", "order"];
-
-// Exported function to check for excess properties
-export function hasExcessProperties(obj: any): boolean {
-  const objKeys = Object.keys(obj);
-  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
-}
-
 
 
 /**

@@ -40,15 +40,6 @@ export interface ReportWebsocketEvent {
     query_completion?: ReportDataSet;
 }
 
-// Define the constant array of keys
-const MY_INTERFACE_KEYS: (keyof ReportWebsocketEvent)[] = ["event_type", "query_completion"];
-
-// Exported function to check for excess properties
-export function hasExcessProperties(obj: any): boolean {
-  const objKeys = Object.keys(obj);
-  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
-}
-
 
 
 /**

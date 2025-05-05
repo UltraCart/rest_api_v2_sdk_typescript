@@ -87,15 +87,6 @@ export interface ConversationAgentProfile {
     profile_image_url?: string;
 }
 
-// Define the constant array of keys
-const MY_INTERFACE_KEYS: (keyof ConversationAgentProfile)[] = ["ai", "ai_chat_instructions", "ai_persona", "ai_sms_instructions", "chat_limit", "default_language_iso_code", "default_status", "display_name", "name", "profile_image_upload_key", "profile_image_url"];
-
-// Exported function to check for excess properties
-export function hasExcessProperties(obj: any): boolean {
-  const objKeys = Object.keys(obj);
-  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
-}
-
 
 
 /**

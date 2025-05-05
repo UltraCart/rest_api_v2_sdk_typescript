@@ -88,15 +88,6 @@ export interface ItemDigitalItem {
     pdf_meta?: ItemDigitalItemPdfMeta;
 }
 
-// Define the constant array of keys
-const MY_INTERFACE_KEYS: (keyof ItemDigitalItem)[] = ["click_wrap_agreement", "creation_dts", "description", "digital_item_oid", "external_id", "file_size", "import_from_url", "mime_type", "original_filename", "pdf_meta"];
-
-// Exported function to check for excess properties
-export function hasExcessProperties(obj: any): boolean {
-  const objKeys = Object.keys(obj);
-  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
-}
-
 
 
 /**

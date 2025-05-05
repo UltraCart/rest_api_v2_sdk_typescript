@@ -88,15 +88,6 @@ export interface ReportDataSetPage {
     table_id?: string;
 }
 
-// Define the constant array of keys
-const MY_INTERFACE_KEYS: (keyof ReportDataSetPage)[] = ["data_set_uuid", "merchant_id", "next_page_token", "next_start_index", "page_number", "row_count", "rows", "rows_s3_url", "start_index", "table_id"];
-
-// Exported function to check for excess properties
-export function hasExcessProperties(obj: any): boolean {
-  const objKeys = Object.keys(obj);
-  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
-}
-
 
 
 /**

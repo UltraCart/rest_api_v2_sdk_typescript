@@ -27,15 +27,6 @@ export interface CartPaymentAffirm {
     affirm_checkout_token?: string;
 }
 
-// Define the constant array of keys
-const MY_INTERFACE_KEYS: (keyof CartPaymentAffirm)[] = ["affirm_checkout_token"];
-
-// Exported function to check for excess properties
-export function hasExcessProperties(obj: any): boolean {
-  const objKeys = Object.keys(obj);
-  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
-}
-
 
 
 /**

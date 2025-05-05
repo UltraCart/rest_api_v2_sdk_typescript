@@ -81,15 +81,6 @@ export interface EmailCommseqStep {
     type?: EmailCommseqStepTypeEnum;
 }
 
-// Define the constant array of keys
-const MY_INTERFACE_KEYS: (keyof EmailCommseqStep)[] = ["alt_child_email_communication_sequence_steps", "child_email_communication_sequence_steps", "email_communication_sequence_step_uuid", "email_pending_review", "email_rejected", "email_requires_review", "filter_profile_equation_json", "merchant_notes", "step_config_json", "type"];
-
-// Exported function to check for excess properties
-export function hasExcessProperties(obj: any): boolean {
-  const objKeys = Object.keys(obj);
-  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
-}
-
 
 
 /**

@@ -136,15 +136,6 @@ export interface ItemAutoOrderStep {
     type?: ItemAutoOrderStepTypeEnum;
 }
 
-// Define the constant array of keys
-const MY_INTERFACE_KEYS: (keyof ItemAutoOrderStep)[] = ["arbitrary_schedule_days", "arbitrary_unit_cost", "arbitrary_unit_cost_schedules", "grandfather_pricing", "managed_by", "pause_days", "pause_until_date", "pause_until_day_of_month", "pause_until_minimum_delay_days", "preshipment_notice_days", "recurring_merchant_item_id", "recurring_merchant_item_oid", "repeat_count", "schedule", "subscribe_email_list_name", "subscribe_email_list_oid", "type"];
-
-// Exported function to check for excess properties
-export function hasExcessProperties(obj: any): boolean {
-  const objKeys = Object.keys(obj);
-  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
-}
-
 
 
 /**

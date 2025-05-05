@@ -52,15 +52,6 @@ export interface EmailOrder {
     total?: Currency;
 }
 
-// Define the constant array of keys
-const MY_INTERFACE_KEYS: (keyof EmailOrder)[] = ["email", "order_dts", "order_id", "total"];
-
-// Exported function to check for excess properties
-export function hasExcessProperties(obj: any): boolean {
-  const objKeys = Object.keys(obj);
-  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
-}
-
 
 
 /**

@@ -81,15 +81,6 @@ export interface CustomerReviewer {
     reviews_contributed?: number;
 }
 
-// Define the constant array of keys
-const MY_INTERFACE_KEYS: (keyof CustomerReviewer)[] = ["auto_approve", "average_overall_rating", "expert", "first_review", "last_review", "location", "nickname", "number_helpful_review_votes", "rank", "reviews_contributed"];
-
-// Exported function to check for excess properties
-export function hasExcessProperties(obj: any): boolean {
-  const objKeys = Object.keys(obj);
-  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
-}
-
 
 
 /**

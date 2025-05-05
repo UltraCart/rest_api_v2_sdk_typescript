@@ -286,15 +286,6 @@ export interface Cart {
     upsell_after?: CartUpsellAfter;
 }
 
-// Define the constant array of keys
-const MY_INTERFACE_KEYS: (keyof Cart)[] = ["affiliate", "affiliate_network_pixel_oid", "base_currency_code", "billing", "buysafe", "cart_id", "checkout", "coupons", "currency_code", "currency_conversion", "customer_profile", "exchange_rate", "gift", "gift_certificate", "items", "language_iso_code", "logged_in", "marketing", "merchant_id", "payment", "properties", "settings", "shipping", "summary", "taxes", "upsell_after"];
-
-// Exported function to check for excess properties
-export function hasExcessProperties(obj: any): boolean {
-  const objKeys = Object.keys(obj);
-  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
-}
-
 
 
 /**

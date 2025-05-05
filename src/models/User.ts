@@ -136,15 +136,6 @@ export interface User {
     user_id?: number;
 }
 
-// Define the constant array of keys
-const MY_INTERFACE_KEYS: (keyof User)[] = ["api_ip_address_masks", "change_ftp_password_to", "change_password_to", "email", "full_name", "groups", "linked_accounts", "login", "login_histories", "notifications", "otp_serial_number", "permissions", "phone", "user_id"];
-
-// Exported function to check for excess properties
-export function hasExcessProperties(obj: any): boolean {
-  const objKeys = Object.keys(obj);
-  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
-}
-
 
 
 /**

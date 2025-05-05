@@ -201,15 +201,6 @@ export interface CustomerQuery {
     signup_dts_start?: string;
 }
 
-// Define the constant array of keys
-const MY_INTERFACE_KEYS: (keyof CustomerQuery)[] = ["all_tags", "any_tags", "billing_city", "billing_company", "billing_country_code", "billing_day_phone", "billing_evening_phone", "billing_first_name", "billing_last_name", "billing_postal_code", "billing_state", "email", "emails", "last_modified_dts_end", "last_modified_dts_start", "pricing_tier_name", "pricing_tier_oid", "qb_class", "quickbooks_code", "shipping_city", "shipping_company", "shipping_country_code", "shipping_day_phone", "shipping_evening_phone", "shipping_first_name", "shipping_last_name", "shipping_postal_code", "shipping_state", "signup_dts_end", "signup_dts_start"];
-
-// Exported function to check for excess properties
-export function hasExcessProperties(obj: any): boolean {
-  const objKeys = Object.keys(obj);
-  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
-}
-
 
 
 /**

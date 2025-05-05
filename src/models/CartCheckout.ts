@@ -129,15 +129,6 @@ export interface CartCheckout {
     user_agent?: string;
 }
 
-// Define the constant array of keys
-const MY_INTERFACE_KEYS: (keyof CartCheckout)[] = ["comments", "current_step", "custom_field1", "custom_field10", "custom_field2", "custom_field3", "custom_field4", "custom_field5", "custom_field6", "custom_field7", "custom_field8", "custom_field9", "ip_address", "return_code", "return_url", "screen_branding_theme_code", "storefront_host_name", "user_agent"];
-
-// Exported function to check for excess properties
-export function hasExcessProperties(obj: any): boolean {
-  const objKeys = Object.keys(obj);
-  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
-}
-
 
 
 /**

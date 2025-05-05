@@ -111,15 +111,6 @@ export interface CustomerLoyaltyLedger {
     vesting_dts?: string;
 }
 
-// Define the constant array of keys
-const MY_INTERFACE_KEYS: (keyof CustomerLoyaltyLedger)[] = ["created_by", "created_dts", "description", "email", "item_id", "item_index", "ledger_dts", "loyalty_campaign_oid", "loyalty_ledger_oid", "loyalty_points", "modified_by", "modified_dts", "order_id", "quantity", "vesting_dts"];
-
-// Exported function to check for excess properties
-export function hasExcessProperties(obj: any): boolean {
-  const objKeys = Object.keys(obj);
-  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
-}
-
 
 
 /**

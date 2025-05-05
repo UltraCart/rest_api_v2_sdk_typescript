@@ -117,15 +117,6 @@ export interface IntegrationLogQueryRequest {
     status?: string;
 }
 
-// Define the constant array of keys
-const MY_INTERFACE_KEYS: (keyof IntegrationLogQueryRequest)[] = ["action", "auto_order_ids", "auto_order_oids", "direction", "email", "file_names", "integration_log_oid", "item_id", "item_ipn_oid", "log_dts_begin", "log_dts_end", "log_type", "logger_id", "logger_name", "order_ids", "status"];
-
-// Exported function to check for excess properties
-export function hasExcessProperties(obj: any): boolean {
-  const objKeys = Object.keys(obj);
-  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
-}
-
 
 
 /**

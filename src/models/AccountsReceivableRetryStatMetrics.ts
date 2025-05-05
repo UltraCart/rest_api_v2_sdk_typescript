@@ -87,15 +87,6 @@ export interface AccountsReceivableRetryStatMetrics {
     successes_formatted?: string;
 }
 
-// Define the constant array of keys
-const MY_INTERFACE_KEYS: (keyof AccountsReceivableRetryStatMetrics)[] = ["attempts", "attempts_formatted", "conversion_rate", "conversion_rate_formatted", "day", "discounts", "discounts_formatted", "revenue", "revenue_formatted", "successes", "successes_formatted"];
-
-// Exported function to check for excess properties
-export function hasExcessProperties(obj: any): boolean {
-  const objKeys = Object.keys(obj);
-  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
-}
-
 
 
 /**

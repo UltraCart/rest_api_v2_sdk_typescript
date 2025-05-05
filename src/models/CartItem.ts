@@ -250,15 +250,6 @@ export interface CartItem {
     view_url?: string;
 }
 
-// Define the constant array of keys
-const MY_INTERFACE_KEYS: (keyof CartItem)[] = ["arbitrary_unit_cost", "attributes", "auto_order_schedule", "default_image_url", "default_thumbnail_url", "description", "discount", "extended_description", "item_id", "item_oid", "kit", "kit_component_options", "manufacturer_suggested_retail_price", "maximum_quantity", "minimum_quantity", "multimedia", "options", "phsyical", "position", "preorder", "properties", "quantity", "schedules", "total_cost", "total_cost_with_discount", "unit_cost", "unit_cost_with_discount", "upsell", "variations", "view_url"];
-
-// Exported function to check for excess properties
-export function hasExcessProperties(obj: any): boolean {
-  const objKeys = Object.keys(obj);
-  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
-}
-
 
 
 /**

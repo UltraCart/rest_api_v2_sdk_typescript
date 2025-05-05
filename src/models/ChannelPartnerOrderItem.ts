@@ -82,15 +82,6 @@ export interface ChannelPartnerOrderItem {
     upsell?: boolean;
 }
 
-// Define the constant array of keys
-const MY_INTERFACE_KEYS: (keyof ChannelPartnerOrderItem)[] = ["arbitrary_unit_cost", "auto_order_last_rebill_dts", "auto_order_schedule", "merchant_item_id", "options", "properties", "quantity", "upsell"];
-
-// Exported function to check for excess properties
-export function hasExcessProperties(obj: any): boolean {
-  const objKeys = Object.keys(obj);
-  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
-}
-
 
 
 /**

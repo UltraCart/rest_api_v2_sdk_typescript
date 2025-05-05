@@ -135,15 +135,6 @@ export interface ItemChannelPartnerMapping {
     vendor_style_number?: string;
 }
 
-// Define the constant array of keys
-const MY_INTERFACE_KEYS: (keyof ItemChannelPartnerMapping)[] = ["barcode_ua", "barcode_uc", "barcode_ui", "barcode_uk", "buyer_catalog_number", "buyer_dpci", "buyer_item_number", "channel_partner_code", "channel_partner_oid", "cost", "from_item_id", "from_sku", "mutually_defined_number", "quantity_ratio_cp", "quantity_ratio_uc", "sku", "unit_of_measure", "vendor_number", "vendor_style_number"];
-
-// Exported function to check for excess properties
-export function hasExcessProperties(obj: any): boolean {
-  const objKeys = Object.keys(obj);
-  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
-}
-
 
 
 /**

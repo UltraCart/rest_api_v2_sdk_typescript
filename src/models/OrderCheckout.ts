@@ -130,15 +130,6 @@ export interface OrderCheckout {
     upsell_path_code?: string;
 }
 
-// Define the constant array of keys
-const MY_INTERFACE_KEYS: (keyof OrderCheckout)[] = ["browser", "comments", "custom_field1", "custom_field10", "custom_field2", "custom_field3", "custom_field4", "custom_field5", "custom_field6", "custom_field7", "custom_field8", "custom_field9", "customer_ip_address", "screen_branding_theme_code", "screen_size", "storefront_host_name", "upsell_path_code"];
-
-// Exported function to check for excess properties
-export function hasExcessProperties(obj: any): boolean {
-  const objKeys = Object.keys(obj);
-  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
-}
-
 
 
 /**

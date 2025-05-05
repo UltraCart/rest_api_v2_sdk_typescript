@@ -172,15 +172,6 @@ export interface EmailPerformance {
     transactional_send_count?: number;
 }
 
-// Define the constant array of keys
-const MY_INTERFACE_KEYS: (keyof EmailPerformance)[] = ["active_customers", "actual_customers", "bounce_count", "bounce_percentage", "bounce_percentage_formatted", "customer_histogram", "daily_stats", "delivered_count", "loyalty_program_type", "max_active_customers", "max_emails_per_day", "max_emails_per_hour", "max_emails_per_month", "paused_for_spam", "revenue", "sent_emails_per_day", "sent_emails_per_hour", "sent_emails_per_month", "sequence_send_count", "spam_count", "spam_percentage", "spam_percentage_formatted", "transactional_send_count"];
-
-// Exported function to check for excess properties
-export function hasExcessProperties(obj: any): boolean {
-  const objKeys = Object.keys(obj);
-  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
-}
-
 
 
 /**

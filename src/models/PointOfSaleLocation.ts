@@ -81,15 +81,6 @@ export interface PointOfSaleLocation {
     state_province?: string;
 }
 
-// Define the constant array of keys
-const MY_INTERFACE_KEYS: (keyof PointOfSaleLocation)[] = ["adddress2", "address1", "city", "country", "distribution_center_code", "external_id", "merchant_id", "pos_location_oid", "postal_code", "state_province"];
-
-// Exported function to check for excess properties
-export function hasExcessProperties(obj: any): boolean {
-  const objKeys = Object.keys(obj);
-  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
-}
-
 
 
 /**

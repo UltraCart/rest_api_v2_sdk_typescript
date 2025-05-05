@@ -154,15 +154,6 @@ export interface ScreenRecordingFilterValues {
     utm_sources?: Array<string>;
 }
 
-// Define the constant array of keys
-const MY_INTERFACE_KEYS: (keyof ScreenRecordingFilterValues)[] = ["communications_campaign_names", "communications_email_subjects", "communications_flow_names", "email_domains", "geolocation_countries", "geolocation_states", "language_iso_codes", "max_values", "page_views", "preferred_languages", "referrer_domains", "time_on_site_max", "time_on_site_min", "urls", "user_agent_device_names", "user_agent_device_os_names", "user_agent_device_os_versions", "user_agent_names", "user_agent_originals", "utm_campaigns", "utm_sources"];
-
-// Exported function to check for excess properties
-export function hasExcessProperties(obj: any): boolean {
-  const objKeys = Object.keys(obj);
-  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
-}
-
 
 
 /**

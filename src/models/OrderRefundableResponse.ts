@@ -124,15 +124,6 @@ export interface OrderRefundableResponse {
     warning?: Warning;
 }
 
-// Define the constant array of keys
-const MY_INTERFACE_KEYS: (keyof OrderRefundableResponse)[] = ["error", "item_level_refund_reason_required", "item_level_refund_reasons", "item_level_return_reasons", "manual_because_multiple_charges", "metadata", "order_level_refund_reason_required", "order_level_refund_reasons", "order_level_reject_reason_required", "order_level_reject_reasons", "refundable", "success", "warning"];
-
-// Exported function to check for excess properties
-export function hasExcessProperties(obj: any): boolean {
-  const objKeys = Object.keys(obj);
-  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
-}
-
 
 
 /**

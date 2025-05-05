@@ -81,15 +81,6 @@ export interface CouponQuery {
     start_dts_end?: string;
 }
 
-// Define the constant array of keys
-const MY_INTERFACE_KEYS: (keyof CouponQuery)[] = ["affiliate_oid", "coupon_type", "description", "exclude_expired", "expiration_dts_begin", "expiration_dts_end", "merchant_code", "merchant_code_or_description", "start_dts_begin", "start_dts_end"];
-
-// Exported function to check for excess properties
-export function hasExcessProperties(obj: any): boolean {
-  const objKeys = Object.keys(obj);
-  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
-}
-
 
 
 /**

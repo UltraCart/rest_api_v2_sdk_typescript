@@ -51,15 +51,6 @@ export interface ItemPricingTierLimit {
     payment_method_validity?: Array<string>;
 }
 
-// Define the constant array of keys
-const MY_INTERFACE_KEYS: (keyof ItemPricingTierLimit)[] = ["cumulative_order_limit", "exempt_from_minimum_item_count", "individual_order_limit", "multiple_quantity", "payment_method_validity"];
-
-// Exported function to check for excess properties
-export function hasExcessProperties(obj: any): boolean {
-  const objKeys = Object.keys(obj);
-  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
-}
-
 
 
 /**

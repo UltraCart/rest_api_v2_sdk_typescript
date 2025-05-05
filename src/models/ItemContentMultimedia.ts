@@ -118,15 +118,6 @@ export interface ItemContentMultimedia {
     width?: number;
 }
 
-// Define the constant array of keys
-const MY_INTERFACE_KEYS: (keyof ItemContentMultimedia)[] = ["cloud_url", "cloud_url_expiration", "code", "description", "exclude_from_gallery", "file_name", "height", "merchant_item_multimedia_oid", "orphan", "placeholder", "temp_multimedia_oid", "thumbnails", "type", "url", "width"];
-
-// Exported function to check for excess properties
-export function hasExcessProperties(obj: any): boolean {
-  const objKeys = Object.keys(obj);
-  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
-}
-
 
 
 /**

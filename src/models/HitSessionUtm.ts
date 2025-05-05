@@ -111,15 +111,6 @@ export interface HitSessionUtm {
     wbraid?: string;
 }
 
-// Define the constant array of keys
-const MY_INTERFACE_KEYS: (keyof HitSessionUtm)[] = ["fb_ad_id", "fbclid", "gbraid", "gclid", "msclkid", "ttclid", "uc_message_id", "utm_campaign", "utm_content", "utm_id", "utm_medium", "utm_source", "utm_term", "vmcid", "wbraid"];
-
-// Exported function to check for excess properties
-export function hasExcessProperties(obj: any): boolean {
-  const objKeys = Object.keys(obj);
-  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
-}
-
 
 
 /**

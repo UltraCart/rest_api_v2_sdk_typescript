@@ -225,15 +225,6 @@ export interface EmailCommseqEmail {
     version?: number;
 }
 
-// Define the constant array of keys
-const MY_INTERFACE_KEYS: (keyof EmailCommseqEmail)[] = ["deleted", "edited_by_user", "email_communication_sequence_email_uuid", "email_communication_sequence_uuid", "email_container_cjson", "email_container_cjson_last_modified_dts", "email_template_vm_path", "external_generation", "external_generation_authentication", "external_generation_basic_password", "external_generation_basic_username", "external_generation_header_name", "external_generation_header_value", "external_generation_id", "external_generation_url", "filter_profile_equation_json", "individually_render", "library_item_oid", "magic_link", "merchant_id", "pending_review", "preview_text", "rejected", "requires_review", "screenshot_large_full_url", "screenshot_large_viewport_url", "screenshot_small_full_url", "screenshot_small_viewport_url", "smart_sending", "storefront_oid", "subject", "suspended_for_spam", "transactional_email", "version"];
-
-// Exported function to check for excess properties
-export function hasExcessProperties(obj: any): boolean {
-  const objKeys = Object.keys(obj);
-  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
-}
-
 
 
 /**

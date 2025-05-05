@@ -57,15 +57,6 @@ export interface CartCustomerProfileCreditCard {
     last_used_date?: string;
 }
 
-// Define the constant array of keys
-const MY_INTERFACE_KEYS: (keyof CartCustomerProfileCreditCard)[] = ["card_expiration_month", "card_expiration_year", "card_number", "card_type", "customer_profile_credit_card_id", "last_used_date"];
-
-// Exported function to check for excess properties
-export function hasExcessProperties(obj: any): boolean {
-  const objKeys = Object.keys(obj);
-  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
-}
-
 
 
 /**

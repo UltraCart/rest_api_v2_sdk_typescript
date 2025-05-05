@@ -69,15 +69,6 @@ export interface Metric {
     type?: string;
 }
 
-// Define the constant array of keys
-const MY_INTERFACE_KEYS: (keyof Metric)[] = ["all_time", "all_time_formatted", "last_30", "last_30_formatted", "name", "prior_30", "prior_30_formatted", "type"];
-
-// Exported function to check for excess properties
-export function hasExcessProperties(obj: any): boolean {
-  const objKeys = Object.keys(obj);
-  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
-}
-
 
 
 /**

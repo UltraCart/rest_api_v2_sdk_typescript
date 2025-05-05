@@ -64,15 +64,6 @@ export interface OrderInternal {
     transactional_merchant_notes?: Array<OrderTransactionalMerchantNote>;
 }
 
-// Define the constant array of keys
-const MY_INTERFACE_KEYS: (keyof OrderInternal)[] = ["exported_to_accounting", "merchant_notes", "placed_by_user", "refund_by_user", "sales_rep_code", "transactional_merchant_notes"];
-
-// Exported function to check for excess properties
-export function hasExcessProperties(obj: any): boolean {
-  const objKeys = Object.keys(obj);
-  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
-}
-
 
 
 /**

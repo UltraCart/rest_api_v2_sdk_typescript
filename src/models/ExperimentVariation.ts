@@ -166,15 +166,6 @@ export interface ExperimentVariation {
     winner?: boolean;
 }
 
-// Define the constant array of keys
-const MY_INTERFACE_KEYS: (keyof ExperimentVariation)[] = ["add_to_cart_count", "average_duration_seconds", "average_objective_per_session", "average_order_value", "bounce_count", "conversion_rate", "daily_statistics", "duration_seconds_sum", "event_count", "initiate_checkout_count", "order_count", "order_item_count", "original_traffic_percentage", "page_view_count", "paused", "revenue", "session_count", "sms_opt_ins", "traffic_percentage", "url", "variation_name", "variation_number", "winner"];
-
-// Exported function to check for excess properties
-export function hasExcessProperties(obj: any): boolean {
-  const objKeys = Object.keys(obj);
-  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
-}
-
 
 
 /**

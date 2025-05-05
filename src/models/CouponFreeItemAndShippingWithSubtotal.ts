@@ -51,15 +51,6 @@ export interface CouponFreeItemAndShippingWithSubtotal {
     subtotal_amount?: number;
 }
 
-// Define the constant array of keys
-const MY_INTERFACE_KEYS: (keyof CouponFreeItemAndShippingWithSubtotal)[] = ["currency_code", "items", "limit", "shipping_methods", "subtotal_amount"];
-
-// Exported function to check for excess properties
-export function hasExcessProperties(obj: any): boolean {
-  const objKeys = Object.keys(obj);
-  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
-}
-
 
 
 /**

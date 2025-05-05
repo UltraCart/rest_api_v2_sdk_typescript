@@ -69,15 +69,6 @@ export interface OrderDigitalItem {
     url?: string;
 }
 
-// Define the constant array of keys
-const MY_INTERFACE_KEYS: (keyof OrderDigitalItem)[] = ["file_size", "last_download", "last_download_ip_address", "original_filename", "product_code", "product_description", "remaining_downloads", "url"];
-
-// Exported function to check for excess properties
-export function hasExcessProperties(obj: any): boolean {
-  const objKeys = Object.keys(obj);
-  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
-}
-
 
 
 /**

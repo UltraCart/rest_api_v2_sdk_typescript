@@ -88,15 +88,6 @@ export interface OrderGift {
     gift_wrap_title?: string;
 }
 
-// Define the constant array of keys
-const MY_INTERFACE_KEYS: (keyof OrderGift)[] = ["gift", "gift_charge", "gift_charge_accounting_code", "gift_charge_refunded", "gift_email", "gift_message", "gift_wrap_accounting_code", "gift_wrap_cost", "gift_wrap_refunded", "gift_wrap_title"];
-
-// Exported function to check for excess properties
-export function hasExcessProperties(obj: any): boolean {
-  const objKeys = Object.keys(obj);
-  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
-}
-
 
 
 /**

@@ -100,15 +100,6 @@ export interface CouponEditorValues {
     valid_with_other_coupons?: Array<string>;
 }
 
-// Define the constant array of keys
-const MY_INTERFACE_KEYS: (keyof CouponEditorValues)[] = ["affiliates", "coupon_types", "coupon_types_for_display", "currency_codes", "deprecated_themes", "item_tags", "mix_and_match_names", "shipping_methods", "storefronts", "usable_by", "valid_with_other_coupons"];
-
-// Exported function to check for excess properties
-export function hasExcessProperties(obj: any): boolean {
-  const objKeys = Object.keys(obj);
-  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
-}
-
 
 
 /**

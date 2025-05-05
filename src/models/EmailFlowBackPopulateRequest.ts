@@ -33,15 +33,6 @@ export interface EmailFlowBackPopulateRequest {
     relative_to_event?: boolean;
 }
 
-// Define the constant array of keys
-const MY_INTERFACE_KEYS: (keyof EmailFlowBackPopulateRequest)[] = ["order_days_old", "relative_to_event"];
-
-// Exported function to check for excess properties
-export function hasExcessProperties(obj: any): boolean {
-  const objKeys = Object.keys(obj);
-  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
-}
-
 
 
 /**

@@ -304,15 +304,6 @@ export interface LibraryItem {
     under_review?: boolean;
 }
 
-// Define the constant array of keys
-const MY_INTERFACE_KEYS: (keyof LibraryItem)[] = ["assets", "attributes", "categories", "content", "content_type", "description", "industries", "library_item_oid", "merchant_id", "my_purchased_version", "original_object_id", "price", "price_formatted", "published", "published_dts", "published_from_library_item_oid", "published_meta", "published_version", "purchased", "purchased_from_library_item_oid", "purchased_meta", "purchased_version", "rejected", "rejected_reason", "release_notes", "release_version", "reviewed", "reviewed_dts", "screenshots", "share_with_accounts", "share_with_other_emails", "shared", "source", "source_to_library_item_oid", "source_version", "style", "times_purchased", "title", "type", "under_review"];
-
-// Exported function to check for excess properties
-export function hasExcessProperties(obj: any): boolean {
-  const objKeys = Object.keys(obj);
-  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
-}
-
 
 
 /**

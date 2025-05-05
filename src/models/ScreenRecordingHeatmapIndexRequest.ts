@@ -27,15 +27,6 @@ export interface ScreenRecordingHeatmapIndexRequest {
     url_contains?: string;
 }
 
-// Define the constant array of keys
-const MY_INTERFACE_KEYS: (keyof ScreenRecordingHeatmapIndexRequest)[] = ["url_contains"];
-
-// Exported function to check for excess properties
-export function hasExcessProperties(obj: any): boolean {
-  const objKeys = Object.keys(obj);
-  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
-}
-
 
 
 /**

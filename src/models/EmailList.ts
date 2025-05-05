@@ -100,15 +100,6 @@ export interface EmailList {
     used_by?: Array<EmailListSegmentUsedBy>;
 }
 
-// Define the constant array of keys
-const MY_INTERFACE_KEYS: (keyof EmailList)[] = ["allow_csv_download", "created_dts", "deleted", "email_list_uuid", "esp_list_segment_folder_uuid", "member_count", "merchant_id", "name", "public_description", "public_list", "storefront_oid", "used_by"];
-
-// Exported function to check for excess properties
-export function hasExcessProperties(obj: any): boolean {
-  const objKeys = Object.keys(obj);
-  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
-}
-
 
 
 /**

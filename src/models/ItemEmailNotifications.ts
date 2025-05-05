@@ -33,15 +33,6 @@ export interface ItemEmailNotifications {
     skip_shipment_notification?: boolean;
 }
 
-// Define the constant array of keys
-const MY_INTERFACE_KEYS: (keyof ItemEmailNotifications)[] = ["skip_receipt", "skip_shipment_notification"];
-
-// Exported function to check for excess properties
-export function hasExcessProperties(obj: any): boolean {
-  const objKeys = Object.keys(obj);
-  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
-}
-
 
 
 /**

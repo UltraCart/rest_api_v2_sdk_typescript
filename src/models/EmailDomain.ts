@@ -112,15 +112,6 @@ export interface EmailDomain {
     verification?: VerificationRecord;
 }
 
-// Define the constant array of keys
-const MY_INTERFACE_KEYS: (keyof EmailDomain)[] = ["comment", "dkim", "dkim_status", "domain", "esp_domain_uuid", "identity_status", "mailgun", "merchant_id", "provider", "spf", "start_dkim_dts", "start_identity_dts", "verification"];
-
-// Exported function to check for excess properties
-export function hasExcessProperties(obj: any): boolean {
-  const objKeys = Object.keys(obj);
-  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
-}
-
 
 
 /**

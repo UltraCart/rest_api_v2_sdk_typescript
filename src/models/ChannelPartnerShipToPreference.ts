@@ -63,15 +63,6 @@ export interface ChannelPartnerShipToPreference {
     ship_to_edi_code?: string;
 }
 
-// Define the constant array of keys
-const MY_INTERFACE_KEYS: (keyof ChannelPartnerShipToPreference)[] = ["additional_kit_component_item_ids", "channel_partner_oid", "channel_partner_ship_to_preference_oid", "description", "merchant_id", "return_policy", "ship_to_edi_code"];
-
-// Exported function to check for excess properties
-export function hasExcessProperties(obj: any): boolean {
-  const objKeys = Object.keys(obj);
-  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
-}
-
 
 
 /**

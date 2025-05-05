@@ -99,15 +99,6 @@ export interface EmailCommseqPostcardSendTestRequest {
     state?: string;
 }
 
-// Define the constant array of keys
-const MY_INTERFACE_KEYS: (keyof EmailCommseqPostcardSendTestRequest)[] = ["address_1", "address_2", "cart_id", "cart_item_ids", "city", "esp_commseq_postcard_uuid", "esp_commseq_step_uuid", "esp_commseq_uuid", "mail_card", "name", "order_id", "postal_code", "state"];
-
-// Exported function to check for excess properties
-export function hasExcessProperties(obj: any): boolean {
-  const objKeys = Object.keys(obj);
-  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
-}
-
 
 
 /**

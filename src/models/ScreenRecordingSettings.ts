@@ -69,15 +69,6 @@ export interface ScreenRecordingSettings {
     trial_expired?: boolean;
 }
 
-// Define the constant array of keys
-const MY_INTERFACE_KEYS: (keyof ScreenRecordingSettings)[] = ["cost_per_thousand", "enabled", "retention_interval", "sessions_current_billing_period", "sessions_last_billing_period", "sessions_trial_billing_period", "trial_expiration", "trial_expired"];
-
-// Exported function to check for excess properties
-export function hasExcessProperties(obj: any): boolean {
-  const objKeys = Object.keys(obj);
-  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
-}
-
 
 
 /**

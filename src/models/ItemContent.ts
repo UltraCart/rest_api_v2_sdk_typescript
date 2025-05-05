@@ -136,15 +136,6 @@ export interface ItemContent {
     view_url?: string;
 }
 
-// Define the constant array of keys
-const MY_INTERFACE_KEYS: (keyof ItemContent)[] = ["assignments", "attributes", "custom_thank_you_url", "exclude_from_search", "exclude_from_sitemap", "exclude_from_top_sellers", "extended_description", "extended_description_translated_text_instance_oid", "meta_description", "meta_keywords", "meta_title", "multimedia", "new_item", "new_item_end", "new_item_start", "view_url"];
-
-// Exported function to check for excess properties
-export function hasExcessProperties(obj: any): boolean {
-  const objKeys = Object.keys(obj);
-  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
-}
-
 
 
 /**

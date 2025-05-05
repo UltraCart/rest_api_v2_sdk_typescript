@@ -58,15 +58,6 @@ export interface CartSettingsGift {
     max_message_length?: number;
 }
 
-// Define the constant array of keys
-const MY_INTERFACE_KEYS: (keyof CartSettingsGift)[] = ["allow_gifts", "gift_charge", "gift_wraps", "max_message_length"];
-
-// Exported function to check for excess properties
-export function hasExcessProperties(obj: any): boolean {
-  const objKeys = Object.keys(obj);
-  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
-}
-
 
 
 /**

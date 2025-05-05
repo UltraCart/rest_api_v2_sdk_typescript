@@ -39,15 +39,6 @@ export interface CartMarketing {
     mailing_list_opt_in?: boolean;
 }
 
-// Define the constant array of keys
-const MY_INTERFACE_KEYS: (keyof CartMarketing)[] = ["advertising_source", "cell_phone_opt_in", "mailing_list_opt_in"];
-
-// Exported function to check for excess properties
-export function hasExcessProperties(obj: any): boolean {
-  const objKeys = Object.keys(obj);
-  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
-}
-
 
 
 /**

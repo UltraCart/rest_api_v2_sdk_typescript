@@ -58,15 +58,6 @@ export interface EmailSegmentCustomersResponse {
     total_pages?: number;
 }
 
-// Define the constant array of keys
-const MY_INTERFACE_KEYS: (keyof EmailSegmentCustomersResponse)[] = ["customers", "page_number", "page_size", "total_customers", "total_pages"];
-
-// Exported function to check for excess properties
-export function hasExcessProperties(obj: any): boolean {
-  const objKeys = Object.keys(obj);
-  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
-}
-
 
 
 /**

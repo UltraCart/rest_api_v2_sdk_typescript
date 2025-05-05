@@ -94,15 +94,6 @@ export interface CustomerActivity {
     spam_complaint_dts?: string;
 }
 
-// Define the constant array of keys
-const MY_INTERFACE_KEYS: (keyof CustomerActivity)[] = ["activities", "global_unsubscribed", "global_unsubscribed_dts", "memberships", "metrics", "properties_list", "spam_complaint", "spam_complaint_dts"];
-
-// Exported function to check for excess properties
-export function hasExcessProperties(obj: any): boolean {
-  const objKeys = Object.keys(obj);
-  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
-}
-
 
 
 /**

@@ -57,15 +57,6 @@ export interface ItemVariantItem {
     variations?: Array<string>;
 }
 
-// Define the constant array of keys
-const MY_INTERFACE_KEYS: (keyof ItemVariantItem)[] = ["description", "merchant_item_multimedia_oid", "variant_merchant_item_id", "variant_merchant_item_oid", "variation_options", "variations"];
-
-// Exported function to check for excess properties
-export function hasExcessProperties(obj: any): boolean {
-  const objKeys = Object.keys(obj);
-  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
-}
-
 
 
 /**

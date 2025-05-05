@@ -321,15 +321,6 @@ export interface DistributionCenter {
     transport?: string;
 }
 
-// Define the constant array of keys
-const MY_INTERFACE_KEYS: (keyof DistributionCenter)[] = ["address1", "address2", "city", "code", "country_code", "default_center", "default_handles_all_items", "distribution_center_oid", "duns", "estimate_from_distribution_center_oid", "ftp_password", "hold_before_shipment_minutes", "hold_before_transmission", "holdAutoOrderBeforeShipmentMinutes", "latitude", "longitude", "name", "no_customer_direct_shipments", "no_split_shipment", "pickup_cutoff_time_friday", "pickup_cutoff_time_monday", "pickup_cutoff_time_saturday", "pickup_cutoff_time_sunday", "pickup_cutoff_time_thursday", "pickup_cutoff_time_tuesday", "pickup_cutoff_time_wednesday", "pickup_start_time_friday", "pickup_start_time_monday", "pickup_start_time_saturday", "pickup_start_time_sunday", "pickup_start_time_thursday", "pickup_start_time_tuesday", "pickup_start_time_wednesday", "pickup_tz", "postal_code", "process_days", "process_inventory_start_time", "process_inventory_stop_time", "require_asn", "send_kit_instead_of_components", "shipment_cutoff_time_friday", "shipment_cutoff_time_monday", "shipment_cutoff_time_saturday", "shipment_cutoff_time_sunday", "shipment_cutoff_time_thursday", "shipment_cutoff_time_tuesday", "shipment_cutoff_time_wednesday", "state", "transmit_blank_costs", "transport"];
-
-// Exported function to check for excess properties
-export function hasExcessProperties(obj: any): boolean {
-  const objKeys = Object.keys(obj);
-  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
-}
-
 
 
 /**

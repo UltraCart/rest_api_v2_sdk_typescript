@@ -70,15 +70,6 @@ export interface Group {
     users?: Array<GroupUserMembership>;
 }
 
-// Define the constant array of keys
-const MY_INTERFACE_KEYS: (keyof Group)[] = ["group_oid", "name", "notifications", "permissions", "users"];
-
-// Exported function to check for excess properties
-export function hasExcessProperties(obj: any): boolean {
-  const objKeys = Object.keys(obj);
-  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
-}
-
 
 
 /**

@@ -124,15 +124,6 @@ export interface ScreenRecordingQueryResponse {
     warning?: Warning;
 }
 
-// Define the constant array of keys
-const MY_INTERFACE_KEYS: (keyof ScreenRecordingQueryResponse)[] = ["checkout_only", "error", "filter", "filter_values", "histogram_data", "histogram_interval", "histogram_start_dts", "metadata", "screen_recordings", "success", "warning"];
-
-// Exported function to check for excess properties
-export function hasExcessProperties(obj: any): boolean {
-  const objKeys = Object.keys(obj);
-  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
-}
-
 
 
 /**

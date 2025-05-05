@@ -232,15 +232,6 @@ export interface PricingTier {
     track_separately?: boolean;
 }
 
-// Define the constant array of keys
-const MY_INTERFACE_KEYS: (keyof PricingTier)[] = ["allow_3rd_party_billing", "allow_cod", "allow_purchase_order", "allow_quote_request", "approval_notification", "auto_approve_cod", "auto_approve_purchase_order", "currency_code", "default_on_wholesale_signup", "default_percentage_discount", "default_shipping_method_oid", "default_tier", "display_on_wholesale_signup", "exclude_from_free_promotion", "exempt_loyalty_rewards", "exempt_shipping_handling_charge", "free_shipping", "free_shipping_minimum", "maximum_item_count", "minimum_item_count", "minimum_subtotal", "name", "no_coupons", "no_free_shipping", "no_realtime_charge", "not_valid_when_coupon_present", "pricing_tier_oid", "realtime_percentage_discount", "restrict_to_distribution_center_oid", "signup_notification", "suppress_buysafe", "suppress_mailing_list", "tax_exempt", "track_separately"];
-
-// Exported function to check for excess properties
-export function hasExcessProperties(obj: any): boolean {
-  const objKeys = Object.keys(obj);
-  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
-}
-
 
 
 /**

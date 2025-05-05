@@ -105,15 +105,6 @@ export interface ItemShippingDistributionCenter {
     stock_picking_location?: string;
 }
 
-// Define the constant array of keys
-const MY_INTERFACE_KEYS: (keyof ItemShippingDistributionCenter)[] = ["allocated_to_placed_orders", "allocated_to_shopping_carts", "available_to_allocate", "cogs", "desired_inventory_level", "distribution_center_code", "distribution_center_oid", "eta", "handles", "inventory_level", "maximum_backorder", "reorder_inventory_level", "sku", "stock_picking_location"];
-
-// Exported function to check for excess properties
-export function hasExcessProperties(obj: any): boolean {
-  const objKeys = Object.keys(obj);
-  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
-}
-
 
 
 /**

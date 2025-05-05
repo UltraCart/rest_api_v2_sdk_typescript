@@ -135,15 +135,6 @@ export interface EmailSettings {
     transactional_esp_friendly_name?: string;
 }
 
-// Define the constant array of keys
-const MY_INTERFACE_KEYS: (keyof EmailSettings)[] = ["emails_per_day", "emails_per_hour", "emails_per_month", "marketing_esp_domain_user", "marketing_esp_domain_uuid", "marketing_esp_friendly_name", "postcard_from_address1", "postcard_from_address2", "postcard_from_city", "postcard_from_name", "postcard_from_postal_code", "postcard_from_state", "require_order_within_last", "reviews_io_configured", "sms_esp_twilio_uuid", "sms_phone_number", "transactional_esp_domain_user", "transactional_esp_domain_uuid", "transactional_esp_friendly_name"];
-
-// Exported function to check for excess properties
-export function hasExcessProperties(obj: any): boolean {
-  const objKeys = Object.keys(obj);
-  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
-}
-
 
 
 /**

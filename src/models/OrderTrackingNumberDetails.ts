@@ -136,15 +136,6 @@ export interface OrderTrackingNumberDetails {
     tracking_url?: string;
 }
 
-// Define the constant array of keys
-const MY_INTERFACE_KEYS: (keyof OrderTrackingNumberDetails)[] = ["actual_delivery_date", "actual_delivery_date_formatted", "details", "easypost_tracker_id", "expected_delivery_date", "expected_delivery_date_formatted", "map_url", "order_placed_date", "order_placed_date_formatted", "payment_processed_date", "payment_processed_date_formatted", "shipped_date", "shipped_date_formatted", "shipping_method", "status", "status_description", "tracking_number", "tracking_url"];
-
-// Exported function to check for excess properties
-export function hasExcessProperties(obj: any): boolean {
-  const objKeys = Object.keys(obj);
-  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
-}
-
 
 
 /**

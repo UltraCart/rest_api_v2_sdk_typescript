@@ -105,15 +105,6 @@ export interface AffiliateLink {
     type?: AffiliateLinkTypeEnum;
 }
 
-// Define the constant array of keys
-const MY_INTERFACE_KEYS: (keyof AffiliateLink)[] = ["affiliate_link_oid", "affiliate_managed_link_oid", "affiliate_oid", "affiliate_program_item_oid", "code", "creative_oid", "custom_html", "custom_html_approval_status", "custom_landing_url", "deleted", "invisible_link_approval_status", "invisible_link_url_prefix", "name", "type"];
-
-// Exported function to check for excess properties
-export function hasExcessProperties(obj: any): boolean {
-  const objKeys = Object.keys(obj);
-  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
-}
-
 
 
 /**

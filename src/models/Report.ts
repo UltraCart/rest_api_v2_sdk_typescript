@@ -106,15 +106,6 @@ export interface Report {
     settings?: string;
 }
 
-// Define the constant array of keys
-const MY_INTERFACE_KEYS: (keyof Report)[] = ["active", "data_sources", "default_dataset_id", "default_project_id", "filters", "merchant_id", "name", "pages", "report_oid", "security_level", "settings"];
-
-// Exported function to check for excess properties
-export function hasExcessProperties(obj: any): boolean {
-  const objKeys = Object.keys(obj);
-  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
-}
-
 
 
 /**

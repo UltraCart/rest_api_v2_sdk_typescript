@@ -33,15 +33,6 @@ export interface SingleSignOnAuthorizeResponse {
     login_url?: string;
 }
 
-// Define the constant array of keys
-const MY_INTERFACE_KEYS: (keyof SingleSignOnAuthorizeResponse)[] = ["expiration_dts", "login_url"];
-
-// Exported function to check for excess properties
-export function hasExcessProperties(obj: any): boolean {
-  const objKeys = Object.keys(obj);
-  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
-}
-
 
 
 /**

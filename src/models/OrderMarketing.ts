@@ -45,15 +45,6 @@ export interface OrderMarketing {
     referral_code?: string;
 }
 
-// Define the constant array of keys
-const MY_INTERFACE_KEYS: (keyof OrderMarketing)[] = ["advertising_source", "cell_phone_opt_in", "mailing_list", "referral_code"];
-
-// Exported function to check for excess properties
-export function hasExcessProperties(obj: any): boolean {
-  const objKeys = Object.keys(obj);
-  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
-}
-
 
 
 /**

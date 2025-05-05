@@ -136,15 +136,6 @@ export interface ReportDataSet {
     user_data?: string;
 }
 
-// Define the constant array of keys
-const MY_INTERFACE_KEYS: (keyof ReportDataSet)[] = ["data_set_query_uuid", "data_set_uuid", "destination_table_id", "error_message", "executed_sql", "for_object_id", "for_object_type", "initial_pages", "max_results", "merchant_id", "page_count", "page_size", "request_dts", "schema", "security_level", "timezone", "user_data"];
-
-// Exported function to check for excess properties
-export function hasExcessProperties(obj: any): boolean {
-  const objKeys = Object.keys(obj);
-  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
-}
-
 
 
 /**

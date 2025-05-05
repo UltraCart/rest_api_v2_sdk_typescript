@@ -51,15 +51,6 @@ export interface Currency {
     value?: number;
 }
 
-// Define the constant array of keys
-const MY_INTERFACE_KEYS: (keyof Currency)[] = ["currency_code", "exchange_rate", "localized", "localized_formatted", "value"];
-
-// Exported function to check for excess properties
-export function hasExcessProperties(obj: any): boolean {
-  const objKeys = Object.keys(obj);
-  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
-}
-
 
 
 /**

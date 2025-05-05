@@ -207,15 +207,6 @@ export interface EmailFlow {
     trigger_type?: string;
 }
 
-// Define the constant array of keys
-const MY_INTERFACE_KEYS: (keyof EmailFlow)[] = ["allow_multiple_concurrent_enrollments", "back_populating", "click_rate_formatted", "created_dts", "deleted", "email_communication_sequence_uuid", "email_flow_uuid", "end_once_customer_purchases", "end_once_customer_purchases_anywhere", "enrolled_customers", "esp_domain_user", "esp_domain_uuid", "esp_flow_folder_uuid", "esp_friendly_name", "filter_profile_equation_json", "library_item_oid", "maximum_enrolled", "merchant_id", "name", "open_rate_formatted", "revenue_formatted", "revenue_per_customer_formatted", "screenshot_large_full_url", "sms_esp_twilio_uuid", "sms_phone_number", "status", "status_dts", "storefront_oid", "trigger_parameter", "trigger_parameter_name", "trigger_type"];
-
-// Exported function to check for excess properties
-export function hasExcessProperties(obj: any): boolean {
-  const objKeys = Object.keys(obj);
-  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
-}
-
 
 
 /**

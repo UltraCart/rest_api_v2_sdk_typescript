@@ -64,15 +64,6 @@ export interface ScreenRecordingPageViewEvent {
     ts?: number;
 }
 
-// Define the constant array of keys
-const MY_INTERFACE_KEYS: (keyof ScreenRecordingPageViewEvent)[] = ["name", "params", "prior_page_view", "sub_text", "timestamp", "ts"];
-
-// Exported function to check for excess properties
-export function hasExcessProperties(obj: any): boolean {
-  const objKeys = Object.keys(obj);
-  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
-}
-
 
 
 /**

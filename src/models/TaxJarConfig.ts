@@ -63,15 +63,6 @@ export interface TaxJarConfig {
     use_distribution_center_from?: boolean;
 }
 
-// Define the constant array of keys
-const MY_INTERFACE_KEYS: (keyof TaxJarConfig)[] = ["active", "api_key", "estimate_only", "send_outside_nexus", "send_test_orders", "skip_channel_orders", "use_distribution_center_from"];
-
-// Exported function to check for excess properties
-export function hasExcessProperties(obj: any): boolean {
-  const objKeys = Object.keys(obj);
-  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
-}
-
 
 
 /**

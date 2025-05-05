@@ -93,15 +93,6 @@ export interface LibraryItemQuery {
     type?: string;
 }
 
-// Define the constant array of keys
-const MY_INTERFACE_KEYS: (keyof LibraryItemQuery)[] = ["category", "content_type", "description", "industry", "price_high", "price_low", "published_dts_begin", "published_dts_end", "source_of_published", "style", "title", "type"];
-
-// Exported function to check for excess properties
-export function hasExcessProperties(obj: any): boolean {
-  const objKeys = Object.keys(obj);
-  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
-}
-
 
 
 /**

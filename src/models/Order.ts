@@ -424,15 +424,6 @@ export interface Order {
     utms?: Array<OrderUtm>;
 }
 
-// Define the constant array of keys
-const MY_INTERFACE_KEYS: (keyof Order)[] = ["affiliates", "auto_order", "billing", "buysafe", "channel_partner", "checkout", "coupons", "creation_dts", "currency_code", "current_stage", "current_stage_histories", "customer_profile", "digital_order", "edi", "exchange_rate", "fraud_score", "gift", "gift_certificate", "internal", "items", "language_iso_code", "linked_shipment", "marketing", "merchant_id", "order_id", "payment", "point_of_sale", "properties", "quote", "refund_dts", "refund_reason", "reject_dts", "reject_reason", "salesforce", "shipping", "summary", "Tags", "taxes", "utms"];
-
-// Exported function to check for excess properties
-export function hasExcessProperties(obj: any): boolean {
-  const objKeys = Object.keys(obj);
-  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
-}
-
 
 
 /**

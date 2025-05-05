@@ -70,15 +70,6 @@ export interface ScreenRecordingFilterPageViewEventParam {
     value_text?: ScreenRecordingFilterStringSearch;
 }
 
-// Define the constant array of keys
-const MY_INTERFACE_KEYS: (keyof ScreenRecordingFilterPageViewEventParam)[] = ["name", "value_bd", "value_bool", "value_num", "value_text"];
-
-// Exported function to check for excess properties
-export function hasExcessProperties(obj: any): boolean {
-  const objKeys = Object.keys(obj);
-  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
-}
-
 
 
 /**

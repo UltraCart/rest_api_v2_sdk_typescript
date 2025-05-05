@@ -81,15 +81,6 @@ export interface ConversationPbxVoicemailMessageSummary {
     voicemail_dts?: string;
 }
 
-// Define the constant array of keys
-const MY_INTERFACE_KEYS: (keyof ConversationPbxVoicemailMessageSummary)[] = ["call_sid", "duration", "from", "from_caller_id", "listened", "merchant_id", "recording_sid", "recording_size_bytes", "recording_status", "voicemail_dts"];
-
-// Exported function to check for excess properties
-export function hasExcessProperties(obj: any): boolean {
-  const objKeys = Object.keys(obj);
-  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
-}
-
 
 
 /**

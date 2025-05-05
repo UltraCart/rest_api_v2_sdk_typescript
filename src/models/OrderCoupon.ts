@@ -51,15 +51,6 @@ export interface OrderCoupon {
     hdie_from_customer?: boolean;
 }
 
-// Define the constant array of keys
-const MY_INTERFACE_KEYS: (keyof OrderCoupon)[] = ["accounting_code", "automatically_applied", "base_coupon_code", "coupon_code", "hdie_from_customer"];
-
-// Exported function to check for excess properties
-export function hasExcessProperties(obj: any): boolean {
-  const objKeys = Object.keys(obj);
-  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
-}
-
 
 
 /**

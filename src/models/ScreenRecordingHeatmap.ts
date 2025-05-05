@@ -165,15 +165,6 @@ export interface ScreenRecordingHeatmap {
     small_scroll_url?: string;
 }
 
-// Define the constant array of keys
-const MY_INTERFACE_KEYS: (keyof ScreenRecordingHeatmap)[] = ["large_click_thumbnail_url", "large_click_url", "large_movement_thumbnail_url", "large_movement_url", "large_regular_thumbnail_url", "large_regular_url", "large_scroll_thumbnail_url", "large_scroll_url", "medium_click_thumbnail_url", "medium_click_url", "medium_movement_thumbnail_url", "medium_movement_url", "medium_regular_thumbnail_url", "medium_regular_url", "medium_scroll_thumbnail_url", "medium_scroll_url", "small_click_thumbnail_url", "small_click_url", "small_movement_thumbnail_url", "small_movement_url", "small_regular_thumbnail_url", "small_regular_url", "small_scroll_thumbnail_url", "small_scroll_url"];
-
-// Exported function to check for excess properties
-export function hasExcessProperties(obj: any): boolean {
-  const objKeys = Object.keys(obj);
-  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
-}
-
 
 
 /**

@@ -88,15 +88,6 @@ export interface ItemEbayMarketPlaceAnalysis {
     profit_potential?: number;
 }
 
-// Define the constant array of keys
-const MY_INTERFACE_KEYS: (keyof ItemEbayMarketPlaceAnalysis)[] = ["adjusted_price", "adjusted_shipping", "adjusted_total", "cogs", "final_value_fee", "minimum_advertised_price", "other_listings", "our_listing", "overhead", "profit_potential"];
-
-// Exported function to check for excess properties
-export function hasExcessProperties(obj: any): boolean {
-  const objKeys = Object.keys(obj);
-  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
-}
-
 
 
 /**

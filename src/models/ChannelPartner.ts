@@ -69,15 +69,6 @@ export interface ChannelPartner {
     skip_customer_emails?: boolean;
 }
 
-// Define the constant array of keys
-const MY_INTERFACE_KEYS: (keyof ChannelPartner)[] = ["channel_partner_oid", "code", "communication_method", "dont_hold_shipment", "inactive", "merchant_id", "name", "skip_customer_emails"];
-
-// Exported function to check for excess properties
-export function hasExcessProperties(obj: any): boolean {
-  const objKeys = Object.keys(obj);
-  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
-}
-
 
 
 /**

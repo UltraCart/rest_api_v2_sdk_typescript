@@ -57,15 +57,6 @@ export interface ScreenRecordingHeatmapUrl {
     url?: string;
 }
 
-// Define the constant array of keys
-const MY_INTERFACE_KEYS: (keyof ScreenRecordingHeatmapUrl)[] = ["histogram_data", "histogram_interval", "histogram_start_dts", "page_rank", "session_count", "url"];
-
-// Exported function to check for excess properties
-export function hasExcessProperties(obj: any): boolean {
-  const objKeys = Object.keys(obj);
-  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
-}
-
 
 
 /**

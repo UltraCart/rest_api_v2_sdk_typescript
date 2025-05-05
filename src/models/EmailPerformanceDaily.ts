@@ -63,15 +63,6 @@ export interface EmailPerformanceDaily {
     transactional_send_count?: number;
 }
 
-// Define the constant array of keys
-const MY_INTERFACE_KEYS: (keyof EmailPerformanceDaily)[] = ["bounce_count", "delivered_count", "revenue", "sequence_send_count", "spam_count", "stat_dts", "transactional_send_count"];
-
-// Exported function to check for excess properties
-export function hasExcessProperties(obj: any): boolean {
-  const objKeys = Object.keys(obj);
-  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
-}
-
 
 
 /**

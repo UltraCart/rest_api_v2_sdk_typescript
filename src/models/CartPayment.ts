@@ -106,15 +106,6 @@ export interface CartPayment {
     rtg_code?: string;
 }
 
-// Define the constant array of keys
-const MY_INTERFACE_KEYS: (keyof CartPayment)[] = ["affirm", "amazon", "check", "credit_card", "health_benefit_card", "payment_method", "purchase_order", "rtg_code"];
-
-// Exported function to check for excess properties
-export function hasExcessProperties(obj: any): boolean {
-  const objKeys = Object.keys(obj);
-  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
-}
-
 
 
 /**

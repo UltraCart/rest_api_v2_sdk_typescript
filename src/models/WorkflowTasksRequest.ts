@@ -148,15 +148,6 @@ export interface WorkflowTasksRequest {
     unassigned?: boolean;
 }
 
-// Define the constant array of keys
-const MY_INTERFACE_KEYS: (keyof WorkflowTasksRequest)[] = ["assigned_to_group", "assigned_to_group_id", "assigned_to_me", "assigned_to_user", "assigned_to_user_id", "created_by", "created_dts_begin", "created_dts_end", "delay_until_dts_begin", "delay_until_dts_end", "due_dts_begin", "due_dts_end", "last_update_dts_begin", "last_update_dts_end", "object_email", "object_type", "priority", "status", "tags", "unassigned"];
-
-// Exported function to check for excess properties
-export function hasExcessProperties(obj: any): boolean {
-  const objKeys = Object.keys(obj);
-  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
-}
-
 
 
 /**

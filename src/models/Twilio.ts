@@ -75,15 +75,6 @@ export interface Twilio {
     twilio_workspace_sid?: string;
 }
 
-// Define the constant array of keys
-const MY_INTERFACE_KEYS: (keyof Twilio)[] = ["account_sid", "api_key_id", "api_key_name", "auth_token", "esp_twilio_uuid", "inbound_twiml_app_sid", "outbound_twiml_app_sid", "phone_numbers", "twilio_workspace_sid"];
-
-// Exported function to check for excess properties
-export function hasExcessProperties(obj: any): boolean {
-  const objKeys = Object.keys(obj);
-  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
-}
-
 
 
 /**

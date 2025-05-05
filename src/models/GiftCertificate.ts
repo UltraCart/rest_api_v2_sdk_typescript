@@ -112,15 +112,6 @@ export interface GiftCertificate {
     remaining_balance?: number;
 }
 
-// Define the constant array of keys
-const MY_INTERFACE_KEYS: (keyof GiftCertificate)[] = ["activated", "code", "customer_profile_oid", "deleted", "email", "expiration_dts", "gift_certificate_oid", "internal", "ledger_entries", "merchant_id", "merchant_note", "original_balance", "reference_order_id", "remaining_balance"];
-
-// Exported function to check for excess properties
-export function hasExcessProperties(obj: any): boolean {
-  const objKeys = Object.keys(obj);
-  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
-}
-
 
 
 /**

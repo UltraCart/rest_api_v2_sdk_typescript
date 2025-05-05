@@ -63,15 +63,6 @@ export interface ItemShippingDestinationMarkup {
     state?: string;
 }
 
-// Define the constant array of keys
-const MY_INTERFACE_KEYS: (keyof ItemShippingDestinationMarkup)[] = ["adult_signature_required", "country_code", "flat_fee", "per_item", "postal_code", "shipping_method", "state"];
-
-// Exported function to check for excess properties
-export function hasExcessProperties(obj: any): boolean {
-  const objKeys = Object.keys(obj);
-  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
-}
-
 
 
 /**

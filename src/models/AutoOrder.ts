@@ -214,15 +214,6 @@ export interface AutoOrder {
     status?: AutoOrderStatusEnum;
 }
 
-// Define the constant array of keys
-const MY_INTERFACE_KEYS: (keyof AutoOrder)[] = ["add_ons", "auto_order_code", "auto_order_oid", "cancel_after_next_x_orders", "cancel_downgrade", "cancel_reason", "cancel_upgrade", "canceled_by_user", "canceled_dts", "completed", "credit_card_attempt", "disabled_dts", "enabled", "failure_reason", "items", "logs", "management", "merchant_id", "merged_dts", "merged_into_auto_order_oid", "next_attempt", "original_order", "original_order_id", "override_affiliate_id", "rebill_orders", "rotating_transaction_gateway_code", "status"];
-
-// Exported function to check for excess properties
-export function hasExcessProperties(obj: any): boolean {
-  const objKeys = Object.keys(obj);
-  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
-}
-
 
 
 /**

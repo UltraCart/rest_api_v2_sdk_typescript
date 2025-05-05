@@ -63,15 +63,6 @@ export interface ItemRevguard {
     revguard_web_prompt_group?: number;
 }
 
-// Define the constant array of keys
-const MY_INTERFACE_KEYS: (keyof ItemRevguard)[] = ["revguard_canceled_csr_prompt_group", "revguard_canceled_ivr_prompt_group", "revguard_canceled_web_prompt_group", "revguard_client_brand", "revguard_csr_prompt_group", "revguard_ivr_prompt_group", "revguard_web_prompt_group"];
-
-// Exported function to check for excess properties
-export function hasExcessProperties(obj: any): boolean {
-  const objKeys = Object.keys(obj);
-  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
-}
-
 
 
 /**

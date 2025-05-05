@@ -105,15 +105,6 @@ export interface OrderEdiDocument {
     test_mode?: boolean;
 }
 
-// Define the constant array of keys
-const MY_INTERFACE_KEYS: (keyof OrderEdiDocument)[] = ["direction", "doc_dts", "document", "document_type_description", "document_type_number", "external_id", "functional_acknowledgement", "functional_acknowledgement_dts", "functional_acknowledgement_pending", "group_control_number", "internal_id", "merchant_id", "order_id", "test_mode"];
-
-// Exported function to check for excess properties
-export function hasExcessProperties(obj: any): boolean {
-  const objKeys = Object.keys(obj);
-  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
-}
-
 
 
 /**

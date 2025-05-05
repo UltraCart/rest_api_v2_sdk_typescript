@@ -51,15 +51,6 @@ export interface FulfillmentShipment {
     tracking_numbers?: Array<string>;
 }
 
-// Define the constant array of keys
-const MY_INTERFACE_KEYS: (keyof FulfillmentShipment)[] = ["fulfillment_fee", "order_id", "package_cost", "shipping_cost", "tracking_numbers"];
-
-// Exported function to check for excess properties
-export function hasExcessProperties(obj: any): boolean {
-  const objKeys = Object.keys(obj);
-  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
-}
-
 
 
 /**

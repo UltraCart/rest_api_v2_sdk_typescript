@@ -33,15 +33,6 @@ export interface ReportDryRunQueryResult {
     total_bytes_processed?: number;
 }
 
-// Define the constant array of keys
-const MY_INTERFACE_KEYS: (keyof ReportDryRunQueryResult)[] = ["error_message", "total_bytes_processed"];
-
-// Exported function to check for excess properties
-export function hasExcessProperties(obj: any): boolean {
-  const objKeys = Object.keys(obj);
-  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
-}
-
 
 
 /**

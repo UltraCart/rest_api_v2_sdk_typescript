@@ -208,15 +208,6 @@ export interface AutoOrderItem {
     simple_schedule?: AutoOrderItemSimpleSchedule;
 }
 
-// Define the constant array of keys
-const MY_INTERFACE_KEYS: (keyof AutoOrderItem)[] = ["arbitrary_item_id", "arbitrary_percentage_discount", "arbitrary_quantity", "arbitrary_schedule_days", "arbitrary_unit_cost", "arbitrary_unit_cost_remaining_orders", "auto_order_item_oid", "calculated_next_shipment_dts", "first_order_dts", "frequency", "future_schedules", "last_order_dts", "life_time_value", "next_item_id", "next_preshipment_notice_dts", "next_shipment_dts", "no_order_after_dts", "number_of_rebills", "options", "original_item_id", "original_quantity", "paused", "paypal_payer_id", "paypal_recurring_payment_profile_id", "preshipment_notice_sent", "rebill_value", "remaining_repeat_count", "simple_schedule"];
-
-// Exported function to check for excess properties
-export function hasExcessProperties(obj: any): boolean {
-  const objKeys = Object.keys(obj);
-  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
-}
-
 
 
 /**

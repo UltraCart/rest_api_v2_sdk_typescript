@@ -249,15 +249,6 @@ export interface EmailStat {
     view_count_formatted?: string;
 }
 
-// Define the constant array of keys
-const MY_INTERFACE_KEYS: (keyof EmailStat)[] = ["click_count", "click_count_formatted", "conversion_count", "conversion_count_formatted", "deleted", "delivered_count", "delivered_count_formatted", "kickbox_count", "kickbox_count_formatted", "merchant_id", "name", "open_count", "open_count_formatted", "order_count", "order_count_formatted", "permanent_bounce_count", "permanent_bounce_count_formatted", "profit", "profit_formatted", "revenue", "revenue_formatted", "send_count", "send_count_formatted", "skipped_count", "skipped_count_formatted", "spam_count", "spam_count_formatted", "stat_type", "status", "status_dts", "step_uuid", "steps", "storefront_oid", "unsubscribe_count", "unsubscribe_count_formatted", "uuid", "view_count", "view_count_formatted"];
-
-// Exported function to check for excess properties
-export function hasExcessProperties(obj: any): boolean {
-  const objKeys = Object.keys(obj);
-  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
-}
-
 
 
 /**

@@ -57,15 +57,6 @@ export interface CouponPercentOffItems {
     limit?: number;
 }
 
-// Define the constant array of keys
-const MY_INTERFACE_KEYS: (keyof CouponPercentOffItems)[] = ["discount_percent", "excluded_item_tags", "excluded_items", "item_tags", "items", "limit"];
-
-// Exported function to check for excess properties
-export function hasExcessProperties(obj: any): boolean {
-  const objKeys = Object.keys(obj);
-  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
-}
-
 
 
 /**

@@ -118,15 +118,6 @@ export interface CartKitComponentOption {
     values?: Array<CartItemOptionValue>;
 }
 
-// Define the constant array of keys
-const MY_INTERFACE_KEYS: (keyof CartKitComponentOption)[] = ["cost_if_specified", "cost_per_letter", "cost_per_line", "ignore_if_default", "item_id", "item_oid", "label", "name", "one_time_fee", "option_oid", "required", "selected_value", "type", "values"];
-
-// Exported function to check for excess properties
-export function hasExcessProperties(obj: any): boolean {
-  const objKeys = Object.keys(obj);
-  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
-}
-
 
 
 /**

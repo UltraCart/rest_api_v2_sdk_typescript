@@ -153,15 +153,6 @@ export interface FileManagerFile {
     valid_velocity?: string;
 }
 
-// Define the constant array of keys
-const MY_INTERFACE_KEYS: (keyof FileManagerFile)[] = ["favorite", "hostname", "i18n_violation", "icon", "internal_version", "last_modified", "merge_conflict", "name", "parent_storefront_fs_directory_oid", "part_of_active_theme", "path", "raw_size", "selected", "size", "storefront_fs_directory_oid", "storefront_fs_file_oid", "storefront_oid", "thumbnail_16_url", "thumbnail_32_url", "thumbnail_64_url", "type", "valid_velocity"];
-
-// Exported function to check for excess properties
-export function hasExcessProperties(obj: any): boolean {
-  const objKeys = Object.keys(obj);
-  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
-}
-
 
 
 /**

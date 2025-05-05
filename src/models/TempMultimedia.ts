@@ -63,15 +63,6 @@ export interface TempMultimedia {
     width?: number;
 }
 
-// Define the constant array of keys
-const MY_INTERFACE_KEYS: (keyof TempMultimedia)[] = ["filename", "height", "multimedia_type", "size", "temp_multimedia_oid", "url", "width"];
-
-// Exported function to check for excess properties
-export function hasExcessProperties(obj: any): boolean {
-  const objKeys = Object.keys(obj);
-  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
-}
-
 
 
 /**

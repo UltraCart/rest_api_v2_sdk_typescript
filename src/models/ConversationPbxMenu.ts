@@ -94,15 +94,6 @@ export interface ConversationPbxMenu {
     timeout?: number;
 }
 
-// Define the constant array of keys
-const MY_INTERFACE_KEYS: (keyof ConversationPbxMenu)[] = ["allow_direct_extensions", "conversation_pbx_menu_uuid", "default_action", "default_action_target", "mappings", "merchant_id", "name", "play_audio_uuid", "say", "say_voice", "timeout"];
-
-// Exported function to check for excess properties
-export function hasExcessProperties(obj: any): boolean {
-  const objKeys = Object.keys(obj);
-  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
-}
-
 
 
 /**

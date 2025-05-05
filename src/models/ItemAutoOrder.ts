@@ -160,15 +160,6 @@ export interface ItemAutoOrder {
     steps?: Array<ItemAutoOrderStep>;
 }
 
-// Define the constant array of keys
-const MY_INTERFACE_KEYS: (keyof ItemAutoOrder)[] = ["auth_future_amount", "auth_test_amount", "auto_order_cancel_charge_minimum_balance", "auto_order_cancel_item_id", "auto_order_cancel_item_oid", "auto_order_cancel_minimum_life_time_count", "auto_order_cancel_minimum_life_time_value", "auto_order_cancel_minimum_rebill_count", "auto_order_cancel_minimum_rebill_value", "auto_order_downgrade_items", "auto_order_paused", "auto_order_prohibit_expiring_cards", "auto_order_schedules", "auto_order_upgrade_items", "auto_order_upsell", "auto_order_upsell_no_easy_cancel", "auto_order_upsell_one_per_customer", "auto_orderable", "cancel_other_auto_orders", "free_shipping_auto_order", "refund_other_auto_orders", "steps"];
-
-// Exported function to check for excess properties
-export function hasExcessProperties(obj: any): boolean {
-  const objKeys = Object.keys(obj);
-  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
-}
-
 
 
 /**

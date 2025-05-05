@@ -45,15 +45,6 @@ export interface OrderEdi {
     ship_to_edi_code?: string;
 }
 
-// Define the constant array of keys
-const MY_INTERFACE_KEYS: (keyof OrderEdi)[] = ["bill_to_edi_code", "edi_department", "edi_internal_vendor_number", "ship_to_edi_code"];
-
-// Exported function to check for excess properties
-export function hasExcessProperties(obj: any): boolean {
-  const objKeys = Object.keys(obj);
-  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
-}
-
 
 
 /**

@@ -57,15 +57,6 @@ export interface ItemCCBill {
     ccbill_subscription_type_id?: string;
 }
 
-// Define the constant array of keys
-const MY_INTERFACE_KEYS: (keyof ItemCCBill)[] = ["ccbill_allowed_currencies", "ccbill_allowed_types", "ccbill_currency_code", "ccbill_form_name", "ccbill_subaccount_id", "ccbill_subscription_type_id"];
-
-// Exported function to check for excess properties
-export function hasExcessProperties(obj: any): boolean {
-  const objKeys = Object.keys(obj);
-  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
-}
-
 
 
 /**

@@ -106,15 +106,6 @@ export interface AffiliateClick {
     ucacid?: string;
 }
 
-// Define the constant array of keys
-const MY_INTERFACE_KEYS: (keyof AffiliateClick)[] = ["affiliate_click_oid", "affiliate_link_oid", "affiliate_oid", "click_dts", "ip_address", "landing_page", "landing_page_query_string", "link", "referrer", "referrer_query_string", "screen_recording_uuid", "sub_id", "ucacid"];
-
-// Exported function to check for excess properties
-export function hasExcessProperties(obj: any): boolean {
-  const objKeys = Object.keys(obj);
-  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
-}
-
 
 
 /**

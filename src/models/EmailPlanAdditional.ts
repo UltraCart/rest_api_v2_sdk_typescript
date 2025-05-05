@@ -75,15 +75,6 @@ export interface EmailPlanAdditional {
     emails?: number;
 }
 
-// Define the constant array of keys
-const MY_INTERFACE_KEYS: (keyof EmailPlanAdditional)[] = ["active", "can_downgrade", "can_upgrade", "cost", "cost_change", "cost_change_formatted", "cost_formatted", "customers", "emails"];
-
-// Exported function to check for excess properties
-export function hasExcessProperties(obj: any): boolean {
-  const objKeys = Object.keys(obj);
-  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
-}
-
 
 
 /**

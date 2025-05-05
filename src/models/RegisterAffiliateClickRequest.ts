@@ -57,15 +57,6 @@ export interface RegisterAffiliateClickRequest {
     user_agent?: string;
 }
 
-// Define the constant array of keys
-const MY_INTERFACE_KEYS: (keyof RegisterAffiliateClickRequest)[] = ["affid", "ip_address", "landing_page_url", "referrer_url", "subid", "user_agent"];
-
-// Exported function to check for excess properties
-export function hasExcessProperties(obj: any): boolean {
-  const objKeys = Object.keys(obj);
-  return objKeys.some(key => !MY_INTERFACE_KEYS.includes(key as keyof MyInterface));
-}
-
 
 
 /**
