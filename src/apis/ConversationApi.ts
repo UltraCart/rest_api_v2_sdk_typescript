@@ -24,6 +24,9 @@ import {
     ConversationAgentProfileResponse,
     ConversationAgentProfileResponseFromJSON,
     ConversationAgentProfileResponseToJSON,
+    ConversationAgentProfilesResponse,
+    ConversationAgentProfilesResponseFromJSON,
+    ConversationAgentProfilesResponseToJSON,
     ConversationAutocompleteRequest,
     ConversationAutocompleteRequestFromJSON,
     ConversationAutocompleteRequestToJSON,
@@ -691,6 +694,21 @@ export interface ConversationApiInterface {
      * Get agent profile
      */
     getAgentProfile(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ConversationAgentProfileResponse>;
+
+    /**
+     * Retrieve the agents profile 
+     * @summary Get agent profiles
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApiInterface
+     */
+    getAgentProfilesRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ConversationAgentProfilesResponse>>;
+
+    /**
+     * Retrieve the agents profile 
+     * Get agent profiles
+     */
+    getAgentProfiles(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ConversationAgentProfilesResponse>;
 
     /**
      * Retrieve a JWT to authorize an agent to make a websocket connection. 
@@ -2343,6 +2361,43 @@ export class ConversationApi extends runtime.BaseAPI implements ConversationApiI
      */
     async getAgentProfile(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ConversationAgentProfileResponse> {
         const response = await this.getAgentProfileRaw(initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Retrieve the agents profile 
+     * Get agent profiles
+     */
+    async getAgentProfilesRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ConversationAgentProfilesResponse>> {
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", ["conversation_read"]);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/conversation/agent/profiles`,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => ConversationAgentProfilesResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Retrieve the agents profile 
+     * Get agent profiles
+     */
+    async getAgentProfiles(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ConversationAgentProfilesResponse> {
+        const response = await this.getAgentProfilesRaw(initOverrides);
         return await response.value();
     }
 

@@ -135,6 +135,7 @@ export * from './ConversationAgentAuth';
 export * from './ConversationAgentAuthResponse';
 export * from './ConversationAgentProfile';
 export * from './ConversationAgentProfileResponse';
+export * from './ConversationAgentProfilesResponse';
 export * from './ConversationAutocompleteRequest';
 export * from './ConversationAutocompleteResponse';
 export * from './ConversationAutocompleteValue';

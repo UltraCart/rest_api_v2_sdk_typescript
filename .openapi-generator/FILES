@@ -160,6 +160,7 @@ src/models/ConversationAgentAuth.ts
 src/models/ConversationAgentAuthResponse.ts
 src/models/ConversationAgentProfile.ts
 src/models/ConversationAgentProfileResponse.ts
+src/models/ConversationAgentProfilesResponse.ts
 src/models/ConversationAutocompleteRequest.ts
 src/models/ConversationAutocompleteResponse.ts
 src/models/ConversationAutocompleteValue.ts
