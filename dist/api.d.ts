@@ -7261,6 +7261,43 @@ export interface ConversationAgentProfileResponse {
 /**
  *
  * @export
+ * @interface ConversationAgentProfilesResponse
+ */
+export interface ConversationAgentProfilesResponse {
+    /**
+     *
+     * @type {Array<ConversationAgentProfile>}
+     * @memberof ConversationAgentProfilesResponse
+     */
+    agent_profiles?: Array<ConversationAgentProfile>;
+    /**
+     *
+     * @type {ModelError}
+     * @memberof ConversationAgentProfilesResponse
+     */
+    error?: ModelError;
+    /**
+     *
+     * @type {ResponseMetadata}
+     * @memberof ConversationAgentProfilesResponse
+     */
+    metadata?: ResponseMetadata;
+    /**
+     * Indicates if API call was successful
+     * @type {boolean}
+     * @memberof ConversationAgentProfilesResponse
+     */
+    success?: boolean;
+    /**
+     *
+     * @type {Warning}
+     * @memberof ConversationAgentProfilesResponse
+     */
+    warning?: Warning;
+}
+/**
+ *
+ * @export
  * @interface ConversationAutocompleteRequest
  */
 export interface ConversationAutocompleteRequest {
@@ -47332,6 +47369,13 @@ export declare const ConversationApiFetchParamCreator: (configuration?: Configur
      */
     getAgentProfile(options?: any): FetchArgs;
     /**
+     * Retrieve the agents profile
+     * @summary Get agent profiles
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getAgentProfiles(options?: any): FetchArgs;
+    /**
      * Retrieve a JWT to authorize an agent to make a websocket connection.
      * @summary Get agent websocket authorization
      * @param {*} [options] Override http request option.
@@ -48005,6 +48049,13 @@ export declare const ConversationApiFp: (configuration?: Configuration) => {
      */
     getAgentProfile(options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ConversationAgentProfileResponse>;
     /**
+     * Retrieve the agents profile
+     * @summary Get agent profiles
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getAgentProfiles(options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ConversationAgentProfilesResponse>;
+    /**
      * Retrieve a JWT to authorize an agent to make a websocket connection.
      * @summary Get agent websocket authorization
      * @param {*} [options] Override http request option.
@@ -48677,6 +48728,13 @@ export declare const ConversationApiFactory: (configuration?: Configuration, fet
      * @throws {RequiredError}
      */
     getAgentProfile(options?: any): Promise<ConversationAgentProfileResponse>;
+    /**
+     * Retrieve the agents profile
+     * @summary Get agent profiles
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getAgentProfiles(options?: any): Promise<ConversationAgentProfilesResponse>;
     /**
      * Retrieve a JWT to authorize an agent to make a websocket connection.
      * @summary Get agent websocket authorization
@@ -49364,6 +49422,14 @@ export interface ConversationApiInterface {
      * @memberof ConversationApiInterface
      */
     getAgentProfile(options?: any): Promise<ConversationAgentProfileResponse>;
+    /**
+     * Retrieve the agents profile
+     * @summary Get agent profiles
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApiInterface
+     */
+    getAgentProfiles(options?: any): Promise<ConversationAgentProfilesResponse>;
     /**
      * Retrieve a JWT to authorize an agent to make a websocket connection.
      * @summary Get agent websocket authorization
@@ -50122,6 +50188,14 @@ export declare class ConversationApi extends BaseAPI implements ConversationApiI
      * @memberof ConversationApi
      */
     getAgentProfile(options?: any): Promise<ConversationAgentProfileResponse>;
+    /**
+     * Retrieve the agents profile
+     * @summary Get agent profiles
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApi
+     */
+    getAgentProfiles(options?: any): Promise<ConversationAgentProfilesResponse>;
     /**
      * Retrieve a JWT to authorize an agent to make a websocket connection.
      * @summary Get agent websocket authorization
@@ -67807,13 +67881,21 @@ export declare const WebhookApiFetchParamCreator: (configuration?: Configuration
      * Retrieves the log summary information for a given webhook.  This is useful for displaying all the various logs that can be viewed.
      * @summary Retrieve the log summaries
      * @param {number} webhookOid The webhook oid to retrieve log summaries for.
+     * @param {string} [requestId]
+     * @param {string} [beginDate]
+     * @param {string} [endDate]
+     * @param {string} [status]
+     * @param {string} [event]
+     * @param {string} [orderId]
+     * @param {string} [request]
+     * @param {number} [duration]
      * @param {number} [_limit] The maximum number of records to return on this one API call.
      * @param {number} [_offset] Pagination of the record set.  Offset is a zero based index.
      * @param {string} [_since] Fetch log summaries that have been delivered since this date/time.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getWebhookLogSummaries(webhookOid: number, _limit?: number, _offset?: number, _since?: string, options?: any): FetchArgs;
+    getWebhookLogSummaries(webhookOid: number, requestId?: string, beginDate?: string, endDate?: string, status?: string, event?: string, orderId?: string, request?: string, duration?: number, _limit?: number, _offset?: number, _since?: string, options?: any): FetchArgs;
     /**
      * Retrieves the webhooks associated with this application.
      * @summary Retrieve webhooks
@@ -67888,13 +67970,21 @@ export declare const WebhookApiFp: (configuration?: Configuration) => {
      * Retrieves the log summary information for a given webhook.  This is useful for displaying all the various logs that can be viewed.
      * @summary Retrieve the log summaries
      * @param {number} webhookOid The webhook oid to retrieve log summaries for.
+     * @param {string} [requestId]
+     * @param {string} [beginDate]
+     * @param {string} [endDate]
+     * @param {string} [status]
+     * @param {string} [event]
+     * @param {string} [orderId]
+     * @param {string} [request]
+     * @param {number} [duration]
      * @param {number} [_limit] The maximum number of records to return on this one API call.
      * @param {number} [_offset] Pagination of the record set.  Offset is a zero based index.
      * @param {string} [_since] Fetch log summaries that have been delivered since this date/time.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getWebhookLogSummaries(webhookOid: number, _limit?: number, _offset?: number, _since?: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<WebhookLogSummariesResponse>;
+    getWebhookLogSummaries(webhookOid: number, requestId?: string, beginDate?: string, endDate?: string, status?: string, event?: string, orderId?: string, request?: string, duration?: number, _limit?: number, _offset?: number, _since?: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<WebhookLogSummariesResponse>;
     /**
      * Retrieves the webhooks associated with this application.
      * @summary Retrieve webhooks
@@ -67969,13 +68059,21 @@ export declare const WebhookApiFactory: (configuration?: Configuration, fetch?: 
      * Retrieves the log summary information for a given webhook.  This is useful for displaying all the various logs that can be viewed.
      * @summary Retrieve the log summaries
      * @param {number} webhookOid The webhook oid to retrieve log summaries for.
+     * @param {string} [requestId]
+     * @param {string} [beginDate]
+     * @param {string} [endDate]
+     * @param {string} [status]
+     * @param {string} [event]
+     * @param {string} [orderId]
+     * @param {string} [request]
+     * @param {number} [duration]
      * @param {number} [_limit] The maximum number of records to return on this one API call.
      * @param {number} [_offset] Pagination of the record set.  Offset is a zero based index.
      * @param {string} [_since] Fetch log summaries that have been delivered since this date/time.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getWebhookLogSummaries(webhookOid: number, _limit?: number, _offset?: number, _since?: string, options?: any): Promise<WebhookLogSummariesResponse>;
+    getWebhookLogSummaries(webhookOid: number, requestId?: string, beginDate?: string, endDate?: string, status?: string, event?: string, orderId?: string, request?: string, duration?: number, _limit?: number, _offset?: number, _since?: string, options?: any): Promise<WebhookLogSummariesResponse>;
     /**
      * Retrieves the webhooks associated with this application.
      * @summary Retrieve webhooks
@@ -68054,6 +68152,14 @@ export interface WebhookApiInterface {
      * Retrieves the log summary information for a given webhook.  This is useful for displaying all the various logs that can be viewed.
      * @summary Retrieve the log summaries
      * @param {number} webhookOid The webhook oid to retrieve log summaries for.
+     * @param {string} [requestId]
+     * @param {string} [beginDate]
+     * @param {string} [endDate]
+     * @param {string} [status]
+     * @param {string} [event]
+     * @param {string} [orderId]
+     * @param {string} [request]
+     * @param {number} [duration]
      * @param {number} [_limit] The maximum number of records to return on this one API call.
      * @param {number} [_offset] Pagination of the record set.  Offset is a zero based index.
      * @param {string} [_since] Fetch log summaries that have been delivered since this date/time.
@@ -68061,7 +68167,7 @@ export interface WebhookApiInterface {
      * @throws {RequiredError}
      * @memberof WebhookApiInterface
      */
-    getWebhookLogSummaries(webhookOid: number, _limit?: number, _offset?: number, _since?: string, options?: any): Promise<WebhookLogSummariesResponse>;
+    getWebhookLogSummaries(webhookOid: number, requestId?: string, beginDate?: string, endDate?: string, status?: string, event?: string, orderId?: string, request?: string, duration?: number, _limit?: number, _offset?: number, _since?: string, options?: any): Promise<WebhookLogSummariesResponse>;
     /**
      * Retrieves the webhooks associated with this application.
      * @summary Retrieve webhooks
@@ -68145,6 +68251,14 @@ export declare class WebhookApi extends BaseAPI implements WebhookApiInterface {
      * Retrieves the log summary information for a given webhook.  This is useful for displaying all the various logs that can be viewed.
      * @summary Retrieve the log summaries
      * @param {number} webhookOid The webhook oid to retrieve log summaries for.
+     * @param {string} [requestId]
+     * @param {string} [beginDate]
+     * @param {string} [endDate]
+     * @param {string} [status]
+     * @param {string} [event]
+     * @param {string} [orderId]
+     * @param {string} [request]
+     * @param {number} [duration]
      * @param {number} [_limit] The maximum number of records to return on this one API call.
      * @param {number} [_offset] Pagination of the record set.  Offset is a zero based index.
      * @param {string} [_since] Fetch log summaries that have been delivered since this date/time.
@@ -68152,7 +68266,7 @@ export declare class WebhookApi extends BaseAPI implements WebhookApiInterface {
      * @throws {RequiredError}
      * @memberof WebhookApi
      */
-    getWebhookLogSummaries(webhookOid: number, _limit?: number, _offset?: number, _since?: string, options?: any): Promise<WebhookLogSummariesResponse>;
+    getWebhookLogSummaries(webhookOid: number, requestId?: string, beginDate?: string, endDate?: string, status?: string, event?: string, orderId?: string, request?: string, duration?: number, _limit?: number, _offset?: number, _since?: string, options?: any): Promise<WebhookLogSummariesResponse>;
     /**
      * Retrieves the webhooks associated with this application.
      * @summary Retrieve webhooks

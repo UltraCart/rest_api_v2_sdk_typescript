@@ -7428,6 +7428,44 @@ export interface ConversationAgentProfileResponse {
 /**
  * 
  * @export
+ * @interface ConversationAgentProfilesResponse
+ */
+export interface ConversationAgentProfilesResponse {
+    /**
+     * 
+     * @type {Array<ConversationAgentProfile>}
+     * @memberof ConversationAgentProfilesResponse
+     */
+    agent_profiles?: Array<ConversationAgentProfile>;
+    /**
+     * 
+     * @type {ModelError}
+     * @memberof ConversationAgentProfilesResponse
+     */
+    error?: ModelError;
+    /**
+     * 
+     * @type {ResponseMetadata}
+     * @memberof ConversationAgentProfilesResponse
+     */
+    metadata?: ResponseMetadata;
+    /**
+     * Indicates if API call was successful
+     * @type {boolean}
+     * @memberof ConversationAgentProfilesResponse
+     */
+    success?: boolean;
+    /**
+     * 
+     * @type {Warning}
+     * @memberof ConversationAgentProfilesResponse
+     */
+    warning?: Warning;
+}
+
+/**
+ * 
+ * @export
  * @interface ConversationAutocompleteRequest
  */
 export interface ConversationAutocompleteRequest {
@@ -52769,6 +52807,52 @@ export const ConversationApiFetchParamCreator = function (configuration?: Config
             };
         },
         /**
+         * Retrieve the agents profile 
+         * @summary Get agent profiles
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getAgentProfiles(options: any = {}): FetchArgs {
+            const localVarPath = `/conversation/agent/profiles`;
+            const localVarUrlObj = url.parse(localVarPath, true);
+            const localVarRequestOptions = Object.assign({ method: 'GET' }, options);
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+    if(configuration && configuration.apiVersion) {
+      localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+    }
+
+
+
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+				const localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+					? configuration.accessToken("ultraCartOauth", ["conversation_read"])
+					: configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
+					? configuration.apiKey("x-ultracart-simple-key")
+					: configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
          * Retrieve a JWT to authorize an agent to make a websocket connection. 
          * @summary Get agent websocket authorization
          * @param {*} [options] Override http request option.
@@ -56788,6 +56872,26 @@ export const ConversationApiFp = function(configuration?: Configuration) {
             };
         },
         /**
+         * Retrieve the agents profile 
+         * @summary Get agent profiles
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getAgentProfiles(options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ConversationAgentProfilesResponse> {
+            const localVarFetchArgs = ConversationApiFetchParamCreator(configuration).getAgentProfiles(options);
+            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
+                    if (response.status >= 200 && response.status < 300) {
+                      return response.json();
+                      
+                    } else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
          * Retrieve a JWT to authorize an agent to make a websocket connection. 
          * @summary Get agent websocket authorization
          * @param {*} [options] Override http request option.
@@ -58400,6 +58504,15 @@ export const ConversationApiFactory = function (configuration?: Configuration, f
             return ConversationApiFp(configuration).getAgentProfile(options)(fetch, basePath);
         },
         /**
+         * Retrieve the agents profile 
+         * @summary Get agent profiles
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getAgentProfiles(options?: any) {
+            return ConversationApiFp(configuration).getAgentProfiles(options)(fetch, basePath);
+        },
+        /**
          * Retrieve a JWT to authorize an agent to make a websocket connection. 
          * @summary Get agent websocket authorization
          * @param {*} [options] Override http request option.
@@ -59240,6 +59353,15 @@ export interface ConversationApiInterface {
      * @memberof ConversationApiInterface
      */
     getAgentProfile(options?: any): Promise<ConversationAgentProfileResponse>;
+
+    /**
+     * Retrieve the agents profile 
+     * @summary Get agent profiles
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApiInterface
+     */
+    getAgentProfiles(options?: any): Promise<ConversationAgentProfilesResponse>;
 
     /**
      * Retrieve a JWT to authorize an agent to make a websocket connection. 
@@ -60107,6 +60229,17 @@ export class ConversationApi extends BaseAPI implements ConversationApiInterface
      */
     public getAgentProfile(options?: any) {
         return ConversationApiFp(this.configuration).getAgentProfile(options)(this.fetch, this.basePath);
+    }
+
+    /**
+     * Retrieve the agents profile 
+     * @summary Get agent profiles
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApi
+     */
+    public getAgentProfiles(options?: any) {
+        return ConversationApiFp(this.configuration).getAgentProfiles(options)(this.fetch, this.basePath);
     }
 
     /**
@@ -103679,13 +103812,21 @@ export const WebhookApiFetchParamCreator = function (configuration?: Configurati
          * Retrieves the log summary information for a given webhook.  This is useful for displaying all the various logs that can be viewed. 
          * @summary Retrieve the log summaries
          * @param {number} webhookOid The webhook oid to retrieve log summaries for.
+         * @param {string} [requestId] 
+         * @param {string} [beginDate] 
+         * @param {string} [endDate] 
+         * @param {string} [status] 
+         * @param {string} [event] 
+         * @param {string} [orderId] 
+         * @param {string} [request] 
+         * @param {number} [duration] 
          * @param {number} [_limit] The maximum number of records to return on this one API call.
          * @param {number} [_offset] Pagination of the record set.  Offset is a zero based index.
          * @param {string} [_since] Fetch log summaries that have been delivered since this date/time.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getWebhookLogSummaries(webhookOid: number, _limit?: number, _offset?: number, _since?: string, options: any = {}): FetchArgs {
+        getWebhookLogSummaries(webhookOid: number, requestId?: string, beginDate?: string, endDate?: string, status?: string, event?: string, orderId?: string, request?: string, duration?: number, _limit?: number, _offset?: number, _since?: string, options: any = {}): FetchArgs {
             // verify required parameter 'webhookOid' is not null or undefined
             if (webhookOid === null || webhookOid === undefined) {
                 throw new RequiredError('webhookOid','Required parameter webhookOid was null or undefined when calling getWebhookLogSummaries.');
@@ -103718,6 +103859,38 @@ export const WebhookApiFetchParamCreator = function (configuration?: Configurati
 					? configuration.apiKey("x-ultracart-simple-key")
 					: configuration.apiKey;
                 localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+
+            if (requestId !== undefined) {
+                localVarQueryParameter['requestId'] = requestId;
+            }
+
+            if (beginDate !== undefined) {
+                localVarQueryParameter['beginDate'] = beginDate;
+            }
+
+            if (endDate !== undefined) {
+                localVarQueryParameter['endDate'] = endDate;
+            }
+
+            if (status !== undefined) {
+                localVarQueryParameter['status'] = status;
+            }
+
+            if (event !== undefined) {
+                localVarQueryParameter['event'] = event;
+            }
+
+            if (orderId !== undefined) {
+                localVarQueryParameter['orderId'] = orderId;
+            }
+
+            if (request !== undefined) {
+                localVarQueryParameter['request'] = request;
+            }
+
+            if (duration !== undefined) {
+                localVarQueryParameter['duration'] = duration;
             }
 
             if (_limit !== undefined) {
@@ -104069,14 +104242,22 @@ export const WebhookApiFp = function(configuration?: Configuration) {
          * Retrieves the log summary information for a given webhook.  This is useful for displaying all the various logs that can be viewed. 
          * @summary Retrieve the log summaries
          * @param {number} webhookOid The webhook oid to retrieve log summaries for.
+         * @param {string} [requestId] 
+         * @param {string} [beginDate] 
+         * @param {string} [endDate] 
+         * @param {string} [status] 
+         * @param {string} [event] 
+         * @param {string} [orderId] 
+         * @param {string} [request] 
+         * @param {number} [duration] 
          * @param {number} [_limit] The maximum number of records to return on this one API call.
          * @param {number} [_offset] Pagination of the record set.  Offset is a zero based index.
          * @param {string} [_since] Fetch log summaries that have been delivered since this date/time.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getWebhookLogSummaries(webhookOid: number, _limit?: number, _offset?: number, _since?: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<WebhookLogSummariesResponse> {
-            const localVarFetchArgs = WebhookApiFetchParamCreator(configuration).getWebhookLogSummaries(webhookOid, _limit, _offset, _since, options);
+        getWebhookLogSummaries(webhookOid: number, requestId?: string, beginDate?: string, endDate?: string, status?: string, event?: string, orderId?: string, request?: string, duration?: number, _limit?: number, _offset?: number, _since?: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<WebhookLogSummariesResponse> {
+            const localVarFetchArgs = WebhookApiFetchParamCreator(configuration).getWebhookLogSummaries(webhookOid, requestId, beginDate, endDate, status, event, orderId, request, duration, _limit, _offset, _since, options);
             return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
 
@@ -104224,14 +104405,22 @@ export const WebhookApiFactory = function (configuration?: Configuration, fetch?
          * Retrieves the log summary information for a given webhook.  This is useful for displaying all the various logs that can be viewed. 
          * @summary Retrieve the log summaries
          * @param {number} webhookOid The webhook oid to retrieve log summaries for.
+         * @param {string} [requestId] 
+         * @param {string} [beginDate] 
+         * @param {string} [endDate] 
+         * @param {string} [status] 
+         * @param {string} [event] 
+         * @param {string} [orderId] 
+         * @param {string} [request] 
+         * @param {number} [duration] 
          * @param {number} [_limit] The maximum number of records to return on this one API call.
          * @param {number} [_offset] Pagination of the record set.  Offset is a zero based index.
          * @param {string} [_since] Fetch log summaries that have been delivered since this date/time.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getWebhookLogSummaries(webhookOid: number, _limit?: number, _offset?: number, _since?: string, options?: any) {
-            return WebhookApiFp(configuration).getWebhookLogSummaries(webhookOid, _limit, _offset, _since, options)(fetch, basePath);
+        getWebhookLogSummaries(webhookOid: number, requestId?: string, beginDate?: string, endDate?: string, status?: string, event?: string, orderId?: string, request?: string, duration?: number, _limit?: number, _offset?: number, _since?: string, options?: any) {
+            return WebhookApiFp(configuration).getWebhookLogSummaries(webhookOid, requestId, beginDate, endDate, status, event, orderId, request, duration, _limit, _offset, _since, options)(fetch, basePath);
         },
         /**
          * Retrieves the webhooks associated with this application. 
@@ -104324,6 +104513,14 @@ export interface WebhookApiInterface {
      * Retrieves the log summary information for a given webhook.  This is useful for displaying all the various logs that can be viewed. 
      * @summary Retrieve the log summaries
      * @param {number} webhookOid The webhook oid to retrieve log summaries for.
+     * @param {string} [requestId] 
+     * @param {string} [beginDate] 
+     * @param {string} [endDate] 
+     * @param {string} [status] 
+     * @param {string} [event] 
+     * @param {string} [orderId] 
+     * @param {string} [request] 
+     * @param {number} [duration] 
      * @param {number} [_limit] The maximum number of records to return on this one API call.
      * @param {number} [_offset] Pagination of the record set.  Offset is a zero based index.
      * @param {string} [_since] Fetch log summaries that have been delivered since this date/time.
@@ -104331,7 +104528,7 @@ export interface WebhookApiInterface {
      * @throws {RequiredError}
      * @memberof WebhookApiInterface
      */
-    getWebhookLogSummaries(webhookOid: number, _limit?: number, _offset?: number, _since?: string, options?: any): Promise<WebhookLogSummariesResponse>;
+    getWebhookLogSummaries(webhookOid: number, requestId?: string, beginDate?: string, endDate?: string, status?: string, event?: string, orderId?: string, request?: string, duration?: number, _limit?: number, _offset?: number, _since?: string, options?: any): Promise<WebhookLogSummariesResponse>;
 
     /**
      * Retrieves the webhooks associated with this application. 
@@ -104430,6 +104627,14 @@ export class WebhookApi extends BaseAPI implements WebhookApiInterface {
      * Retrieves the log summary information for a given webhook.  This is useful for displaying all the various logs that can be viewed. 
      * @summary Retrieve the log summaries
      * @param {number} webhookOid The webhook oid to retrieve log summaries for.
+     * @param {string} [requestId] 
+     * @param {string} [beginDate] 
+     * @param {string} [endDate] 
+     * @param {string} [status] 
+     * @param {string} [event] 
+     * @param {string} [orderId] 
+     * @param {string} [request] 
+     * @param {number} [duration] 
      * @param {number} [_limit] The maximum number of records to return on this one API call.
      * @param {number} [_offset] Pagination of the record set.  Offset is a zero based index.
      * @param {string} [_since] Fetch log summaries that have been delivered since this date/time.
@@ -104437,8 +104642,8 @@ export class WebhookApi extends BaseAPI implements WebhookApiInterface {
      * @throws {RequiredError}
      * @memberof WebhookApi
      */
-    public getWebhookLogSummaries(webhookOid: number, _limit?: number, _offset?: number, _since?: string, options?: any) {
-        return WebhookApiFp(this.configuration).getWebhookLogSummaries(webhookOid, _limit, _offset, _since, options)(this.fetch, this.basePath);
+    public getWebhookLogSummaries(webhookOid: number, requestId?: string, beginDate?: string, endDate?: string, status?: string, event?: string, orderId?: string, request?: string, duration?: number, _limit?: number, _offset?: number, _since?: string, options?: any) {
+        return WebhookApiFp(this.configuration).getWebhookLogSummaries(webhookOid, requestId, beginDate, endDate, status, event, orderId, request, duration, _limit, _offset, _since, options)(this.fetch, this.basePath);
     }
 
     /**
