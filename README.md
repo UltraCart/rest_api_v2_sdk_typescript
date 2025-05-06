@@ -1,12 +1,12 @@
 # UltraCart Typescript SDK
-## ultracart_rest_api_v2_typescript@4.1.9
+## ultracart_rest_api_v2_typescript@4.1.10
 
 Every API method call has a sample for every language SDK.  See https://github.com/UltraCart/sdk_samples
 
 Installation
 
 ```
-npm install ultracart_rest_api_v2_typescript@4.1.9 --save
+npm install ultracart_rest_api_v2_typescript@4.1.10 --save
 ```
 
 ```typescript
@@ -83,6 +83,7 @@ Not every change is committed to every SDK.
 
 | Version | Date | Comments |
 | --: | :-: | --- |
+| 4.1.10 | 05/06/2025 | conversation - ConversationAgentProfile.user_id added for agent profiles call |
 | 4.1.9 | 05/05/2025 | conversations - method to fetch all agent profiles for admin screens |
 | 4.1.8 | 04/22/2025 | order property fields for created_by and created_dts |
 | 4.1.7 | 04/21/2025 | conversation agent additional fields |

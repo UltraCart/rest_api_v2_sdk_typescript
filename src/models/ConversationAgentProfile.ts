@@ -85,6 +85,12 @@ export interface ConversationAgentProfile {
      * @memberof ConversationAgentProfile
      */
     profile_image_url?: string;
+    /**
+     * User ID associated with the agent.  Populated by getAgentProfiles call only.
+     * @type {number}
+     * @memberof ConversationAgentProfile
+     */
+    user_id?: number;
 }
 
 
@@ -130,6 +136,7 @@ export function ConversationAgentProfileFromJSONTyped(json: any, ignoreDiscrimin
         'name': !exists(json, 'name') ? undefined : json['name'],
         'profile_image_upload_key': !exists(json, 'profile_image_upload_key') ? undefined : json['profile_image_upload_key'],
         'profile_image_url': !exists(json, 'profile_image_url') ? undefined : json['profile_image_url'],
+        'user_id': !exists(json, 'user_id') ? undefined : json['user_id'],
     };
 }
 
@@ -153,6 +160,7 @@ export function ConversationAgentProfileToJSON(value?: ConversationAgentProfile 
         'name': value.name,
         'profile_image_upload_key': value.profile_image_upload_key,
         'profile_image_url': value.profile_image_url,
+        'user_id': value.user_id,
     };
 }
 
