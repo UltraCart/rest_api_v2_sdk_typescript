@@ -7369,6 +7369,12 @@ export interface ConversationAgentProfile {
      * @memberof ConversationAgentProfile
      */
     profile_image_url?: string;
+    /**
+     * User ID associated with the agent.  Populated by getAgentProfiles call only.
+     * @type {number}
+     * @memberof ConversationAgentProfile
+     */
+    user_id?: number;
 }
 
 /**
