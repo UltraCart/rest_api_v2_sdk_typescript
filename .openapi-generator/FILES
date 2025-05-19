@@ -245,6 +245,8 @@ src/models/ConversationStartRequest.ts
 src/models/ConversationStartResponse.ts
 src/models/ConversationSummary.ts
 src/models/ConversationTwilioAccount.ts
+src/models/ConversationVirtualAgentBudget.ts
+src/models/ConversationVirtualAgentBudgetResponse.ts
 src/models/ConversationWebchatContext.ts
 src/models/ConversationWebchatQueueStatus.ts
 src/models/ConversationWebchatQueueStatusAgent.ts

@@ -186,6 +186,12 @@ import {
     ConversationStartResponse,
     ConversationStartResponseFromJSON,
     ConversationStartResponseToJSON,
+    ConversationVirtualAgentBudget,
+    ConversationVirtualAgentBudgetFromJSON,
+    ConversationVirtualAgentBudgetToJSON,
+    ConversationVirtualAgentBudgetResponse,
+    ConversationVirtualAgentBudgetResponseFromJSON,
+    ConversationVirtualAgentBudgetResponseToJSON,
     ConversationWebchatContext,
     ConversationWebchatContextFromJSON,
     ConversationWebchatContextToJSON,
@@ -479,6 +485,10 @@ export interface UpdatePbxTimeRangeRequest {
 export interface UpdatePbxVoicemailMailboxRequest {
     conversationPbxVoicemailMailboxUuid: string;
     pbxVoicemailMailbox: ConversationPbxVoicemailMailbox;
+}
+
+export interface UpdateVirtualAgentBudgetRequest {
+    virtualAgentBudget: ConversationVirtualAgentBudget;
 }
 
 /**
@@ -1325,6 +1335,21 @@ export interface ConversationApiInterface {
     getPbxVoicemailMailboxes(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ConversationPbxVoicemailMailboxesResponse>;
 
     /**
+     * Retrieve virtual agent budget 
+     * @summary Get virtual agent budget
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApiInterface
+     */
+    getVirtualAgentBudgetRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ConversationVirtualAgentBudgetResponse>>;
+
+    /**
+     * Retrieve virtual agent budget 
+     * Get virtual agent budget
+     */
+    getVirtualAgentBudget(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ConversationVirtualAgentBudgetResponse>;
+
+    /**
      * Insert a canned message 
      * @summary Insert a canned message
      * @param {ConversationCannedMessage} cannedMessage Canned message
@@ -1833,6 +1858,22 @@ export interface ConversationApiInterface {
      * Update pbx voicemailMailbox
      */
     updatePbxVoicemailMailbox(requestParameters: UpdatePbxVoicemailMailboxRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ConversationPbxVoicemailMailboxResponse>;
+
+    /**
+     * Update virtual agent budget 
+     * @summary Update virtual agent budget
+     * @param {ConversationVirtualAgentBudget} virtualAgentBudget Virtual Agent Budget
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApiInterface
+     */
+    updateVirtualAgentBudgetRaw(requestParameters: UpdateVirtualAgentBudgetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ConversationVirtualAgentBudgetResponse>>;
+
+    /**
+     * Update virtual agent budget 
+     * Update virtual agent budget
+     */
+    updateVirtualAgentBudget(requestParameters: UpdateVirtualAgentBudgetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ConversationVirtualAgentBudgetResponse>;
 
 }
 
@@ -3970,6 +4011,43 @@ export class ConversationApi extends runtime.BaseAPI implements ConversationApiI
     }
 
     /**
+     * Retrieve virtual agent budget 
+     * Get virtual agent budget
+     */
+    async getVirtualAgentBudgetRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ConversationVirtualAgentBudgetResponse>> {
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", ["conversation_read"]);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/conversation/virtualagent/budget`,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => ConversationVirtualAgentBudgetResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Retrieve virtual agent budget 
+     * Get virtual agent budget
+     */
+    async getVirtualAgentBudget(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ConversationVirtualAgentBudgetResponse> {
+        const response = await this.getVirtualAgentBudgetRaw(initOverrides);
+        return await response.value();
+    }
+
+    /**
      * Insert a canned message 
      * Insert a canned message
      */
@@ -5356,6 +5434,50 @@ export class ConversationApi extends runtime.BaseAPI implements ConversationApiI
      */
     async updatePbxVoicemailMailbox(requestParameters: UpdatePbxVoicemailMailboxRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ConversationPbxVoicemailMailboxResponse> {
         const response = await this.updatePbxVoicemailMailboxRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Update virtual agent budget 
+     * Update virtual agent budget
+     */
+    async updateVirtualAgentBudgetRaw(requestParameters: UpdateVirtualAgentBudgetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ConversationVirtualAgentBudgetResponse>> {
+        if (requestParameters.virtualAgentBudget === null || requestParameters.virtualAgentBudget === undefined) {
+            throw new runtime.RequiredError('virtualAgentBudget','Required parameter requestParameters.virtualAgentBudget was null or undefined when calling updateVirtualAgentBudget.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", ["conversation_write"]);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/conversation/virtualagent/budget`,
+            method: 'PUT',
+            headers: headerParameters,
+            query: queryParameters,
+            body: ConversationVirtualAgentBudgetToJSON(requestParameters.virtualAgentBudget),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => ConversationVirtualAgentBudgetResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Update virtual agent budget 
+     * Update virtual agent budget
+     */
+    async updateVirtualAgentBudget(requestParameters: UpdateVirtualAgentBudgetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ConversationVirtualAgentBudgetResponse> {
+        const response = await this.updateVirtualAgentBudgetRaw(requestParameters, initOverrides);
         return await response.value();
     }
 

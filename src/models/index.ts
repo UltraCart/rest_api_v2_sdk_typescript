@@ -220,6 +220,8 @@ export * from './ConversationStartRequest';
 export * from './ConversationStartResponse';
 export * from './ConversationSummary';
 export * from './ConversationTwilioAccount';
+export * from './ConversationVirtualAgentBudget';
+export * from './ConversationVirtualAgentBudgetResponse';
 export * from './ConversationWebchatContext';
 export * from './ConversationWebchatQueueStatus';
 export * from './ConversationWebchatQueueStatusAgent';
