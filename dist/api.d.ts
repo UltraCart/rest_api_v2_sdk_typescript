@@ -11045,6 +11045,104 @@ export interface ConversationVirtualAgentBudgetResponse {
 /**
  *
  * @export
+ * @interface ConversationVirtualAgentCapabilities
+ */
+export interface ConversationVirtualAgentCapabilities {
+    /**
+     *
+     * @type {boolean}
+     * @memberof ConversationVirtualAgentCapabilities
+     */
+    cancel_subscription?: boolean;
+    /**
+     *
+     * @type {boolean}
+     * @memberof ConversationVirtualAgentCapabilities
+     */
+    delay_subscription?: boolean;
+    /**
+     *
+     * @type {boolean}
+     * @memberof ConversationVirtualAgentCapabilities
+     */
+    lookup_order_information?: boolean;
+    /**
+     *
+     * @type {boolean}
+     * @memberof ConversationVirtualAgentCapabilities
+     */
+    lookup_subscription_information?: boolean;
+    /**
+     *
+     * @type {boolean}
+     * @memberof ConversationVirtualAgentCapabilities
+     */
+    open_support_ticket?: boolean;
+    /**
+     *
+     * @type {boolean}
+     * @memberof ConversationVirtualAgentCapabilities
+     */
+    pause_subscription?: boolean;
+    /**
+     *
+     * @type {boolean}
+     * @memberof ConversationVirtualAgentCapabilities
+     */
+    resume_subscription?: boolean;
+    /**
+     *
+     * @type {boolean}
+     * @memberof ConversationVirtualAgentCapabilities
+     */
+    transfer_chat_to_live_agent?: boolean;
+    /**
+     *
+     * @type {boolean}
+     * @memberof ConversationVirtualAgentCapabilities
+     */
+    update_subscription_credit_card?: boolean;
+}
+/**
+ *
+ * @export
+ * @interface ConversationVirtualAgentCapabilitiesResponse
+ */
+export interface ConversationVirtualAgentCapabilitiesResponse {
+    /**
+     *
+     * @type {ConversationVirtualAgentCapabilities}
+     * @memberof ConversationVirtualAgentCapabilitiesResponse
+     */
+    capabilities?: ConversationVirtualAgentCapabilities;
+    /**
+     *
+     * @type {ModelError}
+     * @memberof ConversationVirtualAgentCapabilitiesResponse
+     */
+    error?: ModelError;
+    /**
+     *
+     * @type {ResponseMetadata}
+     * @memberof ConversationVirtualAgentCapabilitiesResponse
+     */
+    metadata?: ResponseMetadata;
+    /**
+     * Indicates if API call was successful
+     * @type {boolean}
+     * @memberof ConversationVirtualAgentCapabilitiesResponse
+     */
+    success?: boolean;
+    /**
+     *
+     * @type {Warning}
+     * @memberof ConversationVirtualAgentCapabilitiesResponse
+     */
+    warning?: Warning;
+}
+/**
+ *
+ * @export
  * @interface ConversationWebchatContext
  */
 export interface ConversationWebchatContext {
@@ -47759,6 +47857,13 @@ export declare const ConversationApiFetchParamCreator: (configuration?: Configur
      */
     getVirtualAgentBudget(options?: any): FetchArgs;
     /**
+     * Retrieve virtual agent capabilities
+     * @summary Get virtual agent capabilities
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getVirtualAgentCapabilities(options?: any): FetchArgs;
+    /**
      * Insert a canned message
      * @summary Insert a canned message
      * @param {ConversationCannedMessage} canned_message Canned message
@@ -48028,6 +48133,14 @@ export declare const ConversationApiFetchParamCreator: (configuration?: Configur
      * @throws {RequiredError}
      */
     updateVirtualAgentBudget(virtual_agent_budget: ConversationVirtualAgentBudget, options?: any): FetchArgs;
+    /**
+     * Update virtual agent capabilities
+     * @summary Update virtual agent capabilities
+     * @param {ConversationVirtualAgentCapabilities} virtual_agent_capabilities Virtual Agent Capabilities
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    updateVirtualAgentCapabilities(virtual_agent_capabilities: ConversationVirtualAgentCapabilities, options?: any): FetchArgs;
 };
 /**
  * ConversationApi - functional programming interface
@@ -48454,6 +48567,13 @@ export declare const ConversationApiFp: (configuration?: Configuration) => {
      */
     getVirtualAgentBudget(options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ConversationVirtualAgentBudgetResponse>;
     /**
+     * Retrieve virtual agent capabilities
+     * @summary Get virtual agent capabilities
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getVirtualAgentCapabilities(options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ConversationVirtualAgentCapabilitiesResponse>;
+    /**
      * Insert a canned message
      * @summary Insert a canned message
      * @param {ConversationCannedMessage} canned_message Canned message
@@ -48723,6 +48843,14 @@ export declare const ConversationApiFp: (configuration?: Configuration) => {
      * @throws {RequiredError}
      */
     updateVirtualAgentBudget(virtual_agent_budget: ConversationVirtualAgentBudget, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ConversationVirtualAgentBudgetResponse>;
+    /**
+     * Update virtual agent capabilities
+     * @summary Update virtual agent capabilities
+     * @param {ConversationVirtualAgentCapabilities} virtual_agent_capabilities Virtual Agent Capabilities
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    updateVirtualAgentCapabilities(virtual_agent_capabilities: ConversationVirtualAgentCapabilities, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ConversationVirtualAgentCapabilitiesResponse>;
 };
 /**
  * ConversationApi - factory interface
@@ -49149,6 +49277,13 @@ export declare const ConversationApiFactory: (configuration?: Configuration, fet
      */
     getVirtualAgentBudget(options?: any): Promise<ConversationVirtualAgentBudgetResponse>;
     /**
+     * Retrieve virtual agent capabilities
+     * @summary Get virtual agent capabilities
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getVirtualAgentCapabilities(options?: any): Promise<ConversationVirtualAgentCapabilitiesResponse>;
+    /**
      * Insert a canned message
      * @summary Insert a canned message
      * @param {ConversationCannedMessage} canned_message Canned message
@@ -49418,6 +49553,14 @@ export declare const ConversationApiFactory: (configuration?: Configuration, fet
      * @throws {RequiredError}
      */
     updateVirtualAgentBudget(virtual_agent_budget: ConversationVirtualAgentBudget, options?: any): Promise<ConversationVirtualAgentBudgetResponse>;
+    /**
+     * Update virtual agent capabilities
+     * @summary Update virtual agent capabilities
+     * @param {ConversationVirtualAgentCapabilities} virtual_agent_capabilities Virtual Agent Capabilities
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    updateVirtualAgentCapabilities(virtual_agent_capabilities: ConversationVirtualAgentCapabilities, options?: any): Promise<ConversationVirtualAgentCapabilitiesResponse>;
 };
 /**
  * ConversationApi - interface
@@ -49899,6 +50042,14 @@ export interface ConversationApiInterface {
      */
     getVirtualAgentBudget(options?: any): Promise<ConversationVirtualAgentBudgetResponse>;
     /**
+     * Retrieve virtual agent capabilities
+     * @summary Get virtual agent capabilities
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApiInterface
+     */
+    getVirtualAgentCapabilities(options?: any): Promise<ConversationVirtualAgentCapabilitiesResponse>;
+    /**
      * Insert a canned message
      * @summary Insert a canned message
      * @param {ConversationCannedMessage} canned_message Canned message
@@ -50200,6 +50351,15 @@ export interface ConversationApiInterface {
      * @memberof ConversationApiInterface
      */
     updateVirtualAgentBudget(virtual_agent_budget: ConversationVirtualAgentBudget, options?: any): Promise<ConversationVirtualAgentBudgetResponse>;
+    /**
+     * Update virtual agent capabilities
+     * @summary Update virtual agent capabilities
+     * @param {ConversationVirtualAgentCapabilities} virtual_agent_capabilities Virtual Agent Capabilities
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApiInterface
+     */
+    updateVirtualAgentCapabilities(virtual_agent_capabilities: ConversationVirtualAgentCapabilities, options?: any): Promise<ConversationVirtualAgentCapabilitiesResponse>;
 }
 /**
  * ConversationApi - object-oriented interface
@@ -50682,6 +50842,14 @@ export declare class ConversationApi extends BaseAPI implements ConversationApiI
      */
     getVirtualAgentBudget(options?: any): Promise<ConversationVirtualAgentBudgetResponse>;
     /**
+     * Retrieve virtual agent capabilities
+     * @summary Get virtual agent capabilities
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApi
+     */
+    getVirtualAgentCapabilities(options?: any): Promise<ConversationVirtualAgentCapabilitiesResponse>;
+    /**
      * Insert a canned message
      * @summary Insert a canned message
      * @param {ConversationCannedMessage} canned_message Canned message
@@ -50983,6 +51151,15 @@ export declare class ConversationApi extends BaseAPI implements ConversationApiI
      * @memberof ConversationApi
      */
     updateVirtualAgentBudget(virtual_agent_budget: ConversationVirtualAgentBudget, options?: any): Promise<ConversationVirtualAgentBudgetResponse>;
+    /**
+     * Update virtual agent capabilities
+     * @summary Update virtual agent capabilities
+     * @param {ConversationVirtualAgentCapabilities} virtual_agent_capabilities Virtual Agent Capabilities
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApi
+     */
+    updateVirtualAgentCapabilities(virtual_agent_capabilities: ConversationVirtualAgentCapabilities, options?: any): Promise<ConversationVirtualAgentCapabilitiesResponse>;
 }
 /**
  * CouponApi - fetch parameter creator

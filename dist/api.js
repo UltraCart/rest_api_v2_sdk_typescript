@@ -9960,6 +9960,46 @@ var ConversationApiFetchParamCreator = function (configuration) {
             };
         },
         /**
+         * Retrieve virtual agent capabilities
+         * @summary Get virtual agent capabilities
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getVirtualAgentCapabilities: function (options) {
+            if (options === void 0) { options = {}; }
+            var localVarPath = "/conversation/virtualagent/capabilities";
+            var localVarUrlObj = url.parse(localVarPath, true);
+            var localVarRequestOptions = Object.assign({ method: 'GET' }, options);
+            var localVarHeaderParameter = {};
+            var localVarQueryParameter = {};
+            if (configuration && configuration.apiVersion) {
+                localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+            }
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+                var localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+                    ? configuration.accessToken("ultraCartOauth", ["conversation_read"])
+                    : configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                var localVarApiKeyValue = typeof configuration.apiKey === 'function'
+                    ? configuration.apiKey("x-ultracart-simple-key")
+                    : configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
          * Insert a canned message
          * @summary Insert a canned message
          * @param {ConversationCannedMessage} canned_message Canned message
@@ -11563,6 +11603,54 @@ var ConversationApiFetchParamCreator = function (configuration) {
                 options: localVarRequestOptions,
             };
         },
+        /**
+         * Update virtual agent capabilities
+         * @summary Update virtual agent capabilities
+         * @param {ConversationVirtualAgentCapabilities} virtual_agent_capabilities Virtual Agent Capabilities
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        updateVirtualAgentCapabilities: function (virtual_agent_capabilities, options) {
+            if (options === void 0) { options = {}; }
+            // verify required parameter 'virtual_agent_capabilities' is not null or undefined
+            if (virtual_agent_capabilities === null || virtual_agent_capabilities === undefined) {
+                throw new RequiredError('virtual_agent_capabilities', 'Required parameter virtual_agent_capabilities was null or undefined when calling updateVirtualAgentCapabilities.');
+            }
+            var localVarPath = "/conversation/virtualagent/capabilities";
+            var localVarUrlObj = url.parse(localVarPath, true);
+            var localVarRequestOptions = Object.assign({ method: 'PUT' }, options);
+            var localVarHeaderParameter = {};
+            var localVarQueryParameter = {};
+            if (configuration && configuration.apiVersion) {
+                localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+            }
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+                var localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+                    ? configuration.accessToken("ultraCartOauth", ["conversation_write"])
+                    : configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                var localVarApiKeyValue = typeof configuration.apiKey === 'function'
+                    ? configuration.apiKey("x-ultracart-simple-key")
+                    : configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+            var needsSerialization = ("ConversationVirtualAgentCapabilities" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
+            localVarRequestOptions.body = needsSerialization ? JSON.stringify(virtual_agent_capabilities || {}) : (virtual_agent_capabilities || "");
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
     };
 };
 exports.ConversationApiFetchParamCreator = ConversationApiFetchParamCreator;
@@ -12748,6 +12836,27 @@ var ConversationApiFp = function (configuration) {
             };
         },
         /**
+         * Retrieve virtual agent capabilities
+         * @summary Get virtual agent capabilities
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getVirtualAgentCapabilities: function (options) {
+            var localVarFetchArgs = (0, exports.ConversationApiFetchParamCreator)(configuration).getVirtualAgentCapabilities(options);
+            return function (fetch, basePath) {
+                if (fetch === void 0) { fetch = portableFetch; }
+                if (basePath === void 0) { basePath = BASE_PATH; }
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(function (response) {
+                    if (response.status >= 200 && response.status < 300) {
+                        return response.json();
+                    }
+                    else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
          * Insert a canned message
          * @summary Insert a canned message
          * @param {ConversationCannedMessage} canned_message Canned message
@@ -13465,6 +13574,28 @@ var ConversationApiFp = function (configuration) {
                 });
             };
         },
+        /**
+         * Update virtual agent capabilities
+         * @summary Update virtual agent capabilities
+         * @param {ConversationVirtualAgentCapabilities} virtual_agent_capabilities Virtual Agent Capabilities
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        updateVirtualAgentCapabilities: function (virtual_agent_capabilities, options) {
+            var localVarFetchArgs = (0, exports.ConversationApiFetchParamCreator)(configuration).updateVirtualAgentCapabilities(virtual_agent_capabilities, options);
+            return function (fetch, basePath) {
+                if (fetch === void 0) { fetch = portableFetch; }
+                if (basePath === void 0) { basePath = BASE_PATH; }
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(function (response) {
+                    if (response.status >= 200 && response.status < 300) {
+                        return response.json();
+                    }
+                    else {
+                        throw response;
+                    }
+                });
+            };
+        },
     };
 };
 exports.ConversationApiFp = ConversationApiFp;
@@ -14002,6 +14133,15 @@ var ConversationApiFactory = function (configuration, fetch, basePath) {
             return (0, exports.ConversationApiFp)(configuration).getVirtualAgentBudget(options)(fetch, basePath);
         },
         /**
+         * Retrieve virtual agent capabilities
+         * @summary Get virtual agent capabilities
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getVirtualAgentCapabilities: function (options) {
+            return (0, exports.ConversationApiFp)(configuration).getVirtualAgentCapabilities(options)(fetch, basePath);
+        },
+        /**
          * Insert a canned message
          * @summary Insert a canned message
          * @param {ConversationCannedMessage} canned_message Canned message
@@ -14334,6 +14474,16 @@ var ConversationApiFactory = function (configuration, fetch, basePath) {
          */
         updateVirtualAgentBudget: function (virtual_agent_budget, options) {
             return (0, exports.ConversationApiFp)(configuration).updateVirtualAgentBudget(virtual_agent_budget, options)(fetch, basePath);
+        },
+        /**
+         * Update virtual agent capabilities
+         * @summary Update virtual agent capabilities
+         * @param {ConversationVirtualAgentCapabilities} virtual_agent_capabilities Virtual Agent Capabilities
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        updateVirtualAgentCapabilities: function (virtual_agent_capabilities, options) {
+            return (0, exports.ConversationApiFp)(configuration).updateVirtualAgentCapabilities(virtual_agent_capabilities, options)(fetch, basePath);
         },
     };
 };
@@ -14931,6 +15081,16 @@ var ConversationApi = /** @class */ (function (_super) {
         return (0, exports.ConversationApiFp)(this.configuration).getVirtualAgentBudget(options)(this.fetch, this.basePath);
     };
     /**
+     * Retrieve virtual agent capabilities
+     * @summary Get virtual agent capabilities
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApi
+     */
+    ConversationApi.prototype.getVirtualAgentCapabilities = function (options) {
+        return (0, exports.ConversationApiFp)(this.configuration).getVirtualAgentCapabilities(options)(this.fetch, this.basePath);
+    };
+    /**
      * Insert a canned message
      * @summary Insert a canned message
      * @param {ConversationCannedMessage} canned_message Canned message
@@ -15295,6 +15455,17 @@ var ConversationApi = /** @class */ (function (_super) {
      */
     ConversationApi.prototype.updateVirtualAgentBudget = function (virtual_agent_budget, options) {
         return (0, exports.ConversationApiFp)(this.configuration).updateVirtualAgentBudget(virtual_agent_budget, options)(this.fetch, this.basePath);
+    };
+    /**
+     * Update virtual agent capabilities
+     * @summary Update virtual agent capabilities
+     * @param {ConversationVirtualAgentCapabilities} virtual_agent_capabilities Virtual Agent Capabilities
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApi
+     */
+    ConversationApi.prototype.updateVirtualAgentCapabilities = function (virtual_agent_capabilities, options) {
+        return (0, exports.ConversationApiFp)(this.configuration).updateVirtualAgentCapabilities(virtual_agent_capabilities, options)(this.fetch, this.basePath);
     };
     return ConversationApi;
 }(BaseAPI));
