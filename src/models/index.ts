@@ -222,6 +222,8 @@ export * from './ConversationSummary';
 export * from './ConversationTwilioAccount';
 export * from './ConversationVirtualAgentBudget';
 export * from './ConversationVirtualAgentBudgetResponse';
+export * from './ConversationVirtualAgentCapabilities';
+export * from './ConversationVirtualAgentCapabilitiesResponse';
 export * from './ConversationWebchatContext';
 export * from './ConversationWebchatQueueStatus';
 export * from './ConversationWebchatQueueStatusAgent';
