@@ -11244,6 +11244,76 @@ export interface ConversationTwilioAccount {
 /**
  * 
  * @export
+ * @interface ConversationVirtualAgentBudget
+ */
+export interface ConversationVirtualAgentBudget {
+    /**
+     * 
+     * @type {number}
+     * @memberof ConversationVirtualAgentBudget
+     */
+    budget_daily?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof ConversationVirtualAgentBudget
+     */
+    budget_monthly?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof ConversationVirtualAgentBudget
+     */
+    used_daily?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof ConversationVirtualAgentBudget
+     */
+    used_monthly?: number;
+}
+
+/**
+ * 
+ * @export
+ * @interface ConversationVirtualAgentBudgetResponse
+ */
+export interface ConversationVirtualAgentBudgetResponse {
+    /**
+     * 
+     * @type {ConversationVirtualAgentBudget}
+     * @memberof ConversationVirtualAgentBudgetResponse
+     */
+    budget?: ConversationVirtualAgentBudget;
+    /**
+     * 
+     * @type {ModelError}
+     * @memberof ConversationVirtualAgentBudgetResponse
+     */
+    error?: ModelError;
+    /**
+     * 
+     * @type {ResponseMetadata}
+     * @memberof ConversationVirtualAgentBudgetResponse
+     */
+    metadata?: ResponseMetadata;
+    /**
+     * Indicates if API call was successful
+     * @type {boolean}
+     * @memberof ConversationVirtualAgentBudgetResponse
+     */
+    success?: boolean;
+    /**
+     * 
+     * @type {Warning}
+     * @memberof ConversationVirtualAgentBudgetResponse
+     */
+    warning?: Warning;
+}
+
+/**
+ * 
+ * @export
  * @interface ConversationWebchatContext
  */
 export interface ConversationWebchatContext {
@@ -54830,6 +54900,52 @@ export const ConversationApiFetchParamCreator = function (configuration?: Config
             };
         },
         /**
+         * Retrieve virtual agent budget 
+         * @summary Get virtual agent budget
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getVirtualAgentBudget(options: any = {}): FetchArgs {
+            const localVarPath = `/conversation/virtualagent/budget`;
+            const localVarUrlObj = url.parse(localVarPath, true);
+            const localVarRequestOptions = Object.assign({ method: 'GET' }, options);
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+    if(configuration && configuration.apiVersion) {
+      localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+    }
+
+
+
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+				const localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+					? configuration.accessToken("ultraCartOauth", ["conversation_read"])
+					: configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
+					? configuration.apiKey("x-ultracart-simple-key")
+					: configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
          * Insert a canned message 
          * @summary Insert a canned message
          * @param {ConversationCannedMessage} canned_message Canned message
@@ -56596,6 +56712,61 @@ export const ConversationApiFetchParamCreator = function (configuration?: Config
                 options: localVarRequestOptions,
             };
         },
+        /**
+         * Update virtual agent budget 
+         * @summary Update virtual agent budget
+         * @param {ConversationVirtualAgentBudget} virtual_agent_budget Virtual Agent Budget
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        updateVirtualAgentBudget(virtual_agent_budget: ConversationVirtualAgentBudget, options: any = {}): FetchArgs {
+            // verify required parameter 'virtual_agent_budget' is not null or undefined
+            if (virtual_agent_budget === null || virtual_agent_budget === undefined) {
+                throw new RequiredError('virtual_agent_budget','Required parameter virtual_agent_budget was null or undefined when calling updateVirtualAgentBudget.');
+            }
+            const localVarPath = `/conversation/virtualagent/budget`;
+            const localVarUrlObj = url.parse(localVarPath, true);
+            const localVarRequestOptions = Object.assign({ method: 'PUT' }, options);
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+    if(configuration && configuration.apiVersion) {
+      localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+    }
+
+
+
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+				const localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+					? configuration.accessToken("ultraCartOauth", ["conversation_write"])
+					: configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                const localVarApiKeyValue = typeof configuration.apiKey === 'function'
+					? configuration.apiKey("x-ultracart-simple-key")
+					: configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+            const needsSerialization = (<any>"ConversationVirtualAgentBudget" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
+            localVarRequestOptions.body =  needsSerialization ? JSON.stringify(virtual_agent_budget || {}) : (virtual_agent_budget || "");
+
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
     }
 };
 
@@ -57707,6 +57878,26 @@ export const ConversationApiFp = function(configuration?: Configuration) {
             };
         },
         /**
+         * Retrieve virtual agent budget 
+         * @summary Get virtual agent budget
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getVirtualAgentBudget(options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ConversationVirtualAgentBudgetResponse> {
+            const localVarFetchArgs = ConversationApiFetchParamCreator(configuration).getVirtualAgentBudget(options);
+            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
+                    if (response.status >= 200 && response.status < 300) {
+                      return response.json();
+                      
+                    } else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
          * Insert a canned message 
          * @summary Insert a canned message
          * @param {ConversationCannedMessage} canned_message Canned message
@@ -58371,6 +58562,27 @@ export const ConversationApiFp = function(configuration?: Configuration) {
                 });
             };
         },
+        /**
+         * Update virtual agent budget 
+         * @summary Update virtual agent budget
+         * @param {ConversationVirtualAgentBudget} virtual_agent_budget Virtual Agent Budget
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        updateVirtualAgentBudget(virtual_agent_budget: ConversationVirtualAgentBudget, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ConversationVirtualAgentBudgetResponse> {
+            const localVarFetchArgs = ConversationApiFetchParamCreator(configuration).updateVirtualAgentBudget(virtual_agent_budget, options);
+            return (fetch: FetchAPI = portableFetch, basePath: string = BASE_PATH) => {
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then((response) => {
+
+                    if (response.status >= 200 && response.status < 300) {
+                      return response.json();
+                      
+                    } else {
+                        throw response;
+                    }
+                });
+            };
+        },
     }
 };
 
@@ -58899,6 +59111,15 @@ export const ConversationApiFactory = function (configuration?: Configuration, f
             return ConversationApiFp(configuration).getPbxVoicemailMailboxes(options)(fetch, basePath);
         },
         /**
+         * Retrieve virtual agent budget 
+         * @summary Get virtual agent budget
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getVirtualAgentBudget(options?: any) {
+            return ConversationApiFp(configuration).getVirtualAgentBudget(options)(fetch, basePath);
+        },
+        /**
          * Insert a canned message 
          * @summary Insert a canned message
          * @param {ConversationCannedMessage} canned_message Canned message
@@ -59221,6 +59442,16 @@ export const ConversationApiFactory = function (configuration?: Configuration, f
          */
         updatePbxVoicemailMailbox(conversationPbxVoicemailMailboxUuid: string, pbx_voicemailMailbox: ConversationPbxVoicemailMailbox, options?: any) {
             return ConversationApiFp(configuration).updatePbxVoicemailMailbox(conversationPbxVoicemailMailboxUuid, pbx_voicemailMailbox, options)(fetch, basePath);
+        },
+        /**
+         * Update virtual agent budget 
+         * @summary Update virtual agent budget
+         * @param {ConversationVirtualAgentBudget} virtual_agent_budget Virtual Agent Budget
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        updateVirtualAgentBudget(virtual_agent_budget: ConversationVirtualAgentBudget, options?: any) {
+            return ConversationApiFp(configuration).updateVirtualAgentBudget(virtual_agent_budget, options)(fetch, basePath);
         },
     };
 };
@@ -59750,6 +59981,15 @@ export interface ConversationApiInterface {
     getPbxVoicemailMailboxes(options?: any): Promise<ConversationPbxVoicemailMailboxesResponse>;
 
     /**
+     * Retrieve virtual agent budget 
+     * @summary Get virtual agent budget
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApiInterface
+     */
+    getVirtualAgentBudget(options?: any): Promise<ConversationVirtualAgentBudgetResponse>;
+
+    /**
      * Insert a canned message 
      * @summary Insert a canned message
      * @param {ConversationCannedMessage} canned_message Canned message
@@ -60072,6 +60312,16 @@ export interface ConversationApiInterface {
      * @memberof ConversationApiInterface
      */
     updatePbxVoicemailMailbox(conversationPbxVoicemailMailboxUuid: string, pbx_voicemailMailbox: ConversationPbxVoicemailMailbox, options?: any): Promise<ConversationPbxVoicemailMailboxResponse>;
+
+    /**
+     * Update virtual agent budget 
+     * @summary Update virtual agent budget
+     * @param {ConversationVirtualAgentBudget} virtual_agent_budget Virtual Agent Budget
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApiInterface
+     */
+    updateVirtualAgentBudget(virtual_agent_budget: ConversationVirtualAgentBudget, options?: any): Promise<ConversationVirtualAgentBudgetResponse>;
 
 }
 
@@ -60707,6 +60957,17 @@ export class ConversationApi extends BaseAPI implements ConversationApiInterface
     }
 
     /**
+     * Retrieve virtual agent budget 
+     * @summary Get virtual agent budget
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApi
+     */
+    public getVirtualAgentBudget(options?: any) {
+        return ConversationApiFp(this.configuration).getVirtualAgentBudget(options)(this.fetch, this.basePath);
+    }
+
+    /**
      * Insert a canned message 
      * @summary Insert a canned message
      * @param {ConversationCannedMessage} canned_message Canned message
@@ -61090,6 +61351,18 @@ export class ConversationApi extends BaseAPI implements ConversationApiInterface
      */
     public updatePbxVoicemailMailbox(conversationPbxVoicemailMailboxUuid: string, pbx_voicemailMailbox: ConversationPbxVoicemailMailbox, options?: any) {
         return ConversationApiFp(this.configuration).updatePbxVoicemailMailbox(conversationPbxVoicemailMailboxUuid, pbx_voicemailMailbox, options)(this.fetch, this.basePath);
+    }
+
+    /**
+     * Update virtual agent budget 
+     * @summary Update virtual agent budget
+     * @param {ConversationVirtualAgentBudget} virtual_agent_budget Virtual Agent Budget
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApi
+     */
+    public updateVirtualAgentBudget(virtual_agent_budget: ConversationVirtualAgentBudget, options?: any) {
+        return ConversationApiFp(this.configuration).updateVirtualAgentBudget(virtual_agent_budget, options)(this.fetch, this.basePath);
     }
 
 }

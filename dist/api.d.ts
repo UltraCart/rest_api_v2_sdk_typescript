@@ -10977,6 +10977,74 @@ export interface ConversationTwilioAccount {
 /**
  *
  * @export
+ * @interface ConversationVirtualAgentBudget
+ */
+export interface ConversationVirtualAgentBudget {
+    /**
+     *
+     * @type {number}
+     * @memberof ConversationVirtualAgentBudget
+     */
+    budget_daily?: number;
+    /**
+     *
+     * @type {number}
+     * @memberof ConversationVirtualAgentBudget
+     */
+    budget_monthly?: number;
+    /**
+     *
+     * @type {number}
+     * @memberof ConversationVirtualAgentBudget
+     */
+    used_daily?: number;
+    /**
+     *
+     * @type {number}
+     * @memberof ConversationVirtualAgentBudget
+     */
+    used_monthly?: number;
+}
+/**
+ *
+ * @export
+ * @interface ConversationVirtualAgentBudgetResponse
+ */
+export interface ConversationVirtualAgentBudgetResponse {
+    /**
+     *
+     * @type {ConversationVirtualAgentBudget}
+     * @memberof ConversationVirtualAgentBudgetResponse
+     */
+    budget?: ConversationVirtualAgentBudget;
+    /**
+     *
+     * @type {ModelError}
+     * @memberof ConversationVirtualAgentBudgetResponse
+     */
+    error?: ModelError;
+    /**
+     *
+     * @type {ResponseMetadata}
+     * @memberof ConversationVirtualAgentBudgetResponse
+     */
+    metadata?: ResponseMetadata;
+    /**
+     * Indicates if API call was successful
+     * @type {boolean}
+     * @memberof ConversationVirtualAgentBudgetResponse
+     */
+    success?: boolean;
+    /**
+     *
+     * @type {Warning}
+     * @memberof ConversationVirtualAgentBudgetResponse
+     */
+    warning?: Warning;
+}
+/**
+ *
+ * @export
  * @interface ConversationWebchatContext
  */
 export interface ConversationWebchatContext {
@@ -47684,6 +47752,13 @@ export declare const ConversationApiFetchParamCreator: (configuration?: Configur
      */
     getPbxVoicemailMailboxes(options?: any): FetchArgs;
     /**
+     * Retrieve virtual agent budget
+     * @summary Get virtual agent budget
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getVirtualAgentBudget(options?: any): FetchArgs;
+    /**
      * Insert a canned message
      * @summary Insert a canned message
      * @param {ConversationCannedMessage} canned_message Canned message
@@ -47945,6 +48020,14 @@ export declare const ConversationApiFetchParamCreator: (configuration?: Configur
      * @throws {RequiredError}
      */
     updatePbxVoicemailMailbox(conversationPbxVoicemailMailboxUuid: string, pbx_voicemailMailbox: ConversationPbxVoicemailMailbox, options?: any): FetchArgs;
+    /**
+     * Update virtual agent budget
+     * @summary Update virtual agent budget
+     * @param {ConversationVirtualAgentBudget} virtual_agent_budget Virtual Agent Budget
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    updateVirtualAgentBudget(virtual_agent_budget: ConversationVirtualAgentBudget, options?: any): FetchArgs;
 };
 /**
  * ConversationApi - functional programming interface
@@ -48364,6 +48447,13 @@ export declare const ConversationApiFp: (configuration?: Configuration) => {
      */
     getPbxVoicemailMailboxes(options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ConversationPbxVoicemailMailboxesResponse>;
     /**
+     * Retrieve virtual agent budget
+     * @summary Get virtual agent budget
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getVirtualAgentBudget(options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ConversationVirtualAgentBudgetResponse>;
+    /**
      * Insert a canned message
      * @summary Insert a canned message
      * @param {ConversationCannedMessage} canned_message Canned message
@@ -48625,6 +48715,14 @@ export declare const ConversationApiFp: (configuration?: Configuration) => {
      * @throws {RequiredError}
      */
     updatePbxVoicemailMailbox(conversationPbxVoicemailMailboxUuid: string, pbx_voicemailMailbox: ConversationPbxVoicemailMailbox, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ConversationPbxVoicemailMailboxResponse>;
+    /**
+     * Update virtual agent budget
+     * @summary Update virtual agent budget
+     * @param {ConversationVirtualAgentBudget} virtual_agent_budget Virtual Agent Budget
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    updateVirtualAgentBudget(virtual_agent_budget: ConversationVirtualAgentBudget, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ConversationVirtualAgentBudgetResponse>;
 };
 /**
  * ConversationApi - factory interface
@@ -49044,6 +49142,13 @@ export declare const ConversationApiFactory: (configuration?: Configuration, fet
      */
     getPbxVoicemailMailboxes(options?: any): Promise<ConversationPbxVoicemailMailboxesResponse>;
     /**
+     * Retrieve virtual agent budget
+     * @summary Get virtual agent budget
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getVirtualAgentBudget(options?: any): Promise<ConversationVirtualAgentBudgetResponse>;
+    /**
      * Insert a canned message
      * @summary Insert a canned message
      * @param {ConversationCannedMessage} canned_message Canned message
@@ -49305,6 +49410,14 @@ export declare const ConversationApiFactory: (configuration?: Configuration, fet
      * @throws {RequiredError}
      */
     updatePbxVoicemailMailbox(conversationPbxVoicemailMailboxUuid: string, pbx_voicemailMailbox: ConversationPbxVoicemailMailbox, options?: any): Promise<ConversationPbxVoicemailMailboxResponse>;
+    /**
+     * Update virtual agent budget
+     * @summary Update virtual agent budget
+     * @param {ConversationVirtualAgentBudget} virtual_agent_budget Virtual Agent Budget
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    updateVirtualAgentBudget(virtual_agent_budget: ConversationVirtualAgentBudget, options?: any): Promise<ConversationVirtualAgentBudgetResponse>;
 };
 /**
  * ConversationApi - interface
@@ -49778,6 +49891,14 @@ export interface ConversationApiInterface {
      */
     getPbxVoicemailMailboxes(options?: any): Promise<ConversationPbxVoicemailMailboxesResponse>;
     /**
+     * Retrieve virtual agent budget
+     * @summary Get virtual agent budget
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApiInterface
+     */
+    getVirtualAgentBudget(options?: any): Promise<ConversationVirtualAgentBudgetResponse>;
+    /**
      * Insert a canned message
      * @summary Insert a canned message
      * @param {ConversationCannedMessage} canned_message Canned message
@@ -50070,6 +50191,15 @@ export interface ConversationApiInterface {
      * @memberof ConversationApiInterface
      */
     updatePbxVoicemailMailbox(conversationPbxVoicemailMailboxUuid: string, pbx_voicemailMailbox: ConversationPbxVoicemailMailbox, options?: any): Promise<ConversationPbxVoicemailMailboxResponse>;
+    /**
+     * Update virtual agent budget
+     * @summary Update virtual agent budget
+     * @param {ConversationVirtualAgentBudget} virtual_agent_budget Virtual Agent Budget
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApiInterface
+     */
+    updateVirtualAgentBudget(virtual_agent_budget: ConversationVirtualAgentBudget, options?: any): Promise<ConversationVirtualAgentBudgetResponse>;
 }
 /**
  * ConversationApi - object-oriented interface
@@ -50544,6 +50674,14 @@ export declare class ConversationApi extends BaseAPI implements ConversationApiI
      */
     getPbxVoicemailMailboxes(options?: any): Promise<ConversationPbxVoicemailMailboxesResponse>;
     /**
+     * Retrieve virtual agent budget
+     * @summary Get virtual agent budget
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApi
+     */
+    getVirtualAgentBudget(options?: any): Promise<ConversationVirtualAgentBudgetResponse>;
+    /**
      * Insert a canned message
      * @summary Insert a canned message
      * @param {ConversationCannedMessage} canned_message Canned message
@@ -50836,6 +50974,15 @@ export declare class ConversationApi extends BaseAPI implements ConversationApiI
      * @memberof ConversationApi
      */
     updatePbxVoicemailMailbox(conversationPbxVoicemailMailboxUuid: string, pbx_voicemailMailbox: ConversationPbxVoicemailMailbox, options?: any): Promise<ConversationPbxVoicemailMailboxResponse>;
+    /**
+     * Update virtual agent budget
+     * @summary Update virtual agent budget
+     * @param {ConversationVirtualAgentBudget} virtual_agent_budget Virtual Agent Budget
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApi
+     */
+    updateVirtualAgentBudget(virtual_agent_budget: ConversationVirtualAgentBudget, options?: any): Promise<ConversationVirtualAgentBudgetResponse>;
 }
 /**
  * CouponApi - fetch parameter creator
