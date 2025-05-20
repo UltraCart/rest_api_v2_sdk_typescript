@@ -39,6 +39,12 @@ export interface ItemRestriction {
      */
     exclude_from_free_promotion?: boolean;
     /**
+     * Exclude from loyalty.  Must be set to true or false to save.  Null is ignored for backwards SDK compatibility
+     * @type {boolean}
+     * @memberof ItemRestriction
+     */
+    exclude_from_loyalty?: boolean;
+    /**
      * Items
      * @type {Array<ItemRestrictionItem>}
      * @memberof ItemRestriction
@@ -99,6 +105,7 @@ export function ItemRestrictionFromJSONTyped(json: any, ignoreDiscriminator: boo
         
         'exclude_coupon': !exists(json, 'exclude_coupon') ? undefined : json['exclude_coupon'],
         'exclude_from_free_promotion': !exists(json, 'exclude_from_free_promotion') ? undefined : json['exclude_from_free_promotion'],
+        'exclude_from_loyalty': !exists(json, 'exclude_from_loyalty') ? undefined : json['exclude_from_loyalty'],
         'items': !exists(json, 'items') ? undefined : ((json['items'] as Array<any>).map(ItemRestrictionItemFromJSON)),
         'maximum_quantity': !exists(json, 'maximum_quantity') ? undefined : json['maximum_quantity'],
         'minimum_quantity': !exists(json, 'minimum_quantity') ? undefined : json['minimum_quantity'],
@@ -119,6 +126,7 @@ export function ItemRestrictionToJSON(value?: ItemRestriction | null): any {
         
         'exclude_coupon': value.exclude_coupon,
         'exclude_from_free_promotion': value.exclude_from_free_promotion,
+        'exclude_from_loyalty': value.exclude_from_loyalty,
         'items': value.items === undefined ? undefined : ((value.items as Array<any>).map(ItemRestrictionItemToJSON)),
         'maximum_quantity': value.maximum_quantity,
         'minimum_quantity': value.minimum_quantity,

@@ -147,6 +147,18 @@ export interface Conversation {
      */
     unread_messages?: boolean;
     /**
+     * True if a virtual agent answered the conversation
+     * @type {boolean}
+     * @memberof Conversation
+     */
+    virtual_agent?: boolean;
+    /**
+     * The cost of this conversation performed by the virtual agent
+     * @type {number}
+     * @memberof Conversation
+     */
+    virtual_agent_cost?: number;
+    /**
      * 
      * @type {boolean}
      * @memberof Conversation
@@ -203,6 +215,8 @@ export function ConversationFromJSONTyped(json: any, ignoreDiscriminator: boolea
         'sentiment': !exists(json, 'sentiment') ? undefined : ConversationSentimentFromJSON(json['sentiment']),
         'start_dts': !exists(json, 'start_dts') ? undefined : json['start_dts'],
         'unread_messages': !exists(json, 'unread_messages') ? undefined : json['unread_messages'],
+        'virtual_agent': !exists(json, 'virtual_agent') ? undefined : json['virtual_agent'],
+        'virtual_agent_cost': !exists(json, 'virtual_agent_cost') ? undefined : json['virtual_agent_cost'],
         'visible': !exists(json, 'visible') ? undefined : json['visible'],
     };
 }
@@ -234,6 +248,8 @@ export function ConversationToJSON(value?: Conversation | null): any {
         'sentiment': ConversationSentimentToJSON(value.sentiment),
         'start_dts': value.start_dts,
         'unread_messages': value.unread_messages,
+        'virtual_agent': value.virtual_agent,
+        'virtual_agent_cost': value.virtual_agent_cost,
         'visible': value.visible,
     };
 }
