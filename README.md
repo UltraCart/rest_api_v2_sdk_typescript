@@ -1,4 +1,4 @@
-## ultracart_rest_api_v2_typescript@3.11.12
+## ultracart_rest_api_v2_typescript@3.11.13
 
 This generator creates TypeScript/JavaScript client that utilizes [Fetch API](https://fetch.spec.whatwg.org/). The generated Node module can be used in the following environments:
 
@@ -36,7 +36,7 @@ navigate to the folder of your consuming project and run one of the following co
 _published:_
 
 ```
-npm install ultracart_rest_api_v2_typescript@3.11.12 --save
+npm install ultracart_rest_api_v2_typescript@3.11.13 --save
 ```
 
 _unPublished (not recommended):_
@@ -54,6 +54,7 @@ Not every change is committed to every SDK.
 
 | Version | Date | Comments |
 | --: | :-: | --- |
+| 3.11.13 | 05/20/2025 | conversation - virtual agent flag and virtual agent cost |
 | 3.11.12 | 05/19/2025 | conversations - AI agent capabilities method |
 | 3.11.11 | 05/19/2025 | conversations - virtual AI budgets |
 | 3.11.10 | 05/06/2025 | conversation - ConversationAgentProfile.user_id added for agent profiles call |

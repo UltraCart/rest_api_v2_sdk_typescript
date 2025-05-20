@@ -6979,6 +6979,18 @@ export interface Conversation {
      */
     unread_messages?: boolean;
     /**
+     * True if a virtual agent answered the conversation
+     * @type {boolean}
+     * @memberof Conversation
+     */
+    virtual_agent?: boolean;
+    /**
+     * The cost of this conversation performed by the virtual agent
+     * @type {number}
+     * @memberof Conversation
+     */
+    virtual_agent_cost?: number;
+    /**
      *
      * @type {boolean}
      * @memberof Conversation
@@ -28796,6 +28808,12 @@ export interface ItemRestriction {
      * @memberof ItemRestriction
      */
     exclude_from_free_promotion?: boolean;
+    /**
+     * Exclude from loyalty.  Must be set to true or false to save.  Null is ignored for backwards SDK compatibility
+     * @type {boolean}
+     * @memberof ItemRestriction
+     */
+    exclude_from_loyalty?: boolean;
     /**
      * Items
      * @type {Array<ItemRestrictionItem>}
