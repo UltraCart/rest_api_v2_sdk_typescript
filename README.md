@@ -1,12 +1,12 @@
 # UltraCart Typescript SDK
-## ultracart_rest_api_v2_typescript@4.1.13
+## ultracart_rest_api_v2_typescript@4.1.14
 
 Every API method call has a sample for every language SDK.  See https://github.com/UltraCart/sdk_samples
 
 Installation
 
 ```
-npm install ultracart_rest_api_v2_typescript@4.1.13 --save
+npm install ultracart_rest_api_v2_typescript@4.1.14 --save
 ```
 
 ```typescript
@@ -72,7 +72,9 @@ export class GetOrder {
 //         // Do something with the order
 //     }
 // });
-```\n\n
+```
+
+\n\n
 ```
 \n\n
 
@@ -83,6 +85,7 @@ Not every change is committed to every SDK.
 
 | Version | Date | Comments |
 | --: | :-: | --- |
+| 4.1.14 | 07/10/2025 | automation test |
 | 4.1.13 | 05/20/2025 | conversation - virtual agent flag and virtual agent cost |
 | 4.1.12 | 05/19/2025 | conversations - AI agent capabilities method |
 | 4.1.11 | 05/19/2025 | conversations - virtual AI budgets |
