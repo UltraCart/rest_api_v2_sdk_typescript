@@ -14606,6 +14606,43 @@ export interface CustomReportTooltip {
 /**
  *
  * @export
+ * @interface CustomReportsResponse
+ */
+export interface CustomReportsResponse {
+    /**
+     *
+     * @type {ModelError}
+     * @memberof CustomReportsResponse
+     */
+    error?: ModelError;
+    /**
+     *
+     * @type {ResponseMetadata}
+     * @memberof CustomReportsResponse
+     */
+    metadata?: ResponseMetadata;
+    /**
+     * reports
+     * @type {Array<CustomReport>}
+     * @memberof CustomReportsResponse
+     */
+    reports?: Array<CustomReport>;
+    /**
+     * Indicates if API call was successful
+     * @type {boolean}
+     * @memberof CustomReportsResponse
+     */
+    success?: boolean;
+    /**
+     *
+     * @type {Warning}
+     * @memberof CustomReportsResponse
+     */
+    warning?: Warning;
+}
+/**
+ *
+ * @export
  * @interface Customer
  */
 export interface Customer {
@@ -53907,6 +53944,13 @@ export declare const DatawarehouseApiFetchParamCreator: (configuration?: Configu
      */
     getCustomReportAccountConfig(options?: any): FetchArgs;
     /**
+     * Retrieve a custom reports
+     * @summary Get custom reports
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getCustomReports(options?: any): FetchArgs;
+    /**
      * Retrieve a report
      * @summary Get a report
      * @param {number} report_oid
@@ -54050,6 +54094,13 @@ export declare const DatawarehouseApiFp: (configuration?: Configuration) => {
      */
     getCustomReportAccountConfig(options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<CustomReportAccountConfigResponse>;
     /**
+     * Retrieve a custom reports
+     * @summary Get custom reports
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getCustomReports(options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<CustomReportsResponse>;
+    /**
      * Retrieve a report
      * @summary Get a report
      * @param {number} report_oid
@@ -54192,6 +54243,13 @@ export declare const DatawarehouseApiFactory: (configuration?: Configuration, fe
      * @throws {RequiredError}
      */
     getCustomReportAccountConfig(options?: any): Promise<CustomReportAccountConfigResponse>;
+    /**
+     * Retrieve a custom reports
+     * @summary Get custom reports
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getCustomReports(options?: any): Promise<CustomReportsResponse>;
     /**
      * Retrieve a report
      * @summary Get a report
@@ -54343,6 +54401,14 @@ export interface DatawarehouseApiInterface {
      * @memberof DatawarehouseApiInterface
      */
     getCustomReportAccountConfig(options?: any): Promise<CustomReportAccountConfigResponse>;
+    /**
+     * Retrieve a custom reports
+     * @summary Get custom reports
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DatawarehouseApiInterface
+     */
+    getCustomReports(options?: any): Promise<CustomReportsResponse>;
     /**
      * Retrieve a report
      * @summary Get a report
@@ -54505,6 +54571,14 @@ export declare class DatawarehouseApi extends BaseAPI implements DatawarehouseAp
      * @memberof DatawarehouseApi
      */
     getCustomReportAccountConfig(options?: any): Promise<CustomReportAccountConfigResponse>;
+    /**
+     * Retrieve a custom reports
+     * @summary Get custom reports
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DatawarehouseApi
+     */
+    getCustomReports(options?: any): Promise<CustomReportsResponse>;
     /**
      * Retrieve a report
      * @summary Get a report
@@ -57137,23 +57211,6 @@ export declare const OrderApiFetchParamCreator: (configuration?: Configuration) 
      */
     refundOrder(order: Order, order_id: string, reject_after_refund?: boolean, skip_customer_notification?: boolean, auto_order_cancel?: boolean, manual_refund?: boolean, reverse_affiliate_transactions?: boolean, issue_store_credit?: boolean, auto_order_cancel_reason?: string, _expand?: string, options?: any): FetchArgs;
     /**
-     * Perform a refund operation on an order and then update the order if successful.
-     * @summary Refund an order completely
-     * @param {string} order_id The order id to refund.
-     * @param {boolean} [reject_after_refund] Reject order after refund
-     * @param {boolean} [skip_customer_notification] Skip customer email notification
-     * @param {boolean} [auto_order_cancel] Cancel associated auto orders
-     * @param {boolean} [manual_refund] Consider a manual refund done externally
-     * @param {boolean} [reverse_affiliate_transactions] Reverse affiliate transactions
-     * @param {boolean} [issue_store_credit] Issue a store credit instead of refunding the original payment method, loyalty must be configured on merchant account
-     * @param {string} [auto_order_cancel_reason] Reason for auto orders cancellation
-     * @param {string} [refund_reason] Reason for refund
-     * @param {string} [reject_reason] Reason for reject
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    refundOrderCompletely(order_id: string, reject_after_refund?: boolean, skip_customer_notification?: boolean, auto_order_cancel?: boolean, manual_refund?: boolean, reverse_affiliate_transactions?: boolean, issue_store_credit?: boolean, auto_order_cancel_reason?: string, refund_reason?: string, reject_reason?: string, options?: any): FetchArgs;
-    /**
      * Create a replacement order based upon a previous order
      * @summary Replacement order
      * @param {string} order_id The order id to generate a replacement for.
@@ -57450,23 +57507,6 @@ export declare const OrderApiFp: (configuration?: Configuration) => {
      */
     refundOrder(order: Order, order_id: string, reject_after_refund?: boolean, skip_customer_notification?: boolean, auto_order_cancel?: boolean, manual_refund?: boolean, reverse_affiliate_transactions?: boolean, issue_store_credit?: boolean, auto_order_cancel_reason?: string, _expand?: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<OrderResponse>;
     /**
-     * Perform a refund operation on an order and then update the order if successful.
-     * @summary Refund an order completely
-     * @param {string} order_id The order id to refund.
-     * @param {boolean} [reject_after_refund] Reject order after refund
-     * @param {boolean} [skip_customer_notification] Skip customer email notification
-     * @param {boolean} [auto_order_cancel] Cancel associated auto orders
-     * @param {boolean} [manual_refund] Consider a manual refund done externally
-     * @param {boolean} [reverse_affiliate_transactions] Reverse affiliate transactions
-     * @param {boolean} [issue_store_credit] Issue a store credit instead of refunding the original payment method, loyalty must be configured on merchant account
-     * @param {string} [auto_order_cancel_reason] Reason for auto orders cancellation
-     * @param {string} [refund_reason] Reason for refund
-     * @param {string} [reject_reason] Reason for reject
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    refundOrderCompletely(order_id: string, reject_after_refund?: boolean, skip_customer_notification?: boolean, auto_order_cancel?: boolean, manual_refund?: boolean, reverse_affiliate_transactions?: boolean, issue_store_credit?: boolean, auto_order_cancel_reason?: string, refund_reason?: string, reject_reason?: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<OrderResponse>;
-    /**
      * Create a replacement order based upon a previous order
      * @summary Replacement order
      * @param {string} order_id The order id to generate a replacement for.
@@ -57762,23 +57802,6 @@ export declare const OrderApiFactory: (configuration?: Configuration, fetch?: Fe
      * @throws {RequiredError}
      */
     refundOrder(order: Order, order_id: string, reject_after_refund?: boolean, skip_customer_notification?: boolean, auto_order_cancel?: boolean, manual_refund?: boolean, reverse_affiliate_transactions?: boolean, issue_store_credit?: boolean, auto_order_cancel_reason?: string, _expand?: string, options?: any): Promise<OrderResponse>;
-    /**
-     * Perform a refund operation on an order and then update the order if successful.
-     * @summary Refund an order completely
-     * @param {string} order_id The order id to refund.
-     * @param {boolean} [reject_after_refund] Reject order after refund
-     * @param {boolean} [skip_customer_notification] Skip customer email notification
-     * @param {boolean} [auto_order_cancel] Cancel associated auto orders
-     * @param {boolean} [manual_refund] Consider a manual refund done externally
-     * @param {boolean} [reverse_affiliate_transactions] Reverse affiliate transactions
-     * @param {boolean} [issue_store_credit] Issue a store credit instead of refunding the original payment method, loyalty must be configured on merchant account
-     * @param {string} [auto_order_cancel_reason] Reason for auto orders cancellation
-     * @param {string} [refund_reason] Reason for refund
-     * @param {string} [reject_reason] Reason for reject
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    refundOrderCompletely(order_id: string, reject_after_refund?: boolean, skip_customer_notification?: boolean, auto_order_cancel?: boolean, manual_refund?: boolean, reverse_affiliate_transactions?: boolean, issue_store_credit?: boolean, auto_order_cancel_reason?: string, refund_reason?: string, reject_reason?: string, options?: any): Promise<OrderResponse>;
     /**
      * Create a replacement order based upon a previous order
      * @summary Replacement order
@@ -58098,24 +58121,6 @@ export interface OrderApiInterface {
      * @memberof OrderApiInterface
      */
     refundOrder(order: Order, order_id: string, reject_after_refund?: boolean, skip_customer_notification?: boolean, auto_order_cancel?: boolean, manual_refund?: boolean, reverse_affiliate_transactions?: boolean, issue_store_credit?: boolean, auto_order_cancel_reason?: string, _expand?: string, options?: any): Promise<OrderResponse>;
-    /**
-     * Perform a refund operation on an order and then update the order if successful.
-     * @summary Refund an order completely
-     * @param {string} order_id The order id to refund.
-     * @param {boolean} [reject_after_refund] Reject order after refund
-     * @param {boolean} [skip_customer_notification] Skip customer email notification
-     * @param {boolean} [auto_order_cancel] Cancel associated auto orders
-     * @param {boolean} [manual_refund] Consider a manual refund done externally
-     * @param {boolean} [reverse_affiliate_transactions] Reverse affiliate transactions
-     * @param {boolean} [issue_store_credit] Issue a store credit instead of refunding the original payment method, loyalty must be configured on merchant account
-     * @param {string} [auto_order_cancel_reason] Reason for auto orders cancellation
-     * @param {string} [refund_reason] Reason for refund
-     * @param {string} [reject_reason] Reason for reject
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof OrderApiInterface
-     */
-    refundOrderCompletely(order_id: string, reject_after_refund?: boolean, skip_customer_notification?: boolean, auto_order_cancel?: boolean, manual_refund?: boolean, reverse_affiliate_transactions?: boolean, issue_store_credit?: boolean, auto_order_cancel_reason?: string, refund_reason?: string, reject_reason?: string, options?: any): Promise<OrderResponse>;
     /**
      * Create a replacement order based upon a previous order
      * @summary Replacement order
@@ -58443,24 +58448,6 @@ export declare class OrderApi extends BaseAPI implements OrderApiInterface {
      * @memberof OrderApi
      */
     refundOrder(order: Order, order_id: string, reject_after_refund?: boolean, skip_customer_notification?: boolean, auto_order_cancel?: boolean, manual_refund?: boolean, reverse_affiliate_transactions?: boolean, issue_store_credit?: boolean, auto_order_cancel_reason?: string, _expand?: string, options?: any): Promise<OrderResponse>;
-    /**
-     * Perform a refund operation on an order and then update the order if successful.
-     * @summary Refund an order completely
-     * @param {string} order_id The order id to refund.
-     * @param {boolean} [reject_after_refund] Reject order after refund
-     * @param {boolean} [skip_customer_notification] Skip customer email notification
-     * @param {boolean} [auto_order_cancel] Cancel associated auto orders
-     * @param {boolean} [manual_refund] Consider a manual refund done externally
-     * @param {boolean} [reverse_affiliate_transactions] Reverse affiliate transactions
-     * @param {boolean} [issue_store_credit] Issue a store credit instead of refunding the original payment method, loyalty must be configured on merchant account
-     * @param {string} [auto_order_cancel_reason] Reason for auto orders cancellation
-     * @param {string} [refund_reason] Reason for refund
-     * @param {string} [reject_reason] Reason for reject
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof OrderApi
-     */
-    refundOrderCompletely(order_id: string, reject_after_refund?: boolean, skip_customer_notification?: boolean, auto_order_cancel?: boolean, manual_refund?: boolean, reverse_affiliate_transactions?: boolean, issue_store_credit?: boolean, auto_order_cancel_reason?: string, refund_reason?: string, reject_reason?: string, options?: any): Promise<OrderResponse>;
     /**
      * Create a replacement order based upon a previous order
      * @summary Replacement order
@@ -69021,21 +69008,13 @@ export declare const WebhookApiFetchParamCreator: (configuration?: Configuration
      * Retrieves the log summary information for a given webhook.  This is useful for displaying all the various logs that can be viewed.
      * @summary Retrieve the log summaries
      * @param {number} webhookOid The webhook oid to retrieve log summaries for.
-     * @param {string} [requestId]
-     * @param {string} [beginDate]
-     * @param {string} [endDate]
-     * @param {string} [status]
-     * @param {string} [event]
-     * @param {string} [orderId]
-     * @param {string} [request]
-     * @param {number} [duration]
      * @param {number} [_limit] The maximum number of records to return on this one API call.
      * @param {number} [_offset] Pagination of the record set.  Offset is a zero based index.
      * @param {string} [_since] Fetch log summaries that have been delivered since this date/time.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getWebhookLogSummaries(webhookOid: number, requestId?: string, beginDate?: string, endDate?: string, status?: string, event?: string, orderId?: string, request?: string, duration?: number, _limit?: number, _offset?: number, _since?: string, options?: any): FetchArgs;
+    getWebhookLogSummaries(webhookOid: number, _limit?: number, _offset?: number, _since?: string, options?: any): FetchArgs;
     /**
      * Retrieves the webhooks associated with this application.
      * @summary Retrieve webhooks
@@ -69110,21 +69089,13 @@ export declare const WebhookApiFp: (configuration?: Configuration) => {
      * Retrieves the log summary information for a given webhook.  This is useful for displaying all the various logs that can be viewed.
      * @summary Retrieve the log summaries
      * @param {number} webhookOid The webhook oid to retrieve log summaries for.
-     * @param {string} [requestId]
-     * @param {string} [beginDate]
-     * @param {string} [endDate]
-     * @param {string} [status]
-     * @param {string} [event]
-     * @param {string} [orderId]
-     * @param {string} [request]
-     * @param {number} [duration]
      * @param {number} [_limit] The maximum number of records to return on this one API call.
      * @param {number} [_offset] Pagination of the record set.  Offset is a zero based index.
      * @param {string} [_since] Fetch log summaries that have been delivered since this date/time.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getWebhookLogSummaries(webhookOid: number, requestId?: string, beginDate?: string, endDate?: string, status?: string, event?: string, orderId?: string, request?: string, duration?: number, _limit?: number, _offset?: number, _since?: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<WebhookLogSummariesResponse>;
+    getWebhookLogSummaries(webhookOid: number, _limit?: number, _offset?: number, _since?: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<WebhookLogSummariesResponse>;
     /**
      * Retrieves the webhooks associated with this application.
      * @summary Retrieve webhooks
@@ -69199,21 +69170,13 @@ export declare const WebhookApiFactory: (configuration?: Configuration, fetch?: 
      * Retrieves the log summary information for a given webhook.  This is useful for displaying all the various logs that can be viewed.
      * @summary Retrieve the log summaries
      * @param {number} webhookOid The webhook oid to retrieve log summaries for.
-     * @param {string} [requestId]
-     * @param {string} [beginDate]
-     * @param {string} [endDate]
-     * @param {string} [status]
-     * @param {string} [event]
-     * @param {string} [orderId]
-     * @param {string} [request]
-     * @param {number} [duration]
      * @param {number} [_limit] The maximum number of records to return on this one API call.
      * @param {number} [_offset] Pagination of the record set.  Offset is a zero based index.
      * @param {string} [_since] Fetch log summaries that have been delivered since this date/time.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getWebhookLogSummaries(webhookOid: number, requestId?: string, beginDate?: string, endDate?: string, status?: string, event?: string, orderId?: string, request?: string, duration?: number, _limit?: number, _offset?: number, _since?: string, options?: any): Promise<WebhookLogSummariesResponse>;
+    getWebhookLogSummaries(webhookOid: number, _limit?: number, _offset?: number, _since?: string, options?: any): Promise<WebhookLogSummariesResponse>;
     /**
      * Retrieves the webhooks associated with this application.
      * @summary Retrieve webhooks
@@ -69292,14 +69255,6 @@ export interface WebhookApiInterface {
      * Retrieves the log summary information for a given webhook.  This is useful for displaying all the various logs that can be viewed.
      * @summary Retrieve the log summaries
      * @param {number} webhookOid The webhook oid to retrieve log summaries for.
-     * @param {string} [requestId]
-     * @param {string} [beginDate]
-     * @param {string} [endDate]
-     * @param {string} [status]
-     * @param {string} [event]
-     * @param {string} [orderId]
-     * @param {string} [request]
-     * @param {number} [duration]
      * @param {number} [_limit] The maximum number of records to return on this one API call.
      * @param {number} [_offset] Pagination of the record set.  Offset is a zero based index.
      * @param {string} [_since] Fetch log summaries that have been delivered since this date/time.
@@ -69307,7 +69262,7 @@ export interface WebhookApiInterface {
      * @throws {RequiredError}
      * @memberof WebhookApiInterface
      */
-    getWebhookLogSummaries(webhookOid: number, requestId?: string, beginDate?: string, endDate?: string, status?: string, event?: string, orderId?: string, request?: string, duration?: number, _limit?: number, _offset?: number, _since?: string, options?: any): Promise<WebhookLogSummariesResponse>;
+    getWebhookLogSummaries(webhookOid: number, _limit?: number, _offset?: number, _since?: string, options?: any): Promise<WebhookLogSummariesResponse>;
     /**
      * Retrieves the webhooks associated with this application.
      * @summary Retrieve webhooks
@@ -69391,14 +69346,6 @@ export declare class WebhookApi extends BaseAPI implements WebhookApiInterface {
      * Retrieves the log summary information for a given webhook.  This is useful for displaying all the various logs that can be viewed.
      * @summary Retrieve the log summaries
      * @param {number} webhookOid The webhook oid to retrieve log summaries for.
-     * @param {string} [requestId]
-     * @param {string} [beginDate]
-     * @param {string} [endDate]
-     * @param {string} [status]
-     * @param {string} [event]
-     * @param {string} [orderId]
-     * @param {string} [request]
-     * @param {number} [duration]
      * @param {number} [_limit] The maximum number of records to return on this one API call.
      * @param {number} [_offset] Pagination of the record set.  Offset is a zero based index.
      * @param {string} [_since] Fetch log summaries that have been delivered since this date/time.
@@ -69406,7 +69353,7 @@ export declare class WebhookApi extends BaseAPI implements WebhookApiInterface {
      * @throws {RequiredError}
      * @memberof WebhookApi
      */
-    getWebhookLogSummaries(webhookOid: number, requestId?: string, beginDate?: string, endDate?: string, status?: string, event?: string, orderId?: string, request?: string, duration?: number, _limit?: number, _offset?: number, _since?: string, options?: any): Promise<WebhookLogSummariesResponse>;
+    getWebhookLogSummaries(webhookOid: number, _limit?: number, _offset?: number, _since?: string, options?: any): Promise<WebhookLogSummariesResponse>;
     /**
      * Retrieves the webhooks associated with this application.
      * @summary Retrieve webhooks
