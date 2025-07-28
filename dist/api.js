@@ -28,10 +28,10 @@ var __extends = (this && this.__extends) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.ItemTax = exports.ItemTag = exports.ItemShippingMethod = exports.ItemShippingDestinationRestriction = exports.ItemReview = exports.ItemRestrictionItem = exports.ItemRelatedItem = exports.ItemOptionValue = exports.ItemOption = exports.ItemContentMultimedia = exports.ItemAutoOrderStep = exports.Experiment = exports.EmailPerformance = exports.EmailCommseqStep = exports.Distance = exports.Coupon = exports.ConversationWebsocketMessage = exports.ConversationWebchatQueueStatusUpdateRequest = exports.ConversationWebchatQueueStatusAgent = exports.ConversationSummary = exports.ConversationSentiment = exports.ConversationPbxVoicemailMessageSummary = exports.ConversationPbxVoicemailMessage = exports.ConversationPbxVoicemailMailbox = exports.ConversationPbxTimeBasedMapping = exports.ConversationPbxPhoneNumber = exports.ConversationPbxMenuMapping = exports.ConversationPbxMenu = exports.ConversationMessageTransportStatus = exports.ConversationMessage = exports.ConversationEventRRWeb = exports.ConversationEngagementEquationFunction = exports.ConversationEngagement = exports.ConversationAgentProfile = exports.Conversation = exports.CheckoutHandoffRequest = exports.ChannelPartnerOrderItem = exports.ChannelPartnerOrder = exports.CartKitComponentOption = exports.CartItemOption = exports.CartItemMultimedia = exports.CartCustomerProfileCreditCard = exports.AutoOrderItemSimpleSchedule = exports.AutoOrderItem = exports.AutoOrder = exports.AffiliateLink = exports.AffiliateLedger = exports.RequiredError = exports.BaseAPI = exports.COLLECTION_FORMATS = void 0;
-exports.CheckoutApiFp = exports.CheckoutApiFetchParamCreator = exports.ChargebackApi = exports.ChargebackApiFactory = exports.ChargebackApiFp = exports.ChargebackApiFetchParamCreator = exports.ChannelPartnerApi = exports.ChannelPartnerApiFactory = exports.ChannelPartnerApiFp = exports.ChannelPartnerApiFetchParamCreator = exports.AutoOrderApi = exports.AutoOrderApiFactory = exports.AutoOrderApiFp = exports.AutoOrderApiFetchParamCreator = exports.AffiliateApi = exports.AffiliateApiFactory = exports.AffiliateApiFp = exports.AffiliateApiFetchParamCreator = exports.WorkflowTasksRequest = exports.WorkflowTask = exports.Weight = exports.Webhook = exports.TempMultimedia = exports.ReportWebsocketEvent = exports.ReportPageVisualizationMetric = exports.ReportPageVisualization = exports.ReportFilter = exports.ReportExecuteQueriesRequest = exports.ReportDataSourceSchema = exports.ReportDataSetSchema = exports.ReportDataSetQuery = exports.ReportDataSet = exports.Report = exports.PointOfSaleReader = exports.OrderQueryBatch = exports.OrderQuery = exports.OrderPaymentECheck = exports.OrderPaymentCreditCard = exports.OrderPayment = exports.OrderItemOption = exports.OrderItem = exports.OrderFraudScore = exports.OrderFormat = exports.OrderEdiDocument = exports.OrderCurrentStageHistory = exports.OrderAutoOrder = exports.OrderAffiliateLedger = exports.Order = exports.OauthTokenResponse = exports.ItemThirdPartyEmailMarketing = void 0;
-exports.StorefrontApi = exports.StorefrontApiFactory = exports.StorefrontApiFp = exports.StorefrontApiFetchParamCreator = exports.SsoApi = exports.SsoApiFactory = exports.SsoApiFp = exports.SsoApiFetchParamCreator = exports.OrderApi = exports.OrderApiFactory = exports.OrderApiFp = exports.OrderApiFetchParamCreator = exports.OauthApi = exports.OauthApiFactory = exports.OauthApiFp = exports.OauthApiFetchParamCreator = exports.ItemApi = exports.ItemApiFactory = exports.ItemApiFp = exports.ItemApiFetchParamCreator = exports.IntegrationLogApi = exports.IntegrationLogApiFactory = exports.IntegrationLogApiFp = exports.IntegrationLogApiFetchParamCreator = exports.GiftCertificateApi = exports.GiftCertificateApiFactory = exports.GiftCertificateApiFp = exports.GiftCertificateApiFetchParamCreator = exports.FulfillmentApi = exports.FulfillmentApiFactory = exports.FulfillmentApiFp = exports.FulfillmentApiFetchParamCreator = exports.DatawarehouseApi = exports.DatawarehouseApiFactory = exports.DatawarehouseApiFp = exports.DatawarehouseApiFetchParamCreator = exports.CustomerApi = exports.CustomerApiFactory = exports.CustomerApiFp = exports.CustomerApiFetchParamCreator = exports.CouponApi = exports.CouponApiFactory = exports.CouponApiFp = exports.CouponApiFetchParamCreator = exports.ConversationApi = exports.ConversationApiFactory = exports.ConversationApiFp = exports.ConversationApiFetchParamCreator = exports.CheckoutApi = exports.CheckoutApiFactory = void 0;
-exports.WorkflowApi = exports.WorkflowApiFactory = exports.WorkflowApiFp = exports.WorkflowApiFetchParamCreator = exports.WebhookApi = exports.WebhookApiFactory = exports.WebhookApiFp = exports.WebhookApiFetchParamCreator = exports.UserApi = exports.UserApiFactory = exports.UserApiFp = exports.UserApiFetchParamCreator = exports.TaxApi = exports.TaxApiFactory = exports.TaxApiFp = exports.TaxApiFetchParamCreator = void 0;
+exports.ItemTag = exports.ItemShippingMethod = exports.ItemShippingDestinationRestriction = exports.ItemReview = exports.ItemRestrictionItem = exports.ItemRelatedItem = exports.ItemOptionValue = exports.ItemOption = exports.ItemContentMultimedia = exports.ItemAutoOrderStep = exports.Experiment = exports.EmailPerformance = exports.EmailCommseqStep = exports.Distance = exports.Coupon = exports.ConversationWebsocketMessage = exports.ConversationWebchatQueueStatusUpdateRequest = exports.ConversationWebchatQueueStatusAgent = exports.ConversationVirtualAgentCapabilities = exports.ConversationSummary = exports.ConversationSentiment = exports.ConversationPbxVoicemailMessageSummary = exports.ConversationPbxVoicemailMessage = exports.ConversationPbxVoicemailMailbox = exports.ConversationPbxTimeBasedMapping = exports.ConversationPbxPhoneNumber = exports.ConversationPbxMenuMapping = exports.ConversationPbxMenu = exports.ConversationMessageTransportStatus = exports.ConversationMessage = exports.ConversationEventRRWeb = exports.ConversationEngagementEquationFunction = exports.ConversationEngagement = exports.ConversationAgentProfile = exports.Conversation = exports.CheckoutHandoffRequest = exports.ChannelPartnerOrderItem = exports.ChannelPartnerOrder = exports.CartKitComponentOption = exports.CartItemOption = exports.CartItemMultimedia = exports.CartCustomerProfileCreditCard = exports.AutoOrderItemSimpleSchedule = exports.AutoOrderItem = exports.AutoOrder = exports.AffiliateLink = exports.AffiliateLedger = exports.RequiredError = exports.BaseAPI = exports.COLLECTION_FORMATS = void 0;
+exports.CheckoutApiFetchParamCreator = exports.ChargebackApi = exports.ChargebackApiFactory = exports.ChargebackApiFp = exports.ChargebackApiFetchParamCreator = exports.ChannelPartnerApi = exports.ChannelPartnerApiFactory = exports.ChannelPartnerApiFp = exports.ChannelPartnerApiFetchParamCreator = exports.AutoOrderApi = exports.AutoOrderApiFactory = exports.AutoOrderApiFp = exports.AutoOrderApiFetchParamCreator = exports.AffiliateApi = exports.AffiliateApiFactory = exports.AffiliateApiFp = exports.AffiliateApiFetchParamCreator = exports.WorkflowTasksRequest = exports.WorkflowTask = exports.Weight = exports.Webhook = exports.TempMultimedia = exports.ReportWebsocketEvent = exports.ReportPageVisualizationMetric = exports.ReportPageVisualization = exports.ReportFilter = exports.ReportExecuteQueriesRequest = exports.ReportDataSourceSchema = exports.ReportDataSetSchema = exports.ReportDataSetQuery = exports.ReportDataSet = exports.Report = exports.PointOfSaleReader = exports.OrderQueryBatch = exports.OrderQuery = exports.OrderPaymentECheck = exports.OrderPaymentCreditCard = exports.OrderPayment = exports.OrderItemOption = exports.OrderItem = exports.OrderFraudScore = exports.OrderFormat = exports.OrderEdiDocument = exports.OrderCurrentStageHistory = exports.OrderAutoOrder = exports.OrderAffiliateLedger = exports.Order = exports.OauthTokenResponse = exports.ItemThirdPartyEmailMarketing = exports.ItemTax = void 0;
+exports.StorefrontApiFactory = exports.StorefrontApiFp = exports.StorefrontApiFetchParamCreator = exports.SsoApi = exports.SsoApiFactory = exports.SsoApiFp = exports.SsoApiFetchParamCreator = exports.OrderApi = exports.OrderApiFactory = exports.OrderApiFp = exports.OrderApiFetchParamCreator = exports.OauthApi = exports.OauthApiFactory = exports.OauthApiFp = exports.OauthApiFetchParamCreator = exports.ItemApi = exports.ItemApiFactory = exports.ItemApiFp = exports.ItemApiFetchParamCreator = exports.IntegrationLogApi = exports.IntegrationLogApiFactory = exports.IntegrationLogApiFp = exports.IntegrationLogApiFetchParamCreator = exports.GiftCertificateApi = exports.GiftCertificateApiFactory = exports.GiftCertificateApiFp = exports.GiftCertificateApiFetchParamCreator = exports.FulfillmentApi = exports.FulfillmentApiFactory = exports.FulfillmentApiFp = exports.FulfillmentApiFetchParamCreator = exports.DatawarehouseApi = exports.DatawarehouseApiFactory = exports.DatawarehouseApiFp = exports.DatawarehouseApiFetchParamCreator = exports.CustomerApi = exports.CustomerApiFactory = exports.CustomerApiFp = exports.CustomerApiFetchParamCreator = exports.CouponApi = exports.CouponApiFactory = exports.CouponApiFp = exports.CouponApiFetchParamCreator = exports.ConversationApi = exports.ConversationApiFactory = exports.ConversationApiFp = exports.ConversationApiFetchParamCreator = exports.CheckoutApi = exports.CheckoutApiFactory = exports.CheckoutApiFp = void 0;
+exports.WorkflowApi = exports.WorkflowApiFactory = exports.WorkflowApiFp = exports.WorkflowApiFetchParamCreator = exports.WebhookApi = exports.WebhookApiFactory = exports.WebhookApiFp = exports.WebhookApiFetchParamCreator = exports.UserApi = exports.UserApiFactory = exports.UserApiFp = exports.UserApiFetchParamCreator = exports.TaxApi = exports.TaxApiFactory = exports.TaxApiFp = exports.TaxApiFetchParamCreator = exports.StorefrontApi = void 0;
 var url = require("url");
 var portableFetch = require("portable-fetch");
 var BASE_PATH = "https://secure.ultracart.com/rest/v2".replace(/\/+$/, "");
@@ -756,6 +756,24 @@ var ConversationSummary;
         MediumEnum[MediumEnum["Websocket"] = 'websocket'] = "Websocket";
     })(MediumEnum = ConversationSummary.MediumEnum || (ConversationSummary.MediumEnum = {}));
 })(ConversationSummary = exports.ConversationSummary || (exports.ConversationSummary = {}));
+/**
+ * @export
+ * @namespace ConversationVirtualAgentCapabilities
+ */
+var ConversationVirtualAgentCapabilities;
+(function (ConversationVirtualAgentCapabilities) {
+    /**
+     * @export
+     * @enum {string}
+     */
+    var OpenSupportTicketChannelEnum;
+    (function (OpenSupportTicketChannelEnum) {
+        OpenSupportTicketChannelEnum[OpenSupportTicketChannelEnum["None"] = 'none'] = "None";
+        OpenSupportTicketChannelEnum[OpenSupportTicketChannelEnum["Email"] = 'email'] = "Email";
+        OpenSupportTicketChannelEnum[OpenSupportTicketChannelEnum["UltraCartTask"] = 'UltraCart Task'] = "UltraCartTask";
+        OpenSupportTicketChannelEnum[OpenSupportTicketChannelEnum["ZohoDeskTicket"] = 'Zoho Desk Ticket'] = "ZohoDeskTicket";
+    })(OpenSupportTicketChannelEnum = ConversationVirtualAgentCapabilities.OpenSupportTicketChannelEnum || (ConversationVirtualAgentCapabilities.OpenSupportTicketChannelEnum = {}));
+})(ConversationVirtualAgentCapabilities = exports.ConversationVirtualAgentCapabilities || (exports.ConversationVirtualAgentCapabilities = {}));
 /**
  * @export
  * @namespace ConversationWebchatQueueStatusAgent
@@ -19999,6 +20017,52 @@ exports.CustomerApi = CustomerApi;
 var DatawarehouseApiFetchParamCreator = function (configuration) {
     return {
         /**
+         * Delete a custom report on the UltraCart account.
+         * @summary Delete a custom report
+         * @param {number} custom_report_oid The report oid to delete.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        deleteCustomReport: function (custom_report_oid, options) {
+            if (options === void 0) { options = {}; }
+            // verify required parameter 'custom_report_oid' is not null or undefined
+            if (custom_report_oid === null || custom_report_oid === undefined) {
+                throw new RequiredError('custom_report_oid', 'Required parameter custom_report_oid was null or undefined when calling deleteCustomReport.');
+            }
+            var localVarPath = "/datawarehouse/custom_reports/{custom_report_oid}"
+                .replace("{".concat("custom_report_oid", "}"), encodeURIComponent(String(custom_report_oid)));
+            var localVarUrlObj = url.parse(localVarPath, true);
+            var localVarRequestOptions = Object.assign({ method: 'DELETE' }, options);
+            var localVarHeaderParameter = {};
+            var localVarQueryParameter = {};
+            if (configuration && configuration.apiVersion) {
+                localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+            }
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+                var localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+                    ? configuration.accessToken("ultraCartOauth", [])
+                    : configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                var localVarApiKeyValue = typeof configuration.apiKey === 'function'
+                    ? configuration.apiKey("x-ultracart-simple-key")
+                    : configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
          * Delete a report on the UltraCart account.
          * @summary Delete a report
          * @param {number} report_oid The report oid to delete.
@@ -20093,6 +20157,60 @@ var DatawarehouseApiFetchParamCreator = function (configuration) {
             };
         },
         /**
+         * Execute a custom report on the UltraCart account.
+         * @summary Execute a custom report
+         * @param {CustomReportExecutionRequest} execution_request Request to execute custom report
+         * @param {number} custom_report_oid The report oid to execute.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        executeCustomReport: function (execution_request, custom_report_oid, options) {
+            if (options === void 0) { options = {}; }
+            // verify required parameter 'execution_request' is not null or undefined
+            if (execution_request === null || execution_request === undefined) {
+                throw new RequiredError('execution_request', 'Required parameter execution_request was null or undefined when calling executeCustomReport.');
+            }
+            // verify required parameter 'custom_report_oid' is not null or undefined
+            if (custom_report_oid === null || custom_report_oid === undefined) {
+                throw new RequiredError('custom_report_oid', 'Required parameter custom_report_oid was null or undefined when calling executeCustomReport.');
+            }
+            var localVarPath = "/datawarehouse/custom_reports/{custom_report_oid}/execute"
+                .replace("{".concat("custom_report_oid", "}"), encodeURIComponent(String(custom_report_oid)));
+            var localVarUrlObj = url.parse(localVarPath, true);
+            var localVarRequestOptions = Object.assign({ method: 'PUT' }, options);
+            var localVarHeaderParameter = {};
+            var localVarQueryParameter = {};
+            if (configuration && configuration.apiVersion) {
+                localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+            }
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+                var localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+                    ? configuration.accessToken("ultraCartOauth", [])
+                    : configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                var localVarApiKeyValue = typeof configuration.apiKey === 'function'
+                    ? configuration.apiKey("x-ultracart-simple-key")
+                    : configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+            localVarHeaderParameter['Content-Type'] = 'application/json; charset=UTF-8';
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+            var needsSerialization = ("CustomReportExecutionRequest" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
+            localVarRequestOptions.body = needsSerialization ? JSON.stringify(execution_request || {}) : (execution_request || "");
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
          * Execute the report queries
          * @summary Execute the report queries
          * @param {ReportExecuteQueriesRequest} query_request Query request
@@ -20135,6 +20253,92 @@ var DatawarehouseApiFetchParamCreator = function (configuration) {
             localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
             var needsSerialization = ("ReportExecuteQueriesRequest" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
             localVarRequestOptions.body = needsSerialization ? JSON.stringify(query_request || {}) : (query_request || "");
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Retrieve a custom report
+         * @summary Get a custom report
+         * @param {number} custom_report_oid
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getCustomReport: function (custom_report_oid, options) {
+            if (options === void 0) { options = {}; }
+            // verify required parameter 'custom_report_oid' is not null or undefined
+            if (custom_report_oid === null || custom_report_oid === undefined) {
+                throw new RequiredError('custom_report_oid', 'Required parameter custom_report_oid was null or undefined when calling getCustomReport.');
+            }
+            var localVarPath = "/datawarehouse/custom_reports/{custom_report_oid}"
+                .replace("{".concat("custom_report_oid", "}"), encodeURIComponent(String(custom_report_oid)));
+            var localVarUrlObj = url.parse(localVarPath, true);
+            var localVarRequestOptions = Object.assign({ method: 'GET' }, options);
+            var localVarHeaderParameter = {};
+            var localVarQueryParameter = {};
+            if (configuration && configuration.apiVersion) {
+                localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+            }
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+                var localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+                    ? configuration.accessToken("ultraCartOauth", [])
+                    : configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                var localVarApiKeyValue = typeof configuration.apiKey === 'function'
+                    ? configuration.apiKey("x-ultracart-simple-key")
+                    : configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Retrieve a custom report account configuration
+         * @summary Get custom report account configuration
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getCustomReportAccountConfig: function (options) {
+            if (options === void 0) { options = {}; }
+            var localVarPath = "/datawarehouse/custom_reports/account_config";
+            var localVarUrlObj = url.parse(localVarPath, true);
+            var localVarRequestOptions = Object.assign({ method: 'GET' }, options);
+            var localVarHeaderParameter = {};
+            var localVarQueryParameter = {};
+            if (configuration && configuration.apiVersion) {
+                localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+            }
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+                var localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+                    ? configuration.accessToken("ultraCartOauth", [])
+                    : configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                var localVarApiKeyValue = typeof configuration.apiKey === 'function'
+                    ? configuration.apiKey("x-ultracart-simple-key")
+                    : configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
             return {
                 url: url.format(localVarUrlObj),
                 options: localVarRequestOptions,
@@ -20365,6 +20569,54 @@ var DatawarehouseApiFetchParamCreator = function (configuration) {
             };
         },
         /**
+         * Create a new custom report on the UltraCart account.
+         * @summary Create a custom report
+         * @param {CustomReport} report Report to create
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        insertCustomReport: function (report, options) {
+            if (options === void 0) { options = {}; }
+            // verify required parameter 'report' is not null or undefined
+            if (report === null || report === undefined) {
+                throw new RequiredError('report', 'Required parameter report was null or undefined when calling insertCustomReport.');
+            }
+            var localVarPath = "/datawarehouse/custom_reports";
+            var localVarUrlObj = url.parse(localVarPath, true);
+            var localVarRequestOptions = Object.assign({ method: 'POST' }, options);
+            var localVarHeaderParameter = {};
+            var localVarQueryParameter = {};
+            if (configuration && configuration.apiVersion) {
+                localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+            }
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+                var localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+                    ? configuration.accessToken("ultraCartOauth", [])
+                    : configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                var localVarApiKeyValue = typeof configuration.apiKey === 'function'
+                    ? configuration.apiKey("x-ultracart-simple-key")
+                    : configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+            localVarHeaderParameter['Content-Type'] = 'application/json; charset=UTF-8';
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+            var needsSerialization = ("CustomReport" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
+            localVarRequestOptions.body = needsSerialization ? JSON.stringify(report || {}) : (report || "");
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
          * Create a new report on the UltraCart account.
          * @summary Create a report
          * @param {Report} report Report to create
@@ -20407,6 +20659,108 @@ var DatawarehouseApiFetchParamCreator = function (configuration) {
             localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
             var needsSerialization = ("Report" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
             localVarRequestOptions.body = needsSerialization ? JSON.stringify(report || {}) : (report || "");
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Update a custom report on the UltraCart account.
+         * @summary Update a custom report
+         * @param {CustomReport} report Report to custom update
+         * @param {number} custom_report_oid The report oid to custom update.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        updateCustomReport: function (report, custom_report_oid, options) {
+            if (options === void 0) { options = {}; }
+            // verify required parameter 'report' is not null or undefined
+            if (report === null || report === undefined) {
+                throw new RequiredError('report', 'Required parameter report was null or undefined when calling updateCustomReport.');
+            }
+            // verify required parameter 'custom_report_oid' is not null or undefined
+            if (custom_report_oid === null || custom_report_oid === undefined) {
+                throw new RequiredError('custom_report_oid', 'Required parameter custom_report_oid was null or undefined when calling updateCustomReport.');
+            }
+            var localVarPath = "/datawarehouse/custom_reports/{custom_report_oid}"
+                .replace("{".concat("custom_report_oid", "}"), encodeURIComponent(String(custom_report_oid)));
+            var localVarUrlObj = url.parse(localVarPath, true);
+            var localVarRequestOptions = Object.assign({ method: 'PUT' }, options);
+            var localVarHeaderParameter = {};
+            var localVarQueryParameter = {};
+            if (configuration && configuration.apiVersion) {
+                localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+            }
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+                var localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+                    ? configuration.accessToken("ultraCartOauth", [])
+                    : configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                var localVarApiKeyValue = typeof configuration.apiKey === 'function'
+                    ? configuration.apiKey("x-ultracart-simple-key")
+                    : configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+            localVarHeaderParameter['Content-Type'] = 'application/json; charset=UTF-8';
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+            var needsSerialization = ("CustomReport" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
+            localVarRequestOptions.body = needsSerialization ? JSON.stringify(report || {}) : (report || "");
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Update custom report account config.
+         * @summary Update custom report account config
+         * @param {CustomReportAccountConfig} account_config Account config to update
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        updateCustomReportAccountConfig: function (account_config, options) {
+            if (options === void 0) { options = {}; }
+            // verify required parameter 'account_config' is not null or undefined
+            if (account_config === null || account_config === undefined) {
+                throw new RequiredError('account_config', 'Required parameter account_config was null or undefined when calling updateCustomReportAccountConfig.');
+            }
+            var localVarPath = "/datawarehouse/custom_reports/account_config";
+            var localVarUrlObj = url.parse(localVarPath, true);
+            var localVarRequestOptions = Object.assign({ method: 'PUT' }, options);
+            var localVarHeaderParameter = {};
+            var localVarQueryParameter = {};
+            if (configuration && configuration.apiVersion) {
+                localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+            }
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+                var localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+                    ? configuration.accessToken("ultraCartOauth", [])
+                    : configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                var localVarApiKeyValue = typeof configuration.apiKey === 'function'
+                    ? configuration.apiKey("x-ultracart-simple-key")
+                    : configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+            localVarHeaderParameter['Content-Type'] = 'application/json; charset=UTF-8';
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+            var needsSerialization = ("CustomReportAccountConfig" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
+            localVarRequestOptions.body = needsSerialization ? JSON.stringify(account_config || {}) : (account_config || "");
             return {
                 url: url.format(localVarUrlObj),
                 options: localVarRequestOptions,
@@ -20476,6 +20830,28 @@ exports.DatawarehouseApiFetchParamCreator = DatawarehouseApiFetchParamCreator;
 var DatawarehouseApiFp = function (configuration) {
     return {
         /**
+         * Delete a custom report on the UltraCart account.
+         * @summary Delete a custom report
+         * @param {number} custom_report_oid The report oid to delete.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        deleteCustomReport: function (custom_report_oid, options) {
+            var localVarFetchArgs = (0, exports.DatawarehouseApiFetchParamCreator)(configuration).deleteCustomReport(custom_report_oid, options);
+            return function (fetch, basePath) {
+                if (fetch === void 0) { fetch = portableFetch; }
+                if (basePath === void 0) { basePath = BASE_PATH; }
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(function (response) {
+                    if (response.status >= 200 && response.status < 300) {
+                        return response;
+                    }
+                    else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
          * Delete a report on the UltraCart account.
          * @summary Delete a report
          * @param {number} report_oid The report oid to delete.
@@ -20520,6 +20896,29 @@ var DatawarehouseApiFp = function (configuration) {
             };
         },
         /**
+         * Execute a custom report on the UltraCart account.
+         * @summary Execute a custom report
+         * @param {CustomReportExecutionRequest} execution_request Request to execute custom report
+         * @param {number} custom_report_oid The report oid to execute.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        executeCustomReport: function (execution_request, custom_report_oid, options) {
+            var localVarFetchArgs = (0, exports.DatawarehouseApiFetchParamCreator)(configuration).executeCustomReport(execution_request, custom_report_oid, options);
+            return function (fetch, basePath) {
+                if (fetch === void 0) { fetch = portableFetch; }
+                if (basePath === void 0) { basePath = BASE_PATH; }
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(function (response) {
+                    if (response.status >= 200 && response.status < 300) {
+                        return response.json();
+                    }
+                    else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
          * Execute the report queries
          * @summary Execute the report queries
          * @param {ReportExecuteQueriesRequest} query_request Query request
@@ -20534,6 +20933,49 @@ var DatawarehouseApiFp = function (configuration) {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(function (response) {
                     if (response.status >= 200 && response.status < 300) {
                         return response;
+                    }
+                    else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
+         * Retrieve a custom report
+         * @summary Get a custom report
+         * @param {number} custom_report_oid
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getCustomReport: function (custom_report_oid, options) {
+            var localVarFetchArgs = (0, exports.DatawarehouseApiFetchParamCreator)(configuration).getCustomReport(custom_report_oid, options);
+            return function (fetch, basePath) {
+                if (fetch === void 0) { fetch = portableFetch; }
+                if (basePath === void 0) { basePath = BASE_PATH; }
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(function (response) {
+                    if (response.status >= 200 && response.status < 300) {
+                        return response.json();
+                    }
+                    else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
+         * Retrieve a custom report account configuration
+         * @summary Get custom report account configuration
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getCustomReportAccountConfig: function (options) {
+            var localVarFetchArgs = (0, exports.DatawarehouseApiFetchParamCreator)(configuration).getCustomReportAccountConfig(options);
+            return function (fetch, basePath) {
+                if (fetch === void 0) { fetch = portableFetch; }
+                if (basePath === void 0) { basePath = BASE_PATH; }
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(function (response) {
+                    if (response.status >= 200 && response.status < 300) {
+                        return response.json();
                     }
                     else {
                         throw response;
@@ -20651,6 +21093,28 @@ var DatawarehouseApiFp = function (configuration) {
             };
         },
         /**
+         * Create a new custom report on the UltraCart account.
+         * @summary Create a custom report
+         * @param {CustomReport} report Report to create
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        insertCustomReport: function (report, options) {
+            var localVarFetchArgs = (0, exports.DatawarehouseApiFetchParamCreator)(configuration).insertCustomReport(report, options);
+            return function (fetch, basePath) {
+                if (fetch === void 0) { fetch = portableFetch; }
+                if (basePath === void 0) { basePath = BASE_PATH; }
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(function (response) {
+                    if (response.status >= 200 && response.status < 300) {
+                        return response.json();
+                    }
+                    else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
          * Create a new report on the UltraCart account.
          * @summary Create a report
          * @param {Report} report Report to create
@@ -20659,6 +21123,51 @@ var DatawarehouseApiFp = function (configuration) {
          */
         insertReport: function (report, options) {
             var localVarFetchArgs = (0, exports.DatawarehouseApiFetchParamCreator)(configuration).insertReport(report, options);
+            return function (fetch, basePath) {
+                if (fetch === void 0) { fetch = portableFetch; }
+                if (basePath === void 0) { basePath = BASE_PATH; }
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(function (response) {
+                    if (response.status >= 200 && response.status < 300) {
+                        return response.json();
+                    }
+                    else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
+         * Update a custom report on the UltraCart account.
+         * @summary Update a custom report
+         * @param {CustomReport} report Report to custom update
+         * @param {number} custom_report_oid The report oid to custom update.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        updateCustomReport: function (report, custom_report_oid, options) {
+            var localVarFetchArgs = (0, exports.DatawarehouseApiFetchParamCreator)(configuration).updateCustomReport(report, custom_report_oid, options);
+            return function (fetch, basePath) {
+                if (fetch === void 0) { fetch = portableFetch; }
+                if (basePath === void 0) { basePath = BASE_PATH; }
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(function (response) {
+                    if (response.status >= 200 && response.status < 300) {
+                        return response.json();
+                    }
+                    else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
+         * Update custom report account config.
+         * @summary Update custom report account config
+         * @param {CustomReportAccountConfig} account_config Account config to update
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        updateCustomReportAccountConfig: function (account_config, options) {
+            var localVarFetchArgs = (0, exports.DatawarehouseApiFetchParamCreator)(configuration).updateCustomReportAccountConfig(account_config, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -20705,6 +21214,16 @@ exports.DatawarehouseApiFp = DatawarehouseApiFp;
 var DatawarehouseApiFactory = function (configuration, fetch, basePath) {
     return {
         /**
+         * Delete a custom report on the UltraCart account.
+         * @summary Delete a custom report
+         * @param {number} custom_report_oid The report oid to delete.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        deleteCustomReport: function (custom_report_oid, options) {
+            return (0, exports.DatawarehouseApiFp)(configuration).deleteCustomReport(custom_report_oid, options)(fetch, basePath);
+        },
+        /**
          * Delete a report on the UltraCart account.
          * @summary Delete a report
          * @param {number} report_oid The report oid to delete.
@@ -20725,6 +21244,17 @@ var DatawarehouseApiFactory = function (configuration, fetch, basePath) {
             return (0, exports.DatawarehouseApiFp)(configuration).dryRunReportQueries(query_request, options)(fetch, basePath);
         },
         /**
+         * Execute a custom report on the UltraCart account.
+         * @summary Execute a custom report
+         * @param {CustomReportExecutionRequest} execution_request Request to execute custom report
+         * @param {number} custom_report_oid The report oid to execute.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        executeCustomReport: function (execution_request, custom_report_oid, options) {
+            return (0, exports.DatawarehouseApiFp)(configuration).executeCustomReport(execution_request, custom_report_oid, options)(fetch, basePath);
+        },
+        /**
          * Execute the report queries
          * @summary Execute the report queries
          * @param {ReportExecuteQueriesRequest} query_request Query request
@@ -20733,6 +21263,25 @@ var DatawarehouseApiFactory = function (configuration, fetch, basePath) {
          */
         executeReportQueries: function (query_request, options) {
             return (0, exports.DatawarehouseApiFp)(configuration).executeReportQueries(query_request, options)(fetch, basePath);
+        },
+        /**
+         * Retrieve a custom report
+         * @summary Get a custom report
+         * @param {number} custom_report_oid
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getCustomReport: function (custom_report_oid, options) {
+            return (0, exports.DatawarehouseApiFp)(configuration).getCustomReport(custom_report_oid, options)(fetch, basePath);
+        },
+        /**
+         * Retrieve a custom report account configuration
+         * @summary Get custom report account configuration
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getCustomReportAccountConfig: function (options) {
+            return (0, exports.DatawarehouseApiFp)(configuration).getCustomReportAccountConfig(options)(fetch, basePath);
         },
         /**
          * Retrieve a report
@@ -20784,6 +21333,16 @@ var DatawarehouseApiFactory = function (configuration, fetch, basePath) {
             return (0, exports.DatawarehouseApiFp)(configuration).getReports(options)(fetch, basePath);
         },
         /**
+         * Create a new custom report on the UltraCart account.
+         * @summary Create a custom report
+         * @param {CustomReport} report Report to create
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        insertCustomReport: function (report, options) {
+            return (0, exports.DatawarehouseApiFp)(configuration).insertCustomReport(report, options)(fetch, basePath);
+        },
+        /**
          * Create a new report on the UltraCart account.
          * @summary Create a report
          * @param {Report} report Report to create
@@ -20792,6 +21351,27 @@ var DatawarehouseApiFactory = function (configuration, fetch, basePath) {
          */
         insertReport: function (report, options) {
             return (0, exports.DatawarehouseApiFp)(configuration).insertReport(report, options)(fetch, basePath);
+        },
+        /**
+         * Update a custom report on the UltraCart account.
+         * @summary Update a custom report
+         * @param {CustomReport} report Report to custom update
+         * @param {number} custom_report_oid The report oid to custom update.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        updateCustomReport: function (report, custom_report_oid, options) {
+            return (0, exports.DatawarehouseApiFp)(configuration).updateCustomReport(report, custom_report_oid, options)(fetch, basePath);
+        },
+        /**
+         * Update custom report account config.
+         * @summary Update custom report account config
+         * @param {CustomReportAccountConfig} account_config Account config to update
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        updateCustomReportAccountConfig: function (account_config, options) {
+            return (0, exports.DatawarehouseApiFp)(configuration).updateCustomReportAccountConfig(account_config, options)(fetch, basePath);
         },
         /**
          * Update a report on the UltraCart account.
@@ -20819,6 +21399,17 @@ var DatawarehouseApi = /** @class */ (function (_super) {
         return _super !== null && _super.apply(this, arguments) || this;
     }
     /**
+     * Delete a custom report on the UltraCart account.
+     * @summary Delete a custom report
+     * @param {number} custom_report_oid The report oid to delete.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DatawarehouseApi
+     */
+    DatawarehouseApi.prototype.deleteCustomReport = function (custom_report_oid, options) {
+        return (0, exports.DatawarehouseApiFp)(this.configuration).deleteCustomReport(custom_report_oid, options)(this.fetch, this.basePath);
+    };
+    /**
      * Delete a report on the UltraCart account.
      * @summary Delete a report
      * @param {number} report_oid The report oid to delete.
@@ -20841,6 +21432,18 @@ var DatawarehouseApi = /** @class */ (function (_super) {
         return (0, exports.DatawarehouseApiFp)(this.configuration).dryRunReportQueries(query_request, options)(this.fetch, this.basePath);
     };
     /**
+     * Execute a custom report on the UltraCart account.
+     * @summary Execute a custom report
+     * @param {CustomReportExecutionRequest} execution_request Request to execute custom report
+     * @param {number} custom_report_oid The report oid to execute.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DatawarehouseApi
+     */
+    DatawarehouseApi.prototype.executeCustomReport = function (execution_request, custom_report_oid, options) {
+        return (0, exports.DatawarehouseApiFp)(this.configuration).executeCustomReport(execution_request, custom_report_oid, options)(this.fetch, this.basePath);
+    };
+    /**
      * Execute the report queries
      * @summary Execute the report queries
      * @param {ReportExecuteQueriesRequest} query_request Query request
@@ -20850,6 +21453,27 @@ var DatawarehouseApi = /** @class */ (function (_super) {
      */
     DatawarehouseApi.prototype.executeReportQueries = function (query_request, options) {
         return (0, exports.DatawarehouseApiFp)(this.configuration).executeReportQueries(query_request, options)(this.fetch, this.basePath);
+    };
+    /**
+     * Retrieve a custom report
+     * @summary Get a custom report
+     * @param {number} custom_report_oid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DatawarehouseApi
+     */
+    DatawarehouseApi.prototype.getCustomReport = function (custom_report_oid, options) {
+        return (0, exports.DatawarehouseApiFp)(this.configuration).getCustomReport(custom_report_oid, options)(this.fetch, this.basePath);
+    };
+    /**
+     * Retrieve a custom report account configuration
+     * @summary Get custom report account configuration
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DatawarehouseApi
+     */
+    DatawarehouseApi.prototype.getCustomReportAccountConfig = function (options) {
+        return (0, exports.DatawarehouseApiFp)(this.configuration).getCustomReportAccountConfig(options)(this.fetch, this.basePath);
     };
     /**
      * Retrieve a report
@@ -20906,6 +21530,17 @@ var DatawarehouseApi = /** @class */ (function (_super) {
         return (0, exports.DatawarehouseApiFp)(this.configuration).getReports(options)(this.fetch, this.basePath);
     };
     /**
+     * Create a new custom report on the UltraCart account.
+     * @summary Create a custom report
+     * @param {CustomReport} report Report to create
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DatawarehouseApi
+     */
+    DatawarehouseApi.prototype.insertCustomReport = function (report, options) {
+        return (0, exports.DatawarehouseApiFp)(this.configuration).insertCustomReport(report, options)(this.fetch, this.basePath);
+    };
+    /**
      * Create a new report on the UltraCart account.
      * @summary Create a report
      * @param {Report} report Report to create
@@ -20915,6 +21550,29 @@ var DatawarehouseApi = /** @class */ (function (_super) {
      */
     DatawarehouseApi.prototype.insertReport = function (report, options) {
         return (0, exports.DatawarehouseApiFp)(this.configuration).insertReport(report, options)(this.fetch, this.basePath);
+    };
+    /**
+     * Update a custom report on the UltraCart account.
+     * @summary Update a custom report
+     * @param {CustomReport} report Report to custom update
+     * @param {number} custom_report_oid The report oid to custom update.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DatawarehouseApi
+     */
+    DatawarehouseApi.prototype.updateCustomReport = function (report, custom_report_oid, options) {
+        return (0, exports.DatawarehouseApiFp)(this.configuration).updateCustomReport(report, custom_report_oid, options)(this.fetch, this.basePath);
+    };
+    /**
+     * Update custom report account config.
+     * @summary Update custom report account config
+     * @param {CustomReportAccountConfig} account_config Account config to update
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DatawarehouseApi
+     */
+    DatawarehouseApi.prototype.updateCustomReportAccountConfig = function (account_config, options) {
+        return (0, exports.DatawarehouseApiFp)(this.configuration).updateCustomReportAccountConfig(account_config, options)(this.fetch, this.basePath);
     };
     /**
      * Update a report on the UltraCart account.
@@ -25614,6 +26272,56 @@ var OrderApiFetchParamCreator = function (configuration) {
             };
         },
         /**
+         * Sets a refund block on an order to prevent a user from performing a refund.  Commonly used when a chargeback has been received.
+         * @summary Set a refund block on an order
+         * @param {string} order_id The order id to block a refund on.
+         * @param {string} [block_reason] Block reason code (optional)
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        blockRefundOnOrder: function (order_id, block_reason, options) {
+            if (options === void 0) { options = {}; }
+            // verify required parameter 'order_id' is not null or undefined
+            if (order_id === null || order_id === undefined) {
+                throw new RequiredError('order_id', 'Required parameter order_id was null or undefined when calling blockRefundOnOrder.');
+            }
+            var localVarPath = "/order/orders/{order_id}/refund_block"
+                .replace("{".concat("order_id", "}"), encodeURIComponent(String(order_id)));
+            var localVarUrlObj = url.parse(localVarPath, true);
+            var localVarRequestOptions = Object.assign({ method: 'POST' }, options);
+            var localVarHeaderParameter = {};
+            var localVarQueryParameter = {};
+            if (configuration && configuration.apiVersion) {
+                localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+            }
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+                var localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+                    ? configuration.accessToken("ultraCartOauth", ["order_write"])
+                    : configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                var localVarApiKeyValue = typeof configuration.apiKey === 'function'
+                    ? configuration.apiKey("x-ultracart-simple-key")
+                    : configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+            if (block_reason !== undefined) {
+                localVarQueryParameter['block_reason'] = block_reason;
+            }
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
          * Cancel an order on the UltraCart account.  If the success flag is false, then consult the error message for why it failed.
          * @summary Cancel an order
          * @param {string} order_id The order id to cancel.
@@ -26990,6 +27698,52 @@ var OrderApiFetchParamCreator = function (configuration) {
             };
         },
         /**
+         * Removes a refund block on an order to prevent a user from performing a refund.
+         * @summary Remove a refund block on an order
+         * @param {string} order_id The order id to unblock a refund on.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        unblockRefundOnOrder: function (order_id, options) {
+            if (options === void 0) { options = {}; }
+            // verify required parameter 'order_id' is not null or undefined
+            if (order_id === null || order_id === undefined) {
+                throw new RequiredError('order_id', 'Required parameter order_id was null or undefined when calling unblockRefundOnOrder.');
+            }
+            var localVarPath = "/order/orders/{order_id}/refund_unblock"
+                .replace("{".concat("order_id", "}"), encodeURIComponent(String(order_id)));
+            var localVarUrlObj = url.parse(localVarPath, true);
+            var localVarRequestOptions = Object.assign({ method: 'POST' }, options);
+            var localVarHeaderParameter = {};
+            var localVarQueryParameter = {};
+            if (configuration && configuration.apiVersion) {
+                localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+            }
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+                var localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+                    ? configuration.accessToken("ultraCartOauth", ["order_write"])
+                    : configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                var localVarApiKeyValue = typeof configuration.apiKey === 'function'
+                    ? configuration.apiKey("x-ultracart-simple-key")
+                    : configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
          * Update A/R Retry Configuration.  This is primarily an internal API call.  It is doubtful you would ever need to use it.
          * @summary Update A/R Retry Configuration
          * @param {AccountsReceivableRetryConfig} retry_config AccountsReceivableRetryConfig object
@@ -27168,6 +27922,29 @@ var OrderApiFp = function (configuration) {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(function (response) {
                     if (response.status >= 200 && response.status < 300) {
                         return response.json();
+                    }
+                    else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
+         * Sets a refund block on an order to prevent a user from performing a refund.  Commonly used when a chargeback has been received.
+         * @summary Set a refund block on an order
+         * @param {string} order_id The order id to block a refund on.
+         * @param {string} [block_reason] Block reason code (optional)
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        blockRefundOnOrder: function (order_id, block_reason, options) {
+            var localVarFetchArgs = (0, exports.OrderApiFetchParamCreator)(configuration).blockRefundOnOrder(order_id, block_reason, options);
+            return function (fetch, basePath) {
+                if (fetch === void 0) { fetch = portableFetch; }
+                if (basePath === void 0) { basePath = BASE_PATH; }
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(function (response) {
+                    if (response.status >= 200 && response.status < 300) {
+                        return response;
                     }
                     else {
                         throw response;
@@ -27767,6 +28544,28 @@ var OrderApiFp = function (configuration) {
             };
         },
         /**
+         * Removes a refund block on an order to prevent a user from performing a refund.
+         * @summary Remove a refund block on an order
+         * @param {string} order_id The order id to unblock a refund on.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        unblockRefundOnOrder: function (order_id, options) {
+            var localVarFetchArgs = (0, exports.OrderApiFetchParamCreator)(configuration).unblockRefundOnOrder(order_id, options);
+            return function (fetch, basePath) {
+                if (fetch === void 0) { fetch = portableFetch; }
+                if (basePath === void 0) { basePath = BASE_PATH; }
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(function (response) {
+                    if (response.status >= 200 && response.status < 300) {
+                        return response;
+                    }
+                    else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
          * Update A/R Retry Configuration.  This is primarily an internal API call.  It is doubtful you would ever need to use it.
          * @summary Update A/R Retry Configuration
          * @param {AccountsReceivableRetryConfig} retry_config AccountsReceivableRetryConfig object
@@ -27853,6 +28652,17 @@ var OrderApiFactory = function (configuration, fetch, basePath) {
          */
         adjustOrderTotal: function (order_id, desired_total, options) {
             return (0, exports.OrderApiFp)(configuration).adjustOrderTotal(order_id, desired_total, options)(fetch, basePath);
+        },
+        /**
+         * Sets a refund block on an order to prevent a user from performing a refund.  Commonly used when a chargeback has been received.
+         * @summary Set a refund block on an order
+         * @param {string} order_id The order id to block a refund on.
+         * @param {string} [block_reason] Block reason code (optional)
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        blockRefundOnOrder: function (order_id, block_reason, options) {
+            return (0, exports.OrderApiFp)(configuration).blockRefundOnOrder(order_id, block_reason, options)(fetch, basePath);
         },
         /**
          * Cancel an order on the UltraCart account.  If the success flag is false, then consult the error message for why it failed.
@@ -28158,6 +28968,16 @@ var OrderApiFactory = function (configuration, fetch, basePath) {
             return (0, exports.OrderApiFp)(configuration).resendShipmentConfirmation(order_id, options)(fetch, basePath);
         },
         /**
+         * Removes a refund block on an order to prevent a user from performing a refund.
+         * @summary Remove a refund block on an order
+         * @param {string} order_id The order id to unblock a refund on.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        unblockRefundOnOrder: function (order_id, options) {
+            return (0, exports.OrderApiFp)(configuration).unblockRefundOnOrder(order_id, options)(fetch, basePath);
+        },
+        /**
          * Update A/R Retry Configuration.  This is primarily an internal API call.  It is doubtful you would ever need to use it.
          * @summary Update A/R Retry Configuration
          * @param {AccountsReceivableRetryConfig} retry_config AccountsReceivableRetryConfig object
@@ -28214,6 +29034,18 @@ var OrderApi = /** @class */ (function (_super) {
      */
     OrderApi.prototype.adjustOrderTotal = function (order_id, desired_total, options) {
         return (0, exports.OrderApiFp)(this.configuration).adjustOrderTotal(order_id, desired_total, options)(this.fetch, this.basePath);
+    };
+    /**
+     * Sets a refund block on an order to prevent a user from performing a refund.  Commonly used when a chargeback has been received.
+     * @summary Set a refund block on an order
+     * @param {string} order_id The order id to block a refund on.
+     * @param {string} [block_reason] Block reason code (optional)
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof OrderApi
+     */
+    OrderApi.prototype.blockRefundOnOrder = function (order_id, block_reason, options) {
+        return (0, exports.OrderApiFp)(this.configuration).blockRefundOnOrder(order_id, block_reason, options)(this.fetch, this.basePath);
     };
     /**
      * Cancel an order on the UltraCart account.  If the success flag is false, then consult the error message for why it failed.
@@ -28541,6 +29373,17 @@ var OrderApi = /** @class */ (function (_super) {
      */
     OrderApi.prototype.resendShipmentConfirmation = function (order_id, options) {
         return (0, exports.OrderApiFp)(this.configuration).resendShipmentConfirmation(order_id, options)(this.fetch, this.basePath);
+    };
+    /**
+     * Removes a refund block on an order to prevent a user from performing a refund.
+     * @summary Remove a refund block on an order
+     * @param {string} order_id The order id to unblock a refund on.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof OrderApi
+     */
+    OrderApi.prototype.unblockRefundOnOrder = function (order_id, options) {
+        return (0, exports.OrderApiFp)(this.configuration).unblockRefundOnOrder(order_id, options)(this.fetch, this.basePath);
     };
     /**
      * Update A/R Retry Configuration.  This is primarily an internal API call.  It is doubtful you would ever need to use it.

@@ -5170,11 +5170,23 @@ export interface CartUpsellAfter {
      */
     finalize_after_minutes?: number;
     /**
-     * Upsell path code
+     * Upsell path code (this is for legacy upsells only)
      * @type {string}
      * @memberof CartUpsellAfter
      */
     upsell_path_code?: string;
+    /**
+     * Upsell path name to start on (StoreFront Upsells).  Will only be respected on a handoff API call.
+     * @type {string}
+     * @memberof CartUpsellAfter
+     */
+    upsell_path_name?: string;
+    /**
+     * Upsell path variation to start on (StoreFront Upsells).   Will only be respected on a handoff API call.
+     * @type {string}
+     * @memberof CartUpsellAfter
+     */
+    upsell_path_variation?: string;
 }
 /**
  *
@@ -11091,6 +11103,18 @@ export interface ConversationVirtualAgentCapabilities {
      */
     open_support_ticket?: boolean;
     /**
+     * Channel to use to open the support ticket
+     * @type {string}
+     * @memberof ConversationVirtualAgentCapabilities
+     */
+    open_support_ticket_channel?: ConversationVirtualAgentCapabilities.OpenSupportTicketChannelEnum;
+    /**
+     * Email to send support ticket to
+     * @type {string}
+     * @memberof ConversationVirtualAgentCapabilities
+     */
+    open_support_ticket_channel_email?: string;
+    /**
      *
      * @type {boolean}
      * @memberof ConversationVirtualAgentCapabilities
@@ -11114,6 +11138,22 @@ export interface ConversationVirtualAgentCapabilities {
      * @memberof ConversationVirtualAgentCapabilities
      */
     update_subscription_credit_card?: boolean;
+}
+/**
+ * @export
+ * @namespace ConversationVirtualAgentCapabilities
+ */
+export declare namespace ConversationVirtualAgentCapabilities {
+    /**
+     * @export
+     * @enum {string}
+     */
+    enum OpenSupportTicketChannelEnum {
+        None,
+        Email,
+        UltraCartTask,
+        ZohoDeskTicket
+    }
 }
 /**
  *
@@ -14198,6 +14238,370 @@ export interface Currency {
      * @memberof Currency
      */
     value?: number;
+}
+/**
+ *
+ * @export
+ * @interface CustomReport
+ */
+export interface CustomReport {
+    /**
+     *
+     * @type {string}
+     * @memberof CustomReport
+     */
+    chart_javascript?: string;
+    /**
+     *
+     * @type {string}
+     * @memberof CustomReport
+     */
+    chart_javascript_url?: string;
+    /**
+     *
+     * @type {number}
+     * @memberof CustomReport
+     */
+    data_warehouse_report_config_oid?: number;
+    /**
+     *
+     * @type {string}
+     * @memberof CustomReport
+     */
+    dataset_security_level?: string;
+    /**
+     *
+     * @type {string}
+     * @memberof CustomReport
+     */
+    group_name?: string;
+    /**
+     *
+     * @type {string}
+     * @memberof CustomReport
+     */
+    merchant_id?: string;
+    /**
+     *
+     * @type {string}
+     * @memberof CustomReport
+     */
+    name?: string;
+    /**
+     *
+     * @type {Array<CustomReportParameter>}
+     * @memberof CustomReport
+     */
+    parameters?: Array<CustomReportParameter>;
+    /**
+     *
+     * @type {Array<CustomReportQuery>}
+     * @memberof CustomReport
+     */
+    queries?: Array<CustomReportQuery>;
+    /**
+     *
+     * @type {Array<CustomReportTooltip>}
+     * @memberof CustomReport
+     */
+    tooltips?: Array<CustomReportTooltip>;
+}
+/**
+ *
+ * @export
+ * @interface CustomReportAccountConfig
+ */
+export interface CustomReportAccountConfig {
+    /**
+     *
+     * @type {number}
+     * @memberof CustomReportAccountConfig
+     */
+    ai_budget?: number;
+    /**
+     * Current AI usage creating reports
+     * @type {number}
+     * @memberof CustomReportAccountConfig
+     */
+    ai_usage?: number;
+    /**
+     * Current BigQuery SQL usage running reports
+     * @type {string}
+     * @memberof CustomReportAccountConfig
+     */
+    merchant_id?: string;
+    /**
+     *
+     * @type {boolean}
+     * @memberof CustomReportAccountConfig
+     */
+    novice_sql_comments?: boolean;
+    /**
+     * True if they have opted into custom reports
+     * @type {boolean}
+     * @memberof CustomReportAccountConfig
+     */
+    opt_in?: boolean;
+    /**
+     * User that opted into custom reporting
+     * @type {string}
+     * @memberof CustomReportAccountConfig
+     */
+    opt_in_by_user?: string;
+    /**
+     * Date/time that custom reporting was opted in to
+     * @type {string}
+     * @memberof CustomReportAccountConfig
+     */
+    opt_in_date?: string;
+    /**
+     *
+     * @type {number}
+     * @memberof CustomReportAccountConfig
+     */
+    sql_budget?: number;
+    /**
+     *
+     * @type {number}
+     * @memberof CustomReportAccountConfig
+     */
+    sql_usage?: number;
+}
+/**
+ *
+ * @export
+ * @interface CustomReportAccountConfigResponse
+ */
+export interface CustomReportAccountConfigResponse {
+    /**
+     *
+     * @type {CustomReportAccountConfig}
+     * @memberof CustomReportAccountConfigResponse
+     */
+    account_config?: CustomReportAccountConfig;
+    /**
+     *
+     * @type {ModelError}
+     * @memberof CustomReportAccountConfigResponse
+     */
+    error?: ModelError;
+    /**
+     *
+     * @type {ResponseMetadata}
+     * @memberof CustomReportAccountConfigResponse
+     */
+    metadata?: ResponseMetadata;
+    /**
+     * Indicates if API call was successful
+     * @type {boolean}
+     * @memberof CustomReportAccountConfigResponse
+     */
+    success?: boolean;
+    /**
+     *
+     * @type {Warning}
+     * @memberof CustomReportAccountConfigResponse
+     */
+    warning?: Warning;
+}
+/**
+ *
+ * @export
+ * @interface CustomReportExecutionParameter
+ */
+export interface CustomReportExecutionParameter {
+    /**
+     *
+     * @type {string}
+     * @memberof CustomReportExecutionParameter
+     */
+    name?: string;
+    /**
+     *
+     * @type {string}
+     * @memberof CustomReportExecutionParameter
+     */
+    type?: string;
+    /**
+     *
+     * @type {string}
+     * @memberof CustomReportExecutionParameter
+     */
+    value?: string;
+}
+/**
+ *
+ * @export
+ * @interface CustomReportExecutionRequest
+ */
+export interface CustomReportExecutionRequest {
+    /**
+     *
+     * @type {Array<CustomReportExecutionParameter>}
+     * @memberof CustomReportExecutionRequest
+     */
+    parameters?: Array<CustomReportExecutionParameter>;
+}
+/**
+ *
+ * @export
+ * @interface CustomReportParameter
+ */
+export interface CustomReportParameter {
+    /**
+     *
+     * @type {string}
+     * @memberof CustomReportParameter
+     */
+    display_name?: string;
+    /**
+     *
+     * @type {string}
+     * @memberof CustomReportParameter
+     */
+    meta?: string;
+    /**
+     *
+     * @type {string}
+     * @memberof CustomReportParameter
+     */
+    name?: string;
+    /**
+     *
+     * @type {Array<CustomReportParameterOption>}
+     * @memberof CustomReportParameter
+     */
+    options?: Array<CustomReportParameterOption>;
+    /**
+     *
+     * @type {boolean}
+     * @memberof CustomReportParameter
+     */
+    required?: boolean;
+    /**
+     *
+     * @type {string}
+     * @memberof CustomReportParameter
+     */
+    type?: string;
+}
+/**
+ *
+ * @export
+ * @interface CustomReportParameterOption
+ */
+export interface CustomReportParameterOption {
+    /**
+     *
+     * @type {string}
+     * @memberof CustomReportParameterOption
+     */
+    description?: string;
+    /**
+     *
+     * @type {string}
+     * @memberof CustomReportParameterOption
+     */
+    value?: string;
+}
+/**
+ *
+ * @export
+ * @interface CustomReportQuery
+ */
+export interface CustomReportQuery {
+    /**
+     *
+     * @type {number}
+     * @memberof CustomReportQuery
+     */
+    conditional_formatting_start_column?: number;
+    /**
+     *
+     * @type {number}
+     * @memberof CustomReportQuery
+     */
+    freeze_columns?: number;
+    /**
+     *
+     * @type {Array<string>}
+     * @memberof CustomReportQuery
+     */
+    pii_columns?: Array<string>;
+    /**
+     *
+     * @type {string}
+     * @memberof CustomReportQuery
+     */
+    query?: string;
+    /**
+     *
+     * @type {string}
+     * @memberof CustomReportQuery
+     */
+    sheet_name?: string;
+    /**
+     *
+     * @type {string}
+     * @memberof CustomReportQuery
+     */
+    title?: string;
+}
+/**
+ *
+ * @export
+ * @interface CustomReportResponse
+ */
+export interface CustomReportResponse {
+    /**
+     *
+     * @type {ModelError}
+     * @memberof CustomReportResponse
+     */
+    error?: ModelError;
+    /**
+     *
+     * @type {ResponseMetadata}
+     * @memberof CustomReportResponse
+     */
+    metadata?: ResponseMetadata;
+    /**
+     *
+     * @type {CustomReport}
+     * @memberof CustomReportResponse
+     */
+    report?: CustomReport;
+    /**
+     * Indicates if API call was successful
+     * @type {boolean}
+     * @memberof CustomReportResponse
+     */
+    success?: boolean;
+    /**
+     *
+     * @type {Warning}
+     * @memberof CustomReportResponse
+     */
+    warning?: Warning;
+}
+/**
+ *
+ * @export
+ * @interface CustomReportTooltip
+ */
+export interface CustomReportTooltip {
+    /**
+     *
+     * @type {string}
+     * @memberof CustomReportTooltip
+     */
+    column_name?: string;
+    /**
+     *
+     * @type {string}
+     * @memberof CustomReportTooltip
+     */
+    tooltip?: string;
 }
 /**
  *
@@ -25556,7 +25960,7 @@ export interface Item {
      */
     parent_category_id?: number;
     /**
-     * Parent category path.  / indicates the root folder.
+     * Parent category path.  / indicates the root folder.  This is the folder structure within item management.
      * @type {string}
      * @memberof Item
      */
@@ -53447,6 +53851,14 @@ export declare class CustomerApi extends BaseAPI implements CustomerApiInterface
  */
 export declare const DatawarehouseApiFetchParamCreator: (configuration?: Configuration) => {
     /**
+     * Delete a custom report on the UltraCart account.
+     * @summary Delete a custom report
+     * @param {number} custom_report_oid The report oid to delete.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    deleteCustomReport(custom_report_oid: number, options?: any): FetchArgs;
+    /**
      * Delete a report on the UltraCart account.
      * @summary Delete a report
      * @param {number} report_oid The report oid to delete.
@@ -53463,6 +53875,15 @@ export declare const DatawarehouseApiFetchParamCreator: (configuration?: Configu
      */
     dryRunReportQueries(query_request: ReportDryRunQueriesRequest, options?: any): FetchArgs;
     /**
+     * Execute a custom report on the UltraCart account.
+     * @summary Execute a custom report
+     * @param {CustomReportExecutionRequest} execution_request Request to execute custom report
+     * @param {number} custom_report_oid The report oid to execute.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    executeCustomReport(execution_request: CustomReportExecutionRequest, custom_report_oid: number, options?: any): FetchArgs;
+    /**
      * Execute the report queries
      * @summary Execute the report queries
      * @param {ReportExecuteQueriesRequest} query_request Query request
@@ -53470,6 +53891,21 @@ export declare const DatawarehouseApiFetchParamCreator: (configuration?: Configu
      * @throws {RequiredError}
      */
     executeReportQueries(query_request: ReportExecuteQueriesRequest, options?: any): FetchArgs;
+    /**
+     * Retrieve a custom report
+     * @summary Get a custom report
+     * @param {number} custom_report_oid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getCustomReport(custom_report_oid: number, options?: any): FetchArgs;
+    /**
+     * Retrieve a custom report account configuration
+     * @summary Get custom report account configuration
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getCustomReportAccountConfig(options?: any): FetchArgs;
     /**
      * Retrieve a report
      * @summary Get a report
@@ -53510,6 +53946,14 @@ export declare const DatawarehouseApiFetchParamCreator: (configuration?: Configu
      */
     getReports(options?: any): FetchArgs;
     /**
+     * Create a new custom report on the UltraCart account.
+     * @summary Create a custom report
+     * @param {CustomReport} report Report to create
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    insertCustomReport(report: CustomReport, options?: any): FetchArgs;
+    /**
      * Create a new report on the UltraCart account.
      * @summary Create a report
      * @param {Report} report Report to create
@@ -53517,6 +53961,23 @@ export declare const DatawarehouseApiFetchParamCreator: (configuration?: Configu
      * @throws {RequiredError}
      */
     insertReport(report: Report, options?: any): FetchArgs;
+    /**
+     * Update a custom report on the UltraCart account.
+     * @summary Update a custom report
+     * @param {CustomReport} report Report to custom update
+     * @param {number} custom_report_oid The report oid to custom update.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    updateCustomReport(report: CustomReport, custom_report_oid: number, options?: any): FetchArgs;
+    /**
+     * Update custom report account config.
+     * @summary Update custom report account config
+     * @param {CustomReportAccountConfig} account_config Account config to update
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    updateCustomReportAccountConfig(account_config: CustomReportAccountConfig, options?: any): FetchArgs;
     /**
      * Update a report on the UltraCart account.
      * @summary Update a report
@@ -53532,6 +53993,14 @@ export declare const DatawarehouseApiFetchParamCreator: (configuration?: Configu
  * @export
  */
 export declare const DatawarehouseApiFp: (configuration?: Configuration) => {
+    /**
+     * Delete a custom report on the UltraCart account.
+     * @summary Delete a custom report
+     * @param {number} custom_report_oid The report oid to delete.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    deleteCustomReport(custom_report_oid: number, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Response>;
     /**
      * Delete a report on the UltraCart account.
      * @summary Delete a report
@@ -53549,6 +54018,15 @@ export declare const DatawarehouseApiFp: (configuration?: Configuration) => {
      */
     dryRunReportQueries(query_request: ReportDryRunQueriesRequest, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ReportDryRunQueriesResponse>;
     /**
+     * Execute a custom report on the UltraCart account.
+     * @summary Execute a custom report
+     * @param {CustomReportExecutionRequest} execution_request Request to execute custom report
+     * @param {number} custom_report_oid The report oid to execute.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    executeCustomReport(execution_request: CustomReportExecutionRequest, custom_report_oid: number, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<CustomReportResponse>;
+    /**
      * Execute the report queries
      * @summary Execute the report queries
      * @param {ReportExecuteQueriesRequest} query_request Query request
@@ -53556,6 +54034,21 @@ export declare const DatawarehouseApiFp: (configuration?: Configuration) => {
      * @throws {RequiredError}
      */
     executeReportQueries(query_request: ReportExecuteQueriesRequest, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Response>;
+    /**
+     * Retrieve a custom report
+     * @summary Get a custom report
+     * @param {number} custom_report_oid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getCustomReport(custom_report_oid: number, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<CustomReportResponse>;
+    /**
+     * Retrieve a custom report account configuration
+     * @summary Get custom report account configuration
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getCustomReportAccountConfig(options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<CustomReportAccountConfigResponse>;
     /**
      * Retrieve a report
      * @summary Get a report
@@ -53596,6 +54089,14 @@ export declare const DatawarehouseApiFp: (configuration?: Configuration) => {
      */
     getReports(options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ReportsResponse>;
     /**
+     * Create a new custom report on the UltraCart account.
+     * @summary Create a custom report
+     * @param {CustomReport} report Report to create
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    insertCustomReport(report: CustomReport, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<CustomReportResponse>;
+    /**
      * Create a new report on the UltraCart account.
      * @summary Create a report
      * @param {Report} report Report to create
@@ -53603,6 +54104,23 @@ export declare const DatawarehouseApiFp: (configuration?: Configuration) => {
      * @throws {RequiredError}
      */
     insertReport(report: Report, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ReportResponse>;
+    /**
+     * Update a custom report on the UltraCart account.
+     * @summary Update a custom report
+     * @param {CustomReport} report Report to custom update
+     * @param {number} custom_report_oid The report oid to custom update.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    updateCustomReport(report: CustomReport, custom_report_oid: number, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<CustomReportResponse>;
+    /**
+     * Update custom report account config.
+     * @summary Update custom report account config
+     * @param {CustomReportAccountConfig} account_config Account config to update
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    updateCustomReportAccountConfig(account_config: CustomReportAccountConfig, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<CustomReportAccountConfigResponse>;
     /**
      * Update a report on the UltraCart account.
      * @summary Update a report
@@ -53618,6 +54136,14 @@ export declare const DatawarehouseApiFp: (configuration?: Configuration) => {
  * @export
  */
 export declare const DatawarehouseApiFactory: (configuration?: Configuration, fetch?: FetchAPI, basePath?: string) => {
+    /**
+     * Delete a custom report on the UltraCart account.
+     * @summary Delete a custom report
+     * @param {number} custom_report_oid The report oid to delete.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    deleteCustomReport(custom_report_oid: number, options?: any): Promise<Response>;
     /**
      * Delete a report on the UltraCart account.
      * @summary Delete a report
@@ -53635,6 +54161,15 @@ export declare const DatawarehouseApiFactory: (configuration?: Configuration, fe
      */
     dryRunReportQueries(query_request: ReportDryRunQueriesRequest, options?: any): Promise<ReportDryRunQueriesResponse>;
     /**
+     * Execute a custom report on the UltraCart account.
+     * @summary Execute a custom report
+     * @param {CustomReportExecutionRequest} execution_request Request to execute custom report
+     * @param {number} custom_report_oid The report oid to execute.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    executeCustomReport(execution_request: CustomReportExecutionRequest, custom_report_oid: number, options?: any): Promise<CustomReportResponse>;
+    /**
      * Execute the report queries
      * @summary Execute the report queries
      * @param {ReportExecuteQueriesRequest} query_request Query request
@@ -53642,6 +54177,21 @@ export declare const DatawarehouseApiFactory: (configuration?: Configuration, fe
      * @throws {RequiredError}
      */
     executeReportQueries(query_request: ReportExecuteQueriesRequest, options?: any): Promise<Response>;
+    /**
+     * Retrieve a custom report
+     * @summary Get a custom report
+     * @param {number} custom_report_oid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getCustomReport(custom_report_oid: number, options?: any): Promise<CustomReportResponse>;
+    /**
+     * Retrieve a custom report account configuration
+     * @summary Get custom report account configuration
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getCustomReportAccountConfig(options?: any): Promise<CustomReportAccountConfigResponse>;
     /**
      * Retrieve a report
      * @summary Get a report
@@ -53682,6 +54232,14 @@ export declare const DatawarehouseApiFactory: (configuration?: Configuration, fe
      */
     getReports(options?: any): Promise<ReportsResponse>;
     /**
+     * Create a new custom report on the UltraCart account.
+     * @summary Create a custom report
+     * @param {CustomReport} report Report to create
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    insertCustomReport(report: CustomReport, options?: any): Promise<CustomReportResponse>;
+    /**
      * Create a new report on the UltraCart account.
      * @summary Create a report
      * @param {Report} report Report to create
@@ -53689,6 +54247,23 @@ export declare const DatawarehouseApiFactory: (configuration?: Configuration, fe
      * @throws {RequiredError}
      */
     insertReport(report: Report, options?: any): Promise<ReportResponse>;
+    /**
+     * Update a custom report on the UltraCart account.
+     * @summary Update a custom report
+     * @param {CustomReport} report Report to custom update
+     * @param {number} custom_report_oid The report oid to custom update.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    updateCustomReport(report: CustomReport, custom_report_oid: number, options?: any): Promise<CustomReportResponse>;
+    /**
+     * Update custom report account config.
+     * @summary Update custom report account config
+     * @param {CustomReportAccountConfig} account_config Account config to update
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    updateCustomReportAccountConfig(account_config: CustomReportAccountConfig, options?: any): Promise<CustomReportAccountConfigResponse>;
     /**
      * Update a report on the UltraCart account.
      * @summary Update a report
@@ -53705,6 +54280,15 @@ export declare const DatawarehouseApiFactory: (configuration?: Configuration, fe
  * @interface DatawarehouseApi
  */
 export interface DatawarehouseApiInterface {
+    /**
+     * Delete a custom report on the UltraCart account.
+     * @summary Delete a custom report
+     * @param {number} custom_report_oid The report oid to delete.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DatawarehouseApiInterface
+     */
+    deleteCustomReport(custom_report_oid: number, options?: any): Promise<{}>;
     /**
      * Delete a report on the UltraCart account.
      * @summary Delete a report
@@ -53724,6 +54308,16 @@ export interface DatawarehouseApiInterface {
      */
     dryRunReportQueries(query_request: ReportDryRunQueriesRequest, options?: any): Promise<ReportDryRunQueriesResponse>;
     /**
+     * Execute a custom report on the UltraCart account.
+     * @summary Execute a custom report
+     * @param {CustomReportExecutionRequest} execution_request Request to execute custom report
+     * @param {number} custom_report_oid The report oid to execute.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DatawarehouseApiInterface
+     */
+    executeCustomReport(execution_request: CustomReportExecutionRequest, custom_report_oid: number, options?: any): Promise<CustomReportResponse>;
+    /**
      * Execute the report queries
      * @summary Execute the report queries
      * @param {ReportExecuteQueriesRequest} query_request Query request
@@ -53732,6 +54326,23 @@ export interface DatawarehouseApiInterface {
      * @memberof DatawarehouseApiInterface
      */
     executeReportQueries(query_request: ReportExecuteQueriesRequest, options?: any): Promise<{}>;
+    /**
+     * Retrieve a custom report
+     * @summary Get a custom report
+     * @param {number} custom_report_oid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DatawarehouseApiInterface
+     */
+    getCustomReport(custom_report_oid: number, options?: any): Promise<CustomReportResponse>;
+    /**
+     * Retrieve a custom report account configuration
+     * @summary Get custom report account configuration
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DatawarehouseApiInterface
+     */
+    getCustomReportAccountConfig(options?: any): Promise<CustomReportAccountConfigResponse>;
     /**
      * Retrieve a report
      * @summary Get a report
@@ -53777,6 +54388,15 @@ export interface DatawarehouseApiInterface {
      */
     getReports(options?: any): Promise<ReportsResponse>;
     /**
+     * Create a new custom report on the UltraCart account.
+     * @summary Create a custom report
+     * @param {CustomReport} report Report to create
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DatawarehouseApiInterface
+     */
+    insertCustomReport(report: CustomReport, options?: any): Promise<CustomReportResponse>;
+    /**
      * Create a new report on the UltraCart account.
      * @summary Create a report
      * @param {Report} report Report to create
@@ -53785,6 +54405,25 @@ export interface DatawarehouseApiInterface {
      * @memberof DatawarehouseApiInterface
      */
     insertReport(report: Report, options?: any): Promise<ReportResponse>;
+    /**
+     * Update a custom report on the UltraCart account.
+     * @summary Update a custom report
+     * @param {CustomReport} report Report to custom update
+     * @param {number} custom_report_oid The report oid to custom update.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DatawarehouseApiInterface
+     */
+    updateCustomReport(report: CustomReport, custom_report_oid: number, options?: any): Promise<CustomReportResponse>;
+    /**
+     * Update custom report account config.
+     * @summary Update custom report account config
+     * @param {CustomReportAccountConfig} account_config Account config to update
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DatawarehouseApiInterface
+     */
+    updateCustomReportAccountConfig(account_config: CustomReportAccountConfig, options?: any): Promise<CustomReportAccountConfigResponse>;
     /**
      * Update a report on the UltraCart account.
      * @summary Update a report
@@ -53804,6 +54443,15 @@ export interface DatawarehouseApiInterface {
  */
 export declare class DatawarehouseApi extends BaseAPI implements DatawarehouseApiInterface {
     /**
+     * Delete a custom report on the UltraCart account.
+     * @summary Delete a custom report
+     * @param {number} custom_report_oid The report oid to delete.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DatawarehouseApi
+     */
+    deleteCustomReport(custom_report_oid: number, options?: any): Promise<Response>;
+    /**
      * Delete a report on the UltraCart account.
      * @summary Delete a report
      * @param {number} report_oid The report oid to delete.
@@ -53822,6 +54470,16 @@ export declare class DatawarehouseApi extends BaseAPI implements DatawarehouseAp
      */
     dryRunReportQueries(query_request: ReportDryRunQueriesRequest, options?: any): Promise<ReportDryRunQueriesResponse>;
     /**
+     * Execute a custom report on the UltraCart account.
+     * @summary Execute a custom report
+     * @param {CustomReportExecutionRequest} execution_request Request to execute custom report
+     * @param {number} custom_report_oid The report oid to execute.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DatawarehouseApi
+     */
+    executeCustomReport(execution_request: CustomReportExecutionRequest, custom_report_oid: number, options?: any): Promise<CustomReportResponse>;
+    /**
      * Execute the report queries
      * @summary Execute the report queries
      * @param {ReportExecuteQueriesRequest} query_request Query request
@@ -53830,6 +54488,23 @@ export declare class DatawarehouseApi extends BaseAPI implements DatawarehouseAp
      * @memberof DatawarehouseApi
      */
     executeReportQueries(query_request: ReportExecuteQueriesRequest, options?: any): Promise<Response>;
+    /**
+     * Retrieve a custom report
+     * @summary Get a custom report
+     * @param {number} custom_report_oid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DatawarehouseApi
+     */
+    getCustomReport(custom_report_oid: number, options?: any): Promise<CustomReportResponse>;
+    /**
+     * Retrieve a custom report account configuration
+     * @summary Get custom report account configuration
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DatawarehouseApi
+     */
+    getCustomReportAccountConfig(options?: any): Promise<CustomReportAccountConfigResponse>;
     /**
      * Retrieve a report
      * @summary Get a report
@@ -53875,6 +54550,15 @@ export declare class DatawarehouseApi extends BaseAPI implements DatawarehouseAp
      */
     getReports(options?: any): Promise<ReportsResponse>;
     /**
+     * Create a new custom report on the UltraCart account.
+     * @summary Create a custom report
+     * @param {CustomReport} report Report to create
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DatawarehouseApi
+     */
+    insertCustomReport(report: CustomReport, options?: any): Promise<CustomReportResponse>;
+    /**
      * Create a new report on the UltraCart account.
      * @summary Create a report
      * @param {Report} report Report to create
@@ -53883,6 +54567,25 @@ export declare class DatawarehouseApi extends BaseAPI implements DatawarehouseAp
      * @memberof DatawarehouseApi
      */
     insertReport(report: Report, options?: any): Promise<ReportResponse>;
+    /**
+     * Update a custom report on the UltraCart account.
+     * @summary Update a custom report
+     * @param {CustomReport} report Report to custom update
+     * @param {number} custom_report_oid The report oid to custom update.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DatawarehouseApi
+     */
+    updateCustomReport(report: CustomReport, custom_report_oid: number, options?: any): Promise<CustomReportResponse>;
+    /**
+     * Update custom report account config.
+     * @summary Update custom report account config
+     * @param {CustomReportAccountConfig} account_config Account config to update
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DatawarehouseApi
+     */
+    updateCustomReportAccountConfig(account_config: CustomReportAccountConfig, options?: any): Promise<CustomReportAccountConfigResponse>;
     /**
      * Update a report on the UltraCart account.
      * @summary Update a report
@@ -56212,6 +56915,15 @@ export declare const OrderApiFetchParamCreator: (configuration?: Configuration) 
      */
     adjustOrderTotal(order_id: string, desired_total: string, options?: any): FetchArgs;
     /**
+     * Sets a refund block on an order to prevent a user from performing a refund.  Commonly used when a chargeback has been received.
+     * @summary Set a refund block on an order
+     * @param {string} order_id The order id to block a refund on.
+     * @param {string} [block_reason] Block reason code (optional)
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    blockRefundOnOrder(order_id: string, block_reason?: string, options?: any): FetchArgs;
+    /**
      * Cancel an order on the UltraCart account.  If the success flag is false, then consult the error message for why it failed.
      * @summary Cancel an order
      * @param {string} order_id The order id to cancel.
@@ -56467,6 +57179,14 @@ export declare const OrderApiFetchParamCreator: (configuration?: Configuration) 
      */
     resendShipmentConfirmation(order_id: string, options?: any): FetchArgs;
     /**
+     * Removes a refund block on an order to prevent a user from performing a refund.
+     * @summary Remove a refund block on an order
+     * @param {string} order_id The order id to unblock a refund on.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    unblockRefundOnOrder(order_id: string, options?: any): FetchArgs;
+    /**
      * Update A/R Retry Configuration.  This is primarily an internal API call.  It is doubtful you would ever need to use it.
      * @summary Update A/R Retry Configuration
      * @param {AccountsReceivableRetryConfig} retry_config AccountsReceivableRetryConfig object
@@ -56507,6 +57227,15 @@ export declare const OrderApiFp: (configuration?: Configuration) => {
      * @throws {RequiredError}
      */
     adjustOrderTotal(order_id: string, desired_total: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<BaseResponse>;
+    /**
+     * Sets a refund block on an order to prevent a user from performing a refund.  Commonly used when a chargeback has been received.
+     * @summary Set a refund block on an order
+     * @param {string} order_id The order id to block a refund on.
+     * @param {string} [block_reason] Block reason code (optional)
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    blockRefundOnOrder(order_id: string, block_reason?: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Response>;
     /**
      * Cancel an order on the UltraCart account.  If the success flag is false, then consult the error message for why it failed.
      * @summary Cancel an order
@@ -56763,6 +57492,14 @@ export declare const OrderApiFp: (configuration?: Configuration) => {
      */
     resendShipmentConfirmation(order_id: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<BaseResponse>;
     /**
+     * Removes a refund block on an order to prevent a user from performing a refund.
+     * @summary Remove a refund block on an order
+     * @param {string} order_id The order id to unblock a refund on.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    unblockRefundOnOrder(order_id: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Response>;
+    /**
      * Update A/R Retry Configuration.  This is primarily an internal API call.  It is doubtful you would ever need to use it.
      * @summary Update A/R Retry Configuration
      * @param {AccountsReceivableRetryConfig} retry_config AccountsReceivableRetryConfig object
@@ -56803,6 +57540,15 @@ export declare const OrderApiFactory: (configuration?: Configuration, fetch?: Fe
      * @throws {RequiredError}
      */
     adjustOrderTotal(order_id: string, desired_total: string, options?: any): Promise<BaseResponse>;
+    /**
+     * Sets a refund block on an order to prevent a user from performing a refund.  Commonly used when a chargeback has been received.
+     * @summary Set a refund block on an order
+     * @param {string} order_id The order id to block a refund on.
+     * @param {string} [block_reason] Block reason code (optional)
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    blockRefundOnOrder(order_id: string, block_reason?: string, options?: any): Promise<Response>;
     /**
      * Cancel an order on the UltraCart account.  If the success flag is false, then consult the error message for why it failed.
      * @summary Cancel an order
@@ -57059,6 +57805,14 @@ export declare const OrderApiFactory: (configuration?: Configuration, fetch?: Fe
      */
     resendShipmentConfirmation(order_id: string, options?: any): Promise<BaseResponse>;
     /**
+     * Removes a refund block on an order to prevent a user from performing a refund.
+     * @summary Remove a refund block on an order
+     * @param {string} order_id The order id to unblock a refund on.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    unblockRefundOnOrder(order_id: string, options?: any): Promise<Response>;
+    /**
      * Update A/R Retry Configuration.  This is primarily an internal API call.  It is doubtful you would ever need to use it.
      * @summary Update A/R Retry Configuration
      * @param {AccountsReceivableRetryConfig} retry_config AccountsReceivableRetryConfig object
@@ -57101,6 +57855,16 @@ export interface OrderApiInterface {
      * @memberof OrderApiInterface
      */
     adjustOrderTotal(order_id: string, desired_total: string, options?: any): Promise<BaseResponse>;
+    /**
+     * Sets a refund block on an order to prevent a user from performing a refund.  Commonly used when a chargeback has been received.
+     * @summary Set a refund block on an order
+     * @param {string} order_id The order id to block a refund on.
+     * @param {string} [block_reason] Block reason code (optional)
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof OrderApiInterface
+     */
+    blockRefundOnOrder(order_id: string, block_reason?: string, options?: any): Promise<{}>;
     /**
      * Cancel an order on the UltraCart account.  If the success flag is false, then consult the error message for why it failed.
      * @summary Cancel an order
@@ -57381,6 +58145,15 @@ export interface OrderApiInterface {
      */
     resendShipmentConfirmation(order_id: string, options?: any): Promise<BaseResponse>;
     /**
+     * Removes a refund block on an order to prevent a user from performing a refund.
+     * @summary Remove a refund block on an order
+     * @param {string} order_id The order id to unblock a refund on.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof OrderApiInterface
+     */
+    unblockRefundOnOrder(order_id: string, options?: any): Promise<{}>;
+    /**
      * Update A/R Retry Configuration.  This is primarily an internal API call.  It is doubtful you would ever need to use it.
      * @summary Update A/R Retry Configuration
      * @param {AccountsReceivableRetryConfig} retry_config AccountsReceivableRetryConfig object
@@ -57427,6 +58200,16 @@ export declare class OrderApi extends BaseAPI implements OrderApiInterface {
      * @memberof OrderApi
      */
     adjustOrderTotal(order_id: string, desired_total: string, options?: any): Promise<BaseResponse>;
+    /**
+     * Sets a refund block on an order to prevent a user from performing a refund.  Commonly used when a chargeback has been received.
+     * @summary Set a refund block on an order
+     * @param {string} order_id The order id to block a refund on.
+     * @param {string} [block_reason] Block reason code (optional)
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof OrderApi
+     */
+    blockRefundOnOrder(order_id: string, block_reason?: string, options?: any): Promise<Response>;
     /**
      * Cancel an order on the UltraCart account.  If the success flag is false, then consult the error message for why it failed.
      * @summary Cancel an order
@@ -57706,6 +58489,15 @@ export declare class OrderApi extends BaseAPI implements OrderApiInterface {
      * @memberof OrderApi
      */
     resendShipmentConfirmation(order_id: string, options?: any): Promise<BaseResponse>;
+    /**
+     * Removes a refund block on an order to prevent a user from performing a refund.
+     * @summary Remove a refund block on an order
+     * @param {string} order_id The order id to unblock a refund on.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof OrderApi
+     */
+    unblockRefundOnOrder(order_id: string, options?: any): Promise<Response>;
     /**
      * Update A/R Retry Configuration.  This is primarily an internal API call.  It is doubtful you would ever need to use it.
      * @summary Update A/R Retry Configuration
