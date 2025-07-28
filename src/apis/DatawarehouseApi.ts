@@ -30,6 +30,9 @@ import {
     CustomReportResponse,
     CustomReportResponseFromJSON,
     CustomReportResponseToJSON,
+    CustomReportsResponse,
+    CustomReportsResponseFromJSON,
+    CustomReportsResponseToJSON,
     ErrorResponse,
     ErrorResponseFromJSON,
     ErrorResponseToJSON,
@@ -240,6 +243,21 @@ export interface DatawarehouseApiInterface {
      * Get custom report account configuration
      */
     getCustomReportAccountConfig(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomReportAccountConfigResponse>;
+
+    /**
+     * Retrieve a custom reports 
+     * @summary Get custom reports
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DatawarehouseApiInterface
+     */
+    getCustomReportsRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CustomReportsResponse>>;
+
+    /**
+     * Retrieve a custom reports 
+     * Get custom reports
+     */
+    getCustomReports(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomReportsResponse>;
 
     /**
      * Retrieve a report 
@@ -699,6 +717,43 @@ export class DatawarehouseApi extends runtime.BaseAPI implements DatawarehouseAp
      */
     async getCustomReportAccountConfig(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomReportAccountConfigResponse> {
         const response = await this.getCustomReportAccountConfigRaw(initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Retrieve a custom reports 
+     * Get custom reports
+     */
+    async getCustomReportsRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CustomReportsResponse>> {
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", []);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/datawarehouse/custom_reports`,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => CustomReportsResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Retrieve a custom reports 
+     * Get custom reports
+     */
+    async getCustomReports(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomReportsResponse> {
+        const response = await this.getCustomReportsRaw(initOverrides);
         return await response.value();
     }
 

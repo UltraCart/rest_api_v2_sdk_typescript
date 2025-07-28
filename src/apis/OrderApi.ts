@@ -229,19 +229,6 @@ export interface RefundOrderRequest {
     expand?: string;
 }
 
-export interface RefundOrderCompletelyRequest {
-    orderId: string;
-    rejectAfterRefund?: boolean;
-    skipCustomerNotification?: boolean;
-    autoOrderCancel?: boolean;
-    manualRefund?: boolean;
-    reverseAffiliateTransactions?: boolean;
-    issueStoreCredit?: boolean;
-    autoOrderCancelReason?: string;
-    refundReason?: string;
-    rejectReason?: string;
-}
-
 export interface ReplacementRequest {
     orderId: string;
     replacement: OrderReplacement;
@@ -688,31 +675,6 @@ export interface OrderApiInterface {
     refundOrder(requestParameters: RefundOrderRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<OrderResponse>;
 
     /**
-     * Perform a refund operation on an order and then update the order if successful. 
-     * @summary Refund an order completely
-     * @param {string} orderId The order id to refund.
-     * @param {boolean} [rejectAfterRefund] Reject order after refund
-     * @param {boolean} [skipCustomerNotification] Skip customer email notification
-     * @param {boolean} [autoOrderCancel] Cancel associated auto orders
-     * @param {boolean} [manualRefund] Consider a manual refund done externally
-     * @param {boolean} [reverseAffiliateTransactions] Reverse affiliate transactions
-     * @param {boolean} [issueStoreCredit] Issue a store credit instead of refunding the original payment method, loyalty must be configured on merchant account
-     * @param {string} [autoOrderCancelReason] Reason for auto orders cancellation
-     * @param {string} [refundReason] Reason for refund
-     * @param {string} [rejectReason] Reason for reject
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof OrderApiInterface
-     */
-    refundOrderCompletelyRaw(requestParameters: RefundOrderCompletelyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<OrderResponse>>;
-
-    /**
-     * Perform a refund operation on an order and then update the order if successful. 
-     * Refund an order completely
-     */
-    refundOrderCompletely(requestParameters: RefundOrderCompletelyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<OrderResponse>;
-
-    /**
      * Create a replacement order based upon a previous order 
      * @summary Replacement order
      * @param {string} orderId The order id to generate a replacement for.
@@ -907,7 +869,7 @@ export class OrderApi extends runtime.BaseAPI implements OrderApiInterface {
 
         const response = await this.request({
             path: `/order/orders/{order_id}/refund_block`.replace(`{${"order_id"}}`, encodeURIComponent(String(requestParameters.orderId))),
-            method: 'POST',
+            method: 'GET',
             headers: headerParameters,
             query: queryParameters,
         }, initOverrides);
@@ -1976,83 +1938,6 @@ export class OrderApi extends runtime.BaseAPI implements OrderApiInterface {
     }
 
     /**
-     * Perform a refund operation on an order and then update the order if successful. 
-     * Refund an order completely
-     */
-    async refundOrderCompletelyRaw(requestParameters: RefundOrderCompletelyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<OrderResponse>> {
-        if (requestParameters.orderId === null || requestParameters.orderId === undefined) {
-            throw new runtime.RequiredError('orderId','Required parameter requestParameters.orderId was null or undefined when calling refundOrderCompletely.');
-        }
-
-        const queryParameters: any = {};
-
-        if (requestParameters.rejectAfterRefund !== undefined) {
-            queryParameters['reject_after_refund'] = requestParameters.rejectAfterRefund;
-        }
-
-        if (requestParameters.skipCustomerNotification !== undefined) {
-            queryParameters['skip_customer_notification'] = requestParameters.skipCustomerNotification;
-        }
-
-        if (requestParameters.autoOrderCancel !== undefined) {
-            queryParameters['auto_order_cancel'] = requestParameters.autoOrderCancel;
-        }
-
-        if (requestParameters.manualRefund !== undefined) {
-            queryParameters['manual_refund'] = requestParameters.manualRefund;
-        }
-
-        if (requestParameters.reverseAffiliateTransactions !== undefined) {
-            queryParameters['reverse_affiliate_transactions'] = requestParameters.reverseAffiliateTransactions;
-        }
-
-        if (requestParameters.issueStoreCredit !== undefined) {
-            queryParameters['issue_store_credit'] = requestParameters.issueStoreCredit;
-        }
-
-        if (requestParameters.autoOrderCancelReason !== undefined) {
-            queryParameters['auto_order_cancel_reason'] = requestParameters.autoOrderCancelReason;
-        }
-
-        if (requestParameters.refundReason !== undefined) {
-            queryParameters['refund_reason'] = requestParameters.refundReason;
-        }
-
-        if (requestParameters.rejectReason !== undefined) {
-            queryParameters['reject_reason'] = requestParameters.rejectReason;
-        }
-
-        const headerParameters: runtime.HTTPHeaders = {};
-
-        if (this.configuration && this.configuration.accessToken) {
-            // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", ["order_write"]);
-        }
-
-        if (this.configuration && this.configuration.apiKey) {
-            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
-        }
-
-        const response = await this.request({
-            path: `/order/orders/{order_id}/refund_completely`.replace(`{${"order_id"}}`, encodeURIComponent(String(requestParameters.orderId))),
-            method: 'PUT',
-            headers: headerParameters,
-            query: queryParameters,
-        }, initOverrides);
-
-        return new runtime.JSONApiResponse(response, (jsonValue) => OrderResponseFromJSON(jsonValue));
-    }
-
-    /**
-     * Perform a refund operation on an order and then update the order if successful. 
-     * Refund an order completely
-     */
-    async refundOrderCompletely(requestParameters: RefundOrderCompletelyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<OrderResponse> {
-        const response = await this.refundOrderCompletelyRaw(requestParameters, initOverrides);
-        return await response.value();
-    }
-
-    /**
      * Create a replacement order based upon a previous order 
      * Replacement order
      */
@@ -2206,7 +2091,7 @@ export class OrderApi extends runtime.BaseAPI implements OrderApiInterface {
 
         const response = await this.request({
             path: `/order/orders/{order_id}/refund_unblock`.replace(`{${"order_id"}}`, encodeURIComponent(String(requestParameters.orderId))),
-            method: 'POST',
+            method: 'GET',
             headers: headerParameters,
             query: queryParameters,
         }, initOverrides);

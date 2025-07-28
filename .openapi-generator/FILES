@@ -339,6 +339,7 @@ src/models/CustomReportParameterOption.ts
 src/models/CustomReportQuery.ts
 src/models/CustomReportResponse.ts
 src/models/CustomReportTooltip.ts
+src/models/CustomReportsResponse.ts
 src/models/Customer.ts
 src/models/CustomerActivity.ts
 src/models/CustomerAffiliate.ts

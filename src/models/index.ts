@@ -314,6 +314,7 @@ export * from './CustomReportParameterOption';
 export * from './CustomReportQuery';
 export * from './CustomReportResponse';
 export * from './CustomReportTooltip';
+export * from './CustomReportsResponse';
 export * from './Customer';
 export * from './CustomerActivity';
 export * from './CustomerAffiliate';
