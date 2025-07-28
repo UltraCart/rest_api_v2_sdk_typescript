@@ -435,7 +435,7 @@ export interface Item {
      */
     parent_category_id?: number;
     /**
-     * Parent category path.  / indicates the root folder.
+     * Parent category path.  / indicates the root folder.  This is the folder structure within item management.
      * @type {string}
      * @memberof Item
      */

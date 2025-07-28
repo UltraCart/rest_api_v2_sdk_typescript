@@ -94,6 +94,11 @@ export interface AdjustOrderTotalRequest {
     desiredTotal: string;
 }
 
+export interface BlockRefundOnOrderRequest {
+    orderId: string;
+    blockReason?: string;
+}
+
 export interface CancelOrderRequest {
     orderId: string;
     lockSelfShipOrders?: boolean;
@@ -250,6 +255,10 @@ export interface ResendShipmentConfirmationRequest {
     orderId: string;
 }
 
+export interface UnblockRefundOnOrderRequest {
+    orderId: string;
+}
+
 export interface UpdateAccountsReceivableRetryConfigRequest {
     retryConfig: AccountsReceivableRetryConfig;
 }
@@ -287,6 +296,23 @@ export interface OrderApiInterface {
      * Adjusts an order total
      */
     adjustOrderTotal(requestParameters: AdjustOrderTotalRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BaseResponse>;
+
+    /**
+     * Sets a refund block on an order to prevent a user from performing a refund.  Commonly used when a chargeback has been received. 
+     * @summary Set a refund block on an order
+     * @param {string} orderId The order id to block a refund on.
+     * @param {string} [blockReason] Block reason code (optional)
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof OrderApiInterface
+     */
+    blockRefundOnOrderRaw(requestParameters: BlockRefundOnOrderRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+
+    /**
+     * Sets a refund block on an order to prevent a user from performing a refund.  Commonly used when a chargeback has been received. 
+     * Set a refund block on an order
+     */
+    blockRefundOnOrder(requestParameters: BlockRefundOnOrderRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
      * Cancel an order on the UltraCart account.  If the success flag is false, then consult the error message for why it failed. 
@@ -736,6 +762,22 @@ export interface OrderApiInterface {
     resendShipmentConfirmation(requestParameters: ResendShipmentConfirmationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BaseResponse>;
 
     /**
+     * Removes a refund block on an order to prevent a user from performing a refund. 
+     * @summary Remove a refund block on an order
+     * @param {string} orderId The order id to unblock a refund on.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof OrderApiInterface
+     */
+    unblockRefundOnOrderRaw(requestParameters: UnblockRefundOnOrderRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+
+    /**
+     * Removes a refund block on an order to prevent a user from performing a refund. 
+     * Remove a refund block on an order
+     */
+    unblockRefundOnOrder(requestParameters: UnblockRefundOnOrderRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+
+    /**
      * Update A/R Retry Configuration.  This is primarily an internal API call.  It is doubtful you would ever need to use it. 
      * @summary Update A/R Retry Configuration
      * @param {AccountsReceivableRetryConfig} retryConfig AccountsReceivableRetryConfig object
@@ -835,6 +877,50 @@ export class OrderApi extends runtime.BaseAPI implements OrderApiInterface {
     async adjustOrderTotal(requestParameters: AdjustOrderTotalRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BaseResponse> {
         const response = await this.adjustOrderTotalRaw(requestParameters, initOverrides);
         return await response.value();
+    }
+
+    /**
+     * Sets a refund block on an order to prevent a user from performing a refund.  Commonly used when a chargeback has been received. 
+     * Set a refund block on an order
+     */
+    async blockRefundOnOrderRaw(requestParameters: BlockRefundOnOrderRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        if (requestParameters.orderId === null || requestParameters.orderId === undefined) {
+            throw new runtime.RequiredError('orderId','Required parameter requestParameters.orderId was null or undefined when calling blockRefundOnOrder.');
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters.blockReason !== undefined) {
+            queryParameters['block_reason'] = requestParameters.blockReason;
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", ["order_write"]);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/order/orders/{order_id}/refund_block`.replace(`{${"order_id"}}`, encodeURIComponent(String(requestParameters.orderId))),
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     * Sets a refund block on an order to prevent a user from performing a refund.  Commonly used when a chargeback has been received. 
+     * Set a refund block on an order
+     */
+    async blockRefundOnOrder(requestParameters: BlockRefundOnOrderRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.blockRefundOnOrderRaw(requestParameters, initOverrides);
     }
 
     /**
@@ -2094,6 +2180,46 @@ export class OrderApi extends runtime.BaseAPI implements OrderApiInterface {
     async resendShipmentConfirmation(requestParameters: ResendShipmentConfirmationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BaseResponse> {
         const response = await this.resendShipmentConfirmationRaw(requestParameters, initOverrides);
         return await response.value();
+    }
+
+    /**
+     * Removes a refund block on an order to prevent a user from performing a refund. 
+     * Remove a refund block on an order
+     */
+    async unblockRefundOnOrderRaw(requestParameters: UnblockRefundOnOrderRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        if (requestParameters.orderId === null || requestParameters.orderId === undefined) {
+            throw new runtime.RequiredError('orderId','Required parameter requestParameters.orderId was null or undefined when calling unblockRefundOnOrder.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", ["order_write"]);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/order/orders/{order_id}/refund_unblock`.replace(`{${"order_id"}}`, encodeURIComponent(String(requestParameters.orderId))),
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     * Removes a refund block on an order to prevent a user from performing a refund. 
+     * Remove a refund block on an order
+     */
+    async unblockRefundOnOrder(requestParameters: UnblockRefundOnOrderRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.unblockRefundOnOrderRaw(requestParameters, initOverrides);
     }
 
     /**

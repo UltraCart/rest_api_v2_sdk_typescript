@@ -329,6 +329,16 @@ src/models/CouponType.ts
 src/models/CouponsRequest.ts
 src/models/CouponsResponse.ts
 src/models/Currency.ts
+src/models/CustomReport.ts
+src/models/CustomReportAccountConfig.ts
+src/models/CustomReportAccountConfigResponse.ts
+src/models/CustomReportExecutionParameter.ts
+src/models/CustomReportExecutionRequest.ts
+src/models/CustomReportParameter.ts
+src/models/CustomReportParameterOption.ts
+src/models/CustomReportQuery.ts
+src/models/CustomReportResponse.ts
+src/models/CustomReportTooltip.ts
 src/models/Customer.ts
 src/models/CustomerActivity.ts
 src/models/CustomerAffiliate.ts

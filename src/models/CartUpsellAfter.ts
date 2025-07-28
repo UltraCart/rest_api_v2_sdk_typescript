@@ -32,11 +32,23 @@ export interface CartUpsellAfter {
      */
     finalize_after_minutes?: number;
     /**
-     * Upsell path code
+     * Upsell path code (this is for legacy upsells only)
      * @type {string}
      * @memberof CartUpsellAfter
      */
     upsell_path_code?: string;
+    /**
+     * Upsell path name to start on (StoreFront Upsells).  Will only be respected on a handoff API call.
+     * @type {string}
+     * @memberof CartUpsellAfter
+     */
+    upsell_path_name?: string;
+    /**
+     * Upsell path variation to start on (StoreFront Upsells).   Will only be respected on a handoff API call.
+     * @type {string}
+     * @memberof CartUpsellAfter
+     */
+    upsell_path_variation?: string;
 }
 
 
@@ -63,6 +75,8 @@ export function CartUpsellAfterFromJSONTyped(json: any, ignoreDiscriminator: boo
         'finalize_after_dts': !exists(json, 'finalize_after_dts') ? undefined : json['finalize_after_dts'],
         'finalize_after_minutes': !exists(json, 'finalize_after_minutes') ? undefined : json['finalize_after_minutes'],
         'upsell_path_code': !exists(json, 'upsell_path_code') ? undefined : json['upsell_path_code'],
+        'upsell_path_name': !exists(json, 'upsell_path_name') ? undefined : json['upsell_path_name'],
+        'upsell_path_variation': !exists(json, 'upsell_path_variation') ? undefined : json['upsell_path_variation'],
     };
 }
 
@@ -78,6 +92,8 @@ export function CartUpsellAfterToJSON(value?: CartUpsellAfter | null): any {
         'finalize_after_dts': value.finalize_after_dts,
         'finalize_after_minutes': value.finalize_after_minutes,
         'upsell_path_code': value.upsell_path_code,
+        'upsell_path_name': value.upsell_path_name,
+        'upsell_path_variation': value.upsell_path_variation,
     };
 }
 

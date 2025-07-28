@@ -50,6 +50,18 @@ export interface ConversationVirtualAgentCapabilities {
      */
     open_support_ticket?: boolean;
     /**
+     * Channel to use to open the support ticket
+     * @type {string}
+     * @memberof ConversationVirtualAgentCapabilities
+     */
+    open_support_ticket_channel?: ConversationVirtualAgentCapabilitiesOpenSupportTicketChannelEnum;
+    /**
+     * Email to send support ticket to
+     * @type {string}
+     * @memberof ConversationVirtualAgentCapabilities
+     */
+    open_support_ticket_channel_email?: string;
+    /**
      * 
      * @type {boolean}
      * @memberof ConversationVirtualAgentCapabilities
@@ -78,6 +90,18 @@ export interface ConversationVirtualAgentCapabilities {
 
 
 /**
+ * @export
+ */
+export const ConversationVirtualAgentCapabilitiesOpenSupportTicketChannelEnum = {
+    None: 'none',
+    Email: 'email',
+    UltraCartTask: 'UltraCart Task',
+    ZohoDeskTicket: 'Zoho Desk Ticket'
+} as const;
+export type ConversationVirtualAgentCapabilitiesOpenSupportTicketChannelEnum = typeof ConversationVirtualAgentCapabilitiesOpenSupportTicketChannelEnum[keyof typeof ConversationVirtualAgentCapabilitiesOpenSupportTicketChannelEnum];
+
+
+/**
  * Check if a given object implements the ConversationVirtualAgentCapabilities interface.
  */
 export function instanceOfConversationVirtualAgentCapabilities(value: object): boolean {
@@ -101,6 +125,8 @@ export function ConversationVirtualAgentCapabilitiesFromJSONTyped(json: any, ign
         'lookup_order_information': !exists(json, 'lookup_order_information') ? undefined : json['lookup_order_information'],
         'lookup_subscription_information': !exists(json, 'lookup_subscription_information') ? undefined : json['lookup_subscription_information'],
         'open_support_ticket': !exists(json, 'open_support_ticket') ? undefined : json['open_support_ticket'],
+        'open_support_ticket_channel': !exists(json, 'open_support_ticket_channel') ? undefined : json['open_support_ticket_channel'],
+        'open_support_ticket_channel_email': !exists(json, 'open_support_ticket_channel_email') ? undefined : json['open_support_ticket_channel_email'],
         'pause_subscription': !exists(json, 'pause_subscription') ? undefined : json['pause_subscription'],
         'resume_subscription': !exists(json, 'resume_subscription') ? undefined : json['resume_subscription'],
         'transfer_chat_to_live_agent': !exists(json, 'transfer_chat_to_live_agent') ? undefined : json['transfer_chat_to_live_agent'],
@@ -122,6 +148,8 @@ export function ConversationVirtualAgentCapabilitiesToJSON(value?: ConversationV
         'lookup_order_information': value.lookup_order_information,
         'lookup_subscription_information': value.lookup_subscription_information,
         'open_support_ticket': value.open_support_ticket,
+        'open_support_ticket_channel': value.open_support_ticket_channel,
+        'open_support_ticket_channel_email': value.open_support_ticket_channel_email,
         'pause_subscription': value.pause_subscription,
         'resume_subscription': value.resume_subscription,
         'transfer_chat_to_live_agent': value.transfer_chat_to_live_agent,

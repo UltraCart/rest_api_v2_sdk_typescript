@@ -15,6 +15,21 @@
 
 import * as runtime from '../runtime';
 import {
+    CustomReport,
+    CustomReportFromJSON,
+    CustomReportToJSON,
+    CustomReportAccountConfig,
+    CustomReportAccountConfigFromJSON,
+    CustomReportAccountConfigToJSON,
+    CustomReportAccountConfigResponse,
+    CustomReportAccountConfigResponseFromJSON,
+    CustomReportAccountConfigResponseToJSON,
+    CustomReportExecutionRequest,
+    CustomReportExecutionRequestFromJSON,
+    CustomReportExecutionRequestToJSON,
+    CustomReportResponse,
+    CustomReportResponseFromJSON,
+    CustomReportResponseToJSON,
     ErrorResponse,
     ErrorResponseFromJSON,
     ErrorResponseToJSON,
@@ -47,6 +62,10 @@ import {
     ReportsResponseToJSON,
 } from '../models';
 
+export interface DeleteCustomReportRequest {
+    customReportOid: number;
+}
+
 export interface DeleteReportRequest {
     reportOid: number;
 }
@@ -55,8 +74,17 @@ export interface DryRunReportQueriesRequest {
     queryRequest: ReportDryRunQueriesRequest;
 }
 
+export interface ExecuteCustomReportRequest {
+    customReportOid: number;
+    executionRequest: CustomReportExecutionRequest;
+}
+
 export interface ExecuteReportQueriesRequest {
     queryRequest: ReportExecuteQueriesRequest;
+}
+
+export interface GetCustomReportRequest {
+    customReportOid: number;
 }
 
 export interface GetReportRequest {
@@ -72,8 +100,21 @@ export interface GetReportDataSetPageRequest {
     pageNumber: number;
 }
 
+export interface InsertCustomReportRequest {
+    report: CustomReport;
+}
+
 export interface InsertReportRequest {
     report: Report;
+}
+
+export interface UpdateCustomReportRequest {
+    customReportOid: number;
+    report: CustomReport;
+}
+
+export interface UpdateCustomReportAccountConfigRequest {
+    accountConfig: CustomReportAccountConfig;
 }
 
 export interface UpdateReportRequest {
@@ -88,6 +129,22 @@ export interface UpdateReportRequest {
  * @interface DatawarehouseApiInterface
  */
 export interface DatawarehouseApiInterface {
+    /**
+     * Delete a custom report on the UltraCart account. 
+     * @summary Delete a custom report
+     * @param {number} customReportOid The report oid to delete.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DatawarehouseApiInterface
+     */
+    deleteCustomReportRaw(requestParameters: DeleteCustomReportRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+
+    /**
+     * Delete a custom report on the UltraCart account. 
+     * Delete a custom report
+     */
+    deleteCustomReport(requestParameters: DeleteCustomReportRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+
     /**
      * Delete a report on the UltraCart account. 
      * @summary Delete a report
@@ -121,6 +178,23 @@ export interface DatawarehouseApiInterface {
     dryRunReportQueries(requestParameters: DryRunReportQueriesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ReportDryRunQueriesResponse>;
 
     /**
+     * Execute a custom report on the UltraCart account. 
+     * @summary Execute a custom report
+     * @param {number} customReportOid The report oid to execute.
+     * @param {CustomReportExecutionRequest} executionRequest Request to execute custom report
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DatawarehouseApiInterface
+     */
+    executeCustomReportRaw(requestParameters: ExecuteCustomReportRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CustomReportResponse>>;
+
+    /**
+     * Execute a custom report on the UltraCart account. 
+     * Execute a custom report
+     */
+    executeCustomReport(requestParameters: ExecuteCustomReportRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomReportResponse>;
+
+    /**
      * Execute the report queries 
      * @summary Execute the report queries
      * @param {ReportExecuteQueriesRequest} queryRequest Query request
@@ -135,6 +209,37 @@ export interface DatawarehouseApiInterface {
      * Execute the report queries
      */
     executeReportQueries(requestParameters: ExecuteReportQueriesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+
+    /**
+     * Retrieve a custom report 
+     * @summary Get a custom report
+     * @param {number} customReportOid 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DatawarehouseApiInterface
+     */
+    getCustomReportRaw(requestParameters: GetCustomReportRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CustomReportResponse>>;
+
+    /**
+     * Retrieve a custom report 
+     * Get a custom report
+     */
+    getCustomReport(requestParameters: GetCustomReportRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomReportResponse>;
+
+    /**
+     * Retrieve a custom report account configuration 
+     * @summary Get custom report account configuration
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DatawarehouseApiInterface
+     */
+    getCustomReportAccountConfigRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CustomReportAccountConfigResponse>>;
+
+    /**
+     * Retrieve a custom report account configuration 
+     * Get custom report account configuration
+     */
+    getCustomReportAccountConfig(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomReportAccountConfigResponse>;
 
     /**
      * Retrieve a report 
@@ -216,6 +321,22 @@ export interface DatawarehouseApiInterface {
     getReports(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ReportsResponse>;
 
     /**
+     * Create a new custom report on the UltraCart account. 
+     * @summary Create a custom report
+     * @param {CustomReport} report Report to create
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DatawarehouseApiInterface
+     */
+    insertCustomReportRaw(requestParameters: InsertCustomReportRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CustomReportResponse>>;
+
+    /**
+     * Create a new custom report on the UltraCart account. 
+     * Create a custom report
+     */
+    insertCustomReport(requestParameters: InsertCustomReportRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomReportResponse>;
+
+    /**
      * Create a new report on the UltraCart account. 
      * @summary Create a report
      * @param {Report} report Report to create
@@ -230,6 +351,39 @@ export interface DatawarehouseApiInterface {
      * Create a report
      */
     insertReport(requestParameters: InsertReportRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ReportResponse>;
+
+    /**
+     * Update a custom report on the UltraCart account. 
+     * @summary Update a custom report
+     * @param {number} customReportOid The report oid to custom update.
+     * @param {CustomReport} report Report to custom update
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DatawarehouseApiInterface
+     */
+    updateCustomReportRaw(requestParameters: UpdateCustomReportRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CustomReportResponse>>;
+
+    /**
+     * Update a custom report on the UltraCart account. 
+     * Update a custom report
+     */
+    updateCustomReport(requestParameters: UpdateCustomReportRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomReportResponse>;
+
+    /**
+     * Update custom report account config. 
+     * @summary Update custom report account config
+     * @param {CustomReportAccountConfig} accountConfig Account config to update
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DatawarehouseApiInterface
+     */
+    updateCustomReportAccountConfigRaw(requestParameters: UpdateCustomReportAccountConfigRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CustomReportAccountConfigResponse>>;
+
+    /**
+     * Update custom report account config. 
+     * Update custom report account config
+     */
+    updateCustomReportAccountConfig(requestParameters: UpdateCustomReportAccountConfigRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomReportAccountConfigResponse>;
 
     /**
      * Update a report on the UltraCart account. 
@@ -254,6 +408,46 @@ export interface DatawarehouseApiInterface {
  * 
  */
 export class DatawarehouseApi extends runtime.BaseAPI implements DatawarehouseApiInterface {
+
+    /**
+     * Delete a custom report on the UltraCart account. 
+     * Delete a custom report
+     */
+    async deleteCustomReportRaw(requestParameters: DeleteCustomReportRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        if (requestParameters.customReportOid === null || requestParameters.customReportOid === undefined) {
+            throw new runtime.RequiredError('customReportOid','Required parameter requestParameters.customReportOid was null or undefined when calling deleteCustomReport.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", []);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/datawarehouse/custom_reports/{custom_report_oid}`.replace(`{${"custom_report_oid"}}`, encodeURIComponent(String(requestParameters.customReportOid))),
+            method: 'DELETE',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     * Delete a custom report on the UltraCart account. 
+     * Delete a custom report
+     */
+    async deleteCustomReport(requestParameters: DeleteCustomReportRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.deleteCustomReportRaw(requestParameters, initOverrides);
+    }
 
     /**
      * Delete a report on the UltraCart account. 
@@ -340,6 +534,54 @@ export class DatawarehouseApi extends runtime.BaseAPI implements DatawarehouseAp
     }
 
     /**
+     * Execute a custom report on the UltraCart account. 
+     * Execute a custom report
+     */
+    async executeCustomReportRaw(requestParameters: ExecuteCustomReportRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CustomReportResponse>> {
+        if (requestParameters.customReportOid === null || requestParameters.customReportOid === undefined) {
+            throw new runtime.RequiredError('customReportOid','Required parameter requestParameters.customReportOid was null or undefined when calling executeCustomReport.');
+        }
+
+        if (requestParameters.executionRequest === null || requestParameters.executionRequest === undefined) {
+            throw new runtime.RequiredError('executionRequest','Required parameter requestParameters.executionRequest was null or undefined when calling executeCustomReport.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json; charset=UTF-8';
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", []);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/datawarehouse/custom_reports/{custom_report_oid}/execute`.replace(`{${"custom_report_oid"}}`, encodeURIComponent(String(requestParameters.customReportOid))),
+            method: 'PUT',
+            headers: headerParameters,
+            query: queryParameters,
+            body: CustomReportExecutionRequestToJSON(requestParameters.executionRequest),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => CustomReportResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Execute a custom report on the UltraCart account. 
+     * Execute a custom report
+     */
+    async executeCustomReport(requestParameters: ExecuteCustomReportRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomReportResponse> {
+        const response = await this.executeCustomReportRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
      * Execute the report queries 
      * Execute the report queries
      */
@@ -380,6 +622,84 @@ export class DatawarehouseApi extends runtime.BaseAPI implements DatawarehouseAp
      */
     async executeReportQueries(requestParameters: ExecuteReportQueriesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.executeReportQueriesRaw(requestParameters, initOverrides);
+    }
+
+    /**
+     * Retrieve a custom report 
+     * Get a custom report
+     */
+    async getCustomReportRaw(requestParameters: GetCustomReportRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CustomReportResponse>> {
+        if (requestParameters.customReportOid === null || requestParameters.customReportOid === undefined) {
+            throw new runtime.RequiredError('customReportOid','Required parameter requestParameters.customReportOid was null or undefined when calling getCustomReport.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", []);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/datawarehouse/custom_reports/{custom_report_oid}`.replace(`{${"custom_report_oid"}}`, encodeURIComponent(String(requestParameters.customReportOid))),
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => CustomReportResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Retrieve a custom report 
+     * Get a custom report
+     */
+    async getCustomReport(requestParameters: GetCustomReportRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomReportResponse> {
+        const response = await this.getCustomReportRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Retrieve a custom report account configuration 
+     * Get custom report account configuration
+     */
+    async getCustomReportAccountConfigRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CustomReportAccountConfigResponse>> {
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", []);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/datawarehouse/custom_reports/account_config`,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => CustomReportAccountConfigResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Retrieve a custom report account configuration 
+     * Get custom report account configuration
+     */
+    async getCustomReportAccountConfig(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomReportAccountConfigResponse> {
+        const response = await this.getCustomReportAccountConfigRaw(initOverrides);
+        return await response.value();
     }
 
     /**
@@ -584,6 +904,50 @@ export class DatawarehouseApi extends runtime.BaseAPI implements DatawarehouseAp
     }
 
     /**
+     * Create a new custom report on the UltraCart account. 
+     * Create a custom report
+     */
+    async insertCustomReportRaw(requestParameters: InsertCustomReportRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CustomReportResponse>> {
+        if (requestParameters.report === null || requestParameters.report === undefined) {
+            throw new runtime.RequiredError('report','Required parameter requestParameters.report was null or undefined when calling insertCustomReport.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json; charset=UTF-8';
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", []);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/datawarehouse/custom_reports`,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: CustomReportToJSON(requestParameters.report),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => CustomReportResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Create a new custom report on the UltraCart account. 
+     * Create a custom report
+     */
+    async insertCustomReport(requestParameters: InsertCustomReportRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomReportResponse> {
+        const response = await this.insertCustomReportRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
      * Create a new report on the UltraCart account. 
      * Create a report
      */
@@ -624,6 +988,98 @@ export class DatawarehouseApi extends runtime.BaseAPI implements DatawarehouseAp
      */
     async insertReport(requestParameters: InsertReportRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ReportResponse> {
         const response = await this.insertReportRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Update a custom report on the UltraCart account. 
+     * Update a custom report
+     */
+    async updateCustomReportRaw(requestParameters: UpdateCustomReportRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CustomReportResponse>> {
+        if (requestParameters.customReportOid === null || requestParameters.customReportOid === undefined) {
+            throw new runtime.RequiredError('customReportOid','Required parameter requestParameters.customReportOid was null or undefined when calling updateCustomReport.');
+        }
+
+        if (requestParameters.report === null || requestParameters.report === undefined) {
+            throw new runtime.RequiredError('report','Required parameter requestParameters.report was null or undefined when calling updateCustomReport.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json; charset=UTF-8';
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", []);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/datawarehouse/custom_reports/{custom_report_oid}`.replace(`{${"custom_report_oid"}}`, encodeURIComponent(String(requestParameters.customReportOid))),
+            method: 'PUT',
+            headers: headerParameters,
+            query: queryParameters,
+            body: CustomReportToJSON(requestParameters.report),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => CustomReportResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Update a custom report on the UltraCart account. 
+     * Update a custom report
+     */
+    async updateCustomReport(requestParameters: UpdateCustomReportRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomReportResponse> {
+        const response = await this.updateCustomReportRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Update custom report account config. 
+     * Update custom report account config
+     */
+    async updateCustomReportAccountConfigRaw(requestParameters: UpdateCustomReportAccountConfigRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CustomReportAccountConfigResponse>> {
+        if (requestParameters.accountConfig === null || requestParameters.accountConfig === undefined) {
+            throw new runtime.RequiredError('accountConfig','Required parameter requestParameters.accountConfig was null or undefined when calling updateCustomReportAccountConfig.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json; charset=UTF-8';
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", []);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/datawarehouse/custom_reports/account_config`,
+            method: 'PUT',
+            headers: headerParameters,
+            query: queryParameters,
+            body: CustomReportAccountConfigToJSON(requestParameters.accountConfig),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => CustomReportAccountConfigResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Update custom report account config. 
+     * Update custom report account config
+     */
+    async updateCustomReportAccountConfig(requestParameters: UpdateCustomReportAccountConfigRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomReportAccountConfigResponse> {
+        const response = await this.updateCustomReportAccountConfigRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
