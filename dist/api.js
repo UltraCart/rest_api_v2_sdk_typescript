@@ -20017,6 +20017,52 @@ exports.CustomerApi = CustomerApi;
 var DatawarehouseApiFetchParamCreator = function (configuration) {
     return {
         /**
+         * Delete a custom dashboard on the UltraCart account.
+         * @summary Delete a custom dashboard
+         * @param {number} custom_dashboard_oid The dashboard oid to delete.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        deleteCustomDashboard: function (custom_dashboard_oid, options) {
+            if (options === void 0) { options = {}; }
+            // verify required parameter 'custom_dashboard_oid' is not null or undefined
+            if (custom_dashboard_oid === null || custom_dashboard_oid === undefined) {
+                throw new RequiredError('custom_dashboard_oid', 'Required parameter custom_dashboard_oid was null or undefined when calling deleteCustomDashboard.');
+            }
+            var localVarPath = "/datawarehouse/custom_dashboards/{custom_dashboard_oid}"
+                .replace("{".concat("custom_dashboard_oid", "}"), encodeURIComponent(String(custom_dashboard_oid)));
+            var localVarUrlObj = url.parse(localVarPath, true);
+            var localVarRequestOptions = Object.assign({ method: 'DELETE' }, options);
+            var localVarHeaderParameter = {};
+            var localVarQueryParameter = {};
+            if (configuration && configuration.apiVersion) {
+                localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+            }
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+                var localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+                    ? configuration.accessToken("ultraCartOauth", [])
+                    : configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                var localVarApiKeyValue = typeof configuration.apiKey === 'function'
+                    ? configuration.apiKey("x-ultracart-simple-key")
+                    : configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
          * Delete a custom report on the UltraCart account.
          * @summary Delete a custom report
          * @param {number} custom_report_oid The report oid to delete.
@@ -20211,6 +20257,54 @@ var DatawarehouseApiFetchParamCreator = function (configuration) {
             };
         },
         /**
+         * Execute a custom reports on the UltraCart account.
+         * @summary Execute a custom reports
+         * @param {CustomReportsExecutionRequest} execution_request Request to execute custom reports
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        executeCustomReports: function (execution_request, options) {
+            if (options === void 0) { options = {}; }
+            // verify required parameter 'execution_request' is not null or undefined
+            if (execution_request === null || execution_request === undefined) {
+                throw new RequiredError('execution_request', 'Required parameter execution_request was null or undefined when calling executeCustomReports.');
+            }
+            var localVarPath = "/datawarehouse/custom_reports/execute";
+            var localVarUrlObj = url.parse(localVarPath, true);
+            var localVarRequestOptions = Object.assign({ method: 'PUT' }, options);
+            var localVarHeaderParameter = {};
+            var localVarQueryParameter = {};
+            if (configuration && configuration.apiVersion) {
+                localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+            }
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+                var localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+                    ? configuration.accessToken("ultraCartOauth", [])
+                    : configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                var localVarApiKeyValue = typeof configuration.apiKey === 'function'
+                    ? configuration.apiKey("x-ultracart-simple-key")
+                    : configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+            localVarHeaderParameter['Content-Type'] = 'application/json; charset=UTF-8';
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+            var needsSerialization = ("CustomReportsExecutionRequest" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
+            localVarRequestOptions.body = needsSerialization ? JSON.stringify(execution_request || {}) : (execution_request || "");
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
          * Execute the report queries
          * @summary Execute the report queries
          * @param {ReportExecuteQueriesRequest} query_request Query request
@@ -20253,6 +20347,92 @@ var DatawarehouseApiFetchParamCreator = function (configuration) {
             localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
             var needsSerialization = ("ReportExecuteQueriesRequest" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
             localVarRequestOptions.body = needsSerialization ? JSON.stringify(query_request || {}) : (query_request || "");
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Retrieve a custom dashboard
+         * @summary Get a custom dashboard
+         * @param {number} custom_dashboard_oid
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getCustomDashboard: function (custom_dashboard_oid, options) {
+            if (options === void 0) { options = {}; }
+            // verify required parameter 'custom_dashboard_oid' is not null or undefined
+            if (custom_dashboard_oid === null || custom_dashboard_oid === undefined) {
+                throw new RequiredError('custom_dashboard_oid', 'Required parameter custom_dashboard_oid was null or undefined when calling getCustomDashboard.');
+            }
+            var localVarPath = "/datawarehouse/custom_dashboards/{custom_dashboard_oid}"
+                .replace("{".concat("custom_dashboard_oid", "}"), encodeURIComponent(String(custom_dashboard_oid)));
+            var localVarUrlObj = url.parse(localVarPath, true);
+            var localVarRequestOptions = Object.assign({ method: 'GET' }, options);
+            var localVarHeaderParameter = {};
+            var localVarQueryParameter = {};
+            if (configuration && configuration.apiVersion) {
+                localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+            }
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+                var localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+                    ? configuration.accessToken("ultraCartOauth", [])
+                    : configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                var localVarApiKeyValue = typeof configuration.apiKey === 'function'
+                    ? configuration.apiKey("x-ultracart-simple-key")
+                    : configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Retrieve a custom dashboards
+         * @summary Get custom dashboards
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getCustomDashboards: function (options) {
+            if (options === void 0) { options = {}; }
+            var localVarPath = "/datawarehouse/custom_dashboards";
+            var localVarUrlObj = url.parse(localVarPath, true);
+            var localVarRequestOptions = Object.assign({ method: 'GET' }, options);
+            var localVarHeaderParameter = {};
+            var localVarQueryParameter = {};
+            if (configuration && configuration.apiVersion) {
+                localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+            }
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+                var localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+                    ? configuration.accessToken("ultraCartOauth", [])
+                    : configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                var localVarApiKeyValue = typeof configuration.apiKey === 'function'
+                    ? configuration.apiKey("x-ultracart-simple-key")
+                    : configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
             return {
                 url: url.format(localVarUrlObj),
                 options: localVarRequestOptions,
@@ -20609,6 +20789,54 @@ var DatawarehouseApiFetchParamCreator = function (configuration) {
             };
         },
         /**
+         * Create a new custom dashboard on the UltraCart account.
+         * @summary Create a custom dashboard
+         * @param {CustomDashboard} dashboard Dashboard to create
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        insertCustomDashboard: function (dashboard, options) {
+            if (options === void 0) { options = {}; }
+            // verify required parameter 'dashboard' is not null or undefined
+            if (dashboard === null || dashboard === undefined) {
+                throw new RequiredError('dashboard', 'Required parameter dashboard was null or undefined when calling insertCustomDashboard.');
+            }
+            var localVarPath = "/datawarehouse/custom_dashboards";
+            var localVarUrlObj = url.parse(localVarPath, true);
+            var localVarRequestOptions = Object.assign({ method: 'POST' }, options);
+            var localVarHeaderParameter = {};
+            var localVarQueryParameter = {};
+            if (configuration && configuration.apiVersion) {
+                localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+            }
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+                var localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+                    ? configuration.accessToken("ultraCartOauth", [])
+                    : configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                var localVarApiKeyValue = typeof configuration.apiKey === 'function'
+                    ? configuration.apiKey("x-ultracart-simple-key")
+                    : configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+            localVarHeaderParameter['Content-Type'] = 'application/json; charset=UTF-8';
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+            var needsSerialization = ("CustomDashboard" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
+            localVarRequestOptions.body = needsSerialization ? JSON.stringify(dashboard || {}) : (dashboard || "");
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
          * Create a new custom report on the UltraCart account.
          * @summary Create a custom report
          * @param {CustomReport} report Report to create
@@ -20699,6 +20927,60 @@ var DatawarehouseApiFetchParamCreator = function (configuration) {
             localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
             var needsSerialization = ("Report" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
             localVarRequestOptions.body = needsSerialization ? JSON.stringify(report || {}) : (report || "");
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Update a custom dashboard on the UltraCart account.
+         * @summary Update a custom dashboard
+         * @param {CustomDashboard} dashboard Dashboard to custom update
+         * @param {number} custom_dashboard_oid The dashboard oid to custom update.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        updateCustomDashboard: function (dashboard, custom_dashboard_oid, options) {
+            if (options === void 0) { options = {}; }
+            // verify required parameter 'dashboard' is not null or undefined
+            if (dashboard === null || dashboard === undefined) {
+                throw new RequiredError('dashboard', 'Required parameter dashboard was null or undefined when calling updateCustomDashboard.');
+            }
+            // verify required parameter 'custom_dashboard_oid' is not null or undefined
+            if (custom_dashboard_oid === null || custom_dashboard_oid === undefined) {
+                throw new RequiredError('custom_dashboard_oid', 'Required parameter custom_dashboard_oid was null or undefined when calling updateCustomDashboard.');
+            }
+            var localVarPath = "/datawarehouse/custom_dashboards/{custom_dashboard_oid}"
+                .replace("{".concat("custom_dashboard_oid", "}"), encodeURIComponent(String(custom_dashboard_oid)));
+            var localVarUrlObj = url.parse(localVarPath, true);
+            var localVarRequestOptions = Object.assign({ method: 'PUT' }, options);
+            var localVarHeaderParameter = {};
+            var localVarQueryParameter = {};
+            if (configuration && configuration.apiVersion) {
+                localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+            }
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+                var localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+                    ? configuration.accessToken("ultraCartOauth", [])
+                    : configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                var localVarApiKeyValue = typeof configuration.apiKey === 'function'
+                    ? configuration.apiKey("x-ultracart-simple-key")
+                    : configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+            localVarHeaderParameter['Content-Type'] = 'application/json; charset=UTF-8';
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+            var needsSerialization = ("CustomDashboard" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
+            localVarRequestOptions.body = needsSerialization ? JSON.stringify(dashboard || {}) : (dashboard || "");
             return {
                 url: url.format(localVarUrlObj),
                 options: localVarRequestOptions,
@@ -20870,6 +21152,28 @@ exports.DatawarehouseApiFetchParamCreator = DatawarehouseApiFetchParamCreator;
 var DatawarehouseApiFp = function (configuration) {
     return {
         /**
+         * Delete a custom dashboard on the UltraCart account.
+         * @summary Delete a custom dashboard
+         * @param {number} custom_dashboard_oid The dashboard oid to delete.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        deleteCustomDashboard: function (custom_dashboard_oid, options) {
+            var localVarFetchArgs = (0, exports.DatawarehouseApiFetchParamCreator)(configuration).deleteCustomDashboard(custom_dashboard_oid, options);
+            return function (fetch, basePath) {
+                if (fetch === void 0) { fetch = portableFetch; }
+                if (basePath === void 0) { basePath = BASE_PATH; }
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(function (response) {
+                    if (response.status >= 200 && response.status < 300) {
+                        return response;
+                    }
+                    else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
          * Delete a custom report on the UltraCart account.
          * @summary Delete a custom report
          * @param {number} custom_report_oid The report oid to delete.
@@ -20959,6 +21263,28 @@ var DatawarehouseApiFp = function (configuration) {
             };
         },
         /**
+         * Execute a custom reports on the UltraCart account.
+         * @summary Execute a custom reports
+         * @param {CustomReportsExecutionRequest} execution_request Request to execute custom reports
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        executeCustomReports: function (execution_request, options) {
+            var localVarFetchArgs = (0, exports.DatawarehouseApiFetchParamCreator)(configuration).executeCustomReports(execution_request, options);
+            return function (fetch, basePath) {
+                if (fetch === void 0) { fetch = portableFetch; }
+                if (basePath === void 0) { basePath = BASE_PATH; }
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(function (response) {
+                    if (response.status >= 200 && response.status < 300) {
+                        return response.json();
+                    }
+                    else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
          * Execute the report queries
          * @summary Execute the report queries
          * @param {ReportExecuteQueriesRequest} query_request Query request
@@ -20973,6 +21299,49 @@ var DatawarehouseApiFp = function (configuration) {
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(function (response) {
                     if (response.status >= 200 && response.status < 300) {
                         return response;
+                    }
+                    else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
+         * Retrieve a custom dashboard
+         * @summary Get a custom dashboard
+         * @param {number} custom_dashboard_oid
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getCustomDashboard: function (custom_dashboard_oid, options) {
+            var localVarFetchArgs = (0, exports.DatawarehouseApiFetchParamCreator)(configuration).getCustomDashboard(custom_dashboard_oid, options);
+            return function (fetch, basePath) {
+                if (fetch === void 0) { fetch = portableFetch; }
+                if (basePath === void 0) { basePath = BASE_PATH; }
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(function (response) {
+                    if (response.status >= 200 && response.status < 300) {
+                        return response.json();
+                    }
+                    else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
+         * Retrieve a custom dashboards
+         * @summary Get custom dashboards
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getCustomDashboards: function (options) {
+            var localVarFetchArgs = (0, exports.DatawarehouseApiFetchParamCreator)(configuration).getCustomDashboards(options);
+            return function (fetch, basePath) {
+                if (fetch === void 0) { fetch = portableFetch; }
+                if (basePath === void 0) { basePath = BASE_PATH; }
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(function (response) {
+                    if (response.status >= 200 && response.status < 300) {
+                        return response.json();
                     }
                     else {
                         throw response;
@@ -21154,6 +21523,28 @@ var DatawarehouseApiFp = function (configuration) {
             };
         },
         /**
+         * Create a new custom dashboard on the UltraCart account.
+         * @summary Create a custom dashboard
+         * @param {CustomDashboard} dashboard Dashboard to create
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        insertCustomDashboard: function (dashboard, options) {
+            var localVarFetchArgs = (0, exports.DatawarehouseApiFetchParamCreator)(configuration).insertCustomDashboard(dashboard, options);
+            return function (fetch, basePath) {
+                if (fetch === void 0) { fetch = portableFetch; }
+                if (basePath === void 0) { basePath = BASE_PATH; }
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(function (response) {
+                    if (response.status >= 200 && response.status < 300) {
+                        return response.json();
+                    }
+                    else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
          * Create a new custom report on the UltraCart account.
          * @summary Create a custom report
          * @param {CustomReport} report Report to create
@@ -21184,6 +21575,29 @@ var DatawarehouseApiFp = function (configuration) {
          */
         insertReport: function (report, options) {
             var localVarFetchArgs = (0, exports.DatawarehouseApiFetchParamCreator)(configuration).insertReport(report, options);
+            return function (fetch, basePath) {
+                if (fetch === void 0) { fetch = portableFetch; }
+                if (basePath === void 0) { basePath = BASE_PATH; }
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(function (response) {
+                    if (response.status >= 200 && response.status < 300) {
+                        return response.json();
+                    }
+                    else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
+         * Update a custom dashboard on the UltraCart account.
+         * @summary Update a custom dashboard
+         * @param {CustomDashboard} dashboard Dashboard to custom update
+         * @param {number} custom_dashboard_oid The dashboard oid to custom update.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        updateCustomDashboard: function (dashboard, custom_dashboard_oid, options) {
+            var localVarFetchArgs = (0, exports.DatawarehouseApiFetchParamCreator)(configuration).updateCustomDashboard(dashboard, custom_dashboard_oid, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -21275,6 +21689,16 @@ exports.DatawarehouseApiFp = DatawarehouseApiFp;
 var DatawarehouseApiFactory = function (configuration, fetch, basePath) {
     return {
         /**
+         * Delete a custom dashboard on the UltraCart account.
+         * @summary Delete a custom dashboard
+         * @param {number} custom_dashboard_oid The dashboard oid to delete.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        deleteCustomDashboard: function (custom_dashboard_oid, options) {
+            return (0, exports.DatawarehouseApiFp)(configuration).deleteCustomDashboard(custom_dashboard_oid, options)(fetch, basePath);
+        },
+        /**
          * Delete a custom report on the UltraCart account.
          * @summary Delete a custom report
          * @param {number} custom_report_oid The report oid to delete.
@@ -21316,6 +21740,16 @@ var DatawarehouseApiFactory = function (configuration, fetch, basePath) {
             return (0, exports.DatawarehouseApiFp)(configuration).executeCustomReport(execution_request, custom_report_oid, options)(fetch, basePath);
         },
         /**
+         * Execute a custom reports on the UltraCart account.
+         * @summary Execute a custom reports
+         * @param {CustomReportsExecutionRequest} execution_request Request to execute custom reports
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        executeCustomReports: function (execution_request, options) {
+            return (0, exports.DatawarehouseApiFp)(configuration).executeCustomReports(execution_request, options)(fetch, basePath);
+        },
+        /**
          * Execute the report queries
          * @summary Execute the report queries
          * @param {ReportExecuteQueriesRequest} query_request Query request
@@ -21324,6 +21758,25 @@ var DatawarehouseApiFactory = function (configuration, fetch, basePath) {
          */
         executeReportQueries: function (query_request, options) {
             return (0, exports.DatawarehouseApiFp)(configuration).executeReportQueries(query_request, options)(fetch, basePath);
+        },
+        /**
+         * Retrieve a custom dashboard
+         * @summary Get a custom dashboard
+         * @param {number} custom_dashboard_oid
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getCustomDashboard: function (custom_dashboard_oid, options) {
+            return (0, exports.DatawarehouseApiFp)(configuration).getCustomDashboard(custom_dashboard_oid, options)(fetch, basePath);
+        },
+        /**
+         * Retrieve a custom dashboards
+         * @summary Get custom dashboards
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getCustomDashboards: function (options) {
+            return (0, exports.DatawarehouseApiFp)(configuration).getCustomDashboards(options)(fetch, basePath);
         },
         /**
          * Retrieve a custom report
@@ -21403,6 +21856,16 @@ var DatawarehouseApiFactory = function (configuration, fetch, basePath) {
             return (0, exports.DatawarehouseApiFp)(configuration).getReports(options)(fetch, basePath);
         },
         /**
+         * Create a new custom dashboard on the UltraCart account.
+         * @summary Create a custom dashboard
+         * @param {CustomDashboard} dashboard Dashboard to create
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        insertCustomDashboard: function (dashboard, options) {
+            return (0, exports.DatawarehouseApiFp)(configuration).insertCustomDashboard(dashboard, options)(fetch, basePath);
+        },
+        /**
          * Create a new custom report on the UltraCart account.
          * @summary Create a custom report
          * @param {CustomReport} report Report to create
@@ -21421,6 +21884,17 @@ var DatawarehouseApiFactory = function (configuration, fetch, basePath) {
          */
         insertReport: function (report, options) {
             return (0, exports.DatawarehouseApiFp)(configuration).insertReport(report, options)(fetch, basePath);
+        },
+        /**
+         * Update a custom dashboard on the UltraCart account.
+         * @summary Update a custom dashboard
+         * @param {CustomDashboard} dashboard Dashboard to custom update
+         * @param {number} custom_dashboard_oid The dashboard oid to custom update.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        updateCustomDashboard: function (dashboard, custom_dashboard_oid, options) {
+            return (0, exports.DatawarehouseApiFp)(configuration).updateCustomDashboard(dashboard, custom_dashboard_oid, options)(fetch, basePath);
         },
         /**
          * Update a custom report on the UltraCart account.
@@ -21469,6 +21943,17 @@ var DatawarehouseApi = /** @class */ (function (_super) {
         return _super !== null && _super.apply(this, arguments) || this;
     }
     /**
+     * Delete a custom dashboard on the UltraCart account.
+     * @summary Delete a custom dashboard
+     * @param {number} custom_dashboard_oid The dashboard oid to delete.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DatawarehouseApi
+     */
+    DatawarehouseApi.prototype.deleteCustomDashboard = function (custom_dashboard_oid, options) {
+        return (0, exports.DatawarehouseApiFp)(this.configuration).deleteCustomDashboard(custom_dashboard_oid, options)(this.fetch, this.basePath);
+    };
+    /**
      * Delete a custom report on the UltraCart account.
      * @summary Delete a custom report
      * @param {number} custom_report_oid The report oid to delete.
@@ -21514,6 +21999,17 @@ var DatawarehouseApi = /** @class */ (function (_super) {
         return (0, exports.DatawarehouseApiFp)(this.configuration).executeCustomReport(execution_request, custom_report_oid, options)(this.fetch, this.basePath);
     };
     /**
+     * Execute a custom reports on the UltraCart account.
+     * @summary Execute a custom reports
+     * @param {CustomReportsExecutionRequest} execution_request Request to execute custom reports
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DatawarehouseApi
+     */
+    DatawarehouseApi.prototype.executeCustomReports = function (execution_request, options) {
+        return (0, exports.DatawarehouseApiFp)(this.configuration).executeCustomReports(execution_request, options)(this.fetch, this.basePath);
+    };
+    /**
      * Execute the report queries
      * @summary Execute the report queries
      * @param {ReportExecuteQueriesRequest} query_request Query request
@@ -21523,6 +22019,27 @@ var DatawarehouseApi = /** @class */ (function (_super) {
      */
     DatawarehouseApi.prototype.executeReportQueries = function (query_request, options) {
         return (0, exports.DatawarehouseApiFp)(this.configuration).executeReportQueries(query_request, options)(this.fetch, this.basePath);
+    };
+    /**
+     * Retrieve a custom dashboard
+     * @summary Get a custom dashboard
+     * @param {number} custom_dashboard_oid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DatawarehouseApi
+     */
+    DatawarehouseApi.prototype.getCustomDashboard = function (custom_dashboard_oid, options) {
+        return (0, exports.DatawarehouseApiFp)(this.configuration).getCustomDashboard(custom_dashboard_oid, options)(this.fetch, this.basePath);
+    };
+    /**
+     * Retrieve a custom dashboards
+     * @summary Get custom dashboards
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DatawarehouseApi
+     */
+    DatawarehouseApi.prototype.getCustomDashboards = function (options) {
+        return (0, exports.DatawarehouseApiFp)(this.configuration).getCustomDashboards(options)(this.fetch, this.basePath);
     };
     /**
      * Retrieve a custom report
@@ -21610,6 +22127,17 @@ var DatawarehouseApi = /** @class */ (function (_super) {
         return (0, exports.DatawarehouseApiFp)(this.configuration).getReports(options)(this.fetch, this.basePath);
     };
     /**
+     * Create a new custom dashboard on the UltraCart account.
+     * @summary Create a custom dashboard
+     * @param {CustomDashboard} dashboard Dashboard to create
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DatawarehouseApi
+     */
+    DatawarehouseApi.prototype.insertCustomDashboard = function (dashboard, options) {
+        return (0, exports.DatawarehouseApiFp)(this.configuration).insertCustomDashboard(dashboard, options)(this.fetch, this.basePath);
+    };
+    /**
      * Create a new custom report on the UltraCart account.
      * @summary Create a custom report
      * @param {CustomReport} report Report to create
@@ -21630,6 +22158,18 @@ var DatawarehouseApi = /** @class */ (function (_super) {
      */
     DatawarehouseApi.prototype.insertReport = function (report, options) {
         return (0, exports.DatawarehouseApiFp)(this.configuration).insertReport(report, options)(this.fetch, this.basePath);
+    };
+    /**
+     * Update a custom dashboard on the UltraCart account.
+     * @summary Update a custom dashboard
+     * @param {CustomDashboard} dashboard Dashboard to custom update
+     * @param {number} custom_dashboard_oid The dashboard oid to custom update.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DatawarehouseApi
+     */
+    DatawarehouseApi.prototype.updateCustomDashboard = function (dashboard, custom_dashboard_oid, options) {
+        return (0, exports.DatawarehouseApiFp)(this.configuration).updateCustomDashboard(dashboard, custom_dashboard_oid, options)(this.fetch, this.basePath);
     };
     /**
      * Update a custom report on the UltraCart account.

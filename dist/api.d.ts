@@ -14242,6 +14242,173 @@ export interface Currency {
 /**
  *
  * @export
+ * @interface CustomDashboard
+ */
+export interface CustomDashboard {
+    /**
+     *
+     * @type {number}
+     * @memberof CustomDashboard
+     */
+    data_warehouse_custom_dashboard_oid?: number;
+    /**
+     *
+     * @type {string}
+     * @memberof CustomDashboard
+     */
+    merchant_id?: string;
+    /**
+     *
+     * @type {string}
+     * @memberof CustomDashboard
+     */
+    name?: string;
+    /**
+     *
+     * @type {Array<CustomDashboardPage>}
+     * @memberof CustomDashboard
+     */
+    pages?: Array<CustomDashboardPage>;
+}
+/**
+ *
+ * @export
+ * @interface CustomDashboardPage
+ */
+export interface CustomDashboardPage {
+    /**
+     *
+     * @type {number}
+     * @memberof CustomDashboardPage
+     */
+    page_height_inches?: number;
+    /**
+     *
+     * @type {number}
+     * @memberof CustomDashboardPage
+     */
+    page_width_inches?: number;
+    /**
+     *
+     * @type {Array<CustomDashboardPageReport>}
+     * @memberof CustomDashboardPage
+     */
+    reports?: Array<CustomDashboardPageReport>;
+}
+/**
+ *
+ * @export
+ * @interface CustomDashboardPageReport
+ */
+export interface CustomDashboardPageReport {
+    /**
+     *
+     * @type {number}
+     * @memberof CustomDashboardPageReport
+     */
+    data_warehouse_report_config_oid?: number;
+    /**
+     *
+     * @type {number}
+     * @memberof CustomDashboardPageReport
+     */
+    grid_height?: number;
+    /**
+     *
+     * @type {number}
+     * @memberof CustomDashboardPageReport
+     */
+    grid_width?: number;
+    /**
+     *
+     * @type {number}
+     * @memberof CustomDashboardPageReport
+     */
+    grid_x?: number;
+    /**
+     *
+     * @type {number}
+     * @memberof CustomDashboardPageReport
+     */
+    grid_y?: number;
+}
+/**
+ *
+ * @export
+ * @interface CustomDashboardResponse
+ */
+export interface CustomDashboardResponse {
+    /**
+     *
+     * @type {CustomDashboard}
+     * @memberof CustomDashboardResponse
+     */
+    dashboard?: CustomDashboard;
+    /**
+     *
+     * @type {ModelError}
+     * @memberof CustomDashboardResponse
+     */
+    error?: ModelError;
+    /**
+     *
+     * @type {ResponseMetadata}
+     * @memberof CustomDashboardResponse
+     */
+    metadata?: ResponseMetadata;
+    /**
+     * Indicates if API call was successful
+     * @type {boolean}
+     * @memberof CustomDashboardResponse
+     */
+    success?: boolean;
+    /**
+     *
+     * @type {Warning}
+     * @memberof CustomDashboardResponse
+     */
+    warning?: Warning;
+}
+/**
+ *
+ * @export
+ * @interface CustomDashboardsResponse
+ */
+export interface CustomDashboardsResponse {
+    /**
+     * reports
+     * @type {Array<CustomDashboard>}
+     * @memberof CustomDashboardsResponse
+     */
+    dashboards?: Array<CustomDashboard>;
+    /**
+     *
+     * @type {ModelError}
+     * @memberof CustomDashboardsResponse
+     */
+    error?: ModelError;
+    /**
+     *
+     * @type {ResponseMetadata}
+     * @memberof CustomDashboardsResponse
+     */
+    metadata?: ResponseMetadata;
+    /**
+     * Indicates if API call was successful
+     * @type {boolean}
+     * @memberof CustomDashboardsResponse
+     */
+    success?: boolean;
+    /**
+     *
+     * @type {Warning}
+     * @memberof CustomDashboardsResponse
+     */
+    warning?: Warning;
+}
+/**
+ *
+ * @export
  * @interface CustomReport
  */
 export interface CustomReport {
@@ -14445,6 +14612,61 @@ export interface CustomReportExecutionRequest {
 /**
  *
  * @export
+ * @interface CustomReportExecutionResponse
+ */
+export interface CustomReportExecutionResponse {
+    /**
+     *
+     * @type {ModelError}
+     * @memberof CustomReportExecutionResponse
+     */
+    error?: ModelError;
+    /**
+     *
+     * @type {ResponseMetadata}
+     * @memberof CustomReportExecutionResponse
+     */
+    metadata?: ResponseMetadata;
+    /**
+     *
+     * @type {Array<CustomReportExecutionParameter>}
+     * @memberof CustomReportExecutionResponse
+     */
+    parameters?: Array<CustomReportExecutionParameter>;
+    /**
+     *
+     * @type {CustomReport}
+     * @memberof CustomReportExecutionResponse
+     */
+    report?: CustomReport;
+    /**
+     *
+     * @type {string}
+     * @memberof CustomReportExecutionResponse
+     */
+    result_schema_json?: string;
+    /**
+     *
+     * @type {string}
+     * @memberof CustomReportExecutionResponse
+     */
+    result_url?: string;
+    /**
+     * Indicates if API call was successful
+     * @type {boolean}
+     * @memberof CustomReportExecutionResponse
+     */
+    success?: boolean;
+    /**
+     *
+     * @type {Warning}
+     * @memberof CustomReportExecutionResponse
+     */
+    warning?: Warning;
+}
+/**
+ *
+ * @export
  * @interface CustomReportParameter
  */
 export interface CustomReportParameter {
@@ -14602,6 +14824,93 @@ export interface CustomReportTooltip {
      * @memberof CustomReportTooltip
      */
     tooltip?: string;
+}
+/**
+ *
+ * @export
+ * @interface CustomReportsExecutionReportData
+ */
+export interface CustomReportsExecutionReportData {
+    /**
+     *
+     * @type {number}
+     * @memberof CustomReportsExecutionReportData
+     */
+    data_warehouse_report_config_oid?: number;
+    /**
+     *
+     * @type {string}
+     * @memberof CustomReportsExecutionReportData
+     */
+    error_message?: string;
+    /**
+     *
+     * @type {string}
+     * @memberof CustomReportsExecutionReportData
+     */
+    result_url?: string;
+}
+/**
+ *
+ * @export
+ * @interface CustomReportsExecutionRequest
+ */
+export interface CustomReportsExecutionRequest {
+    /**
+     *
+     * @type {Array<number>}
+     * @memberof CustomReportsExecutionRequest
+     */
+    data_warehouse_report_config_oids?: Array<number>;
+    /**
+     *
+     * @type {Array<CustomReportExecutionParameter>}
+     * @memberof CustomReportsExecutionRequest
+     */
+    parameters?: Array<CustomReportExecutionParameter>;
+}
+/**
+ *
+ * @export
+ * @interface CustomReportsExecutionResponse
+ */
+export interface CustomReportsExecutionResponse {
+    /**
+     *
+     * @type {ModelError}
+     * @memberof CustomReportsExecutionResponse
+     */
+    error?: ModelError;
+    /**
+     *
+     * @type {ResponseMetadata}
+     * @memberof CustomReportsExecutionResponse
+     */
+    metadata?: ResponseMetadata;
+    /**
+     *
+     * @type {Array<CustomReportExecutionParameter>}
+     * @memberof CustomReportsExecutionResponse
+     */
+    parameters?: Array<CustomReportExecutionParameter>;
+    /**
+     *
+     * @type {Array<CustomReportsExecutionReportData>}
+     * @memberof CustomReportsExecutionResponse
+     */
+    reports?: Array<CustomReportsExecutionReportData>;
+    /**
+     * Indicates if API call was successful
+     * @type {boolean}
+     * @memberof CustomReportsExecutionResponse
+     */
+    success?: boolean;
+    /**
+     *
+     * @type {Warning}
+     * @memberof CustomReportsExecutionResponse
+     */
+    warning?: Warning;
 }
 /**
  *
@@ -23409,6 +23718,12 @@ export interface EmailWebhookEditorValuesResponse {
      * @memberof EmailWebhookEditorValuesResponse
      */
     error?: ModelError;
+    /**
+     *
+     * @type {Array<string>}
+     * @memberof EmailWebhookEditorValuesResponse
+     */
+    loyalty_tiers?: Array<string>;
     /**
      *
      * @type {ResponseMetadata}
@@ -53888,6 +54203,14 @@ export declare class CustomerApi extends BaseAPI implements CustomerApiInterface
  */
 export declare const DatawarehouseApiFetchParamCreator: (configuration?: Configuration) => {
     /**
+     * Delete a custom dashboard on the UltraCart account.
+     * @summary Delete a custom dashboard
+     * @param {number} custom_dashboard_oid The dashboard oid to delete.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    deleteCustomDashboard(custom_dashboard_oid: number, options?: any): FetchArgs;
+    /**
      * Delete a custom report on the UltraCart account.
      * @summary Delete a custom report
      * @param {number} custom_report_oid The report oid to delete.
@@ -53921,6 +54244,14 @@ export declare const DatawarehouseApiFetchParamCreator: (configuration?: Configu
      */
     executeCustomReport(execution_request: CustomReportExecutionRequest, custom_report_oid: number, options?: any): FetchArgs;
     /**
+     * Execute a custom reports on the UltraCart account.
+     * @summary Execute a custom reports
+     * @param {CustomReportsExecutionRequest} execution_request Request to execute custom reports
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    executeCustomReports(execution_request: CustomReportsExecutionRequest, options?: any): FetchArgs;
+    /**
      * Execute the report queries
      * @summary Execute the report queries
      * @param {ReportExecuteQueriesRequest} query_request Query request
@@ -53928,6 +54259,21 @@ export declare const DatawarehouseApiFetchParamCreator: (configuration?: Configu
      * @throws {RequiredError}
      */
     executeReportQueries(query_request: ReportExecuteQueriesRequest, options?: any): FetchArgs;
+    /**
+     * Retrieve a custom dashboard
+     * @summary Get a custom dashboard
+     * @param {number} custom_dashboard_oid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getCustomDashboard(custom_dashboard_oid: number, options?: any): FetchArgs;
+    /**
+     * Retrieve a custom dashboards
+     * @summary Get custom dashboards
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getCustomDashboards(options?: any): FetchArgs;
     /**
      * Retrieve a custom report
      * @summary Get a custom report
@@ -53990,6 +54336,14 @@ export declare const DatawarehouseApiFetchParamCreator: (configuration?: Configu
      */
     getReports(options?: any): FetchArgs;
     /**
+     * Create a new custom dashboard on the UltraCart account.
+     * @summary Create a custom dashboard
+     * @param {CustomDashboard} dashboard Dashboard to create
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    insertCustomDashboard(dashboard: CustomDashboard, options?: any): FetchArgs;
+    /**
      * Create a new custom report on the UltraCart account.
      * @summary Create a custom report
      * @param {CustomReport} report Report to create
@@ -54005,6 +54359,15 @@ export declare const DatawarehouseApiFetchParamCreator: (configuration?: Configu
      * @throws {RequiredError}
      */
     insertReport(report: Report, options?: any): FetchArgs;
+    /**
+     * Update a custom dashboard on the UltraCart account.
+     * @summary Update a custom dashboard
+     * @param {CustomDashboard} dashboard Dashboard to custom update
+     * @param {number} custom_dashboard_oid The dashboard oid to custom update.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    updateCustomDashboard(dashboard: CustomDashboard, custom_dashboard_oid: number, options?: any): FetchArgs;
     /**
      * Update a custom report on the UltraCart account.
      * @summary Update a custom report
@@ -54038,6 +54401,14 @@ export declare const DatawarehouseApiFetchParamCreator: (configuration?: Configu
  */
 export declare const DatawarehouseApiFp: (configuration?: Configuration) => {
     /**
+     * Delete a custom dashboard on the UltraCart account.
+     * @summary Delete a custom dashboard
+     * @param {number} custom_dashboard_oid The dashboard oid to delete.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    deleteCustomDashboard(custom_dashboard_oid: number, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Response>;
+    /**
      * Delete a custom report on the UltraCart account.
      * @summary Delete a custom report
      * @param {number} custom_report_oid The report oid to delete.
@@ -54069,7 +54440,15 @@ export declare const DatawarehouseApiFp: (configuration?: Configuration) => {
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    executeCustomReport(execution_request: CustomReportExecutionRequest, custom_report_oid: number, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<CustomReportResponse>;
+    executeCustomReport(execution_request: CustomReportExecutionRequest, custom_report_oid: number, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<CustomReportExecutionResponse>;
+    /**
+     * Execute a custom reports on the UltraCart account.
+     * @summary Execute a custom reports
+     * @param {CustomReportsExecutionRequest} execution_request Request to execute custom reports
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    executeCustomReports(execution_request: CustomReportsExecutionRequest, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<CustomReportsExecutionResponse>;
     /**
      * Execute the report queries
      * @summary Execute the report queries
@@ -54078,6 +54457,21 @@ export declare const DatawarehouseApiFp: (configuration?: Configuration) => {
      * @throws {RequiredError}
      */
     executeReportQueries(query_request: ReportExecuteQueriesRequest, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Response>;
+    /**
+     * Retrieve a custom dashboard
+     * @summary Get a custom dashboard
+     * @param {number} custom_dashboard_oid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getCustomDashboard(custom_dashboard_oid: number, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<CustomDashboardResponse>;
+    /**
+     * Retrieve a custom dashboards
+     * @summary Get custom dashboards
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getCustomDashboards(options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<CustomDashboardsResponse>;
     /**
      * Retrieve a custom report
      * @summary Get a custom report
@@ -54140,6 +54534,14 @@ export declare const DatawarehouseApiFp: (configuration?: Configuration) => {
      */
     getReports(options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ReportsResponse>;
     /**
+     * Create a new custom dashboard on the UltraCart account.
+     * @summary Create a custom dashboard
+     * @param {CustomDashboard} dashboard Dashboard to create
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    insertCustomDashboard(dashboard: CustomDashboard, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<CustomDashboardResponse>;
+    /**
      * Create a new custom report on the UltraCart account.
      * @summary Create a custom report
      * @param {CustomReport} report Report to create
@@ -54155,6 +54557,15 @@ export declare const DatawarehouseApiFp: (configuration?: Configuration) => {
      * @throws {RequiredError}
      */
     insertReport(report: Report, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ReportResponse>;
+    /**
+     * Update a custom dashboard on the UltraCart account.
+     * @summary Update a custom dashboard
+     * @param {CustomDashboard} dashboard Dashboard to custom update
+     * @param {number} custom_dashboard_oid The dashboard oid to custom update.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    updateCustomDashboard(dashboard: CustomDashboard, custom_dashboard_oid: number, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<CustomDashboardResponse>;
     /**
      * Update a custom report on the UltraCart account.
      * @summary Update a custom report
@@ -54188,6 +54599,14 @@ export declare const DatawarehouseApiFp: (configuration?: Configuration) => {
  */
 export declare const DatawarehouseApiFactory: (configuration?: Configuration, fetch?: FetchAPI, basePath?: string) => {
     /**
+     * Delete a custom dashboard on the UltraCart account.
+     * @summary Delete a custom dashboard
+     * @param {number} custom_dashboard_oid The dashboard oid to delete.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    deleteCustomDashboard(custom_dashboard_oid: number, options?: any): Promise<Response>;
+    /**
      * Delete a custom report on the UltraCart account.
      * @summary Delete a custom report
      * @param {number} custom_report_oid The report oid to delete.
@@ -54219,7 +54638,15 @@ export declare const DatawarehouseApiFactory: (configuration?: Configuration, fe
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    executeCustomReport(execution_request: CustomReportExecutionRequest, custom_report_oid: number, options?: any): Promise<CustomReportResponse>;
+    executeCustomReport(execution_request: CustomReportExecutionRequest, custom_report_oid: number, options?: any): Promise<CustomReportExecutionResponse>;
+    /**
+     * Execute a custom reports on the UltraCart account.
+     * @summary Execute a custom reports
+     * @param {CustomReportsExecutionRequest} execution_request Request to execute custom reports
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    executeCustomReports(execution_request: CustomReportsExecutionRequest, options?: any): Promise<CustomReportsExecutionResponse>;
     /**
      * Execute the report queries
      * @summary Execute the report queries
@@ -54228,6 +54655,21 @@ export declare const DatawarehouseApiFactory: (configuration?: Configuration, fe
      * @throws {RequiredError}
      */
     executeReportQueries(query_request: ReportExecuteQueriesRequest, options?: any): Promise<Response>;
+    /**
+     * Retrieve a custom dashboard
+     * @summary Get a custom dashboard
+     * @param {number} custom_dashboard_oid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getCustomDashboard(custom_dashboard_oid: number, options?: any): Promise<CustomDashboardResponse>;
+    /**
+     * Retrieve a custom dashboards
+     * @summary Get custom dashboards
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getCustomDashboards(options?: any): Promise<CustomDashboardsResponse>;
     /**
      * Retrieve a custom report
      * @summary Get a custom report
@@ -54290,6 +54732,14 @@ export declare const DatawarehouseApiFactory: (configuration?: Configuration, fe
      */
     getReports(options?: any): Promise<ReportsResponse>;
     /**
+     * Create a new custom dashboard on the UltraCart account.
+     * @summary Create a custom dashboard
+     * @param {CustomDashboard} dashboard Dashboard to create
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    insertCustomDashboard(dashboard: CustomDashboard, options?: any): Promise<CustomDashboardResponse>;
+    /**
      * Create a new custom report on the UltraCart account.
      * @summary Create a custom report
      * @param {CustomReport} report Report to create
@@ -54305,6 +54755,15 @@ export declare const DatawarehouseApiFactory: (configuration?: Configuration, fe
      * @throws {RequiredError}
      */
     insertReport(report: Report, options?: any): Promise<ReportResponse>;
+    /**
+     * Update a custom dashboard on the UltraCart account.
+     * @summary Update a custom dashboard
+     * @param {CustomDashboard} dashboard Dashboard to custom update
+     * @param {number} custom_dashboard_oid The dashboard oid to custom update.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    updateCustomDashboard(dashboard: CustomDashboard, custom_dashboard_oid: number, options?: any): Promise<CustomDashboardResponse>;
     /**
      * Update a custom report on the UltraCart account.
      * @summary Update a custom report
@@ -54338,6 +54797,15 @@ export declare const DatawarehouseApiFactory: (configuration?: Configuration, fe
  * @interface DatawarehouseApi
  */
 export interface DatawarehouseApiInterface {
+    /**
+     * Delete a custom dashboard on the UltraCart account.
+     * @summary Delete a custom dashboard
+     * @param {number} custom_dashboard_oid The dashboard oid to delete.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DatawarehouseApiInterface
+     */
+    deleteCustomDashboard(custom_dashboard_oid: number, options?: any): Promise<{}>;
     /**
      * Delete a custom report on the UltraCart account.
      * @summary Delete a custom report
@@ -54374,7 +54842,16 @@ export interface DatawarehouseApiInterface {
      * @throws {RequiredError}
      * @memberof DatawarehouseApiInterface
      */
-    executeCustomReport(execution_request: CustomReportExecutionRequest, custom_report_oid: number, options?: any): Promise<CustomReportResponse>;
+    executeCustomReport(execution_request: CustomReportExecutionRequest, custom_report_oid: number, options?: any): Promise<CustomReportExecutionResponse>;
+    /**
+     * Execute a custom reports on the UltraCart account.
+     * @summary Execute a custom reports
+     * @param {CustomReportsExecutionRequest} execution_request Request to execute custom reports
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DatawarehouseApiInterface
+     */
+    executeCustomReports(execution_request: CustomReportsExecutionRequest, options?: any): Promise<CustomReportsExecutionResponse>;
     /**
      * Execute the report queries
      * @summary Execute the report queries
@@ -54384,6 +54861,23 @@ export interface DatawarehouseApiInterface {
      * @memberof DatawarehouseApiInterface
      */
     executeReportQueries(query_request: ReportExecuteQueriesRequest, options?: any): Promise<{}>;
+    /**
+     * Retrieve a custom dashboard
+     * @summary Get a custom dashboard
+     * @param {number} custom_dashboard_oid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DatawarehouseApiInterface
+     */
+    getCustomDashboard(custom_dashboard_oid: number, options?: any): Promise<CustomDashboardResponse>;
+    /**
+     * Retrieve a custom dashboards
+     * @summary Get custom dashboards
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DatawarehouseApiInterface
+     */
+    getCustomDashboards(options?: any): Promise<CustomDashboardsResponse>;
     /**
      * Retrieve a custom report
      * @summary Get a custom report
@@ -54454,6 +54948,15 @@ export interface DatawarehouseApiInterface {
      */
     getReports(options?: any): Promise<ReportsResponse>;
     /**
+     * Create a new custom dashboard on the UltraCart account.
+     * @summary Create a custom dashboard
+     * @param {CustomDashboard} dashboard Dashboard to create
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DatawarehouseApiInterface
+     */
+    insertCustomDashboard(dashboard: CustomDashboard, options?: any): Promise<CustomDashboardResponse>;
+    /**
      * Create a new custom report on the UltraCart account.
      * @summary Create a custom report
      * @param {CustomReport} report Report to create
@@ -54471,6 +54974,16 @@ export interface DatawarehouseApiInterface {
      * @memberof DatawarehouseApiInterface
      */
     insertReport(report: Report, options?: any): Promise<ReportResponse>;
+    /**
+     * Update a custom dashboard on the UltraCart account.
+     * @summary Update a custom dashboard
+     * @param {CustomDashboard} dashboard Dashboard to custom update
+     * @param {number} custom_dashboard_oid The dashboard oid to custom update.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DatawarehouseApiInterface
+     */
+    updateCustomDashboard(dashboard: CustomDashboard, custom_dashboard_oid: number, options?: any): Promise<CustomDashboardResponse>;
     /**
      * Update a custom report on the UltraCart account.
      * @summary Update a custom report
@@ -54509,6 +55022,15 @@ export interface DatawarehouseApiInterface {
  */
 export declare class DatawarehouseApi extends BaseAPI implements DatawarehouseApiInterface {
     /**
+     * Delete a custom dashboard on the UltraCart account.
+     * @summary Delete a custom dashboard
+     * @param {number} custom_dashboard_oid The dashboard oid to delete.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DatawarehouseApi
+     */
+    deleteCustomDashboard(custom_dashboard_oid: number, options?: any): Promise<Response>;
+    /**
      * Delete a custom report on the UltraCart account.
      * @summary Delete a custom report
      * @param {number} custom_report_oid The report oid to delete.
@@ -54544,7 +55066,16 @@ export declare class DatawarehouseApi extends BaseAPI implements DatawarehouseAp
      * @throws {RequiredError}
      * @memberof DatawarehouseApi
      */
-    executeCustomReport(execution_request: CustomReportExecutionRequest, custom_report_oid: number, options?: any): Promise<CustomReportResponse>;
+    executeCustomReport(execution_request: CustomReportExecutionRequest, custom_report_oid: number, options?: any): Promise<CustomReportExecutionResponse>;
+    /**
+     * Execute a custom reports on the UltraCart account.
+     * @summary Execute a custom reports
+     * @param {CustomReportsExecutionRequest} execution_request Request to execute custom reports
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DatawarehouseApi
+     */
+    executeCustomReports(execution_request: CustomReportsExecutionRequest, options?: any): Promise<CustomReportsExecutionResponse>;
     /**
      * Execute the report queries
      * @summary Execute the report queries
@@ -54554,6 +55085,23 @@ export declare class DatawarehouseApi extends BaseAPI implements DatawarehouseAp
      * @memberof DatawarehouseApi
      */
     executeReportQueries(query_request: ReportExecuteQueriesRequest, options?: any): Promise<Response>;
+    /**
+     * Retrieve a custom dashboard
+     * @summary Get a custom dashboard
+     * @param {number} custom_dashboard_oid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DatawarehouseApi
+     */
+    getCustomDashboard(custom_dashboard_oid: number, options?: any): Promise<CustomDashboardResponse>;
+    /**
+     * Retrieve a custom dashboards
+     * @summary Get custom dashboards
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DatawarehouseApi
+     */
+    getCustomDashboards(options?: any): Promise<CustomDashboardsResponse>;
     /**
      * Retrieve a custom report
      * @summary Get a custom report
@@ -54624,6 +55172,15 @@ export declare class DatawarehouseApi extends BaseAPI implements DatawarehouseAp
      */
     getReports(options?: any): Promise<ReportsResponse>;
     /**
+     * Create a new custom dashboard on the UltraCart account.
+     * @summary Create a custom dashboard
+     * @param {CustomDashboard} dashboard Dashboard to create
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DatawarehouseApi
+     */
+    insertCustomDashboard(dashboard: CustomDashboard, options?: any): Promise<CustomDashboardResponse>;
+    /**
      * Create a new custom report on the UltraCart account.
      * @summary Create a custom report
      * @param {CustomReport} report Report to create
@@ -54641,6 +55198,16 @@ export declare class DatawarehouseApi extends BaseAPI implements DatawarehouseAp
      * @memberof DatawarehouseApi
      */
     insertReport(report: Report, options?: any): Promise<ReportResponse>;
+    /**
+     * Update a custom dashboard on the UltraCart account.
+     * @summary Update a custom dashboard
+     * @param {CustomDashboard} dashboard Dashboard to custom update
+     * @param {number} custom_dashboard_oid The dashboard oid to custom update.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DatawarehouseApi
+     */
+    updateCustomDashboard(dashboard: CustomDashboard, custom_dashboard_oid: number, options?: any): Promise<CustomDashboardResponse>;
     /**
      * Update a custom report on the UltraCart account.
      * @summary Update a custom report
