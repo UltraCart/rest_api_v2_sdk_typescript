@@ -19788,6 +19788,43 @@ export interface EmailEditorTokenResponse {
 /**
  *
  * @export
+ * @interface EmailEditorValuesResponse
+ */
+export interface EmailEditorValuesResponse {
+    /**
+     *
+     * @type {ModelError}
+     * @memberof EmailEditorValuesResponse
+     */
+    error?: ModelError;
+    /**
+     *
+     * @type {Array<string>}
+     * @memberof EmailEditorValuesResponse
+     */
+    loyalty_tiers?: Array<string>;
+    /**
+     *
+     * @type {ResponseMetadata}
+     * @memberof EmailEditorValuesResponse
+     */
+    metadata?: ResponseMetadata;
+    /**
+     * Indicates if API call was successful
+     * @type {boolean}
+     * @memberof EmailEditorValuesResponse
+     */
+    success?: boolean;
+    /**
+     *
+     * @type {Warning}
+     * @memberof EmailEditorValuesResponse
+     */
+    warning?: Warning;
+}
+/**
+ *
+ * @export
  * @interface EmailFlow
  */
 export interface EmailFlow {
@@ -23718,12 +23755,6 @@ export interface EmailWebhookEditorValuesResponse {
      * @memberof EmailWebhookEditorValuesResponse
      */
     error?: ModelError;
-    /**
-     *
-     * @type {Array<string>}
-     * @memberof EmailWebhookEditorValuesResponse
-     */
-    loyalty_tiers?: Array<string>;
     /**
      *
      * @type {ResponseMetadata}
@@ -59632,6 +59663,14 @@ export declare const StorefrontApiFetchParamCreator: (configuration?: Configurat
     getEmailCommseq(storefront_oid: number, commseq_uuid: string, options?: any): FetchArgs;
     /**
      *
+     * @summary Get email merchant specific editor values
+     * @param {number} storefront_oid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getEmailCommseqEditorValues(storefront_oid: number, options?: any): FetchArgs;
+    /**
+     *
      * @summary Get email communication sequence emails stats
      * @param {number} storefront_oid
      * @param {string} commseq_uuid
@@ -61270,6 +61309,14 @@ export declare const StorefrontApiFp: (configuration?: Configuration) => {
     getEmailCommseq(storefront_oid: number, commseq_uuid: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<EmailCommseqResponse>;
     /**
      *
+     * @summary Get email merchant specific editor values
+     * @param {number} storefront_oid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getEmailCommseqEditorValues(storefront_oid: number, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<EmailEditorValuesResponse>;
+    /**
+     *
      * @summary Get email communication sequence emails stats
      * @param {number} storefront_oid
      * @param {string} commseq_uuid
@@ -62906,6 +62953,14 @@ export declare const StorefrontApiFactory: (configuration?: Configuration, fetch
      * @throws {RequiredError}
      */
     getEmailCommseq(storefront_oid: number, commseq_uuid: string, options?: any): Promise<EmailCommseqResponse>;
+    /**
+     *
+     * @summary Get email merchant specific editor values
+     * @param {number} storefront_oid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getEmailCommseqEditorValues(storefront_oid: number, options?: any): Promise<EmailEditorValuesResponse>;
     /**
      *
      * @summary Get email communication sequence emails stats
@@ -64585,6 +64640,15 @@ export interface StorefrontApiInterface {
      * @memberof StorefrontApiInterface
      */
     getEmailCommseq(storefront_oid: number, commseq_uuid: string, options?: any): Promise<EmailCommseqResponse>;
+    /**
+     *
+     * @summary Get email merchant specific editor values
+     * @param {number} storefront_oid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof StorefrontApiInterface
+     */
+    getEmailCommseqEditorValues(storefront_oid: number, options?: any): Promise<EmailEditorValuesResponse>;
     /**
      *
      * @summary Get email communication sequence emails stats
@@ -66403,6 +66467,15 @@ export declare class StorefrontApi extends BaseAPI implements StorefrontApiInter
      * @memberof StorefrontApi
      */
     getEmailCommseq(storefront_oid: number, commseq_uuid: string, options?: any): Promise<EmailCommseqResponse>;
+    /**
+     *
+     * @summary Get email merchant specific editor values
+     * @param {number} storefront_oid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof StorefrontApi
+     */
+    getEmailCommseqEditorValues(storefront_oid: number, options?: any): Promise<EmailEditorValuesResponse>;
     /**
      *
      * @summary Get email communication sequence emails stats
