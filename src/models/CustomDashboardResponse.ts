@@ -14,6 +14,12 @@
 
 import { exists, mapValues } from '../runtime';
 import {
+    CustomDashboard,
+    CustomDashboardFromJSON,
+    CustomDashboardFromJSONTyped,
+    CustomDashboardToJSON,
+} from './CustomDashboard';
+import {
     ModelError,
     ModelErrorFromJSON,
     ModelErrorFromJSONTyped,
@@ -35,55 +41,37 @@ import {
 /**
  * 
  * @export
- * @interface EmailWebhookEditorValuesResponse
+ * @interface CustomDashboardResponse
  */
-export interface EmailWebhookEditorValuesResponse {
+export interface CustomDashboardResponse {
     /**
      * 
-     * @type {Array<string>}
-     * @memberof EmailWebhookEditorValuesResponse
+     * @type {CustomDashboard}
+     * @memberof CustomDashboardResponse
      */
-    available_expansions?: Array<string>;
-    /**
-     * 
-     * @type {Array<string>}
-     * @memberof EmailWebhookEditorValuesResponse
-     */
-    available_tokens?: Array<string>;
+    dashboard?: CustomDashboard;
     /**
      * 
      * @type {ModelError}
-     * @memberof EmailWebhookEditorValuesResponse
+     * @memberof CustomDashboardResponse
      */
     error?: ModelError;
     /**
      * 
-     * @type {Array<string>}
-     * @memberof EmailWebhookEditorValuesResponse
-     */
-    loyalty_tiers?: Array<string>;
-    /**
-     * 
      * @type {ResponseMetadata}
-     * @memberof EmailWebhookEditorValuesResponse
+     * @memberof CustomDashboardResponse
      */
     metadata?: ResponseMetadata;
     /**
-     * 
-     * @type {string}
-     * @memberof EmailWebhookEditorValuesResponse
-     */
-    rest_object_type?: string;
-    /**
      * Indicates if API call was successful
      * @type {boolean}
-     * @memberof EmailWebhookEditorValuesResponse
+     * @memberof CustomDashboardResponse
      */
     success?: boolean;
     /**
      * 
      * @type {Warning}
-     * @memberof EmailWebhookEditorValuesResponse
+     * @memberof CustomDashboardResponse
      */
     warning?: Warning;
 }
@@ -91,36 +79,33 @@ export interface EmailWebhookEditorValuesResponse {
 
 
 /**
- * Check if a given object implements the EmailWebhookEditorValuesResponse interface.
+ * Check if a given object implements the CustomDashboardResponse interface.
  */
-export function instanceOfEmailWebhookEditorValuesResponse(value: object): boolean {
+export function instanceOfCustomDashboardResponse(value: object): boolean {
     let isInstance = true;
 
     return isInstance;
 }
 
-export function EmailWebhookEditorValuesResponseFromJSON(json: any): EmailWebhookEditorValuesResponse {
-    return EmailWebhookEditorValuesResponseFromJSONTyped(json, false);
+export function CustomDashboardResponseFromJSON(json: any): CustomDashboardResponse {
+    return CustomDashboardResponseFromJSONTyped(json, false);
 }
 
-export function EmailWebhookEditorValuesResponseFromJSONTyped(json: any, ignoreDiscriminator: boolean): EmailWebhookEditorValuesResponse {
+export function CustomDashboardResponseFromJSONTyped(json: any, ignoreDiscriminator: boolean): CustomDashboardResponse {
     if ((json === undefined) || (json === null)) {
         return json;
     }
     return {
         
-        'available_expansions': !exists(json, 'available_expansions') ? undefined : json['available_expansions'],
-        'available_tokens': !exists(json, 'available_tokens') ? undefined : json['available_tokens'],
+        'dashboard': !exists(json, 'dashboard') ? undefined : CustomDashboardFromJSON(json['dashboard']),
         'error': !exists(json, 'error') ? undefined : ModelErrorFromJSON(json['error']),
-        'loyalty_tiers': !exists(json, 'loyalty_tiers') ? undefined : json['loyalty_tiers'],
         'metadata': !exists(json, 'metadata') ? undefined : ResponseMetadataFromJSON(json['metadata']),
-        'rest_object_type': !exists(json, 'rest_object_type') ? undefined : json['rest_object_type'],
         'success': !exists(json, 'success') ? undefined : json['success'],
         'warning': !exists(json, 'warning') ? undefined : WarningFromJSON(json['warning']),
     };
 }
 
-export function EmailWebhookEditorValuesResponseToJSON(value?: EmailWebhookEditorValuesResponse | null): any {
+export function CustomDashboardResponseToJSON(value?: CustomDashboardResponse | null): any {
     if (value === undefined) {
         return undefined;
     }
@@ -129,12 +114,9 @@ export function EmailWebhookEditorValuesResponseToJSON(value?: EmailWebhookEdito
     }
     return {
         
-        'available_expansions': value.available_expansions,
-        'available_tokens': value.available_tokens,
+        'dashboard': CustomDashboardToJSON(value.dashboard),
         'error': ModelErrorToJSON(value.error),
-        'loyalty_tiers': value.loyalty_tiers,
         'metadata': ResponseMetadataToJSON(value.metadata),
-        'rest_object_type': value.rest_object_type,
         'success': value.success,
         'warning': WarningToJSON(value.warning),
     };
