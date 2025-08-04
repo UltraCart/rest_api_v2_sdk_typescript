@@ -770,8 +770,8 @@ var ConversationVirtualAgentCapabilities;
     (function (OpenSupportTicketChannelEnum) {
         OpenSupportTicketChannelEnum[OpenSupportTicketChannelEnum["None"] = 'none'] = "None";
         OpenSupportTicketChannelEnum[OpenSupportTicketChannelEnum["Email"] = 'email'] = "Email";
-        OpenSupportTicketChannelEnum[OpenSupportTicketChannelEnum["UltraCartTask"] = 'UltraCart Task'] = "UltraCartTask";
-        OpenSupportTicketChannelEnum[OpenSupportTicketChannelEnum["ZohoDeskTicket"] = 'Zoho Desk Ticket'] = "ZohoDeskTicket";
+        OpenSupportTicketChannelEnum[OpenSupportTicketChannelEnum["UltracartTask"] = 'ultracart_task'] = "UltracartTask";
+        OpenSupportTicketChannelEnum[OpenSupportTicketChannelEnum["ZohoDeskTicket"] = 'zoho_desk_ticket'] = "ZohoDeskTicket";
     })(OpenSupportTicketChannelEnum = ConversationVirtualAgentCapabilities.OpenSupportTicketChannelEnum || (ConversationVirtualAgentCapabilities.OpenSupportTicketChannelEnum = {}));
 })(ConversationVirtualAgentCapabilities = exports.ConversationVirtualAgentCapabilities || (exports.ConversationVirtualAgentCapabilities = {}));
 /**

@@ -11115,6 +11115,12 @@ export interface ConversationVirtualAgentCapabilities {
      */
     open_support_ticket_channel_email?: string;
     /**
+     * Department ID to open a Zoho Desk ticket for
+     * @type {string}
+     * @memberof ConversationVirtualAgentCapabilities
+     */
+    open_support_ticket_zoho_desk_department_id?: string;
+    /**
      *
      * @type {boolean}
      * @memberof ConversationVirtualAgentCapabilities
@@ -11138,6 +11144,18 @@ export interface ConversationVirtualAgentCapabilities {
      * @memberof ConversationVirtualAgentCapabilities
      */
     update_subscription_credit_card?: boolean;
+    /**
+     * True if Zoho Desk is connected to UltraCart
+     * @type {boolean}
+     * @memberof ConversationVirtualAgentCapabilities
+     */
+    zoho_desk_available?: boolean;
+    /**
+     * Array of Zoho Desk Department if zoho desk is connected to UltraCart
+     * @type {Array<ConversationVirtualAgentCapabilityZohoDeskDepartment>}
+     * @memberof ConversationVirtualAgentCapabilities
+     */
+    zoho_desk_departments?: Array<ConversationVirtualAgentCapabilityZohoDeskDepartment>;
 }
 /**
  * @export
@@ -11151,7 +11169,7 @@ export declare namespace ConversationVirtualAgentCapabilities {
     enum OpenSupportTicketChannelEnum {
         None,
         Email,
-        UltraCartTask,
+        UltracartTask,
         ZohoDeskTicket
     }
 }
@@ -11191,6 +11209,25 @@ export interface ConversationVirtualAgentCapabilitiesResponse {
      * @memberof ConversationVirtualAgentCapabilitiesResponse
      */
     warning?: Warning;
+}
+/**
+ *
+ * @export
+ * @interface ConversationVirtualAgentCapabilityZohoDeskDepartment
+ */
+export interface ConversationVirtualAgentCapabilityZohoDeskDepartment {
+    /**
+     *
+     * @type {string}
+     * @memberof ConversationVirtualAgentCapabilityZohoDeskDepartment
+     */
+    department_id?: string;
+    /**
+     *
+     * @type {string}
+     * @memberof ConversationVirtualAgentCapabilityZohoDeskDepartment
+     */
+    department_name?: string;
 }
 /**
  *
@@ -14269,6 +14306,43 @@ export interface CustomDashboard {
      * @memberof CustomDashboard
      */
     pages?: Array<CustomDashboardPage>;
+    /**
+     *
+     * @type {Array<CustomDashboardExecutionParameter>}
+     * @memberof CustomDashboard
+     */
+    parameters?: Array<CustomDashboardExecutionParameter>;
+}
+/**
+ *
+ * @export
+ * @interface CustomDashboardExecutionParameter
+ */
+export interface CustomDashboardExecutionParameter {
+    /**
+     *
+     * @type {string}
+     * @memberof CustomDashboardExecutionParameter
+     */
+    name?: string;
+    /**
+     *
+     * @type {string}
+     * @memberof CustomDashboardExecutionParameter
+     */
+    quick_pick_key?: string;
+    /**
+     *
+     * @type {string}
+     * @memberof CustomDashboardExecutionParameter
+     */
+    type?: string;
+    /**
+     *
+     * @type {string}
+     * @memberof CustomDashboardExecutionParameter
+     */
+    value?: string;
 }
 /**
  *
@@ -14583,6 +14657,12 @@ export interface CustomReportExecutionParameter {
      * @memberof CustomReportExecutionParameter
      */
     name?: string;
+    /**
+     *
+     * @type {string}
+     * @memberof CustomReportExecutionParameter
+     */
+    quick_pick_key?: string;
     /**
      *
      * @type {string}
