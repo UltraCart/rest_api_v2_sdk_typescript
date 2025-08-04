@@ -35,49 +35,37 @@ import {
 /**
  * 
  * @export
- * @interface EmailWebhookEditorValuesResponse
+ * @interface EmailEditorValuesResponse
  */
-export interface EmailWebhookEditorValuesResponse {
-    /**
-     * 
-     * @type {Array<string>}
-     * @memberof EmailWebhookEditorValuesResponse
-     */
-    available_expansions?: Array<string>;
-    /**
-     * 
-     * @type {Array<string>}
-     * @memberof EmailWebhookEditorValuesResponse
-     */
-    available_tokens?: Array<string>;
+export interface EmailEditorValuesResponse {
     /**
      * 
      * @type {ModelError}
-     * @memberof EmailWebhookEditorValuesResponse
+     * @memberof EmailEditorValuesResponse
      */
     error?: ModelError;
     /**
      * 
+     * @type {Array<string>}
+     * @memberof EmailEditorValuesResponse
+     */
+    loyalty_tiers?: Array<string>;
+    /**
+     * 
      * @type {ResponseMetadata}
-     * @memberof EmailWebhookEditorValuesResponse
+     * @memberof EmailEditorValuesResponse
      */
     metadata?: ResponseMetadata;
     /**
-     * 
-     * @type {string}
-     * @memberof EmailWebhookEditorValuesResponse
-     */
-    rest_object_type?: string;
-    /**
      * Indicates if API call was successful
      * @type {boolean}
-     * @memberof EmailWebhookEditorValuesResponse
+     * @memberof EmailEditorValuesResponse
      */
     success?: boolean;
     /**
      * 
      * @type {Warning}
-     * @memberof EmailWebhookEditorValuesResponse
+     * @memberof EmailEditorValuesResponse
      */
     warning?: Warning;
 }
@@ -85,35 +73,33 @@ export interface EmailWebhookEditorValuesResponse {
 
 
 /**
- * Check if a given object implements the EmailWebhookEditorValuesResponse interface.
+ * Check if a given object implements the EmailEditorValuesResponse interface.
  */
-export function instanceOfEmailWebhookEditorValuesResponse(value: object): boolean {
+export function instanceOfEmailEditorValuesResponse(value: object): boolean {
     let isInstance = true;
 
     return isInstance;
 }
 
-export function EmailWebhookEditorValuesResponseFromJSON(json: any): EmailWebhookEditorValuesResponse {
-    return EmailWebhookEditorValuesResponseFromJSONTyped(json, false);
+export function EmailEditorValuesResponseFromJSON(json: any): EmailEditorValuesResponse {
+    return EmailEditorValuesResponseFromJSONTyped(json, false);
 }
 
-export function EmailWebhookEditorValuesResponseFromJSONTyped(json: any, ignoreDiscriminator: boolean): EmailWebhookEditorValuesResponse {
+export function EmailEditorValuesResponseFromJSONTyped(json: any, ignoreDiscriminator: boolean): EmailEditorValuesResponse {
     if ((json === undefined) || (json === null)) {
         return json;
     }
     return {
         
-        'available_expansions': !exists(json, 'available_expansions') ? undefined : json['available_expansions'],
-        'available_tokens': !exists(json, 'available_tokens') ? undefined : json['available_tokens'],
         'error': !exists(json, 'error') ? undefined : ModelErrorFromJSON(json['error']),
+        'loyalty_tiers': !exists(json, 'loyalty_tiers') ? undefined : json['loyalty_tiers'],
         'metadata': !exists(json, 'metadata') ? undefined : ResponseMetadataFromJSON(json['metadata']),
-        'rest_object_type': !exists(json, 'rest_object_type') ? undefined : json['rest_object_type'],
         'success': !exists(json, 'success') ? undefined : json['success'],
         'warning': !exists(json, 'warning') ? undefined : WarningFromJSON(json['warning']),
     };
 }
 
-export function EmailWebhookEditorValuesResponseToJSON(value?: EmailWebhookEditorValuesResponse | null): any {
+export function EmailEditorValuesResponseToJSON(value?: EmailEditorValuesResponse | null): any {
     if (value === undefined) {
         return undefined;
     }
@@ -122,11 +108,9 @@ export function EmailWebhookEditorValuesResponseToJSON(value?: EmailWebhookEdito
     }
     return {
         
-        'available_expansions': value.available_expansions,
-        'available_tokens': value.available_tokens,
         'error': ModelErrorToJSON(value.error),
+        'loyalty_tiers': value.loyalty_tiers,
         'metadata': ResponseMetadataToJSON(value.metadata),
-        'rest_object_type': value.rest_object_type,
         'success': value.success,
         'warning': WarningToJSON(value.warning),
     };

@@ -144,6 +144,9 @@ import {
     EmailEditorTokenResponse,
     EmailEditorTokenResponseFromJSON,
     EmailEditorTokenResponseToJSON,
+    EmailEditorValuesResponse,
+    EmailEditorValuesResponseFromJSON,
+    EmailEditorValuesResponseToJSON,
     EmailFlow,
     EmailFlowFromJSON,
     EmailFlowToJSON,
@@ -645,6 +648,10 @@ export interface GetEmailCampaignsWithStatsRequest {
 export interface GetEmailCommseqRequest {
     storefrontOid: number;
     commseqUuid: string;
+}
+
+export interface GetEmailCommseqEditorValuesRequest {
+    storefrontOid: number;
 }
 
 export interface GetEmailCommseqEmailStatsRequest {
@@ -2002,6 +2009,21 @@ export interface StorefrontApiInterface {
      * Get email commseq
      */
     getEmailCommseq(requestParameters: GetEmailCommseqRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EmailCommseqResponse>;
+
+    /**
+     * 
+     * @summary Get email merchant specific editor values
+     * @param {number} storefrontOid 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof StorefrontApiInterface
+     */
+    getEmailCommseqEditorValuesRaw(requestParameters: GetEmailCommseqEditorValuesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EmailEditorValuesResponse>>;
+
+    /**
+     * Get email merchant specific editor values
+     */
+    getEmailCommseqEditorValues(requestParameters: GetEmailCommseqEditorValuesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EmailEditorValuesResponse>;
 
     /**
      * 
@@ -6136,6 +6158,49 @@ export class StorefrontApi extends runtime.BaseAPI implements StorefrontApiInter
      */
     async getEmailCommseq(requestParameters: GetEmailCommseqRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EmailCommseqResponse> {
         const response = await this.getEmailCommseqRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Get email merchant specific editor values
+     */
+    async getEmailCommseqEditorValuesRaw(requestParameters: GetEmailCommseqEditorValuesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EmailEditorValuesResponse>> {
+        if (requestParameters.storefrontOid === null || requestParameters.storefrontOid === undefined) {
+            throw new runtime.RequiredError('storefrontOid','Required parameter requestParameters.storefrontOid was null or undefined when calling getEmailCommseqEditorValues.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-browser-key"] = this.configuration.apiKey("x-ultracart-browser-key"); // ultraCartBrowserApiKey authentication
+        }
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", ["storefront_read"]);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/storefront/{storefront_oid}/email/commseqs/editorValues`.replace(`{${"storefront_oid"}}`, encodeURIComponent(String(requestParameters.storefrontOid))),
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => EmailEditorValuesResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Get email merchant specific editor values
+     */
+    async getEmailCommseqEditorValues(requestParameters: GetEmailCommseqEditorValuesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EmailEditorValuesResponse> {
+        const response = await this.getEmailCommseqEditorValuesRaw(requestParameters, initOverrides);
         return await response.value();
     }
 

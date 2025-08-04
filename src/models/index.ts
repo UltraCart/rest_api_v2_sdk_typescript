@@ -406,6 +406,7 @@ export * from './EmailDashboardActivityResponse';
 export * from './EmailDashboardStatsResponse';
 export * from './EmailDomain';
 export * from './EmailEditorTokenResponse';
+export * from './EmailEditorValuesResponse';
 export * from './EmailFlow';
 export * from './EmailFlowBackPopulateRequest';
 export * from './EmailFlowBackPopulateResponse';

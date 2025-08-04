@@ -431,6 +431,7 @@ src/models/EmailDashboardActivityResponse.ts
 src/models/EmailDashboardStatsResponse.ts
 src/models/EmailDomain.ts
 src/models/EmailEditorTokenResponse.ts
+src/models/EmailEditorValuesResponse.ts
 src/models/EmailFlow.ts
 src/models/EmailFlowBackPopulateRequest.ts
 src/models/EmailFlowBackPopulateResponse.ts
