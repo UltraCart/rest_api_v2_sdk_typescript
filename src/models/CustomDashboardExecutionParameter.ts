@@ -16,31 +16,31 @@ import { exists, mapValues } from '../runtime';
 /**
  * 
  * @export
- * @interface CustomReportExecutionParameter
+ * @interface CustomDashboardExecutionParameter
  */
-export interface CustomReportExecutionParameter {
+export interface CustomDashboardExecutionParameter {
     /**
      * 
      * @type {string}
-     * @memberof CustomReportExecutionParameter
+     * @memberof CustomDashboardExecutionParameter
      */
     name?: string;
     /**
      * 
      * @type {string}
-     * @memberof CustomReportExecutionParameter
+     * @memberof CustomDashboardExecutionParameter
      */
     quick_pick_key?: string;
     /**
      * 
      * @type {string}
-     * @memberof CustomReportExecutionParameter
+     * @memberof CustomDashboardExecutionParameter
      */
     type?: string;
     /**
      * 
      * @type {string}
-     * @memberof CustomReportExecutionParameter
+     * @memberof CustomDashboardExecutionParameter
      */
     value?: string;
 }
@@ -48,19 +48,19 @@ export interface CustomReportExecutionParameter {
 
 
 /**
- * Check if a given object implements the CustomReportExecutionParameter interface.
+ * Check if a given object implements the CustomDashboardExecutionParameter interface.
  */
-export function instanceOfCustomReportExecutionParameter(value: object): boolean {
+export function instanceOfCustomDashboardExecutionParameter(value: object): boolean {
     let isInstance = true;
 
     return isInstance;
 }
 
-export function CustomReportExecutionParameterFromJSON(json: any): CustomReportExecutionParameter {
-    return CustomReportExecutionParameterFromJSONTyped(json, false);
+export function CustomDashboardExecutionParameterFromJSON(json: any): CustomDashboardExecutionParameter {
+    return CustomDashboardExecutionParameterFromJSONTyped(json, false);
 }
 
-export function CustomReportExecutionParameterFromJSONTyped(json: any, ignoreDiscriminator: boolean): CustomReportExecutionParameter {
+export function CustomDashboardExecutionParameterFromJSONTyped(json: any, ignoreDiscriminator: boolean): CustomDashboardExecutionParameter {
     if ((json === undefined) || (json === null)) {
         return json;
     }
@@ -73,7 +73,7 @@ export function CustomReportExecutionParameterFromJSONTyped(json: any, ignoreDis
     };
 }
 
-export function CustomReportExecutionParameterToJSON(value?: CustomReportExecutionParameter | null): any {
+export function CustomDashboardExecutionParameterToJSON(value?: CustomDashboardExecutionParameter | null): any {
     if (value === undefined) {
         return undefined;
     }

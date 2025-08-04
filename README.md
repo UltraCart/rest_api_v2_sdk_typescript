@@ -1,12 +1,12 @@
 # UltraCart Typescript SDK
-## ultracart_rest_api_v2_typescript@4.1.18
+## ultracart_rest_api_v2_typescript@4.1.19
 
 Every API method call has a sample for every language SDK.  See https://github.com/UltraCart/sdk_samples
 
 Installation
 
 ```
-npm install ultracart_rest_api_v2_typescript@4.1.18 --save
+npm install ultracart_rest_api_v2_typescript@4.1.19 --save
 ```
 
 ```typescript
@@ -85,6 +85,7 @@ Not every change is committed to every SDK.
 
 | Version | Date | Comments |
 | --: | :-: | --- |
+| 4.1.19 | 08/04/2025 | conversations api - add zoho departments to getCapabilities call |
 | 4.1.18 | 08/04/2025 | more internal development on loyalty step for storefront flows |
 | 4.1.17 | 08/04/2025 | small changes to internal flow app to support loyalty tier moves |
 | 4.1.16 | 07/28/2025 | updated doc samples |

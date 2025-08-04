@@ -14,6 +14,12 @@
 
 import { exists, mapValues } from '../runtime';
 import {
+    CustomDashboardExecutionParameter,
+    CustomDashboardExecutionParameterFromJSON,
+    CustomDashboardExecutionParameterFromJSONTyped,
+    CustomDashboardExecutionParameterToJSON,
+} from './CustomDashboardExecutionParameter';
+import {
     CustomDashboardPage,
     CustomDashboardPageFromJSON,
     CustomDashboardPageFromJSONTyped,
@@ -50,6 +56,12 @@ export interface CustomDashboard {
      * @memberof CustomDashboard
      */
     pages?: Array<CustomDashboardPage>;
+    /**
+     * 
+     * @type {Array<CustomDashboardExecutionParameter>}
+     * @memberof CustomDashboard
+     */
+    parameters?: Array<CustomDashboardExecutionParameter>;
 }
 
 
@@ -77,6 +89,7 @@ export function CustomDashboardFromJSONTyped(json: any, ignoreDiscriminator: boo
         'merchant_id': !exists(json, 'merchant_id') ? undefined : json['merchant_id'],
         'name': !exists(json, 'name') ? undefined : json['name'],
         'pages': !exists(json, 'pages') ? undefined : ((json['pages'] as Array<any>).map(CustomDashboardPageFromJSON)),
+        'parameters': !exists(json, 'parameters') ? undefined : ((json['parameters'] as Array<any>).map(CustomDashboardExecutionParameterFromJSON)),
     };
 }
 
@@ -93,6 +106,7 @@ export function CustomDashboardToJSON(value?: CustomDashboard | null): any {
         'merchant_id': value.merchant_id,
         'name': value.name,
         'pages': value.pages === undefined ? undefined : ((value.pages as Array<any>).map(CustomDashboardPageToJSON)),
+        'parameters': value.parameters === undefined ? undefined : ((value.parameters as Array<any>).map(CustomDashboardExecutionParameterToJSON)),
     };
 }
 

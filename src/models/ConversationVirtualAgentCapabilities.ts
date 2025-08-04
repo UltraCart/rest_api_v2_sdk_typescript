@@ -13,6 +13,13 @@
  */
 
 import { exists, mapValues } from '../runtime';
+import {
+    ConversationVirtualAgentCapabilityZohoDeskDepartment,
+    ConversationVirtualAgentCapabilityZohoDeskDepartmentFromJSON,
+    ConversationVirtualAgentCapabilityZohoDeskDepartmentFromJSONTyped,
+    ConversationVirtualAgentCapabilityZohoDeskDepartmentToJSON,
+} from './ConversationVirtualAgentCapabilityZohoDeskDepartment';
+
 /**
  * 
  * @export
@@ -62,6 +69,12 @@ export interface ConversationVirtualAgentCapabilities {
      */
     open_support_ticket_channel_email?: string;
     /**
+     * Department ID to open a Zoho Desk ticket for
+     * @type {string}
+     * @memberof ConversationVirtualAgentCapabilities
+     */
+    open_support_ticket_zoho_desk_department_id?: string;
+    /**
      * 
      * @type {boolean}
      * @memberof ConversationVirtualAgentCapabilities
@@ -85,6 +98,18 @@ export interface ConversationVirtualAgentCapabilities {
      * @memberof ConversationVirtualAgentCapabilities
      */
     update_subscription_credit_card?: boolean;
+    /**
+     * True if Zoho Desk is connected to UltraCart
+     * @type {boolean}
+     * @memberof ConversationVirtualAgentCapabilities
+     */
+    zoho_desk_available?: boolean;
+    /**
+     * Array of Zoho Desk Department if zoho desk is connected to UltraCart
+     * @type {Array<ConversationVirtualAgentCapabilityZohoDeskDepartment>}
+     * @memberof ConversationVirtualAgentCapabilities
+     */
+    zoho_desk_departments?: Array<ConversationVirtualAgentCapabilityZohoDeskDepartment>;
 }
 
 
@@ -95,8 +120,8 @@ export interface ConversationVirtualAgentCapabilities {
 export const ConversationVirtualAgentCapabilitiesOpenSupportTicketChannelEnum = {
     None: 'none',
     Email: 'email',
-    UltraCartTask: 'UltraCart Task',
-    ZohoDeskTicket: 'Zoho Desk Ticket'
+    UltracartTask: 'ultracart_task',
+    ZohoDeskTicket: 'zoho_desk_ticket'
 } as const;
 export type ConversationVirtualAgentCapabilitiesOpenSupportTicketChannelEnum = typeof ConversationVirtualAgentCapabilitiesOpenSupportTicketChannelEnum[keyof typeof ConversationVirtualAgentCapabilitiesOpenSupportTicketChannelEnum];
 
@@ -127,10 +152,13 @@ export function ConversationVirtualAgentCapabilitiesFromJSONTyped(json: any, ign
         'open_support_ticket': !exists(json, 'open_support_ticket') ? undefined : json['open_support_ticket'],
         'open_support_ticket_channel': !exists(json, 'open_support_ticket_channel') ? undefined : json['open_support_ticket_channel'],
         'open_support_ticket_channel_email': !exists(json, 'open_support_ticket_channel_email') ? undefined : json['open_support_ticket_channel_email'],
+        'open_support_ticket_zoho_desk_department_id': !exists(json, 'open_support_ticket_zoho_desk_department_id') ? undefined : json['open_support_ticket_zoho_desk_department_id'],
         'pause_subscription': !exists(json, 'pause_subscription') ? undefined : json['pause_subscription'],
         'resume_subscription': !exists(json, 'resume_subscription') ? undefined : json['resume_subscription'],
         'transfer_chat_to_live_agent': !exists(json, 'transfer_chat_to_live_agent') ? undefined : json['transfer_chat_to_live_agent'],
         'update_subscription_credit_card': !exists(json, 'update_subscription_credit_card') ? undefined : json['update_subscription_credit_card'],
+        'zoho_desk_available': !exists(json, 'zoho_desk_available') ? undefined : json['zoho_desk_available'],
+        'zoho_desk_departments': !exists(json, 'zoho_desk_departments') ? undefined : ((json['zoho_desk_departments'] as Array<any>).map(ConversationVirtualAgentCapabilityZohoDeskDepartmentFromJSON)),
     };
 }
 
@@ -150,10 +178,13 @@ export function ConversationVirtualAgentCapabilitiesToJSON(value?: ConversationV
         'open_support_ticket': value.open_support_ticket,
         'open_support_ticket_channel': value.open_support_ticket_channel,
         'open_support_ticket_channel_email': value.open_support_ticket_channel_email,
+        'open_support_ticket_zoho_desk_department_id': value.open_support_ticket_zoho_desk_department_id,
         'pause_subscription': value.pause_subscription,
         'resume_subscription': value.resume_subscription,
         'transfer_chat_to_live_agent': value.transfer_chat_to_live_agent,
         'update_subscription_credit_card': value.update_subscription_credit_card,
+        'zoho_desk_available': value.zoho_desk_available,
+        'zoho_desk_departments': value.zoho_desk_departments === undefined ? undefined : ((value.zoho_desk_departments as Array<any>).map(ConversationVirtualAgentCapabilityZohoDeskDepartmentToJSON)),
     };
 }
 

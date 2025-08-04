@@ -249,6 +249,7 @@ src/models/ConversationVirtualAgentBudget.ts
 src/models/ConversationVirtualAgentBudgetResponse.ts
 src/models/ConversationVirtualAgentCapabilities.ts
 src/models/ConversationVirtualAgentCapabilitiesResponse.ts
+src/models/ConversationVirtualAgentCapabilityZohoDeskDepartment.ts
 src/models/ConversationWebchatContext.ts
 src/models/ConversationWebchatQueueStatus.ts
 src/models/ConversationWebchatQueueStatusAgent.ts
@@ -330,6 +331,7 @@ src/models/CouponsRequest.ts
 src/models/CouponsResponse.ts
 src/models/Currency.ts
 src/models/CustomDashboard.ts
+src/models/CustomDashboardExecutionParameter.ts
 src/models/CustomDashboardPage.ts
 src/models/CustomDashboardPageReport.ts
 src/models/CustomDashboardResponse.ts
