@@ -6473,225 +6473,6 @@ export interface ChannelPartnersResponse {
 /**
  *
  * @export
- * @interface ChargebackDispute
- */
-export interface ChargebackDispute {
-    /**
-     * Account number
-     * @type {string}
-     * @memberof ChargebackDispute
-     */
-    account_number?: string;
-    /**
-     * Adjustment request text
-     * @type {string}
-     * @memberof ChargebackDispute
-     */
-    adjustment_request_text?: string;
-    /**
-     * Amount
-     * @type {number}
-     * @memberof ChargebackDispute
-     */
-    amount?: number;
-    /**
-     * Auth code
-     * @type {string}
-     * @memberof ChargebackDispute
-     */
-    auth_code?: string;
-    /**
-     * Case number
-     * @type {string}
-     * @memberof ChargebackDispute
-     */
-    case_number?: string;
-    /**
-     * Chargeback Dispute Oid
-     * @type {number}
-     * @memberof ChargebackDispute
-     */
-    chargeback_dispute_oid?: number;
-    /**
-     * Chargeback dts
-     * @type {string}
-     * @memberof ChargebackDispute
-     */
-    chargeback_dts?: string;
-    /**
-     * Currency
-     * @type {string}
-     * @memberof ChargebackDispute
-     */
-    currency?: string;
-    /**
-     * Customer care notes
-     * @type {string}
-     * @memberof ChargebackDispute
-     */
-    customer_care_notes?: string;
-    /**
-     * Encryption key
-     * @type {string}
-     * @memberof ChargebackDispute
-     */
-    encryption_key?: string;
-    /**
-     * Expiration Dts
-     * @type {string}
-     * @memberof ChargebackDispute
-     */
-    expiration_dts?: string;
-    /**
-     * Fax failure reason
-     * @type {string}
-     * @memberof ChargebackDispute
-     */
-    fax_failure_reason?: string;
-    /**
-     * Fax number
-     * @type {string}
-     * @memberof ChargebackDispute
-     */
-    fax_number?: string;
-    /**
-     * Fax transaction id
-     * @type {number}
-     * @memberof ChargebackDispute
-     */
-    fax_transaction_id?: number;
-    /**
-     * icsid
-     * @type {string}
-     * @memberof ChargebackDispute
-     */
-    icsid?: string;
-    /**
-     * Merchant account profile oid
-     * @type {number}
-     * @memberof ChargebackDispute
-     */
-    merchant_account_profile_oid?: number;
-    /**
-     *
-     * @type {Order}
-     * @memberof ChargebackDispute
-     */
-    order?: Order;
-    /**
-     * Order Id
-     * @type {string}
-     * @memberof ChargebackDispute
-     */
-    order_id?: string;
-    /**
-     * Partial card number
-     * @type {string}
-     * @memberof ChargebackDispute
-     */
-    partial_card_number?: string;
-    /**
-     * PDF file oid
-     * @type {string}
-     * @memberof ChargebackDispute
-     */
-    pdf_file_oid?: string;
-    /**
-     * Reason code
-     * @type {string}
-     * @memberof ChargebackDispute
-     */
-    reason_code?: string;
-    /**
-     * Status
-     * @type {string}
-     * @memberof ChargebackDispute
-     */
-    status?: string;
-    /**
-     * Website URL
-     * @type {string}
-     * @memberof ChargebackDispute
-     */
-    website_url?: string;
-}
-/**
- *
- * @export
- * @interface ChargebackDisputeResponse
- */
-export interface ChargebackDisputeResponse {
-    /**
-     *
-     * @type {ChargebackDispute}
-     * @memberof ChargebackDisputeResponse
-     */
-    chargeback?: ChargebackDispute;
-    /**
-     *
-     * @type {ModelError}
-     * @memberof ChargebackDisputeResponse
-     */
-    error?: ModelError;
-    /**
-     *
-     * @type {ResponseMetadata}
-     * @memberof ChargebackDisputeResponse
-     */
-    metadata?: ResponseMetadata;
-    /**
-     * Indicates if API call was successful
-     * @type {boolean}
-     * @memberof ChargebackDisputeResponse
-     */
-    success?: boolean;
-    /**
-     *
-     * @type {Warning}
-     * @memberof ChargebackDisputeResponse
-     */
-    warning?: Warning;
-}
-/**
- *
- * @export
- * @interface ChargebackDisputesResponse
- */
-export interface ChargebackDisputesResponse {
-    /**
-     *
-     * @type {Array<ChargebackDispute>}
-     * @memberof ChargebackDisputesResponse
-     */
-    chargebacks?: Array<ChargebackDispute>;
-    /**
-     *
-     * @type {ModelError}
-     * @memberof ChargebackDisputesResponse
-     */
-    error?: ModelError;
-    /**
-     *
-     * @type {ResponseMetadata}
-     * @memberof ChargebackDisputesResponse
-     */
-    metadata?: ResponseMetadata;
-    /**
-     * Indicates if API call was successful
-     * @type {boolean}
-     * @memberof ChargebackDisputesResponse
-     */
-    success?: boolean;
-    /**
-     *
-     * @type {Warning}
-     * @memberof ChargebackDisputesResponse
-     */
-    warning?: Warning;
-}
-/**
- *
- * @export
  * @interface CheckoutAllowedCountriesResponse
  */
 export interface CheckoutAllowedCountriesResponse {
@@ -14446,6 +14227,117 @@ export interface CustomDashboardResponse {
 /**
  *
  * @export
+ * @interface CustomDashboardSchedule
+ */
+export interface CustomDashboardSchedule {
+    /**
+     *
+     * @type {string}
+     * @memberof CustomDashboardSchedule
+     */
+    cron_trigger_expression?: string;
+    /**
+     *
+     * @type {number}
+     * @memberof CustomDashboardSchedule
+     */
+    data_warehouse_custom_dashboard_oid?: number;
+    /**
+     *
+     * @type {number}
+     * @memberof CustomDashboardSchedule
+     */
+    data_warehouse_custom_dashboard_schedule_oid?: number;
+    /**
+     *
+     * @type {Array<string>}
+     * @memberof CustomDashboardSchedule
+     */
+    emails?: Array<string>;
+    /**
+     * Date/time that the next send will occur.
+     * @type {string}
+     * @memberof CustomDashboardSchedule
+     */
+    next_send_dts?: string;
+}
+/**
+ *
+ * @export
+ * @interface CustomDashboardScheduleResponse
+ */
+export interface CustomDashboardScheduleResponse {
+    /**
+     *
+     * @type {ModelError}
+     * @memberof CustomDashboardScheduleResponse
+     */
+    error?: ModelError;
+    /**
+     *
+     * @type {ResponseMetadata}
+     * @memberof CustomDashboardScheduleResponse
+     */
+    metadata?: ResponseMetadata;
+    /**
+     *
+     * @type {CustomDashboardSchedule}
+     * @memberof CustomDashboardScheduleResponse
+     */
+    schedule?: CustomDashboardSchedule;
+    /**
+     * Indicates if API call was successful
+     * @type {boolean}
+     * @memberof CustomDashboardScheduleResponse
+     */
+    success?: boolean;
+    /**
+     *
+     * @type {Warning}
+     * @memberof CustomDashboardScheduleResponse
+     */
+    warning?: Warning;
+}
+/**
+ *
+ * @export
+ * @interface CustomDashboardSchedulesResponse
+ */
+export interface CustomDashboardSchedulesResponse {
+    /**
+     *
+     * @type {ModelError}
+     * @memberof CustomDashboardSchedulesResponse
+     */
+    error?: ModelError;
+    /**
+     *
+     * @type {ResponseMetadata}
+     * @memberof CustomDashboardSchedulesResponse
+     */
+    metadata?: ResponseMetadata;
+    /**
+     * schedules
+     * @type {Array<CustomDashboardSchedule>}
+     * @memberof CustomDashboardSchedulesResponse
+     */
+    schedules?: Array<CustomDashboardSchedule>;
+    /**
+     * Indicates if API call was successful
+     * @type {boolean}
+     * @memberof CustomDashboardSchedulesResponse
+     */
+    success?: boolean;
+    /**
+     *
+     * @type {Warning}
+     * @memberof CustomDashboardSchedulesResponse
+     */
+    warning?: Warning;
+}
+/**
+ *
+ * @export
  * @interface CustomDashboardsResponse
  */
 export interface CustomDashboardsResponse {
@@ -14486,6 +14378,12 @@ export interface CustomDashboardsResponse {
  * @interface CustomReport
  */
 export interface CustomReport {
+    /**
+     *
+     * @type {string}
+     * @memberof CustomReport
+     */
+    business_analysis_prompt?: string;
     /**
      *
      * @type {string}
@@ -17657,6 +17555,18 @@ export interface EmailCampaign {
      * @memberof EmailCampaign
      */
     prevent_sending_due_to_spam?: boolean;
+    /**
+     * True if the campaign should repeat on a monthly basis
+     * @type {boolean}
+     * @memberof EmailCampaign
+     */
+    repeat_monthly?: boolean;
+    /**
+     * True if the campaign should repeat on a weekly basis
+     * @type {boolean}
+     * @memberof EmailCampaign
+     */
+    repeat_weekly?: boolean;
     /**
      * Revenue associated with campaign
      * @type {string}
@@ -34900,6 +34810,8 @@ export declare namespace OrderPayment {
         EBay,
         ECheck,
         GoogleShopping,
+        Goldbelly,
+        GoHighLevel,
         Insurance,
         Link,
         LoanHero,
@@ -47109,324 +47021,6 @@ export declare class ChannelPartnerApi extends BaseAPI implements ChannelPartner
     updateChannelPartnerShipToPreference(channel_partner_oid: number, channel_partner_ship_to_preference_oid: number, ship_to_preference: ChannelPartnerShipToPreference, options?: any): Promise<ChannelPartnerShipToPreferenceResponse>;
 }
 /**
- * ChargebackApi - fetch parameter creator
- * @export
- */
-export declare const ChargebackApiFetchParamCreator: (configuration?: Configuration) => {
-    /**
-     * Delete a chargeback on the UltraCart account.
-     * @summary Delete a chargeback
-     * @param {number} chargeback_dispute_oid The chargeback_dispute_oid to delete.
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    deleteChargeback(chargeback_dispute_oid: number, options?: any): FetchArgs;
-    /**
-     * Retrieves a single chargeback using the specified chargeback dispute oid.
-     * @summary Retrieve a chargeback
-     * @param {number} chargeback_dispute_oid The chargeback dispute oid to retrieve.
-     * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    getChargebackDispute(chargeback_dispute_oid: number, _expand?: string, options?: any): FetchArgs;
-    /**
-     * Retrieves chargebacks from the account.  If no parameters are specified, all chargebacks will be returned.  You will need to make multiple API calls in order to retrieve the entire result set since this API performs result set pagination.
-     * @summary Retrieve chargebacks
-     * @param {string} [order_id] Order Id
-     * @param {string} [case_number] Case number
-     * @param {string} [status] Status
-     * @param {string} [expiration_dts_start] Expiration dts start
-     * @param {string} [expiration_dts_end] Expiration dts end
-     * @param {string} [chargeback_dts_start] Chargeback dts start
-     * @param {string} [chargeback_dts_end] Chargeback dts end
-     * @param {number} [_limit] The maximum number of records to return on this one API call. (Max 200)
-     * @param {number} [_offset] Pagination of the record set.  Offset is a zero based index.
-     * @param {string} [_since] Fetch chargebacks that have been created/modified since this date/time.
-     * @param {string} [_sort] The sort order of the chargebacks.  See Sorting documentation for examples of using multiple values and sorting by ascending and descending.
-     * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    getChargebackDisputes(order_id?: string, case_number?: string, status?: string, expiration_dts_start?: string, expiration_dts_end?: string, chargeback_dts_start?: string, chargeback_dts_end?: string, _limit?: number, _offset?: number, _since?: string, _sort?: string, _expand?: string, options?: any): FetchArgs;
-    /**
-     * Insert a chargeback on the UltraCart account.
-     * @summary Insert a chargeback
-     * @param {ChargebackDispute} chargeback Chargeback to insert
-     * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    insertChargeback(chargeback: ChargebackDispute, _expand?: string, options?: any): FetchArgs;
-    /**
-     * Update a chargeback on the UltraCart account.
-     * @summary Update a chargeback
-     * @param {ChargebackDispute} chargeback Chargeback to update
-     * @param {number} chargeback_dispute_oid The chargeback_dispute_oid to update.
-     * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    updateChargeback(chargeback: ChargebackDispute, chargeback_dispute_oid: number, _expand?: string, options?: any): FetchArgs;
-};
-/**
- * ChargebackApi - functional programming interface
- * @export
- */
-export declare const ChargebackApiFp: (configuration?: Configuration) => {
-    /**
-     * Delete a chargeback on the UltraCart account.
-     * @summary Delete a chargeback
-     * @param {number} chargeback_dispute_oid The chargeback_dispute_oid to delete.
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    deleteChargeback(chargeback_dispute_oid: number, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ChargebackDisputeResponse>;
-    /**
-     * Retrieves a single chargeback using the specified chargeback dispute oid.
-     * @summary Retrieve a chargeback
-     * @param {number} chargeback_dispute_oid The chargeback dispute oid to retrieve.
-     * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    getChargebackDispute(chargeback_dispute_oid: number, _expand?: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ChargebackDisputeResponse>;
-    /**
-     * Retrieves chargebacks from the account.  If no parameters are specified, all chargebacks will be returned.  You will need to make multiple API calls in order to retrieve the entire result set since this API performs result set pagination.
-     * @summary Retrieve chargebacks
-     * @param {string} [order_id] Order Id
-     * @param {string} [case_number] Case number
-     * @param {string} [status] Status
-     * @param {string} [expiration_dts_start] Expiration dts start
-     * @param {string} [expiration_dts_end] Expiration dts end
-     * @param {string} [chargeback_dts_start] Chargeback dts start
-     * @param {string} [chargeback_dts_end] Chargeback dts end
-     * @param {number} [_limit] The maximum number of records to return on this one API call. (Max 200)
-     * @param {number} [_offset] Pagination of the record set.  Offset is a zero based index.
-     * @param {string} [_since] Fetch chargebacks that have been created/modified since this date/time.
-     * @param {string} [_sort] The sort order of the chargebacks.  See Sorting documentation for examples of using multiple values and sorting by ascending and descending.
-     * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    getChargebackDisputes(order_id?: string, case_number?: string, status?: string, expiration_dts_start?: string, expiration_dts_end?: string, chargeback_dts_start?: string, chargeback_dts_end?: string, _limit?: number, _offset?: number, _since?: string, _sort?: string, _expand?: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ChargebackDisputesResponse>;
-    /**
-     * Insert a chargeback on the UltraCart account.
-     * @summary Insert a chargeback
-     * @param {ChargebackDispute} chargeback Chargeback to insert
-     * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    insertChargeback(chargeback: ChargebackDispute, _expand?: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ChargebackDisputeResponse>;
-    /**
-     * Update a chargeback on the UltraCart account.
-     * @summary Update a chargeback
-     * @param {ChargebackDispute} chargeback Chargeback to update
-     * @param {number} chargeback_dispute_oid The chargeback_dispute_oid to update.
-     * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    updateChargeback(chargeback: ChargebackDispute, chargeback_dispute_oid: number, _expand?: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ChargebackDisputeResponse>;
-};
-/**
- * ChargebackApi - factory interface
- * @export
- */
-export declare const ChargebackApiFactory: (configuration?: Configuration, fetch?: FetchAPI, basePath?: string) => {
-    /**
-     * Delete a chargeback on the UltraCart account.
-     * @summary Delete a chargeback
-     * @param {number} chargeback_dispute_oid The chargeback_dispute_oid to delete.
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    deleteChargeback(chargeback_dispute_oid: number, options?: any): Promise<ChargebackDisputeResponse>;
-    /**
-     * Retrieves a single chargeback using the specified chargeback dispute oid.
-     * @summary Retrieve a chargeback
-     * @param {number} chargeback_dispute_oid The chargeback dispute oid to retrieve.
-     * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    getChargebackDispute(chargeback_dispute_oid: number, _expand?: string, options?: any): Promise<ChargebackDisputeResponse>;
-    /**
-     * Retrieves chargebacks from the account.  If no parameters are specified, all chargebacks will be returned.  You will need to make multiple API calls in order to retrieve the entire result set since this API performs result set pagination.
-     * @summary Retrieve chargebacks
-     * @param {string} [order_id] Order Id
-     * @param {string} [case_number] Case number
-     * @param {string} [status] Status
-     * @param {string} [expiration_dts_start] Expiration dts start
-     * @param {string} [expiration_dts_end] Expiration dts end
-     * @param {string} [chargeback_dts_start] Chargeback dts start
-     * @param {string} [chargeback_dts_end] Chargeback dts end
-     * @param {number} [_limit] The maximum number of records to return on this one API call. (Max 200)
-     * @param {number} [_offset] Pagination of the record set.  Offset is a zero based index.
-     * @param {string} [_since] Fetch chargebacks that have been created/modified since this date/time.
-     * @param {string} [_sort] The sort order of the chargebacks.  See Sorting documentation for examples of using multiple values and sorting by ascending and descending.
-     * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    getChargebackDisputes(order_id?: string, case_number?: string, status?: string, expiration_dts_start?: string, expiration_dts_end?: string, chargeback_dts_start?: string, chargeback_dts_end?: string, _limit?: number, _offset?: number, _since?: string, _sort?: string, _expand?: string, options?: any): Promise<ChargebackDisputesResponse>;
-    /**
-     * Insert a chargeback on the UltraCart account.
-     * @summary Insert a chargeback
-     * @param {ChargebackDispute} chargeback Chargeback to insert
-     * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    insertChargeback(chargeback: ChargebackDispute, _expand?: string, options?: any): Promise<ChargebackDisputeResponse>;
-    /**
-     * Update a chargeback on the UltraCart account.
-     * @summary Update a chargeback
-     * @param {ChargebackDispute} chargeback Chargeback to update
-     * @param {number} chargeback_dispute_oid The chargeback_dispute_oid to update.
-     * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    updateChargeback(chargeback: ChargebackDispute, chargeback_dispute_oid: number, _expand?: string, options?: any): Promise<ChargebackDisputeResponse>;
-};
-/**
- * ChargebackApi - interface
- * @export
- * @interface ChargebackApi
- */
-export interface ChargebackApiInterface {
-    /**
-     * Delete a chargeback on the UltraCart account.
-     * @summary Delete a chargeback
-     * @param {number} chargeback_dispute_oid The chargeback_dispute_oid to delete.
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ChargebackApiInterface
-     */
-    deleteChargeback(chargeback_dispute_oid: number, options?: any): Promise<ChargebackDisputeResponse>;
-    /**
-     * Retrieves a single chargeback using the specified chargeback dispute oid.
-     * @summary Retrieve a chargeback
-     * @param {number} chargeback_dispute_oid The chargeback dispute oid to retrieve.
-     * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ChargebackApiInterface
-     */
-    getChargebackDispute(chargeback_dispute_oid: number, _expand?: string, options?: any): Promise<ChargebackDisputeResponse>;
-    /**
-     * Retrieves chargebacks from the account.  If no parameters are specified, all chargebacks will be returned.  You will need to make multiple API calls in order to retrieve the entire result set since this API performs result set pagination.
-     * @summary Retrieve chargebacks
-     * @param {string} [order_id] Order Id
-     * @param {string} [case_number] Case number
-     * @param {string} [status] Status
-     * @param {string} [expiration_dts_start] Expiration dts start
-     * @param {string} [expiration_dts_end] Expiration dts end
-     * @param {string} [chargeback_dts_start] Chargeback dts start
-     * @param {string} [chargeback_dts_end] Chargeback dts end
-     * @param {number} [_limit] The maximum number of records to return on this one API call. (Max 200)
-     * @param {number} [_offset] Pagination of the record set.  Offset is a zero based index.
-     * @param {string} [_since] Fetch chargebacks that have been created/modified since this date/time.
-     * @param {string} [_sort] The sort order of the chargebacks.  See Sorting documentation for examples of using multiple values and sorting by ascending and descending.
-     * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ChargebackApiInterface
-     */
-    getChargebackDisputes(order_id?: string, case_number?: string, status?: string, expiration_dts_start?: string, expiration_dts_end?: string, chargeback_dts_start?: string, chargeback_dts_end?: string, _limit?: number, _offset?: number, _since?: string, _sort?: string, _expand?: string, options?: any): Promise<ChargebackDisputesResponse>;
-    /**
-     * Insert a chargeback on the UltraCart account.
-     * @summary Insert a chargeback
-     * @param {ChargebackDispute} chargeback Chargeback to insert
-     * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ChargebackApiInterface
-     */
-    insertChargeback(chargeback: ChargebackDispute, _expand?: string, options?: any): Promise<ChargebackDisputeResponse>;
-    /**
-     * Update a chargeback on the UltraCart account.
-     * @summary Update a chargeback
-     * @param {ChargebackDispute} chargeback Chargeback to update
-     * @param {number} chargeback_dispute_oid The chargeback_dispute_oid to update.
-     * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ChargebackApiInterface
-     */
-    updateChargeback(chargeback: ChargebackDispute, chargeback_dispute_oid: number, _expand?: string, options?: any): Promise<ChargebackDisputeResponse>;
-}
-/**
- * ChargebackApi - object-oriented interface
- * @export
- * @class ChargebackApi
- * @extends {BaseAPI}
- */
-export declare class ChargebackApi extends BaseAPI implements ChargebackApiInterface {
-    /**
-     * Delete a chargeback on the UltraCart account.
-     * @summary Delete a chargeback
-     * @param {number} chargeback_dispute_oid The chargeback_dispute_oid to delete.
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ChargebackApi
-     */
-    deleteChargeback(chargeback_dispute_oid: number, options?: any): Promise<ChargebackDisputeResponse>;
-    /**
-     * Retrieves a single chargeback using the specified chargeback dispute oid.
-     * @summary Retrieve a chargeback
-     * @param {number} chargeback_dispute_oid The chargeback dispute oid to retrieve.
-     * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ChargebackApi
-     */
-    getChargebackDispute(chargeback_dispute_oid: number, _expand?: string, options?: any): Promise<ChargebackDisputeResponse>;
-    /**
-     * Retrieves chargebacks from the account.  If no parameters are specified, all chargebacks will be returned.  You will need to make multiple API calls in order to retrieve the entire result set since this API performs result set pagination.
-     * @summary Retrieve chargebacks
-     * @param {string} [order_id] Order Id
-     * @param {string} [case_number] Case number
-     * @param {string} [status] Status
-     * @param {string} [expiration_dts_start] Expiration dts start
-     * @param {string} [expiration_dts_end] Expiration dts end
-     * @param {string} [chargeback_dts_start] Chargeback dts start
-     * @param {string} [chargeback_dts_end] Chargeback dts end
-     * @param {number} [_limit] The maximum number of records to return on this one API call. (Max 200)
-     * @param {number} [_offset] Pagination of the record set.  Offset is a zero based index.
-     * @param {string} [_since] Fetch chargebacks that have been created/modified since this date/time.
-     * @param {string} [_sort] The sort order of the chargebacks.  See Sorting documentation for examples of using multiple values and sorting by ascending and descending.
-     * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ChargebackApi
-     */
-    getChargebackDisputes(order_id?: string, case_number?: string, status?: string, expiration_dts_start?: string, expiration_dts_end?: string, chargeback_dts_start?: string, chargeback_dts_end?: string, _limit?: number, _offset?: number, _since?: string, _sort?: string, _expand?: string, options?: any): Promise<ChargebackDisputesResponse>;
-    /**
-     * Insert a chargeback on the UltraCart account.
-     * @summary Insert a chargeback
-     * @param {ChargebackDispute} chargeback Chargeback to insert
-     * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ChargebackApi
-     */
-    insertChargeback(chargeback: ChargebackDispute, _expand?: string, options?: any): Promise<ChargebackDisputeResponse>;
-    /**
-     * Update a chargeback on the UltraCart account.
-     * @summary Update a chargeback
-     * @param {ChargebackDispute} chargeback Chargeback to update
-     * @param {number} chargeback_dispute_oid The chargeback_dispute_oid to update.
-     * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ChargebackApi
-     */
-    updateChargeback(chargeback: ChargebackDispute, chargeback_dispute_oid: number, _expand?: string, options?: any): Promise<ChargebackDisputeResponse>;
-}
-/**
  * CheckoutApi - fetch parameter creator
  * @export
  */
@@ -54322,6 +53916,15 @@ export declare const DatawarehouseApiFetchParamCreator: (configuration?: Configu
      */
     deleteCustomDashboard(custom_dashboard_oid: number, options?: any): FetchArgs;
     /**
+     * delete a custom dashboard schedule on the UltraCart account.
+     * @summary Delete a custom dashboard schedule
+     * @param {number} custom_dashboard_schedule_oid The dashboard schedule oid to delete.
+     * @param {number} custom_dashboard_oid The dashboard oid that owns the schedule.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    deleteCustomDashboardSchedule(custom_dashboard_schedule_oid: number, custom_dashboard_oid: number, options?: any): FetchArgs;
+    /**
      * Delete a custom report on the UltraCart account.
      * @summary Delete a custom report
      * @param {number} custom_report_oid The report oid to delete.
@@ -54378,6 +53981,14 @@ export declare const DatawarehouseApiFetchParamCreator: (configuration?: Configu
      * @throws {RequiredError}
      */
     getCustomDashboard(custom_dashboard_oid: number, options?: any): FetchArgs;
+    /**
+     * Retrieve a custom dashboards
+     * @summary Get custom dashboards
+     * @param {number} custom_dashboard_oid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getCustomDashboardSchedules(custom_dashboard_oid: number, options?: any): FetchArgs;
     /**
      * Retrieve a custom dashboards
      * @summary Get custom dashboards
@@ -54455,6 +54066,15 @@ export declare const DatawarehouseApiFetchParamCreator: (configuration?: Configu
      */
     insertCustomDashboard(dashboard: CustomDashboard, options?: any): FetchArgs;
     /**
+     * Create a new custom dashboard schedule on the UltraCart account.
+     * @summary Create a custom dashboard schedule
+     * @param {number} custom_dashboard_oid
+     * @param {CustomDashboardSchedule} dashboard_schedule Dashboard schedule to create
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    insertCustomDashboardSchedule(custom_dashboard_oid: number, dashboard_schedule: CustomDashboardSchedule, options?: any): FetchArgs;
+    /**
      * Create a new custom report on the UltraCart account.
      * @summary Create a custom report
      * @param {CustomReport} report Report to create
@@ -54479,6 +54099,16 @@ export declare const DatawarehouseApiFetchParamCreator: (configuration?: Configu
      * @throws {RequiredError}
      */
     updateCustomDashboard(dashboard: CustomDashboard, custom_dashboard_oid: number, options?: any): FetchArgs;
+    /**
+     * Update a custom dashboard schedule on the UltraCart account.
+     * @summary Update a custom dashboard schedule
+     * @param {CustomDashboardSchedule} dashboard_schedule Dashboard schedule to update
+     * @param {number} custom_dashboard_schedule_oid The dashboard schedule oid to update.
+     * @param {number} custom_dashboard_oid The dashboard oid to update.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    updateCustomDashboardSchedule(dashboard_schedule: CustomDashboardSchedule, custom_dashboard_schedule_oid: number, custom_dashboard_oid: number, options?: any): FetchArgs;
     /**
      * Update a custom report on the UltraCart account.
      * @summary Update a custom report
@@ -54519,6 +54149,15 @@ export declare const DatawarehouseApiFp: (configuration?: Configuration) => {
      * @throws {RequiredError}
      */
     deleteCustomDashboard(custom_dashboard_oid: number, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Response>;
+    /**
+     * delete a custom dashboard schedule on the UltraCart account.
+     * @summary Delete a custom dashboard schedule
+     * @param {number} custom_dashboard_schedule_oid The dashboard schedule oid to delete.
+     * @param {number} custom_dashboard_oid The dashboard oid that owns the schedule.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    deleteCustomDashboardSchedule(custom_dashboard_schedule_oid: number, custom_dashboard_oid: number, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Response>;
     /**
      * Delete a custom report on the UltraCart account.
      * @summary Delete a custom report
@@ -54576,6 +54215,14 @@ export declare const DatawarehouseApiFp: (configuration?: Configuration) => {
      * @throws {RequiredError}
      */
     getCustomDashboard(custom_dashboard_oid: number, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<CustomDashboardResponse>;
+    /**
+     * Retrieve a custom dashboards
+     * @summary Get custom dashboards
+     * @param {number} custom_dashboard_oid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getCustomDashboardSchedules(custom_dashboard_oid: number, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<CustomDashboardSchedulesResponse>;
     /**
      * Retrieve a custom dashboards
      * @summary Get custom dashboards
@@ -54653,6 +54300,15 @@ export declare const DatawarehouseApiFp: (configuration?: Configuration) => {
      */
     insertCustomDashboard(dashboard: CustomDashboard, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<CustomDashboardResponse>;
     /**
+     * Create a new custom dashboard schedule on the UltraCart account.
+     * @summary Create a custom dashboard schedule
+     * @param {number} custom_dashboard_oid
+     * @param {CustomDashboardSchedule} dashboard_schedule Dashboard schedule to create
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    insertCustomDashboardSchedule(custom_dashboard_oid: number, dashboard_schedule: CustomDashboardSchedule, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<CustomDashboardScheduleResponse>;
+    /**
      * Create a new custom report on the UltraCart account.
      * @summary Create a custom report
      * @param {CustomReport} report Report to create
@@ -54677,6 +54333,16 @@ export declare const DatawarehouseApiFp: (configuration?: Configuration) => {
      * @throws {RequiredError}
      */
     updateCustomDashboard(dashboard: CustomDashboard, custom_dashboard_oid: number, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<CustomDashboardResponse>;
+    /**
+     * Update a custom dashboard schedule on the UltraCart account.
+     * @summary Update a custom dashboard schedule
+     * @param {CustomDashboardSchedule} dashboard_schedule Dashboard schedule to update
+     * @param {number} custom_dashboard_schedule_oid The dashboard schedule oid to update.
+     * @param {number} custom_dashboard_oid The dashboard oid to update.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    updateCustomDashboardSchedule(dashboard_schedule: CustomDashboardSchedule, custom_dashboard_schedule_oid: number, custom_dashboard_oid: number, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<CustomDashboardResponse>;
     /**
      * Update a custom report on the UltraCart account.
      * @summary Update a custom report
@@ -54717,6 +54383,15 @@ export declare const DatawarehouseApiFactory: (configuration?: Configuration, fe
      * @throws {RequiredError}
      */
     deleteCustomDashboard(custom_dashboard_oid: number, options?: any): Promise<Response>;
+    /**
+     * delete a custom dashboard schedule on the UltraCart account.
+     * @summary Delete a custom dashboard schedule
+     * @param {number} custom_dashboard_schedule_oid The dashboard schedule oid to delete.
+     * @param {number} custom_dashboard_oid The dashboard oid that owns the schedule.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    deleteCustomDashboardSchedule(custom_dashboard_schedule_oid: number, custom_dashboard_oid: number, options?: any): Promise<Response>;
     /**
      * Delete a custom report on the UltraCart account.
      * @summary Delete a custom report
@@ -54774,6 +54449,14 @@ export declare const DatawarehouseApiFactory: (configuration?: Configuration, fe
      * @throws {RequiredError}
      */
     getCustomDashboard(custom_dashboard_oid: number, options?: any): Promise<CustomDashboardResponse>;
+    /**
+     * Retrieve a custom dashboards
+     * @summary Get custom dashboards
+     * @param {number} custom_dashboard_oid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getCustomDashboardSchedules(custom_dashboard_oid: number, options?: any): Promise<CustomDashboardSchedulesResponse>;
     /**
      * Retrieve a custom dashboards
      * @summary Get custom dashboards
@@ -54851,6 +54534,15 @@ export declare const DatawarehouseApiFactory: (configuration?: Configuration, fe
      */
     insertCustomDashboard(dashboard: CustomDashboard, options?: any): Promise<CustomDashboardResponse>;
     /**
+     * Create a new custom dashboard schedule on the UltraCart account.
+     * @summary Create a custom dashboard schedule
+     * @param {number} custom_dashboard_oid
+     * @param {CustomDashboardSchedule} dashboard_schedule Dashboard schedule to create
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    insertCustomDashboardSchedule(custom_dashboard_oid: number, dashboard_schedule: CustomDashboardSchedule, options?: any): Promise<CustomDashboardScheduleResponse>;
+    /**
      * Create a new custom report on the UltraCart account.
      * @summary Create a custom report
      * @param {CustomReport} report Report to create
@@ -54875,6 +54567,16 @@ export declare const DatawarehouseApiFactory: (configuration?: Configuration, fe
      * @throws {RequiredError}
      */
     updateCustomDashboard(dashboard: CustomDashboard, custom_dashboard_oid: number, options?: any): Promise<CustomDashboardResponse>;
+    /**
+     * Update a custom dashboard schedule on the UltraCart account.
+     * @summary Update a custom dashboard schedule
+     * @param {CustomDashboardSchedule} dashboard_schedule Dashboard schedule to update
+     * @param {number} custom_dashboard_schedule_oid The dashboard schedule oid to update.
+     * @param {number} custom_dashboard_oid The dashboard oid to update.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    updateCustomDashboardSchedule(dashboard_schedule: CustomDashboardSchedule, custom_dashboard_schedule_oid: number, custom_dashboard_oid: number, options?: any): Promise<CustomDashboardResponse>;
     /**
      * Update a custom report on the UltraCart account.
      * @summary Update a custom report
@@ -54917,6 +54619,16 @@ export interface DatawarehouseApiInterface {
      * @memberof DatawarehouseApiInterface
      */
     deleteCustomDashboard(custom_dashboard_oid: number, options?: any): Promise<{}>;
+    /**
+     * delete a custom dashboard schedule on the UltraCart account.
+     * @summary Delete a custom dashboard schedule
+     * @param {number} custom_dashboard_schedule_oid The dashboard schedule oid to delete.
+     * @param {number} custom_dashboard_oid The dashboard oid that owns the schedule.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DatawarehouseApiInterface
+     */
+    deleteCustomDashboardSchedule(custom_dashboard_schedule_oid: number, custom_dashboard_oid: number, options?: any): Promise<{}>;
     /**
      * Delete a custom report on the UltraCart account.
      * @summary Delete a custom report
@@ -54984,6 +54696,15 @@ export interface DatawarehouseApiInterface {
     /**
      * Retrieve a custom dashboards
      * @summary Get custom dashboards
+     * @param {number} custom_dashboard_oid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DatawarehouseApiInterface
+     */
+    getCustomDashboardSchedules(custom_dashboard_oid: number, options?: any): Promise<CustomDashboardSchedulesResponse>;
+    /**
+     * Retrieve a custom dashboards
+     * @summary Get custom dashboards
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof DatawarehouseApiInterface
@@ -55068,6 +54789,16 @@ export interface DatawarehouseApiInterface {
      */
     insertCustomDashboard(dashboard: CustomDashboard, options?: any): Promise<CustomDashboardResponse>;
     /**
+     * Create a new custom dashboard schedule on the UltraCart account.
+     * @summary Create a custom dashboard schedule
+     * @param {number} custom_dashboard_oid
+     * @param {CustomDashboardSchedule} dashboard_schedule Dashboard schedule to create
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DatawarehouseApiInterface
+     */
+    insertCustomDashboardSchedule(custom_dashboard_oid: number, dashboard_schedule: CustomDashboardSchedule, options?: any): Promise<CustomDashboardScheduleResponse>;
+    /**
      * Create a new custom report on the UltraCart account.
      * @summary Create a custom report
      * @param {CustomReport} report Report to create
@@ -55095,6 +54826,17 @@ export interface DatawarehouseApiInterface {
      * @memberof DatawarehouseApiInterface
      */
     updateCustomDashboard(dashboard: CustomDashboard, custom_dashboard_oid: number, options?: any): Promise<CustomDashboardResponse>;
+    /**
+     * Update a custom dashboard schedule on the UltraCart account.
+     * @summary Update a custom dashboard schedule
+     * @param {CustomDashboardSchedule} dashboard_schedule Dashboard schedule to update
+     * @param {number} custom_dashboard_schedule_oid The dashboard schedule oid to update.
+     * @param {number} custom_dashboard_oid The dashboard oid to update.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DatawarehouseApiInterface
+     */
+    updateCustomDashboardSchedule(dashboard_schedule: CustomDashboardSchedule, custom_dashboard_schedule_oid: number, custom_dashboard_oid: number, options?: any): Promise<CustomDashboardResponse>;
     /**
      * Update a custom report on the UltraCart account.
      * @summary Update a custom report
@@ -55141,6 +54883,16 @@ export declare class DatawarehouseApi extends BaseAPI implements DatawarehouseAp
      * @memberof DatawarehouseApi
      */
     deleteCustomDashboard(custom_dashboard_oid: number, options?: any): Promise<Response>;
+    /**
+     * delete a custom dashboard schedule on the UltraCart account.
+     * @summary Delete a custom dashboard schedule
+     * @param {number} custom_dashboard_schedule_oid The dashboard schedule oid to delete.
+     * @param {number} custom_dashboard_oid The dashboard oid that owns the schedule.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DatawarehouseApi
+     */
+    deleteCustomDashboardSchedule(custom_dashboard_schedule_oid: number, custom_dashboard_oid: number, options?: any): Promise<Response>;
     /**
      * Delete a custom report on the UltraCart account.
      * @summary Delete a custom report
@@ -55205,6 +54957,15 @@ export declare class DatawarehouseApi extends BaseAPI implements DatawarehouseAp
      * @memberof DatawarehouseApi
      */
     getCustomDashboard(custom_dashboard_oid: number, options?: any): Promise<CustomDashboardResponse>;
+    /**
+     * Retrieve a custom dashboards
+     * @summary Get custom dashboards
+     * @param {number} custom_dashboard_oid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DatawarehouseApi
+     */
+    getCustomDashboardSchedules(custom_dashboard_oid: number, options?: any): Promise<CustomDashboardSchedulesResponse>;
     /**
      * Retrieve a custom dashboards
      * @summary Get custom dashboards
@@ -55292,6 +55053,16 @@ export declare class DatawarehouseApi extends BaseAPI implements DatawarehouseAp
      */
     insertCustomDashboard(dashboard: CustomDashboard, options?: any): Promise<CustomDashboardResponse>;
     /**
+     * Create a new custom dashboard schedule on the UltraCart account.
+     * @summary Create a custom dashboard schedule
+     * @param {number} custom_dashboard_oid
+     * @param {CustomDashboardSchedule} dashboard_schedule Dashboard schedule to create
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DatawarehouseApi
+     */
+    insertCustomDashboardSchedule(custom_dashboard_oid: number, dashboard_schedule: CustomDashboardSchedule, options?: any): Promise<CustomDashboardScheduleResponse>;
+    /**
      * Create a new custom report on the UltraCart account.
      * @summary Create a custom report
      * @param {CustomReport} report Report to create
@@ -55319,6 +55090,17 @@ export declare class DatawarehouseApi extends BaseAPI implements DatawarehouseAp
      * @memberof DatawarehouseApi
      */
     updateCustomDashboard(dashboard: CustomDashboard, custom_dashboard_oid: number, options?: any): Promise<CustomDashboardResponse>;
+    /**
+     * Update a custom dashboard schedule on the UltraCart account.
+     * @summary Update a custom dashboard schedule
+     * @param {CustomDashboardSchedule} dashboard_schedule Dashboard schedule to update
+     * @param {number} custom_dashboard_schedule_oid The dashboard schedule oid to update.
+     * @param {number} custom_dashboard_oid The dashboard oid to update.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DatawarehouseApi
+     */
+    updateCustomDashboardSchedule(dashboard_schedule: CustomDashboardSchedule, custom_dashboard_schedule_oid: number, custom_dashboard_oid: number, options?: any): Promise<CustomDashboardResponse>;
     /**
      * Update a custom report on the UltraCart account.
      * @summary Update a custom report

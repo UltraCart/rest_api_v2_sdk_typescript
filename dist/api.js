@@ -29,9 +29,9 @@ var __extends = (this && this.__extends) || (function () {
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.ItemTag = exports.ItemShippingMethod = exports.ItemShippingDestinationRestriction = exports.ItemReview = exports.ItemRestrictionItem = exports.ItemRelatedItem = exports.ItemOptionValue = exports.ItemOption = exports.ItemContentMultimedia = exports.ItemAutoOrderStep = exports.Experiment = exports.EmailPerformance = exports.EmailCommseqStep = exports.Distance = exports.Coupon = exports.ConversationWebsocketMessage = exports.ConversationWebchatQueueStatusUpdateRequest = exports.ConversationWebchatQueueStatusAgent = exports.ConversationVirtualAgentCapabilities = exports.ConversationSummary = exports.ConversationSentiment = exports.ConversationPbxVoicemailMessageSummary = exports.ConversationPbxVoicemailMessage = exports.ConversationPbxVoicemailMailbox = exports.ConversationPbxTimeBasedMapping = exports.ConversationPbxPhoneNumber = exports.ConversationPbxMenuMapping = exports.ConversationPbxMenu = exports.ConversationMessageTransportStatus = exports.ConversationMessage = exports.ConversationEventRRWeb = exports.ConversationEngagementEquationFunction = exports.ConversationEngagement = exports.ConversationAgentProfile = exports.Conversation = exports.CheckoutHandoffRequest = exports.ChannelPartnerOrderItem = exports.ChannelPartnerOrder = exports.CartKitComponentOption = exports.CartItemOption = exports.CartItemMultimedia = exports.CartCustomerProfileCreditCard = exports.AutoOrderItemSimpleSchedule = exports.AutoOrderItem = exports.AutoOrder = exports.AffiliateLink = exports.AffiliateLedger = exports.RequiredError = exports.BaseAPI = exports.COLLECTION_FORMATS = void 0;
-exports.CheckoutApiFetchParamCreator = exports.ChargebackApi = exports.ChargebackApiFactory = exports.ChargebackApiFp = exports.ChargebackApiFetchParamCreator = exports.ChannelPartnerApi = exports.ChannelPartnerApiFactory = exports.ChannelPartnerApiFp = exports.ChannelPartnerApiFetchParamCreator = exports.AutoOrderApi = exports.AutoOrderApiFactory = exports.AutoOrderApiFp = exports.AutoOrderApiFetchParamCreator = exports.AffiliateApi = exports.AffiliateApiFactory = exports.AffiliateApiFp = exports.AffiliateApiFetchParamCreator = exports.WorkflowTasksRequest = exports.WorkflowTask = exports.Weight = exports.Webhook = exports.TempMultimedia = exports.ReportWebsocketEvent = exports.ReportPageVisualizationMetric = exports.ReportPageVisualization = exports.ReportFilter = exports.ReportExecuteQueriesRequest = exports.ReportDataSourceSchema = exports.ReportDataSetSchema = exports.ReportDataSetQuery = exports.ReportDataSet = exports.Report = exports.PointOfSaleReader = exports.OrderQueryBatch = exports.OrderQuery = exports.OrderPaymentECheck = exports.OrderPaymentCreditCard = exports.OrderPayment = exports.OrderItemOption = exports.OrderItem = exports.OrderFraudScore = exports.OrderFormat = exports.OrderEdiDocument = exports.OrderCurrentStageHistory = exports.OrderAutoOrder = exports.OrderAffiliateLedger = exports.Order = exports.OauthTokenResponse = exports.ItemThirdPartyEmailMarketing = exports.ItemTax = void 0;
-exports.StorefrontApiFactory = exports.StorefrontApiFp = exports.StorefrontApiFetchParamCreator = exports.SsoApi = exports.SsoApiFactory = exports.SsoApiFp = exports.SsoApiFetchParamCreator = exports.OrderApi = exports.OrderApiFactory = exports.OrderApiFp = exports.OrderApiFetchParamCreator = exports.OauthApi = exports.OauthApiFactory = exports.OauthApiFp = exports.OauthApiFetchParamCreator = exports.ItemApi = exports.ItemApiFactory = exports.ItemApiFp = exports.ItemApiFetchParamCreator = exports.IntegrationLogApi = exports.IntegrationLogApiFactory = exports.IntegrationLogApiFp = exports.IntegrationLogApiFetchParamCreator = exports.GiftCertificateApi = exports.GiftCertificateApiFactory = exports.GiftCertificateApiFp = exports.GiftCertificateApiFetchParamCreator = exports.FulfillmentApi = exports.FulfillmentApiFactory = exports.FulfillmentApiFp = exports.FulfillmentApiFetchParamCreator = exports.DatawarehouseApi = exports.DatawarehouseApiFactory = exports.DatawarehouseApiFp = exports.DatawarehouseApiFetchParamCreator = exports.CustomerApi = exports.CustomerApiFactory = exports.CustomerApiFp = exports.CustomerApiFetchParamCreator = exports.CouponApi = exports.CouponApiFactory = exports.CouponApiFp = exports.CouponApiFetchParamCreator = exports.ConversationApi = exports.ConversationApiFactory = exports.ConversationApiFp = exports.ConversationApiFetchParamCreator = exports.CheckoutApi = exports.CheckoutApiFactory = exports.CheckoutApiFp = void 0;
-exports.WorkflowApi = exports.WorkflowApiFactory = exports.WorkflowApiFp = exports.WorkflowApiFetchParamCreator = exports.WebhookApi = exports.WebhookApiFactory = exports.WebhookApiFp = exports.WebhookApiFetchParamCreator = exports.UserApi = exports.UserApiFactory = exports.UserApiFp = exports.UserApiFetchParamCreator = exports.TaxApi = exports.TaxApiFactory = exports.TaxApiFp = exports.TaxApiFetchParamCreator = exports.StorefrontApi = void 0;
+exports.ConversationApiFetchParamCreator = exports.CheckoutApi = exports.CheckoutApiFactory = exports.CheckoutApiFp = exports.CheckoutApiFetchParamCreator = exports.ChannelPartnerApi = exports.ChannelPartnerApiFactory = exports.ChannelPartnerApiFp = exports.ChannelPartnerApiFetchParamCreator = exports.AutoOrderApi = exports.AutoOrderApiFactory = exports.AutoOrderApiFp = exports.AutoOrderApiFetchParamCreator = exports.AffiliateApi = exports.AffiliateApiFactory = exports.AffiliateApiFp = exports.AffiliateApiFetchParamCreator = exports.WorkflowTasksRequest = exports.WorkflowTask = exports.Weight = exports.Webhook = exports.TempMultimedia = exports.ReportWebsocketEvent = exports.ReportPageVisualizationMetric = exports.ReportPageVisualization = exports.ReportFilter = exports.ReportExecuteQueriesRequest = exports.ReportDataSourceSchema = exports.ReportDataSetSchema = exports.ReportDataSetQuery = exports.ReportDataSet = exports.Report = exports.PointOfSaleReader = exports.OrderQueryBatch = exports.OrderQuery = exports.OrderPaymentECheck = exports.OrderPaymentCreditCard = exports.OrderPayment = exports.OrderItemOption = exports.OrderItem = exports.OrderFraudScore = exports.OrderFormat = exports.OrderEdiDocument = exports.OrderCurrentStageHistory = exports.OrderAutoOrder = exports.OrderAffiliateLedger = exports.Order = exports.OauthTokenResponse = exports.ItemThirdPartyEmailMarketing = exports.ItemTax = void 0;
+exports.TaxApiFactory = exports.TaxApiFp = exports.TaxApiFetchParamCreator = exports.StorefrontApi = exports.StorefrontApiFactory = exports.StorefrontApiFp = exports.StorefrontApiFetchParamCreator = exports.SsoApi = exports.SsoApiFactory = exports.SsoApiFp = exports.SsoApiFetchParamCreator = exports.OrderApi = exports.OrderApiFactory = exports.OrderApiFp = exports.OrderApiFetchParamCreator = exports.OauthApi = exports.OauthApiFactory = exports.OauthApiFp = exports.OauthApiFetchParamCreator = exports.ItemApi = exports.ItemApiFactory = exports.ItemApiFp = exports.ItemApiFetchParamCreator = exports.IntegrationLogApi = exports.IntegrationLogApiFactory = exports.IntegrationLogApiFp = exports.IntegrationLogApiFetchParamCreator = exports.GiftCertificateApi = exports.GiftCertificateApiFactory = exports.GiftCertificateApiFp = exports.GiftCertificateApiFetchParamCreator = exports.FulfillmentApi = exports.FulfillmentApiFactory = exports.FulfillmentApiFp = exports.FulfillmentApiFetchParamCreator = exports.DatawarehouseApi = exports.DatawarehouseApiFactory = exports.DatawarehouseApiFp = exports.DatawarehouseApiFetchParamCreator = exports.CustomerApi = exports.CustomerApiFactory = exports.CustomerApiFp = exports.CustomerApiFetchParamCreator = exports.CouponApi = exports.CouponApiFactory = exports.CouponApiFp = exports.CouponApiFetchParamCreator = exports.ConversationApi = exports.ConversationApiFactory = exports.ConversationApiFp = void 0;
+exports.WorkflowApi = exports.WorkflowApiFactory = exports.WorkflowApiFp = exports.WorkflowApiFetchParamCreator = exports.WebhookApi = exports.WebhookApiFactory = exports.WebhookApiFp = exports.WebhookApiFetchParamCreator = exports.UserApi = exports.UserApiFactory = exports.UserApiFp = exports.UserApiFetchParamCreator = exports.TaxApi = void 0;
 var url = require("url");
 var portableFetch = require("portable-fetch");
 var BASE_PATH = "https://secure.ultracart.com/rest/v2".replace(/\/+$/, "");
@@ -1407,6 +1407,8 @@ var OrderPayment;
         PaymentMethodEnum[PaymentMethodEnum["EBay"] = 'eBay'] = "EBay";
         PaymentMethodEnum[PaymentMethodEnum["ECheck"] = 'eCheck'] = "ECheck";
         PaymentMethodEnum[PaymentMethodEnum["GoogleShopping"] = 'Google Shopping'] = "GoogleShopping";
+        PaymentMethodEnum[PaymentMethodEnum["Goldbelly"] = 'Goldbelly'] = "Goldbelly";
+        PaymentMethodEnum[PaymentMethodEnum["GoHighLevel"] = 'GoHighLevel'] = "GoHighLevel";
         PaymentMethodEnum[PaymentMethodEnum["Insurance"] = 'Insurance'] = "Insurance";
         PaymentMethodEnum[PaymentMethodEnum["Link"] = 'Link'] = "Link";
         PaymentMethodEnum[PaymentMethodEnum["LoanHero"] = 'LoanHero'] = "LoanHero";
@@ -5021,601 +5023,6 @@ var ChannelPartnerApi = /** @class */ (function (_super) {
     return ChannelPartnerApi;
 }(BaseAPI));
 exports.ChannelPartnerApi = ChannelPartnerApi;
-/**
- * ChargebackApi - fetch parameter creator
- * @export
- */
-var ChargebackApiFetchParamCreator = function (configuration) {
-    return {
-        /**
-         * Delete a chargeback on the UltraCart account.
-         * @summary Delete a chargeback
-         * @param {number} chargeback_dispute_oid The chargeback_dispute_oid to delete.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        deleteChargeback: function (chargeback_dispute_oid, options) {
-            if (options === void 0) { options = {}; }
-            // verify required parameter 'chargeback_dispute_oid' is not null or undefined
-            if (chargeback_dispute_oid === null || chargeback_dispute_oid === undefined) {
-                throw new RequiredError('chargeback_dispute_oid', 'Required parameter chargeback_dispute_oid was null or undefined when calling deleteChargeback.');
-            }
-            var localVarPath = "/chargeback/chargebacks/{chargeback_dispute_oid}"
-                .replace("{".concat("chargeback_dispute_oid", "}"), encodeURIComponent(String(chargeback_dispute_oid)));
-            var localVarUrlObj = url.parse(localVarPath, true);
-            var localVarRequestOptions = Object.assign({ method: 'DELETE' }, options);
-            var localVarHeaderParameter = {};
-            var localVarQueryParameter = {};
-            if (configuration && configuration.apiVersion) {
-                localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
-            }
-            // authentication ultraCartOauth required
-            // oauth required
-            if (configuration && configuration.accessToken) {
-                var localVarAccessTokenValue = typeof configuration.accessToken === 'function'
-                    ? configuration.accessToken("ultraCartOauth", ["chargeback_write"])
-                    : configuration.accessToken;
-                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
-            }
-            // authentication ultraCartSimpleApiKey required
-            if (configuration && configuration.apiKey) {
-                var localVarApiKeyValue = typeof configuration.apiKey === 'function'
-                    ? configuration.apiKey("x-ultracart-simple-key")
-                    : configuration.apiKey;
-                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
-            }
-            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
-            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
-            delete localVarUrlObj.search;
-            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
-            return {
-                url: url.format(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * Retrieves a single chargeback using the specified chargeback dispute oid.
-         * @summary Retrieve a chargeback
-         * @param {number} chargeback_dispute_oid The chargeback dispute oid to retrieve.
-         * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        getChargebackDispute: function (chargeback_dispute_oid, _expand, options) {
-            if (options === void 0) { options = {}; }
-            // verify required parameter 'chargeback_dispute_oid' is not null or undefined
-            if (chargeback_dispute_oid === null || chargeback_dispute_oid === undefined) {
-                throw new RequiredError('chargeback_dispute_oid', 'Required parameter chargeback_dispute_oid was null or undefined when calling getChargebackDispute.');
-            }
-            var localVarPath = "/chargeback/chargebacks/{chargeback_dispute_oid}"
-                .replace("{".concat("chargeback_dispute_oid", "}"), encodeURIComponent(String(chargeback_dispute_oid)));
-            var localVarUrlObj = url.parse(localVarPath, true);
-            var localVarRequestOptions = Object.assign({ method: 'GET' }, options);
-            var localVarHeaderParameter = {};
-            var localVarQueryParameter = {};
-            if (configuration && configuration.apiVersion) {
-                localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
-            }
-            // authentication ultraCartOauth required
-            // oauth required
-            if (configuration && configuration.accessToken) {
-                var localVarAccessTokenValue = typeof configuration.accessToken === 'function'
-                    ? configuration.accessToken("ultraCartOauth", ["chargeback_read"])
-                    : configuration.accessToken;
-                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
-            }
-            // authentication ultraCartSimpleApiKey required
-            if (configuration && configuration.apiKey) {
-                var localVarApiKeyValue = typeof configuration.apiKey === 'function'
-                    ? configuration.apiKey("x-ultracart-simple-key")
-                    : configuration.apiKey;
-                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
-            }
-            if (_expand !== undefined) {
-                localVarQueryParameter['_expand'] = _expand;
-            }
-            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
-            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
-            delete localVarUrlObj.search;
-            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
-            return {
-                url: url.format(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * Retrieves chargebacks from the account.  If no parameters are specified, all chargebacks will be returned.  You will need to make multiple API calls in order to retrieve the entire result set since this API performs result set pagination.
-         * @summary Retrieve chargebacks
-         * @param {string} [order_id] Order Id
-         * @param {string} [case_number] Case number
-         * @param {string} [status] Status
-         * @param {string} [expiration_dts_start] Expiration dts start
-         * @param {string} [expiration_dts_end] Expiration dts end
-         * @param {string} [chargeback_dts_start] Chargeback dts start
-         * @param {string} [chargeback_dts_end] Chargeback dts end
-         * @param {number} [_limit] The maximum number of records to return on this one API call. (Max 200)
-         * @param {number} [_offset] Pagination of the record set.  Offset is a zero based index.
-         * @param {string} [_since] Fetch chargebacks that have been created/modified since this date/time.
-         * @param {string} [_sort] The sort order of the chargebacks.  See Sorting documentation for examples of using multiple values and sorting by ascending and descending.
-         * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        getChargebackDisputes: function (order_id, case_number, status, expiration_dts_start, expiration_dts_end, chargeback_dts_start, chargeback_dts_end, _limit, _offset, _since, _sort, _expand, options) {
-            if (options === void 0) { options = {}; }
-            var localVarPath = "/chargeback/chargebacks";
-            var localVarUrlObj = url.parse(localVarPath, true);
-            var localVarRequestOptions = Object.assign({ method: 'GET' }, options);
-            var localVarHeaderParameter = {};
-            var localVarQueryParameter = {};
-            if (configuration && configuration.apiVersion) {
-                localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
-            }
-            // authentication ultraCartOauth required
-            // oauth required
-            if (configuration && configuration.accessToken) {
-                var localVarAccessTokenValue = typeof configuration.accessToken === 'function'
-                    ? configuration.accessToken("ultraCartOauth", ["chargeback_read"])
-                    : configuration.accessToken;
-                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
-            }
-            // authentication ultraCartSimpleApiKey required
-            if (configuration && configuration.apiKey) {
-                var localVarApiKeyValue = typeof configuration.apiKey === 'function'
-                    ? configuration.apiKey("x-ultracart-simple-key")
-                    : configuration.apiKey;
-                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
-            }
-            if (order_id !== undefined) {
-                localVarQueryParameter['order_id'] = order_id;
-            }
-            if (case_number !== undefined) {
-                localVarQueryParameter['case_number'] = case_number;
-            }
-            if (status !== undefined) {
-                localVarQueryParameter['status'] = status;
-            }
-            if (expiration_dts_start !== undefined) {
-                localVarQueryParameter['expiration_dts_start'] = expiration_dts_start;
-            }
-            if (expiration_dts_end !== undefined) {
-                localVarQueryParameter['expiration_dts_end'] = expiration_dts_end;
-            }
-            if (chargeback_dts_start !== undefined) {
-                localVarQueryParameter['chargeback_dts_start'] = chargeback_dts_start;
-            }
-            if (chargeback_dts_end !== undefined) {
-                localVarQueryParameter['chargeback_dts_end'] = chargeback_dts_end;
-            }
-            if (_limit !== undefined) {
-                localVarQueryParameter['_limit'] = _limit;
-            }
-            if (_offset !== undefined) {
-                localVarQueryParameter['_offset'] = _offset;
-            }
-            if (_since !== undefined) {
-                localVarQueryParameter['_since'] = _since;
-            }
-            if (_sort !== undefined) {
-                localVarQueryParameter['_sort'] = _sort;
-            }
-            if (_expand !== undefined) {
-                localVarQueryParameter['_expand'] = _expand;
-            }
-            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
-            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
-            delete localVarUrlObj.search;
-            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
-            return {
-                url: url.format(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * Insert a chargeback on the UltraCart account.
-         * @summary Insert a chargeback
-         * @param {ChargebackDispute} chargeback Chargeback to insert
-         * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        insertChargeback: function (chargeback, _expand, options) {
-            if (options === void 0) { options = {}; }
-            // verify required parameter 'chargeback' is not null or undefined
-            if (chargeback === null || chargeback === undefined) {
-                throw new RequiredError('chargeback', 'Required parameter chargeback was null or undefined when calling insertChargeback.');
-            }
-            var localVarPath = "/chargeback/chargebacks";
-            var localVarUrlObj = url.parse(localVarPath, true);
-            var localVarRequestOptions = Object.assign({ method: 'POST' }, options);
-            var localVarHeaderParameter = {};
-            var localVarQueryParameter = {};
-            if (configuration && configuration.apiVersion) {
-                localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
-            }
-            // authentication ultraCartOauth required
-            // oauth required
-            if (configuration && configuration.accessToken) {
-                var localVarAccessTokenValue = typeof configuration.accessToken === 'function'
-                    ? configuration.accessToken("ultraCartOauth", ["chargeback_write"])
-                    : configuration.accessToken;
-                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
-            }
-            // authentication ultraCartSimpleApiKey required
-            if (configuration && configuration.apiKey) {
-                var localVarApiKeyValue = typeof configuration.apiKey === 'function'
-                    ? configuration.apiKey("x-ultracart-simple-key")
-                    : configuration.apiKey;
-                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
-            }
-            if (_expand !== undefined) {
-                localVarQueryParameter['_expand'] = _expand;
-            }
-            localVarHeaderParameter['Content-Type'] = 'application/json; charset=UTF-8';
-            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
-            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
-            delete localVarUrlObj.search;
-            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
-            var needsSerialization = ("ChargebackDispute" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
-            localVarRequestOptions.body = needsSerialization ? JSON.stringify(chargeback || {}) : (chargeback || "");
-            return {
-                url: url.format(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * Update a chargeback on the UltraCart account.
-         * @summary Update a chargeback
-         * @param {ChargebackDispute} chargeback Chargeback to update
-         * @param {number} chargeback_dispute_oid The chargeback_dispute_oid to update.
-         * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        updateChargeback: function (chargeback, chargeback_dispute_oid, _expand, options) {
-            if (options === void 0) { options = {}; }
-            // verify required parameter 'chargeback' is not null or undefined
-            if (chargeback === null || chargeback === undefined) {
-                throw new RequiredError('chargeback', 'Required parameter chargeback was null or undefined when calling updateChargeback.');
-            }
-            // verify required parameter 'chargeback_dispute_oid' is not null or undefined
-            if (chargeback_dispute_oid === null || chargeback_dispute_oid === undefined) {
-                throw new RequiredError('chargeback_dispute_oid', 'Required parameter chargeback_dispute_oid was null or undefined when calling updateChargeback.');
-            }
-            var localVarPath = "/chargeback/chargebacks/{chargeback_dispute_oid}"
-                .replace("{".concat("chargeback_dispute_oid", "}"), encodeURIComponent(String(chargeback_dispute_oid)));
-            var localVarUrlObj = url.parse(localVarPath, true);
-            var localVarRequestOptions = Object.assign({ method: 'PUT' }, options);
-            var localVarHeaderParameter = {};
-            var localVarQueryParameter = {};
-            if (configuration && configuration.apiVersion) {
-                localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
-            }
-            // authentication ultraCartOauth required
-            // oauth required
-            if (configuration && configuration.accessToken) {
-                var localVarAccessTokenValue = typeof configuration.accessToken === 'function'
-                    ? configuration.accessToken("ultraCartOauth", ["chargeback_write"])
-                    : configuration.accessToken;
-                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
-            }
-            // authentication ultraCartSimpleApiKey required
-            if (configuration && configuration.apiKey) {
-                var localVarApiKeyValue = typeof configuration.apiKey === 'function'
-                    ? configuration.apiKey("x-ultracart-simple-key")
-                    : configuration.apiKey;
-                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
-            }
-            if (_expand !== undefined) {
-                localVarQueryParameter['_expand'] = _expand;
-            }
-            localVarHeaderParameter['Content-Type'] = 'application/json; charset=UTF-8';
-            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
-            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
-            delete localVarUrlObj.search;
-            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
-            var needsSerialization = ("ChargebackDispute" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
-            localVarRequestOptions.body = needsSerialization ? JSON.stringify(chargeback || {}) : (chargeback || "");
-            return {
-                url: url.format(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-    };
-};
-exports.ChargebackApiFetchParamCreator = ChargebackApiFetchParamCreator;
-/**
- * ChargebackApi - functional programming interface
- * @export
- */
-var ChargebackApiFp = function (configuration) {
-    return {
-        /**
-         * Delete a chargeback on the UltraCart account.
-         * @summary Delete a chargeback
-         * @param {number} chargeback_dispute_oid The chargeback_dispute_oid to delete.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        deleteChargeback: function (chargeback_dispute_oid, options) {
-            var localVarFetchArgs = (0, exports.ChargebackApiFetchParamCreator)(configuration).deleteChargeback(chargeback_dispute_oid, options);
-            return function (fetch, basePath) {
-                if (fetch === void 0) { fetch = portableFetch; }
-                if (basePath === void 0) { basePath = BASE_PATH; }
-                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(function (response) {
-                    if (response.status >= 200 && response.status < 300) {
-                        return response.json();
-                    }
-                    else {
-                        throw response;
-                    }
-                });
-            };
-        },
-        /**
-         * Retrieves a single chargeback using the specified chargeback dispute oid.
-         * @summary Retrieve a chargeback
-         * @param {number} chargeback_dispute_oid The chargeback dispute oid to retrieve.
-         * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        getChargebackDispute: function (chargeback_dispute_oid, _expand, options) {
-            var localVarFetchArgs = (0, exports.ChargebackApiFetchParamCreator)(configuration).getChargebackDispute(chargeback_dispute_oid, _expand, options);
-            return function (fetch, basePath) {
-                if (fetch === void 0) { fetch = portableFetch; }
-                if (basePath === void 0) { basePath = BASE_PATH; }
-                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(function (response) {
-                    if (response.status >= 200 && response.status < 300) {
-                        return response.json();
-                    }
-                    else {
-                        throw response;
-                    }
-                });
-            };
-        },
-        /**
-         * Retrieves chargebacks from the account.  If no parameters are specified, all chargebacks will be returned.  You will need to make multiple API calls in order to retrieve the entire result set since this API performs result set pagination.
-         * @summary Retrieve chargebacks
-         * @param {string} [order_id] Order Id
-         * @param {string} [case_number] Case number
-         * @param {string} [status] Status
-         * @param {string} [expiration_dts_start] Expiration dts start
-         * @param {string} [expiration_dts_end] Expiration dts end
-         * @param {string} [chargeback_dts_start] Chargeback dts start
-         * @param {string} [chargeback_dts_end] Chargeback dts end
-         * @param {number} [_limit] The maximum number of records to return on this one API call. (Max 200)
-         * @param {number} [_offset] Pagination of the record set.  Offset is a zero based index.
-         * @param {string} [_since] Fetch chargebacks that have been created/modified since this date/time.
-         * @param {string} [_sort] The sort order of the chargebacks.  See Sorting documentation for examples of using multiple values and sorting by ascending and descending.
-         * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        getChargebackDisputes: function (order_id, case_number, status, expiration_dts_start, expiration_dts_end, chargeback_dts_start, chargeback_dts_end, _limit, _offset, _since, _sort, _expand, options) {
-            var localVarFetchArgs = (0, exports.ChargebackApiFetchParamCreator)(configuration).getChargebackDisputes(order_id, case_number, status, expiration_dts_start, expiration_dts_end, chargeback_dts_start, chargeback_dts_end, _limit, _offset, _since, _sort, _expand, options);
-            return function (fetch, basePath) {
-                if (fetch === void 0) { fetch = portableFetch; }
-                if (basePath === void 0) { basePath = BASE_PATH; }
-                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(function (response) {
-                    if (response.status >= 200 && response.status < 300) {
-                        return response.json();
-                    }
-                    else {
-                        throw response;
-                    }
-                });
-            };
-        },
-        /**
-         * Insert a chargeback on the UltraCart account.
-         * @summary Insert a chargeback
-         * @param {ChargebackDispute} chargeback Chargeback to insert
-         * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        insertChargeback: function (chargeback, _expand, options) {
-            var localVarFetchArgs = (0, exports.ChargebackApiFetchParamCreator)(configuration).insertChargeback(chargeback, _expand, options);
-            return function (fetch, basePath) {
-                if (fetch === void 0) { fetch = portableFetch; }
-                if (basePath === void 0) { basePath = BASE_PATH; }
-                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(function (response) {
-                    if (response.status >= 200 && response.status < 300) {
-                        return response.json();
-                    }
-                    else {
-                        throw response;
-                    }
-                });
-            };
-        },
-        /**
-         * Update a chargeback on the UltraCart account.
-         * @summary Update a chargeback
-         * @param {ChargebackDispute} chargeback Chargeback to update
-         * @param {number} chargeback_dispute_oid The chargeback_dispute_oid to update.
-         * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        updateChargeback: function (chargeback, chargeback_dispute_oid, _expand, options) {
-            var localVarFetchArgs = (0, exports.ChargebackApiFetchParamCreator)(configuration).updateChargeback(chargeback, chargeback_dispute_oid, _expand, options);
-            return function (fetch, basePath) {
-                if (fetch === void 0) { fetch = portableFetch; }
-                if (basePath === void 0) { basePath = BASE_PATH; }
-                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(function (response) {
-                    if (response.status >= 200 && response.status < 300) {
-                        return response.json();
-                    }
-                    else {
-                        throw response;
-                    }
-                });
-            };
-        },
-    };
-};
-exports.ChargebackApiFp = ChargebackApiFp;
-/**
- * ChargebackApi - factory interface
- * @export
- */
-var ChargebackApiFactory = function (configuration, fetch, basePath) {
-    return {
-        /**
-         * Delete a chargeback on the UltraCart account.
-         * @summary Delete a chargeback
-         * @param {number} chargeback_dispute_oid The chargeback_dispute_oid to delete.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        deleteChargeback: function (chargeback_dispute_oid, options) {
-            return (0, exports.ChargebackApiFp)(configuration).deleteChargeback(chargeback_dispute_oid, options)(fetch, basePath);
-        },
-        /**
-         * Retrieves a single chargeback using the specified chargeback dispute oid.
-         * @summary Retrieve a chargeback
-         * @param {number} chargeback_dispute_oid The chargeback dispute oid to retrieve.
-         * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        getChargebackDispute: function (chargeback_dispute_oid, _expand, options) {
-            return (0, exports.ChargebackApiFp)(configuration).getChargebackDispute(chargeback_dispute_oid, _expand, options)(fetch, basePath);
-        },
-        /**
-         * Retrieves chargebacks from the account.  If no parameters are specified, all chargebacks will be returned.  You will need to make multiple API calls in order to retrieve the entire result set since this API performs result set pagination.
-         * @summary Retrieve chargebacks
-         * @param {string} [order_id] Order Id
-         * @param {string} [case_number] Case number
-         * @param {string} [status] Status
-         * @param {string} [expiration_dts_start] Expiration dts start
-         * @param {string} [expiration_dts_end] Expiration dts end
-         * @param {string} [chargeback_dts_start] Chargeback dts start
-         * @param {string} [chargeback_dts_end] Chargeback dts end
-         * @param {number} [_limit] The maximum number of records to return on this one API call. (Max 200)
-         * @param {number} [_offset] Pagination of the record set.  Offset is a zero based index.
-         * @param {string} [_since] Fetch chargebacks that have been created/modified since this date/time.
-         * @param {string} [_sort] The sort order of the chargebacks.  See Sorting documentation for examples of using multiple values and sorting by ascending and descending.
-         * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        getChargebackDisputes: function (order_id, case_number, status, expiration_dts_start, expiration_dts_end, chargeback_dts_start, chargeback_dts_end, _limit, _offset, _since, _sort, _expand, options) {
-            return (0, exports.ChargebackApiFp)(configuration).getChargebackDisputes(order_id, case_number, status, expiration_dts_start, expiration_dts_end, chargeback_dts_start, chargeback_dts_end, _limit, _offset, _since, _sort, _expand, options)(fetch, basePath);
-        },
-        /**
-         * Insert a chargeback on the UltraCart account.
-         * @summary Insert a chargeback
-         * @param {ChargebackDispute} chargeback Chargeback to insert
-         * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        insertChargeback: function (chargeback, _expand, options) {
-            return (0, exports.ChargebackApiFp)(configuration).insertChargeback(chargeback, _expand, options)(fetch, basePath);
-        },
-        /**
-         * Update a chargeback on the UltraCart account.
-         * @summary Update a chargeback
-         * @param {ChargebackDispute} chargeback Chargeback to update
-         * @param {number} chargeback_dispute_oid The chargeback_dispute_oid to update.
-         * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        updateChargeback: function (chargeback, chargeback_dispute_oid, _expand, options) {
-            return (0, exports.ChargebackApiFp)(configuration).updateChargeback(chargeback, chargeback_dispute_oid, _expand, options)(fetch, basePath);
-        },
-    };
-};
-exports.ChargebackApiFactory = ChargebackApiFactory;
-/**
- * ChargebackApi - object-oriented interface
- * @export
- * @class ChargebackApi
- * @extends {BaseAPI}
- */
-var ChargebackApi = /** @class */ (function (_super) {
-    __extends(ChargebackApi, _super);
-    function ChargebackApi() {
-        return _super !== null && _super.apply(this, arguments) || this;
-    }
-    /**
-     * Delete a chargeback on the UltraCart account.
-     * @summary Delete a chargeback
-     * @param {number} chargeback_dispute_oid The chargeback_dispute_oid to delete.
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ChargebackApi
-     */
-    ChargebackApi.prototype.deleteChargeback = function (chargeback_dispute_oid, options) {
-        return (0, exports.ChargebackApiFp)(this.configuration).deleteChargeback(chargeback_dispute_oid, options)(this.fetch, this.basePath);
-    };
-    /**
-     * Retrieves a single chargeback using the specified chargeback dispute oid.
-     * @summary Retrieve a chargeback
-     * @param {number} chargeback_dispute_oid The chargeback dispute oid to retrieve.
-     * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ChargebackApi
-     */
-    ChargebackApi.prototype.getChargebackDispute = function (chargeback_dispute_oid, _expand, options) {
-        return (0, exports.ChargebackApiFp)(this.configuration).getChargebackDispute(chargeback_dispute_oid, _expand, options)(this.fetch, this.basePath);
-    };
-    /**
-     * Retrieves chargebacks from the account.  If no parameters are specified, all chargebacks will be returned.  You will need to make multiple API calls in order to retrieve the entire result set since this API performs result set pagination.
-     * @summary Retrieve chargebacks
-     * @param {string} [order_id] Order Id
-     * @param {string} [case_number] Case number
-     * @param {string} [status] Status
-     * @param {string} [expiration_dts_start] Expiration dts start
-     * @param {string} [expiration_dts_end] Expiration dts end
-     * @param {string} [chargeback_dts_start] Chargeback dts start
-     * @param {string} [chargeback_dts_end] Chargeback dts end
-     * @param {number} [_limit] The maximum number of records to return on this one API call. (Max 200)
-     * @param {number} [_offset] Pagination of the record set.  Offset is a zero based index.
-     * @param {string} [_since] Fetch chargebacks that have been created/modified since this date/time.
-     * @param {string} [_sort] The sort order of the chargebacks.  See Sorting documentation for examples of using multiple values and sorting by ascending and descending.
-     * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ChargebackApi
-     */
-    ChargebackApi.prototype.getChargebackDisputes = function (order_id, case_number, status, expiration_dts_start, expiration_dts_end, chargeback_dts_start, chargeback_dts_end, _limit, _offset, _since, _sort, _expand, options) {
-        return (0, exports.ChargebackApiFp)(this.configuration).getChargebackDisputes(order_id, case_number, status, expiration_dts_start, expiration_dts_end, chargeback_dts_start, chargeback_dts_end, _limit, _offset, _since, _sort, _expand, options)(this.fetch, this.basePath);
-    };
-    /**
-     * Insert a chargeback on the UltraCart account.
-     * @summary Insert a chargeback
-     * @param {ChargebackDispute} chargeback Chargeback to insert
-     * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ChargebackApi
-     */
-    ChargebackApi.prototype.insertChargeback = function (chargeback, _expand, options) {
-        return (0, exports.ChargebackApiFp)(this.configuration).insertChargeback(chargeback, _expand, options)(this.fetch, this.basePath);
-    };
-    /**
-     * Update a chargeback on the UltraCart account.
-     * @summary Update a chargeback
-     * @param {ChargebackDispute} chargeback Chargeback to update
-     * @param {number} chargeback_dispute_oid The chargeback_dispute_oid to update.
-     * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ChargebackApi
-     */
-    ChargebackApi.prototype.updateChargeback = function (chargeback, chargeback_dispute_oid, _expand, options) {
-        return (0, exports.ChargebackApiFp)(this.configuration).updateChargeback(chargeback, chargeback_dispute_oid, _expand, options)(this.fetch, this.basePath);
-    };
-    return ChargebackApi;
-}(BaseAPI));
-exports.ChargebackApi = ChargebackApi;
 /**
  * CheckoutApi - fetch parameter creator
  * @export
@@ -20063,6 +19470,58 @@ var DatawarehouseApiFetchParamCreator = function (configuration) {
             };
         },
         /**
+         * delete a custom dashboard schedule on the UltraCart account.
+         * @summary Delete a custom dashboard schedule
+         * @param {number} custom_dashboard_schedule_oid The dashboard schedule oid to delete.
+         * @param {number} custom_dashboard_oid The dashboard oid that owns the schedule.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        deleteCustomDashboardSchedule: function (custom_dashboard_schedule_oid, custom_dashboard_oid, options) {
+            if (options === void 0) { options = {}; }
+            // verify required parameter 'custom_dashboard_schedule_oid' is not null or undefined
+            if (custom_dashboard_schedule_oid === null || custom_dashboard_schedule_oid === undefined) {
+                throw new RequiredError('custom_dashboard_schedule_oid', 'Required parameter custom_dashboard_schedule_oid was null or undefined when calling deleteCustomDashboardSchedule.');
+            }
+            // verify required parameter 'custom_dashboard_oid' is not null or undefined
+            if (custom_dashboard_oid === null || custom_dashboard_oid === undefined) {
+                throw new RequiredError('custom_dashboard_oid', 'Required parameter custom_dashboard_oid was null or undefined when calling deleteCustomDashboardSchedule.');
+            }
+            var localVarPath = "/datawarehouse/custom_dashboards/{custom_dashboard_oid}/schedules/{custom_dashboard_schedule_oid}"
+                .replace("{".concat("custom_dashboard_schedule_oid", "}"), encodeURIComponent(String(custom_dashboard_schedule_oid)))
+                .replace("{".concat("custom_dashboard_oid", "}"), encodeURIComponent(String(custom_dashboard_oid)));
+            var localVarUrlObj = url.parse(localVarPath, true);
+            var localVarRequestOptions = Object.assign({ method: 'DELETE' }, options);
+            var localVarHeaderParameter = {};
+            var localVarQueryParameter = {};
+            if (configuration && configuration.apiVersion) {
+                localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+            }
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+                var localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+                    ? configuration.accessToken("ultraCartOauth", [])
+                    : configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                var localVarApiKeyValue = typeof configuration.apiKey === 'function'
+                    ? configuration.apiKey("x-ultracart-simple-key")
+                    : configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
          * Delete a custom report on the UltraCart account.
          * @summary Delete a custom report
          * @param {number} custom_report_oid The report oid to delete.
@@ -20366,6 +19825,52 @@ var DatawarehouseApiFetchParamCreator = function (configuration) {
                 throw new RequiredError('custom_dashboard_oid', 'Required parameter custom_dashboard_oid was null or undefined when calling getCustomDashboard.');
             }
             var localVarPath = "/datawarehouse/custom_dashboards/{custom_dashboard_oid}"
+                .replace("{".concat("custom_dashboard_oid", "}"), encodeURIComponent(String(custom_dashboard_oid)));
+            var localVarUrlObj = url.parse(localVarPath, true);
+            var localVarRequestOptions = Object.assign({ method: 'GET' }, options);
+            var localVarHeaderParameter = {};
+            var localVarQueryParameter = {};
+            if (configuration && configuration.apiVersion) {
+                localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+            }
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+                var localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+                    ? configuration.accessToken("ultraCartOauth", [])
+                    : configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                var localVarApiKeyValue = typeof configuration.apiKey === 'function'
+                    ? configuration.apiKey("x-ultracart-simple-key")
+                    : configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Retrieve a custom dashboards
+         * @summary Get custom dashboards
+         * @param {number} custom_dashboard_oid
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getCustomDashboardSchedules: function (custom_dashboard_oid, options) {
+            if (options === void 0) { options = {}; }
+            // verify required parameter 'custom_dashboard_oid' is not null or undefined
+            if (custom_dashboard_oid === null || custom_dashboard_oid === undefined) {
+                throw new RequiredError('custom_dashboard_oid', 'Required parameter custom_dashboard_oid was null or undefined when calling getCustomDashboardSchedules.');
+            }
+            var localVarPath = "/datawarehouse/custom_dashboards/{custom_dashboard_oid}/schedules"
                 .replace("{".concat("custom_dashboard_oid", "}"), encodeURIComponent(String(custom_dashboard_oid)));
             var localVarUrlObj = url.parse(localVarPath, true);
             var localVarRequestOptions = Object.assign({ method: 'GET' }, options);
@@ -20837,6 +20342,60 @@ var DatawarehouseApiFetchParamCreator = function (configuration) {
             };
         },
         /**
+         * Create a new custom dashboard schedule on the UltraCart account.
+         * @summary Create a custom dashboard schedule
+         * @param {number} custom_dashboard_oid
+         * @param {CustomDashboardSchedule} dashboard_schedule Dashboard schedule to create
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        insertCustomDashboardSchedule: function (custom_dashboard_oid, dashboard_schedule, options) {
+            if (options === void 0) { options = {}; }
+            // verify required parameter 'custom_dashboard_oid' is not null or undefined
+            if (custom_dashboard_oid === null || custom_dashboard_oid === undefined) {
+                throw new RequiredError('custom_dashboard_oid', 'Required parameter custom_dashboard_oid was null or undefined when calling insertCustomDashboardSchedule.');
+            }
+            // verify required parameter 'dashboard_schedule' is not null or undefined
+            if (dashboard_schedule === null || dashboard_schedule === undefined) {
+                throw new RequiredError('dashboard_schedule', 'Required parameter dashboard_schedule was null or undefined when calling insertCustomDashboardSchedule.');
+            }
+            var localVarPath = "/datawarehouse/custom_dashboards/{custom_dashboard_oid}/schedules"
+                .replace("{".concat("custom_dashboard_oid", "}"), encodeURIComponent(String(custom_dashboard_oid)));
+            var localVarUrlObj = url.parse(localVarPath, true);
+            var localVarRequestOptions = Object.assign({ method: 'POST' }, options);
+            var localVarHeaderParameter = {};
+            var localVarQueryParameter = {};
+            if (configuration && configuration.apiVersion) {
+                localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+            }
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+                var localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+                    ? configuration.accessToken("ultraCartOauth", [])
+                    : configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                var localVarApiKeyValue = typeof configuration.apiKey === 'function'
+                    ? configuration.apiKey("x-ultracart-simple-key")
+                    : configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+            localVarHeaderParameter['Content-Type'] = 'application/json; charset=UTF-8';
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+            var needsSerialization = ("CustomDashboardSchedule" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
+            localVarRequestOptions.body = needsSerialization ? JSON.stringify(dashboard_schedule || {}) : (dashboard_schedule || "");
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
          * Create a new custom report on the UltraCart account.
          * @summary Create a custom report
          * @param {CustomReport} report Report to create
@@ -20981,6 +20540,66 @@ var DatawarehouseApiFetchParamCreator = function (configuration) {
             localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
             var needsSerialization = ("CustomDashboard" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
             localVarRequestOptions.body = needsSerialization ? JSON.stringify(dashboard || {}) : (dashboard || "");
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Update a custom dashboard schedule on the UltraCart account.
+         * @summary Update a custom dashboard schedule
+         * @param {CustomDashboardSchedule} dashboard_schedule Dashboard schedule to update
+         * @param {number} custom_dashboard_schedule_oid The dashboard schedule oid to update.
+         * @param {number} custom_dashboard_oid The dashboard oid to update.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        updateCustomDashboardSchedule: function (dashboard_schedule, custom_dashboard_schedule_oid, custom_dashboard_oid, options) {
+            if (options === void 0) { options = {}; }
+            // verify required parameter 'dashboard_schedule' is not null or undefined
+            if (dashboard_schedule === null || dashboard_schedule === undefined) {
+                throw new RequiredError('dashboard_schedule', 'Required parameter dashboard_schedule was null or undefined when calling updateCustomDashboardSchedule.');
+            }
+            // verify required parameter 'custom_dashboard_schedule_oid' is not null or undefined
+            if (custom_dashboard_schedule_oid === null || custom_dashboard_schedule_oid === undefined) {
+                throw new RequiredError('custom_dashboard_schedule_oid', 'Required parameter custom_dashboard_schedule_oid was null or undefined when calling updateCustomDashboardSchedule.');
+            }
+            // verify required parameter 'custom_dashboard_oid' is not null or undefined
+            if (custom_dashboard_oid === null || custom_dashboard_oid === undefined) {
+                throw new RequiredError('custom_dashboard_oid', 'Required parameter custom_dashboard_oid was null or undefined when calling updateCustomDashboardSchedule.');
+            }
+            var localVarPath = "/datawarehouse/custom_dashboards/{custom_dashboard_oid}/schedules/{custom_dashboard_schedule_oid}"
+                .replace("{".concat("custom_dashboard_schedule_oid", "}"), encodeURIComponent(String(custom_dashboard_schedule_oid)))
+                .replace("{".concat("custom_dashboard_oid", "}"), encodeURIComponent(String(custom_dashboard_oid)));
+            var localVarUrlObj = url.parse(localVarPath, true);
+            var localVarRequestOptions = Object.assign({ method: 'PUT' }, options);
+            var localVarHeaderParameter = {};
+            var localVarQueryParameter = {};
+            if (configuration && configuration.apiVersion) {
+                localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+            }
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+                var localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+                    ? configuration.accessToken("ultraCartOauth", [])
+                    : configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                var localVarApiKeyValue = typeof configuration.apiKey === 'function'
+                    ? configuration.apiKey("x-ultracart-simple-key")
+                    : configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+            localVarHeaderParameter['Content-Type'] = 'application/json; charset=UTF-8';
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+            var needsSerialization = ("CustomDashboardSchedule" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
+            localVarRequestOptions.body = needsSerialization ? JSON.stringify(dashboard_schedule || {}) : (dashboard_schedule || "");
             return {
                 url: url.format(localVarUrlObj),
                 options: localVarRequestOptions,
@@ -21174,6 +20793,29 @@ var DatawarehouseApiFp = function (configuration) {
             };
         },
         /**
+         * delete a custom dashboard schedule on the UltraCart account.
+         * @summary Delete a custom dashboard schedule
+         * @param {number} custom_dashboard_schedule_oid The dashboard schedule oid to delete.
+         * @param {number} custom_dashboard_oid The dashboard oid that owns the schedule.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        deleteCustomDashboardSchedule: function (custom_dashboard_schedule_oid, custom_dashboard_oid, options) {
+            var localVarFetchArgs = (0, exports.DatawarehouseApiFetchParamCreator)(configuration).deleteCustomDashboardSchedule(custom_dashboard_schedule_oid, custom_dashboard_oid, options);
+            return function (fetch, basePath) {
+                if (fetch === void 0) { fetch = portableFetch; }
+                if (basePath === void 0) { basePath = BASE_PATH; }
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(function (response) {
+                    if (response.status >= 200 && response.status < 300) {
+                        return response;
+                    }
+                    else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
          * Delete a custom report on the UltraCart account.
          * @summary Delete a custom report
          * @param {number} custom_report_oid The report oid to delete.
@@ -21315,6 +20957,28 @@ var DatawarehouseApiFp = function (configuration) {
          */
         getCustomDashboard: function (custom_dashboard_oid, options) {
             var localVarFetchArgs = (0, exports.DatawarehouseApiFetchParamCreator)(configuration).getCustomDashboard(custom_dashboard_oid, options);
+            return function (fetch, basePath) {
+                if (fetch === void 0) { fetch = portableFetch; }
+                if (basePath === void 0) { basePath = BASE_PATH; }
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(function (response) {
+                    if (response.status >= 200 && response.status < 300) {
+                        return response.json();
+                    }
+                    else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
+         * Retrieve a custom dashboards
+         * @summary Get custom dashboards
+         * @param {number} custom_dashboard_oid
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getCustomDashboardSchedules: function (custom_dashboard_oid, options) {
+            var localVarFetchArgs = (0, exports.DatawarehouseApiFetchParamCreator)(configuration).getCustomDashboardSchedules(custom_dashboard_oid, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -21545,6 +21209,29 @@ var DatawarehouseApiFp = function (configuration) {
             };
         },
         /**
+         * Create a new custom dashboard schedule on the UltraCart account.
+         * @summary Create a custom dashboard schedule
+         * @param {number} custom_dashboard_oid
+         * @param {CustomDashboardSchedule} dashboard_schedule Dashboard schedule to create
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        insertCustomDashboardSchedule: function (custom_dashboard_oid, dashboard_schedule, options) {
+            var localVarFetchArgs = (0, exports.DatawarehouseApiFetchParamCreator)(configuration).insertCustomDashboardSchedule(custom_dashboard_oid, dashboard_schedule, options);
+            return function (fetch, basePath) {
+                if (fetch === void 0) { fetch = portableFetch; }
+                if (basePath === void 0) { basePath = BASE_PATH; }
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(function (response) {
+                    if (response.status >= 200 && response.status < 300) {
+                        return response.json();
+                    }
+                    else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
          * Create a new custom report on the UltraCart account.
          * @summary Create a custom report
          * @param {CustomReport} report Report to create
@@ -21598,6 +21285,30 @@ var DatawarehouseApiFp = function (configuration) {
          */
         updateCustomDashboard: function (dashboard, custom_dashboard_oid, options) {
             var localVarFetchArgs = (0, exports.DatawarehouseApiFetchParamCreator)(configuration).updateCustomDashboard(dashboard, custom_dashboard_oid, options);
+            return function (fetch, basePath) {
+                if (fetch === void 0) { fetch = portableFetch; }
+                if (basePath === void 0) { basePath = BASE_PATH; }
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(function (response) {
+                    if (response.status >= 200 && response.status < 300) {
+                        return response.json();
+                    }
+                    else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
+         * Update a custom dashboard schedule on the UltraCart account.
+         * @summary Update a custom dashboard schedule
+         * @param {CustomDashboardSchedule} dashboard_schedule Dashboard schedule to update
+         * @param {number} custom_dashboard_schedule_oid The dashboard schedule oid to update.
+         * @param {number} custom_dashboard_oid The dashboard oid to update.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        updateCustomDashboardSchedule: function (dashboard_schedule, custom_dashboard_schedule_oid, custom_dashboard_oid, options) {
+            var localVarFetchArgs = (0, exports.DatawarehouseApiFetchParamCreator)(configuration).updateCustomDashboardSchedule(dashboard_schedule, custom_dashboard_schedule_oid, custom_dashboard_oid, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -21699,6 +21410,17 @@ var DatawarehouseApiFactory = function (configuration, fetch, basePath) {
             return (0, exports.DatawarehouseApiFp)(configuration).deleteCustomDashboard(custom_dashboard_oid, options)(fetch, basePath);
         },
         /**
+         * delete a custom dashboard schedule on the UltraCart account.
+         * @summary Delete a custom dashboard schedule
+         * @param {number} custom_dashboard_schedule_oid The dashboard schedule oid to delete.
+         * @param {number} custom_dashboard_oid The dashboard oid that owns the schedule.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        deleteCustomDashboardSchedule: function (custom_dashboard_schedule_oid, custom_dashboard_oid, options) {
+            return (0, exports.DatawarehouseApiFp)(configuration).deleteCustomDashboardSchedule(custom_dashboard_schedule_oid, custom_dashboard_oid, options)(fetch, basePath);
+        },
+        /**
          * Delete a custom report on the UltraCart account.
          * @summary Delete a custom report
          * @param {number} custom_report_oid The report oid to delete.
@@ -21768,6 +21490,16 @@ var DatawarehouseApiFactory = function (configuration, fetch, basePath) {
          */
         getCustomDashboard: function (custom_dashboard_oid, options) {
             return (0, exports.DatawarehouseApiFp)(configuration).getCustomDashboard(custom_dashboard_oid, options)(fetch, basePath);
+        },
+        /**
+         * Retrieve a custom dashboards
+         * @summary Get custom dashboards
+         * @param {number} custom_dashboard_oid
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getCustomDashboardSchedules: function (custom_dashboard_oid, options) {
+            return (0, exports.DatawarehouseApiFp)(configuration).getCustomDashboardSchedules(custom_dashboard_oid, options)(fetch, basePath);
         },
         /**
          * Retrieve a custom dashboards
@@ -21866,6 +21598,17 @@ var DatawarehouseApiFactory = function (configuration, fetch, basePath) {
             return (0, exports.DatawarehouseApiFp)(configuration).insertCustomDashboard(dashboard, options)(fetch, basePath);
         },
         /**
+         * Create a new custom dashboard schedule on the UltraCart account.
+         * @summary Create a custom dashboard schedule
+         * @param {number} custom_dashboard_oid
+         * @param {CustomDashboardSchedule} dashboard_schedule Dashboard schedule to create
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        insertCustomDashboardSchedule: function (custom_dashboard_oid, dashboard_schedule, options) {
+            return (0, exports.DatawarehouseApiFp)(configuration).insertCustomDashboardSchedule(custom_dashboard_oid, dashboard_schedule, options)(fetch, basePath);
+        },
+        /**
          * Create a new custom report on the UltraCart account.
          * @summary Create a custom report
          * @param {CustomReport} report Report to create
@@ -21895,6 +21638,18 @@ var DatawarehouseApiFactory = function (configuration, fetch, basePath) {
          */
         updateCustomDashboard: function (dashboard, custom_dashboard_oid, options) {
             return (0, exports.DatawarehouseApiFp)(configuration).updateCustomDashboard(dashboard, custom_dashboard_oid, options)(fetch, basePath);
+        },
+        /**
+         * Update a custom dashboard schedule on the UltraCart account.
+         * @summary Update a custom dashboard schedule
+         * @param {CustomDashboardSchedule} dashboard_schedule Dashboard schedule to update
+         * @param {number} custom_dashboard_schedule_oid The dashboard schedule oid to update.
+         * @param {number} custom_dashboard_oid The dashboard oid to update.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        updateCustomDashboardSchedule: function (dashboard_schedule, custom_dashboard_schedule_oid, custom_dashboard_oid, options) {
+            return (0, exports.DatawarehouseApiFp)(configuration).updateCustomDashboardSchedule(dashboard_schedule, custom_dashboard_schedule_oid, custom_dashboard_oid, options)(fetch, basePath);
         },
         /**
          * Update a custom report on the UltraCart account.
@@ -21952,6 +21707,18 @@ var DatawarehouseApi = /** @class */ (function (_super) {
      */
     DatawarehouseApi.prototype.deleteCustomDashboard = function (custom_dashboard_oid, options) {
         return (0, exports.DatawarehouseApiFp)(this.configuration).deleteCustomDashboard(custom_dashboard_oid, options)(this.fetch, this.basePath);
+    };
+    /**
+     * delete a custom dashboard schedule on the UltraCart account.
+     * @summary Delete a custom dashboard schedule
+     * @param {number} custom_dashboard_schedule_oid The dashboard schedule oid to delete.
+     * @param {number} custom_dashboard_oid The dashboard oid that owns the schedule.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DatawarehouseApi
+     */
+    DatawarehouseApi.prototype.deleteCustomDashboardSchedule = function (custom_dashboard_schedule_oid, custom_dashboard_oid, options) {
+        return (0, exports.DatawarehouseApiFp)(this.configuration).deleteCustomDashboardSchedule(custom_dashboard_schedule_oid, custom_dashboard_oid, options)(this.fetch, this.basePath);
     };
     /**
      * Delete a custom report on the UltraCart account.
@@ -22030,6 +21797,17 @@ var DatawarehouseApi = /** @class */ (function (_super) {
      */
     DatawarehouseApi.prototype.getCustomDashboard = function (custom_dashboard_oid, options) {
         return (0, exports.DatawarehouseApiFp)(this.configuration).getCustomDashboard(custom_dashboard_oid, options)(this.fetch, this.basePath);
+    };
+    /**
+     * Retrieve a custom dashboards
+     * @summary Get custom dashboards
+     * @param {number} custom_dashboard_oid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DatawarehouseApi
+     */
+    DatawarehouseApi.prototype.getCustomDashboardSchedules = function (custom_dashboard_oid, options) {
+        return (0, exports.DatawarehouseApiFp)(this.configuration).getCustomDashboardSchedules(custom_dashboard_oid, options)(this.fetch, this.basePath);
     };
     /**
      * Retrieve a custom dashboards
@@ -22138,6 +21916,18 @@ var DatawarehouseApi = /** @class */ (function (_super) {
         return (0, exports.DatawarehouseApiFp)(this.configuration).insertCustomDashboard(dashboard, options)(this.fetch, this.basePath);
     };
     /**
+     * Create a new custom dashboard schedule on the UltraCart account.
+     * @summary Create a custom dashboard schedule
+     * @param {number} custom_dashboard_oid
+     * @param {CustomDashboardSchedule} dashboard_schedule Dashboard schedule to create
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DatawarehouseApi
+     */
+    DatawarehouseApi.prototype.insertCustomDashboardSchedule = function (custom_dashboard_oid, dashboard_schedule, options) {
+        return (0, exports.DatawarehouseApiFp)(this.configuration).insertCustomDashboardSchedule(custom_dashboard_oid, dashboard_schedule, options)(this.fetch, this.basePath);
+    };
+    /**
      * Create a new custom report on the UltraCart account.
      * @summary Create a custom report
      * @param {CustomReport} report Report to create
@@ -22170,6 +21960,19 @@ var DatawarehouseApi = /** @class */ (function (_super) {
      */
     DatawarehouseApi.prototype.updateCustomDashboard = function (dashboard, custom_dashboard_oid, options) {
         return (0, exports.DatawarehouseApiFp)(this.configuration).updateCustomDashboard(dashboard, custom_dashboard_oid, options)(this.fetch, this.basePath);
+    };
+    /**
+     * Update a custom dashboard schedule on the UltraCart account.
+     * @summary Update a custom dashboard schedule
+     * @param {CustomDashboardSchedule} dashboard_schedule Dashboard schedule to update
+     * @param {number} custom_dashboard_schedule_oid The dashboard schedule oid to update.
+     * @param {number} custom_dashboard_oid The dashboard oid to update.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DatawarehouseApi
+     */
+    DatawarehouseApi.prototype.updateCustomDashboardSchedule = function (dashboard_schedule, custom_dashboard_schedule_oid, custom_dashboard_oid, options) {
+        return (0, exports.DatawarehouseApiFp)(this.configuration).updateCustomDashboardSchedule(dashboard_schedule, custom_dashboard_schedule_oid, custom_dashboard_oid, options)(this.fetch, this.basePath);
     };
     /**
      * Update a custom report on the UltraCart account.
