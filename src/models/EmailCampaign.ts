@@ -129,6 +129,18 @@ export interface EmailCampaign {
      */
     prevent_sending_due_to_spam?: boolean;
     /**
+     * True if the campaign should repeat on a monthly basis
+     * @type {boolean}
+     * @memberof EmailCampaign
+     */
+    repeat_monthly?: boolean;
+    /**
+     * True if the campaign should repeat on a weekly basis
+     * @type {boolean}
+     * @memberof EmailCampaign
+     */
+    repeat_weekly?: boolean;
+    /**
      * Revenue associated with campaign
      * @type {string}
      * @memberof EmailCampaign
@@ -222,6 +234,8 @@ export function EmailCampaignFromJSONTyped(json: any, ignoreDiscriminator: boole
         'name': !exists(json, 'name') ? undefined : json['name'],
         'open_rate_formatted': !exists(json, 'open_rate_formatted') ? undefined : json['open_rate_formatted'],
         'prevent_sending_due_to_spam': !exists(json, 'prevent_sending_due_to_spam') ? undefined : json['prevent_sending_due_to_spam'],
+        'repeat_monthly': !exists(json, 'repeat_monthly') ? undefined : json['repeat_monthly'],
+        'repeat_weekly': !exists(json, 'repeat_weekly') ? undefined : json['repeat_weekly'],
         'revenue_formatted': !exists(json, 'revenue_formatted') ? undefined : json['revenue_formatted'],
         'revenue_per_customer_formatted': !exists(json, 'revenue_per_customer_formatted') ? undefined : json['revenue_per_customer_formatted'],
         'scheduled_dts': !exists(json, 'scheduled_dts') ? undefined : json['scheduled_dts'],
@@ -260,6 +274,8 @@ export function EmailCampaignToJSON(value?: EmailCampaign | null): any {
         'name': value.name,
         'open_rate_formatted': value.open_rate_formatted,
         'prevent_sending_due_to_spam': value.prevent_sending_due_to_spam,
+        'repeat_monthly': value.repeat_monthly,
+        'repeat_weekly': value.repeat_weekly,
         'revenue_formatted': value.revenue_formatted,
         'revenue_per_customer_formatted': value.revenue_per_customer_formatted,
         'scheduled_dts': value.scheduled_dts,

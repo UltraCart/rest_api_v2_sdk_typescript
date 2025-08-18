@@ -14,11 +14,11 @@
 
 import { exists, mapValues } from '../runtime';
 import {
-    ChargebackDispute,
-    ChargebackDisputeFromJSON,
-    ChargebackDisputeFromJSONTyped,
-    ChargebackDisputeToJSON,
-} from './ChargebackDispute';
+    CustomDashboardSchedule,
+    CustomDashboardScheduleFromJSON,
+    CustomDashboardScheduleFromJSONTyped,
+    CustomDashboardScheduleToJSON,
+} from './CustomDashboardSchedule';
 import {
     ModelError,
     ModelErrorFromJSON,
@@ -41,37 +41,37 @@ import {
 /**
  * 
  * @export
- * @interface ChargebackDisputesResponse
+ * @interface CustomDashboardScheduleResponse
  */
-export interface ChargebackDisputesResponse {
-    /**
-     * 
-     * @type {Array<ChargebackDispute>}
-     * @memberof ChargebackDisputesResponse
-     */
-    chargebacks?: Array<ChargebackDispute>;
+export interface CustomDashboardScheduleResponse {
     /**
      * 
      * @type {ModelError}
-     * @memberof ChargebackDisputesResponse
+     * @memberof CustomDashboardScheduleResponse
      */
     error?: ModelError;
     /**
      * 
      * @type {ResponseMetadata}
-     * @memberof ChargebackDisputesResponse
+     * @memberof CustomDashboardScheduleResponse
      */
     metadata?: ResponseMetadata;
     /**
+     * 
+     * @type {CustomDashboardSchedule}
+     * @memberof CustomDashboardScheduleResponse
+     */
+    schedule?: CustomDashboardSchedule;
+    /**
      * Indicates if API call was successful
      * @type {boolean}
-     * @memberof ChargebackDisputesResponse
+     * @memberof CustomDashboardScheduleResponse
      */
     success?: boolean;
     /**
      * 
      * @type {Warning}
-     * @memberof ChargebackDisputesResponse
+     * @memberof CustomDashboardScheduleResponse
      */
     warning?: Warning;
 }
@@ -79,33 +79,33 @@ export interface ChargebackDisputesResponse {
 
 
 /**
- * Check if a given object implements the ChargebackDisputesResponse interface.
+ * Check if a given object implements the CustomDashboardScheduleResponse interface.
  */
-export function instanceOfChargebackDisputesResponse(value: object): boolean {
+export function instanceOfCustomDashboardScheduleResponse(value: object): boolean {
     let isInstance = true;
 
     return isInstance;
 }
 
-export function ChargebackDisputesResponseFromJSON(json: any): ChargebackDisputesResponse {
-    return ChargebackDisputesResponseFromJSONTyped(json, false);
+export function CustomDashboardScheduleResponseFromJSON(json: any): CustomDashboardScheduleResponse {
+    return CustomDashboardScheduleResponseFromJSONTyped(json, false);
 }
 
-export function ChargebackDisputesResponseFromJSONTyped(json: any, ignoreDiscriminator: boolean): ChargebackDisputesResponse {
+export function CustomDashboardScheduleResponseFromJSONTyped(json: any, ignoreDiscriminator: boolean): CustomDashboardScheduleResponse {
     if ((json === undefined) || (json === null)) {
         return json;
     }
     return {
         
-        'chargebacks': !exists(json, 'chargebacks') ? undefined : ((json['chargebacks'] as Array<any>).map(ChargebackDisputeFromJSON)),
         'error': !exists(json, 'error') ? undefined : ModelErrorFromJSON(json['error']),
         'metadata': !exists(json, 'metadata') ? undefined : ResponseMetadataFromJSON(json['metadata']),
+        'schedule': !exists(json, 'schedule') ? undefined : CustomDashboardScheduleFromJSON(json['schedule']),
         'success': !exists(json, 'success') ? undefined : json['success'],
         'warning': !exists(json, 'warning') ? undefined : WarningFromJSON(json['warning']),
     };
 }
 
-export function ChargebackDisputesResponseToJSON(value?: ChargebackDisputesResponse | null): any {
+export function CustomDashboardScheduleResponseToJSON(value?: CustomDashboardScheduleResponse | null): any {
     if (value === undefined) {
         return undefined;
     }
@@ -114,9 +114,9 @@ export function ChargebackDisputesResponseToJSON(value?: ChargebackDisputesRespo
     }
     return {
         
-        'chargebacks': value.chargebacks === undefined ? undefined : ((value.chargebacks as Array<any>).map(ChargebackDisputeToJSON)),
         'error': ModelErrorToJSON(value.error),
         'metadata': ResponseMetadataToJSON(value.metadata),
+        'schedule': CustomDashboardScheduleToJSON(value.schedule),
         'success': value.success,
         'warning': WarningToJSON(value.warning),
     };

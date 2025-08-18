@@ -213,6 +213,8 @@ export const OrderPaymentPaymentMethodEnum = {
     EBay: 'eBay',
     ECheck: 'eCheck',
     GoogleShopping: 'Google Shopping',
+    Goldbelly: 'Goldbelly',
+    GoHighLevel: 'GoHighLevel',
     Insurance: 'Insurance',
     Link: 'Link',
     LoanHero: 'LoanHero',

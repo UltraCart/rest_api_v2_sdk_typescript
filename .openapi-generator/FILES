@@ -5,7 +5,6 @@ package.json
 src/apis/AffiliateApi.ts
 src/apis/AutoOrderApi.ts
 src/apis/ChannelPartnerApi.ts
-src/apis/ChargebackApi.ts
 src/apis/CheckoutApi.ts
 src/apis/ConversationApi.ts
 src/apis/CouponApi.ts
@@ -145,9 +144,6 @@ src/models/ChannelPartnerShipToPreferenceResponse.ts
 src/models/ChannelPartnerShipToPreferencesResponse.ts
 src/models/ChannelPartnerShippingEstimate.ts
 src/models/ChannelPartnersResponse.ts
-src/models/ChargebackDispute.ts
-src/models/ChargebackDisputeResponse.ts
-src/models/ChargebackDisputesResponse.ts
 src/models/CheckoutAllowedCountriesResponse.ts
 src/models/CheckoutHandoffRequest.ts
 src/models/CheckoutHandoffResponse.ts
@@ -335,6 +331,9 @@ src/models/CustomDashboardExecutionParameter.ts
 src/models/CustomDashboardPage.ts
 src/models/CustomDashboardPageReport.ts
 src/models/CustomDashboardResponse.ts
+src/models/CustomDashboardSchedule.ts
+src/models/CustomDashboardScheduleResponse.ts
+src/models/CustomDashboardSchedulesResponse.ts
 src/models/CustomDashboardsResponse.ts
 src/models/CustomReport.ts
 src/models/CustomReportAccountConfig.ts

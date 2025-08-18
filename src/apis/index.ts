@@ -3,7 +3,6 @@
 export * from './AffiliateApi';
 export * from './AutoOrderApi';
 export * from './ChannelPartnerApi';
-export * from './ChargebackApi';
 export * from './CheckoutApi';
 export * from './ConversationApi';
 export * from './CouponApi';

@@ -43,6 +43,12 @@ export interface CustomReport {
      * @type {string}
      * @memberof CustomReport
      */
+    business_analysis_prompt?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof CustomReport
+     */
     chart_javascript?: string;
     /**
      * 
@@ -121,6 +127,7 @@ export function CustomReportFromJSONTyped(json: any, ignoreDiscriminator: boolea
     }
     return {
         
+        'business_analysis_prompt': !exists(json, 'business_analysis_prompt') ? undefined : json['business_analysis_prompt'],
         'chart_javascript': !exists(json, 'chart_javascript') ? undefined : json['chart_javascript'],
         'chart_javascript_url': !exists(json, 'chart_javascript_url') ? undefined : json['chart_javascript_url'],
         'data_warehouse_report_config_oid': !exists(json, 'data_warehouse_report_config_oid') ? undefined : json['data_warehouse_report_config_oid'],
@@ -143,6 +150,7 @@ export function CustomReportToJSON(value?: CustomReport | null): any {
     }
     return {
         
+        'business_analysis_prompt': value.business_analysis_prompt,
         'chart_javascript': value.chart_javascript,
         'chart_javascript_url': value.chart_javascript_url,
         'data_warehouse_report_config_oid': value.data_warehouse_report_config_oid,

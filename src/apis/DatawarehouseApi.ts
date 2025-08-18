@@ -21,6 +21,15 @@ import {
     CustomDashboardResponse,
     CustomDashboardResponseFromJSON,
     CustomDashboardResponseToJSON,
+    CustomDashboardSchedule,
+    CustomDashboardScheduleFromJSON,
+    CustomDashboardScheduleToJSON,
+    CustomDashboardScheduleResponse,
+    CustomDashboardScheduleResponseFromJSON,
+    CustomDashboardScheduleResponseToJSON,
+    CustomDashboardSchedulesResponse,
+    CustomDashboardSchedulesResponseFromJSON,
+    CustomDashboardSchedulesResponseToJSON,
     CustomDashboardsResponse,
     CustomDashboardsResponseFromJSON,
     CustomDashboardsResponseToJSON,
@@ -87,6 +96,11 @@ export interface DeleteCustomDashboardRequest {
     customDashboardOid: number;
 }
 
+export interface DeleteCustomDashboardScheduleRequest {
+    customDashboardScheduleOid: number;
+    customDashboardOid: number;
+}
+
 export interface DeleteCustomReportRequest {
     customReportOid: number;
 }
@@ -116,6 +130,10 @@ export interface GetCustomDashboardRequest {
     customDashboardOid: number;
 }
 
+export interface GetCustomDashboardSchedulesRequest {
+    customDashboardOid: number;
+}
+
 export interface GetCustomReportRequest {
     customReportOid: number;
 }
@@ -137,6 +155,11 @@ export interface InsertCustomDashboardRequest {
     dashboard: CustomDashboard;
 }
 
+export interface InsertCustomDashboardScheduleRequest {
+    customDashboardOid: number;
+    dashboardSchedule: CustomDashboardSchedule;
+}
+
 export interface InsertCustomReportRequest {
     report: CustomReport;
 }
@@ -148,6 +171,12 @@ export interface InsertReportRequest {
 export interface UpdateCustomDashboardRequest {
     customDashboardOid: number;
     dashboard: CustomDashboard;
+}
+
+export interface UpdateCustomDashboardScheduleRequest {
+    customDashboardScheduleOid: number;
+    customDashboardOid: number;
+    dashboardSchedule: CustomDashboardSchedule;
 }
 
 export interface UpdateCustomReportRequest {
@@ -186,6 +215,23 @@ export interface DatawarehouseApiInterface {
      * Delete a custom dashboard
      */
     deleteCustomDashboard(requestParameters: DeleteCustomDashboardRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+
+    /**
+     * delete a custom dashboard schedule on the UltraCart account. 
+     * @summary Delete a custom dashboard schedule
+     * @param {number} customDashboardScheduleOid The dashboard schedule oid to delete.
+     * @param {number} customDashboardOid The dashboard oid that owns the schedule.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DatawarehouseApiInterface
+     */
+    deleteCustomDashboardScheduleRaw(requestParameters: DeleteCustomDashboardScheduleRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+
+    /**
+     * delete a custom dashboard schedule on the UltraCart account. 
+     * Delete a custom dashboard schedule
+     */
+    deleteCustomDashboardSchedule(requestParameters: DeleteCustomDashboardScheduleRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
      * Delete a custom report on the UltraCart account. 
@@ -299,6 +345,22 @@ export interface DatawarehouseApiInterface {
      * Get a custom dashboard
      */
     getCustomDashboard(requestParameters: GetCustomDashboardRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomDashboardResponse>;
+
+    /**
+     * Retrieve a custom dashboards 
+     * @summary Get custom dashboards
+     * @param {number} customDashboardOid 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DatawarehouseApiInterface
+     */
+    getCustomDashboardSchedulesRaw(requestParameters: GetCustomDashboardSchedulesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CustomDashboardSchedulesResponse>>;
+
+    /**
+     * Retrieve a custom dashboards 
+     * Get custom dashboards
+     */
+    getCustomDashboardSchedules(requestParameters: GetCustomDashboardSchedulesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomDashboardSchedulesResponse>;
 
     /**
      * Retrieve a custom dashboards 
@@ -457,6 +519,23 @@ export interface DatawarehouseApiInterface {
     insertCustomDashboard(requestParameters: InsertCustomDashboardRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomDashboardResponse>;
 
     /**
+     * Create a new custom dashboard schedule on the UltraCart account. 
+     * @summary Create a custom dashboard schedule
+     * @param {number} customDashboardOid 
+     * @param {CustomDashboardSchedule} dashboardSchedule Dashboard schedule to create
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DatawarehouseApiInterface
+     */
+    insertCustomDashboardScheduleRaw(requestParameters: InsertCustomDashboardScheduleRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CustomDashboardScheduleResponse>>;
+
+    /**
+     * Create a new custom dashboard schedule on the UltraCart account. 
+     * Create a custom dashboard schedule
+     */
+    insertCustomDashboardSchedule(requestParameters: InsertCustomDashboardScheduleRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomDashboardScheduleResponse>;
+
+    /**
      * Create a new custom report on the UltraCart account. 
      * @summary Create a custom report
      * @param {CustomReport} report Report to create
@@ -504,6 +583,24 @@ export interface DatawarehouseApiInterface {
      * Update a custom dashboard
      */
     updateCustomDashboard(requestParameters: UpdateCustomDashboardRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomDashboardResponse>;
+
+    /**
+     * Update a custom dashboard schedule on the UltraCart account. 
+     * @summary Update a custom dashboard schedule
+     * @param {number} customDashboardScheduleOid The dashboard schedule oid to update.
+     * @param {number} customDashboardOid The dashboard oid to update.
+     * @param {CustomDashboardSchedule} dashboardSchedule Dashboard schedule to update
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DatawarehouseApiInterface
+     */
+    updateCustomDashboardScheduleRaw(requestParameters: UpdateCustomDashboardScheduleRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CustomDashboardResponse>>;
+
+    /**
+     * Update a custom dashboard schedule on the UltraCart account. 
+     * Update a custom dashboard schedule
+     */
+    updateCustomDashboardSchedule(requestParameters: UpdateCustomDashboardScheduleRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomDashboardResponse>;
 
     /**
      * Update a custom report on the UltraCart account. 
@@ -600,6 +697,50 @@ export class DatawarehouseApi extends runtime.BaseAPI implements DatawarehouseAp
      */
     async deleteCustomDashboard(requestParameters: DeleteCustomDashboardRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.deleteCustomDashboardRaw(requestParameters, initOverrides);
+    }
+
+    /**
+     * delete a custom dashboard schedule on the UltraCart account. 
+     * Delete a custom dashboard schedule
+     */
+    async deleteCustomDashboardScheduleRaw(requestParameters: DeleteCustomDashboardScheduleRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        if (requestParameters.customDashboardScheduleOid === null || requestParameters.customDashboardScheduleOid === undefined) {
+            throw new runtime.RequiredError('customDashboardScheduleOid','Required parameter requestParameters.customDashboardScheduleOid was null or undefined when calling deleteCustomDashboardSchedule.');
+        }
+
+        if (requestParameters.customDashboardOid === null || requestParameters.customDashboardOid === undefined) {
+            throw new runtime.RequiredError('customDashboardOid','Required parameter requestParameters.customDashboardOid was null or undefined when calling deleteCustomDashboardSchedule.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", []);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/datawarehouse/custom_dashboards/{custom_dashboard_oid}/schedules/{custom_dashboard_schedule_oid}`.replace(`{${"custom_dashboard_schedule_oid"}}`, encodeURIComponent(String(requestParameters.customDashboardScheduleOid))).replace(`{${"custom_dashboard_oid"}}`, encodeURIComponent(String(requestParameters.customDashboardOid))),
+            method: 'DELETE',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     * delete a custom dashboard schedule on the UltraCart account. 
+     * Delete a custom dashboard schedule
+     */
+    async deleteCustomDashboardSchedule(requestParameters: DeleteCustomDashboardScheduleRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.deleteCustomDashboardScheduleRaw(requestParameters, initOverrides);
     }
 
     /**
@@ -899,6 +1040,47 @@ export class DatawarehouseApi extends runtime.BaseAPI implements DatawarehouseAp
      */
     async getCustomDashboard(requestParameters: GetCustomDashboardRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomDashboardResponse> {
         const response = await this.getCustomDashboardRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Retrieve a custom dashboards 
+     * Get custom dashboards
+     */
+    async getCustomDashboardSchedulesRaw(requestParameters: GetCustomDashboardSchedulesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CustomDashboardSchedulesResponse>> {
+        if (requestParameters.customDashboardOid === null || requestParameters.customDashboardOid === undefined) {
+            throw new runtime.RequiredError('customDashboardOid','Required parameter requestParameters.customDashboardOid was null or undefined when calling getCustomDashboardSchedules.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", []);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/datawarehouse/custom_dashboards/{custom_dashboard_oid}/schedules`.replace(`{${"custom_dashboard_oid"}}`, encodeURIComponent(String(requestParameters.customDashboardOid))),
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => CustomDashboardSchedulesResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Retrieve a custom dashboards 
+     * Get custom dashboards
+     */
+    async getCustomDashboardSchedules(requestParameters: GetCustomDashboardSchedulesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomDashboardSchedulesResponse> {
+        const response = await this.getCustomDashboardSchedulesRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
@@ -1300,6 +1482,54 @@ export class DatawarehouseApi extends runtime.BaseAPI implements DatawarehouseAp
     }
 
     /**
+     * Create a new custom dashboard schedule on the UltraCart account. 
+     * Create a custom dashboard schedule
+     */
+    async insertCustomDashboardScheduleRaw(requestParameters: InsertCustomDashboardScheduleRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CustomDashboardScheduleResponse>> {
+        if (requestParameters.customDashboardOid === null || requestParameters.customDashboardOid === undefined) {
+            throw new runtime.RequiredError('customDashboardOid','Required parameter requestParameters.customDashboardOid was null or undefined when calling insertCustomDashboardSchedule.');
+        }
+
+        if (requestParameters.dashboardSchedule === null || requestParameters.dashboardSchedule === undefined) {
+            throw new runtime.RequiredError('dashboardSchedule','Required parameter requestParameters.dashboardSchedule was null or undefined when calling insertCustomDashboardSchedule.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json; charset=UTF-8';
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", []);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/datawarehouse/custom_dashboards/{custom_dashboard_oid}/schedules`.replace(`{${"custom_dashboard_oid"}}`, encodeURIComponent(String(requestParameters.customDashboardOid))),
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: CustomDashboardScheduleToJSON(requestParameters.dashboardSchedule),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => CustomDashboardScheduleResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Create a new custom dashboard schedule on the UltraCart account. 
+     * Create a custom dashboard schedule
+     */
+    async insertCustomDashboardSchedule(requestParameters: InsertCustomDashboardScheduleRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomDashboardScheduleResponse> {
+        const response = await this.insertCustomDashboardScheduleRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
      * Create a new custom report on the UltraCart account. 
      * Create a custom report
      */
@@ -1432,6 +1662,58 @@ export class DatawarehouseApi extends runtime.BaseAPI implements DatawarehouseAp
      */
     async updateCustomDashboard(requestParameters: UpdateCustomDashboardRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomDashboardResponse> {
         const response = await this.updateCustomDashboardRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Update a custom dashboard schedule on the UltraCart account. 
+     * Update a custom dashboard schedule
+     */
+    async updateCustomDashboardScheduleRaw(requestParameters: UpdateCustomDashboardScheduleRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CustomDashboardResponse>> {
+        if (requestParameters.customDashboardScheduleOid === null || requestParameters.customDashboardScheduleOid === undefined) {
+            throw new runtime.RequiredError('customDashboardScheduleOid','Required parameter requestParameters.customDashboardScheduleOid was null or undefined when calling updateCustomDashboardSchedule.');
+        }
+
+        if (requestParameters.customDashboardOid === null || requestParameters.customDashboardOid === undefined) {
+            throw new runtime.RequiredError('customDashboardOid','Required parameter requestParameters.customDashboardOid was null or undefined when calling updateCustomDashboardSchedule.');
+        }
+
+        if (requestParameters.dashboardSchedule === null || requestParameters.dashboardSchedule === undefined) {
+            throw new runtime.RequiredError('dashboardSchedule','Required parameter requestParameters.dashboardSchedule was null or undefined when calling updateCustomDashboardSchedule.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json; charset=UTF-8';
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", []);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/datawarehouse/custom_dashboards/{custom_dashboard_oid}/schedules/{custom_dashboard_schedule_oid}`.replace(`{${"custom_dashboard_schedule_oid"}}`, encodeURIComponent(String(requestParameters.customDashboardScheduleOid))).replace(`{${"custom_dashboard_oid"}}`, encodeURIComponent(String(requestParameters.customDashboardOid))),
+            method: 'PUT',
+            headers: headerParameters,
+            query: queryParameters,
+            body: CustomDashboardScheduleToJSON(requestParameters.dashboardSchedule),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => CustomDashboardResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Update a custom dashboard schedule on the UltraCart account. 
+     * Update a custom dashboard schedule
+     */
+    async updateCustomDashboardSchedule(requestParameters: UpdateCustomDashboardScheduleRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomDashboardResponse> {
+        const response = await this.updateCustomDashboardScheduleRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
