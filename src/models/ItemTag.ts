@@ -20,7 +20,7 @@ import { exists, mapValues } from '../runtime';
  */
 export interface ItemTag {
     /**
-     * tag_tpe
+     * tag_type
      * @type {string}
      * @memberof ItemTag
      */

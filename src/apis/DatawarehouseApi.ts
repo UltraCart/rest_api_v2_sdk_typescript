@@ -42,6 +42,15 @@ import {
     CustomReportAccountConfigResponse,
     CustomReportAccountConfigResponseFromJSON,
     CustomReportAccountConfigResponseToJSON,
+    CustomReportAnalysisRequest,
+    CustomReportAnalysisRequestFromJSON,
+    CustomReportAnalysisRequestToJSON,
+    CustomReportAnalysisResponse,
+    CustomReportAnalysisResponseFromJSON,
+    CustomReportAnalysisResponseToJSON,
+    CustomReportChartPngUploadResponse,
+    CustomReportChartPngUploadResponseFromJSON,
+    CustomReportChartPngUploadResponseToJSON,
     CustomReportExecutionRequest,
     CustomReportExecutionRequestFromJSON,
     CustomReportExecutionRequestToJSON,
@@ -92,6 +101,11 @@ import {
     ReportsResponseToJSON,
 } from '../models';
 
+export interface AnalyzeCustomReportRequest {
+    customReportOid: number;
+    analyzeRequest: CustomReportAnalysisRequest;
+}
+
 export interface DeleteCustomDashboardRequest {
     customDashboardOid: number;
 }
@@ -135,6 +149,10 @@ export interface GetCustomDashboardSchedulesRequest {
 }
 
 export interface GetCustomReportRequest {
+    customReportOid: number;
+}
+
+export interface GetCustomReportChartPngUploadUrlRequest {
     customReportOid: number;
 }
 
@@ -200,6 +218,23 @@ export interface UpdateReportRequest {
  * @interface DatawarehouseApiInterface
  */
 export interface DatawarehouseApiInterface {
+    /**
+     * Analyze a custom report on the UltraCart account. 
+     * @summary Analyze a custom report
+     * @param {number} customReportOid The report oid to analyze.
+     * @param {CustomReportAnalysisRequest} analyzeRequest Request to analyze custom report
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DatawarehouseApiInterface
+     */
+    analyzeCustomReportRaw(requestParameters: AnalyzeCustomReportRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CustomReportAnalysisResponse>>;
+
+    /**
+     * Analyze a custom report on the UltraCart account. 
+     * Analyze a custom report
+     */
+    analyzeCustomReport(requestParameters: AnalyzeCustomReportRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomReportAnalysisResponse>;
+
     /**
      * Delete a custom dashboard on the UltraCart account. 
      * @summary Delete a custom dashboard
@@ -407,6 +442,22 @@ export interface DatawarehouseApiInterface {
      * Get custom report account configuration
      */
     getCustomReportAccountConfig(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomReportAccountConfigResponse>;
+
+    /**
+     * Upload a PNG of a custom report chart 
+     * @summary Upload a PNG of a custom report chart
+     * @param {number} customReportOid The report oid to upload a chart PNG for.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DatawarehouseApiInterface
+     */
+    getCustomReportChartPngUploadUrlRaw(requestParameters: GetCustomReportChartPngUploadUrlRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CustomReportChartPngUploadResponse>>;
+
+    /**
+     * Upload a PNG of a custom report chart 
+     * Upload a PNG of a custom report chart
+     */
+    getCustomReportChartPngUploadUrl(requestParameters: GetCustomReportChartPngUploadUrlRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomReportChartPngUploadResponse>;
 
     /**
      * Retrieve a custom reports 
@@ -658,6 +709,54 @@ export interface DatawarehouseApiInterface {
  * 
  */
 export class DatawarehouseApi extends runtime.BaseAPI implements DatawarehouseApiInterface {
+
+    /**
+     * Analyze a custom report on the UltraCart account. 
+     * Analyze a custom report
+     */
+    async analyzeCustomReportRaw(requestParameters: AnalyzeCustomReportRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CustomReportAnalysisResponse>> {
+        if (requestParameters.customReportOid === null || requestParameters.customReportOid === undefined) {
+            throw new runtime.RequiredError('customReportOid','Required parameter requestParameters.customReportOid was null or undefined when calling analyzeCustomReport.');
+        }
+
+        if (requestParameters.analyzeRequest === null || requestParameters.analyzeRequest === undefined) {
+            throw new runtime.RequiredError('analyzeRequest','Required parameter requestParameters.analyzeRequest was null or undefined when calling analyzeCustomReport.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json; charset=UTF-8';
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", []);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/datawarehouse/custom_reports/{custom_report_oid}/analysis`.replace(`{${"custom_report_oid"}}`, encodeURIComponent(String(requestParameters.customReportOid))),
+            method: 'PUT',
+            headers: headerParameters,
+            query: queryParameters,
+            body: CustomReportAnalysisRequestToJSON(requestParameters.analyzeRequest),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => CustomReportAnalysisResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Analyze a custom report on the UltraCart account. 
+     * Analyze a custom report
+     */
+    async analyzeCustomReport(requestParameters: AnalyzeCustomReportRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomReportAnalysisResponse> {
+        const response = await this.analyzeCustomReportRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
 
     /**
      * Delete a custom dashboard on the UltraCart account. 
@@ -1196,6 +1295,47 @@ export class DatawarehouseApi extends runtime.BaseAPI implements DatawarehouseAp
      */
     async getCustomReportAccountConfig(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomReportAccountConfigResponse> {
         const response = await this.getCustomReportAccountConfigRaw(initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Upload a PNG of a custom report chart 
+     * Upload a PNG of a custom report chart
+     */
+    async getCustomReportChartPngUploadUrlRaw(requestParameters: GetCustomReportChartPngUploadUrlRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CustomReportChartPngUploadResponse>> {
+        if (requestParameters.customReportOid === null || requestParameters.customReportOid === undefined) {
+            throw new runtime.RequiredError('customReportOid','Required parameter requestParameters.customReportOid was null or undefined when calling getCustomReportChartPngUploadUrl.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", []);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/datawarehouse/custom_reports/{custom_report_oid}/chart_png`.replace(`{${"custom_report_oid"}}`, encodeURIComponent(String(requestParameters.customReportOid))),
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => CustomReportChartPngUploadResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Upload a PNG of a custom report chart 
+     * Upload a PNG of a custom report chart
+     */
+    async getCustomReportChartPngUploadUrl(requestParameters: GetCustomReportChartPngUploadUrlRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomReportChartPngUploadResponse> {
+        const response = await this.getCustomReportChartPngUploadUrlRaw(requestParameters, initOverrides);
         return await response.value();
     }
 

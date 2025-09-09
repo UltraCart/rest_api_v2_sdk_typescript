@@ -87,6 +87,9 @@ import {
     OrdersResponse,
     OrdersResponseFromJSON,
     OrdersResponseToJSON,
+    ReplaceOrderItemIdRequest,
+    ReplaceOrderItemIdRequestFromJSON,
+    ReplaceOrderItemIdRequestToJSON,
 } from '../models';
 
 export interface AdjustOrderTotalRequest {
@@ -226,6 +229,12 @@ export interface RefundOrderRequest {
     reverseAffiliateTransactions?: boolean;
     issueStoreCredit?: boolean;
     autoOrderCancelReason?: string;
+    expand?: string;
+}
+
+export interface ReplaceOrderItemMerchantItemIdRequest {
+    orderId: string;
+    replaceOrderItemIdRequest: ReplaceOrderItemIdRequest;
     expand?: string;
 }
 
@@ -673,6 +682,24 @@ export interface OrderApiInterface {
      * Refund an order
      */
     refundOrder(requestParameters: RefundOrderRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<OrderResponse>;
+
+    /**
+     * Replaces a single order item id with another merchant_item_id, leaving all other attributes and properties unchanged.  A custom method requested by a merchant to allow for item id updates due to shipping errors.  It is doubtful you will ever need this method.  The expansion variable affects the returned order object. 
+     * @summary Replaces an order item id
+     * @param {string} orderId The order id to update.
+     * @param {ReplaceOrderItemIdRequest} replaceOrderItemIdRequest Replacement Request
+     * @param {string} [expand] The object expansion to perform on the result.  See documentation for examples
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof OrderApiInterface
+     */
+    replaceOrderItemMerchantItemIdRaw(requestParameters: ReplaceOrderItemMerchantItemIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<OrderResponse>>;
+
+    /**
+     * Replaces a single order item id with another merchant_item_id, leaving all other attributes and properties unchanged.  A custom method requested by a merchant to allow for item id updates due to shipping errors.  It is doubtful you will ever need this method.  The expansion variable affects the returned order object. 
+     * Replaces an order item id
+     */
+    replaceOrderItemMerchantItemId(requestParameters: ReplaceOrderItemMerchantItemIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<OrderResponse>;
 
     /**
      * Create a replacement order based upon a previous order 
@@ -1934,6 +1961,58 @@ export class OrderApi extends runtime.BaseAPI implements OrderApiInterface {
      */
     async refundOrder(requestParameters: RefundOrderRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<OrderResponse> {
         const response = await this.refundOrderRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Replaces a single order item id with another merchant_item_id, leaving all other attributes and properties unchanged.  A custom method requested by a merchant to allow for item id updates due to shipping errors.  It is doubtful you will ever need this method.  The expansion variable affects the returned order object. 
+     * Replaces an order item id
+     */
+    async replaceOrderItemMerchantItemIdRaw(requestParameters: ReplaceOrderItemMerchantItemIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<OrderResponse>> {
+        if (requestParameters.orderId === null || requestParameters.orderId === undefined) {
+            throw new runtime.RequiredError('orderId','Required parameter requestParameters.orderId was null or undefined when calling replaceOrderItemMerchantItemId.');
+        }
+
+        if (requestParameters.replaceOrderItemIdRequest === null || requestParameters.replaceOrderItemIdRequest === undefined) {
+            throw new runtime.RequiredError('replaceOrderItemIdRequest','Required parameter requestParameters.replaceOrderItemIdRequest was null or undefined when calling replaceOrderItemMerchantItemId.');
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters.expand !== undefined) {
+            queryParameters['_expand'] = requestParameters.expand;
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json; charset=UTF-8';
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", ["order_write"]);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/order/orders/{order_id}/replace_item_id`.replace(`{${"order_id"}}`, encodeURIComponent(String(requestParameters.orderId))),
+            method: 'PUT',
+            headers: headerParameters,
+            query: queryParameters,
+            body: ReplaceOrderItemIdRequestToJSON(requestParameters.replaceOrderItemIdRequest),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => OrderResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Replaces a single order item id with another merchant_item_id, leaving all other attributes and properties unchanged.  A custom method requested by a merchant to allow for item id updates due to shipping errors.  It is doubtful you will ever need this method.  The expansion variable affects the returned order object. 
+     * Replaces an order item id
+     */
+    async replaceOrderItemMerchantItemId(requestParameters: ReplaceOrderItemMerchantItemIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<OrderResponse> {
+        const response = await this.replaceOrderItemMerchantItemIdRaw(requestParameters, initOverrides);
         return await response.value();
     }
 

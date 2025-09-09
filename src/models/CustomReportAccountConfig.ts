@@ -63,6 +63,12 @@ export interface CustomReportAccountConfig {
     opt_in_date?: string;
     /**
      * 
+     * @type {boolean}
+     * @memberof CustomReportAccountConfig
+     */
+    read_only?: boolean;
+    /**
+     * 
      * @type {number}
      * @memberof CustomReportAccountConfig
      */
@@ -103,6 +109,7 @@ export function CustomReportAccountConfigFromJSONTyped(json: any, ignoreDiscrimi
         'opt_in': !exists(json, 'opt_in') ? undefined : json['opt_in'],
         'opt_in_by_user': !exists(json, 'opt_in_by_user') ? undefined : json['opt_in_by_user'],
         'opt_in_date': !exists(json, 'opt_in_date') ? undefined : json['opt_in_date'],
+        'read_only': !exists(json, 'read_only') ? undefined : json['read_only'],
         'sql_budget': !exists(json, 'sql_budget') ? undefined : json['sql_budget'],
         'sql_usage': !exists(json, 'sql_usage') ? undefined : json['sql_usage'],
     };
@@ -124,6 +131,7 @@ export function CustomReportAccountConfigToJSON(value?: CustomReportAccountConfi
         'opt_in': value.opt_in,
         'opt_in_by_user': value.opt_in_by_user,
         'opt_in_date': value.opt_in_date,
+        'read_only': value.read_only,
         'sql_budget': value.sql_budget,
         'sql_usage': value.sql_usage,
     };

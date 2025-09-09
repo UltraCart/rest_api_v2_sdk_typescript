@@ -338,6 +338,9 @@ src/models/CustomDashboardsResponse.ts
 src/models/CustomReport.ts
 src/models/CustomReportAccountConfig.ts
 src/models/CustomReportAccountConfigResponse.ts
+src/models/CustomReportAnalysisRequest.ts
+src/models/CustomReportAnalysisResponse.ts
+src/models/CustomReportChartPngUploadResponse.ts
 src/models/CustomReportExecutionParameter.ts
 src/models/CustomReportExecutionRequest.ts
 src/models/CustomReportExecutionResponse.ts
@@ -744,6 +747,7 @@ src/models/Property.ts
 src/models/PublishLibraryItemRequest.ts
 src/models/RegisterAffiliateClickRequest.ts
 src/models/RegisterAffiliateClickResponse.ts
+src/models/ReplaceOrderItemIdRequest.ts
 src/models/Report.ts
 src/models/ReportAuth.ts
 src/models/ReportAuthResponse.ts
