@@ -14495,6 +14495,12 @@ export interface CustomReportAccountConfig {
     opt_in_date?: string;
     /**
      *
+     * @type {boolean}
+     * @memberof CustomReportAccountConfig
+     */
+    read_only?: boolean;
+    /**
+     *
      * @type {number}
      * @memberof CustomReportAccountConfig
      */
@@ -14540,6 +14546,105 @@ export interface CustomReportAccountConfigResponse {
      *
      * @type {Warning}
      * @memberof CustomReportAccountConfigResponse
+     */
+    warning?: Warning;
+}
+/**
+ *
+ * @export
+ * @interface CustomReportAnalysisRequest
+ */
+export interface CustomReportAnalysisRequest {
+    /**
+     *
+     * @type {string}
+     * @memberof CustomReportAnalysisRequest
+     */
+    png_url?: string;
+    /**
+     *
+     * @type {string}
+     * @memberof CustomReportAnalysisRequest
+     */
+    result_url?: string;
+}
+/**
+ *
+ * @export
+ * @interface CustomReportAnalysisResponse
+ */
+export interface CustomReportAnalysisResponse {
+    /**
+     *
+     * @type {ModelError}
+     * @memberof CustomReportAnalysisResponse
+     */
+    error?: ModelError;
+    /**
+     *
+     * @type {string}
+     * @memberof CustomReportAnalysisResponse
+     */
+    html?: string;
+    /**
+     *
+     * @type {ResponseMetadata}
+     * @memberof CustomReportAnalysisResponse
+     */
+    metadata?: ResponseMetadata;
+    /**
+     * Indicates if API call was successful
+     * @type {boolean}
+     * @memberof CustomReportAnalysisResponse
+     */
+    success?: boolean;
+    /**
+     *
+     * @type {Warning}
+     * @memberof CustomReportAnalysisResponse
+     */
+    warning?: Warning;
+}
+/**
+ *
+ * @export
+ * @interface CustomReportChartPngUploadResponse
+ */
+export interface CustomReportChartPngUploadResponse {
+    /**
+     *
+     * @type {ModelError}
+     * @memberof CustomReportChartPngUploadResponse
+     */
+    error?: ModelError;
+    /**
+     *
+     * @type {ResponseMetadata}
+     * @memberof CustomReportChartPngUploadResponse
+     */
+    metadata?: ResponseMetadata;
+    /**
+     *
+     * @type {string}
+     * @memberof CustomReportChartPngUploadResponse
+     */
+    signed_download_url?: string;
+    /**
+     *
+     * @type {string}
+     * @memberof CustomReportChartPngUploadResponse
+     */
+    signed_upload_url?: string;
+    /**
+     * Indicates if API call was successful
+     * @type {boolean}
+     * @memberof CustomReportChartPngUploadResponse
+     */
+    success?: boolean;
+    /**
+     *
+     * @type {Warning}
+     * @memberof CustomReportChartPngUploadResponse
      */
     warning?: Warning;
 }
@@ -30777,7 +30882,7 @@ export interface ItemShippingPackageRequirement {
  */
 export interface ItemTag {
     /**
-     * tag_tpe
+     * tag_type
      * @type {string}
      * @memberof ItemTag
      */
@@ -37678,6 +37783,37 @@ export interface RegisterAffiliateClickResponse {
      * @memberof RegisterAffiliateClickResponse
      */
     registered?: boolean;
+}
+/**
+ *
+ * @export
+ * @interface ReplaceOrderItemIdRequest
+ */
+export interface ReplaceOrderItemIdRequest {
+    /**
+     * Index of the item on the order (one based index)
+     * @type {number}
+     * @memberof ReplaceOrderItemIdRequest
+     */
+    item_index?: number;
+    /**
+     * Item ID
+     * @type {string}
+     * @memberof ReplaceOrderItemIdRequest
+     */
+    merchant_item_id?: string;
+    /**
+     * Order ID
+     * @type {string}
+     * @memberof ReplaceOrderItemIdRequest
+     */
+    order_id?: string;
+    /**
+     * Replacement Item ID
+     * @type {string}
+     * @memberof ReplaceOrderItemIdRequest
+     */
+    replacement_merchant_item_id?: string;
 }
 /**
  *
@@ -53908,6 +54044,15 @@ export declare class CustomerApi extends BaseAPI implements CustomerApiInterface
  */
 export declare const DatawarehouseApiFetchParamCreator: (configuration?: Configuration) => {
     /**
+     * Analyze a custom report on the UltraCart account.
+     * @summary Analyze a custom report
+     * @param {CustomReportAnalysisRequest} analyze_request Request to analyze custom report
+     * @param {number} custom_report_oid The report oid to analyze.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    analyzeCustomReport(analyze_request: CustomReportAnalysisRequest, custom_report_oid: number, options?: any): FetchArgs;
+    /**
      * Delete a custom dashboard on the UltraCart account.
      * @summary Delete a custom dashboard
      * @param {number} custom_dashboard_oid The dashboard oid to delete.
@@ -54011,6 +54156,14 @@ export declare const DatawarehouseApiFetchParamCreator: (configuration?: Configu
      * @throws {RequiredError}
      */
     getCustomReportAccountConfig(options?: any): FetchArgs;
+    /**
+     * Upload a PNG of a custom report chart
+     * @summary Upload a PNG of a custom report chart
+     * @param {number} custom_report_oid The report oid to upload a chart PNG for.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getCustomReportChartPngUploadUrl(custom_report_oid: number, options?: any): FetchArgs;
     /**
      * Retrieve a custom reports
      * @summary Get custom reports
@@ -54142,6 +54295,15 @@ export declare const DatawarehouseApiFetchParamCreator: (configuration?: Configu
  */
 export declare const DatawarehouseApiFp: (configuration?: Configuration) => {
     /**
+     * Analyze a custom report on the UltraCart account.
+     * @summary Analyze a custom report
+     * @param {CustomReportAnalysisRequest} analyze_request Request to analyze custom report
+     * @param {number} custom_report_oid The report oid to analyze.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    analyzeCustomReport(analyze_request: CustomReportAnalysisRequest, custom_report_oid: number, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<CustomReportAnalysisResponse>;
+    /**
      * Delete a custom dashboard on the UltraCart account.
      * @summary Delete a custom dashboard
      * @param {number} custom_dashboard_oid The dashboard oid to delete.
@@ -54245,6 +54407,14 @@ export declare const DatawarehouseApiFp: (configuration?: Configuration) => {
      * @throws {RequiredError}
      */
     getCustomReportAccountConfig(options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<CustomReportAccountConfigResponse>;
+    /**
+     * Upload a PNG of a custom report chart
+     * @summary Upload a PNG of a custom report chart
+     * @param {number} custom_report_oid The report oid to upload a chart PNG for.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getCustomReportChartPngUploadUrl(custom_report_oid: number, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<CustomReportChartPngUploadResponse>;
     /**
      * Retrieve a custom reports
      * @summary Get custom reports
@@ -54376,6 +54546,15 @@ export declare const DatawarehouseApiFp: (configuration?: Configuration) => {
  */
 export declare const DatawarehouseApiFactory: (configuration?: Configuration, fetch?: FetchAPI, basePath?: string) => {
     /**
+     * Analyze a custom report on the UltraCart account.
+     * @summary Analyze a custom report
+     * @param {CustomReportAnalysisRequest} analyze_request Request to analyze custom report
+     * @param {number} custom_report_oid The report oid to analyze.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    analyzeCustomReport(analyze_request: CustomReportAnalysisRequest, custom_report_oid: number, options?: any): Promise<CustomReportAnalysisResponse>;
+    /**
      * Delete a custom dashboard on the UltraCart account.
      * @summary Delete a custom dashboard
      * @param {number} custom_dashboard_oid The dashboard oid to delete.
@@ -54479,6 +54658,14 @@ export declare const DatawarehouseApiFactory: (configuration?: Configuration, fe
      * @throws {RequiredError}
      */
     getCustomReportAccountConfig(options?: any): Promise<CustomReportAccountConfigResponse>;
+    /**
+     * Upload a PNG of a custom report chart
+     * @summary Upload a PNG of a custom report chart
+     * @param {number} custom_report_oid The report oid to upload a chart PNG for.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getCustomReportChartPngUploadUrl(custom_report_oid: number, options?: any): Promise<CustomReportChartPngUploadResponse>;
     /**
      * Retrieve a custom reports
      * @summary Get custom reports
@@ -54611,6 +54798,16 @@ export declare const DatawarehouseApiFactory: (configuration?: Configuration, fe
  */
 export interface DatawarehouseApiInterface {
     /**
+     * Analyze a custom report on the UltraCart account.
+     * @summary Analyze a custom report
+     * @param {CustomReportAnalysisRequest} analyze_request Request to analyze custom report
+     * @param {number} custom_report_oid The report oid to analyze.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DatawarehouseApiInterface
+     */
+    analyzeCustomReport(analyze_request: CustomReportAnalysisRequest, custom_report_oid: number, options?: any): Promise<CustomReportAnalysisResponse>;
+    /**
      * Delete a custom dashboard on the UltraCart account.
      * @summary Delete a custom dashboard
      * @param {number} custom_dashboard_oid The dashboard oid to delete.
@@ -54727,6 +54924,15 @@ export interface DatawarehouseApiInterface {
      * @memberof DatawarehouseApiInterface
      */
     getCustomReportAccountConfig(options?: any): Promise<CustomReportAccountConfigResponse>;
+    /**
+     * Upload a PNG of a custom report chart
+     * @summary Upload a PNG of a custom report chart
+     * @param {number} custom_report_oid The report oid to upload a chart PNG for.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DatawarehouseApiInterface
+     */
+    getCustomReportChartPngUploadUrl(custom_report_oid: number, options?: any): Promise<CustomReportChartPngUploadResponse>;
     /**
      * Retrieve a custom reports
      * @summary Get custom reports
@@ -54875,6 +55081,16 @@ export interface DatawarehouseApiInterface {
  */
 export declare class DatawarehouseApi extends BaseAPI implements DatawarehouseApiInterface {
     /**
+     * Analyze a custom report on the UltraCart account.
+     * @summary Analyze a custom report
+     * @param {CustomReportAnalysisRequest} analyze_request Request to analyze custom report
+     * @param {number} custom_report_oid The report oid to analyze.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DatawarehouseApi
+     */
+    analyzeCustomReport(analyze_request: CustomReportAnalysisRequest, custom_report_oid: number, options?: any): Promise<CustomReportAnalysisResponse>;
+    /**
      * Delete a custom dashboard on the UltraCart account.
      * @summary Delete a custom dashboard
      * @param {number} custom_dashboard_oid The dashboard oid to delete.
@@ -54991,6 +55207,15 @@ export declare class DatawarehouseApi extends BaseAPI implements DatawarehouseAp
      * @memberof DatawarehouseApi
      */
     getCustomReportAccountConfig(options?: any): Promise<CustomReportAccountConfigResponse>;
+    /**
+     * Upload a PNG of a custom report chart
+     * @summary Upload a PNG of a custom report chart
+     * @param {number} custom_report_oid The report oid to upload a chart PNG for.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DatawarehouseApi
+     */
+    getCustomReportChartPngUploadUrl(custom_report_oid: number, options?: any): Promise<CustomReportChartPngUploadResponse>;
     /**
      * Retrieve a custom reports
      * @summary Get custom reports
@@ -57671,6 +57896,16 @@ export declare const OrderApiFetchParamCreator: (configuration?: Configuration) 
      */
     refundOrder(order: Order, order_id: string, reject_after_refund?: boolean, skip_customer_notification?: boolean, auto_order_cancel?: boolean, manual_refund?: boolean, reverse_affiliate_transactions?: boolean, issue_store_credit?: boolean, auto_order_cancel_reason?: string, _expand?: string, options?: any): FetchArgs;
     /**
+     * Replaces a single order item id with another merchant_item_id, leaving all other attributes and properties unchanged.  A custom method requested by a merchant to allow for item id updates due to shipping errors.  It is doubtful you will ever need this method.  The expansion variable affects the returned order object.
+     * @summary Replaces an order item id
+     * @param {ReplaceOrderItemIdRequest} replace_order_item_id_request Replacement Request
+     * @param {string} order_id The order id to update.
+     * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    replaceOrderItemMerchantItemId(replace_order_item_id_request: ReplaceOrderItemIdRequest, order_id: string, _expand?: string, options?: any): FetchArgs;
+    /**
      * Create a replacement order based upon a previous order
      * @summary Replacement order
      * @param {string} order_id The order id to generate a replacement for.
@@ -57967,6 +58202,16 @@ export declare const OrderApiFp: (configuration?: Configuration) => {
      */
     refundOrder(order: Order, order_id: string, reject_after_refund?: boolean, skip_customer_notification?: boolean, auto_order_cancel?: boolean, manual_refund?: boolean, reverse_affiliate_transactions?: boolean, issue_store_credit?: boolean, auto_order_cancel_reason?: string, _expand?: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<OrderResponse>;
     /**
+     * Replaces a single order item id with another merchant_item_id, leaving all other attributes and properties unchanged.  A custom method requested by a merchant to allow for item id updates due to shipping errors.  It is doubtful you will ever need this method.  The expansion variable affects the returned order object.
+     * @summary Replaces an order item id
+     * @param {ReplaceOrderItemIdRequest} replace_order_item_id_request Replacement Request
+     * @param {string} order_id The order id to update.
+     * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    replaceOrderItemMerchantItemId(replace_order_item_id_request: ReplaceOrderItemIdRequest, order_id: string, _expand?: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<OrderResponse>;
+    /**
      * Create a replacement order based upon a previous order
      * @summary Replacement order
      * @param {string} order_id The order id to generate a replacement for.
@@ -58262,6 +58507,16 @@ export declare const OrderApiFactory: (configuration?: Configuration, fetch?: Fe
      * @throws {RequiredError}
      */
     refundOrder(order: Order, order_id: string, reject_after_refund?: boolean, skip_customer_notification?: boolean, auto_order_cancel?: boolean, manual_refund?: boolean, reverse_affiliate_transactions?: boolean, issue_store_credit?: boolean, auto_order_cancel_reason?: string, _expand?: string, options?: any): Promise<OrderResponse>;
+    /**
+     * Replaces a single order item id with another merchant_item_id, leaving all other attributes and properties unchanged.  A custom method requested by a merchant to allow for item id updates due to shipping errors.  It is doubtful you will ever need this method.  The expansion variable affects the returned order object.
+     * @summary Replaces an order item id
+     * @param {ReplaceOrderItemIdRequest} replace_order_item_id_request Replacement Request
+     * @param {string} order_id The order id to update.
+     * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    replaceOrderItemMerchantItemId(replace_order_item_id_request: ReplaceOrderItemIdRequest, order_id: string, _expand?: string, options?: any): Promise<OrderResponse>;
     /**
      * Create a replacement order based upon a previous order
      * @summary Replacement order
@@ -58581,6 +58836,17 @@ export interface OrderApiInterface {
      * @memberof OrderApiInterface
      */
     refundOrder(order: Order, order_id: string, reject_after_refund?: boolean, skip_customer_notification?: boolean, auto_order_cancel?: boolean, manual_refund?: boolean, reverse_affiliate_transactions?: boolean, issue_store_credit?: boolean, auto_order_cancel_reason?: string, _expand?: string, options?: any): Promise<OrderResponse>;
+    /**
+     * Replaces a single order item id with another merchant_item_id, leaving all other attributes and properties unchanged.  A custom method requested by a merchant to allow for item id updates due to shipping errors.  It is doubtful you will ever need this method.  The expansion variable affects the returned order object.
+     * @summary Replaces an order item id
+     * @param {ReplaceOrderItemIdRequest} replace_order_item_id_request Replacement Request
+     * @param {string} order_id The order id to update.
+     * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof OrderApiInterface
+     */
+    replaceOrderItemMerchantItemId(replace_order_item_id_request: ReplaceOrderItemIdRequest, order_id: string, _expand?: string, options?: any): Promise<OrderResponse>;
     /**
      * Create a replacement order based upon a previous order
      * @summary Replacement order
@@ -58908,6 +59174,17 @@ export declare class OrderApi extends BaseAPI implements OrderApiInterface {
      * @memberof OrderApi
      */
     refundOrder(order: Order, order_id: string, reject_after_refund?: boolean, skip_customer_notification?: boolean, auto_order_cancel?: boolean, manual_refund?: boolean, reverse_affiliate_transactions?: boolean, issue_store_credit?: boolean, auto_order_cancel_reason?: string, _expand?: string, options?: any): Promise<OrderResponse>;
+    /**
+     * Replaces a single order item id with another merchant_item_id, leaving all other attributes and properties unchanged.  A custom method requested by a merchant to allow for item id updates due to shipping errors.  It is doubtful you will ever need this method.  The expansion variable affects the returned order object.
+     * @summary Replaces an order item id
+     * @param {ReplaceOrderItemIdRequest} replace_order_item_id_request Replacement Request
+     * @param {string} order_id The order id to update.
+     * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof OrderApi
+     */
+    replaceOrderItemMerchantItemId(replace_order_item_id_request: ReplaceOrderItemIdRequest, order_id: string, _expand?: string, options?: any): Promise<OrderResponse>;
     /**
      * Create a replacement order based upon a previous order
      * @summary Replacement order

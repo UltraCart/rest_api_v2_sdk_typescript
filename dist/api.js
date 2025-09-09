@@ -19424,6 +19424,60 @@ exports.CustomerApi = CustomerApi;
 var DatawarehouseApiFetchParamCreator = function (configuration) {
     return {
         /**
+         * Analyze a custom report on the UltraCart account.
+         * @summary Analyze a custom report
+         * @param {CustomReportAnalysisRequest} analyze_request Request to analyze custom report
+         * @param {number} custom_report_oid The report oid to analyze.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        analyzeCustomReport: function (analyze_request, custom_report_oid, options) {
+            if (options === void 0) { options = {}; }
+            // verify required parameter 'analyze_request' is not null or undefined
+            if (analyze_request === null || analyze_request === undefined) {
+                throw new RequiredError('analyze_request', 'Required parameter analyze_request was null or undefined when calling analyzeCustomReport.');
+            }
+            // verify required parameter 'custom_report_oid' is not null or undefined
+            if (custom_report_oid === null || custom_report_oid === undefined) {
+                throw new RequiredError('custom_report_oid', 'Required parameter custom_report_oid was null or undefined when calling analyzeCustomReport.');
+            }
+            var localVarPath = "/datawarehouse/custom_reports/{custom_report_oid}/analysis"
+                .replace("{".concat("custom_report_oid", "}"), encodeURIComponent(String(custom_report_oid)));
+            var localVarUrlObj = url.parse(localVarPath, true);
+            var localVarRequestOptions = Object.assign({ method: 'PUT' }, options);
+            var localVarHeaderParameter = {};
+            var localVarQueryParameter = {};
+            if (configuration && configuration.apiVersion) {
+                localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+            }
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+                var localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+                    ? configuration.accessToken("ultraCartOauth", [])
+                    : configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                var localVarApiKeyValue = typeof configuration.apiKey === 'function'
+                    ? configuration.apiKey("x-ultracart-simple-key")
+                    : configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+            localVarHeaderParameter['Content-Type'] = 'application/json; charset=UTF-8';
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+            var needsSerialization = ("CustomReportAnalysisRequest" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
+            localVarRequestOptions.body = needsSerialization ? JSON.stringify(analyze_request || {}) : (analyze_request || "");
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
          * Delete a custom dashboard on the UltraCart account.
          * @summary Delete a custom dashboard
          * @param {number} custom_dashboard_oid The dashboard oid to delete.
@@ -19998,6 +20052,52 @@ var DatawarehouseApiFetchParamCreator = function (configuration) {
         getCustomReportAccountConfig: function (options) {
             if (options === void 0) { options = {}; }
             var localVarPath = "/datawarehouse/custom_reports/account_config";
+            var localVarUrlObj = url.parse(localVarPath, true);
+            var localVarRequestOptions = Object.assign({ method: 'GET' }, options);
+            var localVarHeaderParameter = {};
+            var localVarQueryParameter = {};
+            if (configuration && configuration.apiVersion) {
+                localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+            }
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+                var localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+                    ? configuration.accessToken("ultraCartOauth", [])
+                    : configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                var localVarApiKeyValue = typeof configuration.apiKey === 'function'
+                    ? configuration.apiKey("x-ultracart-simple-key")
+                    : configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Upload a PNG of a custom report chart
+         * @summary Upload a PNG of a custom report chart
+         * @param {number} custom_report_oid The report oid to upload a chart PNG for.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getCustomReportChartPngUploadUrl: function (custom_report_oid, options) {
+            if (options === void 0) { options = {}; }
+            // verify required parameter 'custom_report_oid' is not null or undefined
+            if (custom_report_oid === null || custom_report_oid === undefined) {
+                throw new RequiredError('custom_report_oid', 'Required parameter custom_report_oid was null or undefined when calling getCustomReportChartPngUploadUrl.');
+            }
+            var localVarPath = "/datawarehouse/custom_reports/{custom_report_oid}/chart_png"
+                .replace("{".concat("custom_report_oid", "}"), encodeURIComponent(String(custom_report_oid)));
             var localVarUrlObj = url.parse(localVarPath, true);
             var localVarRequestOptions = Object.assign({ method: 'GET' }, options);
             var localVarHeaderParameter = {};
@@ -20771,6 +20871,29 @@ exports.DatawarehouseApiFetchParamCreator = DatawarehouseApiFetchParamCreator;
 var DatawarehouseApiFp = function (configuration) {
     return {
         /**
+         * Analyze a custom report on the UltraCart account.
+         * @summary Analyze a custom report
+         * @param {CustomReportAnalysisRequest} analyze_request Request to analyze custom report
+         * @param {number} custom_report_oid The report oid to analyze.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        analyzeCustomReport: function (analyze_request, custom_report_oid, options) {
+            var localVarFetchArgs = (0, exports.DatawarehouseApiFetchParamCreator)(configuration).analyzeCustomReport(analyze_request, custom_report_oid, options);
+            return function (fetch, basePath) {
+                if (fetch === void 0) { fetch = portableFetch; }
+                if (basePath === void 0) { basePath = BASE_PATH; }
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(function (response) {
+                    if (response.status >= 200 && response.status < 300) {
+                        return response.json();
+                    }
+                    else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
          * Delete a custom dashboard on the UltraCart account.
          * @summary Delete a custom dashboard
          * @param {number} custom_dashboard_oid The dashboard oid to delete.
@@ -21043,6 +21166,28 @@ var DatawarehouseApiFp = function (configuration) {
          */
         getCustomReportAccountConfig: function (options) {
             var localVarFetchArgs = (0, exports.DatawarehouseApiFetchParamCreator)(configuration).getCustomReportAccountConfig(options);
+            return function (fetch, basePath) {
+                if (fetch === void 0) { fetch = portableFetch; }
+                if (basePath === void 0) { basePath = BASE_PATH; }
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(function (response) {
+                    if (response.status >= 200 && response.status < 300) {
+                        return response.json();
+                    }
+                    else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
+         * Upload a PNG of a custom report chart
+         * @summary Upload a PNG of a custom report chart
+         * @param {number} custom_report_oid The report oid to upload a chart PNG for.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getCustomReportChartPngUploadUrl: function (custom_report_oid, options) {
+            var localVarFetchArgs = (0, exports.DatawarehouseApiFetchParamCreator)(configuration).getCustomReportChartPngUploadUrl(custom_report_oid, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -21400,6 +21545,17 @@ exports.DatawarehouseApiFp = DatawarehouseApiFp;
 var DatawarehouseApiFactory = function (configuration, fetch, basePath) {
     return {
         /**
+         * Analyze a custom report on the UltraCart account.
+         * @summary Analyze a custom report
+         * @param {CustomReportAnalysisRequest} analyze_request Request to analyze custom report
+         * @param {number} custom_report_oid The report oid to analyze.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        analyzeCustomReport: function (analyze_request, custom_report_oid, options) {
+            return (0, exports.DatawarehouseApiFp)(configuration).analyzeCustomReport(analyze_request, custom_report_oid, options)(fetch, basePath);
+        },
+        /**
          * Delete a custom dashboard on the UltraCart account.
          * @summary Delete a custom dashboard
          * @param {number} custom_dashboard_oid The dashboard oid to delete.
@@ -21528,6 +21684,16 @@ var DatawarehouseApiFactory = function (configuration, fetch, basePath) {
          */
         getCustomReportAccountConfig: function (options) {
             return (0, exports.DatawarehouseApiFp)(configuration).getCustomReportAccountConfig(options)(fetch, basePath);
+        },
+        /**
+         * Upload a PNG of a custom report chart
+         * @summary Upload a PNG of a custom report chart
+         * @param {number} custom_report_oid The report oid to upload a chart PNG for.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getCustomReportChartPngUploadUrl: function (custom_report_oid, options) {
+            return (0, exports.DatawarehouseApiFp)(configuration).getCustomReportChartPngUploadUrl(custom_report_oid, options)(fetch, basePath);
         },
         /**
          * Retrieve a custom reports
@@ -21698,6 +21864,18 @@ var DatawarehouseApi = /** @class */ (function (_super) {
         return _super !== null && _super.apply(this, arguments) || this;
     }
     /**
+     * Analyze a custom report on the UltraCart account.
+     * @summary Analyze a custom report
+     * @param {CustomReportAnalysisRequest} analyze_request Request to analyze custom report
+     * @param {number} custom_report_oid The report oid to analyze.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DatawarehouseApi
+     */
+    DatawarehouseApi.prototype.analyzeCustomReport = function (analyze_request, custom_report_oid, options) {
+        return (0, exports.DatawarehouseApiFp)(this.configuration).analyzeCustomReport(analyze_request, custom_report_oid, options)(this.fetch, this.basePath);
+    };
+    /**
      * Delete a custom dashboard on the UltraCart account.
      * @summary Delete a custom dashboard
      * @param {number} custom_dashboard_oid The dashboard oid to delete.
@@ -21839,6 +22017,17 @@ var DatawarehouseApi = /** @class */ (function (_super) {
      */
     DatawarehouseApi.prototype.getCustomReportAccountConfig = function (options) {
         return (0, exports.DatawarehouseApiFp)(this.configuration).getCustomReportAccountConfig(options)(this.fetch, this.basePath);
+    };
+    /**
+     * Upload a PNG of a custom report chart
+     * @summary Upload a PNG of a custom report chart
+     * @param {number} custom_report_oid The report oid to upload a chart PNG for.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DatawarehouseApi
+     */
+    DatawarehouseApi.prototype.getCustomReportChartPngUploadUrl = function (custom_report_oid, options) {
+        return (0, exports.DatawarehouseApiFp)(this.configuration).getCustomReportChartPngUploadUrl(custom_report_oid, options)(this.fetch, this.basePath);
     };
     /**
      * Retrieve a custom reports
@@ -27893,6 +28082,64 @@ var OrderApiFetchParamCreator = function (configuration) {
             };
         },
         /**
+         * Replaces a single order item id with another merchant_item_id, leaving all other attributes and properties unchanged.  A custom method requested by a merchant to allow for item id updates due to shipping errors.  It is doubtful you will ever need this method.  The expansion variable affects the returned order object.
+         * @summary Replaces an order item id
+         * @param {ReplaceOrderItemIdRequest} replace_order_item_id_request Replacement Request
+         * @param {string} order_id The order id to update.
+         * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        replaceOrderItemMerchantItemId: function (replace_order_item_id_request, order_id, _expand, options) {
+            if (options === void 0) { options = {}; }
+            // verify required parameter 'replace_order_item_id_request' is not null or undefined
+            if (replace_order_item_id_request === null || replace_order_item_id_request === undefined) {
+                throw new RequiredError('replace_order_item_id_request', 'Required parameter replace_order_item_id_request was null or undefined when calling replaceOrderItemMerchantItemId.');
+            }
+            // verify required parameter 'order_id' is not null or undefined
+            if (order_id === null || order_id === undefined) {
+                throw new RequiredError('order_id', 'Required parameter order_id was null or undefined when calling replaceOrderItemMerchantItemId.');
+            }
+            var localVarPath = "/order/orders/{order_id}/replace_item_id"
+                .replace("{".concat("order_id", "}"), encodeURIComponent(String(order_id)));
+            var localVarUrlObj = url.parse(localVarPath, true);
+            var localVarRequestOptions = Object.assign({ method: 'PUT' }, options);
+            var localVarHeaderParameter = {};
+            var localVarQueryParameter = {};
+            if (configuration && configuration.apiVersion) {
+                localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+            }
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+                var localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+                    ? configuration.accessToken("ultraCartOauth", ["order_write"])
+                    : configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                var localVarApiKeyValue = typeof configuration.apiKey === 'function'
+                    ? configuration.apiKey("x-ultracart-simple-key")
+                    : configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+            if (_expand !== undefined) {
+                localVarQueryParameter['_expand'] = _expand;
+            }
+            localVarHeaderParameter['Content-Type'] = 'application/json; charset=UTF-8';
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+            var needsSerialization = ("ReplaceOrderItemIdRequest" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
+            localVarRequestOptions.body = needsSerialization ? JSON.stringify(replace_order_item_id_request || {}) : (replace_order_item_id_request || "");
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
          * Create a replacement order based upon a previous order
          * @summary Replacement order
          * @param {string} order_id The order id to generate a replacement for.
@@ -28787,6 +29034,30 @@ var OrderApiFp = function (configuration) {
             };
         },
         /**
+         * Replaces a single order item id with another merchant_item_id, leaving all other attributes and properties unchanged.  A custom method requested by a merchant to allow for item id updates due to shipping errors.  It is doubtful you will ever need this method.  The expansion variable affects the returned order object.
+         * @summary Replaces an order item id
+         * @param {ReplaceOrderItemIdRequest} replace_order_item_id_request Replacement Request
+         * @param {string} order_id The order id to update.
+         * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        replaceOrderItemMerchantItemId: function (replace_order_item_id_request, order_id, _expand, options) {
+            var localVarFetchArgs = (0, exports.OrderApiFetchParamCreator)(configuration).replaceOrderItemMerchantItemId(replace_order_item_id_request, order_id, _expand, options);
+            return function (fetch, basePath) {
+                if (fetch === void 0) { fetch = portableFetch; }
+                if (basePath === void 0) { basePath = BASE_PATH; }
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(function (response) {
+                    if (response.status >= 200 && response.status < 300) {
+                        return response.json();
+                    }
+                    else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
          * Create a replacement order based upon a previous order
          * @summary Replacement order
          * @param {string} order_id The order id to generate a replacement for.
@@ -29228,6 +29499,18 @@ var OrderApiFactory = function (configuration, fetch, basePath) {
             return (0, exports.OrderApiFp)(configuration).refundOrder(order, order_id, reject_after_refund, skip_customer_notification, auto_order_cancel, manual_refund, reverse_affiliate_transactions, issue_store_credit, auto_order_cancel_reason, _expand, options)(fetch, basePath);
         },
         /**
+         * Replaces a single order item id with another merchant_item_id, leaving all other attributes and properties unchanged.  A custom method requested by a merchant to allow for item id updates due to shipping errors.  It is doubtful you will ever need this method.  The expansion variable affects the returned order object.
+         * @summary Replaces an order item id
+         * @param {ReplaceOrderItemIdRequest} replace_order_item_id_request Replacement Request
+         * @param {string} order_id The order id to update.
+         * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        replaceOrderItemMerchantItemId: function (replace_order_item_id_request, order_id, _expand, options) {
+            return (0, exports.OrderApiFp)(configuration).replaceOrderItemMerchantItemId(replace_order_item_id_request, order_id, _expand, options)(fetch, basePath);
+        },
+        /**
          * Create a replacement order based upon a previous order
          * @summary Replacement order
          * @param {string} order_id The order id to generate a replacement for.
@@ -29610,6 +29893,19 @@ var OrderApi = /** @class */ (function (_super) {
      */
     OrderApi.prototype.refundOrder = function (order, order_id, reject_after_refund, skip_customer_notification, auto_order_cancel, manual_refund, reverse_affiliate_transactions, issue_store_credit, auto_order_cancel_reason, _expand, options) {
         return (0, exports.OrderApiFp)(this.configuration).refundOrder(order, order_id, reject_after_refund, skip_customer_notification, auto_order_cancel, manual_refund, reverse_affiliate_transactions, issue_store_credit, auto_order_cancel_reason, _expand, options)(this.fetch, this.basePath);
+    };
+    /**
+     * Replaces a single order item id with another merchant_item_id, leaving all other attributes and properties unchanged.  A custom method requested by a merchant to allow for item id updates due to shipping errors.  It is doubtful you will ever need this method.  The expansion variable affects the returned order object.
+     * @summary Replaces an order item id
+     * @param {ReplaceOrderItemIdRequest} replace_order_item_id_request Replacement Request
+     * @param {string} order_id The order id to update.
+     * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof OrderApi
+     */
+    OrderApi.prototype.replaceOrderItemMerchantItemId = function (replace_order_item_id_request, order_id, _expand, options) {
+        return (0, exports.OrderApiFp)(this.configuration).replaceOrderItemMerchantItemId(replace_order_item_id_request, order_id, _expand, options)(this.fetch, this.basePath);
     };
     /**
      * Create a replacement order based upon a previous order
