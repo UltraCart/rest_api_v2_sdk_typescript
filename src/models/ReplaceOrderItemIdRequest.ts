@@ -20,7 +20,7 @@ import { exists, mapValues } from '../runtime';
  */
 export interface ReplaceOrderItemIdRequest {
     /**
-     * Index of the item on the order (one based index)
+     * Index of the item on the order.  Must match order.items[].item_index
      * @type {number}
      * @memberof ReplaceOrderItemIdRequest
      */

@@ -267,6 +267,12 @@ export interface Customer {
      */
     exempt_shipping_handling_charge?: boolean;
     /**
+     * Fax Number
+     * @type {string}
+     * @memberof Customer
+     */
+    fax?: string;
+    /**
      * FedEx account number
      * @type {string}
      * @memberof Customer
@@ -558,6 +564,7 @@ export function CustomerFromJSONTyped(json: any, ignoreDiscriminator: boolean): 
         'edi': !exists(json, 'edi') ? undefined : CustomerEDIFromJSON(json['edi']),
         'email': !exists(json, 'email') ? undefined : json['email'],
         'exempt_shipping_handling_charge': !exists(json, 'exempt_shipping_handling_charge') ? undefined : json['exempt_shipping_handling_charge'],
+        'fax': !exists(json, 'fax') ? undefined : json['fax'],
         'fedex_account_number': !exists(json, 'fedex_account_number') ? undefined : json['fedex_account_number'],
         'free_shipping': !exists(json, 'free_shipping') ? undefined : json['free_shipping'],
         'free_shipping_minimum': !exists(json, 'free_shipping_minimum') ? undefined : json['free_shipping_minimum'],
@@ -634,6 +641,7 @@ export function CustomerToJSON(value?: Customer | null): any {
         'edi': CustomerEDIToJSON(value.edi),
         'email': value.email,
         'exempt_shipping_handling_charge': value.exempt_shipping_handling_charge,
+        'fax': value.fax,
         'fedex_account_number': value.fedex_account_number,
         'free_shipping': value.free_shipping,
         'free_shipping_minimum': value.free_shipping_minimum,

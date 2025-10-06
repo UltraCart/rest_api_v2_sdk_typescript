@@ -1,12 +1,12 @@
 # UltraCart Typescript SDK
-## ultracart_rest_api_v2_typescript@4.1.21
+## ultracart_rest_api_v2_typescript@4.1.22
 
 Every API method call has a sample for every language SDK.  See https://github.com/UltraCart/sdk_samples
 
 Installation
 
 ```
-npm install ultracart_rest_api_v2_typescript@4.1.21 --save
+npm install ultracart_rest_api_v2_typescript@4.1.22 --save
 ```
 
 ```typescript
@@ -85,6 +85,7 @@ Not every change is committed to every SDK.
 
 | Version | Date | Comments |
 | --: | :-: | --- |
+| 4.1.22 | 10/06/2025 | added Customer.fax back into object model |
 | 4.1.21 | 09/09/2025 | added OrderRestApi.replaceOrderItemMerchantItemId |
 | 4.1.20 | 08/18/2025 | storefront communiations - campaign repeat flags |
 | 4.1.19 | 08/04/2025 | conversations api - add zoho departments to getCapabilities call |

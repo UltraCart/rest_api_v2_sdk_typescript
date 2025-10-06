@@ -104,6 +104,12 @@ export interface ItemShippingMethod {
      */
     shipping_method_validity?: ItemShippingMethodShippingMethodValidityEnum;
     /**
+     * Ships separately
+     * @type {boolean}
+     * @memberof ItemShippingMethod
+     */
+    ships_separately?: boolean;
+    /**
      * Signature required
      * @type {boolean}
      * @memberof ItemShippingMethod
@@ -157,6 +163,7 @@ export function ItemShippingMethodFromJSONTyped(json: any, ignoreDiscriminator: 
         'shipping_method': !exists(json, 'shipping_method') ? undefined : json['shipping_method'],
         'shipping_method_oid': !exists(json, 'shipping_method_oid') ? undefined : json['shipping_method_oid'],
         'shipping_method_validity': !exists(json, 'shipping_method_validity') ? undefined : json['shipping_method_validity'],
+        'ships_separately': !exists(json, 'ships_separately') ? undefined : json['ships_separately'],
         'signature_required': !exists(json, 'signature_required') ? undefined : json['signature_required'],
     };
 }
@@ -184,6 +191,7 @@ export function ItemShippingMethodToJSON(value?: ItemShippingMethod | null): any
         'shipping_method': value.shipping_method,
         'shipping_method_oid': value.shipping_method_oid,
         'shipping_method_validity': value.shipping_method_validity,
+        'ships_separately': value.ships_separately,
         'signature_required': value.signature_required,
     };
 }

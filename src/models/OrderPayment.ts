@@ -210,6 +210,7 @@ export const OrderPaymentPaymentMethodEnum = {
     Check: 'Check',
     Cod: 'COD',
     CreditCard: 'Credit Card',
+    Crypto: 'Crypto',
     EBay: 'eBay',
     ECheck: 'eCheck',
     GoogleShopping: 'Google Shopping',
