@@ -15177,6 +15177,12 @@ export interface Customer {
      */
     exempt_shipping_handling_charge?: boolean;
     /**
+     * Fax Number
+     * @type {string}
+     * @memberof Customer
+     */
+    fax?: string;
+    /**
      * FedEx account number
      * @type {string}
      * @memberof Customer
@@ -30835,6 +30841,12 @@ export interface ItemShippingMethod {
      */
     shipping_method_validity?: ItemShippingMethod.ShippingMethodValidityEnum;
     /**
+     * Ships separately
+     * @type {boolean}
+     * @memberof ItemShippingMethod
+     */
+    ships_separately?: boolean;
+    /**
      * Signature required
      * @type {boolean}
      * @memberof ItemShippingMethod
@@ -34912,6 +34924,7 @@ export declare namespace OrderPayment {
         Check,
         COD,
         CreditCard,
+        Crypto,
         EBay,
         ECheck,
         GoogleShopping,
@@ -37791,7 +37804,7 @@ export interface RegisterAffiliateClickResponse {
  */
 export interface ReplaceOrderItemIdRequest {
     /**
-     * Index of the item on the order (one based index)
+     * Index of the item on the order.  Must match order.items[].item_index
      * @type {number}
      * @memberof ReplaceOrderItemIdRequest
      */

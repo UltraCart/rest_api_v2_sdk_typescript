@@ -1404,6 +1404,7 @@ var OrderPayment;
         PaymentMethodEnum[PaymentMethodEnum["Check"] = 'Check'] = "Check";
         PaymentMethodEnum[PaymentMethodEnum["COD"] = 'COD'] = "COD";
         PaymentMethodEnum[PaymentMethodEnum["CreditCard"] = 'Credit Card'] = "CreditCard";
+        PaymentMethodEnum[PaymentMethodEnum["Crypto"] = 'Crypto'] = "Crypto";
         PaymentMethodEnum[PaymentMethodEnum["EBay"] = 'eBay'] = "EBay";
         PaymentMethodEnum[PaymentMethodEnum["ECheck"] = 'eCheck'] = "ECheck";
         PaymentMethodEnum[PaymentMethodEnum["GoogleShopping"] = 'Google Shopping'] = "GoogleShopping";
