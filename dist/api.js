@@ -6986,6 +6986,58 @@ exports.CheckoutApi = CheckoutApi;
 var ConversationApiFetchParamCreator = function (configuration) {
     return {
         /**
+         * Delete a knowledge base document
+         * @summary Delete a knowledge base document
+         * @param {number} user_id
+         * @param {string} document_uuid
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        deleteAgentProfileKnowledgeBaseDocument: function (user_id, document_uuid, options) {
+            if (options === void 0) { options = {}; }
+            // verify required parameter 'user_id' is not null or undefined
+            if (user_id === null || user_id === undefined) {
+                throw new RequiredError('user_id', 'Required parameter user_id was null or undefined when calling deleteAgentProfileKnowledgeBaseDocument.');
+            }
+            // verify required parameter 'document_uuid' is not null or undefined
+            if (document_uuid === null || document_uuid === undefined) {
+                throw new RequiredError('document_uuid', 'Required parameter document_uuid was null or undefined when calling deleteAgentProfileKnowledgeBaseDocument.');
+            }
+            var localVarPath = "/conversation/agent/profiles/{user_id}/knowledge_base/{document_uuid}"
+                .replace("{".concat("user_id", "}"), encodeURIComponent(String(user_id)))
+                .replace("{".concat("document_uuid", "}"), encodeURIComponent(String(document_uuid)));
+            var localVarUrlObj = url.parse(localVarPath, true);
+            var localVarRequestOptions = Object.assign({ method: 'DELETE' }, options);
+            var localVarHeaderParameter = {};
+            var localVarQueryParameter = {};
+            if (configuration && configuration.apiVersion) {
+                localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+            }
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+                var localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+                    ? configuration.accessToken("ultraCartOauth", ["conversation_write"])
+                    : configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                var localVarApiKeyValue = typeof configuration.apiKey === 'function'
+                    ? configuration.apiKey("x-ultracart-simple-key")
+                    : configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
          * Delete a conversation canned message
          * @summary Delete a conversation canned message
          * @param {number} conversation_canned_message_oid
@@ -7578,6 +7630,52 @@ var ConversationApiFetchParamCreator = function (configuration) {
             };
         },
         /**
+         * Retrieve knowledge base documents
+         * @summary Get the list of knowledge base documents associated with this agent profile
+         * @param {number} user_id
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getAgentProfileKnowledgeBase: function (user_id, options) {
+            if (options === void 0) { options = {}; }
+            // verify required parameter 'user_id' is not null or undefined
+            if (user_id === null || user_id === undefined) {
+                throw new RequiredError('user_id', 'Required parameter user_id was null or undefined when calling getAgentProfileKnowledgeBase.');
+            }
+            var localVarPath = "/conversation/agent/profiles/{user_id}/knowledge_base"
+                .replace("{".concat("user_id", "}"), encodeURIComponent(String(user_id)));
+            var localVarUrlObj = url.parse(localVarPath, true);
+            var localVarRequestOptions = Object.assign({ method: 'GET' }, options);
+            var localVarHeaderParameter = {};
+            var localVarQueryParameter = {};
+            if (configuration && configuration.apiVersion) {
+                localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+            }
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+                var localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+                    ? configuration.accessToken("ultraCartOauth", ["conversation_read"])
+                    : configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                var localVarApiKeyValue = typeof configuration.apiKey === 'function'
+                    ? configuration.apiKey("x-ultracart-simple-key")
+                    : configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
          * Retrieve the agents profile
          * @summary Get agent profiles
          * @param {*} [options] Override http request option.
@@ -7940,6 +8038,58 @@ var ConversationApiFetchParamCreator = function (configuration) {
             if (configuration && configuration.accessToken) {
                 var localVarAccessTokenValue = typeof configuration.accessToken === 'function'
                     ? configuration.accessToken("ultraCartOauth", ["conversation_read"])
+                    : configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                var localVarApiKeyValue = typeof configuration.apiKey === 'function'
+                    ? configuration.apiKey("x-ultracart-simple-key")
+                    : configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Get a pre-signed conversation knowledge base document upload URL
+         * @summary Get a pre-signed conversation knowledge base document upload URL
+         * @param {number} user_id
+         * @param {string} extension
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getConversationKnowledgeBaseDocumentUploadUrl: function (user_id, extension, options) {
+            if (options === void 0) { options = {}; }
+            // verify required parameter 'user_id' is not null or undefined
+            if (user_id === null || user_id === undefined) {
+                throw new RequiredError('user_id', 'Required parameter user_id was null or undefined when calling getConversationKnowledgeBaseDocumentUploadUrl.');
+            }
+            // verify required parameter 'extension' is not null or undefined
+            if (extension === null || extension === undefined) {
+                throw new RequiredError('extension', 'Required parameter extension was null or undefined when calling getConversationKnowledgeBaseDocumentUploadUrl.');
+            }
+            var localVarPath = "/conversation//rest/v2/conversation/agent/profiles/{user_id}/knowledge_base/upload_url/{extension}"
+                .replace("{".concat("user_id", "}"), encodeURIComponent(String(user_id)))
+                .replace("{".concat("extension", "}"), encodeURIComponent(String(extension)));
+            var localVarUrlObj = url.parse(localVarPath, true);
+            var localVarRequestOptions = Object.assign({ method: 'GET' }, options);
+            var localVarHeaderParameter = {};
+            var localVarQueryParameter = {};
+            if (configuration && configuration.apiVersion) {
+                localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+            }
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+                var localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+                    ? configuration.accessToken("ultraCartOauth", ["conversation_write"])
                     : configuration.accessToken;
                 localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
             }
@@ -9420,6 +9570,60 @@ var ConversationApiFetchParamCreator = function (configuration) {
             // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
             delete localVarUrlObj.search;
             localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Insert a knowledge base document
+         * @summary Insert a knowledge base document
+         * @param {number} user_id
+         * @param {ConversationInsertKnowledgeBaseDocumentRequest} knowledge_base_document_request Insert request
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        insertAgentProfileKnowledgeBaseDocument: function (user_id, knowledge_base_document_request, options) {
+            if (options === void 0) { options = {}; }
+            // verify required parameter 'user_id' is not null or undefined
+            if (user_id === null || user_id === undefined) {
+                throw new RequiredError('user_id', 'Required parameter user_id was null or undefined when calling insertAgentProfileKnowledgeBaseDocument.');
+            }
+            // verify required parameter 'knowledge_base_document_request' is not null or undefined
+            if (knowledge_base_document_request === null || knowledge_base_document_request === undefined) {
+                throw new RequiredError('knowledge_base_document_request', 'Required parameter knowledge_base_document_request was null or undefined when calling insertAgentProfileKnowledgeBaseDocument.');
+            }
+            var localVarPath = "/conversation/agent/profiles/{user_id}/knowledge_base"
+                .replace("{".concat("user_id", "}"), encodeURIComponent(String(user_id)));
+            var localVarUrlObj = url.parse(localVarPath, true);
+            var localVarRequestOptions = Object.assign({ method: 'POST' }, options);
+            var localVarHeaderParameter = {};
+            var localVarQueryParameter = {};
+            if (configuration && configuration.apiVersion) {
+                localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+            }
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+                var localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+                    ? configuration.accessToken("ultraCartOauth", ["conversation_write"])
+                    : configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                var localVarApiKeyValue = typeof configuration.apiKey === 'function'
+                    ? configuration.apiKey("x-ultracart-simple-key")
+                    : configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+            var needsSerialization = ("ConversationInsertKnowledgeBaseDocumentRequest" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
+            localVarRequestOptions.body = needsSerialization ? JSON.stringify(knowledge_base_document_request || {}) : (knowledge_base_document_request || "");
             return {
                 url: url.format(localVarUrlObj),
                 options: localVarRequestOptions,
@@ -11087,6 +11291,29 @@ exports.ConversationApiFetchParamCreator = ConversationApiFetchParamCreator;
 var ConversationApiFp = function (configuration) {
     return {
         /**
+         * Delete a knowledge base document
+         * @summary Delete a knowledge base document
+         * @param {number} user_id
+         * @param {string} document_uuid
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        deleteAgentProfileKnowledgeBaseDocument: function (user_id, document_uuid, options) {
+            var localVarFetchArgs = (0, exports.ConversationApiFetchParamCreator)(configuration).deleteAgentProfileKnowledgeBaseDocument(user_id, document_uuid, options);
+            return function (fetch, basePath) {
+                if (fetch === void 0) { fetch = portableFetch; }
+                if (basePath === void 0) { basePath = BASE_PATH; }
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(function (response) {
+                    if (response.status >= 200 && response.status < 300) {
+                        return response.json();
+                    }
+                    else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
          * Delete a conversation canned message
          * @summary Delete a conversation canned message
          * @param {number} conversation_canned_message_oid
@@ -11372,6 +11599,28 @@ var ConversationApiFp = function (configuration) {
             };
         },
         /**
+         * Retrieve knowledge base documents
+         * @summary Get the list of knowledge base documents associated with this agent profile
+         * @param {number} user_id
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getAgentProfileKnowledgeBase: function (user_id, options) {
+            var localVarFetchArgs = (0, exports.ConversationApiFetchParamCreator)(configuration).getAgentProfileKnowledgeBase(user_id, options);
+            return function (fetch, basePath) {
+                if (fetch === void 0) { fetch = portableFetch; }
+                if (basePath === void 0) { basePath = BASE_PATH; }
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(function (response) {
+                    if (response.status >= 200 && response.status < 300) {
+                        return response.json();
+                    }
+                    else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
          * Retrieve the agents profile
          * @summary Get agent profiles
          * @param {*} [options] Override http request option.
@@ -11551,6 +11800,29 @@ var ConversationApiFp = function (configuration) {
          */
         getConversationEngagements: function (options) {
             var localVarFetchArgs = (0, exports.ConversationApiFetchParamCreator)(configuration).getConversationEngagements(options);
+            return function (fetch, basePath) {
+                if (fetch === void 0) { fetch = portableFetch; }
+                if (basePath === void 0) { basePath = BASE_PATH; }
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(function (response) {
+                    if (response.status >= 200 && response.status < 300) {
+                        return response.json();
+                    }
+                    else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
+         * Get a pre-signed conversation knowledge base document upload URL
+         * @summary Get a pre-signed conversation knowledge base document upload URL
+         * @param {number} user_id
+         * @param {string} extension
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getConversationKnowledgeBaseDocumentUploadUrl: function (user_id, extension, options) {
+            var localVarFetchArgs = (0, exports.ConversationApiFetchParamCreator)(configuration).getConversationKnowledgeBaseDocumentUploadUrl(user_id, extension, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -12269,6 +12541,29 @@ var ConversationApiFp = function (configuration) {
          */
         getVirtualAgentCapabilities: function (options) {
             var localVarFetchArgs = (0, exports.ConversationApiFetchParamCreator)(configuration).getVirtualAgentCapabilities(options);
+            return function (fetch, basePath) {
+                if (fetch === void 0) { fetch = portableFetch; }
+                if (basePath === void 0) { basePath = BASE_PATH; }
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(function (response) {
+                    if (response.status >= 200 && response.status < 300) {
+                        return response.json();
+                    }
+                    else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
+         * Insert a knowledge base document
+         * @summary Insert a knowledge base document
+         * @param {number} user_id
+         * @param {ConversationInsertKnowledgeBaseDocumentRequest} knowledge_base_document_request Insert request
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        insertAgentProfileKnowledgeBaseDocument: function (user_id, knowledge_base_document_request, options) {
+            var localVarFetchArgs = (0, exports.ConversationApiFetchParamCreator)(configuration).insertAgentProfileKnowledgeBaseDocument(user_id, knowledge_base_document_request, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -13032,6 +13327,17 @@ exports.ConversationApiFp = ConversationApiFp;
 var ConversationApiFactory = function (configuration, fetch, basePath) {
     return {
         /**
+         * Delete a knowledge base document
+         * @summary Delete a knowledge base document
+         * @param {number} user_id
+         * @param {string} document_uuid
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        deleteAgentProfileKnowledgeBaseDocument: function (user_id, document_uuid, options) {
+            return (0, exports.ConversationApiFp)(configuration).deleteAgentProfileKnowledgeBaseDocument(user_id, document_uuid, options)(fetch, basePath);
+        },
+        /**
          * Delete a conversation canned message
          * @summary Delete a conversation canned message
          * @param {number} conversation_canned_message_oid
@@ -13161,6 +13467,16 @@ var ConversationApiFactory = function (configuration, fetch, basePath) {
             return (0, exports.ConversationApiFp)(configuration).getAgentProfile(options)(fetch, basePath);
         },
         /**
+         * Retrieve knowledge base documents
+         * @summary Get the list of knowledge base documents associated with this agent profile
+         * @param {number} user_id
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getAgentProfileKnowledgeBase: function (user_id, options) {
+            return (0, exports.ConversationApiFp)(configuration).getAgentProfileKnowledgeBase(user_id, options)(fetch, basePath);
+        },
+        /**
          * Retrieve the agents profile
          * @summary Get agent profiles
          * @param {*} [options] Override http request option.
@@ -13244,6 +13560,17 @@ var ConversationApiFactory = function (configuration, fetch, basePath) {
          */
         getConversationEngagements: function (options) {
             return (0, exports.ConversationApiFp)(configuration).getConversationEngagements(options)(fetch, basePath);
+        },
+        /**
+         * Get a pre-signed conversation knowledge base document upload URL
+         * @summary Get a pre-signed conversation knowledge base document upload URL
+         * @param {number} user_id
+         * @param {string} extension
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getConversationKnowledgeBaseDocumentUploadUrl: function (user_id, extension, options) {
+            return (0, exports.ConversationApiFp)(configuration).getConversationKnowledgeBaseDocumentUploadUrl(user_id, extension, options)(fetch, basePath);
         },
         /**
          * Retrieve conversation messages since a particular time
@@ -13566,6 +13893,17 @@ var ConversationApiFactory = function (configuration, fetch, basePath) {
          */
         getVirtualAgentCapabilities: function (options) {
             return (0, exports.ConversationApiFp)(configuration).getVirtualAgentCapabilities(options)(fetch, basePath);
+        },
+        /**
+         * Insert a knowledge base document
+         * @summary Insert a knowledge base document
+         * @param {number} user_id
+         * @param {ConversationInsertKnowledgeBaseDocumentRequest} knowledge_base_document_request Insert request
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        insertAgentProfileKnowledgeBaseDocument: function (user_id, knowledge_base_document_request, options) {
+            return (0, exports.ConversationApiFp)(configuration).insertAgentProfileKnowledgeBaseDocument(user_id, knowledge_base_document_request, options)(fetch, basePath);
         },
         /**
          * Insert a canned message
@@ -13926,6 +14264,18 @@ var ConversationApi = /** @class */ (function (_super) {
         return _super !== null && _super.apply(this, arguments) || this;
     }
     /**
+     * Delete a knowledge base document
+     * @summary Delete a knowledge base document
+     * @param {number} user_id
+     * @param {string} document_uuid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApi
+     */
+    ConversationApi.prototype.deleteAgentProfileKnowledgeBaseDocument = function (user_id, document_uuid, options) {
+        return (0, exports.ConversationApiFp)(this.configuration).deleteAgentProfileKnowledgeBaseDocument(user_id, document_uuid, options)(this.fetch, this.basePath);
+    };
+    /**
      * Delete a conversation canned message
      * @summary Delete a conversation canned message
      * @param {number} conversation_canned_message_oid
@@ -14068,6 +14418,17 @@ var ConversationApi = /** @class */ (function (_super) {
         return (0, exports.ConversationApiFp)(this.configuration).getAgentProfile(options)(this.fetch, this.basePath);
     };
     /**
+     * Retrieve knowledge base documents
+     * @summary Get the list of knowledge base documents associated with this agent profile
+     * @param {number} user_id
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApi
+     */
+    ConversationApi.prototype.getAgentProfileKnowledgeBase = function (user_id, options) {
+        return (0, exports.ConversationApiFp)(this.configuration).getAgentProfileKnowledgeBase(user_id, options)(this.fetch, this.basePath);
+    };
+    /**
      * Retrieve the agents profile
      * @summary Get agent profiles
      * @param {*} [options] Override http request option.
@@ -14160,6 +14521,18 @@ var ConversationApi = /** @class */ (function (_super) {
      */
     ConversationApi.prototype.getConversationEngagements = function (options) {
         return (0, exports.ConversationApiFp)(this.configuration).getConversationEngagements(options)(this.fetch, this.basePath);
+    };
+    /**
+     * Get a pre-signed conversation knowledge base document upload URL
+     * @summary Get a pre-signed conversation knowledge base document upload URL
+     * @param {number} user_id
+     * @param {string} extension
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApi
+     */
+    ConversationApi.prototype.getConversationKnowledgeBaseDocumentUploadUrl = function (user_id, extension, options) {
+        return (0, exports.ConversationApiFp)(this.configuration).getConversationKnowledgeBaseDocumentUploadUrl(user_id, extension, options)(this.fetch, this.basePath);
     };
     /**
      * Retrieve conversation messages since a particular time
@@ -14515,6 +14888,18 @@ var ConversationApi = /** @class */ (function (_super) {
      */
     ConversationApi.prototype.getVirtualAgentCapabilities = function (options) {
         return (0, exports.ConversationApiFp)(this.configuration).getVirtualAgentCapabilities(options)(this.fetch, this.basePath);
+    };
+    /**
+     * Insert a knowledge base document
+     * @summary Insert a knowledge base document
+     * @param {number} user_id
+     * @param {ConversationInsertKnowledgeBaseDocumentRequest} knowledge_base_document_request Insert request
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApi
+     */
+    ConversationApi.prototype.insertAgentProfileKnowledgeBaseDocument = function (user_id, knowledge_base_document_request, options) {
+        return (0, exports.ConversationApiFp)(this.configuration).insertAgentProfileKnowledgeBaseDocument(user_id, knowledge_base_document_request, options)(this.fetch, this.basePath);
     };
     /**
      * Insert a canned message
@@ -18293,7 +18678,7 @@ var CustomerApiFp = function (configuration) {
                 if (basePath === void 0) { basePath = BASE_PATH; }
                 return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(function (response) {
                     if (response.status >= 200 && response.status < 300) {
-                        return response.json();
+                        return response;
                     }
                     else {
                         throw response;

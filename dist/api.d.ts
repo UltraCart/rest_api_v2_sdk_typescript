@@ -7320,6 +7320,43 @@ export interface ConversationCannedMessagesSearch {
 /**
  *
  * @export
+ * @interface ConversationDeleteKnowledgeBaseDocumentResponse
+ */
+export interface ConversationDeleteKnowledgeBaseDocumentResponse {
+    /**
+     *
+     * @type {string}
+     * @memberof ConversationDeleteKnowledgeBaseDocumentResponse
+     */
+    document_id?: string;
+    /**
+     *
+     * @type {ModelError}
+     * @memberof ConversationDeleteKnowledgeBaseDocumentResponse
+     */
+    error?: ModelError;
+    /**
+     *
+     * @type {ResponseMetadata}
+     * @memberof ConversationDeleteKnowledgeBaseDocumentResponse
+     */
+    metadata?: ResponseMetadata;
+    /**
+     * Indicates if API call was successful
+     * @type {boolean}
+     * @memberof ConversationDeleteKnowledgeBaseDocumentResponse
+     */
+    success?: boolean;
+    /**
+     *
+     * @type {Warning}
+     * @memberof ConversationDeleteKnowledgeBaseDocumentResponse
+     */
+    warning?: Warning;
+}
+/**
+ *
+ * @export
  * @interface ConversationDepartment
  */
 export interface ConversationDepartment {
@@ -8050,6 +8087,68 @@ export interface ConversationEventWebchatContext {
 /**
  *
  * @export
+ * @interface ConversationInsertKnowledgeBaseDocumentRequest
+ */
+export interface ConversationInsertKnowledgeBaseDocumentRequest {
+    /**
+     *
+     * @type {string}
+     * @memberof ConversationInsertKnowledgeBaseDocumentRequest
+     */
+    presigned_url?: string;
+}
+/**
+ *
+ * @export
+ * @interface ConversationInsertKnowledgeBaseDocumentResponse
+ */
+export interface ConversationInsertKnowledgeBaseDocumentResponse {
+    /**
+     *
+     * @type {string}
+     * @memberof ConversationInsertKnowledgeBaseDocumentResponse
+     */
+    document_uuid?: string;
+    /**
+     *
+     * @type {ModelError}
+     * @memberof ConversationInsertKnowledgeBaseDocumentResponse
+     */
+    error?: ModelError;
+    /**
+     *
+     * @type {ResponseMetadata}
+     * @memberof ConversationInsertKnowledgeBaseDocumentResponse
+     */
+    metadata?: ResponseMetadata;
+    /**
+     *
+     * @type {string}
+     * @memberof ConversationInsertKnowledgeBaseDocumentResponse
+     */
+    s3_key?: string;
+    /**
+     * Indicates if API call was successful
+     * @type {boolean}
+     * @memberof ConversationInsertKnowledgeBaseDocumentResponse
+     */
+    success?: boolean;
+    /**
+     *
+     * @type {Array<string>}
+     * @memberof ConversationInsertKnowledgeBaseDocumentResponse
+     */
+    vector_keys?: Array<string>;
+    /**
+     *
+     * @type {Warning}
+     * @memberof ConversationInsertKnowledgeBaseDocumentResponse
+     */
+    warning?: Warning;
+}
+/**
+ *
+ * @export
  * @interface ConversationJoinRequest
  */
 export interface ConversationJoinRequest {
@@ -8059,6 +8158,148 @@ export interface ConversationJoinRequest {
      * @memberof ConversationJoinRequest
      */
     participant_language_iso_code?: string;
+}
+/**
+ *
+ * @export
+ * @interface ConversationKnowledgeBaseDocument
+ */
+export interface ConversationKnowledgeBaseDocument {
+    /**
+     *
+     * @type {number}
+     * @memberof ConversationKnowledgeBaseDocument
+     */
+    chunk_count?: number;
+    /**
+     *
+     * @type {string}
+     * @memberof ConversationKnowledgeBaseDocument
+     */
+    description?: string;
+    /**
+     * Human readable identifier.  Filename is recommended.
+     * @type {string}
+     * @memberof ConversationKnowledgeBaseDocument
+     */
+    document_id?: string;
+    /**
+     *
+     * @type {string}
+     * @memberof ConversationKnowledgeBaseDocument
+     */
+    document_uuid?: string;
+    /**
+     *
+     * @type {string}
+     * @memberof ConversationKnowledgeBaseDocument
+     */
+    metadata?: string;
+    /**
+     *
+     * @type {string}
+     * @memberof ConversationKnowledgeBaseDocument
+     */
+    mime_type?: string;
+    /**
+     *
+     * @type {string}
+     * @memberof ConversationKnowledgeBaseDocument
+     */
+    s3_key?: string;
+}
+/**
+ *
+ * @export
+ * @interface ConversationKnowledgeBaseDocumentUploadUrl
+ */
+export interface ConversationKnowledgeBaseDocumentUploadUrl {
+    /**
+     *
+     * @type {string}
+     * @memberof ConversationKnowledgeBaseDocumentUploadUrl
+     */
+    key?: string;
+    /**
+     *
+     * @type {string}
+     * @memberof ConversationKnowledgeBaseDocumentUploadUrl
+     */
+    url?: string;
+}
+/**
+ *
+ * @export
+ * @interface ConversationKnowledgeBaseDocumentUploadUrlResponse
+ */
+export interface ConversationKnowledgeBaseDocumentUploadUrlResponse {
+    /**
+     *
+     * @type {ConversationKnowledgeBaseDocumentUploadUrl}
+     * @memberof ConversationKnowledgeBaseDocumentUploadUrlResponse
+     */
+    conversation_pbx_audio_upload_url?: ConversationKnowledgeBaseDocumentUploadUrl;
+    /**
+     *
+     * @type {ModelError}
+     * @memberof ConversationKnowledgeBaseDocumentUploadUrlResponse
+     */
+    error?: ModelError;
+    /**
+     *
+     * @type {ResponseMetadata}
+     * @memberof ConversationKnowledgeBaseDocumentUploadUrlResponse
+     */
+    metadata?: ResponseMetadata;
+    /**
+     * Indicates if API call was successful
+     * @type {boolean}
+     * @memberof ConversationKnowledgeBaseDocumentUploadUrlResponse
+     */
+    success?: boolean;
+    /**
+     *
+     * @type {Warning}
+     * @memberof ConversationKnowledgeBaseDocumentUploadUrlResponse
+     */
+    warning?: Warning;
+}
+/**
+ *
+ * @export
+ * @interface ConversationKnowledgeBaseDocumentsResponse
+ */
+export interface ConversationKnowledgeBaseDocumentsResponse {
+    /**
+     * documents
+     * @type {Array<ConversationKnowledgeBaseDocument>}
+     * @memberof ConversationKnowledgeBaseDocumentsResponse
+     */
+    documents?: Array<ConversationKnowledgeBaseDocument>;
+    /**
+     *
+     * @type {ModelError}
+     * @memberof ConversationKnowledgeBaseDocumentsResponse
+     */
+    error?: ModelError;
+    /**
+     *
+     * @type {ResponseMetadata}
+     * @memberof ConversationKnowledgeBaseDocumentsResponse
+     */
+    metadata?: ResponseMetadata;
+    /**
+     * Indicates if API call was successful
+     * @type {boolean}
+     * @memberof ConversationKnowledgeBaseDocumentsResponse
+     */
+    success?: boolean;
+    /**
+     *
+     * @type {Warning}
+     * @memberof ConversationKnowledgeBaseDocumentsResponse
+     */
+    warning?: Warning;
 }
 /**
  *
@@ -14464,6 +14705,12 @@ export interface CustomReportAccountConfig {
      */
     ai_usage?: number;
     /**
+     *
+     * @type {Array<CustomReportUsageBreakdown>}
+     * @memberof CustomReportAccountConfig
+     */
+    ai_usage_breakdowns?: Array<CustomReportUsageBreakdown>;
+    /**
      * Current BigQuery SQL usage running reports
      * @type {string}
      * @memberof CustomReportAccountConfig
@@ -14907,6 +15154,25 @@ export interface CustomReportTooltip {
      * @memberof CustomReportTooltip
      */
     tooltip?: string;
+}
+/**
+ *
+ * @export
+ * @interface CustomReportUsageBreakdown
+ */
+export interface CustomReportUsageBreakdown {
+    /**
+     *
+     * @type {number}
+     * @memberof CustomReportUsageBreakdown
+     */
+    usage?: number;
+    /**
+     * Date/time that usage occurred
+     * @type {string}
+     * @memberof CustomReportUsageBreakdown
+     */
+    usage_date?: string;
 }
 /**
  *
@@ -48066,6 +48332,15 @@ export declare class CheckoutApi extends BaseAPI implements CheckoutApiInterface
  */
 export declare const ConversationApiFetchParamCreator: (configuration?: Configuration) => {
     /**
+     * Delete a knowledge base document
+     * @summary Delete a knowledge base document
+     * @param {number} user_id
+     * @param {string} document_uuid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    deleteAgentProfileKnowledgeBaseDocument(user_id: number, document_uuid: string, options?: any): FetchArgs;
+    /**
      * Delete a conversation canned message
      * @summary Delete a conversation canned message
      * @param {number} conversation_canned_message_oid
@@ -48169,6 +48444,14 @@ export declare const ConversationApiFetchParamCreator: (configuration?: Configur
      */
     getAgentProfile(options?: any): FetchArgs;
     /**
+     * Retrieve knowledge base documents
+     * @summary Get the list of knowledge base documents associated with this agent profile
+     * @param {number} user_id
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getAgentProfileKnowledgeBase(user_id: number, options?: any): FetchArgs;
+    /**
      * Retrieve the agents profile
      * @summary Get agent profiles
      * @param {*} [options] Override http request option.
@@ -48235,6 +48518,15 @@ export declare const ConversationApiFetchParamCreator: (configuration?: Configur
      * @throws {RequiredError}
      */
     getConversationEngagements(options?: any): FetchArgs;
+    /**
+     * Get a pre-signed conversation knowledge base document upload URL
+     * @summary Get a pre-signed conversation knowledge base document upload URL
+     * @param {number} user_id
+     * @param {string} extension
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getConversationKnowledgeBaseDocumentUploadUrl(user_id: number, extension: string, options?: any): FetchArgs;
     /**
      * Retrieve conversation messages since a particular time
      * @summary Retrieve conversation messages
@@ -48491,6 +48783,15 @@ export declare const ConversationApiFetchParamCreator: (configuration?: Configur
      * @throws {RequiredError}
      */
     getVirtualAgentCapabilities(options?: any): FetchArgs;
+    /**
+     * Insert a knowledge base document
+     * @summary Insert a knowledge base document
+     * @param {number} user_id
+     * @param {ConversationInsertKnowledgeBaseDocumentRequest} knowledge_base_document_request Insert request
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    insertAgentProfileKnowledgeBaseDocument(user_id: number, knowledge_base_document_request: ConversationInsertKnowledgeBaseDocumentRequest, options?: any): FetchArgs;
     /**
      * Insert a canned message
      * @summary Insert a canned message
@@ -48776,6 +49077,15 @@ export declare const ConversationApiFetchParamCreator: (configuration?: Configur
  */
 export declare const ConversationApiFp: (configuration?: Configuration) => {
     /**
+     * Delete a knowledge base document
+     * @summary Delete a knowledge base document
+     * @param {number} user_id
+     * @param {string} document_uuid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    deleteAgentProfileKnowledgeBaseDocument(user_id: number, document_uuid: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ConversationDeleteKnowledgeBaseDocumentResponse>;
+    /**
      * Delete a conversation canned message
      * @summary Delete a conversation canned message
      * @param {number} conversation_canned_message_oid
@@ -48879,6 +49189,14 @@ export declare const ConversationApiFp: (configuration?: Configuration) => {
      */
     getAgentProfile(options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ConversationAgentProfileResponse>;
     /**
+     * Retrieve knowledge base documents
+     * @summary Get the list of knowledge base documents associated with this agent profile
+     * @param {number} user_id
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getAgentProfileKnowledgeBase(user_id: number, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ConversationKnowledgeBaseDocumentsResponse>;
+    /**
      * Retrieve the agents profile
      * @summary Get agent profiles
      * @param {*} [options] Override http request option.
@@ -48945,6 +49263,15 @@ export declare const ConversationApiFp: (configuration?: Configuration) => {
      * @throws {RequiredError}
      */
     getConversationEngagements(options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ConversationEngagementsResponse>;
+    /**
+     * Get a pre-signed conversation knowledge base document upload URL
+     * @summary Get a pre-signed conversation knowledge base document upload URL
+     * @param {number} user_id
+     * @param {string} extension
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getConversationKnowledgeBaseDocumentUploadUrl(user_id: number, extension: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ConversationKnowledgeBaseDocumentUploadUrlResponse>;
     /**
      * Retrieve conversation messages since a particular time
      * @summary Retrieve conversation messages
@@ -49201,6 +49528,15 @@ export declare const ConversationApiFp: (configuration?: Configuration) => {
      * @throws {RequiredError}
      */
     getVirtualAgentCapabilities(options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ConversationVirtualAgentCapabilitiesResponse>;
+    /**
+     * Insert a knowledge base document
+     * @summary Insert a knowledge base document
+     * @param {number} user_id
+     * @param {ConversationInsertKnowledgeBaseDocumentRequest} knowledge_base_document_request Insert request
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    insertAgentProfileKnowledgeBaseDocument(user_id: number, knowledge_base_document_request: ConversationInsertKnowledgeBaseDocumentRequest, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ConversationInsertKnowledgeBaseDocumentResponse>;
     /**
      * Insert a canned message
      * @summary Insert a canned message
@@ -49486,6 +49822,15 @@ export declare const ConversationApiFp: (configuration?: Configuration) => {
  */
 export declare const ConversationApiFactory: (configuration?: Configuration, fetch?: FetchAPI, basePath?: string) => {
     /**
+     * Delete a knowledge base document
+     * @summary Delete a knowledge base document
+     * @param {number} user_id
+     * @param {string} document_uuid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    deleteAgentProfileKnowledgeBaseDocument(user_id: number, document_uuid: string, options?: any): Promise<ConversationDeleteKnowledgeBaseDocumentResponse>;
+    /**
      * Delete a conversation canned message
      * @summary Delete a conversation canned message
      * @param {number} conversation_canned_message_oid
@@ -49589,6 +49934,14 @@ export declare const ConversationApiFactory: (configuration?: Configuration, fet
      */
     getAgentProfile(options?: any): Promise<ConversationAgentProfileResponse>;
     /**
+     * Retrieve knowledge base documents
+     * @summary Get the list of knowledge base documents associated with this agent profile
+     * @param {number} user_id
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getAgentProfileKnowledgeBase(user_id: number, options?: any): Promise<ConversationKnowledgeBaseDocumentsResponse>;
+    /**
      * Retrieve the agents profile
      * @summary Get agent profiles
      * @param {*} [options] Override http request option.
@@ -49655,6 +50008,15 @@ export declare const ConversationApiFactory: (configuration?: Configuration, fet
      * @throws {RequiredError}
      */
     getConversationEngagements(options?: any): Promise<ConversationEngagementsResponse>;
+    /**
+     * Get a pre-signed conversation knowledge base document upload URL
+     * @summary Get a pre-signed conversation knowledge base document upload URL
+     * @param {number} user_id
+     * @param {string} extension
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getConversationKnowledgeBaseDocumentUploadUrl(user_id: number, extension: string, options?: any): Promise<ConversationKnowledgeBaseDocumentUploadUrlResponse>;
     /**
      * Retrieve conversation messages since a particular time
      * @summary Retrieve conversation messages
@@ -49911,6 +50273,15 @@ export declare const ConversationApiFactory: (configuration?: Configuration, fet
      * @throws {RequiredError}
      */
     getVirtualAgentCapabilities(options?: any): Promise<ConversationVirtualAgentCapabilitiesResponse>;
+    /**
+     * Insert a knowledge base document
+     * @summary Insert a knowledge base document
+     * @param {number} user_id
+     * @param {ConversationInsertKnowledgeBaseDocumentRequest} knowledge_base_document_request Insert request
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    insertAgentProfileKnowledgeBaseDocument(user_id: number, knowledge_base_document_request: ConversationInsertKnowledgeBaseDocumentRequest, options?: any): Promise<ConversationInsertKnowledgeBaseDocumentResponse>;
     /**
      * Insert a canned message
      * @summary Insert a canned message
@@ -50197,6 +50568,16 @@ export declare const ConversationApiFactory: (configuration?: Configuration, fet
  */
 export interface ConversationApiInterface {
     /**
+     * Delete a knowledge base document
+     * @summary Delete a knowledge base document
+     * @param {number} user_id
+     * @param {string} document_uuid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApiInterface
+     */
+    deleteAgentProfileKnowledgeBaseDocument(user_id: number, document_uuid: string, options?: any): Promise<ConversationDeleteKnowledgeBaseDocumentResponse>;
+    /**
      * Delete a conversation canned message
      * @summary Delete a conversation canned message
      * @param {number} conversation_canned_message_oid
@@ -50313,6 +50694,15 @@ export interface ConversationApiInterface {
      */
     getAgentProfile(options?: any): Promise<ConversationAgentProfileResponse>;
     /**
+     * Retrieve knowledge base documents
+     * @summary Get the list of knowledge base documents associated with this agent profile
+     * @param {number} user_id
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApiInterface
+     */
+    getAgentProfileKnowledgeBase(user_id: number, options?: any): Promise<ConversationKnowledgeBaseDocumentsResponse>;
+    /**
      * Retrieve the agents profile
      * @summary Get agent profiles
      * @param {*} [options] Override http request option.
@@ -50388,6 +50778,16 @@ export interface ConversationApiInterface {
      * @memberof ConversationApiInterface
      */
     getConversationEngagements(options?: any): Promise<ConversationEngagementsResponse>;
+    /**
+     * Get a pre-signed conversation knowledge base document upload URL
+     * @summary Get a pre-signed conversation knowledge base document upload URL
+     * @param {number} user_id
+     * @param {string} extension
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApiInterface
+     */
+    getConversationKnowledgeBaseDocumentUploadUrl(user_id: number, extension: string, options?: any): Promise<ConversationKnowledgeBaseDocumentUploadUrlResponse>;
     /**
      * Retrieve conversation messages since a particular time
      * @summary Retrieve conversation messages
@@ -50677,6 +51077,16 @@ export interface ConversationApiInterface {
      * @memberof ConversationApiInterface
      */
     getVirtualAgentCapabilities(options?: any): Promise<ConversationVirtualAgentCapabilitiesResponse>;
+    /**
+     * Insert a knowledge base document
+     * @summary Insert a knowledge base document
+     * @param {number} user_id
+     * @param {ConversationInsertKnowledgeBaseDocumentRequest} knowledge_base_document_request Insert request
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApiInterface
+     */
+    insertAgentProfileKnowledgeBaseDocument(user_id: number, knowledge_base_document_request: ConversationInsertKnowledgeBaseDocumentRequest, options?: any): Promise<ConversationInsertKnowledgeBaseDocumentResponse>;
     /**
      * Insert a canned message
      * @summary Insert a canned message
@@ -50997,6 +51407,16 @@ export interface ConversationApiInterface {
  */
 export declare class ConversationApi extends BaseAPI implements ConversationApiInterface {
     /**
+     * Delete a knowledge base document
+     * @summary Delete a knowledge base document
+     * @param {number} user_id
+     * @param {string} document_uuid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApi
+     */
+    deleteAgentProfileKnowledgeBaseDocument(user_id: number, document_uuid: string, options?: any): Promise<ConversationDeleteKnowledgeBaseDocumentResponse>;
+    /**
      * Delete a conversation canned message
      * @summary Delete a conversation canned message
      * @param {number} conversation_canned_message_oid
@@ -51113,6 +51533,15 @@ export declare class ConversationApi extends BaseAPI implements ConversationApiI
      */
     getAgentProfile(options?: any): Promise<ConversationAgentProfileResponse>;
     /**
+     * Retrieve knowledge base documents
+     * @summary Get the list of knowledge base documents associated with this agent profile
+     * @param {number} user_id
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApi
+     */
+    getAgentProfileKnowledgeBase(user_id: number, options?: any): Promise<ConversationKnowledgeBaseDocumentsResponse>;
+    /**
      * Retrieve the agents profile
      * @summary Get agent profiles
      * @param {*} [options] Override http request option.
@@ -51188,6 +51617,16 @@ export declare class ConversationApi extends BaseAPI implements ConversationApiI
      * @memberof ConversationApi
      */
     getConversationEngagements(options?: any): Promise<ConversationEngagementsResponse>;
+    /**
+     * Get a pre-signed conversation knowledge base document upload URL
+     * @summary Get a pre-signed conversation knowledge base document upload URL
+     * @param {number} user_id
+     * @param {string} extension
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApi
+     */
+    getConversationKnowledgeBaseDocumentUploadUrl(user_id: number, extension: string, options?: any): Promise<ConversationKnowledgeBaseDocumentUploadUrlResponse>;
     /**
      * Retrieve conversation messages since a particular time
      * @summary Retrieve conversation messages
@@ -51477,6 +51916,16 @@ export declare class ConversationApi extends BaseAPI implements ConversationApiI
      * @memberof ConversationApi
      */
     getVirtualAgentCapabilities(options?: any): Promise<ConversationVirtualAgentCapabilitiesResponse>;
+    /**
+     * Insert a knowledge base document
+     * @summary Insert a knowledge base document
+     * @param {number} user_id
+     * @param {ConversationInsertKnowledgeBaseDocumentRequest} knowledge_base_document_request Insert request
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApi
+     */
+    insertAgentProfileKnowledgeBaseDocument(user_id: number, knowledge_base_document_request: ConversationInsertKnowledgeBaseDocumentRequest, options?: any): Promise<ConversationInsertKnowledgeBaseDocumentResponse>;
     /**
      * Insert a canned message
      * @summary Insert a canned message
@@ -53047,7 +53496,7 @@ export declare const CustomerApiFp: (configuration?: Configuration) => {
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    deleteWishListItem(customer_profile_oid: number, customer_wishlist_item_oid: number, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<CustomerWishListItem>;
+    deleteWishListItem(customer_profile_oid: number, customer_wishlist_item_oid: number, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Response>;
     /**
      * Retrieves a single customer using the specified customer profile oid.
      * @summary Retrieve a customer
@@ -53295,7 +53744,7 @@ export declare const CustomerApiFactory: (configuration?: Configuration, fetch?:
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    deleteWishListItem(customer_profile_oid: number, customer_wishlist_item_oid: number, options?: any): Promise<CustomerWishListItem>;
+    deleteWishListItem(customer_profile_oid: number, customer_wishlist_item_oid: number, options?: any): Promise<Response>;
     /**
      * Retrieves a single customer using the specified customer profile oid.
      * @summary Retrieve a customer
@@ -53548,7 +53997,7 @@ export interface CustomerApiInterface {
      * @throws {RequiredError}
      * @memberof CustomerApiInterface
      */
-    deleteWishListItem(customer_profile_oid: number, customer_wishlist_item_oid: number, options?: any): Promise<CustomerWishListItem>;
+    deleteWishListItem(customer_profile_oid: number, customer_wishlist_item_oid: number, options?: any): Promise<{}>;
     /**
      * Retrieves a single customer using the specified customer profile oid.
      * @summary Retrieve a customer
@@ -53822,7 +54271,7 @@ export declare class CustomerApi extends BaseAPI implements CustomerApiInterface
      * @throws {RequiredError}
      * @memberof CustomerApi
      */
-    deleteWishListItem(customer_profile_oid: number, customer_wishlist_item_oid: number, options?: any): Promise<CustomerWishListItem>;
+    deleteWishListItem(customer_profile_oid: number, customer_wishlist_item_oid: number, options?: any): Promise<Response>;
     /**
      * Retrieves a single customer using the specified customer profile oid.
      * @summary Retrieve a customer
