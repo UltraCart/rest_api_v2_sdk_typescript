@@ -298,13 +298,13 @@ export interface CustomerApiInterface {
      * @throws {RequiredError}
      * @memberof CustomerApiInterface
      */
-    deleteWishListItemRaw(requestParameters: DeleteWishListItemRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CustomerWishListItem>>;
+    deleteWishListItemRaw(requestParameters: DeleteWishListItemRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
 
     /**
      * Delete a customer wishlist item 
      * Delete a customer wishlist item
      */
-    deleteWishListItem(requestParameters: DeleteWishListItemRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomerWishListItem>;
+    deleteWishListItem(requestParameters: DeleteWishListItemRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
      * Retrieves a single customer using the specified customer profile oid. 
@@ -819,7 +819,7 @@ export class CustomerApi extends runtime.BaseAPI implements CustomerApiInterface
      * Delete a customer wishlist item 
      * Delete a customer wishlist item
      */
-    async deleteWishListItemRaw(requestParameters: DeleteWishListItemRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CustomerWishListItem>> {
+    async deleteWishListItemRaw(requestParameters: DeleteWishListItemRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
         if (requestParameters.customerProfileOid === null || requestParameters.customerProfileOid === undefined) {
             throw new runtime.RequiredError('customerProfileOid','Required parameter requestParameters.customerProfileOid was null or undefined when calling deleteWishListItem.');
         }
@@ -848,16 +848,15 @@ export class CustomerApi extends runtime.BaseAPI implements CustomerApiInterface
             query: queryParameters,
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => CustomerWishListItemFromJSON(jsonValue));
+        return new runtime.VoidApiResponse(response);
     }
 
     /**
      * Delete a customer wishlist item 
      * Delete a customer wishlist item
      */
-    async deleteWishListItem(requestParameters: DeleteWishListItemRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomerWishListItem> {
-        const response = await this.deleteWishListItemRaw(requestParameters, initOverrides);
-        return await response.value();
+    async deleteWishListItem(requestParameters: DeleteWishListItemRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.deleteWishListItemRaw(requestParameters, initOverrides);
     }
 
     /**

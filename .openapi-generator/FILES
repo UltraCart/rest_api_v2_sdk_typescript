@@ -164,6 +164,7 @@ src/models/ConversationCannedMessage.ts
 src/models/ConversationCannedMessageResponse.ts
 src/models/ConversationCannedMessagesResponse.ts
 src/models/ConversationCannedMessagesSearch.ts
+src/models/ConversationDeleteKnowledgeBaseDocumentResponse.ts
 src/models/ConversationDepartment.ts
 src/models/ConversationDepartmentMember.ts
 src/models/ConversationDepartmentMembersResponse.ts
@@ -182,7 +183,13 @@ src/models/ConversationEventRRWeb.ts
 src/models/ConversationEventReadMessage.ts
 src/models/ConversationEventTyping.ts
 src/models/ConversationEventWebchatContext.ts
+src/models/ConversationInsertKnowledgeBaseDocumentRequest.ts
+src/models/ConversationInsertKnowledgeBaseDocumentResponse.ts
 src/models/ConversationJoinRequest.ts
+src/models/ConversationKnowledgeBaseDocument.ts
+src/models/ConversationKnowledgeBaseDocumentUploadUrl.ts
+src/models/ConversationKnowledgeBaseDocumentUploadUrlResponse.ts
+src/models/ConversationKnowledgeBaseDocumentsResponse.ts
 src/models/ConversationLocationCountry.ts
 src/models/ConversationLocationStateProvince.ts
 src/models/ConversationLocationsResponse.ts
@@ -349,6 +356,7 @@ src/models/CustomReportParameterOption.ts
 src/models/CustomReportQuery.ts
 src/models/CustomReportResponse.ts
 src/models/CustomReportTooltip.ts
+src/models/CustomReportUsageBreakdown.ts
 src/models/CustomReportsExecutionReportData.ts
 src/models/CustomReportsExecutionRequest.ts
 src/models/CustomReportsExecutionResponse.ts

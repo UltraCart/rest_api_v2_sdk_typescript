@@ -13,6 +13,13 @@
  */
 
 import { exists, mapValues } from '../runtime';
+import {
+    CustomReportUsageBreakdown,
+    CustomReportUsageBreakdownFromJSON,
+    CustomReportUsageBreakdownFromJSONTyped,
+    CustomReportUsageBreakdownToJSON,
+} from './CustomReportUsageBreakdown';
+
 /**
  * 
  * @export
@@ -31,6 +38,12 @@ export interface CustomReportAccountConfig {
      * @memberof CustomReportAccountConfig
      */
     ai_usage?: number;
+    /**
+     * 
+     * @type {Array<CustomReportUsageBreakdown>}
+     * @memberof CustomReportAccountConfig
+     */
+    ai_usage_breakdowns?: Array<CustomReportUsageBreakdown>;
     /**
      * Current BigQuery SQL usage running reports
      * @type {string}
@@ -104,6 +117,7 @@ export function CustomReportAccountConfigFromJSONTyped(json: any, ignoreDiscrimi
         
         'ai_budget': !exists(json, 'ai_budget') ? undefined : json['ai_budget'],
         'ai_usage': !exists(json, 'ai_usage') ? undefined : json['ai_usage'],
+        'ai_usage_breakdowns': !exists(json, 'ai_usage_breakdowns') ? undefined : ((json['ai_usage_breakdowns'] as Array<any>).map(CustomReportUsageBreakdownFromJSON)),
         'merchant_id': !exists(json, 'merchant_id') ? undefined : json['merchant_id'],
         'novice_sql_comments': !exists(json, 'novice_sql_comments') ? undefined : json['novice_sql_comments'],
         'opt_in': !exists(json, 'opt_in') ? undefined : json['opt_in'],
@@ -126,6 +140,7 @@ export function CustomReportAccountConfigToJSON(value?: CustomReportAccountConfi
         
         'ai_budget': value.ai_budget,
         'ai_usage': value.ai_usage,
+        'ai_usage_breakdowns': value.ai_usage_breakdowns === undefined ? undefined : ((value.ai_usage_breakdowns as Array<any>).map(CustomReportUsageBreakdownToJSON)),
         'merchant_id': value.merchant_id,
         'novice_sql_comments': value.novice_sql_comments,
         'opt_in': value.opt_in,

@@ -45,6 +45,9 @@ import {
     ConversationCannedMessagesSearch,
     ConversationCannedMessagesSearchFromJSON,
     ConversationCannedMessagesSearchToJSON,
+    ConversationDeleteKnowledgeBaseDocumentResponse,
+    ConversationDeleteKnowledgeBaseDocumentResponseFromJSON,
+    ConversationDeleteKnowledgeBaseDocumentResponseToJSON,
     ConversationDepartment,
     ConversationDepartmentFromJSON,
     ConversationDepartmentToJSON,
@@ -66,9 +69,21 @@ import {
     ConversationEngagementsResponse,
     ConversationEngagementsResponseFromJSON,
     ConversationEngagementsResponseToJSON,
+    ConversationInsertKnowledgeBaseDocumentRequest,
+    ConversationInsertKnowledgeBaseDocumentRequestFromJSON,
+    ConversationInsertKnowledgeBaseDocumentRequestToJSON,
+    ConversationInsertKnowledgeBaseDocumentResponse,
+    ConversationInsertKnowledgeBaseDocumentResponseFromJSON,
+    ConversationInsertKnowledgeBaseDocumentResponseToJSON,
     ConversationJoinRequest,
     ConversationJoinRequestFromJSON,
     ConversationJoinRequestToJSON,
+    ConversationKnowledgeBaseDocumentUploadUrlResponse,
+    ConversationKnowledgeBaseDocumentUploadUrlResponseFromJSON,
+    ConversationKnowledgeBaseDocumentUploadUrlResponseToJSON,
+    ConversationKnowledgeBaseDocumentsResponse,
+    ConversationKnowledgeBaseDocumentsResponseFromJSON,
+    ConversationKnowledgeBaseDocumentsResponseToJSON,
     ConversationLocationsResponse,
     ConversationLocationsResponseFromJSON,
     ConversationLocationsResponseToJSON,
@@ -215,6 +230,11 @@ import {
     ErrorResponseToJSON,
 } from '../models';
 
+export interface DeleteAgentProfileKnowledgeBaseDocumentRequest {
+    userId: number;
+    documentUuid: string;
+}
+
 export interface DeleteConversationCannedMessageRequest {
     conversationCannedMessageOid: number;
 }
@@ -260,6 +280,10 @@ export interface DeletePbxVoicemailMailboxRequest {
     conversationPbxVoicemailMailboxUuid: string;
 }
 
+export interface GetAgentProfileKnowledgeBaseRequest {
+    userId: number;
+}
+
 export interface GetConversationRequest {
     conversationUuid: string;
     limit?: number;
@@ -271,6 +295,11 @@ export interface GetConversationContextRequest {
 
 export interface GetConversationEngagementRequest {
     conversationEngagementOid: number;
+}
+
+export interface GetConversationKnowledgeBaseDocumentUploadUrlRequest {
+    userId: number;
+    extension: string;
 }
 
 export interface GetConversationMessagesRequest {
@@ -353,6 +382,11 @@ export interface GetPbxTimeRangeRequest {
 
 export interface GetPbxVoicemailMailboxRequest {
     conversationPbxVoicemailMailboxUuid: string;
+}
+
+export interface InsertAgentProfileKnowledgeBaseDocumentRequest {
+    userId: number;
+    knowledgeBaseDocumentRequest: ConversationInsertKnowledgeBaseDocumentRequest;
 }
 
 export interface InsertConversationCannedMessageRequest {
@@ -508,6 +542,23 @@ export interface UpdateVirtualAgentCapabilitiesRequest {
  * @interface ConversationApiInterface
  */
 export interface ConversationApiInterface {
+    /**
+     * Delete a knowledge base document 
+     * @summary Delete a knowledge base document
+     * @param {number} userId 
+     * @param {string} documentUuid 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApiInterface
+     */
+    deleteAgentProfileKnowledgeBaseDocumentRaw(requestParameters: DeleteAgentProfileKnowledgeBaseDocumentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ConversationDeleteKnowledgeBaseDocumentResponse>>;
+
+    /**
+     * Delete a knowledge base document 
+     * Delete a knowledge base document
+     */
+    deleteAgentProfileKnowledgeBaseDocument(requestParameters: DeleteAgentProfileKnowledgeBaseDocumentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ConversationDeleteKnowledgeBaseDocumentResponse>;
+
     /**
      * Delete a conversation canned message 
      * @summary Delete a conversation canned message
@@ -716,6 +767,22 @@ export interface ConversationApiInterface {
     getAgentProfile(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ConversationAgentProfileResponse>;
 
     /**
+     * Retrieve knowledge base documents 
+     * @summary Get the list of knowledge base documents associated with this agent profile
+     * @param {number} userId 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApiInterface
+     */
+    getAgentProfileKnowledgeBaseRaw(requestParameters: GetAgentProfileKnowledgeBaseRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ConversationKnowledgeBaseDocumentsResponse>>;
+
+    /**
+     * Retrieve knowledge base documents 
+     * Get the list of knowledge base documents associated with this agent profile
+     */
+    getAgentProfileKnowledgeBase(requestParameters: GetAgentProfileKnowledgeBaseRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ConversationKnowledgeBaseDocumentsResponse>;
+
+    /**
      * Retrieve the agents profile 
      * @summary Get agent profiles
      * @param {*} [options] Override http request option.
@@ -853,6 +920,23 @@ export interface ConversationApiInterface {
      * Retrieve a list of engagements ordered by name
      */
     getConversationEngagements(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ConversationEngagementsResponse>;
+
+    /**
+     * Get a pre-signed conversation knowledge base document upload URL 
+     * @summary Get a pre-signed conversation knowledge base document upload URL
+     * @param {number} userId 
+     * @param {string} extension 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApiInterface
+     */
+    getConversationKnowledgeBaseDocumentUploadUrlRaw(requestParameters: GetConversationKnowledgeBaseDocumentUploadUrlRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ConversationKnowledgeBaseDocumentUploadUrlResponse>>;
+
+    /**
+     * Get a pre-signed conversation knowledge base document upload URL 
+     * Get a pre-signed conversation knowledge base document upload URL
+     */
+    getConversationKnowledgeBaseDocumentUploadUrl(requestParameters: GetConversationKnowledgeBaseDocumentUploadUrlRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ConversationKnowledgeBaseDocumentUploadUrlResponse>;
 
     /**
      * Retrieve conversation messages since a particular time 
@@ -1373,6 +1457,23 @@ export interface ConversationApiInterface {
      * Get virtual agent capabilities
      */
     getVirtualAgentCapabilities(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ConversationVirtualAgentCapabilitiesResponse>;
+
+    /**
+     * Insert a knowledge base document 
+     * @summary Insert a knowledge base document
+     * @param {number} userId 
+     * @param {ConversationInsertKnowledgeBaseDocumentRequest} knowledgeBaseDocumentRequest Insert request
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApiInterface
+     */
+    insertAgentProfileKnowledgeBaseDocumentRaw(requestParameters: InsertAgentProfileKnowledgeBaseDocumentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ConversationInsertKnowledgeBaseDocumentResponse>>;
+
+    /**
+     * Insert a knowledge base document 
+     * Insert a knowledge base document
+     */
+    insertAgentProfileKnowledgeBaseDocument(requestParameters: InsertAgentProfileKnowledgeBaseDocumentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ConversationInsertKnowledgeBaseDocumentResponse>;
 
     /**
      * Insert a canned message 
@@ -1924,6 +2025,51 @@ export interface ConversationApiInterface {
 export class ConversationApi extends runtime.BaseAPI implements ConversationApiInterface {
 
     /**
+     * Delete a knowledge base document 
+     * Delete a knowledge base document
+     */
+    async deleteAgentProfileKnowledgeBaseDocumentRaw(requestParameters: DeleteAgentProfileKnowledgeBaseDocumentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ConversationDeleteKnowledgeBaseDocumentResponse>> {
+        if (requestParameters.userId === null || requestParameters.userId === undefined) {
+            throw new runtime.RequiredError('userId','Required parameter requestParameters.userId was null or undefined when calling deleteAgentProfileKnowledgeBaseDocument.');
+        }
+
+        if (requestParameters.documentUuid === null || requestParameters.documentUuid === undefined) {
+            throw new runtime.RequiredError('documentUuid','Required parameter requestParameters.documentUuid was null or undefined when calling deleteAgentProfileKnowledgeBaseDocument.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", ["conversation_write"]);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/conversation/agent/profiles/{user_id}/knowledge_base/{document_uuid}`.replace(`{${"user_id"}}`, encodeURIComponent(String(requestParameters.userId))).replace(`{${"document_uuid"}}`, encodeURIComponent(String(requestParameters.documentUuid))),
+            method: 'DELETE',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => ConversationDeleteKnowledgeBaseDocumentResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Delete a knowledge base document 
+     * Delete a knowledge base document
+     */
+    async deleteAgentProfileKnowledgeBaseDocument(requestParameters: DeleteAgentProfileKnowledgeBaseDocumentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ConversationDeleteKnowledgeBaseDocumentResponse> {
+        const response = await this.deleteAgentProfileKnowledgeBaseDocumentRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
      * Delete a conversation canned message 
      * Delete a conversation canned message
      */
@@ -2447,6 +2593,47 @@ export class ConversationApi extends runtime.BaseAPI implements ConversationApiI
     }
 
     /**
+     * Retrieve knowledge base documents 
+     * Get the list of knowledge base documents associated with this agent profile
+     */
+    async getAgentProfileKnowledgeBaseRaw(requestParameters: GetAgentProfileKnowledgeBaseRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ConversationKnowledgeBaseDocumentsResponse>> {
+        if (requestParameters.userId === null || requestParameters.userId === undefined) {
+            throw new runtime.RequiredError('userId','Required parameter requestParameters.userId was null or undefined when calling getAgentProfileKnowledgeBase.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", ["conversation_read"]);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/conversation/agent/profiles/{user_id}/knowledge_base`.replace(`{${"user_id"}}`, encodeURIComponent(String(requestParameters.userId))),
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => ConversationKnowledgeBaseDocumentsResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Retrieve knowledge base documents 
+     * Get the list of knowledge base documents associated with this agent profile
+     */
+    async getAgentProfileKnowledgeBase(requestParameters: GetAgentProfileKnowledgeBaseRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ConversationKnowledgeBaseDocumentsResponse> {
+        const response = await this.getAgentProfileKnowledgeBaseRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
      * Retrieve the agents profile 
      * Get agent profiles
      */
@@ -2792,6 +2979,51 @@ export class ConversationApi extends runtime.BaseAPI implements ConversationApiI
      */
     async getConversationEngagements(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ConversationEngagementsResponse> {
         const response = await this.getConversationEngagementsRaw(initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Get a pre-signed conversation knowledge base document upload URL 
+     * Get a pre-signed conversation knowledge base document upload URL
+     */
+    async getConversationKnowledgeBaseDocumentUploadUrlRaw(requestParameters: GetConversationKnowledgeBaseDocumentUploadUrlRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ConversationKnowledgeBaseDocumentUploadUrlResponse>> {
+        if (requestParameters.userId === null || requestParameters.userId === undefined) {
+            throw new runtime.RequiredError('userId','Required parameter requestParameters.userId was null or undefined when calling getConversationKnowledgeBaseDocumentUploadUrl.');
+        }
+
+        if (requestParameters.extension === null || requestParameters.extension === undefined) {
+            throw new runtime.RequiredError('extension','Required parameter requestParameters.extension was null or undefined when calling getConversationKnowledgeBaseDocumentUploadUrl.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", ["conversation_write"]);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/conversation//rest/v2/conversation/agent/profiles/{user_id}/knowledge_base/upload_url/{extension}`.replace(`{${"user_id"}}`, encodeURIComponent(String(requestParameters.userId))).replace(`{${"extension"}}`, encodeURIComponent(String(requestParameters.extension))),
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => ConversationKnowledgeBaseDocumentUploadUrlResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Get a pre-signed conversation knowledge base document upload URL 
+     * Get a pre-signed conversation knowledge base document upload URL
+     */
+    async getConversationKnowledgeBaseDocumentUploadUrl(requestParameters: GetConversationKnowledgeBaseDocumentUploadUrlRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ConversationKnowledgeBaseDocumentUploadUrlResponse> {
+        const response = await this.getConversationKnowledgeBaseDocumentUploadUrlRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
@@ -4122,6 +4354,54 @@ export class ConversationApi extends runtime.BaseAPI implements ConversationApiI
      */
     async getVirtualAgentCapabilities(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ConversationVirtualAgentCapabilitiesResponse> {
         const response = await this.getVirtualAgentCapabilitiesRaw(initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Insert a knowledge base document 
+     * Insert a knowledge base document
+     */
+    async insertAgentProfileKnowledgeBaseDocumentRaw(requestParameters: InsertAgentProfileKnowledgeBaseDocumentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ConversationInsertKnowledgeBaseDocumentResponse>> {
+        if (requestParameters.userId === null || requestParameters.userId === undefined) {
+            throw new runtime.RequiredError('userId','Required parameter requestParameters.userId was null or undefined when calling insertAgentProfileKnowledgeBaseDocument.');
+        }
+
+        if (requestParameters.knowledgeBaseDocumentRequest === null || requestParameters.knowledgeBaseDocumentRequest === undefined) {
+            throw new runtime.RequiredError('knowledgeBaseDocumentRequest','Required parameter requestParameters.knowledgeBaseDocumentRequest was null or undefined when calling insertAgentProfileKnowledgeBaseDocument.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", ["conversation_write"]);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/conversation/agent/profiles/{user_id}/knowledge_base`.replace(`{${"user_id"}}`, encodeURIComponent(String(requestParameters.userId))),
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: ConversationInsertKnowledgeBaseDocumentRequestToJSON(requestParameters.knowledgeBaseDocumentRequest),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => ConversationInsertKnowledgeBaseDocumentResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Insert a knowledge base document 
+     * Insert a knowledge base document
+     */
+    async insertAgentProfileKnowledgeBaseDocument(requestParameters: InsertAgentProfileKnowledgeBaseDocumentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ConversationInsertKnowledgeBaseDocumentResponse> {
+        const response = await this.insertAgentProfileKnowledgeBaseDocumentRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
