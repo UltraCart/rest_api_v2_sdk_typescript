@@ -69,6 +69,24 @@ export interface CustomerLoyalty {
      */
     ledger_entries?: Array<CustomerLoyaltyLedger>;
     /**
+     * Loyalty tier expiration date (read only because of SDK addition)
+     * @type {string}
+     * @memberof CustomerLoyalty
+     */
+    loyalty_tier_expiration_dts?: string;
+    /**
+     * Loyalty tier name
+     * @type {string}
+     * @memberof CustomerLoyalty
+     */
+    loyalty_tier_name?: string;
+    /**
+     * Loyalty tier oid (set to zero to remove the tier)
+     * @type {number}
+     * @memberof CustomerLoyalty
+     */
+    loyalty_tier_oid?: number;
+    /**
      * Pending Points
      * @type {number}
      * @memberof CustomerLoyalty
@@ -108,6 +126,9 @@ export function CustomerLoyaltyFromJSONTyped(json: any, ignoreDiscriminator: boo
         'internal_gift_certificate_balance': !exists(json, 'internal_gift_certificate_balance') ? undefined : json['internal_gift_certificate_balance'],
         'internal_gift_certificate_oid': !exists(json, 'internal_gift_certificate_oid') ? undefined : json['internal_gift_certificate_oid'],
         'ledger_entries': !exists(json, 'ledger_entries') ? undefined : ((json['ledger_entries'] as Array<any>).map(CustomerLoyaltyLedgerFromJSON)),
+        'loyalty_tier_expiration_dts': !exists(json, 'loyalty_tier_expiration_dts') ? undefined : json['loyalty_tier_expiration_dts'],
+        'loyalty_tier_name': !exists(json, 'loyalty_tier_name') ? undefined : json['loyalty_tier_name'],
+        'loyalty_tier_oid': !exists(json, 'loyalty_tier_oid') ? undefined : json['loyalty_tier_oid'],
         'pending_points': !exists(json, 'pending_points') ? undefined : json['pending_points'],
         'redemptions': !exists(json, 'redemptions') ? undefined : ((json['redemptions'] as Array<any>).map(CustomerLoyaltyRedemptionFromJSON)),
     };
@@ -127,6 +148,9 @@ export function CustomerLoyaltyToJSON(value?: CustomerLoyalty | null): any {
         'internal_gift_certificate_balance': value.internal_gift_certificate_balance,
         'internal_gift_certificate_oid': value.internal_gift_certificate_oid,
         'ledger_entries': value.ledger_entries === undefined ? undefined : ((value.ledger_entries as Array<any>).map(CustomerLoyaltyLedgerToJSON)),
+        'loyalty_tier_expiration_dts': value.loyalty_tier_expiration_dts,
+        'loyalty_tier_name': value.loyalty_tier_name,
+        'loyalty_tier_oid': value.loyalty_tier_oid,
         'pending_points': value.pending_points,
         'redemptions': value.redemptions === undefined ? undefined : ((value.redemptions as Array<any>).map(CustomerLoyaltyRedemptionToJSON)),
     };

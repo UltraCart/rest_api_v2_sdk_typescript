@@ -1,12 +1,12 @@
 # UltraCart Typescript SDK
-## ultracart_rest_api_v2_typescript@4.1.23
+## ultracart_rest_api_v2_typescript@4.1.24
 
 Every API method call has a sample for every language SDK.  See https://github.com/UltraCart/sdk_samples
 
 Installation
 
 ```
-npm install ultracart_rest_api_v2_typescript@4.1.23 --save
+npm install ultracart_rest_api_v2_typescript@4.1.24 --save
 ```
 
 ```typescript
@@ -85,6 +85,7 @@ Not every change is committed to every SDK.
 
 | Version | Date | Comments |
 | --: | :-: | --- |
+| 4.1.24 | 10/20/2025 | new perm flag on conversation virtual agent capabilities |
 | 4.1.23 | 10/14/2025 | CustomerApi.deleteWishlistItem bug fix for bad response type |
 | 4.1.22 | 10/06/2025 | added Customer.fax back into object model |
 | 4.1.21 | 09/09/2025 | added OrderRestApi.replaceOrderItemMerchantItemId |

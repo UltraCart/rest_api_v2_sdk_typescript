@@ -27,6 +27,12 @@ import {
  */
 export interface ConversationVirtualAgentCapabilities {
     /**
+     * Permission flag to allow this Agent access to the storefront and item information.
+     * @type {boolean}
+     * @memberof ConversationVirtualAgentCapabilities
+     */
+    access_storefront_and_item?: boolean;
+    /**
      * 
      * @type {boolean}
      * @memberof ConversationVirtualAgentCapabilities
@@ -145,6 +151,7 @@ export function ConversationVirtualAgentCapabilitiesFromJSONTyped(json: any, ign
     }
     return {
         
+        'access_storefront_and_item': !exists(json, 'access_storefront_and_item') ? undefined : json['access_storefront_and_item'],
         'cancel_subscription': !exists(json, 'cancel_subscription') ? undefined : json['cancel_subscription'],
         'delay_subscription': !exists(json, 'delay_subscription') ? undefined : json['delay_subscription'],
         'lookup_order_information': !exists(json, 'lookup_order_information') ? undefined : json['lookup_order_information'],
@@ -171,6 +178,7 @@ export function ConversationVirtualAgentCapabilitiesToJSON(value?: ConversationV
     }
     return {
         
+        'access_storefront_and_item': value.access_storefront_and_item,
         'cancel_subscription': value.cancel_subscription,
         'delay_subscription': value.delay_subscription,
         'lookup_order_information': value.lookup_order_information,
