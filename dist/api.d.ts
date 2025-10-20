@@ -11095,6 +11095,12 @@ export interface ConversationVirtualAgentBudgetResponse {
  */
 export interface ConversationVirtualAgentCapabilities {
     /**
+     * Permission flag to allow this Agent access to the storefront and item information.
+     * @type {boolean}
+     * @memberof ConversationVirtualAgentCapabilities
+     */
+    access_storefront_and_item?: boolean;
+    /**
      *
      * @type {boolean}
      * @memberof ConversationVirtualAgentCapabilities
@@ -16184,6 +16190,24 @@ export interface CustomerLoyalty {
      * @memberof CustomerLoyalty
      */
     ledger_entries?: Array<CustomerLoyaltyLedger>;
+    /**
+     * Loyalty tier expiration date (read only because of SDK addition)
+     * @type {string}
+     * @memberof CustomerLoyalty
+     */
+    loyalty_tier_expiration_dts?: string;
+    /**
+     * Loyalty tier name
+     * @type {string}
+     * @memberof CustomerLoyalty
+     */
+    loyalty_tier_name?: string;
+    /**
+     * Loyalty tier oid (set to zero to remove the tier)
+     * @type {number}
+     * @memberof CustomerLoyalty
+     */
+    loyalty_tier_oid?: number;
     /**
      * Pending Points
      * @type {number}
