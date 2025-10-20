@@ -49,7 +49,7 @@ export interface ConversationKnowledgeBaseDocumentUploadUrlResponse {
      * @type {ConversationKnowledgeBaseDocumentUploadUrl}
      * @memberof ConversationKnowledgeBaseDocumentUploadUrlResponse
      */
-    conversation_pbx_audio_upload_url?: ConversationKnowledgeBaseDocumentUploadUrl;
+    conversation_knowledge_base_document_upload_url?: ConversationKnowledgeBaseDocumentUploadUrl;
     /**
      * 
      * @type {ModelError}
@@ -97,7 +97,7 @@ export function ConversationKnowledgeBaseDocumentUploadUrlResponseFromJSONTyped(
     }
     return {
         
-        'conversation_pbx_audio_upload_url': !exists(json, 'conversation_pbx_audio_upload_url') ? undefined : ConversationKnowledgeBaseDocumentUploadUrlFromJSON(json['conversation_pbx_audio_upload_url']),
+        'conversation_knowledge_base_document_upload_url': !exists(json, 'conversation_knowledge_base_document_upload_url') ? undefined : ConversationKnowledgeBaseDocumentUploadUrlFromJSON(json['conversation_knowledge_base_document_upload_url']),
         'error': !exists(json, 'error') ? undefined : ModelErrorFromJSON(json['error']),
         'metadata': !exists(json, 'metadata') ? undefined : ResponseMetadataFromJSON(json['metadata']),
         'success': !exists(json, 'success') ? undefined : json['success'],
@@ -114,7 +114,7 @@ export function ConversationKnowledgeBaseDocumentUploadUrlResponseToJSON(value?:
     }
     return {
         
-        'conversation_pbx_audio_upload_url': ConversationKnowledgeBaseDocumentUploadUrlToJSON(value.conversation_pbx_audio_upload_url),
+        'conversation_knowledge_base_document_upload_url': ConversationKnowledgeBaseDocumentUploadUrlToJSON(value.conversation_knowledge_base_document_upload_url),
         'error': ModelErrorToJSON(value.error),
         'metadata': ResponseMetadataToJSON(value.metadata),
         'success': value.success,
