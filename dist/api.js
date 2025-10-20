@@ -8075,7 +8075,7 @@ var ConversationApiFetchParamCreator = function (configuration) {
             if (extension === null || extension === undefined) {
                 throw new RequiredError('extension', 'Required parameter extension was null or undefined when calling getConversationKnowledgeBaseDocumentUploadUrl.');
             }
-            var localVarPath = "/conversation//rest/v2/conversation/agent/profiles/{user_id}/knowledge_base/upload_url/{extension}"
+            var localVarPath = "/conversation/agent/profiles/{user_id}/knowledge_base/upload_url/{extension}"
                 .replace("{".concat("user_id", "}"), encodeURIComponent(String(user_id)))
                 .replace("{".concat("extension", "}"), encodeURIComponent(String(extension)));
             var localVarUrlObj = url.parse(localVarPath, true);
