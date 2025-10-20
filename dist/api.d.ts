@@ -8238,7 +8238,7 @@ export interface ConversationKnowledgeBaseDocumentUploadUrlResponse {
      * @type {ConversationKnowledgeBaseDocumentUploadUrl}
      * @memberof ConversationKnowledgeBaseDocumentUploadUrlResponse
      */
-    conversation_pbx_audio_upload_url?: ConversationKnowledgeBaseDocumentUploadUrl;
+    conversation_knowledge_base_document_upload_url?: ConversationKnowledgeBaseDocumentUploadUrl;
     /**
      *
      * @type {ModelError}
