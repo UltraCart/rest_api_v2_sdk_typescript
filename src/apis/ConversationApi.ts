@@ -3009,7 +3009,7 @@ export class ConversationApi extends runtime.BaseAPI implements ConversationApiI
         }
 
         const response = await this.request({
-            path: `/conversation//rest/v2/conversation/agent/profiles/{user_id}/knowledge_base/upload_url/{extension}`.replace(`{${"user_id"}}`, encodeURIComponent(String(requestParameters.userId))).replace(`{${"extension"}}`, encodeURIComponent(String(requestParameters.extension))),
+            path: `/conversation/agent/profiles/{user_id}/knowledge_base/upload_url/{extension}`.replace(`{${"user_id"}}`, encodeURIComponent(String(requestParameters.userId))).replace(`{${"extension"}}`, encodeURIComponent(String(requestParameters.extension))),
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
