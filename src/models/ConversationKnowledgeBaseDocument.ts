@@ -61,6 +61,12 @@ export interface ConversationKnowledgeBaseDocument {
      * @memberof ConversationKnowledgeBaseDocument
      */
     s3_key?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ConversationKnowledgeBaseDocument
+     */
+    s3_url?: string;
 }
 
 
@@ -91,6 +97,7 @@ export function ConversationKnowledgeBaseDocumentFromJSONTyped(json: any, ignore
         'metadata': !exists(json, 'metadata') ? undefined : json['metadata'],
         'mime_type': !exists(json, 'mime_type') ? undefined : json['mime_type'],
         's3_key': !exists(json, 's3_key') ? undefined : json['s3_key'],
+        's3_url': !exists(json, 's3_url') ? undefined : json['s3_url'],
     };
 }
 
@@ -110,6 +117,7 @@ export function ConversationKnowledgeBaseDocumentToJSON(value?: ConversationKnow
         'metadata': value.metadata,
         'mime_type': value.mime_type,
         's3_key': value.s3_key,
+        's3_url': value.s3_url,
     };
 }
 

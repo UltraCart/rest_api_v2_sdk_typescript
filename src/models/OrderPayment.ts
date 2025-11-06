@@ -232,7 +232,8 @@ export const OrderPaymentPaymentMethodEnum = {
     ApplePay: 'Apple Pay',
     GooglePay: 'Google Pay',
     HealthBenefitCard: 'Health Benefit Card',
-    PayPalFastlane: 'PayPal Fastlane'
+    PayPalFastlane: 'PayPal Fastlane',
+    Klarna: 'Klarna'
 } as const;
 export type OrderPaymentPaymentMethodEnum = typeof OrderPaymentPaymentMethodEnum[keyof typeof OrderPaymentPaymentMethodEnum];
 

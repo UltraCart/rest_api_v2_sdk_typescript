@@ -24,6 +24,12 @@ export interface ConversationInsertKnowledgeBaseDocumentRequest {
      * @type {string}
      * @memberof ConversationInsertKnowledgeBaseDocumentRequest
      */
+    original_file_name?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ConversationInsertKnowledgeBaseDocumentRequest
+     */
     presigned_url?: string;
 }
 
@@ -48,6 +54,7 @@ export function ConversationInsertKnowledgeBaseDocumentRequestFromJSONTyped(json
     }
     return {
         
+        'original_file_name': !exists(json, 'original_file_name') ? undefined : json['original_file_name'],
         'presigned_url': !exists(json, 'presigned_url') ? undefined : json['presigned_url'],
     };
 }
@@ -61,6 +68,7 @@ export function ConversationInsertKnowledgeBaseDocumentRequestToJSON(value?: Con
     }
     return {
         
+        'original_file_name': value.original_file_name,
         'presigned_url': value.presigned_url,
     };
 }
