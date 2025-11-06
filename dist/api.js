@@ -1427,6 +1427,7 @@ var OrderPayment;
         PaymentMethodEnum[PaymentMethodEnum["GooglePay"] = 'Google Pay'] = "GooglePay";
         PaymentMethodEnum[PaymentMethodEnum["HealthBenefitCard"] = 'Health Benefit Card'] = "HealthBenefitCard";
         PaymentMethodEnum[PaymentMethodEnum["PayPalFastlane"] = 'PayPal Fastlane'] = "PayPalFastlane";
+        PaymentMethodEnum[PaymentMethodEnum["Klarna"] = 'Klarna'] = "Klarna";
     })(PaymentMethodEnum = OrderPayment.PaymentMethodEnum || (OrderPayment.PaymentMethodEnum = {}));
     /**
      * @export

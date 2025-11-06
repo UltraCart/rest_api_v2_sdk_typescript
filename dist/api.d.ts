@@ -8095,6 +8095,12 @@ export interface ConversationInsertKnowledgeBaseDocumentRequest {
      * @type {string}
      * @memberof ConversationInsertKnowledgeBaseDocumentRequest
      */
+    original_file_name?: string;
+    /**
+     *
+     * @type {string}
+     * @memberof ConversationInsertKnowledgeBaseDocumentRequest
+     */
     presigned_url?: string;
 }
 /**
@@ -8207,6 +8213,12 @@ export interface ConversationKnowledgeBaseDocument {
      * @memberof ConversationKnowledgeBaseDocument
      */
     s3_key?: string;
+    /**
+     *
+     * @type {string}
+     * @memberof ConversationKnowledgeBaseDocument
+     */
+    s3_url?: string;
 }
 /**
  *
@@ -35236,7 +35248,8 @@ export declare namespace OrderPayment {
         ApplePay,
         GooglePay,
         HealthBenefitCard,
-        PayPalFastlane
+        PayPalFastlane,
+        Klarna
     }
     /**
      * @export
