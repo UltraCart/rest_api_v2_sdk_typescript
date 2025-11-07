@@ -33,6 +33,9 @@ import {
     Order,
     OrderFromJSON,
     OrderToJSON,
+    OrderAssignToAffiliateRequest,
+    OrderAssignToAffiliateRequestFromJSON,
+    OrderAssignToAffiliateRequestToJSON,
     OrderByTokenQuery,
     OrderByTokenQueryFromJSON,
     OrderByTokenQueryToJSON,
@@ -95,6 +98,12 @@ import {
 export interface AdjustOrderTotalRequest {
     orderId: string;
     desiredTotal: string;
+}
+
+export interface AssignToAffiliateRequest {
+    orderId: string;
+    assignToAffiliateRequest: OrderAssignToAffiliateRequest;
+    expand?: string;
 }
 
 export interface BlockRefundOnOrderRequest {
@@ -292,6 +301,24 @@ export interface OrderApiInterface {
      * Adjusts an order total
      */
     adjustOrderTotal(requestParameters: AdjustOrderTotalRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BaseResponse>;
+
+    /**
+     * Assigns an order to an affiliate. 
+     * @summary Assigns an order to an affiliate
+     * @param {string} orderId The order id to assign to the affiliate.
+     * @param {OrderAssignToAffiliateRequest} assignToAffiliateRequest Assign to affiliate request
+     * @param {string} [expand] The object expansion to perform on the result.  See documentation for examples
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof OrderApiInterface
+     */
+    assignToAffiliateRaw(requestParameters: AssignToAffiliateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<OrderResponse>>;
+
+    /**
+     * Assigns an order to an affiliate. 
+     * Assigns an order to an affiliate
+     */
+    assignToAffiliate(requestParameters: AssignToAffiliateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<OrderResponse>;
 
     /**
      * Sets a refund block on an order to prevent a user from performing a refund.  Commonly used when a chargeback has been received. 
@@ -865,6 +892,58 @@ export class OrderApi extends runtime.BaseAPI implements OrderApiInterface {
      */
     async adjustOrderTotal(requestParameters: AdjustOrderTotalRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BaseResponse> {
         const response = await this.adjustOrderTotalRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Assigns an order to an affiliate. 
+     * Assigns an order to an affiliate
+     */
+    async assignToAffiliateRaw(requestParameters: AssignToAffiliateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<OrderResponse>> {
+        if (requestParameters.orderId === null || requestParameters.orderId === undefined) {
+            throw new runtime.RequiredError('orderId','Required parameter requestParameters.orderId was null or undefined when calling assignToAffiliate.');
+        }
+
+        if (requestParameters.assignToAffiliateRequest === null || requestParameters.assignToAffiliateRequest === undefined) {
+            throw new runtime.RequiredError('assignToAffiliateRequest','Required parameter requestParameters.assignToAffiliateRequest was null or undefined when calling assignToAffiliate.');
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters.expand !== undefined) {
+            queryParameters['_expand'] = requestParameters.expand;
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", ["order_write"]);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/order/orders/{order_id}/assignToAffiliate`.replace(`{${"order_id"}}`, encodeURIComponent(String(requestParameters.orderId))),
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: OrderAssignToAffiliateRequestToJSON(requestParameters.assignToAffiliateRequest),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => OrderResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Assigns an order to an affiliate. 
+     * Assigns an order to an affiliate
+     */
+    async assignToAffiliate(requestParameters: AssignToAffiliateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<OrderResponse> {
+        const response = await this.assignToAffiliateRaw(requestParameters, initOverrides);
         return await response.value();
     }
 

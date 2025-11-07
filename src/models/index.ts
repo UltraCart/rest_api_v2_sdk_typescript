@@ -651,6 +651,7 @@ export * from './OauthTokenResponse';
 export * from './Order';
 export * from './OrderAffiliate';
 export * from './OrderAffiliateLedger';
+export * from './OrderAssignToAffiliateRequest';
 export * from './OrderAutoOrder';
 export * from './OrderBilling';
 export * from './OrderBuysafe';

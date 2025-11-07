@@ -675,6 +675,7 @@ src/models/OauthTokenResponse.ts
 src/models/Order.ts
 src/models/OrderAffiliate.ts
 src/models/OrderAffiliateLedger.ts
+src/models/OrderAssignToAffiliateRequest.ts
 src/models/OrderAutoOrder.ts
 src/models/OrderBilling.ts
 src/models/OrderBuysafe.ts
