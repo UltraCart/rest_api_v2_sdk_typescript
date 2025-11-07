@@ -27271,6 +27271,64 @@ var OrderApiFetchParamCreator = function (configuration) {
             };
         },
         /**
+         * Assigns an order to an affiliate.
+         * @summary Assigns an order to an affiliate
+         * @param {string} order_id The order id to assign to the affiliate.
+         * @param {OrderAssignToAffiliateRequest} assign_to_affiliate_request Assign to affiliate request
+         * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        assignToAffiliate: function (order_id, assign_to_affiliate_request, _expand, options) {
+            if (options === void 0) { options = {}; }
+            // verify required parameter 'order_id' is not null or undefined
+            if (order_id === null || order_id === undefined) {
+                throw new RequiredError('order_id', 'Required parameter order_id was null or undefined when calling assignToAffiliate.');
+            }
+            // verify required parameter 'assign_to_affiliate_request' is not null or undefined
+            if (assign_to_affiliate_request === null || assign_to_affiliate_request === undefined) {
+                throw new RequiredError('assign_to_affiliate_request', 'Required parameter assign_to_affiliate_request was null or undefined when calling assignToAffiliate.');
+            }
+            var localVarPath = "/order/orders/{order_id}/assignToAffiliate"
+                .replace("{".concat("order_id", "}"), encodeURIComponent(String(order_id)));
+            var localVarUrlObj = url.parse(localVarPath, true);
+            var localVarRequestOptions = Object.assign({ method: 'POST' }, options);
+            var localVarHeaderParameter = {};
+            var localVarQueryParameter = {};
+            if (configuration && configuration.apiVersion) {
+                localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+            }
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+                var localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+                    ? configuration.accessToken("ultraCartOauth", ["order_write"])
+                    : configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                var localVarApiKeyValue = typeof configuration.apiKey === 'function'
+                    ? configuration.apiKey("x-ultracart-simple-key")
+                    : configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+            if (_expand !== undefined) {
+                localVarQueryParameter['_expand'] = _expand;
+            }
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+            var needsSerialization = ("OrderAssignToAffiliateRequest" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
+            localVarRequestOptions.body = needsSerialization ? JSON.stringify(assign_to_affiliate_request || {}) : (assign_to_affiliate_request || "");
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
          * Sets a refund block on an order to prevent a user from performing a refund.  Commonly used when a chargeback has been received.
          * @summary Set a refund block on an order
          * @param {string} order_id The order id to block a refund on.
@@ -28905,6 +28963,30 @@ var OrderApiFp = function (configuration) {
             };
         },
         /**
+         * Assigns an order to an affiliate.
+         * @summary Assigns an order to an affiliate
+         * @param {string} order_id The order id to assign to the affiliate.
+         * @param {OrderAssignToAffiliateRequest} assign_to_affiliate_request Assign to affiliate request
+         * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        assignToAffiliate: function (order_id, assign_to_affiliate_request, _expand, options) {
+            var localVarFetchArgs = (0, exports.OrderApiFetchParamCreator)(configuration).assignToAffiliate(order_id, assign_to_affiliate_request, _expand, options);
+            return function (fetch, basePath) {
+                if (fetch === void 0) { fetch = portableFetch; }
+                if (basePath === void 0) { basePath = BASE_PATH; }
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(function (response) {
+                    if (response.status >= 200 && response.status < 300) {
+                        return response.json();
+                    }
+                    else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
          * Sets a refund block on an order to prevent a user from performing a refund.  Commonly used when a chargeback has been received.
          * @summary Set a refund block on an order
          * @param {string} order_id The order id to block a refund on.
@@ -29622,6 +29704,18 @@ var OrderApiFactory = function (configuration, fetch, basePath) {
             return (0, exports.OrderApiFp)(configuration).adjustOrderTotal(order_id, desired_total, options)(fetch, basePath);
         },
         /**
+         * Assigns an order to an affiliate.
+         * @summary Assigns an order to an affiliate
+         * @param {string} order_id The order id to assign to the affiliate.
+         * @param {OrderAssignToAffiliateRequest} assign_to_affiliate_request Assign to affiliate request
+         * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        assignToAffiliate: function (order_id, assign_to_affiliate_request, _expand, options) {
+            return (0, exports.OrderApiFp)(configuration).assignToAffiliate(order_id, assign_to_affiliate_request, _expand, options)(fetch, basePath);
+        },
+        /**
          * Sets a refund block on an order to prevent a user from performing a refund.  Commonly used when a chargeback has been received.
          * @summary Set a refund block on an order
          * @param {string} order_id The order id to block a refund on.
@@ -29995,6 +30089,19 @@ var OrderApi = /** @class */ (function (_super) {
      */
     OrderApi.prototype.adjustOrderTotal = function (order_id, desired_total, options) {
         return (0, exports.OrderApiFp)(this.configuration).adjustOrderTotal(order_id, desired_total, options)(this.fetch, this.basePath);
+    };
+    /**
+     * Assigns an order to an affiliate.
+     * @summary Assigns an order to an affiliate
+     * @param {string} order_id The order id to assign to the affiliate.
+     * @param {OrderAssignToAffiliateRequest} assign_to_affiliate_request Assign to affiliate request
+     * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof OrderApi
+     */
+    OrderApi.prototype.assignToAffiliate = function (order_id, assign_to_affiliate_request, _expand, options) {
+        return (0, exports.OrderApiFp)(this.configuration).assignToAffiliate(order_id, assign_to_affiliate_request, _expand, options)(this.fetch, this.basePath);
     };
     /**
      * Sets a refund block on an order to prevent a user from performing a refund.  Commonly used when a chargeback has been received.

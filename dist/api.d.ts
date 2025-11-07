@@ -33015,6 +33015,31 @@ export declare namespace OrderAffiliateLedger {
 /**
  *
  * @export
+ * @interface OrderAssignToAffiliateRequest
+ */
+export interface OrderAssignToAffiliateRequest {
+    /**
+     * Affiliate email to associate with the order
+     * @type {string}
+     * @memberof OrderAssignToAffiliateRequest
+     */
+    affiliate_email?: string;
+    /**
+     * Affiliate id to associate with the order
+     * @type {number}
+     * @memberof OrderAssignToAffiliateRequest
+     */
+    affiliate_id?: number;
+    /**
+     * Affiliate sub id to associate with the order
+     * @type {string}
+     * @memberof OrderAssignToAffiliateRequest
+     */
+    affiliate_sub_id?: string;
+}
+/**
+ *
+ * @export
  * @interface OrderAutoOrder
  */
 export interface OrderAutoOrder {
@@ -58173,6 +58198,16 @@ export declare const OrderApiFetchParamCreator: (configuration?: Configuration) 
      */
     adjustOrderTotal(order_id: string, desired_total: string, options?: any): FetchArgs;
     /**
+     * Assigns an order to an affiliate.
+     * @summary Assigns an order to an affiliate
+     * @param {string} order_id The order id to assign to the affiliate.
+     * @param {OrderAssignToAffiliateRequest} assign_to_affiliate_request Assign to affiliate request
+     * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    assignToAffiliate(order_id: string, assign_to_affiliate_request: OrderAssignToAffiliateRequest, _expand?: string, options?: any): FetchArgs;
+    /**
      * Sets a refund block on an order to prevent a user from performing a refund.  Commonly used when a chargeback has been received.
      * @summary Set a refund block on an order
      * @param {string} order_id The order id to block a refund on.
@@ -58479,6 +58514,16 @@ export declare const OrderApiFp: (configuration?: Configuration) => {
      */
     adjustOrderTotal(order_id: string, desired_total: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<BaseResponse>;
     /**
+     * Assigns an order to an affiliate.
+     * @summary Assigns an order to an affiliate
+     * @param {string} order_id The order id to assign to the affiliate.
+     * @param {OrderAssignToAffiliateRequest} assign_to_affiliate_request Assign to affiliate request
+     * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    assignToAffiliate(order_id: string, assign_to_affiliate_request: OrderAssignToAffiliateRequest, _expand?: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<OrderResponse>;
+    /**
      * Sets a refund block on an order to prevent a user from performing a refund.  Commonly used when a chargeback has been received.
      * @summary Set a refund block on an order
      * @param {string} order_id The order id to block a refund on.
@@ -58784,6 +58829,16 @@ export declare const OrderApiFactory: (configuration?: Configuration, fetch?: Fe
      * @throws {RequiredError}
      */
     adjustOrderTotal(order_id: string, desired_total: string, options?: any): Promise<BaseResponse>;
+    /**
+     * Assigns an order to an affiliate.
+     * @summary Assigns an order to an affiliate
+     * @param {string} order_id The order id to assign to the affiliate.
+     * @param {OrderAssignToAffiliateRequest} assign_to_affiliate_request Assign to affiliate request
+     * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    assignToAffiliate(order_id: string, assign_to_affiliate_request: OrderAssignToAffiliateRequest, _expand?: string, options?: any): Promise<OrderResponse>;
     /**
      * Sets a refund block on an order to prevent a user from performing a refund.  Commonly used when a chargeback has been received.
      * @summary Set a refund block on an order
@@ -59092,6 +59147,17 @@ export interface OrderApiInterface {
      * @memberof OrderApiInterface
      */
     adjustOrderTotal(order_id: string, desired_total: string, options?: any): Promise<BaseResponse>;
+    /**
+     * Assigns an order to an affiliate.
+     * @summary Assigns an order to an affiliate
+     * @param {string} order_id The order id to assign to the affiliate.
+     * @param {OrderAssignToAffiliateRequest} assign_to_affiliate_request Assign to affiliate request
+     * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof OrderApiInterface
+     */
+    assignToAffiliate(order_id: string, assign_to_affiliate_request: OrderAssignToAffiliateRequest, _expand?: string, options?: any): Promise<OrderResponse>;
     /**
      * Sets a refund block on an order to prevent a user from performing a refund.  Commonly used when a chargeback has been received.
      * @summary Set a refund block on an order
@@ -59430,6 +59496,17 @@ export declare class OrderApi extends BaseAPI implements OrderApiInterface {
      * @memberof OrderApi
      */
     adjustOrderTotal(order_id: string, desired_total: string, options?: any): Promise<BaseResponse>;
+    /**
+     * Assigns an order to an affiliate.
+     * @summary Assigns an order to an affiliate
+     * @param {string} order_id The order id to assign to the affiliate.
+     * @param {OrderAssignToAffiliateRequest} assign_to_affiliate_request Assign to affiliate request
+     * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof OrderApi
+     */
+    assignToAffiliate(order_id: string, assign_to_affiliate_request: OrderAssignToAffiliateRequest, _expand?: string, options?: any): Promise<OrderResponse>;
     /**
      * Sets a refund block on an order to prevent a user from performing a refund.  Commonly used when a chargeback has been received.
      * @summary Set a refund block on an order
