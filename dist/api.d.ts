@@ -8468,6 +8468,12 @@ export interface ConversationMessage {
     message_epoch?: number;
     /**
      *
+     * @type {string}
+     * @memberof ConversationMessage
+     */
+    message_type?: string;
+    /**
+     *
      * @type {Array<ConversationMessageTranslation>}
      * @memberof ConversationMessage
      */
@@ -11124,6 +11130,12 @@ export interface ConversationVirtualAgentCapabilities {
      * @memberof ConversationVirtualAgentCapabilities
      */
     delay_subscription?: boolean;
+    /**
+     * Permission flag to allow this Agent to generate coupons based upon the agent prompt instructions
+     * @type {boolean}
+     * @memberof ConversationVirtualAgentCapabilities
+     */
+    generate_coupon?: boolean;
     /**
      *
      * @type {boolean}
