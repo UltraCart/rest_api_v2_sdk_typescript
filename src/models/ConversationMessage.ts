@@ -100,6 +100,12 @@ export interface ConversationMessage {
     message_epoch?: number;
     /**
      * 
+     * @type {string}
+     * @memberof ConversationMessage
+     */
+    message_type?: string;
+    /**
+     * 
      * @type {Array<ConversationMessageTranslation>}
      * @memberof ConversationMessage
      */
@@ -167,6 +173,7 @@ export function ConversationMessageFromJSONTyped(json: any, ignoreDiscriminator:
         'merchant_id': !exists(json, 'merchant_id') ? undefined : json['merchant_id'],
         'message_dts': !exists(json, 'message_dts') ? undefined : json['message_dts'],
         'message_epoch': !exists(json, 'message_epoch') ? undefined : json['message_epoch'],
+        'message_type': !exists(json, 'message_type') ? undefined : json['message_type'],
         'translations': !exists(json, 'translations') ? undefined : ((json['translations'] as Array<any>).map(ConversationMessageTranslationFromJSON)),
         'transport_statuses': !exists(json, 'transport_statuses') ? undefined : ((json['transport_statuses'] as Array<any>).map(ConversationMessageTransportStatusFromJSON)),
         'type': !exists(json, 'type') ? undefined : json['type'],
@@ -194,6 +201,7 @@ export function ConversationMessageToJSON(value?: ConversationMessage | null): a
         'merchant_id': value.merchant_id,
         'message_dts': value.message_dts,
         'message_epoch': value.message_epoch,
+        'message_type': value.message_type,
         'translations': value.translations === undefined ? undefined : ((value.translations as Array<any>).map(ConversationMessageTranslationToJSON)),
         'transport_statuses': value.transport_statuses === undefined ? undefined : ((value.transport_statuses as Array<any>).map(ConversationMessageTransportStatusToJSON)),
         'type': value.type,

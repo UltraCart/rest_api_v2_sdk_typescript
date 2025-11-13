@@ -45,6 +45,12 @@ export interface ConversationVirtualAgentCapabilities {
      */
     delay_subscription?: boolean;
     /**
+     * Permission flag to allow this Agent to generate coupons based upon the agent prompt instructions
+     * @type {boolean}
+     * @memberof ConversationVirtualAgentCapabilities
+     */
+    generate_coupon?: boolean;
+    /**
      * 
      * @type {boolean}
      * @memberof ConversationVirtualAgentCapabilities
@@ -154,6 +160,7 @@ export function ConversationVirtualAgentCapabilitiesFromJSONTyped(json: any, ign
         'access_storefront_and_item': !exists(json, 'access_storefront_and_item') ? undefined : json['access_storefront_and_item'],
         'cancel_subscription': !exists(json, 'cancel_subscription') ? undefined : json['cancel_subscription'],
         'delay_subscription': !exists(json, 'delay_subscription') ? undefined : json['delay_subscription'],
+        'generate_coupon': !exists(json, 'generate_coupon') ? undefined : json['generate_coupon'],
         'lookup_order_information': !exists(json, 'lookup_order_information') ? undefined : json['lookup_order_information'],
         'lookup_subscription_information': !exists(json, 'lookup_subscription_information') ? undefined : json['lookup_subscription_information'],
         'open_support_ticket': !exists(json, 'open_support_ticket') ? undefined : json['open_support_ticket'],
@@ -181,6 +188,7 @@ export function ConversationVirtualAgentCapabilitiesToJSON(value?: ConversationV
         'access_storefront_and_item': value.access_storefront_and_item,
         'cancel_subscription': value.cancel_subscription,
         'delay_subscription': value.delay_subscription,
+        'generate_coupon': value.generate_coupon,
         'lookup_order_information': value.lookup_order_information,
         'lookup_subscription_information': value.lookup_subscription_information,
         'open_support_ticket': value.open_support_ticket,
