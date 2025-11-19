@@ -8397,6 +8397,150 @@ export interface ConversationLocationsResponse {
 /**
  *
  * @export
+ * @interface ConversationMcpServer
+ */
+export interface ConversationMcpServer {
+    /**
+     * Authorization Method
+     * @type {string}
+     * @memberof ConversationMcpServer
+     */
+    auth_method?: ConversationMcpServer.AuthMethodEnum;
+    /**
+     * Basic password
+     * @type {string}
+     * @memberof ConversationMcpServer
+     */
+    basic_password?: string;
+    /**
+     * Basic user name
+     * @type {string}
+     * @memberof ConversationMcpServer
+     */
+    basic_user_name?: string;
+    /**
+     * Header name
+     * @type {string}
+     * @memberof ConversationMcpServer
+     */
+    header_name?: string;
+    /**
+     * Header value
+     * @type {string}
+     * @memberof ConversationMcpServer
+     */
+    header_value?: string;
+    /**
+     * UUID of the MCP server configuration
+     * @type {string}
+     * @memberof ConversationMcpServer
+     */
+    mcp_server_uuid?: string;
+    /**
+     * Priority on which the MCP server tools are incorporated into the model.  Lower number comes first
+     * @type {number}
+     * @memberof ConversationMcpServer
+     */
+    priority?: number;
+    /**
+     * URL to the MCP server (must be https)
+     * @type {string}
+     * @memberof ConversationMcpServer
+     */
+    url?: string;
+}
+/**
+ * @export
+ * @namespace ConversationMcpServer
+ */
+export declare namespace ConversationMcpServer {
+    /**
+     * @export
+     * @enum {string}
+     */
+    enum AuthMethodEnum {
+        None,
+        Header,
+        Basic
+    }
+}
+/**
+ *
+ * @export
+ * @interface ConversationMcpServerResponse
+ */
+export interface ConversationMcpServerResponse {
+    /**
+     *
+     * @type {ModelError}
+     * @memberof ConversationMcpServerResponse
+     */
+    error?: ModelError;
+    /**
+     *
+     * @type {ConversationMcpServer}
+     * @memberof ConversationMcpServerResponse
+     */
+    mcp_server?: ConversationMcpServer;
+    /**
+     *
+     * @type {ResponseMetadata}
+     * @memberof ConversationMcpServerResponse
+     */
+    metadata?: ResponseMetadata;
+    /**
+     * Indicates if API call was successful
+     * @type {boolean}
+     * @memberof ConversationMcpServerResponse
+     */
+    success?: boolean;
+    /**
+     *
+     * @type {Warning}
+     * @memberof ConversationMcpServerResponse
+     */
+    warning?: Warning;
+}
+/**
+ *
+ * @export
+ * @interface ConversationMcpServersResponse
+ */
+export interface ConversationMcpServersResponse {
+    /**
+     *
+     * @type {ModelError}
+     * @memberof ConversationMcpServersResponse
+     */
+    error?: ModelError;
+    /**
+     *
+     * @type {Array<ConversationMcpServer>}
+     * @memberof ConversationMcpServersResponse
+     */
+    mcp_servers?: Array<ConversationMcpServer>;
+    /**
+     *
+     * @type {ResponseMetadata}
+     * @memberof ConversationMcpServersResponse
+     */
+    metadata?: ResponseMetadata;
+    /**
+     * Indicates if API call was successful
+     * @type {boolean}
+     * @memberof ConversationMcpServersResponse
+     */
+    success?: boolean;
+    /**
+     *
+     * @type {Warning}
+     * @memberof ConversationMcpServersResponse
+     */
+    warning?: Warning;
+}
+/**
+ *
+ * @export
  * @interface ConversationMessage
  */
 export interface ConversationMessage {
@@ -30704,6 +30848,12 @@ export interface ItemShipping {
      */
     hold_for_transmission?: boolean;
     /**
+     * Force this item onto the packing slip even if there is no weight.
+     * @type {boolean}
+     * @memberof ItemShipping
+     */
+    include_on_packing_slip?: boolean;
+    /**
      * True if this item is made to order
      * @type {boolean}
      * @memberof ItemShipping
@@ -48526,6 +48676,23 @@ export declare const ConversationApiFetchParamCreator: (configuration?: Configur
      */
     getAgentProfileKnowledgeBase(user_id: number, options?: any): FetchArgs;
     /**
+     * Retrieve MCP server associated with this agent
+     * @summary Get an MCP server associated with this agent
+     * @param {number} user_id
+     * @param {string} mcp_server_uuid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getAgentProfileMcp(user_id: number, mcp_server_uuid: string, options?: any): FetchArgs;
+    /**
+     * Retrieve MCP servers associated with this agent
+     * @summary Get the list of MCP servers associated with this agent
+     * @param {number} user_id
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getAgentProfileMcps(user_id: number, options?: any): FetchArgs;
+    /**
      * Retrieve the agents profile
      * @summary Get agent profiles
      * @param {*} [options] Override http request option.
@@ -48867,6 +49034,15 @@ export declare const ConversationApiFetchParamCreator: (configuration?: Configur
      */
     insertAgentProfileKnowledgeBaseDocument(user_id: number, knowledge_base_document_request: ConversationInsertKnowledgeBaseDocumentRequest, options?: any): FetchArgs;
     /**
+     * Insert an agent MCP server
+     * @summary Insert an agent MCP server
+     * @param {number} user_id
+     * @param {ConversationMcpServer} mcp_server MCP Server
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    insertAgentProfileMcp(user_id: number, mcp_server: ConversationMcpServer, options?: any): FetchArgs;
+    /**
      * Insert a canned message
      * @summary Insert a canned message
      * @param {ConversationCannedMessage} canned_message Canned message
@@ -49020,6 +49196,16 @@ export declare const ConversationApiFetchParamCreator: (configuration?: Configur
      * @throws {RequiredError}
      */
     updateAgentProfile(profile_request: ConversationAgentProfile, options?: any): FetchArgs;
+    /**
+     * Update an agent MCP server
+     * @summary Update an agent MCP server
+     * @param {number} user_id
+     * @param {string} mcp_server_uuid
+     * @param {ConversationMcpServer} mcp_server MCP Server
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    updateAgentProfileMcp(user_id: number, mcp_server_uuid: string, mcp_server: ConversationMcpServer, options?: any): FetchArgs;
     /**
      * Update a canned message
      * @summary Update a canned message
@@ -49270,6 +49456,23 @@ export declare const ConversationApiFp: (configuration?: Configuration) => {
      * @throws {RequiredError}
      */
     getAgentProfileKnowledgeBase(user_id: number, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ConversationKnowledgeBaseDocumentsResponse>;
+    /**
+     * Retrieve MCP server associated with this agent
+     * @summary Get an MCP server associated with this agent
+     * @param {number} user_id
+     * @param {string} mcp_server_uuid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getAgentProfileMcp(user_id: number, mcp_server_uuid: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ConversationMcpServerResponse>;
+    /**
+     * Retrieve MCP servers associated with this agent
+     * @summary Get the list of MCP servers associated with this agent
+     * @param {number} user_id
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getAgentProfileMcps(user_id: number, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ConversationMcpServersResponse>;
     /**
      * Retrieve the agents profile
      * @summary Get agent profiles
@@ -49612,6 +49815,15 @@ export declare const ConversationApiFp: (configuration?: Configuration) => {
      */
     insertAgentProfileKnowledgeBaseDocument(user_id: number, knowledge_base_document_request: ConversationInsertKnowledgeBaseDocumentRequest, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ConversationInsertKnowledgeBaseDocumentResponse>;
     /**
+     * Insert an agent MCP server
+     * @summary Insert an agent MCP server
+     * @param {number} user_id
+     * @param {ConversationMcpServer} mcp_server MCP Server
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    insertAgentProfileMcp(user_id: number, mcp_server: ConversationMcpServer, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ConversationMcpServerResponse>;
+    /**
      * Insert a canned message
      * @summary Insert a canned message
      * @param {ConversationCannedMessage} canned_message Canned message
@@ -49765,6 +49977,16 @@ export declare const ConversationApiFp: (configuration?: Configuration) => {
      * @throws {RequiredError}
      */
     updateAgentProfile(profile_request: ConversationAgentProfile, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ConversationAgentProfileResponse>;
+    /**
+     * Update an agent MCP server
+     * @summary Update an agent MCP server
+     * @param {number} user_id
+     * @param {string} mcp_server_uuid
+     * @param {ConversationMcpServer} mcp_server MCP Server
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    updateAgentProfileMcp(user_id: number, mcp_server_uuid: string, mcp_server: ConversationMcpServer, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ConversationMcpServerResponse>;
     /**
      * Update a canned message
      * @summary Update a canned message
@@ -50015,6 +50237,23 @@ export declare const ConversationApiFactory: (configuration?: Configuration, fet
      * @throws {RequiredError}
      */
     getAgentProfileKnowledgeBase(user_id: number, options?: any): Promise<ConversationKnowledgeBaseDocumentsResponse>;
+    /**
+     * Retrieve MCP server associated with this agent
+     * @summary Get an MCP server associated with this agent
+     * @param {number} user_id
+     * @param {string} mcp_server_uuid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getAgentProfileMcp(user_id: number, mcp_server_uuid: string, options?: any): Promise<ConversationMcpServerResponse>;
+    /**
+     * Retrieve MCP servers associated with this agent
+     * @summary Get the list of MCP servers associated with this agent
+     * @param {number} user_id
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getAgentProfileMcps(user_id: number, options?: any): Promise<ConversationMcpServersResponse>;
     /**
      * Retrieve the agents profile
      * @summary Get agent profiles
@@ -50357,6 +50596,15 @@ export declare const ConversationApiFactory: (configuration?: Configuration, fet
      */
     insertAgentProfileKnowledgeBaseDocument(user_id: number, knowledge_base_document_request: ConversationInsertKnowledgeBaseDocumentRequest, options?: any): Promise<ConversationInsertKnowledgeBaseDocumentResponse>;
     /**
+     * Insert an agent MCP server
+     * @summary Insert an agent MCP server
+     * @param {number} user_id
+     * @param {ConversationMcpServer} mcp_server MCP Server
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    insertAgentProfileMcp(user_id: number, mcp_server: ConversationMcpServer, options?: any): Promise<ConversationMcpServerResponse>;
+    /**
      * Insert a canned message
      * @summary Insert a canned message
      * @param {ConversationCannedMessage} canned_message Canned message
@@ -50510,6 +50758,16 @@ export declare const ConversationApiFactory: (configuration?: Configuration, fet
      * @throws {RequiredError}
      */
     updateAgentProfile(profile_request: ConversationAgentProfile, options?: any): Promise<ConversationAgentProfileResponse>;
+    /**
+     * Update an agent MCP server
+     * @summary Update an agent MCP server
+     * @param {number} user_id
+     * @param {string} mcp_server_uuid
+     * @param {ConversationMcpServer} mcp_server MCP Server
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    updateAgentProfileMcp(user_id: number, mcp_server_uuid: string, mcp_server: ConversationMcpServer, options?: any): Promise<ConversationMcpServerResponse>;
     /**
      * Update a canned message
      * @summary Update a canned message
@@ -50777,6 +51035,25 @@ export interface ConversationApiInterface {
      */
     getAgentProfileKnowledgeBase(user_id: number, options?: any): Promise<ConversationKnowledgeBaseDocumentsResponse>;
     /**
+     * Retrieve MCP server associated with this agent
+     * @summary Get an MCP server associated with this agent
+     * @param {number} user_id
+     * @param {string} mcp_server_uuid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApiInterface
+     */
+    getAgentProfileMcp(user_id: number, mcp_server_uuid: string, options?: any): Promise<ConversationMcpServerResponse>;
+    /**
+     * Retrieve MCP servers associated with this agent
+     * @summary Get the list of MCP servers associated with this agent
+     * @param {number} user_id
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApiInterface
+     */
+    getAgentProfileMcps(user_id: number, options?: any): Promise<ConversationMcpServersResponse>;
+    /**
      * Retrieve the agents profile
      * @summary Get agent profiles
      * @param {*} [options] Override http request option.
@@ -51162,6 +51439,16 @@ export interface ConversationApiInterface {
      */
     insertAgentProfileKnowledgeBaseDocument(user_id: number, knowledge_base_document_request: ConversationInsertKnowledgeBaseDocumentRequest, options?: any): Promise<ConversationInsertKnowledgeBaseDocumentResponse>;
     /**
+     * Insert an agent MCP server
+     * @summary Insert an agent MCP server
+     * @param {number} user_id
+     * @param {ConversationMcpServer} mcp_server MCP Server
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApiInterface
+     */
+    insertAgentProfileMcp(user_id: number, mcp_server: ConversationMcpServer, options?: any): Promise<ConversationMcpServerResponse>;
+    /**
      * Insert a canned message
      * @summary Insert a canned message
      * @param {ConversationCannedMessage} canned_message Canned message
@@ -51334,6 +51621,17 @@ export interface ConversationApiInterface {
      * @memberof ConversationApiInterface
      */
     updateAgentProfile(profile_request: ConversationAgentProfile, options?: any): Promise<ConversationAgentProfileResponse>;
+    /**
+     * Update an agent MCP server
+     * @summary Update an agent MCP server
+     * @param {number} user_id
+     * @param {string} mcp_server_uuid
+     * @param {ConversationMcpServer} mcp_server MCP Server
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApiInterface
+     */
+    updateAgentProfileMcp(user_id: number, mcp_server_uuid: string, mcp_server: ConversationMcpServer, options?: any): Promise<ConversationMcpServerResponse>;
     /**
      * Update a canned message
      * @summary Update a canned message
@@ -51616,6 +51914,25 @@ export declare class ConversationApi extends BaseAPI implements ConversationApiI
      */
     getAgentProfileKnowledgeBase(user_id: number, options?: any): Promise<ConversationKnowledgeBaseDocumentsResponse>;
     /**
+     * Retrieve MCP server associated with this agent
+     * @summary Get an MCP server associated with this agent
+     * @param {number} user_id
+     * @param {string} mcp_server_uuid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApi
+     */
+    getAgentProfileMcp(user_id: number, mcp_server_uuid: string, options?: any): Promise<ConversationMcpServerResponse>;
+    /**
+     * Retrieve MCP servers associated with this agent
+     * @summary Get the list of MCP servers associated with this agent
+     * @param {number} user_id
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApi
+     */
+    getAgentProfileMcps(user_id: number, options?: any): Promise<ConversationMcpServersResponse>;
+    /**
      * Retrieve the agents profile
      * @summary Get agent profiles
      * @param {*} [options] Override http request option.
@@ -52001,6 +52318,16 @@ export declare class ConversationApi extends BaseAPI implements ConversationApiI
      */
     insertAgentProfileKnowledgeBaseDocument(user_id: number, knowledge_base_document_request: ConversationInsertKnowledgeBaseDocumentRequest, options?: any): Promise<ConversationInsertKnowledgeBaseDocumentResponse>;
     /**
+     * Insert an agent MCP server
+     * @summary Insert an agent MCP server
+     * @param {number} user_id
+     * @param {ConversationMcpServer} mcp_server MCP Server
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApi
+     */
+    insertAgentProfileMcp(user_id: number, mcp_server: ConversationMcpServer, options?: any): Promise<ConversationMcpServerResponse>;
+    /**
      * Insert a canned message
      * @summary Insert a canned message
      * @param {ConversationCannedMessage} canned_message Canned message
@@ -52173,6 +52500,17 @@ export declare class ConversationApi extends BaseAPI implements ConversationApiI
      * @memberof ConversationApi
      */
     updateAgentProfile(profile_request: ConversationAgentProfile, options?: any): Promise<ConversationAgentProfileResponse>;
+    /**
+     * Update an agent MCP server
+     * @summary Update an agent MCP server
+     * @param {number} user_id
+     * @param {string} mcp_server_uuid
+     * @param {ConversationMcpServer} mcp_server MCP Server
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApi
+     */
+    updateAgentProfileMcp(user_id: number, mcp_server_uuid: string, mcp_server: ConversationMcpServer, options?: any): Promise<ConversationMcpServerResponse>;
     /**
      * Update a canned message
      * @summary Update a canned message

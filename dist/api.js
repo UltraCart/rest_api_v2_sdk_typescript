@@ -28,10 +28,10 @@ var __extends = (this && this.__extends) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.ItemTag = exports.ItemShippingMethod = exports.ItemShippingDestinationRestriction = exports.ItemReview = exports.ItemRestrictionItem = exports.ItemRelatedItem = exports.ItemOptionValue = exports.ItemOption = exports.ItemContentMultimedia = exports.ItemAutoOrderStep = exports.Experiment = exports.EmailPerformance = exports.EmailCommseqStep = exports.Distance = exports.Coupon = exports.ConversationWebsocketMessage = exports.ConversationWebchatQueueStatusUpdateRequest = exports.ConversationWebchatQueueStatusAgent = exports.ConversationVirtualAgentCapabilities = exports.ConversationSummary = exports.ConversationSentiment = exports.ConversationPbxVoicemailMessageSummary = exports.ConversationPbxVoicemailMessage = exports.ConversationPbxVoicemailMailbox = exports.ConversationPbxTimeBasedMapping = exports.ConversationPbxPhoneNumber = exports.ConversationPbxMenuMapping = exports.ConversationPbxMenu = exports.ConversationMessageTransportStatus = exports.ConversationMessage = exports.ConversationEventRRWeb = exports.ConversationEngagementEquationFunction = exports.ConversationEngagement = exports.ConversationAgentProfile = exports.Conversation = exports.CheckoutHandoffRequest = exports.ChannelPartnerOrderItem = exports.ChannelPartnerOrder = exports.CartKitComponentOption = exports.CartItemOption = exports.CartItemMultimedia = exports.CartCustomerProfileCreditCard = exports.AutoOrderItemSimpleSchedule = exports.AutoOrderItem = exports.AutoOrder = exports.AffiliateLink = exports.AffiliateLedger = exports.RequiredError = exports.BaseAPI = exports.COLLECTION_FORMATS = void 0;
-exports.ConversationApiFetchParamCreator = exports.CheckoutApi = exports.CheckoutApiFactory = exports.CheckoutApiFp = exports.CheckoutApiFetchParamCreator = exports.ChannelPartnerApi = exports.ChannelPartnerApiFactory = exports.ChannelPartnerApiFp = exports.ChannelPartnerApiFetchParamCreator = exports.AutoOrderApi = exports.AutoOrderApiFactory = exports.AutoOrderApiFp = exports.AutoOrderApiFetchParamCreator = exports.AffiliateApi = exports.AffiliateApiFactory = exports.AffiliateApiFp = exports.AffiliateApiFetchParamCreator = exports.WorkflowTasksRequest = exports.WorkflowTask = exports.Weight = exports.Webhook = exports.TempMultimedia = exports.ReportWebsocketEvent = exports.ReportPageVisualizationMetric = exports.ReportPageVisualization = exports.ReportFilter = exports.ReportExecuteQueriesRequest = exports.ReportDataSourceSchema = exports.ReportDataSetSchema = exports.ReportDataSetQuery = exports.ReportDataSet = exports.Report = exports.PointOfSaleReader = exports.OrderQueryBatch = exports.OrderQuery = exports.OrderPaymentECheck = exports.OrderPaymentCreditCard = exports.OrderPayment = exports.OrderItemOption = exports.OrderItem = exports.OrderFraudScore = exports.OrderFormat = exports.OrderEdiDocument = exports.OrderCurrentStageHistory = exports.OrderAutoOrder = exports.OrderAffiliateLedger = exports.Order = exports.OauthTokenResponse = exports.ItemThirdPartyEmailMarketing = exports.ItemTax = void 0;
-exports.TaxApiFactory = exports.TaxApiFp = exports.TaxApiFetchParamCreator = exports.StorefrontApi = exports.StorefrontApiFactory = exports.StorefrontApiFp = exports.StorefrontApiFetchParamCreator = exports.SsoApi = exports.SsoApiFactory = exports.SsoApiFp = exports.SsoApiFetchParamCreator = exports.OrderApi = exports.OrderApiFactory = exports.OrderApiFp = exports.OrderApiFetchParamCreator = exports.OauthApi = exports.OauthApiFactory = exports.OauthApiFp = exports.OauthApiFetchParamCreator = exports.ItemApi = exports.ItemApiFactory = exports.ItemApiFp = exports.ItemApiFetchParamCreator = exports.IntegrationLogApi = exports.IntegrationLogApiFactory = exports.IntegrationLogApiFp = exports.IntegrationLogApiFetchParamCreator = exports.GiftCertificateApi = exports.GiftCertificateApiFactory = exports.GiftCertificateApiFp = exports.GiftCertificateApiFetchParamCreator = exports.FulfillmentApi = exports.FulfillmentApiFactory = exports.FulfillmentApiFp = exports.FulfillmentApiFetchParamCreator = exports.DatawarehouseApi = exports.DatawarehouseApiFactory = exports.DatawarehouseApiFp = exports.DatawarehouseApiFetchParamCreator = exports.CustomerApi = exports.CustomerApiFactory = exports.CustomerApiFp = exports.CustomerApiFetchParamCreator = exports.CouponApi = exports.CouponApiFactory = exports.CouponApiFp = exports.CouponApiFetchParamCreator = exports.ConversationApi = exports.ConversationApiFactory = exports.ConversationApiFp = void 0;
-exports.WorkflowApi = exports.WorkflowApiFactory = exports.WorkflowApiFp = exports.WorkflowApiFetchParamCreator = exports.WebhookApi = exports.WebhookApiFactory = exports.WebhookApiFp = exports.WebhookApiFetchParamCreator = exports.UserApi = exports.UserApiFactory = exports.UserApiFp = exports.UserApiFetchParamCreator = exports.TaxApi = void 0;
+exports.ItemShippingMethod = exports.ItemShippingDestinationRestriction = exports.ItemReview = exports.ItemRestrictionItem = exports.ItemRelatedItem = exports.ItemOptionValue = exports.ItemOption = exports.ItemContentMultimedia = exports.ItemAutoOrderStep = exports.Experiment = exports.EmailPerformance = exports.EmailCommseqStep = exports.Distance = exports.Coupon = exports.ConversationWebsocketMessage = exports.ConversationWebchatQueueStatusUpdateRequest = exports.ConversationWebchatQueueStatusAgent = exports.ConversationVirtualAgentCapabilities = exports.ConversationSummary = exports.ConversationSentiment = exports.ConversationPbxVoicemailMessageSummary = exports.ConversationPbxVoicemailMessage = exports.ConversationPbxVoicemailMailbox = exports.ConversationPbxTimeBasedMapping = exports.ConversationPbxPhoneNumber = exports.ConversationPbxMenuMapping = exports.ConversationPbxMenu = exports.ConversationMessageTransportStatus = exports.ConversationMessage = exports.ConversationMcpServer = exports.ConversationEventRRWeb = exports.ConversationEngagementEquationFunction = exports.ConversationEngagement = exports.ConversationAgentProfile = exports.Conversation = exports.CheckoutHandoffRequest = exports.ChannelPartnerOrderItem = exports.ChannelPartnerOrder = exports.CartKitComponentOption = exports.CartItemOption = exports.CartItemMultimedia = exports.CartCustomerProfileCreditCard = exports.AutoOrderItemSimpleSchedule = exports.AutoOrderItem = exports.AutoOrder = exports.AffiliateLink = exports.AffiliateLedger = exports.RequiredError = exports.BaseAPI = exports.COLLECTION_FORMATS = void 0;
+exports.CheckoutApi = exports.CheckoutApiFactory = exports.CheckoutApiFp = exports.CheckoutApiFetchParamCreator = exports.ChannelPartnerApi = exports.ChannelPartnerApiFactory = exports.ChannelPartnerApiFp = exports.ChannelPartnerApiFetchParamCreator = exports.AutoOrderApi = exports.AutoOrderApiFactory = exports.AutoOrderApiFp = exports.AutoOrderApiFetchParamCreator = exports.AffiliateApi = exports.AffiliateApiFactory = exports.AffiliateApiFp = exports.AffiliateApiFetchParamCreator = exports.WorkflowTasksRequest = exports.WorkflowTask = exports.Weight = exports.Webhook = exports.TempMultimedia = exports.ReportWebsocketEvent = exports.ReportPageVisualizationMetric = exports.ReportPageVisualization = exports.ReportFilter = exports.ReportExecuteQueriesRequest = exports.ReportDataSourceSchema = exports.ReportDataSetSchema = exports.ReportDataSetQuery = exports.ReportDataSet = exports.Report = exports.PointOfSaleReader = exports.OrderQueryBatch = exports.OrderQuery = exports.OrderPaymentECheck = exports.OrderPaymentCreditCard = exports.OrderPayment = exports.OrderItemOption = exports.OrderItem = exports.OrderFraudScore = exports.OrderFormat = exports.OrderEdiDocument = exports.OrderCurrentStageHistory = exports.OrderAutoOrder = exports.OrderAffiliateLedger = exports.Order = exports.OauthTokenResponse = exports.ItemThirdPartyEmailMarketing = exports.ItemTax = exports.ItemTag = void 0;
+exports.TaxApiFp = exports.TaxApiFetchParamCreator = exports.StorefrontApi = exports.StorefrontApiFactory = exports.StorefrontApiFp = exports.StorefrontApiFetchParamCreator = exports.SsoApi = exports.SsoApiFactory = exports.SsoApiFp = exports.SsoApiFetchParamCreator = exports.OrderApi = exports.OrderApiFactory = exports.OrderApiFp = exports.OrderApiFetchParamCreator = exports.OauthApi = exports.OauthApiFactory = exports.OauthApiFp = exports.OauthApiFetchParamCreator = exports.ItemApi = exports.ItemApiFactory = exports.ItemApiFp = exports.ItemApiFetchParamCreator = exports.IntegrationLogApi = exports.IntegrationLogApiFactory = exports.IntegrationLogApiFp = exports.IntegrationLogApiFetchParamCreator = exports.GiftCertificateApi = exports.GiftCertificateApiFactory = exports.GiftCertificateApiFp = exports.GiftCertificateApiFetchParamCreator = exports.FulfillmentApi = exports.FulfillmentApiFactory = exports.FulfillmentApiFp = exports.FulfillmentApiFetchParamCreator = exports.DatawarehouseApi = exports.DatawarehouseApiFactory = exports.DatawarehouseApiFp = exports.DatawarehouseApiFetchParamCreator = exports.CustomerApi = exports.CustomerApiFactory = exports.CustomerApiFp = exports.CustomerApiFetchParamCreator = exports.CouponApi = exports.CouponApiFactory = exports.CouponApiFp = exports.CouponApiFetchParamCreator = exports.ConversationApi = exports.ConversationApiFactory = exports.ConversationApiFp = exports.ConversationApiFetchParamCreator = void 0;
+exports.WorkflowApi = exports.WorkflowApiFactory = exports.WorkflowApiFp = exports.WorkflowApiFetchParamCreator = exports.WebhookApi = exports.WebhookApiFactory = exports.WebhookApiFp = exports.WebhookApiFetchParamCreator = exports.UserApi = exports.UserApiFactory = exports.UserApiFp = exports.UserApiFetchParamCreator = exports.TaxApi = exports.TaxApiFactory = void 0;
 var url = require("url");
 var portableFetch = require("portable-fetch");
 var BASE_PATH = "https://secure.ultracart.com/rest/v2".replace(/\/+$/, "");
@@ -543,6 +543,23 @@ var ConversationEventRRWeb;
         TypeEnum[TypeEnum["Events"] = 'events'] = "Events";
     })(TypeEnum = ConversationEventRRWeb.TypeEnum || (ConversationEventRRWeb.TypeEnum = {}));
 })(ConversationEventRRWeb = exports.ConversationEventRRWeb || (exports.ConversationEventRRWeb = {}));
+/**
+ * @export
+ * @namespace ConversationMcpServer
+ */
+var ConversationMcpServer;
+(function (ConversationMcpServer) {
+    /**
+     * @export
+     * @enum {string}
+     */
+    var AuthMethodEnum;
+    (function (AuthMethodEnum) {
+        AuthMethodEnum[AuthMethodEnum["None"] = 'none'] = "None";
+        AuthMethodEnum[AuthMethodEnum["Header"] = 'header'] = "Header";
+        AuthMethodEnum[AuthMethodEnum["Basic"] = 'basic'] = "Basic";
+    })(AuthMethodEnum = ConversationMcpServer.AuthMethodEnum || (ConversationMcpServer.AuthMethodEnum = {}));
+})(ConversationMcpServer = exports.ConversationMcpServer || (exports.ConversationMcpServer = {}));
 /**
  * @export
  * @namespace ConversationMessage
@@ -7677,6 +7694,104 @@ var ConversationApiFetchParamCreator = function (configuration) {
             };
         },
         /**
+         * Retrieve MCP server associated with this agent
+         * @summary Get an MCP server associated with this agent
+         * @param {number} user_id
+         * @param {string} mcp_server_uuid
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getAgentProfileMcp: function (user_id, mcp_server_uuid, options) {
+            if (options === void 0) { options = {}; }
+            // verify required parameter 'user_id' is not null or undefined
+            if (user_id === null || user_id === undefined) {
+                throw new RequiredError('user_id', 'Required parameter user_id was null or undefined when calling getAgentProfileMcp.');
+            }
+            // verify required parameter 'mcp_server_uuid' is not null or undefined
+            if (mcp_server_uuid === null || mcp_server_uuid === undefined) {
+                throw new RequiredError('mcp_server_uuid', 'Required parameter mcp_server_uuid was null or undefined when calling getAgentProfileMcp.');
+            }
+            var localVarPath = "/conversation/agent/profiles/{user_id}/mcps/{mcp_server_uuid}"
+                .replace("{".concat("user_id", "}"), encodeURIComponent(String(user_id)))
+                .replace("{".concat("mcp_server_uuid", "}"), encodeURIComponent(String(mcp_server_uuid)));
+            var localVarUrlObj = url.parse(localVarPath, true);
+            var localVarRequestOptions = Object.assign({ method: 'GET' }, options);
+            var localVarHeaderParameter = {};
+            var localVarQueryParameter = {};
+            if (configuration && configuration.apiVersion) {
+                localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+            }
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+                var localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+                    ? configuration.accessToken("ultraCartOauth", ["conversation_read"])
+                    : configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                var localVarApiKeyValue = typeof configuration.apiKey === 'function'
+                    ? configuration.apiKey("x-ultracart-simple-key")
+                    : configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Retrieve MCP servers associated with this agent
+         * @summary Get the list of MCP servers associated with this agent
+         * @param {number} user_id
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getAgentProfileMcps: function (user_id, options) {
+            if (options === void 0) { options = {}; }
+            // verify required parameter 'user_id' is not null or undefined
+            if (user_id === null || user_id === undefined) {
+                throw new RequiredError('user_id', 'Required parameter user_id was null or undefined when calling getAgentProfileMcps.');
+            }
+            var localVarPath = "/conversation/agent/profiles/{user_id}/mcps"
+                .replace("{".concat("user_id", "}"), encodeURIComponent(String(user_id)));
+            var localVarUrlObj = url.parse(localVarPath, true);
+            var localVarRequestOptions = Object.assign({ method: 'GET' }, options);
+            var localVarHeaderParameter = {};
+            var localVarQueryParameter = {};
+            if (configuration && configuration.apiVersion) {
+                localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+            }
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+                var localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+                    ? configuration.accessToken("ultraCartOauth", ["conversation_read"])
+                    : configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                var localVarApiKeyValue = typeof configuration.apiKey === 'function'
+                    ? configuration.apiKey("x-ultracart-simple-key")
+                    : configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
          * Retrieve the agents profile
          * @summary Get agent profiles
          * @param {*} [options] Override http request option.
@@ -9631,6 +9746,60 @@ var ConversationApiFetchParamCreator = function (configuration) {
             };
         },
         /**
+         * Insert an agent MCP server
+         * @summary Insert an agent MCP server
+         * @param {number} user_id
+         * @param {ConversationMcpServer} mcp_server MCP Server
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        insertAgentProfileMcp: function (user_id, mcp_server, options) {
+            if (options === void 0) { options = {}; }
+            // verify required parameter 'user_id' is not null or undefined
+            if (user_id === null || user_id === undefined) {
+                throw new RequiredError('user_id', 'Required parameter user_id was null or undefined when calling insertAgentProfileMcp.');
+            }
+            // verify required parameter 'mcp_server' is not null or undefined
+            if (mcp_server === null || mcp_server === undefined) {
+                throw new RequiredError('mcp_server', 'Required parameter mcp_server was null or undefined when calling insertAgentProfileMcp.');
+            }
+            var localVarPath = "/conversation/agent/profiles/{user_id}/mcps"
+                .replace("{".concat("user_id", "}"), encodeURIComponent(String(user_id)));
+            var localVarUrlObj = url.parse(localVarPath, true);
+            var localVarRequestOptions = Object.assign({ method: 'POST' }, options);
+            var localVarHeaderParameter = {};
+            var localVarQueryParameter = {};
+            if (configuration && configuration.apiVersion) {
+                localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+            }
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+                var localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+                    ? configuration.accessToken("ultraCartOauth", ["conversation_write"])
+                    : configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                var localVarApiKeyValue = typeof configuration.apiKey === 'function'
+                    ? configuration.apiKey("x-ultracart-simple-key")
+                    : configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+            var needsSerialization = ("ConversationMcpServer" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
+            localVarRequestOptions.body = needsSerialization ? JSON.stringify(mcp_server || {}) : (mcp_server || "");
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
          * Insert a canned message
          * @summary Insert a canned message
          * @param {ConversationCannedMessage} canned_message Canned message
@@ -10533,6 +10702,66 @@ var ConversationApiFetchParamCreator = function (configuration) {
             localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
             var needsSerialization = ("ConversationAgentProfile" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
             localVarRequestOptions.body = needsSerialization ? JSON.stringify(profile_request || {}) : (profile_request || "");
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Update an agent MCP server
+         * @summary Update an agent MCP server
+         * @param {number} user_id
+         * @param {string} mcp_server_uuid
+         * @param {ConversationMcpServer} mcp_server MCP Server
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        updateAgentProfileMcp: function (user_id, mcp_server_uuid, mcp_server, options) {
+            if (options === void 0) { options = {}; }
+            // verify required parameter 'user_id' is not null or undefined
+            if (user_id === null || user_id === undefined) {
+                throw new RequiredError('user_id', 'Required parameter user_id was null or undefined when calling updateAgentProfileMcp.');
+            }
+            // verify required parameter 'mcp_server_uuid' is not null or undefined
+            if (mcp_server_uuid === null || mcp_server_uuid === undefined) {
+                throw new RequiredError('mcp_server_uuid', 'Required parameter mcp_server_uuid was null or undefined when calling updateAgentProfileMcp.');
+            }
+            // verify required parameter 'mcp_server' is not null or undefined
+            if (mcp_server === null || mcp_server === undefined) {
+                throw new RequiredError('mcp_server', 'Required parameter mcp_server was null or undefined when calling updateAgentProfileMcp.');
+            }
+            var localVarPath = "/conversation/agent/profiles/{user_id}/mcps/{mcp_server_uuid}"
+                .replace("{".concat("user_id", "}"), encodeURIComponent(String(user_id)))
+                .replace("{".concat("mcp_server_uuid", "}"), encodeURIComponent(String(mcp_server_uuid)));
+            var localVarUrlObj = url.parse(localVarPath, true);
+            var localVarRequestOptions = Object.assign({ method: 'POST' }, options);
+            var localVarHeaderParameter = {};
+            var localVarQueryParameter = {};
+            if (configuration && configuration.apiVersion) {
+                localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+            }
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+                var localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+                    ? configuration.accessToken("ultraCartOauth", ["conversation_write"])
+                    : configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                var localVarApiKeyValue = typeof configuration.apiKey === 'function'
+                    ? configuration.apiKey("x-ultracart-simple-key")
+                    : configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+            var needsSerialization = ("ConversationMcpServer" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
+            localVarRequestOptions.body = needsSerialization ? JSON.stringify(mcp_server || {}) : (mcp_server || "");
             return {
                 url: url.format(localVarUrlObj),
                 options: localVarRequestOptions,
@@ -11622,6 +11851,51 @@ var ConversationApiFp = function (configuration) {
             };
         },
         /**
+         * Retrieve MCP server associated with this agent
+         * @summary Get an MCP server associated with this agent
+         * @param {number} user_id
+         * @param {string} mcp_server_uuid
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getAgentProfileMcp: function (user_id, mcp_server_uuid, options) {
+            var localVarFetchArgs = (0, exports.ConversationApiFetchParamCreator)(configuration).getAgentProfileMcp(user_id, mcp_server_uuid, options);
+            return function (fetch, basePath) {
+                if (fetch === void 0) { fetch = portableFetch; }
+                if (basePath === void 0) { basePath = BASE_PATH; }
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(function (response) {
+                    if (response.status >= 200 && response.status < 300) {
+                        return response.json();
+                    }
+                    else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
+         * Retrieve MCP servers associated with this agent
+         * @summary Get the list of MCP servers associated with this agent
+         * @param {number} user_id
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getAgentProfileMcps: function (user_id, options) {
+            var localVarFetchArgs = (0, exports.ConversationApiFetchParamCreator)(configuration).getAgentProfileMcps(user_id, options);
+            return function (fetch, basePath) {
+                if (fetch === void 0) { fetch = portableFetch; }
+                if (basePath === void 0) { basePath = BASE_PATH; }
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(function (response) {
+                    if (response.status >= 200 && response.status < 300) {
+                        return response.json();
+                    }
+                    else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
          * Retrieve the agents profile
          * @summary Get agent profiles
          * @param {*} [options] Override http request option.
@@ -12579,6 +12853,29 @@ var ConversationApiFp = function (configuration) {
             };
         },
         /**
+         * Insert an agent MCP server
+         * @summary Insert an agent MCP server
+         * @param {number} user_id
+         * @param {ConversationMcpServer} mcp_server MCP Server
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        insertAgentProfileMcp: function (user_id, mcp_server, options) {
+            var localVarFetchArgs = (0, exports.ConversationApiFetchParamCreator)(configuration).insertAgentProfileMcp(user_id, mcp_server, options);
+            return function (fetch, basePath) {
+                if (fetch === void 0) { fetch = portableFetch; }
+                if (basePath === void 0) { basePath = BASE_PATH; }
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(function (response) {
+                    if (response.status >= 200 && response.status < 300) {
+                        return response.json();
+                    }
+                    else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
          * Insert a canned message
          * @summary Insert a canned message
          * @param {ConversationCannedMessage} canned_message Canned message
@@ -12985,6 +13282,30 @@ var ConversationApiFp = function (configuration) {
          */
         updateAgentProfile: function (profile_request, options) {
             var localVarFetchArgs = (0, exports.ConversationApiFetchParamCreator)(configuration).updateAgentProfile(profile_request, options);
+            return function (fetch, basePath) {
+                if (fetch === void 0) { fetch = portableFetch; }
+                if (basePath === void 0) { basePath = BASE_PATH; }
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(function (response) {
+                    if (response.status >= 200 && response.status < 300) {
+                        return response.json();
+                    }
+                    else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
+         * Update an agent MCP server
+         * @summary Update an agent MCP server
+         * @param {number} user_id
+         * @param {string} mcp_server_uuid
+         * @param {ConversationMcpServer} mcp_server MCP Server
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        updateAgentProfileMcp: function (user_id, mcp_server_uuid, mcp_server, options) {
+            var localVarFetchArgs = (0, exports.ConversationApiFetchParamCreator)(configuration).updateAgentProfileMcp(user_id, mcp_server_uuid, mcp_server, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -13478,6 +13799,27 @@ var ConversationApiFactory = function (configuration, fetch, basePath) {
             return (0, exports.ConversationApiFp)(configuration).getAgentProfileKnowledgeBase(user_id, options)(fetch, basePath);
         },
         /**
+         * Retrieve MCP server associated with this agent
+         * @summary Get an MCP server associated with this agent
+         * @param {number} user_id
+         * @param {string} mcp_server_uuid
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getAgentProfileMcp: function (user_id, mcp_server_uuid, options) {
+            return (0, exports.ConversationApiFp)(configuration).getAgentProfileMcp(user_id, mcp_server_uuid, options)(fetch, basePath);
+        },
+        /**
+         * Retrieve MCP servers associated with this agent
+         * @summary Get the list of MCP servers associated with this agent
+         * @param {number} user_id
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getAgentProfileMcps: function (user_id, options) {
+            return (0, exports.ConversationApiFp)(configuration).getAgentProfileMcps(user_id, options)(fetch, basePath);
+        },
+        /**
          * Retrieve the agents profile
          * @summary Get agent profiles
          * @param {*} [options] Override http request option.
@@ -13907,6 +14249,17 @@ var ConversationApiFactory = function (configuration, fetch, basePath) {
             return (0, exports.ConversationApiFp)(configuration).insertAgentProfileKnowledgeBaseDocument(user_id, knowledge_base_document_request, options)(fetch, basePath);
         },
         /**
+         * Insert an agent MCP server
+         * @summary Insert an agent MCP server
+         * @param {number} user_id
+         * @param {ConversationMcpServer} mcp_server MCP Server
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        insertAgentProfileMcp: function (user_id, mcp_server, options) {
+            return (0, exports.ConversationApiFp)(configuration).insertAgentProfileMcp(user_id, mcp_server, options)(fetch, basePath);
+        },
+        /**
          * Insert a canned message
          * @summary Insert a canned message
          * @param {ConversationCannedMessage} canned_message Canned message
@@ -14097,6 +14450,18 @@ var ConversationApiFactory = function (configuration, fetch, basePath) {
          */
         updateAgentProfile: function (profile_request, options) {
             return (0, exports.ConversationApiFp)(configuration).updateAgentProfile(profile_request, options)(fetch, basePath);
+        },
+        /**
+         * Update an agent MCP server
+         * @summary Update an agent MCP server
+         * @param {number} user_id
+         * @param {string} mcp_server_uuid
+         * @param {ConversationMcpServer} mcp_server MCP Server
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        updateAgentProfileMcp: function (user_id, mcp_server_uuid, mcp_server, options) {
+            return (0, exports.ConversationApiFp)(configuration).updateAgentProfileMcp(user_id, mcp_server_uuid, mcp_server, options)(fetch, basePath);
         },
         /**
          * Update a canned message
@@ -14428,6 +14793,29 @@ var ConversationApi = /** @class */ (function (_super) {
      */
     ConversationApi.prototype.getAgentProfileKnowledgeBase = function (user_id, options) {
         return (0, exports.ConversationApiFp)(this.configuration).getAgentProfileKnowledgeBase(user_id, options)(this.fetch, this.basePath);
+    };
+    /**
+     * Retrieve MCP server associated with this agent
+     * @summary Get an MCP server associated with this agent
+     * @param {number} user_id
+     * @param {string} mcp_server_uuid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApi
+     */
+    ConversationApi.prototype.getAgentProfileMcp = function (user_id, mcp_server_uuid, options) {
+        return (0, exports.ConversationApiFp)(this.configuration).getAgentProfileMcp(user_id, mcp_server_uuid, options)(this.fetch, this.basePath);
+    };
+    /**
+     * Retrieve MCP servers associated with this agent
+     * @summary Get the list of MCP servers associated with this agent
+     * @param {number} user_id
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApi
+     */
+    ConversationApi.prototype.getAgentProfileMcps = function (user_id, options) {
+        return (0, exports.ConversationApiFp)(this.configuration).getAgentProfileMcps(user_id, options)(this.fetch, this.basePath);
     };
     /**
      * Retrieve the agents profile
@@ -14903,6 +15291,18 @@ var ConversationApi = /** @class */ (function (_super) {
         return (0, exports.ConversationApiFp)(this.configuration).insertAgentProfileKnowledgeBaseDocument(user_id, knowledge_base_document_request, options)(this.fetch, this.basePath);
     };
     /**
+     * Insert an agent MCP server
+     * @summary Insert an agent MCP server
+     * @param {number} user_id
+     * @param {ConversationMcpServer} mcp_server MCP Server
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApi
+     */
+    ConversationApi.prototype.insertAgentProfileMcp = function (user_id, mcp_server, options) {
+        return (0, exports.ConversationApiFp)(this.configuration).insertAgentProfileMcp(user_id, mcp_server, options)(this.fetch, this.basePath);
+    };
+    /**
      * Insert a canned message
      * @summary Insert a canned message
      * @param {ConversationCannedMessage} canned_message Canned message
@@ -15112,6 +15512,19 @@ var ConversationApi = /** @class */ (function (_super) {
      */
     ConversationApi.prototype.updateAgentProfile = function (profile_request, options) {
         return (0, exports.ConversationApiFp)(this.configuration).updateAgentProfile(profile_request, options)(this.fetch, this.basePath);
+    };
+    /**
+     * Update an agent MCP server
+     * @summary Update an agent MCP server
+     * @param {number} user_id
+     * @param {string} mcp_server_uuid
+     * @param {ConversationMcpServer} mcp_server MCP Server
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApi
+     */
+    ConversationApi.prototype.updateAgentProfileMcp = function (user_id, mcp_server_uuid, mcp_server, options) {
+        return (0, exports.ConversationApiFp)(this.configuration).updateAgentProfileMcp(user_id, mcp_server_uuid, mcp_server, options)(this.fetch, this.basePath);
     };
     /**
      * Update a canned message

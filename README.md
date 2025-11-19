@@ -1,4 +1,4 @@
-## ultracart_rest_api_v2_typescript@3.11.29
+## ultracart_rest_api_v2_typescript@3.11.30
 
 This generator creates TypeScript/JavaScript client that utilizes [Fetch API](https://fetch.spec.whatwg.org/). The generated Node module can be used in the following environments:
 
@@ -36,7 +36,7 @@ navigate to the folder of your consuming project and run one of the following co
 _published:_
 
 ```
-npm install ultracart_rest_api_v2_typescript@3.11.29 --save
+npm install ultracart_rest_api_v2_typescript@3.11.30 --save
 ```
 
 _unPublished (not recommended):_
@@ -54,6 +54,7 @@ Not every change is committed to every SDK.
 
 | Version | Date | Comments |
 | --: | :-: | --- |
+| 3.11.30 | 11/19/2025 | conversation - AI agent MCP server configuration methods |
 | 3.11.29 | 11/13/2025 | conversations - AI capabilities flag for generate coupon |
 | 3.11.28 | 11/07/2025 | OrderApi.assignToAffiliate |
 | 3.11.27 | 11/06/2025 | conversation ai knowledge base changes |
