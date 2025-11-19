@@ -1,12 +1,12 @@
 # UltraCart Typescript SDK
-## ultracart_rest_api_v2_typescript@4.1.29
+## ultracart_rest_api_v2_typescript@4.1.30
 
 Every API method call has a sample for every language SDK.  See https://github.com/UltraCart/sdk_samples
 
 Installation
 
 ```
-npm install ultracart_rest_api_v2_typescript@4.1.29 --save
+npm install ultracart_rest_api_v2_typescript@4.1.30 --save
 ```
 
 ```typescript
@@ -85,6 +85,7 @@ Not every change is committed to every SDK.
 
 | Version | Date | Comments |
 | --: | :-: | --- |
+| 4.1.30 | 11/19/2025 | conversation - AI agent MCP server configuration methods |
 | 4.1.29 | 11/13/2025 | conversations - AI capabilities flag for generate coupon |
 | 4.1.28 | 11/07/2025 | OrderApi.assignToAffiliate |
 | 4.1.27 | 11/06/2025 | conversation ai knowledge base changes |
