@@ -195,6 +195,7 @@ src/models/ConversationLocationStateProvince.ts
 src/models/ConversationLocationsResponse.ts
 src/models/ConversationMcpServer.ts
 src/models/ConversationMcpServerResponse.ts
+src/models/ConversationMcpServerToolsResponse.ts
 src/models/ConversationMcpServersResponse.ts
 src/models/ConversationMessage.ts
 src/models/ConversationMessageTranslation.ts

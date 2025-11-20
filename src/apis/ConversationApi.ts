@@ -93,6 +93,9 @@ import {
     ConversationMcpServerResponse,
     ConversationMcpServerResponseFromJSON,
     ConversationMcpServerResponseToJSON,
+    ConversationMcpServerToolsResponse,
+    ConversationMcpServerToolsResponseFromJSON,
+    ConversationMcpServerToolsResponseToJSON,
     ConversationMcpServersResponse,
     ConversationMcpServersResponseFromJSON,
     ConversationMcpServersResponseToJSON,
@@ -244,6 +247,11 @@ export interface DeleteAgentProfileKnowledgeBaseDocumentRequest {
     documentUuid: string;
 }
 
+export interface DeleteAgentProfileMcpRequest {
+    userId: number;
+    mcpServerUuid: string;
+}
+
 export interface DeleteConversationCannedMessageRequest {
     conversationCannedMessageOid: number;
 }
@@ -294,6 +302,11 @@ export interface GetAgentProfileKnowledgeBaseRequest {
 }
 
 export interface GetAgentProfileMcpRequest {
+    userId: number;
+    mcpServerUuid: string;
+}
+
+export interface GetAgentProfileMcpToolsRequest {
     userId: number;
     mcpServerUuid: string;
 }
@@ -490,12 +503,6 @@ export interface UpdateAgentProfileRequest {
     profileRequest: ConversationAgentProfile;
 }
 
-export interface UpdateAgentProfileMcpRequest {
-    userId: number;
-    mcpServerUuid: string;
-    mcpServer: ConversationMcpServer;
-}
-
 export interface UpdateConversationCannedMessageRequest {
     conversationCannedMessageOid: number;
     cannedMessage: ConversationCannedMessage;
@@ -587,6 +594,23 @@ export interface ConversationApiInterface {
      * Delete a knowledge base document
      */
     deleteAgentProfileKnowledgeBaseDocument(requestParameters: DeleteAgentProfileKnowledgeBaseDocumentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ConversationDeleteKnowledgeBaseDocumentResponse>;
+
+    /**
+     * Delete an agent MCP server 
+     * @summary Delete an agent MCP server
+     * @param {number} userId 
+     * @param {string} mcpServerUuid 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApiInterface
+     */
+    deleteAgentProfileMcpRaw(requestParameters: DeleteAgentProfileMcpRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+
+    /**
+     * Delete an agent MCP server 
+     * Delete an agent MCP server
+     */
+    deleteAgentProfileMcp(requestParameters: DeleteAgentProfileMcpRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
      * Delete a conversation canned message 
@@ -827,6 +851,23 @@ export interface ConversationApiInterface {
      * Get an MCP server associated with this agent
      */
     getAgentProfileMcp(requestParameters: GetAgentProfileMcpRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ConversationMcpServerResponse>;
+
+    /**
+     * Get the tools available from the MCP server 
+     * @summary Get the tools available from the MCP server
+     * @param {number} userId 
+     * @param {string} mcpServerUuid 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApiInterface
+     */
+    getAgentProfileMcpToolsRaw(requestParameters: GetAgentProfileMcpToolsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ConversationMcpServerToolsResponse>>;
+
+    /**
+     * Get the tools available from the MCP server 
+     * Get the tools available from the MCP server
+     */
+    getAgentProfileMcpTools(requestParameters: GetAgentProfileMcpToolsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ConversationMcpServerToolsResponse>;
 
     /**
      * Retrieve MCP servers associated with this agent 
@@ -1861,24 +1902,6 @@ export interface ConversationApiInterface {
     updateAgentProfile(requestParameters: UpdateAgentProfileRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ConversationAgentProfileResponse>;
 
     /**
-     * Update an agent MCP server 
-     * @summary Update an agent MCP server
-     * @param {number} userId 
-     * @param {string} mcpServerUuid 
-     * @param {ConversationMcpServer} mcpServer MCP Server
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ConversationApiInterface
-     */
-    updateAgentProfileMcpRaw(requestParameters: UpdateAgentProfileMcpRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ConversationMcpServerResponse>>;
-
-    /**
-     * Update an agent MCP server 
-     * Update an agent MCP server
-     */
-    updateAgentProfileMcp(requestParameters: UpdateAgentProfileMcpRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ConversationMcpServerResponse>;
-
-    /**
      * Update a canned message 
      * @summary Update a canned message
      * @param {number} conversationCannedMessageOid 
@@ -2164,6 +2187,50 @@ export class ConversationApi extends runtime.BaseAPI implements ConversationApiI
     async deleteAgentProfileKnowledgeBaseDocument(requestParameters: DeleteAgentProfileKnowledgeBaseDocumentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ConversationDeleteKnowledgeBaseDocumentResponse> {
         const response = await this.deleteAgentProfileKnowledgeBaseDocumentRaw(requestParameters, initOverrides);
         return await response.value();
+    }
+
+    /**
+     * Delete an agent MCP server 
+     * Delete an agent MCP server
+     */
+    async deleteAgentProfileMcpRaw(requestParameters: DeleteAgentProfileMcpRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        if (requestParameters.userId === null || requestParameters.userId === undefined) {
+            throw new runtime.RequiredError('userId','Required parameter requestParameters.userId was null or undefined when calling deleteAgentProfileMcp.');
+        }
+
+        if (requestParameters.mcpServerUuid === null || requestParameters.mcpServerUuid === undefined) {
+            throw new runtime.RequiredError('mcpServerUuid','Required parameter requestParameters.mcpServerUuid was null or undefined when calling deleteAgentProfileMcp.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", ["conversation_write"]);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/conversation/agent/profiles/{user_id}/mcps/{mcp_server_uuid}`.replace(`{${"user_id"}}`, encodeURIComponent(String(requestParameters.userId))).replace(`{${"mcp_server_uuid"}}`, encodeURIComponent(String(requestParameters.mcpServerUuid))),
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     * Delete an agent MCP server 
+     * Delete an agent MCP server
+     */
+    async deleteAgentProfileMcp(requestParameters: DeleteAgentProfileMcpRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.deleteAgentProfileMcpRaw(requestParameters, initOverrides);
     }
 
     /**
@@ -2772,6 +2839,51 @@ export class ConversationApi extends runtime.BaseAPI implements ConversationApiI
      */
     async getAgentProfileMcp(requestParameters: GetAgentProfileMcpRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ConversationMcpServerResponse> {
         const response = await this.getAgentProfileMcpRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Get the tools available from the MCP server 
+     * Get the tools available from the MCP server
+     */
+    async getAgentProfileMcpToolsRaw(requestParameters: GetAgentProfileMcpToolsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ConversationMcpServerToolsResponse>> {
+        if (requestParameters.userId === null || requestParameters.userId === undefined) {
+            throw new runtime.RequiredError('userId','Required parameter requestParameters.userId was null or undefined when calling getAgentProfileMcpTools.');
+        }
+
+        if (requestParameters.mcpServerUuid === null || requestParameters.mcpServerUuid === undefined) {
+            throw new runtime.RequiredError('mcpServerUuid','Required parameter requestParameters.mcpServerUuid was null or undefined when calling getAgentProfileMcpTools.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", ["conversation_read"]);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/conversation/agent/profiles/{user_id}/mcps/{mcp_server_uuid}/tools`.replace(`{${"user_id"}}`, encodeURIComponent(String(requestParameters.userId))).replace(`{${"mcp_server_uuid"}}`, encodeURIComponent(String(requestParameters.mcpServerUuid))),
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => ConversationMcpServerToolsResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Get the tools available from the MCP server 
+     * Get the tools available from the MCP server
+     */
+    async getAgentProfileMcpTools(requestParameters: GetAgentProfileMcpToolsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ConversationMcpServerToolsResponse> {
+        const response = await this.getAgentProfileMcpToolsRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
@@ -5448,58 +5560,6 @@ export class ConversationApi extends runtime.BaseAPI implements ConversationApiI
      */
     async updateAgentProfile(requestParameters: UpdateAgentProfileRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ConversationAgentProfileResponse> {
         const response = await this.updateAgentProfileRaw(requestParameters, initOverrides);
-        return await response.value();
-    }
-
-    /**
-     * Update an agent MCP server 
-     * Update an agent MCP server
-     */
-    async updateAgentProfileMcpRaw(requestParameters: UpdateAgentProfileMcpRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ConversationMcpServerResponse>> {
-        if (requestParameters.userId === null || requestParameters.userId === undefined) {
-            throw new runtime.RequiredError('userId','Required parameter requestParameters.userId was null or undefined when calling updateAgentProfileMcp.');
-        }
-
-        if (requestParameters.mcpServerUuid === null || requestParameters.mcpServerUuid === undefined) {
-            throw new runtime.RequiredError('mcpServerUuid','Required parameter requestParameters.mcpServerUuid was null or undefined when calling updateAgentProfileMcp.');
-        }
-
-        if (requestParameters.mcpServer === null || requestParameters.mcpServer === undefined) {
-            throw new runtime.RequiredError('mcpServer','Required parameter requestParameters.mcpServer was null or undefined when calling updateAgentProfileMcp.');
-        }
-
-        const queryParameters: any = {};
-
-        const headerParameters: runtime.HTTPHeaders = {};
-
-        headerParameters['Content-Type'] = 'application/json';
-
-        if (this.configuration && this.configuration.accessToken) {
-            // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", ["conversation_write"]);
-        }
-
-        if (this.configuration && this.configuration.apiKey) {
-            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
-        }
-
-        const response = await this.request({
-            path: `/conversation/agent/profiles/{user_id}/mcps/{mcp_server_uuid}`.replace(`{${"user_id"}}`, encodeURIComponent(String(requestParameters.userId))).replace(`{${"mcp_server_uuid"}}`, encodeURIComponent(String(requestParameters.mcpServerUuid))),
-            method: 'POST',
-            headers: headerParameters,
-            query: queryParameters,
-            body: ConversationMcpServerToJSON(requestParameters.mcpServer),
-        }, initOverrides);
-
-        return new runtime.JSONApiResponse(response, (jsonValue) => ConversationMcpServerResponseFromJSON(jsonValue));
-    }
-
-    /**
-     * Update an agent MCP server 
-     * Update an agent MCP server
-     */
-    async updateAgentProfileMcp(requestParameters: UpdateAgentProfileMcpRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ConversationMcpServerResponse> {
-        const response = await this.updateAgentProfileMcpRaw(requestParameters, initOverrides);
         return await response.value();
     }
 

@@ -171,6 +171,7 @@ export * from './ConversationLocationStateProvince';
 export * from './ConversationLocationsResponse';
 export * from './ConversationMcpServer';
 export * from './ConversationMcpServerResponse';
+export * from './ConversationMcpServerToolsResponse';
 export * from './ConversationMcpServersResponse';
 export * from './ConversationMessage';
 export * from './ConversationMessageTranslation';
