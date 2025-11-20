@@ -8504,6 +8504,43 @@ export interface ConversationMcpServerResponse {
 /**
  *
  * @export
+ * @interface ConversationMcpServerToolsResponse
+ */
+export interface ConversationMcpServerToolsResponse {
+    /**
+     *
+     * @type {ModelError}
+     * @memberof ConversationMcpServerToolsResponse
+     */
+    error?: ModelError;
+    /**
+     *
+     * @type {ResponseMetadata}
+     * @memberof ConversationMcpServerToolsResponse
+     */
+    metadata?: ResponseMetadata;
+    /**
+     * Indicates if API call was successful
+     * @type {boolean}
+     * @memberof ConversationMcpServerToolsResponse
+     */
+    success?: boolean;
+    /**
+     *
+     * @type {string}
+     * @memberof ConversationMcpServerToolsResponse
+     */
+    tools_json?: string;
+    /**
+     *
+     * @type {Warning}
+     * @memberof ConversationMcpServerToolsResponse
+     */
+    warning?: Warning;
+}
+/**
+ *
+ * @export
  * @interface ConversationMcpServersResponse
  */
 export interface ConversationMcpServersResponse {
@@ -48565,6 +48602,15 @@ export declare const ConversationApiFetchParamCreator: (configuration?: Configur
      */
     deleteAgentProfileKnowledgeBaseDocument(user_id: number, document_uuid: string, options?: any): FetchArgs;
     /**
+     * Delete an agent MCP server
+     * @summary Delete an agent MCP server
+     * @param {number} user_id
+     * @param {string} mcp_server_uuid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    deleteAgentProfileMcp(user_id: number, mcp_server_uuid: string, options?: any): FetchArgs;
+    /**
      * Delete a conversation canned message
      * @summary Delete a conversation canned message
      * @param {number} conversation_canned_message_oid
@@ -48684,6 +48730,15 @@ export declare const ConversationApiFetchParamCreator: (configuration?: Configur
      * @throws {RequiredError}
      */
     getAgentProfileMcp(user_id: number, mcp_server_uuid: string, options?: any): FetchArgs;
+    /**
+     * Get the tools available from the MCP server
+     * @summary Get the tools available from the MCP server
+     * @param {number} user_id
+     * @param {string} mcp_server_uuid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getAgentProfileMcpTools(user_id: number, mcp_server_uuid: string, options?: any): FetchArgs;
     /**
      * Retrieve MCP servers associated with this agent
      * @summary Get the list of MCP servers associated with this agent
@@ -49197,16 +49252,6 @@ export declare const ConversationApiFetchParamCreator: (configuration?: Configur
      */
     updateAgentProfile(profile_request: ConversationAgentProfile, options?: any): FetchArgs;
     /**
-     * Update an agent MCP server
-     * @summary Update an agent MCP server
-     * @param {number} user_id
-     * @param {string} mcp_server_uuid
-     * @param {ConversationMcpServer} mcp_server MCP Server
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    updateAgentProfileMcp(user_id: number, mcp_server_uuid: string, mcp_server: ConversationMcpServer, options?: any): FetchArgs;
-    /**
      * Update a canned message
      * @summary Update a canned message
      * @param {number} conversation_canned_message_oid
@@ -49346,6 +49391,15 @@ export declare const ConversationApiFp: (configuration?: Configuration) => {
      */
     deleteAgentProfileKnowledgeBaseDocument(user_id: number, document_uuid: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ConversationDeleteKnowledgeBaseDocumentResponse>;
     /**
+     * Delete an agent MCP server
+     * @summary Delete an agent MCP server
+     * @param {number} user_id
+     * @param {string} mcp_server_uuid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    deleteAgentProfileMcp(user_id: number, mcp_server_uuid: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Response>;
+    /**
      * Delete a conversation canned message
      * @summary Delete a conversation canned message
      * @param {number} conversation_canned_message_oid
@@ -49465,6 +49519,15 @@ export declare const ConversationApiFp: (configuration?: Configuration) => {
      * @throws {RequiredError}
      */
     getAgentProfileMcp(user_id: number, mcp_server_uuid: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ConversationMcpServerResponse>;
+    /**
+     * Get the tools available from the MCP server
+     * @summary Get the tools available from the MCP server
+     * @param {number} user_id
+     * @param {string} mcp_server_uuid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getAgentProfileMcpTools(user_id: number, mcp_server_uuid: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ConversationMcpServerToolsResponse>;
     /**
      * Retrieve MCP servers associated with this agent
      * @summary Get the list of MCP servers associated with this agent
@@ -49978,16 +50041,6 @@ export declare const ConversationApiFp: (configuration?: Configuration) => {
      */
     updateAgentProfile(profile_request: ConversationAgentProfile, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ConversationAgentProfileResponse>;
     /**
-     * Update an agent MCP server
-     * @summary Update an agent MCP server
-     * @param {number} user_id
-     * @param {string} mcp_server_uuid
-     * @param {ConversationMcpServer} mcp_server MCP Server
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    updateAgentProfileMcp(user_id: number, mcp_server_uuid: string, mcp_server: ConversationMcpServer, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ConversationMcpServerResponse>;
-    /**
      * Update a canned message
      * @summary Update a canned message
      * @param {number} conversation_canned_message_oid
@@ -50127,6 +50180,15 @@ export declare const ConversationApiFactory: (configuration?: Configuration, fet
      */
     deleteAgentProfileKnowledgeBaseDocument(user_id: number, document_uuid: string, options?: any): Promise<ConversationDeleteKnowledgeBaseDocumentResponse>;
     /**
+     * Delete an agent MCP server
+     * @summary Delete an agent MCP server
+     * @param {number} user_id
+     * @param {string} mcp_server_uuid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    deleteAgentProfileMcp(user_id: number, mcp_server_uuid: string, options?: any): Promise<Response>;
+    /**
      * Delete a conversation canned message
      * @summary Delete a conversation canned message
      * @param {number} conversation_canned_message_oid
@@ -50246,6 +50308,15 @@ export declare const ConversationApiFactory: (configuration?: Configuration, fet
      * @throws {RequiredError}
      */
     getAgentProfileMcp(user_id: number, mcp_server_uuid: string, options?: any): Promise<ConversationMcpServerResponse>;
+    /**
+     * Get the tools available from the MCP server
+     * @summary Get the tools available from the MCP server
+     * @param {number} user_id
+     * @param {string} mcp_server_uuid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getAgentProfileMcpTools(user_id: number, mcp_server_uuid: string, options?: any): Promise<ConversationMcpServerToolsResponse>;
     /**
      * Retrieve MCP servers associated with this agent
      * @summary Get the list of MCP servers associated with this agent
@@ -50759,16 +50830,6 @@ export declare const ConversationApiFactory: (configuration?: Configuration, fet
      */
     updateAgentProfile(profile_request: ConversationAgentProfile, options?: any): Promise<ConversationAgentProfileResponse>;
     /**
-     * Update an agent MCP server
-     * @summary Update an agent MCP server
-     * @param {number} user_id
-     * @param {string} mcp_server_uuid
-     * @param {ConversationMcpServer} mcp_server MCP Server
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    updateAgentProfileMcp(user_id: number, mcp_server_uuid: string, mcp_server: ConversationMcpServer, options?: any): Promise<ConversationMcpServerResponse>;
-    /**
      * Update a canned message
      * @summary Update a canned message
      * @param {number} conversation_canned_message_oid
@@ -50910,6 +50971,16 @@ export interface ConversationApiInterface {
      */
     deleteAgentProfileKnowledgeBaseDocument(user_id: number, document_uuid: string, options?: any): Promise<ConversationDeleteKnowledgeBaseDocumentResponse>;
     /**
+     * Delete an agent MCP server
+     * @summary Delete an agent MCP server
+     * @param {number} user_id
+     * @param {string} mcp_server_uuid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApiInterface
+     */
+    deleteAgentProfileMcp(user_id: number, mcp_server_uuid: string, options?: any): Promise<{}>;
+    /**
      * Delete a conversation canned message
      * @summary Delete a conversation canned message
      * @param {number} conversation_canned_message_oid
@@ -51044,6 +51115,16 @@ export interface ConversationApiInterface {
      * @memberof ConversationApiInterface
      */
     getAgentProfileMcp(user_id: number, mcp_server_uuid: string, options?: any): Promise<ConversationMcpServerResponse>;
+    /**
+     * Get the tools available from the MCP server
+     * @summary Get the tools available from the MCP server
+     * @param {number} user_id
+     * @param {string} mcp_server_uuid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApiInterface
+     */
+    getAgentProfileMcpTools(user_id: number, mcp_server_uuid: string, options?: any): Promise<ConversationMcpServerToolsResponse>;
     /**
      * Retrieve MCP servers associated with this agent
      * @summary Get the list of MCP servers associated with this agent
@@ -51622,17 +51703,6 @@ export interface ConversationApiInterface {
      */
     updateAgentProfile(profile_request: ConversationAgentProfile, options?: any): Promise<ConversationAgentProfileResponse>;
     /**
-     * Update an agent MCP server
-     * @summary Update an agent MCP server
-     * @param {number} user_id
-     * @param {string} mcp_server_uuid
-     * @param {ConversationMcpServer} mcp_server MCP Server
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ConversationApiInterface
-     */
-    updateAgentProfileMcp(user_id: number, mcp_server_uuid: string, mcp_server: ConversationMcpServer, options?: any): Promise<ConversationMcpServerResponse>;
-    /**
      * Update a canned message
      * @summary Update a canned message
      * @param {number} conversation_canned_message_oid
@@ -51789,6 +51859,16 @@ export declare class ConversationApi extends BaseAPI implements ConversationApiI
      */
     deleteAgentProfileKnowledgeBaseDocument(user_id: number, document_uuid: string, options?: any): Promise<ConversationDeleteKnowledgeBaseDocumentResponse>;
     /**
+     * Delete an agent MCP server
+     * @summary Delete an agent MCP server
+     * @param {number} user_id
+     * @param {string} mcp_server_uuid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApi
+     */
+    deleteAgentProfileMcp(user_id: number, mcp_server_uuid: string, options?: any): Promise<Response>;
+    /**
      * Delete a conversation canned message
      * @summary Delete a conversation canned message
      * @param {number} conversation_canned_message_oid
@@ -51923,6 +52003,16 @@ export declare class ConversationApi extends BaseAPI implements ConversationApiI
      * @memberof ConversationApi
      */
     getAgentProfileMcp(user_id: number, mcp_server_uuid: string, options?: any): Promise<ConversationMcpServerResponse>;
+    /**
+     * Get the tools available from the MCP server
+     * @summary Get the tools available from the MCP server
+     * @param {number} user_id
+     * @param {string} mcp_server_uuid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApi
+     */
+    getAgentProfileMcpTools(user_id: number, mcp_server_uuid: string, options?: any): Promise<ConversationMcpServerToolsResponse>;
     /**
      * Retrieve MCP servers associated with this agent
      * @summary Get the list of MCP servers associated with this agent
@@ -52500,17 +52590,6 @@ export declare class ConversationApi extends BaseAPI implements ConversationApiI
      * @memberof ConversationApi
      */
     updateAgentProfile(profile_request: ConversationAgentProfile, options?: any): Promise<ConversationAgentProfileResponse>;
-    /**
-     * Update an agent MCP server
-     * @summary Update an agent MCP server
-     * @param {number} user_id
-     * @param {string} mcp_server_uuid
-     * @param {ConversationMcpServer} mcp_server MCP Server
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ConversationApi
-     */
-    updateAgentProfileMcp(user_id: number, mcp_server_uuid: string, mcp_server: ConversationMcpServer, options?: any): Promise<ConversationMcpServerResponse>;
     /**
      * Update a canned message
      * @summary Update a canned message
