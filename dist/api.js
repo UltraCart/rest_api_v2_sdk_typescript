@@ -7077,7 +7077,7 @@ var ConversationApiFetchParamCreator = function (configuration) {
                 .replace("{".concat("user_id", "}"), encodeURIComponent(String(user_id)))
                 .replace("{".concat("mcp_server_uuid", "}"), encodeURIComponent(String(mcp_server_uuid)));
             var localVarUrlObj = url.parse(localVarPath, true);
-            var localVarRequestOptions = Object.assign({ method: 'POST' }, options);
+            var localVarRequestOptions = Object.assign({ method: 'DELETE' }, options);
             var localVarHeaderParameter = {};
             var localVarQueryParameter = {};
             if (configuration && configuration.apiVersion) {
@@ -10812,6 +10812,66 @@ var ConversationApiFetchParamCreator = function (configuration) {
             };
         },
         /**
+         * Update an agent MCP server
+         * @summary Update an agent MCP server
+         * @param {number} user_id
+         * @param {string} mcp_server_uuid
+         * @param {ConversationMcpServer} mcp_server MCP Server
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        updateAgentProfileMcp: function (user_id, mcp_server_uuid, mcp_server, options) {
+            if (options === void 0) { options = {}; }
+            // verify required parameter 'user_id' is not null or undefined
+            if (user_id === null || user_id === undefined) {
+                throw new RequiredError('user_id', 'Required parameter user_id was null or undefined when calling updateAgentProfileMcp.');
+            }
+            // verify required parameter 'mcp_server_uuid' is not null or undefined
+            if (mcp_server_uuid === null || mcp_server_uuid === undefined) {
+                throw new RequiredError('mcp_server_uuid', 'Required parameter mcp_server_uuid was null or undefined when calling updateAgentProfileMcp.');
+            }
+            // verify required parameter 'mcp_server' is not null or undefined
+            if (mcp_server === null || mcp_server === undefined) {
+                throw new RequiredError('mcp_server', 'Required parameter mcp_server was null or undefined when calling updateAgentProfileMcp.');
+            }
+            var localVarPath = "/conversation/agent/profiles/{user_id}/mcps/{mcp_server_uuid}"
+                .replace("{".concat("user_id", "}"), encodeURIComponent(String(user_id)))
+                .replace("{".concat("mcp_server_uuid", "}"), encodeURIComponent(String(mcp_server_uuid)));
+            var localVarUrlObj = url.parse(localVarPath, true);
+            var localVarRequestOptions = Object.assign({ method: 'POST' }, options);
+            var localVarHeaderParameter = {};
+            var localVarQueryParameter = {};
+            if (configuration && configuration.apiVersion) {
+                localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+            }
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+                var localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+                    ? configuration.accessToken("ultraCartOauth", ["conversation_write"])
+                    : configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                var localVarApiKeyValue = typeof configuration.apiKey === 'function'
+                    ? configuration.apiKey("x-ultracart-simple-key")
+                    : configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+            var needsSerialization = ("ConversationMcpServer" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
+            localVarRequestOptions.body = needsSerialization ? JSON.stringify(mcp_server || {}) : (mcp_server || "");
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
          * Update a canned message
          * @summary Update a canned message
          * @param {number} conversation_canned_message_oid
@@ -13386,6 +13446,30 @@ var ConversationApiFp = function (configuration) {
             };
         },
         /**
+         * Update an agent MCP server
+         * @summary Update an agent MCP server
+         * @param {number} user_id
+         * @param {string} mcp_server_uuid
+         * @param {ConversationMcpServer} mcp_server MCP Server
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        updateAgentProfileMcp: function (user_id, mcp_server_uuid, mcp_server, options) {
+            var localVarFetchArgs = (0, exports.ConversationApiFetchParamCreator)(configuration).updateAgentProfileMcp(user_id, mcp_server_uuid, mcp_server, options);
+            return function (fetch, basePath) {
+                if (fetch === void 0) { fetch = portableFetch; }
+                if (basePath === void 0) { basePath = BASE_PATH; }
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(function (response) {
+                    if (response.status >= 200 && response.status < 300) {
+                        return response.json();
+                    }
+                    else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
          * Update a canned message
          * @summary Update a canned message
          * @param {number} conversation_canned_message_oid
@@ -14540,6 +14624,18 @@ var ConversationApiFactory = function (configuration, fetch, basePath) {
             return (0, exports.ConversationApiFp)(configuration).updateAgentProfile(profile_request, options)(fetch, basePath);
         },
         /**
+         * Update an agent MCP server
+         * @summary Update an agent MCP server
+         * @param {number} user_id
+         * @param {string} mcp_server_uuid
+         * @param {ConversationMcpServer} mcp_server MCP Server
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        updateAgentProfileMcp: function (user_id, mcp_server_uuid, mcp_server, options) {
+            return (0, exports.ConversationApiFp)(configuration).updateAgentProfileMcp(user_id, mcp_server_uuid, mcp_server, options)(fetch, basePath);
+        },
+        /**
          * Update a canned message
          * @summary Update a canned message
          * @param {number} conversation_canned_message_oid
@@ -15612,6 +15708,19 @@ var ConversationApi = /** @class */ (function (_super) {
      */
     ConversationApi.prototype.updateAgentProfile = function (profile_request, options) {
         return (0, exports.ConversationApiFp)(this.configuration).updateAgentProfile(profile_request, options)(this.fetch, this.basePath);
+    };
+    /**
+     * Update an agent MCP server
+     * @summary Update an agent MCP server
+     * @param {number} user_id
+     * @param {string} mcp_server_uuid
+     * @param {ConversationMcpServer} mcp_server MCP Server
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApi
+     */
+    ConversationApi.prototype.updateAgentProfileMcp = function (user_id, mcp_server_uuid, mcp_server, options) {
+        return (0, exports.ConversationApiFp)(this.configuration).updateAgentProfileMcp(user_id, mcp_server_uuid, mcp_server, options)(this.fetch, this.basePath);
     };
     /**
      * Update a canned message

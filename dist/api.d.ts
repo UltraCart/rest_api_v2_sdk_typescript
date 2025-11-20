@@ -49252,6 +49252,16 @@ export declare const ConversationApiFetchParamCreator: (configuration?: Configur
      */
     updateAgentProfile(profile_request: ConversationAgentProfile, options?: any): FetchArgs;
     /**
+     * Update an agent MCP server
+     * @summary Update an agent MCP server
+     * @param {number} user_id
+     * @param {string} mcp_server_uuid
+     * @param {ConversationMcpServer} mcp_server MCP Server
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    updateAgentProfileMcp(user_id: number, mcp_server_uuid: string, mcp_server: ConversationMcpServer, options?: any): FetchArgs;
+    /**
      * Update a canned message
      * @summary Update a canned message
      * @param {number} conversation_canned_message_oid
@@ -50041,6 +50051,16 @@ export declare const ConversationApiFp: (configuration?: Configuration) => {
      */
     updateAgentProfile(profile_request: ConversationAgentProfile, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ConversationAgentProfileResponse>;
     /**
+     * Update an agent MCP server
+     * @summary Update an agent MCP server
+     * @param {number} user_id
+     * @param {string} mcp_server_uuid
+     * @param {ConversationMcpServer} mcp_server MCP Server
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    updateAgentProfileMcp(user_id: number, mcp_server_uuid: string, mcp_server: ConversationMcpServer, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ConversationMcpServerResponse>;
+    /**
      * Update a canned message
      * @summary Update a canned message
      * @param {number} conversation_canned_message_oid
@@ -50829,6 +50849,16 @@ export declare const ConversationApiFactory: (configuration?: Configuration, fet
      * @throws {RequiredError}
      */
     updateAgentProfile(profile_request: ConversationAgentProfile, options?: any): Promise<ConversationAgentProfileResponse>;
+    /**
+     * Update an agent MCP server
+     * @summary Update an agent MCP server
+     * @param {number} user_id
+     * @param {string} mcp_server_uuid
+     * @param {ConversationMcpServer} mcp_server MCP Server
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    updateAgentProfileMcp(user_id: number, mcp_server_uuid: string, mcp_server: ConversationMcpServer, options?: any): Promise<ConversationMcpServerResponse>;
     /**
      * Update a canned message
      * @summary Update a canned message
@@ -51702,6 +51732,17 @@ export interface ConversationApiInterface {
      * @memberof ConversationApiInterface
      */
     updateAgentProfile(profile_request: ConversationAgentProfile, options?: any): Promise<ConversationAgentProfileResponse>;
+    /**
+     * Update an agent MCP server
+     * @summary Update an agent MCP server
+     * @param {number} user_id
+     * @param {string} mcp_server_uuid
+     * @param {ConversationMcpServer} mcp_server MCP Server
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApiInterface
+     */
+    updateAgentProfileMcp(user_id: number, mcp_server_uuid: string, mcp_server: ConversationMcpServer, options?: any): Promise<ConversationMcpServerResponse>;
     /**
      * Update a canned message
      * @summary Update a canned message
@@ -52590,6 +52631,17 @@ export declare class ConversationApi extends BaseAPI implements ConversationApiI
      * @memberof ConversationApi
      */
     updateAgentProfile(profile_request: ConversationAgentProfile, options?: any): Promise<ConversationAgentProfileResponse>;
+    /**
+     * Update an agent MCP server
+     * @summary Update an agent MCP server
+     * @param {number} user_id
+     * @param {string} mcp_server_uuid
+     * @param {ConversationMcpServer} mcp_server MCP Server
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApi
+     */
+    updateAgentProfileMcp(user_id: number, mcp_server_uuid: string, mcp_server: ConversationMcpServer, options?: any): Promise<ConversationMcpServerResponse>;
     /**
      * Update a canned message
      * @summary Update a canned message
