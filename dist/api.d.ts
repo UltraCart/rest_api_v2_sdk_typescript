@@ -6969,6 +6969,12 @@ export interface ConversationAgentProfile {
      */
     ai_sms_instructions?: string;
     /**
+     * Additional instructions for this AI when handling ticket draft replies
+     * @type {string}
+     * @memberof ConversationAgentProfile
+     */
+    ai_ticket_instructions?: string;
+    /**
      * The number of engagement chats that can be pushed on them at any given time.
      * @type {number}
      * @memberof ConversationAgentProfile
@@ -7016,6 +7022,18 @@ export interface ConversationAgentProfile {
      * @memberof ConversationAgentProfile
      */
     user_id?: number;
+    /**
+     * Restrict this agent to drafting replies only to tickets with these classifications
+     * @type {Array<string>}
+     * @memberof ConversationAgentProfile
+     */
+    zohodesk_classifications?: Array<string>;
+    /**
+     * Restrict this agent to drafting replies only to these department ids
+     * @type {Array<string>}
+     * @memberof ConversationAgentProfile
+     */
+    zohodesk_departments?: Array<string>;
 }
 /**
  * @export
