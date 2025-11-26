@@ -44,6 +44,12 @@ export interface ConversationAgentProfile {
      */
     ai_sms_instructions?: string;
     /**
+     * Additional instructions for this AI when handling ticket draft replies
+     * @type {string}
+     * @memberof ConversationAgentProfile
+     */
+    ai_ticket_instructions?: string;
+    /**
      * The number of engagement chats that can be pushed on them at any given time.
      * @type {number}
      * @memberof ConversationAgentProfile
@@ -91,6 +97,18 @@ export interface ConversationAgentProfile {
      * @memberof ConversationAgentProfile
      */
     user_id?: number;
+    /**
+     * Restrict this agent to drafting replies only to tickets with these classifications
+     * @type {Array<string>}
+     * @memberof ConversationAgentProfile
+     */
+    zohodesk_classifications?: Array<string>;
+    /**
+     * Restrict this agent to drafting replies only to these department ids
+     * @type {Array<string>}
+     * @memberof ConversationAgentProfile
+     */
+    zohodesk_departments?: Array<string>;
 }
 
 
@@ -129,6 +147,7 @@ export function ConversationAgentProfileFromJSONTyped(json: any, ignoreDiscrimin
         'ai_chat_instructions': !exists(json, 'ai_chat_instructions') ? undefined : json['ai_chat_instructions'],
         'ai_persona': !exists(json, 'ai_persona') ? undefined : json['ai_persona'],
         'ai_sms_instructions': !exists(json, 'ai_sms_instructions') ? undefined : json['ai_sms_instructions'],
+        'ai_ticket_instructions': !exists(json, 'ai_ticket_instructions') ? undefined : json['ai_ticket_instructions'],
         'chat_limit': !exists(json, 'chat_limit') ? undefined : json['chat_limit'],
         'default_language_iso_code': !exists(json, 'default_language_iso_code') ? undefined : json['default_language_iso_code'],
         'default_status': !exists(json, 'default_status') ? undefined : json['default_status'],
@@ -137,6 +156,8 @@ export function ConversationAgentProfileFromJSONTyped(json: any, ignoreDiscrimin
         'profile_image_upload_key': !exists(json, 'profile_image_upload_key') ? undefined : json['profile_image_upload_key'],
         'profile_image_url': !exists(json, 'profile_image_url') ? undefined : json['profile_image_url'],
         'user_id': !exists(json, 'user_id') ? undefined : json['user_id'],
+        'zohodesk_classifications': !exists(json, 'zohodesk_classifications') ? undefined : json['zohodesk_classifications'],
+        'zohodesk_departments': !exists(json, 'zohodesk_departments') ? undefined : json['zohodesk_departments'],
     };
 }
 
@@ -153,6 +174,7 @@ export function ConversationAgentProfileToJSON(value?: ConversationAgentProfile 
         'ai_chat_instructions': value.ai_chat_instructions,
         'ai_persona': value.ai_persona,
         'ai_sms_instructions': value.ai_sms_instructions,
+        'ai_ticket_instructions': value.ai_ticket_instructions,
         'chat_limit': value.chat_limit,
         'default_language_iso_code': value.default_language_iso_code,
         'default_status': value.default_status,
@@ -161,6 +183,8 @@ export function ConversationAgentProfileToJSON(value?: ConversationAgentProfile 
         'profile_image_upload_key': value.profile_image_upload_key,
         'profile_image_url': value.profile_image_url,
         'user_id': value.user_id,
+        'zohodesk_classifications': value.zohodesk_classifications,
+        'zohodesk_departments': value.zohodesk_departments,
     };
 }
 
