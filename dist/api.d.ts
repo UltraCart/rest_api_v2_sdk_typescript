@@ -13299,6 +13299,12 @@ export interface CouponFreeItemWithItemPurchaseAndFreeShipping {
      * @memberof CouponFreeItemWithItemPurchaseAndFreeShipping
      */
     required_purchase_items?: Array<string>;
+    /**
+     * One or more shipping methods that may be used with this coupon.  If not specified or empty, methods that are marked as qualifies for free shipping will be the only free methods
+     * @type {Array<string>}
+     * @memberof CouponFreeItemWithItemPurchaseAndFreeShipping
+     */
+    shipping_methods?: Array<string>;
 }
 /**
  *
@@ -13779,6 +13785,12 @@ export interface CouponPercentOffItemsAndFreeShipping {
      * @memberof CouponPercentOffItemsAndFreeShipping
      */
     items?: Array<string>;
+    /**
+     * One or more shipping methods that may be used with this coupon.  If not specified or empty, methods that are marked as qualifies for free shipping will be the only free methods
+     * @type {Array<string>}
+     * @memberof CouponPercentOffItemsAndFreeShipping
+     */
+    shipping_methods?: Array<string>;
 }
 /**
  *
