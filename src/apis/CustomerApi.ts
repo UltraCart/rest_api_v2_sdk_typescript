@@ -211,6 +211,17 @@ export interface SearchCustomerProfileValuesRequest {
     lookupRequest: LookupRequest;
 }
 
+export interface SearchCustomersRequest {
+    searchString?: string;
+    signupDtsStart?: string;
+    signupDtsEnd?: string;
+    limit?: number;
+    offset?: number;
+    since?: string;
+    sort?: string;
+    expand?: string;
+}
+
 export interface UpdateCustomerRequest {
     customerProfileOid: number;
     customer: Customer;
@@ -602,6 +613,29 @@ export interface CustomerApiInterface {
      * Searches for all matching values (using POST)
      */
     searchCustomerProfileValues(requestParameters: SearchCustomerProfileValuesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<LookupResponse>;
+
+    /**
+     * Retrieves customers from the account by matching the search value against most customer fields.  You will need to make multiple API calls in order to retrieve the entire result set since this API performs result set pagination.  This search also goes against the cache so updates should not be performed with these result objects.  Always re-query the individual customer profile if you are going to make updates. 
+     * @summary Search for customers
+     * @param {string} [searchString] Search
+     * @param {string} [signupDtsStart] Signup date start
+     * @param {string} [signupDtsEnd] Signup date end
+     * @param {number} [limit] The maximum number of records to return on this one API call. (Max 200)
+     * @param {number} [offset] Pagination of the record set.  Offset is a zero based index.
+     * @param {string} [since] Fetch customers that have been created/modified since this date/time.
+     * @param {string} [sort] The sort order of the customers.  See Sorting documentation for examples of using multiple values and sorting by ascending and descending.
+     * @param {string} [expand] The object expansion to perform on the result.  See documentation for examples
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof CustomerApiInterface
+     */
+    searchCustomersRaw(requestParameters: SearchCustomersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CustomersResponse>>;
+
+    /**
+     * Retrieves customers from the account by matching the search value against most customer fields.  You will need to make multiple API calls in order to retrieve the entire result set since this API performs result set pagination.  This search also goes against the cache so updates should not be performed with these result objects.  Always re-query the individual customer profile if you are going to make updates. 
+     * Search for customers
+     */
+    searchCustomers(requestParameters: SearchCustomersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomersResponse>;
 
     /**
      * Update a customer on the UltraCart account. 
@@ -1699,6 +1733,75 @@ export class CustomerApi extends runtime.BaseAPI implements CustomerApiInterface
      */
     async searchCustomerProfileValues(requestParameters: SearchCustomerProfileValuesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<LookupResponse> {
         const response = await this.searchCustomerProfileValuesRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Retrieves customers from the account by matching the search value against most customer fields.  You will need to make multiple API calls in order to retrieve the entire result set since this API performs result set pagination.  This search also goes against the cache so updates should not be performed with these result objects.  Always re-query the individual customer profile if you are going to make updates. 
+     * Search for customers
+     */
+    async searchCustomersRaw(requestParameters: SearchCustomersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CustomersResponse>> {
+        const queryParameters: any = {};
+
+        if (requestParameters.searchString !== undefined) {
+            queryParameters['search_string'] = requestParameters.searchString;
+        }
+
+        if (requestParameters.signupDtsStart !== undefined) {
+            queryParameters['signup_dts_start'] = requestParameters.signupDtsStart;
+        }
+
+        if (requestParameters.signupDtsEnd !== undefined) {
+            queryParameters['signup_dts_end'] = requestParameters.signupDtsEnd;
+        }
+
+        if (requestParameters.limit !== undefined) {
+            queryParameters['_limit'] = requestParameters.limit;
+        }
+
+        if (requestParameters.offset !== undefined) {
+            queryParameters['_offset'] = requestParameters.offset;
+        }
+
+        if (requestParameters.since !== undefined) {
+            queryParameters['_since'] = requestParameters.since;
+        }
+
+        if (requestParameters.sort !== undefined) {
+            queryParameters['_sort'] = requestParameters.sort;
+        }
+
+        if (requestParameters.expand !== undefined) {
+            queryParameters['_expand'] = requestParameters.expand;
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", ["customer_read"]);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/customer/customers/search`,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => CustomersResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Retrieves customers from the account by matching the search value against most customer fields.  You will need to make multiple API calls in order to retrieve the entire result set since this API performs result set pagination.  This search also goes against the cache so updates should not be performed with these result objects.  Always re-query the individual customer profile if you are going to make updates. 
+     * Search for customers
+     */
+    async searchCustomers(requestParameters: SearchCustomersRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomersResponse> {
+        const response = await this.searchCustomersRaw(requestParameters, initOverrides);
         return await response.value();
     }
 

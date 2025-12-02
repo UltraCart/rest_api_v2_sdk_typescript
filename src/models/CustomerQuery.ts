@@ -128,6 +128,12 @@ export interface CustomerQuery {
      */
     qb_class?: string;
     /**
+     * Query Target
+     * @type {string}
+     * @memberof CustomerQuery
+     */
+    query_target?: CustomerQueryQueryTargetEnum;
+    /**
      * QuickBooks name to import this customer as
      * @type {string}
      * @memberof CustomerQuery
@@ -204,6 +210,16 @@ export interface CustomerQuery {
 
 
 /**
+ * @export
+ */
+export const CustomerQueryQueryTargetEnum = {
+    Origin: 'origin',
+    Cache: 'cache'
+} as const;
+export type CustomerQueryQueryTargetEnum = typeof CustomerQueryQueryTargetEnum[keyof typeof CustomerQueryQueryTargetEnum];
+
+
+/**
  * Check if a given object implements the CustomerQuery interface.
  */
 export function instanceOfCustomerQuery(value: object): boolean {
@@ -240,6 +256,7 @@ export function CustomerQueryFromJSONTyped(json: any, ignoreDiscriminator: boole
         'pricing_tier_name': !exists(json, 'pricing_tier_name') ? undefined : json['pricing_tier_name'],
         'pricing_tier_oid': !exists(json, 'pricing_tier_oid') ? undefined : json['pricing_tier_oid'],
         'qb_class': !exists(json, 'qb_class') ? undefined : json['qb_class'],
+        'query_target': !exists(json, 'query_target') ? undefined : json['query_target'],
         'quickbooks_code': !exists(json, 'quickbooks_code') ? undefined : json['quickbooks_code'],
         'shipping_city': !exists(json, 'shipping_city') ? undefined : json['shipping_city'],
         'shipping_company': !exists(json, 'shipping_company') ? undefined : json['shipping_company'],
@@ -282,6 +299,7 @@ export function CustomerQueryToJSON(value?: CustomerQuery | null): any {
         'pricing_tier_name': value.pricing_tier_name,
         'pricing_tier_oid': value.pricing_tier_oid,
         'qb_class': value.qb_class,
+        'query_target': value.query_target,
         'quickbooks_code': value.quickbooks_code,
         'shipping_city': value.shipping_city,
         'shipping_company': value.shipping_company,

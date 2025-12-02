@@ -1,12 +1,12 @@
 # UltraCart Typescript SDK
-## ultracart_rest_api_v2_typescript@4.1.34
+## ultracart_rest_api_v2_typescript@4.1.35
 
 Every API method call has a sample for every language SDK.  See https://github.com/UltraCart/sdk_samples
 
 Installation
 
 ```
-npm install ultracart_rest_api_v2_typescript@4.1.34 --save
+npm install ultracart_rest_api_v2_typescript@4.1.35 --save
 ```
 
 ```typescript
@@ -85,6 +85,7 @@ Not every change is committed to every SDK.
 
 | Version | Date | Comments |
 | --: | :-: | --- |
+| 4.1.35 | 12/02/2025 | caching option added to getCustomers, created new method searchCustomers |
 | 4.1.34 | 12/02/2025 | coupons - added optional free specific shipping method to two coupons |
 | 4.1.33 | 11/26/2025 | conversation - AI agent profile fields |
 | 4.1.32 | 11/20/2025 | conversion api bug fix on incorrect signature |

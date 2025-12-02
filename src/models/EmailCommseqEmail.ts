@@ -20,6 +20,24 @@ import { exists, mapValues } from '../runtime';
  */
 export interface EmailCommseqEmail {
     /**
+     * 
+     * @type {boolean}
+     * @memberof EmailCommseqEmail
+     */
+    ai_generation?: boolean;
+    /**
+     * 
+     * @type {string}
+     * @memberof EmailCommseqEmail
+     */
+    ai_generation_prompt?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof EmailCommseqEmail
+     */
+    ai_generation_user_id?: number;
+    /**
      * Deleted
      * @type {boolean}
      * @memberof EmailCommseqEmail
@@ -246,6 +264,9 @@ export function EmailCommseqEmailFromJSONTyped(json: any, ignoreDiscriminator: b
     }
     return {
         
+        'ai_generation': !exists(json, 'ai_generation') ? undefined : json['ai_generation'],
+        'ai_generation_prompt': !exists(json, 'ai_generation_prompt') ? undefined : json['ai_generation_prompt'],
+        'ai_generation_user_id': !exists(json, 'ai_generation_user_id') ? undefined : json['ai_generation_user_id'],
         'deleted': !exists(json, 'deleted') ? undefined : json['deleted'],
         'edited_by_user': !exists(json, 'edited_by_user') ? undefined : json['edited_by_user'],
         'email_communication_sequence_email_uuid': !exists(json, 'email_communication_sequence_email_uuid') ? undefined : json['email_communication_sequence_email_uuid'],
@@ -292,6 +313,9 @@ export function EmailCommseqEmailToJSON(value?: EmailCommseqEmail | null): any {
     }
     return {
         
+        'ai_generation': value.ai_generation,
+        'ai_generation_prompt': value.ai_generation_prompt,
+        'ai_generation_user_id': value.ai_generation_user_id,
         'deleted': value.deleted,
         'edited_by_user': value.edited_by_user,
         'email_communication_sequence_email_uuid': value.email_communication_sequence_email_uuid,
