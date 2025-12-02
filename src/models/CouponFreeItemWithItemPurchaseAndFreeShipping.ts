@@ -43,6 +43,12 @@ export interface CouponFreeItemWithItemPurchaseAndFreeShipping {
      * @memberof CouponFreeItemWithItemPurchaseAndFreeShipping
      */
     required_purchase_items?: Array<string>;
+    /**
+     * One or more shipping methods that may be used with this coupon.  If not specified or empty, methods that are marked as qualifies for free shipping will be the only free methods
+     * @type {Array<string>}
+     * @memberof CouponFreeItemWithItemPurchaseAndFreeShipping
+     */
+    shipping_methods?: Array<string>;
 }
 
 
@@ -70,6 +76,7 @@ export function CouponFreeItemWithItemPurchaseAndFreeShippingFromJSONTyped(json:
         'limit': !exists(json, 'limit') ? undefined : json['limit'],
         'match_required_purchase_item_to_free_item': !exists(json, 'match_required_purchase_item_to_free_item') ? undefined : json['match_required_purchase_item_to_free_item'],
         'required_purchase_items': !exists(json, 'required_purchase_items') ? undefined : json['required_purchase_items'],
+        'shipping_methods': !exists(json, 'shipping_methods') ? undefined : json['shipping_methods'],
     };
 }
 
@@ -86,6 +93,7 @@ export function CouponFreeItemWithItemPurchaseAndFreeShippingToJSON(value?: Coup
         'limit': value.limit,
         'match_required_purchase_item_to_free_item': value.match_required_purchase_item_to_free_item,
         'required_purchase_items': value.required_purchase_items,
+        'shipping_methods': value.shipping_methods,
     };
 }
 

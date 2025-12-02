@@ -49,6 +49,12 @@ export interface CouponPercentOffItemsAndFreeShipping {
      * @memberof CouponPercentOffItemsAndFreeShipping
      */
     items?: Array<string>;
+    /**
+     * One or more shipping methods that may be used with this coupon.  If not specified or empty, methods that are marked as qualifies for free shipping will be the only free methods
+     * @type {Array<string>}
+     * @memberof CouponPercentOffItemsAndFreeShipping
+     */
+    shipping_methods?: Array<string>;
 }
 
 
@@ -77,6 +83,7 @@ export function CouponPercentOffItemsAndFreeShippingFromJSONTyped(json: any, ign
         'excluded_items': !exists(json, 'excluded_items') ? undefined : json['excluded_items'],
         'item_tags': !exists(json, 'item_tags') ? undefined : json['item_tags'],
         'items': !exists(json, 'items') ? undefined : json['items'],
+        'shipping_methods': !exists(json, 'shipping_methods') ? undefined : json['shipping_methods'],
     };
 }
 
@@ -94,6 +101,7 @@ export function CouponPercentOffItemsAndFreeShippingToJSON(value?: CouponPercent
         'excluded_items': value.excluded_items,
         'item_tags': value.item_tags,
         'items': value.items,
+        'shipping_methods': value.shipping_methods,
     };
 }
 
