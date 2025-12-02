@@ -16921,6 +16921,12 @@ export interface CustomerQuery {
      */
     qb_class?: string;
     /**
+     * Query Target
+     * @type {string}
+     * @memberof CustomerQuery
+     */
+    query_target?: CustomerQuery.QueryTargetEnum;
+    /**
      * QuickBooks name to import this customer as
      * @type {string}
      * @memberof CustomerQuery
@@ -16992,6 +16998,20 @@ export interface CustomerQuery {
      * @memberof CustomerQuery
      */
     signup_dts_start?: string;
+}
+/**
+ * @export
+ * @namespace CustomerQuery
+ */
+export declare namespace CustomerQuery {
+    /**
+     * @export
+     * @enum {string}
+     */
+    enum QueryTargetEnum {
+        Origin,
+        Cache
+    }
 }
 /**
  *
@@ -18536,6 +18556,24 @@ export interface EmailCommseq {
  * @interface EmailCommseqEmail
  */
 export interface EmailCommseqEmail {
+    /**
+     *
+     * @type {boolean}
+     * @memberof EmailCommseqEmail
+     */
+    ai_generation?: boolean;
+    /**
+     *
+     * @type {string}
+     * @memberof EmailCommseqEmail
+     */
+    ai_generation_prompt?: string;
+    /**
+     *
+     * @type {number}
+     * @memberof EmailCommseqEmail
+     */
+    ai_generation_user_id?: number;
     /**
      * Deleted
      * @type {boolean}
@@ -53993,6 +54031,21 @@ export declare const CustomerApiFetchParamCreator: (configuration?: Configuratio
      */
     searchCustomerProfileValues(lookup_request: LookupRequest, options?: any): FetchArgs;
     /**
+     * Retrieves customers from the account by matching the search value against most customer fields.  You will need to make multiple API calls in order to retrieve the entire result set since this API performs result set pagination.  This search also goes against the cache so updates should not be performed with these result objects.  Always re-query the individual customer profile if you are going to make updates.
+     * @summary Search for customers
+     * @param {string} [search_string] Search
+     * @param {string} [signup_dts_start] Signup date start
+     * @param {string} [signup_dts_end] Signup date end
+     * @param {number} [_limit] The maximum number of records to return on this one API call. (Max 200)
+     * @param {number} [_offset] Pagination of the record set.  Offset is a zero based index.
+     * @param {string} [_since] Fetch customers that have been created/modified since this date/time.
+     * @param {string} [_sort] The sort order of the customers.  See Sorting documentation for examples of using multiple values and sorting by ascending and descending.
+     * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    searchCustomers(search_string?: string, signup_dts_start?: string, signup_dts_end?: string, _limit?: number, _offset?: number, _since?: string, _sort?: string, _expand?: string, options?: any): FetchArgs;
+    /**
      * Update a customer on the UltraCart account.
      * @summary Update a customer
      * @param {Customer} customer Customer to update
@@ -54241,6 +54294,21 @@ export declare const CustomerApiFp: (configuration?: Configuration) => {
      */
     searchCustomerProfileValues(lookup_request: LookupRequest, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<LookupResponse>;
     /**
+     * Retrieves customers from the account by matching the search value against most customer fields.  You will need to make multiple API calls in order to retrieve the entire result set since this API performs result set pagination.  This search also goes against the cache so updates should not be performed with these result objects.  Always re-query the individual customer profile if you are going to make updates.
+     * @summary Search for customers
+     * @param {string} [search_string] Search
+     * @param {string} [signup_dts_start] Signup date start
+     * @param {string} [signup_dts_end] Signup date end
+     * @param {number} [_limit] The maximum number of records to return on this one API call. (Max 200)
+     * @param {number} [_offset] Pagination of the record set.  Offset is a zero based index.
+     * @param {string} [_since] Fetch customers that have been created/modified since this date/time.
+     * @param {string} [_sort] The sort order of the customers.  See Sorting documentation for examples of using multiple values and sorting by ascending and descending.
+     * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    searchCustomers(search_string?: string, signup_dts_start?: string, signup_dts_end?: string, _limit?: number, _offset?: number, _since?: string, _sort?: string, _expand?: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<CustomersResponse>;
+    /**
      * Update a customer on the UltraCart account.
      * @summary Update a customer
      * @param {Customer} customer Customer to update
@@ -54488,6 +54556,21 @@ export declare const CustomerApiFactory: (configuration?: Configuration, fetch?:
      * @throws {RequiredError}
      */
     searchCustomerProfileValues(lookup_request: LookupRequest, options?: any): Promise<LookupResponse>;
+    /**
+     * Retrieves customers from the account by matching the search value against most customer fields.  You will need to make multiple API calls in order to retrieve the entire result set since this API performs result set pagination.  This search also goes against the cache so updates should not be performed with these result objects.  Always re-query the individual customer profile if you are going to make updates.
+     * @summary Search for customers
+     * @param {string} [search_string] Search
+     * @param {string} [signup_dts_start] Signup date start
+     * @param {string} [signup_dts_end] Signup date end
+     * @param {number} [_limit] The maximum number of records to return on this one API call. (Max 200)
+     * @param {number} [_offset] Pagination of the record set.  Offset is a zero based index.
+     * @param {string} [_since] Fetch customers that have been created/modified since this date/time.
+     * @param {string} [_sort] The sort order of the customers.  See Sorting documentation for examples of using multiple values and sorting by ascending and descending.
+     * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    searchCustomers(search_string?: string, signup_dts_start?: string, signup_dts_end?: string, _limit?: number, _offset?: number, _since?: string, _sort?: string, _expand?: string, options?: any): Promise<CustomersResponse>;
     /**
      * Update a customer on the UltraCart account.
      * @summary Update a customer
@@ -54757,6 +54840,22 @@ export interface CustomerApiInterface {
      * @memberof CustomerApiInterface
      */
     searchCustomerProfileValues(lookup_request: LookupRequest, options?: any): Promise<LookupResponse>;
+    /**
+     * Retrieves customers from the account by matching the search value against most customer fields.  You will need to make multiple API calls in order to retrieve the entire result set since this API performs result set pagination.  This search also goes against the cache so updates should not be performed with these result objects.  Always re-query the individual customer profile if you are going to make updates.
+     * @summary Search for customers
+     * @param {string} [search_string] Search
+     * @param {string} [signup_dts_start] Signup date start
+     * @param {string} [signup_dts_end] Signup date end
+     * @param {number} [_limit] The maximum number of records to return on this one API call. (Max 200)
+     * @param {number} [_offset] Pagination of the record set.  Offset is a zero based index.
+     * @param {string} [_since] Fetch customers that have been created/modified since this date/time.
+     * @param {string} [_sort] The sort order of the customers.  See Sorting documentation for examples of using multiple values and sorting by ascending and descending.
+     * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof CustomerApiInterface
+     */
+    searchCustomers(search_string?: string, signup_dts_start?: string, signup_dts_end?: string, _limit?: number, _offset?: number, _since?: string, _sort?: string, _expand?: string, options?: any): Promise<CustomersResponse>;
     /**
      * Update a customer on the UltraCart account.
      * @summary Update a customer
@@ -55031,6 +55130,22 @@ export declare class CustomerApi extends BaseAPI implements CustomerApiInterface
      * @memberof CustomerApi
      */
     searchCustomerProfileValues(lookup_request: LookupRequest, options?: any): Promise<LookupResponse>;
+    /**
+     * Retrieves customers from the account by matching the search value against most customer fields.  You will need to make multiple API calls in order to retrieve the entire result set since this API performs result set pagination.  This search also goes against the cache so updates should not be performed with these result objects.  Always re-query the individual customer profile if you are going to make updates.
+     * @summary Search for customers
+     * @param {string} [search_string] Search
+     * @param {string} [signup_dts_start] Signup date start
+     * @param {string} [signup_dts_end] Signup date end
+     * @param {number} [_limit] The maximum number of records to return on this one API call. (Max 200)
+     * @param {number} [_offset] Pagination of the record set.  Offset is a zero based index.
+     * @param {string} [_since] Fetch customers that have been created/modified since this date/time.
+     * @param {string} [_sort] The sort order of the customers.  See Sorting documentation for examples of using multiple values and sorting by ascending and descending.
+     * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof CustomerApi
+     */
+    searchCustomers(search_string?: string, signup_dts_start?: string, signup_dts_end?: string, _limit?: number, _offset?: number, _since?: string, _sort?: string, _expand?: string, options?: any): Promise<CustomersResponse>;
     /**
      * Update a customer on the UltraCart account.
      * @summary Update a customer

@@ -28,10 +28,10 @@ var __extends = (this && this.__extends) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.ItemShippingMethod = exports.ItemShippingDestinationRestriction = exports.ItemReview = exports.ItemRestrictionItem = exports.ItemRelatedItem = exports.ItemOptionValue = exports.ItemOption = exports.ItemContentMultimedia = exports.ItemAutoOrderStep = exports.Experiment = exports.EmailPerformance = exports.EmailCommseqStep = exports.Distance = exports.Coupon = exports.ConversationWebsocketMessage = exports.ConversationWebchatQueueStatusUpdateRequest = exports.ConversationWebchatQueueStatusAgent = exports.ConversationVirtualAgentCapabilities = exports.ConversationSummary = exports.ConversationSentiment = exports.ConversationPbxVoicemailMessageSummary = exports.ConversationPbxVoicemailMessage = exports.ConversationPbxVoicemailMailbox = exports.ConversationPbxTimeBasedMapping = exports.ConversationPbxPhoneNumber = exports.ConversationPbxMenuMapping = exports.ConversationPbxMenu = exports.ConversationMessageTransportStatus = exports.ConversationMessage = exports.ConversationMcpServer = exports.ConversationEventRRWeb = exports.ConversationEngagementEquationFunction = exports.ConversationEngagement = exports.ConversationAgentProfile = exports.Conversation = exports.CheckoutHandoffRequest = exports.ChannelPartnerOrderItem = exports.ChannelPartnerOrder = exports.CartKitComponentOption = exports.CartItemOption = exports.CartItemMultimedia = exports.CartCustomerProfileCreditCard = exports.AutoOrderItemSimpleSchedule = exports.AutoOrderItem = exports.AutoOrder = exports.AffiliateLink = exports.AffiliateLedger = exports.RequiredError = exports.BaseAPI = exports.COLLECTION_FORMATS = void 0;
-exports.CheckoutApi = exports.CheckoutApiFactory = exports.CheckoutApiFp = exports.CheckoutApiFetchParamCreator = exports.ChannelPartnerApi = exports.ChannelPartnerApiFactory = exports.ChannelPartnerApiFp = exports.ChannelPartnerApiFetchParamCreator = exports.AutoOrderApi = exports.AutoOrderApiFactory = exports.AutoOrderApiFp = exports.AutoOrderApiFetchParamCreator = exports.AffiliateApi = exports.AffiliateApiFactory = exports.AffiliateApiFp = exports.AffiliateApiFetchParamCreator = exports.WorkflowTasksRequest = exports.WorkflowTask = exports.Weight = exports.Webhook = exports.TempMultimedia = exports.ReportWebsocketEvent = exports.ReportPageVisualizationMetric = exports.ReportPageVisualization = exports.ReportFilter = exports.ReportExecuteQueriesRequest = exports.ReportDataSourceSchema = exports.ReportDataSetSchema = exports.ReportDataSetQuery = exports.ReportDataSet = exports.Report = exports.PointOfSaleReader = exports.OrderQueryBatch = exports.OrderQuery = exports.OrderPaymentECheck = exports.OrderPaymentCreditCard = exports.OrderPayment = exports.OrderItemOption = exports.OrderItem = exports.OrderFraudScore = exports.OrderFormat = exports.OrderEdiDocument = exports.OrderCurrentStageHistory = exports.OrderAutoOrder = exports.OrderAffiliateLedger = exports.Order = exports.OauthTokenResponse = exports.ItemThirdPartyEmailMarketing = exports.ItemTax = exports.ItemTag = void 0;
-exports.TaxApiFp = exports.TaxApiFetchParamCreator = exports.StorefrontApi = exports.StorefrontApiFactory = exports.StorefrontApiFp = exports.StorefrontApiFetchParamCreator = exports.SsoApi = exports.SsoApiFactory = exports.SsoApiFp = exports.SsoApiFetchParamCreator = exports.OrderApi = exports.OrderApiFactory = exports.OrderApiFp = exports.OrderApiFetchParamCreator = exports.OauthApi = exports.OauthApiFactory = exports.OauthApiFp = exports.OauthApiFetchParamCreator = exports.ItemApi = exports.ItemApiFactory = exports.ItemApiFp = exports.ItemApiFetchParamCreator = exports.IntegrationLogApi = exports.IntegrationLogApiFactory = exports.IntegrationLogApiFp = exports.IntegrationLogApiFetchParamCreator = exports.GiftCertificateApi = exports.GiftCertificateApiFactory = exports.GiftCertificateApiFp = exports.GiftCertificateApiFetchParamCreator = exports.FulfillmentApi = exports.FulfillmentApiFactory = exports.FulfillmentApiFp = exports.FulfillmentApiFetchParamCreator = exports.DatawarehouseApi = exports.DatawarehouseApiFactory = exports.DatawarehouseApiFp = exports.DatawarehouseApiFetchParamCreator = exports.CustomerApi = exports.CustomerApiFactory = exports.CustomerApiFp = exports.CustomerApiFetchParamCreator = exports.CouponApi = exports.CouponApiFactory = exports.CouponApiFp = exports.CouponApiFetchParamCreator = exports.ConversationApi = exports.ConversationApiFactory = exports.ConversationApiFp = exports.ConversationApiFetchParamCreator = void 0;
-exports.WorkflowApi = exports.WorkflowApiFactory = exports.WorkflowApiFp = exports.WorkflowApiFetchParamCreator = exports.WebhookApi = exports.WebhookApiFactory = exports.WebhookApiFp = exports.WebhookApiFetchParamCreator = exports.UserApi = exports.UserApiFactory = exports.UserApiFp = exports.UserApiFetchParamCreator = exports.TaxApi = exports.TaxApiFactory = void 0;
+exports.ItemShippingDestinationRestriction = exports.ItemReview = exports.ItemRestrictionItem = exports.ItemRelatedItem = exports.ItemOptionValue = exports.ItemOption = exports.ItemContentMultimedia = exports.ItemAutoOrderStep = exports.Experiment = exports.EmailPerformance = exports.EmailCommseqStep = exports.Distance = exports.CustomerQuery = exports.Coupon = exports.ConversationWebsocketMessage = exports.ConversationWebchatQueueStatusUpdateRequest = exports.ConversationWebchatQueueStatusAgent = exports.ConversationVirtualAgentCapabilities = exports.ConversationSummary = exports.ConversationSentiment = exports.ConversationPbxVoicemailMessageSummary = exports.ConversationPbxVoicemailMessage = exports.ConversationPbxVoicemailMailbox = exports.ConversationPbxTimeBasedMapping = exports.ConversationPbxPhoneNumber = exports.ConversationPbxMenuMapping = exports.ConversationPbxMenu = exports.ConversationMessageTransportStatus = exports.ConversationMessage = exports.ConversationMcpServer = exports.ConversationEventRRWeb = exports.ConversationEngagementEquationFunction = exports.ConversationEngagement = exports.ConversationAgentProfile = exports.Conversation = exports.CheckoutHandoffRequest = exports.ChannelPartnerOrderItem = exports.ChannelPartnerOrder = exports.CartKitComponentOption = exports.CartItemOption = exports.CartItemMultimedia = exports.CartCustomerProfileCreditCard = exports.AutoOrderItemSimpleSchedule = exports.AutoOrderItem = exports.AutoOrder = exports.AffiliateLink = exports.AffiliateLedger = exports.RequiredError = exports.BaseAPI = exports.COLLECTION_FORMATS = void 0;
+exports.CheckoutApiFactory = exports.CheckoutApiFp = exports.CheckoutApiFetchParamCreator = exports.ChannelPartnerApi = exports.ChannelPartnerApiFactory = exports.ChannelPartnerApiFp = exports.ChannelPartnerApiFetchParamCreator = exports.AutoOrderApi = exports.AutoOrderApiFactory = exports.AutoOrderApiFp = exports.AutoOrderApiFetchParamCreator = exports.AffiliateApi = exports.AffiliateApiFactory = exports.AffiliateApiFp = exports.AffiliateApiFetchParamCreator = exports.WorkflowTasksRequest = exports.WorkflowTask = exports.Weight = exports.Webhook = exports.TempMultimedia = exports.ReportWebsocketEvent = exports.ReportPageVisualizationMetric = exports.ReportPageVisualization = exports.ReportFilter = exports.ReportExecuteQueriesRequest = exports.ReportDataSourceSchema = exports.ReportDataSetSchema = exports.ReportDataSetQuery = exports.ReportDataSet = exports.Report = exports.PointOfSaleReader = exports.OrderQueryBatch = exports.OrderQuery = exports.OrderPaymentECheck = exports.OrderPaymentCreditCard = exports.OrderPayment = exports.OrderItemOption = exports.OrderItem = exports.OrderFraudScore = exports.OrderFormat = exports.OrderEdiDocument = exports.OrderCurrentStageHistory = exports.OrderAutoOrder = exports.OrderAffiliateLedger = exports.Order = exports.OauthTokenResponse = exports.ItemThirdPartyEmailMarketing = exports.ItemTax = exports.ItemTag = exports.ItemShippingMethod = void 0;
+exports.TaxApiFetchParamCreator = exports.StorefrontApi = exports.StorefrontApiFactory = exports.StorefrontApiFp = exports.StorefrontApiFetchParamCreator = exports.SsoApi = exports.SsoApiFactory = exports.SsoApiFp = exports.SsoApiFetchParamCreator = exports.OrderApi = exports.OrderApiFactory = exports.OrderApiFp = exports.OrderApiFetchParamCreator = exports.OauthApi = exports.OauthApiFactory = exports.OauthApiFp = exports.OauthApiFetchParamCreator = exports.ItemApi = exports.ItemApiFactory = exports.ItemApiFp = exports.ItemApiFetchParamCreator = exports.IntegrationLogApi = exports.IntegrationLogApiFactory = exports.IntegrationLogApiFp = exports.IntegrationLogApiFetchParamCreator = exports.GiftCertificateApi = exports.GiftCertificateApiFactory = exports.GiftCertificateApiFp = exports.GiftCertificateApiFetchParamCreator = exports.FulfillmentApi = exports.FulfillmentApiFactory = exports.FulfillmentApiFp = exports.FulfillmentApiFetchParamCreator = exports.DatawarehouseApi = exports.DatawarehouseApiFactory = exports.DatawarehouseApiFp = exports.DatawarehouseApiFetchParamCreator = exports.CustomerApi = exports.CustomerApiFactory = exports.CustomerApiFp = exports.CustomerApiFetchParamCreator = exports.CouponApi = exports.CouponApiFactory = exports.CouponApiFp = exports.CouponApiFetchParamCreator = exports.ConversationApi = exports.ConversationApiFactory = exports.ConversationApiFp = exports.ConversationApiFetchParamCreator = exports.CheckoutApi = void 0;
+exports.WorkflowApi = exports.WorkflowApiFactory = exports.WorkflowApiFp = exports.WorkflowApiFetchParamCreator = exports.WebhookApi = exports.WebhookApiFactory = exports.WebhookApiFp = exports.WebhookApiFetchParamCreator = exports.UserApi = exports.UserApiFactory = exports.UserApiFp = exports.UserApiFetchParamCreator = exports.TaxApi = exports.TaxApiFactory = exports.TaxApiFp = void 0;
 var url = require("url");
 var portableFetch = require("portable-fetch");
 var BASE_PATH = "https://secure.ultracart.com/rest/v2".replace(/\/+$/, "");
@@ -887,6 +887,22 @@ var Coupon;
         UsableByEnum[UsableByEnum["OncePerNewCustomerForItem"] = 'OncePerNewCustomerForItem'] = "OncePerNewCustomerForItem";
     })(UsableByEnum = Coupon.UsableByEnum || (Coupon.UsableByEnum = {}));
 })(Coupon = exports.Coupon || (exports.Coupon = {}));
+/**
+ * @export
+ * @namespace CustomerQuery
+ */
+var CustomerQuery;
+(function (CustomerQuery) {
+    /**
+     * @export
+     * @enum {string}
+     */
+    var QueryTargetEnum;
+    (function (QueryTargetEnum) {
+        QueryTargetEnum[QueryTargetEnum["Origin"] = 'origin'] = "Origin";
+        QueryTargetEnum[QueryTargetEnum["Cache"] = 'cache'] = "Cache";
+    })(QueryTargetEnum = CustomerQuery.QueryTargetEnum || (CustomerQuery.QueryTargetEnum = {}));
+})(CustomerQuery = exports.CustomerQuery || (exports.CustomerQuery = {}));
 /**
  * @export
  * @namespace Distance
@@ -18977,6 +18993,78 @@ var CustomerApiFetchParamCreator = function (configuration) {
             };
         },
         /**
+         * Retrieves customers from the account by matching the search value against most customer fields.  You will need to make multiple API calls in order to retrieve the entire result set since this API performs result set pagination.  This search also goes against the cache so updates should not be performed with these result objects.  Always re-query the individual customer profile if you are going to make updates.
+         * @summary Search for customers
+         * @param {string} [search_string] Search
+         * @param {string} [signup_dts_start] Signup date start
+         * @param {string} [signup_dts_end] Signup date end
+         * @param {number} [_limit] The maximum number of records to return on this one API call. (Max 200)
+         * @param {number} [_offset] Pagination of the record set.  Offset is a zero based index.
+         * @param {string} [_since] Fetch customers that have been created/modified since this date/time.
+         * @param {string} [_sort] The sort order of the customers.  See Sorting documentation for examples of using multiple values and sorting by ascending and descending.
+         * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        searchCustomers: function (search_string, signup_dts_start, signup_dts_end, _limit, _offset, _since, _sort, _expand, options) {
+            if (options === void 0) { options = {}; }
+            var localVarPath = "/customer/customers/search";
+            var localVarUrlObj = url.parse(localVarPath, true);
+            var localVarRequestOptions = Object.assign({ method: 'GET' }, options);
+            var localVarHeaderParameter = {};
+            var localVarQueryParameter = {};
+            if (configuration && configuration.apiVersion) {
+                localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+            }
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+                var localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+                    ? configuration.accessToken("ultraCartOauth", ["customer_read"])
+                    : configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                var localVarApiKeyValue = typeof configuration.apiKey === 'function'
+                    ? configuration.apiKey("x-ultracart-simple-key")
+                    : configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+            if (search_string !== undefined) {
+                localVarQueryParameter['search_string'] = search_string;
+            }
+            if (signup_dts_start !== undefined) {
+                localVarQueryParameter['signup_dts_start'] = signup_dts_start;
+            }
+            if (signup_dts_end !== undefined) {
+                localVarQueryParameter['signup_dts_end'] = signup_dts_end;
+            }
+            if (_limit !== undefined) {
+                localVarQueryParameter['_limit'] = _limit;
+            }
+            if (_offset !== undefined) {
+                localVarQueryParameter['_offset'] = _offset;
+            }
+            if (_since !== undefined) {
+                localVarQueryParameter['_since'] = _since;
+            }
+            if (_sort !== undefined) {
+                localVarQueryParameter['_sort'] = _sort;
+            }
+            if (_expand !== undefined) {
+                localVarQueryParameter['_expand'] = _expand;
+            }
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
          * Update a customer on the UltraCart account.
          * @summary Update a customer
          * @param {Customer} customer Customer to update
@@ -19691,6 +19779,35 @@ var CustomerApiFp = function (configuration) {
             };
         },
         /**
+         * Retrieves customers from the account by matching the search value against most customer fields.  You will need to make multiple API calls in order to retrieve the entire result set since this API performs result set pagination.  This search also goes against the cache so updates should not be performed with these result objects.  Always re-query the individual customer profile if you are going to make updates.
+         * @summary Search for customers
+         * @param {string} [search_string] Search
+         * @param {string} [signup_dts_start] Signup date start
+         * @param {string} [signup_dts_end] Signup date end
+         * @param {number} [_limit] The maximum number of records to return on this one API call. (Max 200)
+         * @param {number} [_offset] Pagination of the record set.  Offset is a zero based index.
+         * @param {string} [_since] Fetch customers that have been created/modified since this date/time.
+         * @param {string} [_sort] The sort order of the customers.  See Sorting documentation for examples of using multiple values and sorting by ascending and descending.
+         * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        searchCustomers: function (search_string, signup_dts_start, signup_dts_end, _limit, _offset, _since, _sort, _expand, options) {
+            var localVarFetchArgs = (0, exports.CustomerApiFetchParamCreator)(configuration).searchCustomers(search_string, signup_dts_start, signup_dts_end, _limit, _offset, _since, _sort, _expand, options);
+            return function (fetch, basePath) {
+                if (fetch === void 0) { fetch = portableFetch; }
+                if (basePath === void 0) { basePath = BASE_PATH; }
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(function (response) {
+                    if (response.status >= 200 && response.status < 300) {
+                        return response.json();
+                    }
+                    else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
          * Update a customer on the UltraCart account.
          * @summary Update a customer
          * @param {Customer} customer Customer to update
@@ -20038,6 +20155,23 @@ var CustomerApiFactory = function (configuration, fetch, basePath) {
             return (0, exports.CustomerApiFp)(configuration).searchCustomerProfileValues(lookup_request, options)(fetch, basePath);
         },
         /**
+         * Retrieves customers from the account by matching the search value against most customer fields.  You will need to make multiple API calls in order to retrieve the entire result set since this API performs result set pagination.  This search also goes against the cache so updates should not be performed with these result objects.  Always re-query the individual customer profile if you are going to make updates.
+         * @summary Search for customers
+         * @param {string} [search_string] Search
+         * @param {string} [signup_dts_start] Signup date start
+         * @param {string} [signup_dts_end] Signup date end
+         * @param {number} [_limit] The maximum number of records to return on this one API call. (Max 200)
+         * @param {number} [_offset] Pagination of the record set.  Offset is a zero based index.
+         * @param {string} [_since] Fetch customers that have been created/modified since this date/time.
+         * @param {string} [_sort] The sort order of the customers.  See Sorting documentation for examples of using multiple values and sorting by ascending and descending.
+         * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        searchCustomers: function (search_string, signup_dts_start, signup_dts_end, _limit, _offset, _since, _sort, _expand, options) {
+            return (0, exports.CustomerApiFp)(configuration).searchCustomers(search_string, signup_dts_start, signup_dts_end, _limit, _offset, _since, _sort, _expand, options)(fetch, basePath);
+        },
+        /**
          * Update a customer on the UltraCart account.
          * @summary Update a customer
          * @param {Customer} customer Customer to update
@@ -20360,6 +20494,24 @@ var CustomerApi = /** @class */ (function (_super) {
      */
     CustomerApi.prototype.searchCustomerProfileValues = function (lookup_request, options) {
         return (0, exports.CustomerApiFp)(this.configuration).searchCustomerProfileValues(lookup_request, options)(this.fetch, this.basePath);
+    };
+    /**
+     * Retrieves customers from the account by matching the search value against most customer fields.  You will need to make multiple API calls in order to retrieve the entire result set since this API performs result set pagination.  This search also goes against the cache so updates should not be performed with these result objects.  Always re-query the individual customer profile if you are going to make updates.
+     * @summary Search for customers
+     * @param {string} [search_string] Search
+     * @param {string} [signup_dts_start] Signup date start
+     * @param {string} [signup_dts_end] Signup date end
+     * @param {number} [_limit] The maximum number of records to return on this one API call. (Max 200)
+     * @param {number} [_offset] Pagination of the record set.  Offset is a zero based index.
+     * @param {string} [_since] Fetch customers that have been created/modified since this date/time.
+     * @param {string} [_sort] The sort order of the customers.  See Sorting documentation for examples of using multiple values and sorting by ascending and descending.
+     * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof CustomerApi
+     */
+    CustomerApi.prototype.searchCustomers = function (search_string, signup_dts_start, signup_dts_end, _limit, _offset, _since, _sort, _expand, options) {
+        return (0, exports.CustomerApiFp)(this.configuration).searchCustomers(search_string, signup_dts_start, signup_dts_end, _limit, _offset, _since, _sort, _expand, options)(this.fetch, this.basePath);
     };
     /**
      * Update a customer on the UltraCart account.
