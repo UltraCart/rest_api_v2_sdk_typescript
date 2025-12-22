@@ -6884,6 +6884,12 @@ export interface ConversationAgentAuth {
     pbx_worker_token?: string;
     /**
      *
+     * @type {string}
+     * @memberof ConversationAgentAuth
+     */
+    pbx_worker_token_v2?: string;
+    /**
+     *
      * @type {Array<ConversationTwilioAccount>}
      * @memberof ConversationAgentAuth
      */
