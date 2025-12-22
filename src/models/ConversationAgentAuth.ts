@@ -100,6 +100,12 @@ export interface ConversationAgentAuth {
     pbx_worker_token?: string;
     /**
      * 
+     * @type {string}
+     * @memberof ConversationAgentAuth
+     */
+    pbx_worker_token_v2?: string;
+    /**
+     * 
      * @type {Array<ConversationTwilioAccount>}
      * @memberof ConversationAgentAuth
      */
@@ -151,6 +157,7 @@ export function ConversationAgentAuthFromJSONTyped(json: any, ignoreDiscriminato
         'pbx_voice_identity': !exists(json, 'pbx_voice_identity') ? undefined : json['pbx_voice_identity'],
         'pbx_voice_token': !exists(json, 'pbx_voice_token') ? undefined : json['pbx_voice_token'],
         'pbx_worker_token': !exists(json, 'pbx_worker_token') ? undefined : json['pbx_worker_token'],
+        'pbx_worker_token_v2': !exists(json, 'pbx_worker_token_v2') ? undefined : json['pbx_worker_token_v2'],
         'twilio_accounts': !exists(json, 'twilio_accounts') ? undefined : ((json['twilio_accounts'] as Array<any>).map(ConversationTwilioAccountFromJSON)),
         'user_id': !exists(json, 'user_id') ? undefined : json['user_id'],
         'websocket_url': !exists(json, 'websocket_url') ? undefined : json['websocket_url'],
@@ -178,6 +185,7 @@ export function ConversationAgentAuthToJSON(value?: ConversationAgentAuth | null
         'pbx_voice_identity': value.pbx_voice_identity,
         'pbx_voice_token': value.pbx_voice_token,
         'pbx_worker_token': value.pbx_worker_token,
+        'pbx_worker_token_v2': value.pbx_worker_token_v2,
         'twilio_accounts': value.twilio_accounts === undefined ? undefined : ((value.twilio_accounts as Array<any>).map(ConversationTwilioAccountToJSON)),
         'user_id': value.user_id,
         'websocket_url': value.websocket_url,
