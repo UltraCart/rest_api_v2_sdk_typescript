@@ -8963,6 +8963,12 @@ export interface ConversationParticipant {
  */
 export interface ConversationPbxAgent {
     /**
+     * Flag to indicate if the agent is AI
+     * @type {boolean}
+     * @memberof ConversationPbxAgent
+     */
+    ai?: boolean;
+    /**
      * Cellphone number of agent in E.164 format
      * @type {string}
      * @memberof ConversationPbxAgent
@@ -30188,7 +30194,9 @@ export declare namespace ItemRelatedItem {
      */
     enum TypeEnum {
         System,
-        UserDefined
+        UserDefined,
+        Addon,
+        Complementary
     }
 }
 /**
@@ -31324,6 +31332,43 @@ export interface ItemShippingDistributionCenter {
      * @memberof ItemShippingDistributionCenter
      */
     stock_picking_location?: string;
+}
+/**
+ *
+ * @export
+ * @interface ItemShippingDistributionCenterResponse
+ */
+export interface ItemShippingDistributionCenterResponse {
+    /**
+     *
+     * @type {ModelError}
+     * @memberof ItemShippingDistributionCenterResponse
+     */
+    error?: ModelError;
+    /**
+     *
+     * @type {ItemShippingDistributionCenter}
+     * @memberof ItemShippingDistributionCenterResponse
+     */
+    itemShippingDistributionCenter?: ItemShippingDistributionCenter;
+    /**
+     *
+     * @type {ResponseMetadata}
+     * @memberof ItemShippingDistributionCenterResponse
+     */
+    metadata?: ResponseMetadata;
+    /**
+     * Indicates if API call was successful
+     * @type {boolean}
+     * @memberof ItemShippingDistributionCenterResponse
+     */
+    success?: boolean;
+    /**
+     *
+     * @type {Warning}
+     * @memberof ItemShippingDistributionCenterResponse
+     */
+    warning?: Warning;
 }
 /**
  *
@@ -57586,6 +57631,17 @@ export declare const ItemApiFetchParamCreator: (configuration?: Configuration) =
      */
     getItemByMerchantItemId(merchant_item_id: string, _expand?: string, _placeholders?: boolean, options?: any): FetchArgs;
     /**
+     * Retrieve an item shipping distribution center.
+     * @summary Retrieve an item shipping distribution center
+     * @param {number} merchant_item_oid The item oid to retrieve.
+     * @param {string} distribution_center_code
+     * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
+     * @param {boolean} [_placeholders] Whether or not placeholder values should be returned in the result.  Useful for UIs that consume this REST API.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getItemShippingDistributionCenterByCode(merchant_item_oid: number, distribution_center_code: string, _expand?: string, _placeholders?: boolean, options?: any): FetchArgs;
+    /**
      * Retrieves a group of items from the account.  If no parameters are specified, all items will be returned.  You will need to make multiple API calls in order to retrieve the entire result set since this API performs result set pagination.
      * @summary Retrieve items
      * @param {number} [parent_category_id] The parent category object id to retrieve items for.  Unspecified means all items on the account.  0 &#x3D; root
@@ -57694,6 +57750,16 @@ export declare const ItemApiFetchParamCreator: (configuration?: Configuration) =
      * @throws {RequiredError}
      */
     updateItem(item: Item, merchant_item_oid: number, _expand?: string, _placeholders?: boolean, options?: any): FetchArgs;
+    /**
+     * Update an item shipping distribution center
+     * @summary Update an item shipping distribution center
+     * @param {ItemShippingDistributionCenter} item_shipping_distribution_center Item shipping distribution center
+     * @param {number} merchant_item_oid The item oid to update.
+     * @param {string} distribution_center_code
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    updateItemShippingDistributionCenterByCode(item_shipping_distribution_center: ItemShippingDistributionCenter, merchant_item_oid: number, distribution_center_code: string, options?: any): FetchArgs;
     /**
      * Update multiple item on the UltraCart account.
      * @summary Update multiple items
@@ -57811,6 +57877,17 @@ export declare const ItemApiFp: (configuration?: Configuration) => {
      */
     getItemByMerchantItemId(merchant_item_id: string, _expand?: string, _placeholders?: boolean, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ItemResponse>;
     /**
+     * Retrieve an item shipping distribution center.
+     * @summary Retrieve an item shipping distribution center
+     * @param {number} merchant_item_oid The item oid to retrieve.
+     * @param {string} distribution_center_code
+     * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
+     * @param {boolean} [_placeholders] Whether or not placeholder values should be returned in the result.  Useful for UIs that consume this REST API.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getItemShippingDistributionCenterByCode(merchant_item_oid: number, distribution_center_code: string, _expand?: string, _placeholders?: boolean, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ItemShippingDistributionCenterResponse>;
+    /**
      * Retrieves a group of items from the account.  If no parameters are specified, all items will be returned.  You will need to make multiple API calls in order to retrieve the entire result set since this API performs result set pagination.
      * @summary Retrieve items
      * @param {number} [parent_category_id] The parent category object id to retrieve items for.  Unspecified means all items on the account.  0 &#x3D; root
@@ -57919,6 +57996,16 @@ export declare const ItemApiFp: (configuration?: Configuration) => {
      * @throws {RequiredError}
      */
     updateItem(item: Item, merchant_item_oid: number, _expand?: string, _placeholders?: boolean, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ItemResponse>;
+    /**
+     * Update an item shipping distribution center
+     * @summary Update an item shipping distribution center
+     * @param {ItemShippingDistributionCenter} item_shipping_distribution_center Item shipping distribution center
+     * @param {number} merchant_item_oid The item oid to update.
+     * @param {string} distribution_center_code
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    updateItemShippingDistributionCenterByCode(item_shipping_distribution_center: ItemShippingDistributionCenter, merchant_item_oid: number, distribution_center_code: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Response>;
     /**
      * Update multiple item on the UltraCart account.
      * @summary Update multiple items
@@ -58036,6 +58123,17 @@ export declare const ItemApiFactory: (configuration?: Configuration, fetch?: Fet
      */
     getItemByMerchantItemId(merchant_item_id: string, _expand?: string, _placeholders?: boolean, options?: any): Promise<ItemResponse>;
     /**
+     * Retrieve an item shipping distribution center.
+     * @summary Retrieve an item shipping distribution center
+     * @param {number} merchant_item_oid The item oid to retrieve.
+     * @param {string} distribution_center_code
+     * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
+     * @param {boolean} [_placeholders] Whether or not placeholder values should be returned in the result.  Useful for UIs that consume this REST API.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getItemShippingDistributionCenterByCode(merchant_item_oid: number, distribution_center_code: string, _expand?: string, _placeholders?: boolean, options?: any): Promise<ItemShippingDistributionCenterResponse>;
+    /**
      * Retrieves a group of items from the account.  If no parameters are specified, all items will be returned.  You will need to make multiple API calls in order to retrieve the entire result set since this API performs result set pagination.
      * @summary Retrieve items
      * @param {number} [parent_category_id] The parent category object id to retrieve items for.  Unspecified means all items on the account.  0 &#x3D; root
@@ -58144,6 +58242,16 @@ export declare const ItemApiFactory: (configuration?: Configuration, fetch?: Fet
      * @throws {RequiredError}
      */
     updateItem(item: Item, merchant_item_oid: number, _expand?: string, _placeholders?: boolean, options?: any): Promise<ItemResponse>;
+    /**
+     * Update an item shipping distribution center
+     * @summary Update an item shipping distribution center
+     * @param {ItemShippingDistributionCenter} item_shipping_distribution_center Item shipping distribution center
+     * @param {number} merchant_item_oid The item oid to update.
+     * @param {string} distribution_center_code
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    updateItemShippingDistributionCenterByCode(item_shipping_distribution_center: ItemShippingDistributionCenter, merchant_item_oid: number, distribution_center_code: string, options?: any): Promise<Response>;
     /**
      * Update multiple item on the UltraCart account.
      * @summary Update multiple items
@@ -58271,6 +58379,18 @@ export interface ItemApiInterface {
      */
     getItemByMerchantItemId(merchant_item_id: string, _expand?: string, _placeholders?: boolean, options?: any): Promise<ItemResponse>;
     /**
+     * Retrieve an item shipping distribution center.
+     * @summary Retrieve an item shipping distribution center
+     * @param {number} merchant_item_oid The item oid to retrieve.
+     * @param {string} distribution_center_code
+     * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
+     * @param {boolean} [_placeholders] Whether or not placeholder values should be returned in the result.  Useful for UIs that consume this REST API.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ItemApiInterface
+     */
+    getItemShippingDistributionCenterByCode(merchant_item_oid: number, distribution_center_code: string, _expand?: string, _placeholders?: boolean, options?: any): Promise<ItemShippingDistributionCenterResponse>;
+    /**
      * Retrieves a group of items from the account.  If no parameters are specified, all items will be returned.  You will need to make multiple API calls in order to retrieve the entire result set since this API performs result set pagination.
      * @summary Retrieve items
      * @param {number} [parent_category_id] The parent category object id to retrieve items for.  Unspecified means all items on the account.  0 &#x3D; root
@@ -58390,6 +58510,17 @@ export interface ItemApiInterface {
      * @memberof ItemApiInterface
      */
     updateItem(item: Item, merchant_item_oid: number, _expand?: string, _placeholders?: boolean, options?: any): Promise<ItemResponse>;
+    /**
+     * Update an item shipping distribution center
+     * @summary Update an item shipping distribution center
+     * @param {ItemShippingDistributionCenter} item_shipping_distribution_center Item shipping distribution center
+     * @param {number} merchant_item_oid The item oid to update.
+     * @param {string} distribution_center_code
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ItemApiInterface
+     */
+    updateItemShippingDistributionCenterByCode(item_shipping_distribution_center: ItemShippingDistributionCenter, merchant_item_oid: number, distribution_center_code: string, options?: any): Promise<{}>;
     /**
      * Update multiple item on the UltraCart account.
      * @summary Update multiple items
@@ -58521,6 +58652,18 @@ export declare class ItemApi extends BaseAPI implements ItemApiInterface {
      */
     getItemByMerchantItemId(merchant_item_id: string, _expand?: string, _placeholders?: boolean, options?: any): Promise<ItemResponse>;
     /**
+     * Retrieve an item shipping distribution center.
+     * @summary Retrieve an item shipping distribution center
+     * @param {number} merchant_item_oid The item oid to retrieve.
+     * @param {string} distribution_center_code
+     * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
+     * @param {boolean} [_placeholders] Whether or not placeholder values should be returned in the result.  Useful for UIs that consume this REST API.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ItemApi
+     */
+    getItemShippingDistributionCenterByCode(merchant_item_oid: number, distribution_center_code: string, _expand?: string, _placeholders?: boolean, options?: any): Promise<ItemShippingDistributionCenterResponse>;
+    /**
      * Retrieves a group of items from the account.  If no parameters are specified, all items will be returned.  You will need to make multiple API calls in order to retrieve the entire result set since this API performs result set pagination.
      * @summary Retrieve items
      * @param {number} [parent_category_id] The parent category object id to retrieve items for.  Unspecified means all items on the account.  0 &#x3D; root
@@ -58640,6 +58783,17 @@ export declare class ItemApi extends BaseAPI implements ItemApiInterface {
      * @memberof ItemApi
      */
     updateItem(item: Item, merchant_item_oid: number, _expand?: string, _placeholders?: boolean, options?: any): Promise<ItemResponse>;
+    /**
+     * Update an item shipping distribution center
+     * @summary Update an item shipping distribution center
+     * @param {ItemShippingDistributionCenter} item_shipping_distribution_center Item shipping distribution center
+     * @param {number} merchant_item_oid The item oid to update.
+     * @param {string} distribution_center_code
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ItemApi
+     */
+    updateItemShippingDistributionCenterByCode(item_shipping_distribution_center: ItemShippingDistributionCenter, merchant_item_oid: number, distribution_center_code: string, options?: any): Promise<Response>;
     /**
      * Update multiple item on the UltraCart account.
      * @summary Update multiple items

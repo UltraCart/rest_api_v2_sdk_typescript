@@ -1073,6 +1073,8 @@ var ItemRelatedItem;
     (function (TypeEnum) {
         TypeEnum[TypeEnum["System"] = 'System'] = "System";
         TypeEnum[TypeEnum["UserDefined"] = 'UserDefined'] = "UserDefined";
+        TypeEnum[TypeEnum["Addon"] = 'Addon'] = "Addon";
+        TypeEnum[TypeEnum["Complementary"] = 'Complementary'] = "Complementary";
     })(TypeEnum = ItemRelatedItem.TypeEnum || (ItemRelatedItem.TypeEnum = {}));
 })(ItemRelatedItem = exports.ItemRelatedItem || (exports.ItemRelatedItem = {}));
 /**
@@ -25782,6 +25784,66 @@ var ItemApiFetchParamCreator = function (configuration) {
             };
         },
         /**
+         * Retrieve an item shipping distribution center.
+         * @summary Retrieve an item shipping distribution center
+         * @param {number} merchant_item_oid The item oid to retrieve.
+         * @param {string} distribution_center_code
+         * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
+         * @param {boolean} [_placeholders] Whether or not placeholder values should be returned in the result.  Useful for UIs that consume this REST API.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getItemShippingDistributionCenterByCode: function (merchant_item_oid, distribution_center_code, _expand, _placeholders, options) {
+            if (options === void 0) { options = {}; }
+            // verify required parameter 'merchant_item_oid' is not null or undefined
+            if (merchant_item_oid === null || merchant_item_oid === undefined) {
+                throw new RequiredError('merchant_item_oid', 'Required parameter merchant_item_oid was null or undefined when calling getItemShippingDistributionCenterByCode.');
+            }
+            // verify required parameter 'distribution_center_code' is not null or undefined
+            if (distribution_center_code === null || distribution_center_code === undefined) {
+                throw new RequiredError('distribution_center_code', 'Required parameter distribution_center_code was null or undefined when calling getItemShippingDistributionCenterByCode.');
+            }
+            var localVarPath = "/item/items/{merchant_item_oid}/shipping/distribution_centers/by_code/{distribution_center_code}"
+                .replace("{".concat("merchant_item_oid", "}"), encodeURIComponent(String(merchant_item_oid)))
+                .replace("{".concat("distribution_center_code", "}"), encodeURIComponent(String(distribution_center_code)));
+            var localVarUrlObj = url.parse(localVarPath, true);
+            var localVarRequestOptions = Object.assign({ method: 'GET' }, options);
+            var localVarHeaderParameter = {};
+            var localVarQueryParameter = {};
+            if (configuration && configuration.apiVersion) {
+                localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+            }
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+                var localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+                    ? configuration.accessToken("ultraCartOauth", ["item_read"])
+                    : configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                var localVarApiKeyValue = typeof configuration.apiKey === 'function'
+                    ? configuration.apiKey("x-ultracart-simple-key")
+                    : configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+            if (_expand !== undefined) {
+                localVarQueryParameter['_expand'] = _expand;
+            }
+            if (_placeholders !== undefined) {
+                localVarQueryParameter['_placeholders'] = _placeholders;
+            }
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
          * Retrieves a group of items from the account.  If no parameters are specified, all items will be returned.  You will need to make multiple API calls in order to retrieve the entire result set since this API performs result set pagination.
          * @summary Retrieve items
          * @param {number} [parent_category_id] The parent category object id to retrieve items for.  Unspecified means all items on the account.  0 &#x3D; root
@@ -26388,6 +26450,66 @@ var ItemApiFetchParamCreator = function (configuration) {
             };
         },
         /**
+         * Update an item shipping distribution center
+         * @summary Update an item shipping distribution center
+         * @param {ItemShippingDistributionCenter} item_shipping_distribution_center Item shipping distribution center
+         * @param {number} merchant_item_oid The item oid to update.
+         * @param {string} distribution_center_code
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        updateItemShippingDistributionCenterByCode: function (item_shipping_distribution_center, merchant_item_oid, distribution_center_code, options) {
+            if (options === void 0) { options = {}; }
+            // verify required parameter 'item_shipping_distribution_center' is not null or undefined
+            if (item_shipping_distribution_center === null || item_shipping_distribution_center === undefined) {
+                throw new RequiredError('item_shipping_distribution_center', 'Required parameter item_shipping_distribution_center was null or undefined when calling updateItemShippingDistributionCenterByCode.');
+            }
+            // verify required parameter 'merchant_item_oid' is not null or undefined
+            if (merchant_item_oid === null || merchant_item_oid === undefined) {
+                throw new RequiredError('merchant_item_oid', 'Required parameter merchant_item_oid was null or undefined when calling updateItemShippingDistributionCenterByCode.');
+            }
+            // verify required parameter 'distribution_center_code' is not null or undefined
+            if (distribution_center_code === null || distribution_center_code === undefined) {
+                throw new RequiredError('distribution_center_code', 'Required parameter distribution_center_code was null or undefined when calling updateItemShippingDistributionCenterByCode.');
+            }
+            var localVarPath = "/item/items/{merchant_item_oid}/shipping/distribution_centers/by_code/{distribution_center_code}"
+                .replace("{".concat("merchant_item_oid", "}"), encodeURIComponent(String(merchant_item_oid)))
+                .replace("{".concat("distribution_center_code", "}"), encodeURIComponent(String(distribution_center_code)));
+            var localVarUrlObj = url.parse(localVarPath, true);
+            var localVarRequestOptions = Object.assign({ method: 'PUT' }, options);
+            var localVarHeaderParameter = {};
+            var localVarQueryParameter = {};
+            if (configuration && configuration.apiVersion) {
+                localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+            }
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+                var localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+                    ? configuration.accessToken("ultraCartOauth", ["item_write"])
+                    : configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                var localVarApiKeyValue = typeof configuration.apiKey === 'function'
+                    ? configuration.apiKey("x-ultracart-simple-key")
+                    : configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+            localVarHeaderParameter['Content-Type'] = 'application/json; charset=UTF-8';
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+            var needsSerialization = ("ItemShippingDistributionCenter" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
+            localVarRequestOptions.body = needsSerialization ? JSON.stringify(item_shipping_distribution_center || {}) : (item_shipping_distribution_center || "");
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
          * Update multiple item on the UltraCart account.
          * @summary Update multiple items
          * @param {ItemsRequest} items_request Items to update (synchronous maximum 20 / asynchronous maximum 100)
@@ -26775,6 +26897,31 @@ var ItemApiFp = function (configuration) {
             };
         },
         /**
+         * Retrieve an item shipping distribution center.
+         * @summary Retrieve an item shipping distribution center
+         * @param {number} merchant_item_oid The item oid to retrieve.
+         * @param {string} distribution_center_code
+         * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
+         * @param {boolean} [_placeholders] Whether or not placeholder values should be returned in the result.  Useful for UIs that consume this REST API.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getItemShippingDistributionCenterByCode: function (merchant_item_oid, distribution_center_code, _expand, _placeholders, options) {
+            var localVarFetchArgs = (0, exports.ItemApiFetchParamCreator)(configuration).getItemShippingDistributionCenterByCode(merchant_item_oid, distribution_center_code, _expand, _placeholders, options);
+            return function (fetch, basePath) {
+                if (fetch === void 0) { fetch = portableFetch; }
+                if (basePath === void 0) { basePath = BASE_PATH; }
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(function (response) {
+                    if (response.status >= 200 && response.status < 300) {
+                        return response.json();
+                    }
+                    else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
          * Retrieves a group of items from the account.  If no parameters are specified, all items will be returned.  You will need to make multiple API calls in order to retrieve the entire result set since this API performs result set pagination.
          * @summary Retrieve items
          * @param {number} [parent_category_id] The parent category object id to retrieve items for.  Unspecified means all items on the account.  0 &#x3D; root
@@ -27038,6 +27185,30 @@ var ItemApiFp = function (configuration) {
             };
         },
         /**
+         * Update an item shipping distribution center
+         * @summary Update an item shipping distribution center
+         * @param {ItemShippingDistributionCenter} item_shipping_distribution_center Item shipping distribution center
+         * @param {number} merchant_item_oid The item oid to update.
+         * @param {string} distribution_center_code
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        updateItemShippingDistributionCenterByCode: function (item_shipping_distribution_center, merchant_item_oid, distribution_center_code, options) {
+            var localVarFetchArgs = (0, exports.ItemApiFetchParamCreator)(configuration).updateItemShippingDistributionCenterByCode(item_shipping_distribution_center, merchant_item_oid, distribution_center_code, options);
+            return function (fetch, basePath) {
+                if (fetch === void 0) { fetch = portableFetch; }
+                if (basePath === void 0) { basePath = BASE_PATH; }
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(function (response) {
+                    if (response.status >= 200 && response.status < 300) {
+                        return response;
+                    }
+                    else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
          * Update multiple item on the UltraCart account.
          * @summary Update multiple items
          * @param {ItemsRequest} items_request Items to update (synchronous maximum 20 / asynchronous maximum 100)
@@ -27217,6 +27388,19 @@ var ItemApiFactory = function (configuration, fetch, basePath) {
             return (0, exports.ItemApiFp)(configuration).getItemByMerchantItemId(merchant_item_id, _expand, _placeholders, options)(fetch, basePath);
         },
         /**
+         * Retrieve an item shipping distribution center.
+         * @summary Retrieve an item shipping distribution center
+         * @param {number} merchant_item_oid The item oid to retrieve.
+         * @param {string} distribution_center_code
+         * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
+         * @param {boolean} [_placeholders] Whether or not placeholder values should be returned in the result.  Useful for UIs that consume this REST API.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getItemShippingDistributionCenterByCode: function (merchant_item_oid, distribution_center_code, _expand, _placeholders, options) {
+            return (0, exports.ItemApiFp)(configuration).getItemShippingDistributionCenterByCode(merchant_item_oid, distribution_center_code, _expand, _placeholders, options)(fetch, basePath);
+        },
+        /**
          * Retrieves a group of items from the account.  If no parameters are specified, all items will be returned.  You will need to make multiple API calls in order to retrieve the entire result set since this API performs result set pagination.
          * @summary Retrieve items
          * @param {number} [parent_category_id] The parent category object id to retrieve items for.  Unspecified means all items on the account.  0 &#x3D; root
@@ -27346,6 +27530,18 @@ var ItemApiFactory = function (configuration, fetch, basePath) {
          */
         updateItem: function (item, merchant_item_oid, _expand, _placeholders, options) {
             return (0, exports.ItemApiFp)(configuration).updateItem(item, merchant_item_oid, _expand, _placeholders, options)(fetch, basePath);
+        },
+        /**
+         * Update an item shipping distribution center
+         * @summary Update an item shipping distribution center
+         * @param {ItemShippingDistributionCenter} item_shipping_distribution_center Item shipping distribution center
+         * @param {number} merchant_item_oid The item oid to update.
+         * @param {string} distribution_center_code
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        updateItemShippingDistributionCenterByCode: function (item_shipping_distribution_center, merchant_item_oid, distribution_center_code, options) {
+            return (0, exports.ItemApiFp)(configuration).updateItemShippingDistributionCenterByCode(item_shipping_distribution_center, merchant_item_oid, distribution_center_code, options)(fetch, basePath);
         },
         /**
          * Update multiple item on the UltraCart account.
@@ -27505,6 +27701,20 @@ var ItemApi = /** @class */ (function (_super) {
         return (0, exports.ItemApiFp)(this.configuration).getItemByMerchantItemId(merchant_item_id, _expand, _placeholders, options)(this.fetch, this.basePath);
     };
     /**
+     * Retrieve an item shipping distribution center.
+     * @summary Retrieve an item shipping distribution center
+     * @param {number} merchant_item_oid The item oid to retrieve.
+     * @param {string} distribution_center_code
+     * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
+     * @param {boolean} [_placeholders] Whether or not placeholder values should be returned in the result.  Useful for UIs that consume this REST API.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ItemApi
+     */
+    ItemApi.prototype.getItemShippingDistributionCenterByCode = function (merchant_item_oid, distribution_center_code, _expand, _placeholders, options) {
+        return (0, exports.ItemApiFp)(this.configuration).getItemShippingDistributionCenterByCode(merchant_item_oid, distribution_center_code, _expand, _placeholders, options)(this.fetch, this.basePath);
+    };
+    /**
      * Retrieves a group of items from the account.  If no parameters are specified, all items will be returned.  You will need to make multiple API calls in order to retrieve the entire result set since this API performs result set pagination.
      * @summary Retrieve items
      * @param {number} [parent_category_id] The parent category object id to retrieve items for.  Unspecified means all items on the account.  0 &#x3D; root
@@ -27645,6 +27855,19 @@ var ItemApi = /** @class */ (function (_super) {
      */
     ItemApi.prototype.updateItem = function (item, merchant_item_oid, _expand, _placeholders, options) {
         return (0, exports.ItemApiFp)(this.configuration).updateItem(item, merchant_item_oid, _expand, _placeholders, options)(this.fetch, this.basePath);
+    };
+    /**
+     * Update an item shipping distribution center
+     * @summary Update an item shipping distribution center
+     * @param {ItemShippingDistributionCenter} item_shipping_distribution_center Item shipping distribution center
+     * @param {number} merchant_item_oid The item oid to update.
+     * @param {string} distribution_center_code
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ItemApi
+     */
+    ItemApi.prototype.updateItemShippingDistributionCenterByCode = function (item_shipping_distribution_center, merchant_item_oid, distribution_center_code, options) {
+        return (0, exports.ItemApiFp)(this.configuration).updateItemShippingDistributionCenterByCode(item_shipping_distribution_center, merchant_item_oid, distribution_center_code, options)(this.fetch, this.basePath);
     };
     /**
      * Update multiple item on the UltraCart account.
