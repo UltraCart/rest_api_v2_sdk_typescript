@@ -6957,6 +6957,12 @@ export interface ConversationAgentProfile {
      */
     ai?: boolean;
     /**
+     *
+     * @type {ConversationVirtualAgentCapabilities}
+     * @memberof ConversationAgentProfile
+     */
+    ai_capabilities?: ConversationVirtualAgentCapabilities;
+    /**
      * Additional instructions for this AI when handle web chats
      * @type {string}
      * @memberof ConversationAgentProfile
