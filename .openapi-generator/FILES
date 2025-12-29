@@ -639,6 +639,7 @@ src/models/ItemShippingCase.ts
 src/models/ItemShippingDestinationMarkup.ts
 src/models/ItemShippingDestinationRestriction.ts
 src/models/ItemShippingDistributionCenter.ts
+src/models/ItemShippingDistributionCenterResponse.ts
 src/models/ItemShippingMethod.ts
 src/models/ItemShippingPackageRequirement.ts
 src/models/ItemTag.ts

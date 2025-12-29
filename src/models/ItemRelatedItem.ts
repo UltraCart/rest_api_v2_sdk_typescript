@@ -46,7 +46,9 @@ export interface ItemRelatedItem {
  */
 export const ItemRelatedItemTypeEnum = {
     System: 'System',
-    UserDefined: 'UserDefined'
+    UserDefined: 'UserDefined',
+    Addon: 'Addon',
+    Complementary: 'Complementary'
 } as const;
 export type ItemRelatedItemTypeEnum = typeof ItemRelatedItemTypeEnum[keyof typeof ItemRelatedItemTypeEnum];
 

@@ -615,6 +615,7 @@ export * from './ItemShippingCase';
 export * from './ItemShippingDestinationMarkup';
 export * from './ItemShippingDestinationRestriction';
 export * from './ItemShippingDistributionCenter';
+export * from './ItemShippingDistributionCenterResponse';
 export * from './ItemShippingMethod';
 export * from './ItemShippingPackageRequirement';
 export * from './ItemTag';

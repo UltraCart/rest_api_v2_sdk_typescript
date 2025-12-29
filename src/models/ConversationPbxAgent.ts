@@ -20,6 +20,12 @@ import { exists, mapValues } from '../runtime';
  */
 export interface ConversationPbxAgent {
     /**
+     * Flag to indicate if the agent is AI
+     * @type {boolean}
+     * @memberof ConversationPbxAgent
+     */
+    ai?: boolean;
+    /**
      * Cellphone number of agent in E.164 format
      * @type {string}
      * @memberof ConversationPbxAgent
@@ -138,6 +144,7 @@ export function ConversationPbxAgentFromJSONTyped(json: any, ignoreDiscriminator
     }
     return {
         
+        'ai': !exists(json, 'ai') ? undefined : json['ai'],
         'cellphone': !exists(json, 'cellphone') ? undefined : json['cellphone'],
         'conversation_pbx_agent_uuid': !exists(json, 'conversation_pbx_agent_uuid') ? undefined : json['conversation_pbx_agent_uuid'],
         'extension': !exists(json, 'extension') ? undefined : json['extension'],
@@ -166,6 +173,7 @@ export function ConversationPbxAgentToJSON(value?: ConversationPbxAgent | null):
     }
     return {
         
+        'ai': value.ai,
         'cellphone': value.cellphone,
         'conversation_pbx_agent_uuid': value.conversation_pbx_agent_uuid,
         'extension': value.extension,
