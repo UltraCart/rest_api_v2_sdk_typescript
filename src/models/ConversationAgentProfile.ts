@@ -13,6 +13,13 @@
  */
 
 import { exists, mapValues } from '../runtime';
+import {
+    ConversationVirtualAgentCapabilities,
+    ConversationVirtualAgentCapabilitiesFromJSON,
+    ConversationVirtualAgentCapabilitiesFromJSONTyped,
+    ConversationVirtualAgentCapabilitiesToJSON,
+} from './ConversationVirtualAgentCapabilities';
+
 /**
  * 
  * @export
@@ -25,6 +32,12 @@ export interface ConversationAgentProfile {
      * @memberof ConversationAgentProfile
      */
     ai?: boolean;
+    /**
+     * 
+     * @type {ConversationVirtualAgentCapabilities}
+     * @memberof ConversationAgentProfile
+     */
+    ai_capabilities?: ConversationVirtualAgentCapabilities;
     /**
      * Additional instructions for this AI when handle web chats
      * @type {string}
@@ -144,6 +157,7 @@ export function ConversationAgentProfileFromJSONTyped(json: any, ignoreDiscrimin
     return {
         
         'ai': !exists(json, 'ai') ? undefined : json['ai'],
+        'ai_capabilities': !exists(json, 'ai_capabilities') ? undefined : ConversationVirtualAgentCapabilitiesFromJSON(json['ai_capabilities']),
         'ai_chat_instructions': !exists(json, 'ai_chat_instructions') ? undefined : json['ai_chat_instructions'],
         'ai_persona': !exists(json, 'ai_persona') ? undefined : json['ai_persona'],
         'ai_sms_instructions': !exists(json, 'ai_sms_instructions') ? undefined : json['ai_sms_instructions'],
@@ -171,6 +185,7 @@ export function ConversationAgentProfileToJSON(value?: ConversationAgentProfile 
     return {
         
         'ai': value.ai,
+        'ai_capabilities': ConversationVirtualAgentCapabilitiesToJSON(value.ai_capabilities),
         'ai_chat_instructions': value.ai_chat_instructions,
         'ai_persona': value.ai_persona,
         'ai_sms_instructions': value.ai_sms_instructions,
