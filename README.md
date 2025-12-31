@@ -1,12 +1,12 @@
 # UltraCart Typescript SDK
-## ultracart_rest_api_v2_typescript@4.1.38
+## ultracart_rest_api_v2_typescript@4.1.39
 
 Every API method call has a sample for every language SDK.  See https://github.com/UltraCart/sdk_samples
 
 Installation
 
 ```
-npm install ultracart_rest_api_v2_typescript@4.1.38 --save
+npm install ultracart_rest_api_v2_typescript@4.1.39 --save
 ```
 
 ```typescript
@@ -85,6 +85,7 @@ Not every change is committed to every SDK.
 
 | Version | Date | Comments |
 | --: | :-: | --- |
+| 4.1.39 | 12/31/2025 | conversations AI - queue AI settings |
 | 4.1.38 | 12/29/2025 | conversations - AI agent level capabilities |
 | 4.1.37 | 12/29/2025 | conversations - pbx agent AI flag |
 | 4.1.36 | 12/22/2025 | conversation - agent auth worker token v2 |

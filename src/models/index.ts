@@ -584,6 +584,8 @@ export * from './ItemInternal';
 export * from './ItemInventorySnapshot';
 export * from './ItemInventorySnapshotDistributionCenter';
 export * from './ItemInventorySnapshotResponse';
+export * from './ItemInventoryUpdate';
+export * from './ItemInventoryUpdateRequest';
 export * from './ItemKitComponent';
 export * from './ItemKitDefinition';
 export * from './ItemOption';

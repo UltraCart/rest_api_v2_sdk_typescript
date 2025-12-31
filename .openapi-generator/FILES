@@ -608,6 +608,8 @@ src/models/ItemInternal.ts
 src/models/ItemInventorySnapshot.ts
 src/models/ItemInventorySnapshotDistributionCenter.ts
 src/models/ItemInventorySnapshotResponse.ts
+src/models/ItemInventoryUpdate.ts
+src/models/ItemInventoryUpdateRequest.ts
 src/models/ItemKitComponent.ts
 src/models/ItemKitDefinition.ts
 src/models/ItemOption.ts

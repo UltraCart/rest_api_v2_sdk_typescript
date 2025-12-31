@@ -36,6 +36,9 @@ import {
     ItemInventorySnapshotResponse,
     ItemInventorySnapshotResponseFromJSON,
     ItemInventorySnapshotResponseToJSON,
+    ItemInventoryUpdateRequest,
+    ItemInventoryUpdateRequestFromJSON,
+    ItemInventoryUpdateRequestToJSON,
     ItemResponse,
     ItemResponseFromJSON,
     ItemResponseToJSON,
@@ -180,6 +183,10 @@ export interface UpdateItemRequest {
     item: Item;
     expand?: string;
     placeholders?: boolean;
+}
+
+export interface UpdateItemInventoriesRequest {
+    itemInventoryUpdateRequest: ItemInventoryUpdateRequest;
 }
 
 export interface UpdateItemShippingDistributionCenterByCodeRequest {
@@ -580,6 +587,22 @@ export interface ItemApiInterface {
      * Update an item
      */
     updateItem(requestParameters: UpdateItemRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ItemResponse>;
+
+    /**
+     * Update item inventories for a distribution center 
+     * @summary Update item inventories for a distribution center
+     * @param {ItemInventoryUpdateRequest} itemInventoryUpdateRequest Item inventory updates
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ItemApiInterface
+     */
+    updateItemInventoriesRaw(requestParameters: UpdateItemInventoriesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+
+    /**
+     * Update item inventories for a distribution center 
+     * Update item inventories for a distribution center
+     */
+    updateItemInventories(requestParameters: UpdateItemInventoriesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
      * Update an item shipping distribution center 
@@ -1664,6 +1687,49 @@ export class ItemApi extends runtime.BaseAPI implements ItemApiInterface {
     async updateItem(requestParameters: UpdateItemRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ItemResponse> {
         const response = await this.updateItemRaw(requestParameters, initOverrides);
         return await response.value();
+    }
+
+    /**
+     * Update item inventories for a distribution center 
+     * Update item inventories for a distribution center
+     */
+    async updateItemInventoriesRaw(requestParameters: UpdateItemInventoriesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        if (requestParameters.itemInventoryUpdateRequest === null || requestParameters.itemInventoryUpdateRequest === undefined) {
+            throw new runtime.RequiredError('itemInventoryUpdateRequest','Required parameter requestParameters.itemInventoryUpdateRequest was null or undefined when calling updateItemInventories.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json; charset=UTF-8';
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", ["item_write"]);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/item/items/update_item_inventories`,
+            method: 'PUT',
+            headers: headerParameters,
+            query: queryParameters,
+            body: ItemInventoryUpdateRequestToJSON(requestParameters.itemInventoryUpdateRequest),
+        }, initOverrides);
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     * Update item inventories for a distribution center 
+     * Update item inventories for a distribution center
+     */
+    async updateItemInventories(requestParameters: UpdateItemInventoriesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.updateItemInventoriesRaw(requestParameters, initOverrides);
     }
 
     /**

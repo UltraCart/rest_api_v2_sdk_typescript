@@ -27,6 +27,18 @@ import {
  */
 export interface ConversationPbxQueue {
     /**
+     * AI Agent Priority compared to human agents
+     * @type {string}
+     * @memberof ConversationPbxQueue
+     */
+    ai_priority?: ConversationPbxQueueAiPriorityEnum;
+    /**
+     * AI timeout seconds
+     * @type {number}
+     * @memberof ConversationPbxQueue
+     */
+    ai_timeout_seconds?: number;
+    /**
      * If true, the customer is told their queue position upon entering the queue
      * @type {boolean}
      * @memberof ConversationPbxQueue
@@ -157,6 +169,17 @@ export interface ConversationPbxQueue {
 
 
 /**
+ * @export
+ */
+export const ConversationPbxQueueAiPriorityEnum = {
+    Neutral: 'neutral',
+    First: 'first',
+    Backup: 'backup'
+} as const;
+export type ConversationPbxQueueAiPriorityEnum = typeof ConversationPbxQueueAiPriorityEnum[keyof typeof ConversationPbxQueueAiPriorityEnum];
+
+
+/**
  * Check if a given object implements the ConversationPbxQueue interface.
  */
 export function instanceOfConversationPbxQueue(value: object): boolean {
@@ -175,6 +198,8 @@ export function ConversationPbxQueueFromJSONTyped(json: any, ignoreDiscriminator
     }
     return {
         
+        'ai_priority': !exists(json, 'ai_priority') ? undefined : json['ai_priority'],
+        'ai_timeout_seconds': !exists(json, 'ai_timeout_seconds') ? undefined : json['ai_timeout_seconds'],
         'announce_queue_position': !exists(json, 'announce_queue_position') ? undefined : json['announce_queue_position'],
         'conversation_pbx_queue_uuid': !exists(json, 'conversation_pbx_queue_uuid') ? undefined : json['conversation_pbx_queue_uuid'],
         'conversation_voicemail_mailbox_uuid': !exists(json, 'conversation_voicemail_mailbox_uuid') ? undefined : json['conversation_voicemail_mailbox_uuid'],
@@ -208,6 +233,8 @@ export function ConversationPbxQueueToJSON(value?: ConversationPbxQueue | null):
     }
     return {
         
+        'ai_priority': value.ai_priority,
+        'ai_timeout_seconds': value.ai_timeout_seconds,
         'announce_queue_position': value.announce_queue_position,
         'conversation_pbx_queue_uuid': value.conversation_pbx_queue_uuid,
         'conversation_voicemail_mailbox_uuid': value.conversation_voicemail_mailbox_uuid,
