@@ -9839,6 +9839,18 @@ export interface ConversationPbxPhoneNumbersResponse {
  */
 export interface ConversationPbxQueue {
     /**
+     * AI Agent Priority compared to human agents
+     * @type {string}
+     * @memberof ConversationPbxQueue
+     */
+    ai_priority?: ConversationPbxQueue.AiPriorityEnum;
+    /**
+     * AI timeout seconds
+     * @type {number}
+     * @memberof ConversationPbxQueue
+     */
+    ai_timeout_seconds?: number;
+    /**
      * If true, the customer is told their queue position upon entering the queue
      * @type {boolean}
      * @memberof ConversationPbxQueue
@@ -9964,6 +9976,21 @@ export interface ConversationPbxQueue {
      * @memberof ConversationPbxQueue
      */
     wrap_up_seconds?: number;
+}
+/**
+ * @export
+ * @namespace ConversationPbxQueue
+ */
+export declare namespace ConversationPbxQueue {
+    /**
+     * @export
+     * @enum {string}
+     */
+    enum AiPriorityEnum {
+        Neutral,
+        First,
+        Backup
+    }
 }
 /**
  *
@@ -29496,6 +29523,44 @@ export interface ItemInventorySnapshotResponse {
      * @memberof ItemInventorySnapshotResponse
      */
     warning?: Warning;
+}
+/**
+ *
+ * @export
+ * @interface ItemInventoryUpdate
+ */
+export interface ItemInventoryUpdate {
+    /**
+     * Distribution center code
+     * @type {string}
+     * @memberof ItemInventoryUpdate
+     */
+    distribution_center_code?: string;
+    /**
+     * Inventory level
+     * @type {number}
+     * @memberof ItemInventoryUpdate
+     */
+    inventory_level?: number;
+    /**
+     * Merchant Item ID
+     * @type {string}
+     * @memberof ItemInventoryUpdate
+     */
+    merchant_item_id?: string;
+}
+/**
+ *
+ * @export
+ * @interface ItemInventoryUpdateRequest
+ */
+export interface ItemInventoryUpdateRequest {
+    /**
+     * Inventory updates array
+     * @type {Array<ItemInventoryUpdate>}
+     * @memberof ItemInventoryUpdateRequest
+     */
+    inventory_updates?: Array<ItemInventoryUpdate>;
 }
 /**
  *
@@ -57757,6 +57822,14 @@ export declare const ItemApiFetchParamCreator: (configuration?: Configuration) =
      */
     updateItem(item: Item, merchant_item_oid: number, _expand?: string, _placeholders?: boolean, options?: any): FetchArgs;
     /**
+     * Update item inventories for a distribution center
+     * @summary Update item inventories for a distribution center
+     * @param {ItemInventoryUpdateRequest} item_inventory_update_request Item inventory updates
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    updateItemInventories(item_inventory_update_request: ItemInventoryUpdateRequest, options?: any): FetchArgs;
+    /**
      * Update an item shipping distribution center
      * @summary Update an item shipping distribution center
      * @param {ItemShippingDistributionCenter} item_shipping_distribution_center Item shipping distribution center
@@ -58003,6 +58076,14 @@ export declare const ItemApiFp: (configuration?: Configuration) => {
      */
     updateItem(item: Item, merchant_item_oid: number, _expand?: string, _placeholders?: boolean, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ItemResponse>;
     /**
+     * Update item inventories for a distribution center
+     * @summary Update item inventories for a distribution center
+     * @param {ItemInventoryUpdateRequest} item_inventory_update_request Item inventory updates
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    updateItemInventories(item_inventory_update_request: ItemInventoryUpdateRequest, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Response>;
+    /**
      * Update an item shipping distribution center
      * @summary Update an item shipping distribution center
      * @param {ItemShippingDistributionCenter} item_shipping_distribution_center Item shipping distribution center
@@ -58248,6 +58329,14 @@ export declare const ItemApiFactory: (configuration?: Configuration, fetch?: Fet
      * @throws {RequiredError}
      */
     updateItem(item: Item, merchant_item_oid: number, _expand?: string, _placeholders?: boolean, options?: any): Promise<ItemResponse>;
+    /**
+     * Update item inventories for a distribution center
+     * @summary Update item inventories for a distribution center
+     * @param {ItemInventoryUpdateRequest} item_inventory_update_request Item inventory updates
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    updateItemInventories(item_inventory_update_request: ItemInventoryUpdateRequest, options?: any): Promise<Response>;
     /**
      * Update an item shipping distribution center
      * @summary Update an item shipping distribution center
@@ -58516,6 +58605,15 @@ export interface ItemApiInterface {
      * @memberof ItemApiInterface
      */
     updateItem(item: Item, merchant_item_oid: number, _expand?: string, _placeholders?: boolean, options?: any): Promise<ItemResponse>;
+    /**
+     * Update item inventories for a distribution center
+     * @summary Update item inventories for a distribution center
+     * @param {ItemInventoryUpdateRequest} item_inventory_update_request Item inventory updates
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ItemApiInterface
+     */
+    updateItemInventories(item_inventory_update_request: ItemInventoryUpdateRequest, options?: any): Promise<{}>;
     /**
      * Update an item shipping distribution center
      * @summary Update an item shipping distribution center
@@ -58789,6 +58887,15 @@ export declare class ItemApi extends BaseAPI implements ItemApiInterface {
      * @memberof ItemApi
      */
     updateItem(item: Item, merchant_item_oid: number, _expand?: string, _placeholders?: boolean, options?: any): Promise<ItemResponse>;
+    /**
+     * Update item inventories for a distribution center
+     * @summary Update item inventories for a distribution center
+     * @param {ItemInventoryUpdateRequest} item_inventory_update_request Item inventory updates
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ItemApi
+     */
+    updateItemInventories(item_inventory_update_request: ItemInventoryUpdateRequest, options?: any): Promise<Response>;
     /**
      * Update an item shipping distribution center
      * @summary Update an item shipping distribution center
