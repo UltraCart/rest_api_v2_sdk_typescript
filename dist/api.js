@@ -419,6 +419,18 @@ var ConversationAgentProfile;
      * @export
      * @enum {string}
      */
+    var AiVoicePersonalityEnum;
+    (function (AiVoicePersonalityEnum) {
+        AiVoicePersonalityEnum[AiVoicePersonalityEnum["Ara"] = 'Ara'] = "Ara";
+        AiVoicePersonalityEnum[AiVoicePersonalityEnum["Rex"] = 'Rex'] = "Rex";
+        AiVoicePersonalityEnum[AiVoicePersonalityEnum["Sal"] = 'Sal'] = "Sal";
+        AiVoicePersonalityEnum[AiVoicePersonalityEnum["Eve"] = 'Eve'] = "Eve";
+        AiVoicePersonalityEnum[AiVoicePersonalityEnum["Leo"] = 'Leo'] = "Leo";
+    })(AiVoicePersonalityEnum = ConversationAgentProfile.AiVoicePersonalityEnum || (ConversationAgentProfile.AiVoicePersonalityEnum = {}));
+    /**
+     * @export
+     * @enum {string}
+     */
     var DefaultStatusEnum;
     (function (DefaultStatusEnum) {
         DefaultStatusEnum[DefaultStatusEnum["Available"] = 'available'] = "Available";

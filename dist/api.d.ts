@@ -6987,6 +6987,18 @@ export interface ConversationAgentProfile {
      */
     ai_ticket_instructions?: string;
     /**
+     * Additional voice instructions for this AI when handling voice calls
+     * @type {string}
+     * @memberof ConversationAgentProfile
+     */
+    ai_voice_instructions?: string;
+    /**
+     * Which AI voice personality to use when handling the call.
+     * @type {string}
+     * @memberof ConversationAgentProfile
+     */
+    ai_voice_personality?: ConversationAgentProfile.AiVoicePersonalityEnum;
+    /**
      * The number of engagement chats that can be pushed on them at any given time.
      * @type {number}
      * @memberof ConversationAgentProfile
@@ -7052,6 +7064,17 @@ export interface ConversationAgentProfile {
  * @namespace ConversationAgentProfile
  */
 export declare namespace ConversationAgentProfile {
+    /**
+     * @export
+     * @enum {string}
+     */
+    enum AiVoicePersonalityEnum {
+        Ara,
+        Rex,
+        Sal,
+        Eve,
+        Leo
+    }
     /**
      * @export
      * @enum {string}
