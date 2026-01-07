@@ -63,6 +63,18 @@ export interface ConversationAgentProfile {
      */
     ai_ticket_instructions?: string;
     /**
+     * Additional voice instructions for this AI when handling voice calls
+     * @type {string}
+     * @memberof ConversationAgentProfile
+     */
+    ai_voice_instructions?: string;
+    /**
+     * Which AI voice personality to use when handling the call.
+     * @type {string}
+     * @memberof ConversationAgentProfile
+     */
+    ai_voice_personality?: ConversationAgentProfileAiVoicePersonalityEnum;
+    /**
      * The number of engagement chats that can be pushed on them at any given time.
      * @type {number}
      * @memberof ConversationAgentProfile
@@ -129,6 +141,18 @@ export interface ConversationAgentProfile {
 /**
  * @export
  */
+export const ConversationAgentProfileAiVoicePersonalityEnum = {
+    Ara: 'Ara',
+    Rex: 'Rex',
+    Sal: 'Sal',
+    Eve: 'Eve',
+    Leo: 'Leo'
+} as const;
+export type ConversationAgentProfileAiVoicePersonalityEnum = typeof ConversationAgentProfileAiVoicePersonalityEnum[keyof typeof ConversationAgentProfileAiVoicePersonalityEnum];
+
+/**
+ * @export
+ */
 export const ConversationAgentProfileDefaultStatusEnum = {
     Available: 'available',
     Busy: 'busy',
@@ -162,6 +186,8 @@ export function ConversationAgentProfileFromJSONTyped(json: any, ignoreDiscrimin
         'ai_persona': !exists(json, 'ai_persona') ? undefined : json['ai_persona'],
         'ai_sms_instructions': !exists(json, 'ai_sms_instructions') ? undefined : json['ai_sms_instructions'],
         'ai_ticket_instructions': !exists(json, 'ai_ticket_instructions') ? undefined : json['ai_ticket_instructions'],
+        'ai_voice_instructions': !exists(json, 'ai_voice_instructions') ? undefined : json['ai_voice_instructions'],
+        'ai_voice_personality': !exists(json, 'ai_voice_personality') ? undefined : json['ai_voice_personality'],
         'chat_limit': !exists(json, 'chat_limit') ? undefined : json['chat_limit'],
         'default_language_iso_code': !exists(json, 'default_language_iso_code') ? undefined : json['default_language_iso_code'],
         'default_status': !exists(json, 'default_status') ? undefined : json['default_status'],
@@ -190,6 +216,8 @@ export function ConversationAgentProfileToJSON(value?: ConversationAgentProfile 
         'ai_persona': value.ai_persona,
         'ai_sms_instructions': value.ai_sms_instructions,
         'ai_ticket_instructions': value.ai_ticket_instructions,
+        'ai_voice_instructions': value.ai_voice_instructions,
+        'ai_voice_personality': value.ai_voice_personality,
         'chat_limit': value.chat_limit,
         'default_language_iso_code': value.default_language_iso_code,
         'default_status': value.default_status,
