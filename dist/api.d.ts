@@ -9052,6 +9052,12 @@ export interface ConversationPbxAddress {
      */
     street?: string;
     /**
+     * Whether the address is valid (validated or verified)
+     * @type {boolean}
+     * @memberof ConversationPbxAddress
+     */
+    valid?: boolean;
+    /**
      * Whether the address has been validated by Twilio
      * @type {boolean}
      * @memberof ConversationPbxAddress
@@ -9580,6 +9586,12 @@ export interface ConversationPbxAvailablePhoneNumber {
      */
     mms?: boolean;
     /**
+     * Monthly cost for this phone number
+     * @type {number}
+     * @memberof ConversationPbxAvailablePhoneNumber
+     */
+    monthly_cost?: number;
+    /**
      * Phone number in E.164 format
      * @type {string}
      * @memberof ConversationPbxAvailablePhoneNumber
@@ -9988,6 +10000,12 @@ export interface ConversationPbxPhoneNumber {
      * @memberof ConversationPbxPhoneNumber
      */
     action_target?: string;
+    /**
+     * Twilio Address SID linked to this phone number for regulatory compliance
+     * @type {string}
+     * @memberof ConversationPbxPhoneNumber
+     */
+    address_sid?: string;
     /**
      * Conversation Pbx Phone Number UUID
      * @type {string}
