@@ -38,6 +38,12 @@ export interface ConversationPbxPhoneNumber {
      */
     conversation_pbx_phone_number_uuid?: string;
     /**
+     * If true, this phone number cannot be deleted through the API. It must be deleted via the Twilio console.
+     * @type {boolean}
+     * @memberof ConversationPbxPhoneNumber
+     */
+    deletion_protected?: boolean;
+    /**
      * Merchant Id
      * @type {string}
      * @memberof ConversationPbxPhoneNumber
@@ -88,6 +94,7 @@ export function ConversationPbxPhoneNumberFromJSONTyped(json: any, ignoreDiscrim
         'action': !exists(json, 'action') ? undefined : json['action'],
         'action_target': !exists(json, 'action_target') ? undefined : json['action_target'],
         'conversation_pbx_phone_number_uuid': !exists(json, 'conversation_pbx_phone_number_uuid') ? undefined : json['conversation_pbx_phone_number_uuid'],
+        'deletion_protected': !exists(json, 'deletion_protected') ? undefined : json['deletion_protected'],
         'merchant_id': !exists(json, 'merchant_id') ? undefined : json['merchant_id'],
         'phone_number': !exists(json, 'phone_number') ? undefined : json['phone_number'],
     };
@@ -105,6 +112,7 @@ export function ConversationPbxPhoneNumberToJSON(value?: ConversationPbxPhoneNum
         'action': value.action,
         'action_target': value.action_target,
         'conversation_pbx_phone_number_uuid': value.conversation_pbx_phone_number_uuid,
+        'deletion_protected': value.deletion_protected,
         'merchant_id': value.merchant_id,
         'phone_number': value.phone_number,
     };

@@ -204,6 +204,9 @@ src/models/ConversationMessagesResponse.ts
 src/models/ConversationMultimediaUploadUrl.ts
 src/models/ConversationMultimediaUploadUrlResponse.ts
 src/models/ConversationParticipant.ts
+src/models/ConversationPbxAddress.ts
+src/models/ConversationPbxAddressResponse.ts
+src/models/ConversationPbxAddressesResponse.ts
 src/models/ConversationPbxAgent.ts
 src/models/ConversationPbxAgentResponse.ts
 src/models/ConversationPbxAgentsResponse.ts
@@ -213,6 +216,8 @@ src/models/ConversationPbxAudioUploadUrl.ts
 src/models/ConversationPbxAudioUploadUrlResponse.ts
 src/models/ConversationPbxAudioUsageResponse.ts
 src/models/ConversationPbxAudiosResponse.ts
+src/models/ConversationPbxAvailablePhoneNumber.ts
+src/models/ConversationPbxAvailablePhoneNumbersResponse.ts
 src/models/ConversationPbxCustomerSnapshotRequest.ts
 src/models/ConversationPbxCustomerSnapshotResponse.ts
 src/models/ConversationPbxMenu.ts
@@ -220,6 +225,7 @@ src/models/ConversationPbxMenuMapping.ts
 src/models/ConversationPbxMenuResponse.ts
 src/models/ConversationPbxMenusResponse.ts
 src/models/ConversationPbxPhoneNumber.ts
+src/models/ConversationPbxPhoneNumberPurchaseRequest.ts
 src/models/ConversationPbxPhoneNumberResponse.ts
 src/models/ConversationPbxPhoneNumbersResponse.ts
 src/models/ConversationPbxQueue.ts
