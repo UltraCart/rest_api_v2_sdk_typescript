@@ -8988,6 +8988,135 @@ export interface ConversationParticipant {
 /**
  *
  * @export
+ * @interface ConversationPbxAddress
+ */
+export interface ConversationPbxAddress {
+    /**
+     * Twilio Address SID
+     * @type {string}
+     * @memberof ConversationPbxAddress
+     */
+    address_sid?: string;
+    /**
+     * City
+     * @type {string}
+     * @memberof ConversationPbxAddress
+     */
+    city?: string;
+    /**
+     * Conversation Pbx Address UUID
+     * @type {string}
+     * @memberof ConversationPbxAddress
+     */
+    conversation_pbx_address_uuid?: string;
+    /**
+     * ISO country code (2 characters)
+     * @type {string}
+     * @memberof ConversationPbxAddress
+     */
+    country_code?: string;
+    /**
+     * Customer name
+     * @type {string}
+     * @memberof ConversationPbxAddress
+     */
+    customer_name?: string;
+    /**
+     * Friendly name for the address
+     * @type {string}
+     * @memberof ConversationPbxAddress
+     */
+    friendly_name?: string;
+    /**
+     * Merchant Id
+     * @type {string}
+     * @memberof ConversationPbxAddress
+     */
+    merchant_id?: string;
+    /**
+     * Postal code
+     * @type {string}
+     * @memberof ConversationPbxAddress
+     */
+    postal_code?: string;
+    /**
+     * State/Province/Region
+     * @type {string}
+     * @memberof ConversationPbxAddress
+     */
+    region?: string;
+    /**
+     * Street address
+     * @type {string}
+     * @memberof ConversationPbxAddress
+     */
+    street?: string;
+    /**
+     * Whether the address has been validated by Twilio
+     * @type {boolean}
+     * @memberof ConversationPbxAddress
+     */
+    validated?: boolean;
+    /**
+     * Whether the address has been verified by Twilio
+     * @type {boolean}
+     * @memberof ConversationPbxAddress
+     */
+    verified?: boolean;
+}
+/**
+ *
+ * @export
+ * @interface ConversationPbxAddressResponse
+ */
+export interface ConversationPbxAddressResponse {
+    /**
+     *
+     * @type {ConversationPbxAddress}
+     * @memberof ConversationPbxAddressResponse
+     */
+    address?: ConversationPbxAddress;
+    /**
+     *
+     * @type {ModelError}
+     * @memberof ConversationPbxAddressResponse
+     */
+    error?: ModelError;
+    /**
+     *
+     * @type {ResponseMetadata}
+     * @memberof ConversationPbxAddressResponse
+     */
+    metadata?: ResponseMetadata;
+    /**
+     * Indicates if API call was successful
+     * @type {boolean}
+     * @memberof ConversationPbxAddressResponse
+     */
+    success?: boolean;
+    /**
+     *
+     * @type {Warning}
+     * @memberof ConversationPbxAddressResponse
+     */
+    warning?: Warning;
+}
+/**
+ *
+ * @export
+ * @interface ConversationPbxAddressesResponse
+ */
+export interface ConversationPbxAddressesResponse {
+    /**
+     *
+     * @type {Array<ConversationPbxAddress>}
+     * @memberof ConversationPbxAddressesResponse
+     */
+    addresses?: Array<ConversationPbxAddress>;
+}
+/**
+ *
+ * @export
  * @interface ConversationPbxAgent
  */
 export interface ConversationPbxAgent {
@@ -9417,6 +9546,120 @@ export interface ConversationPbxAudiosResponse {
 /**
  *
  * @export
+ * @interface ConversationPbxAvailablePhoneNumber
+ */
+export interface ConversationPbxAvailablePhoneNumber {
+    /**
+     * Address requirements
+     * @type {string}
+     * @memberof ConversationPbxAvailablePhoneNumber
+     */
+    address_requirements?: ConversationPbxAvailablePhoneNumber.AddressRequirementsEnum;
+    /**
+     * ISO country code
+     * @type {string}
+     * @memberof ConversationPbxAvailablePhoneNumber
+     */
+    country?: string;
+    /**
+     * Friendly formatted phone number
+     * @type {string}
+     * @memberof ConversationPbxAvailablePhoneNumber
+     */
+    friendly_name?: string;
+    /**
+     * City/Locality
+     * @type {string}
+     * @memberof ConversationPbxAvailablePhoneNumber
+     */
+    locality?: string;
+    /**
+     * MMS capability
+     * @type {boolean}
+     * @memberof ConversationPbxAvailablePhoneNumber
+     */
+    mms?: boolean;
+    /**
+     * Phone number in E.164 format
+     * @type {string}
+     * @memberof ConversationPbxAvailablePhoneNumber
+     */
+    phone_number?: string;
+    /**
+     * State/Province/Region
+     * @type {string}
+     * @memberof ConversationPbxAvailablePhoneNumber
+     */
+    region?: string;
+    /**
+     * SMS capability
+     * @type {boolean}
+     * @memberof ConversationPbxAvailablePhoneNumber
+     */
+    sms?: boolean;
+    /**
+     * Voice capability
+     * @type {boolean}
+     * @memberof ConversationPbxAvailablePhoneNumber
+     */
+    voice?: boolean;
+}
+/**
+ * @export
+ * @namespace ConversationPbxAvailablePhoneNumber
+ */
+export declare namespace ConversationPbxAvailablePhoneNumber {
+    /**
+     * @export
+     * @enum {string}
+     */
+    enum AddressRequirementsEnum {
+        None,
+        Any,
+        Local,
+        Foreign
+    }
+}
+/**
+ *
+ * @export
+ * @interface ConversationPbxAvailablePhoneNumbersResponse
+ */
+export interface ConversationPbxAvailablePhoneNumbersResponse {
+    /**
+     *
+     * @type {Array<ConversationPbxAvailablePhoneNumber>}
+     * @memberof ConversationPbxAvailablePhoneNumbersResponse
+     */
+    available_phone_numbers?: Array<ConversationPbxAvailablePhoneNumber>;
+    /**
+     *
+     * @type {ModelError}
+     * @memberof ConversationPbxAvailablePhoneNumbersResponse
+     */
+    error?: ModelError;
+    /**
+     *
+     * @type {ResponseMetadata}
+     * @memberof ConversationPbxAvailablePhoneNumbersResponse
+     */
+    metadata?: ResponseMetadata;
+    /**
+     * Indicates if API call was successful
+     * @type {boolean}
+     * @memberof ConversationPbxAvailablePhoneNumbersResponse
+     */
+    success?: boolean;
+    /**
+     *
+     * @type {Warning}
+     * @memberof ConversationPbxAvailablePhoneNumbersResponse
+     */
+    warning?: Warning;
+}
+/**
+ *
+ * @export
  * @interface ConversationPbxCustomerSnapshotRequest
  */
 export interface ConversationPbxCustomerSnapshotRequest {
@@ -9752,6 +9995,12 @@ export interface ConversationPbxPhoneNumber {
      */
     conversation_pbx_phone_number_uuid?: string;
     /**
+     * If true, this phone number cannot be deleted through the API. It must be deleted via the Twilio console.
+     * @type {boolean}
+     * @memberof ConversationPbxPhoneNumber
+     */
+    deletion_protected?: boolean;
+    /**
      * Merchant Id
      * @type {string}
      * @memberof ConversationPbxPhoneNumber
@@ -9769,6 +10018,60 @@ export interface ConversationPbxPhoneNumber {
  * @namespace ConversationPbxPhoneNumber
  */
 export declare namespace ConversationPbxPhoneNumber {
+    /**
+     * @export
+     * @enum {string}
+     */
+    enum ActionEnum {
+        TimeBased,
+        Menu,
+        Queue,
+        Voicemail,
+        Agent
+    }
+}
+/**
+ *
+ * @export
+ * @interface ConversationPbxPhoneNumberPurchaseRequest
+ */
+export interface ConversationPbxPhoneNumberPurchaseRequest {
+    /**
+     * Initial action for incoming calls
+     * @type {string}
+     * @memberof ConversationPbxPhoneNumberPurchaseRequest
+     */
+    action?: ConversationPbxPhoneNumberPurchaseRequest.ActionEnum;
+    /**
+     * Initial action target UUID
+     * @type {string}
+     * @memberof ConversationPbxPhoneNumberPurchaseRequest
+     */
+    action_target?: string;
+    /**
+     * Address SID if required for regulatory compliance
+     * @type {string}
+     * @memberof ConversationPbxPhoneNumberPurchaseRequest
+     */
+    address_sid?: string;
+    /**
+     * Friendly name for the phone number
+     * @type {string}
+     * @memberof ConversationPbxPhoneNumberPurchaseRequest
+     */
+    friendly_name?: string;
+    /**
+     * Phone number to purchase in E.164 format (from search results)
+     * @type {string}
+     * @memberof ConversationPbxPhoneNumberPurchaseRequest
+     */
+    phone_number?: string;
+}
+/**
+ * @export
+ * @namespace ConversationPbxPhoneNumberPurchaseRequest
+ */
+export declare namespace ConversationPbxPhoneNumberPurchaseRequest {
     /**
      * @export
      * @enum {string}
@@ -48848,6 +49151,14 @@ export declare const ConversationApiFetchParamCreator: (configuration?: Configur
      */
     deleteEngagement(conversation_engagement_oid: number, options?: any): FetchArgs;
     /**
+     * Delete a pbx address
+     * @summary Delete pbx address
+     * @param {string} conversationPbxAddressUuid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    deletePbxAddress(conversationPbxAddressUuid: string, options?: any): FetchArgs;
+    /**
      * Delete pbx agent Voicemail
      * @summary Delete Agent Voicemail
      * @param {string} recording_sid
@@ -48871,6 +49182,14 @@ export declare const ConversationApiFetchParamCreator: (configuration?: Configur
      * @throws {RequiredError}
      */
     deletePbxMenu(conversationPbxMenuUuid: string, options?: any): FetchArgs;
+    /**
+     * Delete a pbx phoneNumber. Only works if deletion_protected is false.
+     * @summary Delete pbx phoneNumber
+     * @param {string} conversationPbxPhoneNumberUuid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    deletePbxPhoneNumber(conversationPbxPhoneNumberUuid: string, options?: any): FetchArgs;
     /**
      * Delete a pbx queue
      * @summary Delete pbx queue
@@ -49119,6 +49438,21 @@ export declare const ConversationApiFetchParamCreator: (configuration?: Configur
      */
     getLocationsForEngagement(options?: any): FetchArgs;
     /**
+     * Retrieve a pbx address
+     * @summary Get pbx address
+     * @param {string} conversationPbxAddressUuid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getPbxAddress(conversationPbxAddressUuid: string, options?: any): FetchArgs;
+    /**
+     * Retrieve pbx addresses
+     * @summary Get pbx addresses
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getPbxAddresses(options?: any): FetchArgs;
+    /**
      * Retrieve a pbx agent
      * @summary Get pbx agent
      * @param {string} conversationPbxAgentUuid
@@ -49335,6 +49669,14 @@ export declare const ConversationApiFetchParamCreator: (configuration?: Configur
      */
     insertConversationEngagement(engagement: ConversationEngagement, options?: any): FetchArgs;
     /**
+     * Insert a pbx address
+     * @summary Insert pbx address
+     * @param {ConversationPbxAddress} pbx_address Pbx Address
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    insertPbxAddress(pbx_address: ConversationPbxAddress, options?: any): FetchArgs;
+    /**
      * Insert a pbx audio
      * @summary Insert pbx audio
      * @param {ConversationPbxAudio} pbx_audio Pbx Audio
@@ -49425,6 +49767,22 @@ export declare const ConversationApiFetchParamCreator: (configuration?: Configur
      */
     markReadConversation(conversation_uuid: string, options?: any): FetchArgs;
     /**
+     * Protect a pbx phoneNumber from deletion. This is a one-way operation and cannot be undone through the API.
+     * @summary Protect pbx phoneNumber from deletion
+     * @param {string} conversationPbxPhoneNumberUuid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    protectPbxPhoneNumber(conversationPbxPhoneNumberUuid: string, options?: any): FetchArgs;
+    /**
+     * Purchase a phone number from Twilio. The phone_number must be from the available phone number search results.
+     * @summary Purchase pbx phone number
+     * @param {ConversationPbxPhoneNumberPurchaseRequest} phone_number_purchase_request Phone number purchase request
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    purchasePbxPhoneNumber(phone_number_purchase_request: ConversationPbxPhoneNumberPurchaseRequest, options?: any): FetchArgs;
+    /**
      * reset statistics within the queue
      * @summary reset statistics within the queue
      * @param {string} queue_uuid
@@ -49440,6 +49798,20 @@ export declare const ConversationApiFetchParamCreator: (configuration?: Configur
      * @throws {RequiredError}
      */
     searchConversationCannedMessages(search_request: ConversationCannedMessagesSearch, options?: any): FetchArgs;
+    /**
+     * Search for available phone numbers from Twilio that can be purchased
+     * @summary Search for available phone numbers
+     * @param {string} country ISO country code (e.g., US, CA, GB)
+     * @param {string} [area_code] Area code filter (e.g., 614)
+     * @param {string} [contains] Pattern to match (e.g., 555, *PIZZA)
+     * @param {boolean} [sms_enabled] Filter for SMS capability
+     * @param {boolean} [voice_enabled] Filter for voice capability
+     * @param {string} [type] Phone number type
+     * @param {number} [limit] Max results (default 20, max 100)
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    searchPbxAvailablePhoneNumbers(country: string, area_code?: string, contains?: string, sms_enabled?: boolean, voice_enabled?: boolean, type?: string, limit?: number, options?: any): FetchArgs;
     /**
      * Unsubscribe any SMS participants in this conversation
      * @summary Unsubscribe any SMS participants in this conversation
@@ -49510,6 +49882,15 @@ export declare const ConversationApiFetchParamCreator: (configuration?: Configur
      * @throws {RequiredError}
      */
     updateConversationWebchatQueueStatus(queue_name: string, status_request: ConversationWebchatQueueStatusUpdateRequest, options?: any): FetchArgs;
+    /**
+     * Update a pbx address
+     * @summary Update pbx address
+     * @param {string} conversationPbxAddressUuid
+     * @param {ConversationPbxAddress} pbx_address Pbx Address
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    updatePbxAddress(conversationPbxAddressUuid: string, pbx_address: ConversationPbxAddress, options?: any): FetchArgs;
     /**
      * Update a pbx agent
      * @summary Update pbx agent
@@ -49647,6 +50028,14 @@ export declare const ConversationApiFp: (configuration?: Configuration) => {
      */
     deleteEngagement(conversation_engagement_oid: number, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Response>;
     /**
+     * Delete a pbx address
+     * @summary Delete pbx address
+     * @param {string} conversationPbxAddressUuid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    deletePbxAddress(conversationPbxAddressUuid: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ConversationPbxAddressResponse>;
+    /**
      * Delete pbx agent Voicemail
      * @summary Delete Agent Voicemail
      * @param {string} recording_sid
@@ -49670,6 +50059,14 @@ export declare const ConversationApiFp: (configuration?: Configuration) => {
      * @throws {RequiredError}
      */
     deletePbxMenu(conversationPbxMenuUuid: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ConversationPbxMenuResponse>;
+    /**
+     * Delete a pbx phoneNumber. Only works if deletion_protected is false.
+     * @summary Delete pbx phoneNumber
+     * @param {string} conversationPbxPhoneNumberUuid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    deletePbxPhoneNumber(conversationPbxPhoneNumberUuid: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Response>;
     /**
      * Delete a pbx queue
      * @summary Delete pbx queue
@@ -49918,6 +50315,21 @@ export declare const ConversationApiFp: (configuration?: Configuration) => {
      */
     getLocationsForEngagement(options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ConversationLocationsResponse>;
     /**
+     * Retrieve a pbx address
+     * @summary Get pbx address
+     * @param {string} conversationPbxAddressUuid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getPbxAddress(conversationPbxAddressUuid: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ConversationPbxAddressResponse>;
+    /**
+     * Retrieve pbx addresses
+     * @summary Get pbx addresses
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getPbxAddresses(options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ConversationPbxAddressesResponse>;
+    /**
      * Retrieve a pbx agent
      * @summary Get pbx agent
      * @param {string} conversationPbxAgentUuid
@@ -50134,6 +50546,14 @@ export declare const ConversationApiFp: (configuration?: Configuration) => {
      */
     insertConversationEngagement(engagement: ConversationEngagement, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ConversationEngagementResponse>;
     /**
+     * Insert a pbx address
+     * @summary Insert pbx address
+     * @param {ConversationPbxAddress} pbx_address Pbx Address
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    insertPbxAddress(pbx_address: ConversationPbxAddress, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ConversationPbxAddressResponse>;
+    /**
      * Insert a pbx audio
      * @summary Insert pbx audio
      * @param {ConversationPbxAudio} pbx_audio Pbx Audio
@@ -50224,6 +50644,22 @@ export declare const ConversationApiFp: (configuration?: Configuration) => {
      */
     markReadConversation(conversation_uuid: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Response>;
     /**
+     * Protect a pbx phoneNumber from deletion. This is a one-way operation and cannot be undone through the API.
+     * @summary Protect pbx phoneNumber from deletion
+     * @param {string} conversationPbxPhoneNumberUuid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    protectPbxPhoneNumber(conversationPbxPhoneNumberUuid: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ConversationPbxPhoneNumberResponse>;
+    /**
+     * Purchase a phone number from Twilio. The phone_number must be from the available phone number search results.
+     * @summary Purchase pbx phone number
+     * @param {ConversationPbxPhoneNumberPurchaseRequest} phone_number_purchase_request Phone number purchase request
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    purchasePbxPhoneNumber(phone_number_purchase_request: ConversationPbxPhoneNumberPurchaseRequest, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ConversationPbxPhoneNumberResponse>;
+    /**
      * reset statistics within the queue
      * @summary reset statistics within the queue
      * @param {string} queue_uuid
@@ -50239,6 +50675,20 @@ export declare const ConversationApiFp: (configuration?: Configuration) => {
      * @throws {RequiredError}
      */
     searchConversationCannedMessages(search_request: ConversationCannedMessagesSearch, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ConversationCannedMessagesResponse>;
+    /**
+     * Search for available phone numbers from Twilio that can be purchased
+     * @summary Search for available phone numbers
+     * @param {string} country ISO country code (e.g., US, CA, GB)
+     * @param {string} [area_code] Area code filter (e.g., 614)
+     * @param {string} [contains] Pattern to match (e.g., 555, *PIZZA)
+     * @param {boolean} [sms_enabled] Filter for SMS capability
+     * @param {boolean} [voice_enabled] Filter for voice capability
+     * @param {string} [type] Phone number type
+     * @param {number} [limit] Max results (default 20, max 100)
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    searchPbxAvailablePhoneNumbers(country: string, area_code?: string, contains?: string, sms_enabled?: boolean, voice_enabled?: boolean, type?: string, limit?: number, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ConversationPbxAvailablePhoneNumbersResponse>;
     /**
      * Unsubscribe any SMS participants in this conversation
      * @summary Unsubscribe any SMS participants in this conversation
@@ -50309,6 +50759,15 @@ export declare const ConversationApiFp: (configuration?: Configuration) => {
      * @throws {RequiredError}
      */
     updateConversationWebchatQueueStatus(queue_name: string, status_request: ConversationWebchatQueueStatusUpdateRequest, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Response>;
+    /**
+     * Update a pbx address
+     * @summary Update pbx address
+     * @param {string} conversationPbxAddressUuid
+     * @param {ConversationPbxAddress} pbx_address Pbx Address
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    updatePbxAddress(conversationPbxAddressUuid: string, pbx_address: ConversationPbxAddress, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ConversationPbxAddressResponse>;
     /**
      * Update a pbx agent
      * @summary Update pbx agent
@@ -50446,6 +50905,14 @@ export declare const ConversationApiFactory: (configuration?: Configuration, fet
      */
     deleteEngagement(conversation_engagement_oid: number, options?: any): Promise<Response>;
     /**
+     * Delete a pbx address
+     * @summary Delete pbx address
+     * @param {string} conversationPbxAddressUuid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    deletePbxAddress(conversationPbxAddressUuid: string, options?: any): Promise<ConversationPbxAddressResponse>;
+    /**
      * Delete pbx agent Voicemail
      * @summary Delete Agent Voicemail
      * @param {string} recording_sid
@@ -50469,6 +50936,14 @@ export declare const ConversationApiFactory: (configuration?: Configuration, fet
      * @throws {RequiredError}
      */
     deletePbxMenu(conversationPbxMenuUuid: string, options?: any): Promise<ConversationPbxMenuResponse>;
+    /**
+     * Delete a pbx phoneNumber. Only works if deletion_protected is false.
+     * @summary Delete pbx phoneNumber
+     * @param {string} conversationPbxPhoneNumberUuid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    deletePbxPhoneNumber(conversationPbxPhoneNumberUuid: string, options?: any): Promise<Response>;
     /**
      * Delete a pbx queue
      * @summary Delete pbx queue
@@ -50717,6 +51192,21 @@ export declare const ConversationApiFactory: (configuration?: Configuration, fet
      */
     getLocationsForEngagement(options?: any): Promise<ConversationLocationsResponse>;
     /**
+     * Retrieve a pbx address
+     * @summary Get pbx address
+     * @param {string} conversationPbxAddressUuid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getPbxAddress(conversationPbxAddressUuid: string, options?: any): Promise<ConversationPbxAddressResponse>;
+    /**
+     * Retrieve pbx addresses
+     * @summary Get pbx addresses
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getPbxAddresses(options?: any): Promise<ConversationPbxAddressesResponse>;
+    /**
      * Retrieve a pbx agent
      * @summary Get pbx agent
      * @param {string} conversationPbxAgentUuid
@@ -50933,6 +51423,14 @@ export declare const ConversationApiFactory: (configuration?: Configuration, fet
      */
     insertConversationEngagement(engagement: ConversationEngagement, options?: any): Promise<ConversationEngagementResponse>;
     /**
+     * Insert a pbx address
+     * @summary Insert pbx address
+     * @param {ConversationPbxAddress} pbx_address Pbx Address
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    insertPbxAddress(pbx_address: ConversationPbxAddress, options?: any): Promise<ConversationPbxAddressResponse>;
+    /**
      * Insert a pbx audio
      * @summary Insert pbx audio
      * @param {ConversationPbxAudio} pbx_audio Pbx Audio
@@ -51023,6 +51521,22 @@ export declare const ConversationApiFactory: (configuration?: Configuration, fet
      */
     markReadConversation(conversation_uuid: string, options?: any): Promise<Response>;
     /**
+     * Protect a pbx phoneNumber from deletion. This is a one-way operation and cannot be undone through the API.
+     * @summary Protect pbx phoneNumber from deletion
+     * @param {string} conversationPbxPhoneNumberUuid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    protectPbxPhoneNumber(conversationPbxPhoneNumberUuid: string, options?: any): Promise<ConversationPbxPhoneNumberResponse>;
+    /**
+     * Purchase a phone number from Twilio. The phone_number must be from the available phone number search results.
+     * @summary Purchase pbx phone number
+     * @param {ConversationPbxPhoneNumberPurchaseRequest} phone_number_purchase_request Phone number purchase request
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    purchasePbxPhoneNumber(phone_number_purchase_request: ConversationPbxPhoneNumberPurchaseRequest, options?: any): Promise<ConversationPbxPhoneNumberResponse>;
+    /**
      * reset statistics within the queue
      * @summary reset statistics within the queue
      * @param {string} queue_uuid
@@ -51038,6 +51552,20 @@ export declare const ConversationApiFactory: (configuration?: Configuration, fet
      * @throws {RequiredError}
      */
     searchConversationCannedMessages(search_request: ConversationCannedMessagesSearch, options?: any): Promise<ConversationCannedMessagesResponse>;
+    /**
+     * Search for available phone numbers from Twilio that can be purchased
+     * @summary Search for available phone numbers
+     * @param {string} country ISO country code (e.g., US, CA, GB)
+     * @param {string} [area_code] Area code filter (e.g., 614)
+     * @param {string} [contains] Pattern to match (e.g., 555, *PIZZA)
+     * @param {boolean} [sms_enabled] Filter for SMS capability
+     * @param {boolean} [voice_enabled] Filter for voice capability
+     * @param {string} [type] Phone number type
+     * @param {number} [limit] Max results (default 20, max 100)
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    searchPbxAvailablePhoneNumbers(country: string, area_code?: string, contains?: string, sms_enabled?: boolean, voice_enabled?: boolean, type?: string, limit?: number, options?: any): Promise<ConversationPbxAvailablePhoneNumbersResponse>;
     /**
      * Unsubscribe any SMS participants in this conversation
      * @summary Unsubscribe any SMS participants in this conversation
@@ -51108,6 +51636,15 @@ export declare const ConversationApiFactory: (configuration?: Configuration, fet
      * @throws {RequiredError}
      */
     updateConversationWebchatQueueStatus(queue_name: string, status_request: ConversationWebchatQueueStatusUpdateRequest, options?: any): Promise<Response>;
+    /**
+     * Update a pbx address
+     * @summary Update pbx address
+     * @param {string} conversationPbxAddressUuid
+     * @param {ConversationPbxAddress} pbx_address Pbx Address
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    updatePbxAddress(conversationPbxAddressUuid: string, pbx_address: ConversationPbxAddress, options?: any): Promise<ConversationPbxAddressResponse>;
     /**
      * Update a pbx agent
      * @summary Update pbx agent
@@ -51251,6 +51788,15 @@ export interface ConversationApiInterface {
      */
     deleteEngagement(conversation_engagement_oid: number, options?: any): Promise<{}>;
     /**
+     * Delete a pbx address
+     * @summary Delete pbx address
+     * @param {string} conversationPbxAddressUuid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApiInterface
+     */
+    deletePbxAddress(conversationPbxAddressUuid: string, options?: any): Promise<ConversationPbxAddressResponse>;
+    /**
      * Delete pbx agent Voicemail
      * @summary Delete Agent Voicemail
      * @param {string} recording_sid
@@ -51277,6 +51823,15 @@ export interface ConversationApiInterface {
      * @memberof ConversationApiInterface
      */
     deletePbxMenu(conversationPbxMenuUuid: string, options?: any): Promise<ConversationPbxMenuResponse>;
+    /**
+     * Delete a pbx phoneNumber. Only works if deletion_protected is false.
+     * @summary Delete pbx phoneNumber
+     * @param {string} conversationPbxPhoneNumberUuid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApiInterface
+     */
+    deletePbxPhoneNumber(conversationPbxPhoneNumberUuid: string, options?: any): Promise<{}>;
     /**
      * Delete a pbx queue
      * @summary Delete pbx queue
@@ -51556,6 +52111,23 @@ export interface ConversationApiInterface {
      */
     getLocationsForEngagement(options?: any): Promise<ConversationLocationsResponse>;
     /**
+     * Retrieve a pbx address
+     * @summary Get pbx address
+     * @param {string} conversationPbxAddressUuid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApiInterface
+     */
+    getPbxAddress(conversationPbxAddressUuid: string, options?: any): Promise<ConversationPbxAddressResponse>;
+    /**
+     * Retrieve pbx addresses
+     * @summary Get pbx addresses
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApiInterface
+     */
+    getPbxAddresses(options?: any): Promise<ConversationPbxAddressesResponse>;
+    /**
      * Retrieve a pbx agent
      * @summary Get pbx agent
      * @param {string} conversationPbxAgentUuid
@@ -51800,6 +52372,15 @@ export interface ConversationApiInterface {
      */
     insertConversationEngagement(engagement: ConversationEngagement, options?: any): Promise<ConversationEngagementResponse>;
     /**
+     * Insert a pbx address
+     * @summary Insert pbx address
+     * @param {ConversationPbxAddress} pbx_address Pbx Address
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApiInterface
+     */
+    insertPbxAddress(pbx_address: ConversationPbxAddress, options?: any): Promise<ConversationPbxAddressResponse>;
+    /**
      * Insert a pbx audio
      * @summary Insert pbx audio
      * @param {ConversationPbxAudio} pbx_audio Pbx Audio
@@ -51901,6 +52482,24 @@ export interface ConversationApiInterface {
      */
     markReadConversation(conversation_uuid: string, options?: any): Promise<{}>;
     /**
+     * Protect a pbx phoneNumber from deletion. This is a one-way operation and cannot be undone through the API.
+     * @summary Protect pbx phoneNumber from deletion
+     * @param {string} conversationPbxPhoneNumberUuid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApiInterface
+     */
+    protectPbxPhoneNumber(conversationPbxPhoneNumberUuid: string, options?: any): Promise<ConversationPbxPhoneNumberResponse>;
+    /**
+     * Purchase a phone number from Twilio. The phone_number must be from the available phone number search results.
+     * @summary Purchase pbx phone number
+     * @param {ConversationPbxPhoneNumberPurchaseRequest} phone_number_purchase_request Phone number purchase request
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApiInterface
+     */
+    purchasePbxPhoneNumber(phone_number_purchase_request: ConversationPbxPhoneNumberPurchaseRequest, options?: any): Promise<ConversationPbxPhoneNumberResponse>;
+    /**
      * reset statistics within the queue
      * @summary reset statistics within the queue
      * @param {string} queue_uuid
@@ -51918,6 +52517,21 @@ export interface ConversationApiInterface {
      * @memberof ConversationApiInterface
      */
     searchConversationCannedMessages(search_request: ConversationCannedMessagesSearch, options?: any): Promise<ConversationCannedMessagesResponse>;
+    /**
+     * Search for available phone numbers from Twilio that can be purchased
+     * @summary Search for available phone numbers
+     * @param {string} country ISO country code (e.g., US, CA, GB)
+     * @param {string} [area_code] Area code filter (e.g., 614)
+     * @param {string} [contains] Pattern to match (e.g., 555, *PIZZA)
+     * @param {boolean} [sms_enabled] Filter for SMS capability
+     * @param {boolean} [voice_enabled] Filter for voice capability
+     * @param {string} [type] Phone number type
+     * @param {number} [limit] Max results (default 20, max 100)
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApiInterface
+     */
+    searchPbxAvailablePhoneNumbers(country: string, area_code?: string, contains?: string, sms_enabled?: boolean, voice_enabled?: boolean, type?: string, limit?: number, options?: any): Promise<ConversationPbxAvailablePhoneNumbersResponse>;
     /**
      * Unsubscribe any SMS participants in this conversation
      * @summary Unsubscribe any SMS participants in this conversation
@@ -51996,6 +52610,16 @@ export interface ConversationApiInterface {
      * @memberof ConversationApiInterface
      */
     updateConversationWebchatQueueStatus(queue_name: string, status_request: ConversationWebchatQueueStatusUpdateRequest, options?: any): Promise<{}>;
+    /**
+     * Update a pbx address
+     * @summary Update pbx address
+     * @param {string} conversationPbxAddressUuid
+     * @param {ConversationPbxAddress} pbx_address Pbx Address
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApiInterface
+     */
+    updatePbxAddress(conversationPbxAddressUuid: string, pbx_address: ConversationPbxAddress, options?: any): Promise<ConversationPbxAddressResponse>;
     /**
      * Update a pbx agent
      * @summary Update pbx agent
@@ -52150,6 +52774,15 @@ export declare class ConversationApi extends BaseAPI implements ConversationApiI
      */
     deleteEngagement(conversation_engagement_oid: number, options?: any): Promise<Response>;
     /**
+     * Delete a pbx address
+     * @summary Delete pbx address
+     * @param {string} conversationPbxAddressUuid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApi
+     */
+    deletePbxAddress(conversationPbxAddressUuid: string, options?: any): Promise<ConversationPbxAddressResponse>;
+    /**
      * Delete pbx agent Voicemail
      * @summary Delete Agent Voicemail
      * @param {string} recording_sid
@@ -52176,6 +52809,15 @@ export declare class ConversationApi extends BaseAPI implements ConversationApiI
      * @memberof ConversationApi
      */
     deletePbxMenu(conversationPbxMenuUuid: string, options?: any): Promise<ConversationPbxMenuResponse>;
+    /**
+     * Delete a pbx phoneNumber. Only works if deletion_protected is false.
+     * @summary Delete pbx phoneNumber
+     * @param {string} conversationPbxPhoneNumberUuid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApi
+     */
+    deletePbxPhoneNumber(conversationPbxPhoneNumberUuid: string, options?: any): Promise<Response>;
     /**
      * Delete a pbx queue
      * @summary Delete pbx queue
@@ -52455,6 +53097,23 @@ export declare class ConversationApi extends BaseAPI implements ConversationApiI
      */
     getLocationsForEngagement(options?: any): Promise<ConversationLocationsResponse>;
     /**
+     * Retrieve a pbx address
+     * @summary Get pbx address
+     * @param {string} conversationPbxAddressUuid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApi
+     */
+    getPbxAddress(conversationPbxAddressUuid: string, options?: any): Promise<ConversationPbxAddressResponse>;
+    /**
+     * Retrieve pbx addresses
+     * @summary Get pbx addresses
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApi
+     */
+    getPbxAddresses(options?: any): Promise<ConversationPbxAddressesResponse>;
+    /**
      * Retrieve a pbx agent
      * @summary Get pbx agent
      * @param {string} conversationPbxAgentUuid
@@ -52699,6 +53358,15 @@ export declare class ConversationApi extends BaseAPI implements ConversationApiI
      */
     insertConversationEngagement(engagement: ConversationEngagement, options?: any): Promise<ConversationEngagementResponse>;
     /**
+     * Insert a pbx address
+     * @summary Insert pbx address
+     * @param {ConversationPbxAddress} pbx_address Pbx Address
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApi
+     */
+    insertPbxAddress(pbx_address: ConversationPbxAddress, options?: any): Promise<ConversationPbxAddressResponse>;
+    /**
      * Insert a pbx audio
      * @summary Insert pbx audio
      * @param {ConversationPbxAudio} pbx_audio Pbx Audio
@@ -52800,6 +53468,24 @@ export declare class ConversationApi extends BaseAPI implements ConversationApiI
      */
     markReadConversation(conversation_uuid: string, options?: any): Promise<Response>;
     /**
+     * Protect a pbx phoneNumber from deletion. This is a one-way operation and cannot be undone through the API.
+     * @summary Protect pbx phoneNumber from deletion
+     * @param {string} conversationPbxPhoneNumberUuid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApi
+     */
+    protectPbxPhoneNumber(conversationPbxPhoneNumberUuid: string, options?: any): Promise<ConversationPbxPhoneNumberResponse>;
+    /**
+     * Purchase a phone number from Twilio. The phone_number must be from the available phone number search results.
+     * @summary Purchase pbx phone number
+     * @param {ConversationPbxPhoneNumberPurchaseRequest} phone_number_purchase_request Phone number purchase request
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApi
+     */
+    purchasePbxPhoneNumber(phone_number_purchase_request: ConversationPbxPhoneNumberPurchaseRequest, options?: any): Promise<ConversationPbxPhoneNumberResponse>;
+    /**
      * reset statistics within the queue
      * @summary reset statistics within the queue
      * @param {string} queue_uuid
@@ -52817,6 +53503,21 @@ export declare class ConversationApi extends BaseAPI implements ConversationApiI
      * @memberof ConversationApi
      */
     searchConversationCannedMessages(search_request: ConversationCannedMessagesSearch, options?: any): Promise<ConversationCannedMessagesResponse>;
+    /**
+     * Search for available phone numbers from Twilio that can be purchased
+     * @summary Search for available phone numbers
+     * @param {string} country ISO country code (e.g., US, CA, GB)
+     * @param {string} [area_code] Area code filter (e.g., 614)
+     * @param {string} [contains] Pattern to match (e.g., 555, *PIZZA)
+     * @param {boolean} [sms_enabled] Filter for SMS capability
+     * @param {boolean} [voice_enabled] Filter for voice capability
+     * @param {string} [type] Phone number type
+     * @param {number} [limit] Max results (default 20, max 100)
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApi
+     */
+    searchPbxAvailablePhoneNumbers(country: string, area_code?: string, contains?: string, sms_enabled?: boolean, voice_enabled?: boolean, type?: string, limit?: number, options?: any): Promise<ConversationPbxAvailablePhoneNumbersResponse>;
     /**
      * Unsubscribe any SMS participants in this conversation
      * @summary Unsubscribe any SMS participants in this conversation
@@ -52895,6 +53596,16 @@ export declare class ConversationApi extends BaseAPI implements ConversationApiI
      * @memberof ConversationApi
      */
     updateConversationWebchatQueueStatus(queue_name: string, status_request: ConversationWebchatQueueStatusUpdateRequest, options?: any): Promise<Response>;
+    /**
+     * Update a pbx address
+     * @summary Update pbx address
+     * @param {string} conversationPbxAddressUuid
+     * @param {ConversationPbxAddress} pbx_address Pbx Address
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApi
+     */
+    updatePbxAddress(conversationPbxAddressUuid: string, pbx_address: ConversationPbxAddress, options?: any): Promise<ConversationPbxAddressResponse>;
     /**
      * Update a pbx agent
      * @summary Update pbx agent
