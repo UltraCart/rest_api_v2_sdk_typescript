@@ -80,6 +80,12 @@ export interface ConversationPbxAddress {
      */
     street?: string;
     /**
+     * Whether the address is valid (validated or verified)
+     * @type {boolean}
+     * @memberof ConversationPbxAddress
+     */
+    valid?: boolean;
+    /**
      * Whether the address has been validated by Twilio
      * @type {boolean}
      * @memberof ConversationPbxAddress
@@ -124,6 +130,7 @@ export function ConversationPbxAddressFromJSONTyped(json: any, ignoreDiscriminat
         'postal_code': !exists(json, 'postal_code') ? undefined : json['postal_code'],
         'region': !exists(json, 'region') ? undefined : json['region'],
         'street': !exists(json, 'street') ? undefined : json['street'],
+        'valid': !exists(json, 'valid') ? undefined : json['valid'],
         'validated': !exists(json, 'validated') ? undefined : json['validated'],
         'verified': !exists(json, 'verified') ? undefined : json['verified'],
     };
@@ -148,6 +155,7 @@ export function ConversationPbxAddressToJSON(value?: ConversationPbxAddress | nu
         'postal_code': value.postal_code,
         'region': value.region,
         'street': value.street,
+        'valid': value.valid,
         'validated': value.validated,
         'verified': value.verified,
     };

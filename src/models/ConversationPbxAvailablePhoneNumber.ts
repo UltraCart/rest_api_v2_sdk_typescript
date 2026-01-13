@@ -50,6 +50,12 @@ export interface ConversationPbxAvailablePhoneNumber {
      */
     mms?: boolean;
     /**
+     * Monthly cost for this phone number
+     * @type {number}
+     * @memberof ConversationPbxAvailablePhoneNumber
+     */
+    monthly_cost?: number;
+    /**
      * Phone number in E.164 format
      * @type {string}
      * @memberof ConversationPbxAvailablePhoneNumber
@@ -113,6 +119,7 @@ export function ConversationPbxAvailablePhoneNumberFromJSONTyped(json: any, igno
         'friendly_name': !exists(json, 'friendly_name') ? undefined : json['friendly_name'],
         'locality': !exists(json, 'locality') ? undefined : json['locality'],
         'mms': !exists(json, 'mms') ? undefined : json['mms'],
+        'monthly_cost': !exists(json, 'monthly_cost') ? undefined : json['monthly_cost'],
         'phone_number': !exists(json, 'phone_number') ? undefined : json['phone_number'],
         'region': !exists(json, 'region') ? undefined : json['region'],
         'sms': !exists(json, 'sms') ? undefined : json['sms'],
@@ -134,6 +141,7 @@ export function ConversationPbxAvailablePhoneNumberToJSON(value?: ConversationPb
         'friendly_name': value.friendly_name,
         'locality': value.locality,
         'mms': value.mms,
+        'monthly_cost': value.monthly_cost,
         'phone_number': value.phone_number,
         'region': value.region,
         'sms': value.sms,

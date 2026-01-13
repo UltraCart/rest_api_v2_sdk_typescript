@@ -32,6 +32,12 @@ export interface ConversationPbxPhoneNumber {
      */
     action_target?: string;
     /**
+     * Twilio Address SID linked to this phone number for regulatory compliance
+     * @type {string}
+     * @memberof ConversationPbxPhoneNumber
+     */
+    address_sid?: string;
+    /**
      * Conversation Pbx Phone Number UUID
      * @type {string}
      * @memberof ConversationPbxPhoneNumber
@@ -93,6 +99,7 @@ export function ConversationPbxPhoneNumberFromJSONTyped(json: any, ignoreDiscrim
         
         'action': !exists(json, 'action') ? undefined : json['action'],
         'action_target': !exists(json, 'action_target') ? undefined : json['action_target'],
+        'address_sid': !exists(json, 'address_sid') ? undefined : json['address_sid'],
         'conversation_pbx_phone_number_uuid': !exists(json, 'conversation_pbx_phone_number_uuid') ? undefined : json['conversation_pbx_phone_number_uuid'],
         'deletion_protected': !exists(json, 'deletion_protected') ? undefined : json['deletion_protected'],
         'merchant_id': !exists(json, 'merchant_id') ? undefined : json['merchant_id'],
@@ -111,6 +118,7 @@ export function ConversationPbxPhoneNumberToJSON(value?: ConversationPbxPhoneNum
         
         'action': value.action,
         'action_target': value.action_target,
+        'address_sid': value.address_sid,
         'conversation_pbx_phone_number_uuid': value.conversation_pbx_phone_number_uuid,
         'deletion_protected': value.deletion_protected,
         'merchant_id': value.merchant_id,
