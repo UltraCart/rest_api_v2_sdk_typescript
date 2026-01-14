@@ -63,6 +63,12 @@ export interface CouponCodesRequest {
      */
     metadata?: ResponseMetadata;
     /**
+     * Optional prefix for generated codes
+     * @type {string}
+     * @memberof CouponCodesRequest
+     */
+    prefix?: string;
+    /**
      * Quantity
      * @type {number}
      * @memberof CouponCodesRequest
@@ -107,6 +113,7 @@ export function CouponCodesRequestFromJSONTyped(json: any, ignoreDiscriminator: 
         'expiration_dts': !exists(json, 'expiration_dts') ? undefined : json['expiration_dts'],
         'expiration_seconds': !exists(json, 'expiration_seconds') ? undefined : json['expiration_seconds'],
         'metadata': !exists(json, 'metadata') ? undefined : ResponseMetadataFromJSON(json['metadata']),
+        'prefix': !exists(json, 'prefix') ? undefined : json['prefix'],
         'quantity': !exists(json, 'quantity') ? undefined : json['quantity'],
         'success': !exists(json, 'success') ? undefined : json['success'],
         'warning': !exists(json, 'warning') ? undefined : WarningFromJSON(json['warning']),
@@ -126,6 +133,7 @@ export function CouponCodesRequestToJSON(value?: CouponCodesRequest | null): any
         'expiration_dts': value.expiration_dts,
         'expiration_seconds': value.expiration_seconds,
         'metadata': ResponseMetadataToJSON(value.metadata),
+        'prefix': value.prefix,
         'quantity': value.quantity,
         'success': value.success,
         'warning': WarningToJSON(value.warning),

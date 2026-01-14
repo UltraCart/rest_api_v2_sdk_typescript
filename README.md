@@ -1,12 +1,12 @@
 # UltraCart Typescript SDK
-## ultracart_rest_api_v2_typescript@4.1.42
+## ultracart_rest_api_v2_typescript@4.1.43
 
 Every API method call has a sample for every language SDK.  See https://github.com/UltraCart/sdk_samples
 
 Installation
 
 ```
-npm install ultracart_rest_api_v2_typescript@4.1.42 --save
+npm install ultracart_rest_api_v2_typescript@4.1.43 --save
 ```
 
 ```typescript
@@ -85,6 +85,7 @@ Not every change is committed to every SDK.
 
 | Version | Date | Comments |
 | --: | :-: | --- |
+| 4.1.43 | 01/14/2026 | coupons - generate one time coupons prefix support (optional) |
 | 4.1.42 | 01/13/2026 | conversations - pbx methods for phone number purchasing |
 | 4.1.41 | 01/13/2026 | conversations - pbx methods for phone number purchasing |
 | 4.1.40 | 01/07/2026 | convseration - AI agent profile voice settings |
