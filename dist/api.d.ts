@@ -13302,6 +13302,12 @@ export interface CouponCodesRequest {
      */
     metadata?: ResponseMetadata;
     /**
+     * Optional prefix for generated codes
+     * @type {string}
+     * @memberof CouponCodesRequest
+     */
+    prefix?: string;
+    /**
      * Quantity
      * @type {number}
      * @memberof CouponCodesRequest
