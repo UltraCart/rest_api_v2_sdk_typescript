@@ -7468,6 +7468,52 @@ var ConversationApiFetchParamCreator = function (configuration) {
             };
         },
         /**
+         * Delete a pbx hardware phone
+         * @summary Delete pbx hardware phone
+         * @param {string} conversationPbxHardwarePhoneUuid
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        deletePbxHardwarePhone: function (conversationPbxHardwarePhoneUuid, options) {
+            if (options === void 0) { options = {}; }
+            // verify required parameter 'conversationPbxHardwarePhoneUuid' is not null or undefined
+            if (conversationPbxHardwarePhoneUuid === null || conversationPbxHardwarePhoneUuid === undefined) {
+                throw new RequiredError('conversationPbxHardwarePhoneUuid', 'Required parameter conversationPbxHardwarePhoneUuid was null or undefined when calling deletePbxHardwarePhone.');
+            }
+            var localVarPath = "/conversation/pbx/hardware_phone/{conversationPbxHardwarePhoneUuid}"
+                .replace("{".concat("conversationPbxHardwarePhoneUuid", "}"), encodeURIComponent(String(conversationPbxHardwarePhoneUuid)));
+            var localVarUrlObj = url.parse(localVarPath, true);
+            var localVarRequestOptions = Object.assign({ method: 'DELETE' }, options);
+            var localVarHeaderParameter = {};
+            var localVarQueryParameter = {};
+            if (configuration && configuration.apiVersion) {
+                localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+            }
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+                var localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+                    ? configuration.accessToken("ultraCartOauth", ["conversation_write"])
+                    : configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                var localVarApiKeyValue = typeof configuration.apiKey === 'function'
+                    ? configuration.apiKey("x-ultracart-simple-key")
+                    : configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
          * Delete a pbx menu
          * @summary Delete pbx menu
          * @param {string} conversationPbxMenuUuid
@@ -9364,6 +9410,132 @@ var ConversationApiFetchParamCreator = function (configuration) {
             };
         },
         /**
+         * Retrieve a pbx hardware phone
+         * @summary Get pbx hardware phone
+         * @param {string} conversationPbxHardwarePhoneUuid
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getPbxHardwarePhone: function (conversationPbxHardwarePhoneUuid, options) {
+            if (options === void 0) { options = {}; }
+            // verify required parameter 'conversationPbxHardwarePhoneUuid' is not null or undefined
+            if (conversationPbxHardwarePhoneUuid === null || conversationPbxHardwarePhoneUuid === undefined) {
+                throw new RequiredError('conversationPbxHardwarePhoneUuid', 'Required parameter conversationPbxHardwarePhoneUuid was null or undefined when calling getPbxHardwarePhone.');
+            }
+            var localVarPath = "/conversation/pbx/hardware_phone/{conversationPbxHardwarePhoneUuid}"
+                .replace("{".concat("conversationPbxHardwarePhoneUuid", "}"), encodeURIComponent(String(conversationPbxHardwarePhoneUuid)));
+            var localVarUrlObj = url.parse(localVarPath, true);
+            var localVarRequestOptions = Object.assign({ method: 'GET' }, options);
+            var localVarHeaderParameter = {};
+            var localVarQueryParameter = {};
+            if (configuration && configuration.apiVersion) {
+                localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+            }
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+                var localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+                    ? configuration.accessToken("ultraCartOauth", ["conversation_read"])
+                    : configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                var localVarApiKeyValue = typeof configuration.apiKey === 'function'
+                    ? configuration.apiKey("x-ultracart-simple-key")
+                    : configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Retrieve pbx hardware phone manufacturers and models for auto-provisioning
+         * @summary Get pbx hardware phone manufacturers
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getPbxHardwarePhoneManufacturers: function (options) {
+            if (options === void 0) { options = {}; }
+            var localVarPath = "/conversation/pbx/hardware_phone/manufacturers";
+            var localVarUrlObj = url.parse(localVarPath, true);
+            var localVarRequestOptions = Object.assign({ method: 'GET' }, options);
+            var localVarHeaderParameter = {};
+            var localVarQueryParameter = {};
+            if (configuration && configuration.apiVersion) {
+                localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+            }
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+                var localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+                    ? configuration.accessToken("ultraCartOauth", ["conversation_read"])
+                    : configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                var localVarApiKeyValue = typeof configuration.apiKey === 'function'
+                    ? configuration.apiKey("x-ultracart-simple-key")
+                    : configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Retrieve pbx hardware phones
+         * @summary Get pbx hardware phones
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getPbxHardwarePhones: function (options) {
+            if (options === void 0) { options = {}; }
+            var localVarPath = "/conversation/pbx/hardware_phone";
+            var localVarUrlObj = url.parse(localVarPath, true);
+            var localVarRequestOptions = Object.assign({ method: 'GET' }, options);
+            var localVarHeaderParameter = {};
+            var localVarQueryParameter = {};
+            if (configuration && configuration.apiVersion) {
+                localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+            }
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+                var localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+                    ? configuration.accessToken("ultraCartOauth", ["conversation_read"])
+                    : configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                var localVarApiKeyValue = typeof configuration.apiKey === 'function'
+                    ? configuration.apiKey("x-ultracart-simple-key")
+                    : configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
          * Retrieve a pbx menu
          * @summary Get pbx menu
          * @param {string} conversationPbxMenuUuid
@@ -10406,6 +10578,54 @@ var ConversationApiFetchParamCreator = function (configuration) {
             };
         },
         /**
+         * Insert a pbx hardware phone
+         * @summary Insert pbx hardware phone
+         * @param {ConversationPbxHardwarePhone} pbx_hardware_phone Pbx Hardware Phone
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        insertPbxHardwarePhone: function (pbx_hardware_phone, options) {
+            if (options === void 0) { options = {}; }
+            // verify required parameter 'pbx_hardware_phone' is not null or undefined
+            if (pbx_hardware_phone === null || pbx_hardware_phone === undefined) {
+                throw new RequiredError('pbx_hardware_phone', 'Required parameter pbx_hardware_phone was null or undefined when calling insertPbxHardwarePhone.');
+            }
+            var localVarPath = "/conversation/pbx/hardware_phone";
+            var localVarUrlObj = url.parse(localVarPath, true);
+            var localVarRequestOptions = Object.assign({ method: 'POST' }, options);
+            var localVarHeaderParameter = {};
+            var localVarQueryParameter = {};
+            if (configuration && configuration.apiVersion) {
+                localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+            }
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+                var localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+                    ? configuration.accessToken("ultraCartOauth", ["conversation_write"])
+                    : configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                var localVarApiKeyValue = typeof configuration.apiKey === 'function'
+                    ? configuration.apiKey("x-ultracart-simple-key")
+                    : configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+            var needsSerialization = ("ConversationPbxHardwarePhone" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
+            localVarRequestOptions.body = needsSerialization ? JSON.stringify(pbx_hardware_phone || {}) : (pbx_hardware_phone || "");
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
          * Insert a pbx menu
          * @summary Insert pbx menu
          * @param {ConversationPbxMenu} pbx_menu Pbx Menu
@@ -10974,6 +11194,60 @@ var ConversationApiFetchParamCreator = function (configuration) {
             localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
             var needsSerialization = ("ConversationPbxPhoneNumberPurchaseRequest" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
             localVarRequestOptions.body = needsSerialization ? JSON.stringify(phone_number_purchase_request || {}) : (phone_number_purchase_request || "");
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Update a pbx hardware phone
+         * @summary Update pbx hardware phone
+         * @param {string} conversationPbxHardwarePhoneUuid
+         * @param {ConversationPbxHardwarePhone} pbx_hardware_phone Pbx Hardware Phone
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        regeneratePasswordForPbxHardwarePhone: function (conversationPbxHardwarePhoneUuid, pbx_hardware_phone, options) {
+            if (options === void 0) { options = {}; }
+            // verify required parameter 'conversationPbxHardwarePhoneUuid' is not null or undefined
+            if (conversationPbxHardwarePhoneUuid === null || conversationPbxHardwarePhoneUuid === undefined) {
+                throw new RequiredError('conversationPbxHardwarePhoneUuid', 'Required parameter conversationPbxHardwarePhoneUuid was null or undefined when calling regeneratePasswordForPbxHardwarePhone.');
+            }
+            // verify required parameter 'pbx_hardware_phone' is not null or undefined
+            if (pbx_hardware_phone === null || pbx_hardware_phone === undefined) {
+                throw new RequiredError('pbx_hardware_phone', 'Required parameter pbx_hardware_phone was null or undefined when calling regeneratePasswordForPbxHardwarePhone.');
+            }
+            var localVarPath = "/conversation/pbx/hardware_phone/{conversationPbxHardwarePhoneUuid}/regenerate_password"
+                .replace("{".concat("conversationPbxHardwarePhoneUuid", "}"), encodeURIComponent(String(conversationPbxHardwarePhoneUuid)));
+            var localVarUrlObj = url.parse(localVarPath, true);
+            var localVarRequestOptions = Object.assign({ method: 'POST' }, options);
+            var localVarHeaderParameter = {};
+            var localVarQueryParameter = {};
+            if (configuration && configuration.apiVersion) {
+                localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+            }
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+                var localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+                    ? configuration.accessToken("ultraCartOauth", ["conversation_write"])
+                    : configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                var localVarApiKeyValue = typeof configuration.apiKey === 'function'
+                    ? configuration.apiKey("x-ultracart-simple-key")
+                    : configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+            var needsSerialization = ("ConversationPbxHardwarePhone" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
+            localVarRequestOptions.body = needsSerialization ? JSON.stringify(pbx_hardware_phone || {}) : (pbx_hardware_phone || "");
             return {
                 url: url.format(localVarUrlObj),
                 options: localVarRequestOptions,
@@ -11726,6 +12000,60 @@ var ConversationApiFetchParamCreator = function (configuration) {
             };
         },
         /**
+         * Update a pbx hardware phone
+         * @summary Update pbx hardware phone
+         * @param {string} conversationPbxHardwarePhoneUuid
+         * @param {ConversationPbxHardwarePhone} pbx_hardware_phone Pbx Hardware Phone
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        updatePbxHardwarePhone: function (conversationPbxHardwarePhoneUuid, pbx_hardware_phone, options) {
+            if (options === void 0) { options = {}; }
+            // verify required parameter 'conversationPbxHardwarePhoneUuid' is not null or undefined
+            if (conversationPbxHardwarePhoneUuid === null || conversationPbxHardwarePhoneUuid === undefined) {
+                throw new RequiredError('conversationPbxHardwarePhoneUuid', 'Required parameter conversationPbxHardwarePhoneUuid was null or undefined when calling updatePbxHardwarePhone.');
+            }
+            // verify required parameter 'pbx_hardware_phone' is not null or undefined
+            if (pbx_hardware_phone === null || pbx_hardware_phone === undefined) {
+                throw new RequiredError('pbx_hardware_phone', 'Required parameter pbx_hardware_phone was null or undefined when calling updatePbxHardwarePhone.');
+            }
+            var localVarPath = "/conversation/pbx/hardware_phone/{conversationPbxHardwarePhoneUuid}"
+                .replace("{".concat("conversationPbxHardwarePhoneUuid", "}"), encodeURIComponent(String(conversationPbxHardwarePhoneUuid)));
+            var localVarUrlObj = url.parse(localVarPath, true);
+            var localVarRequestOptions = Object.assign({ method: 'PUT' }, options);
+            var localVarHeaderParameter = {};
+            var localVarQueryParameter = {};
+            if (configuration && configuration.apiVersion) {
+                localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+            }
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+                var localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+                    ? configuration.accessToken("ultraCartOauth", ["conversation_write"])
+                    : configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                var localVarApiKeyValue = typeof configuration.apiKey === 'function'
+                    ? configuration.apiKey("x-ultracart-simple-key")
+                    : configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+            var needsSerialization = ("ConversationPbxHardwarePhone" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
+            localVarRequestOptions.body = needsSerialization ? JSON.stringify(pbx_hardware_phone || {}) : (pbx_hardware_phone || "");
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
          * Update a pbx menu
          * @summary Update pbx menu
          * @param {string} conversationPbxMenuUuid
@@ -12319,6 +12647,28 @@ var ConversationApiFp = function (configuration) {
          */
         deletePbxAudio: function (conversationPbxAudioUuid, options) {
             var localVarFetchArgs = (0, exports.ConversationApiFetchParamCreator)(configuration).deletePbxAudio(conversationPbxAudioUuid, options);
+            return function (fetch, basePath) {
+                if (fetch === void 0) { fetch = portableFetch; }
+                if (basePath === void 0) { basePath = BASE_PATH; }
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(function (response) {
+                    if (response.status >= 200 && response.status < 300) {
+                        return response.json();
+                    }
+                    else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
+         * Delete a pbx hardware phone
+         * @summary Delete pbx hardware phone
+         * @param {string} conversationPbxHardwarePhoneUuid
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        deletePbxHardwarePhone: function (conversationPbxHardwarePhoneUuid, options) {
+            var localVarFetchArgs = (0, exports.ConversationApiFetchParamCreator)(configuration).deletePbxHardwarePhone(conversationPbxHardwarePhoneUuid, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -13252,6 +13602,70 @@ var ConversationApiFp = function (configuration) {
             };
         },
         /**
+         * Retrieve a pbx hardware phone
+         * @summary Get pbx hardware phone
+         * @param {string} conversationPbxHardwarePhoneUuid
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getPbxHardwarePhone: function (conversationPbxHardwarePhoneUuid, options) {
+            var localVarFetchArgs = (0, exports.ConversationApiFetchParamCreator)(configuration).getPbxHardwarePhone(conversationPbxHardwarePhoneUuid, options);
+            return function (fetch, basePath) {
+                if (fetch === void 0) { fetch = portableFetch; }
+                if (basePath === void 0) { basePath = BASE_PATH; }
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(function (response) {
+                    if (response.status >= 200 && response.status < 300) {
+                        return response.json();
+                    }
+                    else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
+         * Retrieve pbx hardware phone manufacturers and models for auto-provisioning
+         * @summary Get pbx hardware phone manufacturers
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getPbxHardwarePhoneManufacturers: function (options) {
+            var localVarFetchArgs = (0, exports.ConversationApiFetchParamCreator)(configuration).getPbxHardwarePhoneManufacturers(options);
+            return function (fetch, basePath) {
+                if (fetch === void 0) { fetch = portableFetch; }
+                if (basePath === void 0) { basePath = BASE_PATH; }
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(function (response) {
+                    if (response.status >= 200 && response.status < 300) {
+                        return response.json();
+                    }
+                    else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
+         * Retrieve pbx hardware phones
+         * @summary Get pbx hardware phones
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getPbxHardwarePhones: function (options) {
+            var localVarFetchArgs = (0, exports.ConversationApiFetchParamCreator)(configuration).getPbxHardwarePhones(options);
+            return function (fetch, basePath) {
+                if (fetch === void 0) { fetch = portableFetch; }
+                if (basePath === void 0) { basePath = BASE_PATH; }
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(function (response) {
+                    if (response.status >= 200 && response.status < 300) {
+                        return response.json();
+                    }
+                    else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
          * Retrieve a pbx menu
          * @summary Get pbx menu
          * @param {string} conversationPbxMenuUuid
@@ -13753,6 +14167,28 @@ var ConversationApiFp = function (configuration) {
             };
         },
         /**
+         * Insert a pbx hardware phone
+         * @summary Insert pbx hardware phone
+         * @param {ConversationPbxHardwarePhone} pbx_hardware_phone Pbx Hardware Phone
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        insertPbxHardwarePhone: function (pbx_hardware_phone, options) {
+            var localVarFetchArgs = (0, exports.ConversationApiFetchParamCreator)(configuration).insertPbxHardwarePhone(pbx_hardware_phone, options);
+            return function (fetch, basePath) {
+                if (fetch === void 0) { fetch = portableFetch; }
+                if (basePath === void 0) { basePath = BASE_PATH; }
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(function (response) {
+                    if (response.status >= 200 && response.status < 300) {
+                        return response.json();
+                    }
+                    else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
          * Insert a pbx menu
          * @summary Insert pbx menu
          * @param {ConversationPbxMenu} pbx_menu Pbx Menu
@@ -14005,6 +14441,29 @@ var ConversationApiFp = function (configuration) {
          */
         purchasePbxPhoneNumber: function (phone_number_purchase_request, options) {
             var localVarFetchArgs = (0, exports.ConversationApiFetchParamCreator)(configuration).purchasePbxPhoneNumber(phone_number_purchase_request, options);
+            return function (fetch, basePath) {
+                if (fetch === void 0) { fetch = portableFetch; }
+                if (basePath === void 0) { basePath = BASE_PATH; }
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(function (response) {
+                    if (response.status >= 200 && response.status < 300) {
+                        return response.json();
+                    }
+                    else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
+         * Update a pbx hardware phone
+         * @summary Update pbx hardware phone
+         * @param {string} conversationPbxHardwarePhoneUuid
+         * @param {ConversationPbxHardwarePhone} pbx_hardware_phone Pbx Hardware Phone
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        regeneratePasswordForPbxHardwarePhone: function (conversationPbxHardwarePhoneUuid, pbx_hardware_phone, options) {
+            var localVarFetchArgs = (0, exports.ConversationApiFetchParamCreator)(configuration).regeneratePasswordForPbxHardwarePhone(conversationPbxHardwarePhoneUuid, pbx_hardware_phone, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -14342,6 +14801,29 @@ var ConversationApiFp = function (configuration) {
             };
         },
         /**
+         * Update a pbx hardware phone
+         * @summary Update pbx hardware phone
+         * @param {string} conversationPbxHardwarePhoneUuid
+         * @param {ConversationPbxHardwarePhone} pbx_hardware_phone Pbx Hardware Phone
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        updatePbxHardwarePhone: function (conversationPbxHardwarePhoneUuid, pbx_hardware_phone, options) {
+            var localVarFetchArgs = (0, exports.ConversationApiFetchParamCreator)(configuration).updatePbxHardwarePhone(conversationPbxHardwarePhoneUuid, pbx_hardware_phone, options);
+            return function (fetch, basePath) {
+                if (fetch === void 0) { fetch = portableFetch; }
+                if (basePath === void 0) { basePath = BASE_PATH; }
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(function (response) {
+                    if (response.status >= 200 && response.status < 300) {
+                        return response.json();
+                    }
+                    else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
          * Update a pbx menu
          * @summary Update pbx menu
          * @param {string} conversationPbxMenuUuid
@@ -14613,6 +15095,16 @@ var ConversationApiFactory = function (configuration, fetch, basePath) {
          */
         deletePbxAudio: function (conversationPbxAudioUuid, options) {
             return (0, exports.ConversationApiFp)(configuration).deletePbxAudio(conversationPbxAudioUuid, options)(fetch, basePath);
+        },
+        /**
+         * Delete a pbx hardware phone
+         * @summary Delete pbx hardware phone
+         * @param {string} conversationPbxHardwarePhoneUuid
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        deletePbxHardwarePhone: function (conversationPbxHardwarePhoneUuid, options) {
+            return (0, exports.ConversationApiFp)(configuration).deletePbxHardwarePhone(conversationPbxHardwarePhoneUuid, options)(fetch, basePath);
         },
         /**
          * Delete a pbx menu
@@ -15030,6 +15522,34 @@ var ConversationApiFactory = function (configuration, fetch, basePath) {
             return (0, exports.ConversationApiFp)(configuration).getPbxAudios(options)(fetch, basePath);
         },
         /**
+         * Retrieve a pbx hardware phone
+         * @summary Get pbx hardware phone
+         * @param {string} conversationPbxHardwarePhoneUuid
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getPbxHardwarePhone: function (conversationPbxHardwarePhoneUuid, options) {
+            return (0, exports.ConversationApiFp)(configuration).getPbxHardwarePhone(conversationPbxHardwarePhoneUuid, options)(fetch, basePath);
+        },
+        /**
+         * Retrieve pbx hardware phone manufacturers and models for auto-provisioning
+         * @summary Get pbx hardware phone manufacturers
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getPbxHardwarePhoneManufacturers: function (options) {
+            return (0, exports.ConversationApiFp)(configuration).getPbxHardwarePhoneManufacturers(options)(fetch, basePath);
+        },
+        /**
+         * Retrieve pbx hardware phones
+         * @summary Get pbx hardware phones
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getPbxHardwarePhones: function (options) {
+            return (0, exports.ConversationApiFp)(configuration).getPbxHardwarePhones(options)(fetch, basePath);
+        },
+        /**
          * Retrieve a pbx menu
          * @summary Get pbx menu
          * @param {string} conversationPbxMenuUuid
@@ -15255,6 +15775,16 @@ var ConversationApiFactory = function (configuration, fetch, basePath) {
             return (0, exports.ConversationApiFp)(configuration).insertPbxAudio(pbx_audio, options)(fetch, basePath);
         },
         /**
+         * Insert a pbx hardware phone
+         * @summary Insert pbx hardware phone
+         * @param {ConversationPbxHardwarePhone} pbx_hardware_phone Pbx Hardware Phone
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        insertPbxHardwarePhone: function (pbx_hardware_phone, options) {
+            return (0, exports.ConversationApiFp)(configuration).insertPbxHardwarePhone(pbx_hardware_phone, options)(fetch, basePath);
+        },
+        /**
          * Insert a pbx menu
          * @summary Insert pbx menu
          * @param {ConversationPbxMenu} pbx_menu Pbx Menu
@@ -15375,6 +15905,17 @@ var ConversationApiFactory = function (configuration, fetch, basePath) {
          */
         purchasePbxPhoneNumber: function (phone_number_purchase_request, options) {
             return (0, exports.ConversationApiFp)(configuration).purchasePbxPhoneNumber(phone_number_purchase_request, options)(fetch, basePath);
+        },
+        /**
+         * Update a pbx hardware phone
+         * @summary Update pbx hardware phone
+         * @param {string} conversationPbxHardwarePhoneUuid
+         * @param {ConversationPbxHardwarePhone} pbx_hardware_phone Pbx Hardware Phone
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        regeneratePasswordForPbxHardwarePhone: function (conversationPbxHardwarePhoneUuid, pbx_hardware_phone, options) {
+            return (0, exports.ConversationApiFp)(configuration).regeneratePasswordForPbxHardwarePhone(conversationPbxHardwarePhoneUuid, pbx_hardware_phone, options)(fetch, basePath);
         },
         /**
          * reset statistics within the queue
@@ -15530,6 +16071,17 @@ var ConversationApiFactory = function (configuration, fetch, basePath) {
          */
         updatePbxAudio: function (conversationPbxAudioUuid, pbx_audio, options) {
             return (0, exports.ConversationApiFp)(configuration).updatePbxAudio(conversationPbxAudioUuid, pbx_audio, options)(fetch, basePath);
+        },
+        /**
+         * Update a pbx hardware phone
+         * @summary Update pbx hardware phone
+         * @param {string} conversationPbxHardwarePhoneUuid
+         * @param {ConversationPbxHardwarePhone} pbx_hardware_phone Pbx Hardware Phone
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        updatePbxHardwarePhone: function (conversationPbxHardwarePhoneUuid, pbx_hardware_phone, options) {
+            return (0, exports.ConversationApiFp)(configuration).updatePbxHardwarePhone(conversationPbxHardwarePhoneUuid, pbx_hardware_phone, options)(fetch, basePath);
         },
         /**
          * Update a pbx menu
@@ -15720,6 +16272,17 @@ var ConversationApi = /** @class */ (function (_super) {
      */
     ConversationApi.prototype.deletePbxAudio = function (conversationPbxAudioUuid, options) {
         return (0, exports.ConversationApiFp)(this.configuration).deletePbxAudio(conversationPbxAudioUuid, options)(this.fetch, this.basePath);
+    };
+    /**
+     * Delete a pbx hardware phone
+     * @summary Delete pbx hardware phone
+     * @param {string} conversationPbxHardwarePhoneUuid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApi
+     */
+    ConversationApi.prototype.deletePbxHardwarePhone = function (conversationPbxHardwarePhoneUuid, options) {
+        return (0, exports.ConversationApiFp)(this.configuration).deletePbxHardwarePhone(conversationPbxHardwarePhoneUuid, options)(this.fetch, this.basePath);
     };
     /**
      * Delete a pbx menu
@@ -16179,6 +16742,37 @@ var ConversationApi = /** @class */ (function (_super) {
         return (0, exports.ConversationApiFp)(this.configuration).getPbxAudios(options)(this.fetch, this.basePath);
     };
     /**
+     * Retrieve a pbx hardware phone
+     * @summary Get pbx hardware phone
+     * @param {string} conversationPbxHardwarePhoneUuid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApi
+     */
+    ConversationApi.prototype.getPbxHardwarePhone = function (conversationPbxHardwarePhoneUuid, options) {
+        return (0, exports.ConversationApiFp)(this.configuration).getPbxHardwarePhone(conversationPbxHardwarePhoneUuid, options)(this.fetch, this.basePath);
+    };
+    /**
+     * Retrieve pbx hardware phone manufacturers and models for auto-provisioning
+     * @summary Get pbx hardware phone manufacturers
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApi
+     */
+    ConversationApi.prototype.getPbxHardwarePhoneManufacturers = function (options) {
+        return (0, exports.ConversationApiFp)(this.configuration).getPbxHardwarePhoneManufacturers(options)(this.fetch, this.basePath);
+    };
+    /**
+     * Retrieve pbx hardware phones
+     * @summary Get pbx hardware phones
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApi
+     */
+    ConversationApi.prototype.getPbxHardwarePhones = function (options) {
+        return (0, exports.ConversationApiFp)(this.configuration).getPbxHardwarePhones(options)(this.fetch, this.basePath);
+    };
+    /**
      * Retrieve a pbx menu
      * @summary Get pbx menu
      * @param {string} conversationPbxMenuUuid
@@ -16427,6 +17021,17 @@ var ConversationApi = /** @class */ (function (_super) {
         return (0, exports.ConversationApiFp)(this.configuration).insertPbxAudio(pbx_audio, options)(this.fetch, this.basePath);
     };
     /**
+     * Insert a pbx hardware phone
+     * @summary Insert pbx hardware phone
+     * @param {ConversationPbxHardwarePhone} pbx_hardware_phone Pbx Hardware Phone
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApi
+     */
+    ConversationApi.prototype.insertPbxHardwarePhone = function (pbx_hardware_phone, options) {
+        return (0, exports.ConversationApiFp)(this.configuration).insertPbxHardwarePhone(pbx_hardware_phone, options)(this.fetch, this.basePath);
+    };
+    /**
      * Insert a pbx menu
      * @summary Insert pbx menu
      * @param {ConversationPbxMenu} pbx_menu Pbx Menu
@@ -16559,6 +17164,18 @@ var ConversationApi = /** @class */ (function (_super) {
      */
     ConversationApi.prototype.purchasePbxPhoneNumber = function (phone_number_purchase_request, options) {
         return (0, exports.ConversationApiFp)(this.configuration).purchasePbxPhoneNumber(phone_number_purchase_request, options)(this.fetch, this.basePath);
+    };
+    /**
+     * Update a pbx hardware phone
+     * @summary Update pbx hardware phone
+     * @param {string} conversationPbxHardwarePhoneUuid
+     * @param {ConversationPbxHardwarePhone} pbx_hardware_phone Pbx Hardware Phone
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApi
+     */
+    ConversationApi.prototype.regeneratePasswordForPbxHardwarePhone = function (conversationPbxHardwarePhoneUuid, pbx_hardware_phone, options) {
+        return (0, exports.ConversationApiFp)(this.configuration).regeneratePasswordForPbxHardwarePhone(conversationPbxHardwarePhoneUuid, pbx_hardware_phone, options)(this.fetch, this.basePath);
     };
     /**
      * reset statistics within the queue
@@ -16728,6 +17345,18 @@ var ConversationApi = /** @class */ (function (_super) {
      */
     ConversationApi.prototype.updatePbxAudio = function (conversationPbxAudioUuid, pbx_audio, options) {
         return (0, exports.ConversationApiFp)(this.configuration).updatePbxAudio(conversationPbxAudioUuid, pbx_audio, options)(this.fetch, this.basePath);
+    };
+    /**
+     * Update a pbx hardware phone
+     * @summary Update pbx hardware phone
+     * @param {string} conversationPbxHardwarePhoneUuid
+     * @param {ConversationPbxHardwarePhone} pbx_hardware_phone Pbx Hardware Phone
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApi
+     */
+    ConversationApi.prototype.updatePbxHardwarePhone = function (conversationPbxHardwarePhoneUuid, pbx_hardware_phone, options) {
+        return (0, exports.ConversationApiFp)(this.configuration).updatePbxHardwarePhone(conversationPbxHardwarePhoneUuid, pbx_hardware_phone, options)(this.fetch, this.basePath);
     };
     /**
      * Update a pbx menu

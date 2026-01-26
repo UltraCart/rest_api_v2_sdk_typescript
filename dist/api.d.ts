@@ -9999,6 +9999,141 @@ export interface ConversationPbxCustomerSnapshotResponse {
 /**
  *
  * @export
+ * @interface ConversationPbxHardwarePhone
+ */
+export interface ConversationPbxHardwarePhone {
+    /**
+     * Conversation Pbx Hardware Phone UUID
+     * @type {string}
+     * @memberof ConversationPbxHardwarePhone
+     */
+    conversation_pbx_hardware_phone_uuid?: string;
+    /**
+     * Created At
+     * @type {any}
+     * @memberof ConversationPbxHardwarePhone
+     */
+    created_at?: any;
+    /**
+     * Description
+     * @type {string}
+     * @memberof ConversationPbxHardwarePhone
+     */
+    description?: string;
+    /**
+     * MAC Address
+     * @type {string}
+     * @memberof ConversationPbxHardwarePhone
+     */
+    mac_address?: string;
+    /**
+     * Manufacturer
+     * @type {string}
+     * @memberof ConversationPbxHardwarePhone
+     */
+    manufacturer?: string;
+    /**
+     * Merchant Id
+     * @type {string}
+     * @memberof ConversationPbxHardwarePhone
+     */
+    merchant_id?: string;
+    /**
+     * Model
+     * @type {string}
+     * @memberof ConversationPbxHardwarePhone
+     */
+    model?: string;
+    /**
+     * Name
+     * @type {string}
+     * @memberof ConversationPbxHardwarePhone
+     */
+    name?: string;
+    /**
+     * Auto-provisioning URL for phone configuration
+     * @type {string}
+     * @memberof ConversationPbxHardwarePhone
+     */
+    provisioning_url?: string;
+    /**
+     * SIP Domain
+     * @type {string}
+     * @memberof ConversationPbxHardwarePhone
+     */
+    sip_domain?: string;
+    /**
+     * SIP Password
+     * @type {string}
+     * @memberof ConversationPbxHardwarePhone
+     */
+    sip_password?: string;
+    /**
+     * SIP Username
+     * @type {string}
+     * @memberof ConversationPbxHardwarePhone
+     */
+    sip_username?: string;
+    /**
+     * Updated At
+     * @type {any}
+     * @memberof ConversationPbxHardwarePhone
+     */
+    updated_at?: any;
+}
+/**
+ *
+ * @export
+ * @interface ConversationPbxHardwarePhoneResponse
+ */
+export interface ConversationPbxHardwarePhoneResponse {
+    /**
+     *
+     * @type {ModelError}
+     * @memberof ConversationPbxHardwarePhoneResponse
+     */
+    error?: ModelError;
+    /**
+     *
+     * @type {ConversationPbxHardwarePhone}
+     * @memberof ConversationPbxHardwarePhoneResponse
+     */
+    hardware_phone?: ConversationPbxHardwarePhone;
+    /**
+     *
+     * @type {ResponseMetadata}
+     * @memberof ConversationPbxHardwarePhoneResponse
+     */
+    metadata?: ResponseMetadata;
+    /**
+     * Indicates if API call was successful
+     * @type {boolean}
+     * @memberof ConversationPbxHardwarePhoneResponse
+     */
+    success?: boolean;
+    /**
+     *
+     * @type {Warning}
+     * @memberof ConversationPbxHardwarePhoneResponse
+     */
+    warning?: Warning;
+}
+/**
+ *
+ * @export
+ * @interface ConversationPbxHardwarePhonesResponse
+ */
+export interface ConversationPbxHardwarePhonesResponse {
+    /**
+     *
+     * @type {Array<ConversationPbxHardwarePhone>}
+     * @memberof ConversationPbxHardwarePhonesResponse
+     */
+    hardware_phones?: Array<ConversationPbxHardwarePhone>;
+}
+/**
+ *
+ * @export
  * @interface ConversationPbxMenu
  */
 export interface ConversationPbxMenu {
@@ -10204,6 +10339,87 @@ export interface ConversationPbxMenusResponse {
      * @memberof ConversationPbxMenusResponse
      */
     warning?: Warning;
+}
+/**
+ *
+ * @export
+ * @interface ConversationPbxPhoneManufacturer
+ */
+export interface ConversationPbxPhoneManufacturer {
+    /**
+     *
+     * @type {string}
+     * @memberof ConversationPbxPhoneManufacturer
+     */
+    manufacturer_id?: string;
+    /**
+     *
+     * @type {Array<ConversationPbxPhoneModel>}
+     * @memberof ConversationPbxPhoneManufacturer
+     */
+    models?: Array<ConversationPbxPhoneModel>;
+    /**
+     *
+     * @type {string}
+     * @memberof ConversationPbxPhoneManufacturer
+     */
+    name?: string;
+}
+/**
+ *
+ * @export
+ * @interface ConversationPbxPhoneManufacturersResponse
+ */
+export interface ConversationPbxPhoneManufacturersResponse {
+    /**
+     *
+     * @type {ModelError}
+     * @memberof ConversationPbxPhoneManufacturersResponse
+     */
+    error?: ModelError;
+    /**
+     *
+     * @type {Array<ConversationPbxPhoneManufacturer>}
+     * @memberof ConversationPbxPhoneManufacturersResponse
+     */
+    manufacturers?: Array<ConversationPbxPhoneManufacturer>;
+    /**
+     *
+     * @type {ResponseMetadata}
+     * @memberof ConversationPbxPhoneManufacturersResponse
+     */
+    metadata?: ResponseMetadata;
+    /**
+     * Indicates if API call was successful
+     * @type {boolean}
+     * @memberof ConversationPbxPhoneManufacturersResponse
+     */
+    success?: boolean;
+    /**
+     *
+     * @type {Warning}
+     * @memberof ConversationPbxPhoneManufacturersResponse
+     */
+    warning?: Warning;
+}
+/**
+ *
+ * @export
+ * @interface ConversationPbxPhoneModel
+ */
+export interface ConversationPbxPhoneModel {
+    /**
+     *
+     * @type {string}
+     * @memberof ConversationPbxPhoneModel
+     */
+    model_id?: string;
+    /**
+     *
+     * @type {string}
+     * @memberof ConversationPbxPhoneModel
+     */
+    name?: string;
 }
 /**
  *
@@ -49428,6 +49644,14 @@ export declare const ConversationApiFetchParamCreator: (configuration?: Configur
      */
     deletePbxAudio(conversationPbxAudioUuid: string, options?: any): FetchArgs;
     /**
+     * Delete a pbx hardware phone
+     * @summary Delete pbx hardware phone
+     * @param {string} conversationPbxHardwarePhoneUuid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    deletePbxHardwarePhone(conversationPbxHardwarePhoneUuid: string, options?: any): FetchArgs;
+    /**
      * Delete a pbx menu
      * @summary Delete pbx menu
      * @param {string} conversationPbxMenuUuid
@@ -49759,6 +49983,28 @@ export declare const ConversationApiFetchParamCreator: (configuration?: Configur
      */
     getPbxAudios(options?: any): FetchArgs;
     /**
+     * Retrieve a pbx hardware phone
+     * @summary Get pbx hardware phone
+     * @param {string} conversationPbxHardwarePhoneUuid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getPbxHardwarePhone(conversationPbxHardwarePhoneUuid: string, options?: any): FetchArgs;
+    /**
+     * Retrieve pbx hardware phone manufacturers and models for auto-provisioning
+     * @summary Get pbx hardware phone manufacturers
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getPbxHardwarePhoneManufacturers(options?: any): FetchArgs;
+    /**
+     * Retrieve pbx hardware phones
+     * @summary Get pbx hardware phones
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getPbxHardwarePhones(options?: any): FetchArgs;
+    /**
      * Retrieve a pbx menu
      * @summary Get pbx menu
      * @param {string} conversationPbxMenuUuid
@@ -49938,6 +50184,14 @@ export declare const ConversationApiFetchParamCreator: (configuration?: Configur
      */
     insertPbxAudio(pbx_audio: ConversationPbxAudio, options?: any): FetchArgs;
     /**
+     * Insert a pbx hardware phone
+     * @summary Insert pbx hardware phone
+     * @param {ConversationPbxHardwarePhone} pbx_hardware_phone Pbx Hardware Phone
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    insertPbxHardwarePhone(pbx_hardware_phone: ConversationPbxHardwarePhone, options?: any): FetchArgs;
+    /**
      * Insert a pbx menu
      * @summary Insert pbx menu
      * @param {ConversationPbxMenu} pbx_menu Pbx Menu
@@ -50035,6 +50289,15 @@ export declare const ConversationApiFetchParamCreator: (configuration?: Configur
      * @throws {RequiredError}
      */
     purchasePbxPhoneNumber(phone_number_purchase_request: ConversationPbxPhoneNumberPurchaseRequest, options?: any): FetchArgs;
+    /**
+     * Update a pbx hardware phone
+     * @summary Update pbx hardware phone
+     * @param {string} conversationPbxHardwarePhoneUuid
+     * @param {ConversationPbxHardwarePhone} pbx_hardware_phone Pbx Hardware Phone
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    regeneratePasswordForPbxHardwarePhone(conversationPbxHardwarePhoneUuid: string, pbx_hardware_phone: ConversationPbxHardwarePhone, options?: any): FetchArgs;
     /**
      * reset statistics within the queue
      * @summary reset statistics within the queue
@@ -50162,6 +50425,15 @@ export declare const ConversationApiFetchParamCreator: (configuration?: Configur
      * @throws {RequiredError}
      */
     updatePbxAudio(conversationPbxAudioUuid: string, pbx_audio: ConversationPbxAudio, options?: any): FetchArgs;
+    /**
+     * Update a pbx hardware phone
+     * @summary Update pbx hardware phone
+     * @param {string} conversationPbxHardwarePhoneUuid
+     * @param {ConversationPbxHardwarePhone} pbx_hardware_phone Pbx Hardware Phone
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    updatePbxHardwarePhone(conversationPbxHardwarePhoneUuid: string, pbx_hardware_phone: ConversationPbxHardwarePhone, options?: any): FetchArgs;
     /**
      * Update a pbx menu
      * @summary Update pbx menu
@@ -50304,6 +50576,14 @@ export declare const ConversationApiFp: (configuration?: Configuration) => {
      * @throws {RequiredError}
      */
     deletePbxAudio(conversationPbxAudioUuid: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ConversationPbxAudioResponse>;
+    /**
+     * Delete a pbx hardware phone
+     * @summary Delete pbx hardware phone
+     * @param {string} conversationPbxHardwarePhoneUuid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    deletePbxHardwarePhone(conversationPbxHardwarePhoneUuid: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ConversationPbxHardwarePhoneResponse>;
     /**
      * Delete a pbx menu
      * @summary Delete pbx menu
@@ -50636,6 +50916,28 @@ export declare const ConversationApiFp: (configuration?: Configuration) => {
      */
     getPbxAudios(options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ConversationPbxAudiosResponse>;
     /**
+     * Retrieve a pbx hardware phone
+     * @summary Get pbx hardware phone
+     * @param {string} conversationPbxHardwarePhoneUuid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getPbxHardwarePhone(conversationPbxHardwarePhoneUuid: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ConversationPbxHardwarePhoneResponse>;
+    /**
+     * Retrieve pbx hardware phone manufacturers and models for auto-provisioning
+     * @summary Get pbx hardware phone manufacturers
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getPbxHardwarePhoneManufacturers(options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ConversationPbxPhoneManufacturersResponse>;
+    /**
+     * Retrieve pbx hardware phones
+     * @summary Get pbx hardware phones
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getPbxHardwarePhones(options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ConversationPbxHardwarePhonesResponse>;
+    /**
      * Retrieve a pbx menu
      * @summary Get pbx menu
      * @param {string} conversationPbxMenuUuid
@@ -50815,6 +51117,14 @@ export declare const ConversationApiFp: (configuration?: Configuration) => {
      */
     insertPbxAudio(pbx_audio: ConversationPbxAudio, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ConversationPbxAudioResponse>;
     /**
+     * Insert a pbx hardware phone
+     * @summary Insert pbx hardware phone
+     * @param {ConversationPbxHardwarePhone} pbx_hardware_phone Pbx Hardware Phone
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    insertPbxHardwarePhone(pbx_hardware_phone: ConversationPbxHardwarePhone, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ConversationPbxHardwarePhoneResponse>;
+    /**
      * Insert a pbx menu
      * @summary Insert pbx menu
      * @param {ConversationPbxMenu} pbx_menu Pbx Menu
@@ -50912,6 +51222,15 @@ export declare const ConversationApiFp: (configuration?: Configuration) => {
      * @throws {RequiredError}
      */
     purchasePbxPhoneNumber(phone_number_purchase_request: ConversationPbxPhoneNumberPurchaseRequest, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ConversationPbxPhoneNumberResponse>;
+    /**
+     * Update a pbx hardware phone
+     * @summary Update pbx hardware phone
+     * @param {string} conversationPbxHardwarePhoneUuid
+     * @param {ConversationPbxHardwarePhone} pbx_hardware_phone Pbx Hardware Phone
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    regeneratePasswordForPbxHardwarePhone(conversationPbxHardwarePhoneUuid: string, pbx_hardware_phone: ConversationPbxHardwarePhone, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ConversationPbxHardwarePhoneResponse>;
     /**
      * reset statistics within the queue
      * @summary reset statistics within the queue
@@ -51039,6 +51358,15 @@ export declare const ConversationApiFp: (configuration?: Configuration) => {
      * @throws {RequiredError}
      */
     updatePbxAudio(conversationPbxAudioUuid: string, pbx_audio: ConversationPbxAudio, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ConversationPbxAudioResponse>;
+    /**
+     * Update a pbx hardware phone
+     * @summary Update pbx hardware phone
+     * @param {string} conversationPbxHardwarePhoneUuid
+     * @param {ConversationPbxHardwarePhone} pbx_hardware_phone Pbx Hardware Phone
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    updatePbxHardwarePhone(conversationPbxHardwarePhoneUuid: string, pbx_hardware_phone: ConversationPbxHardwarePhone, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ConversationPbxHardwarePhoneResponse>;
     /**
      * Update a pbx menu
      * @summary Update pbx menu
@@ -51181,6 +51509,14 @@ export declare const ConversationApiFactory: (configuration?: Configuration, fet
      * @throws {RequiredError}
      */
     deletePbxAudio(conversationPbxAudioUuid: string, options?: any): Promise<ConversationPbxAudioResponse>;
+    /**
+     * Delete a pbx hardware phone
+     * @summary Delete pbx hardware phone
+     * @param {string} conversationPbxHardwarePhoneUuid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    deletePbxHardwarePhone(conversationPbxHardwarePhoneUuid: string, options?: any): Promise<ConversationPbxHardwarePhoneResponse>;
     /**
      * Delete a pbx menu
      * @summary Delete pbx menu
@@ -51513,6 +51849,28 @@ export declare const ConversationApiFactory: (configuration?: Configuration, fet
      */
     getPbxAudios(options?: any): Promise<ConversationPbxAudiosResponse>;
     /**
+     * Retrieve a pbx hardware phone
+     * @summary Get pbx hardware phone
+     * @param {string} conversationPbxHardwarePhoneUuid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getPbxHardwarePhone(conversationPbxHardwarePhoneUuid: string, options?: any): Promise<ConversationPbxHardwarePhoneResponse>;
+    /**
+     * Retrieve pbx hardware phone manufacturers and models for auto-provisioning
+     * @summary Get pbx hardware phone manufacturers
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getPbxHardwarePhoneManufacturers(options?: any): Promise<ConversationPbxPhoneManufacturersResponse>;
+    /**
+     * Retrieve pbx hardware phones
+     * @summary Get pbx hardware phones
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getPbxHardwarePhones(options?: any): Promise<ConversationPbxHardwarePhonesResponse>;
+    /**
      * Retrieve a pbx menu
      * @summary Get pbx menu
      * @param {string} conversationPbxMenuUuid
@@ -51692,6 +52050,14 @@ export declare const ConversationApiFactory: (configuration?: Configuration, fet
      */
     insertPbxAudio(pbx_audio: ConversationPbxAudio, options?: any): Promise<ConversationPbxAudioResponse>;
     /**
+     * Insert a pbx hardware phone
+     * @summary Insert pbx hardware phone
+     * @param {ConversationPbxHardwarePhone} pbx_hardware_phone Pbx Hardware Phone
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    insertPbxHardwarePhone(pbx_hardware_phone: ConversationPbxHardwarePhone, options?: any): Promise<ConversationPbxHardwarePhoneResponse>;
+    /**
      * Insert a pbx menu
      * @summary Insert pbx menu
      * @param {ConversationPbxMenu} pbx_menu Pbx Menu
@@ -51789,6 +52155,15 @@ export declare const ConversationApiFactory: (configuration?: Configuration, fet
      * @throws {RequiredError}
      */
     purchasePbxPhoneNumber(phone_number_purchase_request: ConversationPbxPhoneNumberPurchaseRequest, options?: any): Promise<ConversationPbxPhoneNumberResponse>;
+    /**
+     * Update a pbx hardware phone
+     * @summary Update pbx hardware phone
+     * @param {string} conversationPbxHardwarePhoneUuid
+     * @param {ConversationPbxHardwarePhone} pbx_hardware_phone Pbx Hardware Phone
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    regeneratePasswordForPbxHardwarePhone(conversationPbxHardwarePhoneUuid: string, pbx_hardware_phone: ConversationPbxHardwarePhone, options?: any): Promise<ConversationPbxHardwarePhoneResponse>;
     /**
      * reset statistics within the queue
      * @summary reset statistics within the queue
@@ -51916,6 +52291,15 @@ export declare const ConversationApiFactory: (configuration?: Configuration, fet
      * @throws {RequiredError}
      */
     updatePbxAudio(conversationPbxAudioUuid: string, pbx_audio: ConversationPbxAudio, options?: any): Promise<ConversationPbxAudioResponse>;
+    /**
+     * Update a pbx hardware phone
+     * @summary Update pbx hardware phone
+     * @param {string} conversationPbxHardwarePhoneUuid
+     * @param {ConversationPbxHardwarePhone} pbx_hardware_phone Pbx Hardware Phone
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    updatePbxHardwarePhone(conversationPbxHardwarePhoneUuid: string, pbx_hardware_phone: ConversationPbxHardwarePhone, options?: any): Promise<ConversationPbxHardwarePhoneResponse>;
     /**
      * Update a pbx menu
      * @summary Update pbx menu
@@ -52067,6 +52451,15 @@ export interface ConversationApiInterface {
      * @memberof ConversationApiInterface
      */
     deletePbxAudio(conversationPbxAudioUuid: string, options?: any): Promise<ConversationPbxAudioResponse>;
+    /**
+     * Delete a pbx hardware phone
+     * @summary Delete pbx hardware phone
+     * @param {string} conversationPbxHardwarePhoneUuid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApiInterface
+     */
+    deletePbxHardwarePhone(conversationPbxHardwarePhoneUuid: string, options?: any): Promise<ConversationPbxHardwarePhoneResponse>;
     /**
      * Delete a pbx menu
      * @summary Delete pbx menu
@@ -52441,6 +52834,31 @@ export interface ConversationApiInterface {
      */
     getPbxAudios(options?: any): Promise<ConversationPbxAudiosResponse>;
     /**
+     * Retrieve a pbx hardware phone
+     * @summary Get pbx hardware phone
+     * @param {string} conversationPbxHardwarePhoneUuid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApiInterface
+     */
+    getPbxHardwarePhone(conversationPbxHardwarePhoneUuid: string, options?: any): Promise<ConversationPbxHardwarePhoneResponse>;
+    /**
+     * Retrieve pbx hardware phone manufacturers and models for auto-provisioning
+     * @summary Get pbx hardware phone manufacturers
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApiInterface
+     */
+    getPbxHardwarePhoneManufacturers(options?: any): Promise<ConversationPbxPhoneManufacturersResponse>;
+    /**
+     * Retrieve pbx hardware phones
+     * @summary Get pbx hardware phones
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApiInterface
+     */
+    getPbxHardwarePhones(options?: any): Promise<ConversationPbxHardwarePhonesResponse>;
+    /**
      * Retrieve a pbx menu
      * @summary Get pbx menu
      * @param {string} conversationPbxMenuUuid
@@ -52643,6 +53061,15 @@ export interface ConversationApiInterface {
      */
     insertPbxAudio(pbx_audio: ConversationPbxAudio, options?: any): Promise<ConversationPbxAudioResponse>;
     /**
+     * Insert a pbx hardware phone
+     * @summary Insert pbx hardware phone
+     * @param {ConversationPbxHardwarePhone} pbx_hardware_phone Pbx Hardware Phone
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApiInterface
+     */
+    insertPbxHardwarePhone(pbx_hardware_phone: ConversationPbxHardwarePhone, options?: any): Promise<ConversationPbxHardwarePhoneResponse>;
+    /**
      * Insert a pbx menu
      * @summary Insert pbx menu
      * @param {ConversationPbxMenu} pbx_menu Pbx Menu
@@ -52752,6 +53179,16 @@ export interface ConversationApiInterface {
      * @memberof ConversationApiInterface
      */
     purchasePbxPhoneNumber(phone_number_purchase_request: ConversationPbxPhoneNumberPurchaseRequest, options?: any): Promise<ConversationPbxPhoneNumberResponse>;
+    /**
+     * Update a pbx hardware phone
+     * @summary Update pbx hardware phone
+     * @param {string} conversationPbxHardwarePhoneUuid
+     * @param {ConversationPbxHardwarePhone} pbx_hardware_phone Pbx Hardware Phone
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApiInterface
+     */
+    regeneratePasswordForPbxHardwarePhone(conversationPbxHardwarePhoneUuid: string, pbx_hardware_phone: ConversationPbxHardwarePhone, options?: any): Promise<ConversationPbxHardwarePhoneResponse>;
     /**
      * reset statistics within the queue
      * @summary reset statistics within the queue
@@ -52893,6 +53330,16 @@ export interface ConversationApiInterface {
      * @memberof ConversationApiInterface
      */
     updatePbxAudio(conversationPbxAudioUuid: string, pbx_audio: ConversationPbxAudio, options?: any): Promise<ConversationPbxAudioResponse>;
+    /**
+     * Update a pbx hardware phone
+     * @summary Update pbx hardware phone
+     * @param {string} conversationPbxHardwarePhoneUuid
+     * @param {ConversationPbxHardwarePhone} pbx_hardware_phone Pbx Hardware Phone
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApiInterface
+     */
+    updatePbxHardwarePhone(conversationPbxHardwarePhoneUuid: string, pbx_hardware_phone: ConversationPbxHardwarePhone, options?: any): Promise<ConversationPbxHardwarePhoneResponse>;
     /**
      * Update a pbx menu
      * @summary Update pbx menu
@@ -53053,6 +53500,15 @@ export declare class ConversationApi extends BaseAPI implements ConversationApiI
      * @memberof ConversationApi
      */
     deletePbxAudio(conversationPbxAudioUuid: string, options?: any): Promise<ConversationPbxAudioResponse>;
+    /**
+     * Delete a pbx hardware phone
+     * @summary Delete pbx hardware phone
+     * @param {string} conversationPbxHardwarePhoneUuid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApi
+     */
+    deletePbxHardwarePhone(conversationPbxHardwarePhoneUuid: string, options?: any): Promise<ConversationPbxHardwarePhoneResponse>;
     /**
      * Delete a pbx menu
      * @summary Delete pbx menu
@@ -53427,6 +53883,31 @@ export declare class ConversationApi extends BaseAPI implements ConversationApiI
      */
     getPbxAudios(options?: any): Promise<ConversationPbxAudiosResponse>;
     /**
+     * Retrieve a pbx hardware phone
+     * @summary Get pbx hardware phone
+     * @param {string} conversationPbxHardwarePhoneUuid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApi
+     */
+    getPbxHardwarePhone(conversationPbxHardwarePhoneUuid: string, options?: any): Promise<ConversationPbxHardwarePhoneResponse>;
+    /**
+     * Retrieve pbx hardware phone manufacturers and models for auto-provisioning
+     * @summary Get pbx hardware phone manufacturers
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApi
+     */
+    getPbxHardwarePhoneManufacturers(options?: any): Promise<ConversationPbxPhoneManufacturersResponse>;
+    /**
+     * Retrieve pbx hardware phones
+     * @summary Get pbx hardware phones
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApi
+     */
+    getPbxHardwarePhones(options?: any): Promise<ConversationPbxHardwarePhonesResponse>;
+    /**
      * Retrieve a pbx menu
      * @summary Get pbx menu
      * @param {string} conversationPbxMenuUuid
@@ -53629,6 +54110,15 @@ export declare class ConversationApi extends BaseAPI implements ConversationApiI
      */
     insertPbxAudio(pbx_audio: ConversationPbxAudio, options?: any): Promise<ConversationPbxAudioResponse>;
     /**
+     * Insert a pbx hardware phone
+     * @summary Insert pbx hardware phone
+     * @param {ConversationPbxHardwarePhone} pbx_hardware_phone Pbx Hardware Phone
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApi
+     */
+    insertPbxHardwarePhone(pbx_hardware_phone: ConversationPbxHardwarePhone, options?: any): Promise<ConversationPbxHardwarePhoneResponse>;
+    /**
      * Insert a pbx menu
      * @summary Insert pbx menu
      * @param {ConversationPbxMenu} pbx_menu Pbx Menu
@@ -53738,6 +54228,16 @@ export declare class ConversationApi extends BaseAPI implements ConversationApiI
      * @memberof ConversationApi
      */
     purchasePbxPhoneNumber(phone_number_purchase_request: ConversationPbxPhoneNumberPurchaseRequest, options?: any): Promise<ConversationPbxPhoneNumberResponse>;
+    /**
+     * Update a pbx hardware phone
+     * @summary Update pbx hardware phone
+     * @param {string} conversationPbxHardwarePhoneUuid
+     * @param {ConversationPbxHardwarePhone} pbx_hardware_phone Pbx Hardware Phone
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApi
+     */
+    regeneratePasswordForPbxHardwarePhone(conversationPbxHardwarePhoneUuid: string, pbx_hardware_phone: ConversationPbxHardwarePhone, options?: any): Promise<ConversationPbxHardwarePhoneResponse>;
     /**
      * reset statistics within the queue
      * @summary reset statistics within the queue
@@ -53879,6 +54379,16 @@ export declare class ConversationApi extends BaseAPI implements ConversationApiI
      * @memberof ConversationApi
      */
     updatePbxAudio(conversationPbxAudioUuid: string, pbx_audio: ConversationPbxAudio, options?: any): Promise<ConversationPbxAudioResponse>;
+    /**
+     * Update a pbx hardware phone
+     * @summary Update pbx hardware phone
+     * @param {string} conversationPbxHardwarePhoneUuid
+     * @param {ConversationPbxHardwarePhone} pbx_hardware_phone Pbx Hardware Phone
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApi
+     */
+    updatePbxHardwarePhone(conversationPbxHardwarePhoneUuid: string, pbx_hardware_phone: ConversationPbxHardwarePhone, options?: any): Promise<ConversationPbxHardwarePhoneResponse>;
     /**
      * Update a pbx menu
      * @summary Update pbx menu
