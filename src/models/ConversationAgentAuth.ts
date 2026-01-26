@@ -28,6 +28,18 @@ import {
 export interface ConversationAgentAuth {
     /**
      * 
+     * @type {boolean}
+     * @memberof ConversationAgentAuth
+     */
+    chat_admin?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof ConversationAgentAuth
+     */
+    chat_user?: boolean;
+    /**
+     * 
      * @type {string}
      * @memberof ConversationAgentAuth
      */
@@ -145,6 +157,8 @@ export function ConversationAgentAuthFromJSONTyped(json: any, ignoreDiscriminato
     }
     return {
         
+        'chat_admin': !exists(json, 'chat_admin') ? undefined : json['chat_admin'],
+        'chat_user': !exists(json, 'chat_user') ? undefined : json['chat_user'],
         'conversation_participant_arn': !exists(json, 'conversation_participant_arn') ? undefined : json['conversation_participant_arn'],
         'conversation_participant_name': !exists(json, 'conversation_participant_name') ? undefined : json['conversation_participant_name'],
         'group_ids': !exists(json, 'group_ids') ? undefined : json['group_ids'],
@@ -173,6 +187,8 @@ export function ConversationAgentAuthToJSON(value?: ConversationAgentAuth | null
     }
     return {
         
+        'chat_admin': value.chat_admin,
+        'chat_user': value.chat_user,
         'conversation_participant_arn': value.conversation_participant_arn,
         'conversation_participant_name': value.conversation_participant_name,
         'group_ids': value.group_ids,
