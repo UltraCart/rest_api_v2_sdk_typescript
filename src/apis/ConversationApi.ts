@@ -147,6 +147,15 @@ import {
     ConversationPbxCustomerSnapshotResponse,
     ConversationPbxCustomerSnapshotResponseFromJSON,
     ConversationPbxCustomerSnapshotResponseToJSON,
+    ConversationPbxHardwarePhone,
+    ConversationPbxHardwarePhoneFromJSON,
+    ConversationPbxHardwarePhoneToJSON,
+    ConversationPbxHardwarePhoneResponse,
+    ConversationPbxHardwarePhoneResponseFromJSON,
+    ConversationPbxHardwarePhoneResponseToJSON,
+    ConversationPbxHardwarePhonesResponse,
+    ConversationPbxHardwarePhonesResponseFromJSON,
+    ConversationPbxHardwarePhonesResponseToJSON,
     ConversationPbxMenu,
     ConversationPbxMenuFromJSON,
     ConversationPbxMenuToJSON,
@@ -156,6 +165,9 @@ import {
     ConversationPbxMenusResponse,
     ConversationPbxMenusResponseFromJSON,
     ConversationPbxMenusResponseToJSON,
+    ConversationPbxPhoneManufacturersResponse,
+    ConversationPbxPhoneManufacturersResponseFromJSON,
+    ConversationPbxPhoneManufacturersResponseToJSON,
     ConversationPbxPhoneNumber,
     ConversationPbxPhoneNumberFromJSON,
     ConversationPbxPhoneNumberToJSON,
@@ -291,6 +303,10 @@ export interface DeletePbxAudioRequest {
     conversationPbxAudioUuid: string;
 }
 
+export interface DeletePbxHardwarePhoneRequest {
+    conversationPbxHardwarePhoneUuid: string;
+}
+
 export interface DeletePbxMenuRequest {
     conversationPbxMenuUuid: string;
 }
@@ -409,6 +425,10 @@ export interface GetPbxAudioUsageRequest {
     conversationPbxAudioUuid: string;
 }
 
+export interface GetPbxHardwarePhoneRequest {
+    conversationPbxHardwarePhoneUuid: string;
+}
+
 export interface GetPbxMenuRequest {
     conversationPbxMenuUuid: string;
 }
@@ -472,6 +492,10 @@ export interface InsertPbxAudioRequest {
     pbxAudio: ConversationPbxAudio;
 }
 
+export interface InsertPbxHardwarePhoneRequest {
+    pbxHardwarePhone: ConversationPbxHardwarePhone;
+}
+
 export interface InsertPbxMenuRequest {
     pbxMenu: ConversationPbxMenu;
 }
@@ -520,6 +544,11 @@ export interface ProtectPbxPhoneNumberRequest {
 
 export interface PurchasePbxPhoneNumberRequest {
     phoneNumberPurchaseRequest: ConversationPbxPhoneNumberPurchaseRequest;
+}
+
+export interface RegeneratePasswordForPbxHardwarePhoneRequest {
+    conversationPbxHardwarePhoneUuid: string;
+    pbxHardwarePhone: ConversationPbxHardwarePhone;
 }
 
 export interface ResetConversationPbxQueueStatisticsRequest {
@@ -591,6 +620,11 @@ export interface UpdatePbxAgentRequest {
 export interface UpdatePbxAudioRequest {
     conversationPbxAudioUuid: string;
     pbxAudio: ConversationPbxAudio;
+}
+
+export interface UpdatePbxHardwarePhoneRequest {
+    conversationPbxHardwarePhoneUuid: string;
+    pbxHardwarePhone: ConversationPbxHardwarePhone;
 }
 
 export interface UpdatePbxMenuRequest {
@@ -767,6 +801,22 @@ export interface ConversationApiInterface {
      * Delete pbx audio
      */
     deletePbxAudio(requestParameters: DeletePbxAudioRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ConversationPbxAudioResponse>;
+
+    /**
+     * Delete a pbx hardware phone 
+     * @summary Delete pbx hardware phone
+     * @param {string} conversationPbxHardwarePhoneUuid 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApiInterface
+     */
+    deletePbxHardwarePhoneRaw(requestParameters: DeletePbxHardwarePhoneRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ConversationPbxHardwarePhoneResponse>>;
+
+    /**
+     * Delete a pbx hardware phone 
+     * Delete pbx hardware phone
+     */
+    deletePbxHardwarePhone(requestParameters: DeletePbxHardwarePhoneRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ConversationPbxHardwarePhoneResponse>;
 
     /**
      * Delete a pbx menu 
@@ -1436,6 +1486,52 @@ export interface ConversationApiInterface {
     getPbxAudios(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ConversationPbxAudiosResponse>;
 
     /**
+     * Retrieve a pbx hardware phone 
+     * @summary Get pbx hardware phone
+     * @param {string} conversationPbxHardwarePhoneUuid 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApiInterface
+     */
+    getPbxHardwarePhoneRaw(requestParameters: GetPbxHardwarePhoneRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ConversationPbxHardwarePhoneResponse>>;
+
+    /**
+     * Retrieve a pbx hardware phone 
+     * Get pbx hardware phone
+     */
+    getPbxHardwarePhone(requestParameters: GetPbxHardwarePhoneRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ConversationPbxHardwarePhoneResponse>;
+
+    /**
+     * Retrieve pbx hardware phone manufacturers and models for auto-provisioning 
+     * @summary Get pbx hardware phone manufacturers
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApiInterface
+     */
+    getPbxHardwarePhoneManufacturersRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ConversationPbxPhoneManufacturersResponse>>;
+
+    /**
+     * Retrieve pbx hardware phone manufacturers and models for auto-provisioning 
+     * Get pbx hardware phone manufacturers
+     */
+    getPbxHardwarePhoneManufacturers(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ConversationPbxPhoneManufacturersResponse>;
+
+    /**
+     * Retrieve pbx hardware phones 
+     * @summary Get pbx hardware phones
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApiInterface
+     */
+    getPbxHardwarePhonesRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ConversationPbxHardwarePhonesResponse>>;
+
+    /**
+     * Retrieve pbx hardware phones 
+     * Get pbx hardware phones
+     */
+    getPbxHardwarePhones(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ConversationPbxHardwarePhonesResponse>;
+
+    /**
      * Retrieve a pbx menu 
      * @summary Get pbx menu
      * @param {string} conversationPbxMenuUuid 
@@ -1799,6 +1895,22 @@ export interface ConversationApiInterface {
     insertPbxAudio(requestParameters: InsertPbxAudioRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ConversationPbxAudioResponse>;
 
     /**
+     * Insert a pbx hardware phone 
+     * @summary Insert pbx hardware phone
+     * @param {ConversationPbxHardwarePhone} pbxHardwarePhone Pbx Hardware Phone
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApiInterface
+     */
+    insertPbxHardwarePhoneRaw(requestParameters: InsertPbxHardwarePhoneRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ConversationPbxHardwarePhoneResponse>>;
+
+    /**
+     * Insert a pbx hardware phone 
+     * Insert pbx hardware phone
+     */
+    insertPbxHardwarePhone(requestParameters: InsertPbxHardwarePhoneRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ConversationPbxHardwarePhoneResponse>;
+
+    /**
      * Insert a pbx menu 
      * @summary Insert pbx menu
      * @param {ConversationPbxMenu} pbxMenu Pbx Menu
@@ -1991,6 +2103,23 @@ export interface ConversationApiInterface {
      * Purchase pbx phone number
      */
     purchasePbxPhoneNumber(requestParameters: PurchasePbxPhoneNumberRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ConversationPbxPhoneNumberResponse>;
+
+    /**
+     * Update a pbx hardware phone 
+     * @summary Update pbx hardware phone
+     * @param {string} conversationPbxHardwarePhoneUuid 
+     * @param {ConversationPbxHardwarePhone} pbxHardwarePhone Pbx Hardware Phone
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApiInterface
+     */
+    regeneratePasswordForPbxHardwarePhoneRaw(requestParameters: RegeneratePasswordForPbxHardwarePhoneRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ConversationPbxHardwarePhoneResponse>>;
+
+    /**
+     * Update a pbx hardware phone 
+     * Update pbx hardware phone
+     */
+    regeneratePasswordForPbxHardwarePhone(requestParameters: RegeneratePasswordForPbxHardwarePhoneRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ConversationPbxHardwarePhoneResponse>;
 
     /**
      * reset statistics within the queue 
@@ -2230,6 +2359,23 @@ export interface ConversationApiInterface {
      * Update pbx audio
      */
     updatePbxAudio(requestParameters: UpdatePbxAudioRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ConversationPbxAudioResponse>;
+
+    /**
+     * Update a pbx hardware phone 
+     * @summary Update pbx hardware phone
+     * @param {string} conversationPbxHardwarePhoneUuid 
+     * @param {ConversationPbxHardwarePhone} pbxHardwarePhone Pbx Hardware Phone
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApiInterface
+     */
+    updatePbxHardwarePhoneRaw(requestParameters: UpdatePbxHardwarePhoneRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ConversationPbxHardwarePhoneResponse>>;
+
+    /**
+     * Update a pbx hardware phone 
+     * Update pbx hardware phone
+     */
+    updatePbxHardwarePhone(requestParameters: UpdatePbxHardwarePhoneRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ConversationPbxHardwarePhoneResponse>;
 
     /**
      * Update a pbx menu 
@@ -2700,6 +2846,47 @@ export class ConversationApi extends runtime.BaseAPI implements ConversationApiI
      */
     async deletePbxAudio(requestParameters: DeletePbxAudioRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ConversationPbxAudioResponse> {
         const response = await this.deletePbxAudioRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Delete a pbx hardware phone 
+     * Delete pbx hardware phone
+     */
+    async deletePbxHardwarePhoneRaw(requestParameters: DeletePbxHardwarePhoneRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ConversationPbxHardwarePhoneResponse>> {
+        if (requestParameters.conversationPbxHardwarePhoneUuid === null || requestParameters.conversationPbxHardwarePhoneUuid === undefined) {
+            throw new runtime.RequiredError('conversationPbxHardwarePhoneUuid','Required parameter requestParameters.conversationPbxHardwarePhoneUuid was null or undefined when calling deletePbxHardwarePhone.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", ["conversation_write"]);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/conversation/pbx/hardware_phone/{conversationPbxHardwarePhoneUuid}`.replace(`{${"conversationPbxHardwarePhoneUuid"}}`, encodeURIComponent(String(requestParameters.conversationPbxHardwarePhoneUuid))),
+            method: 'DELETE',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => ConversationPbxHardwarePhoneResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Delete a pbx hardware phone 
+     * Delete pbx hardware phone
+     */
+    async deletePbxHardwarePhone(requestParameters: DeletePbxHardwarePhoneRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ConversationPbxHardwarePhoneResponse> {
+        const response = await this.deletePbxHardwarePhoneRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
@@ -4412,6 +4599,121 @@ export class ConversationApi extends runtime.BaseAPI implements ConversationApiI
     }
 
     /**
+     * Retrieve a pbx hardware phone 
+     * Get pbx hardware phone
+     */
+    async getPbxHardwarePhoneRaw(requestParameters: GetPbxHardwarePhoneRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ConversationPbxHardwarePhoneResponse>> {
+        if (requestParameters.conversationPbxHardwarePhoneUuid === null || requestParameters.conversationPbxHardwarePhoneUuid === undefined) {
+            throw new runtime.RequiredError('conversationPbxHardwarePhoneUuid','Required parameter requestParameters.conversationPbxHardwarePhoneUuid was null or undefined when calling getPbxHardwarePhone.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", ["conversation_read"]);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/conversation/pbx/hardware_phone/{conversationPbxHardwarePhoneUuid}`.replace(`{${"conversationPbxHardwarePhoneUuid"}}`, encodeURIComponent(String(requestParameters.conversationPbxHardwarePhoneUuid))),
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => ConversationPbxHardwarePhoneResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Retrieve a pbx hardware phone 
+     * Get pbx hardware phone
+     */
+    async getPbxHardwarePhone(requestParameters: GetPbxHardwarePhoneRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ConversationPbxHardwarePhoneResponse> {
+        const response = await this.getPbxHardwarePhoneRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Retrieve pbx hardware phone manufacturers and models for auto-provisioning 
+     * Get pbx hardware phone manufacturers
+     */
+    async getPbxHardwarePhoneManufacturersRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ConversationPbxPhoneManufacturersResponse>> {
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", ["conversation_read"]);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/conversation/pbx/hardware_phone/manufacturers`,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => ConversationPbxPhoneManufacturersResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Retrieve pbx hardware phone manufacturers and models for auto-provisioning 
+     * Get pbx hardware phone manufacturers
+     */
+    async getPbxHardwarePhoneManufacturers(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ConversationPbxPhoneManufacturersResponse> {
+        const response = await this.getPbxHardwarePhoneManufacturersRaw(initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Retrieve pbx hardware phones 
+     * Get pbx hardware phones
+     */
+    async getPbxHardwarePhonesRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ConversationPbxHardwarePhonesResponse>> {
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", ["conversation_read"]);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/conversation/pbx/hardware_phone`,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => ConversationPbxHardwarePhonesResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Retrieve pbx hardware phones 
+     * Get pbx hardware phones
+     */
+    async getPbxHardwarePhones(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ConversationPbxHardwarePhonesResponse> {
+        const response = await this.getPbxHardwarePhonesRaw(initOverrides);
+        return await response.value();
+    }
+
+    /**
      * Retrieve a pbx menu 
      * Get pbx menu
      */
@@ -5356,6 +5658,50 @@ export class ConversationApi extends runtime.BaseAPI implements ConversationApiI
     }
 
     /**
+     * Insert a pbx hardware phone 
+     * Insert pbx hardware phone
+     */
+    async insertPbxHardwarePhoneRaw(requestParameters: InsertPbxHardwarePhoneRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ConversationPbxHardwarePhoneResponse>> {
+        if (requestParameters.pbxHardwarePhone === null || requestParameters.pbxHardwarePhone === undefined) {
+            throw new runtime.RequiredError('pbxHardwarePhone','Required parameter requestParameters.pbxHardwarePhone was null or undefined when calling insertPbxHardwarePhone.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", ["conversation_write"]);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/conversation/pbx/hardware_phone`,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: ConversationPbxHardwarePhoneToJSON(requestParameters.pbxHardwarePhone),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => ConversationPbxHardwarePhoneResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Insert a pbx hardware phone 
+     * Insert pbx hardware phone
+     */
+    async insertPbxHardwarePhone(requestParameters: InsertPbxHardwarePhoneRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ConversationPbxHardwarePhoneResponse> {
+        const response = await this.insertPbxHardwarePhoneRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
      * Insert a pbx menu 
      * Insert pbx menu
      */
@@ -5864,6 +6210,54 @@ export class ConversationApi extends runtime.BaseAPI implements ConversationApiI
      */
     async purchasePbxPhoneNumber(requestParameters: PurchasePbxPhoneNumberRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ConversationPbxPhoneNumberResponse> {
         const response = await this.purchasePbxPhoneNumberRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Update a pbx hardware phone 
+     * Update pbx hardware phone
+     */
+    async regeneratePasswordForPbxHardwarePhoneRaw(requestParameters: RegeneratePasswordForPbxHardwarePhoneRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ConversationPbxHardwarePhoneResponse>> {
+        if (requestParameters.conversationPbxHardwarePhoneUuid === null || requestParameters.conversationPbxHardwarePhoneUuid === undefined) {
+            throw new runtime.RequiredError('conversationPbxHardwarePhoneUuid','Required parameter requestParameters.conversationPbxHardwarePhoneUuid was null or undefined when calling regeneratePasswordForPbxHardwarePhone.');
+        }
+
+        if (requestParameters.pbxHardwarePhone === null || requestParameters.pbxHardwarePhone === undefined) {
+            throw new runtime.RequiredError('pbxHardwarePhone','Required parameter requestParameters.pbxHardwarePhone was null or undefined when calling regeneratePasswordForPbxHardwarePhone.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", ["conversation_write"]);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/conversation/pbx/hardware_phone/{conversationPbxHardwarePhoneUuid}/regenerate_password`.replace(`{${"conversationPbxHardwarePhoneUuid"}}`, encodeURIComponent(String(requestParameters.conversationPbxHardwarePhoneUuid))),
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: ConversationPbxHardwarePhoneToJSON(requestParameters.pbxHardwarePhone),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => ConversationPbxHardwarePhoneResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Update a pbx hardware phone 
+     * Update pbx hardware phone
+     */
+    async regeneratePasswordForPbxHardwarePhone(requestParameters: RegeneratePasswordForPbxHardwarePhoneRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ConversationPbxHardwarePhoneResponse> {
+        const response = await this.regeneratePasswordForPbxHardwarePhoneRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
@@ -6532,6 +6926,54 @@ export class ConversationApi extends runtime.BaseAPI implements ConversationApiI
      */
     async updatePbxAudio(requestParameters: UpdatePbxAudioRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ConversationPbxAudioResponse> {
         const response = await this.updatePbxAudioRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Update a pbx hardware phone 
+     * Update pbx hardware phone
+     */
+    async updatePbxHardwarePhoneRaw(requestParameters: UpdatePbxHardwarePhoneRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ConversationPbxHardwarePhoneResponse>> {
+        if (requestParameters.conversationPbxHardwarePhoneUuid === null || requestParameters.conversationPbxHardwarePhoneUuid === undefined) {
+            throw new runtime.RequiredError('conversationPbxHardwarePhoneUuid','Required parameter requestParameters.conversationPbxHardwarePhoneUuid was null or undefined when calling updatePbxHardwarePhone.');
+        }
+
+        if (requestParameters.pbxHardwarePhone === null || requestParameters.pbxHardwarePhone === undefined) {
+            throw new runtime.RequiredError('pbxHardwarePhone','Required parameter requestParameters.pbxHardwarePhone was null or undefined when calling updatePbxHardwarePhone.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", ["conversation_write"]);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/conversation/pbx/hardware_phone/{conversationPbxHardwarePhoneUuid}`.replace(`{${"conversationPbxHardwarePhoneUuid"}}`, encodeURIComponent(String(requestParameters.conversationPbxHardwarePhoneUuid))),
+            method: 'PUT',
+            headers: headerParameters,
+            query: queryParameters,
+            body: ConversationPbxHardwarePhoneToJSON(requestParameters.pbxHardwarePhone),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => ConversationPbxHardwarePhoneResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Update a pbx hardware phone 
+     * Update pbx hardware phone
+     */
+    async updatePbxHardwarePhone(requestParameters: UpdatePbxHardwarePhoneRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ConversationPbxHardwarePhoneResponse> {
+        const response = await this.updatePbxHardwarePhoneRaw(requestParameters, initOverrides);
         return await response.value();
     }
 

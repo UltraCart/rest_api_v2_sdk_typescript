@@ -221,10 +221,16 @@ src/models/ConversationPbxAvailablePhoneNumber.ts
 src/models/ConversationPbxAvailablePhoneNumbersResponse.ts
 src/models/ConversationPbxCustomerSnapshotRequest.ts
 src/models/ConversationPbxCustomerSnapshotResponse.ts
+src/models/ConversationPbxHardwarePhone.ts
+src/models/ConversationPbxHardwarePhoneResponse.ts
+src/models/ConversationPbxHardwarePhonesResponse.ts
 src/models/ConversationPbxMenu.ts
 src/models/ConversationPbxMenuMapping.ts
 src/models/ConversationPbxMenuResponse.ts
 src/models/ConversationPbxMenusResponse.ts
+src/models/ConversationPbxPhoneManufacturer.ts
+src/models/ConversationPbxPhoneManufacturersResponse.ts
+src/models/ConversationPbxPhoneModel.ts
 src/models/ConversationPbxPhoneNumber.ts
 src/models/ConversationPbxPhoneNumberPurchaseRequest.ts
 src/models/ConversationPbxPhoneNumberResponse.ts

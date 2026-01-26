@@ -1,12 +1,12 @@
 # UltraCart Typescript SDK
-## ultracart_rest_api_v2_typescript@4.1.47
+## ultracart_rest_api_v2_typescript@4.1.48
 
 Every API method call has a sample for every language SDK.  See https://github.com/UltraCart/sdk_samples
 
 Installation
 
 ```
-npm install ultracart_rest_api_v2_typescript@4.1.47 --save
+npm install ultracart_rest_api_v2_typescript@4.1.48 --save
 ```
 
 ```typescript
@@ -85,6 +85,7 @@ Not every change is committed to every SDK.
 
 | Version | Date | Comments |
 | --: | :-: | --- |
+| 4.1.48 | 01/26/2026 | conversation - hardware phone methods and objects |
 | 4.1.47 | 01/26/2026 | conversation - agent auth object chat admin/user properties |
 | 4.1.46 | 01/26/2026 | cart - expose utm array for use in abandon webhook only |
 | 4.1.45 | 01/26/2026 | added multimedia file size to ItemContentMultimedia object |
