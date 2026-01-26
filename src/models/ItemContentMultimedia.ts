@@ -87,6 +87,12 @@ export interface ItemContentMultimedia {
      */
     placeholder?: boolean;
     /**
+     * Size of the file in bytes if known
+     * @type {number}
+     * @memberof ItemContentMultimedia
+     */
+    size?: number;
+    /**
      * Temporary multimedia object identifier assigned if uploading new multimedia
      * @type {number}
      * @memberof ItemContentMultimedia
@@ -162,6 +168,7 @@ export function ItemContentMultimediaFromJSONTyped(json: any, ignoreDiscriminato
         'merchant_item_multimedia_oid': !exists(json, 'merchant_item_multimedia_oid') ? undefined : json['merchant_item_multimedia_oid'],
         'orphan': !exists(json, 'orphan') ? undefined : json['orphan'],
         'placeholder': !exists(json, 'placeholder') ? undefined : json['placeholder'],
+        'size': !exists(json, 'size') ? undefined : json['size'],
         'temp_multimedia_oid': !exists(json, 'temp_multimedia_oid') ? undefined : json['temp_multimedia_oid'],
         'thumbnails': !exists(json, 'thumbnails') ? undefined : ((json['thumbnails'] as Array<any>).map(ItemContentMultimediaThumbnailFromJSON)),
         'type': !exists(json, 'type') ? undefined : json['type'],
@@ -189,6 +196,7 @@ export function ItemContentMultimediaToJSON(value?: ItemContentMultimedia | null
         'merchant_item_multimedia_oid': value.merchant_item_multimedia_oid,
         'orphan': value.orphan,
         'placeholder': value.placeholder,
+        'size': value.size,
         'temp_multimedia_oid': value.temp_multimedia_oid,
         'thumbnails': value.thumbnails === undefined ? undefined : ((value.thumbnails as Array<any>).map(ItemContentMultimediaThumbnailToJSON)),
         'type': value.type,
