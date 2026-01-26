@@ -7017,6 +7017,18 @@ export declare namespace Conversation {
 export interface ConversationAgentAuth {
     /**
      *
+     * @type {boolean}
+     * @memberof ConversationAgentAuth
+     */
+    chat_admin?: boolean;
+    /**
+     *
+     * @type {boolean}
+     * @memberof ConversationAgentAuth
+     */
+    chat_user?: boolean;
+    /**
+     *
      * @type {string}
      * @memberof ConversationAgentAuth
      */
