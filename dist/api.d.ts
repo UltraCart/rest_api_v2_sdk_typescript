@@ -28383,6 +28383,12 @@ export interface ItemContentMultimedia {
      */
     placeholder?: boolean;
     /**
+     * Size of the file in bytes if known
+     * @type {number}
+     * @memberof ItemContentMultimedia
+     */
+    size?: number;
+    /**
      * Temporary multimedia object identifier assigned if uploading new multimedia
      * @type {number}
      * @memberof ItemContentMultimedia
