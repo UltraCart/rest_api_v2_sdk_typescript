@@ -24,6 +24,12 @@ export interface ConversationDepartmentMember {
      * @type {boolean}
      * @memberof ConversationDepartmentMember
      */
+    ai?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof ConversationDepartmentMember
+     */
     member?: boolean;
     /**
      * 
@@ -60,6 +66,7 @@ export function ConversationDepartmentMemberFromJSONTyped(json: any, ignoreDiscr
     }
     return {
         
+        'ai': !exists(json, 'ai') ? undefined : json['ai'],
         'member': !exists(json, 'member') ? undefined : json['member'],
         'name': !exists(json, 'name') ? undefined : json['name'],
         'user_id': !exists(json, 'user_id') ? undefined : json['user_id'],
@@ -75,6 +82,7 @@ export function ConversationDepartmentMemberToJSON(value?: ConversationDepartmen
     }
     return {
         
+        'ai': value.ai,
         'member': value.member,
         'name': value.name,
         'user_id': value.user_id,
