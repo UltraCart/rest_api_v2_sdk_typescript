@@ -7455,6 +7455,12 @@ export interface ConversationDepartmentMember {
      * @type {boolean}
      * @memberof ConversationDepartmentMember
      */
+    ai?: boolean;
+    /**
+     *
+     * @type {boolean}
+     * @memberof ConversationDepartmentMember
+     */
     member?: boolean;
     /**
      *
