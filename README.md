@@ -1,4 +1,4 @@
-## ultracart_rest_api_v2_typescript@3.11.45
+## ultracart_rest_api_v2_typescript@3.11.46
 
 This generator creates TypeScript/JavaScript client that utilizes [Fetch API](https://fetch.spec.whatwg.org/). The generated Node module can be used in the following environments:
 
@@ -36,7 +36,7 @@ navigate to the folder of your consuming project and run one of the following co
 _published:_
 
 ```
-npm install ultracart_rest_api_v2_typescript@3.11.45 --save
+npm install ultracart_rest_api_v2_typescript@3.11.46 --save
 ```
 
 _unPublished (not recommended):_
@@ -54,6 +54,7 @@ Not every change is committed to every SDK.
 
 | Version | Date | Comments |
 | --: | :-: | --- |
+| 3.11.46 | 01/26/2026 | cart - expose utm array for use in abandon webhook only |
 | 3.11.45 | 01/26/2026 | added multimedia file size to ItemContentMultimedia object |
 | 3.11.44 | 01/26/2026 | conversations - ConversationDepartmentMember expose a flag for if the agent is AI |
 | 3.11.43 | 01/14/2026 | coupons - generate one time coupons prefix support (optional) |

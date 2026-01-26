@@ -2509,6 +2509,12 @@ export interface Cart {
      * @memberof Cart
      */
     upsell_after?: CartUpsellAfter;
+    /**
+     * UTM clicks.  The zero index is the most recent (last) UTM click.  Only available in BigQuery and on an abandon webhook.
+     * @type {Array<CartUtm>}
+     * @memberof Cart
+     */
+    utms?: Array<CartUtm>;
 }
 /**
  *
@@ -5187,6 +5193,205 @@ export interface CartUpsellAfter {
      * @memberof CartUpsellAfter
      */
     upsell_path_variation?: string;
+}
+/**
+ *
+ * @export
+ * @interface CartUtm
+ */
+export interface CartUtm {
+    /**
+     *
+     * @type {number}
+     * @memberof CartUtm
+     */
+    attribution_first_click_subtotal?: number;
+    /**
+     *
+     * @type {number}
+     * @memberof CartUtm
+     */
+    attribution_first_click_total?: number;
+    /**
+     *
+     * @type {number}
+     * @memberof CartUtm
+     */
+    attribution_last_click_subtotal?: number;
+    /**
+     *
+     * @type {number}
+     * @memberof CartUtm
+     */
+    attribution_last_click_total?: number;
+    /**
+     *
+     * @type {number}
+     * @memberof CartUtm
+     */
+    attribution_linear_subtotal?: number;
+    /**
+     *
+     * @type {number}
+     * @memberof CartUtm
+     */
+    attribution_linear_total?: number;
+    /**
+     *
+     * @type {number}
+     * @memberof CartUtm
+     */
+    attribution_position_based_subtotal?: number;
+    /**
+     *
+     * @type {number}
+     * @memberof CartUtm
+     */
+    attribution_position_based_total?: number;
+    /**
+     * Date/time that the click happened
+     * @type {string}
+     * @memberof CartUtm
+     */
+    click_dts?: string;
+    /**
+     *
+     * @type {string}
+     * @memberof CartUtm
+     */
+    facebook_ad_id?: string;
+    /**
+     *
+     * @type {string}
+     * @memberof CartUtm
+     */
+    fbclid?: string;
+    /**
+     *
+     * @type {string}
+     * @memberof CartUtm
+     */
+    gbraid?: string;
+    /**
+     *
+     * @type {string}
+     * @memberof CartUtm
+     */
+    glcid?: string;
+    /**
+     *
+     * @type {string}
+     * @memberof CartUtm
+     */
+    itm_campaign?: string;
+    /**
+     *
+     * @type {string}
+     * @memberof CartUtm
+     */
+    itm_content?: string;
+    /**
+     *
+     * @type {string}
+     * @memberof CartUtm
+     */
+    itm_id?: string;
+    /**
+     *
+     * @type {string}
+     * @memberof CartUtm
+     */
+    itm_medium?: string;
+    /**
+     *
+     * @type {string}
+     * @memberof CartUtm
+     */
+    itm_source?: string;
+    /**
+     *
+     * @type {string}
+     * @memberof CartUtm
+     */
+    itm_term?: string;
+    /**
+     *
+     * @type {string}
+     * @memberof CartUtm
+     */
+    msclkid?: string;
+    /**
+     *
+     * @type {string}
+     * @memberof CartUtm
+     */
+    short_code?: string;
+    /**
+     *
+     * @type {boolean}
+     * @memberof CartUtm
+     */
+    short_code_backup?: boolean;
+    /**
+     *
+     * @type {string}
+     * @memberof CartUtm
+     */
+    ttclid?: string;
+    /**
+     *
+     * @type {string}
+     * @memberof CartUtm
+     */
+    uc_message_id?: string;
+    /**
+     *
+     * @type {string}
+     * @memberof CartUtm
+     */
+    utm_campaign?: string;
+    /**
+     *
+     * @type {string}
+     * @memberof CartUtm
+     */
+    utm_content?: string;
+    /**
+     *
+     * @type {string}
+     * @memberof CartUtm
+     */
+    utm_id?: string;
+    /**
+     *
+     * @type {string}
+     * @memberof CartUtm
+     */
+    utm_medium?: string;
+    /**
+     *
+     * @type {string}
+     * @memberof CartUtm
+     */
+    utm_source?: string;
+    /**
+     *
+     * @type {string}
+     * @memberof CartUtm
+     */
+    utm_term?: string;
+    /**
+     *
+     * @type {string}
+     * @memberof CartUtm
+     */
+    vmcid?: string;
+    /**
+     *
+     * @type {string}
+     * @memberof CartUtm
+     */
+    wbraid?: string;
 }
 /**
  *
