@@ -121,6 +121,12 @@ import {
     CartUpsellAfterFromJSONTyped,
     CartUpsellAfterToJSON,
 } from './CartUpsellAfter';
+import {
+    CartUtm,
+    CartUtmFromJSON,
+    CartUtmFromJSONTyped,
+    CartUtmToJSON,
+} from './CartUtm';
 
 /**
  * 
@@ -284,6 +290,12 @@ export interface Cart {
      * @memberof Cart
      */
     upsell_after?: CartUpsellAfter;
+    /**
+     * UTM clicks.  The zero index is the most recent (last) UTM click.  Only available in BigQuery and on an abandon webhook.
+     * @type {Array<CartUtm>}
+     * @memberof Cart
+     */
+    utms?: Array<CartUtm>;
 }
 
 
@@ -333,6 +345,7 @@ export function CartFromJSONTyped(json: any, ignoreDiscriminator: boolean): Cart
         'summary': !exists(json, 'summary') ? undefined : CartSummaryFromJSON(json['summary']),
         'taxes': !exists(json, 'taxes') ? undefined : CartTaxesFromJSON(json['taxes']),
         'upsell_after': !exists(json, 'upsell_after') ? undefined : CartUpsellAfterFromJSON(json['upsell_after']),
+        'utms': !exists(json, 'utms') ? undefined : ((json['utms'] as Array<any>).map(CartUtmFromJSON)),
     };
 }
 
@@ -371,6 +384,7 @@ export function CartToJSON(value?: Cart | null): any {
         'summary': CartSummaryToJSON(value.summary),
         'taxes': CartTaxesToJSON(value.taxes),
         'upsell_after': CartUpsellAfterToJSON(value.upsell_after),
+        'utms': value.utms === undefined ? undefined : ((value.utms as Array<any>).map(CartUtmToJSON)),
     };
 }
 

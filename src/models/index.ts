@@ -101,6 +101,7 @@ export * from './CartShipping';
 export * from './CartSummary';
 export * from './CartTaxes';
 export * from './CartUpsellAfter';
+export * from './CartUtm';
 export * from './CartValidationRequest';
 export * from './CartValidationResponse';
 export * from './ChanelPartnerReasonCodesResponse';

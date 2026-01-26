@@ -125,6 +125,7 @@ src/models/CartShipping.ts
 src/models/CartSummary.ts
 src/models/CartTaxes.ts
 src/models/CartUpsellAfter.ts
+src/models/CartUtm.ts
 src/models/CartValidationRequest.ts
 src/models/CartValidationResponse.ts
 src/models/ChanelPartnerReasonCodesResponse.ts
