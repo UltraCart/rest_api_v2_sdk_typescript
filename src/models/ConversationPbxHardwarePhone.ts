@@ -20,6 +20,18 @@ import { exists, mapValues } from '../runtime';
  */
 export interface ConversationPbxHardwarePhone {
     /**
+     * Admin Username
+     * @type {string}
+     * @memberof ConversationPbxHardwarePhone
+     */
+    admin_username?: string;
+    /**
+     * Associated Agent UUID
+     * @type {string}
+     * @memberof ConversationPbxHardwarePhone
+     */
+    conversation_pbx_agent_uuid?: string;
+    /**
      * Conversation Pbx Hardware Phone UUID
      * @type {string}
      * @memberof ConversationPbxHardwarePhone
@@ -80,7 +92,13 @@ export interface ConversationPbxHardwarePhone {
      */
     sip_domain?: string;
     /**
-     * SIP Password
+     * SIP Edge Location
+     * @type {string}
+     * @memberof ConversationPbxHardwarePhone
+     */
+    sip_edge_location?: string;
+    /**
+     * SIP Password (only on create or regenerate password requests)
      * @type {string}
      * @memberof ConversationPbxHardwarePhone
      */
@@ -91,6 +109,12 @@ export interface ConversationPbxHardwarePhone {
      * @memberof ConversationPbxHardwarePhone
      */
     sip_username?: string;
+    /**
+     * Twilio Credential SID
+     * @type {string}
+     * @memberof ConversationPbxHardwarePhone
+     */
+    twilio_credential_sid?: string;
     /**
      * Updated At
      * @type {object}
@@ -120,6 +144,8 @@ export function ConversationPbxHardwarePhoneFromJSONTyped(json: any, ignoreDiscr
     }
     return {
         
+        'admin_username': !exists(json, 'admin_username') ? undefined : json['admin_username'],
+        'conversation_pbx_agent_uuid': !exists(json, 'conversation_pbx_agent_uuid') ? undefined : json['conversation_pbx_agent_uuid'],
         'conversation_pbx_hardware_phone_uuid': !exists(json, 'conversation_pbx_hardware_phone_uuid') ? undefined : json['conversation_pbx_hardware_phone_uuid'],
         'created_at': !exists(json, 'created_at') ? undefined : json['created_at'],
         'description': !exists(json, 'description') ? undefined : json['description'],
@@ -130,8 +156,10 @@ export function ConversationPbxHardwarePhoneFromJSONTyped(json: any, ignoreDiscr
         'name': !exists(json, 'name') ? undefined : json['name'],
         'provisioning_url': !exists(json, 'provisioning_url') ? undefined : json['provisioning_url'],
         'sip_domain': !exists(json, 'sip_domain') ? undefined : json['sip_domain'],
+        'sip_edge_location': !exists(json, 'sip_edge_location') ? undefined : json['sip_edge_location'],
         'sip_password': !exists(json, 'sip_password') ? undefined : json['sip_password'],
         'sip_username': !exists(json, 'sip_username') ? undefined : json['sip_username'],
+        'twilio_credential_sid': !exists(json, 'twilio_credential_sid') ? undefined : json['twilio_credential_sid'],
         'updated_at': !exists(json, 'updated_at') ? undefined : json['updated_at'],
     };
 }
@@ -145,6 +173,8 @@ export function ConversationPbxHardwarePhoneToJSON(value?: ConversationPbxHardwa
     }
     return {
         
+        'admin_username': value.admin_username,
+        'conversation_pbx_agent_uuid': value.conversation_pbx_agent_uuid,
         'conversation_pbx_hardware_phone_uuid': value.conversation_pbx_hardware_phone_uuid,
         'created_at': value.created_at,
         'description': value.description,
@@ -155,8 +185,10 @@ export function ConversationPbxHardwarePhoneToJSON(value?: ConversationPbxHardwa
         'name': value.name,
         'provisioning_url': value.provisioning_url,
         'sip_domain': value.sip_domain,
+        'sip_edge_location': value.sip_edge_location,
         'sip_password': value.sip_password,
         'sip_username': value.sip_username,
+        'twilio_credential_sid': value.twilio_credential_sid,
         'updated_at': value.updated_at,
     };
 }

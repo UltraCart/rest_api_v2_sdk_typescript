@@ -26,6 +26,12 @@ export interface ConversationPbxAgent {
      */
     ai?: boolean;
     /**
+     * The call routing preference
+     * @type {string}
+     * @memberof ConversationPbxAgent
+     */
+    call_routing_preference?: ConversationPbxAgentCallRoutingPreferenceEnum;
+    /**
      * Cellphone number of agent in E.164 format
      * @type {string}
      * @memberof ConversationPbxAgent
@@ -44,17 +50,17 @@ export interface ConversationPbxAgent {
      */
     extension?: number;
     /**
-     * True if calls to this agent should be forwarded to their cellphone
-     * @type {boolean}
-     * @memberof ConversationPbxAgent
-     */
-    forward_calls_to_cellphone?: boolean;
-    /**
      * Full name
      * @type {string}
      * @memberof ConversationPbxAgent
      */
     full_name?: string;
+    /**
+     * Array of hardware phones UUIDs associated with this agent
+     * @type {Array<string>}
+     * @memberof ConversationPbxAgent
+     */
+    hardware_phone_uuids?: Array<string>;
     /**
      * Agent login
      * @type {string}
@@ -73,6 +79,12 @@ export interface ConversationPbxAgent {
      * @memberof ConversationPbxAgent
      */
     personal_conversation_pbx_voicemail_mailbox_uuid?: string;
+    /**
+     * The hardware phone that will be dialed on an incoming call if routing preference is hardware_phone
+     * @type {string}
+     * @memberof ConversationPbxAgent
+     */
+    preferred_hardware_phone_uuid?: string;
     /**
      * True if outgoing calls should be automatically recorded
      * @type {boolean}
@@ -126,6 +138,17 @@ export interface ConversationPbxAgent {
 
 
 /**
+ * @export
+ */
+export const ConversationPbxAgentCallRoutingPreferenceEnum = {
+    Softphone: 'softphone',
+    HardwarePhone: 'hardware_phone',
+    Cellphone: 'cellphone'
+} as const;
+export type ConversationPbxAgentCallRoutingPreferenceEnum = typeof ConversationPbxAgentCallRoutingPreferenceEnum[keyof typeof ConversationPbxAgentCallRoutingPreferenceEnum];
+
+
+/**
  * Check if a given object implements the ConversationPbxAgent interface.
  */
 export function instanceOfConversationPbxAgent(value: object): boolean {
@@ -145,14 +168,16 @@ export function ConversationPbxAgentFromJSONTyped(json: any, ignoreDiscriminator
     return {
         
         'ai': !exists(json, 'ai') ? undefined : json['ai'],
+        'call_routing_preference': !exists(json, 'call_routing_preference') ? undefined : json['call_routing_preference'],
         'cellphone': !exists(json, 'cellphone') ? undefined : json['cellphone'],
         'conversation_pbx_agent_uuid': !exists(json, 'conversation_pbx_agent_uuid') ? undefined : json['conversation_pbx_agent_uuid'],
         'extension': !exists(json, 'extension') ? undefined : json['extension'],
-        'forward_calls_to_cellphone': !exists(json, 'forward_calls_to_cellphone') ? undefined : json['forward_calls_to_cellphone'],
         'full_name': !exists(json, 'full_name') ? undefined : json['full_name'],
+        'hardware_phone_uuids': !exists(json, 'hardware_phone_uuids') ? undefined : json['hardware_phone_uuids'],
         'login': !exists(json, 'login') ? undefined : json['login'],
         'merchant_id': !exists(json, 'merchant_id') ? undefined : json['merchant_id'],
         'personal_conversation_pbx_voicemail_mailbox_uuid': !exists(json, 'personal_conversation_pbx_voicemail_mailbox_uuid') ? undefined : json['personal_conversation_pbx_voicemail_mailbox_uuid'],
+        'preferred_hardware_phone_uuid': !exists(json, 'preferred_hardware_phone_uuid') ? undefined : json['preferred_hardware_phone_uuid'],
         'record_outgoing_automatically': !exists(json, 'record_outgoing_automatically') ? undefined : json['record_outgoing_automatically'],
         'shared_conversation_pbx_voicemail_mailbox_uuid': !exists(json, 'shared_conversation_pbx_voicemail_mailbox_uuid') ? undefined : json['shared_conversation_pbx_voicemail_mailbox_uuid'],
         'twilio_taskrouter_worker_id': !exists(json, 'twilio_taskrouter_worker_id') ? undefined : json['twilio_taskrouter_worker_id'],
@@ -174,14 +199,16 @@ export function ConversationPbxAgentToJSON(value?: ConversationPbxAgent | null):
     return {
         
         'ai': value.ai,
+        'call_routing_preference': value.call_routing_preference,
         'cellphone': value.cellphone,
         'conversation_pbx_agent_uuid': value.conversation_pbx_agent_uuid,
         'extension': value.extension,
-        'forward_calls_to_cellphone': value.forward_calls_to_cellphone,
         'full_name': value.full_name,
+        'hardware_phone_uuids': value.hardware_phone_uuids,
         'login': value.login,
         'merchant_id': value.merchant_id,
         'personal_conversation_pbx_voicemail_mailbox_uuid': value.personal_conversation_pbx_voicemail_mailbox_uuid,
+        'preferred_hardware_phone_uuid': value.preferred_hardware_phone_uuid,
         'record_outgoing_automatically': value.record_outgoing_automatically,
         'shared_conversation_pbx_voicemail_mailbox_uuid': value.shared_conversation_pbx_voicemail_mailbox_uuid,
         'twilio_taskrouter_worker_id': value.twilio_taskrouter_worker_id,
