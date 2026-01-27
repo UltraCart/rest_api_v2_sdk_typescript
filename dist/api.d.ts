@@ -9356,6 +9356,12 @@ export interface ConversationPbxAgent {
      */
     ai?: boolean;
     /**
+     * The call routing preference
+     * @type {string}
+     * @memberof ConversationPbxAgent
+     */
+    call_routing_preference?: ConversationPbxAgent.CallRoutingPreferenceEnum;
+    /**
      * Cellphone number of agent in E.164 format
      * @type {string}
      * @memberof ConversationPbxAgent
@@ -9374,17 +9380,17 @@ export interface ConversationPbxAgent {
      */
     extension?: number;
     /**
-     * True if calls to this agent should be forwarded to their cellphone
-     * @type {boolean}
-     * @memberof ConversationPbxAgent
-     */
-    forward_calls_to_cellphone?: boolean;
-    /**
      * Full name
      * @type {string}
      * @memberof ConversationPbxAgent
      */
     full_name?: string;
+    /**
+     * Array of hardware phones UUIDs associated with this agent
+     * @type {Array<string>}
+     * @memberof ConversationPbxAgent
+     */
+    hardware_phone_uuids?: Array<string>;
     /**
      * Agent login
      * @type {string}
@@ -9403,6 +9409,12 @@ export interface ConversationPbxAgent {
      * @memberof ConversationPbxAgent
      */
     personal_conversation_pbx_voicemail_mailbox_uuid?: string;
+    /**
+     * The hardware phone that will be dialed on an incoming call if routing preference is hardware_phone
+     * @type {string}
+     * @memberof ConversationPbxAgent
+     */
+    preferred_hardware_phone_uuid?: string;
     /**
      * True if outgoing calls should be automatically recorded
      * @type {boolean}
@@ -9451,6 +9463,21 @@ export interface ConversationPbxAgent {
      * @memberof ConversationPbxAgent
      */
     voicemail?: boolean;
+}
+/**
+ * @export
+ * @namespace ConversationPbxAgent
+ */
+export declare namespace ConversationPbxAgent {
+    /**
+     * @export
+     * @enum {string}
+     */
+    enum CallRoutingPreferenceEnum {
+        Softphone,
+        HardwarePhone,
+        Cellphone
+    }
 }
 /**
  *
@@ -10003,6 +10030,18 @@ export interface ConversationPbxCustomerSnapshotResponse {
  */
 export interface ConversationPbxHardwarePhone {
     /**
+     * Admin Username
+     * @type {string}
+     * @memberof ConversationPbxHardwarePhone
+     */
+    admin_username?: string;
+    /**
+     * Associated Agent UUID
+     * @type {string}
+     * @memberof ConversationPbxHardwarePhone
+     */
+    conversation_pbx_agent_uuid?: string;
+    /**
      * Conversation Pbx Hardware Phone UUID
      * @type {string}
      * @memberof ConversationPbxHardwarePhone
@@ -10063,7 +10102,13 @@ export interface ConversationPbxHardwarePhone {
      */
     sip_domain?: string;
     /**
-     * SIP Password
+     * SIP Edge Location
+     * @type {string}
+     * @memberof ConversationPbxHardwarePhone
+     */
+    sip_edge_location?: string;
+    /**
+     * SIP Password (only on create or regenerate password requests)
      * @type {string}
      * @memberof ConversationPbxHardwarePhone
      */
@@ -10074,6 +10119,12 @@ export interface ConversationPbxHardwarePhone {
      * @memberof ConversationPbxHardwarePhone
      */
     sip_username?: string;
+    /**
+     * Twilio Credential SID
+     * @type {string}
+     * @memberof ConversationPbxHardwarePhone
+     */
+    twilio_credential_sid?: string;
     /**
      * Updated At
      * @type {any}
