@@ -10691,6 +10691,12 @@ export interface ConversationPbxQueue {
      */
     announce_queue_position?: boolean;
     /**
+     * AI Agent UUID to automatically engage to provide coaching
+     * @type {string}
+     * @memberof ConversationPbxQueue
+     */
+    automatic_coach_agent_uuid?: string;
+    /**
      * Conversation Pbx Queue unique identifier
      * @type {string}
      * @memberof ConversationPbxQueue
