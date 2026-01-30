@@ -1,12 +1,12 @@
 # UltraCart Typescript SDK
-## ultracart_rest_api_v2_typescript@4.1.50
+## ultracart_rest_api_v2_typescript@4.1.51
 
 Every API method call has a sample for every language SDK.  See https://github.com/UltraCart/sdk_samples
 
 Installation
 
 ```
-npm install ultracart_rest_api_v2_typescript@4.1.50 --save
+npm install ultracart_rest_api_v2_typescript@4.1.51 --save
 ```
 
 ```typescript
@@ -85,6 +85,7 @@ Not every change is committed to every SDK.
 
 | Version | Date | Comments |
 | --: | :-: | --- |
+| 4.1.51 | 01/30/2026 | conversations queue setting for automatic AI coaching |
 | 4.1.50 | 01/27/2026 | conversations - refinements to support hardware phones |
 | 4.1.49 | 01/26/2026 | no changes - testing changes to build automation |
 | 4.1.48 | 01/26/2026 | conversation - hardware phone methods and objects |

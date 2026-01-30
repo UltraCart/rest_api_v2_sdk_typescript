@@ -45,6 +45,12 @@ export interface ConversationPbxQueue {
      */
     announce_queue_position?: boolean;
     /**
+     * AI Agent UUID to automatically engage to provide coaching
+     * @type {string}
+     * @memberof ConversationPbxQueue
+     */
+    automatic_coach_agent_uuid?: string;
+    /**
      * Conversation Pbx Queue unique identifier
      * @type {string}
      * @memberof ConversationPbxQueue
@@ -201,6 +207,7 @@ export function ConversationPbxQueueFromJSONTyped(json: any, ignoreDiscriminator
         'ai_priority': !exists(json, 'ai_priority') ? undefined : json['ai_priority'],
         'ai_timeout_seconds': !exists(json, 'ai_timeout_seconds') ? undefined : json['ai_timeout_seconds'],
         'announce_queue_position': !exists(json, 'announce_queue_position') ? undefined : json['announce_queue_position'],
+        'automatic_coach_agent_uuid': !exists(json, 'automatic_coach_agent_uuid') ? undefined : json['automatic_coach_agent_uuid'],
         'conversation_pbx_queue_uuid': !exists(json, 'conversation_pbx_queue_uuid') ? undefined : json['conversation_pbx_queue_uuid'],
         'conversation_voicemail_mailbox_uuid': !exists(json, 'conversation_voicemail_mailbox_uuid') ? undefined : json['conversation_voicemail_mailbox_uuid'],
         'hold_conversation_pbx_audio_uuid': !exists(json, 'hold_conversation_pbx_audio_uuid') ? undefined : json['hold_conversation_pbx_audio_uuid'],
@@ -236,6 +243,7 @@ export function ConversationPbxQueueToJSON(value?: ConversationPbxQueue | null):
         'ai_priority': value.ai_priority,
         'ai_timeout_seconds': value.ai_timeout_seconds,
         'announce_queue_position': value.announce_queue_position,
+        'automatic_coach_agent_uuid': value.automatic_coach_agent_uuid,
         'conversation_pbx_queue_uuid': value.conversation_pbx_queue_uuid,
         'conversation_voicemail_mailbox_uuid': value.conversation_voicemail_mailbox_uuid,
         'hold_conversation_pbx_audio_uuid': value.hold_conversation_pbx_audio_uuid,
