@@ -1,48 +1,3 @@
-## ultracart_rest_api_v2_typescript@3.11.51
-
-This generator creates TypeScript/JavaScript client that utilizes [Fetch API](https://fetch.spec.whatwg.org/). The generated Node module can be used in the following environments:
-
-Environment
-* Node.js
-* Webpack
-* Browserify
-
-Language level
-* ES5 - you must have a Promises/A+ library installed
-* ES6
-
-Module system
-* CommonJS
-* ES6 module system
-
-It can be used in both TypeScript and JavaScript. In TypeScript, the definition should be automatically resolved via `package.json`. ([Reference](http://www.typescriptlang.org/docs/handbook/typings-for-npm-packages.html))
-
-### Building
-
-To build an compile the typescript sources to javascript use:
-```
-npm install
-npm run build
-```
-
-### Publishing
-
-First build the package then run ```npm publish```
-
-### Consuming
-
-navigate to the folder of your consuming project and run one of the following commands.
-
-_published:_
-
-```
-npm install ultracart_rest_api_v2_typescript@3.11.51 --save
-```
-
-_unPublished (not recommended):_
-
-```
-npm install PATH_TO_GENERATED_PACKAGE --save
 \n\n
 ```
 \n\n
@@ -54,6 +9,7 @@ Not every change is committed to every SDK.
 
 | Version | Date | Comments |
 | --: | :-: | --- |
+| 3.11.52 | 01/31/2026 | conversation - pbx call log objects |
 | 3.11.51 | 01/30/2026 | conversations queue setting for automatic AI coaching |
 | 3.11.50 | 01/27/2026 | conversations - refinements to support hardware phones |
 | 3.11.49 | 01/26/2026 | no changes - testing changes to build automation |
