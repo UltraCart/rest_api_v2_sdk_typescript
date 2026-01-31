@@ -1,79 +1,3 @@
-# UltraCart Typescript SDK
-## ultracart_rest_api_v2_typescript@4.1.51
-
-Every API method call has a sample for every language SDK.  See https://github.com/UltraCart/sdk_samples
-
-Installation
-
-```
-npm install ultracart_rest_api_v2_typescript@4.1.51 --save
-```
-
-```typescript
-import {orderApi} from '../api';
-import {OrderResponse, Order} from 'ultracart_rest_api_v2_typescript';
-
-export class GetOrder {
-    /**
-     * OrderApi.getOrder() retrieves a single order for a given order_id.
-     */
-    public static async execute(): Promise<Order | undefined> {
-        // The expansion variable instructs UltraCart how much information to return.  The order object is large and
-        // while it's easily manageable for a single order, when querying thousands of orders, is useful to reduce
-        // payload size.
-        // see www.ultracart.com/api/ for all the expansion fields available (this list below may become stale)
-        /*
-        Possible Order Expansions:
-        affiliate           affiliate.ledger                    auto_order
-        billing             channel_partner                     checkout
-        coupon              customer_profile                    digital_order
-        edi                 fraud_score                         gift
-        gift_certificate    internal                            item
-        linked_shipment     marketing                           payment
-        payment.transaction quote                               salesforce
-        shipping            shipping.tracking_number_details    summary
-        taxes
-        */
-        const expansion = 'item,summary,billing,shipping,shipping.tracking_number_details';
-
-        const orderId = 'DEMO-0009104390';
-
-        try {
-            // Retrieve the order
-            const apiResponse: OrderResponse = await orderApi.getOrder({orderId, expand: expansion});
-
-            // Check for errors
-            if (apiResponse.error) {
-                console.error('Developer Message:', apiResponse.error.developer_message);
-                console.error('User Message:', apiResponse.error.user_message);
-                throw new Error('Failed to retrieve order');
-            }
-
-            // Ensure order exists
-            if (!apiResponse.order) {
-                console.error('No order found');
-                return undefined;
-            }
-
-            // Pretty print the order
-            console.log(JSON.stringify(apiResponse.order, null, 2));
-
-            return apiResponse.order;
-        } catch (error) {
-            console.error('Error retrieving order:', error);
-            process.exit(1);
-        }
-    }
-}
-
-// Optional: If you want to call the method
-// GetOrder.execute().then(order => {
-//     if (order) {
-//         // Do something with the order
-//     }
-// });
-```
-
 \n\n
 ```
 \n\n
@@ -85,6 +9,7 @@ Not every change is committed to every SDK.
 
 | Version | Date | Comments |
 | --: | :-: | --- |
+| 4.1.52 | 01/31/2026 | conversation - pbx call log objects |
 | 4.1.51 | 01/30/2026 | conversations queue setting for automatic AI coaching |
 | 4.1.50 | 01/27/2026 | conversations - refinements to support hardware phones |
 | 4.1.49 | 01/26/2026 | no changes - testing changes to build automation |
