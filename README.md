@@ -1,12 +1,12 @@
 # UltraCart Typescript SDK
-## ultracart_rest_api_v2_typescript@4.1.54
+## ultracart_rest_api_v2_typescript@4.1.55
 
 Every API method call has a sample for every language SDK.  See https://github.com/UltraCart/sdk_samples
 
 Installation
 
 ```
-npm install ultracart_rest_api_v2_typescript@4.1.54 --save
+npm install ultracart_rest_api_v2_typescript@4.1.55 --save
 ```
 
 ```typescript
@@ -85,6 +85,7 @@ Not every change is committed to every SDK.
 
 | Version | Date | Comments |
 | --: | :-: | --- |
+| 4.1.55 | 02/02/2026 | conversations - add enumerated values for say voice on queue and agent |
 | 4.1.54 | 02/02/2026 | build error fix |
 | 4.1.53 | 02/02/2026 | conversations default pricing phone number settings |
 | 4.1.52 | 01/31/2026 | conversation - pbx call log objects |
