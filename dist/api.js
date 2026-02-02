@@ -28,10 +28,10 @@ var __extends = (this && this.__extends) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.ItemOptionValue = exports.ItemOption = exports.ItemContentMultimedia = exports.ItemAutoOrderStep = exports.Experiment = exports.EmailPerformance = exports.EmailCommseqStep = exports.Distance = exports.CustomerQuery = exports.Coupon = exports.ConversationWebsocketMessage = exports.ConversationWebchatQueueStatusUpdateRequest = exports.ConversationWebchatQueueStatusAgent = exports.ConversationVirtualAgentCapabilities = exports.ConversationSummary = exports.ConversationSentiment = exports.ConversationPbxVoicemailMessageSummary = exports.ConversationPbxVoicemailMessage = exports.ConversationPbxVoicemailMailbox = exports.ConversationPbxTimeBasedMapping = exports.ConversationPbxQueue = exports.ConversationPbxPhoneNumberPurchaseRequest = exports.ConversationPbxPhoneNumber = exports.ConversationPbxMenuMapping = exports.ConversationPbxMenu = exports.ConversationPbxAvailablePhoneNumber = exports.ConversationPbxAgent = exports.ConversationMessageTransportStatus = exports.ConversationMessage = exports.ConversationMcpServer = exports.ConversationEventRRWeb = exports.ConversationEngagementEquationFunction = exports.ConversationEngagement = exports.ConversationAgentProfile = exports.Conversation = exports.CheckoutHandoffRequest = exports.ChannelPartnerOrderItem = exports.ChannelPartnerOrder = exports.CartKitComponentOption = exports.CartItemOption = exports.CartItemMultimedia = exports.CartCustomerProfileCreditCard = exports.AutoOrderItemSimpleSchedule = exports.AutoOrderItem = exports.AutoOrder = exports.AffiliateLink = exports.AffiliateLedger = exports.RequiredError = exports.BaseAPI = exports.COLLECTION_FORMATS = void 0;
-exports.ChannelPartnerApiFactory = exports.ChannelPartnerApiFp = exports.ChannelPartnerApiFetchParamCreator = exports.AutoOrderApi = exports.AutoOrderApiFactory = exports.AutoOrderApiFp = exports.AutoOrderApiFetchParamCreator = exports.AffiliateApi = exports.AffiliateApiFactory = exports.AffiliateApiFp = exports.AffiliateApiFetchParamCreator = exports.WorkflowTasksRequest = exports.WorkflowTask = exports.Weight = exports.Webhook = exports.TempMultimedia = exports.ReportWebsocketEvent = exports.ReportPageVisualizationMetric = exports.ReportPageVisualization = exports.ReportFilter = exports.ReportExecuteQueriesRequest = exports.ReportDataSourceSchema = exports.ReportDataSetSchema = exports.ReportDataSetQuery = exports.ReportDataSet = exports.Report = exports.PointOfSaleReader = exports.OrderQueryBatch = exports.OrderQuery = exports.OrderPaymentECheck = exports.OrderPaymentCreditCard = exports.OrderPayment = exports.OrderItemOption = exports.OrderItem = exports.OrderFraudScore = exports.OrderFormat = exports.OrderEdiDocument = exports.OrderCurrentStageHistory = exports.OrderAutoOrder = exports.OrderAffiliateLedger = exports.Order = exports.OauthTokenResponse = exports.ItemThirdPartyEmailMarketing = exports.ItemTax = exports.ItemTag = exports.ItemShippingMethod = exports.ItemShippingDestinationRestriction = exports.ItemReview = exports.ItemRestrictionItem = exports.ItemRelatedItem = void 0;
-exports.StorefrontApiFetchParamCreator = exports.SsoApi = exports.SsoApiFactory = exports.SsoApiFp = exports.SsoApiFetchParamCreator = exports.OrderApi = exports.OrderApiFactory = exports.OrderApiFp = exports.OrderApiFetchParamCreator = exports.OauthApi = exports.OauthApiFactory = exports.OauthApiFp = exports.OauthApiFetchParamCreator = exports.ItemApi = exports.ItemApiFactory = exports.ItemApiFp = exports.ItemApiFetchParamCreator = exports.IntegrationLogApi = exports.IntegrationLogApiFactory = exports.IntegrationLogApiFp = exports.IntegrationLogApiFetchParamCreator = exports.GiftCertificateApi = exports.GiftCertificateApiFactory = exports.GiftCertificateApiFp = exports.GiftCertificateApiFetchParamCreator = exports.FulfillmentApi = exports.FulfillmentApiFactory = exports.FulfillmentApiFp = exports.FulfillmentApiFetchParamCreator = exports.DatawarehouseApi = exports.DatawarehouseApiFactory = exports.DatawarehouseApiFp = exports.DatawarehouseApiFetchParamCreator = exports.CustomerApi = exports.CustomerApiFactory = exports.CustomerApiFp = exports.CustomerApiFetchParamCreator = exports.CouponApi = exports.CouponApiFactory = exports.CouponApiFp = exports.CouponApiFetchParamCreator = exports.ConversationApi = exports.ConversationApiFactory = exports.ConversationApiFp = exports.ConversationApiFetchParamCreator = exports.CheckoutApi = exports.CheckoutApiFactory = exports.CheckoutApiFp = exports.CheckoutApiFetchParamCreator = exports.ChannelPartnerApi = void 0;
-exports.WorkflowApi = exports.WorkflowApiFactory = exports.WorkflowApiFp = exports.WorkflowApiFetchParamCreator = exports.WebhookApi = exports.WebhookApiFactory = exports.WebhookApiFp = exports.WebhookApiFetchParamCreator = exports.UserApi = exports.UserApiFactory = exports.UserApiFp = exports.UserApiFetchParamCreator = exports.TaxApi = exports.TaxApiFactory = exports.TaxApiFp = exports.TaxApiFetchParamCreator = exports.StorefrontApi = exports.StorefrontApiFactory = exports.StorefrontApiFp = void 0;
+exports.ItemContentMultimedia = exports.ItemAutoOrderStep = exports.Experiment = exports.EmailPerformance = exports.EmailCommseqStep = exports.Distance = exports.CustomerQuery = exports.Coupon = exports.ConversationWebsocketMessage = exports.ConversationWebchatQueueStatusUpdateRequest = exports.ConversationWebchatQueueStatusAgent = exports.ConversationVirtualAgentCapabilities = exports.ConversationSummary = exports.ConversationSentiment = exports.ConversationPbxVoicemailMessageSummary = exports.ConversationPbxVoicemailMessage = exports.ConversationPbxVoicemailMailbox = exports.ConversationPbxTimeBasedMapping = exports.ConversationPbxQueue = exports.ConversationPbxPhoneNumberPurchaseRequest = exports.ConversationPbxPhoneNumber = exports.ConversationPbxMenuMapping = exports.ConversationPbxMenu = exports.ConversationPbxCallTranscriptSegment = exports.ConversationPbxCallAiEngagement = exports.ConversationPbxAvailablePhoneNumber = exports.ConversationPbxAgent = exports.ConversationMessageTransportStatus = exports.ConversationMessage = exports.ConversationMcpServer = exports.ConversationEventRRWeb = exports.ConversationEngagementEquationFunction = exports.ConversationEngagement = exports.ConversationAgentProfile = exports.Conversation = exports.CheckoutHandoffRequest = exports.ChannelPartnerOrderItem = exports.ChannelPartnerOrder = exports.CartKitComponentOption = exports.CartItemOption = exports.CartItemMultimedia = exports.CartCustomerProfileCreditCard = exports.AutoOrderItemSimpleSchedule = exports.AutoOrderItem = exports.AutoOrder = exports.AffiliateLink = exports.AffiliateLedger = exports.RequiredError = exports.BaseAPI = exports.COLLECTION_FORMATS = void 0;
+exports.ChannelPartnerApiFetchParamCreator = exports.AutoOrderApi = exports.AutoOrderApiFactory = exports.AutoOrderApiFp = exports.AutoOrderApiFetchParamCreator = exports.AffiliateApi = exports.AffiliateApiFactory = exports.AffiliateApiFp = exports.AffiliateApiFetchParamCreator = exports.WorkflowTasksRequest = exports.WorkflowTask = exports.Weight = exports.Webhook = exports.TempMultimedia = exports.ReportWebsocketEvent = exports.ReportPageVisualizationMetric = exports.ReportPageVisualization = exports.ReportFilter = exports.ReportExecuteQueriesRequest = exports.ReportDataSourceSchema = exports.ReportDataSetSchema = exports.ReportDataSetQuery = exports.ReportDataSet = exports.Report = exports.PointOfSaleReader = exports.OrderQueryBatch = exports.OrderQuery = exports.OrderPaymentECheck = exports.OrderPaymentCreditCard = exports.OrderPayment = exports.OrderItemOption = exports.OrderItem = exports.OrderFraudScore = exports.OrderFormat = exports.OrderEdiDocument = exports.OrderCurrentStageHistory = exports.OrderAutoOrder = exports.OrderAffiliateLedger = exports.Order = exports.OauthTokenResponse = exports.ItemThirdPartyEmailMarketing = exports.ItemTax = exports.ItemTag = exports.ItemShippingMethod = exports.ItemShippingDestinationRestriction = exports.ItemReview = exports.ItemRestrictionItem = exports.ItemRelatedItem = exports.ItemOptionValue = exports.ItemOption = void 0;
+exports.SsoApiFactory = exports.SsoApiFp = exports.SsoApiFetchParamCreator = exports.OrderApi = exports.OrderApiFactory = exports.OrderApiFp = exports.OrderApiFetchParamCreator = exports.OauthApi = exports.OauthApiFactory = exports.OauthApiFp = exports.OauthApiFetchParamCreator = exports.ItemApi = exports.ItemApiFactory = exports.ItemApiFp = exports.ItemApiFetchParamCreator = exports.IntegrationLogApi = exports.IntegrationLogApiFactory = exports.IntegrationLogApiFp = exports.IntegrationLogApiFetchParamCreator = exports.GiftCertificateApi = exports.GiftCertificateApiFactory = exports.GiftCertificateApiFp = exports.GiftCertificateApiFetchParamCreator = exports.FulfillmentApi = exports.FulfillmentApiFactory = exports.FulfillmentApiFp = exports.FulfillmentApiFetchParamCreator = exports.DatawarehouseApi = exports.DatawarehouseApiFactory = exports.DatawarehouseApiFp = exports.DatawarehouseApiFetchParamCreator = exports.CustomerApi = exports.CustomerApiFactory = exports.CustomerApiFp = exports.CustomerApiFetchParamCreator = exports.CouponApi = exports.CouponApiFactory = exports.CouponApiFp = exports.CouponApiFetchParamCreator = exports.ConversationApi = exports.ConversationApiFactory = exports.ConversationApiFp = exports.ConversationApiFetchParamCreator = exports.CheckoutApi = exports.CheckoutApiFactory = exports.CheckoutApiFp = exports.CheckoutApiFetchParamCreator = exports.ChannelPartnerApi = exports.ChannelPartnerApiFactory = exports.ChannelPartnerApiFp = void 0;
+exports.WorkflowApi = exports.WorkflowApiFactory = exports.WorkflowApiFp = exports.WorkflowApiFetchParamCreator = exports.WebhookApi = exports.WebhookApiFactory = exports.WebhookApiFp = exports.WebhookApiFetchParamCreator = exports.UserApi = exports.UserApiFactory = exports.UserApiFp = exports.UserApiFetchParamCreator = exports.TaxApi = exports.TaxApiFactory = exports.TaxApiFp = exports.TaxApiFetchParamCreator = exports.StorefrontApi = exports.StorefrontApiFactory = exports.StorefrontApiFp = exports.StorefrontApiFetchParamCreator = exports.SsoApi = void 0;
 var url = require("url");
 var portableFetch = require("portable-fetch");
 var BASE_PATH = "https://secure.ultracart.com/rest/v2".replace(/\/+$/, "");
@@ -649,6 +649,38 @@ var ConversationPbxAvailablePhoneNumber;
         AddressRequirementsEnum[AddressRequirementsEnum["Foreign"] = 'foreign'] = "Foreign";
     })(AddressRequirementsEnum = ConversationPbxAvailablePhoneNumber.AddressRequirementsEnum || (ConversationPbxAvailablePhoneNumber.AddressRequirementsEnum = {}));
 })(ConversationPbxAvailablePhoneNumber = exports.ConversationPbxAvailablePhoneNumber || (exports.ConversationPbxAvailablePhoneNumber = {}));
+/**
+ * @export
+ * @namespace ConversationPbxCallAiEngagement
+ */
+var ConversationPbxCallAiEngagement;
+(function (ConversationPbxCallAiEngagement) {
+    /**
+     * @export
+     * @enum {string}
+     */
+    var EngagementTypeEnum;
+    (function (EngagementTypeEnum) {
+        EngagementTypeEnum[EngagementTypeEnum["Agent"] = 'ai_agent'] = "Agent";
+        EngagementTypeEnum[EngagementTypeEnum["Coach"] = 'ai_coach'] = "Coach";
+    })(EngagementTypeEnum = ConversationPbxCallAiEngagement.EngagementTypeEnum || (ConversationPbxCallAiEngagement.EngagementTypeEnum = {}));
+})(ConversationPbxCallAiEngagement = exports.ConversationPbxCallAiEngagement || (exports.ConversationPbxCallAiEngagement = {}));
+/**
+ * @export
+ * @namespace ConversationPbxCallTranscriptSegment
+ */
+var ConversationPbxCallTranscriptSegment;
+(function (ConversationPbxCallTranscriptSegment) {
+    /**
+     * @export
+     * @enum {string}
+     */
+    var SpeakerEnum;
+    (function (SpeakerEnum) {
+        SpeakerEnum[SpeakerEnum["Customer"] = 'customer'] = "Customer";
+        SpeakerEnum[SpeakerEnum["Agent"] = ' agent'] = "Agent";
+    })(SpeakerEnum = ConversationPbxCallTranscriptSegment.SpeakerEnum || (ConversationPbxCallTranscriptSegment.SpeakerEnum = {}));
+})(ConversationPbxCallTranscriptSegment = exports.ConversationPbxCallTranscriptSegment || (exports.ConversationPbxCallTranscriptSegment = {}));
 /**
  * @export
  * @namespace ConversationPbxMenu
@@ -9427,6 +9459,52 @@ var ConversationApiFetchParamCreator = function (configuration) {
             };
         },
         /**
+         * Retrieve a single PBX call record with full details
+         * @summary Get pbx call record
+         * @param {string} callUuid
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getPbxCall: function (callUuid, options) {
+            if (options === void 0) { options = {}; }
+            // verify required parameter 'callUuid' is not null or undefined
+            if (callUuid === null || callUuid === undefined) {
+                throw new RequiredError('callUuid', 'Required parameter callUuid was null or undefined when calling getPbxCall.');
+            }
+            var localVarPath = "/conversation/pbx/call/{callUuid}"
+                .replace("{".concat("callUuid", "}"), encodeURIComponent(String(callUuid)));
+            var localVarUrlObj = url.parse(localVarPath, true);
+            var localVarRequestOptions = Object.assign({ method: 'GET' }, options);
+            var localVarHeaderParameter = {};
+            var localVarQueryParameter = {};
+            if (configuration && configuration.apiVersion) {
+                localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+            }
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+                var localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+                    ? configuration.accessToken("ultraCartOauth", ["conversation_read"])
+                    : configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                var localVarApiKeyValue = typeof configuration.apiKey === 'function'
+                    ? configuration.apiKey("x-ultracart-simple-key")
+                    : configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
          * Retrieve a pbx hardware phone
          * @summary Get pbx hardware phone
          * @param {string} conversationPbxHardwarePhoneUuid
@@ -11431,6 +11509,66 @@ var ConversationApiFetchParamCreator = function (configuration) {
             // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
             delete localVarUrlObj.search;
             localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Search and list PBX call records with filtering, sorting, and pagination
+         * @summary Search pbx call records
+         * @param {ConversationPbxCallSearchRequest} search_request Search Request
+         * @param {number} [_limit] The maximum number of records to return on this one API call. (Maximum 200)
+         * @param {number} [_offset] Pagination of the record set.  Offset is a zero based index.
+         * @param {string} [_sort] The sort order of the calls.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        searchPbxCalls: function (search_request, _limit, _offset, _sort, options) {
+            if (options === void 0) { options = {}; }
+            // verify required parameter 'search_request' is not null or undefined
+            if (search_request === null || search_request === undefined) {
+                throw new RequiredError('search_request', 'Required parameter search_request was null or undefined when calling searchPbxCalls.');
+            }
+            var localVarPath = "/conversation/pbx/call/search";
+            var localVarUrlObj = url.parse(localVarPath, true);
+            var localVarRequestOptions = Object.assign({ method: 'POST' }, options);
+            var localVarHeaderParameter = {};
+            var localVarQueryParameter = {};
+            if (configuration && configuration.apiVersion) {
+                localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+            }
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+                var localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+                    ? configuration.accessToken("ultraCartOauth", ["conversation_read"])
+                    : configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                var localVarApiKeyValue = typeof configuration.apiKey === 'function'
+                    ? configuration.apiKey("x-ultracart-simple-key")
+                    : configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+            if (_limit !== undefined) {
+                localVarQueryParameter['_limit'] = _limit;
+            }
+            if (_offset !== undefined) {
+                localVarQueryParameter['_offset'] = _offset;
+            }
+            if (_sort !== undefined) {
+                localVarQueryParameter['_sort'] = _sort;
+            }
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+            var needsSerialization = ("ConversationPbxCallSearchRequest" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
+            localVarRequestOptions.body = needsSerialization ? JSON.stringify(search_request || {}) : (search_request || "");
             return {
                 url: url.format(localVarUrlObj),
                 options: localVarRequestOptions,
@@ -13619,6 +13757,28 @@ var ConversationApiFp = function (configuration) {
             };
         },
         /**
+         * Retrieve a single PBX call record with full details
+         * @summary Get pbx call record
+         * @param {string} callUuid
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getPbxCall: function (callUuid, options) {
+            var localVarFetchArgs = (0, exports.ConversationApiFetchParamCreator)(configuration).getPbxCall(callUuid, options);
+            return function (fetch, basePath) {
+                if (fetch === void 0) { fetch = portableFetch; }
+                if (basePath === void 0) { basePath = BASE_PATH; }
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(function (response) {
+                    if (response.status >= 200 && response.status < 300) {
+                        return response.json();
+                    }
+                    else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
          * Retrieve a pbx hardware phone
          * @summary Get pbx hardware phone
          * @param {string} conversationPbxHardwarePhoneUuid
@@ -14553,6 +14713,31 @@ var ConversationApiFp = function (configuration) {
          */
         searchPbxAvailablePhoneNumbers: function (country, area_code, contains, sms_enabled, voice_enabled, type, limit, options) {
             var localVarFetchArgs = (0, exports.ConversationApiFetchParamCreator)(configuration).searchPbxAvailablePhoneNumbers(country, area_code, contains, sms_enabled, voice_enabled, type, limit, options);
+            return function (fetch, basePath) {
+                if (fetch === void 0) { fetch = portableFetch; }
+                if (basePath === void 0) { basePath = BASE_PATH; }
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(function (response) {
+                    if (response.status >= 200 && response.status < 300) {
+                        return response.json();
+                    }
+                    else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
+         * Search and list PBX call records with filtering, sorting, and pagination
+         * @summary Search pbx call records
+         * @param {ConversationPbxCallSearchRequest} search_request Search Request
+         * @param {number} [_limit] The maximum number of records to return on this one API call. (Maximum 200)
+         * @param {number} [_offset] Pagination of the record set.  Offset is a zero based index.
+         * @param {string} [_sort] The sort order of the calls.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        searchPbxCalls: function (search_request, _limit, _offset, _sort, options) {
+            var localVarFetchArgs = (0, exports.ConversationApiFetchParamCreator)(configuration).searchPbxCalls(search_request, _limit, _offset, _sort, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -15539,6 +15724,16 @@ var ConversationApiFactory = function (configuration, fetch, basePath) {
             return (0, exports.ConversationApiFp)(configuration).getPbxAudios(options)(fetch, basePath);
         },
         /**
+         * Retrieve a single PBX call record with full details
+         * @summary Get pbx call record
+         * @param {string} callUuid
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getPbxCall: function (callUuid, options) {
+            return (0, exports.ConversationApiFp)(configuration).getPbxCall(callUuid, options)(fetch, basePath);
+        },
+        /**
          * Retrieve a pbx hardware phone
          * @summary Get pbx hardware phone
          * @param {string} conversationPbxHardwarePhoneUuid
@@ -15969,6 +16164,19 @@ var ConversationApiFactory = function (configuration, fetch, basePath) {
          */
         searchPbxAvailablePhoneNumbers: function (country, area_code, contains, sms_enabled, voice_enabled, type, limit, options) {
             return (0, exports.ConversationApiFp)(configuration).searchPbxAvailablePhoneNumbers(country, area_code, contains, sms_enabled, voice_enabled, type, limit, options)(fetch, basePath);
+        },
+        /**
+         * Search and list PBX call records with filtering, sorting, and pagination
+         * @summary Search pbx call records
+         * @param {ConversationPbxCallSearchRequest} search_request Search Request
+         * @param {number} [_limit] The maximum number of records to return on this one API call. (Maximum 200)
+         * @param {number} [_offset] Pagination of the record set.  Offset is a zero based index.
+         * @param {string} [_sort] The sort order of the calls.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        searchPbxCalls: function (search_request, _limit, _offset, _sort, options) {
+            return (0, exports.ConversationApiFp)(configuration).searchPbxCalls(search_request, _limit, _offset, _sort, options)(fetch, basePath);
         },
         /**
          * Unsubscribe any SMS participants in this conversation
@@ -16759,6 +16967,17 @@ var ConversationApi = /** @class */ (function (_super) {
         return (0, exports.ConversationApiFp)(this.configuration).getPbxAudios(options)(this.fetch, this.basePath);
     };
     /**
+     * Retrieve a single PBX call record with full details
+     * @summary Get pbx call record
+     * @param {string} callUuid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApi
+     */
+    ConversationApi.prototype.getPbxCall = function (callUuid, options) {
+        return (0, exports.ConversationApiFp)(this.configuration).getPbxCall(callUuid, options)(this.fetch, this.basePath);
+    };
+    /**
      * Retrieve a pbx hardware phone
      * @summary Get pbx hardware phone
      * @param {string} conversationPbxHardwarePhoneUuid
@@ -17232,6 +17451,20 @@ var ConversationApi = /** @class */ (function (_super) {
      */
     ConversationApi.prototype.searchPbxAvailablePhoneNumbers = function (country, area_code, contains, sms_enabled, voice_enabled, type, limit, options) {
         return (0, exports.ConversationApiFp)(this.configuration).searchPbxAvailablePhoneNumbers(country, area_code, contains, sms_enabled, voice_enabled, type, limit, options)(this.fetch, this.basePath);
+    };
+    /**
+     * Search and list PBX call records with filtering, sorting, and pagination
+     * @summary Search pbx call records
+     * @param {ConversationPbxCallSearchRequest} search_request Search Request
+     * @param {number} [_limit] The maximum number of records to return on this one API call. (Maximum 200)
+     * @param {number} [_offset] Pagination of the record set.  Offset is a zero based index.
+     * @param {string} [_sort] The sort order of the calls.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApi
+     */
+    ConversationApi.prototype.searchPbxCalls = function (search_request, _limit, _offset, _sort, options) {
+        return (0, exports.ConversationApiFp)(this.configuration).searchPbxCalls(search_request, _limit, _offset, _sort, options)(this.fetch, this.basePath);
     };
     /**
      * Unsubscribe any SMS participants in this conversation
