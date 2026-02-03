@@ -51,6 +51,12 @@ export interface ConversationAgentAuth {
      */
     conversation_participant_name?: string;
     /**
+     * The default phone number this agent should use when making an outbound call.
+     * @type {string}
+     * @memberof ConversationAgentAuth
+     */
+    default_phone_number?: string;
+    /**
      * UltraCart Groups this user belongs to
      * @type {Array<number>}
      * @memberof ConversationAgentAuth
@@ -161,6 +167,7 @@ export function ConversationAgentAuthFromJSONTyped(json: any, ignoreDiscriminato
         'chat_user': !exists(json, 'chat_user') ? undefined : json['chat_user'],
         'conversation_participant_arn': !exists(json, 'conversation_participant_arn') ? undefined : json['conversation_participant_arn'],
         'conversation_participant_name': !exists(json, 'conversation_participant_name') ? undefined : json['conversation_participant_name'],
+        'default_phone_number': !exists(json, 'default_phone_number') ? undefined : json['default_phone_number'],
         'group_ids': !exists(json, 'group_ids') ? undefined : json['group_ids'],
         'jwt': !exists(json, 'jwt') ? undefined : json['jwt'],
         'merchant_id': !exists(json, 'merchant_id') ? undefined : json['merchant_id'],
@@ -191,6 +198,7 @@ export function ConversationAgentAuthToJSON(value?: ConversationAgentAuth | null
         'chat_user': value.chat_user,
         'conversation_participant_arn': value.conversation_participant_arn,
         'conversation_participant_name': value.conversation_participant_name,
+        'default_phone_number': value.default_phone_number,
         'group_ids': value.group_ids,
         'jwt': value.jwt,
         'merchant_id': value.merchant_id,

@@ -15,6 +15,9 @@
 
 import * as runtime from '../runtime';
 import {
+    BaseResponse,
+    BaseResponseFromJSON,
+    BaseResponseToJSON,
     ConversationAgentAuthResponse,
     ConversationAgentAuthResponseFromJSON,
     ConversationAgentAuthResponseToJSON,
@@ -150,6 +153,18 @@ import {
     ConversationPbxCallSearchResponse,
     ConversationPbxCallSearchResponseFromJSON,
     ConversationPbxCallSearchResponseToJSON,
+    ConversationPbxClassOfService,
+    ConversationPbxClassOfServiceFromJSON,
+    ConversationPbxClassOfServiceToJSON,
+    ConversationPbxClassOfServiceResponse,
+    ConversationPbxClassOfServiceResponseFromJSON,
+    ConversationPbxClassOfServiceResponseToJSON,
+    ConversationPbxClassOfServicesResponse,
+    ConversationPbxClassOfServicesResponseFromJSON,
+    ConversationPbxClassOfServicesResponseToJSON,
+    ConversationPbxCosAuditLogsResponse,
+    ConversationPbxCosAuditLogsResponseFromJSON,
+    ConversationPbxCosAuditLogsResponseToJSON,
     ConversationPbxCustomerSnapshotRequest,
     ConversationPbxCustomerSnapshotRequestFromJSON,
     ConversationPbxCustomerSnapshotRequestToJSON,
@@ -312,6 +327,10 @@ export interface DeletePbxAudioRequest {
     conversationPbxAudioUuid: string;
 }
 
+export interface DeletePbxClassOfServiceRequest {
+    classOfServiceUuid: string;
+}
+
 export interface DeletePbxHardwarePhoneRequest {
     conversationPbxHardwarePhoneUuid: string;
 }
@@ -438,6 +457,16 @@ export interface GetPbxCallRequest {
     callUuid: string;
 }
 
+export interface GetPbxClassOfServiceRequest {
+    classOfServiceUuid: string;
+}
+
+export interface GetPbxCosAuditLogsRequest {
+    since?: string;
+    agentLogin?: string;
+    limit?: number;
+}
+
 export interface GetPbxHardwarePhoneRequest {
     conversationPbxHardwarePhoneUuid: string;
 }
@@ -503,6 +532,10 @@ export interface InsertPbxAddressRequest {
 
 export interface InsertPbxAudioRequest {
     pbxAudio: ConversationPbxAudio;
+}
+
+export interface InsertPbxClassOfServiceRequest {
+    classOfService: ConversationPbxClassOfService;
 }
 
 export interface InsertPbxHardwarePhoneRequest {
@@ -640,6 +673,11 @@ export interface UpdatePbxAgentRequest {
 export interface UpdatePbxAudioRequest {
     conversationPbxAudioUuid: string;
     pbxAudio: ConversationPbxAudio;
+}
+
+export interface UpdatePbxClassOfServiceRequest {
+    classOfServiceUuid: string;
+    classOfService: ConversationPbxClassOfService;
 }
 
 export interface UpdatePbxHardwarePhoneRequest {
@@ -821,6 +859,22 @@ export interface ConversationApiInterface {
      * Delete pbx audio
      */
     deletePbxAudio(requestParameters: DeletePbxAudioRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ConversationPbxAudioResponse>;
+
+    /**
+     * Delete a class of service 
+     * @summary Delete pbx class of service
+     * @param {string} classOfServiceUuid 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApiInterface
+     */
+    deletePbxClassOfServiceRaw(requestParameters: DeletePbxClassOfServiceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BaseResponse>>;
+
+    /**
+     * Delete a class of service 
+     * Delete pbx class of service
+     */
+    deletePbxClassOfService(requestParameters: DeletePbxClassOfServiceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BaseResponse>;
 
     /**
      * Delete a pbx hardware phone 
@@ -1522,6 +1576,55 @@ export interface ConversationApiInterface {
     getPbxCall(requestParameters: GetPbxCallRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ConversationPbxCallResponse>;
 
     /**
+     * Retrieve a single class of service 
+     * @summary Get pbx class of service
+     * @param {string} classOfServiceUuid 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApiInterface
+     */
+    getPbxClassOfServiceRaw(requestParameters: GetPbxClassOfServiceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ConversationPbxClassOfServiceResponse>>;
+
+    /**
+     * Retrieve a single class of service 
+     * Get pbx class of service
+     */
+    getPbxClassOfService(requestParameters: GetPbxClassOfServiceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ConversationPbxClassOfServiceResponse>;
+
+    /**
+     * Retrieve all classes of service for the merchant 
+     * @summary Get pbx classes of service
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApiInterface
+     */
+    getPbxClassesOfServiceRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ConversationPbxClassOfServicesResponse>>;
+
+    /**
+     * Retrieve all classes of service for the merchant 
+     * Get pbx classes of service
+     */
+    getPbxClassesOfService(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ConversationPbxClassOfServicesResponse>;
+
+    /**
+     * Retrieve audit log entries for class of service enforcement 
+     * @summary Get pbx class of service audit logs
+     * @param {string} [since] ISO timestamp to filter entries since
+     * @param {string} [agentLogin] Filter by agent login
+     * @param {number} [limit] Maximum number of entries to return (default 100)
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApiInterface
+     */
+    getPbxCosAuditLogsRaw(requestParameters: GetPbxCosAuditLogsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ConversationPbxCosAuditLogsResponse>>;
+
+    /**
+     * Retrieve audit log entries for class of service enforcement 
+     * Get pbx class of service audit logs
+     */
+    getPbxCosAuditLogs(requestParameters: GetPbxCosAuditLogsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ConversationPbxCosAuditLogsResponse>;
+
+    /**
      * Retrieve a pbx hardware phone 
      * @summary Get pbx hardware phone
      * @param {string} conversationPbxHardwarePhoneUuid 
@@ -1929,6 +2032,22 @@ export interface ConversationApiInterface {
      * Insert pbx audio
      */
     insertPbxAudio(requestParameters: InsertPbxAudioRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ConversationPbxAudioResponse>;
+
+    /**
+     * Create a new class of service 
+     * @summary Insert pbx class of service
+     * @param {ConversationPbxClassOfService} classOfService Class of service
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApiInterface
+     */
+    insertPbxClassOfServiceRaw(requestParameters: InsertPbxClassOfServiceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ConversationPbxClassOfServiceResponse>>;
+
+    /**
+     * Create a new class of service 
+     * Insert pbx class of service
+     */
+    insertPbxClassOfService(requestParameters: InsertPbxClassOfServiceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ConversationPbxClassOfServiceResponse>;
 
     /**
      * Insert a pbx hardware phone 
@@ -2416,6 +2535,23 @@ export interface ConversationApiInterface {
     updatePbxAudio(requestParameters: UpdatePbxAudioRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ConversationPbxAudioResponse>;
 
     /**
+     * Update an existing class of service 
+     * @summary Update pbx class of service
+     * @param {string} classOfServiceUuid 
+     * @param {ConversationPbxClassOfService} classOfService Class of service
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApiInterface
+     */
+    updatePbxClassOfServiceRaw(requestParameters: UpdatePbxClassOfServiceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ConversationPbxClassOfServiceResponse>>;
+
+    /**
+     * Update an existing class of service 
+     * Update pbx class of service
+     */
+    updatePbxClassOfService(requestParameters: UpdatePbxClassOfServiceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ConversationPbxClassOfServiceResponse>;
+
+    /**
      * Update a pbx hardware phone 
      * @summary Update pbx hardware phone
      * @param {string} conversationPbxHardwarePhoneUuid 
@@ -2901,6 +3037,47 @@ export class ConversationApi extends runtime.BaseAPI implements ConversationApiI
      */
     async deletePbxAudio(requestParameters: DeletePbxAudioRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ConversationPbxAudioResponse> {
         const response = await this.deletePbxAudioRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Delete a class of service 
+     * Delete pbx class of service
+     */
+    async deletePbxClassOfServiceRaw(requestParameters: DeletePbxClassOfServiceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BaseResponse>> {
+        if (requestParameters.classOfServiceUuid === null || requestParameters.classOfServiceUuid === undefined) {
+            throw new runtime.RequiredError('classOfServiceUuid','Required parameter requestParameters.classOfServiceUuid was null or undefined when calling deletePbxClassOfService.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", ["conversation_write"]);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/conversation/pbx/class_of_service/{classOfServiceUuid}`.replace(`{${"classOfServiceUuid"}}`, encodeURIComponent(String(requestParameters.classOfServiceUuid))),
+            method: 'DELETE',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => BaseResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Delete a class of service 
+     * Delete pbx class of service
+     */
+    async deletePbxClassOfService(requestParameters: DeletePbxClassOfServiceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BaseResponse> {
+        const response = await this.deletePbxClassOfServiceRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
@@ -4695,6 +4872,133 @@ export class ConversationApi extends runtime.BaseAPI implements ConversationApiI
     }
 
     /**
+     * Retrieve a single class of service 
+     * Get pbx class of service
+     */
+    async getPbxClassOfServiceRaw(requestParameters: GetPbxClassOfServiceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ConversationPbxClassOfServiceResponse>> {
+        if (requestParameters.classOfServiceUuid === null || requestParameters.classOfServiceUuid === undefined) {
+            throw new runtime.RequiredError('classOfServiceUuid','Required parameter requestParameters.classOfServiceUuid was null or undefined when calling getPbxClassOfService.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", ["conversation_read"]);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/conversation/pbx/class_of_service/{classOfServiceUuid}`.replace(`{${"classOfServiceUuid"}}`, encodeURIComponent(String(requestParameters.classOfServiceUuid))),
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => ConversationPbxClassOfServiceResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Retrieve a single class of service 
+     * Get pbx class of service
+     */
+    async getPbxClassOfService(requestParameters: GetPbxClassOfServiceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ConversationPbxClassOfServiceResponse> {
+        const response = await this.getPbxClassOfServiceRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Retrieve all classes of service for the merchant 
+     * Get pbx classes of service
+     */
+    async getPbxClassesOfServiceRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ConversationPbxClassOfServicesResponse>> {
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", ["conversation_read"]);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/conversation/pbx/class_of_service`,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => ConversationPbxClassOfServicesResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Retrieve all classes of service for the merchant 
+     * Get pbx classes of service
+     */
+    async getPbxClassesOfService(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ConversationPbxClassOfServicesResponse> {
+        const response = await this.getPbxClassesOfServiceRaw(initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Retrieve audit log entries for class of service enforcement 
+     * Get pbx class of service audit logs
+     */
+    async getPbxCosAuditLogsRaw(requestParameters: GetPbxCosAuditLogsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ConversationPbxCosAuditLogsResponse>> {
+        const queryParameters: any = {};
+
+        if (requestParameters.since !== undefined) {
+            queryParameters['since'] = requestParameters.since;
+        }
+
+        if (requestParameters.agentLogin !== undefined) {
+            queryParameters['agent_login'] = requestParameters.agentLogin;
+        }
+
+        if (requestParameters.limit !== undefined) {
+            queryParameters['limit'] = requestParameters.limit;
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", ["conversation_read"]);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/conversation/pbx/class_of_service/audit_log`,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => ConversationPbxCosAuditLogsResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Retrieve audit log entries for class of service enforcement 
+     * Get pbx class of service audit logs
+     */
+    async getPbxCosAuditLogs(requestParameters: GetPbxCosAuditLogsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ConversationPbxCosAuditLogsResponse> {
+        const response = await this.getPbxCosAuditLogsRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
      * Retrieve a pbx hardware phone 
      * Get pbx hardware phone
      */
@@ -5750,6 +6054,50 @@ export class ConversationApi extends runtime.BaseAPI implements ConversationApiI
      */
     async insertPbxAudio(requestParameters: InsertPbxAudioRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ConversationPbxAudioResponse> {
         const response = await this.insertPbxAudioRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Create a new class of service 
+     * Insert pbx class of service
+     */
+    async insertPbxClassOfServiceRaw(requestParameters: InsertPbxClassOfServiceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ConversationPbxClassOfServiceResponse>> {
+        if (requestParameters.classOfService === null || requestParameters.classOfService === undefined) {
+            throw new runtime.RequiredError('classOfService','Required parameter requestParameters.classOfService was null or undefined when calling insertPbxClassOfService.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json; charset=UTF-8';
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", ["conversation_write"]);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/conversation/pbx/class_of_service`,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: ConversationPbxClassOfServiceToJSON(requestParameters.classOfService),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => ConversationPbxClassOfServiceResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Create a new class of service 
+     * Insert pbx class of service
+     */
+    async insertPbxClassOfService(requestParameters: InsertPbxClassOfServiceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ConversationPbxClassOfServiceResponse> {
+        const response = await this.insertPbxClassOfServiceRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
@@ -7078,6 +7426,54 @@ export class ConversationApi extends runtime.BaseAPI implements ConversationApiI
      */
     async updatePbxAudio(requestParameters: UpdatePbxAudioRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ConversationPbxAudioResponse> {
         const response = await this.updatePbxAudioRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Update an existing class of service 
+     * Update pbx class of service
+     */
+    async updatePbxClassOfServiceRaw(requestParameters: UpdatePbxClassOfServiceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ConversationPbxClassOfServiceResponse>> {
+        if (requestParameters.classOfServiceUuid === null || requestParameters.classOfServiceUuid === undefined) {
+            throw new runtime.RequiredError('classOfServiceUuid','Required parameter requestParameters.classOfServiceUuid was null or undefined when calling updatePbxClassOfService.');
+        }
+
+        if (requestParameters.classOfService === null || requestParameters.classOfService === undefined) {
+            throw new runtime.RequiredError('classOfService','Required parameter requestParameters.classOfService was null or undefined when calling updatePbxClassOfService.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json; charset=UTF-8';
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", ["conversation_write"]);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/conversation/pbx/class_of_service/{classOfServiceUuid}`.replace(`{${"classOfServiceUuid"}}`, encodeURIComponent(String(requestParameters.classOfServiceUuid))),
+            method: 'PUT',
+            headers: headerParameters,
+            query: queryParameters,
+            body: ConversationPbxClassOfServiceToJSON(requestParameters.classOfService),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => ConversationPbxClassOfServiceResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Update an existing class of service 
+     * Update pbx class of service
+     */
+    async updatePbxClassOfService(requestParameters: UpdatePbxClassOfServiceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ConversationPbxClassOfServiceResponse> {
+        const response = await this.updatePbxClassOfServiceRaw(requestParameters, initOverrides);
         return await response.value();
     }
 

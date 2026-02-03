@@ -44,6 +44,12 @@ export interface ConversationPbxAgent {
      */
     conversation_pbx_agent_uuid?: string;
     /**
+     * Class of Service UUID. If null, the merchant default CoS applies.
+     * @type {string}
+     * @memberof ConversationPbxAgent
+     */
+    cos_uuid?: string;
+    /**
      * The default phone number that this agent should dial out to the PSTN with.
      * @type {string}
      * @memberof ConversationPbxAgent
@@ -126,7 +132,7 @@ export interface ConversationPbxAgent {
      * @type {string}
      * @memberof ConversationPbxAgent
      */
-    unavailable_say_voice?: string;
+    unavailable_say_voice?: ConversationPbxAgentUnavailableSayVoiceEnum;
     /**
      * User Id
      * @type {number}
@@ -153,6 +159,15 @@ export const ConversationPbxAgentCallRoutingPreferenceEnum = {
 } as const;
 export type ConversationPbxAgentCallRoutingPreferenceEnum = typeof ConversationPbxAgentCallRoutingPreferenceEnum[keyof typeof ConversationPbxAgentCallRoutingPreferenceEnum];
 
+/**
+ * @export
+ */
+export const ConversationPbxAgentUnavailableSayVoiceEnum = {
+    Man: 'man',
+    Woman: 'woman'
+} as const;
+export type ConversationPbxAgentUnavailableSayVoiceEnum = typeof ConversationPbxAgentUnavailableSayVoiceEnum[keyof typeof ConversationPbxAgentUnavailableSayVoiceEnum];
+
 
 /**
  * Check if a given object implements the ConversationPbxAgent interface.
@@ -177,6 +192,7 @@ export function ConversationPbxAgentFromJSONTyped(json: any, ignoreDiscriminator
         'call_routing_preference': !exists(json, 'call_routing_preference') ? undefined : json['call_routing_preference'],
         'cellphone': !exists(json, 'cellphone') ? undefined : json['cellphone'],
         'conversation_pbx_agent_uuid': !exists(json, 'conversation_pbx_agent_uuid') ? undefined : json['conversation_pbx_agent_uuid'],
+        'cos_uuid': !exists(json, 'cos_uuid') ? undefined : json['cos_uuid'],
         'default_phone_number_uuid': !exists(json, 'default_phone_number_uuid') ? undefined : json['default_phone_number_uuid'],
         'extension': !exists(json, 'extension') ? undefined : json['extension'],
         'full_name': !exists(json, 'full_name') ? undefined : json['full_name'],
@@ -209,6 +225,7 @@ export function ConversationPbxAgentToJSON(value?: ConversationPbxAgent | null):
         'call_routing_preference': value.call_routing_preference,
         'cellphone': value.cellphone,
         'conversation_pbx_agent_uuid': value.conversation_pbx_agent_uuid,
+        'cos_uuid': value.cos_uuid,
         'default_phone_number_uuid': value.default_phone_number_uuid,
         'extension': value.extension,
         'full_name': value.full_name,

@@ -45,6 +45,12 @@ export interface ConversationPbxCallRecording {
      */
     is_primary?: boolean;
     /**
+     * S3 key for the recording audio file
+     * @type {string}
+     * @memberof ConversationPbxCallRecording
+     */
+    recording_s3_key?: string;
+    /**
      * Twilio recording SID
      * @type {string}
      * @memberof ConversationPbxCallRecording
@@ -94,6 +100,7 @@ export function ConversationPbxCallRecordingFromJSONTyped(json: any, ignoreDiscr
         'channels': !exists(json, 'channels') ? undefined : json['channels'],
         'duration_seconds': !exists(json, 'duration_seconds') ? undefined : json['duration_seconds'],
         'is_primary': !exists(json, 'is_primary') ? undefined : json['is_primary'],
+        'recording_s3_key': !exists(json, 'recording_s3_key') ? undefined : json['recording_s3_key'],
         'recording_sid': !exists(json, 'recording_sid') ? undefined : json['recording_sid'],
         'recording_url': !exists(json, 'recording_url') ? undefined : json['recording_url'],
         'status': !exists(json, 'status') ? undefined : json['status'],
@@ -113,6 +120,7 @@ export function ConversationPbxCallRecordingToJSON(value?: ConversationPbxCallRe
         'channels': value.channels,
         'duration_seconds': value.duration_seconds,
         'is_primary': value.is_primary,
+        'recording_s3_key': value.recording_s3_key,
         'recording_sid': value.recording_sid,
         'recording_url': value.recording_url,
         'status': value.status,

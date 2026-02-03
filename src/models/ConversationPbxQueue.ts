@@ -109,7 +109,7 @@ export interface ConversationPbxQueue {
      * @type {string}
      * @memberof ConversationPbxQueue
      */
-    no_agent_available_say_voice?: string;
+    no_agent_available_say_voice?: ConversationPbxQueueNoAgentAvailableSayVoiceEnum;
     /**
      * Audio played when customer enters a queue
      * @type {string}
@@ -133,7 +133,7 @@ export interface ConversationPbxQueue {
      * @type {string}
      * @memberof ConversationPbxQueue
      */
-    say_voice?: string;
+    say_voice?: ConversationPbxQueueSayVoiceEnum;
     /**
      * Twilio taskrouter workflow sid
      * @type {string}
@@ -183,6 +183,24 @@ export const ConversationPbxQueueAiPriorityEnum = {
     Backup: 'backup'
 } as const;
 export type ConversationPbxQueueAiPriorityEnum = typeof ConversationPbxQueueAiPriorityEnum[keyof typeof ConversationPbxQueueAiPriorityEnum];
+
+/**
+ * @export
+ */
+export const ConversationPbxQueueNoAgentAvailableSayVoiceEnum = {
+    Man: 'man',
+    Woman: 'woman'
+} as const;
+export type ConversationPbxQueueNoAgentAvailableSayVoiceEnum = typeof ConversationPbxQueueNoAgentAvailableSayVoiceEnum[keyof typeof ConversationPbxQueueNoAgentAvailableSayVoiceEnum];
+
+/**
+ * @export
+ */
+export const ConversationPbxQueueSayVoiceEnum = {
+    Man: 'man',
+    Woman: 'woman'
+} as const;
+export type ConversationPbxQueueSayVoiceEnum = typeof ConversationPbxQueueSayVoiceEnum[keyof typeof ConversationPbxQueueSayVoiceEnum];
 
 
 /**

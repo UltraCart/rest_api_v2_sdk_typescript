@@ -30,6 +30,12 @@ export interface Twilio {
      * @type {string}
      * @memberof Twilio
      */
+    ai_twiml_app_sid?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof Twilio
+     */
     api_key_id?: string;
     /**
      * 
@@ -97,6 +103,7 @@ export function TwilioFromJSONTyped(json: any, ignoreDiscriminator: boolean): Tw
     return {
         
         'account_sid': !exists(json, 'account_sid') ? undefined : json['account_sid'],
+        'ai_twiml_app_sid': !exists(json, 'ai_twiml_app_sid') ? undefined : json['ai_twiml_app_sid'],
         'api_key_id': !exists(json, 'api_key_id') ? undefined : json['api_key_id'],
         'api_key_name': !exists(json, 'api_key_name') ? undefined : json['api_key_name'],
         'auth_token': !exists(json, 'auth_token') ? undefined : json['auth_token'],
@@ -118,6 +125,7 @@ export function TwilioToJSON(value?: Twilio | null): any {
     return {
         
         'account_sid': value.account_sid,
+        'ai_twiml_app_sid': value.ai_twiml_app_sid,
         'api_key_id': value.api_key_id,
         'api_key_name': value.api_key_name,
         'auth_token': value.auth_token,
