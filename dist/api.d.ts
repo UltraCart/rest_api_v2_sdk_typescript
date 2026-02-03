@@ -7040,6 +7040,12 @@ export interface ConversationAgentAuth {
      */
     conversation_participant_name?: string;
     /**
+     * The default phone number this agent should use when making an outbound call.
+     * @type {string}
+     * @memberof ConversationAgentAuth
+     */
+    default_phone_number?: string;
+    /**
      * UltraCart Groups this user belongs to
      * @type {Array<number>}
      * @memberof ConversationAgentAuth
@@ -9374,6 +9380,12 @@ export interface ConversationPbxAgent {
      */
     conversation_pbx_agent_uuid?: string;
     /**
+     * Class of Service UUID. If null, the merchant default CoS applies.
+     * @type {string}
+     * @memberof ConversationPbxAgent
+     */
+    cos_uuid?: string;
+    /**
      * The default phone number that this agent should dial out to the PSTN with.
      * @type {string}
      * @memberof ConversationPbxAgent
@@ -9456,7 +9468,7 @@ export interface ConversationPbxAgent {
      * @type {string}
      * @memberof ConversationPbxAgent
      */
-    unavailable_say_voice?: string;
+    unavailable_say_voice?: ConversationPbxAgent.UnavailableSayVoiceEnum;
     /**
      * User Id
      * @type {number}
@@ -9483,6 +9495,14 @@ export declare namespace ConversationPbxAgent {
         Softphone,
         HardwarePhone,
         Cellphone
+    }
+    /**
+     * @export
+     * @enum {string}
+     */
+    enum UnavailableSayVoiceEnum {
+        Man,
+        Woman
     }
 }
 /**
@@ -10514,6 +10534,12 @@ export interface ConversationPbxCallRecording {
      */
     is_primary?: boolean;
     /**
+     * S3 key for the recording audio file
+     * @type {string}
+     * @memberof ConversationPbxCallRecording
+     */
+    recording_s3_key?: string;
+    /**
      * Twilio recording SID
      * @type {string}
      * @memberof ConversationPbxCallRecording
@@ -10931,6 +10957,272 @@ export interface ConversationPbxCallTransfer {
      * @memberof ConversationPbxCallTransfer
      */
     transferred_to?: string;
+}
+/**
+ *
+ * @export
+ * @interface ConversationPbxClassOfService
+ */
+export interface ConversationPbxClassOfService {
+    /**
+     * E.164 country calling codes (e.g. 1 for US/Canada, 44 for UK). Empty means domestic only.
+     * @type {Array<string>}
+     * @memberof ConversationPbxClassOfService
+     */
+    allowed_countries?: Array<string>;
+    /**
+     * Block calls to 900, 976, premium-rate, and shortcode destinations
+     * @type {boolean}
+     * @memberof ConversationPbxClassOfService
+     */
+    block_premium_numbers?: boolean;
+    /**
+     * Class of Service unique identifier
+     * @type {string}
+     * @memberof ConversationPbxClassOfService
+     */
+    conversation_pbx_class_of_service_uuid?: string;
+    /**
+     * If true, this CoS applies to all agents without an explicit cos_uuid. Only one per merchant.
+     * @type {boolean}
+     * @memberof ConversationPbxClassOfService
+     */
+    default_flag?: boolean;
+    /**
+     * Description of the class of service
+     * @type {string}
+     * @memberof ConversationPbxClassOfService
+     */
+    description?: string;
+    /**
+     * Merchant Id
+     * @type {string}
+     * @memberof ConversationPbxClassOfService
+     */
+    merchant_id?: string;
+    /**
+     * Display name for the class of service
+     * @type {string}
+     * @memberof ConversationPbxClassOfService
+     */
+    name?: string;
+    /**
+     * Whether agents with this CoS can make outbound calls
+     * @type {boolean}
+     * @memberof ConversationPbxClassOfService
+     */
+    outbound_enabled?: boolean;
+    /**
+     * UUID of a time range. If set, outbound calls only permitted during those time windows.
+     * @type {string}
+     * @memberof ConversationPbxClassOfService
+     */
+    time_range_uuid?: string;
+}
+/**
+ *
+ * @export
+ * @interface ConversationPbxClassOfServiceResponse
+ */
+export interface ConversationPbxClassOfServiceResponse {
+    /**
+     *
+     * @type {ConversationPbxClassOfService}
+     * @memberof ConversationPbxClassOfServiceResponse
+     */
+    class_of_service?: ConversationPbxClassOfService;
+    /**
+     *
+     * @type {ModelError}
+     * @memberof ConversationPbxClassOfServiceResponse
+     */
+    error?: ModelError;
+    /**
+     *
+     * @type {ResponseMetadata}
+     * @memberof ConversationPbxClassOfServiceResponse
+     */
+    metadata?: ResponseMetadata;
+    /**
+     * Indicates if API call was successful
+     * @type {boolean}
+     * @memberof ConversationPbxClassOfServiceResponse
+     */
+    success?: boolean;
+    /**
+     *
+     * @type {Warning}
+     * @memberof ConversationPbxClassOfServiceResponse
+     */
+    warning?: Warning;
+}
+/**
+ *
+ * @export
+ * @interface ConversationPbxClassOfServicesResponse
+ */
+export interface ConversationPbxClassOfServicesResponse {
+    /**
+     * Array of class of service records
+     * @type {Array<ConversationPbxClassOfService>}
+     * @memberof ConversationPbxClassOfServicesResponse
+     */
+    classes_of_services?: Array<ConversationPbxClassOfService>;
+    /**
+     *
+     * @type {ModelError}
+     * @memberof ConversationPbxClassOfServicesResponse
+     */
+    error?: ModelError;
+    /**
+     *
+     * @type {ResponseMetadata}
+     * @memberof ConversationPbxClassOfServicesResponse
+     */
+    metadata?: ResponseMetadata;
+    /**
+     * Indicates if API call was successful
+     * @type {boolean}
+     * @memberof ConversationPbxClassOfServicesResponse
+     */
+    success?: boolean;
+    /**
+     *
+     * @type {Warning}
+     * @memberof ConversationPbxClassOfServicesResponse
+     */
+    warning?: Warning;
+}
+/**
+ *
+ * @export
+ * @interface ConversationPbxCosAuditLog
+ */
+export interface ConversationPbxCosAuditLog {
+    /**
+     * Action taken
+     * @type {string}
+     * @memberof ConversationPbxCosAuditLog
+     */
+    action?: ConversationPbxCosAuditLog.ActionEnum;
+    /**
+     * Login of the agent who attempted the call
+     * @type {string}
+     * @memberof ConversationPbxCosAuditLog
+     */
+    agent_login?: string;
+    /**
+     * Audit log entry unique identifier
+     * @type {string}
+     * @memberof ConversationPbxCosAuditLog
+     */
+    audit_log_uuid?: string;
+    /**
+     * Name of the class of service (denormalized for display)
+     * @type {string}
+     * @memberof ConversationPbxCosAuditLog
+     */
+    class_of_service_name?: string;
+    /**
+     * UUID of the class of service that was evaluated
+     * @type {string}
+     * @memberof ConversationPbxCosAuditLog
+     */
+    class_of_service_uuid?: string;
+    /**
+     * Phone number the agent tried to dial
+     * @type {string}
+     * @memberof ConversationPbxCosAuditLog
+     */
+    destination?: string;
+    /**
+     * Merchant Id
+     * @type {string}
+     * @memberof ConversationPbxCosAuditLog
+     */
+    merchant_id?: string;
+    /**
+     * Rule that triggered the action
+     * @type {string}
+     * @memberof ConversationPbxCosAuditLog
+     */
+    rule_triggered?: ConversationPbxCosAuditLog.RuleTriggeredEnum;
+    /**
+     * Login of supervisor who approved/denied (null for timeouts and direct blocks)
+     * @type {string}
+     * @memberof ConversationPbxCosAuditLog
+     */
+    supervisor_login?: string;
+    /**
+     * ISO 8601 timestamp of the event
+     * @type {string}
+     * @memberof ConversationPbxCosAuditLog
+     */
+    timestamp?: string;
+}
+/**
+ * @export
+ * @namespace ConversationPbxCosAuditLog
+ */
+export declare namespace ConversationPbxCosAuditLog {
+    /**
+     * @export
+     * @enum {string}
+     */
+    enum ActionEnum {
+        Blocked,
+        OverrideRequested,
+        OverrideApproved,
+        OverrideDenied,
+        OverrideTimeout
+    }
+    /**
+     * @export
+     * @enum {string}
+     */
+    enum RuleTriggeredEnum {
+        OutboundDisabled,
+        TimeRange,
+        CountryBlocked,
+        PremiumBlocked
+    }
+}
+/**
+ *
+ * @export
+ * @interface ConversationPbxCosAuditLogsResponse
+ */
+export interface ConversationPbxCosAuditLogsResponse {
+    /**
+     * Array of audit log entries
+     * @type {Array<ConversationPbxCosAuditLog>}
+     * @memberof ConversationPbxCosAuditLogsResponse
+     */
+    audit_logs?: Array<ConversationPbxCosAuditLog>;
+    /**
+     *
+     * @type {ModelError}
+     * @memberof ConversationPbxCosAuditLogsResponse
+     */
+    error?: ModelError;
+    /**
+     *
+     * @type {ResponseMetadata}
+     * @memberof ConversationPbxCosAuditLogsResponse
+     */
+    metadata?: ResponseMetadata;
+    /**
+     * Indicates if API call was successful
+     * @type {boolean}
+     * @memberof ConversationPbxCosAuditLogsResponse
+     */
+    success?: boolean;
+    /**
+     *
+     * @type {Warning}
+     * @memberof ConversationPbxCosAuditLogsResponse
+     */
+    warning?: Warning;
 }
 /**
  *
@@ -11774,7 +12066,7 @@ export interface ConversationPbxQueue {
      * @type {string}
      * @memberof ConversationPbxQueue
      */
-    no_agent_available_say_voice?: string;
+    no_agent_available_say_voice?: ConversationPbxQueue.NoAgentAvailableSayVoiceEnum;
     /**
      * Audio played when customer enters a queue
      * @type {string}
@@ -11798,7 +12090,7 @@ export interface ConversationPbxQueue {
      * @type {string}
      * @memberof ConversationPbxQueue
      */
-    say_voice?: string;
+    say_voice?: ConversationPbxQueue.SayVoiceEnum;
     /**
      * Twilio taskrouter workflow sid
      * @type {string}
@@ -11849,6 +12141,22 @@ export declare namespace ConversationPbxQueue {
         Neutral,
         First,
         Backup
+    }
+    /**
+     * @export
+     * @enum {string}
+     */
+    enum NoAgentAvailableSayVoiceEnum {
+        Man,
+        Woman
+    }
+    /**
+     * @export
+     * @enum {string}
+     */
+    enum SayVoiceEnum {
+        Man,
+        Woman
     }
 }
 /**
@@ -46086,6 +46394,12 @@ export interface Twilio {
      * @type {string}
      * @memberof Twilio
      */
+    ai_twiml_app_sid?: string;
+    /**
+     *
+     * @type {string}
+     * @memberof Twilio
+     */
     api_key_id?: string;
     /**
      *
@@ -50720,6 +51034,14 @@ export declare const ConversationApiFetchParamCreator: (configuration?: Configur
      */
     deletePbxAudio(conversationPbxAudioUuid: string, options?: any): FetchArgs;
     /**
+     * Delete a class of service
+     * @summary Delete pbx class of service
+     * @param {string} classOfServiceUuid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    deletePbxClassOfService(classOfServiceUuid: string, options?: any): FetchArgs;
+    /**
      * Delete a pbx hardware phone
      * @summary Delete pbx hardware phone
      * @param {string} conversationPbxHardwarePhoneUuid
@@ -51067,6 +51389,31 @@ export declare const ConversationApiFetchParamCreator: (configuration?: Configur
      */
     getPbxCall(callUuid: string, options?: any): FetchArgs;
     /**
+     * Retrieve a single class of service
+     * @summary Get pbx class of service
+     * @param {string} classOfServiceUuid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getPbxClassOfService(classOfServiceUuid: string, options?: any): FetchArgs;
+    /**
+     * Retrieve all classes of service for the merchant
+     * @summary Get pbx classes of service
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getPbxClassesOfService(options?: any): FetchArgs;
+    /**
+     * Retrieve audit log entries for class of service enforcement
+     * @summary Get pbx class of service audit logs
+     * @param {string} [since] ISO timestamp to filter entries since
+     * @param {string} [agent_login] Filter by agent login
+     * @param {number} [limit] Maximum number of entries to return (default 100)
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getPbxCosAuditLogs(since?: string, agent_login?: string, limit?: number, options?: any): FetchArgs;
+    /**
      * Retrieve a pbx hardware phone
      * @summary Get pbx hardware phone
      * @param {string} conversationPbxHardwarePhoneUuid
@@ -51267,6 +51614,14 @@ export declare const ConversationApiFetchParamCreator: (configuration?: Configur
      * @throws {RequiredError}
      */
     insertPbxAudio(pbx_audio: ConversationPbxAudio, options?: any): FetchArgs;
+    /**
+     * Create a new class of service
+     * @summary Insert pbx class of service
+     * @param {ConversationPbxClassOfService} class_of_service Class of service
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    insertPbxClassOfService(class_of_service: ConversationPbxClassOfService, options?: any): FetchArgs;
     /**
      * Insert a pbx hardware phone
      * @summary Insert pbx hardware phone
@@ -51521,6 +51876,15 @@ export declare const ConversationApiFetchParamCreator: (configuration?: Configur
      */
     updatePbxAudio(conversationPbxAudioUuid: string, pbx_audio: ConversationPbxAudio, options?: any): FetchArgs;
     /**
+     * Update an existing class of service
+     * @summary Update pbx class of service
+     * @param {string} classOfServiceUuid
+     * @param {ConversationPbxClassOfService} class_of_service Class of service
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    updatePbxClassOfService(classOfServiceUuid: string, class_of_service: ConversationPbxClassOfService, options?: any): FetchArgs;
+    /**
      * Update a pbx hardware phone
      * @summary Update pbx hardware phone
      * @param {string} conversationPbxHardwarePhoneUuid
@@ -51671,6 +52035,14 @@ export declare const ConversationApiFp: (configuration?: Configuration) => {
      * @throws {RequiredError}
      */
     deletePbxAudio(conversationPbxAudioUuid: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ConversationPbxAudioResponse>;
+    /**
+     * Delete a class of service
+     * @summary Delete pbx class of service
+     * @param {string} classOfServiceUuid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    deletePbxClassOfService(classOfServiceUuid: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<BaseResponse>;
     /**
      * Delete a pbx hardware phone
      * @summary Delete pbx hardware phone
@@ -52019,6 +52391,31 @@ export declare const ConversationApiFp: (configuration?: Configuration) => {
      */
     getPbxCall(callUuid: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ConversationPbxCallResponse>;
     /**
+     * Retrieve a single class of service
+     * @summary Get pbx class of service
+     * @param {string} classOfServiceUuid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getPbxClassOfService(classOfServiceUuid: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ConversationPbxClassOfServiceResponse>;
+    /**
+     * Retrieve all classes of service for the merchant
+     * @summary Get pbx classes of service
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getPbxClassesOfService(options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ConversationPbxClassOfServicesResponse>;
+    /**
+     * Retrieve audit log entries for class of service enforcement
+     * @summary Get pbx class of service audit logs
+     * @param {string} [since] ISO timestamp to filter entries since
+     * @param {string} [agent_login] Filter by agent login
+     * @param {number} [limit] Maximum number of entries to return (default 100)
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getPbxCosAuditLogs(since?: string, agent_login?: string, limit?: number, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ConversationPbxCosAuditLogsResponse>;
+    /**
      * Retrieve a pbx hardware phone
      * @summary Get pbx hardware phone
      * @param {string} conversationPbxHardwarePhoneUuid
@@ -52219,6 +52616,14 @@ export declare const ConversationApiFp: (configuration?: Configuration) => {
      * @throws {RequiredError}
      */
     insertPbxAudio(pbx_audio: ConversationPbxAudio, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ConversationPbxAudioResponse>;
+    /**
+     * Create a new class of service
+     * @summary Insert pbx class of service
+     * @param {ConversationPbxClassOfService} class_of_service Class of service
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    insertPbxClassOfService(class_of_service: ConversationPbxClassOfService, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ConversationPbxClassOfServiceResponse>;
     /**
      * Insert a pbx hardware phone
      * @summary Insert pbx hardware phone
@@ -52473,6 +52878,15 @@ export declare const ConversationApiFp: (configuration?: Configuration) => {
      */
     updatePbxAudio(conversationPbxAudioUuid: string, pbx_audio: ConversationPbxAudio, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ConversationPbxAudioResponse>;
     /**
+     * Update an existing class of service
+     * @summary Update pbx class of service
+     * @param {string} classOfServiceUuid
+     * @param {ConversationPbxClassOfService} class_of_service Class of service
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    updatePbxClassOfService(classOfServiceUuid: string, class_of_service: ConversationPbxClassOfService, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ConversationPbxClassOfServiceResponse>;
+    /**
      * Update a pbx hardware phone
      * @summary Update pbx hardware phone
      * @param {string} conversationPbxHardwarePhoneUuid
@@ -52623,6 +53037,14 @@ export declare const ConversationApiFactory: (configuration?: Configuration, fet
      * @throws {RequiredError}
      */
     deletePbxAudio(conversationPbxAudioUuid: string, options?: any): Promise<ConversationPbxAudioResponse>;
+    /**
+     * Delete a class of service
+     * @summary Delete pbx class of service
+     * @param {string} classOfServiceUuid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    deletePbxClassOfService(classOfServiceUuid: string, options?: any): Promise<BaseResponse>;
     /**
      * Delete a pbx hardware phone
      * @summary Delete pbx hardware phone
@@ -52971,6 +53393,31 @@ export declare const ConversationApiFactory: (configuration?: Configuration, fet
      */
     getPbxCall(callUuid: string, options?: any): Promise<ConversationPbxCallResponse>;
     /**
+     * Retrieve a single class of service
+     * @summary Get pbx class of service
+     * @param {string} classOfServiceUuid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getPbxClassOfService(classOfServiceUuid: string, options?: any): Promise<ConversationPbxClassOfServiceResponse>;
+    /**
+     * Retrieve all classes of service for the merchant
+     * @summary Get pbx classes of service
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getPbxClassesOfService(options?: any): Promise<ConversationPbxClassOfServicesResponse>;
+    /**
+     * Retrieve audit log entries for class of service enforcement
+     * @summary Get pbx class of service audit logs
+     * @param {string} [since] ISO timestamp to filter entries since
+     * @param {string} [agent_login] Filter by agent login
+     * @param {number} [limit] Maximum number of entries to return (default 100)
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getPbxCosAuditLogs(since?: string, agent_login?: string, limit?: number, options?: any): Promise<ConversationPbxCosAuditLogsResponse>;
+    /**
      * Retrieve a pbx hardware phone
      * @summary Get pbx hardware phone
      * @param {string} conversationPbxHardwarePhoneUuid
@@ -53171,6 +53618,14 @@ export declare const ConversationApiFactory: (configuration?: Configuration, fet
      * @throws {RequiredError}
      */
     insertPbxAudio(pbx_audio: ConversationPbxAudio, options?: any): Promise<ConversationPbxAudioResponse>;
+    /**
+     * Create a new class of service
+     * @summary Insert pbx class of service
+     * @param {ConversationPbxClassOfService} class_of_service Class of service
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    insertPbxClassOfService(class_of_service: ConversationPbxClassOfService, options?: any): Promise<ConversationPbxClassOfServiceResponse>;
     /**
      * Insert a pbx hardware phone
      * @summary Insert pbx hardware phone
@@ -53425,6 +53880,15 @@ export declare const ConversationApiFactory: (configuration?: Configuration, fet
      */
     updatePbxAudio(conversationPbxAudioUuid: string, pbx_audio: ConversationPbxAudio, options?: any): Promise<ConversationPbxAudioResponse>;
     /**
+     * Update an existing class of service
+     * @summary Update pbx class of service
+     * @param {string} classOfServiceUuid
+     * @param {ConversationPbxClassOfService} class_of_service Class of service
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    updatePbxClassOfService(classOfServiceUuid: string, class_of_service: ConversationPbxClassOfService, options?: any): Promise<ConversationPbxClassOfServiceResponse>;
+    /**
      * Update a pbx hardware phone
      * @summary Update pbx hardware phone
      * @param {string} conversationPbxHardwarePhoneUuid
@@ -53584,6 +54048,15 @@ export interface ConversationApiInterface {
      * @memberof ConversationApiInterface
      */
     deletePbxAudio(conversationPbxAudioUuid: string, options?: any): Promise<ConversationPbxAudioResponse>;
+    /**
+     * Delete a class of service
+     * @summary Delete pbx class of service
+     * @param {string} classOfServiceUuid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApiInterface
+     */
+    deletePbxClassOfService(classOfServiceUuid: string, options?: any): Promise<BaseResponse>;
     /**
      * Delete a pbx hardware phone
      * @summary Delete pbx hardware phone
@@ -53976,6 +54449,34 @@ export interface ConversationApiInterface {
      */
     getPbxCall(callUuid: string, options?: any): Promise<ConversationPbxCallResponse>;
     /**
+     * Retrieve a single class of service
+     * @summary Get pbx class of service
+     * @param {string} classOfServiceUuid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApiInterface
+     */
+    getPbxClassOfService(classOfServiceUuid: string, options?: any): Promise<ConversationPbxClassOfServiceResponse>;
+    /**
+     * Retrieve all classes of service for the merchant
+     * @summary Get pbx classes of service
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApiInterface
+     */
+    getPbxClassesOfService(options?: any): Promise<ConversationPbxClassOfServicesResponse>;
+    /**
+     * Retrieve audit log entries for class of service enforcement
+     * @summary Get pbx class of service audit logs
+     * @param {string} [since] ISO timestamp to filter entries since
+     * @param {string} [agent_login] Filter by agent login
+     * @param {number} [limit] Maximum number of entries to return (default 100)
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApiInterface
+     */
+    getPbxCosAuditLogs(since?: string, agent_login?: string, limit?: number, options?: any): Promise<ConversationPbxCosAuditLogsResponse>;
+    /**
      * Retrieve a pbx hardware phone
      * @summary Get pbx hardware phone
      * @param {string} conversationPbxHardwarePhoneUuid
@@ -54202,6 +54703,15 @@ export interface ConversationApiInterface {
      * @memberof ConversationApiInterface
      */
     insertPbxAudio(pbx_audio: ConversationPbxAudio, options?: any): Promise<ConversationPbxAudioResponse>;
+    /**
+     * Create a new class of service
+     * @summary Insert pbx class of service
+     * @param {ConversationPbxClassOfService} class_of_service Class of service
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApiInterface
+     */
+    insertPbxClassOfService(class_of_service: ConversationPbxClassOfService, options?: any): Promise<ConversationPbxClassOfServiceResponse>;
     /**
      * Insert a pbx hardware phone
      * @summary Insert pbx hardware phone
@@ -54485,6 +54995,16 @@ export interface ConversationApiInterface {
      */
     updatePbxAudio(conversationPbxAudioUuid: string, pbx_audio: ConversationPbxAudio, options?: any): Promise<ConversationPbxAudioResponse>;
     /**
+     * Update an existing class of service
+     * @summary Update pbx class of service
+     * @param {string} classOfServiceUuid
+     * @param {ConversationPbxClassOfService} class_of_service Class of service
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApiInterface
+     */
+    updatePbxClassOfService(classOfServiceUuid: string, class_of_service: ConversationPbxClassOfService, options?: any): Promise<ConversationPbxClassOfServiceResponse>;
+    /**
      * Update a pbx hardware phone
      * @summary Update pbx hardware phone
      * @param {string} conversationPbxHardwarePhoneUuid
@@ -54654,6 +55174,15 @@ export declare class ConversationApi extends BaseAPI implements ConversationApiI
      * @memberof ConversationApi
      */
     deletePbxAudio(conversationPbxAudioUuid: string, options?: any): Promise<ConversationPbxAudioResponse>;
+    /**
+     * Delete a class of service
+     * @summary Delete pbx class of service
+     * @param {string} classOfServiceUuid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApi
+     */
+    deletePbxClassOfService(classOfServiceUuid: string, options?: any): Promise<BaseResponse>;
     /**
      * Delete a pbx hardware phone
      * @summary Delete pbx hardware phone
@@ -55046,6 +55575,34 @@ export declare class ConversationApi extends BaseAPI implements ConversationApiI
      */
     getPbxCall(callUuid: string, options?: any): Promise<ConversationPbxCallResponse>;
     /**
+     * Retrieve a single class of service
+     * @summary Get pbx class of service
+     * @param {string} classOfServiceUuid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApi
+     */
+    getPbxClassOfService(classOfServiceUuid: string, options?: any): Promise<ConversationPbxClassOfServiceResponse>;
+    /**
+     * Retrieve all classes of service for the merchant
+     * @summary Get pbx classes of service
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApi
+     */
+    getPbxClassesOfService(options?: any): Promise<ConversationPbxClassOfServicesResponse>;
+    /**
+     * Retrieve audit log entries for class of service enforcement
+     * @summary Get pbx class of service audit logs
+     * @param {string} [since] ISO timestamp to filter entries since
+     * @param {string} [agent_login] Filter by agent login
+     * @param {number} [limit] Maximum number of entries to return (default 100)
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApi
+     */
+    getPbxCosAuditLogs(since?: string, agent_login?: string, limit?: number, options?: any): Promise<ConversationPbxCosAuditLogsResponse>;
+    /**
      * Retrieve a pbx hardware phone
      * @summary Get pbx hardware phone
      * @param {string} conversationPbxHardwarePhoneUuid
@@ -55272,6 +55829,15 @@ export declare class ConversationApi extends BaseAPI implements ConversationApiI
      * @memberof ConversationApi
      */
     insertPbxAudio(pbx_audio: ConversationPbxAudio, options?: any): Promise<ConversationPbxAudioResponse>;
+    /**
+     * Create a new class of service
+     * @summary Insert pbx class of service
+     * @param {ConversationPbxClassOfService} class_of_service Class of service
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApi
+     */
+    insertPbxClassOfService(class_of_service: ConversationPbxClassOfService, options?: any): Promise<ConversationPbxClassOfServiceResponse>;
     /**
      * Insert a pbx hardware phone
      * @summary Insert pbx hardware phone
@@ -55554,6 +56120,16 @@ export declare class ConversationApi extends BaseAPI implements ConversationApiI
      * @memberof ConversationApi
      */
     updatePbxAudio(conversationPbxAudioUuid: string, pbx_audio: ConversationPbxAudio, options?: any): Promise<ConversationPbxAudioResponse>;
+    /**
+     * Update an existing class of service
+     * @summary Update pbx class of service
+     * @param {string} classOfServiceUuid
+     * @param {ConversationPbxClassOfService} class_of_service Class of service
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApi
+     */
+    updatePbxClassOfService(classOfServiceUuid: string, class_of_service: ConversationPbxClassOfService, options?: any): Promise<ConversationPbxClassOfServiceResponse>;
     /**
      * Update a pbx hardware phone
      * @summary Update pbx hardware phone

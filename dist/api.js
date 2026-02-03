@@ -28,10 +28,10 @@ var __extends = (this && this.__extends) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.ItemContentMultimedia = exports.ItemAutoOrderStep = exports.Experiment = exports.EmailPerformance = exports.EmailCommseqStep = exports.Distance = exports.CustomerQuery = exports.Coupon = exports.ConversationWebsocketMessage = exports.ConversationWebchatQueueStatusUpdateRequest = exports.ConversationWebchatQueueStatusAgent = exports.ConversationVirtualAgentCapabilities = exports.ConversationSummary = exports.ConversationSentiment = exports.ConversationPbxVoicemailMessageSummary = exports.ConversationPbxVoicemailMessage = exports.ConversationPbxVoicemailMailbox = exports.ConversationPbxTimeBasedMapping = exports.ConversationPbxQueue = exports.ConversationPbxPhoneNumberPurchaseRequest = exports.ConversationPbxPhoneNumber = exports.ConversationPbxMenuMapping = exports.ConversationPbxMenu = exports.ConversationPbxCallTranscriptSegment = exports.ConversationPbxCallAiEngagement = exports.ConversationPbxAvailablePhoneNumber = exports.ConversationPbxAgent = exports.ConversationMessageTransportStatus = exports.ConversationMessage = exports.ConversationMcpServer = exports.ConversationEventRRWeb = exports.ConversationEngagementEquationFunction = exports.ConversationEngagement = exports.ConversationAgentProfile = exports.Conversation = exports.CheckoutHandoffRequest = exports.ChannelPartnerOrderItem = exports.ChannelPartnerOrder = exports.CartKitComponentOption = exports.CartItemOption = exports.CartItemMultimedia = exports.CartCustomerProfileCreditCard = exports.AutoOrderItemSimpleSchedule = exports.AutoOrderItem = exports.AutoOrder = exports.AffiliateLink = exports.AffiliateLedger = exports.RequiredError = exports.BaseAPI = exports.COLLECTION_FORMATS = void 0;
-exports.ChannelPartnerApiFetchParamCreator = exports.AutoOrderApi = exports.AutoOrderApiFactory = exports.AutoOrderApiFp = exports.AutoOrderApiFetchParamCreator = exports.AffiliateApi = exports.AffiliateApiFactory = exports.AffiliateApiFp = exports.AffiliateApiFetchParamCreator = exports.WorkflowTasksRequest = exports.WorkflowTask = exports.Weight = exports.Webhook = exports.TempMultimedia = exports.ReportWebsocketEvent = exports.ReportPageVisualizationMetric = exports.ReportPageVisualization = exports.ReportFilter = exports.ReportExecuteQueriesRequest = exports.ReportDataSourceSchema = exports.ReportDataSetSchema = exports.ReportDataSetQuery = exports.ReportDataSet = exports.Report = exports.PointOfSaleReader = exports.OrderQueryBatch = exports.OrderQuery = exports.OrderPaymentECheck = exports.OrderPaymentCreditCard = exports.OrderPayment = exports.OrderItemOption = exports.OrderItem = exports.OrderFraudScore = exports.OrderFormat = exports.OrderEdiDocument = exports.OrderCurrentStageHistory = exports.OrderAutoOrder = exports.OrderAffiliateLedger = exports.Order = exports.OauthTokenResponse = exports.ItemThirdPartyEmailMarketing = exports.ItemTax = exports.ItemTag = exports.ItemShippingMethod = exports.ItemShippingDestinationRestriction = exports.ItemReview = exports.ItemRestrictionItem = exports.ItemRelatedItem = exports.ItemOptionValue = exports.ItemOption = void 0;
-exports.SsoApiFactory = exports.SsoApiFp = exports.SsoApiFetchParamCreator = exports.OrderApi = exports.OrderApiFactory = exports.OrderApiFp = exports.OrderApiFetchParamCreator = exports.OauthApi = exports.OauthApiFactory = exports.OauthApiFp = exports.OauthApiFetchParamCreator = exports.ItemApi = exports.ItemApiFactory = exports.ItemApiFp = exports.ItemApiFetchParamCreator = exports.IntegrationLogApi = exports.IntegrationLogApiFactory = exports.IntegrationLogApiFp = exports.IntegrationLogApiFetchParamCreator = exports.GiftCertificateApi = exports.GiftCertificateApiFactory = exports.GiftCertificateApiFp = exports.GiftCertificateApiFetchParamCreator = exports.FulfillmentApi = exports.FulfillmentApiFactory = exports.FulfillmentApiFp = exports.FulfillmentApiFetchParamCreator = exports.DatawarehouseApi = exports.DatawarehouseApiFactory = exports.DatawarehouseApiFp = exports.DatawarehouseApiFetchParamCreator = exports.CustomerApi = exports.CustomerApiFactory = exports.CustomerApiFp = exports.CustomerApiFetchParamCreator = exports.CouponApi = exports.CouponApiFactory = exports.CouponApiFp = exports.CouponApiFetchParamCreator = exports.ConversationApi = exports.ConversationApiFactory = exports.ConversationApiFp = exports.ConversationApiFetchParamCreator = exports.CheckoutApi = exports.CheckoutApiFactory = exports.CheckoutApiFp = exports.CheckoutApiFetchParamCreator = exports.ChannelPartnerApi = exports.ChannelPartnerApiFactory = exports.ChannelPartnerApiFp = void 0;
-exports.WorkflowApi = exports.WorkflowApiFactory = exports.WorkflowApiFp = exports.WorkflowApiFetchParamCreator = exports.WebhookApi = exports.WebhookApiFactory = exports.WebhookApiFp = exports.WebhookApiFetchParamCreator = exports.UserApi = exports.UserApiFactory = exports.UserApiFp = exports.UserApiFetchParamCreator = exports.TaxApi = exports.TaxApiFactory = exports.TaxApiFp = exports.TaxApiFetchParamCreator = exports.StorefrontApi = exports.StorefrontApiFactory = exports.StorefrontApiFp = exports.StorefrontApiFetchParamCreator = exports.SsoApi = void 0;
+exports.ItemAutoOrderStep = exports.Experiment = exports.EmailPerformance = exports.EmailCommseqStep = exports.Distance = exports.CustomerQuery = exports.Coupon = exports.ConversationWebsocketMessage = exports.ConversationWebchatQueueStatusUpdateRequest = exports.ConversationWebchatQueueStatusAgent = exports.ConversationVirtualAgentCapabilities = exports.ConversationSummary = exports.ConversationSentiment = exports.ConversationPbxVoicemailMessageSummary = exports.ConversationPbxVoicemailMessage = exports.ConversationPbxVoicemailMailbox = exports.ConversationPbxTimeBasedMapping = exports.ConversationPbxQueue = exports.ConversationPbxPhoneNumberPurchaseRequest = exports.ConversationPbxPhoneNumber = exports.ConversationPbxMenuMapping = exports.ConversationPbxMenu = exports.ConversationPbxCosAuditLog = exports.ConversationPbxCallTranscriptSegment = exports.ConversationPbxCallAiEngagement = exports.ConversationPbxAvailablePhoneNumber = exports.ConversationPbxAgent = exports.ConversationMessageTransportStatus = exports.ConversationMessage = exports.ConversationMcpServer = exports.ConversationEventRRWeb = exports.ConversationEngagementEquationFunction = exports.ConversationEngagement = exports.ConversationAgentProfile = exports.Conversation = exports.CheckoutHandoffRequest = exports.ChannelPartnerOrderItem = exports.ChannelPartnerOrder = exports.CartKitComponentOption = exports.CartItemOption = exports.CartItemMultimedia = exports.CartCustomerProfileCreditCard = exports.AutoOrderItemSimpleSchedule = exports.AutoOrderItem = exports.AutoOrder = exports.AffiliateLink = exports.AffiliateLedger = exports.RequiredError = exports.BaseAPI = exports.COLLECTION_FORMATS = void 0;
+exports.AutoOrderApi = exports.AutoOrderApiFactory = exports.AutoOrderApiFp = exports.AutoOrderApiFetchParamCreator = exports.AffiliateApi = exports.AffiliateApiFactory = exports.AffiliateApiFp = exports.AffiliateApiFetchParamCreator = exports.WorkflowTasksRequest = exports.WorkflowTask = exports.Weight = exports.Webhook = exports.TempMultimedia = exports.ReportWebsocketEvent = exports.ReportPageVisualizationMetric = exports.ReportPageVisualization = exports.ReportFilter = exports.ReportExecuteQueriesRequest = exports.ReportDataSourceSchema = exports.ReportDataSetSchema = exports.ReportDataSetQuery = exports.ReportDataSet = exports.Report = exports.PointOfSaleReader = exports.OrderQueryBatch = exports.OrderQuery = exports.OrderPaymentECheck = exports.OrderPaymentCreditCard = exports.OrderPayment = exports.OrderItemOption = exports.OrderItem = exports.OrderFraudScore = exports.OrderFormat = exports.OrderEdiDocument = exports.OrderCurrentStageHistory = exports.OrderAutoOrder = exports.OrderAffiliateLedger = exports.Order = exports.OauthTokenResponse = exports.ItemThirdPartyEmailMarketing = exports.ItemTax = exports.ItemTag = exports.ItemShippingMethod = exports.ItemShippingDestinationRestriction = exports.ItemReview = exports.ItemRestrictionItem = exports.ItemRelatedItem = exports.ItemOptionValue = exports.ItemOption = exports.ItemContentMultimedia = void 0;
+exports.SsoApiFp = exports.SsoApiFetchParamCreator = exports.OrderApi = exports.OrderApiFactory = exports.OrderApiFp = exports.OrderApiFetchParamCreator = exports.OauthApi = exports.OauthApiFactory = exports.OauthApiFp = exports.OauthApiFetchParamCreator = exports.ItemApi = exports.ItemApiFactory = exports.ItemApiFp = exports.ItemApiFetchParamCreator = exports.IntegrationLogApi = exports.IntegrationLogApiFactory = exports.IntegrationLogApiFp = exports.IntegrationLogApiFetchParamCreator = exports.GiftCertificateApi = exports.GiftCertificateApiFactory = exports.GiftCertificateApiFp = exports.GiftCertificateApiFetchParamCreator = exports.FulfillmentApi = exports.FulfillmentApiFactory = exports.FulfillmentApiFp = exports.FulfillmentApiFetchParamCreator = exports.DatawarehouseApi = exports.DatawarehouseApiFactory = exports.DatawarehouseApiFp = exports.DatawarehouseApiFetchParamCreator = exports.CustomerApi = exports.CustomerApiFactory = exports.CustomerApiFp = exports.CustomerApiFetchParamCreator = exports.CouponApi = exports.CouponApiFactory = exports.CouponApiFp = exports.CouponApiFetchParamCreator = exports.ConversationApi = exports.ConversationApiFactory = exports.ConversationApiFp = exports.ConversationApiFetchParamCreator = exports.CheckoutApi = exports.CheckoutApiFactory = exports.CheckoutApiFp = exports.CheckoutApiFetchParamCreator = exports.ChannelPartnerApi = exports.ChannelPartnerApiFactory = exports.ChannelPartnerApiFp = exports.ChannelPartnerApiFetchParamCreator = void 0;
+exports.WorkflowApi = exports.WorkflowApiFactory = exports.WorkflowApiFp = exports.WorkflowApiFetchParamCreator = exports.WebhookApi = exports.WebhookApiFactory = exports.WebhookApiFp = exports.WebhookApiFetchParamCreator = exports.UserApi = exports.UserApiFactory = exports.UserApiFp = exports.UserApiFetchParamCreator = exports.TaxApi = exports.TaxApiFactory = exports.TaxApiFp = exports.TaxApiFetchParamCreator = exports.StorefrontApi = exports.StorefrontApiFactory = exports.StorefrontApiFp = exports.StorefrontApiFetchParamCreator = exports.SsoApi = exports.SsoApiFactory = void 0;
 var url = require("url");
 var portableFetch = require("portable-fetch");
 var BASE_PATH = "https://secure.ultracart.com/rest/v2".replace(/\/+$/, "");
@@ -630,6 +630,15 @@ var ConversationPbxAgent;
         CallRoutingPreferenceEnum[CallRoutingPreferenceEnum["HardwarePhone"] = 'hardware_phone'] = "HardwarePhone";
         CallRoutingPreferenceEnum[CallRoutingPreferenceEnum["Cellphone"] = 'cellphone'] = "Cellphone";
     })(CallRoutingPreferenceEnum = ConversationPbxAgent.CallRoutingPreferenceEnum || (ConversationPbxAgent.CallRoutingPreferenceEnum = {}));
+    /**
+     * @export
+     * @enum {string}
+     */
+    var UnavailableSayVoiceEnum;
+    (function (UnavailableSayVoiceEnum) {
+        UnavailableSayVoiceEnum[UnavailableSayVoiceEnum["Man"] = 'man'] = "Man";
+        UnavailableSayVoiceEnum[UnavailableSayVoiceEnum["Woman"] = 'woman'] = "Woman";
+    })(UnavailableSayVoiceEnum = ConversationPbxAgent.UnavailableSayVoiceEnum || (ConversationPbxAgent.UnavailableSayVoiceEnum = {}));
 })(ConversationPbxAgent = exports.ConversationPbxAgent || (exports.ConversationPbxAgent = {}));
 /**
  * @export
@@ -681,6 +690,36 @@ var ConversationPbxCallTranscriptSegment;
         SpeakerEnum[SpeakerEnum["Agent"] = ' agent'] = "Agent";
     })(SpeakerEnum = ConversationPbxCallTranscriptSegment.SpeakerEnum || (ConversationPbxCallTranscriptSegment.SpeakerEnum = {}));
 })(ConversationPbxCallTranscriptSegment = exports.ConversationPbxCallTranscriptSegment || (exports.ConversationPbxCallTranscriptSegment = {}));
+/**
+ * @export
+ * @namespace ConversationPbxCosAuditLog
+ */
+var ConversationPbxCosAuditLog;
+(function (ConversationPbxCosAuditLog) {
+    /**
+     * @export
+     * @enum {string}
+     */
+    var ActionEnum;
+    (function (ActionEnum) {
+        ActionEnum[ActionEnum["Blocked"] = 'blocked'] = "Blocked";
+        ActionEnum[ActionEnum["OverrideRequested"] = 'override_requested'] = "OverrideRequested";
+        ActionEnum[ActionEnum["OverrideApproved"] = 'override_approved'] = "OverrideApproved";
+        ActionEnum[ActionEnum["OverrideDenied"] = 'override_denied'] = "OverrideDenied";
+        ActionEnum[ActionEnum["OverrideTimeout"] = 'override_timeout'] = "OverrideTimeout";
+    })(ActionEnum = ConversationPbxCosAuditLog.ActionEnum || (ConversationPbxCosAuditLog.ActionEnum = {}));
+    /**
+     * @export
+     * @enum {string}
+     */
+    var RuleTriggeredEnum;
+    (function (RuleTriggeredEnum) {
+        RuleTriggeredEnum[RuleTriggeredEnum["OutboundDisabled"] = 'outbound_disabled'] = "OutboundDisabled";
+        RuleTriggeredEnum[RuleTriggeredEnum["TimeRange"] = 'time_range'] = "TimeRange";
+        RuleTriggeredEnum[RuleTriggeredEnum["CountryBlocked"] = 'country_blocked'] = "CountryBlocked";
+        RuleTriggeredEnum[RuleTriggeredEnum["PremiumBlocked"] = 'premium_blocked'] = "PremiumBlocked";
+    })(RuleTriggeredEnum = ConversationPbxCosAuditLog.RuleTriggeredEnum || (ConversationPbxCosAuditLog.RuleTriggeredEnum = {}));
+})(ConversationPbxCosAuditLog = exports.ConversationPbxCosAuditLog || (exports.ConversationPbxCosAuditLog = {}));
 /**
  * @export
  * @namespace ConversationPbxMenu
@@ -770,6 +809,24 @@ var ConversationPbxQueue;
         AiPriorityEnum[AiPriorityEnum["First"] = 'first'] = "First";
         AiPriorityEnum[AiPriorityEnum["Backup"] = 'backup'] = "Backup";
     })(AiPriorityEnum = ConversationPbxQueue.AiPriorityEnum || (ConversationPbxQueue.AiPriorityEnum = {}));
+    /**
+     * @export
+     * @enum {string}
+     */
+    var NoAgentAvailableSayVoiceEnum;
+    (function (NoAgentAvailableSayVoiceEnum) {
+        NoAgentAvailableSayVoiceEnum[NoAgentAvailableSayVoiceEnum["Man"] = 'man'] = "Man";
+        NoAgentAvailableSayVoiceEnum[NoAgentAvailableSayVoiceEnum["Woman"] = 'woman'] = "Woman";
+    })(NoAgentAvailableSayVoiceEnum = ConversationPbxQueue.NoAgentAvailableSayVoiceEnum || (ConversationPbxQueue.NoAgentAvailableSayVoiceEnum = {}));
+    /**
+     * @export
+     * @enum {string}
+     */
+    var SayVoiceEnum;
+    (function (SayVoiceEnum) {
+        SayVoiceEnum[SayVoiceEnum["Man"] = 'man'] = "Man";
+        SayVoiceEnum[SayVoiceEnum["Woman"] = 'woman'] = "Woman";
+    })(SayVoiceEnum = ConversationPbxQueue.SayVoiceEnum || (ConversationPbxQueue.SayVoiceEnum = {}));
 })(ConversationPbxQueue = exports.ConversationPbxQueue || (exports.ConversationPbxQueue = {}));
 /**
  * @export
@@ -7517,6 +7574,52 @@ var ConversationApiFetchParamCreator = function (configuration) {
             };
         },
         /**
+         * Delete a class of service
+         * @summary Delete pbx class of service
+         * @param {string} classOfServiceUuid
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        deletePbxClassOfService: function (classOfServiceUuid, options) {
+            if (options === void 0) { options = {}; }
+            // verify required parameter 'classOfServiceUuid' is not null or undefined
+            if (classOfServiceUuid === null || classOfServiceUuid === undefined) {
+                throw new RequiredError('classOfServiceUuid', 'Required parameter classOfServiceUuid was null or undefined when calling deletePbxClassOfService.');
+            }
+            var localVarPath = "/conversation/pbx/class_of_service/{classOfServiceUuid}"
+                .replace("{".concat("classOfServiceUuid", "}"), encodeURIComponent(String(classOfServiceUuid)));
+            var localVarUrlObj = url.parse(localVarPath, true);
+            var localVarRequestOptions = Object.assign({ method: 'DELETE' }, options);
+            var localVarHeaderParameter = {};
+            var localVarQueryParameter = {};
+            if (configuration && configuration.apiVersion) {
+                localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+            }
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+                var localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+                    ? configuration.accessToken("ultraCartOauth", ["conversation_write"])
+                    : configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                var localVarApiKeyValue = typeof configuration.apiKey === 'function'
+                    ? configuration.apiKey("x-ultracart-simple-key")
+                    : configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
          * Delete a pbx hardware phone
          * @summary Delete pbx hardware phone
          * @param {string} conversationPbxHardwarePhoneUuid
@@ -9505,6 +9608,144 @@ var ConversationApiFetchParamCreator = function (configuration) {
             };
         },
         /**
+         * Retrieve a single class of service
+         * @summary Get pbx class of service
+         * @param {string} classOfServiceUuid
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getPbxClassOfService: function (classOfServiceUuid, options) {
+            if (options === void 0) { options = {}; }
+            // verify required parameter 'classOfServiceUuid' is not null or undefined
+            if (classOfServiceUuid === null || classOfServiceUuid === undefined) {
+                throw new RequiredError('classOfServiceUuid', 'Required parameter classOfServiceUuid was null or undefined when calling getPbxClassOfService.');
+            }
+            var localVarPath = "/conversation/pbx/class_of_service/{classOfServiceUuid}"
+                .replace("{".concat("classOfServiceUuid", "}"), encodeURIComponent(String(classOfServiceUuid)));
+            var localVarUrlObj = url.parse(localVarPath, true);
+            var localVarRequestOptions = Object.assign({ method: 'GET' }, options);
+            var localVarHeaderParameter = {};
+            var localVarQueryParameter = {};
+            if (configuration && configuration.apiVersion) {
+                localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+            }
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+                var localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+                    ? configuration.accessToken("ultraCartOauth", ["conversation_read"])
+                    : configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                var localVarApiKeyValue = typeof configuration.apiKey === 'function'
+                    ? configuration.apiKey("x-ultracart-simple-key")
+                    : configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Retrieve all classes of service for the merchant
+         * @summary Get pbx classes of service
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getPbxClassesOfService: function (options) {
+            if (options === void 0) { options = {}; }
+            var localVarPath = "/conversation/pbx/class_of_service";
+            var localVarUrlObj = url.parse(localVarPath, true);
+            var localVarRequestOptions = Object.assign({ method: 'GET' }, options);
+            var localVarHeaderParameter = {};
+            var localVarQueryParameter = {};
+            if (configuration && configuration.apiVersion) {
+                localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+            }
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+                var localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+                    ? configuration.accessToken("ultraCartOauth", ["conversation_read"])
+                    : configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                var localVarApiKeyValue = typeof configuration.apiKey === 'function'
+                    ? configuration.apiKey("x-ultracart-simple-key")
+                    : configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Retrieve audit log entries for class of service enforcement
+         * @summary Get pbx class of service audit logs
+         * @param {string} [since] ISO timestamp to filter entries since
+         * @param {string} [agent_login] Filter by agent login
+         * @param {number} [limit] Maximum number of entries to return (default 100)
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getPbxCosAuditLogs: function (since, agent_login, limit, options) {
+            if (options === void 0) { options = {}; }
+            var localVarPath = "/conversation/pbx/class_of_service/audit_log";
+            var localVarUrlObj = url.parse(localVarPath, true);
+            var localVarRequestOptions = Object.assign({ method: 'GET' }, options);
+            var localVarHeaderParameter = {};
+            var localVarQueryParameter = {};
+            if (configuration && configuration.apiVersion) {
+                localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+            }
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+                var localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+                    ? configuration.accessToken("ultraCartOauth", ["conversation_read"])
+                    : configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                var localVarApiKeyValue = typeof configuration.apiKey === 'function'
+                    ? configuration.apiKey("x-ultracart-simple-key")
+                    : configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+            if (since !== undefined) {
+                localVarQueryParameter['since'] = since;
+            }
+            if (agent_login !== undefined) {
+                localVarQueryParameter['agent_login'] = agent_login;
+            }
+            if (limit !== undefined) {
+                localVarQueryParameter['limit'] = limit;
+            }
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
          * Retrieve a pbx hardware phone
          * @summary Get pbx hardware phone
          * @param {string} conversationPbxHardwarePhoneUuid
@@ -10667,6 +10908,54 @@ var ConversationApiFetchParamCreator = function (configuration) {
             localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
             var needsSerialization = ("ConversationPbxAudio" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
             localVarRequestOptions.body = needsSerialization ? JSON.stringify(pbx_audio || {}) : (pbx_audio || "");
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Create a new class of service
+         * @summary Insert pbx class of service
+         * @param {ConversationPbxClassOfService} class_of_service Class of service
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        insertPbxClassOfService: function (class_of_service, options) {
+            if (options === void 0) { options = {}; }
+            // verify required parameter 'class_of_service' is not null or undefined
+            if (class_of_service === null || class_of_service === undefined) {
+                throw new RequiredError('class_of_service', 'Required parameter class_of_service was null or undefined when calling insertPbxClassOfService.');
+            }
+            var localVarPath = "/conversation/pbx/class_of_service";
+            var localVarUrlObj = url.parse(localVarPath, true);
+            var localVarRequestOptions = Object.assign({ method: 'POST' }, options);
+            var localVarHeaderParameter = {};
+            var localVarQueryParameter = {};
+            if (configuration && configuration.apiVersion) {
+                localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+            }
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+                var localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+                    ? configuration.accessToken("ultraCartOauth", ["conversation_write"])
+                    : configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                var localVarApiKeyValue = typeof configuration.apiKey === 'function'
+                    ? configuration.apiKey("x-ultracart-simple-key")
+                    : configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+            localVarHeaderParameter['Content-Type'] = 'application/json; charset=UTF-8';
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+            var needsSerialization = ("ConversationPbxClassOfService" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
+            localVarRequestOptions.body = needsSerialization ? JSON.stringify(class_of_service || {}) : (class_of_service || "");
             return {
                 url: url.format(localVarUrlObj),
                 options: localVarRequestOptions,
@@ -12155,6 +12444,60 @@ var ConversationApiFetchParamCreator = function (configuration) {
             };
         },
         /**
+         * Update an existing class of service
+         * @summary Update pbx class of service
+         * @param {string} classOfServiceUuid
+         * @param {ConversationPbxClassOfService} class_of_service Class of service
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        updatePbxClassOfService: function (classOfServiceUuid, class_of_service, options) {
+            if (options === void 0) { options = {}; }
+            // verify required parameter 'classOfServiceUuid' is not null or undefined
+            if (classOfServiceUuid === null || classOfServiceUuid === undefined) {
+                throw new RequiredError('classOfServiceUuid', 'Required parameter classOfServiceUuid was null or undefined when calling updatePbxClassOfService.');
+            }
+            // verify required parameter 'class_of_service' is not null or undefined
+            if (class_of_service === null || class_of_service === undefined) {
+                throw new RequiredError('class_of_service', 'Required parameter class_of_service was null or undefined when calling updatePbxClassOfService.');
+            }
+            var localVarPath = "/conversation/pbx/class_of_service/{classOfServiceUuid}"
+                .replace("{".concat("classOfServiceUuid", "}"), encodeURIComponent(String(classOfServiceUuid)));
+            var localVarUrlObj = url.parse(localVarPath, true);
+            var localVarRequestOptions = Object.assign({ method: 'PUT' }, options);
+            var localVarHeaderParameter = {};
+            var localVarQueryParameter = {};
+            if (configuration && configuration.apiVersion) {
+                localVarHeaderParameter["X-UltraCart-Api-Version"] = configuration.apiVersion;
+            }
+            // authentication ultraCartOauth required
+            // oauth required
+            if (configuration && configuration.accessToken) {
+                var localVarAccessTokenValue = typeof configuration.accessToken === 'function'
+                    ? configuration.accessToken("ultraCartOauth", ["conversation_write"])
+                    : configuration.accessToken;
+                localVarHeaderParameter["Authorization"] = "Bearer " + localVarAccessTokenValue;
+            }
+            // authentication ultraCartSimpleApiKey required
+            if (configuration && configuration.apiKey) {
+                var localVarApiKeyValue = typeof configuration.apiKey === 'function'
+                    ? configuration.apiKey("x-ultracart-simple-key")
+                    : configuration.apiKey;
+                localVarHeaderParameter["x-ultracart-simple-key"] = localVarApiKeyValue;
+            }
+            localVarHeaderParameter['Content-Type'] = 'application/json; charset=UTF-8';
+            localVarUrlObj.query = Object.assign({}, localVarUrlObj.query, localVarQueryParameter, options.query);
+            // fix override query string Detail: https://stackoverflow.com/a/7517673/1077943
+            delete localVarUrlObj.search;
+            localVarRequestOptions.headers = Object.assign({}, localVarHeaderParameter, options.headers);
+            var needsSerialization = ("ConversationPbxClassOfService" !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
+            localVarRequestOptions.body = needsSerialization ? JSON.stringify(class_of_service || {}) : (class_of_service || "");
+            return {
+                url: url.format(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
          * Update a pbx hardware phone
          * @summary Update pbx hardware phone
          * @param {string} conversationPbxHardwarePhoneUuid
@@ -12802,6 +13145,28 @@ var ConversationApiFp = function (configuration) {
          */
         deletePbxAudio: function (conversationPbxAudioUuid, options) {
             var localVarFetchArgs = (0, exports.ConversationApiFetchParamCreator)(configuration).deletePbxAudio(conversationPbxAudioUuid, options);
+            return function (fetch, basePath) {
+                if (fetch === void 0) { fetch = portableFetch; }
+                if (basePath === void 0) { basePath = BASE_PATH; }
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(function (response) {
+                    if (response.status >= 200 && response.status < 300) {
+                        return response.json();
+                    }
+                    else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
+         * Delete a class of service
+         * @summary Delete pbx class of service
+         * @param {string} classOfServiceUuid
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        deletePbxClassOfService: function (classOfServiceUuid, options) {
+            var localVarFetchArgs = (0, exports.ConversationApiFetchParamCreator)(configuration).deletePbxClassOfService(classOfServiceUuid, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -13779,6 +14144,73 @@ var ConversationApiFp = function (configuration) {
             };
         },
         /**
+         * Retrieve a single class of service
+         * @summary Get pbx class of service
+         * @param {string} classOfServiceUuid
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getPbxClassOfService: function (classOfServiceUuid, options) {
+            var localVarFetchArgs = (0, exports.ConversationApiFetchParamCreator)(configuration).getPbxClassOfService(classOfServiceUuid, options);
+            return function (fetch, basePath) {
+                if (fetch === void 0) { fetch = portableFetch; }
+                if (basePath === void 0) { basePath = BASE_PATH; }
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(function (response) {
+                    if (response.status >= 200 && response.status < 300) {
+                        return response.json();
+                    }
+                    else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
+         * Retrieve all classes of service for the merchant
+         * @summary Get pbx classes of service
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getPbxClassesOfService: function (options) {
+            var localVarFetchArgs = (0, exports.ConversationApiFetchParamCreator)(configuration).getPbxClassesOfService(options);
+            return function (fetch, basePath) {
+                if (fetch === void 0) { fetch = portableFetch; }
+                if (basePath === void 0) { basePath = BASE_PATH; }
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(function (response) {
+                    if (response.status >= 200 && response.status < 300) {
+                        return response.json();
+                    }
+                    else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
+         * Retrieve audit log entries for class of service enforcement
+         * @summary Get pbx class of service audit logs
+         * @param {string} [since] ISO timestamp to filter entries since
+         * @param {string} [agent_login] Filter by agent login
+         * @param {number} [limit] Maximum number of entries to return (default 100)
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getPbxCosAuditLogs: function (since, agent_login, limit, options) {
+            var localVarFetchArgs = (0, exports.ConversationApiFetchParamCreator)(configuration).getPbxCosAuditLogs(since, agent_login, limit, options);
+            return function (fetch, basePath) {
+                if (fetch === void 0) { fetch = portableFetch; }
+                if (basePath === void 0) { basePath = BASE_PATH; }
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(function (response) {
+                    if (response.status >= 200 && response.status < 300) {
+                        return response.json();
+                    }
+                    else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
          * Retrieve a pbx hardware phone
          * @summary Get pbx hardware phone
          * @param {string} conversationPbxHardwarePhoneUuid
@@ -14330,6 +14762,28 @@ var ConversationApiFp = function (configuration) {
          */
         insertPbxAudio: function (pbx_audio, options) {
             var localVarFetchArgs = (0, exports.ConversationApiFetchParamCreator)(configuration).insertPbxAudio(pbx_audio, options);
+            return function (fetch, basePath) {
+                if (fetch === void 0) { fetch = portableFetch; }
+                if (basePath === void 0) { basePath = BASE_PATH; }
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(function (response) {
+                    if (response.status >= 200 && response.status < 300) {
+                        return response.json();
+                    }
+                    else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
+         * Create a new class of service
+         * @summary Insert pbx class of service
+         * @param {ConversationPbxClassOfService} class_of_service Class of service
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        insertPbxClassOfService: function (class_of_service, options) {
+            var localVarFetchArgs = (0, exports.ConversationApiFetchParamCreator)(configuration).insertPbxClassOfService(class_of_service, options);
             return function (fetch, basePath) {
                 if (fetch === void 0) { fetch = portableFetch; }
                 if (basePath === void 0) { basePath = BASE_PATH; }
@@ -15003,6 +15457,29 @@ var ConversationApiFp = function (configuration) {
             };
         },
         /**
+         * Update an existing class of service
+         * @summary Update pbx class of service
+         * @param {string} classOfServiceUuid
+         * @param {ConversationPbxClassOfService} class_of_service Class of service
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        updatePbxClassOfService: function (classOfServiceUuid, class_of_service, options) {
+            var localVarFetchArgs = (0, exports.ConversationApiFetchParamCreator)(configuration).updatePbxClassOfService(classOfServiceUuid, class_of_service, options);
+            return function (fetch, basePath) {
+                if (fetch === void 0) { fetch = portableFetch; }
+                if (basePath === void 0) { basePath = BASE_PATH; }
+                return fetch(basePath + localVarFetchArgs.url, localVarFetchArgs.options).then(function (response) {
+                    if (response.status >= 200 && response.status < 300) {
+                        return response.json();
+                    }
+                    else {
+                        throw response;
+                    }
+                });
+            };
+        },
+        /**
          * Update a pbx hardware phone
          * @summary Update pbx hardware phone
          * @param {string} conversationPbxHardwarePhoneUuid
@@ -15297,6 +15774,16 @@ var ConversationApiFactory = function (configuration, fetch, basePath) {
          */
         deletePbxAudio: function (conversationPbxAudioUuid, options) {
             return (0, exports.ConversationApiFp)(configuration).deletePbxAudio(conversationPbxAudioUuid, options)(fetch, basePath);
+        },
+        /**
+         * Delete a class of service
+         * @summary Delete pbx class of service
+         * @param {string} classOfServiceUuid
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        deletePbxClassOfService: function (classOfServiceUuid, options) {
+            return (0, exports.ConversationApiFp)(configuration).deletePbxClassOfService(classOfServiceUuid, options)(fetch, basePath);
         },
         /**
          * Delete a pbx hardware phone
@@ -15734,6 +16221,37 @@ var ConversationApiFactory = function (configuration, fetch, basePath) {
             return (0, exports.ConversationApiFp)(configuration).getPbxCall(callUuid, options)(fetch, basePath);
         },
         /**
+         * Retrieve a single class of service
+         * @summary Get pbx class of service
+         * @param {string} classOfServiceUuid
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getPbxClassOfService: function (classOfServiceUuid, options) {
+            return (0, exports.ConversationApiFp)(configuration).getPbxClassOfService(classOfServiceUuid, options)(fetch, basePath);
+        },
+        /**
+         * Retrieve all classes of service for the merchant
+         * @summary Get pbx classes of service
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getPbxClassesOfService: function (options) {
+            return (0, exports.ConversationApiFp)(configuration).getPbxClassesOfService(options)(fetch, basePath);
+        },
+        /**
+         * Retrieve audit log entries for class of service enforcement
+         * @summary Get pbx class of service audit logs
+         * @param {string} [since] ISO timestamp to filter entries since
+         * @param {string} [agent_login] Filter by agent login
+         * @param {number} [limit] Maximum number of entries to return (default 100)
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getPbxCosAuditLogs: function (since, agent_login, limit, options) {
+            return (0, exports.ConversationApiFp)(configuration).getPbxCosAuditLogs(since, agent_login, limit, options)(fetch, basePath);
+        },
+        /**
          * Retrieve a pbx hardware phone
          * @summary Get pbx hardware phone
          * @param {string} conversationPbxHardwarePhoneUuid
@@ -15985,6 +16503,16 @@ var ConversationApiFactory = function (configuration, fetch, basePath) {
          */
         insertPbxAudio: function (pbx_audio, options) {
             return (0, exports.ConversationApiFp)(configuration).insertPbxAudio(pbx_audio, options)(fetch, basePath);
+        },
+        /**
+         * Create a new class of service
+         * @summary Insert pbx class of service
+         * @param {ConversationPbxClassOfService} class_of_service Class of service
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        insertPbxClassOfService: function (class_of_service, options) {
+            return (0, exports.ConversationApiFp)(configuration).insertPbxClassOfService(class_of_service, options)(fetch, basePath);
         },
         /**
          * Insert a pbx hardware phone
@@ -16298,6 +16826,17 @@ var ConversationApiFactory = function (configuration, fetch, basePath) {
             return (0, exports.ConversationApiFp)(configuration).updatePbxAudio(conversationPbxAudioUuid, pbx_audio, options)(fetch, basePath);
         },
         /**
+         * Update an existing class of service
+         * @summary Update pbx class of service
+         * @param {string} classOfServiceUuid
+         * @param {ConversationPbxClassOfService} class_of_service Class of service
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        updatePbxClassOfService: function (classOfServiceUuid, class_of_service, options) {
+            return (0, exports.ConversationApiFp)(configuration).updatePbxClassOfService(classOfServiceUuid, class_of_service, options)(fetch, basePath);
+        },
+        /**
          * Update a pbx hardware phone
          * @summary Update pbx hardware phone
          * @param {string} conversationPbxHardwarePhoneUuid
@@ -16497,6 +17036,17 @@ var ConversationApi = /** @class */ (function (_super) {
      */
     ConversationApi.prototype.deletePbxAudio = function (conversationPbxAudioUuid, options) {
         return (0, exports.ConversationApiFp)(this.configuration).deletePbxAudio(conversationPbxAudioUuid, options)(this.fetch, this.basePath);
+    };
+    /**
+     * Delete a class of service
+     * @summary Delete pbx class of service
+     * @param {string} classOfServiceUuid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApi
+     */
+    ConversationApi.prototype.deletePbxClassOfService = function (classOfServiceUuid, options) {
+        return (0, exports.ConversationApiFp)(this.configuration).deletePbxClassOfService(classOfServiceUuid, options)(this.fetch, this.basePath);
     };
     /**
      * Delete a pbx hardware phone
@@ -16978,6 +17528,40 @@ var ConversationApi = /** @class */ (function (_super) {
         return (0, exports.ConversationApiFp)(this.configuration).getPbxCall(callUuid, options)(this.fetch, this.basePath);
     };
     /**
+     * Retrieve a single class of service
+     * @summary Get pbx class of service
+     * @param {string} classOfServiceUuid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApi
+     */
+    ConversationApi.prototype.getPbxClassOfService = function (classOfServiceUuid, options) {
+        return (0, exports.ConversationApiFp)(this.configuration).getPbxClassOfService(classOfServiceUuid, options)(this.fetch, this.basePath);
+    };
+    /**
+     * Retrieve all classes of service for the merchant
+     * @summary Get pbx classes of service
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApi
+     */
+    ConversationApi.prototype.getPbxClassesOfService = function (options) {
+        return (0, exports.ConversationApiFp)(this.configuration).getPbxClassesOfService(options)(this.fetch, this.basePath);
+    };
+    /**
+     * Retrieve audit log entries for class of service enforcement
+     * @summary Get pbx class of service audit logs
+     * @param {string} [since] ISO timestamp to filter entries since
+     * @param {string} [agent_login] Filter by agent login
+     * @param {number} [limit] Maximum number of entries to return (default 100)
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApi
+     */
+    ConversationApi.prototype.getPbxCosAuditLogs = function (since, agent_login, limit, options) {
+        return (0, exports.ConversationApiFp)(this.configuration).getPbxCosAuditLogs(since, agent_login, limit, options)(this.fetch, this.basePath);
+    };
+    /**
      * Retrieve a pbx hardware phone
      * @summary Get pbx hardware phone
      * @param {string} conversationPbxHardwarePhoneUuid
@@ -17255,6 +17839,17 @@ var ConversationApi = /** @class */ (function (_super) {
      */
     ConversationApi.prototype.insertPbxAudio = function (pbx_audio, options) {
         return (0, exports.ConversationApiFp)(this.configuration).insertPbxAudio(pbx_audio, options)(this.fetch, this.basePath);
+    };
+    /**
+     * Create a new class of service
+     * @summary Insert pbx class of service
+     * @param {ConversationPbxClassOfService} class_of_service Class of service
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApi
+     */
+    ConversationApi.prototype.insertPbxClassOfService = function (class_of_service, options) {
+        return (0, exports.ConversationApiFp)(this.configuration).insertPbxClassOfService(class_of_service, options)(this.fetch, this.basePath);
     };
     /**
      * Insert a pbx hardware phone
@@ -17595,6 +18190,18 @@ var ConversationApi = /** @class */ (function (_super) {
      */
     ConversationApi.prototype.updatePbxAudio = function (conversationPbxAudioUuid, pbx_audio, options) {
         return (0, exports.ConversationApiFp)(this.configuration).updatePbxAudio(conversationPbxAudioUuid, pbx_audio, options)(this.fetch, this.basePath);
+    };
+    /**
+     * Update an existing class of service
+     * @summary Update pbx class of service
+     * @param {string} classOfServiceUuid
+     * @param {ConversationPbxClassOfService} class_of_service Class of service
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApi
+     */
+    ConversationApi.prototype.updatePbxClassOfService = function (classOfServiceUuid, class_of_service, options) {
+        return (0, exports.ConversationApiFp)(this.configuration).updatePbxClassOfService(classOfServiceUuid, class_of_service, options)(this.fetch, this.basePath);
     };
     /**
      * Update a pbx hardware phone
