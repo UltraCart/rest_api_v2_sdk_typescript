@@ -21273,7 +21273,7 @@ export interface EmailCommseqPostcard {
      */
     postcard_front_container_uuid?: string;
     /**
-     * URL to screenshot of the back of the postcard
+     * URL to screenshot of the front of the postcard
      * @type {string}
      * @memberof EmailCommseqPostcard
      */
@@ -31706,44 +31706,6 @@ export interface ItemInventorySnapshotResponse {
 /**
  *
  * @export
- * @interface ItemInventoryUpdate
- */
-export interface ItemInventoryUpdate {
-    /**
-     * Distribution center code
-     * @type {string}
-     * @memberof ItemInventoryUpdate
-     */
-    distribution_center_code?: string;
-    /**
-     * Inventory level
-     * @type {number}
-     * @memberof ItemInventoryUpdate
-     */
-    inventory_level?: number;
-    /**
-     * Merchant Item ID
-     * @type {string}
-     * @memberof ItemInventoryUpdate
-     */
-    merchant_item_id?: string;
-}
-/**
- *
- * @export
- * @interface ItemInventoryUpdateRequest
- */
-export interface ItemInventoryUpdateRequest {
-    /**
-     * Inventory updates array
-     * @type {Array<ItemInventoryUpdate>}
-     * @memberof ItemInventoryUpdateRequest
-     */
-    inventory_updates?: Array<ItemInventoryUpdate>;
-}
-/**
- *
- * @export
  * @interface ItemKitComponent
  */
 export interface ItemKitComponent {
@@ -33582,43 +33544,6 @@ export interface ItemShippingDistributionCenter {
      * @memberof ItemShippingDistributionCenter
      */
     stock_picking_location?: string;
-}
-/**
- *
- * @export
- * @interface ItemShippingDistributionCenterResponse
- */
-export interface ItemShippingDistributionCenterResponse {
-    /**
-     *
-     * @type {ModelError}
-     * @memberof ItemShippingDistributionCenterResponse
-     */
-    error?: ModelError;
-    /**
-     *
-     * @type {ItemShippingDistributionCenter}
-     * @memberof ItemShippingDistributionCenterResponse
-     */
-    itemShippingDistributionCenter?: ItemShippingDistributionCenter;
-    /**
-     *
-     * @type {ResponseMetadata}
-     * @memberof ItemShippingDistributionCenterResponse
-     */
-    metadata?: ResponseMetadata;
-    /**
-     * Indicates if API call was successful
-     * @type {boolean}
-     * @memberof ItemShippingDistributionCenterResponse
-     */
-    success?: boolean;
-    /**
-     *
-     * @type {Warning}
-     * @memberof ItemShippingDistributionCenterResponse
-     */
-    warning?: Warning;
 }
 /**
  *
@@ -39836,6 +39761,31 @@ export interface OrderTransactionalMerchantNote {
      * @memberof OrderTransactionalMerchantNote
      */
     user?: string;
+}
+/**
+ *
+ * @export
+ * @interface OrderUpsellCartRequest
+ */
+export interface OrderUpsellCartRequest {
+    /**
+     *
+     * @type {string}
+     * @memberof OrderUpsellCartRequest
+     */
+    checkout_url?: string;
+    /**
+     *
+     * @type {Array<string>}
+     * @memberof OrderUpsellCartRequest
+     */
+    coupon_codes?: Array<string>;
+    /**
+     *
+     * @type {Array<CartItem>}
+     * @memberof OrderUpsellCartRequest
+     */
+    items?: Array<CartItem>;
 }
 /**
  *
@@ -51408,11 +51358,12 @@ export declare const ConversationApiFetchParamCreator: (configuration?: Configur
      * @summary Get pbx class of service audit logs
      * @param {string} [since] ISO timestamp to filter entries since
      * @param {string} [agent_login] Filter by agent login
+     * @param {string} [action] Action
      * @param {number} [limit] Maximum number of entries to return (default 100)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getPbxCosAuditLogs(since?: string, agent_login?: string, limit?: number, options?: any): FetchArgs;
+    getPbxCosAuditLogs(since?: string, agent_login?: string, action?: string, limit?: number, options?: any): FetchArgs;
     /**
      * Retrieve a pbx hardware phone
      * @summary Get pbx hardware phone
@@ -52410,11 +52361,12 @@ export declare const ConversationApiFp: (configuration?: Configuration) => {
      * @summary Get pbx class of service audit logs
      * @param {string} [since] ISO timestamp to filter entries since
      * @param {string} [agent_login] Filter by agent login
+     * @param {string} [action] Action
      * @param {number} [limit] Maximum number of entries to return (default 100)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getPbxCosAuditLogs(since?: string, agent_login?: string, limit?: number, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ConversationPbxCosAuditLogsResponse>;
+    getPbxCosAuditLogs(since?: string, agent_login?: string, action?: string, limit?: number, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ConversationPbxCosAuditLogsResponse>;
     /**
      * Retrieve a pbx hardware phone
      * @summary Get pbx hardware phone
@@ -53412,11 +53364,12 @@ export declare const ConversationApiFactory: (configuration?: Configuration, fet
      * @summary Get pbx class of service audit logs
      * @param {string} [since] ISO timestamp to filter entries since
      * @param {string} [agent_login] Filter by agent login
+     * @param {string} [action] Action
      * @param {number} [limit] Maximum number of entries to return (default 100)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getPbxCosAuditLogs(since?: string, agent_login?: string, limit?: number, options?: any): Promise<ConversationPbxCosAuditLogsResponse>;
+    getPbxCosAuditLogs(since?: string, agent_login?: string, action?: string, limit?: number, options?: any): Promise<ConversationPbxCosAuditLogsResponse>;
     /**
      * Retrieve a pbx hardware phone
      * @summary Get pbx hardware phone
@@ -54470,12 +54423,13 @@ export interface ConversationApiInterface {
      * @summary Get pbx class of service audit logs
      * @param {string} [since] ISO timestamp to filter entries since
      * @param {string} [agent_login] Filter by agent login
+     * @param {string} [action] Action
      * @param {number} [limit] Maximum number of entries to return (default 100)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ConversationApiInterface
      */
-    getPbxCosAuditLogs(since?: string, agent_login?: string, limit?: number, options?: any): Promise<ConversationPbxCosAuditLogsResponse>;
+    getPbxCosAuditLogs(since?: string, agent_login?: string, action?: string, limit?: number, options?: any): Promise<ConversationPbxCosAuditLogsResponse>;
     /**
      * Retrieve a pbx hardware phone
      * @summary Get pbx hardware phone
@@ -55596,12 +55550,13 @@ export declare class ConversationApi extends BaseAPI implements ConversationApiI
      * @summary Get pbx class of service audit logs
      * @param {string} [since] ISO timestamp to filter entries since
      * @param {string} [agent_login] Filter by agent login
+     * @param {string} [action] Action
      * @param {number} [limit] Maximum number of entries to return (default 100)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ConversationApi
      */
-    getPbxCosAuditLogs(since?: string, agent_login?: string, limit?: number, options?: any): Promise<ConversationPbxCosAuditLogsResponse>;
+    getPbxCosAuditLogs(since?: string, agent_login?: string, action?: string, limit?: number, options?: any): Promise<ConversationPbxCosAuditLogsResponse>;
     /**
      * Retrieve a pbx hardware phone
      * @summary Get pbx hardware phone
@@ -60950,17 +60905,6 @@ export declare const ItemApiFetchParamCreator: (configuration?: Configuration) =
      */
     getItemByMerchantItemId(merchant_item_id: string, _expand?: string, _placeholders?: boolean, options?: any): FetchArgs;
     /**
-     * Retrieve an item shipping distribution center.
-     * @summary Retrieve an item shipping distribution center
-     * @param {number} merchant_item_oid The item oid to retrieve.
-     * @param {string} distribution_center_code
-     * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
-     * @param {boolean} [_placeholders] Whether or not placeholder values should be returned in the result.  Useful for UIs that consume this REST API.
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    getItemShippingDistributionCenterByCode(merchant_item_oid: number, distribution_center_code: string, _expand?: string, _placeholders?: boolean, options?: any): FetchArgs;
-    /**
      * Retrieves a group of items from the account.  If no parameters are specified, all items will be returned.  You will need to make multiple API calls in order to retrieve the entire result set since this API performs result set pagination.
      * @summary Retrieve items
      * @param {number} [parent_category_id] The parent category object id to retrieve items for.  Unspecified means all items on the account.  0 &#x3D; root
@@ -61069,24 +61013,6 @@ export declare const ItemApiFetchParamCreator: (configuration?: Configuration) =
      * @throws {RequiredError}
      */
     updateItem(item: Item, merchant_item_oid: number, _expand?: string, _placeholders?: boolean, options?: any): FetchArgs;
-    /**
-     * Update item inventories for a distribution center
-     * @summary Update item inventories for a distribution center
-     * @param {ItemInventoryUpdateRequest} item_inventory_update_request Item inventory updates
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    updateItemInventories(item_inventory_update_request: ItemInventoryUpdateRequest, options?: any): FetchArgs;
-    /**
-     * Update an item shipping distribution center
-     * @summary Update an item shipping distribution center
-     * @param {ItemShippingDistributionCenter} item_shipping_distribution_center Item shipping distribution center
-     * @param {number} merchant_item_oid The item oid to update.
-     * @param {string} distribution_center_code
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    updateItemShippingDistributionCenterByCode(item_shipping_distribution_center: ItemShippingDistributionCenter, merchant_item_oid: number, distribution_center_code: string, options?: any): FetchArgs;
     /**
      * Update multiple item on the UltraCart account.
      * @summary Update multiple items
@@ -61204,17 +61130,6 @@ export declare const ItemApiFp: (configuration?: Configuration) => {
      */
     getItemByMerchantItemId(merchant_item_id: string, _expand?: string, _placeholders?: boolean, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ItemResponse>;
     /**
-     * Retrieve an item shipping distribution center.
-     * @summary Retrieve an item shipping distribution center
-     * @param {number} merchant_item_oid The item oid to retrieve.
-     * @param {string} distribution_center_code
-     * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
-     * @param {boolean} [_placeholders] Whether or not placeholder values should be returned in the result.  Useful for UIs that consume this REST API.
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    getItemShippingDistributionCenterByCode(merchant_item_oid: number, distribution_center_code: string, _expand?: string, _placeholders?: boolean, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ItemShippingDistributionCenterResponse>;
-    /**
      * Retrieves a group of items from the account.  If no parameters are specified, all items will be returned.  You will need to make multiple API calls in order to retrieve the entire result set since this API performs result set pagination.
      * @summary Retrieve items
      * @param {number} [parent_category_id] The parent category object id to retrieve items for.  Unspecified means all items on the account.  0 &#x3D; root
@@ -61323,24 +61238,6 @@ export declare const ItemApiFp: (configuration?: Configuration) => {
      * @throws {RequiredError}
      */
     updateItem(item: Item, merchant_item_oid: number, _expand?: string, _placeholders?: boolean, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ItemResponse>;
-    /**
-     * Update item inventories for a distribution center
-     * @summary Update item inventories for a distribution center
-     * @param {ItemInventoryUpdateRequest} item_inventory_update_request Item inventory updates
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    updateItemInventories(item_inventory_update_request: ItemInventoryUpdateRequest, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Response>;
-    /**
-     * Update an item shipping distribution center
-     * @summary Update an item shipping distribution center
-     * @param {ItemShippingDistributionCenter} item_shipping_distribution_center Item shipping distribution center
-     * @param {number} merchant_item_oid The item oid to update.
-     * @param {string} distribution_center_code
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    updateItemShippingDistributionCenterByCode(item_shipping_distribution_center: ItemShippingDistributionCenter, merchant_item_oid: number, distribution_center_code: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Response>;
     /**
      * Update multiple item on the UltraCart account.
      * @summary Update multiple items
@@ -61458,17 +61355,6 @@ export declare const ItemApiFactory: (configuration?: Configuration, fetch?: Fet
      */
     getItemByMerchantItemId(merchant_item_id: string, _expand?: string, _placeholders?: boolean, options?: any): Promise<ItemResponse>;
     /**
-     * Retrieve an item shipping distribution center.
-     * @summary Retrieve an item shipping distribution center
-     * @param {number} merchant_item_oid The item oid to retrieve.
-     * @param {string} distribution_center_code
-     * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
-     * @param {boolean} [_placeholders] Whether or not placeholder values should be returned in the result.  Useful for UIs that consume this REST API.
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    getItemShippingDistributionCenterByCode(merchant_item_oid: number, distribution_center_code: string, _expand?: string, _placeholders?: boolean, options?: any): Promise<ItemShippingDistributionCenterResponse>;
-    /**
      * Retrieves a group of items from the account.  If no parameters are specified, all items will be returned.  You will need to make multiple API calls in order to retrieve the entire result set since this API performs result set pagination.
      * @summary Retrieve items
      * @param {number} [parent_category_id] The parent category object id to retrieve items for.  Unspecified means all items on the account.  0 &#x3D; root
@@ -61577,24 +61463,6 @@ export declare const ItemApiFactory: (configuration?: Configuration, fetch?: Fet
      * @throws {RequiredError}
      */
     updateItem(item: Item, merchant_item_oid: number, _expand?: string, _placeholders?: boolean, options?: any): Promise<ItemResponse>;
-    /**
-     * Update item inventories for a distribution center
-     * @summary Update item inventories for a distribution center
-     * @param {ItemInventoryUpdateRequest} item_inventory_update_request Item inventory updates
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    updateItemInventories(item_inventory_update_request: ItemInventoryUpdateRequest, options?: any): Promise<Response>;
-    /**
-     * Update an item shipping distribution center
-     * @summary Update an item shipping distribution center
-     * @param {ItemShippingDistributionCenter} item_shipping_distribution_center Item shipping distribution center
-     * @param {number} merchant_item_oid The item oid to update.
-     * @param {string} distribution_center_code
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    updateItemShippingDistributionCenterByCode(item_shipping_distribution_center: ItemShippingDistributionCenter, merchant_item_oid: number, distribution_center_code: string, options?: any): Promise<Response>;
     /**
      * Update multiple item on the UltraCart account.
      * @summary Update multiple items
@@ -61722,18 +61590,6 @@ export interface ItemApiInterface {
      */
     getItemByMerchantItemId(merchant_item_id: string, _expand?: string, _placeholders?: boolean, options?: any): Promise<ItemResponse>;
     /**
-     * Retrieve an item shipping distribution center.
-     * @summary Retrieve an item shipping distribution center
-     * @param {number} merchant_item_oid The item oid to retrieve.
-     * @param {string} distribution_center_code
-     * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
-     * @param {boolean} [_placeholders] Whether or not placeholder values should be returned in the result.  Useful for UIs that consume this REST API.
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ItemApiInterface
-     */
-    getItemShippingDistributionCenterByCode(merchant_item_oid: number, distribution_center_code: string, _expand?: string, _placeholders?: boolean, options?: any): Promise<ItemShippingDistributionCenterResponse>;
-    /**
      * Retrieves a group of items from the account.  If no parameters are specified, all items will be returned.  You will need to make multiple API calls in order to retrieve the entire result set since this API performs result set pagination.
      * @summary Retrieve items
      * @param {number} [parent_category_id] The parent category object id to retrieve items for.  Unspecified means all items on the account.  0 &#x3D; root
@@ -61853,26 +61709,6 @@ export interface ItemApiInterface {
      * @memberof ItemApiInterface
      */
     updateItem(item: Item, merchant_item_oid: number, _expand?: string, _placeholders?: boolean, options?: any): Promise<ItemResponse>;
-    /**
-     * Update item inventories for a distribution center
-     * @summary Update item inventories for a distribution center
-     * @param {ItemInventoryUpdateRequest} item_inventory_update_request Item inventory updates
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ItemApiInterface
-     */
-    updateItemInventories(item_inventory_update_request: ItemInventoryUpdateRequest, options?: any): Promise<{}>;
-    /**
-     * Update an item shipping distribution center
-     * @summary Update an item shipping distribution center
-     * @param {ItemShippingDistributionCenter} item_shipping_distribution_center Item shipping distribution center
-     * @param {number} merchant_item_oid The item oid to update.
-     * @param {string} distribution_center_code
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ItemApiInterface
-     */
-    updateItemShippingDistributionCenterByCode(item_shipping_distribution_center: ItemShippingDistributionCenter, merchant_item_oid: number, distribution_center_code: string, options?: any): Promise<{}>;
     /**
      * Update multiple item on the UltraCart account.
      * @summary Update multiple items
@@ -62004,18 +61840,6 @@ export declare class ItemApi extends BaseAPI implements ItemApiInterface {
      */
     getItemByMerchantItemId(merchant_item_id: string, _expand?: string, _placeholders?: boolean, options?: any): Promise<ItemResponse>;
     /**
-     * Retrieve an item shipping distribution center.
-     * @summary Retrieve an item shipping distribution center
-     * @param {number} merchant_item_oid The item oid to retrieve.
-     * @param {string} distribution_center_code
-     * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
-     * @param {boolean} [_placeholders] Whether or not placeholder values should be returned in the result.  Useful for UIs that consume this REST API.
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ItemApi
-     */
-    getItemShippingDistributionCenterByCode(merchant_item_oid: number, distribution_center_code: string, _expand?: string, _placeholders?: boolean, options?: any): Promise<ItemShippingDistributionCenterResponse>;
-    /**
      * Retrieves a group of items from the account.  If no parameters are specified, all items will be returned.  You will need to make multiple API calls in order to retrieve the entire result set since this API performs result set pagination.
      * @summary Retrieve items
      * @param {number} [parent_category_id] The parent category object id to retrieve items for.  Unspecified means all items on the account.  0 &#x3D; root
@@ -62135,26 +61959,6 @@ export declare class ItemApi extends BaseAPI implements ItemApiInterface {
      * @memberof ItemApi
      */
     updateItem(item: Item, merchant_item_oid: number, _expand?: string, _placeholders?: boolean, options?: any): Promise<ItemResponse>;
-    /**
-     * Update item inventories for a distribution center
-     * @summary Update item inventories for a distribution center
-     * @param {ItemInventoryUpdateRequest} item_inventory_update_request Item inventory updates
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ItemApi
-     */
-    updateItemInventories(item_inventory_update_request: ItemInventoryUpdateRequest, options?: any): Promise<Response>;
-    /**
-     * Update an item shipping distribution center
-     * @summary Update an item shipping distribution center
-     * @param {ItemShippingDistributionCenter} item_shipping_distribution_center Item shipping distribution center
-     * @param {number} merchant_item_oid The item oid to update.
-     * @param {string} distribution_center_code
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ItemApi
-     */
-    updateItemShippingDistributionCenterByCode(item_shipping_distribution_center: ItemShippingDistributionCenter, merchant_item_oid: number, distribution_center_code: string, options?: any): Promise<Response>;
     /**
      * Update multiple item on the UltraCart account.
      * @summary Update multiple items
@@ -62475,6 +62279,16 @@ export declare const OrderApiFetchParamCreator: (configuration?: Configuration) 
      */
     getOrderEdiDocuments(order_id: string, options?: any): FetchArgs;
     /**
+     * Creates a new cart using cloned information from the order, but with a specific set of items, coupons and optionally a checkout URL to return the customer to
+     * @summary Get Order Upsell Cart
+     * @param {OrderUpsellCartRequest} upsell_cart_request Request for the upsell cart
+     * @param {string} order_id The order id to base things on.
+     * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getOrderUpsellCart(upsell_cart_request: OrderUpsellCartRequest, order_id: string, _expand?: string, options?: any): FetchArgs;
+    /**
      * Retrieves a group of orders from the account.  If no parameters are specified, the API call will fail with a bad request error.  Always specify some parameters to limit the scope of the orders returned to ones you are truly interested in.  You will need to make multiple API calls in order to retrieve the entire result set since this API performs result set pagination.
      * @summary Retrieve orders
      * @param {string} [order_id] Order Id
@@ -62791,6 +62605,16 @@ export declare const OrderApiFp: (configuration?: Configuration) => {
      */
     getOrderEdiDocuments(order_id: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<OrderEdiDocumentsResponse>;
     /**
+     * Creates a new cart using cloned information from the order, but with a specific set of items, coupons and optionally a checkout URL to return the customer to
+     * @summary Get Order Upsell Cart
+     * @param {OrderUpsellCartRequest} upsell_cart_request Request for the upsell cart
+     * @param {string} order_id The order id to base things on.
+     * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getOrderUpsellCart(upsell_cart_request: OrderUpsellCartRequest, order_id: string, _expand?: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<OrderResponse>;
+    /**
      * Retrieves a group of orders from the account.  If no parameters are specified, the API call will fail with a bad request error.  Always specify some parameters to limit the scope of the orders returned to ones you are truly interested in.  You will need to make multiple API calls in order to retrieve the entire result set since this API performs result set pagination.
      * @summary Retrieve orders
      * @param {string} [order_id] Order Id
@@ -63106,6 +62930,16 @@ export declare const OrderApiFactory: (configuration?: Configuration, fetch?: Fe
      * @throws {RequiredError}
      */
     getOrderEdiDocuments(order_id: string, options?: any): Promise<OrderEdiDocumentsResponse>;
+    /**
+     * Creates a new cart using cloned information from the order, but with a specific set of items, coupons and optionally a checkout URL to return the customer to
+     * @summary Get Order Upsell Cart
+     * @param {OrderUpsellCartRequest} upsell_cart_request Request for the upsell cart
+     * @param {string} order_id The order id to base things on.
+     * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getOrderUpsellCart(upsell_cart_request: OrderUpsellCartRequest, order_id: string, _expand?: string, options?: any): Promise<OrderResponse>;
     /**
      * Retrieves a group of orders from the account.  If no parameters are specified, the API call will fail with a bad request error.  Always specify some parameters to limit the scope of the orders returned to ones you are truly interested in.  You will need to make multiple API calls in order to retrieve the entire result set since this API performs result set pagination.
      * @summary Retrieve orders
@@ -63439,6 +63273,17 @@ export interface OrderApiInterface {
      * @memberof OrderApiInterface
      */
     getOrderEdiDocuments(order_id: string, options?: any): Promise<OrderEdiDocumentsResponse>;
+    /**
+     * Creates a new cart using cloned information from the order, but with a specific set of items, coupons and optionally a checkout URL to return the customer to
+     * @summary Get Order Upsell Cart
+     * @param {OrderUpsellCartRequest} upsell_cart_request Request for the upsell cart
+     * @param {string} order_id The order id to base things on.
+     * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof OrderApiInterface
+     */
+    getOrderUpsellCart(upsell_cart_request: OrderUpsellCartRequest, order_id: string, _expand?: string, options?: any): Promise<OrderResponse>;
     /**
      * Retrieves a group of orders from the account.  If no parameters are specified, the API call will fail with a bad request error.  Always specify some parameters to limit the scope of the orders returned to ones you are truly interested in.  You will need to make multiple API calls in order to retrieve the entire result set since this API performs result set pagination.
      * @summary Retrieve orders
@@ -63788,6 +63633,17 @@ export declare class OrderApi extends BaseAPI implements OrderApiInterface {
      * @memberof OrderApi
      */
     getOrderEdiDocuments(order_id: string, options?: any): Promise<OrderEdiDocumentsResponse>;
+    /**
+     * Creates a new cart using cloned information from the order, but with a specific set of items, coupons and optionally a checkout URL to return the customer to
+     * @summary Get Order Upsell Cart
+     * @param {OrderUpsellCartRequest} upsell_cart_request Request for the upsell cart
+     * @param {string} order_id The order id to base things on.
+     * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof OrderApi
+     */
+    getOrderUpsellCart(upsell_cart_request: OrderUpsellCartRequest, order_id: string, _expand?: string, options?: any): Promise<OrderResponse>;
     /**
      * Retrieves a group of orders from the account.  If no parameters are specified, the API call will fail with a bad request error.  Always specify some parameters to limit the scope of the orders returned to ones you are truly interested in.  You will need to make multiple API calls in order to retrieve the entire result set since this API performs result set pagination.
      * @summary Retrieve orders
