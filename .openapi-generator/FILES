@@ -645,8 +645,6 @@ src/models/ItemInternal.ts
 src/models/ItemInventorySnapshot.ts
 src/models/ItemInventorySnapshotDistributionCenter.ts
 src/models/ItemInventorySnapshotResponse.ts
-src/models/ItemInventoryUpdate.ts
-src/models/ItemInventoryUpdateRequest.ts
 src/models/ItemKitComponent.ts
 src/models/ItemKitDefinition.ts
 src/models/ItemOption.ts
@@ -678,7 +676,6 @@ src/models/ItemShippingCase.ts
 src/models/ItemShippingDestinationMarkup.ts
 src/models/ItemShippingDestinationRestriction.ts
 src/models/ItemShippingDistributionCenter.ts
-src/models/ItemShippingDistributionCenterResponse.ts
 src/models/ItemShippingMethod.ts
 src/models/ItemShippingPackageRequirement.ts
 src/models/ItemTag.ts
@@ -785,6 +782,7 @@ src/models/OrderTokenResponse.ts
 src/models/OrderTrackingNumberDetail.ts
 src/models/OrderTrackingNumberDetails.ts
 src/models/OrderTransactionalMerchantNote.ts
+src/models/OrderUpsellCartRequest.ts
 src/models/OrderUtm.ts
 src/models/OrderValidationRequest.ts
 src/models/OrderValidationResponse.ts

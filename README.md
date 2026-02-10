@@ -1,12 +1,12 @@
 # UltraCart Typescript SDK
-## ultracart_rest_api_v2_typescript@4.1.57
+## ultracart_rest_api_v2_typescript@4.1.58
 
 Every API method call has a sample for every language SDK.  See https://github.com/UltraCart/sdk_samples
 
 Installation
 
 ```
-npm install ultracart_rest_api_v2_typescript@4.1.57 --save
+npm install ultracart_rest_api_v2_typescript@4.1.58 --save
 ```
 
 ```typescript
@@ -85,6 +85,7 @@ Not every change is committed to every SDK.
 
 | Version | Date | Comments |
 | --: | :-: | --- |
+| 4.1.58 | 02/10/2026 | conversations - new method to look up an item with sparse variations. |
 | 4.1.57 | 02/03/2026 | conversations - pbx class of service objects and endpoints |
 | 4.1.56 | 02/02/2026 | conversations - add default phone number to the agent auth |
 | 4.1.55 | 02/02/2026 | conversations - add enumerated values for say voice on queue and agent |

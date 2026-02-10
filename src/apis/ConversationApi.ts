@@ -464,6 +464,7 @@ export interface GetPbxClassOfServiceRequest {
 export interface GetPbxCosAuditLogsRequest {
     since?: string;
     agentLogin?: string;
+    action?: string;
     limit?: number;
 }
 
@@ -1611,6 +1612,7 @@ export interface ConversationApiInterface {
      * @summary Get pbx class of service audit logs
      * @param {string} [since] ISO timestamp to filter entries since
      * @param {string} [agentLogin] Filter by agent login
+     * @param {string} [action] Action
      * @param {number} [limit] Maximum number of entries to return (default 100)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -4962,6 +4964,10 @@ export class ConversationApi extends runtime.BaseAPI implements ConversationApiI
 
         if (requestParameters.agentLogin !== undefined) {
             queryParameters['agent_login'] = requestParameters.agentLogin;
+        }
+
+        if (requestParameters.action !== undefined) {
+            queryParameters['action'] = requestParameters.action;
         }
 
         if (requestParameters.limit !== undefined) {

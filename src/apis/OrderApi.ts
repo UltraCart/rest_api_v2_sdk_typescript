@@ -81,6 +81,9 @@ import {
     OrderTokenResponse,
     OrderTokenResponseFromJSON,
     OrderTokenResponseToJSON,
+    OrderUpsellCartRequest,
+    OrderUpsellCartRequestFromJSON,
+    OrderUpsellCartRequestToJSON,
     OrderValidationRequest,
     OrderValidationRequestFromJSON,
     OrderValidationRequestToJSON,
@@ -165,6 +168,12 @@ export interface GetOrderByTokenRequest {
 
 export interface GetOrderEdiDocumentsRequest {
     orderId: string;
+}
+
+export interface GetOrderUpsellCartRequest {
+    orderId: string;
+    upsellCartRequest: OrderUpsellCartRequest;
+    expand?: string;
 }
 
 export interface GetOrdersRequest {
@@ -551,6 +560,24 @@ export interface OrderApiInterface {
      * Retrieve EDI documents associated with this order.
      */
     getOrderEdiDocuments(requestParameters: GetOrderEdiDocumentsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<OrderEdiDocumentsResponse>;
+
+    /**
+     * Creates a new cart using cloned information from the order, but with a specific set of items, coupons and optionally a checkout URL to return the customer to 
+     * @summary Get Order Upsell Cart
+     * @param {string} orderId The order id to base things on.
+     * @param {OrderUpsellCartRequest} upsellCartRequest Request for the upsell cart
+     * @param {string} [expand] The object expansion to perform on the result.  See documentation for examples
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof OrderApiInterface
+     */
+    getOrderUpsellCartRaw(requestParameters: GetOrderUpsellCartRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<OrderResponse>>;
+
+    /**
+     * Creates a new cart using cloned information from the order, but with a specific set of items, coupons and optionally a checkout URL to return the customer to 
+     * Get Order Upsell Cart
+     */
+    getOrderUpsellCart(requestParameters: GetOrderUpsellCartRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<OrderResponse>;
 
     /**
      * Retrieves a group of orders from the account.  If no parameters are specified, the API call will fail with a bad request error.  Always specify some parameters to limit the scope of the orders returned to ones you are truly interested in.  You will need to make multiple API calls in order to retrieve the entire result set since this API performs result set pagination. 
@@ -1554,6 +1581,58 @@ export class OrderApi extends runtime.BaseAPI implements OrderApiInterface {
      */
     async getOrderEdiDocuments(requestParameters: GetOrderEdiDocumentsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<OrderEdiDocumentsResponse> {
         const response = await this.getOrderEdiDocumentsRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Creates a new cart using cloned information from the order, but with a specific set of items, coupons and optionally a checkout URL to return the customer to 
+     * Get Order Upsell Cart
+     */
+    async getOrderUpsellCartRaw(requestParameters: GetOrderUpsellCartRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<OrderResponse>> {
+        if (requestParameters.orderId === null || requestParameters.orderId === undefined) {
+            throw new runtime.RequiredError('orderId','Required parameter requestParameters.orderId was null or undefined when calling getOrderUpsellCart.');
+        }
+
+        if (requestParameters.upsellCartRequest === null || requestParameters.upsellCartRequest === undefined) {
+            throw new runtime.RequiredError('upsellCartRequest','Required parameter requestParameters.upsellCartRequest was null or undefined when calling getOrderUpsellCart.');
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters.expand !== undefined) {
+            queryParameters['_expand'] = requestParameters.expand;
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json; charset=UTF-8';
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", ["order_read"]);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/order/orders/{order_id}/upsell_with_cart`.replace(`{${"order_id"}}`, encodeURIComponent(String(requestParameters.orderId))),
+            method: 'PUT',
+            headers: headerParameters,
+            query: queryParameters,
+            body: OrderUpsellCartRequestToJSON(requestParameters.upsellCartRequest),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => OrderResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Creates a new cart using cloned information from the order, but with a specific set of items, coupons and optionally a checkout URL to return the customer to 
+     * Get Order Upsell Cart
+     */
+    async getOrderUpsellCart(requestParameters: GetOrderUpsellCartRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<OrderResponse> {
+        const response = await this.getOrderUpsellCartRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
