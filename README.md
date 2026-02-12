@@ -1,12 +1,12 @@
 # UltraCart Typescript SDK
-## ultracart_rest_api_v2_typescript@4.1.59
+## ultracart_rest_api_v2_typescript@4.1.62
 
 Every API method call has a sample for every language SDK.  See https://github.com/UltraCart/sdk_samples
 
 Installation
 
 ```
-npm install ultracart_rest_api_v2_typescript@4.1.59 --save
+npm install ultracart_rest_api_v2_typescript@4.1.62 --save
 ```
 
 ```typescript
@@ -85,6 +85,9 @@ Not every change is committed to every SDK.
 
 | Version | Date | Comments |
 | --: | :-: | --- |
+| 4.1.62 | 02/12/2026 | build automation run, no code changes |
+| 4.1.61 | 02/12/2026 | order - methods to release held orders |
+| 4.1.60 | 02/12/2026 | auto order - properties, item add-ons, and item properties |
 | 4.1.59 | 02/10/2026 | conversations - new method to look up an item with sparse variations |
 | 4.1.58 | 02/10/2026 | conversations - new method to look up an item with sparse variations. |
 | 4.1.57 | 02/03/2026 | conversations - pbx class of service objects and endpoints |
