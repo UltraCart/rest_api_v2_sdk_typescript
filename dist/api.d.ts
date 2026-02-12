@@ -1443,6 +1443,12 @@ export interface AutoOrder {
      */
     override_affiliate_id?: number;
     /**
+     * Array of property objects
+     * @type {Array<AutoOrderProperty>}
+     * @memberof AutoOrder
+     */
+    properties?: Array<AutoOrderProperty>;
+    /**
      * Rebill orders that have taken place on this auto order
      * @type {Array<Order>}
      * @memberof AutoOrder
@@ -1542,6 +1548,19 @@ export interface AutoOrderAddonItemOption {
 /**
  *
  * @export
+ * @interface AutoOrderAddonItemsUpdateRequest
+ */
+export interface AutoOrderAddonItemsUpdateRequest {
+    /**
+     * Add on items to update
+     * @type {Array<AutoOrderAddonItem>}
+     * @memberof AutoOrderAddonItemsUpdateRequest
+     */
+    add_on_items?: Array<AutoOrderAddonItem>;
+}
+/**
+ *
+ * @export
  * @interface AutoOrderConsolidate
  */
 export interface AutoOrderConsolidate {
@@ -1558,6 +1577,12 @@ export interface AutoOrderConsolidate {
  * @interface AutoOrderItem
  */
 export interface AutoOrderItem {
+    /**
+     * Array of addon objects instructing which items to add to auto order and how many times they should be added.
+     * @type {Array<AutoOrderAddonItem>}
+     * @memberof AutoOrderItem
+     */
+    add_ons?: Array<AutoOrderAddonItem>;
     /**
      * Arbitrary item id that should be rebilled instead of the normal schedule
      * @type {string}
@@ -1708,6 +1733,12 @@ export interface AutoOrderItem {
      * @memberof AutoOrderItem
      */
     preshipment_notice_sent?: boolean;
+    /**
+     * Array of property objects
+     * @type {Array<AutoOrderProperty>}
+     * @memberof AutoOrderItem
+     */
+    properties?: Array<AutoOrderProperty>;
     /**
      * The value of the rebills of this item
      * @type {number}
@@ -1891,6 +1922,38 @@ export interface AutoOrderManagement {
      * @memberof AutoOrderManagement
      */
     update_billing_url?: string;
+}
+/**
+ *
+ * @export
+ * @interface AutoOrderPropertiesUpdateRequest
+ */
+export interface AutoOrderPropertiesUpdateRequest {
+    /**
+     * Properties to update
+     * @type {Array<AutoOrderProperty>}
+     * @memberof AutoOrderPropertiesUpdateRequest
+     */
+    properties?: Array<AutoOrderProperty>;
+}
+/**
+ *
+ * @export
+ * @interface AutoOrderProperty
+ */
+export interface AutoOrderProperty {
+    /**
+     * Name of the property
+     * @type {string}
+     * @memberof AutoOrderProperty
+     */
+    name?: string;
+    /**
+     * Value of the property
+     * @type {string}
+     * @memberof AutoOrderProperty
+     */
+    value?: string;
 }
 /**
  *
@@ -21273,7 +21336,7 @@ export interface EmailCommseqPostcard {
      */
     postcard_front_container_uuid?: string;
     /**
-     * URL to screenshot of the front of the postcard
+     * URL to screenshot of the back of the postcard
      * @type {string}
      * @memberof EmailCommseqPostcard
      */
@@ -31706,6 +31769,44 @@ export interface ItemInventorySnapshotResponse {
 /**
  *
  * @export
+ * @interface ItemInventoryUpdate
+ */
+export interface ItemInventoryUpdate {
+    /**
+     * Distribution center code
+     * @type {string}
+     * @memberof ItemInventoryUpdate
+     */
+    distribution_center_code?: string;
+    /**
+     * Inventory level
+     * @type {number}
+     * @memberof ItemInventoryUpdate
+     */
+    inventory_level?: number;
+    /**
+     * Merchant Item ID
+     * @type {string}
+     * @memberof ItemInventoryUpdate
+     */
+    merchant_item_id?: string;
+}
+/**
+ *
+ * @export
+ * @interface ItemInventoryUpdateRequest
+ */
+export interface ItemInventoryUpdateRequest {
+    /**
+     * Inventory updates array
+     * @type {Array<ItemInventoryUpdate>}
+     * @memberof ItemInventoryUpdateRequest
+     */
+    inventory_updates?: Array<ItemInventoryUpdate>;
+}
+/**
+ *
+ * @export
  * @interface ItemKitComponent
  */
 export interface ItemKitComponent {
@@ -33287,6 +33388,12 @@ export interface ItemShipping {
      */
     restrict_shipment_on_wednesday?: boolean;
     /**
+     * Send order to hold stage before fulfillment
+     * @type {boolean}
+     * @memberof ItemShipping
+     */
+    send_to_hold_before_fulfillment?: boolean;
+    /**
      * Ship this item in a separate box
      * @type {boolean}
      * @memberof ItemShipping
@@ -33544,6 +33651,43 @@ export interface ItemShippingDistributionCenter {
      * @memberof ItemShippingDistributionCenter
      */
     stock_picking_location?: string;
+}
+/**
+ *
+ * @export
+ * @interface ItemShippingDistributionCenterResponse
+ */
+export interface ItemShippingDistributionCenterResponse {
+    /**
+     *
+     * @type {ModelError}
+     * @memberof ItemShippingDistributionCenterResponse
+     */
+    error?: ModelError;
+    /**
+     *
+     * @type {ItemShippingDistributionCenter}
+     * @memberof ItemShippingDistributionCenterResponse
+     */
+    itemShippingDistributionCenter?: ItemShippingDistributionCenter;
+    /**
+     *
+     * @type {ResponseMetadata}
+     * @memberof ItemShippingDistributionCenterResponse
+     */
+    metadata?: ResponseMetadata;
+    /**
+     * Indicates if API call was successful
+     * @type {boolean}
+     * @memberof ItemShippingDistributionCenterResponse
+     */
+    success?: boolean;
+    /**
+     *
+     * @type {Warning}
+     * @memberof ItemShippingDistributionCenterResponse
+     */
+    warning?: Warning;
 }
 /**
  *
@@ -35400,6 +35544,19 @@ export declare namespace Order {
         AdvancedOrderRouting,
         Hold
     }
+}
+/**
+ *
+ * @export
+ * @interface OrderAddItemsAndReleaseRequest
+ */
+export interface OrderAddItemsAndReleaseRequest {
+    /**
+     * Items to add to the order.  Must have at least the item id and quantity specified.  These will be FREE items on the order since we are post payment on this method.
+     * @type {Array<OrderItem>}
+     * @memberof OrderAddItemsAndReleaseRequest
+     */
+    items?: Array<OrderItem>;
 }
 /**
  *
@@ -48707,6 +48864,38 @@ export declare const AutoOrderApiFetchParamCreator: (configuration?: Configurati
      */
     updateAutoOrder(auto_order: AutoOrder, auto_order_oid: number, validate_original_order?: string, _expand?: string, options?: any): FetchArgs;
     /**
+     * Update an auto order item add ons.  Returns the auto order based upon expansion
+     * @summary Update an auto order item add ons
+     * @param {AutoOrderAddonItemsUpdateRequest} auto_order_add_ons_update_request Auto order add ons update request
+     * @param {number} auto_order_oid The auto order oid to update.
+     * @param {number} auto_order_item_oid The auto order item oid to update.
+     * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    updateAutoOrderItemAddOns(auto_order_add_ons_update_request: AutoOrderAddonItemsUpdateRequest, auto_order_oid: number, auto_order_item_oid: number, _expand?: string, options?: any): FetchArgs;
+    /**
+     * Update an auto order item properties.  Returns the auto order based upon expansion
+     * @summary Update an auto order item properties
+     * @param {AutoOrderPropertiesUpdateRequest} auto_order_properties_update_request Auto order property update request
+     * @param {number} auto_order_oid The auto order oid to update.
+     * @param {number} auto_order_item_oid The auto order item oid to update.
+     * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    updateAutoOrderItemProperties(auto_order_properties_update_request: AutoOrderPropertiesUpdateRequest, auto_order_oid: number, auto_order_item_oid: number, _expand?: string, options?: any): FetchArgs;
+    /**
+     * Update an auto order properties.  Returns the auto order based upon expansion
+     * @summary Update an auto order properties
+     * @param {AutoOrderPropertiesUpdateRequest} auto_order_properties_update_request Auto order property update request
+     * @param {number} auto_order_oid The auto order oid to update.
+     * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    updateAutoOrderProperties(auto_order_properties_update_request: AutoOrderPropertiesUpdateRequest, auto_order_oid: number, _expand?: string, options?: any): FetchArgs;
+    /**
      * Update multiple auto orders on the UltraCart account.
      * @summary Update multiple auto orders
      * @param {AutoOrdersRequest} auto_orders_request Auto orders to update (synchronous maximum 20 / asynchronous maximum 100)
@@ -48842,6 +49031,38 @@ export declare const AutoOrderApiFp: (configuration?: Configuration) => {
      */
     updateAutoOrder(auto_order: AutoOrder, auto_order_oid: number, validate_original_order?: string, _expand?: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<AutoOrderResponse>;
     /**
+     * Update an auto order item add ons.  Returns the auto order based upon expansion
+     * @summary Update an auto order item add ons
+     * @param {AutoOrderAddonItemsUpdateRequest} auto_order_add_ons_update_request Auto order add ons update request
+     * @param {number} auto_order_oid The auto order oid to update.
+     * @param {number} auto_order_item_oid The auto order item oid to update.
+     * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    updateAutoOrderItemAddOns(auto_order_add_ons_update_request: AutoOrderAddonItemsUpdateRequest, auto_order_oid: number, auto_order_item_oid: number, _expand?: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<AutoOrderResponse>;
+    /**
+     * Update an auto order item properties.  Returns the auto order based upon expansion
+     * @summary Update an auto order item properties
+     * @param {AutoOrderPropertiesUpdateRequest} auto_order_properties_update_request Auto order property update request
+     * @param {number} auto_order_oid The auto order oid to update.
+     * @param {number} auto_order_item_oid The auto order item oid to update.
+     * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    updateAutoOrderItemProperties(auto_order_properties_update_request: AutoOrderPropertiesUpdateRequest, auto_order_oid: number, auto_order_item_oid: number, _expand?: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<AutoOrderResponse>;
+    /**
+     * Update an auto order properties.  Returns the auto order based upon expansion
+     * @summary Update an auto order properties
+     * @param {AutoOrderPropertiesUpdateRequest} auto_order_properties_update_request Auto order property update request
+     * @param {number} auto_order_oid The auto order oid to update.
+     * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    updateAutoOrderProperties(auto_order_properties_update_request: AutoOrderPropertiesUpdateRequest, auto_order_oid: number, _expand?: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<AutoOrderResponse>;
+    /**
      * Update multiple auto orders on the UltraCart account.
      * @summary Update multiple auto orders
      * @param {AutoOrdersRequest} auto_orders_request Auto orders to update (synchronous maximum 20 / asynchronous maximum 100)
@@ -48976,6 +49197,38 @@ export declare const AutoOrderApiFactory: (configuration?: Configuration, fetch?
      * @throws {RequiredError}
      */
     updateAutoOrder(auto_order: AutoOrder, auto_order_oid: number, validate_original_order?: string, _expand?: string, options?: any): Promise<AutoOrderResponse>;
+    /**
+     * Update an auto order item add ons.  Returns the auto order based upon expansion
+     * @summary Update an auto order item add ons
+     * @param {AutoOrderAddonItemsUpdateRequest} auto_order_add_ons_update_request Auto order add ons update request
+     * @param {number} auto_order_oid The auto order oid to update.
+     * @param {number} auto_order_item_oid The auto order item oid to update.
+     * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    updateAutoOrderItemAddOns(auto_order_add_ons_update_request: AutoOrderAddonItemsUpdateRequest, auto_order_oid: number, auto_order_item_oid: number, _expand?: string, options?: any): Promise<AutoOrderResponse>;
+    /**
+     * Update an auto order item properties.  Returns the auto order based upon expansion
+     * @summary Update an auto order item properties
+     * @param {AutoOrderPropertiesUpdateRequest} auto_order_properties_update_request Auto order property update request
+     * @param {number} auto_order_oid The auto order oid to update.
+     * @param {number} auto_order_item_oid The auto order item oid to update.
+     * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    updateAutoOrderItemProperties(auto_order_properties_update_request: AutoOrderPropertiesUpdateRequest, auto_order_oid: number, auto_order_item_oid: number, _expand?: string, options?: any): Promise<AutoOrderResponse>;
+    /**
+     * Update an auto order properties.  Returns the auto order based upon expansion
+     * @summary Update an auto order properties
+     * @param {AutoOrderPropertiesUpdateRequest} auto_order_properties_update_request Auto order property update request
+     * @param {number} auto_order_oid The auto order oid to update.
+     * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    updateAutoOrderProperties(auto_order_properties_update_request: AutoOrderPropertiesUpdateRequest, auto_order_oid: number, _expand?: string, options?: any): Promise<AutoOrderResponse>;
     /**
      * Update multiple auto orders on the UltraCart account.
      * @summary Update multiple auto orders
@@ -49122,6 +49375,41 @@ export interface AutoOrderApiInterface {
      * @memberof AutoOrderApiInterface
      */
     updateAutoOrder(auto_order: AutoOrder, auto_order_oid: number, validate_original_order?: string, _expand?: string, options?: any): Promise<AutoOrderResponse>;
+    /**
+     * Update an auto order item add ons.  Returns the auto order based upon expansion
+     * @summary Update an auto order item add ons
+     * @param {AutoOrderAddonItemsUpdateRequest} auto_order_add_ons_update_request Auto order add ons update request
+     * @param {number} auto_order_oid The auto order oid to update.
+     * @param {number} auto_order_item_oid The auto order item oid to update.
+     * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AutoOrderApiInterface
+     */
+    updateAutoOrderItemAddOns(auto_order_add_ons_update_request: AutoOrderAddonItemsUpdateRequest, auto_order_oid: number, auto_order_item_oid: number, _expand?: string, options?: any): Promise<AutoOrderResponse>;
+    /**
+     * Update an auto order item properties.  Returns the auto order based upon expansion
+     * @summary Update an auto order item properties
+     * @param {AutoOrderPropertiesUpdateRequest} auto_order_properties_update_request Auto order property update request
+     * @param {number} auto_order_oid The auto order oid to update.
+     * @param {number} auto_order_item_oid The auto order item oid to update.
+     * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AutoOrderApiInterface
+     */
+    updateAutoOrderItemProperties(auto_order_properties_update_request: AutoOrderPropertiesUpdateRequest, auto_order_oid: number, auto_order_item_oid: number, _expand?: string, options?: any): Promise<AutoOrderResponse>;
+    /**
+     * Update an auto order properties.  Returns the auto order based upon expansion
+     * @summary Update an auto order properties
+     * @param {AutoOrderPropertiesUpdateRequest} auto_order_properties_update_request Auto order property update request
+     * @param {number} auto_order_oid The auto order oid to update.
+     * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AutoOrderApiInterface
+     */
+    updateAutoOrderProperties(auto_order_properties_update_request: AutoOrderPropertiesUpdateRequest, auto_order_oid: number, _expand?: string, options?: any): Promise<AutoOrderResponse>;
     /**
      * Update multiple auto orders on the UltraCart account.
      * @summary Update multiple auto orders
@@ -49270,6 +49558,41 @@ export declare class AutoOrderApi extends BaseAPI implements AutoOrderApiInterfa
      * @memberof AutoOrderApi
      */
     updateAutoOrder(auto_order: AutoOrder, auto_order_oid: number, validate_original_order?: string, _expand?: string, options?: any): Promise<AutoOrderResponse>;
+    /**
+     * Update an auto order item add ons.  Returns the auto order based upon expansion
+     * @summary Update an auto order item add ons
+     * @param {AutoOrderAddonItemsUpdateRequest} auto_order_add_ons_update_request Auto order add ons update request
+     * @param {number} auto_order_oid The auto order oid to update.
+     * @param {number} auto_order_item_oid The auto order item oid to update.
+     * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AutoOrderApi
+     */
+    updateAutoOrderItemAddOns(auto_order_add_ons_update_request: AutoOrderAddonItemsUpdateRequest, auto_order_oid: number, auto_order_item_oid: number, _expand?: string, options?: any): Promise<AutoOrderResponse>;
+    /**
+     * Update an auto order item properties.  Returns the auto order based upon expansion
+     * @summary Update an auto order item properties
+     * @param {AutoOrderPropertiesUpdateRequest} auto_order_properties_update_request Auto order property update request
+     * @param {number} auto_order_oid The auto order oid to update.
+     * @param {number} auto_order_item_oid The auto order item oid to update.
+     * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AutoOrderApi
+     */
+    updateAutoOrderItemProperties(auto_order_properties_update_request: AutoOrderPropertiesUpdateRequest, auto_order_oid: number, auto_order_item_oid: number, _expand?: string, options?: any): Promise<AutoOrderResponse>;
+    /**
+     * Update an auto order properties.  Returns the auto order based upon expansion
+     * @summary Update an auto order properties
+     * @param {AutoOrderPropertiesUpdateRequest} auto_order_properties_update_request Auto order property update request
+     * @param {number} auto_order_oid The auto order oid to update.
+     * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AutoOrderApi
+     */
+    updateAutoOrderProperties(auto_order_properties_update_request: AutoOrderPropertiesUpdateRequest, auto_order_oid: number, _expand?: string, options?: any): Promise<AutoOrderResponse>;
     /**
      * Update multiple auto orders on the UltraCart account.
      * @summary Update multiple auto orders
@@ -51172,6 +51495,14 @@ export declare const ConversationApiFetchParamCreator: (configuration?: Configur
      */
     getConversationEngagements(options?: any): FetchArgs;
     /**
+     * Retrieve an item with sparse variations populated
+     * @summary Retrieve an item with sparse variations populated
+     * @param {string} merchant_item_id
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getConversationItemVariations(merchant_item_id: string, options?: any): FetchArgs;
+    /**
      * Get a pre-signed conversation knowledge base document upload URL
      * @summary Get a pre-signed conversation knowledge base document upload URL
      * @param {number} user_id
@@ -52175,6 +52506,14 @@ export declare const ConversationApiFp: (configuration?: Configuration) => {
      */
     getConversationEngagements(options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ConversationEngagementsResponse>;
     /**
+     * Retrieve an item with sparse variations populated
+     * @summary Retrieve an item with sparse variations populated
+     * @param {string} merchant_item_id
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getConversationItemVariations(merchant_item_id: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ItemResponse>;
+    /**
      * Get a pre-signed conversation knowledge base document upload URL
      * @summary Get a pre-signed conversation knowledge base document upload URL
      * @param {number} user_id
@@ -53177,6 +53516,14 @@ export declare const ConversationApiFactory: (configuration?: Configuration, fet
      * @throws {RequiredError}
      */
     getConversationEngagements(options?: any): Promise<ConversationEngagementsResponse>;
+    /**
+     * Retrieve an item with sparse variations populated
+     * @summary Retrieve an item with sparse variations populated
+     * @param {string} merchant_item_id
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getConversationItemVariations(merchant_item_id: string, options?: any): Promise<ItemResponse>;
     /**
      * Get a pre-signed conversation knowledge base document upload URL
      * @summary Get a pre-signed conversation knowledge base document upload URL
@@ -54213,6 +54560,15 @@ export interface ConversationApiInterface {
      * @memberof ConversationApiInterface
      */
     getConversationEngagements(options?: any): Promise<ConversationEngagementsResponse>;
+    /**
+     * Retrieve an item with sparse variations populated
+     * @summary Retrieve an item with sparse variations populated
+     * @param {string} merchant_item_id
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApiInterface
+     */
+    getConversationItemVariations(merchant_item_id: string, options?: any): Promise<ItemResponse>;
     /**
      * Get a pre-signed conversation knowledge base document upload URL
      * @summary Get a pre-signed conversation knowledge base document upload URL
@@ -55340,6 +55696,15 @@ export declare class ConversationApi extends BaseAPI implements ConversationApiI
      * @memberof ConversationApi
      */
     getConversationEngagements(options?: any): Promise<ConversationEngagementsResponse>;
+    /**
+     * Retrieve an item with sparse variations populated
+     * @summary Retrieve an item with sparse variations populated
+     * @param {string} merchant_item_id
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApi
+     */
+    getConversationItemVariations(merchant_item_id: string, options?: any): Promise<ItemResponse>;
     /**
      * Get a pre-signed conversation knowledge base document upload URL
      * @summary Get a pre-signed conversation knowledge base document upload URL
@@ -60905,6 +61270,17 @@ export declare const ItemApiFetchParamCreator: (configuration?: Configuration) =
      */
     getItemByMerchantItemId(merchant_item_id: string, _expand?: string, _placeholders?: boolean, options?: any): FetchArgs;
     /**
+     * Retrieve an item shipping distribution center.
+     * @summary Retrieve an item shipping distribution center
+     * @param {number} merchant_item_oid The item oid to retrieve.
+     * @param {string} distribution_center_code
+     * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
+     * @param {boolean} [_placeholders] Whether or not placeholder values should be returned in the result.  Useful for UIs that consume this REST API.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getItemShippingDistributionCenterByCode(merchant_item_oid: number, distribution_center_code: string, _expand?: string, _placeholders?: boolean, options?: any): FetchArgs;
+    /**
      * Retrieves a group of items from the account.  If no parameters are specified, all items will be returned.  You will need to make multiple API calls in order to retrieve the entire result set since this API performs result set pagination.
      * @summary Retrieve items
      * @param {number} [parent_category_id] The parent category object id to retrieve items for.  Unspecified means all items on the account.  0 &#x3D; root
@@ -61013,6 +61389,24 @@ export declare const ItemApiFetchParamCreator: (configuration?: Configuration) =
      * @throws {RequiredError}
      */
     updateItem(item: Item, merchant_item_oid: number, _expand?: string, _placeholders?: boolean, options?: any): FetchArgs;
+    /**
+     * Update item inventories for a distribution center
+     * @summary Update item inventories for a distribution center
+     * @param {ItemInventoryUpdateRequest} item_inventory_update_request Item inventory updates
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    updateItemInventories(item_inventory_update_request: ItemInventoryUpdateRequest, options?: any): FetchArgs;
+    /**
+     * Update an item shipping distribution center
+     * @summary Update an item shipping distribution center
+     * @param {ItemShippingDistributionCenter} item_shipping_distribution_center Item shipping distribution center
+     * @param {number} merchant_item_oid The item oid to update.
+     * @param {string} distribution_center_code
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    updateItemShippingDistributionCenterByCode(item_shipping_distribution_center: ItemShippingDistributionCenter, merchant_item_oid: number, distribution_center_code: string, options?: any): FetchArgs;
     /**
      * Update multiple item on the UltraCart account.
      * @summary Update multiple items
@@ -61130,6 +61524,17 @@ export declare const ItemApiFp: (configuration?: Configuration) => {
      */
     getItemByMerchantItemId(merchant_item_id: string, _expand?: string, _placeholders?: boolean, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ItemResponse>;
     /**
+     * Retrieve an item shipping distribution center.
+     * @summary Retrieve an item shipping distribution center
+     * @param {number} merchant_item_oid The item oid to retrieve.
+     * @param {string} distribution_center_code
+     * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
+     * @param {boolean} [_placeholders] Whether or not placeholder values should be returned in the result.  Useful for UIs that consume this REST API.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getItemShippingDistributionCenterByCode(merchant_item_oid: number, distribution_center_code: string, _expand?: string, _placeholders?: boolean, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ItemShippingDistributionCenterResponse>;
+    /**
      * Retrieves a group of items from the account.  If no parameters are specified, all items will be returned.  You will need to make multiple API calls in order to retrieve the entire result set since this API performs result set pagination.
      * @summary Retrieve items
      * @param {number} [parent_category_id] The parent category object id to retrieve items for.  Unspecified means all items on the account.  0 &#x3D; root
@@ -61238,6 +61643,24 @@ export declare const ItemApiFp: (configuration?: Configuration) => {
      * @throws {RequiredError}
      */
     updateItem(item: Item, merchant_item_oid: number, _expand?: string, _placeholders?: boolean, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<ItemResponse>;
+    /**
+     * Update item inventories for a distribution center
+     * @summary Update item inventories for a distribution center
+     * @param {ItemInventoryUpdateRequest} item_inventory_update_request Item inventory updates
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    updateItemInventories(item_inventory_update_request: ItemInventoryUpdateRequest, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Response>;
+    /**
+     * Update an item shipping distribution center
+     * @summary Update an item shipping distribution center
+     * @param {ItemShippingDistributionCenter} item_shipping_distribution_center Item shipping distribution center
+     * @param {number} merchant_item_oid The item oid to update.
+     * @param {string} distribution_center_code
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    updateItemShippingDistributionCenterByCode(item_shipping_distribution_center: ItemShippingDistributionCenter, merchant_item_oid: number, distribution_center_code: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<Response>;
     /**
      * Update multiple item on the UltraCart account.
      * @summary Update multiple items
@@ -61355,6 +61778,17 @@ export declare const ItemApiFactory: (configuration?: Configuration, fetch?: Fet
      */
     getItemByMerchantItemId(merchant_item_id: string, _expand?: string, _placeholders?: boolean, options?: any): Promise<ItemResponse>;
     /**
+     * Retrieve an item shipping distribution center.
+     * @summary Retrieve an item shipping distribution center
+     * @param {number} merchant_item_oid The item oid to retrieve.
+     * @param {string} distribution_center_code
+     * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
+     * @param {boolean} [_placeholders] Whether or not placeholder values should be returned in the result.  Useful for UIs that consume this REST API.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getItemShippingDistributionCenterByCode(merchant_item_oid: number, distribution_center_code: string, _expand?: string, _placeholders?: boolean, options?: any): Promise<ItemShippingDistributionCenterResponse>;
+    /**
      * Retrieves a group of items from the account.  If no parameters are specified, all items will be returned.  You will need to make multiple API calls in order to retrieve the entire result set since this API performs result set pagination.
      * @summary Retrieve items
      * @param {number} [parent_category_id] The parent category object id to retrieve items for.  Unspecified means all items on the account.  0 &#x3D; root
@@ -61463,6 +61897,24 @@ export declare const ItemApiFactory: (configuration?: Configuration, fetch?: Fet
      * @throws {RequiredError}
      */
     updateItem(item: Item, merchant_item_oid: number, _expand?: string, _placeholders?: boolean, options?: any): Promise<ItemResponse>;
+    /**
+     * Update item inventories for a distribution center
+     * @summary Update item inventories for a distribution center
+     * @param {ItemInventoryUpdateRequest} item_inventory_update_request Item inventory updates
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    updateItemInventories(item_inventory_update_request: ItemInventoryUpdateRequest, options?: any): Promise<Response>;
+    /**
+     * Update an item shipping distribution center
+     * @summary Update an item shipping distribution center
+     * @param {ItemShippingDistributionCenter} item_shipping_distribution_center Item shipping distribution center
+     * @param {number} merchant_item_oid The item oid to update.
+     * @param {string} distribution_center_code
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    updateItemShippingDistributionCenterByCode(item_shipping_distribution_center: ItemShippingDistributionCenter, merchant_item_oid: number, distribution_center_code: string, options?: any): Promise<Response>;
     /**
      * Update multiple item on the UltraCart account.
      * @summary Update multiple items
@@ -61590,6 +62042,18 @@ export interface ItemApiInterface {
      */
     getItemByMerchantItemId(merchant_item_id: string, _expand?: string, _placeholders?: boolean, options?: any): Promise<ItemResponse>;
     /**
+     * Retrieve an item shipping distribution center.
+     * @summary Retrieve an item shipping distribution center
+     * @param {number} merchant_item_oid The item oid to retrieve.
+     * @param {string} distribution_center_code
+     * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
+     * @param {boolean} [_placeholders] Whether or not placeholder values should be returned in the result.  Useful for UIs that consume this REST API.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ItemApiInterface
+     */
+    getItemShippingDistributionCenterByCode(merchant_item_oid: number, distribution_center_code: string, _expand?: string, _placeholders?: boolean, options?: any): Promise<ItemShippingDistributionCenterResponse>;
+    /**
      * Retrieves a group of items from the account.  If no parameters are specified, all items will be returned.  You will need to make multiple API calls in order to retrieve the entire result set since this API performs result set pagination.
      * @summary Retrieve items
      * @param {number} [parent_category_id] The parent category object id to retrieve items for.  Unspecified means all items on the account.  0 &#x3D; root
@@ -61709,6 +62173,26 @@ export interface ItemApiInterface {
      * @memberof ItemApiInterface
      */
     updateItem(item: Item, merchant_item_oid: number, _expand?: string, _placeholders?: boolean, options?: any): Promise<ItemResponse>;
+    /**
+     * Update item inventories for a distribution center
+     * @summary Update item inventories for a distribution center
+     * @param {ItemInventoryUpdateRequest} item_inventory_update_request Item inventory updates
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ItemApiInterface
+     */
+    updateItemInventories(item_inventory_update_request: ItemInventoryUpdateRequest, options?: any): Promise<{}>;
+    /**
+     * Update an item shipping distribution center
+     * @summary Update an item shipping distribution center
+     * @param {ItemShippingDistributionCenter} item_shipping_distribution_center Item shipping distribution center
+     * @param {number} merchant_item_oid The item oid to update.
+     * @param {string} distribution_center_code
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ItemApiInterface
+     */
+    updateItemShippingDistributionCenterByCode(item_shipping_distribution_center: ItemShippingDistributionCenter, merchant_item_oid: number, distribution_center_code: string, options?: any): Promise<{}>;
     /**
      * Update multiple item on the UltraCart account.
      * @summary Update multiple items
@@ -61840,6 +62324,18 @@ export declare class ItemApi extends BaseAPI implements ItemApiInterface {
      */
     getItemByMerchantItemId(merchant_item_id: string, _expand?: string, _placeholders?: boolean, options?: any): Promise<ItemResponse>;
     /**
+     * Retrieve an item shipping distribution center.
+     * @summary Retrieve an item shipping distribution center
+     * @param {number} merchant_item_oid The item oid to retrieve.
+     * @param {string} distribution_center_code
+     * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
+     * @param {boolean} [_placeholders] Whether or not placeholder values should be returned in the result.  Useful for UIs that consume this REST API.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ItemApi
+     */
+    getItemShippingDistributionCenterByCode(merchant_item_oid: number, distribution_center_code: string, _expand?: string, _placeholders?: boolean, options?: any): Promise<ItemShippingDistributionCenterResponse>;
+    /**
      * Retrieves a group of items from the account.  If no parameters are specified, all items will be returned.  You will need to make multiple API calls in order to retrieve the entire result set since this API performs result set pagination.
      * @summary Retrieve items
      * @param {number} [parent_category_id] The parent category object id to retrieve items for.  Unspecified means all items on the account.  0 &#x3D; root
@@ -61959,6 +62455,26 @@ export declare class ItemApi extends BaseAPI implements ItemApiInterface {
      * @memberof ItemApi
      */
     updateItem(item: Item, merchant_item_oid: number, _expand?: string, _placeholders?: boolean, options?: any): Promise<ItemResponse>;
+    /**
+     * Update item inventories for a distribution center
+     * @summary Update item inventories for a distribution center
+     * @param {ItemInventoryUpdateRequest} item_inventory_update_request Item inventory updates
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ItemApi
+     */
+    updateItemInventories(item_inventory_update_request: ItemInventoryUpdateRequest, options?: any): Promise<Response>;
+    /**
+     * Update an item shipping distribution center
+     * @summary Update an item shipping distribution center
+     * @param {ItemShippingDistributionCenter} item_shipping_distribution_center Item shipping distribution center
+     * @param {number} merchant_item_oid The item oid to update.
+     * @param {string} distribution_center_code
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ItemApi
+     */
+    updateItemShippingDistributionCenterByCode(item_shipping_distribution_center: ItemShippingDistributionCenter, merchant_item_oid: number, distribution_center_code: string, options?: any): Promise<Response>;
     /**
      * Update multiple item on the UltraCart account.
      * @summary Update multiple items
@@ -62348,6 +62864,25 @@ export declare const OrderApiFetchParamCreator: (configuration?: Configuration) 
      */
     getOrdersByQuery(order_query: OrderQuery, _limit?: number, _offset?: number, _sort?: string, _expand?: string, options?: any): FetchArgs;
     /**
+     * This method adds items to an order in the hold stage and releases it
+     * @summary Add items and release a held order
+     * @param {OrderAddItemsAndReleaseRequest} add_items_and_release_request Add items and release request
+     * @param {string} order_id The order id to release.
+     * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    heldOrderAddItemsAndRelease(add_items_and_release_request: OrderAddItemsAndReleaseRequest, order_id: string, _expand?: string, options?: any): FetchArgs;
+    /**
+     * This method releases an order from the hold stage
+     * @summary Release a held order
+     * @param {string} order_id The order id to release.
+     * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    heldOrderRelease(order_id: string, _expand?: string, options?: any): FetchArgs;
+    /**
      * Inserts a new order on the UltraCart account.  This is probably NOT the method you want.  This is for channel orders.  For regular orders the customer is entering, use the CheckoutApi.  It has many, many more features, checks, and validations.
      * @summary Insert an order
      * @param {Order} order Order to insert
@@ -62674,6 +63209,25 @@ export declare const OrderApiFp: (configuration?: Configuration) => {
      */
     getOrdersByQuery(order_query: OrderQuery, _limit?: number, _offset?: number, _sort?: string, _expand?: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<OrdersResponse>;
     /**
+     * This method adds items to an order in the hold stage and releases it
+     * @summary Add items and release a held order
+     * @param {OrderAddItemsAndReleaseRequest} add_items_and_release_request Add items and release request
+     * @param {string} order_id The order id to release.
+     * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    heldOrderAddItemsAndRelease(add_items_and_release_request: OrderAddItemsAndReleaseRequest, order_id: string, _expand?: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<OrderResponse>;
+    /**
+     * This method releases an order from the hold stage
+     * @summary Release a held order
+     * @param {string} order_id The order id to release.
+     * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    heldOrderRelease(order_id: string, _expand?: string, options?: any): (fetch?: FetchAPI, basePath?: string) => Promise<OrderResponse>;
+    /**
      * Inserts a new order on the UltraCart account.  This is probably NOT the method you want.  This is for channel orders.  For regular orders the customer is entering, use the CheckoutApi.  It has many, many more features, checks, and validations.
      * @summary Insert an order
      * @param {Order} order Order to insert
@@ -62999,6 +63553,25 @@ export declare const OrderApiFactory: (configuration?: Configuration, fetch?: Fe
      * @throws {RequiredError}
      */
     getOrdersByQuery(order_query: OrderQuery, _limit?: number, _offset?: number, _sort?: string, _expand?: string, options?: any): Promise<OrdersResponse>;
+    /**
+     * This method adds items to an order in the hold stage and releases it
+     * @summary Add items and release a held order
+     * @param {OrderAddItemsAndReleaseRequest} add_items_and_release_request Add items and release request
+     * @param {string} order_id The order id to release.
+     * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    heldOrderAddItemsAndRelease(add_items_and_release_request: OrderAddItemsAndReleaseRequest, order_id: string, _expand?: string, options?: any): Promise<OrderResponse>;
+    /**
+     * This method releases an order from the hold stage
+     * @summary Release a held order
+     * @param {string} order_id The order id to release.
+     * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    heldOrderRelease(order_id: string, _expand?: string, options?: any): Promise<OrderResponse>;
     /**
      * Inserts a new order on the UltraCart account.  This is probably NOT the method you want.  This is for channel orders.  For regular orders the customer is entering, use the CheckoutApi.  It has many, many more features, checks, and validations.
      * @summary Insert an order
@@ -63346,6 +63919,27 @@ export interface OrderApiInterface {
      * @memberof OrderApiInterface
      */
     getOrdersByQuery(order_query: OrderQuery, _limit?: number, _offset?: number, _sort?: string, _expand?: string, options?: any): Promise<OrdersResponse>;
+    /**
+     * This method adds items to an order in the hold stage and releases it
+     * @summary Add items and release a held order
+     * @param {OrderAddItemsAndReleaseRequest} add_items_and_release_request Add items and release request
+     * @param {string} order_id The order id to release.
+     * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof OrderApiInterface
+     */
+    heldOrderAddItemsAndRelease(add_items_and_release_request: OrderAddItemsAndReleaseRequest, order_id: string, _expand?: string, options?: any): Promise<OrderResponse>;
+    /**
+     * This method releases an order from the hold stage
+     * @summary Release a held order
+     * @param {string} order_id The order id to release.
+     * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof OrderApiInterface
+     */
+    heldOrderRelease(order_id: string, _expand?: string, options?: any): Promise<OrderResponse>;
     /**
      * Inserts a new order on the UltraCart account.  This is probably NOT the method you want.  This is for channel orders.  For regular orders the customer is entering, use the CheckoutApi.  It has many, many more features, checks, and validations.
      * @summary Insert an order
@@ -63706,6 +64300,27 @@ export declare class OrderApi extends BaseAPI implements OrderApiInterface {
      * @memberof OrderApi
      */
     getOrdersByQuery(order_query: OrderQuery, _limit?: number, _offset?: number, _sort?: string, _expand?: string, options?: any): Promise<OrdersResponse>;
+    /**
+     * This method adds items to an order in the hold stage and releases it
+     * @summary Add items and release a held order
+     * @param {OrderAddItemsAndReleaseRequest} add_items_and_release_request Add items and release request
+     * @param {string} order_id The order id to release.
+     * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof OrderApi
+     */
+    heldOrderAddItemsAndRelease(add_items_and_release_request: OrderAddItemsAndReleaseRequest, order_id: string, _expand?: string, options?: any): Promise<OrderResponse>;
+    /**
+     * This method releases an order from the hold stage
+     * @summary Release a held order
+     * @param {string} order_id The order id to release.
+     * @param {string} [_expand] The object expansion to perform on the result.  See documentation for examples
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof OrderApi
+     */
+    heldOrderRelease(order_id: string, _expand?: string, options?: any): Promise<OrderResponse>;
     /**
      * Inserts a new order on the UltraCart account.  This is probably NOT the method you want.  This is for channel orders.  For regular orders the customer is entering, use the CheckoutApi.  It has many, many more features, checks, and validations.
      * @summary Insert an order
