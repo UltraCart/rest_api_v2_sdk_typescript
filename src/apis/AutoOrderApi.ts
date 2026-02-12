@@ -18,9 +18,15 @@ import {
     AutoOrder,
     AutoOrderFromJSON,
     AutoOrderToJSON,
+    AutoOrderAddonItemsUpdateRequest,
+    AutoOrderAddonItemsUpdateRequestFromJSON,
+    AutoOrderAddonItemsUpdateRequestToJSON,
     AutoOrderConsolidate,
     AutoOrderConsolidateFromJSON,
     AutoOrderConsolidateToJSON,
+    AutoOrderPropertiesUpdateRequest,
+    AutoOrderPropertiesUpdateRequestFromJSON,
+    AutoOrderPropertiesUpdateRequestToJSON,
     AutoOrderQuery,
     AutoOrderQueryFromJSON,
     AutoOrderQueryToJSON,
@@ -116,6 +122,26 @@ export interface UpdateAutoOrderRequest {
     autoOrderOid: number;
     autoOrder: AutoOrder;
     validateOriginalOrder?: string;
+    expand?: string;
+}
+
+export interface UpdateAutoOrderItemAddOnsRequest {
+    autoOrderOid: number;
+    autoOrderItemOid: number;
+    autoOrderAddOnsUpdateRequest: AutoOrderAddonItemsUpdateRequest;
+    expand?: string;
+}
+
+export interface UpdateAutoOrderItemPropertiesRequest {
+    autoOrderOid: number;
+    autoOrderItemOid: number;
+    autoOrderPropertiesUpdateRequest: AutoOrderPropertiesUpdateRequest;
+    expand?: string;
+}
+
+export interface UpdateAutoOrderPropertiesRequest {
+    autoOrderOid: number;
+    autoOrderPropertiesUpdateRequest: AutoOrderPropertiesUpdateRequest;
     expand?: string;
 }
 
@@ -330,6 +356,62 @@ export interface AutoOrderApiInterface {
      * Update an auto order
      */
     updateAutoOrder(requestParameters: UpdateAutoOrderRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AutoOrderResponse>;
+
+    /**
+     * Update an auto order item add ons.  Returns the auto order based upon expansion 
+     * @summary Update an auto order item add ons
+     * @param {number} autoOrderOid The auto order oid to update.
+     * @param {number} autoOrderItemOid The auto order item oid to update.
+     * @param {AutoOrderAddonItemsUpdateRequest} autoOrderAddOnsUpdateRequest Auto order add ons update request
+     * @param {string} [expand] The object expansion to perform on the result.  See documentation for examples
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AutoOrderApiInterface
+     */
+    updateAutoOrderItemAddOnsRaw(requestParameters: UpdateAutoOrderItemAddOnsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AutoOrderResponse>>;
+
+    /**
+     * Update an auto order item add ons.  Returns the auto order based upon expansion 
+     * Update an auto order item add ons
+     */
+    updateAutoOrderItemAddOns(requestParameters: UpdateAutoOrderItemAddOnsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AutoOrderResponse>;
+
+    /**
+     * Update an auto order item properties.  Returns the auto order based upon expansion 
+     * @summary Update an auto order item properties
+     * @param {number} autoOrderOid The auto order oid to update.
+     * @param {number} autoOrderItemOid The auto order item oid to update.
+     * @param {AutoOrderPropertiesUpdateRequest} autoOrderPropertiesUpdateRequest Auto order property update request
+     * @param {string} [expand] The object expansion to perform on the result.  See documentation for examples
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AutoOrderApiInterface
+     */
+    updateAutoOrderItemPropertiesRaw(requestParameters: UpdateAutoOrderItemPropertiesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AutoOrderResponse>>;
+
+    /**
+     * Update an auto order item properties.  Returns the auto order based upon expansion 
+     * Update an auto order item properties
+     */
+    updateAutoOrderItemProperties(requestParameters: UpdateAutoOrderItemPropertiesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AutoOrderResponse>;
+
+    /**
+     * Update an auto order properties.  Returns the auto order based upon expansion 
+     * @summary Update an auto order properties
+     * @param {number} autoOrderOid The auto order oid to update.
+     * @param {AutoOrderPropertiesUpdateRequest} autoOrderPropertiesUpdateRequest Auto order property update request
+     * @param {string} [expand] The object expansion to perform on the result.  See documentation for examples
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AutoOrderApiInterface
+     */
+    updateAutoOrderPropertiesRaw(requestParameters: UpdateAutoOrderPropertiesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AutoOrderResponse>>;
+
+    /**
+     * Update an auto order properties.  Returns the auto order based upon expansion 
+     * Update an auto order properties
+     */
+    updateAutoOrderProperties(requestParameters: UpdateAutoOrderPropertiesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AutoOrderResponse>;
 
     /**
      * Update multiple auto orders on the UltraCart account. 
@@ -931,6 +1013,170 @@ export class AutoOrderApi extends runtime.BaseAPI implements AutoOrderApiInterfa
      */
     async updateAutoOrder(requestParameters: UpdateAutoOrderRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AutoOrderResponse> {
         const response = await this.updateAutoOrderRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Update an auto order item add ons.  Returns the auto order based upon expansion 
+     * Update an auto order item add ons
+     */
+    async updateAutoOrderItemAddOnsRaw(requestParameters: UpdateAutoOrderItemAddOnsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AutoOrderResponse>> {
+        if (requestParameters.autoOrderOid === null || requestParameters.autoOrderOid === undefined) {
+            throw new runtime.RequiredError('autoOrderOid','Required parameter requestParameters.autoOrderOid was null or undefined when calling updateAutoOrderItemAddOns.');
+        }
+
+        if (requestParameters.autoOrderItemOid === null || requestParameters.autoOrderItemOid === undefined) {
+            throw new runtime.RequiredError('autoOrderItemOid','Required parameter requestParameters.autoOrderItemOid was null or undefined when calling updateAutoOrderItemAddOns.');
+        }
+
+        if (requestParameters.autoOrderAddOnsUpdateRequest === null || requestParameters.autoOrderAddOnsUpdateRequest === undefined) {
+            throw new runtime.RequiredError('autoOrderAddOnsUpdateRequest','Required parameter requestParameters.autoOrderAddOnsUpdateRequest was null or undefined when calling updateAutoOrderItemAddOns.');
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters.expand !== undefined) {
+            queryParameters['_expand'] = requestParameters.expand;
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json; charset=UTF-8';
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", ["auto_order_write"]);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/auto_order/auto_orders/{auto_order_oid}/items/{auto_order_item_oid}/add_ons`.replace(`{${"auto_order_oid"}}`, encodeURIComponent(String(requestParameters.autoOrderOid))).replace(`{${"auto_order_item_oid"}}`, encodeURIComponent(String(requestParameters.autoOrderItemOid))),
+            method: 'PUT',
+            headers: headerParameters,
+            query: queryParameters,
+            body: AutoOrderAddonItemsUpdateRequestToJSON(requestParameters.autoOrderAddOnsUpdateRequest),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => AutoOrderResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Update an auto order item add ons.  Returns the auto order based upon expansion 
+     * Update an auto order item add ons
+     */
+    async updateAutoOrderItemAddOns(requestParameters: UpdateAutoOrderItemAddOnsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AutoOrderResponse> {
+        const response = await this.updateAutoOrderItemAddOnsRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Update an auto order item properties.  Returns the auto order based upon expansion 
+     * Update an auto order item properties
+     */
+    async updateAutoOrderItemPropertiesRaw(requestParameters: UpdateAutoOrderItemPropertiesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AutoOrderResponse>> {
+        if (requestParameters.autoOrderOid === null || requestParameters.autoOrderOid === undefined) {
+            throw new runtime.RequiredError('autoOrderOid','Required parameter requestParameters.autoOrderOid was null or undefined when calling updateAutoOrderItemProperties.');
+        }
+
+        if (requestParameters.autoOrderItemOid === null || requestParameters.autoOrderItemOid === undefined) {
+            throw new runtime.RequiredError('autoOrderItemOid','Required parameter requestParameters.autoOrderItemOid was null or undefined when calling updateAutoOrderItemProperties.');
+        }
+
+        if (requestParameters.autoOrderPropertiesUpdateRequest === null || requestParameters.autoOrderPropertiesUpdateRequest === undefined) {
+            throw new runtime.RequiredError('autoOrderPropertiesUpdateRequest','Required parameter requestParameters.autoOrderPropertiesUpdateRequest was null or undefined when calling updateAutoOrderItemProperties.');
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters.expand !== undefined) {
+            queryParameters['_expand'] = requestParameters.expand;
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json; charset=UTF-8';
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", ["auto_order_write"]);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/auto_order/auto_orders/{auto_order_oid}/items/{auto_order_item_oid}/properties`.replace(`{${"auto_order_oid"}}`, encodeURIComponent(String(requestParameters.autoOrderOid))).replace(`{${"auto_order_item_oid"}}`, encodeURIComponent(String(requestParameters.autoOrderItemOid))),
+            method: 'PUT',
+            headers: headerParameters,
+            query: queryParameters,
+            body: AutoOrderPropertiesUpdateRequestToJSON(requestParameters.autoOrderPropertiesUpdateRequest),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => AutoOrderResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Update an auto order item properties.  Returns the auto order based upon expansion 
+     * Update an auto order item properties
+     */
+    async updateAutoOrderItemProperties(requestParameters: UpdateAutoOrderItemPropertiesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AutoOrderResponse> {
+        const response = await this.updateAutoOrderItemPropertiesRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Update an auto order properties.  Returns the auto order based upon expansion 
+     * Update an auto order properties
+     */
+    async updateAutoOrderPropertiesRaw(requestParameters: UpdateAutoOrderPropertiesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AutoOrderResponse>> {
+        if (requestParameters.autoOrderOid === null || requestParameters.autoOrderOid === undefined) {
+            throw new runtime.RequiredError('autoOrderOid','Required parameter requestParameters.autoOrderOid was null or undefined when calling updateAutoOrderProperties.');
+        }
+
+        if (requestParameters.autoOrderPropertiesUpdateRequest === null || requestParameters.autoOrderPropertiesUpdateRequest === undefined) {
+            throw new runtime.RequiredError('autoOrderPropertiesUpdateRequest','Required parameter requestParameters.autoOrderPropertiesUpdateRequest was null or undefined when calling updateAutoOrderProperties.');
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters.expand !== undefined) {
+            queryParameters['_expand'] = requestParameters.expand;
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json; charset=UTF-8';
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", ["auto_order_write"]);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/auto_order/auto_orders/{auto_order_oid}/properties`.replace(`{${"auto_order_oid"}}`, encodeURIComponent(String(requestParameters.autoOrderOid))),
+            method: 'PUT',
+            headers: headerParameters,
+            query: queryParameters,
+            body: AutoOrderPropertiesUpdateRequestToJSON(requestParameters.autoOrderPropertiesUpdateRequest),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => AutoOrderResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Update an auto order properties.  Returns the auto order based upon expansion 
+     * Update an auto order properties
+     */
+    async updateAutoOrderProperties(requestParameters: UpdateAutoOrderPropertiesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AutoOrderResponse> {
+        const response = await this.updateAutoOrderPropertiesRaw(requestParameters, initOverrides);
         return await response.value();
     }
 

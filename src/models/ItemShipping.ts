@@ -321,6 +321,12 @@ export interface ItemShipping {
      */
     restrict_shipment_on_wednesday?: boolean;
     /**
+     * Send order to hold stage before fulfillment
+     * @type {boolean}
+     * @memberof ItemShipping
+     */
+    send_to_hold_before_fulfillment?: boolean;
+    /**
      * Ship this item in a separate box
      * @type {boolean}
      * @memberof ItemShipping
@@ -433,6 +439,7 @@ export function ItemShippingFromJSONTyped(json: any, ignoreDiscriminator: boolea
         'restrict_shipment_on_thursday': !exists(json, 'restrict_shipment_on_thursday') ? undefined : json['restrict_shipment_on_thursday'],
         'restrict_shipment_on_tuesday': !exists(json, 'restrict_shipment_on_tuesday') ? undefined : json['restrict_shipment_on_tuesday'],
         'restrict_shipment_on_wednesday': !exists(json, 'restrict_shipment_on_wednesday') ? undefined : json['restrict_shipment_on_wednesday'],
+        'send_to_hold_before_fulfillment': !exists(json, 'send_to_hold_before_fulfillment') ? undefined : json['send_to_hold_before_fulfillment'],
         'ship_separately': !exists(json, 'ship_separately') ? undefined : json['ship_separately'],
         'ship_separately_additional_weight': !exists(json, 'ship_separately_additional_weight') ? undefined : WeightFromJSON(json['ship_separately_additional_weight']),
         'ship_separately_height': !exists(json, 'ship_separately_height') ? undefined : DistanceFromJSON(json['ship_separately_height']),
@@ -495,6 +502,7 @@ export function ItemShippingToJSON(value?: ItemShipping | null): any {
         'restrict_shipment_on_thursday': value.restrict_shipment_on_thursday,
         'restrict_shipment_on_tuesday': value.restrict_shipment_on_tuesday,
         'restrict_shipment_on_wednesday': value.restrict_shipment_on_wednesday,
+        'send_to_hold_before_fulfillment': value.send_to_hold_before_fulfillment,
         'ship_separately': value.ship_separately,
         'ship_separately_additional_weight': WeightToJSON(value.ship_separately_additional_weight),
         'ship_separately_height': DistanceToJSON(value.ship_separately_height),

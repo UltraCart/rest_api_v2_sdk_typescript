@@ -291,6 +291,9 @@ import {
     ErrorResponse,
     ErrorResponseFromJSON,
     ErrorResponseToJSON,
+    ItemResponse,
+    ItemResponseFromJSON,
+    ItemResponseToJSON,
 } from '../models';
 
 export interface DeleteAgentProfileKnowledgeBaseDocumentRequest {
@@ -393,6 +396,10 @@ export interface GetConversationContextRequest {
 
 export interface GetConversationEngagementRequest {
     conversationEngagementOid: number;
+}
+
+export interface GetConversationItemVariationsRequest {
+    merchantItemId: string;
 }
 
 export interface GetConversationKnowledgeBaseDocumentUploadUrlRequest {
@@ -1240,6 +1247,22 @@ export interface ConversationApiInterface {
      * Retrieve a list of engagements ordered by name
      */
     getConversationEngagements(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ConversationEngagementsResponse>;
+
+    /**
+     * Retrieve an item with sparse variations populated 
+     * @summary Retrieve an item with sparse variations populated
+     * @param {string} merchantItemId 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApiInterface
+     */
+    getConversationItemVariationsRaw(requestParameters: GetConversationItemVariationsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ItemResponse>>;
+
+    /**
+     * Retrieve an item with sparse variations populated 
+     * Retrieve an item with sparse variations populated
+     */
+    getConversationItemVariations(requestParameters: GetConversationItemVariationsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ItemResponse>;
 
     /**
      * Get a pre-signed conversation knowledge base document upload URL 
@@ -4004,6 +4027,47 @@ export class ConversationApi extends runtime.BaseAPI implements ConversationApiI
      */
     async getConversationEngagements(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ConversationEngagementsResponse> {
         const response = await this.getConversationEngagementsRaw(initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Retrieve an item with sparse variations populated 
+     * Retrieve an item with sparse variations populated
+     */
+    async getConversationItemVariationsRaw(requestParameters: GetConversationItemVariationsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ItemResponse>> {
+        if (requestParameters.merchantItemId === null || requestParameters.merchantItemId === undefined) {
+            throw new runtime.RequiredError('merchantItemId','Required parameter requestParameters.merchantItemId was null or undefined when calling getConversationItemVariations.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", ["conversation_read"]);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/conversation/items/{merchant_item_id}/variations`.replace(`{${"merchant_item_id"}}`, encodeURIComponent(String(requestParameters.merchantItemId))),
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => ItemResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Retrieve an item with sparse variations populated 
+     * Retrieve an item with sparse variations populated
+     */
+    async getConversationItemVariations(requestParameters: GetConversationItemVariationsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ItemResponse> {
+        const response = await this.getConversationItemVariationsRaw(requestParameters, initOverrides);
         return await response.value();
     }
 

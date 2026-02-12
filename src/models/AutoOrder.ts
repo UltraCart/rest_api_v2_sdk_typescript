@@ -38,6 +38,12 @@ import {
     AutoOrderManagementToJSON,
 } from './AutoOrderManagement';
 import {
+    AutoOrderProperty,
+    AutoOrderPropertyFromJSON,
+    AutoOrderPropertyFromJSONTyped,
+    AutoOrderPropertyToJSON,
+} from './AutoOrderProperty';
+import {
     Order,
     OrderFromJSON,
     OrderFromJSONTyped,
@@ -195,6 +201,12 @@ export interface AutoOrder {
      */
     override_affiliate_id?: number;
     /**
+     * Array of property objects
+     * @type {Array<AutoOrderProperty>}
+     * @memberof AutoOrder
+     */
+    properties?: Array<AutoOrderProperty>;
+    /**
      * Rebill orders that have taken place on this auto order
      * @type {Array<Order>}
      * @memberof AutoOrder
@@ -271,6 +283,7 @@ export function AutoOrderFromJSONTyped(json: any, ignoreDiscriminator: boolean):
         'original_order': !exists(json, 'original_order') ? undefined : OrderFromJSON(json['original_order']),
         'original_order_id': !exists(json, 'original_order_id') ? undefined : json['original_order_id'],
         'override_affiliate_id': !exists(json, 'override_affiliate_id') ? undefined : json['override_affiliate_id'],
+        'properties': !exists(json, 'properties') ? undefined : ((json['properties'] as Array<any>).map(AutoOrderPropertyFromJSON)),
         'rebill_orders': !exists(json, 'rebill_orders') ? undefined : ((json['rebill_orders'] as Array<any>).map(OrderFromJSON)),
         'rotating_transaction_gateway_code': !exists(json, 'rotating_transaction_gateway_code') ? undefined : json['rotating_transaction_gateway_code'],
         'status': !exists(json, 'status') ? undefined : json['status'],
@@ -310,6 +323,7 @@ export function AutoOrderToJSON(value?: AutoOrder | null): any {
         'original_order': OrderToJSON(value.original_order),
         'original_order_id': value.original_order_id,
         'override_affiliate_id': value.override_affiliate_id,
+        'properties': value.properties === undefined ? undefined : ((value.properties as Array<any>).map(AutoOrderPropertyToJSON)),
         'rebill_orders': value.rebill_orders === undefined ? undefined : ((value.rebill_orders as Array<any>).map(OrderToJSON)),
         'rotating_transaction_gateway_code': value.rotating_transaction_gateway_code,
         'status': value.status,

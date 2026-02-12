@@ -14,6 +14,12 @@
 
 import { exists, mapValues } from '../runtime';
 import {
+    AutoOrderAddonItem,
+    AutoOrderAddonItemFromJSON,
+    AutoOrderAddonItemFromJSONTyped,
+    AutoOrderAddonItemToJSON,
+} from './AutoOrderAddonItem';
+import {
     AutoOrderItemFutureSchedule,
     AutoOrderItemFutureScheduleFromJSON,
     AutoOrderItemFutureScheduleFromJSONTyped,
@@ -31,6 +37,12 @@ import {
     AutoOrderItemSimpleScheduleFromJSONTyped,
     AutoOrderItemSimpleScheduleToJSON,
 } from './AutoOrderItemSimpleSchedule';
+import {
+    AutoOrderProperty,
+    AutoOrderPropertyFromJSON,
+    AutoOrderPropertyFromJSONTyped,
+    AutoOrderPropertyToJSON,
+} from './AutoOrderProperty';
 
 /**
  * 
@@ -38,6 +50,12 @@ import {
  * @interface AutoOrderItem
  */
 export interface AutoOrderItem {
+    /**
+     * Array of addon objects instructing which items to add to auto order and how many times they should be added.
+     * @type {Array<AutoOrderAddonItem>}
+     * @memberof AutoOrderItem
+     */
+    add_ons?: Array<AutoOrderAddonItem>;
     /**
      * Arbitrary item id that should be rebilled instead of the normal schedule
      * @type {string}
@@ -189,6 +207,12 @@ export interface AutoOrderItem {
      */
     preshipment_notice_sent?: boolean;
     /**
+     * Array of property objects
+     * @type {Array<AutoOrderProperty>}
+     * @memberof AutoOrderItem
+     */
+    properties?: Array<AutoOrderProperty>;
+    /**
      * The value of the rebills of this item
      * @type {number}
      * @memberof AutoOrderItem
@@ -254,6 +278,7 @@ export function AutoOrderItemFromJSONTyped(json: any, ignoreDiscriminator: boole
     }
     return {
         
+        'add_ons': !exists(json, 'add_ons') ? undefined : ((json['add_ons'] as Array<any>).map(AutoOrderAddonItemFromJSON)),
         'arbitrary_item_id': !exists(json, 'arbitrary_item_id') ? undefined : json['arbitrary_item_id'],
         'arbitrary_percentage_discount': !exists(json, 'arbitrary_percentage_discount') ? undefined : json['arbitrary_percentage_discount'],
         'arbitrary_quantity': !exists(json, 'arbitrary_quantity') ? undefined : json['arbitrary_quantity'],
@@ -279,6 +304,7 @@ export function AutoOrderItemFromJSONTyped(json: any, ignoreDiscriminator: boole
         'paypal_payer_id': !exists(json, 'paypal_payer_id') ? undefined : json['paypal_payer_id'],
         'paypal_recurring_payment_profile_id': !exists(json, 'paypal_recurring_payment_profile_id') ? undefined : json['paypal_recurring_payment_profile_id'],
         'preshipment_notice_sent': !exists(json, 'preshipment_notice_sent') ? undefined : json['preshipment_notice_sent'],
+        'properties': !exists(json, 'properties') ? undefined : ((json['properties'] as Array<any>).map(AutoOrderPropertyFromJSON)),
         'rebill_value': !exists(json, 'rebill_value') ? undefined : json['rebill_value'],
         'remaining_repeat_count': !exists(json, 'remaining_repeat_count') ? undefined : json['remaining_repeat_count'],
         'simple_schedule': !exists(json, 'simple_schedule') ? undefined : AutoOrderItemSimpleScheduleFromJSON(json['simple_schedule']),
@@ -294,6 +320,7 @@ export function AutoOrderItemToJSON(value?: AutoOrderItem | null): any {
     }
     return {
         
+        'add_ons': value.add_ons === undefined ? undefined : ((value.add_ons as Array<any>).map(AutoOrderAddonItemToJSON)),
         'arbitrary_item_id': value.arbitrary_item_id,
         'arbitrary_percentage_discount': value.arbitrary_percentage_discount,
         'arbitrary_quantity': value.arbitrary_quantity,
@@ -319,6 +346,7 @@ export function AutoOrderItemToJSON(value?: AutoOrderItem | null): any {
         'paypal_payer_id': value.paypal_payer_id,
         'paypal_recurring_payment_profile_id': value.paypal_recurring_payment_profile_id,
         'preshipment_notice_sent': value.preshipment_notice_sent,
+        'properties': value.properties === undefined ? undefined : ((value.properties as Array<any>).map(AutoOrderPropertyToJSON)),
         'rebill_value': value.rebill_value,
         'remaining_repeat_count': value.remaining_repeat_count,
         'simple_schedule': AutoOrderItemSimpleScheduleToJSON(value.simple_schedule),

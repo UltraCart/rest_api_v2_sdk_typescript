@@ -36,6 +36,9 @@ import {
     ItemInventorySnapshotResponse,
     ItemInventorySnapshotResponseFromJSON,
     ItemInventorySnapshotResponseToJSON,
+    ItemInventoryUpdateRequest,
+    ItemInventoryUpdateRequestFromJSON,
+    ItemInventoryUpdateRequestToJSON,
     ItemResponse,
     ItemResponseFromJSON,
     ItemResponseToJSON,
@@ -48,6 +51,12 @@ import {
     ItemReviewsResponse,
     ItemReviewsResponseFromJSON,
     ItemReviewsResponseToJSON,
+    ItemShippingDistributionCenter,
+    ItemShippingDistributionCenterFromJSON,
+    ItemShippingDistributionCenterToJSON,
+    ItemShippingDistributionCenterResponse,
+    ItemShippingDistributionCenterResponseFromJSON,
+    ItemShippingDistributionCenterResponseToJSON,
     ItemsRequest,
     ItemsRequestFromJSON,
     ItemsRequestToJSON,
@@ -100,6 +109,13 @@ export interface GetItemRequest {
 
 export interface GetItemByMerchantItemIdRequest {
     merchantItemId: string;
+    expand?: string;
+    placeholders?: boolean;
+}
+
+export interface GetItemShippingDistributionCenterByCodeRequest {
+    merchantItemOid: number;
+    distributionCenterCode: string;
     expand?: string;
     placeholders?: boolean;
 }
@@ -167,6 +183,16 @@ export interface UpdateItemRequest {
     item: Item;
     expand?: string;
     placeholders?: boolean;
+}
+
+export interface UpdateItemInventoriesRequest {
+    itemInventoryUpdateRequest: ItemInventoryUpdateRequest;
+}
+
+export interface UpdateItemShippingDistributionCenterByCodeRequest {
+    merchantItemOid: number;
+    distributionCenterCode: string;
+    itemShippingDistributionCenter: ItemShippingDistributionCenter;
 }
 
 export interface UpdateItemsRequest {
@@ -345,6 +371,25 @@ export interface ItemApiInterface {
      * Retrieve an item by item id
      */
     getItemByMerchantItemId(requestParameters: GetItemByMerchantItemIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ItemResponse>;
+
+    /**
+     * Retrieve an item shipping distribution center. 
+     * @summary Retrieve an item shipping distribution center
+     * @param {number} merchantItemOid The item oid to retrieve.
+     * @param {string} distributionCenterCode 
+     * @param {string} [expand] The object expansion to perform on the result.  See documentation for examples
+     * @param {boolean} [placeholders] Whether or not placeholder values should be returned in the result.  Useful for UIs that consume this REST API.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ItemApiInterface
+     */
+    getItemShippingDistributionCenterByCodeRaw(requestParameters: GetItemShippingDistributionCenterByCodeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ItemShippingDistributionCenterResponse>>;
+
+    /**
+     * Retrieve an item shipping distribution center. 
+     * Retrieve an item shipping distribution center
+     */
+    getItemShippingDistributionCenterByCode(requestParameters: GetItemShippingDistributionCenterByCodeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ItemShippingDistributionCenterResponse>;
 
     /**
      * Retrieves a group of items from the account.  If no parameters are specified, all items will be returned.  You will need to make multiple API calls in order to retrieve the entire result set since this API performs result set pagination. 
@@ -542,6 +587,40 @@ export interface ItemApiInterface {
      * Update an item
      */
     updateItem(requestParameters: UpdateItemRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ItemResponse>;
+
+    /**
+     * Update item inventories for a distribution center 
+     * @summary Update item inventories for a distribution center
+     * @param {ItemInventoryUpdateRequest} itemInventoryUpdateRequest Item inventory updates
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ItemApiInterface
+     */
+    updateItemInventoriesRaw(requestParameters: UpdateItemInventoriesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+
+    /**
+     * Update item inventories for a distribution center 
+     * Update item inventories for a distribution center
+     */
+    updateItemInventories(requestParameters: UpdateItemInventoriesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+
+    /**
+     * Update an item shipping distribution center 
+     * @summary Update an item shipping distribution center
+     * @param {number} merchantItemOid The item oid to update.
+     * @param {string} distributionCenterCode 
+     * @param {ItemShippingDistributionCenter} itemShippingDistributionCenter Item shipping distribution center
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ItemApiInterface
+     */
+    updateItemShippingDistributionCenterByCodeRaw(requestParameters: UpdateItemShippingDistributionCenterByCodeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+
+    /**
+     * Update an item shipping distribution center 
+     * Update an item shipping distribution center
+     */
+    updateItemShippingDistributionCenterByCode(requestParameters: UpdateItemShippingDistributionCenterByCodeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
      * Update multiple item on the UltraCart account. 
@@ -1002,6 +1081,59 @@ export class ItemApi extends runtime.BaseAPI implements ItemApiInterface {
      */
     async getItemByMerchantItemId(requestParameters: GetItemByMerchantItemIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ItemResponse> {
         const response = await this.getItemByMerchantItemIdRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Retrieve an item shipping distribution center. 
+     * Retrieve an item shipping distribution center
+     */
+    async getItemShippingDistributionCenterByCodeRaw(requestParameters: GetItemShippingDistributionCenterByCodeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ItemShippingDistributionCenterResponse>> {
+        if (requestParameters.merchantItemOid === null || requestParameters.merchantItemOid === undefined) {
+            throw new runtime.RequiredError('merchantItemOid','Required parameter requestParameters.merchantItemOid was null or undefined when calling getItemShippingDistributionCenterByCode.');
+        }
+
+        if (requestParameters.distributionCenterCode === null || requestParameters.distributionCenterCode === undefined) {
+            throw new runtime.RequiredError('distributionCenterCode','Required parameter requestParameters.distributionCenterCode was null or undefined when calling getItemShippingDistributionCenterByCode.');
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters.expand !== undefined) {
+            queryParameters['_expand'] = requestParameters.expand;
+        }
+
+        if (requestParameters.placeholders !== undefined) {
+            queryParameters['_placeholders'] = requestParameters.placeholders;
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", ["item_read"]);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/item/items/{merchant_item_oid}/shipping/distribution_centers/by_code/{distribution_center_code}`.replace(`{${"merchant_item_oid"}}`, encodeURIComponent(String(requestParameters.merchantItemOid))).replace(`{${"distribution_center_code"}}`, encodeURIComponent(String(requestParameters.distributionCenterCode))),
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => ItemShippingDistributionCenterResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Retrieve an item shipping distribution center. 
+     * Retrieve an item shipping distribution center
+     */
+    async getItemShippingDistributionCenterByCode(requestParameters: GetItemShippingDistributionCenterByCodeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ItemShippingDistributionCenterResponse> {
+        const response = await this.getItemShippingDistributionCenterByCodeRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
@@ -1555,6 +1687,100 @@ export class ItemApi extends runtime.BaseAPI implements ItemApiInterface {
     async updateItem(requestParameters: UpdateItemRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ItemResponse> {
         const response = await this.updateItemRaw(requestParameters, initOverrides);
         return await response.value();
+    }
+
+    /**
+     * Update item inventories for a distribution center 
+     * Update item inventories for a distribution center
+     */
+    async updateItemInventoriesRaw(requestParameters: UpdateItemInventoriesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        if (requestParameters.itemInventoryUpdateRequest === null || requestParameters.itemInventoryUpdateRequest === undefined) {
+            throw new runtime.RequiredError('itemInventoryUpdateRequest','Required parameter requestParameters.itemInventoryUpdateRequest was null or undefined when calling updateItemInventories.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json; charset=UTF-8';
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", ["item_write"]);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/item/items/update_item_inventories`,
+            method: 'PUT',
+            headers: headerParameters,
+            query: queryParameters,
+            body: ItemInventoryUpdateRequestToJSON(requestParameters.itemInventoryUpdateRequest),
+        }, initOverrides);
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     * Update item inventories for a distribution center 
+     * Update item inventories for a distribution center
+     */
+    async updateItemInventories(requestParameters: UpdateItemInventoriesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.updateItemInventoriesRaw(requestParameters, initOverrides);
+    }
+
+    /**
+     * Update an item shipping distribution center 
+     * Update an item shipping distribution center
+     */
+    async updateItemShippingDistributionCenterByCodeRaw(requestParameters: UpdateItemShippingDistributionCenterByCodeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        if (requestParameters.merchantItemOid === null || requestParameters.merchantItemOid === undefined) {
+            throw new runtime.RequiredError('merchantItemOid','Required parameter requestParameters.merchantItemOid was null or undefined when calling updateItemShippingDistributionCenterByCode.');
+        }
+
+        if (requestParameters.distributionCenterCode === null || requestParameters.distributionCenterCode === undefined) {
+            throw new runtime.RequiredError('distributionCenterCode','Required parameter requestParameters.distributionCenterCode was null or undefined when calling updateItemShippingDistributionCenterByCode.');
+        }
+
+        if (requestParameters.itemShippingDistributionCenter === null || requestParameters.itemShippingDistributionCenter === undefined) {
+            throw new runtime.RequiredError('itemShippingDistributionCenter','Required parameter requestParameters.itemShippingDistributionCenter was null or undefined when calling updateItemShippingDistributionCenterByCode.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json; charset=UTF-8';
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", ["item_write"]);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/item/items/{merchant_item_oid}/shipping/distribution_centers/by_code/{distribution_center_code}`.replace(`{${"merchant_item_oid"}}`, encodeURIComponent(String(requestParameters.merchantItemOid))).replace(`{${"distribution_center_code"}}`, encodeURIComponent(String(requestParameters.distributionCenterCode))),
+            method: 'PUT',
+            headers: headerParameters,
+            query: queryParameters,
+            body: ItemShippingDistributionCenterToJSON(requestParameters.itemShippingDistributionCenter),
+        }, initOverrides);
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     * Update an item shipping distribution center 
+     * Update an item shipping distribution center
+     */
+    async updateItemShippingDistributionCenterByCode(requestParameters: UpdateItemShippingDistributionCenterByCodeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.updateItemShippingDistributionCenterByCodeRaw(requestParameters, initOverrides);
     }
 
     /**

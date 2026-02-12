@@ -33,6 +33,9 @@ import {
     Order,
     OrderFromJSON,
     OrderToJSON,
+    OrderAddItemsAndReleaseRequest,
+    OrderAddItemsAndReleaseRequestFromJSON,
+    OrderAddItemsAndReleaseRequestToJSON,
     OrderAssignToAffiliateRequest,
     OrderAssignToAffiliateRequestFromJSON,
     OrderAssignToAffiliateRequestToJSON,
@@ -220,6 +223,17 @@ export interface GetOrdersByQueryRequest {
     limit?: number;
     offset?: number;
     sort?: string;
+    expand?: string;
+}
+
+export interface HeldOrderAddItemsAndReleaseRequest {
+    orderId: string;
+    addItemsAndReleaseRequest: OrderAddItemsAndReleaseRequest;
+    expand?: string;
+}
+
+export interface HeldOrderReleaseRequest {
+    orderId: string;
     expand?: string;
 }
 
@@ -661,6 +675,41 @@ export interface OrderApiInterface {
      * Retrieve orders by query
      */
     getOrdersByQuery(requestParameters: GetOrdersByQueryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<OrdersResponse>;
+
+    /**
+     * This method adds items to an order in the hold stage and releases it 
+     * @summary Add items and release a held order
+     * @param {string} orderId The order id to release.
+     * @param {OrderAddItemsAndReleaseRequest} addItemsAndReleaseRequest Add items and release request
+     * @param {string} [expand] The object expansion to perform on the result.  See documentation for examples
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof OrderApiInterface
+     */
+    heldOrderAddItemsAndReleaseRaw(requestParameters: HeldOrderAddItemsAndReleaseRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<OrderResponse>>;
+
+    /**
+     * This method adds items to an order in the hold stage and releases it 
+     * Add items and release a held order
+     */
+    heldOrderAddItemsAndRelease(requestParameters: HeldOrderAddItemsAndReleaseRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<OrderResponse>;
+
+    /**
+     * This method releases an order from the hold stage 
+     * @summary Release a held order
+     * @param {string} orderId The order id to release.
+     * @param {string} [expand] The object expansion to perform on the result.  See documentation for examples
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof OrderApiInterface
+     */
+    heldOrderReleaseRaw(requestParameters: HeldOrderReleaseRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<OrderResponse>>;
+
+    /**
+     * This method releases an order from the hold stage 
+     * Release a held order
+     */
+    heldOrderRelease(requestParameters: HeldOrderReleaseRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<OrderResponse>;
 
     /**
      * Inserts a new order on the UltraCart account.  This is probably NOT the method you want.  This is for channel orders.  For regular orders the customer is entering, use the CheckoutApi.  It has many, many more features, checks, and validations. 
@@ -1902,6 +1951,103 @@ export class OrderApi extends runtime.BaseAPI implements OrderApiInterface {
      */
     async getOrdersByQuery(requestParameters: GetOrdersByQueryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<OrdersResponse> {
         const response = await this.getOrdersByQueryRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * This method adds items to an order in the hold stage and releases it 
+     * Add items and release a held order
+     */
+    async heldOrderAddItemsAndReleaseRaw(requestParameters: HeldOrderAddItemsAndReleaseRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<OrderResponse>> {
+        if (requestParameters.orderId === null || requestParameters.orderId === undefined) {
+            throw new runtime.RequiredError('orderId','Required parameter requestParameters.orderId was null or undefined when calling heldOrderAddItemsAndRelease.');
+        }
+
+        if (requestParameters.addItemsAndReleaseRequest === null || requestParameters.addItemsAndReleaseRequest === undefined) {
+            throw new runtime.RequiredError('addItemsAndReleaseRequest','Required parameter requestParameters.addItemsAndReleaseRequest was null or undefined when calling heldOrderAddItemsAndRelease.');
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters.expand !== undefined) {
+            queryParameters['_expand'] = requestParameters.expand;
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json; charset=UTF-8';
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", ["order_write"]);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/order/orders/{order_id}/hold/add_items_and_release`.replace(`{${"order_id"}}`, encodeURIComponent(String(requestParameters.orderId))),
+            method: 'PUT',
+            headers: headerParameters,
+            query: queryParameters,
+            body: OrderAddItemsAndReleaseRequestToJSON(requestParameters.addItemsAndReleaseRequest),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => OrderResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * This method adds items to an order in the hold stage and releases it 
+     * Add items and release a held order
+     */
+    async heldOrderAddItemsAndRelease(requestParameters: HeldOrderAddItemsAndReleaseRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<OrderResponse> {
+        const response = await this.heldOrderAddItemsAndReleaseRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * This method releases an order from the hold stage 
+     * Release a held order
+     */
+    async heldOrderReleaseRaw(requestParameters: HeldOrderReleaseRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<OrderResponse>> {
+        if (requestParameters.orderId === null || requestParameters.orderId === undefined) {
+            throw new runtime.RequiredError('orderId','Required parameter requestParameters.orderId was null or undefined when calling heldOrderRelease.');
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters.expand !== undefined) {
+            queryParameters['_expand'] = requestParameters.expand;
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", ["order_write"]);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/order/orders/{order_id}/hold/release`.replace(`{${"order_id"}}`, encodeURIComponent(String(requestParameters.orderId))),
+            method: 'PUT',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => OrderResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * This method releases an order from the hold stage 
+     * Release a held order
+     */
+    async heldOrderRelease(requestParameters: HeldOrderReleaseRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<OrderResponse> {
+        const response = await this.heldOrderReleaseRaw(requestParameters, initOverrides);
         return await response.value();
     }
 

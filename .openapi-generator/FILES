@@ -49,6 +49,7 @@ src/models/ApplyLibraryItemResponse.ts
 src/models/AutoOrder.ts
 src/models/AutoOrderAddonItem.ts
 src/models/AutoOrderAddonItemOption.ts
+src/models/AutoOrderAddonItemsUpdateRequest.ts
 src/models/AutoOrderConsolidate.ts
 src/models/AutoOrderItem.ts
 src/models/AutoOrderItemFutureSchedule.ts
@@ -56,6 +57,8 @@ src/models/AutoOrderItemOption.ts
 src/models/AutoOrderItemSimpleSchedule.ts
 src/models/AutoOrderLog.ts
 src/models/AutoOrderManagement.ts
+src/models/AutoOrderPropertiesUpdateRequest.ts
+src/models/AutoOrderProperty.ts
 src/models/AutoOrderQuery.ts
 src/models/AutoOrderQueryBatch.ts
 src/models/AutoOrderResponse.ts
@@ -645,6 +648,8 @@ src/models/ItemInternal.ts
 src/models/ItemInventorySnapshot.ts
 src/models/ItemInventorySnapshotDistributionCenter.ts
 src/models/ItemInventorySnapshotResponse.ts
+src/models/ItemInventoryUpdate.ts
+src/models/ItemInventoryUpdateRequest.ts
 src/models/ItemKitComponent.ts
 src/models/ItemKitDefinition.ts
 src/models/ItemOption.ts
@@ -676,6 +681,7 @@ src/models/ItemShippingCase.ts
 src/models/ItemShippingDestinationMarkup.ts
 src/models/ItemShippingDestinationRestriction.ts
 src/models/ItemShippingDistributionCenter.ts
+src/models/ItemShippingDistributionCenterResponse.ts
 src/models/ItemShippingMethod.ts
 src/models/ItemShippingPackageRequirement.ts
 src/models/ItemTag.ts
@@ -714,6 +720,7 @@ src/models/Notification.ts
 src/models/OauthRevokeSuccessResponse.ts
 src/models/OauthTokenResponse.ts
 src/models/Order.ts
+src/models/OrderAddItemsAndReleaseRequest.ts
 src/models/OrderAffiliate.ts
 src/models/OrderAffiliateLedger.ts
 src/models/OrderAssignToAffiliateRequest.ts
