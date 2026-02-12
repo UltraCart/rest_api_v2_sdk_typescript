@@ -1,4 +1,4 @@
-## ultracart_rest_api_v2_typescript@3.11.59
+## ultracart_rest_api_v2_typescript@3.11.60
 
 This generator creates TypeScript/JavaScript client that utilizes [Fetch API](https://fetch.spec.whatwg.org/). The generated Node module can be used in the following environments:
 
@@ -36,7 +36,7 @@ navigate to the folder of your consuming project and run one of the following co
 _published:_
 
 ```
-npm install ultracart_rest_api_v2_typescript@3.11.59 --save
+npm install ultracart_rest_api_v2_typescript@3.11.60 --save
 ```
 
 _unPublished (not recommended):_
@@ -54,6 +54,7 @@ Not every change is committed to every SDK.
 
 | Version | Date | Comments |
 | --: | :-: | --- |
+| 3.11.60 | 02/12/2026 | auto order - properties, item add-ons, and item properties |
 | 3.11.59 | 02/10/2026 | conversations - new method to look up an item with sparse variations |
 | 3.11.58 | 02/10/2026 | conversations - new method to look up an item with sparse variations. |
 | 3.11.57 | 02/03/2026 | conversations - pbx class of service objects and endpoints |
