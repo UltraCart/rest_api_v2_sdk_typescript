@@ -34055,6 +34055,12 @@ export interface ItemVariantItem {
      */
     variant_merchant_item_oid?: number;
     /**
+     *
+     * @type {ItemPricing}
+     * @memberof ItemVariantItem
+     */
+    variant_pricing?: ItemPricing;
+    /**
      * Variation options
      * @type {Array<string>}
      * @memberof ItemVariantItem
