@@ -687,7 +687,7 @@ var ConversationPbxCallTranscriptSegment;
     var SpeakerEnum;
     (function (SpeakerEnum) {
         SpeakerEnum[SpeakerEnum["Customer"] = 'customer'] = "Customer";
-        SpeakerEnum[SpeakerEnum["Agent"] = ' agent'] = "Agent";
+        SpeakerEnum[SpeakerEnum["Agent"] = 'agent'] = "Agent";
     })(SpeakerEnum = ConversationPbxCallTranscriptSegment.SpeakerEnum || (ConversationPbxCallTranscriptSegment.SpeakerEnum = {}));
 })(ConversationPbxCallTranscriptSegment = exports.ConversationPbxCallTranscriptSegment || (exports.ConversationPbxCallTranscriptSegment = {}));
 /**

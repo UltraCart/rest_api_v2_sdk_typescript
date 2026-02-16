@@ -34037,6 +34037,12 @@ export interface ItemVariantItem {
      */
     merchant_item_multimedia_oid?: number;
     /**
+     *
+     * @type {ItemContentMultimedia}
+     * @memberof ItemVariantItem
+     */
+    variant_default_multimedia?: ItemContentMultimedia;
+    /**
      * Variant item id
      * @type {string}
      * @memberof ItemVariantItem
