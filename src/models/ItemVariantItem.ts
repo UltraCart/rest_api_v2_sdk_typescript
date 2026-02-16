@@ -19,6 +19,12 @@ import {
     ItemContentMultimediaFromJSONTyped,
     ItemContentMultimediaToJSON,
 } from './ItemContentMultimedia';
+import {
+    ItemPricing,
+    ItemPricingFromJSON,
+    ItemPricingFromJSONTyped,
+    ItemPricingToJSON,
+} from './ItemPricing';
 
 /**
  * 
@@ -56,6 +62,12 @@ export interface ItemVariantItem {
      * @memberof ItemVariantItem
      */
     variant_merchant_item_oid?: number;
+    /**
+     * 
+     * @type {ItemPricing}
+     * @memberof ItemVariantItem
+     */
+    variant_pricing?: ItemPricing;
     /**
      * Variation options
      * @type {Array<string>}
@@ -96,6 +108,7 @@ export function ItemVariantItemFromJSONTyped(json: any, ignoreDiscriminator: boo
         'variant_default_multimedia': !exists(json, 'variant_default_multimedia') ? undefined : ItemContentMultimediaFromJSON(json['variant_default_multimedia']),
         'variant_merchant_item_id': !exists(json, 'variant_merchant_item_id') ? undefined : json['variant_merchant_item_id'],
         'variant_merchant_item_oid': !exists(json, 'variant_merchant_item_oid') ? undefined : json['variant_merchant_item_oid'],
+        'variant_pricing': !exists(json, 'variant_pricing') ? undefined : ItemPricingFromJSON(json['variant_pricing']),
         'variation_options': !exists(json, 'variation_options') ? undefined : json['variation_options'],
         'variations': !exists(json, 'variations') ? undefined : json['variations'],
     };
@@ -115,6 +128,7 @@ export function ItemVariantItemToJSON(value?: ItemVariantItem | null): any {
         'variant_default_multimedia': ItemContentMultimediaToJSON(value.variant_default_multimedia),
         'variant_merchant_item_id': value.variant_merchant_item_id,
         'variant_merchant_item_oid': value.variant_merchant_item_oid,
+        'variant_pricing': ItemPricingToJSON(value.variant_pricing),
         'variation_options': value.variation_options,
         'variations': value.variations,
     };
