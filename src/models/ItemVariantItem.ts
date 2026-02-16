@@ -13,6 +13,13 @@
  */
 
 import { exists, mapValues } from '../runtime';
+import {
+    ItemContentMultimedia,
+    ItemContentMultimediaFromJSON,
+    ItemContentMultimediaFromJSONTyped,
+    ItemContentMultimediaToJSON,
+} from './ItemContentMultimedia';
+
 /**
  * 
  * @export
@@ -31,6 +38,12 @@ export interface ItemVariantItem {
      * @memberof ItemVariantItem
      */
     merchant_item_multimedia_oid?: number;
+    /**
+     * 
+     * @type {ItemContentMultimedia}
+     * @memberof ItemVariantItem
+     */
+    variant_default_multimedia?: ItemContentMultimedia;
     /**
      * Variant item id
      * @type {string}
@@ -80,6 +93,7 @@ export function ItemVariantItemFromJSONTyped(json: any, ignoreDiscriminator: boo
         
         'description': !exists(json, 'description') ? undefined : json['description'],
         'merchant_item_multimedia_oid': !exists(json, 'merchant_item_multimedia_oid') ? undefined : json['merchant_item_multimedia_oid'],
+        'variant_default_multimedia': !exists(json, 'variant_default_multimedia') ? undefined : ItemContentMultimediaFromJSON(json['variant_default_multimedia']),
         'variant_merchant_item_id': !exists(json, 'variant_merchant_item_id') ? undefined : json['variant_merchant_item_id'],
         'variant_merchant_item_oid': !exists(json, 'variant_merchant_item_oid') ? undefined : json['variant_merchant_item_oid'],
         'variation_options': !exists(json, 'variation_options') ? undefined : json['variation_options'],
@@ -98,6 +112,7 @@ export function ItemVariantItemToJSON(value?: ItemVariantItem | null): any {
         
         'description': value.description,
         'merchant_item_multimedia_oid': value.merchant_item_multimedia_oid,
+        'variant_default_multimedia': ItemContentMultimediaToJSON(value.variant_default_multimedia),
         'variant_merchant_item_id': value.variant_merchant_item_id,
         'variant_merchant_item_oid': value.variant_merchant_item_oid,
         'variation_options': value.variation_options,

@@ -70,7 +70,7 @@ export interface ConversationPbxCallTranscriptSegment {
  */
 export const ConversationPbxCallTranscriptSegmentSpeakerEnum = {
     Customer: 'customer',
-    Agent: ' agent'
+    Agent: 'agent'
 } as const;
 export type ConversationPbxCallTranscriptSegmentSpeakerEnum = typeof ConversationPbxCallTranscriptSegmentSpeakerEnum[keyof typeof ConversationPbxCallTranscriptSegmentSpeakerEnum];
 
