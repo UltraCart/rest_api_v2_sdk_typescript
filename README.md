@@ -1,12 +1,12 @@
 # UltraCart Typescript SDK
-## ultracart_rest_api_v2_typescript@4.1.65
+## ultracart_rest_api_v2_typescript@4.1.66
 
 Every API method call has a sample for every language SDK.  See https://github.com/UltraCart/sdk_samples
 
 Installation
 
 ```
-npm install ultracart_rest_api_v2_typescript@4.1.65 --save
+npm install ultracart_rest_api_v2_typescript@4.1.66 --save
 ```
 
 ```typescript
@@ -85,6 +85,7 @@ Not every change is committed to every SDK.
 
 | Version | Date | Comments |
 | --: | :-: | --- |
+| 4.1.66 | 02/18/2026 | conversations - agent auth customer_profile flag |
 | 4.1.65 | 02/16/2026 | item - include variant pricing in the response |
 | 4.1.64 | 02/16/2026 | conversation - fix pbx call transcript segment speaker enum for leading space |
 | 4.1.63 | 02/12/2026 | build automation issue |
