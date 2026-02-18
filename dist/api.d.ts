@@ -7103,6 +7103,12 @@ export interface ConversationAgentAuth {
      */
     conversation_participant_name?: string;
     /**
+     *
+     * @type {boolean}
+     * @memberof ConversationAgentAuth
+     */
+    customer_profile?: boolean;
+    /**
      * The default phone number this agent should use when making an outbound call.
      * @type {string}
      * @memberof ConversationAgentAuth
