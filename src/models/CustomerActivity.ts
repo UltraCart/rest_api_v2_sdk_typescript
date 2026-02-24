@@ -82,6 +82,18 @@ export interface CustomerActivity {
     properties_list?: Array<Property>;
     /**
      * 
+     * @type {string}
+     * @memberof CustomerActivity
+     */
+    sms?: string;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof CustomerActivity
+     */
+    sms_stop?: boolean;
+    /**
+     * 
      * @type {boolean}
      * @memberof CustomerActivity
      */
@@ -121,6 +133,8 @@ export function CustomerActivityFromJSONTyped(json: any, ignoreDiscriminator: bo
         'memberships': !exists(json, 'memberships') ? undefined : ((json['memberships'] as Array<any>).map(ListSegmentMembershipFromJSON)),
         'metrics': !exists(json, 'metrics') ? undefined : ((json['metrics'] as Array<any>).map(MetricFromJSON)),
         'properties_list': !exists(json, 'properties_list') ? undefined : ((json['properties_list'] as Array<any>).map(PropertyFromJSON)),
+        'sms': !exists(json, 'sms') ? undefined : json['sms'],
+        'sms_stop': !exists(json, 'sms_stop') ? undefined : json['sms_stop'],
         'spam_complaint': !exists(json, 'spam_complaint') ? undefined : json['spam_complaint'],
         'spam_complaint_dts': !exists(json, 'spam_complaint_dts') ? undefined : json['spam_complaint_dts'],
     };
@@ -141,6 +155,8 @@ export function CustomerActivityToJSON(value?: CustomerActivity | null): any {
         'memberships': value.memberships === undefined ? undefined : ((value.memberships as Array<any>).map(ListSegmentMembershipToJSON)),
         'metrics': value.metrics === undefined ? undefined : ((value.metrics as Array<any>).map(MetricToJSON)),
         'properties_list': value.properties_list === undefined ? undefined : ((value.properties_list as Array<any>).map(PropertyToJSON)),
+        'sms': value.sms,
+        'sms_stop': value.sms_stop,
         'spam_complaint': value.spam_complaint,
         'spam_complaint_dts': value.spam_complaint_dts,
     };

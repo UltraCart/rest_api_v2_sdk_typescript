@@ -417,7 +417,7 @@ export interface Customer {
      */
     quotes_summary?: CustomerQuotesSummary;
     /**
-     * Referral Source
+     * Referral Source specified on the wholesale customer signup form.  No other meaning than that signup flow.
      * @type {string}
      * @memberof Customer
      */
