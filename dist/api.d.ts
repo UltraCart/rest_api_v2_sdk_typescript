@@ -18121,7 +18121,7 @@ export interface Customer {
      */
     quotes_summary?: CustomerQuotesSummary;
     /**
-     * Referral Source
+     * Referral Source specified on the wholesale customer signup form.  No other meaning than that signup flow.
      * @type {string}
      * @memberof Customer
      */
@@ -18265,6 +18265,18 @@ export interface CustomerActivity {
      * @memberof CustomerActivity
      */
     properties_list?: Array<Property>;
+    /**
+     *
+     * @type {string}
+     * @memberof CustomerActivity
+     */
+    sms?: string;
+    /**
+     *
+     * @type {boolean}
+     * @memberof CustomerActivity
+     */
+    sms_stop?: boolean;
     /**
      *
      * @type {boolean}
