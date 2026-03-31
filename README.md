@@ -1,12 +1,12 @@
 # UltraCart Typescript SDK
-## ultracart_rest_api_v2_typescript@4.1.67
+## ultracart_rest_api_v2_typescript@4.1.68
 
 Every API method call has a sample for every language SDK.  See https://github.com/UltraCart/sdk_samples
 
 Installation
 
 ```
-npm install ultracart_rest_api_v2_typescript@4.1.67 --save
+npm install ultracart_rest_api_v2_typescript@4.1.68 --save
 ```
 
 ```typescript
@@ -85,6 +85,7 @@ Not every change is committed to every SDK.
 
 | Version | Date | Comments |
 | --: | :-: | --- |
+| 4.1.68 | 03/31/2026 | oauth - device support |
 | 4.1.67 | 02/24/2026 | customer activity - sms and sms_stop fields added |
 | 4.1.66 | 02/18/2026 | conversations - agent auth customer_profile flag |
 | 4.1.65 | 02/16/2026 | item - include variant pricing in the response |

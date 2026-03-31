@@ -717,6 +717,7 @@ src/models/Mailgun.ts
 src/models/Metric.ts
 src/models/ModelError.ts
 src/models/Notification.ts
+src/models/OauthDeviceAuthorizationResponse.ts
 src/models/OauthRevokeSuccessResponse.ts
 src/models/OauthTokenResponse.ts
 src/models/Order.ts

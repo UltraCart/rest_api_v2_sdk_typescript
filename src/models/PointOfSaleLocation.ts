@@ -79,6 +79,12 @@ export interface PointOfSaleLocation {
      * @memberof PointOfSaleLocation
      */
     state_province?: string;
+    /**
+     * Tax county associated with this address.  Need when a self managed tax configuration is being used.
+     * @type {string}
+     * @memberof PointOfSaleLocation
+     */
+    tax_county?: string;
 }
 
 
@@ -112,6 +118,7 @@ export function PointOfSaleLocationFromJSONTyped(json: any, ignoreDiscriminator:
         'pos_location_oid': !exists(json, 'pos_location_oid') ? undefined : json['pos_location_oid'],
         'postal_code': !exists(json, 'postal_code') ? undefined : json['postal_code'],
         'state_province': !exists(json, 'state_province') ? undefined : json['state_province'],
+        'tax_county': !exists(json, 'tax_county') ? undefined : json['tax_county'],
     };
 }
 
@@ -134,6 +141,7 @@ export function PointOfSaleLocationToJSON(value?: PointOfSaleLocation | null): a
         'pos_location_oid': value.pos_location_oid,
         'postal_code': value.postal_code,
         'state_province': value.state_province,
+        'tax_county': value.tax_county,
     };
 }
 

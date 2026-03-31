@@ -32,6 +32,12 @@ export interface OauthAccessTokenRequest {
     code?: string;
     redirectUri?: string;
     refreshToken?: string;
+    deviceCode?: string;
+}
+
+export interface OauthDeviceAuthorizeRequest {
+    clientId: string;
+    scope: string;
 }
 
 export interface OauthRevokeRequest {
@@ -54,6 +60,7 @@ export interface OauthApiInterface {
      * @param {string} [code] Authorization code received back from the browser redirect
      * @param {string} [redirectUri] The URI that you redirect the browser to start the authorization process
      * @param {string} [refreshToken] The refresh token received during the original grant_type&#x3D;authorization_code that can be used to return a new access token
+     * @param {string} [deviceCode] The device code received from /oauth/device/authorize
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof OauthApiInterface
@@ -65,6 +72,23 @@ export interface OauthApiInterface {
      * Exchange authorization code for access token.
      */
     oauthAccessToken(requestParameters: OauthAccessTokenRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<OauthTokenResponse>;
+
+    /**
+     * Initiates the device authorization flow by returning a device code and user code. The device displays the user code to the merchant, who visits the verification URI to approve the request. RFC 8628. 
+     * @summary Initiate a device authorization flow.
+     * @param {string} clientId The OAuth application client_id.
+     * @param {string} scope The application-level scope (e.g., crm, ultraship).
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof OauthApiInterface
+     */
+    oauthDeviceAuthorizeRaw(requestParameters: OauthDeviceAuthorizeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+
+    /**
+     * Initiates the device authorization flow by returning a device code and user code. The device displays the user code to the merchant, who visits the verification URI to approve the request. RFC 8628. 
+     * Initiate a device authorization flow.
+     */
+    oauthDeviceAuthorize(requestParameters: OauthDeviceAuthorizeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
      * Revokes the OAuth application associated with the specified client_id and token. 
@@ -154,6 +178,10 @@ export class OauthApi extends runtime.BaseAPI implements OauthApiInterface {
             formParams.append('refresh_token', requestParameters.refreshToken as any);
         }
 
+        if (requestParameters.deviceCode !== undefined) {
+            formParams.append('device_code', requestParameters.deviceCode as any);
+        }
+
         const response = await this.request({
             path: `/oauth/token`,
             method: 'POST',
@@ -172,6 +200,77 @@ export class OauthApi extends runtime.BaseAPI implements OauthApiInterface {
     async oauthAccessToken(requestParameters: OauthAccessTokenRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<OauthTokenResponse> {
         const response = await this.oauthAccessTokenRaw(requestParameters, initOverrides);
         return await response.value();
+    }
+
+    /**
+     * Initiates the device authorization flow by returning a device code and user code. The device displays the user code to the merchant, who visits the verification URI to approve the request. RFC 8628. 
+     * Initiate a device authorization flow.
+     */
+    async oauthDeviceAuthorizeRaw(requestParameters: OauthDeviceAuthorizeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        if (requestParameters.clientId === null || requestParameters.clientId === undefined) {
+            throw new runtime.RequiredError('clientId','Required parameter requestParameters.clientId was null or undefined when calling oauthDeviceAuthorize.');
+        }
+
+        if (requestParameters.scope === null || requestParameters.scope === undefined) {
+            throw new runtime.RequiredError('scope','Required parameter requestParameters.scope was null or undefined when calling oauthDeviceAuthorize.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-browser-key"] = this.configuration.apiKey("x-ultracart-browser-key"); // ultraCartBrowserApiKey authentication
+        }
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", ["affiliate_read", "affiliate_write", "auto_order_read", "auto_order_write", "channel_partner_read", "channel_partner_write", "chargeback_read", "chargeback_write", "checkout_read", "checkout_write", "configuration_read", "configuration_write", "conversation_read", "conversation_write", "coupon_read", "coupon_write", "customer_read", "customer_write", "fulfillment_read", "fulfillment_write", "gift_certificate_read", "gift_certificate_write", "integration_log_read", "integration_log_write", "order_read", "order_write", "item_read", "item_write", "storefront_read", "storefront_write", "tax_read", "tax_write", "webhook_read", "webhook_write", "ultrabooks_read", "ultrabooks_write", "user_read", "user_write", "workflow_read", "workflow_write"]);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const consumes: runtime.Consume[] = [
+            { contentType: 'application/x-www-form-urlencoded' },
+        ];
+        // @ts-ignore: canConsumeForm may be unused
+        const canConsumeForm = runtime.canConsumeForm(consumes);
+
+        let formParams: { append(param: string, value: any): any };
+        let useForm = false;
+        if (useForm) {
+            formParams = new FormData();
+        } else {
+            formParams = new URLSearchParams();
+        }
+
+        if (requestParameters.clientId !== undefined) {
+            formParams.append('client_id', requestParameters.clientId as any);
+        }
+
+        if (requestParameters.scope !== undefined) {
+            formParams.append('scope', requestParameters.scope as any);
+        }
+
+        const response = await this.request({
+            path: `/oauth/device/authorize`,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: formParams,
+        }, initOverrides);
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     * Initiates the device authorization flow by returning a device code and user code. The device displays the user code to the merchant, who visits the verification URI to approve the request. RFC 8628. 
+     * Initiate a device authorization flow.
+     */
+    async oauthDeviceAuthorize(requestParameters: OauthDeviceAuthorizeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.oauthDeviceAuthorizeRaw(requestParameters, initOverrides);
     }
 
     /**
