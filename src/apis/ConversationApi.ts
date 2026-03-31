@@ -367,6 +367,10 @@ export interface DeletePbxVoicemailMailboxRequest {
     conversationPbxVoicemailMailboxUuid: string;
 }
 
+export interface DeleteUserPbxAudioRequest {
+    conversationPbxAudioUuid: string;
+}
+
 export interface GetAgentProfileKnowledgeBaseRequest {
     userId: number;
 }
@@ -512,6 +516,10 @@ export interface GetPbxVoicemailMailboxRequest {
     conversationPbxVoicemailMailboxUuid: string;
 }
 
+export interface GetUserPbxAudioRequest {
+    conversationPbxAudioUuid: string;
+}
+
 export interface InsertAgentProfileKnowledgeBaseDocumentRequest {
     userId: number;
     knowledgeBaseDocumentRequest: ConversationInsertKnowledgeBaseDocumentRequest;
@@ -568,6 +576,10 @@ export interface InsertPbxTimeRangeRequest {
 
 export interface InsertPbxVoicemailMailboxRequest {
     pbxVoicemailMailbox: ConversationPbxVoicemailMailbox;
+}
+
+export interface InsertUserPbxAudioRequest {
+    pbxAudio: ConversationPbxAudio;
 }
 
 export interface JoinConversationRequest {
@@ -721,6 +733,11 @@ export interface UpdatePbxTimeRangeRequest {
 export interface UpdatePbxVoicemailMailboxRequest {
     conversationPbxVoicemailMailboxUuid: string;
     pbxVoicemailMailbox: ConversationPbxVoicemailMailbox;
+}
+
+export interface UpdateUserPbxAudioRequest {
+    conversationPbxAudioUuid: string;
+    pbxAudio: ConversationPbxAudio;
 }
 
 export interface UpdateVirtualAgentBudgetRequest {
@@ -1012,6 +1029,22 @@ export interface ConversationApiInterface {
      * Delete pbx voicemailMailbox
      */
     deletePbxVoicemailMailbox(requestParameters: DeletePbxVoicemailMailboxRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ConversationPbxVoicemailMailboxResponse>;
+
+    /**
+     * Delete a pbx audio file owned by the authenticated user 
+     * @summary Delete user pbx audio
+     * @param {string} conversationPbxAudioUuid 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApiInterface
+     */
+    deleteUserPbxAudioRaw(requestParameters: DeleteUserPbxAudioRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ConversationPbxAudioResponse>>;
+
+    /**
+     * Delete a pbx audio file owned by the authenticated user 
+     * Delete user pbx audio
+     */
+    deleteUserPbxAudio(requestParameters: DeleteUserPbxAudioRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ConversationPbxAudioResponse>;
 
     /**
      * Called periodically by the conversation API to keep the session alive. 
@@ -1915,6 +1948,37 @@ export interface ConversationApiInterface {
     getPbxVoicemailMailboxes(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ConversationPbxVoicemailMailboxesResponse>;
 
     /**
+     * Retrieve a pbx audio file owned by the authenticated user 
+     * @summary Get user pbx audio
+     * @param {string} conversationPbxAudioUuid 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApiInterface
+     */
+    getUserPbxAudioRaw(requestParameters: GetUserPbxAudioRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ConversationPbxAudioResponse>>;
+
+    /**
+     * Retrieve a pbx audio file owned by the authenticated user 
+     * Get user pbx audio
+     */
+    getUserPbxAudio(requestParameters: GetUserPbxAudioRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ConversationPbxAudioResponse>;
+
+    /**
+     * Retrieve pbx audio files owned by the authenticated user 
+     * @summary Get user pbx audios
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApiInterface
+     */
+    getUserPbxAudiosRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ConversationPbxAudiosResponse>>;
+
+    /**
+     * Retrieve pbx audio files owned by the authenticated user 
+     * Get user pbx audios
+     */
+    getUserPbxAudios(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ConversationPbxAudiosResponse>;
+
+    /**
      * Retrieve virtual agent budget 
      * @summary Get virtual agent budget
      * @param {*} [options] Override http request option.
@@ -2169,6 +2233,22 @@ export interface ConversationApiInterface {
      * Insert pbx voicemailMailbox
      */
     insertPbxVoicemailMailbox(requestParameters: InsertPbxVoicemailMailboxRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ConversationPbxVoicemailMailboxResponse>;
+
+    /**
+     * Insert a pbx audio file for the authenticated user 
+     * @summary Insert user pbx audio
+     * @param {ConversationPbxAudio} pbxAudio Pbx Audio
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApiInterface
+     */
+    insertUserPbxAudioRaw(requestParameters: InsertUserPbxAudioRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ConversationPbxAudioResponse>>;
+
+    /**
+     * Insert a pbx audio file for the authenticated user 
+     * Insert user pbx audio
+     */
+    insertUserPbxAudio(requestParameters: InsertUserPbxAudioRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ConversationPbxAudioResponse>;
 
     /**
      * Join a conversation 
@@ -2694,6 +2774,23 @@ export interface ConversationApiInterface {
      * Update pbx voicemailMailbox
      */
     updatePbxVoicemailMailbox(requestParameters: UpdatePbxVoicemailMailboxRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ConversationPbxVoicemailMailboxResponse>;
+
+    /**
+     * Update a pbx audio file owned by the authenticated user 
+     * @summary Update user pbx audio
+     * @param {string} conversationPbxAudioUuid 
+     * @param {ConversationPbxAudio} pbxAudio Pbx Audio
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApiInterface
+     */
+    updateUserPbxAudioRaw(requestParameters: UpdateUserPbxAudioRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ConversationPbxAudioResponse>>;
+
+    /**
+     * Update a pbx audio file owned by the authenticated user 
+     * Update user pbx audio
+     */
+    updateUserPbxAudio(requestParameters: UpdateUserPbxAudioRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ConversationPbxAudioResponse>;
 
     /**
      * Update virtual agent budget 
@@ -3433,6 +3530,47 @@ export class ConversationApi extends runtime.BaseAPI implements ConversationApiI
      */
     async deletePbxVoicemailMailbox(requestParameters: DeletePbxVoicemailMailboxRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ConversationPbxVoicemailMailboxResponse> {
         const response = await this.deletePbxVoicemailMailboxRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Delete a pbx audio file owned by the authenticated user 
+     * Delete user pbx audio
+     */
+    async deleteUserPbxAudioRaw(requestParameters: DeleteUserPbxAudioRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ConversationPbxAudioResponse>> {
+        if (requestParameters.conversationPbxAudioUuid === null || requestParameters.conversationPbxAudioUuid === undefined) {
+            throw new runtime.RequiredError('conversationPbxAudioUuid','Required parameter requestParameters.conversationPbxAudioUuid was null or undefined when calling deleteUserPbxAudio.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", ["conversation_write"]);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/conversation/pbx/audio/user/{conversationPbxAudioUuid}`.replace(`{${"conversationPbxAudioUuid"}}`, encodeURIComponent(String(requestParameters.conversationPbxAudioUuid))),
+            method: 'DELETE',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => ConversationPbxAudioResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Delete a pbx audio file owned by the authenticated user 
+     * Delete user pbx audio
+     */
+    async deleteUserPbxAudio(requestParameters: DeleteUserPbxAudioRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ConversationPbxAudioResponse> {
+        const response = await this.deleteUserPbxAudioRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
@@ -5738,6 +5876,84 @@ export class ConversationApi extends runtime.BaseAPI implements ConversationApiI
     }
 
     /**
+     * Retrieve a pbx audio file owned by the authenticated user 
+     * Get user pbx audio
+     */
+    async getUserPbxAudioRaw(requestParameters: GetUserPbxAudioRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ConversationPbxAudioResponse>> {
+        if (requestParameters.conversationPbxAudioUuid === null || requestParameters.conversationPbxAudioUuid === undefined) {
+            throw new runtime.RequiredError('conversationPbxAudioUuid','Required parameter requestParameters.conversationPbxAudioUuid was null or undefined when calling getUserPbxAudio.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", ["conversation_read"]);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/conversation/pbx/audio/user/{conversationPbxAudioUuid}`.replace(`{${"conversationPbxAudioUuid"}}`, encodeURIComponent(String(requestParameters.conversationPbxAudioUuid))),
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => ConversationPbxAudioResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Retrieve a pbx audio file owned by the authenticated user 
+     * Get user pbx audio
+     */
+    async getUserPbxAudio(requestParameters: GetUserPbxAudioRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ConversationPbxAudioResponse> {
+        const response = await this.getUserPbxAudioRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Retrieve pbx audio files owned by the authenticated user 
+     * Get user pbx audios
+     */
+    async getUserPbxAudiosRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ConversationPbxAudiosResponse>> {
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", ["conversation_read"]);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/conversation/pbx/audio/user`,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => ConversationPbxAudiosResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Retrieve pbx audio files owned by the authenticated user 
+     * Get user pbx audios
+     */
+    async getUserPbxAudios(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ConversationPbxAudiosResponse> {
+        const response = await this.getUserPbxAudiosRaw(initOverrides);
+        return await response.value();
+    }
+
+    /**
      * Retrieve virtual agent budget 
      * Get virtual agent budget
      */
@@ -6432,6 +6648,50 @@ export class ConversationApi extends runtime.BaseAPI implements ConversationApiI
      */
     async insertPbxVoicemailMailbox(requestParameters: InsertPbxVoicemailMailboxRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ConversationPbxVoicemailMailboxResponse> {
         const response = await this.insertPbxVoicemailMailboxRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Insert a pbx audio file for the authenticated user 
+     * Insert user pbx audio
+     */
+    async insertUserPbxAudioRaw(requestParameters: InsertUserPbxAudioRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ConversationPbxAudioResponse>> {
+        if (requestParameters.pbxAudio === null || requestParameters.pbxAudio === undefined) {
+            throw new runtime.RequiredError('pbxAudio','Required parameter requestParameters.pbxAudio was null or undefined when calling insertUserPbxAudio.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", ["conversation_write"]);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/conversation/pbx/audio/user`,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: ConversationPbxAudioToJSON(requestParameters.pbxAudio),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => ConversationPbxAudioResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Insert a pbx audio file for the authenticated user 
+     * Insert user pbx audio
+     */
+    async insertUserPbxAudio(requestParameters: InsertUserPbxAudioRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ConversationPbxAudioResponse> {
+        const response = await this.insertUserPbxAudioRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
@@ -7880,6 +8140,54 @@ export class ConversationApi extends runtime.BaseAPI implements ConversationApiI
      */
     async updatePbxVoicemailMailbox(requestParameters: UpdatePbxVoicemailMailboxRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ConversationPbxVoicemailMailboxResponse> {
         const response = await this.updatePbxVoicemailMailboxRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Update a pbx audio file owned by the authenticated user 
+     * Update user pbx audio
+     */
+    async updateUserPbxAudioRaw(requestParameters: UpdateUserPbxAudioRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ConversationPbxAudioResponse>> {
+        if (requestParameters.conversationPbxAudioUuid === null || requestParameters.conversationPbxAudioUuid === undefined) {
+            throw new runtime.RequiredError('conversationPbxAudioUuid','Required parameter requestParameters.conversationPbxAudioUuid was null or undefined when calling updateUserPbxAudio.');
+        }
+
+        if (requestParameters.pbxAudio === null || requestParameters.pbxAudio === undefined) {
+            throw new runtime.RequiredError('pbxAudio','Required parameter requestParameters.pbxAudio was null or undefined when calling updateUserPbxAudio.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", ["conversation_write"]);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/conversation/pbx/audio/user/{conversationPbxAudioUuid}`.replace(`{${"conversationPbxAudioUuid"}}`, encodeURIComponent(String(requestParameters.conversationPbxAudioUuid))),
+            method: 'PUT',
+            headers: headerParameters,
+            query: queryParameters,
+            body: ConversationPbxAudioToJSON(requestParameters.pbxAudio),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => ConversationPbxAudioResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Update a pbx audio file owned by the authenticated user 
+     * Update user pbx audio
+     */
+    async updateUserPbxAudio(requestParameters: UpdateUserPbxAudioRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ConversationPbxAudioResponse> {
+        const response = await this.updateUserPbxAudioRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
