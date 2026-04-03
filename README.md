@@ -1,12 +1,12 @@
 # UltraCart Typescript SDK
-## ultracart_rest_api_v2_typescript@4.1.69
+## ultracart_rest_api_v2_typescript@4.1.70
 
 Every API method call has a sample for every language SDK.  See https://github.com/UltraCart/sdk_samples
 
 Installation
 
 ```
-npm install ultracart_rest_api_v2_typescript@4.1.69 --save
+npm install ultracart_rest_api_v2_typescript@4.1.70 --save
 ```
 
 ```typescript
@@ -85,6 +85,7 @@ Not every change is committed to every SDK.
 
 | Version | Date | Comments |
 | --: | :-: | --- |
+| 4.1.70 | 04/03/2026 | conversation pbx - queue callback settings |
 | 4.1.69 | 03/31/2026 | conversations - user specific audio methods |
 | 4.1.68 | 03/31/2026 | oauth - device support |
 | 4.1.67 | 02/24/2026 | customer activity - sms and sms_stop fields added |

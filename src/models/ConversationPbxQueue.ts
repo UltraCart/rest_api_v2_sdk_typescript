@@ -51,6 +51,78 @@ export interface ConversationPbxQueue {
      */
     automatic_coach_agent_uuid?: string;
     /**
+     * Custom audio file UUID for the callback offer prompt
+     * @type {string}
+     * @memberof ConversationPbxQueue
+     */
+    callback_announce_audio_uuid?: string;
+    /**
+     * Custom TTS text for the callback offer prompt
+     * @type {string}
+     * @memberof ConversationPbxQueue
+     */
+    callback_announce_say?: string;
+    /**
+     * Custom audio file UUID for the callback confirmation message
+     * @type {string}
+     * @memberof ConversationPbxQueue
+     */
+    callback_confirm_audio_uuid?: string;
+    /**
+     * Custom TTS text for the callback confirmation message
+     * @type {string}
+     * @memberof ConversationPbxQueue
+     */
+    callback_confirm_say?: string;
+    /**
+     * If true, the callback option is enabled for this queue
+     * @type {boolean}
+     * @memberof ConversationPbxQueue
+     */
+    callback_enabled?: boolean;
+    /**
+     * When true, only offer callbacks during business hours
+     * @type {boolean}
+     * @memberof ConversationPbxQueue
+     */
+    callback_hours_only?: boolean;
+    /**
+     * Maximum number of times the system will attempt to call the customer back
+     * @type {number}
+     * @memberof ConversationPbxQueue
+     */
+    callback_max_attempts?: number;
+    /**
+     * Maximum number of times the callback option is offered to a caller per call
+     * @type {number}
+     * @memberof ConversationPbxQueue
+     */
+    callback_max_offers?: number;
+    /**
+     * Maximum number of pending callbacks allowed per queue
+     * @type {number}
+     * @memberof ConversationPbxQueue
+     */
+    callback_max_pending?: number;
+    /**
+     * Seconds a caller must wait in queue before the callback option is offered
+     * @type {number}
+     * @memberof ConversationPbxQueue
+     */
+    callback_offer_after_seconds?: number;
+    /**
+     * Seconds between repeat callback offers to the same caller
+     * @type {number}
+     * @memberof ConversationPbxQueue
+     */
+    callback_offer_interval_seconds?: number;
+    /**
+     * Delay in seconds between callback retry attempts
+     * @type {number}
+     * @memberof ConversationPbxQueue
+     */
+    callback_retry_delay_seconds?: number;
+    /**
      * Conversation Pbx Queue unique identifier
      * @type {string}
      * @memberof ConversationPbxQueue
@@ -226,6 +298,18 @@ export function ConversationPbxQueueFromJSONTyped(json: any, ignoreDiscriminator
         'ai_timeout_seconds': !exists(json, 'ai_timeout_seconds') ? undefined : json['ai_timeout_seconds'],
         'announce_queue_position': !exists(json, 'announce_queue_position') ? undefined : json['announce_queue_position'],
         'automatic_coach_agent_uuid': !exists(json, 'automatic_coach_agent_uuid') ? undefined : json['automatic_coach_agent_uuid'],
+        'callback_announce_audio_uuid': !exists(json, 'callback_announce_audio_uuid') ? undefined : json['callback_announce_audio_uuid'],
+        'callback_announce_say': !exists(json, 'callback_announce_say') ? undefined : json['callback_announce_say'],
+        'callback_confirm_audio_uuid': !exists(json, 'callback_confirm_audio_uuid') ? undefined : json['callback_confirm_audio_uuid'],
+        'callback_confirm_say': !exists(json, 'callback_confirm_say') ? undefined : json['callback_confirm_say'],
+        'callback_enabled': !exists(json, 'callback_enabled') ? undefined : json['callback_enabled'],
+        'callback_hours_only': !exists(json, 'callback_hours_only') ? undefined : json['callback_hours_only'],
+        'callback_max_attempts': !exists(json, 'callback_max_attempts') ? undefined : json['callback_max_attempts'],
+        'callback_max_offers': !exists(json, 'callback_max_offers') ? undefined : json['callback_max_offers'],
+        'callback_max_pending': !exists(json, 'callback_max_pending') ? undefined : json['callback_max_pending'],
+        'callback_offer_after_seconds': !exists(json, 'callback_offer_after_seconds') ? undefined : json['callback_offer_after_seconds'],
+        'callback_offer_interval_seconds': !exists(json, 'callback_offer_interval_seconds') ? undefined : json['callback_offer_interval_seconds'],
+        'callback_retry_delay_seconds': !exists(json, 'callback_retry_delay_seconds') ? undefined : json['callback_retry_delay_seconds'],
         'conversation_pbx_queue_uuid': !exists(json, 'conversation_pbx_queue_uuid') ? undefined : json['conversation_pbx_queue_uuid'],
         'conversation_voicemail_mailbox_uuid': !exists(json, 'conversation_voicemail_mailbox_uuid') ? undefined : json['conversation_voicemail_mailbox_uuid'],
         'hold_conversation_pbx_audio_uuid': !exists(json, 'hold_conversation_pbx_audio_uuid') ? undefined : json['hold_conversation_pbx_audio_uuid'],
@@ -262,6 +346,18 @@ export function ConversationPbxQueueToJSON(value?: ConversationPbxQueue | null):
         'ai_timeout_seconds': value.ai_timeout_seconds,
         'announce_queue_position': value.announce_queue_position,
         'automatic_coach_agent_uuid': value.automatic_coach_agent_uuid,
+        'callback_announce_audio_uuid': value.callback_announce_audio_uuid,
+        'callback_announce_say': value.callback_announce_say,
+        'callback_confirm_audio_uuid': value.callback_confirm_audio_uuid,
+        'callback_confirm_say': value.callback_confirm_say,
+        'callback_enabled': value.callback_enabled,
+        'callback_hours_only': value.callback_hours_only,
+        'callback_max_attempts': value.callback_max_attempts,
+        'callback_max_offers': value.callback_max_offers,
+        'callback_max_pending': value.callback_max_pending,
+        'callback_offer_after_seconds': value.callback_offer_after_seconds,
+        'callback_offer_interval_seconds': value.callback_offer_interval_seconds,
+        'callback_retry_delay_seconds': value.callback_retry_delay_seconds,
         'conversation_pbx_queue_uuid': value.conversation_pbx_queue_uuid,
         'conversation_voicemail_mailbox_uuid': value.conversation_voicemail_mailbox_uuid,
         'hold_conversation_pbx_audio_uuid': value.hold_conversation_pbx_audio_uuid,
