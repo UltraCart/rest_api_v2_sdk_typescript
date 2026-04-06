@@ -351,6 +351,7 @@ src/models/CouponPercentOffItemWithItemsQuantityPurchase.ts
 src/models/CouponPercentOffItems.ts
 src/models/CouponPercentOffItemsAndFreeShipping.ts
 src/models/CouponPercentOffItemsWithItemsPurchase.ts
+src/models/CouponPercentOffItemsWithMinimumItemAmount.ts
 src/models/CouponPercentOffMsrpItems.ts
 src/models/CouponPercentOffRetailPriceItems.ts
 src/models/CouponPercentOffShipping.ts

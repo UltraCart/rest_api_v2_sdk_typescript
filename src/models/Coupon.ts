@@ -218,6 +218,12 @@ import {
     CouponPercentOffItemsWithItemsPurchaseToJSON,
 } from './CouponPercentOffItemsWithItemsPurchase';
 import {
+    CouponPercentOffItemsWithMinimumItemAmount,
+    CouponPercentOffItemsWithMinimumItemAmountFromJSON,
+    CouponPercentOffItemsWithMinimumItemAmountFromJSONTyped,
+    CouponPercentOffItemsWithMinimumItemAmountToJSON,
+} from './CouponPercentOffItemsWithMinimumItemAmount';
+import {
     CouponPercentOffMsrpItems,
     CouponPercentOffMsrpItemsFromJSON,
     CouponPercentOffMsrpItemsFromJSONTyped,
@@ -586,6 +592,12 @@ export interface Coupon {
     percent_off_items_with_items_purchase?: CouponPercentOffItemsWithItemsPurchase;
     /**
      * 
+     * @type {CouponPercentOffItemsWithMinimumItemAmount}
+     * @memberof Coupon
+     */
+    percent_off_items_with_minimum_item_amount?: CouponPercentOffItemsWithMinimumItemAmount;
+    /**
+     * 
      * @type {CouponPercentOffMsrpItems}
      * @memberof Coupon
      */
@@ -797,6 +809,7 @@ export function CouponFromJSONTyped(json: any, ignoreDiscriminator: boolean): Co
         'percent_off_items': !exists(json, 'percent_off_items') ? undefined : CouponPercentOffItemsFromJSON(json['percent_off_items']),
         'percent_off_items_and_free_shipping': !exists(json, 'percent_off_items_and_free_shipping') ? undefined : CouponPercentOffItemsAndFreeShippingFromJSON(json['percent_off_items_and_free_shipping']),
         'percent_off_items_with_items_purchase': !exists(json, 'percent_off_items_with_items_purchase') ? undefined : CouponPercentOffItemsWithItemsPurchaseFromJSON(json['percent_off_items_with_items_purchase']),
+        'percent_off_items_with_minimum_item_amount': !exists(json, 'percent_off_items_with_minimum_item_amount') ? undefined : CouponPercentOffItemsWithMinimumItemAmountFromJSON(json['percent_off_items_with_minimum_item_amount']),
         'percent_off_msrp_items': !exists(json, 'percent_off_msrp_items') ? undefined : CouponPercentOffMsrpItemsFromJSON(json['percent_off_msrp_items']),
         'percent_off_retail_price_items': !exists(json, 'percent_off_retail_price_items') ? undefined : CouponPercentOffRetailPriceItemsFromJSON(json['percent_off_retail_price_items']),
         'percent_off_shipping': !exists(json, 'percent_off_shipping') ? undefined : CouponPercentOffShippingFromJSON(json['percent_off_shipping']),
@@ -876,6 +889,7 @@ export function CouponToJSON(value?: Coupon | null): any {
         'percent_off_items': CouponPercentOffItemsToJSON(value.percent_off_items),
         'percent_off_items_and_free_shipping': CouponPercentOffItemsAndFreeShippingToJSON(value.percent_off_items_and_free_shipping),
         'percent_off_items_with_items_purchase': CouponPercentOffItemsWithItemsPurchaseToJSON(value.percent_off_items_with_items_purchase),
+        'percent_off_items_with_minimum_item_amount': CouponPercentOffItemsWithMinimumItemAmountToJSON(value.percent_off_items_with_minimum_item_amount),
         'percent_off_msrp_items': CouponPercentOffMsrpItemsToJSON(value.percent_off_msrp_items),
         'percent_off_retail_price_items': CouponPercentOffRetailPriceItemsToJSON(value.percent_off_retail_price_items),
         'percent_off_shipping': CouponPercentOffShippingToJSON(value.percent_off_shipping),

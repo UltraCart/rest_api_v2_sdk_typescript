@@ -327,6 +327,7 @@ export * from './CouponPercentOffItemWithItemsQuantityPurchase';
 export * from './CouponPercentOffItems';
 export * from './CouponPercentOffItemsAndFreeShipping';
 export * from './CouponPercentOffItemsWithItemsPurchase';
+export * from './CouponPercentOffItemsWithMinimumItemAmount';
 export * from './CouponPercentOffMsrpItems';
 export * from './CouponPercentOffRetailPriceItems';
 export * from './CouponPercentOffShipping';
