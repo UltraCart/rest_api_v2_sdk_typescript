@@ -231,6 +231,9 @@ import {
     ConversationPbxTimeRangesResponse,
     ConversationPbxTimeRangesResponseFromJSON,
     ConversationPbxTimeRangesResponseToJSON,
+    ConversationPbxVoicemailCapabilitiesResponse,
+    ConversationPbxVoicemailCapabilitiesResponseFromJSON,
+    ConversationPbxVoicemailCapabilitiesResponseToJSON,
     ConversationPbxVoicemailMailbox,
     ConversationPbxVoicemailMailboxFromJSON,
     ConversationPbxVoicemailMailboxToJSON,
@@ -1915,6 +1918,21 @@ export interface ConversationApiInterface {
      * Get pbx timeRanges
      */
     getPbxTimeRanges(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ConversationPbxTimeRangesResponse>;
+
+    /**
+     * Retrieve voicemail notification capabilities including available channels 
+     * @summary Get pbx voicemail capabilities
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApiInterface
+     */
+    getPbxVoicemailCapabilitiesRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ConversationPbxVoicemailCapabilitiesResponse>>;
+
+    /**
+     * Retrieve voicemail notification capabilities including available channels 
+     * Get pbx voicemail capabilities
+     */
+    getPbxVoicemailCapabilities(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ConversationPbxVoicemailCapabilitiesResponse>;
 
     /**
      * Retrieve a pbx voicemailMailbox 
@@ -5794,6 +5812,43 @@ export class ConversationApi extends runtime.BaseAPI implements ConversationApiI
      */
     async getPbxTimeRanges(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ConversationPbxTimeRangesResponse> {
         const response = await this.getPbxTimeRangesRaw(initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Retrieve voicemail notification capabilities including available channels 
+     * Get pbx voicemail capabilities
+     */
+    async getPbxVoicemailCapabilitiesRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ConversationPbxVoicemailCapabilitiesResponse>> {
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", ["conversation_read"]);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/conversation/pbx/voicemail/capabilities`,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => ConversationPbxVoicemailCapabilitiesResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Retrieve voicemail notification capabilities including available channels 
+     * Get pbx voicemail capabilities
+     */
+    async getPbxVoicemailCapabilities(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ConversationPbxVoicemailCapabilitiesResponse> {
+        const response = await this.getPbxVoicemailCapabilitiesRaw(initOverrides);
         return await response.value();
     }
 

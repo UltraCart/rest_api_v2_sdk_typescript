@@ -251,6 +251,7 @@ export * from './ConversationPbxTimeRange';
 export * from './ConversationPbxTimeRangeConfig';
 export * from './ConversationPbxTimeRangeResponse';
 export * from './ConversationPbxTimeRangesResponse';
+export * from './ConversationPbxVoicemailCapabilitiesResponse';
 export * from './ConversationPbxVoicemailMailbox';
 export * from './ConversationPbxVoicemailMailboxResponse';
 export * from './ConversationPbxVoicemailMailboxesResponse';

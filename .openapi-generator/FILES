@@ -275,6 +275,7 @@ src/models/ConversationPbxTimeRange.ts
 src/models/ConversationPbxTimeRangeConfig.ts
 src/models/ConversationPbxTimeRangeResponse.ts
 src/models/ConversationPbxTimeRangesResponse.ts
+src/models/ConversationPbxVoicemailCapabilitiesResponse.ts
 src/models/ConversationPbxVoicemailMailbox.ts
 src/models/ConversationPbxVoicemailMailboxResponse.ts
 src/models/ConversationPbxVoicemailMailboxesResponse.ts

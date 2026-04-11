@@ -32,11 +32,23 @@ export interface ConversationPbxVoicemailMailbox {
      */
     merchant_id?: string;
     /**
+     * Send notices to channel
+     * @type {string}
+     * @memberof ConversationPbxVoicemailMailbox
+     */
+    send_notices_to_channel?: ConversationPbxVoicemailMailboxSendNoticesToChannelEnum;
+    /**
      * Send notices to email
      * @type {string}
      * @memberof ConversationPbxVoicemailMailbox
      */
     send_notices_to_email?: string;
+    /**
+     * Send notices to Zoho Desk department id
+     * @type {string}
+     * @memberof ConversationPbxVoicemailMailbox
+     */
+    send_notices_to_zoho_desk_department_id?: string;
     /**
      * User Id
      * @type {number}
@@ -98,6 +110,17 @@ export interface ConversationPbxVoicemailMailbox {
 /**
  * @export
  */
+export const ConversationPbxVoicemailMailboxSendNoticesToChannelEnum = {
+    None: 'none',
+    Email: 'email',
+    ZohoDeskTicket: 'zoho_desk_ticket',
+    UltracartTask: 'ultracart_task'
+} as const;
+export type ConversationPbxVoicemailMailboxSendNoticesToChannelEnum = typeof ConversationPbxVoicemailMailboxSendNoticesToChannelEnum[keyof typeof ConversationPbxVoicemailMailboxSendNoticesToChannelEnum];
+
+/**
+ * @export
+ */
 export const ConversationPbxVoicemailMailboxVoicemailFollowupSayVoiceEnum = {
     Man: 'man',
     Woman: 'woman'
@@ -144,7 +167,9 @@ export function ConversationPbxVoicemailMailboxFromJSONTyped(json: any, ignoreDi
         
         'conversation_pbx_voicemail_mailbox_uuid': !exists(json, 'conversation_pbx_voicemail_mailbox_uuid') ? undefined : json['conversation_pbx_voicemail_mailbox_uuid'],
         'merchant_id': !exists(json, 'merchant_id') ? undefined : json['merchant_id'],
+        'send_notices_to_channel': !exists(json, 'send_notices_to_channel') ? undefined : json['send_notices_to_channel'],
         'send_notices_to_email': !exists(json, 'send_notices_to_email') ? undefined : json['send_notices_to_email'],
+        'send_notices_to_zoho_desk_department_id': !exists(json, 'send_notices_to_zoho_desk_department_id') ? undefined : json['send_notices_to_zoho_desk_department_id'],
         'user_id': !exists(json, 'user_id') ? undefined : json['user_id'],
         'voicemail_followup_play_audio_uuid': !exists(json, 'voicemail_followup_play_audio_uuid') ? undefined : json['voicemail_followup_play_audio_uuid'],
         'voicemail_followup_say': !exists(json, 'voicemail_followup_say') ? undefined : json['voicemail_followup_say'],
@@ -168,7 +193,9 @@ export function ConversationPbxVoicemailMailboxToJSON(value?: ConversationPbxVoi
         
         'conversation_pbx_voicemail_mailbox_uuid': value.conversation_pbx_voicemail_mailbox_uuid,
         'merchant_id': value.merchant_id,
+        'send_notices_to_channel': value.send_notices_to_channel,
         'send_notices_to_email': value.send_notices_to_email,
+        'send_notices_to_zoho_desk_department_id': value.send_notices_to_zoho_desk_department_id,
         'user_id': value.user_id,
         'voicemail_followup_play_audio_uuid': value.voicemail_followup_play_audio_uuid,
         'voicemail_followup_say': value.voicemail_followup_say,

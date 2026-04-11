@@ -1,12 +1,12 @@
 # UltraCart Typescript SDK
-## ultracart_rest_api_v2_typescript@4.1.71
+## ultracart_rest_api_v2_typescript@4.1.72
 
 Every API method call has a sample for every language SDK.  See https://github.com/UltraCart/sdk_samples
 
 Installation
 
 ```
-npm install ultracart_rest_api_v2_typescript@4.1.71 --save
+npm install ultracart_rest_api_v2_typescript@4.1.72 --save
 ```
 
 ```typescript
@@ -85,6 +85,7 @@ Not every change is committed to every SDK.
 
 | Version | Date | Comments |
 | --: | :-: | --- |
+| 4.1.72 | 04/11/2026 | conversation pbx - voicemail notification channels |
 | 4.1.71 | 04/06/2026 | coupons - new percent_off_items_with_minimum_item_amount |
 | 4.1.70 | 04/03/2026 | conversation pbx - queue callback settings |
 | 4.1.69 | 03/31/2026 | conversations - user specific audio methods |
