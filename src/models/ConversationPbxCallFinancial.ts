@@ -38,6 +38,12 @@ export interface ConversationPbxCallFinancial {
      */
     ai_agent_cost_currency?: string;
     /**
+     * AI summary generation cost (LLM call made by pbx-transcript-formatter after the call ends)
+     * @type {number}
+     * @memberof ConversationPbxCallFinancial
+     */
+    ai_summary_cost?: number;
+    /**
      * Currency for call price (default USD)
      * @type {string}
      * @memberof ConversationPbxCallFinancial
@@ -87,6 +93,7 @@ export function ConversationPbxCallFinancialFromJSONTyped(json: any, ignoreDiscr
         'ai_agent_billed_minutes': !exists(json, 'ai_agent_billed_minutes') ? undefined : json['ai_agent_billed_minutes'],
         'ai_agent_cost': !exists(json, 'ai_agent_cost') ? undefined : json['ai_agent_cost'],
         'ai_agent_cost_currency': !exists(json, 'ai_agent_cost_currency') ? undefined : json['ai_agent_cost_currency'],
+        'ai_summary_cost': !exists(json, 'ai_summary_cost') ? undefined : json['ai_summary_cost'],
         'call_currency': !exists(json, 'call_currency') ? undefined : json['call_currency'],
         'call_price': !exists(json, 'call_price') ? undefined : json['call_price'],
         'call_price_estimated': !exists(json, 'call_price_estimated') ? undefined : json['call_price_estimated'],
@@ -106,6 +113,7 @@ export function ConversationPbxCallFinancialToJSON(value?: ConversationPbxCallFi
         'ai_agent_billed_minutes': value.ai_agent_billed_minutes,
         'ai_agent_cost': value.ai_agent_cost,
         'ai_agent_cost_currency': value.ai_agent_cost_currency,
+        'ai_summary_cost': value.ai_summary_cost,
         'call_currency': value.call_currency,
         'call_price': value.call_price,
         'call_price_estimated': value.call_price_estimated,

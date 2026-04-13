@@ -26,6 +26,12 @@ import {
     ConversationPbxCallAiEngagementToJSON,
 } from './ConversationPbxCallAiEngagement';
 import {
+    ConversationPbxCallAiSummary,
+    ConversationPbxCallAiSummaryFromJSON,
+    ConversationPbxCallAiSummaryFromJSONTyped,
+    ConversationPbxCallAiSummaryToJSON,
+} from './ConversationPbxCallAiSummary';
+import {
     ConversationPbxCallCaller,
     ConversationPbxCallCallerFromJSON,
     ConversationPbxCallCallerFromJSONTyped,
@@ -92,6 +98,12 @@ export interface ConversationPbxCall {
      * @memberof ConversationPbxCall
      */
     ai_agent_engagements?: Array<ConversationPbxCallAiEngagement>;
+    /**
+     * 
+     * @type {ConversationPbxCallAiSummary}
+     * @memberof ConversationPbxCall
+     */
+    ai_summary?: ConversationPbxCallAiSummary;
     /**
      * Twilio call SID for the primary (customer) call leg
      * @type {string}
@@ -206,6 +218,18 @@ export interface ConversationPbxCall {
      * @memberof ConversationPbxCall
      */
     updated_at_dts?: string;
+    /**
+     * Zoho Desk ticket ID if a ticket was created for this call
+     * @type {string}
+     * @memberof ConversationPbxCall
+     */
+    zoho_desk_ticket_id?: string;
+    /**
+     * URL to the Zoho Desk ticket if a ticket was created for this call
+     * @type {string}
+     * @memberof ConversationPbxCall
+     */
+    zoho_desk_ticket_url?: string;
 }
 
 
@@ -232,6 +256,7 @@ export function ConversationPbxCallFromJSONTyped(json: any, ignoreDiscriminator:
         'account_sid': !exists(json, 'account_sid') ? undefined : json['account_sid'],
         'agents': !exists(json, 'agents') ? undefined : ((json['agents'] as Array<any>).map(ConversationPbxCallAgentFromJSON)),
         'ai_agent_engagements': !exists(json, 'ai_agent_engagements') ? undefined : ((json['ai_agent_engagements'] as Array<any>).map(ConversationPbxCallAiEngagementFromJSON)),
+        'ai_summary': !exists(json, 'ai_summary') ? undefined : ConversationPbxCallAiSummaryFromJSON(json['ai_summary']),
         'call_sid': !exists(json, 'call_sid') ? undefined : json['call_sid'],
         'call_uuid': !exists(json, 'call_uuid') ? undefined : json['call_uuid'],
         'caller': !exists(json, 'caller') ? undefined : ConversationPbxCallCallerFromJSON(json['caller']),
@@ -251,6 +276,8 @@ export function ConversationPbxCallFromJSONTyped(json: any, ignoreDiscriminator:
         'timeline': !exists(json, 'timeline') ? undefined : ConversationPbxCallTimelineFromJSON(json['timeline']),
         'transfers': !exists(json, 'transfers') ? undefined : ((json['transfers'] as Array<any>).map(ConversationPbxCallTransferFromJSON)),
         'updated_at_dts': !exists(json, 'updated_at_dts') ? undefined : json['updated_at_dts'],
+        'zoho_desk_ticket_id': !exists(json, 'zoho_desk_ticket_id') ? undefined : json['zoho_desk_ticket_id'],
+        'zoho_desk_ticket_url': !exists(json, 'zoho_desk_ticket_url') ? undefined : json['zoho_desk_ticket_url'],
     };
 }
 
@@ -266,6 +293,7 @@ export function ConversationPbxCallToJSON(value?: ConversationPbxCall | null): a
         'account_sid': value.account_sid,
         'agents': value.agents === undefined ? undefined : ((value.agents as Array<any>).map(ConversationPbxCallAgentToJSON)),
         'ai_agent_engagements': value.ai_agent_engagements === undefined ? undefined : ((value.ai_agent_engagements as Array<any>).map(ConversationPbxCallAiEngagementToJSON)),
+        'ai_summary': ConversationPbxCallAiSummaryToJSON(value.ai_summary),
         'call_sid': value.call_sid,
         'call_uuid': value.call_uuid,
         'caller': ConversationPbxCallCallerToJSON(value.caller),
@@ -285,6 +313,8 @@ export function ConversationPbxCallToJSON(value?: ConversationPbxCall | null): a
         'timeline': ConversationPbxCallTimelineToJSON(value.timeline),
         'transfers': value.transfers === undefined ? undefined : ((value.transfers as Array<any>).map(ConversationPbxCallTransferToJSON)),
         'updated_at_dts': value.updated_at_dts,
+        'zoho_desk_ticket_id': value.zoho_desk_ticket_id,
+        'zoho_desk_ticket_url': value.zoho_desk_ticket_url,
     };
 }
 

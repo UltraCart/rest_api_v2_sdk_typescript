@@ -226,6 +226,7 @@ src/models/ConversationPbxCall.ts
 src/models/ConversationPbxCallAgent.ts
 src/models/ConversationPbxCallAiCost.ts
 src/models/ConversationPbxCallAiEngagement.ts
+src/models/ConversationPbxCallAiSummary.ts
 src/models/ConversationPbxCallAiToolCall.ts
 src/models/ConversationPbxCallAiWhisper.ts
 src/models/ConversationPbxCallCaller.ts

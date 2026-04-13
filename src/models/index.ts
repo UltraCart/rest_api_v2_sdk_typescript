@@ -202,6 +202,7 @@ export * from './ConversationPbxCall';
 export * from './ConversationPbxCallAgent';
 export * from './ConversationPbxCallAiCost';
 export * from './ConversationPbxCallAiEngagement';
+export * from './ConversationPbxCallAiSummary';
 export * from './ConversationPbxCallAiToolCall';
 export * from './ConversationPbxCallAiWhisper';
 export * from './ConversationPbxCallCaller';

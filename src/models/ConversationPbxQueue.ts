@@ -33,6 +33,18 @@ export interface ConversationPbxQueue {
      */
     ai_priority?: ConversationPbxQueueAiPriorityEnum;
     /**
+     * If true, AI summaries are generated for answered calls in this queue
+     * @type {boolean}
+     * @memberof ConversationPbxQueue
+     */
+    ai_summary_enabled?: boolean;
+    /**
+     * Custom instructions injected into the AI summary system prompt for this queue
+     * @type {string}
+     * @memberof ConversationPbxQueue
+     */
+    ai_summary_instructions?: string;
+    /**
      * AI timeout seconds
      * @type {number}
      * @memberof ConversationPbxQueue
@@ -242,6 +254,18 @@ export interface ConversationPbxQueue {
      * @memberof ConversationPbxQueue
      */
     wrap_up_seconds?: number;
+    /**
+     * Zoho Desk department ID to create tickets in
+     * @type {string}
+     * @memberof ConversationPbxQueue
+     */
+    zoho_desk_department_id?: string;
+    /**
+     * If true, a Zoho Desk ticket is automatically created for answered calls in this queue
+     * @type {boolean}
+     * @memberof ConversationPbxQueue
+     */
+    zoho_desk_ticket_enabled?: boolean;
 }
 
 
@@ -295,6 +319,8 @@ export function ConversationPbxQueueFromJSONTyped(json: any, ignoreDiscriminator
     return {
         
         'ai_priority': !exists(json, 'ai_priority') ? undefined : json['ai_priority'],
+        'ai_summary_enabled': !exists(json, 'ai_summary_enabled') ? undefined : json['ai_summary_enabled'],
+        'ai_summary_instructions': !exists(json, 'ai_summary_instructions') ? undefined : json['ai_summary_instructions'],
         'ai_timeout_seconds': !exists(json, 'ai_timeout_seconds') ? undefined : json['ai_timeout_seconds'],
         'announce_queue_position': !exists(json, 'announce_queue_position') ? undefined : json['announce_queue_position'],
         'automatic_coach_agent_uuid': !exists(json, 'automatic_coach_agent_uuid') ? undefined : json['automatic_coach_agent_uuid'],
@@ -330,6 +356,8 @@ export function ConversationPbxQueueFromJSONTyped(json: any, ignoreDiscriminator
         'wait_critical_seconds': !exists(json, 'wait_critical_seconds') ? undefined : json['wait_critical_seconds'],
         'wait_warning_seconds': !exists(json, 'wait_warning_seconds') ? undefined : json['wait_warning_seconds'],
         'wrap_up_seconds': !exists(json, 'wrap_up_seconds') ? undefined : json['wrap_up_seconds'],
+        'zoho_desk_department_id': !exists(json, 'zoho_desk_department_id') ? undefined : json['zoho_desk_department_id'],
+        'zoho_desk_ticket_enabled': !exists(json, 'zoho_desk_ticket_enabled') ? undefined : json['zoho_desk_ticket_enabled'],
     };
 }
 
@@ -343,6 +371,8 @@ export function ConversationPbxQueueToJSON(value?: ConversationPbxQueue | null):
     return {
         
         'ai_priority': value.ai_priority,
+        'ai_summary_enabled': value.ai_summary_enabled,
+        'ai_summary_instructions': value.ai_summary_instructions,
         'ai_timeout_seconds': value.ai_timeout_seconds,
         'announce_queue_position': value.announce_queue_position,
         'automatic_coach_agent_uuid': value.automatic_coach_agent_uuid,
@@ -378,6 +408,8 @@ export function ConversationPbxQueueToJSON(value?: ConversationPbxQueue | null):
         'wait_critical_seconds': value.wait_critical_seconds,
         'wait_warning_seconds': value.wait_warning_seconds,
         'wrap_up_seconds': value.wrap_up_seconds,
+        'zoho_desk_department_id': value.zoho_desk_department_id,
+        'zoho_desk_ticket_enabled': value.zoho_desk_ticket_enabled,
     };
 }
 
