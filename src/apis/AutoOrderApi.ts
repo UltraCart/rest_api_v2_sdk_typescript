@@ -24,6 +24,9 @@ import {
     AutoOrderConsolidate,
     AutoOrderConsolidateFromJSON,
     AutoOrderConsolidateToJSON,
+    AutoOrderItemCancelRequest,
+    AutoOrderItemCancelRequestFromJSON,
+    AutoOrderItemCancelRequestToJSON,
     AutoOrderPropertiesUpdateRequest,
     AutoOrderPropertiesUpdateRequestFromJSON,
     AutoOrderPropertiesUpdateRequestToJSON,
@@ -46,6 +49,13 @@ import {
     ErrorResponseFromJSON,
     ErrorResponseToJSON,
 } from '../models';
+
+export interface CancelAutoOrderItemByReferenceOrderIdRequest {
+    referenceOrderId: string;
+    originalItemId: string;
+    expand?: string;
+    autoOrderItemCancelRequest?: AutoOrderItemCancelRequest;
+}
 
 export interface ConsolidateAutoOrdersRequest {
     autoOrderOid: number;
@@ -159,6 +169,25 @@ export interface UpdateAutoOrdersBatchRequest {
  * @interface AutoOrderApiInterface
  */
 export interface AutoOrderApiInterface {
+    /**
+     * Cancels a single item on an auto order identified by the original order id and the item\'s original_item_id.  The request body may specify mode=end (soft cancel by setting no_order_after_dts to the current time, preserving the row for reporting; this is the default when the body is omitted) or mode=remove (hard delete).  Returns the updated auto order based upon expansion. 
+     * @summary Cancel a single item on an auto order
+     * @param {string} referenceOrderId The reference order id (original_order_id) of the auto order.
+     * @param {string} originalItemId The original_item_id (SKU) of the item to cancel.
+     * @param {string} [expand] The object expansion to perform on the result.  See documentation for examples
+     * @param {AutoOrderItemCancelRequest} [autoOrderItemCancelRequest] Cancel request.  Body is optional; omit for default mode&#x3D;end.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AutoOrderApiInterface
+     */
+    cancelAutoOrderItemByReferenceOrderIdRaw(requestParameters: CancelAutoOrderItemByReferenceOrderIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AutoOrderResponse>>;
+
+    /**
+     * Cancels a single item on an auto order identified by the original order id and the item\'s original_item_id.  The request body may specify mode=end (soft cancel by setting no_order_after_dts to the current time, preserving the row for reporting; this is the default when the body is omitted) or mode=remove (hard delete).  Returns the updated auto order based upon expansion. 
+     * Cancel a single item on an auto order
+     */
+    cancelAutoOrderItemByReferenceOrderId(requestParameters: CancelAutoOrderItemByReferenceOrderIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AutoOrderResponse>;
+
     /**
      * Consolidates mutliple auto orders on the UltraCart account. 
      * @summary Consolidates multiple auto orders
@@ -438,6 +467,58 @@ export interface AutoOrderApiInterface {
  * 
  */
 export class AutoOrderApi extends runtime.BaseAPI implements AutoOrderApiInterface {
+
+    /**
+     * Cancels a single item on an auto order identified by the original order id and the item\'s original_item_id.  The request body may specify mode=end (soft cancel by setting no_order_after_dts to the current time, preserving the row for reporting; this is the default when the body is omitted) or mode=remove (hard delete).  Returns the updated auto order based upon expansion. 
+     * Cancel a single item on an auto order
+     */
+    async cancelAutoOrderItemByReferenceOrderIdRaw(requestParameters: CancelAutoOrderItemByReferenceOrderIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AutoOrderResponse>> {
+        if (requestParameters.referenceOrderId === null || requestParameters.referenceOrderId === undefined) {
+            throw new runtime.RequiredError('referenceOrderId','Required parameter requestParameters.referenceOrderId was null or undefined when calling cancelAutoOrderItemByReferenceOrderId.');
+        }
+
+        if (requestParameters.originalItemId === null || requestParameters.originalItemId === undefined) {
+            throw new runtime.RequiredError('originalItemId','Required parameter requestParameters.originalItemId was null or undefined when calling cancelAutoOrderItemByReferenceOrderId.');
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters.expand !== undefined) {
+            queryParameters['_expand'] = requestParameters.expand;
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json; charset=UTF-8';
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", ["auto_order_write"]);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/auto_order/auto_orders/reference_order_id/{reference_order_id}/items/original/{original_item_id}/cancel`.replace(`{${"reference_order_id"}}`, encodeURIComponent(String(requestParameters.referenceOrderId))).replace(`{${"original_item_id"}}`, encodeURIComponent(String(requestParameters.originalItemId))),
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: AutoOrderItemCancelRequestToJSON(requestParameters.autoOrderItemCancelRequest),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => AutoOrderResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Cancels a single item on an auto order identified by the original order id and the item\'s original_item_id.  The request body may specify mode=end (soft cancel by setting no_order_after_dts to the current time, preserving the row for reporting; this is the default when the body is omitted) or mode=remove (hard delete).  Returns the updated auto order based upon expansion. 
+     * Cancel a single item on an auto order
+     */
+    async cancelAutoOrderItemByReferenceOrderId(requestParameters: CancelAutoOrderItemByReferenceOrderIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AutoOrderResponse> {
+        const response = await this.cancelAutoOrderItemByReferenceOrderIdRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
 
     /**
      * Consolidates mutliple auto orders on the UltraCart account. 

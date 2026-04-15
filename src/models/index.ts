@@ -28,6 +28,7 @@ export * from './AutoOrderAddonItemOption';
 export * from './AutoOrderAddonItemsUpdateRequest';
 export * from './AutoOrderConsolidate';
 export * from './AutoOrderItem';
+export * from './AutoOrderItemCancelRequest';
 export * from './AutoOrderItemFutureSchedule';
 export * from './AutoOrderItemOption';
 export * from './AutoOrderItemSimpleSchedule';

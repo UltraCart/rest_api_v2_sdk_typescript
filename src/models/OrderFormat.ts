@@ -115,6 +115,12 @@ export interface OrderFormat {
      * @memberof OrderFormat
      */
     translate?: boolean;
+    /**
+     * True to render phone numbers as <phone-number-format> web components in the HTML output. Only honored by the div format. Default false preserves legacy scalar rendering for receipts and unauthenticated consumers.
+     * @type {boolean}
+     * @memberof OrderFormat
+     */
+    use_phone_number_web_component?: boolean;
 }
 
 
@@ -166,6 +172,7 @@ export function OrderFormatFromJSONTyped(json: any, ignoreDiscriminator: boolean
         'show_non_sensitive_payment_info': !exists(json, 'show_non_sensitive_payment_info') ? undefined : json['show_non_sensitive_payment_info'],
         'show_payment_info': !exists(json, 'show_payment_info') ? undefined : json['show_payment_info'],
         'translate': !exists(json, 'translate') ? undefined : json['translate'],
+        'use_phone_number_web_component': !exists(json, 'use_phone_number_web_component') ? undefined : json['use_phone_number_web_component'],
     };
 }
 
@@ -194,6 +201,7 @@ export function OrderFormatToJSON(value?: OrderFormat | null): any {
         'show_non_sensitive_payment_info': value.show_non_sensitive_payment_info,
         'show_payment_info': value.show_payment_info,
         'translate': value.translate,
+        'use_phone_number_web_component': value.use_phone_number_web_component,
     };
 }
 

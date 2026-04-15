@@ -52,6 +52,7 @@ src/models/AutoOrderAddonItemOption.ts
 src/models/AutoOrderAddonItemsUpdateRequest.ts
 src/models/AutoOrderConsolidate.ts
 src/models/AutoOrderItem.ts
+src/models/AutoOrderItemCancelRequest.ts
 src/models/AutoOrderItemFutureSchedule.ts
 src/models/AutoOrderItemOption.ts
 src/models/AutoOrderItemSimpleSchedule.ts
