@@ -1,12 +1,12 @@
 # UltraCart Typescript SDK
-## ultracart_rest_api_v2_typescript@4.1.76
+## ultracart_rest_api_v2_typescript@4.1.77
 
 Every API method call has a sample for every language SDK.  See https://github.com/UltraCart/sdk_samples
 
 Installation
 
 ```
-npm install ultracart_rest_api_v2_typescript@4.1.76 --save
+npm install ultracart_rest_api_v2_typescript@4.1.77 --save
 ```
 
 ```typescript
@@ -85,6 +85,7 @@ Not every change is committed to every SDK.
 
 | Version | Date | Comments |
 | --: | :-: | --- |
+| 4.1.77 | 04/17/2026 | conversation - embed oauth methods |
 | 4.1.76 | 04/17/2026 | conversation - embed oauth methods |
 | 4.1.75 | 04/17/2026 | conversation - embed oauth methods |
 | 4.1.74 | 04/15/2026 | auto order - new method cancelAutoOrderItemByReferenceOrderId |
