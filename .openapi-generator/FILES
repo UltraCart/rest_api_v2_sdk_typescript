@@ -7,6 +7,7 @@ src/apis/AutoOrderApi.ts
 src/apis/ChannelPartnerApi.ts
 src/apis/CheckoutApi.ts
 src/apis/ConversationApi.ts
+src/apis/ConversationEmbedApi.ts
 src/apis/CouponApi.ts
 src/apis/CustomerApi.ts
 src/apis/DatawarehouseApi.ts
@@ -175,6 +176,7 @@ src/models/ConversationDepartmentMember.ts
 src/models/ConversationDepartmentMembersResponse.ts
 src/models/ConversationDepartmentResponse.ts
 src/models/ConversationDepartmentsResponse.ts
+src/models/ConversationEmbedPbxAuthResponse.ts
 src/models/ConversationEngagement.ts
 src/models/ConversationEngagementEquation.ts
 src/models/ConversationEngagementEquationFunction.ts
