@@ -31,6 +31,12 @@ export interface ConversationPbxTimeBased {
      * @type {string}
      * @memberof ConversationPbxTimeBased
      */
+    context_merchant_id?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ConversationPbxTimeBased
+     */
     conversation_pbx_time_based_uuid?: string;
     /**
      * 
@@ -73,6 +79,7 @@ export function ConversationPbxTimeBasedFromJSONTyped(json: any, ignoreDiscrimin
     }
     return {
         
+        'context_merchant_id': !exists(json, 'context_merchant_id') ? undefined : json['context_merchant_id'],
         'conversation_pbx_time_based_uuid': !exists(json, 'conversation_pbx_time_based_uuid') ? undefined : json['conversation_pbx_time_based_uuid'],
         'mapping_config': !exists(json, 'mapping_config') ? undefined : ConversationPbxTimeBasedMappingConfigFromJSON(json['mapping_config']),
         'merchant_id': !exists(json, 'merchant_id') ? undefined : json['merchant_id'],
@@ -89,6 +96,7 @@ export function ConversationPbxTimeBasedToJSON(value?: ConversationPbxTimeBased 
     }
     return {
         
+        'context_merchant_id': value.context_merchant_id,
         'conversation_pbx_time_based_uuid': value.conversation_pbx_time_based_uuid,
         'mapping_config': ConversationPbxTimeBasedMappingConfigToJSON(value.mapping_config),
         'merchant_id': value.merchant_id,

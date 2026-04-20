@@ -33,6 +33,12 @@ export interface ConversationPbxMenu {
      */
     allow_direct_extensions?: boolean;
     /**
+     * Optional child merchant ID this resource is assigned to. Null = shared across the linked merchant group.
+     * @type {string}
+     * @memberof ConversationPbxMenu
+     */
+    context_merchant_id?: string;
+    /**
      * Conversation Pbx Menu UUID
      * @type {string}
      * @memberof ConversationPbxMenu
@@ -126,6 +132,7 @@ export function ConversationPbxMenuFromJSONTyped(json: any, ignoreDiscriminator:
     return {
         
         'allow_direct_extensions': !exists(json, 'allow_direct_extensions') ? undefined : json['allow_direct_extensions'],
+        'context_merchant_id': !exists(json, 'context_merchant_id') ? undefined : json['context_merchant_id'],
         'conversation_pbx_menu_uuid': !exists(json, 'conversation_pbx_menu_uuid') ? undefined : json['conversation_pbx_menu_uuid'],
         'default_action': !exists(json, 'default_action') ? undefined : json['default_action'],
         'default_action_target': !exists(json, 'default_action_target') ? undefined : json['default_action_target'],
@@ -149,6 +156,7 @@ export function ConversationPbxMenuToJSON(value?: ConversationPbxMenu | null): a
     return {
         
         'allow_direct_extensions': value.allow_direct_extensions,
+        'context_merchant_id': value.context_merchant_id,
         'conversation_pbx_menu_uuid': value.conversation_pbx_menu_uuid,
         'default_action': value.default_action,
         'default_action_target': value.default_action_target,

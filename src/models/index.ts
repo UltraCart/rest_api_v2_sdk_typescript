@@ -134,6 +134,7 @@ export * from './CheckoutStateProvinceResponse';
 export * from './CityStateZip';
 export * from './Conversation';
 export * from './ConversationAgentAuth';
+export * from './ConversationAgentAuthMerchant';
 export * from './ConversationAgentAuthResponse';
 export * from './ConversationAgentProfile';
 export * from './ConversationAgentProfileResponse';

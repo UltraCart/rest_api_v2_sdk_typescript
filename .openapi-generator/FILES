@@ -159,6 +159,7 @@ src/models/CheckoutStateProvinceResponse.ts
 src/models/CityStateZip.ts
 src/models/Conversation.ts
 src/models/ConversationAgentAuth.ts
+src/models/ConversationAgentAuthMerchant.ts
 src/models/ConversationAgentAuthResponse.ts
 src/models/ConversationAgentProfile.ts
 src/models/ConversationAgentProfileResponse.ts

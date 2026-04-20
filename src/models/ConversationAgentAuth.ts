@@ -14,6 +14,12 @@
 
 import { exists, mapValues } from '../runtime';
 import {
+    ConversationAgentAuthMerchant,
+    ConversationAgentAuthMerchantFromJSON,
+    ConversationAgentAuthMerchantFromJSONTyped,
+    ConversationAgentAuthMerchantToJSON,
+} from './ConversationAgentAuthMerchant';
+import {
     ConversationTwilioAccount,
     ConversationTwilioAccountFromJSON,
     ConversationTwilioAccountFromJSONTyped,
@@ -80,6 +86,18 @@ export interface ConversationAgentAuth {
      * @memberof ConversationAgentAuth
      */
     merchant_id?: string;
+    /**
+     * List of merchants in this linked merchant group
+     * @type {Array<ConversationAgentAuthMerchant>}
+     * @memberof ConversationAgentAuth
+     */
+    merchants?: Array<ConversationAgentAuthMerchant>;
+    /**
+     * The parent merchant ID for PBX. For non-linked merchants, equals merchant_id.
+     * @type {string}
+     * @memberof ConversationAgentAuth
+     */
+    parent_merchant_id?: string;
     /**
      * 
      * @type {boolean}
@@ -178,6 +196,8 @@ export function ConversationAgentAuthFromJSONTyped(json: any, ignoreDiscriminato
         'group_ids': !exists(json, 'group_ids') ? undefined : json['group_ids'],
         'jwt': !exists(json, 'jwt') ? undefined : json['jwt'],
         'merchant_id': !exists(json, 'merchant_id') ? undefined : json['merchant_id'],
+        'merchants': !exists(json, 'merchants') ? undefined : ((json['merchants'] as Array<any>).map(ConversationAgentAuthMerchantFromJSON)),
+        'parent_merchant_id': !exists(json, 'parent_merchant_id') ? undefined : json['parent_merchant_id'],
         'pbx_admin': !exists(json, 'pbx_admin') ? undefined : json['pbx_admin'],
         'pbx_jwt': !exists(json, 'pbx_jwt') ? undefined : json['pbx_jwt'],
         'pbx_supervisor': !exists(json, 'pbx_supervisor') ? undefined : json['pbx_supervisor'],
@@ -210,6 +230,8 @@ export function ConversationAgentAuthToJSON(value?: ConversationAgentAuth | null
         'group_ids': value.group_ids,
         'jwt': value.jwt,
         'merchant_id': value.merchant_id,
+        'merchants': value.merchants === undefined ? undefined : ((value.merchants as Array<any>).map(ConversationAgentAuthMerchantToJSON)),
+        'parent_merchant_id': value.parent_merchant_id,
         'pbx_admin': value.pbx_admin,
         'pbx_jwt': value.pbx_jwt,
         'pbx_supervisor': value.pbx_supervisor,

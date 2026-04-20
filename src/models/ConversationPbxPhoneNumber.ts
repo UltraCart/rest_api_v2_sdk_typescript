@@ -38,6 +38,12 @@ export interface ConversationPbxPhoneNumber {
      */
     address_sid?: string;
     /**
+     * Optional child merchant ID this resource is assigned to. Null = shared across the linked merchant group.
+     * @type {string}
+     * @memberof ConversationPbxPhoneNumber
+     */
+    context_merchant_id?: string;
+    /**
      * Conversation Pbx Phone Number UUID
      * @type {string}
      * @memberof ConversationPbxPhoneNumber
@@ -106,6 +112,7 @@ export function ConversationPbxPhoneNumberFromJSONTyped(json: any, ignoreDiscrim
         'action': !exists(json, 'action') ? undefined : json['action'],
         'action_target': !exists(json, 'action_target') ? undefined : json['action_target'],
         'address_sid': !exists(json, 'address_sid') ? undefined : json['address_sid'],
+        'context_merchant_id': !exists(json, 'context_merchant_id') ? undefined : json['context_merchant_id'],
         'conversation_pbx_phone_number_uuid': !exists(json, 'conversation_pbx_phone_number_uuid') ? undefined : json['conversation_pbx_phone_number_uuid'],
         'default_phone_number': !exists(json, 'default_phone_number') ? undefined : json['default_phone_number'],
         'deletion_protected': !exists(json, 'deletion_protected') ? undefined : json['deletion_protected'],
@@ -126,6 +133,7 @@ export function ConversationPbxPhoneNumberToJSON(value?: ConversationPbxPhoneNum
         'action': value.action,
         'action_target': value.action_target,
         'address_sid': value.address_sid,
+        'context_merchant_id': value.context_merchant_id,
         'conversation_pbx_phone_number_uuid': value.conversation_pbx_phone_number_uuid,
         'default_phone_number': value.default_phone_number,
         'deletion_protected': value.deletion_protected,

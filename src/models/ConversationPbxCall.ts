@@ -129,6 +129,12 @@ export interface ConversationPbxCall {
      */
     conference_sid?: string;
     /**
+     * Optional child merchant ID this call is attributed to. Null = no child attribution (parent-level call).
+     * @type {string}
+     * @memberof ConversationPbxCall
+     */
+    context_merchant_id?: string;
+    /**
      * Timestamp when the call record was created
      * @type {string}
      * @memberof ConversationPbxCall
@@ -261,6 +267,7 @@ export function ConversationPbxCallFromJSONTyped(json: any, ignoreDiscriminator:
         'call_uuid': !exists(json, 'call_uuid') ? undefined : json['call_uuid'],
         'caller': !exists(json, 'caller') ? undefined : ConversationPbxCallCallerFromJSON(json['caller']),
         'conference_sid': !exists(json, 'conference_sid') ? undefined : json['conference_sid'],
+        'context_merchant_id': !exists(json, 'context_merchant_id') ? undefined : json['context_merchant_id'],
         'created_at_dts': !exists(json, 'created_at_dts') ? undefined : json['created_at_dts'],
         'customer_name': !exists(json, 'customer_name') ? undefined : json['customer_name'],
         'customer_profile_oid': !exists(json, 'customer_profile_oid') ? undefined : json['customer_profile_oid'],
@@ -298,6 +305,7 @@ export function ConversationPbxCallToJSON(value?: ConversationPbxCall | null): a
         'call_uuid': value.call_uuid,
         'caller': ConversationPbxCallCallerToJSON(value.caller),
         'conference_sid': value.conference_sid,
+        'context_merchant_id': value.context_merchant_id,
         'created_at_dts': value.created_at_dts,
         'customer_name': value.customer_name,
         'customer_profile_oid': value.customer_profile_oid,

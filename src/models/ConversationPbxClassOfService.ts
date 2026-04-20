@@ -32,6 +32,12 @@ export interface ConversationPbxClassOfService {
      */
     block_premium_numbers?: boolean;
     /**
+     * Optional child merchant ID this resource is assigned to. Null = shared across the linked merchant group.
+     * @type {string}
+     * @memberof ConversationPbxClassOfService
+     */
+    context_merchant_id?: string;
+    /**
      * Class of Service unique identifier
      * @type {string}
      * @memberof ConversationPbxClassOfService
@@ -98,6 +104,7 @@ export function ConversationPbxClassOfServiceFromJSONTyped(json: any, ignoreDisc
         
         'allowed_countries': !exists(json, 'allowed_countries') ? undefined : json['allowed_countries'],
         'block_premium_numbers': !exists(json, 'block_premium_numbers') ? undefined : json['block_premium_numbers'],
+        'context_merchant_id': !exists(json, 'context_merchant_id') ? undefined : json['context_merchant_id'],
         'conversation_pbx_class_of_service_uuid': !exists(json, 'conversation_pbx_class_of_service_uuid') ? undefined : json['conversation_pbx_class_of_service_uuid'],
         'default_flag': !exists(json, 'default_flag') ? undefined : json['default_flag'],
         'description': !exists(json, 'description') ? undefined : json['description'],
@@ -119,6 +126,7 @@ export function ConversationPbxClassOfServiceToJSON(value?: ConversationPbxClass
         
         'allowed_countries': value.allowed_countries,
         'block_premium_numbers': value.block_premium_numbers,
+        'context_merchant_id': value.context_merchant_id,
         'conversation_pbx_class_of_service_uuid': value.conversation_pbx_class_of_service_uuid,
         'default_flag': value.default_flag,
         'description': value.description,

@@ -33,6 +33,12 @@ export interface ConversationPbxTimeRange {
      */
     configs?: Array<ConversationPbxTimeRangeConfig>;
     /**
+     * Optional child merchant ID this resource is assigned to. Null = shared across the linked merchant group.
+     * @type {string}
+     * @memberof ConversationPbxTimeRange
+     */
+    context_merchant_id?: string;
+    /**
      * Conversation Pbx Time Range UUID
      * @type {string}
      * @memberof ConversationPbxTimeRange
@@ -80,6 +86,7 @@ export function ConversationPbxTimeRangeFromJSONTyped(json: any, ignoreDiscrimin
     return {
         
         'configs': !exists(json, 'configs') ? undefined : ((json['configs'] as Array<any>).map(ConversationPbxTimeRangeConfigFromJSON)),
+        'context_merchant_id': !exists(json, 'context_merchant_id') ? undefined : json['context_merchant_id'],
         'conversation_pbx_time_range_uuid': !exists(json, 'conversation_pbx_time_range_uuid') ? undefined : json['conversation_pbx_time_range_uuid'],
         'merchant_id': !exists(json, 'merchant_id') ? undefined : json['merchant_id'],
         'time_range_name': !exists(json, 'time_range_name') ? undefined : json['time_range_name'],
@@ -97,6 +104,7 @@ export function ConversationPbxTimeRangeToJSON(value?: ConversationPbxTimeRange 
     return {
         
         'configs': value.configs === undefined ? undefined : ((value.configs as Array<any>).map(ConversationPbxTimeRangeConfigToJSON)),
+        'context_merchant_id': value.context_merchant_id,
         'conversation_pbx_time_range_uuid': value.conversation_pbx_time_range_uuid,
         'merchant_id': value.merchant_id,
         'time_range_name': value.time_range_name,

@@ -135,6 +135,12 @@ export interface ConversationPbxQueue {
      */
     callback_retry_delay_seconds?: number;
     /**
+     * Optional child merchant ID this resource is assigned to. Null = shared across the linked merchant group.
+     * @type {string}
+     * @memberof ConversationPbxQueue
+     */
+    context_merchant_id?: string;
+    /**
      * Conversation Pbx Queue unique identifier
      * @type {string}
      * @memberof ConversationPbxQueue
@@ -336,6 +342,7 @@ export function ConversationPbxQueueFromJSONTyped(json: any, ignoreDiscriminator
         'callback_offer_after_seconds': !exists(json, 'callback_offer_after_seconds') ? undefined : json['callback_offer_after_seconds'],
         'callback_offer_interval_seconds': !exists(json, 'callback_offer_interval_seconds') ? undefined : json['callback_offer_interval_seconds'],
         'callback_retry_delay_seconds': !exists(json, 'callback_retry_delay_seconds') ? undefined : json['callback_retry_delay_seconds'],
+        'context_merchant_id': !exists(json, 'context_merchant_id') ? undefined : json['context_merchant_id'],
         'conversation_pbx_queue_uuid': !exists(json, 'conversation_pbx_queue_uuid') ? undefined : json['conversation_pbx_queue_uuid'],
         'conversation_voicemail_mailbox_uuid': !exists(json, 'conversation_voicemail_mailbox_uuid') ? undefined : json['conversation_voicemail_mailbox_uuid'],
         'hold_conversation_pbx_audio_uuid': !exists(json, 'hold_conversation_pbx_audio_uuid') ? undefined : json['hold_conversation_pbx_audio_uuid'],
@@ -388,6 +395,7 @@ export function ConversationPbxQueueToJSON(value?: ConversationPbxQueue | null):
         'callback_offer_after_seconds': value.callback_offer_after_seconds,
         'callback_offer_interval_seconds': value.callback_offer_interval_seconds,
         'callback_retry_delay_seconds': value.callback_retry_delay_seconds,
+        'context_merchant_id': value.context_merchant_id,
         'conversation_pbx_queue_uuid': value.conversation_pbx_queue_uuid,
         'conversation_voicemail_mailbox_uuid': value.conversation_voicemail_mailbox_uuid,
         'hold_conversation_pbx_audio_uuid': value.hold_conversation_pbx_audio_uuid,

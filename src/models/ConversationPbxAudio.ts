@@ -26,6 +26,12 @@ export interface ConversationPbxAudio {
      */
     audio_s3_listing_key?: string;
     /**
+     * Optional child merchant ID this resource is assigned to. Null = shared across the linked merchant group.
+     * @type {string}
+     * @memberof ConversationPbxAudio
+     */
+    context_merchant_id?: string;
+    /**
      * Conversation Pbx Audio UUID
      * @type {string}
      * @memberof ConversationPbxAudio
@@ -103,6 +109,7 @@ export function ConversationPbxAudioFromJSONTyped(json: any, ignoreDiscriminator
     return {
         
         'audio_s3_listing_key': !exists(json, 'audio_s3_listing_key') ? undefined : json['audio_s3_listing_key'],
+        'context_merchant_id': !exists(json, 'context_merchant_id') ? undefined : json['context_merchant_id'],
         'conversation_pbx_audio_uuid': !exists(json, 'conversation_pbx_audio_uuid') ? undefined : json['conversation_pbx_audio_uuid'],
         'default_hold_music': !exists(json, 'default_hold_music') ? undefined : json['default_hold_music'],
         'description': !exists(json, 'description') ? undefined : json['description'],
@@ -125,6 +132,7 @@ export function ConversationPbxAudioToJSON(value?: ConversationPbxAudio | null):
     return {
         
         'audio_s3_listing_key': value.audio_s3_listing_key,
+        'context_merchant_id': value.context_merchant_id,
         'conversation_pbx_audio_uuid': value.conversation_pbx_audio_uuid,
         'default_hold_music': value.default_hold_music,
         'description': value.description,

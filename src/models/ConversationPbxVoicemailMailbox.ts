@@ -20,6 +20,12 @@ import { exists, mapValues } from '../runtime';
  */
 export interface ConversationPbxVoicemailMailbox {
     /**
+     * Optional child merchant ID this resource is assigned to. Null = shared across the linked merchant group.
+     * @type {string}
+     * @memberof ConversationPbxVoicemailMailbox
+     */
+    context_merchant_id?: string;
+    /**
      * Conversation Pbx Voicemail Mailbox UUID
      * @type {string}
      * @memberof ConversationPbxVoicemailMailbox
@@ -165,6 +171,7 @@ export function ConversationPbxVoicemailMailboxFromJSONTyped(json: any, ignoreDi
     }
     return {
         
+        'context_merchant_id': !exists(json, 'context_merchant_id') ? undefined : json['context_merchant_id'],
         'conversation_pbx_voicemail_mailbox_uuid': !exists(json, 'conversation_pbx_voicemail_mailbox_uuid') ? undefined : json['conversation_pbx_voicemail_mailbox_uuid'],
         'merchant_id': !exists(json, 'merchant_id') ? undefined : json['merchant_id'],
         'send_notices_to_channel': !exists(json, 'send_notices_to_channel') ? undefined : json['send_notices_to_channel'],
@@ -191,6 +198,7 @@ export function ConversationPbxVoicemailMailboxToJSON(value?: ConversationPbxVoi
     }
     return {
         
+        'context_merchant_id': value.context_merchant_id,
         'conversation_pbx_voicemail_mailbox_uuid': value.conversation_pbx_voicemail_mailbox_uuid,
         'merchant_id': value.merchant_id,
         'send_notices_to_channel': value.send_notices_to_channel,
