@@ -1,12 +1,12 @@
 # UltraCart Typescript SDK
-## ultracart_rest_api_v2_typescript@4.1.78
+## ultracart_rest_api_v2_typescript@4.1.79
 
 Every API method call has a sample for every language SDK.  See https://github.com/UltraCart/sdk_samples
 
 Installation
 
 ```
-npm install ultracart_rest_api_v2_typescript@4.1.78 --save
+npm install ultracart_rest_api_v2_typescript@4.1.79 --save
 ```
 
 ```typescript
@@ -85,6 +85,7 @@ Not every change is committed to every SDK.
 
 | Version | Date | Comments |
 | --: | :-: | --- |
+| 4.1.79 | 04/21/2026 | item - one line per unit flag support |
 | 4.1.78 | 04/20/2026 | conversation pbx - objects have context_merchant_id fields to linked account configs |
 | 4.1.77 | 04/17/2026 | conversation - embed oauth methods |
 | 4.1.76 | 04/17/2026 | conversation - embed oauth methods |

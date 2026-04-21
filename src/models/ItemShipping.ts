@@ -249,6 +249,12 @@ export interface ItemShipping {
      */
     no_shipping_discount?: boolean;
     /**
+     * Split cart line items with quantity greater than one into individual lines of quantity one on the order
+     * @type {boolean}
+     * @memberof ItemShipping
+     */
+    one_line_per_unit?: boolean;
+    /**
      * Package requirements
      * @type {Array<ItemShippingPackageRequirement>}
      * @memberof ItemShipping
@@ -427,6 +433,7 @@ export function ItemShippingFromJSONTyped(json: any, ignoreDiscriminator: boolea
         'max_days_time_in_transit': !exists(json, 'max_days_time_in_transit') ? undefined : json['max_days_time_in_transit'],
         'methods': !exists(json, 'methods') ? undefined : ((json['methods'] as Array<any>).map(ItemShippingMethodFromJSON)),
         'no_shipping_discount': !exists(json, 'no_shipping_discount') ? undefined : json['no_shipping_discount'],
+        'one_line_per_unit': !exists(json, 'one_line_per_unit') ? undefined : json['one_line_per_unit'],
         'package_requirements': !exists(json, 'package_requirements') ? undefined : ((json['package_requirements'] as Array<any>).map(ItemShippingPackageRequirementFromJSON)),
         'perishable_class_name': !exists(json, 'perishable_class_name') ? undefined : json['perishable_class_name'],
         'perishable_class_oid': !exists(json, 'perishable_class_oid') ? undefined : json['perishable_class_oid'],
@@ -490,6 +497,7 @@ export function ItemShippingToJSON(value?: ItemShipping | null): any {
         'max_days_time_in_transit': value.max_days_time_in_transit,
         'methods': value.methods === undefined ? undefined : ((value.methods as Array<any>).map(ItemShippingMethodToJSON)),
         'no_shipping_discount': value.no_shipping_discount,
+        'one_line_per_unit': value.one_line_per_unit,
         'package_requirements': value.package_requirements === undefined ? undefined : ((value.package_requirements as Array<any>).map(ItemShippingPackageRequirementToJSON)),
         'perishable_class_name': value.perishable_class_name,
         'perishable_class_oid': value.perishable_class_oid,
