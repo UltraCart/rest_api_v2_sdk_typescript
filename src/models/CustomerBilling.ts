@@ -68,6 +68,12 @@ export interface CustomerBilling {
      */
     day_phone?: string;
     /**
+     * Day phone in E.164 format (derived â€” read only)
+     * @type {string}
+     * @memberof CustomerBilling
+     */
+    day_phone_e164?: string;
+    /**
      * Default billing
      * @type {boolean}
      * @memberof CustomerBilling
@@ -79,6 +85,12 @@ export interface CustomerBilling {
      * @memberof CustomerBilling
      */
     evening_phone?: string;
+    /**
+     * Evening phone in E.164 format (derived â€” read only)
+     * @type {string}
+     * @memberof CustomerBilling
+     */
+    evening_phone_e164?: string;
     /**
      * First name
      * @type {string}
@@ -152,8 +164,10 @@ export function CustomerBillingFromJSONTyped(json: any, ignoreDiscriminator: boo
         'customer_billing_oid': !exists(json, 'customer_billing_oid') ? undefined : json['customer_billing_oid'],
         'customer_profile_oid': !exists(json, 'customer_profile_oid') ? undefined : json['customer_profile_oid'],
         'day_phone': !exists(json, 'day_phone') ? undefined : json['day_phone'],
+        'day_phone_e164': !exists(json, 'day_phone_e164') ? undefined : json['day_phone_e164'],
         'default_billing': !exists(json, 'default_billing') ? undefined : json['default_billing'],
         'evening_phone': !exists(json, 'evening_phone') ? undefined : json['evening_phone'],
+        'evening_phone_e164': !exists(json, 'evening_phone_e164') ? undefined : json['evening_phone_e164'],
         'first_name': !exists(json, 'first_name') ? undefined : json['first_name'],
         'last_name': !exists(json, 'last_name') ? undefined : json['last_name'],
         'last_used_dts': !exists(json, 'last_used_dts') ? undefined : json['last_used_dts'],
@@ -181,8 +195,10 @@ export function CustomerBillingToJSON(value?: CustomerBilling | null): any {
         'customer_billing_oid': value.customer_billing_oid,
         'customer_profile_oid': value.customer_profile_oid,
         'day_phone': value.day_phone,
+        'day_phone_e164': value.day_phone_e164,
         'default_billing': value.default_billing,
         'evening_phone': value.evening_phone,
+        'evening_phone_e164': value.evening_phone_e164,
         'first_name': value.first_name,
         'last_name': value.last_name,
         'last_used_dts': value.last_used_dts,
