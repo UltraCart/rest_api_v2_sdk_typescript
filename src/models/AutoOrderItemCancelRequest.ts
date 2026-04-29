@@ -13,6 +13,13 @@
  */
 
 import { exists, mapValues } from '../runtime';
+import {
+    AutoOrderItem,
+    AutoOrderItemFromJSON,
+    AutoOrderItemFromJSONTyped,
+    AutoOrderItemToJSON,
+} from './AutoOrderItem';
+
 /**
  * 
  * @export
@@ -20,7 +27,13 @@ import { exists, mapValues } from '../runtime';
  */
 export interface AutoOrderItemCancelRequest {
     /**
-     * Optional tiebreaker when more than one item on the auto order shares the same original_item_id.  When present, the item with this oid is targeted and its original_item_id must match the URL path parameter (safety check).  Leave unset for the common case of a unique original_item_id.
+     * Specifying these items allows for an easier immutable item contact.  Validation will occur before any operations take place.  After the end/remove operation is successful, append these additional item(s) to the auto order.  The changes will be available in the response if the expansion includes items.
+     * @type {Array<AutoOrderItem>}
+     * @memberof AutoOrderItemCancelRequest
+     */
+    append_items?: Array<AutoOrderItem>;
+    /**
+     * Optional tiebreaker when more than one item on the auto order shares the same original_item_id.  When present, the item with this oid is targeted and its original_item_id must match the URL path parameter (safety check).  Leave unset for the common case of a unique original_item_id.  For reference the order_item.item_reference_oid is the same value as auto_order_item.auto_order_item_oid UNLESS the a manual edit took place AFTER the original order was placed.
      * @type {number}
      * @memberof AutoOrderItemCancelRequest
      */
@@ -64,6 +77,7 @@ export function AutoOrderItemCancelRequestFromJSONTyped(json: any, ignoreDiscrim
     }
     return {
         
+        'append_items': !exists(json, 'append_items') ? undefined : ((json['append_items'] as Array<any>).map(AutoOrderItemFromJSON)),
         'auto_order_item_oid': !exists(json, 'auto_order_item_oid') ? undefined : json['auto_order_item_oid'],
         'mode': !exists(json, 'mode') ? undefined : json['mode'],
     };
@@ -78,6 +92,7 @@ export function AutoOrderItemCancelRequestToJSON(value?: AutoOrderItemCancelRequ
     }
     return {
         
+        'append_items': value.append_items === undefined ? undefined : ((value.append_items as Array<any>).map(AutoOrderItemToJSON)),
         'auto_order_item_oid': value.auto_order_item_oid,
         'mode': value.mode,
     };

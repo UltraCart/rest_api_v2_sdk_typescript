@@ -1,12 +1,12 @@
 # UltraCart Typescript SDK
-## ultracart_rest_api_v2_typescript@4.1.82
+## ultracart_rest_api_v2_typescript@4.1.83
 
 Every API method call has a sample for every language SDK.  See https://github.com/UltraCart/sdk_samples
 
 Installation
 
 ```
-npm install ultracart_rest_api_v2_typescript@4.1.82 --save
+npm install ultracart_rest_api_v2_typescript@4.1.83 --save
 ```
 
 ```typescript
@@ -85,6 +85,7 @@ Not every change is committed to every SDK.
 
 | Version | Date | Comments |
 | --: | :-: | --- |
+| 4.1.83 | 04/29/2026 | AO support for item appending on cancel request, order payment method test routing on hold release |
 | 4.1.82 | 04/27/2026 | converation - agent status and availability |
 | 4.1.81 | 04/27/2026 | conversations - agent status and availability |
 | 4.1.80 | 04/22/2026 | customer - e.164 read only fields on billing/shipping child objects |

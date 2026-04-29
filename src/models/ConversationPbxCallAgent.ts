@@ -38,6 +38,12 @@ export interface ConversationPbxCallAgent {
      */
     agent_name?: string;
     /**
+     * UltraCart user id for the agent (denormalized at index time so reporting endpoints can join on agent_user_id without translating from the agent_id login).
+     * @type {string}
+     * @memberof ConversationPbxCallAgent
+     */
+    agent_user_id?: string;
+    /**
      * Whether the agent answered the call
      * @type {boolean}
      * @memberof ConversationPbxCallAgent
@@ -99,6 +105,7 @@ export function ConversationPbxCallAgentFromJSONTyped(json: any, ignoreDiscrimin
         'agent_extension': !exists(json, 'agent_extension') ? undefined : json['agent_extension'],
         'agent_id': !exists(json, 'agent_id') ? undefined : json['agent_id'],
         'agent_name': !exists(json, 'agent_name') ? undefined : json['agent_name'],
+        'agent_user_id': !exists(json, 'agent_user_id') ? undefined : json['agent_user_id'],
         'answered': !exists(json, 'answered') ? undefined : json['answered'],
         'call_sid': !exists(json, 'call_sid') ? undefined : json['call_sid'],
         'joined_at_dts': !exists(json, 'joined_at_dts') ? undefined : json['joined_at_dts'],
@@ -120,6 +127,7 @@ export function ConversationPbxCallAgentToJSON(value?: ConversationPbxCallAgent 
         'agent_extension': value.agent_extension,
         'agent_id': value.agent_id,
         'agent_name': value.agent_name,
+        'agent_user_id': value.agent_user_id,
         'answered': value.answered,
         'call_sid': value.call_sid,
         'joined_at_dts': value.joined_at_dts,

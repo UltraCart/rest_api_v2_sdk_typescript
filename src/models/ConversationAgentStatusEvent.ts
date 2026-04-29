@@ -20,6 +20,12 @@ import { exists, mapValues } from '../runtime';
  */
 export interface ConversationAgentStatusEvent {
     /**
+     * Agent identifier â€” voice_identity for PBX (e.g. 'client:login'), participant_arn for chat, synthetic 'ai:<user_id>' for AI flag events. Stable across an agent's events; participates in DDB pk and GSI1 sk.
+     * @type {string}
+     * @memberof ConversationAgentStatusEvent
+     */
+    agent_identifier?: string;
+    /**
      * Agent display name at the time of the event
      * @type {string}
      * @memberof ConversationAgentStatusEvent
@@ -187,6 +193,7 @@ export function ConversationAgentStatusEventFromJSONTyped(json: any, ignoreDiscr
     }
     return {
         
+        'agent_identifier': !exists(json, 'agent_identifier') ? undefined : json['agent_identifier'],
         'agent_name': !exists(json, 'agent_name') ? undefined : json['agent_name'],
         'agent_type': !exists(json, 'agent_type') ? undefined : json['agent_type'],
         'agent_user_id': !exists(json, 'agent_user_id') ? undefined : json['agent_user_id'],
@@ -215,6 +222,7 @@ export function ConversationAgentStatusEventToJSON(value?: ConversationAgentStat
     }
     return {
         
+        'agent_identifier': value.agent_identifier,
         'agent_name': value.agent_name,
         'agent_type': value.agent_type,
         'agent_user_id': value.agent_user_id,
