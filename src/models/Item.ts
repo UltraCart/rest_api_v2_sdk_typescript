@@ -92,6 +92,12 @@ import {
     ItemFulfillmentAddonToJSON,
 } from './ItemFulfillmentAddon';
 import {
+    ItemGatedCode,
+    ItemGatedCodeFromJSON,
+    ItemGatedCodeFromJSONTyped,
+    ItemGatedCodeToJSON,
+} from './ItemGatedCode';
+import {
     ItemGiftCertificate,
     ItemGiftCertificateFromJSON,
     ItemGiftCertificateFromJSONTyped,
@@ -345,6 +351,12 @@ export interface Item {
      */
     fulfillment_addons?: Array<ItemFulfillmentAddon>;
     /**
+     * Gated access codes for this item. Read-only on this object. Use the /items/{merchant_item_oid}/gated_codes endpoints to manage.
+     * @type {Array<ItemGatedCode>}
+     * @memberof Item
+     */
+    gated_codes?: Array<ItemGatedCode>;
+    /**
      * 
      * @type {ItemGiftCertificate}
      * @memberof Item
@@ -593,6 +605,7 @@ export function ItemFromJSONTyped(json: any, ignoreDiscriminator: boolean): Item
         'email_notifications': !exists(json, 'email_notifications') ? undefined : ItemEmailNotificationsFromJSON(json['email_notifications']),
         'enrollment123': !exists(json, 'enrollment123') ? undefined : ItemEnrollment123FromJSON(json['enrollment123']),
         'fulfillment_addons': !exists(json, 'fulfillment_addons') ? undefined : ((json['fulfillment_addons'] as Array<any>).map(ItemFulfillmentAddonFromJSON)),
+        'gated_codes': !exists(json, 'gated_codes') ? undefined : ((json['gated_codes'] as Array<any>).map(ItemGatedCodeFromJSON)),
         'gift_certificate': !exists(json, 'gift_certificate') ? undefined : ItemGiftCertificateFromJSON(json['gift_certificate']),
         'google_product_search': !exists(json, 'google_product_search') ? undefined : ItemGoogleProductSearchFromJSON(json['google_product_search']),
         'identifiers': !exists(json, 'identifiers') ? undefined : ItemIdentifiersFromJSON(json['identifiers']),
@@ -656,6 +669,7 @@ export function ItemToJSON(value?: Item | null): any {
         'email_notifications': ItemEmailNotificationsToJSON(value.email_notifications),
         'enrollment123': ItemEnrollment123ToJSON(value.enrollment123),
         'fulfillment_addons': value.fulfillment_addons === undefined ? undefined : ((value.fulfillment_addons as Array<any>).map(ItemFulfillmentAddonToJSON)),
+        'gated_codes': value.gated_codes === undefined ? undefined : ((value.gated_codes as Array<any>).map(ItemGatedCodeToJSON)),
         'gift_certificate': ItemGiftCertificateToJSON(value.gift_certificate),
         'google_product_search': ItemGoogleProductSearchToJSON(value.google_product_search),
         'identifiers': ItemIdentifiersToJSON(value.identifiers),

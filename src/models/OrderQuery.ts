@@ -294,7 +294,8 @@ export const OrderQueryCurrentStageEnum = {
     QuoteRequest: 'Quote Request',
     QuoteSent: 'Quote Sent',
     LeastCostRouting: 'Least Cost Routing',
-    Unknown: 'Unknown'
+    Unknown: 'Unknown',
+    Hold: 'Hold'
 } as const;
 export type OrderQueryCurrentStageEnum = typeof OrderQueryCurrentStageEnum[keyof typeof OrderQueryCurrentStageEnum];
 

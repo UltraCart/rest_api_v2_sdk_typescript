@@ -1,12 +1,12 @@
 # UltraCart Typescript SDK
-## ultracart_rest_api_v2_typescript@4.1.83
+## ultracart_rest_api_v2_typescript@4.1.84
 
 Every API method call has a sample for every language SDK.  See https://github.com/UltraCart/sdk_samples
 
 Installation
 
 ```
-npm install ultracart_rest_api_v2_typescript@4.1.83 --save
+npm install ultracart_rest_api_v2_typescript@4.1.84 --save
 ```
 
 ```typescript
@@ -85,6 +85,7 @@ Not every change is committed to every SDK.
 
 | Version | Date | Comments |
 | --: | :-: | --- |
+| 4.1.84 | 05/04/2026 | Order API - add hold stage to allowed values on order query request |
 | 4.1.83 | 04/29/2026 | AO support for item appending on cancel request, order payment method test routing on hold release |
 | 4.1.82 | 04/27/2026 | converation - agent status and availability |
 | 4.1.81 | 04/27/2026 | conversations - agent status and availability |

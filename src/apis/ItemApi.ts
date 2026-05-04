@@ -15,6 +15,9 @@
 
 import * as runtime from '../runtime';
 import {
+    BaseResponse,
+    BaseResponseFromJSON,
+    BaseResponseToJSON,
     ErrorResponse,
     ErrorResponseFromJSON,
     ErrorResponseToJSON,
@@ -33,12 +36,24 @@ import {
     ItemDigitalItemsResponse,
     ItemDigitalItemsResponseFromJSON,
     ItemDigitalItemsResponseToJSON,
+    ItemGatedCode,
+    ItemGatedCodeFromJSON,
+    ItemGatedCodeToJSON,
+    ItemGatedCodeResponse,
+    ItemGatedCodeResponseFromJSON,
+    ItemGatedCodeResponseToJSON,
+    ItemGatedCodesRequest,
+    ItemGatedCodesRequestFromJSON,
+    ItemGatedCodesRequestToJSON,
+    ItemGatedCodesResponse,
+    ItemGatedCodesResponseFromJSON,
+    ItemGatedCodesResponseToJSON,
+    ItemGenerateGatedCodesRequest,
+    ItemGenerateGatedCodesRequestFromJSON,
+    ItemGenerateGatedCodesRequestToJSON,
     ItemInventorySnapshotResponse,
     ItemInventorySnapshotResponseFromJSON,
     ItemInventorySnapshotResponseToJSON,
-    ItemInventoryUpdateRequest,
-    ItemInventoryUpdateRequestFromJSON,
-    ItemInventoryUpdateRequestToJSON,
     ItemResponse,
     ItemResponseFromJSON,
     ItemResponseToJSON,
@@ -51,12 +66,6 @@ import {
     ItemReviewsResponse,
     ItemReviewsResponseFromJSON,
     ItemReviewsResponseToJSON,
-    ItemShippingDistributionCenter,
-    ItemShippingDistributionCenterFromJSON,
-    ItemShippingDistributionCenterToJSON,
-    ItemShippingDistributionCenterResponse,
-    ItemShippingDistributionCenterResponseFromJSON,
-    ItemShippingDistributionCenterResponseToJSON,
     ItemsRequest,
     ItemsRequestFromJSON,
     ItemsRequestToJSON,
@@ -71,8 +80,17 @@ import {
     TempMultimediaResponseToJSON,
 } from '../models';
 
+export interface DeleteAllGatedCodesRequest {
+    merchantItemOid: number;
+}
+
 export interface DeleteDigitalItemRequest {
     digitalItemOid: number;
+}
+
+export interface DeleteGatedCodeRequest {
+    merchantItemOid: number;
+    merchantItemGatedCodeOid: number;
 }
 
 export interface DeleteItemRequest {
@@ -82,6 +100,11 @@ export interface DeleteItemRequest {
 export interface DeleteReviewRequest {
     reviewOid: number;
     merchantItemOid: number;
+}
+
+export interface GenerateGatedCodesRequest {
+    merchantItemOid: number;
+    generateRequest: ItemGenerateGatedCodesRequest;
 }
 
 export interface GetDigitalItemRequest {
@@ -101,6 +124,10 @@ export interface GetDigitalItemsByExternalIdRequest {
     externalId: string;
 }
 
+export interface GetGatedCodesRequest {
+    merchantItemOid: number;
+}
+
 export interface GetItemRequest {
     merchantItemOid: number;
     expand?: string;
@@ -109,13 +136,6 @@ export interface GetItemRequest {
 
 export interface GetItemByMerchantItemIdRequest {
     merchantItemId: string;
-    expand?: string;
-    placeholders?: boolean;
-}
-
-export interface GetItemShippingDistributionCenterByCodeRequest {
-    merchantItemOid: number;
-    distributionCenterCode: string;
     expand?: string;
     placeholders?: boolean;
 }
@@ -157,6 +177,11 @@ export interface InsertDigitalItemRequest {
     digitalItem: ItemDigitalItem;
 }
 
+export interface InsertGatedCodeRequest {
+    merchantItemOid: number;
+    gatedCode: ItemGatedCode;
+}
+
 export interface InsertItemRequest {
     item: Item;
     expand?: string;
@@ -173,6 +198,11 @@ export interface InsertUpdateItemContentAttributeRequest {
     itemAttribute: ItemContentAttribute;
 }
 
+export interface ReplaceGatedCodesRequest {
+    merchantItemOid: number;
+    gatedCodesRequest: ItemGatedCodesRequest;
+}
+
 export interface UpdateDigitalItemRequest {
     digitalItemOid: number;
     digitalItem: ItemDigitalItem;
@@ -183,16 +213,6 @@ export interface UpdateItemRequest {
     item: Item;
     expand?: string;
     placeholders?: boolean;
-}
-
-export interface UpdateItemInventoriesRequest {
-    itemInventoryUpdateRequest: ItemInventoryUpdateRequest;
-}
-
-export interface UpdateItemShippingDistributionCenterByCodeRequest {
-    merchantItemOid: number;
-    distributionCenterCode: string;
-    itemShippingDistributionCenter: ItemShippingDistributionCenter;
 }
 
 export interface UpdateItemsRequest {
@@ -220,6 +240,22 @@ export interface UploadTemporaryMultimediaRequest {
  */
 export interface ItemApiInterface {
     /**
+     * Removes every gated access code currently configured for the item. 
+     * @summary Delete all gated access codes for an item
+     * @param {number} merchantItemOid The item oid.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ItemApiInterface
+     */
+    deleteAllGatedCodesRaw(requestParameters: DeleteAllGatedCodesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BaseResponse>>;
+
+    /**
+     * Removes every gated access code currently configured for the item. 
+     * Delete all gated access codes for an item
+     */
+    deleteAllGatedCodes(requestParameters: DeleteAllGatedCodesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BaseResponse>;
+
+    /**
      * Delete a digital item on the UltraCart account. 
      * @summary Delete a digital item, which is a file within the digital library, not an actual merchant item
      * @param {number} digitalItemOid The digital item oid to delete.
@@ -234,6 +270,23 @@ export interface ItemApiInterface {
      * Delete a digital item, which is a file within the digital library, not an actual merchant item
      */
     deleteDigitalItem(requestParameters: DeleteDigitalItemRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+
+    /**
+     * Delete a specific gated access code by its OID. 
+     * @summary Delete a gated access code by OID
+     * @param {number} merchantItemOid The item oid.
+     * @param {number} merchantItemGatedCodeOid The gated code oid.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ItemApiInterface
+     */
+    deleteGatedCodeRaw(requestParameters: DeleteGatedCodeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BaseResponse>>;
+
+    /**
+     * Delete a specific gated access code by its OID. 
+     * Delete a gated access code by OID
+     */
+    deleteGatedCode(requestParameters: DeleteGatedCodeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BaseResponse>;
 
     /**
      * Delete an item on the UltraCart account. 
@@ -267,6 +320,23 @@ export interface ItemApiInterface {
      * Delete a review
      */
     deleteReview(requestParameters: DeleteReviewRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+
+    /**
+     * Returns randomly generated codes using a profanity-safe charset (vowel-free, 0/1 removed). Codes are NOT persisted; submit them via PUT or POST to commit. 
+     * @summary Generate a batch of gated access codes
+     * @param {number} merchantItemOid The item oid.
+     * @param {ItemGenerateGatedCodesRequest} generateRequest Generate request.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ItemApiInterface
+     */
+    generateGatedCodesRaw(requestParameters: GenerateGatedCodesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ItemGatedCodesResponse>>;
+
+    /**
+     * Returns randomly generated codes using a profanity-safe charset (vowel-free, 0/1 removed). Codes are NOT persisted; submit them via PUT or POST to commit. 
+     * Generate a batch of gated access codes
+     */
+    generateGatedCodes(requestParameters: GenerateGatedCodesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ItemGatedCodesResponse>;
 
     /**
      * Retrieves a digital item (file information) from the account.  Be aware that these are not normal items that can be added to a shopping cart. Rather, they are digital files that may be associated with normal items. 
@@ -322,6 +392,22 @@ export interface ItemApiInterface {
     getDigitalItemsByExternalId(requestParameters: GetDigitalItemsByExternalIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ItemDigitalItemsResponse>;
 
     /**
+     * Retrieve all unredeemed gated access codes configured for an item. 
+     * @summary Get gated access codes for an item
+     * @param {number} merchantItemOid The item oid.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ItemApiInterface
+     */
+    getGatedCodesRaw(requestParameters: GetGatedCodesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ItemGatedCodesResponse>>;
+
+    /**
+     * Retrieve all unredeemed gated access codes configured for an item. 
+     * Get gated access codes for an item
+     */
+    getGatedCodes(requestParameters: GetGatedCodesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ItemGatedCodesResponse>;
+
+    /**
      * Retrieve a list of item inventories.  This method may be called once every 15 minutes.  More than that will result in a 429 response. 
      * @summary Retrieve a list of item inventories.  This method may be called once every 15 minutes.  More than that will result in a 429 response.
      * @param {*} [options] Override http request option.
@@ -371,25 +457,6 @@ export interface ItemApiInterface {
      * Retrieve an item by item id
      */
     getItemByMerchantItemId(requestParameters: GetItemByMerchantItemIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ItemResponse>;
-
-    /**
-     * Retrieve an item shipping distribution center. 
-     * @summary Retrieve an item shipping distribution center
-     * @param {number} merchantItemOid The item oid to retrieve.
-     * @param {string} distributionCenterCode 
-     * @param {string} [expand] The object expansion to perform on the result.  See documentation for examples
-     * @param {boolean} [placeholders] Whether or not placeholder values should be returned in the result.  Useful for UIs that consume this REST API.
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ItemApiInterface
-     */
-    getItemShippingDistributionCenterByCodeRaw(requestParameters: GetItemShippingDistributionCenterByCodeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ItemShippingDistributionCenterResponse>>;
-
-    /**
-     * Retrieve an item shipping distribution center. 
-     * Retrieve an item shipping distribution center
-     */
-    getItemShippingDistributionCenterByCode(requestParameters: GetItemShippingDistributionCenterByCodeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ItemShippingDistributionCenterResponse>;
 
     /**
      * Retrieves a group of items from the account.  If no parameters are specified, all items will be returned.  You will need to make multiple API calls in order to retrieve the entire result set since this API performs result set pagination. 
@@ -501,6 +568,23 @@ export interface ItemApiInterface {
     insertDigitalItem(requestParameters: InsertDigitalItemRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ItemDigitalItemResponse>;
 
     /**
+     * Insert a single gated access code; the server assigns the OID and created_dts. 
+     * @summary Add a single gated access code to an item
+     * @param {number} merchantItemOid The item oid.
+     * @param {ItemGatedCode} gatedCode Gated code to insert.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ItemApiInterface
+     */
+    insertGatedCodeRaw(requestParameters: InsertGatedCodeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ItemGatedCodeResponse>>;
+
+    /**
+     * Insert a single gated access code; the server assigns the OID and created_dts. 
+     * Add a single gated access code to an item
+     */
+    insertGatedCode(requestParameters: InsertGatedCodeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ItemGatedCodeResponse>;
+
+    /**
      * Create a new item on the UltraCart account. 
      * @summary Create an item
      * @param {Item} item Item to create
@@ -553,6 +637,23 @@ export interface ItemApiInterface {
     insertUpdateItemContentAttribute(requestParameters: InsertUpdateItemContentAttributeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
+     * Existing codes not present in the request body are deleted. New codes are inserted. Unchanged codes preserve their OID and created_dts. 
+     * @summary Replace the full list of gated access codes for an item
+     * @param {number} merchantItemOid The item oid.
+     * @param {ItemGatedCodesRequest} gatedCodesRequest Codes to replace the existing list with.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ItemApiInterface
+     */
+    replaceGatedCodesRaw(requestParameters: ReplaceGatedCodesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ItemGatedCodesResponse>>;
+
+    /**
+     * Existing codes not present in the request body are deleted. New codes are inserted. Unchanged codes preserve their OID and created_dts. 
+     * Replace the full list of gated access codes for an item
+     */
+    replaceGatedCodes(requestParameters: ReplaceGatedCodesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ItemGatedCodesResponse>;
+
+    /**
      * Updates a file within the digital library.  This does not update an item, but updates a digital file available and selectable as part (or all) of an item. 
      * @summary Updates a file within the digital library
      * @param {number} digitalItemOid The digital item oid to update.
@@ -587,40 +688,6 @@ export interface ItemApiInterface {
      * Update an item
      */
     updateItem(requestParameters: UpdateItemRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ItemResponse>;
-
-    /**
-     * Update item inventories for a distribution center 
-     * @summary Update item inventories for a distribution center
-     * @param {ItemInventoryUpdateRequest} itemInventoryUpdateRequest Item inventory updates
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ItemApiInterface
-     */
-    updateItemInventoriesRaw(requestParameters: UpdateItemInventoriesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
-
-    /**
-     * Update item inventories for a distribution center 
-     * Update item inventories for a distribution center
-     */
-    updateItemInventories(requestParameters: UpdateItemInventoriesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
-
-    /**
-     * Update an item shipping distribution center 
-     * @summary Update an item shipping distribution center
-     * @param {number} merchantItemOid The item oid to update.
-     * @param {string} distributionCenterCode 
-     * @param {ItemShippingDistributionCenter} itemShippingDistributionCenter Item shipping distribution center
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof ItemApiInterface
-     */
-    updateItemShippingDistributionCenterByCodeRaw(requestParameters: UpdateItemShippingDistributionCenterByCodeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
-
-    /**
-     * Update an item shipping distribution center 
-     * Update an item shipping distribution center
-     */
-    updateItemShippingDistributionCenterByCode(requestParameters: UpdateItemShippingDistributionCenterByCodeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
      * Update multiple item on the UltraCart account. 
@@ -683,6 +750,47 @@ export interface ItemApiInterface {
 export class ItemApi extends runtime.BaseAPI implements ItemApiInterface {
 
     /**
+     * Removes every gated access code currently configured for the item. 
+     * Delete all gated access codes for an item
+     */
+    async deleteAllGatedCodesRaw(requestParameters: DeleteAllGatedCodesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BaseResponse>> {
+        if (requestParameters.merchantItemOid === null || requestParameters.merchantItemOid === undefined) {
+            throw new runtime.RequiredError('merchantItemOid','Required parameter requestParameters.merchantItemOid was null or undefined when calling deleteAllGatedCodes.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", ["item_write"]);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/item/items/{merchant_item_oid}/gated_codes`.replace(`{${"merchant_item_oid"}}`, encodeURIComponent(String(requestParameters.merchantItemOid))),
+            method: 'DELETE',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => BaseResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Removes every gated access code currently configured for the item. 
+     * Delete all gated access codes for an item
+     */
+    async deleteAllGatedCodes(requestParameters: DeleteAllGatedCodesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BaseResponse> {
+        const response = await this.deleteAllGatedCodesRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
      * Delete a digital item on the UltraCart account. 
      * Delete a digital item, which is a file within the digital library, not an actual merchant item
      */
@@ -720,6 +828,51 @@ export class ItemApi extends runtime.BaseAPI implements ItemApiInterface {
      */
     async deleteDigitalItem(requestParameters: DeleteDigitalItemRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.deleteDigitalItemRaw(requestParameters, initOverrides);
+    }
+
+    /**
+     * Delete a specific gated access code by its OID. 
+     * Delete a gated access code by OID
+     */
+    async deleteGatedCodeRaw(requestParameters: DeleteGatedCodeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BaseResponse>> {
+        if (requestParameters.merchantItemOid === null || requestParameters.merchantItemOid === undefined) {
+            throw new runtime.RequiredError('merchantItemOid','Required parameter requestParameters.merchantItemOid was null or undefined when calling deleteGatedCode.');
+        }
+
+        if (requestParameters.merchantItemGatedCodeOid === null || requestParameters.merchantItemGatedCodeOid === undefined) {
+            throw new runtime.RequiredError('merchantItemGatedCodeOid','Required parameter requestParameters.merchantItemGatedCodeOid was null or undefined when calling deleteGatedCode.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", ["item_write"]);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/item/items/{merchant_item_oid}/gated_codes/{merchant_item_gated_code_oid}`.replace(`{${"merchant_item_oid"}}`, encodeURIComponent(String(requestParameters.merchantItemOid))).replace(`{${"merchant_item_gated_code_oid"}}`, encodeURIComponent(String(requestParameters.merchantItemGatedCodeOid))),
+            method: 'DELETE',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => BaseResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Delete a specific gated access code by its OID. 
+     * Delete a gated access code by OID
+     */
+    async deleteGatedCode(requestParameters: DeleteGatedCodeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<BaseResponse> {
+        const response = await this.deleteGatedCodeRaw(requestParameters, initOverrides);
+        return await response.value();
     }
 
     /**
@@ -804,6 +957,54 @@ export class ItemApi extends runtime.BaseAPI implements ItemApiInterface {
      */
     async deleteReview(requestParameters: DeleteReviewRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.deleteReviewRaw(requestParameters, initOverrides);
+    }
+
+    /**
+     * Returns randomly generated codes using a profanity-safe charset (vowel-free, 0/1 removed). Codes are NOT persisted; submit them via PUT or POST to commit. 
+     * Generate a batch of gated access codes
+     */
+    async generateGatedCodesRaw(requestParameters: GenerateGatedCodesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ItemGatedCodesResponse>> {
+        if (requestParameters.merchantItemOid === null || requestParameters.merchantItemOid === undefined) {
+            throw new runtime.RequiredError('merchantItemOid','Required parameter requestParameters.merchantItemOid was null or undefined when calling generateGatedCodes.');
+        }
+
+        if (requestParameters.generateRequest === null || requestParameters.generateRequest === undefined) {
+            throw new runtime.RequiredError('generateRequest','Required parameter requestParameters.generateRequest was null or undefined when calling generateGatedCodes.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json; charset=UTF-8';
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", ["item_write"]);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/item/items/{merchant_item_oid}/gated_codes/generate`.replace(`{${"merchant_item_oid"}}`, encodeURIComponent(String(requestParameters.merchantItemOid))),
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: ItemGenerateGatedCodesRequestToJSON(requestParameters.generateRequest),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => ItemGatedCodesResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Returns randomly generated codes using a profanity-safe charset (vowel-free, 0/1 removed). Codes are NOT persisted; submit them via PUT or POST to commit. 
+     * Generate a batch of gated access codes
+     */
+    async generateGatedCodes(requestParameters: GenerateGatedCodesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ItemGatedCodesResponse> {
+        const response = await this.generateGatedCodesRaw(requestParameters, initOverrides);
+        return await response.value();
     }
 
     /**
@@ -950,6 +1151,47 @@ export class ItemApi extends runtime.BaseAPI implements ItemApiInterface {
     }
 
     /**
+     * Retrieve all unredeemed gated access codes configured for an item. 
+     * Get gated access codes for an item
+     */
+    async getGatedCodesRaw(requestParameters: GetGatedCodesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ItemGatedCodesResponse>> {
+        if (requestParameters.merchantItemOid === null || requestParameters.merchantItemOid === undefined) {
+            throw new runtime.RequiredError('merchantItemOid','Required parameter requestParameters.merchantItemOid was null or undefined when calling getGatedCodes.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", ["item_read"]);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/item/items/{merchant_item_oid}/gated_codes`.replace(`{${"merchant_item_oid"}}`, encodeURIComponent(String(requestParameters.merchantItemOid))),
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => ItemGatedCodesResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Retrieve all unredeemed gated access codes configured for an item. 
+     * Get gated access codes for an item
+     */
+    async getGatedCodes(requestParameters: GetGatedCodesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ItemGatedCodesResponse> {
+        const response = await this.getGatedCodesRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
      * Retrieve a list of item inventories.  This method may be called once every 15 minutes.  More than that will result in a 429 response. 
      * Retrieve a list of item inventories.  This method may be called once every 15 minutes.  More than that will result in a 429 response.
      */
@@ -1081,59 +1323,6 @@ export class ItemApi extends runtime.BaseAPI implements ItemApiInterface {
      */
     async getItemByMerchantItemId(requestParameters: GetItemByMerchantItemIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ItemResponse> {
         const response = await this.getItemByMerchantItemIdRaw(requestParameters, initOverrides);
-        return await response.value();
-    }
-
-    /**
-     * Retrieve an item shipping distribution center. 
-     * Retrieve an item shipping distribution center
-     */
-    async getItemShippingDistributionCenterByCodeRaw(requestParameters: GetItemShippingDistributionCenterByCodeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ItemShippingDistributionCenterResponse>> {
-        if (requestParameters.merchantItemOid === null || requestParameters.merchantItemOid === undefined) {
-            throw new runtime.RequiredError('merchantItemOid','Required parameter requestParameters.merchantItemOid was null or undefined when calling getItemShippingDistributionCenterByCode.');
-        }
-
-        if (requestParameters.distributionCenterCode === null || requestParameters.distributionCenterCode === undefined) {
-            throw new runtime.RequiredError('distributionCenterCode','Required parameter requestParameters.distributionCenterCode was null or undefined when calling getItemShippingDistributionCenterByCode.');
-        }
-
-        const queryParameters: any = {};
-
-        if (requestParameters.expand !== undefined) {
-            queryParameters['_expand'] = requestParameters.expand;
-        }
-
-        if (requestParameters.placeholders !== undefined) {
-            queryParameters['_placeholders'] = requestParameters.placeholders;
-        }
-
-        const headerParameters: runtime.HTTPHeaders = {};
-
-        if (this.configuration && this.configuration.accessToken) {
-            // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", ["item_read"]);
-        }
-
-        if (this.configuration && this.configuration.apiKey) {
-            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
-        }
-
-        const response = await this.request({
-            path: `/item/items/{merchant_item_oid}/shipping/distribution_centers/by_code/{distribution_center_code}`.replace(`{${"merchant_item_oid"}}`, encodeURIComponent(String(requestParameters.merchantItemOid))).replace(`{${"distribution_center_code"}}`, encodeURIComponent(String(requestParameters.distributionCenterCode))),
-            method: 'GET',
-            headers: headerParameters,
-            query: queryParameters,
-        }, initOverrides);
-
-        return new runtime.JSONApiResponse(response, (jsonValue) => ItemShippingDistributionCenterResponseFromJSON(jsonValue));
-    }
-
-    /**
-     * Retrieve an item shipping distribution center. 
-     * Retrieve an item shipping distribution center
-     */
-    async getItemShippingDistributionCenterByCode(requestParameters: GetItemShippingDistributionCenterByCodeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ItemShippingDistributionCenterResponse> {
-        const response = await this.getItemShippingDistributionCenterByCodeRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
@@ -1439,6 +1628,54 @@ export class ItemApi extends runtime.BaseAPI implements ItemApiInterface {
     }
 
     /**
+     * Insert a single gated access code; the server assigns the OID and created_dts. 
+     * Add a single gated access code to an item
+     */
+    async insertGatedCodeRaw(requestParameters: InsertGatedCodeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ItemGatedCodeResponse>> {
+        if (requestParameters.merchantItemOid === null || requestParameters.merchantItemOid === undefined) {
+            throw new runtime.RequiredError('merchantItemOid','Required parameter requestParameters.merchantItemOid was null or undefined when calling insertGatedCode.');
+        }
+
+        if (requestParameters.gatedCode === null || requestParameters.gatedCode === undefined) {
+            throw new runtime.RequiredError('gatedCode','Required parameter requestParameters.gatedCode was null or undefined when calling insertGatedCode.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json; charset=UTF-8';
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", ["item_write"]);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/item/items/{merchant_item_oid}/gated_codes`.replace(`{${"merchant_item_oid"}}`, encodeURIComponent(String(requestParameters.merchantItemOid))),
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: ItemGatedCodeToJSON(requestParameters.gatedCode),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => ItemGatedCodeResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Insert a single gated access code; the server assigns the OID and created_dts. 
+     * Add a single gated access code to an item
+     */
+    async insertGatedCode(requestParameters: InsertGatedCodeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ItemGatedCodeResponse> {
+        const response = await this.insertGatedCodeRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
      * Create a new item on the UltraCart account. 
      * Create an item
      */
@@ -1586,6 +1823,54 @@ export class ItemApi extends runtime.BaseAPI implements ItemApiInterface {
     }
 
     /**
+     * Existing codes not present in the request body are deleted. New codes are inserted. Unchanged codes preserve their OID and created_dts. 
+     * Replace the full list of gated access codes for an item
+     */
+    async replaceGatedCodesRaw(requestParameters: ReplaceGatedCodesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ItemGatedCodesResponse>> {
+        if (requestParameters.merchantItemOid === null || requestParameters.merchantItemOid === undefined) {
+            throw new runtime.RequiredError('merchantItemOid','Required parameter requestParameters.merchantItemOid was null or undefined when calling replaceGatedCodes.');
+        }
+
+        if (requestParameters.gatedCodesRequest === null || requestParameters.gatedCodesRequest === undefined) {
+            throw new runtime.RequiredError('gatedCodesRequest','Required parameter requestParameters.gatedCodesRequest was null or undefined when calling replaceGatedCodes.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json; charset=UTF-8';
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", ["item_write"]);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/item/items/{merchant_item_oid}/gated_codes`.replace(`{${"merchant_item_oid"}}`, encodeURIComponent(String(requestParameters.merchantItemOid))),
+            method: 'PUT',
+            headers: headerParameters,
+            query: queryParameters,
+            body: ItemGatedCodesRequestToJSON(requestParameters.gatedCodesRequest),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => ItemGatedCodesResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Existing codes not present in the request body are deleted. New codes are inserted. Unchanged codes preserve their OID and created_dts. 
+     * Replace the full list of gated access codes for an item
+     */
+    async replaceGatedCodes(requestParameters: ReplaceGatedCodesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ItemGatedCodesResponse> {
+        const response = await this.replaceGatedCodesRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
      * Updates a file within the digital library.  This does not update an item, but updates a digital file available and selectable as part (or all) of an item. 
      * Updates a file within the digital library
      */
@@ -1687,100 +1972,6 @@ export class ItemApi extends runtime.BaseAPI implements ItemApiInterface {
     async updateItem(requestParameters: UpdateItemRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ItemResponse> {
         const response = await this.updateItemRaw(requestParameters, initOverrides);
         return await response.value();
-    }
-
-    /**
-     * Update item inventories for a distribution center 
-     * Update item inventories for a distribution center
-     */
-    async updateItemInventoriesRaw(requestParameters: UpdateItemInventoriesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
-        if (requestParameters.itemInventoryUpdateRequest === null || requestParameters.itemInventoryUpdateRequest === undefined) {
-            throw new runtime.RequiredError('itemInventoryUpdateRequest','Required parameter requestParameters.itemInventoryUpdateRequest was null or undefined when calling updateItemInventories.');
-        }
-
-        const queryParameters: any = {};
-
-        const headerParameters: runtime.HTTPHeaders = {};
-
-        headerParameters['Content-Type'] = 'application/json; charset=UTF-8';
-
-        if (this.configuration && this.configuration.accessToken) {
-            // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", ["item_write"]);
-        }
-
-        if (this.configuration && this.configuration.apiKey) {
-            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
-        }
-
-        const response = await this.request({
-            path: `/item/items/update_item_inventories`,
-            method: 'PUT',
-            headers: headerParameters,
-            query: queryParameters,
-            body: ItemInventoryUpdateRequestToJSON(requestParameters.itemInventoryUpdateRequest),
-        }, initOverrides);
-
-        return new runtime.VoidApiResponse(response);
-    }
-
-    /**
-     * Update item inventories for a distribution center 
-     * Update item inventories for a distribution center
-     */
-    async updateItemInventories(requestParameters: UpdateItemInventoriesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
-        await this.updateItemInventoriesRaw(requestParameters, initOverrides);
-    }
-
-    /**
-     * Update an item shipping distribution center 
-     * Update an item shipping distribution center
-     */
-    async updateItemShippingDistributionCenterByCodeRaw(requestParameters: UpdateItemShippingDistributionCenterByCodeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
-        if (requestParameters.merchantItemOid === null || requestParameters.merchantItemOid === undefined) {
-            throw new runtime.RequiredError('merchantItemOid','Required parameter requestParameters.merchantItemOid was null or undefined when calling updateItemShippingDistributionCenterByCode.');
-        }
-
-        if (requestParameters.distributionCenterCode === null || requestParameters.distributionCenterCode === undefined) {
-            throw new runtime.RequiredError('distributionCenterCode','Required parameter requestParameters.distributionCenterCode was null or undefined when calling updateItemShippingDistributionCenterByCode.');
-        }
-
-        if (requestParameters.itemShippingDistributionCenter === null || requestParameters.itemShippingDistributionCenter === undefined) {
-            throw new runtime.RequiredError('itemShippingDistributionCenter','Required parameter requestParameters.itemShippingDistributionCenter was null or undefined when calling updateItemShippingDistributionCenterByCode.');
-        }
-
-        const queryParameters: any = {};
-
-        const headerParameters: runtime.HTTPHeaders = {};
-
-        headerParameters['Content-Type'] = 'application/json; charset=UTF-8';
-
-        if (this.configuration && this.configuration.accessToken) {
-            // oauth required
-            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", ["item_write"]);
-        }
-
-        if (this.configuration && this.configuration.apiKey) {
-            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
-        }
-
-        const response = await this.request({
-            path: `/item/items/{merchant_item_oid}/shipping/distribution_centers/by_code/{distribution_center_code}`.replace(`{${"merchant_item_oid"}}`, encodeURIComponent(String(requestParameters.merchantItemOid))).replace(`{${"distribution_center_code"}}`, encodeURIComponent(String(requestParameters.distributionCenterCode))),
-            method: 'PUT',
-            headers: headerParameters,
-            query: queryParameters,
-            body: ItemShippingDistributionCenterToJSON(requestParameters.itemShippingDistributionCenter),
-        }, initOverrides);
-
-        return new runtime.VoidApiResponse(response);
-    }
-
-    /**
-     * Update an item shipping distribution center 
-     * Update an item shipping distribution center
-     */
-    async updateItemShippingDistributionCenterByCode(requestParameters: UpdateItemShippingDistributionCenterByCodeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
-        await this.updateItemShippingDistributionCenterByCodeRaw(requestParameters, initOverrides);
     }
 
     /**

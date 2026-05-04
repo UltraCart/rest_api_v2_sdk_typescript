@@ -14,11 +14,11 @@
 
 import { exists, mapValues } from '../runtime';
 import {
-    ItemShippingDistributionCenter,
-    ItemShippingDistributionCenterFromJSON,
-    ItemShippingDistributionCenterFromJSONTyped,
-    ItemShippingDistributionCenterToJSON,
-} from './ItemShippingDistributionCenter';
+    ItemGatedCode,
+    ItemGatedCodeFromJSON,
+    ItemGatedCodeFromJSONTyped,
+    ItemGatedCodeToJSON,
+} from './ItemGatedCode';
 import {
     ModelError,
     ModelErrorFromJSON,
@@ -41,37 +41,37 @@ import {
 /**
  * 
  * @export
- * @interface ItemShippingDistributionCenterResponse
+ * @interface ItemGatedCodeResponse
  */
-export interface ItemShippingDistributionCenterResponse {
+export interface ItemGatedCodeResponse {
     /**
      * 
      * @type {ModelError}
-     * @memberof ItemShippingDistributionCenterResponse
+     * @memberof ItemGatedCodeResponse
      */
     error?: ModelError;
     /**
      * 
-     * @type {ItemShippingDistributionCenter}
-     * @memberof ItemShippingDistributionCenterResponse
+     * @type {ItemGatedCode}
+     * @memberof ItemGatedCodeResponse
      */
-    itemShippingDistributionCenter?: ItemShippingDistributionCenter;
+    gatedCode?: ItemGatedCode;
     /**
      * 
      * @type {ResponseMetadata}
-     * @memberof ItemShippingDistributionCenterResponse
+     * @memberof ItemGatedCodeResponse
      */
     metadata?: ResponseMetadata;
     /**
      * Indicates if API call was successful
      * @type {boolean}
-     * @memberof ItemShippingDistributionCenterResponse
+     * @memberof ItemGatedCodeResponse
      */
     success?: boolean;
     /**
      * 
      * @type {Warning}
-     * @memberof ItemShippingDistributionCenterResponse
+     * @memberof ItemGatedCodeResponse
      */
     warning?: Warning;
 }
@@ -79,33 +79,33 @@ export interface ItemShippingDistributionCenterResponse {
 
 
 /**
- * Check if a given object implements the ItemShippingDistributionCenterResponse interface.
+ * Check if a given object implements the ItemGatedCodeResponse interface.
  */
-export function instanceOfItemShippingDistributionCenterResponse(value: object): boolean {
+export function instanceOfItemGatedCodeResponse(value: object): boolean {
     let isInstance = true;
 
     return isInstance;
 }
 
-export function ItemShippingDistributionCenterResponseFromJSON(json: any): ItemShippingDistributionCenterResponse {
-    return ItemShippingDistributionCenterResponseFromJSONTyped(json, false);
+export function ItemGatedCodeResponseFromJSON(json: any): ItemGatedCodeResponse {
+    return ItemGatedCodeResponseFromJSONTyped(json, false);
 }
 
-export function ItemShippingDistributionCenterResponseFromJSONTyped(json: any, ignoreDiscriminator: boolean): ItemShippingDistributionCenterResponse {
+export function ItemGatedCodeResponseFromJSONTyped(json: any, ignoreDiscriminator: boolean): ItemGatedCodeResponse {
     if ((json === undefined) || (json === null)) {
         return json;
     }
     return {
         
         'error': !exists(json, 'error') ? undefined : ModelErrorFromJSON(json['error']),
-        'itemShippingDistributionCenter': !exists(json, 'itemShippingDistributionCenter') ? undefined : ItemShippingDistributionCenterFromJSON(json['itemShippingDistributionCenter']),
+        'gatedCode': !exists(json, 'gatedCode') ? undefined : ItemGatedCodeFromJSON(json['gatedCode']),
         'metadata': !exists(json, 'metadata') ? undefined : ResponseMetadataFromJSON(json['metadata']),
         'success': !exists(json, 'success') ? undefined : json['success'],
         'warning': !exists(json, 'warning') ? undefined : WarningFromJSON(json['warning']),
     };
 }
 
-export function ItemShippingDistributionCenterResponseToJSON(value?: ItemShippingDistributionCenterResponse | null): any {
+export function ItemGatedCodeResponseToJSON(value?: ItemGatedCodeResponse | null): any {
     if (value === undefined) {
         return undefined;
     }
@@ -115,7 +115,7 @@ export function ItemShippingDistributionCenterResponseToJSON(value?: ItemShippin
     return {
         
         'error': ModelErrorToJSON(value.error),
-        'itemShippingDistributionCenter': ItemShippingDistributionCenterToJSON(value.itemShippingDistributionCenter),
+        'gatedCode': ItemGatedCodeToJSON(value.gatedCode),
         'metadata': ResponseMetadataToJSON(value.metadata),
         'success': value.success,
         'warning': WarningToJSON(value.warning),

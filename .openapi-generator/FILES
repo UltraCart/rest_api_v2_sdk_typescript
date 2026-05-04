@@ -664,6 +664,11 @@ src/models/ItemEbayMarketPlaceAnalysis.ts
 src/models/ItemEmailNotifications.ts
 src/models/ItemEnrollment123.ts
 src/models/ItemFulfillmentAddon.ts
+src/models/ItemGatedCode.ts
+src/models/ItemGatedCodeResponse.ts
+src/models/ItemGatedCodesRequest.ts
+src/models/ItemGatedCodesResponse.ts
+src/models/ItemGenerateGatedCodesRequest.ts
 src/models/ItemGiftCertificate.ts
 src/models/ItemGoogleProductSearch.ts
 src/models/ItemIdentifiers.ts
@@ -673,8 +678,6 @@ src/models/ItemInternal.ts
 src/models/ItemInventorySnapshot.ts
 src/models/ItemInventorySnapshotDistributionCenter.ts
 src/models/ItemInventorySnapshotResponse.ts
-src/models/ItemInventoryUpdate.ts
-src/models/ItemInventoryUpdateRequest.ts
 src/models/ItemKitComponent.ts
 src/models/ItemKitDefinition.ts
 src/models/ItemOption.ts
@@ -706,7 +709,6 @@ src/models/ItemShippingCase.ts
 src/models/ItemShippingDestinationMarkup.ts
 src/models/ItemShippingDestinationRestriction.ts
 src/models/ItemShippingDistributionCenter.ts
-src/models/ItemShippingDistributionCenterResponse.ts
 src/models/ItemShippingMethod.ts
 src/models/ItemShippingPackageRequirement.ts
 src/models/ItemTag.ts
