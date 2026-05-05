@@ -154,6 +154,11 @@ export interface GeneratePackingSlipSpecificDCRequest {
     orderId: string;
 }
 
+export interface GetAccountsReceivableDetailValueHistogramRequest {
+    detail: string;
+    gateway?: string;
+}
+
 export interface GetAccountsReceivableRetryStatsRequest {
     from?: string;
     to?: string;
@@ -492,6 +497,38 @@ export interface OrderApiInterface {
      * Generate a packing slip for this order for the given distribution center.
      */
     generatePackingSlipSpecificDC(requestParameters: GeneratePackingSlipSpecificDCRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<OrderPackingSlipResponse>;
+
+    /**
+     * For the calling merchant\'s Accounts Receivable orders, returns a value -> document-count histogram for the named transaction detail, optionally scoped to transactions on the named gateway. Drives the AR filter modal\'s autocomplete on the detail-value input. 
+     * @summary Retrieve a value histogram for a given AR transaction-detail name
+     * @param {string} detail The transaction-detail name to histogram.
+     * @param {string} [gateway] The gateway name to scope to (optional).
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof OrderApiInterface
+     */
+    getAccountsReceivableDetailValueHistogramRaw(requestParameters: GetAccountsReceivableDetailValueHistogramRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+
+    /**
+     * For the calling merchant\'s Accounts Receivable orders, returns a value -> document-count histogram for the named transaction detail, optionally scoped to transactions on the named gateway. Drives the AR filter modal\'s autocomplete on the detail-value input. 
+     * Retrieve a value histogram for a given AR transaction-detail name
+     */
+    getAccountsReceivableDetailValueHistogram(requestParameters: GetAccountsReceivableDetailValueHistogramRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+
+    /**
+     * For the calling merchant\'s Accounts Receivable orders, returns the distinct payment gateway names paired with the set of transaction-detail names observed on those gateways. Drives the cascading gateway / detail-name pickers in the AR filter modal. 
+     * @summary Retrieve gateway / detail-name picker data for the AR filter modal
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof OrderApiInterface
+     */
+    getAccountsReceivableGatewayDetailNamesRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+
+    /**
+     * For the calling merchant\'s Accounts Receivable orders, returns the distinct payment gateway names paired with the set of transaction-detail names observed on those gateways. Drives the cascading gateway / detail-name pickers in the AR filter modal. 
+     * Retrieve gateway / detail-name picker data for the AR filter modal
+     */
+    getAccountsReceivableGatewayDetailNames(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
      * Retrieve A/R Retry Configuration. This is primarily an internal API call.  It is doubtful you would ever need to use it. 
@@ -1415,6 +1452,90 @@ export class OrderApi extends runtime.BaseAPI implements OrderApiInterface {
     async generatePackingSlipSpecificDC(requestParameters: GeneratePackingSlipSpecificDCRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<OrderPackingSlipResponse> {
         const response = await this.generatePackingSlipSpecificDCRaw(requestParameters, initOverrides);
         return await response.value();
+    }
+
+    /**
+     * For the calling merchant\'s Accounts Receivable orders, returns a value -> document-count histogram for the named transaction detail, optionally scoped to transactions on the named gateway. Drives the AR filter modal\'s autocomplete on the detail-value input. 
+     * Retrieve a value histogram for a given AR transaction-detail name
+     */
+    async getAccountsReceivableDetailValueHistogramRaw(requestParameters: GetAccountsReceivableDetailValueHistogramRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        if (requestParameters.detail === null || requestParameters.detail === undefined) {
+            throw new runtime.RequiredError('detail','Required parameter requestParameters.detail was null or undefined when calling getAccountsReceivableDetailValueHistogram.');
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters.gateway !== undefined) {
+            queryParameters['gateway'] = requestParameters.gateway;
+        }
+
+        if (requestParameters.detail !== undefined) {
+            queryParameters['detail'] = requestParameters.detail;
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", ["order_read"]);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/order/accounts_receivable/detail_value_histogram`,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     * For the calling merchant\'s Accounts Receivable orders, returns a value -> document-count histogram for the named transaction detail, optionally scoped to transactions on the named gateway. Drives the AR filter modal\'s autocomplete on the detail-value input. 
+     * Retrieve a value histogram for a given AR transaction-detail name
+     */
+    async getAccountsReceivableDetailValueHistogram(requestParameters: GetAccountsReceivableDetailValueHistogramRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.getAccountsReceivableDetailValueHistogramRaw(requestParameters, initOverrides);
+    }
+
+    /**
+     * For the calling merchant\'s Accounts Receivable orders, returns the distinct payment gateway names paired with the set of transaction-detail names observed on those gateways. Drives the cascading gateway / detail-name pickers in the AR filter modal. 
+     * Retrieve gateway / detail-name picker data for the AR filter modal
+     */
+    async getAccountsReceivableGatewayDetailNamesRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", ["order_read"]);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/order/accounts_receivable/gateway_detail_names`,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     * For the calling merchant\'s Accounts Receivable orders, returns the distinct payment gateway names paired with the set of transaction-detail names observed on those gateways. Drives the cascading gateway / detail-name pickers in the AR filter modal. 
+     * Retrieve gateway / detail-name picker data for the AR filter modal
+     */
+    async getAccountsReceivableGatewayDetailNames(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.getAccountsReceivableGatewayDetailNamesRaw(initOverrides);
     }
 
     /**

@@ -26,6 +26,12 @@ export interface Warning {
      */
     more_info?: string;
     /**
+     * A stable machine-readable code identifying the warning. See API docs for known values.
+     * @type {string}
+     * @memberof Warning
+     */
+    warning_code?: string;
+    /**
      * A technical message meant to be read by a developer
      * @type {string}
      * @memberof Warning
@@ -55,6 +61,7 @@ export function WarningFromJSONTyped(json: any, ignoreDiscriminator: boolean): W
     return {
         
         'more_info': !exists(json, 'more_info') ? undefined : json['more_info'],
+        'warning_code': !exists(json, 'warning_code') ? undefined : json['warning_code'],
         'warning_message': !exists(json, 'warning_message') ? undefined : json['warning_message'],
     };
 }
@@ -69,6 +76,7 @@ export function WarningToJSON(value?: Warning | null): any {
     return {
         
         'more_info': value.more_info,
+        'warning_code': value.warning_code,
         'warning_message': value.warning_message,
     };
 }
