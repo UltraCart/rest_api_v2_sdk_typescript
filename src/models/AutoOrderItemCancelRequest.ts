@@ -44,6 +44,12 @@ export interface AutoOrderItemCancelRequest {
      * @memberof AutoOrderItemCancelRequest
      */
     mode?: AutoOrderItemCancelRequestModeEnum;
+    /**
+     * Date/time that will be used in an END mode (optional)
+     * @type {string}
+     * @memberof AutoOrderItemCancelRequest
+     */
+    no_orders_after_dts?: string;
 }
 
 
@@ -80,6 +86,7 @@ export function AutoOrderItemCancelRequestFromJSONTyped(json: any, ignoreDiscrim
         'append_items': !exists(json, 'append_items') ? undefined : ((json['append_items'] as Array<any>).map(AutoOrderItemFromJSON)),
         'auto_order_item_oid': !exists(json, 'auto_order_item_oid') ? undefined : json['auto_order_item_oid'],
         'mode': !exists(json, 'mode') ? undefined : json['mode'],
+        'no_orders_after_dts': !exists(json, 'no_orders_after_dts') ? undefined : json['no_orders_after_dts'],
     };
 }
 
@@ -95,6 +102,7 @@ export function AutoOrderItemCancelRequestToJSON(value?: AutoOrderItemCancelRequ
         'append_items': value.append_items === undefined ? undefined : ((value.append_items as Array<any>).map(AutoOrderItemToJSON)),
         'auto_order_item_oid': value.auto_order_item_oid,
         'mode': value.mode,
+        'no_orders_after_dts': value.no_orders_after_dts,
     };
 }
 

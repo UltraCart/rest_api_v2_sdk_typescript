@@ -1,12 +1,12 @@
 # UltraCart Typescript SDK
-## ultracart_rest_api_v2_typescript@4.1.85
+## ultracart_rest_api_v2_typescript@4.1.86
 
 Every API method call has a sample for every language SDK.  See https://github.com/UltraCart/sdk_samples
 
 Installation
 
 ```
-npm install ultracart_rest_api_v2_typescript@4.1.85 --save
+npm install ultracart_rest_api_v2_typescript@4.1.86 --save
 ```
 
 ```typescript
@@ -85,6 +85,7 @@ Not every change is committed to every SDK.
 
 | Version | Date | Comments |
 | --: | :-: | --- |
+| 4.1.86 | 05/07/2026 | rest auto order api - additional item cancel request parameter for no orders after dts |
 | 4.1.85 | 05/05/2026 | improved warning object for customer insertCustomer and updateCustomer |
 | 4.1.84 | 05/04/2026 | Order API - add hold stage to allowed values on order query request |
 | 4.1.83 | 04/29/2026 | AO support for item appending on cancel request, order payment method test routing on hold release |
