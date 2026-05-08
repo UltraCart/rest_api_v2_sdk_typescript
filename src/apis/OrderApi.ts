@@ -60,6 +60,9 @@ import {
     OrderPackingSlipResponse,
     OrderPackingSlipResponseFromJSON,
     OrderPackingSlipResponseToJSON,
+    OrderPageViewHistoryResponse,
+    OrderPageViewHistoryResponseFromJSON,
+    OrderPageViewHistoryResponseToJSON,
     OrderProcessPaymentRequest,
     OrderProcessPaymentRequestFromJSON,
     OrderProcessPaymentRequestToJSON,
@@ -182,6 +185,10 @@ export interface GetOrderEdiDocumentsRequest {
 }
 
 export interface GetOrderEmailsRequest {
+    orderId: string;
+}
+
+export interface GetOrderPageViewHistoryRequest {
     orderId: string;
 }
 
@@ -634,6 +641,22 @@ export interface OrderApiInterface {
      * Retrieve email delivery information for this order.
      */
     getOrderEmails(requestParameters: GetOrderEmailsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<OrderEmailsResponse>;
+
+    /**
+     * Retrieves the page views captured during the session that placed this order. 
+     * @summary Retrieve page view history for this order.
+     * @param {string} orderId The order id to retrieve page view history for.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof OrderApiInterface
+     */
+    getOrderPageViewHistoryRaw(requestParameters: GetOrderPageViewHistoryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<OrderPageViewHistoryResponse>>;
+
+    /**
+     * Retrieves the page views captured during the session that placed this order. 
+     * Retrieve page view history for this order.
+     */
+    getOrderPageViewHistory(requestParameters: GetOrderPageViewHistoryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<OrderPageViewHistoryResponse>;
 
     /**
      * Creates a new cart using cloned information from the order, but with a specific set of items, coupons and optionally a checkout URL to return the customer to 
@@ -1815,6 +1838,47 @@ export class OrderApi extends runtime.BaseAPI implements OrderApiInterface {
      */
     async getOrderEmails(requestParameters: GetOrderEmailsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<OrderEmailsResponse> {
         const response = await this.getOrderEmailsRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Retrieves the page views captured during the session that placed this order. 
+     * Retrieve page view history for this order.
+     */
+    async getOrderPageViewHistoryRaw(requestParameters: GetOrderPageViewHistoryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<OrderPageViewHistoryResponse>> {
+        if (requestParameters.orderId === null || requestParameters.orderId === undefined) {
+            throw new runtime.RequiredError('orderId','Required parameter requestParameters.orderId was null or undefined when calling getOrderPageViewHistory.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", ["order_read"]);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/order/orders/{order_id}/page_view_history`.replace(`{${"order_id"}}`, encodeURIComponent(String(requestParameters.orderId))),
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => OrderPageViewHistoryResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Retrieves the page views captured during the session that placed this order. 
+     * Retrieve page view history for this order.
+     */
+    async getOrderPageViewHistory(requestParameters: GetOrderPageViewHistoryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<OrderPageViewHistoryResponse> {
+        const response = await this.getOrderPageViewHistoryRaw(requestParameters, initOverrides);
         return await response.value();
     }
 

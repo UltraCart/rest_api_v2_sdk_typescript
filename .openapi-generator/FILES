@@ -787,6 +787,10 @@ src/models/OrderItemTag.ts
 src/models/OrderLinkedShipment.ts
 src/models/OrderMarketing.ts
 src/models/OrderPackingSlipResponse.ts
+src/models/OrderPageView.ts
+src/models/OrderPageViewHistoryResponse.ts
+src/models/OrderPageViewMetaData.ts
+src/models/OrderPageViewParam.ts
 src/models/OrderPayment.ts
 src/models/OrderPaymentCheck.ts
 src/models/OrderPaymentCreditCard.ts
