@@ -45,6 +45,9 @@ import {
     OrderEdiDocumentsResponse,
     OrderEdiDocumentsResponseFromJSON,
     OrderEdiDocumentsResponseToJSON,
+    OrderEmailsResponse,
+    OrderEmailsResponseFromJSON,
+    OrderEmailsResponseToJSON,
     OrderFormat,
     OrderFormatFromJSON,
     OrderFormatToJSON,
@@ -175,6 +178,10 @@ export interface GetOrderByTokenRequest {
 }
 
 export interface GetOrderEdiDocumentsRequest {
+    orderId: string;
+}
+
+export interface GetOrderEmailsRequest {
     orderId: string;
 }
 
@@ -611,6 +618,22 @@ export interface OrderApiInterface {
      * Retrieve EDI documents associated with this order.
      */
     getOrderEdiDocuments(requestParameters: GetOrderEdiDocumentsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<OrderEdiDocumentsResponse>;
+
+    /**
+     * Retrieves email delivery records associated with the specified order id. 
+     * @summary Retrieve email delivery information for this order.
+     * @param {string} orderId The order id to retrieve email delivery information for.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof OrderApiInterface
+     */
+    getOrderEmailsRaw(requestParameters: GetOrderEmailsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<OrderEmailsResponse>>;
+
+    /**
+     * Retrieves email delivery records associated with the specified order id. 
+     * Retrieve email delivery information for this order.
+     */
+    getOrderEmails(requestParameters: GetOrderEmailsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<OrderEmailsResponse>;
 
     /**
      * Creates a new cart using cloned information from the order, but with a specific set of items, coupons and optionally a checkout URL to return the customer to 
@@ -1751,6 +1774,47 @@ export class OrderApi extends runtime.BaseAPI implements OrderApiInterface {
      */
     async getOrderEdiDocuments(requestParameters: GetOrderEdiDocumentsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<OrderEdiDocumentsResponse> {
         const response = await this.getOrderEdiDocumentsRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Retrieves email delivery records associated with the specified order id. 
+     * Retrieve email delivery information for this order.
+     */
+    async getOrderEmailsRaw(requestParameters: GetOrderEmailsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<OrderEmailsResponse>> {
+        if (requestParameters.orderId === null || requestParameters.orderId === undefined) {
+            throw new runtime.RequiredError('orderId','Required parameter requestParameters.orderId was null or undefined when calling getOrderEmails.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", ["order_read"]);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/order/orders/{order_id}/emails`.replace(`{${"order_id"}}`, encodeURIComponent(String(requestParameters.orderId))),
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => OrderEmailsResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Retrieves email delivery records associated with the specified order id. 
+     * Retrieve email delivery information for this order.
+     */
+    async getOrderEmails(requestParameters: GetOrderEmailsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<OrderEmailsResponse> {
+        const response = await this.getOrderEmailsRaw(requestParameters, initOverrides);
         return await response.value();
     }
 

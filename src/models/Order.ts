@@ -80,6 +80,12 @@ import {
     OrderEdiToJSON,
 } from './OrderEdi';
 import {
+    OrderEmail,
+    OrderEmailFromJSON,
+    OrderEmailFromJSONTyped,
+    OrderEmailToJSON,
+} from './OrderEmail';
+import {
     OrderFraudScore,
     OrderFraudScoreFromJSON,
     OrderFraudScoreFromJSONTyped,
@@ -272,6 +278,12 @@ export interface Order {
      * @memberof Order
      */
     edi?: OrderEdi;
+    /**
+     * Email delivery records associated with this order.
+     * @type {Array<OrderEmail>}
+     * @memberof Order
+     */
+    emails?: Array<OrderEmail>;
     /**
      * Exchange rate at the time the order was placed if currency code is different than the base currency
      * @type {number}
@@ -480,6 +492,7 @@ export function OrderFromJSONTyped(json: any, ignoreDiscriminator: boolean): Ord
         'customer_profile': !exists(json, 'customer_profile') ? undefined : CustomerFromJSON(json['customer_profile']),
         'digital_order': !exists(json, 'digital_order') ? undefined : OrderDigitalOrderFromJSON(json['digital_order']),
         'edi': !exists(json, 'edi') ? undefined : OrderEdiFromJSON(json['edi']),
+        'emails': !exists(json, 'emails') ? undefined : ((json['emails'] as Array<any>).map(OrderEmailFromJSON)),
         'exchange_rate': !exists(json, 'exchange_rate') ? undefined : json['exchange_rate'],
         'fraud_score': !exists(json, 'fraud_score') ? undefined : OrderFraudScoreFromJSON(json['fraud_score']),
         'gift': !exists(json, 'gift') ? undefined : OrderGiftFromJSON(json['gift']),
@@ -531,6 +544,7 @@ export function OrderToJSON(value?: Order | null): any {
         'customer_profile': CustomerToJSON(value.customer_profile),
         'digital_order': OrderDigitalOrderToJSON(value.digital_order),
         'edi': OrderEdiToJSON(value.edi),
+        'emails': value.emails === undefined ? undefined : ((value.emails as Array<any>).map(OrderEmailToJSON)),
         'exchange_rate': value.exchange_rate,
         'fraud_score': OrderFraudScoreToJSON(value.fraud_score),
         'gift': OrderGiftToJSON(value.gift),

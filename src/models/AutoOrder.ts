@@ -20,6 +20,12 @@ import {
     AutoOrderAddonItemToJSON,
 } from './AutoOrderAddonItem';
 import {
+    AutoOrderEmail,
+    AutoOrderEmailFromJSON,
+    AutoOrderEmailFromJSONTyped,
+    AutoOrderEmailToJSON,
+} from './AutoOrderEmail';
+import {
     AutoOrderItem,
     AutoOrderItemFromJSON,
     AutoOrderItemFromJSONTyped,
@@ -128,6 +134,12 @@ export interface AutoOrder {
      * @memberof AutoOrder
      */
     disabled_dts?: string;
+    /**
+     * Email delivery records associated with this auto order.
+     * @type {Array<AutoOrderEmail>}
+     * @memberof AutoOrder
+     */
+    emails?: Array<AutoOrderEmail>;
     /**
      * True if this auto order is enabled
      * @type {boolean}
@@ -271,6 +283,7 @@ export function AutoOrderFromJSONTyped(json: any, ignoreDiscriminator: boolean):
         'completed': !exists(json, 'completed') ? undefined : json['completed'],
         'credit_card_attempt': !exists(json, 'credit_card_attempt') ? undefined : json['credit_card_attempt'],
         'disabled_dts': !exists(json, 'disabled_dts') ? undefined : json['disabled_dts'],
+        'emails': !exists(json, 'emails') ? undefined : ((json['emails'] as Array<any>).map(AutoOrderEmailFromJSON)),
         'enabled': !exists(json, 'enabled') ? undefined : json['enabled'],
         'failure_reason': !exists(json, 'failure_reason') ? undefined : json['failure_reason'],
         'items': !exists(json, 'items') ? undefined : ((json['items'] as Array<any>).map(AutoOrderItemFromJSON)),
@@ -311,6 +324,7 @@ export function AutoOrderToJSON(value?: AutoOrder | null): any {
         'completed': value.completed,
         'credit_card_attempt': value.credit_card_attempt,
         'disabled_dts': value.disabled_dts,
+        'emails': value.emails === undefined ? undefined : ((value.emails as Array<any>).map(AutoOrderEmailToJSON)),
         'enabled': value.enabled,
         'failure_reason': value.failure_reason,
         'items': value.items === undefined ? undefined : ((value.items as Array<any>).map(AutoOrderItemToJSON)),

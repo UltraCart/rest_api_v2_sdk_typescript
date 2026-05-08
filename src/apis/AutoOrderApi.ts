@@ -24,6 +24,9 @@ import {
     AutoOrderConsolidate,
     AutoOrderConsolidateFromJSON,
     AutoOrderConsolidateToJSON,
+    AutoOrderEmailsResponse,
+    AutoOrderEmailsResponseFromJSON,
+    AutoOrderEmailsResponseToJSON,
     AutoOrderItemCancelRequest,
     AutoOrderItemCancelRequestFromJSON,
     AutoOrderItemCancelRequestToJSON,
@@ -81,6 +84,10 @@ export interface GetAutoOrderByCodeRequest {
 export interface GetAutoOrderByReferenceOrderIdRequest {
     referenceOrderId: string;
     expand?: string;
+}
+
+export interface GetAutoOrderEmailsRequest {
+    autoOrderOid: number;
 }
 
 export interface GetAutoOrdersRequest {
@@ -273,6 +280,22 @@ export interface AutoOrderApiInterface {
      * Retrieve an auto order by order id
      */
     getAutoOrderByReferenceOrderId(requestParameters: GetAutoOrderByReferenceOrderIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AutoOrderResponse>;
+
+    /**
+     * Retrieves email delivery records associated with the specified auto order. 
+     * @summary Retrieve email delivery information for this auto order.
+     * @param {number} autoOrderOid The auto order oid to retrieve email delivery information for.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AutoOrderApiInterface
+     */
+    getAutoOrderEmailsRaw(requestParameters: GetAutoOrderEmailsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AutoOrderEmailsResponse>>;
+
+    /**
+     * Retrieves email delivery records associated with the specified auto order. 
+     * Retrieve email delivery information for this auto order.
+     */
+    getAutoOrderEmails(requestParameters: GetAutoOrderEmailsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AutoOrderEmailsResponse>;
 
     /**
      * Retrieves auto orders from the account.  If no parameters are specified, all auto orders will be returned.  You will need to make multiple API calls in order to retrieve the entire result set since this API performs result set pagination. 
@@ -749,6 +772,47 @@ export class AutoOrderApi extends runtime.BaseAPI implements AutoOrderApiInterfa
      */
     async getAutoOrderByReferenceOrderId(requestParameters: GetAutoOrderByReferenceOrderIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AutoOrderResponse> {
         const response = await this.getAutoOrderByReferenceOrderIdRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Retrieves email delivery records associated with the specified auto order. 
+     * Retrieve email delivery information for this auto order.
+     */
+    async getAutoOrderEmailsRaw(requestParameters: GetAutoOrderEmailsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AutoOrderEmailsResponse>> {
+        if (requestParameters.autoOrderOid === null || requestParameters.autoOrderOid === undefined) {
+            throw new runtime.RequiredError('autoOrderOid','Required parameter requestParameters.autoOrderOid was null or undefined when calling getAutoOrderEmails.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", ["auto_order_read"]);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/auto_order/auto_orders/{auto_order_oid}/emails`.replace(`{${"auto_order_oid"}}`, encodeURIComponent(String(requestParameters.autoOrderOid))),
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => AutoOrderEmailsResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Retrieves email delivery records associated with the specified auto order. 
+     * Retrieve email delivery information for this auto order.
+     */
+    async getAutoOrderEmails(requestParameters: GetAutoOrderEmailsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AutoOrderEmailsResponse> {
+        const response = await this.getAutoOrderEmailsRaw(requestParameters, initOverrides);
         return await response.value();
     }
 

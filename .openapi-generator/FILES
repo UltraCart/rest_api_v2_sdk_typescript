@@ -53,6 +53,8 @@ src/models/AutoOrderAddonItem.ts
 src/models/AutoOrderAddonItemOption.ts
 src/models/AutoOrderAddonItemsUpdateRequest.ts
 src/models/AutoOrderConsolidate.ts
+src/models/AutoOrderEmail.ts
+src/models/AutoOrderEmailsResponse.ts
 src/models/AutoOrderItem.ts
 src/models/AutoOrderItemCancelRequest.ts
 src/models/AutoOrderItemFutureSchedule.ts
@@ -765,6 +767,8 @@ src/models/OrderDigitalOrder.ts
 src/models/OrderEdi.ts
 src/models/OrderEdiDocument.ts
 src/models/OrderEdiDocumentsResponse.ts
+src/models/OrderEmail.ts
+src/models/OrderEmailsResponse.ts
 src/models/OrderFormat.ts
 src/models/OrderFormatResponse.ts
 src/models/OrderFraudScore.ts
