@@ -955,6 +955,7 @@ export * from './UsersResponse';
 export * from './VerificationRecord';
 export * from './Warning';
 export * from './Webhook';
+export * from './WebhookEventCategoriesResponse';
 export * from './WebhookEventCategory';
 export * from './WebhookEventSubscription';
 export * from './WebhookLog';

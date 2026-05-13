@@ -980,6 +980,7 @@ src/models/UsersResponse.ts
 src/models/VerificationRecord.ts
 src/models/Warning.ts
 src/models/Webhook.ts
+src/models/WebhookEventCategoriesResponse.ts
 src/models/WebhookEventCategory.ts
 src/models/WebhookEventSubscription.ts
 src/models/WebhookLog.ts

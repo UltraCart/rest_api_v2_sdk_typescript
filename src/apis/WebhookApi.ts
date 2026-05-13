@@ -21,6 +21,9 @@ import {
     Webhook,
     WebhookFromJSON,
     WebhookToJSON,
+    WebhookEventCategoriesResponse,
+    WebhookEventCategoriesResponseFromJSON,
+    WebhookEventCategoriesResponseToJSON,
     WebhookLogResponse,
     WebhookLogResponseFromJSON,
     WebhookLogResponseToJSON,
@@ -119,6 +122,21 @@ export interface WebhookApiInterface {
      * Delete a webhook by URL
      */
     deleteWebhookByUrl(requestParameters: DeleteWebhookByUrlRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<WebhookResponse>;
+
+    /**
+     * Retrieves the available webhook event categories and events with backend-owned metadata (OIDs, names, descriptions, available expansions, flags) independent of whether any webhooks are saved.  Used by the New Webhook editor so a merchant with zero webhooks can still see the catalog. 
+     * @summary Retrieve webhook event categories
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof WebhookApiInterface
+     */
+    getWebhookEventCategoriesRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<WebhookEventCategoriesResponse>>;
+
+    /**
+     * Retrieves the available webhook event categories and events with backend-owned metadata (OIDs, names, descriptions, available expansions, flags) independent of whether any webhooks are saved.  Used by the New Webhook editor so a merchant with zero webhooks can still see the catalog. 
+     * Retrieve webhook event categories
+     */
+    getWebhookEventCategories(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<WebhookEventCategoriesResponse>;
 
     /**
      * Retrieves an individual log for a webhook given the webhook oid the request id. 
@@ -315,6 +333,43 @@ export class WebhookApi extends runtime.BaseAPI implements WebhookApiInterface {
      */
     async deleteWebhookByUrl(requestParameters: DeleteWebhookByUrlRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<WebhookResponse> {
         const response = await this.deleteWebhookByUrlRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Retrieves the available webhook event categories and events with backend-owned metadata (OIDs, names, descriptions, available expansions, flags) independent of whether any webhooks are saved.  Used by the New Webhook editor so a merchant with zero webhooks can still see the catalog. 
+     * Retrieve webhook event categories
+     */
+    async getWebhookEventCategoriesRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<WebhookEventCategoriesResponse>> {
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", ["webhook_read"]);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/webhook/webhook_event_categories`,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => WebhookEventCategoriesResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Retrieves the available webhook event categories and events with backend-owned metadata (OIDs, names, descriptions, available expansions, flags) independent of whether any webhooks are saved.  Used by the New Webhook editor so a merchant with zero webhooks can still see the catalog. 
+     * Retrieve webhook event categories
+     */
+    async getWebhookEventCategories(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<WebhookEventCategoriesResponse> {
+        const response = await this.getWebhookEventCategoriesRaw(initOverrides);
         return await response.value();
     }
 
