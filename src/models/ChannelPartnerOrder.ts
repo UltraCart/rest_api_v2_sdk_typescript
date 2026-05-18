@@ -183,6 +183,12 @@ export interface ChannelPartnerOrder {
      */
     coupons?: Array<string>;
     /**
+     * Date/time the original order was placed on the channel partner's system, in ISO8601 format. Only honored when store_completed is true (historical order imports). Rejected on live orders.
+     * @type {string}
+     * @memberof ChannelPartnerOrder
+     */
+    creation_dts?: string;
+    /**
      * The amount authorized externally
      * @type {number}
      * @memberof ChannelPartnerOrder
@@ -677,6 +683,7 @@ export function ChannelPartnerOrderFromJSONTyped(json: any, ignoreDiscriminator:
         'channel_partner_order_id': !exists(json, 'channel_partner_order_id') ? undefined : json['channel_partner_order_id'],
         'consider_recurring': !exists(json, 'consider_recurring') ? undefined : json['consider_recurring'],
         'coupons': !exists(json, 'coupons') ? undefined : json['coupons'],
+        'creation_dts': !exists(json, 'creation_dts') ? undefined : json['creation_dts'],
         'credit_card_authorization_amount': !exists(json, 'credit_card_authorization_amount') ? undefined : json['credit_card_authorization_amount'],
         'credit_card_authorization_dts': !exists(json, 'credit_card_authorization_dts') ? undefined : json['credit_card_authorization_dts'],
         'credit_card_authorization_number': !exists(json, 'credit_card_authorization_number') ? undefined : json['credit_card_authorization_number'],
@@ -782,6 +789,7 @@ export function ChannelPartnerOrderToJSON(value?: ChannelPartnerOrder | null): a
         'channel_partner_order_id': value.channel_partner_order_id,
         'consider_recurring': value.consider_recurring,
         'coupons': value.coupons,
+        'creation_dts': value.creation_dts,
         'credit_card_authorization_amount': value.credit_card_authorization_amount,
         'credit_card_authorization_dts': value.credit_card_authorization_dts,
         'credit_card_authorization_number': value.credit_card_authorization_number,
