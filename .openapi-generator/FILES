@@ -52,6 +52,8 @@ src/models/AutoOrder.ts
 src/models/AutoOrderAddonItem.ts
 src/models/AutoOrderAddonItemOption.ts
 src/models/AutoOrderAddonItemsUpdateRequest.ts
+src/models/AutoOrderCancelReason.ts
+src/models/AutoOrderCancelReasonsResponse.ts
 src/models/AutoOrderConsolidate.ts
 src/models/AutoOrderEmail.ts
 src/models/AutoOrderEmailsResponse.ts

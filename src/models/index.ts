@@ -27,6 +27,8 @@ export * from './AutoOrder';
 export * from './AutoOrderAddonItem';
 export * from './AutoOrderAddonItemOption';
 export * from './AutoOrderAddonItemsUpdateRequest';
+export * from './AutoOrderCancelReason';
+export * from './AutoOrderCancelReasonsResponse';
 export * from './AutoOrderConsolidate';
 export * from './AutoOrderEmail';
 export * from './AutoOrderEmailsResponse';

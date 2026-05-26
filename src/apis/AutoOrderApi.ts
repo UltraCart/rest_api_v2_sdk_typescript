@@ -21,6 +21,9 @@ import {
     AutoOrderAddonItemsUpdateRequest,
     AutoOrderAddonItemsUpdateRequestFromJSON,
     AutoOrderAddonItemsUpdateRequestToJSON,
+    AutoOrderCancelReasonsResponse,
+    AutoOrderCancelReasonsResponseFromJSON,
+    AutoOrderCancelReasonsResponseToJSON,
     AutoOrderConsolidate,
     AutoOrderConsolidateFromJSON,
     AutoOrderConsolidateToJSON,
@@ -280,6 +283,21 @@ export interface AutoOrderApiInterface {
      * Retrieve an auto order by order id
      */
     getAutoOrderByReferenceOrderId(requestParameters: GetAutoOrderByReferenceOrderIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AutoOrderResponse>;
+
+    /**
+     * Retrieves auto order cancel reasons. 
+     * @summary Retrieve auto order cancel reasons.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AutoOrderApiInterface
+     */
+    getAutoOrderCancelReasonsRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AutoOrderCancelReasonsResponse>>;
+
+    /**
+     * Retrieves auto order cancel reasons. 
+     * Retrieve auto order cancel reasons.
+     */
+    getAutoOrderCancelReasons(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AutoOrderCancelReasonsResponse>;
 
     /**
      * Retrieves email delivery records associated with the specified auto order. 
@@ -772,6 +790,43 @@ export class AutoOrderApi extends runtime.BaseAPI implements AutoOrderApiInterfa
      */
     async getAutoOrderByReferenceOrderId(requestParameters: GetAutoOrderByReferenceOrderIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AutoOrderResponse> {
         const response = await this.getAutoOrderByReferenceOrderIdRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Retrieves auto order cancel reasons. 
+     * Retrieve auto order cancel reasons.
+     */
+    async getAutoOrderCancelReasonsRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AutoOrderCancelReasonsResponse>> {
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", ["auto_order_read"]);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/auto_order/auto_orders/cancel_reasons`,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => AutoOrderCancelReasonsResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Retrieves auto order cancel reasons. 
+     * Retrieve auto order cancel reasons.
+     */
+    async getAutoOrderCancelReasons(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AutoOrderCancelReasonsResponse> {
+        const response = await this.getAutoOrderCancelReasonsRaw(initOverrides);
         return await response.value();
     }
 
