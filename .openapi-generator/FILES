@@ -11,6 +11,7 @@ src/apis/ConversationEmbedApi.ts
 src/apis/CouponApi.ts
 src/apis/CustomerApi.ts
 src/apis/DatawarehouseApi.ts
+src/apis/FraudApi.ts
 src/apis/FulfillmentApi.ts
 src/apis/GiftCertificateApi.ts
 src/apis/IntegrationLogApi.ts
@@ -608,6 +609,17 @@ src/models/FileManagerPage.ts
 src/models/FileManagerPageResponse.ts
 src/models/FileManagerUploadRequest.ts
 src/models/FileManagerUploadUrlResponse.ts
+src/models/FraudDeclineEmailRequest.ts
+src/models/FraudLookupValues.ts
+src/models/FraudLookupValuesResponse.ts
+src/models/FraudRuleInsertRequest.ts
+src/models/FraudRuleItemFilter.ts
+src/models/FraudRulePublic.ts
+src/models/FraudRuleResponse.ts
+src/models/FraudRuleRotatingTransactionGatewayFilter.ts
+src/models/FraudRuleSearchRequest.ts
+src/models/FraudRuleStorefrontFilter.ts
+src/models/FraudRulesResponse.ts
 src/models/FulfillmentInventory.ts
 src/models/FulfillmentShipment.ts
 src/models/GeoPoint.ts
