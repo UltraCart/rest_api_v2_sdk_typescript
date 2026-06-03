@@ -18,6 +18,9 @@ import {
     ErrorResponse,
     ErrorResponseFromJSON,
     ErrorResponseToJSON,
+    OauthDeviceAuthorizationResponse,
+    OauthDeviceAuthorizationResponseFromJSON,
+    OauthDeviceAuthorizationResponseToJSON,
     OauthRevokeSuccessResponse,
     OauthRevokeSuccessResponseFromJSON,
     OauthRevokeSuccessResponseToJSON,
@@ -82,13 +85,13 @@ export interface OauthApiInterface {
      * @throws {RequiredError}
      * @memberof OauthApiInterface
      */
-    oauthDeviceAuthorizeRaw(requestParameters: OauthDeviceAuthorizeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    oauthDeviceAuthorizeRaw(requestParameters: OauthDeviceAuthorizeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<OauthDeviceAuthorizationResponse>>;
 
     /**
      * Initiates the device authorization flow by returning a device code and user code. The device displays the user code to the merchant, who visits the verification URI to approve the request. RFC 8628. 
      * Initiate a device authorization flow.
      */
-    oauthDeviceAuthorize(requestParameters: OauthDeviceAuthorizeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    oauthDeviceAuthorize(requestParameters: OauthDeviceAuthorizeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<OauthDeviceAuthorizationResponse>;
 
     /**
      * Revokes the OAuth application associated with the specified client_id and token. 
@@ -206,7 +209,7 @@ export class OauthApi extends runtime.BaseAPI implements OauthApiInterface {
      * Initiates the device authorization flow by returning a device code and user code. The device displays the user code to the merchant, who visits the verification URI to approve the request. RFC 8628. 
      * Initiate a device authorization flow.
      */
-    async oauthDeviceAuthorizeRaw(requestParameters: OauthDeviceAuthorizeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+    async oauthDeviceAuthorizeRaw(requestParameters: OauthDeviceAuthorizeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<OauthDeviceAuthorizationResponse>> {
         if (requestParameters.clientId === null || requestParameters.clientId === undefined) {
             throw new runtime.RequiredError('clientId','Required parameter requestParameters.clientId was null or undefined when calling oauthDeviceAuthorize.');
         }
@@ -262,15 +265,16 @@ export class OauthApi extends runtime.BaseAPI implements OauthApiInterface {
             body: formParams,
         }, initOverrides);
 
-        return new runtime.VoidApiResponse(response);
+        return new runtime.JSONApiResponse(response, (jsonValue) => OauthDeviceAuthorizationResponseFromJSON(jsonValue));
     }
 
     /**
      * Initiates the device authorization flow by returning a device code and user code. The device displays the user code to the merchant, who visits the verification URI to approve the request. RFC 8628. 
      * Initiate a device authorization flow.
      */
-    async oauthDeviceAuthorize(requestParameters: OauthDeviceAuthorizeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
-        await this.oauthDeviceAuthorizeRaw(requestParameters, initOverrides);
+    async oauthDeviceAuthorize(requestParameters: OauthDeviceAuthorizeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<OauthDeviceAuthorizationResponse> {
+        const response = await this.oauthDeviceAuthorizeRaw(requestParameters, initOverrides);
+        return await response.value();
     }
 
     /**

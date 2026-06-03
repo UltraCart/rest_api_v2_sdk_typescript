@@ -1,12 +1,12 @@
 # UltraCart Typescript SDK
-## ultracart_rest_api_v2_typescript@4.1.94
+## ultracart_rest_api_v2_typescript@4.1.95
 
 Every API method call has a sample for every language SDK.  See https://github.com/UltraCart/sdk_samples
 
 Installation
 
 ```
-npm install ultracart_rest_api_v2_typescript@4.1.94 --save
+npm install ultracart_rest_api_v2_typescript@4.1.95 --save
 ```
 
 ```typescript
@@ -85,6 +85,7 @@ Not every change is committed to every SDK.
 
 | Version | Date | Comments |
 | --: | :-: | --- |
+| 4.1.95 | 06/02/2026 | fraud api alpha version |
 | 4.1.94 | 06/02/2026 | fraud api alpha version |
 | 4.1.93 | 06/02/2026 | fraud api alpha version for testing |
 | 4.1.92 | 05/26/2026 | AutoOrderApi.getAutoOrderCancelReasons |
