@@ -237,11 +237,11 @@ export interface FraudRulePublic {
      */
     rotating_transaction_gateway_filters?: Array<FraudRuleRotatingTransactionGatewayFilter>;
     /**
-     * Group containing this rule type (eg 'creditCardRules')
+     * Group containing this rule type (eg 'creditCardRules'). Deliberately not constrained by allowableValues on the response so SDK consumers do not hard-fail on an unexpected value if a future rule_type slips through the server-side mapping. Search REQUESTS still restrict rule_group to the known set.
      * @type {string}
      * @memberof FraudRulePublic
      */
-    rule_group?: FraudRulePublicRuleGroupEnum;
+    rule_group?: string;
     /**
      * Rule type.
      * @type {string}
@@ -294,21 +294,6 @@ export const FraudRulePublicIpRangeTypeEnum = {
     Subnet: 'subnet'
 } as const;
 export type FraudRulePublicIpRangeTypeEnum = typeof FraudRulePublicIpRangeTypeEnum[keyof typeof FraudRulePublicIpRangeTypeEnum];
-
-/**
- * @export
- */
-export const FraudRulePublicRuleGroupEnum = {
-    ExemptRules: 'exemptRules',
-    CreditCardRules: 'creditCardRules',
-    IpRules: 'ipRules',
-    AddressRules: 'addressRules',
-    AffiliateRules: 'affiliateRules',
-    ItemRules: 'itemRules',
-    OrderRules: 'orderRules',
-    BrowserRules: 'browserRules'
-} as const;
-export type FraudRulePublicRuleGroupEnum = typeof FraudRulePublicRuleGroupEnum[keyof typeof FraudRulePublicRuleGroupEnum];
 
 /**
  * @export
