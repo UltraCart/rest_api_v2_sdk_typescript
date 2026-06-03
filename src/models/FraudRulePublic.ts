@@ -39,19 +39,19 @@ import {
  */
 export interface FraudRulePublic {
     /**
-     * 
+     * Affiliate oid for the 'affiliate matches' rule type.
      * @type {number}
      * @memberof FraudRulePublic
      */
     affiliate_oid?: number;
     /**
-     * 
+     * Monetary or score threshold for amount/score/percentage rule types.
      * @type {number}
      * @memberof FraudRulePublic
      */
     amount_threshold?: number;
     /**
-     * 
+     * Note automatically appended to the order's merchant note when this rule fires.
      * @type {string}
      * @memberof FraudRulePublic
      */
@@ -63,7 +63,7 @@ export interface FraudRulePublic {
      */
     avs_match_type?: FraudRulePublicAvsMatchTypeEnum;
     /**
-     * 
+     * AVS response codes for the 'address street and zip avs' rule type.
      * @type {string}
      * @memberof FraudRulePublic
      */
@@ -75,13 +75,13 @@ export interface FraudRulePublic {
      */
     card_number?: string;
     /**
-     * 
+     * Integer count threshold for count/quantity/hours rule types.
      * @type {number}
      * @memberof FraudRulePublic
      */
     count_threshold?: number;
     /**
-     * 
+     * ISO country code for the 'address not in country' rule type.
      * @type {string}
      * @memberof FraudRulePublic
      */
@@ -100,12 +100,12 @@ export interface FraudRulePublic {
     created_dts?: string;
     /**
      * Credit card BINs blocked by the 'credit card block bin' rule type.
-     * @type {object}
+     * @type {Array<string>}
      * @memberof FraudRulePublic
      */
-    credit_card_bins?: object;
+    credit_card_bins?: Array<string>;
     /**
-     * 
+     * Message shown in the A/R review screen when this rule fires.
      * @type {string}
      * @memberof FraudRulePublic
      */
@@ -123,7 +123,7 @@ export interface FraudRulePublic {
      */
     description_html?: string;
     /**
-     * 
+     * Email address for the 'address email' rule type.
      * @type {string}
      * @memberof FraudRulePublic
      */
@@ -141,19 +141,19 @@ export interface FraudRulePublic {
      */
     fraud_rule_oid?: number;
     /**
-     * 
+     * Gateway response code key for the 'gateway response' rule type.
      * @type {string}
      * @memberof FraudRulePublic
      */
     gateway_response_codes?: string;
     /**
-     * 
+     * Gateway response code value for the 'gateway response' rule type.
      * @type {string}
      * @memberof FraudRulePublic
      */
     gateway_response_value?: string;
     /**
-     * 
+     * IP address or subnet for 'exempt ip' and 'ip matches' rule types.
      * @type {string}
      * @memberof FraudRulePublic
      */
@@ -165,73 +165,73 @@ export interface FraudRulePublic {
      */
     ip_range_type?: FraudRulePublicIpRangeTypeEnum;
     /**
-     * 
+     * Item filters restricting this rule to orders containing one or more of these items.
      * @type {Array<FraudRuleItemFilter>}
      * @memberof FraudRulePublic
      */
     item_filters?: Array<FraudRuleItemFilter>;
     /**
-     * 
+     * Merchant item id for the 'item matches' rule type.
      * @type {string}
      * @memberof FraudRulePublic
      */
     merchant_item_id?: string;
     /**
-     * 
+     * Value the rule sets on order custom field 1 (only meaningful for 'Process Payment and Modify').
      * @type {string}
      * @memberof FraudRulePublic
      */
     modify_custom_field1?: string;
     /**
-     * 
+     * Value the rule sets on order custom field 2 (only meaningful for 'Process Payment and Modify').
      * @type {string}
      * @memberof FraudRulePublic
      */
     modify_custom_field2?: string;
     /**
-     * 
+     * Value the rule sets on order custom field 3 (only meaningful for 'Process Payment and Modify').
      * @type {string}
      * @memberof FraudRulePublic
      */
     modify_custom_field3?: string;
     /**
-     * 
+     * Value the rule sets on order custom field 4 (only meaningful for 'Process Payment and Modify').
      * @type {string}
      * @memberof FraudRulePublic
      */
     modify_custom_field4?: string;
     /**
-     * 
+     * Value the rule sets on order custom field 5 (only meaningful for 'Process Payment and Modify').
      * @type {string}
      * @memberof FraudRulePublic
      */
     modify_custom_field5?: string;
     /**
-     * 
+     * Value the rule sets on order custom field 6 (only meaningful for 'Process Payment and Modify').
      * @type {string}
      * @memberof FraudRulePublic
      */
     modify_custom_field6?: string;
     /**
-     * 
+     * Value the rule sets on order custom field 7 (only meaningful for 'Process Payment and Modify').
      * @type {string}
      * @memberof FraudRulePublic
      */
     modify_custom_field7?: string;
     /**
-     * 
+     * When true, the rule strips the affiliate from the order (only meaningful for 'Process Payment and Modify').
      * @type {boolean}
      * @memberof FraudRulePublic
      */
     modify_skip_affiliate?: boolean;
     /**
-     * 
+     * When true, the rule suppresses the affiliate network pixel (only meaningful for 'Process Payment and Modify').
      * @type {boolean}
      * @memberof FraudRulePublic
      */
     modify_skip_affiliate_network_pixel?: boolean;
     /**
-     * 
+     * Gateway filters restricting this rule to orders processed by one of these rotating transaction gateways.
      * @type {Array<FraudRuleRotatingTransactionGatewayFilter>}
      * @memberof FraudRulePublic
      */
@@ -249,7 +249,7 @@ export interface FraudRulePublic {
      */
     rule_type?: FraudRulePublicRuleTypeEnum;
     /**
-     * 
+     * Storefront filters restricting this rule to orders placed on one of these storefronts.
      * @type {Array<FraudRuleStorefrontFilter>}
      * @memberof FraudRulePublic
      */

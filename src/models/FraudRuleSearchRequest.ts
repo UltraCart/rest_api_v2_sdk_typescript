@@ -32,7 +32,7 @@ export interface FraudRuleSearchRequest {
      */
     amount_threshold_begin?: number;
     /**
-     * 
+     * Upper bound on amount/score/percentage thresholds (rules backed by the same numeric column).
      * @type {number}
      * @memberof FraudRuleSearchRequest
      */
@@ -50,13 +50,13 @@ export interface FraudRuleSearchRequest {
      */
     count_threshold_begin?: number;
     /**
-     * 
+     * Upper bound on count thresholds (rules backed by the same integer count column).
      * @type {number}
      * @memberof FraudRuleSearchRequest
      */
     count_threshold_end?: number;
     /**
-     * 
+     * Filter to rules created by this user login.
      * @type {string}
      * @memberof FraudRuleSearchRequest
      */
@@ -92,13 +92,13 @@ export interface FraudRuleSearchRequest {
      */
     failure_action?: FraudRuleSearchRequestFailureActionEnum;
     /**
-     * 
+     * Filter to rules with this rotating transaction gateway code in their rotating_transaction_gateway_filters list.
      * @type {string}
      * @memberof FraudRuleSearchRequest
      */
     gateway_code?: string;
     /**
-     * 
+     * Filter to rules with this merchant item id in their item_filters list.
      * @type {string}
      * @memberof FraudRuleSearchRequest
      */
@@ -110,55 +110,55 @@ export interface FraudRuleSearchRequest {
      */
     modifier_value?: string;
     /**
-     * 
+     * Wildcard search on rules' modify_custom_field1 value.
      * @type {string}
      * @memberof FraudRuleSearchRequest
      */
     modify_custom_field1?: string;
     /**
-     * 
+     * Wildcard search on rules' modify_custom_field2 value.
      * @type {string}
      * @memberof FraudRuleSearchRequest
      */
     modify_custom_field2?: string;
     /**
-     * 
+     * Wildcard search on rules' modify_custom_field3 value.
      * @type {string}
      * @memberof FraudRuleSearchRequest
      */
     modify_custom_field3?: string;
     /**
-     * 
+     * Wildcard search on rules' modify_custom_field4 value.
      * @type {string}
      * @memberof FraudRuleSearchRequest
      */
     modify_custom_field4?: string;
     /**
-     * 
+     * Wildcard search on rules' modify_custom_field5 value.
      * @type {string}
      * @memberof FraudRuleSearchRequest
      */
     modify_custom_field5?: string;
     /**
-     * 
+     * Wildcard search on rules' modify_custom_field6 value.
      * @type {string}
      * @memberof FraudRuleSearchRequest
      */
     modify_custom_field6?: string;
     /**
-     * 
+     * Wildcard search on rules' modify_custom_field7 value.
      * @type {string}
      * @memberof FraudRuleSearchRequest
      */
     modify_custom_field7?: string;
     /**
-     * 
+     * Filter to rules whose modify_skip_affiliate flag matches this value.
      * @type {boolean}
      * @memberof FraudRuleSearchRequest
      */
     modify_skip_affiliate?: boolean;
     /**
-     * 
+     * Filter to rules whose modify_skip_affiliate_network_pixel flag matches this value.
      * @type {boolean}
      * @memberof FraudRuleSearchRequest
      */
@@ -182,7 +182,7 @@ export interface FraudRuleSearchRequest {
      */
     search_linked_accounts?: boolean;
     /**
-     * 
+     * Filter to rules with this storefront hostname in their screen_branding_theme_filters list.
      * @type {string}
      * @memberof FraudRuleSearchRequest
      */
@@ -194,7 +194,7 @@ export interface FraudRuleSearchRequest {
      */
     text_value?: string;
     /**
-     * 
+     * Filter to rules with this screen branding theme code in their screen_branding_theme_filters list.
      * @type {string}
      * @memberof FraudRuleSearchRequest
      */

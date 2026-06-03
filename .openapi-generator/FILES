@@ -610,8 +610,12 @@ src/models/FileManagerPageResponse.ts
 src/models/FileManagerUploadRequest.ts
 src/models/FileManagerUploadUrlResponse.ts
 src/models/FraudDeclineEmailRequest.ts
+src/models/FraudLookupAffiliate.ts
+src/models/FraudLookupGateway.ts
+src/models/FraudLookupTheme.ts
 src/models/FraudLookupValues.ts
 src/models/FraudLookupValuesResponse.ts
+src/models/FraudRuleFromOrderRequest.ts
 src/models/FraudRuleInsertRequest.ts
 src/models/FraudRuleItemFilter.ts
 src/models/FraudRulePublic.ts

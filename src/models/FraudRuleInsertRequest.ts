@@ -69,10 +69,10 @@ export interface FraudRuleInsertRequest {
     country_code?: string;
     /**
      * Credit card BINs to block (max 20). Used by the 'credit card block bin' rule type.
-     * @type {object}
+     * @type {Array<string>}
      * @memberof FraudRuleInsertRequest
      */
-    credit_card_bins?: object;
+    credit_card_bins?: Array<string>;
     /**
      * Email address. Used by the 'address email' rule type.
      * @type {string}
@@ -111,10 +111,10 @@ export interface FraudRuleInsertRequest {
     ip_range_type?: FraudRuleInsertRequestIpRangeTypeEnum;
     /**
      * Optional list of merchant item ids restricting this rule to orders containing one or more of these items.
-     * @type {object}
+     * @type {Array<string>}
      * @memberof FraudRuleInsertRequest
      */
-    item_filters?: object;
+    item_filters?: Array<string>;
     /**
      * Merchant item id. Used by the 'item matches' rule type.
      * @type {string}
@@ -122,65 +122,65 @@ export interface FraudRuleInsertRequest {
      */
     merchant_item_id?: string;
     /**
-     * 
+     * When failure_action is 'Process Payment and Modify', set order custom field 1 to this value.
      * @type {string}
      * @memberof FraudRuleInsertRequest
      */
     modify_custom_field1?: string;
     /**
-     * 
+     * When failure_action is 'Process Payment and Modify', set order custom field 2 to this value.
      * @type {string}
      * @memberof FraudRuleInsertRequest
      */
     modify_custom_field2?: string;
     /**
-     * 
+     * When failure_action is 'Process Payment and Modify', set order custom field 3 to this value.
      * @type {string}
      * @memberof FraudRuleInsertRequest
      */
     modify_custom_field3?: string;
     /**
-     * 
+     * When failure_action is 'Process Payment and Modify', set order custom field 4 to this value.
      * @type {string}
      * @memberof FraudRuleInsertRequest
      */
     modify_custom_field4?: string;
     /**
-     * 
+     * When failure_action is 'Process Payment and Modify', set order custom field 5 to this value.
      * @type {string}
      * @memberof FraudRuleInsertRequest
      */
     modify_custom_field5?: string;
     /**
-     * 
+     * When failure_action is 'Process Payment and Modify', set order custom field 6 to this value.
      * @type {string}
      * @memberof FraudRuleInsertRequest
      */
     modify_custom_field6?: string;
     /**
-     * 
+     * When failure_action is 'Process Payment and Modify', set order custom field 7 to this value.
      * @type {string}
      * @memberof FraudRuleInsertRequest
      */
     modify_custom_field7?: string;
     /**
-     * 
+     * When failure_action is 'Process Payment and Modify', strip the affiliate from the order.
      * @type {boolean}
      * @memberof FraudRuleInsertRequest
      */
     modify_skip_affiliate?: boolean;
     /**
-     * 
+     * When failure_action is 'Process Payment and Modify', skip firing the affiliate network pixel.
      * @type {boolean}
      * @memberof FraudRuleInsertRequest
      */
     modify_skip_affiliate_network_pixel?: boolean;
     /**
      * Optional list of rotating transaction gateway oids restricting this rule to orders processed by one of these gateways.
-     * @type {object}
+     * @type {Array<number>}
      * @memberof FraudRuleInsertRequest
      */
-    rotating_transaction_gateway_filters?: object;
+    rotating_transaction_gateway_filters?: Array<number>;
     /**
      * Rule type. Also returned by GET /v2/fraud/lookup_values.
      * @type {string}
@@ -189,10 +189,10 @@ export interface FraudRuleInsertRequest {
     rule_type?: FraudRuleInsertRequestRuleTypeEnum;
     /**
      * Optional list of screen branding theme oids restricting this rule to orders associated with one or more storefronts.
-     * @type {object}
+     * @type {Array<number>}
      * @memberof FraudRuleInsertRequest
      */
-    screen_branding_theme_filters?: object;
+    screen_branding_theme_filters?: Array<number>;
     /**
      * Only used by rule types that distinguish between attempted and approved transactions.
      * @type {string}

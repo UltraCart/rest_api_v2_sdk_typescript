@@ -24,6 +24,9 @@ import {
     FraudLookupValuesResponse,
     FraudLookupValuesResponseFromJSON,
     FraudLookupValuesResponseToJSON,
+    FraudRuleFromOrderRequest,
+    FraudRuleFromOrderRequestFromJSON,
+    FraudRuleFromOrderRequestToJSON,
     FraudRuleInsertRequest,
     FraudRuleInsertRequestFromJSON,
     FraudRuleInsertRequestToJSON,
@@ -46,6 +49,10 @@ export interface DeleteFraudRuleRequest {
     fraudRuleOid: number;
 }
 
+export interface EstablishFraudRulesFromOrderRequest {
+    fraudRuleFromOrderRequest: FraudRuleFromOrderRequest;
+}
+
 export interface InsertFraudRuleRequest {
     fraudRuleInsertRequest: FraudRuleInsertRequest;
 }
@@ -65,8 +72,8 @@ export interface SearchFraudRulesRequest {
  */
 export interface FraudApiInterface {
     /**
-     * Adds one or more email addresses to the fraud decline list for this merchant account. 
-     * @summary Decline emails during checkout fraud review
+     * Adds one email address to the fraud decline list for this merchant account. 
+     * @summary Decline email during checkout fraud review
      * @param {FraudDeclineEmailRequest} fraudDeclineEmailsRequest Fraud decline emails request
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -75,8 +82,8 @@ export interface FraudApiInterface {
     declineEmailRaw(requestParameters: DeclineEmailRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
 
     /**
-     * Adds one or more email addresses to the fraud decline list for this merchant account. 
-     * Decline emails during checkout fraud review
+     * Adds one email address to the fraud decline list for this merchant account. 
+     * Decline email during checkout fraud review
      */
     declineEmail(requestParameters: DeclineEmailRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
@@ -95,6 +102,22 @@ export interface FraudApiInterface {
      * Delete a fraud rule
      */
     deleteFraudRule(requestParameters: DeleteFraudRuleRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+
+    /**
+     * Creates one or more fraud rules for this merchant account derived from an existing order, mirroring the \'establish fraud filter\' action in the order processing screen. Select which filters to establish; all values are taken from the order. The IP rule is created against the order\'s /24 subnet (last octet masked). The credit card filter duplicates the order\'s stored card vault token, so no card number is sent through the API. Filters whose order data is missing (no stored card, no email, no usable IP, or no numeric street) are skipped and reported in the warning slot rather than failing the request. 
+     * @summary Establish fraud rules from an order
+     * @param {FraudRuleFromOrderRequest} fraudRuleFromOrderRequest Fraud rule from order request
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof FraudApiInterface
+     */
+    establishFraudRulesFromOrderRaw(requestParameters: EstablishFraudRulesFromOrderRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<FraudRulesResponse>>;
+
+    /**
+     * Creates one or more fraud rules for this merchant account derived from an existing order, mirroring the \'establish fraud filter\' action in the order processing screen. Select which filters to establish; all values are taken from the order. The IP rule is created against the order\'s /24 subnet (last octet masked). The credit card filter duplicates the order\'s stored card vault token, so no card number is sent through the API. Filters whose order data is missing (no stored card, no email, no usable IP, or no numeric street) are skipped and reported in the warning slot rather than failing the request. 
+     * Establish fraud rules from an order
+     */
+    establishFraudRulesFromOrder(requestParameters: EstablishFraudRulesFromOrderRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<FraudRulesResponse>;
 
     /**
      * Returns the dropdown values required to build valid fraud rule insert and search requests. Includes rule types, failure actions, user actions, IP range types, AVS match types, the merchant\'s rotating transaction gateways, screen branding themes, countries, and affiliates. 
@@ -154,8 +177,8 @@ export interface FraudApiInterface {
 export class FraudApi extends runtime.BaseAPI implements FraudApiInterface {
 
     /**
-     * Adds one or more email addresses to the fraud decline list for this merchant account. 
-     * Decline emails during checkout fraud review
+     * Adds one email address to the fraud decline list for this merchant account. 
+     * Decline email during checkout fraud review
      */
     async declineEmailRaw(requestParameters: DeclineEmailRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
         if (requestParameters.fraudDeclineEmailsRequest === null || requestParameters.fraudDeclineEmailsRequest === undefined) {
@@ -189,8 +212,8 @@ export class FraudApi extends runtime.BaseAPI implements FraudApiInterface {
     }
 
     /**
-     * Adds one or more email addresses to the fraud decline list for this merchant account. 
-     * Decline emails during checkout fraud review
+     * Adds one email address to the fraud decline list for this merchant account. 
+     * Decline email during checkout fraud review
      */
     async declineEmail(requestParameters: DeclineEmailRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.declineEmailRaw(requestParameters, initOverrides);
@@ -234,6 +257,50 @@ export class FraudApi extends runtime.BaseAPI implements FraudApiInterface {
      */
     async deleteFraudRule(requestParameters: DeleteFraudRuleRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.deleteFraudRuleRaw(requestParameters, initOverrides);
+    }
+
+    /**
+     * Creates one or more fraud rules for this merchant account derived from an existing order, mirroring the \'establish fraud filter\' action in the order processing screen. Select which filters to establish; all values are taken from the order. The IP rule is created against the order\'s /24 subnet (last octet masked). The credit card filter duplicates the order\'s stored card vault token, so no card number is sent through the API. Filters whose order data is missing (no stored card, no email, no usable IP, or no numeric street) are skipped and reported in the warning slot rather than failing the request. 
+     * Establish fraud rules from an order
+     */
+    async establishFraudRulesFromOrderRaw(requestParameters: EstablishFraudRulesFromOrderRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<FraudRulesResponse>> {
+        if (requestParameters.fraudRuleFromOrderRequest === null || requestParameters.fraudRuleFromOrderRequest === undefined) {
+            throw new runtime.RequiredError('fraudRuleFromOrderRequest','Required parameter requestParameters.fraudRuleFromOrderRequest was null or undefined when calling establishFraudRulesFromOrder.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", ["fraud_write"]);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/fraud/rules/from_order`,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: FraudRuleFromOrderRequestToJSON(requestParameters.fraudRuleFromOrderRequest),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => FraudRulesResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Creates one or more fraud rules for this merchant account derived from an existing order, mirroring the \'establish fraud filter\' action in the order processing screen. Select which filters to establish; all values are taken from the order. The IP rule is created against the order\'s /24 subnet (last octet masked). The credit card filter duplicates the order\'s stored card vault token, so no card number is sent through the API. Filters whose order data is missing (no stored card, no email, no usable IP, or no numeric street) are skipped and reported in the warning slot rather than failing the request. 
+     * Establish fraud rules from an order
+     */
+    async establishFraudRulesFromOrder(requestParameters: EstablishFraudRulesFromOrderRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<FraudRulesResponse> {
+        const response = await this.establishFraudRulesFromOrderRaw(requestParameters, initOverrides);
+        return await response.value();
     }
 
     /**

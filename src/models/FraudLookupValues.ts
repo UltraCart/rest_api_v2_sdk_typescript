@@ -13,6 +13,25 @@
  */
 
 import { exists, mapValues } from '../runtime';
+import {
+    FraudLookupAffiliate,
+    FraudLookupAffiliateFromJSON,
+    FraudLookupAffiliateFromJSONTyped,
+    FraudLookupAffiliateToJSON,
+} from './FraudLookupAffiliate';
+import {
+    FraudLookupGateway,
+    FraudLookupGatewayFromJSON,
+    FraudLookupGatewayFromJSONTyped,
+    FraudLookupGatewayToJSON,
+} from './FraudLookupGateway';
+import {
+    FraudLookupTheme,
+    FraudLookupThemeFromJSON,
+    FraudLookupThemeFromJSONTyped,
+    FraudLookupThemeToJSON,
+} from './FraudLookupTheme';
+
 /**
  * 
  * @export
@@ -21,22 +40,34 @@ import { exists, mapValues } from '../runtime';
 export interface FraudLookupValues {
     /**
      * Affiliates with non-empty email, sorted by email.
-     * @type {object}
+     * @type {Array<FraudLookupAffiliate>}
      * @memberof FraudLookupValues
      */
-    affiliates?: object;
+    affiliates?: Array<FraudLookupAffiliate>;
+    /**
+     * Valid values for avs_match_type on the 'address street and zip avs' rule type.
+     * @type {Array<string>}
+     * @memberof FraudLookupValues
+     */
+    avs_match_types?: Array<string>;
     /**
      * ISO country codes available to this merchant.
-     * @type {object}
+     * @type {Array<string>}
      * @memberof FraudLookupValues
      */
-    countries?: object;
+    countries?: Array<string>;
+    /**
+     * Valid values for failure_action on insert and search requests.
+     * @type {Array<string>}
+     * @memberof FraudLookupValues
+     */
+    failure_actions?: Array<string>;
     /**
      * Valid values for ip_range_type on IP-based rules.
-     * @type {object}
+     * @type {Array<string>}
      * @memberof FraudLookupValues
      */
-    ip_range_types?: object;
+    ip_range_types?: Array<string>;
     /**
      * True when this merchant has at least one linked merchant account.
      * @type {boolean}
@@ -44,17 +75,35 @@ export interface FraudLookupValues {
      */
     linked_accounts?: boolean;
     /**
-     * Valid values for rule_group on search requests.
-     * @type {object}
+     * Rotating transaction gateways configured for this merchant. Use the oid as a value in rotating_transaction_gateway_filters on insert.
+     * @type {Array<FraudLookupGateway>}
      * @memberof FraudLookupValues
      */
-    rule_groups?: object;
+    rotating_transaction_gateways?: Array<FraudLookupGateway>;
+    /**
+     * Valid values for rule_group on search requests.
+     * @type {Array<string>}
+     * @memberof FraudLookupValues
+     */
+    rule_groups?: Array<string>;
     /**
      * Valid values for rule_type on insert and search requests.
-     * @type {object}
+     * @type {Array<string>}
      * @memberof FraudLookupValues
      */
-    rule_types?: object;
+    rule_types?: Array<string>;
+    /**
+     * Screen branding themes configured for this merchant. Use the oid as a value in screen_branding_theme_filters on insert.
+     * @type {Array<FraudLookupTheme>}
+     * @memberof FraudLookupValues
+     */
+    screen_branding_themes?: Array<FraudLookupTheme>;
+    /**
+     * Valid values for user_action on rule types that distinguish between attempted and approved transactions.
+     * @type {Array<string>}
+     * @memberof FraudLookupValues
+     */
+    user_actions?: Array<string>;
 }
 
 
@@ -78,12 +127,17 @@ export function FraudLookupValuesFromJSONTyped(json: any, ignoreDiscriminator: b
     }
     return {
         
-        'affiliates': !exists(json, 'affiliates') ? undefined : json['affiliates'],
+        'affiliates': !exists(json, 'affiliates') ? undefined : ((json['affiliates'] as Array<any>).map(FraudLookupAffiliateFromJSON)),
+        'avs_match_types': !exists(json, 'avs_match_types') ? undefined : json['avs_match_types'],
         'countries': !exists(json, 'countries') ? undefined : json['countries'],
+        'failure_actions': !exists(json, 'failure_actions') ? undefined : json['failure_actions'],
         'ip_range_types': !exists(json, 'ip_range_types') ? undefined : json['ip_range_types'],
         'linked_accounts': !exists(json, 'linked_accounts') ? undefined : json['linked_accounts'],
+        'rotating_transaction_gateways': !exists(json, 'rotating_transaction_gateways') ? undefined : ((json['rotating_transaction_gateways'] as Array<any>).map(FraudLookupGatewayFromJSON)),
         'rule_groups': !exists(json, 'rule_groups') ? undefined : json['rule_groups'],
         'rule_types': !exists(json, 'rule_types') ? undefined : json['rule_types'],
+        'screen_branding_themes': !exists(json, 'screen_branding_themes') ? undefined : ((json['screen_branding_themes'] as Array<any>).map(FraudLookupThemeFromJSON)),
+        'user_actions': !exists(json, 'user_actions') ? undefined : json['user_actions'],
     };
 }
 
@@ -96,12 +150,17 @@ export function FraudLookupValuesToJSON(value?: FraudLookupValues | null): any {
     }
     return {
         
-        'affiliates': value.affiliates,
+        'affiliates': value.affiliates === undefined ? undefined : ((value.affiliates as Array<any>).map(FraudLookupAffiliateToJSON)),
+        'avs_match_types': value.avs_match_types,
         'countries': value.countries,
+        'failure_actions': value.failure_actions,
         'ip_range_types': value.ip_range_types,
         'linked_accounts': value.linked_accounts,
+        'rotating_transaction_gateways': value.rotating_transaction_gateways === undefined ? undefined : ((value.rotating_transaction_gateways as Array<any>).map(FraudLookupGatewayToJSON)),
         'rule_groups': value.rule_groups,
         'rule_types': value.rule_types,
+        'screen_branding_themes': value.screen_branding_themes === undefined ? undefined : ((value.screen_branding_themes as Array<any>).map(FraudLookupThemeToJSON)),
+        'user_actions': value.user_actions,
     };
 }
 
