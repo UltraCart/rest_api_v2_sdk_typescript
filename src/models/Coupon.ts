@@ -20,6 +20,12 @@ import {
     CouponAmountOffItemsToJSON,
 } from './CouponAmountOffItems';
 import {
+    CouponAmountOffItemsAndFreeShipping,
+    CouponAmountOffItemsAndFreeShippingFromJSON,
+    CouponAmountOffItemsAndFreeShippingFromJSONTyped,
+    CouponAmountOffItemsAndFreeShippingToJSON,
+} from './CouponAmountOffItemsAndFreeShipping';
+import {
     CouponAmountOffShipping,
     CouponAmountOffShippingFromJSON,
     CouponAmountOffShippingFromJSONTyped,
@@ -338,6 +344,12 @@ export interface Coupon {
      * @memberof Coupon
      */
     amount_off_items?: CouponAmountOffItems;
+    /**
+     * 
+     * @type {CouponAmountOffItemsAndFreeShipping}
+     * @memberof Coupon
+     */
+    amount_off_items_and_free_shipping?: CouponAmountOffItemsAndFreeShipping;
     /**
      * 
      * @type {CouponAmountOffShipping}
@@ -767,6 +779,7 @@ export function CouponFromJSONTyped(json: any, ignoreDiscriminator: boolean): Co
         'affiliate_oid': !exists(json, 'affiliate_oid') ? undefined : json['affiliate_oid'],
         'allow_multiple_one_time_codes': !exists(json, 'allow_multiple_one_time_codes') ? undefined : json['allow_multiple_one_time_codes'],
         'amount_off_items': !exists(json, 'amount_off_items') ? undefined : CouponAmountOffItemsFromJSON(json['amount_off_items']),
+        'amount_off_items_and_free_shipping': !exists(json, 'amount_off_items_and_free_shipping') ? undefined : CouponAmountOffItemsAndFreeShippingFromJSON(json['amount_off_items_and_free_shipping']),
         'amount_off_shipping': !exists(json, 'amount_off_shipping') ? undefined : CouponAmountOffShippingFromJSON(json['amount_off_shipping']),
         'amount_off_shipping_with_items_purchase': !exists(json, 'amount_off_shipping_with_items_purchase') ? undefined : CouponAmountOffShippingWithItemsPurchaseFromJSON(json['amount_off_shipping_with_items_purchase']),
         'amount_off_subtotal': !exists(json, 'amount_off_subtotal') ? undefined : CouponAmountOffSubtotalFromJSON(json['amount_off_subtotal']),
@@ -847,6 +860,7 @@ export function CouponToJSON(value?: Coupon | null): any {
         'affiliate_oid': value.affiliate_oid,
         'allow_multiple_one_time_codes': value.allow_multiple_one_time_codes,
         'amount_off_items': CouponAmountOffItemsToJSON(value.amount_off_items),
+        'amount_off_items_and_free_shipping': CouponAmountOffItemsAndFreeShippingToJSON(value.amount_off_items_and_free_shipping),
         'amount_off_shipping': CouponAmountOffShippingToJSON(value.amount_off_shipping),
         'amount_off_shipping_with_items_purchase': CouponAmountOffShippingWithItemsPurchaseToJSON(value.amount_off_shipping_with_items_purchase),
         'amount_off_subtotal': CouponAmountOffSubtotalToJSON(value.amount_off_subtotal),

@@ -338,6 +338,7 @@ src/models/CountriesResponse.ts
 src/models/Country.ts
 src/models/Coupon.ts
 src/models/CouponAmountOffItems.ts
+src/models/CouponAmountOffItemsAndFreeShipping.ts
 src/models/CouponAmountOffShipping.ts
 src/models/CouponAmountOffShippingWithItemsPurchase.ts
 src/models/CouponAmountOffSubtotal.ts

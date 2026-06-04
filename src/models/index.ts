@@ -312,6 +312,7 @@ export * from './CountriesResponse';
 export * from './Country';
 export * from './Coupon';
 export * from './CouponAmountOffItems';
+export * from './CouponAmountOffItemsAndFreeShipping';
 export * from './CouponAmountOffShipping';
 export * from './CouponAmountOffShippingWithItemsPurchase';
 export * from './CouponAmountOffSubtotal';
