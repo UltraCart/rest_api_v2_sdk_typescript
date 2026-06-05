@@ -1,12 +1,12 @@
 # UltraCart Typescript SDK
-## ultracart_rest_api_v2_typescript@4.1.98
+## ultracart_rest_api_v2_typescript@4.1.99
 
 Every API method call has a sample for every language SDK.  See https://github.com/UltraCart/sdk_samples
 
 Installation
 
 ```
-npm install ultracart_rest_api_v2_typescript@4.1.98 --save
+npm install ultracart_rest_api_v2_typescript@4.1.99 --save
 ```
 
 ```typescript
@@ -85,6 +85,7 @@ Not every change is committed to every SDK.
 
 | Version | Date | Comments |
 | --: | :-: | --- |
+| 4.1.99 | 06/05/2026 | added webhook name and merchant_comments |
 | 4.1.98 | 06/04/2026 | coupon - new coupon type for amount off items with free shipping |
 | 4.1.97 | 06/03/2026 | fraud api alpha version |
 | 4.1.96 | 06/03/2026 | fraud api alpha build |

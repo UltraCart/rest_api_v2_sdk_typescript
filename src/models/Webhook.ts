@@ -117,11 +117,23 @@ export interface Webhook {
      */
     maximum_size?: number;
     /**
+     * Merchant comments about this webhook
+     * @type {string}
+     * @memberof Webhook
+     */
+    merchant_comments?: string;
+    /**
      * The UltraCart merchant ID that owns this webhook
      * @type {string}
      * @memberof Webhook
      */
     merchant_id?: string;
+    /**
+     * Friendly name to help identify this webhook
+     * @type {string}
+     * @memberof Webhook
+     */
+    name?: string;
     /**
      * The next time UltraCart will attempt delivery if failures have been occurring
      * @type {string}
@@ -203,7 +215,9 @@ export function WebhookFromJSONTyped(json: any, ignoreDiscriminator: boolean): W
         'iam_secret_key': !exists(json, 'iam_secret_key') ? undefined : json['iam_secret_key'],
         'maximum_events': !exists(json, 'maximum_events') ? undefined : json['maximum_events'],
         'maximum_size': !exists(json, 'maximum_size') ? undefined : json['maximum_size'],
+        'merchant_comments': !exists(json, 'merchant_comments') ? undefined : json['merchant_comments'],
         'merchant_id': !exists(json, 'merchant_id') ? undefined : json['merchant_id'],
+        'name': !exists(json, 'name') ? undefined : json['name'],
         'next_retry_after': !exists(json, 'next_retry_after') ? undefined : json['next_retry_after'],
         'pending': !exists(json, 'pending') ? undefined : json['pending'],
         'webhook_oid': !exists(json, 'webhook_oid') ? undefined : json['webhook_oid'],
@@ -234,7 +248,9 @@ export function WebhookToJSON(value?: Webhook | null): any {
         'iam_secret_key': value.iam_secret_key,
         'maximum_events': value.maximum_events,
         'maximum_size': value.maximum_size,
+        'merchant_comments': value.merchant_comments,
         'merchant_id': value.merchant_id,
+        'name': value.name,
         'next_retry_after': value.next_retry_after,
         'pending': value.pending,
         'webhook_oid': value.webhook_oid,
