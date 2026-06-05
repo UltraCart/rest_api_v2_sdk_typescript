@@ -56,6 +56,15 @@ export interface GetWebhookLogRequest {
 
 export interface GetWebhookLogSummariesRequest {
     webhookOid: number;
+    requestId?: string;
+    beginDate?: string;
+    endDate?: string;
+    status?: string;
+    success?: boolean;
+    event?: string;
+    orderId?: string;
+    request?: string;
+    duration?: number;
     limit?: number;
     offset?: number;
     since?: string;
@@ -159,6 +168,15 @@ export interface WebhookApiInterface {
      * Retrieves the log summary information for a given webhook.  This is useful for displaying all the various logs that can be viewed. 
      * @summary Retrieve the log summaries
      * @param {number} webhookOid The webhook oid to retrieve log summaries for.
+     * @param {string} [requestId] Filter by request id
+     * @param {string} [beginDate] Filter to deliveries on or after this date/time
+     * @param {string} [endDate] Filter to deliveries on or before this date/time
+     * @param {string} [status] Filter by HTTP status code
+     * @param {boolean} [success] Filter by success (true) or failure (false)
+     * @param {string} [event] Filter by an event name contained in the delivery
+     * @param {string} [orderId] Filter by an order id contained in the delivery
+     * @param {string} [request] Filter by text contained in the request payload
+     * @param {number} [duration] Filter to deliveries that took at least this many milliseconds
      * @param {number} [limit] The maximum number of records to return on this one API call.
      * @param {number} [offset] Pagination of the record set.  Offset is a zero based index.
      * @param {string} [since] Fetch log summaries that have been delivered since this date/time.
@@ -428,6 +446,42 @@ export class WebhookApi extends runtime.BaseAPI implements WebhookApiInterface {
         }
 
         const queryParameters: any = {};
+
+        if (requestParameters.requestId !== undefined) {
+            queryParameters['requestId'] = requestParameters.requestId;
+        }
+
+        if (requestParameters.beginDate !== undefined) {
+            queryParameters['beginDate'] = requestParameters.beginDate;
+        }
+
+        if (requestParameters.endDate !== undefined) {
+            queryParameters['endDate'] = requestParameters.endDate;
+        }
+
+        if (requestParameters.status !== undefined) {
+            queryParameters['status'] = requestParameters.status;
+        }
+
+        if (requestParameters.success !== undefined) {
+            queryParameters['success'] = requestParameters.success;
+        }
+
+        if (requestParameters.event !== undefined) {
+            queryParameters['event'] = requestParameters.event;
+        }
+
+        if (requestParameters.orderId !== undefined) {
+            queryParameters['orderId'] = requestParameters.orderId;
+        }
+
+        if (requestParameters.request !== undefined) {
+            queryParameters['request'] = requestParameters.request;
+        }
+
+        if (requestParameters.duration !== undefined) {
+            queryParameters['duration'] = requestParameters.duration;
+        }
 
         if (requestParameters.limit !== undefined) {
             queryParameters['_limit'] = requestParameters.limit;

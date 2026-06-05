@@ -26,11 +26,35 @@ export interface WebhookLogSummary {
      */
     delivery_dts?: string;
     /**
+     * Number of milliseconds to process the notification
+     * @type {number}
+     * @memberof WebhookLogSummary
+     */
+    duration?: number;
+    /**
+     * Event names contained in this delivery
+     * @type {Array<string>}
+     * @memberof WebhookLogSummary
+     */
+    event_names?: Array<string>;
+    /**
+     * Order ids contained in this delivery
+     * @type {Array<string>}
+     * @memberof WebhookLogSummary
+     */
+    order_ids?: Array<string>;
+    /**
      * Request id
      * @type {string}
      * @memberof WebhookLogSummary
      */
     request_id?: string;
+    /**
+     * HTTP status code received from the server
+     * @type {number}
+     * @memberof WebhookLogSummary
+     */
+    status_code?: number;
     /**
      * True if the notification was successful
      * @type {boolean}
@@ -61,7 +85,11 @@ export function WebhookLogSummaryFromJSONTyped(json: any, ignoreDiscriminator: b
     return {
         
         'delivery_dts': !exists(json, 'delivery_dts') ? undefined : json['delivery_dts'],
+        'duration': !exists(json, 'duration') ? undefined : json['duration'],
+        'event_names': !exists(json, 'event_names') ? undefined : json['event_names'],
+        'order_ids': !exists(json, 'order_ids') ? undefined : json['order_ids'],
         'request_id': !exists(json, 'request_id') ? undefined : json['request_id'],
+        'status_code': !exists(json, 'status_code') ? undefined : json['status_code'],
         'success': !exists(json, 'success') ? undefined : json['success'],
     };
 }
@@ -76,7 +104,11 @@ export function WebhookLogSummaryToJSON(value?: WebhookLogSummary | null): any {
     return {
         
         'delivery_dts': value.delivery_dts,
+        'duration': value.duration,
+        'event_names': value.event_names,
+        'order_ids': value.order_ids,
         'request_id': value.request_id,
+        'status_code': value.status_code,
         'success': value.success,
     };
 }

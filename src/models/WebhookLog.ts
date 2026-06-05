@@ -39,6 +39,18 @@ export interface WebhookLog {
      */
     duration?: number;
     /**
+     * Event names contained in this delivery
+     * @type {Array<string>}
+     * @memberof WebhookLog
+     */
+    event_names?: Array<string>;
+    /**
+     * Order ids contained in this delivery
+     * @type {Array<string>}
+     * @memberof WebhookLog
+     */
+    order_ids?: Array<string>;
+    /**
      * Number of milliseconds of delay caused by queuing
      * @type {number}
      * @memberof WebhookLog
@@ -123,6 +135,8 @@ export function WebhookLogFromJSONTyped(json: any, ignoreDiscriminator: boolean)
         
         'delivery_dts': !exists(json, 'delivery_dts') ? undefined : json['delivery_dts'],
         'duration': !exists(json, 'duration') ? undefined : json['duration'],
+        'event_names': !exists(json, 'event_names') ? undefined : json['event_names'],
+        'order_ids': !exists(json, 'order_ids') ? undefined : json['order_ids'],
         'queue_delay': !exists(json, 'queue_delay') ? undefined : json['queue_delay'],
         'request': !exists(json, 'request') ? undefined : json['request'],
         'request_headers': !exists(json, 'request_headers') ? undefined : ((json['request_headers'] as Array<any>).map(HTTPHeaderFromJSON)),
@@ -147,6 +161,8 @@ export function WebhookLogToJSON(value?: WebhookLog | null): any {
         
         'delivery_dts': value.delivery_dts,
         'duration': value.duration,
+        'event_names': value.event_names,
+        'order_ids': value.order_ids,
         'queue_delay': value.queue_delay,
         'request': value.request,
         'request_headers': value.request_headers === undefined ? undefined : ((value.request_headers as Array<any>).map(HTTPHeaderToJSON)),
