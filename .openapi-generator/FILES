@@ -267,6 +267,7 @@ src/models/ConversationPbxCallTimeline.ts
 src/models/ConversationPbxCallTranscript.ts
 src/models/ConversationPbxCallTranscriptSegment.ts
 src/models/ConversationPbxCallTransfer.ts
+src/models/ConversationPbxCallUpdateRequest.ts
 src/models/ConversationPbxClassOfService.ts
 src/models/ConversationPbxClassOfServiceResponse.ts
 src/models/ConversationPbxClassOfServicesResponse.ts

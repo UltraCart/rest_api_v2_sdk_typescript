@@ -241,6 +241,7 @@ export * from './ConversationPbxCallTimeline';
 export * from './ConversationPbxCallTranscript';
 export * from './ConversationPbxCallTranscriptSegment';
 export * from './ConversationPbxCallTransfer';
+export * from './ConversationPbxCallUpdateRequest';
 export * from './ConversationPbxClassOfService';
 export * from './ConversationPbxClassOfServiceResponse';
 export * from './ConversationPbxClassOfServicesResponse';

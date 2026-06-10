@@ -186,6 +186,9 @@ import {
     ConversationPbxCallSearchResponse,
     ConversationPbxCallSearchResponseFromJSON,
     ConversationPbxCallSearchResponseToJSON,
+    ConversationPbxCallUpdateRequest,
+    ConversationPbxCallUpdateRequestFromJSON,
+    ConversationPbxCallUpdateRequestToJSON,
     ConversationPbxClassOfService,
     ConversationPbxClassOfServiceFromJSON,
     ConversationPbxClassOfServiceToJSON,
@@ -777,6 +780,11 @@ export interface UpdatePbxAgentRequest {
 export interface UpdatePbxAudioRequest {
     conversationPbxAudioUuid: string;
     pbxAudio: ConversationPbxAudio;
+}
+
+export interface UpdatePbxCallRequest {
+    callUuid: string;
+    updateRequest: ConversationPbxCallUpdateRequest;
 }
 
 export interface UpdatePbxClassOfServiceRequest {
@@ -2909,6 +2917,23 @@ export interface ConversationApiInterface {
      * Update pbx audio
      */
     updatePbxAudio(requestParameters: UpdatePbxAudioRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ConversationPbxAudioResponse>;
+
+    /**
+     * Update the agent-authored fields (notes, finalize) on a PBX call record 
+     * @summary Update pbx call record
+     * @param {string} callUuid 
+     * @param {ConversationPbxCallUpdateRequest} updateRequest Update Request
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApiInterface
+     */
+    updatePbxCallRaw(requestParameters: UpdatePbxCallRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ConversationPbxCallResponse>>;
+
+    /**
+     * Update the agent-authored fields (notes, finalize) on a PBX call record 
+     * Update pbx call record
+     */
+    updatePbxCall(requestParameters: UpdatePbxCallRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ConversationPbxCallResponse>;
 
     /**
      * Update an existing class of service 
@@ -8548,6 +8573,54 @@ export class ConversationApi extends runtime.BaseAPI implements ConversationApiI
      */
     async updatePbxAudio(requestParameters: UpdatePbxAudioRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ConversationPbxAudioResponse> {
         const response = await this.updatePbxAudioRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Update the agent-authored fields (notes, finalize) on a PBX call record 
+     * Update pbx call record
+     */
+    async updatePbxCallRaw(requestParameters: UpdatePbxCallRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ConversationPbxCallResponse>> {
+        if (requestParameters.callUuid === null || requestParameters.callUuid === undefined) {
+            throw new runtime.RequiredError('callUuid','Required parameter requestParameters.callUuid was null or undefined when calling updatePbxCall.');
+        }
+
+        if (requestParameters.updateRequest === null || requestParameters.updateRequest === undefined) {
+            throw new runtime.RequiredError('updateRequest','Required parameter requestParameters.updateRequest was null or undefined when calling updatePbxCall.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", ["conversation_write"]);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/conversation/pbx/call/{callUuid}`.replace(`{${"callUuid"}}`, encodeURIComponent(String(requestParameters.callUuid))),
+            method: 'PUT',
+            headers: headerParameters,
+            query: queryParameters,
+            body: ConversationPbxCallUpdateRequestToJSON(requestParameters.updateRequest),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => ConversationPbxCallResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Update the agent-authored fields (notes, finalize) on a PBX call record 
+     * Update pbx call record
+     */
+    async updatePbxCall(requestParameters: UpdatePbxCallRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ConversationPbxCallResponse> {
+        const response = await this.updatePbxCallRaw(requestParameters, initOverrides);
         return await response.value();
     }
 

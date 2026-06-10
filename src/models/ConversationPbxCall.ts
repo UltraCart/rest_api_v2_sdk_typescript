@@ -183,6 +183,18 @@ export interface ConversationPbxCall {
      */
     merchant_id?: string;
     /**
+     * Agent-authored notes for this call, captured during the call and after-call work
+     * @type {string}
+     * @memberof ConversationPbxCall
+     */
+    notes?: string;
+    /**
+     * Timestamp when the agent finalized notes via Save & finish; gates Zoho Desk ticket creation
+     * @type {string}
+     * @memberof ConversationPbxCall
+     */
+    notes_finalized_dts?: string;
+    /**
      * List of all Twilio recording SIDs associated with this call
      * @type {Array<string>}
      * @memberof ConversationPbxCall
@@ -276,6 +288,8 @@ export function ConversationPbxCallFromJSONTyped(json: any, ignoreDiscriminator:
         'financial': !exists(json, 'financial') ? undefined : ConversationPbxCallFinancialFromJSON(json['financial']),
         'holds': !exists(json, 'holds') ? undefined : ((json['holds'] as Array<any>).map(ConversationPbxCallHoldFromJSON)),
         'merchant_id': !exists(json, 'merchant_id') ? undefined : json['merchant_id'],
+        'notes': !exists(json, 'notes') ? undefined : json['notes'],
+        'notes_finalized_dts': !exists(json, 'notes_finalized_dts') ? undefined : json['notes_finalized_dts'],
         'recording_sids': !exists(json, 'recording_sids') ? undefined : json['recording_sids'],
         'recordings': !exists(json, 'recordings') ? undefined : ((json['recordings'] as Array<any>).map(ConversationPbxCallRecordingFromJSON)),
         'routing': !exists(json, 'routing') ? undefined : ConversationPbxCallRoutingFromJSON(json['routing']),
@@ -314,6 +328,8 @@ export function ConversationPbxCallToJSON(value?: ConversationPbxCall | null): a
         'financial': ConversationPbxCallFinancialToJSON(value.financial),
         'holds': value.holds === undefined ? undefined : ((value.holds as Array<any>).map(ConversationPbxCallHoldToJSON)),
         'merchant_id': value.merchant_id,
+        'notes': value.notes,
+        'notes_finalized_dts': value.notes_finalized_dts,
         'recording_sids': value.recording_sids,
         'recordings': value.recordings === undefined ? undefined : ((value.recordings as Array<any>).map(ConversationPbxCallRecordingToJSON)),
         'routing': ConversationPbxCallRoutingToJSON(value.routing),
