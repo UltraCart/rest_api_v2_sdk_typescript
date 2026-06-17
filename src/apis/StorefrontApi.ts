@@ -75,6 +75,12 @@ import {
     EmailCommseqEmailsResponse,
     EmailCommseqEmailsResponseFromJSON,
     EmailCommseqEmailsResponseToJSON,
+    EmailCommseqEnrollmentRequest,
+    EmailCommseqEnrollmentRequestFromJSON,
+    EmailCommseqEnrollmentRequestToJSON,
+    EmailCommseqEnrollmentResponse,
+    EmailCommseqEnrollmentResponseFromJSON,
+    EmailCommseqEnrollmentResponseToJSON,
     EmailCommseqPostcard,
     EmailCommseqPostcardFromJSON,
     EmailCommseqPostcardToJSON,
@@ -593,6 +599,12 @@ export interface DeleteTwilioAccountRequest {
 
 export interface DuplicateLibraryItemRequest {
     libraryItemOid: number;
+}
+
+export interface EnrollCommseqCustomerRequest {
+    storefrontOid: number;
+    commseqUuid: string;
+    emailCommseqEnrollmentRequest: EmailCommseqEnrollmentRequest;
 }
 
 export interface FavoriteScreenRecordingRequest {
@@ -1819,6 +1831,24 @@ export interface StorefrontApiInterface {
      * Duplicate library item.
      */
     duplicateLibraryItem(requestParameters: DuplicateLibraryItemRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<LibraryItemResponse>;
+
+    /**
+     * Enrolls a single real customer (by email) into the communication sequence.  A customer who is already enrolled will not be enrolled a second time. 
+     * @summary Enroll a customer into a communication sequence
+     * @param {number} storefrontOid 
+     * @param {string} commseqUuid 
+     * @param {EmailCommseqEnrollmentRequest} emailCommseqEnrollmentRequest Commseq enrollment request
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof StorefrontApiInterface
+     */
+    enrollCommseqCustomerRaw(requestParameters: EnrollCommseqCustomerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EmailCommseqEnrollmentResponse>>;
+
+    /**
+     * Enrolls a single real customer (by email) into the communication sequence.  A customer who is already enrolled will not be enrolled a second time. 
+     * Enroll a customer into a communication sequence
+     */
+    enrollCommseqCustomer(requestParameters: EnrollCommseqCustomerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EmailCommseqEnrollmentResponse>;
 
     /**
      * Update favorite flag on screen recording 
@@ -5610,6 +5640,62 @@ export class StorefrontApi extends runtime.BaseAPI implements StorefrontApiInter
      */
     async duplicateLibraryItem(requestParameters: DuplicateLibraryItemRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<LibraryItemResponse> {
         const response = await this.duplicateLibraryItemRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Enrolls a single real customer (by email) into the communication sequence.  A customer who is already enrolled will not be enrolled a second time. 
+     * Enroll a customer into a communication sequence
+     */
+    async enrollCommseqCustomerRaw(requestParameters: EnrollCommseqCustomerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EmailCommseqEnrollmentResponse>> {
+        if (requestParameters.storefrontOid === null || requestParameters.storefrontOid === undefined) {
+            throw new runtime.RequiredError('storefrontOid','Required parameter requestParameters.storefrontOid was null or undefined when calling enrollCommseqCustomer.');
+        }
+
+        if (requestParameters.commseqUuid === null || requestParameters.commseqUuid === undefined) {
+            throw new runtime.RequiredError('commseqUuid','Required parameter requestParameters.commseqUuid was null or undefined when calling enrollCommseqCustomer.');
+        }
+
+        if (requestParameters.emailCommseqEnrollmentRequest === null || requestParameters.emailCommseqEnrollmentRequest === undefined) {
+            throw new runtime.RequiredError('emailCommseqEnrollmentRequest','Required parameter requestParameters.emailCommseqEnrollmentRequest was null or undefined when calling enrollCommseqCustomer.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-browser-key"] = this.configuration.apiKey("x-ultracart-browser-key"); // ultraCartBrowserApiKey authentication
+        }
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", ["storefront_write"]);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/storefront/{storefront_oid}/email/commseqs/{commseq_uuid}/enroll`.replace(`{${"storefront_oid"}}`, encodeURIComponent(String(requestParameters.storefrontOid))).replace(`{${"commseq_uuid"}}`, encodeURIComponent(String(requestParameters.commseqUuid))),
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: EmailCommseqEnrollmentRequestToJSON(requestParameters.emailCommseqEnrollmentRequest),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => EmailCommseqEnrollmentResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Enrolls a single real customer (by email) into the communication sequence.  A customer who is already enrolled will not be enrolled a second time. 
+     * Enroll a customer into a communication sequence
+     */
+    async enrollCommseqCustomer(requestParameters: EnrollCommseqCustomerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EmailCommseqEnrollmentResponse> {
+        const response = await this.enrollCommseqCustomerRaw(requestParameters, initOverrides);
         return await response.value();
     }
 

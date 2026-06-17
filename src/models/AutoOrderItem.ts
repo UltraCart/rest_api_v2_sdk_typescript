@@ -105,6 +105,18 @@ export interface AutoOrderItem {
      */
     calculated_next_shipment_dts?: string;
     /**
+     * Date/time this item was cancelled (companion to cancel_reason).  On update, null leaves the existing value unchanged; pass an empty string to clear it.
+     * @type {string}
+     * @memberof AutoOrderItem
+     */
+    cancel_dts?: string;
+    /**
+     * Reason this item was cancelled, captured when the item was cancelled by the customer or merchant.  On update, null leaves the existing value unchanged; pass an empty string to clear it.
+     * @type {string}
+     * @memberof AutoOrderItem
+     */
+    cancel_reason?: string;
+    /**
      * Date/time of the first order of this item.  Null if item added to auto order and has not been rebilled yet.
      * @type {string}
      * @memberof AutoOrderItem
@@ -287,6 +299,8 @@ export function AutoOrderItemFromJSONTyped(json: any, ignoreDiscriminator: boole
         'arbitrary_unit_cost_remaining_orders': !exists(json, 'arbitrary_unit_cost_remaining_orders') ? undefined : json['arbitrary_unit_cost_remaining_orders'],
         'auto_order_item_oid': !exists(json, 'auto_order_item_oid') ? undefined : json['auto_order_item_oid'],
         'calculated_next_shipment_dts': !exists(json, 'calculated_next_shipment_dts') ? undefined : json['calculated_next_shipment_dts'],
+        'cancel_dts': !exists(json, 'cancel_dts') ? undefined : json['cancel_dts'],
+        'cancel_reason': !exists(json, 'cancel_reason') ? undefined : json['cancel_reason'],
         'first_order_dts': !exists(json, 'first_order_dts') ? undefined : json['first_order_dts'],
         'frequency': !exists(json, 'frequency') ? undefined : json['frequency'],
         'future_schedules': !exists(json, 'future_schedules') ? undefined : ((json['future_schedules'] as Array<any>).map(AutoOrderItemFutureScheduleFromJSON)),
@@ -329,6 +343,8 @@ export function AutoOrderItemToJSON(value?: AutoOrderItem | null): any {
         'arbitrary_unit_cost_remaining_orders': value.arbitrary_unit_cost_remaining_orders,
         'auto_order_item_oid': value.auto_order_item_oid,
         'calculated_next_shipment_dts': value.calculated_next_shipment_dts,
+        'cancel_dts': value.cancel_dts,
+        'cancel_reason': value.cancel_reason,
         'first_order_dts': value.first_order_dts,
         'frequency': value.frequency,
         'future_schedules': value.future_schedules === undefined ? undefined : ((value.future_schedules as Array<any>).map(AutoOrderItemFutureScheduleToJSON)),

@@ -466,6 +466,8 @@ export * from './EmailCommseqEmailSendTestRequest';
 export * from './EmailCommseqEmailSendTestResponse';
 export * from './EmailCommseqEmailsRequest';
 export * from './EmailCommseqEmailsResponse';
+export * from './EmailCommseqEnrollmentRequest';
+export * from './EmailCommseqEnrollmentResponse';
 export * from './EmailCommseqPostcard';
 export * from './EmailCommseqPostcardResponse';
 export * from './EmailCommseqPostcardSendTestRequest';

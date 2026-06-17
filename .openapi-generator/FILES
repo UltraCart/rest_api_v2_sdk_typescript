@@ -492,6 +492,8 @@ src/models/EmailCommseqEmailSendTestRequest.ts
 src/models/EmailCommseqEmailSendTestResponse.ts
 src/models/EmailCommseqEmailsRequest.ts
 src/models/EmailCommseqEmailsResponse.ts
+src/models/EmailCommseqEnrollmentRequest.ts
+src/models/EmailCommseqEnrollmentResponse.ts
 src/models/EmailCommseqPostcard.ts
 src/models/EmailCommseqPostcardResponse.ts
 src/models/EmailCommseqPostcardSendTestRequest.ts
