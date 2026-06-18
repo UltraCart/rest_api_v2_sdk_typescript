@@ -15,6 +15,9 @@
 
 import * as runtime from '../runtime';
 import {
+    Affiliate,
+    AffiliateFromJSON,
+    AffiliateToJSON,
     AffiliateClickQuery,
     AffiliateClickQueryFromJSON,
     AffiliateClickQueryToJSON,
@@ -27,10 +30,35 @@ import {
     AffiliateLedgersResponse,
     AffiliateLedgersResponseFromJSON,
     AffiliateLedgersResponseToJSON,
+    AffiliateQuery,
+    AffiliateQueryFromJSON,
+    AffiliateQueryToJSON,
+    AffiliateResponse,
+    AffiliateResponseFromJSON,
+    AffiliateResponseToJSON,
+    AffiliatesResponse,
+    AffiliatesResponseFromJSON,
+    AffiliatesResponseToJSON,
     ErrorResponse,
     ErrorResponseFromJSON,
     ErrorResponseToJSON,
 } from '../models';
+
+export interface DeleteAffiliateRequest {
+    affiliateOid: number;
+}
+
+export interface GetAffiliateRequest {
+    affiliateOid: number;
+    expand?: string;
+}
+
+export interface GetAffiliatesByQueryRequest {
+    affiliateQuery: AffiliateQuery;
+    limit?: number;
+    offset?: number;
+    sort?: string;
+}
 
 export interface GetClicksByQueryRequest {
     clickQuery: AffiliateClickQuery;
@@ -46,6 +74,17 @@ export interface GetLedgersByQueryRequest {
     expand?: string;
 }
 
+export interface InsertAffiliateRequest {
+    affiliate: Affiliate;
+    expand?: string;
+}
+
+export interface UpdateAffiliateRequest {
+    affiliateOid: number;
+    affiliate: Affiliate;
+    expand?: string;
+}
+
 /**
  * AffiliateApi - interface
  * 
@@ -53,6 +92,58 @@ export interface GetLedgersByQueryRequest {
  * @interface AffiliateApiInterface
  */
 export interface AffiliateApiInterface {
+    /**
+     * Delete an affiliate on the UltraCart account.  The affiliate is disabled within the active affiliate program; their ledger and click history is preserved. 
+     * @summary Delete an affiliate
+     * @param {number} affiliateOid The affiliate oid to delete.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AffiliateApiInterface
+     */
+    deleteAffiliateRaw(requestParameters: DeleteAffiliateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+
+    /**
+     * Delete an affiliate on the UltraCart account.  The affiliate is disabled within the active affiliate program; their ledger and click history is preserved. 
+     * Delete an affiliate
+     */
+    deleteAffiliate(requestParameters: DeleteAffiliateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+
+    /**
+     * Retrieves a single affiliate using the specified affiliate oid. 
+     * @summary Retrieve an affiliate
+     * @param {number} affiliateOid The affiliate oid to retrieve.
+     * @param {string} [expand] The object expansion to perform on the result.  See documentation for examples
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AffiliateApiInterface
+     */
+    getAffiliateRaw(requestParameters: GetAffiliateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AffiliateResponse>>;
+
+    /**
+     * Retrieves a single affiliate using the specified affiliate oid. 
+     * Retrieve an affiliate
+     */
+    getAffiliate(requestParameters: GetAffiliateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AffiliateResponse>;
+
+    /**
+     * Retrieves a group of affiliates from the account based on a query object.  If no parameters are specified, the API call will fail with a bad request error.  Always specify some parameters to limit the scope of the affiliates returned to ones you are truly interested in.  You will need to make multiple API calls in order to retrieve the entire result set since this API performs result set pagination. 
+     * @summary Retrieve affiliates
+     * @param {AffiliateQuery} affiliateQuery Affiliate query
+     * @param {number} [limit] The maximum number of records to return on this one API call. (Maximum 200)
+     * @param {number} [offset] Pagination of the record set.  Offset is a zero based index.
+     * @param {string} [sort] The sort order of the affiliates.  See Sorting documentation for examples of using multiple values and sorting by ascending and descending.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AffiliateApiInterface
+     */
+    getAffiliatesByQueryRaw(requestParameters: GetAffiliatesByQueryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AffiliatesResponse>>;
+
+    /**
+     * Retrieves a group of affiliates from the account based on a query object.  If no parameters are specified, the API call will fail with a bad request error.  Always specify some parameters to limit the scope of the affiliates returned to ones you are truly interested in.  You will need to make multiple API calls in order to retrieve the entire result set since this API performs result set pagination. 
+     * Retrieve affiliates
+     */
+    getAffiliatesByQuery(requestParameters: GetAffiliatesByQueryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AffiliatesResponse>;
+
     /**
      * Retrieves a group of clicks from the account based on a query object.  If no parameters are specified, the API call will fail with a bad request error.  Always specify some parameters to limit the scope of the clicks returned to ones you are truly interested in.  You will need to make multiple API calls in order to retrieve the entire result set since this API performs result set pagination. 
      * @summary Retrieve clicks
@@ -91,12 +182,188 @@ export interface AffiliateApiInterface {
      */
     getLedgersByQuery(requestParameters: GetLedgersByQueryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AffiliateLedgersResponse>;
 
+    /**
+     * Insert an affiliate on the UltraCart account.  The affiliate is created within the merchant\'s active affiliate program. 
+     * @summary Insert an affiliate
+     * @param {Affiliate} affiliate Affiliate to insert
+     * @param {string} [expand] The object expansion to perform on the result.  See documentation for examples
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AffiliateApiInterface
+     */
+    insertAffiliateRaw(requestParameters: InsertAffiliateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AffiliateResponse>>;
+
+    /**
+     * Insert an affiliate on the UltraCart account.  The affiliate is created within the merchant\'s active affiliate program. 
+     * Insert an affiliate
+     */
+    insertAffiliate(requestParameters: InsertAffiliateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AffiliateResponse>;
+
+    /**
+     * Update an affiliate on the UltraCart account.  This is a full replacement of the affiliate; omitted fields are reset to their defaults, with the exception of password which is only changed when supplied. 
+     * @summary Update an affiliate
+     * @param {number} affiliateOid The affiliate oid to update.
+     * @param {Affiliate} affiliate Affiliate to update
+     * @param {string} [expand] The object expansion to perform on the result.  See documentation for examples
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AffiliateApiInterface
+     */
+    updateAffiliateRaw(requestParameters: UpdateAffiliateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AffiliateResponse>>;
+
+    /**
+     * Update an affiliate on the UltraCart account.  This is a full replacement of the affiliate; omitted fields are reset to their defaults, with the exception of password which is only changed when supplied. 
+     * Update an affiliate
+     */
+    updateAffiliate(requestParameters: UpdateAffiliateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AffiliateResponse>;
+
 }
 
 /**
  * 
  */
 export class AffiliateApi extends runtime.BaseAPI implements AffiliateApiInterface {
+
+    /**
+     * Delete an affiliate on the UltraCart account.  The affiliate is disabled within the active affiliate program; their ledger and click history is preserved. 
+     * Delete an affiliate
+     */
+    async deleteAffiliateRaw(requestParameters: DeleteAffiliateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        if (requestParameters.affiliateOid === null || requestParameters.affiliateOid === undefined) {
+            throw new runtime.RequiredError('affiliateOid','Required parameter requestParameters.affiliateOid was null or undefined when calling deleteAffiliate.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", ["affiliate_write"]);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/affiliate/affiliates/{affiliate_oid}`.replace(`{${"affiliate_oid"}}`, encodeURIComponent(String(requestParameters.affiliateOid))),
+            method: 'DELETE',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     * Delete an affiliate on the UltraCart account.  The affiliate is disabled within the active affiliate program; their ledger and click history is preserved. 
+     * Delete an affiliate
+     */
+    async deleteAffiliate(requestParameters: DeleteAffiliateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.deleteAffiliateRaw(requestParameters, initOverrides);
+    }
+
+    /**
+     * Retrieves a single affiliate using the specified affiliate oid. 
+     * Retrieve an affiliate
+     */
+    async getAffiliateRaw(requestParameters: GetAffiliateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AffiliateResponse>> {
+        if (requestParameters.affiliateOid === null || requestParameters.affiliateOid === undefined) {
+            throw new runtime.RequiredError('affiliateOid','Required parameter requestParameters.affiliateOid was null or undefined when calling getAffiliate.');
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters.expand !== undefined) {
+            queryParameters['_expand'] = requestParameters.expand;
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", ["affiliate_read"]);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/affiliate/affiliates/{affiliate_oid}`.replace(`{${"affiliate_oid"}}`, encodeURIComponent(String(requestParameters.affiliateOid))),
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => AffiliateResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Retrieves a single affiliate using the specified affiliate oid. 
+     * Retrieve an affiliate
+     */
+    async getAffiliate(requestParameters: GetAffiliateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AffiliateResponse> {
+        const response = await this.getAffiliateRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Retrieves a group of affiliates from the account based on a query object.  If no parameters are specified, the API call will fail with a bad request error.  Always specify some parameters to limit the scope of the affiliates returned to ones you are truly interested in.  You will need to make multiple API calls in order to retrieve the entire result set since this API performs result set pagination. 
+     * Retrieve affiliates
+     */
+    async getAffiliatesByQueryRaw(requestParameters: GetAffiliatesByQueryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AffiliatesResponse>> {
+        if (requestParameters.affiliateQuery === null || requestParameters.affiliateQuery === undefined) {
+            throw new runtime.RequiredError('affiliateQuery','Required parameter requestParameters.affiliateQuery was null or undefined when calling getAffiliatesByQuery.');
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters.limit !== undefined) {
+            queryParameters['_limit'] = requestParameters.limit;
+        }
+
+        if (requestParameters.offset !== undefined) {
+            queryParameters['_offset'] = requestParameters.offset;
+        }
+
+        if (requestParameters.sort !== undefined) {
+            queryParameters['_sort'] = requestParameters.sort;
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", ["affiliate_read"]);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/affiliate/affiliates/query`,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: AffiliateQueryToJSON(requestParameters.affiliateQuery),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => AffiliatesResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Retrieves a group of affiliates from the account based on a query object.  If no parameters are specified, the API call will fail with a bad request error.  Always specify some parameters to limit the scope of the affiliates returned to ones you are truly interested in.  You will need to make multiple API calls in order to retrieve the entire result set since this API performs result set pagination. 
+     * Retrieve affiliates
+     */
+    async getAffiliatesByQuery(requestParameters: GetAffiliatesByQueryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AffiliatesResponse> {
+        const response = await this.getAffiliatesByQueryRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
 
     /**
      * Retrieves a group of clicks from the account based on a query object.  If no parameters are specified, the API call will fail with a bad request error.  Always specify some parameters to limit the scope of the clicks returned to ones you are truly interested in.  You will need to make multiple API calls in order to retrieve the entire result set since this API performs result set pagination. 
@@ -207,6 +474,106 @@ export class AffiliateApi extends runtime.BaseAPI implements AffiliateApiInterfa
      */
     async getLedgersByQuery(requestParameters: GetLedgersByQueryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AffiliateLedgersResponse> {
         const response = await this.getLedgersByQueryRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Insert an affiliate on the UltraCart account.  The affiliate is created within the merchant\'s active affiliate program. 
+     * Insert an affiliate
+     */
+    async insertAffiliateRaw(requestParameters: InsertAffiliateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AffiliateResponse>> {
+        if (requestParameters.affiliate === null || requestParameters.affiliate === undefined) {
+            throw new runtime.RequiredError('affiliate','Required parameter requestParameters.affiliate was null or undefined when calling insertAffiliate.');
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters.expand !== undefined) {
+            queryParameters['_expand'] = requestParameters.expand;
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json; charset=UTF-8';
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", ["affiliate_write"]);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/affiliate/affiliates`,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: AffiliateToJSON(requestParameters.affiliate),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => AffiliateResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Insert an affiliate on the UltraCart account.  The affiliate is created within the merchant\'s active affiliate program. 
+     * Insert an affiliate
+     */
+    async insertAffiliate(requestParameters: InsertAffiliateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AffiliateResponse> {
+        const response = await this.insertAffiliateRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Update an affiliate on the UltraCart account.  This is a full replacement of the affiliate; omitted fields are reset to their defaults, with the exception of password which is only changed when supplied. 
+     * Update an affiliate
+     */
+    async updateAffiliateRaw(requestParameters: UpdateAffiliateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AffiliateResponse>> {
+        if (requestParameters.affiliateOid === null || requestParameters.affiliateOid === undefined) {
+            throw new runtime.RequiredError('affiliateOid','Required parameter requestParameters.affiliateOid was null or undefined when calling updateAffiliate.');
+        }
+
+        if (requestParameters.affiliate === null || requestParameters.affiliate === undefined) {
+            throw new runtime.RequiredError('affiliate','Required parameter requestParameters.affiliate was null or undefined when calling updateAffiliate.');
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters.expand !== undefined) {
+            queryParameters['_expand'] = requestParameters.expand;
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json; charset=UTF-8';
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", ["affiliate_write"]);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/affiliate/affiliates/{affiliate_oid}`.replace(`{${"affiliate_oid"}}`, encodeURIComponent(String(requestParameters.affiliateOid))),
+            method: 'PUT',
+            headers: headerParameters,
+            query: queryParameters,
+            body: AffiliateToJSON(requestParameters.affiliate),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => AffiliateResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Update an affiliate on the UltraCart account.  This is a full replacement of the affiliate; omitted fields are reset to their defaults, with the exception of password which is only changed when supplied. 
+     * Update an affiliate
+     */
+    async updateAffiliate(requestParameters: UpdateAffiliateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AffiliateResponse> {
+        const response = await this.updateAffiliateRaw(requestParameters, initOverrides);
         return await response.value();
     }
 

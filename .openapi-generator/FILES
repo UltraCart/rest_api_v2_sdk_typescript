@@ -38,6 +38,8 @@ src/models/Activity.ts
 src/models/AddLibraryItemRequest.ts
 src/models/AdjustInternalCertificateRequest.ts
 src/models/AdjustInternalCertificateResponse.ts
+src/models/Affiliate.ts
+src/models/AffiliateAttribute.ts
 src/models/AffiliateClick.ts
 src/models/AffiliateClickQuery.ts
 src/models/AffiliateClicksResponse.ts
@@ -45,6 +47,11 @@ src/models/AffiliateLedger.ts
 src/models/AffiliateLedgerQuery.ts
 src/models/AffiliateLedgersResponse.ts
 src/models/AffiliateLink.ts
+src/models/AffiliateMarketingStrategy.ts
+src/models/AffiliateQuery.ts
+src/models/AffiliateResponse.ts
+src/models/AffiliateTierRelationship.ts
+src/models/AffiliatesResponse.ts
 src/models/AgentSummary.ts
 src/models/ApiUserApplicationProfile.ts
 src/models/ApplyLibraryItemRequest.ts
