@@ -49,6 +49,12 @@ import {
     WarningFromJSONTyped,
     WarningToJSON,
 } from './Warning';
+import {
+    ZohoDeskTicketSummary,
+    ZohoDeskTicketSummaryFromJSON,
+    ZohoDeskTicketSummaryFromJSONTyped,
+    ZohoDeskTicketSummaryToJSON,
+} from './ZohoDeskTicketSummary';
 
 /**
  * 
@@ -98,6 +104,12 @@ export interface ConversationPbxCustomerSnapshotResponse {
      * @memberof ConversationPbxCustomerSnapshotResponse
      */
     warning?: Warning;
+    /**
+     * 
+     * @type {Array<ZohoDeskTicketSummary>}
+     * @memberof ConversationPbxCustomerSnapshotResponse
+     */
+    zoho_desk_tickets?: Array<ZohoDeskTicketSummary>;
 }
 
 
@@ -128,6 +140,7 @@ export function ConversationPbxCustomerSnapshotResponseFromJSONTyped(json: any, 
         'orders': !exists(json, 'orders') ? undefined : ((json['orders'] as Array<any>).map(OrderFromJSON)),
         'success': !exists(json, 'success') ? undefined : json['success'],
         'warning': !exists(json, 'warning') ? undefined : WarningFromJSON(json['warning']),
+        'zoho_desk_tickets': !exists(json, 'zoho_desk_tickets') ? undefined : ((json['zoho_desk_tickets'] as Array<any>).map(ZohoDeskTicketSummaryFromJSON)),
     };
 }
 
@@ -147,6 +160,7 @@ export function ConversationPbxCustomerSnapshotResponseToJSON(value?: Conversati
         'orders': value.orders === undefined ? undefined : ((value.orders as Array<any>).map(OrderToJSON)),
         'success': value.success,
         'warning': WarningToJSON(value.warning),
+        'zoho_desk_tickets': value.zoho_desk_tickets === undefined ? undefined : ((value.zoho_desk_tickets as Array<any>).map(ZohoDeskTicketSummaryToJSON)),
     };
 }
 

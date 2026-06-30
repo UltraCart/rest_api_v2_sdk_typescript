@@ -1013,3 +1013,4 @@ export * from './WorkflowTasksResponse';
 export * from './WorkflowUser';
 export * from './WorkflowUserResponse';
 export * from './WorkflowUsersResponse';
+export * from './ZohoDeskTicketSummary';

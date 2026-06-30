@@ -81,6 +81,12 @@ export interface ConversationPbxCustomerSnapshotRequest {
      */
     search_linked_accounts?: boolean;
     /**
+     * 
+     * @type {boolean}
+     * @memberof ConversationPbxCustomerSnapshotRequest
+     */
+    search_zoho_desk_tickets?: boolean;
+    /**
      * Indicates if API call was successful
      * @type {boolean}
      * @memberof ConversationPbxCustomerSnapshotRequest
@@ -122,6 +128,7 @@ export function ConversationPbxCustomerSnapshotRequestFromJSONTyped(json: any, i
         'order_expand': !exists(json, 'order_expand') ? undefined : json['order_expand'],
         'phone_number': !exists(json, 'phone_number') ? undefined : json['phone_number'],
         'search_linked_accounts': !exists(json, 'search_linked_accounts') ? undefined : json['search_linked_accounts'],
+        'search_zoho_desk_tickets': !exists(json, 'search_zoho_desk_tickets') ? undefined : json['search_zoho_desk_tickets'],
         'success': !exists(json, 'success') ? undefined : json['success'],
         'warning': !exists(json, 'warning') ? undefined : WarningFromJSON(json['warning']),
     };
@@ -143,6 +150,7 @@ export function ConversationPbxCustomerSnapshotRequestToJSON(value?: Conversatio
         'order_expand': value.order_expand,
         'phone_number': value.phone_number,
         'search_linked_accounts': value.search_linked_accounts,
+        'search_zoho_desk_tickets': value.search_zoho_desk_tickets,
         'success': value.success,
         'warning': WarningToJSON(value.warning),
     };
