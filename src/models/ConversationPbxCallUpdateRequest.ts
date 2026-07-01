@@ -31,6 +31,18 @@ export interface ConversationPbxCallUpdateRequest {
      * @memberof ConversationPbxCallUpdateRequest
      */
     notes?: string;
+    /**
+     * Existing zoho desk ticket id to associate this call with.
+     * @type {string}
+     * @memberof ConversationPbxCallUpdateRequest
+     */
+    zoho_desk_ticket_id?: string;
+    /**
+     * Existing zoho desk ticket URL
+     * @type {string}
+     * @memberof ConversationPbxCallUpdateRequest
+     */
+    zoho_desk_ticket_url?: string;
 }
 
 
@@ -56,6 +68,8 @@ export function ConversationPbxCallUpdateRequestFromJSONTyped(json: any, ignoreD
         
         'finalize': !exists(json, 'finalize') ? undefined : json['finalize'],
         'notes': !exists(json, 'notes') ? undefined : json['notes'],
+        'zoho_desk_ticket_id': !exists(json, 'zoho_desk_ticket_id') ? undefined : json['zoho_desk_ticket_id'],
+        'zoho_desk_ticket_url': !exists(json, 'zoho_desk_ticket_url') ? undefined : json['zoho_desk_ticket_url'],
     };
 }
 
@@ -70,6 +84,8 @@ export function ConversationPbxCallUpdateRequestToJSON(value?: ConversationPbxCa
         
         'finalize': value.finalize,
         'notes': value.notes,
+        'zoho_desk_ticket_id': value.zoho_desk_ticket_id,
+        'zoho_desk_ticket_url': value.zoho_desk_ticket_url,
     };
 }
 
