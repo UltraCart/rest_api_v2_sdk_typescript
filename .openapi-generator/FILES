@@ -4,6 +4,7 @@ README.md
 package.json
 src/apis/AffiliateApi.ts
 src/apis/AutoOrderApi.ts
+src/apis/BulkApi.ts
 src/apis/ChannelPartnerApi.ts
 src/apis/CheckoutApi.ts
 src/apis/ConversationApi.ts
@@ -85,6 +86,13 @@ src/models/Browser.ts
 src/models/BrowserDevice.ts
 src/models/BrowserOS.ts
 src/models/BrowserUserAgent.ts
+src/models/BulkJob.ts
+src/models/BulkJobRequest.ts
+src/models/BulkJobResponse.ts
+src/models/BulkJobsResponse.ts
+src/models/BulkRecord.ts
+src/models/BulkRecordsResponse.ts
+src/models/BulkUploadUrlResponse.ts
 src/models/Cart.ts
 src/models/CartAffiliate.ts
 src/models/CartAffirmCheckoutResponse.ts
