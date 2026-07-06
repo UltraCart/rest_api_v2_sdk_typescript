@@ -138,7 +138,8 @@ export interface ConversationMessage {
 export const ConversationMessageTypeEnum = {
     Message: 'message',
     Notice: 'notice',
-    EngagementPrompt: 'engagement prompt'
+    EngagementPrompt: 'engagement prompt',
+    ToolCall: 'tool call'
 } as const;
 export type ConversationMessageTypeEnum = typeof ConversationMessageTypeEnum[keyof typeof ConversationMessageTypeEnum];
 
