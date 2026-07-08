@@ -44,6 +44,12 @@ export interface AnrokConfig {
      */
     last_test_dts?: string;
     /**
+     * Anrok Product ID used to classify shipping/handling charges; must be created in Anrok and mapped to the Shipping cost tax category
+     * @type {string}
+     * @memberof AnrokConfig
+     */
+    shipping_product_id?: string;
+    /**
      * Test results of the last connection test to Anrok
      * @type {string}
      * @memberof AnrokConfig
@@ -76,6 +82,7 @@ export function AnrokConfigFromJSONTyped(json: any, ignoreDiscriminator: boolean
         'default_product_id': !exists(json, 'default_product_id') ? undefined : json['default_product_id'],
         'estimate_only': !exists(json, 'estimate_only') ? undefined : json['estimate_only'],
         'last_test_dts': !exists(json, 'last_test_dts') ? undefined : json['last_test_dts'],
+        'shipping_product_id': !exists(json, 'shipping_product_id') ? undefined : json['shipping_product_id'],
         'test_results': !exists(json, 'test_results') ? undefined : json['test_results'],
     };
 }
@@ -93,6 +100,7 @@ export function AnrokConfigToJSON(value?: AnrokConfig | null): any {
         'default_product_id': value.default_product_id,
         'estimate_only': value.estimate_only,
         'last_test_dts': value.last_test_dts,
+        'shipping_product_id': value.shipping_product_id,
         'test_results': value.test_results,
     };
 }

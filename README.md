@@ -1,12 +1,12 @@
 # UltraCart Typescript SDK
-## ultracart_rest_api_v2_typescript@4.1.113
+## ultracart_rest_api_v2_typescript@4.1.114
 
 Every API method call has a sample for every language SDK.  See https://github.com/UltraCart/sdk_samples
 
 Installation
 
 ```
-npm install ultracart_rest_api_v2_typescript@4.1.113 --save
+npm install ultracart_rest_api_v2_typescript@4.1.114 --save
 ```
 
 ```typescript
@@ -85,6 +85,7 @@ Not every change is committed to every SDK.
 
 | Version | Date | Comments |
 | --: | :-: | --- |
+| 4.1.114 | 07/08/2026 | tax - anrok tax provider |
 | 4.1.113 | 07/08/2026 | tax - anrok tax provider |
 | 4.1.112 | 07/08/2026 | tax - added anrok tax provider |
 | 4.1.111 | 07/08/2026 | storefront - additional email dispatch log methods |
