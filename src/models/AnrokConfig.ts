@@ -26,6 +26,12 @@ export interface AnrokConfig {
      */
     api_key?: string;
     /**
+     * Default Anrok Product ID, used for cart items that do not have their own Anrok Product ID assigned
+     * @type {string}
+     * @memberof AnrokConfig
+     */
+    default_product_id?: string;
+    /**
      * True if this Anrok configuration is to estimate taxes only and not report placed orders to Anrok
      * @type {boolean}
      * @memberof AnrokConfig
@@ -67,6 +73,7 @@ export function AnrokConfigFromJSONTyped(json: any, ignoreDiscriminator: boolean
     return {
         
         'api_key': !exists(json, 'api_key') ? undefined : json['api_key'],
+        'default_product_id': !exists(json, 'default_product_id') ? undefined : json['default_product_id'],
         'estimate_only': !exists(json, 'estimate_only') ? undefined : json['estimate_only'],
         'last_test_dts': !exists(json, 'last_test_dts') ? undefined : json['last_test_dts'],
         'test_results': !exists(json, 'test_results') ? undefined : json['test_results'],
@@ -83,6 +90,7 @@ export function AnrokConfigToJSON(value?: AnrokConfig | null): any {
     return {
         
         'api_key': value.api_key,
+        'default_product_id': value.default_product_id,
         'estimate_only': value.estimate_only,
         'last_test_dts': value.last_test_dts,
         'test_results': value.test_results,
