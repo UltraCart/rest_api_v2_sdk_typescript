@@ -1,12 +1,12 @@
 # UltraCart Typescript SDK
-## ultracart_rest_api_v2_typescript@4.1.110
+## ultracart_rest_api_v2_typescript@4.1.111
 
 Every API method call has a sample for every language SDK.  See https://github.com/UltraCart/sdk_samples
 
 Installation
 
 ```
-npm install ultracart_rest_api_v2_typescript@4.1.110 --save
+npm install ultracart_rest_api_v2_typescript@4.1.111 --save
 ```
 
 ```typescript
@@ -85,6 +85,7 @@ Not every change is committed to every SDK.
 
 | Version | Date | Comments |
 | --: | :-: | --- |
+| 4.1.111 | 07/08/2026 | storefront - additional email dispatch log methods |
 | 4.1.110 | 07/06/2026 | Conversation - CRM message type constant for tool call |
 | 4.1.109 | 07/03/2026 | bulk import endpoints (alpha) |
 | 4.1.108 | 07/03/2026 | bulk import endpoints (alpha) |

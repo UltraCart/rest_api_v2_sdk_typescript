@@ -135,6 +135,9 @@ import {
     EmailCustomerEditorUrlResponse,
     EmailCustomerEditorUrlResponseFromJSON,
     EmailCustomerEditorUrlResponseToJSON,
+    EmailCustomerLookupResponse,
+    EmailCustomerLookupResponseFromJSON,
+    EmailCustomerLookupResponseToJSON,
     EmailCustomersResponse,
     EmailCustomersResponseFromJSON,
     EmailCustomersResponseToJSON,
@@ -144,6 +147,12 @@ import {
     EmailDashboardStatsResponse,
     EmailDashboardStatsResponseFromJSON,
     EmailDashboardStatsResponseToJSON,
+    EmailDispatchLogDetailResponse,
+    EmailDispatchLogDetailResponseFromJSON,
+    EmailDispatchLogDetailResponseToJSON,
+    EmailDispatchLogsResponse,
+    EmailDispatchLogsResponseFromJSON,
+    EmailDispatchLogsResponseToJSON,
     EmailDomain,
     EmailDomainFromJSON,
     EmailDomainToJSON,
@@ -720,6 +729,16 @@ export interface GetEmailCommseqsRequest {
     storefrontOid: number;
 }
 
+export interface GetEmailCustomerDispatchLogsRequest {
+    storefrontOid: number;
+    emailCustomerUuid: string;
+    since?: string;
+    until?: string;
+    pageNumber?: number;
+    pageSize?: number;
+    scanForward?: boolean;
+}
+
 export interface GetEmailCustomerEditorUrlRequest {
     storefrontOid: number;
     emailCustomerUuid: string;
@@ -740,6 +759,11 @@ export interface GetEmailDashboardActivityRequest {
 export interface GetEmailDashboardStatsRequest {
     storefrontOid: number;
     days?: number;
+}
+
+export interface GetEmailDispatchLogCustomerLookupRequest {
+    storefrontOid: number;
+    email?: string;
 }
 
 export interface GetEmailDispatchLogsRequest {
@@ -899,6 +923,24 @@ export interface GetEmailSmsOrdersRequest {
     commseqUuid: string;
     commseqStepUuid: string;
     days?: number;
+}
+
+export interface GetEmailStepDispatchLogDetailRequest {
+    storefrontOid: number;
+    commseqUuid: string;
+    commseqStepUuid: string;
+    logDts?: string;
+    espCustomerUuid?: string;
+}
+
+export interface GetEmailStepDispatchLogsRequest {
+    storefrontOid: number;
+    commseqUuid: string;
+    commseqStepUuid: string;
+    since?: string;
+    until?: string;
+    pageNumber?: number;
+    pageSize?: number;
 }
 
 export interface GetEmailTemplateRequest {
@@ -2220,6 +2262,28 @@ export interface StorefrontApiInterface {
     getEmailCommseqs(requestParameters: GetEmailCommseqsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EmailCommseqsResponse>;
 
     /**
+     * Paginated, date-boundable journey of every flow/campaign step a customer moved through (AP1/AP2), time-sorted. Rows are lean; fetch a row\'s detail via getEmailStepDispatchLogDetail. scanForward=false (default) returns recent-first; true returns chronological progression. Page forward until \'more\' is false. 
+     * @summary Get a customer\'s dispatch-log journey across all flows/campaigns
+     * @param {number} storefrontOid 
+     * @param {string} emailCustomerUuid 
+     * @param {string} [since] 
+     * @param {string} [until] 
+     * @param {number} [pageNumber] 
+     * @param {number} [pageSize] 
+     * @param {boolean} [scanForward] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof StorefrontApiInterface
+     */
+    getEmailCustomerDispatchLogsRaw(requestParameters: GetEmailCustomerDispatchLogsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EmailDispatchLogsResponse>>;
+
+    /**
+     * Paginated, date-boundable journey of every flow/campaign step a customer moved through (AP1/AP2), time-sorted. Rows are lean; fetch a row\'s detail via getEmailStepDispatchLogDetail. scanForward=false (default) returns recent-first; true returns chronological progression. Page forward until \'more\' is false. 
+     * Get a customer\'s dispatch-log journey across all flows/campaigns
+     */
+    getEmailCustomerDispatchLogs(requestParameters: GetEmailCustomerDispatchLogsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EmailDispatchLogsResponse>;
+
+    /**
      * 
      * @summary Get customers editor URL
      * @param {number} storefrontOid 
@@ -2284,6 +2348,23 @@ export interface StorefrontApiInterface {
      * Get dashboard stats
      */
     getEmailDashboardStats(requestParameters: GetEmailDashboardStatsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EmailDashboardStatsResponse>;
+
+    /**
+     * Entry-hop resolver for the customer-journey screen (AP0). Returns the esp_customer_uuid for a merchant\'s customer email, or a null uuid when the email is not on file. 
+     * @summary Resolve a customer email to its ESP customer UUID
+     * @param {number} storefrontOid 
+     * @param {string} [email] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof StorefrontApiInterface
+     */
+    getEmailDispatchLogCustomerLookupRaw(requestParameters: GetEmailDispatchLogCustomerLookupRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EmailCustomerLookupResponse>>;
+
+    /**
+     * Entry-hop resolver for the customer-journey screen (AP0). Returns the esp_customer_uuid for a merchant\'s customer email, or a null uuid when the email is not on file. 
+     * Resolve a customer email to its ESP customer UUID
+     */
+    getEmailDispatchLogCustomerLookup(requestParameters: GetEmailDispatchLogCustomerLookupRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EmailCustomerLookupResponse>;
 
     /**
      * 
@@ -2812,6 +2893,48 @@ export interface StorefrontApiInterface {
      * Get email sms orders
      */
     getEmailSmsOrders(requestParameters: GetEmailSmsOrdersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EmailSmsOrdersResponse>;
+
+    /**
+     * Fetches and gunzips the full detail payload of one dispatch-log record (AP5 drill-down), identified by its step plus the log_dts and esp_customer_uuid shown on the list row. 
+     * @summary Get the full detail of a single dispatch-log record
+     * @param {number} storefrontOid 
+     * @param {string} commseqUuid 
+     * @param {string} commseqStepUuid 
+     * @param {string} [logDts] 
+     * @param {string} [espCustomerUuid] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof StorefrontApiInterface
+     */
+    getEmailStepDispatchLogDetailRaw(requestParameters: GetEmailStepDispatchLogDetailRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EmailDispatchLogDetailResponse>>;
+
+    /**
+     * Fetches and gunzips the full detail payload of one dispatch-log record (AP5 drill-down), identified by its step plus the log_dts and esp_customer_uuid shown on the list row. 
+     * Get the full detail of a single dispatch-log record
+     */
+    getEmailStepDispatchLogDetail(requestParameters: GetEmailStepDispatchLogDetailRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EmailDispatchLogDetailResponse>;
+
+    /**
+     * Paginated per-step dispatch activity with 90-day depth (AP3/AP4). Rows are lean, rendered from the DynamoDB keys; fetch a row\'s full detail via getEmailStepDispatchLogDetail. Page forward by incrementing pageNumber until the response \'more\' flag is false. since/until are inclusive ISO-8601 bounds on log_dts. 
+     * @summary Get a paginated, date-boundable dispatch-log feed for a step
+     * @param {number} storefrontOid 
+     * @param {string} commseqUuid 
+     * @param {string} commseqStepUuid 
+     * @param {string} [since] 
+     * @param {string} [until] 
+     * @param {number} [pageNumber] 
+     * @param {number} [pageSize] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof StorefrontApiInterface
+     */
+    getEmailStepDispatchLogsRaw(requestParameters: GetEmailStepDispatchLogsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EmailDispatchLogsResponse>>;
+
+    /**
+     * Paginated per-step dispatch activity with 90-day depth (AP3/AP4). Rows are lean, rendered from the DynamoDB keys; fetch a row\'s full detail via getEmailStepDispatchLogDetail. Page forward by incrementing pageNumber until the response \'more\' flag is false. since/until are inclusive ISO-8601 bounds on log_dts. 
+     * Get a paginated, date-boundable dispatch-log feed for a step
+     */
+    getEmailStepDispatchLogs(requestParameters: GetEmailStepDispatchLogsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EmailDispatchLogsResponse>;
 
     /**
      * 
@@ -6792,6 +6915,75 @@ export class StorefrontApi extends runtime.BaseAPI implements StorefrontApiInter
     }
 
     /**
+     * Paginated, date-boundable journey of every flow/campaign step a customer moved through (AP1/AP2), time-sorted. Rows are lean; fetch a row\'s detail via getEmailStepDispatchLogDetail. scanForward=false (default) returns recent-first; true returns chronological progression. Page forward until \'more\' is false. 
+     * Get a customer\'s dispatch-log journey across all flows/campaigns
+     */
+    async getEmailCustomerDispatchLogsRaw(requestParameters: GetEmailCustomerDispatchLogsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EmailDispatchLogsResponse>> {
+        if (requestParameters.storefrontOid === null || requestParameters.storefrontOid === undefined) {
+            throw new runtime.RequiredError('storefrontOid','Required parameter requestParameters.storefrontOid was null or undefined when calling getEmailCustomerDispatchLogs.');
+        }
+
+        if (requestParameters.emailCustomerUuid === null || requestParameters.emailCustomerUuid === undefined) {
+            throw new runtime.RequiredError('emailCustomerUuid','Required parameter requestParameters.emailCustomerUuid was null or undefined when calling getEmailCustomerDispatchLogs.');
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters.since !== undefined) {
+            queryParameters['since'] = requestParameters.since;
+        }
+
+        if (requestParameters.until !== undefined) {
+            queryParameters['until'] = requestParameters.until;
+        }
+
+        if (requestParameters.pageNumber !== undefined) {
+            queryParameters['pageNumber'] = requestParameters.pageNumber;
+        }
+
+        if (requestParameters.pageSize !== undefined) {
+            queryParameters['pageSize'] = requestParameters.pageSize;
+        }
+
+        if (requestParameters.scanForward !== undefined) {
+            queryParameters['scanForward'] = requestParameters.scanForward;
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-browser-key"] = this.configuration.apiKey("x-ultracart-browser-key"); // ultraCartBrowserApiKey authentication
+        }
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", ["storefront_read"]);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/storefront/{storefront_oid}/email/customers/{email_customer_uuid}/dispatch_logs`.replace(`{${"storefront_oid"}}`, encodeURIComponent(String(requestParameters.storefrontOid))).replace(`{${"email_customer_uuid"}}`, encodeURIComponent(String(requestParameters.emailCustomerUuid))),
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => EmailDispatchLogsResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Paginated, date-boundable journey of every flow/campaign step a customer moved through (AP1/AP2), time-sorted. Rows are lean; fetch a row\'s detail via getEmailStepDispatchLogDetail. scanForward=false (default) returns recent-first; true returns chronological progression. Page forward until \'more\' is false. 
+     * Get a customer\'s dispatch-log journey across all flows/campaigns
+     */
+    async getEmailCustomerDispatchLogs(requestParameters: GetEmailCustomerDispatchLogsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EmailDispatchLogsResponse> {
+        const response = await this.getEmailCustomerDispatchLogsRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
      * Get customers editor URL
      */
     async getEmailCustomerEditorUrlRaw(requestParameters: GetEmailCustomerEditorUrlRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EmailCustomerEditorUrlResponse>> {
@@ -6984,6 +7176,55 @@ export class StorefrontApi extends runtime.BaseAPI implements StorefrontApiInter
      */
     async getEmailDashboardStats(requestParameters: GetEmailDashboardStatsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EmailDashboardStatsResponse> {
         const response = await this.getEmailDashboardStatsRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Entry-hop resolver for the customer-journey screen (AP0). Returns the esp_customer_uuid for a merchant\'s customer email, or a null uuid when the email is not on file. 
+     * Resolve a customer email to its ESP customer UUID
+     */
+    async getEmailDispatchLogCustomerLookupRaw(requestParameters: GetEmailDispatchLogCustomerLookupRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EmailCustomerLookupResponse>> {
+        if (requestParameters.storefrontOid === null || requestParameters.storefrontOid === undefined) {
+            throw new runtime.RequiredError('storefrontOid','Required parameter requestParameters.storefrontOid was null or undefined when calling getEmailDispatchLogCustomerLookup.');
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters.email !== undefined) {
+            queryParameters['email'] = requestParameters.email;
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-browser-key"] = this.configuration.apiKey("x-ultracart-browser-key"); // ultraCartBrowserApiKey authentication
+        }
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", ["storefront_read"]);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/storefront/{storefront_oid}/email/dispatch_logs/customer_lookup`.replace(`{${"storefront_oid"}}`, encodeURIComponent(String(requestParameters.storefrontOid))),
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => EmailCustomerLookupResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Entry-hop resolver for the customer-journey screen (AP0). Returns the esp_customer_uuid for a merchant\'s customer email, or a null uuid when the email is not on file. 
+     * Resolve a customer email to its ESP customer UUID
+     */
+    async getEmailDispatchLogCustomerLookup(requestParameters: GetEmailDispatchLogCustomerLookupRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EmailCustomerLookupResponse> {
+        const response = await this.getEmailDispatchLogCustomerLookupRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
@@ -8541,6 +8782,136 @@ export class StorefrontApi extends runtime.BaseAPI implements StorefrontApiInter
      */
     async getEmailSmsOrders(requestParameters: GetEmailSmsOrdersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EmailSmsOrdersResponse> {
         const response = await this.getEmailSmsOrdersRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Fetches and gunzips the full detail payload of one dispatch-log record (AP5 drill-down), identified by its step plus the log_dts and esp_customer_uuid shown on the list row. 
+     * Get the full detail of a single dispatch-log record
+     */
+    async getEmailStepDispatchLogDetailRaw(requestParameters: GetEmailStepDispatchLogDetailRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EmailDispatchLogDetailResponse>> {
+        if (requestParameters.storefrontOid === null || requestParameters.storefrontOid === undefined) {
+            throw new runtime.RequiredError('storefrontOid','Required parameter requestParameters.storefrontOid was null or undefined when calling getEmailStepDispatchLogDetail.');
+        }
+
+        if (requestParameters.commseqUuid === null || requestParameters.commseqUuid === undefined) {
+            throw new runtime.RequiredError('commseqUuid','Required parameter requestParameters.commseqUuid was null or undefined when calling getEmailStepDispatchLogDetail.');
+        }
+
+        if (requestParameters.commseqStepUuid === null || requestParameters.commseqStepUuid === undefined) {
+            throw new runtime.RequiredError('commseqStepUuid','Required parameter requestParameters.commseqStepUuid was null or undefined when calling getEmailStepDispatchLogDetail.');
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters.logDts !== undefined) {
+            queryParameters['log_dts'] = requestParameters.logDts;
+        }
+
+        if (requestParameters.espCustomerUuid !== undefined) {
+            queryParameters['esp_customer_uuid'] = requestParameters.espCustomerUuid;
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-browser-key"] = this.configuration.apiKey("x-ultracart-browser-key"); // ultraCartBrowserApiKey authentication
+        }
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", ["storefront_read"]);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/storefront/{storefront_oid}/email/commseqs/{commseq_uuid}/steps/{commseq_step_uuid}/dispatch_logs/detail`.replace(`{${"storefront_oid"}}`, encodeURIComponent(String(requestParameters.storefrontOid))).replace(`{${"commseq_uuid"}}`, encodeURIComponent(String(requestParameters.commseqUuid))).replace(`{${"commseq_step_uuid"}}`, encodeURIComponent(String(requestParameters.commseqStepUuid))),
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => EmailDispatchLogDetailResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Fetches and gunzips the full detail payload of one dispatch-log record (AP5 drill-down), identified by its step plus the log_dts and esp_customer_uuid shown on the list row. 
+     * Get the full detail of a single dispatch-log record
+     */
+    async getEmailStepDispatchLogDetail(requestParameters: GetEmailStepDispatchLogDetailRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EmailDispatchLogDetailResponse> {
+        const response = await this.getEmailStepDispatchLogDetailRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Paginated per-step dispatch activity with 90-day depth (AP3/AP4). Rows are lean, rendered from the DynamoDB keys; fetch a row\'s full detail via getEmailStepDispatchLogDetail. Page forward by incrementing pageNumber until the response \'more\' flag is false. since/until are inclusive ISO-8601 bounds on log_dts. 
+     * Get a paginated, date-boundable dispatch-log feed for a step
+     */
+    async getEmailStepDispatchLogsRaw(requestParameters: GetEmailStepDispatchLogsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EmailDispatchLogsResponse>> {
+        if (requestParameters.storefrontOid === null || requestParameters.storefrontOid === undefined) {
+            throw new runtime.RequiredError('storefrontOid','Required parameter requestParameters.storefrontOid was null or undefined when calling getEmailStepDispatchLogs.');
+        }
+
+        if (requestParameters.commseqUuid === null || requestParameters.commseqUuid === undefined) {
+            throw new runtime.RequiredError('commseqUuid','Required parameter requestParameters.commseqUuid was null or undefined when calling getEmailStepDispatchLogs.');
+        }
+
+        if (requestParameters.commseqStepUuid === null || requestParameters.commseqStepUuid === undefined) {
+            throw new runtime.RequiredError('commseqStepUuid','Required parameter requestParameters.commseqStepUuid was null or undefined when calling getEmailStepDispatchLogs.');
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters.since !== undefined) {
+            queryParameters['since'] = requestParameters.since;
+        }
+
+        if (requestParameters.until !== undefined) {
+            queryParameters['until'] = requestParameters.until;
+        }
+
+        if (requestParameters.pageNumber !== undefined) {
+            queryParameters['pageNumber'] = requestParameters.pageNumber;
+        }
+
+        if (requestParameters.pageSize !== undefined) {
+            queryParameters['pageSize'] = requestParameters.pageSize;
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-browser-key"] = this.configuration.apiKey("x-ultracart-browser-key"); // ultraCartBrowserApiKey authentication
+        }
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", ["storefront_read"]);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/storefront/{storefront_oid}/email/commseqs/{commseq_uuid}/steps/{commseq_step_uuid}/dispatch_logs`.replace(`{${"storefront_oid"}}`, encodeURIComponent(String(requestParameters.storefrontOid))).replace(`{${"commseq_uuid"}}`, encodeURIComponent(String(requestParameters.commseqUuid))).replace(`{${"commseq_step_uuid"}}`, encodeURIComponent(String(requestParameters.commseqStepUuid))),
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => EmailDispatchLogsResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Paginated per-step dispatch activity with 90-day depth (AP3/AP4). Rows are lean, rendered from the DynamoDB keys; fetch a row\'s full detail via getEmailStepDispatchLogDetail. Page forward by incrementing pageNumber until the response \'more\' flag is false. since/until are inclusive ISO-8601 bounds on log_dts. 
+     * Get a paginated, date-boundable dispatch-log feed for a step
+     */
+    async getEmailStepDispatchLogs(requestParameters: GetEmailStepDispatchLogsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EmailDispatchLogsResponse> {
+        const response = await this.getEmailStepDispatchLogsRaw(requestParameters, initOverrides);
         return await response.value();
     }
 

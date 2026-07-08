@@ -530,10 +530,15 @@ src/models/EmailCommseqWebhookSendTestResponse.ts
 src/models/EmailCommseqsResponse.ts
 src/models/EmailCustomer.ts
 src/models/EmailCustomerEditorUrlResponse.ts
+src/models/EmailCustomerLookupResponse.ts
 src/models/EmailCustomersResponse.ts
 src/models/EmailDashboardActivity.ts
 src/models/EmailDashboardActivityResponse.ts
 src/models/EmailDashboardStatsResponse.ts
+src/models/EmailDispatchLog.ts
+src/models/EmailDispatchLogDetail.ts
+src/models/EmailDispatchLogDetailResponse.ts
+src/models/EmailDispatchLogsResponse.ts
 src/models/EmailDomain.ts
 src/models/EmailEditorTokenResponse.ts
 src/models/EmailEditorValuesResponse.ts
