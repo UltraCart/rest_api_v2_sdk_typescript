@@ -26,6 +26,12 @@ import {
     ResponseMetadataToJSON,
 } from './ResponseMetadata';
 import {
+    TaxProviderAnrok,
+    TaxProviderAnrokFromJSON,
+    TaxProviderAnrokFromJSONTyped,
+    TaxProviderAnrokToJSON,
+} from './TaxProviderAnrok';
+import {
     TaxProviderAvalara,
     TaxProviderAvalaraFromJSON,
     TaxProviderAvalaraFromJSONTyped,
@@ -68,6 +74,12 @@ import {
  * @interface TaxProvidersResponse
  */
 export interface TaxProvidersResponse {
+    /**
+     * 
+     * @type {TaxProviderAnrok}
+     * @memberof TaxProvidersResponse
+     */
+    anrok?: TaxProviderAnrok;
     /**
      * 
      * @type {TaxProviderAvalara}
@@ -145,6 +157,7 @@ export function TaxProvidersResponseFromJSONTyped(json: any, ignoreDiscriminator
     }
     return {
         
+        'anrok': !exists(json, 'anrok') ? undefined : TaxProviderAnrokFromJSON(json['anrok']),
         'avalara': !exists(json, 'avalara') ? undefined : TaxProviderAvalaraFromJSON(json['avalara']),
         'error': !exists(json, 'error') ? undefined : ModelErrorFromJSON(json['error']),
         'metadata': !exists(json, 'metadata') ? undefined : ResponseMetadataFromJSON(json['metadata']),
@@ -166,6 +179,7 @@ export function TaxProvidersResponseToJSON(value?: TaxProvidersResponse | null):
     }
     return {
         
+        'anrok': TaxProviderAnrokToJSON(value.anrok),
         'avalara': TaxProviderAvalaraToJSON(value.avalara),
         'error': ModelErrorToJSON(value.error),
         'metadata': ResponseMetadataToJSON(value.metadata),

@@ -54,6 +54,7 @@ src/models/AffiliateResponse.ts
 src/models/AffiliateTierRelationship.ts
 src/models/AffiliatesResponse.ts
 src/models/AgentSummary.ts
+src/models/AnrokConfig.ts
 src/models/ApiUserApplicationProfile.ts
 src/models/ApplyLibraryItemRequest.ts
 src/models/ApplyLibraryItemResponse.ts
@@ -984,6 +985,7 @@ src/models/TaxCounty.ts
 src/models/TaxJarConfig.ts
 src/models/TaxPostalCode.ts
 src/models/TaxProviderActivateResult.ts
+src/models/TaxProviderAnrok.ts
 src/models/TaxProviderAvalara.ts
 src/models/TaxProviderAvalaraCompaniesResult.ts
 src/models/TaxProviderAvalaraCompany.ts

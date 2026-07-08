@@ -33,6 +33,9 @@ import {
     TaxProviderActivateResult,
     TaxProviderActivateResultFromJSON,
     TaxProviderActivateResultToJSON,
+    TaxProviderAnrok,
+    TaxProviderAnrokFromJSON,
+    TaxProviderAnrokToJSON,
     TaxProviderAvalara,
     TaxProviderAvalaraFromJSON,
     TaxProviderAvalaraToJSON,
@@ -109,6 +112,10 @@ export interface GetTaxProvidersRequest {
 
 export interface SetActiveTaxProviderRequest {
     providerName: string;
+}
+
+export interface UpdateTaxProviderAnrokRequest {
+    taxProviderAnrok: TaxProviderAnrok;
 }
 
 export interface UpdateTaxProviderAvalaraRequest {
@@ -247,6 +254,36 @@ export interface TaxApiInterface {
      * Deletes a Self tax provider state
      */
     deleteTaxProviderSelfState(requestParameters: DeleteTaxProviderSelfStateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+
+    /**
+     * Retrieves the Anrok tax provider. 
+     * @summary Retrieve the Anrok tax provider
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof TaxApiInterface
+     */
+    getTaxProviderAnrokRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<TaxProviderAnrok>>;
+
+    /**
+     * Retrieves the Anrok tax provider. 
+     * Retrieve the Anrok tax provider
+     */
+    getTaxProviderAnrok(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<TaxProviderAnrok>;
+
+    /**
+     * Attempts to connect to Anrok and returns back the response. 
+     * @summary Attempts to connect to Anrok and returns back the response
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof TaxApiInterface
+     */
+    getTaxProviderAnrokTestRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<TaxProviderTestResult>>;
+
+    /**
+     * Attempts to connect to Anrok and returns back the response. 
+     * Attempts to connect to Anrok and returns back the response
+     */
+    getTaxProviderAnrokTest(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<TaxProviderTestResult>;
 
     /**
      * Retrieves the Avalara tax provider. 
@@ -448,6 +485,22 @@ export interface TaxApiInterface {
      * Toggle a tax provider to active
      */
     setActiveTaxProvider(requestParameters: SetActiveTaxProviderRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<TaxProviderActivateResult>;
+
+    /**
+     * Update the Anrok tax provider. 
+     * @summary Update the Anrok tax provider
+     * @param {TaxProviderAnrok} taxProviderAnrok TaxProviderAnrok object
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof TaxApiInterface
+     */
+    updateTaxProviderAnrokRaw(requestParameters: UpdateTaxProviderAnrokRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<TaxProviderAnrok>>;
+
+    /**
+     * Update the Anrok tax provider. 
+     * Update the Anrok tax provider
+     */
+    updateTaxProviderAnrok(requestParameters: UpdateTaxProviderAnrokRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<TaxProviderAnrok>;
 
     /**
      * Update the Avalara tax provider. 
@@ -854,6 +907,80 @@ export class TaxApi extends runtime.BaseAPI implements TaxApiInterface {
      */
     async deleteTaxProviderSelfState(requestParameters: DeleteTaxProviderSelfStateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.deleteTaxProviderSelfStateRaw(requestParameters, initOverrides);
+    }
+
+    /**
+     * Retrieves the Anrok tax provider. 
+     * Retrieve the Anrok tax provider
+     */
+    async getTaxProviderAnrokRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<TaxProviderAnrok>> {
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", ["tax_read"]);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/tax/providers/anrok`,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => TaxProviderAnrokFromJSON(jsonValue));
+    }
+
+    /**
+     * Retrieves the Anrok tax provider. 
+     * Retrieve the Anrok tax provider
+     */
+    async getTaxProviderAnrok(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<TaxProviderAnrok> {
+        const response = await this.getTaxProviderAnrokRaw(initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Attempts to connect to Anrok and returns back the response. 
+     * Attempts to connect to Anrok and returns back the response
+     */
+    async getTaxProviderAnrokTestRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<TaxProviderTestResult>> {
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", ["tax_read"]);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/tax/providers/anrok/test`,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => TaxProviderTestResultFromJSON(jsonValue));
+    }
+
+    /**
+     * Attempts to connect to Anrok and returns back the response. 
+     * Attempts to connect to Anrok and returns back the response
+     */
+    async getTaxProviderAnrokTest(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<TaxProviderTestResult> {
+        const response = await this.getTaxProviderAnrokTestRaw(initOverrides);
+        return await response.value();
     }
 
     /**
@@ -1361,6 +1488,50 @@ export class TaxApi extends runtime.BaseAPI implements TaxApiInterface {
      */
     async setActiveTaxProvider(requestParameters: SetActiveTaxProviderRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<TaxProviderActivateResult> {
         const response = await this.setActiveTaxProviderRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Update the Anrok tax provider. 
+     * Update the Anrok tax provider
+     */
+    async updateTaxProviderAnrokRaw(requestParameters: UpdateTaxProviderAnrokRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<TaxProviderAnrok>> {
+        if (requestParameters.taxProviderAnrok === null || requestParameters.taxProviderAnrok === undefined) {
+            throw new runtime.RequiredError('taxProviderAnrok','Required parameter requestParameters.taxProviderAnrok was null or undefined when calling updateTaxProviderAnrok.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", ["tax_write"]);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/tax/providers/anrok`,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: TaxProviderAnrokToJSON(requestParameters.taxProviderAnrok),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => TaxProviderAnrokFromJSON(jsonValue));
+    }
+
+    /**
+     * Update the Anrok tax provider. 
+     * Update the Anrok tax provider
+     */
+    async updateTaxProviderAnrok(requestParameters: UpdateTaxProviderAnrokRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<TaxProviderAnrok> {
+        const response = await this.updateTaxProviderAnrokRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
