@@ -855,6 +855,8 @@ export * from './PricingTierNotification';
 export * from './PricingTiersResponse';
 export * from './Property';
 export * from './PublishLibraryItemRequest';
+export * from './QuickBooksOnlineCustomer';
+export * from './QuickBooksOnlineCustomersResponse';
 export * from './RegisterAffiliateClickRequest';
 export * from './RegisterAffiliateClickResponse';
 export * from './ReplaceOrderItemIdRequest';

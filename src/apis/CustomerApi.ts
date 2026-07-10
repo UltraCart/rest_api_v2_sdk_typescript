@@ -90,6 +90,9 @@ import {
     LookupResponse,
     LookupResponseFromJSON,
     LookupResponseToJSON,
+    QuickBooksOnlineCustomersResponse,
+    QuickBooksOnlineCustomersResponseFromJSON,
+    QuickBooksOnlineCustomersResponseToJSON,
 } from '../models';
 
 export interface AddCustomerStoreCreditRequest {
@@ -189,6 +192,10 @@ export interface GetEmailVerificationTokenRequest {
 export interface GetMagicLinkRequest {
     customerProfileOid: number;
     storefrontHostName: string;
+}
+
+export interface GetQuickBooksOnlineCustomersRequest {
+    q?: string;
 }
 
 export interface InsertCustomerRequest {
@@ -546,6 +553,22 @@ export interface CustomerApiInterface {
      * getMagicLink
      */
     getMagicLink(requestParameters: GetMagicLinkRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomerMagicLinkResponse>;
+
+    /**
+     * Typeahead search of the merchant\'s QuickBooks Online customers by display name.  Used by the customer profile editor to link a profile 1:1 to a QuickBooks Online customer.  Returns up to 100 matches.  If QuickBooks Online is not connected the list will be empty. 
+     * @summary Search the merchant\'s QuickBooks Online customers
+     * @param {string} [q] Search query matched against the QuickBooks Online customer display name
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof CustomerApiInterface
+     */
+    getQuickBooksOnlineCustomersRaw(requestParameters: GetQuickBooksOnlineCustomersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<QuickBooksOnlineCustomersResponse>>;
+
+    /**
+     * Typeahead search of the merchant\'s QuickBooks Online customers by display name.  Used by the customer profile editor to link a profile 1:1 to a QuickBooks Online customer.  Returns up to 100 matches.  If QuickBooks Online is not connected the list will be empty. 
+     * Search the merchant\'s QuickBooks Online customers
+     */
+    getQuickBooksOnlineCustomers(requestParameters: GetQuickBooksOnlineCustomersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<QuickBooksOnlineCustomersResponse>;
 
     /**
      * Insert a customer on the UltraCart account. 
@@ -1540,6 +1563,47 @@ export class CustomerApi extends runtime.BaseAPI implements CustomerApiInterface
      */
     async getMagicLink(requestParameters: GetMagicLinkRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomerMagicLinkResponse> {
         const response = await this.getMagicLinkRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Typeahead search of the merchant\'s QuickBooks Online customers by display name.  Used by the customer profile editor to link a profile 1:1 to a QuickBooks Online customer.  Returns up to 100 matches.  If QuickBooks Online is not connected the list will be empty. 
+     * Search the merchant\'s QuickBooks Online customers
+     */
+    async getQuickBooksOnlineCustomersRaw(requestParameters: GetQuickBooksOnlineCustomersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<QuickBooksOnlineCustomersResponse>> {
+        const queryParameters: any = {};
+
+        if (requestParameters.q !== undefined) {
+            queryParameters['q'] = requestParameters.q;
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", ["customer_read"]);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/customer/quickbooks_online/customers`,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => QuickBooksOnlineCustomersResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Typeahead search of the merchant\'s QuickBooks Online customers by display name.  Used by the customer profile editor to link a profile 1:1 to a QuickBooks Online customer.  Returns up to 100 matches.  If QuickBooks Online is not connected the list will be empty. 
+     * Search the merchant\'s QuickBooks Online customers
+     */
+    async getQuickBooksOnlineCustomers(requestParameters: GetQuickBooksOnlineCustomersRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<QuickBooksOnlineCustomersResponse> {
+        const response = await this.getQuickBooksOnlineCustomersRaw(requestParameters, initOverrides);
         return await response.value();
     }
 

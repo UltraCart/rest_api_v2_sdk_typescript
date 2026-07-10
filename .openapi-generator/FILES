@@ -882,6 +882,8 @@ src/models/PricingTierNotification.ts
 src/models/PricingTiersResponse.ts
 src/models/Property.ts
 src/models/PublishLibraryItemRequest.ts
+src/models/QuickBooksOnlineCustomer.ts
+src/models/QuickBooksOnlineCustomersResponse.ts
 src/models/RegisterAffiliateClickRequest.ts
 src/models/RegisterAffiliateClickResponse.ts
 src/models/ReplaceOrderItemIdRequest.ts
