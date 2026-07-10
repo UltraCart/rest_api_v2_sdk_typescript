@@ -207,6 +207,12 @@ export interface Customer {
      */
     billing?: Array<CustomerBilling>;
     /**
+     * Customer birthday
+     * @type {string}
+     * @memberof Customer
+     */
+    birth_date?: string;
+    /**
      * Business notes (internally visible only)
      * @type {string}
      * @memberof Customer
@@ -405,6 +411,12 @@ export interface Customer {
      */
     qb_tax_exemption_reason_code?: number;
     /**
+     * QuickBooks Online customer ID used to lock this customer 1:1 with QuickBooks Online
+     * @type {string}
+     * @memberof Customer
+     */
+    quickbooks_online_customer_id?: string;
+    /**
      * Quotes associated with this customer profile
      * @type {Array<Order>}
      * @memberof Customer
@@ -554,6 +566,7 @@ export function CustomerFromJSONTyped(json: any, ignoreDiscriminator: boolean): 
         'auto_approve_purchase_order': !exists(json, 'auto_approve_purchase_order') ? undefined : json['auto_approve_purchase_order'],
         'automatic_merchant_notes': !exists(json, 'automatic_merchant_notes') ? undefined : json['automatic_merchant_notes'],
         'billing': !exists(json, 'billing') ? undefined : ((json['billing'] as Array<any>).map(CustomerBillingFromJSON)),
+        'birth_date': !exists(json, 'birth_date') ? undefined : json['birth_date'],
         'business_notes': !exists(json, 'business_notes') ? undefined : json['business_notes'],
         'cards': !exists(json, 'cards') ? undefined : ((json['cards'] as Array<any>).map(CustomerCardFromJSON)),
         'cc_emails': !exists(json, 'cc_emails') ? undefined : ((json['cc_emails'] as Array<any>).map(CustomerEmailFromJSON)),
@@ -587,6 +600,7 @@ export function CustomerFromJSONTyped(json: any, ignoreDiscriminator: boolean): 
         'qb_class': !exists(json, 'qb_class') ? undefined : json['qb_class'],
         'qb_code': !exists(json, 'qb_code') ? undefined : json['qb_code'],
         'qb_tax_exemption_reason_code': !exists(json, 'qb_tax_exemption_reason_code') ? undefined : json['qb_tax_exemption_reason_code'],
+        'quickbooks_online_customer_id': !exists(json, 'quickbooks_online_customer_id') ? undefined : json['quickbooks_online_customer_id'],
         'quotes': !exists(json, 'quotes') ? undefined : ((json['quotes'] as Array<any>).map(OrderFromJSON)),
         'quotes_summary': !exists(json, 'quotes_summary') ? undefined : CustomerQuotesSummaryFromJSON(json['quotes_summary']),
         'referral_source': !exists(json, 'referral_source') ? undefined : json['referral_source'],
@@ -631,6 +645,7 @@ export function CustomerToJSON(value?: Customer | null): any {
         'auto_approve_purchase_order': value.auto_approve_purchase_order,
         'automatic_merchant_notes': value.automatic_merchant_notes,
         'billing': value.billing === undefined ? undefined : ((value.billing as Array<any>).map(CustomerBillingToJSON)),
+        'birth_date': value.birth_date,
         'business_notes': value.business_notes,
         'cards': value.cards === undefined ? undefined : ((value.cards as Array<any>).map(CustomerCardToJSON)),
         'cc_emails': value.cc_emails === undefined ? undefined : ((value.cc_emails as Array<any>).map(CustomerEmailToJSON)),
@@ -664,6 +679,7 @@ export function CustomerToJSON(value?: Customer | null): any {
         'qb_class': value.qb_class,
         'qb_code': value.qb_code,
         'qb_tax_exemption_reason_code': value.qb_tax_exemption_reason_code,
+        'quickbooks_online_customer_id': value.quickbooks_online_customer_id,
         'quotes': value.quotes === undefined ? undefined : ((value.quotes as Array<any>).map(OrderToJSON)),
         'quotes_summary': CustomerQuotesSummaryToJSON(value.quotes_summary),
         'referral_source': value.referral_source,
