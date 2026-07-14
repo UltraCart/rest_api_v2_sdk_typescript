@@ -1,12 +1,12 @@
 # UltraCart Typescript SDK
-## ultracart_rest_api_v2_typescript@4.1.117
+## ultracart_rest_api_v2_typescript@4.1.118
 
 Every API method call has a sample for every language SDK.  See https://github.com/UltraCart/sdk_samples
 
 Installation
 
 ```
-npm install ultracart_rest_api_v2_typescript@4.1.117 --save
+npm install ultracart_rest_api_v2_typescript@4.1.118 --save
 ```
 
 ```typescript
@@ -85,6 +85,7 @@ Not every change is committed to every SDK.
 
 | Version | Date | Comments |
 | --: | :-: | --- |
+| 4.1.118 | 07/14/2026 | affiliate - send welcome letter method |
 | 4.1.117 | 07/14/2026 | conversation - join method resolve_only flag added |
 | 4.1.116 | 07/10/2026 | customer - method to search quickbooks online customers |
 | 4.1.115 | 07/10/2026 | customer profile birthday |
