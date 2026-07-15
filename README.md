@@ -1,12 +1,12 @@
 # UltraCart Typescript SDK
-## ultracart_rest_api_v2_typescript@4.1.119
+## ultracart_rest_api_v2_typescript@4.1.120
 
 Every API method call has a sample for every language SDK.  See https://github.com/UltraCart/sdk_samples
 
 Installation
 
 ```
-npm install ultracart_rest_api_v2_typescript@4.1.119 --save
+npm install ultracart_rest_api_v2_typescript@4.1.120 --save
 ```
 
 ```typescript
@@ -85,6 +85,7 @@ Not every change is committed to every SDK.
 
 | Version | Date | Comments |
 | --: | :-: | --- |
+| 4.1.120 | 07/15/2026 | storefront - parameter to include details on dispatch log methods |
 | 4.1.119 | 07/15/2026 | order api - query transaction details for cache target |
 | 4.1.118 | 07/14/2026 | affiliate - send welcome letter method |
 | 4.1.117 | 07/14/2026 | conversation - join method resolve_only flag added |
