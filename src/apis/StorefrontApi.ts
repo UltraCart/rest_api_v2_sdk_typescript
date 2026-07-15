@@ -737,6 +737,7 @@ export interface GetEmailCustomerDispatchLogsRequest {
     pageNumber?: number;
     pageSize?: number;
     scanForward?: boolean;
+    includeDetail?: boolean;
 }
 
 export interface GetEmailCustomerEditorUrlRequest {
@@ -941,6 +942,7 @@ export interface GetEmailStepDispatchLogsRequest {
     until?: string;
     pageNumber?: number;
     pageSize?: number;
+    includeDetail?: boolean;
 }
 
 export interface GetEmailTemplateRequest {
@@ -2271,6 +2273,7 @@ export interface StorefrontApiInterface {
      * @param {number} [pageNumber] 
      * @param {number} [pageSize] 
      * @param {boolean} [scanForward] 
+     * @param {boolean} [includeDetail] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof StorefrontApiInterface
@@ -2915,7 +2918,7 @@ export interface StorefrontApiInterface {
     getEmailStepDispatchLogDetail(requestParameters: GetEmailStepDispatchLogDetailRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EmailDispatchLogDetailResponse>;
 
     /**
-     * Paginated per-step dispatch activity with 90-day depth (AP3/AP4). Rows are lean, rendered from the DynamoDB keys; fetch a row\'s full detail via getEmailStepDispatchLogDetail. Page forward by incrementing pageNumber until the response \'more\' flag is false. since/until are inclusive ISO-8601 bounds on log_dts. 
+     * Paginated per-step dispatch activity with 90-day depth (AP3/AP4). Rows are lean unless includeDetail is passed as true, rendered from the DynamoDB keys; fetch a row\'s full detail via getEmailStepDispatchLogDetail. Page forward by incrementing pageNumber until the response \'more\' flag is false. since/until are inclusive ISO-8601 bounds on log_dts. 
      * @summary Get a paginated, date-boundable dispatch-log feed for a step
      * @param {number} storefrontOid 
      * @param {string} commseqUuid 
@@ -2924,6 +2927,7 @@ export interface StorefrontApiInterface {
      * @param {string} [until] 
      * @param {number} [pageNumber] 
      * @param {number} [pageSize] 
+     * @param {boolean} [includeDetail] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof StorefrontApiInterface
@@ -2931,7 +2935,7 @@ export interface StorefrontApiInterface {
     getEmailStepDispatchLogsRaw(requestParameters: GetEmailStepDispatchLogsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EmailDispatchLogsResponse>>;
 
     /**
-     * Paginated per-step dispatch activity with 90-day depth (AP3/AP4). Rows are lean, rendered from the DynamoDB keys; fetch a row\'s full detail via getEmailStepDispatchLogDetail. Page forward by incrementing pageNumber until the response \'more\' flag is false. since/until are inclusive ISO-8601 bounds on log_dts. 
+     * Paginated per-step dispatch activity with 90-day depth (AP3/AP4). Rows are lean unless includeDetail is passed as true, rendered from the DynamoDB keys; fetch a row\'s full detail via getEmailStepDispatchLogDetail. Page forward by incrementing pageNumber until the response \'more\' flag is false. since/until are inclusive ISO-8601 bounds on log_dts. 
      * Get a paginated, date-boundable dispatch-log feed for a step
      */
     getEmailStepDispatchLogs(requestParameters: GetEmailStepDispatchLogsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EmailDispatchLogsResponse>;
@@ -6949,6 +6953,10 @@ export class StorefrontApi extends runtime.BaseAPI implements StorefrontApiInter
             queryParameters['scanForward'] = requestParameters.scanForward;
         }
 
+        if (requestParameters.includeDetail !== undefined) {
+            queryParameters['includeDetail'] = requestParameters.includeDetail;
+        }
+
         const headerParameters: runtime.HTTPHeaders = {};
 
         if (this.configuration && this.configuration.apiKey) {
@@ -8847,7 +8855,7 @@ export class StorefrontApi extends runtime.BaseAPI implements StorefrontApiInter
     }
 
     /**
-     * Paginated per-step dispatch activity with 90-day depth (AP3/AP4). Rows are lean, rendered from the DynamoDB keys; fetch a row\'s full detail via getEmailStepDispatchLogDetail. Page forward by incrementing pageNumber until the response \'more\' flag is false. since/until are inclusive ISO-8601 bounds on log_dts. 
+     * Paginated per-step dispatch activity with 90-day depth (AP3/AP4). Rows are lean unless includeDetail is passed as true, rendered from the DynamoDB keys; fetch a row\'s full detail via getEmailStepDispatchLogDetail. Page forward by incrementing pageNumber until the response \'more\' flag is false. since/until are inclusive ISO-8601 bounds on log_dts. 
      * Get a paginated, date-boundable dispatch-log feed for a step
      */
     async getEmailStepDispatchLogsRaw(requestParameters: GetEmailStepDispatchLogsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EmailDispatchLogsResponse>> {
@@ -8881,6 +8889,10 @@ export class StorefrontApi extends runtime.BaseAPI implements StorefrontApiInter
             queryParameters['pageSize'] = requestParameters.pageSize;
         }
 
+        if (requestParameters.includeDetail !== undefined) {
+            queryParameters['includeDetail'] = requestParameters.includeDetail;
+        }
+
         const headerParameters: runtime.HTTPHeaders = {};
 
         if (this.configuration && this.configuration.apiKey) {
@@ -8907,7 +8919,7 @@ export class StorefrontApi extends runtime.BaseAPI implements StorefrontApiInter
     }
 
     /**
-     * Paginated per-step dispatch activity with 90-day depth (AP3/AP4). Rows are lean, rendered from the DynamoDB keys; fetch a row\'s full detail via getEmailStepDispatchLogDetail. Page forward by incrementing pageNumber until the response \'more\' flag is false. since/until are inclusive ISO-8601 bounds on log_dts. 
+     * Paginated per-step dispatch activity with 90-day depth (AP3/AP4). Rows are lean unless includeDetail is passed as true, rendered from the DynamoDB keys; fetch a row\'s full detail via getEmailStepDispatchLogDetail. Page forward by incrementing pageNumber until the response \'more\' flag is false. since/until are inclusive ISO-8601 bounds on log_dts. 
      * Get a paginated, date-boundable dispatch-log feed for a step
      */
     async getEmailStepDispatchLogs(requestParameters: GetEmailStepDispatchLogsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EmailDispatchLogsResponse> {

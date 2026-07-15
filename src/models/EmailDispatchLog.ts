@@ -20,6 +20,12 @@ import { exists, mapValues } from '../runtime';
  */
 export interface EmailDispatchLog {
     /**
+     * Dispatch detail text (free-form log of how the customer moved through the step)
+     * @type {string}
+     * @memberof EmailDispatchLog
+     */
+    detail?: string;
+    /**
      * Customer email, resolved from the customer UUID for the page
      * @type {string}
      * @memberof EmailDispatchLog
@@ -72,6 +78,7 @@ export function EmailDispatchLogFromJSONTyped(json: any, ignoreDiscriminator: bo
     }
     return {
         
+        'detail': !exists(json, 'detail') ? undefined : json['detail'],
         'email': !exists(json, 'email') ? undefined : json['email'],
         'esp_commseq_step_uuid': !exists(json, 'esp_commseq_step_uuid') ? undefined : json['esp_commseq_step_uuid'],
         'esp_commseq_uuid': !exists(json, 'esp_commseq_uuid') ? undefined : json['esp_commseq_uuid'],
@@ -89,6 +96,7 @@ export function EmailDispatchLogToJSON(value?: EmailDispatchLog | null): any {
     }
     return {
         
+        'detail': value.detail,
         'email': value.email,
         'esp_commseq_step_uuid': value.esp_commseq_step_uuid,
         'esp_commseq_uuid': value.esp_commseq_uuid,
