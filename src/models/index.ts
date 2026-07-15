@@ -825,6 +825,7 @@ export * from './OrderProcessPaymentResponse';
 export * from './OrderProperty';
 export * from './OrderQuery';
 export * from './OrderQueryBatch';
+export * from './OrderQueryPaymentTransactionFilter';
 export * from './OrderQuote';
 export * from './OrderReason';
 export * from './OrderRefundableResponse';

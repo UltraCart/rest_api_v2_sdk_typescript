@@ -76,7 +76,12 @@ export interface GetLedgersByQueryRequest {
 
 export interface InsertAffiliateRequest {
     affiliate: Affiliate;
+    sendWelcomeEmail?: boolean;
     expand?: string;
+}
+
+export interface SendAffiliateWelcomeEmailRequest {
+    affiliateOid: number;
 }
 
 export interface UpdateAffiliateRequest {
@@ -186,6 +191,7 @@ export interface AffiliateApiInterface {
      * Insert an affiliate on the UltraCart account.  The affiliate is created within the merchant\'s active affiliate program. 
      * @summary Insert an affiliate
      * @param {Affiliate} affiliate Affiliate to insert
+     * @param {boolean} [sendWelcomeEmail] Whether to send a welcome email to the affiliate after it is created.  Defaults to false.
      * @param {string} [expand] The object expansion to perform on the result.  See documentation for examples
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -198,6 +204,22 @@ export interface AffiliateApiInterface {
      * Insert an affiliate
      */
     insertAffiliate(requestParameters: InsertAffiliateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AffiliateResponse>;
+
+    /**
+     * Sends a welcome email to the specified affiliate using the welcome letter configured on the merchant\'s active affiliate program. 
+     * @summary Send a welcome email to an affiliate
+     * @param {number} affiliateOid The affiliate oid to send the welcome email to.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AffiliateApiInterface
+     */
+    sendAffiliateWelcomeEmailRaw(requestParameters: SendAffiliateWelcomeEmailRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+
+    /**
+     * Sends a welcome email to the specified affiliate using the welcome letter configured on the merchant\'s active affiliate program. 
+     * Send a welcome email to an affiliate
+     */
+    sendAffiliateWelcomeEmail(requestParameters: SendAffiliateWelcomeEmailRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
      * Update an affiliate on the UltraCart account.  This is a full replacement of the affiliate; omitted fields are reset to their defaults, with the exception of password which is only changed when supplied. 
@@ -488,6 +510,10 @@ export class AffiliateApi extends runtime.BaseAPI implements AffiliateApiInterfa
 
         const queryParameters: any = {};
 
+        if (requestParameters.sendWelcomeEmail !== undefined) {
+            queryParameters['send_welcome_email'] = requestParameters.sendWelcomeEmail;
+        }
+
         if (requestParameters.expand !== undefined) {
             queryParameters['_expand'] = requestParameters.expand;
         }
@@ -523,6 +549,46 @@ export class AffiliateApi extends runtime.BaseAPI implements AffiliateApiInterfa
     async insertAffiliate(requestParameters: InsertAffiliateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AffiliateResponse> {
         const response = await this.insertAffiliateRaw(requestParameters, initOverrides);
         return await response.value();
+    }
+
+    /**
+     * Sends a welcome email to the specified affiliate using the welcome letter configured on the merchant\'s active affiliate program. 
+     * Send a welcome email to an affiliate
+     */
+    async sendAffiliateWelcomeEmailRaw(requestParameters: SendAffiliateWelcomeEmailRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        if (requestParameters.affiliateOid === null || requestParameters.affiliateOid === undefined) {
+            throw new runtime.RequiredError('affiliateOid','Required parameter requestParameters.affiliateOid was null or undefined when calling sendAffiliateWelcomeEmail.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", ["affiliate_write"]);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/affiliate/affiliates/{affiliate_oid}/welcome_email`.replace(`{${"affiliate_oid"}}`, encodeURIComponent(String(requestParameters.affiliateOid))),
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     * Sends a welcome email to the specified affiliate using the welcome letter configured on the merchant\'s active affiliate program. 
+     * Send a welcome email to an affiliate
+     */
+    async sendAffiliateWelcomeEmail(requestParameters: SendAffiliateWelcomeEmailRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.sendAffiliateWelcomeEmailRaw(requestParameters, initOverrides);
     }
 
     /**

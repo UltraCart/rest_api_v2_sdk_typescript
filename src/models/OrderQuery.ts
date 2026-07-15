@@ -13,6 +13,13 @@
  */
 
 import { exists, mapValues } from '../runtime';
+import {
+    OrderQueryPaymentTransactionFilter,
+    OrderQueryPaymentTransactionFilterFromJSON,
+    OrderQueryPaymentTransactionFilterFromJSONTyped,
+    OrderQueryPaymentTransactionFilterToJSON,
+} from './OrderQueryPaymentTransactionFilter';
+
 /**
  * 
  * @export
@@ -187,6 +194,12 @@ export interface OrderQuery {
      * @memberof OrderQuery
      */
     payment_method?: OrderQueryPaymentMethodEnum;
+    /**
+     * Exact-match filters on the detail name/value pairs of a single payment transaction, AND-ed against the same transaction. Requires query_target=cache which uses the ElasticSearch cache. The origin or database path cannot search transaction details. The rotating gateway is just another pair, name equals rotatingTransactionGatewayCode or rotatingTransactionGatewayName.
+     * @type {Array<OrderQueryPaymentTransactionFilter>}
+     * @memberof OrderQuery
+     */
+    payment_transaction_filters?: Array<OrderQueryPaymentTransactionFilter>;
     /**
      * Phone
      * @type {string}
@@ -382,6 +395,7 @@ export function OrderQueryFromJSONTyped(json: any, ignoreDiscriminator: boolean)
         'payment_date_begin': !exists(json, 'payment_date_begin') ? undefined : json['payment_date_begin'],
         'payment_date_end': !exists(json, 'payment_date_end') ? undefined : json['payment_date_end'],
         'payment_method': !exists(json, 'payment_method') ? undefined : json['payment_method'],
+        'payment_transaction_filters': !exists(json, 'payment_transaction_filters') ? undefined : ((json['payment_transaction_filters'] as Array<any>).map(OrderQueryPaymentTransactionFilterFromJSON)),
         'phone': !exists(json, 'phone') ? undefined : json['phone'],
         'postal_code': !exists(json, 'postal_code') ? undefined : json['postal_code'],
         'purchase_order_number': !exists(json, 'purchase_order_number') ? undefined : json['purchase_order_number'],
@@ -437,6 +451,7 @@ export function OrderQueryToJSON(value?: OrderQuery | null): any {
         'payment_date_begin': value.payment_date_begin,
         'payment_date_end': value.payment_date_end,
         'payment_method': value.payment_method,
+        'payment_transaction_filters': value.payment_transaction_filters === undefined ? undefined : ((value.payment_transaction_filters as Array<any>).map(OrderQueryPaymentTransactionFilterToJSON)),
         'phone': value.phone,
         'postal_code': value.postal_code,
         'purchase_order_number': value.purchase_order_number,

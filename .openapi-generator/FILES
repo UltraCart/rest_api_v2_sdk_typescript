@@ -852,6 +852,7 @@ src/models/OrderProcessPaymentResponse.ts
 src/models/OrderProperty.ts
 src/models/OrderQuery.ts
 src/models/OrderQueryBatch.ts
+src/models/OrderQueryPaymentTransactionFilter.ts
 src/models/OrderQuote.ts
 src/models/OrderReason.ts
 src/models/OrderRefundableResponse.ts
