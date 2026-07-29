@@ -33,6 +33,9 @@ import {
     AutoOrderItemCancelRequest,
     AutoOrderItemCancelRequestFromJSON,
     AutoOrderItemCancelRequestToJSON,
+    AutoOrderPaymentUpdateRequest,
+    AutoOrderPaymentUpdateRequestFromJSON,
+    AutoOrderPaymentUpdateRequestToJSON,
     AutoOrderPropertiesUpdateRequest,
     AutoOrderPropertiesUpdateRequestFromJSON,
     AutoOrderPropertiesUpdateRequestToJSON,
@@ -42,6 +45,9 @@ import {
     AutoOrderQueryBatch,
     AutoOrderQueryBatchFromJSON,
     AutoOrderQueryBatchToJSON,
+    AutoOrderRebillResponse,
+    AutoOrderRebillResponseFromJSON,
+    AutoOrderRebillResponseToJSON,
     AutoOrderResponse,
     AutoOrderResponseFromJSON,
     AutoOrderResponseToJSON,
@@ -55,6 +61,11 @@ import {
     ErrorResponseFromJSON,
     ErrorResponseToJSON,
 } from '../models';
+
+export interface AttemptAutoOrderRebillRequest {
+    autoOrderOid: number;
+    expand?: string;
+}
 
 export interface CancelAutoOrderItemByReferenceOrderIdRequest {
     referenceOrderId: string;
@@ -159,6 +170,12 @@ export interface UpdateAutoOrderItemPropertiesRequest {
     expand?: string;
 }
 
+export interface UpdateAutoOrderPaymentRequest {
+    autoOrderOid: number;
+    autoOrderPaymentUpdateRequest: AutoOrderPaymentUpdateRequest;
+    expand?: string;
+}
+
 export interface UpdateAutoOrderPropertiesRequest {
     autoOrderOid: number;
     autoOrderPropertiesUpdateRequest: AutoOrderPropertiesUpdateRequest;
@@ -179,6 +196,23 @@ export interface UpdateAutoOrdersBatchRequest {
  * @interface AutoOrderApiInterface
  */
 export interface AutoOrderApiInterface {
+    /**
+     * Attempts to rebill an auto order using the payment information already on the original order.  The attempt is refused if the auto order is scheduled to charge within the next five minutes, or if it was already billed within the last 24 hours, both of which guard against double charging.  Runs synchronously and may take some time while the gateway is contacted.  A declined card is reported in the response body rather than as an API error. 
+     * @summary Attempt a failed rebill on an auto order
+     * @param {number} autoOrderOid The auto order oid to rebill.
+     * @param {string} [expand] The object expansion to perform on the result.  See documentation for examples
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AutoOrderApiInterface
+     */
+    attemptAutoOrderRebillRaw(requestParameters: AttemptAutoOrderRebillRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AutoOrderRebillResponse>>;
+
+    /**
+     * Attempts to rebill an auto order using the payment information already on the original order.  The attempt is refused if the auto order is scheduled to charge within the next five minutes, or if it was already billed within the last 24 hours, both of which guard against double charging.  Runs synchronously and may take some time while the gateway is contacted.  A declined card is reported in the response body rather than as an API error. 
+     * Attempt a failed rebill on an auto order
+     */
+    attemptAutoOrderRebill(requestParameters: AttemptAutoOrderRebillRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AutoOrderRebillResponse>;
+
     /**
      * Cancels a single item on an auto order identified by the original order id and the item\'s original_item_id.  The request body may specify mode=end (soft cancel by setting no_order_after_dts to the current time, preserving the row for reporting; this is the default when the body is omitted) or mode=remove (hard delete).  Returns the updated auto order based upon expansion. 
      * @summary Cancel a single item on an auto order
@@ -466,6 +500,24 @@ export interface AutoOrderApiInterface {
     updateAutoOrderItemProperties(requestParameters: UpdateAutoOrderItemPropertiesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AutoOrderResponse>;
 
     /**
+     * Updates the credit card on the original order behind an auto order, along with any rebills sitting in accounts receivable, and reactivates the auto order.  Card data is accepted as hosted field tokens only. raw card numbers and card verification numbers are rejected.  Set attempt_rebill to true to also attempt the rebill immediately, which runs synchronously and may take some time while the gateway is contacted.  A declined card is reported in the response body rather than as an API error. 
+     * @summary Update the payment information on an auto order
+     * @param {number} autoOrderOid The auto order oid to update payment information on.
+     * @param {AutoOrderPaymentUpdateRequest} autoOrderPaymentUpdateRequest Payment information to place on the auto order
+     * @param {string} [expand] The object expansion to perform on the result.  See documentation for examples
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AutoOrderApiInterface
+     */
+    updateAutoOrderPaymentRaw(requestParameters: UpdateAutoOrderPaymentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AutoOrderRebillResponse>>;
+
+    /**
+     * Updates the credit card on the original order behind an auto order, along with any rebills sitting in accounts receivable, and reactivates the auto order.  Card data is accepted as hosted field tokens only. raw card numbers and card verification numbers are rejected.  Set attempt_rebill to true to also attempt the rebill immediately, which runs synchronously and may take some time while the gateway is contacted.  A declined card is reported in the response body rather than as an API error. 
+     * Update the payment information on an auto order
+     */
+    updateAutoOrderPayment(requestParameters: UpdateAutoOrderPaymentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AutoOrderRebillResponse>;
+
+    /**
      * Update an auto order properties.  Returns the auto order based upon expansion 
      * @summary Update an auto order properties
      * @param {number} autoOrderOid The auto order oid to update.
@@ -508,6 +560,51 @@ export interface AutoOrderApiInterface {
  * 
  */
 export class AutoOrderApi extends runtime.BaseAPI implements AutoOrderApiInterface {
+
+    /**
+     * Attempts to rebill an auto order using the payment information already on the original order.  The attempt is refused if the auto order is scheduled to charge within the next five minutes, or if it was already billed within the last 24 hours, both of which guard against double charging.  Runs synchronously and may take some time while the gateway is contacted.  A declined card is reported in the response body rather than as an API error. 
+     * Attempt a failed rebill on an auto order
+     */
+    async attemptAutoOrderRebillRaw(requestParameters: AttemptAutoOrderRebillRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AutoOrderRebillResponse>> {
+        if (requestParameters.autoOrderOid === null || requestParameters.autoOrderOid === undefined) {
+            throw new runtime.RequiredError('autoOrderOid','Required parameter requestParameters.autoOrderOid was null or undefined when calling attemptAutoOrderRebill.');
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters.expand !== undefined) {
+            queryParameters['_expand'] = requestParameters.expand;
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", ["auto_order_write"]);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/auto_order/auto_orders/{auto_order_oid}/rebill`.replace(`{${"auto_order_oid"}}`, encodeURIComponent(String(requestParameters.autoOrderOid))),
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => AutoOrderRebillResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Attempts to rebill an auto order using the payment information already on the original order.  The attempt is refused if the auto order is scheduled to charge within the next five minutes, or if it was already billed within the last 24 hours, both of which guard against double charging.  Runs synchronously and may take some time while the gateway is contacted.  A declined card is reported in the response body rather than as an API error. 
+     * Attempt a failed rebill on an auto order
+     */
+    async attemptAutoOrderRebill(requestParameters: AttemptAutoOrderRebillRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AutoOrderRebillResponse> {
+        const response = await this.attemptAutoOrderRebillRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
 
     /**
      * Cancels a single item on an auto order identified by the original order id and the item\'s original_item_id.  The request body may specify mode=end (soft cancel by setting no_order_after_dts to the current time, preserving the row for reporting; this is the default when the body is omitted) or mode=remove (hard delete).  Returns the updated auto order based upon expansion. 
@@ -1325,6 +1422,58 @@ export class AutoOrderApi extends runtime.BaseAPI implements AutoOrderApiInterfa
      */
     async updateAutoOrderItemProperties(requestParameters: UpdateAutoOrderItemPropertiesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AutoOrderResponse> {
         const response = await this.updateAutoOrderItemPropertiesRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Updates the credit card on the original order behind an auto order, along with any rebills sitting in accounts receivable, and reactivates the auto order.  Card data is accepted as hosted field tokens only. raw card numbers and card verification numbers are rejected.  Set attempt_rebill to true to also attempt the rebill immediately, which runs synchronously and may take some time while the gateway is contacted.  A declined card is reported in the response body rather than as an API error. 
+     * Update the payment information on an auto order
+     */
+    async updateAutoOrderPaymentRaw(requestParameters: UpdateAutoOrderPaymentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AutoOrderRebillResponse>> {
+        if (requestParameters.autoOrderOid === null || requestParameters.autoOrderOid === undefined) {
+            throw new runtime.RequiredError('autoOrderOid','Required parameter requestParameters.autoOrderOid was null or undefined when calling updateAutoOrderPayment.');
+        }
+
+        if (requestParameters.autoOrderPaymentUpdateRequest === null || requestParameters.autoOrderPaymentUpdateRequest === undefined) {
+            throw new runtime.RequiredError('autoOrderPaymentUpdateRequest','Required parameter requestParameters.autoOrderPaymentUpdateRequest was null or undefined when calling updateAutoOrderPayment.');
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters.expand !== undefined) {
+            queryParameters['_expand'] = requestParameters.expand;
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json; charset=UTF-8';
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", ["auto_order_write"]);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/auto_order/auto_orders/{auto_order_oid}/payment`.replace(`{${"auto_order_oid"}}`, encodeURIComponent(String(requestParameters.autoOrderOid))),
+            method: 'PUT',
+            headers: headerParameters,
+            query: queryParameters,
+            body: AutoOrderPaymentUpdateRequestToJSON(requestParameters.autoOrderPaymentUpdateRequest),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => AutoOrderRebillResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Updates the credit card on the original order behind an auto order, along with any rebills sitting in accounts receivable, and reactivates the auto order.  Card data is accepted as hosted field tokens only. raw card numbers and card verification numbers are rejected.  Set attempt_rebill to true to also attempt the rebill immediately, which runs synchronously and may take some time while the gateway is contacted.  A declined card is reported in the response body rather than as an API error. 
+     * Update the payment information on an auto order
+     */
+    async updateAutoOrderPayment(requestParameters: UpdateAutoOrderPaymentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AutoOrderRebillResponse> {
+        const response = await this.updateAutoOrderPaymentRaw(requestParameters, initOverrides);
         return await response.value();
     }
 

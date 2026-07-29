@@ -1,12 +1,12 @@
 # UltraCart Typescript SDK
-## ultracart_rest_api_v2_typescript@4.1.121
+## ultracart_rest_api_v2_typescript@4.1.122
 
 Every API method call has a sample for every language SDK.  See https://github.com/UltraCart/sdk_samples
 
 Installation
 
 ```
-npm install ultracart_rest_api_v2_typescript@4.1.121 --save
+npm install ultracart_rest_api_v2_typescript@4.1.122 --save
 ```
 
 ```typescript
@@ -85,6 +85,7 @@ Not every change is committed to every SDK.
 
 | Version | Date | Comments |
 | --: | :-: | --- |
+| 4.1.122 | 07/29/2026 | auto order api - new methods for payment information and rebill |
 | 4.1.121 | 07/15/2026 | storefront - parameter to include details on dispatch log methods |
 | 4.1.120 | 07/15/2026 | storefront - parameter to include details on dispatch log methods |
 | 4.1.119 | 07/15/2026 | order api - query transaction details for cache target |
