@@ -465,6 +465,9 @@ src/models/CustomerEDI.ts
 src/models/CustomerEditorValues.ts
 src/models/CustomerEmail.ts
 src/models/CustomerEmailListChanges.ts
+src/models/CustomerEmailSuppressionRequest.ts
+src/models/CustomerEmailSuppressionResponse.ts
+src/models/CustomerEmailSuppressionResult.ts
 src/models/CustomerLoyalty.ts
 src/models/CustomerLoyaltyLedger.ts
 src/models/CustomerLoyaltyRedemption.ts
@@ -612,6 +615,7 @@ src/models/EmailStepStatRequest.ts
 src/models/EmailStepStatResponse.ts
 src/models/EmailStepWaitingRequest.ts
 src/models/EmailStepWaitingResponse.ts
+src/models/EmailSuppressionSurfaces.ts
 src/models/EmailTemplate.ts
 src/models/EmailTemplatesResponse.ts
 src/models/EmailThirdPartyList.ts
