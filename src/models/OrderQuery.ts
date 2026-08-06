@@ -27,6 +27,18 @@ import {
  */
 export interface OrderQuery {
     /**
+     * First six digits (BIN) of the credit card number.  Must be specified together with card_last4 and a payment_date_begin/payment_date_end range.  Requires query_target=cache.
+     * @type {string}
+     * @memberof OrderQuery
+     */
+    card_bin?: string;
+    /**
+     * Last four digits of the credit card number.  Must be specified together with card_bin and a payment_date_begin/payment_date_end range.  Always supply four digits, including for American Express.  Requires query_target=cache.
+     * @type {string}
+     * @memberof OrderQuery
+     */
+    card_last4?: string;
+    /**
      * CC Email
      * @type {string}
      * @memberof OrderQuery
@@ -195,7 +207,7 @@ export interface OrderQuery {
      */
     payment_method?: OrderQueryPaymentMethodEnum;
     /**
-     * Exact-match filters on the detail name/value pairs of a single payment transaction, AND-ed against the same transaction. Requires query_target=cache which uses the ElasticSearch cache. The origin or database path cannot search transaction details. The rotating gateway is just another pair, name equals rotatingTransactionGatewayCode or rotatingTransactionGatewayName.
+     * Exact-match filters on the detail name/value pairs of a single payment transaction, AND-ed against the same transaction. Requires query_target=cache. The origin or database path cannot search transaction details. The rotating gateway is just another pair, name equals rotatingTransactionGatewayCode or rotatingTransactionGatewayName.
      * @type {Array<OrderQueryPaymentTransactionFilter>}
      * @memberof OrderQuery
      */
@@ -367,6 +379,8 @@ export function OrderQueryFromJSONTyped(json: any, ignoreDiscriminator: boolean)
     }
     return {
         
+        'card_bin': !exists(json, 'card_bin') ? undefined : json['card_bin'],
+        'card_last4': !exists(json, 'card_last4') ? undefined : json['card_last4'],
         'cc_email': !exists(json, 'cc_email') ? undefined : json['cc_email'],
         'channel_partner_code': !exists(json, 'channel_partner_code') ? undefined : json['channel_partner_code'],
         'channel_partner_order_id': !exists(json, 'channel_partner_order_id') ? undefined : json['channel_partner_order_id'],
@@ -423,6 +437,8 @@ export function OrderQueryToJSON(value?: OrderQuery | null): any {
     }
     return {
         
+        'card_bin': value.card_bin,
+        'card_last4': value.card_last4,
         'cc_email': value.cc_email,
         'channel_partner_code': value.channel_partner_code,
         'channel_partner_order_id': value.channel_partner_order_id,

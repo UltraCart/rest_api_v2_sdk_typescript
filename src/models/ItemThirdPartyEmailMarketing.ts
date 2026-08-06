@@ -67,8 +67,7 @@ export const ItemThirdPartyEmailMarketingProviderNameEnum = {
     Klaviyo: 'Klaviyo',
     Lyris: 'Lyris',
     LyrisHq: 'LyrisHQ',
-    MailChimp: 'MailChimp',
-    SilverPop: 'SilverPop'
+    MailChimp: 'MailChimp'
 } as const;
 export type ItemThirdPartyEmailMarketingProviderNameEnum = typeof ItemThirdPartyEmailMarketingProviderNameEnum[keyof typeof ItemThirdPartyEmailMarketingProviderNameEnum];
 
