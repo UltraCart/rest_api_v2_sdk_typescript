@@ -94,6 +94,21 @@ export interface OauthApiInterface {
     oauthDeviceAuthorize(requestParameters: OauthDeviceAuthorizeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<OauthDeviceAuthorizationResponse>;
 
     /**
+     * Returns the UltraCart merchant account that authorized your application, along with the permissions that were granted.  Call it immediately after exchanging your authorization code so you can display the connected account to your user and map it within your own system.  Any OAuth access token may call this endpoint regardless of the permissions it holds.  The granted permissions are the ones the merchant approved, which may be narrower than the permissions your application currently requests, because permissions are recorded when the merchant authorizes and do not change afterwards.  If you add a permission to your application, already connected merchants keep the permissions they originally approved until they authorize again, so read this list rather than assuming your application\'s configured permissions. 
+     * @summary Identify the merchant account this access token belongs to.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof OauthApiInterface
+     */
+    oauthMeRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+
+    /**
+     * Returns the UltraCart merchant account that authorized your application, along with the permissions that were granted.  Call it immediately after exchanging your authorization code so you can display the connected account to your user and map it within your own system.  Any OAuth access token may call this endpoint regardless of the permissions it holds.  The granted permissions are the ones the merchant approved, which may be narrower than the permissions your application currently requests, because permissions are recorded when the merchant authorizes and do not change afterwards.  If you add a permission to your application, already connected merchants keep the permissions they originally approved until they authorize again, so read this list rather than assuming your application\'s configured permissions. 
+     * Identify the merchant account this access token belongs to.
+     */
+    oauthMe(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+
+    /**
      * Revokes the OAuth application associated with the specified client_id and token. 
      * @summary Revoke this OAuth application.
      * @param {string} clientId The OAuth application client_id.
@@ -275,6 +290,38 @@ export class OauthApi extends runtime.BaseAPI implements OauthApiInterface {
     async oauthDeviceAuthorize(requestParameters: OauthDeviceAuthorizeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<OauthDeviceAuthorizationResponse> {
         const response = await this.oauthDeviceAuthorizeRaw(requestParameters, initOverrides);
         return await response.value();
+    }
+
+    /**
+     * Returns the UltraCart merchant account that authorized your application, along with the permissions that were granted.  Call it immediately after exchanging your authorization code so you can display the connected account to your user and map it within your own system.  Any OAuth access token may call this endpoint regardless of the permissions it holds.  The granted permissions are the ones the merchant approved, which may be narrower than the permissions your application currently requests, because permissions are recorded when the merchant authorizes and do not change afterwards.  If you add a permission to your application, already connected merchants keep the permissions they originally approved until they authorize again, so read this list rather than assuming your application\'s configured permissions. 
+     * Identify the merchant account this access token belongs to.
+     */
+    async oauthMeRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", []);
+        }
+
+        const response = await this.request({
+            path: `/oauth/me`,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     * Returns the UltraCart merchant account that authorized your application, along with the permissions that were granted.  Call it immediately after exchanging your authorization code so you can display the connected account to your user and map it within your own system.  Any OAuth access token may call this endpoint regardless of the permissions it holds.  The granted permissions are the ones the merchant approved, which may be narrower than the permissions your application currently requests, because permissions are recorded when the merchant authorizes and do not change afterwards.  If you add a permission to your application, already connected merchants keep the permissions they originally approved until they authorize again, so read this list rather than assuming your application\'s configured permissions. 
+     * Identify the merchant account this access token belongs to.
+     */
+    async oauthMe(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.oauthMeRaw(initOverrides);
     }
 
     /**

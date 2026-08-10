@@ -1,12 +1,12 @@
 # UltraCart Typescript SDK
-## ultracart_rest_api_v2_typescript@4.1.125
+## ultracart_rest_api_v2_typescript@4.1.126
 
 Every API method call has a sample for every language SDK.  See https://github.com/UltraCart/sdk_samples
 
 Installation
 
 ```
-npm install ultracart_rest_api_v2_typescript@4.1.125 --save
+npm install ultracart_rest_api_v2_typescript@4.1.126 --save
 ```
 
 ```typescript
@@ -85,6 +85,7 @@ Not every change is committed to every SDK.
 
 | Version | Date | Comments |
 | --: | :-: | --- |
+| 4.1.126 | 08/10/2026 | oauth - add /oauth/me method to assist application in indentifying the connected account |
 | 4.1.125 | 08/06/2026 | order api - ability to query by bin and last 4 in unlimited scenarios for chargeback order association |
 | 4.1.124 | 08/04/2026 | customer - method to remove customer profile from email suppression |
 | 4.1.123 | 08/04/2026 | customer - method to remove customer profile from email suppression |

@@ -50,6 +50,12 @@ export interface OauthTokenResponse {
      */
     expires_in?: string;
     /**
+     * The UltraCart merchant account that authorized this token.  Use it to map the token to the merchant within your own system.  Also returned by GET /oauth/me along with the account name.
+     * @type {string}
+     * @memberof OauthTokenResponse
+     */
+    merchant_id?: string;
+    /**
      * The refresh token that should be used to fetch a new access token when the expiration occurs
      * @type {string}
      * @memberof OauthTokenResponse
@@ -104,6 +110,7 @@ export function OauthTokenResponseFromJSONTyped(json: any, ignoreDiscriminator: 
         'error_description': !exists(json, 'error_description') ? undefined : json['error_description'],
         'error_uri': !exists(json, 'error_uri') ? undefined : json['error_uri'],
         'expires_in': !exists(json, 'expires_in') ? undefined : json['expires_in'],
+        'merchant_id': !exists(json, 'merchant_id') ? undefined : json['merchant_id'],
         'refresh_token': !exists(json, 'refresh_token') ? undefined : json['refresh_token'],
         'scope': !exists(json, 'scope') ? undefined : json['scope'],
         'token_type': !exists(json, 'token_type') ? undefined : json['token_type'],
@@ -124,6 +131,7 @@ export function OauthTokenResponseToJSON(value?: OauthTokenResponse | null): any
         'error_description': value.error_description,
         'error_uri': value.error_uri,
         'expires_in': value.expires_in,
+        'merchant_id': value.merchant_id,
         'refresh_token': value.refresh_token,
         'scope': value.scope,
         'token_type': value.token_type,

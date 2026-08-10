@@ -769,6 +769,7 @@ export * from './Metric';
 export * from './ModelError';
 export * from './Notification';
 export * from './OauthDeviceAuthorizationResponse';
+export * from './OauthMeResponse';
 export * from './OauthRevokeSuccessResponse';
 export * from './OauthTokenResponse';
 export * from './Order';
