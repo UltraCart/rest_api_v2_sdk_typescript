@@ -79,6 +79,18 @@ export interface OrderSummary {
      * @type {Currency}
      * @memberof OrderSummary
      */
+    arbitrary_subtotal_discount?: Currency;
+    /**
+     * 
+     * @type {Currency}
+     * @memberof OrderSummary
+     */
+    arbitrary_taxable_subtotal_discount?: Currency;
+    /**
+     * 
+     * @type {Currency}
+     * @memberof OrderSummary
+     */
     health_benefit_card_amount?: Currency;
     /**
      * 
@@ -213,6 +225,8 @@ export function OrderSummaryFromJSONTyped(json: any, ignoreDiscriminator: boolea
         'actual_profit_review': !exists(json, 'actual_profit_review') ? undefined : json['actual_profit_review'],
         'actual_shipping': !exists(json, 'actual_shipping') ? undefined : CurrencyFromJSON(json['actual_shipping']),
         'arbitrary_shipping_handling_total': !exists(json, 'arbitrary_shipping_handling_total') ? undefined : CurrencyFromJSON(json['arbitrary_shipping_handling_total']),
+        'arbitrary_subtotal_discount': !exists(json, 'arbitrary_subtotal_discount') ? undefined : CurrencyFromJSON(json['arbitrary_subtotal_discount']),
+        'arbitrary_taxable_subtotal_discount': !exists(json, 'arbitrary_taxable_subtotal_discount') ? undefined : CurrencyFromJSON(json['arbitrary_taxable_subtotal_discount']),
         'health_benefit_card_amount': !exists(json, 'health_benefit_card_amount') ? undefined : CurrencyFromJSON(json['health_benefit_card_amount']),
         'health_benefit_card_refunded': !exists(json, 'health_benefit_card_refunded') ? undefined : CurrencyFromJSON(json['health_benefit_card_refunded']),
         'internal_gift_certificate_amount': !exists(json, 'internal_gift_certificate_amount') ? undefined : CurrencyFromJSON(json['internal_gift_certificate_amount']),
@@ -251,6 +265,8 @@ export function OrderSummaryToJSON(value?: OrderSummary | null): any {
         'actual_profit_review': value.actual_profit_review,
         'actual_shipping': CurrencyToJSON(value.actual_shipping),
         'arbitrary_shipping_handling_total': CurrencyToJSON(value.arbitrary_shipping_handling_total),
+        'arbitrary_subtotal_discount': CurrencyToJSON(value.arbitrary_subtotal_discount),
+        'arbitrary_taxable_subtotal_discount': CurrencyToJSON(value.arbitrary_taxable_subtotal_discount),
         'health_benefit_card_amount': CurrencyToJSON(value.health_benefit_card_amount),
         'health_benefit_card_refunded': CurrencyToJSON(value.health_benefit_card_refunded),
         'internal_gift_certificate_amount': CurrencyToJSON(value.internal_gift_certificate_amount),
