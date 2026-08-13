@@ -549,6 +549,12 @@ export interface ChannelPartnerOrder {
      */
     shipto_title?: string;
     /**
+     * If true the setup of the auto order record is skipped
+     * @type {boolean}
+     * @memberof ChannelPartnerOrder
+     */
+    skip_auto_order_setup?: boolean;
+    /**
      * If true the order is placed directly into the shipping department
      * @type {boolean}
      * @memberof ChannelPartnerOrder
@@ -756,6 +762,7 @@ export function ChannelPartnerOrderFromJSONTyped(json: any, ignoreDiscriminator:
         'shipto_postal_code': !exists(json, 'shipto_postal_code') ? undefined : json['shipto_postal_code'],
         'shipto_state_region': !exists(json, 'shipto_state_region') ? undefined : json['shipto_state_region'],
         'shipto_title': !exists(json, 'shipto_title') ? undefined : json['shipto_title'],
+        'skip_auto_order_setup': !exists(json, 'skip_auto_order_setup') ? undefined : json['skip_auto_order_setup'],
         'skip_payment_processing': !exists(json, 'skip_payment_processing') ? undefined : json['skip_payment_processing'],
         'special_instructions': !exists(json, 'special_instructions') ? undefined : json['special_instructions'],
         'store_completed': !exists(json, 'store_completed') ? undefined : json['store_completed'],
@@ -864,6 +871,7 @@ export function ChannelPartnerOrderToJSON(value?: ChannelPartnerOrder | null): a
         'shipto_postal_code': value.shipto_postal_code,
         'shipto_state_region': value.shipto_state_region,
         'shipto_title': value.shipto_title,
+        'skip_auto_order_setup': value.skip_auto_order_setup,
         'skip_payment_processing': value.skip_payment_processing,
         'special_instructions': value.special_instructions,
         'store_completed': value.store_completed,

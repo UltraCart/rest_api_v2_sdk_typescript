@@ -62,6 +62,12 @@ export interface OrderChannelPartner {
      */
     no_realtime_payment_processing?: boolean;
     /**
+     * Instructs UltraCart to skip auto order setup.  Only applicable on inserting orders.
+     * @type {boolean}
+     * @memberof OrderChannelPartner
+     */
+    skip_auto_order_setup?: boolean;
+    /**
      * Indicates this order was already paid for via a channel purchase and no payment collection should be attempted
      * @type {boolean}
      * @memberof OrderChannelPartner
@@ -115,6 +121,7 @@ export function OrderChannelPartnerFromJSONTyped(json: any, ignoreDiscriminator:
         'channel_partner_order_id': !exists(json, 'channel_partner_order_id') ? undefined : json['channel_partner_order_id'],
         'ignore_invalid_shipping_method': !exists(json, 'ignore_invalid_shipping_method') ? undefined : json['ignore_invalid_shipping_method'],
         'no_realtime_payment_processing': !exists(json, 'no_realtime_payment_processing') ? undefined : json['no_realtime_payment_processing'],
+        'skip_auto_order_setup': !exists(json, 'skip_auto_order_setup') ? undefined : json['skip_auto_order_setup'],
         'skip_payment_processing': !exists(json, 'skip_payment_processing') ? undefined : json['skip_payment_processing'],
         'store_completed': !exists(json, 'store_completed') ? undefined : json['store_completed'],
         'store_if_payment_declines': !exists(json, 'store_if_payment_declines') ? undefined : json['store_if_payment_declines'],
@@ -138,6 +145,7 @@ export function OrderChannelPartnerToJSON(value?: OrderChannelPartner | null): a
         'channel_partner_order_id': value.channel_partner_order_id,
         'ignore_invalid_shipping_method': value.ignore_invalid_shipping_method,
         'no_realtime_payment_processing': value.no_realtime_payment_processing,
+        'skip_auto_order_setup': value.skip_auto_order_setup,
         'skip_payment_processing': value.skip_payment_processing,
         'store_completed': value.store_completed,
         'store_if_payment_declines': value.store_if_payment_declines,
