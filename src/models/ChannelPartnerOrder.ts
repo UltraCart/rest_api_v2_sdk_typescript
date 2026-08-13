@@ -57,6 +57,12 @@ export interface ChannelPartnerOrder {
      */
     arbitrary_shipping_handling_total?: number;
     /**
+     * Arbitrary subtotal discount for overriding the calculated subtotal discount.  Send the gross price in the item arbitrary unit cost and the discount here.
+     * @type {number}
+     * @memberof ChannelPartnerOrder
+     */
+    arbitrary_subtotal_discount?: number;
+    /**
      * Arbitrary tax for overriding calculated taxes
      * @type {number}
      * @memberof ChannelPartnerOrder
@@ -74,6 +80,12 @@ export interface ChannelPartnerOrder {
      * @memberof ChannelPartnerOrder
      */
     arbitrary_taxable_subtotal?: number;
+    /**
+     * Arbitrary taxable subtotal discount.  If an arbitrary subtotal discount is supplied without this field, the arbitrary subtotal discount is used for both.
+     * @type {number}
+     * @memberof ChannelPartnerOrder
+     */
+    arbitrary_taxable_subtotal_discount?: number;
     /**
      * If true any matching customer profile based on email is associated with this order
      * @type {boolean}
@@ -662,9 +674,11 @@ export function ChannelPartnerOrderFromJSONTyped(json: any, ignoreDiscriminator:
         'affiliate_id': !exists(json, 'affiliate_id') ? undefined : json['affiliate_id'],
         'affiliate_sub_id': !exists(json, 'affiliate_sub_id') ? undefined : json['affiliate_sub_id'],
         'arbitrary_shipping_handling_total': !exists(json, 'arbitrary_shipping_handling_total') ? undefined : json['arbitrary_shipping_handling_total'],
+        'arbitrary_subtotal_discount': !exists(json, 'arbitrary_subtotal_discount') ? undefined : json['arbitrary_subtotal_discount'],
         'arbitrary_tax': !exists(json, 'arbitrary_tax') ? undefined : json['arbitrary_tax'],
         'arbitrary_tax_rate': !exists(json, 'arbitrary_tax_rate') ? undefined : json['arbitrary_tax_rate'],
         'arbitrary_taxable_subtotal': !exists(json, 'arbitrary_taxable_subtotal') ? undefined : json['arbitrary_taxable_subtotal'],
+        'arbitrary_taxable_subtotal_discount': !exists(json, 'arbitrary_taxable_subtotal_discount') ? undefined : json['arbitrary_taxable_subtotal_discount'],
         'associate_with_customer_profile_if_present': !exists(json, 'associate_with_customer_profile_if_present') ? undefined : json['associate_with_customer_profile_if_present'],
         'auto_approve_purchase_order': !exists(json, 'auto_approve_purchase_order') ? undefined : json['auto_approve_purchase_order'],
         'billto_address1': !exists(json, 'billto_address1') ? undefined : json['billto_address1'],
@@ -768,9 +782,11 @@ export function ChannelPartnerOrderToJSON(value?: ChannelPartnerOrder | null): a
         'affiliate_id': value.affiliate_id,
         'affiliate_sub_id': value.affiliate_sub_id,
         'arbitrary_shipping_handling_total': value.arbitrary_shipping_handling_total,
+        'arbitrary_subtotal_discount': value.arbitrary_subtotal_discount,
         'arbitrary_tax': value.arbitrary_tax,
         'arbitrary_tax_rate': value.arbitrary_tax_rate,
         'arbitrary_taxable_subtotal': value.arbitrary_taxable_subtotal,
+        'arbitrary_taxable_subtotal_discount': value.arbitrary_taxable_subtotal_discount,
         'associate_with_customer_profile_if_present': value.associate_with_customer_profile_if_present,
         'auto_approve_purchase_order': value.auto_approve_purchase_order,
         'billto_address1': value.billto_address1,
