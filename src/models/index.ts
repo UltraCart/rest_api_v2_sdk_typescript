@@ -785,6 +785,7 @@ export * from './OrderChannelPartner';
 export * from './OrderCheckout';
 export * from './OrderCoupon';
 export * from './OrderCurrentStageHistory';
+export * from './OrderCustomerActivityResponse';
 export * from './OrderDigitalItem';
 export * from './OrderDigitalOrder';
 export * from './OrderEdi';

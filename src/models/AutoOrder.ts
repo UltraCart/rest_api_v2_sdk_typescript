@@ -93,7 +93,7 @@ export interface AutoOrder {
      */
     cancel_downgrade?: boolean;
     /**
-     * The reason this auto order was canceled by either merchant or customer
+     * The reason this auto order was canceled by either merchant or customer. Supplying this when setting enabled to false records the change as a cancellation rather than a disable.
      * @type {string}
      * @memberof AutoOrder
      */
@@ -105,13 +105,13 @@ export interface AutoOrder {
      */
     cancel_upgrade?: boolean;
     /**
-     * The user that canceled the auto order
+     * The user that canceled the auto order. Supplying this when setting enabled to false records the change as a cancellation rather than a disable.
      * @type {string}
      * @memberof AutoOrder
      */
     canceled_by_user?: string;
     /**
-     * The date/time that the auto order was canceled
+     * The date/time that the auto order was canceled. Supply this to record an explicit cancellation time, otherwise it is stamped automatically when enabled is set to false along with cancel_reason or canceled_by_user.
      * @type {string}
      * @memberof AutoOrder
      */
@@ -129,7 +129,7 @@ export interface AutoOrder {
      */
     credit_card_attempt?: number;
     /**
-     * The date/time the auto order was disabled due to failed rebills
+     * The date/time the auto order was disabled, either by a failed rebill or by setting enabled to false without a cancellation
      * @type {string}
      * @memberof AutoOrder
      */
@@ -141,7 +141,7 @@ export interface AutoOrder {
      */
     emails?: Array<AutoOrderEmail>;
     /**
-     * True if this auto order is enabled
+     * True if this auto order is enabled. Setting this to false along with cancel_reason or canceled_by_user records the change as a cancellation and fires the auto order cancel notifications. Setting it to false without either field records a disable instead.
      * @type {boolean}
      * @memberof AutoOrder
      */

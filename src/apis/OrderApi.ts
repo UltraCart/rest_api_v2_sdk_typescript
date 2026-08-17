@@ -42,6 +42,9 @@ import {
     OrderByTokenQuery,
     OrderByTokenQueryFromJSON,
     OrderByTokenQueryToJSON,
+    OrderCustomerActivityResponse,
+    OrderCustomerActivityResponseFromJSON,
+    OrderCustomerActivityResponseToJSON,
     OrderEdiDocumentsResponse,
     OrderEdiDocumentsResponseFromJSON,
     OrderEdiDocumentsResponseToJSON,
@@ -178,6 +181,10 @@ export interface GetOrderRequest {
 export interface GetOrderByTokenRequest {
     orderByTokenQuery: OrderByTokenQuery;
     expand?: string;
+}
+
+export interface GetOrderCustomerActivityRequest {
+    orderId: string;
 }
 
 export interface GetOrderEdiDocumentsRequest {
@@ -609,6 +616,22 @@ export interface OrderApiInterface {
      * Retrieve an order using a token
      */
     getOrderByToken(requestParameters: GetOrderByTokenRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<OrderResponse>;
+
+    /**
+     * Retrieves the customer activity associated with the email address on this order.  This includes email engagement history, email list and segment membership, lifetime metrics and email suppression status.  A customer profile is not required and is not consulted, so this method works for guest orders that have never had a customer profile established.  For the page views captured during the session that placed the order, see the page view history method instead. 
+     * @summary Retrieve customer activity for this order.
+     * @param {string} orderId The order id to retrieve customer activity for.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof OrderApiInterface
+     */
+    getOrderCustomerActivityRaw(requestParameters: GetOrderCustomerActivityRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<OrderCustomerActivityResponse>>;
+
+    /**
+     * Retrieves the customer activity associated with the email address on this order.  This includes email engagement history, email list and segment membership, lifetime metrics and email suppression status.  A customer profile is not required and is not consulted, so this method works for guest orders that have never had a customer profile established.  For the page views captured during the session that placed the order, see the page view history method instead. 
+     * Retrieve customer activity for this order.
+     */
+    getOrderCustomerActivity(requestParameters: GetOrderCustomerActivityRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<OrderCustomerActivityResponse>;
 
     /**
      * Retrieve EDI documents associated with this order. 
@@ -1756,6 +1779,47 @@ export class OrderApi extends runtime.BaseAPI implements OrderApiInterface {
      */
     async getOrderByToken(requestParameters: GetOrderByTokenRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<OrderResponse> {
         const response = await this.getOrderByTokenRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Retrieves the customer activity associated with the email address on this order.  This includes email engagement history, email list and segment membership, lifetime metrics and email suppression status.  A customer profile is not required and is not consulted, so this method works for guest orders that have never had a customer profile established.  For the page views captured during the session that placed the order, see the page view history method instead. 
+     * Retrieve customer activity for this order.
+     */
+    async getOrderCustomerActivityRaw(requestParameters: GetOrderCustomerActivityRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<OrderCustomerActivityResponse>> {
+        if (requestParameters.orderId === null || requestParameters.orderId === undefined) {
+            throw new runtime.RequiredError('orderId','Required parameter requestParameters.orderId was null or undefined when calling getOrderCustomerActivity.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", ["order_read"]);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/order/orders/{order_id}/customer_activity`.replace(`{${"order_id"}}`, encodeURIComponent(String(requestParameters.orderId))),
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => OrderCustomerActivityResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Retrieves the customer activity associated with the email address on this order.  This includes email engagement history, email list and segment membership, lifetime metrics and email suppression status.  A customer profile is not required and is not consulted, so this method works for guest orders that have never had a customer profile established.  For the page views captured during the session that placed the order, see the page view history method instead. 
+     * Retrieve customer activity for this order.
+     */
+    async getOrderCustomerActivity(requestParameters: GetOrderCustomerActivityRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<OrderCustomerActivityResponse> {
+        const response = await this.getOrderCustomerActivityRaw(requestParameters, initOverrides);
         return await response.value();
     }
 

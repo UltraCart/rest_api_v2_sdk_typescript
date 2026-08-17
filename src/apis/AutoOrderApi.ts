@@ -443,7 +443,7 @@ export interface AutoOrderApiInterface {
     pauseAutoOrder(requestParameters: PauseAutoOrderRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AutoOrderResponse>;
 
     /**
-     * Update an auto order on the UltraCart account. 
+     * Update an auto order on the UltraCart account.  To cancel an auto order, set enabled to false and supply either cancel_reason or canceled_by_user, which records the change as a cancellation and fires the auto order cancel notifications.  Setting enabled to false without either field records a disable. 
      * @summary Update an auto order
      * @param {number} autoOrderOid The auto order oid to update.
      * @param {AutoOrder} autoOrder Auto order to update
@@ -456,7 +456,7 @@ export interface AutoOrderApiInterface {
     updateAutoOrderRaw(requestParameters: UpdateAutoOrderRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AutoOrderResponse>>;
 
     /**
-     * Update an auto order on the UltraCart account. 
+     * Update an auto order on the UltraCart account.  To cancel an auto order, set enabled to false and supply either cancel_reason or canceled_by_user, which records the change as a cancellation and fires the auto order cancel notifications.  Setting enabled to false without either field records a disable. 
      * Update an auto order
      */
     updateAutoOrder(requestParameters: UpdateAutoOrderRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AutoOrderResponse>;
@@ -536,7 +536,7 @@ export interface AutoOrderApiInterface {
     updateAutoOrderProperties(requestParameters: UpdateAutoOrderPropertiesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AutoOrderResponse>;
 
     /**
-     * Update multiple auto orders on the UltraCart account. 
+     * Update multiple auto orders on the UltraCart account.  To cancel an auto order, set enabled to false and supply either cancel_reason or canceled_by_user, which records the change as a cancellation and fires the auto order cancel notifications.  Setting enabled to false without either field records a disable. 
      * @summary Update multiple auto orders
      * @param {AutoOrdersRequest} autoOrdersRequest Auto orders to update (synchronous maximum 20 / asynchronous maximum 100)
      * @param {string} [expand] The object expansion to perform on the result.  See documentation for examples
@@ -549,7 +549,7 @@ export interface AutoOrderApiInterface {
     updateAutoOrdersBatchRaw(requestParameters: UpdateAutoOrdersBatchRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AutoOrdersResponse>>;
 
     /**
-     * Update multiple auto orders on the UltraCart account. 
+     * Update multiple auto orders on the UltraCart account.  To cancel an auto order, set enabled to false and supply either cancel_reason or canceled_by_user, which records the change as a cancellation and fires the auto order cancel notifications.  Setting enabled to false without either field records a disable. 
      * Update multiple auto orders
      */
     updateAutoOrdersBatch(requestParameters: UpdateAutoOrdersBatchRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AutoOrdersResponse>;
@@ -1258,7 +1258,7 @@ export class AutoOrderApi extends runtime.BaseAPI implements AutoOrderApiInterfa
     }
 
     /**
-     * Update an auto order on the UltraCart account. 
+     * Update an auto order on the UltraCart account.  To cancel an auto order, set enabled to false and supply either cancel_reason or canceled_by_user, which records the change as a cancellation and fires the auto order cancel notifications.  Setting enabled to false without either field records a disable. 
      * Update an auto order
      */
     async updateAutoOrderRaw(requestParameters: UpdateAutoOrderRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AutoOrderResponse>> {
@@ -1305,7 +1305,7 @@ export class AutoOrderApi extends runtime.BaseAPI implements AutoOrderApiInterfa
     }
 
     /**
-     * Update an auto order on the UltraCart account. 
+     * Update an auto order on the UltraCart account.  To cancel an auto order, set enabled to false and supply either cancel_reason or canceled_by_user, which records the change as a cancellation and fires the auto order cancel notifications.  Setting enabled to false without either field records a disable. 
      * Update an auto order
      */
     async updateAutoOrder(requestParameters: UpdateAutoOrderRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AutoOrderResponse> {
@@ -1530,7 +1530,7 @@ export class AutoOrderApi extends runtime.BaseAPI implements AutoOrderApiInterfa
     }
 
     /**
-     * Update multiple auto orders on the UltraCart account. 
+     * Update multiple auto orders on the UltraCart account.  To cancel an auto order, set enabled to false and supply either cancel_reason or canceled_by_user, which records the change as a cancellation and fires the auto order cancel notifications.  Setting enabled to false without either field records a disable. 
      * Update multiple auto orders
      */
     async updateAutoOrdersBatchRaw(requestParameters: UpdateAutoOrdersBatchRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AutoOrdersResponse>> {
@@ -1577,7 +1577,7 @@ export class AutoOrderApi extends runtime.BaseAPI implements AutoOrderApiInterfa
     }
 
     /**
-     * Update multiple auto orders on the UltraCart account. 
+     * Update multiple auto orders on the UltraCart account.  To cancel an auto order, set enabled to false and supply either cancel_reason or canceled_by_user, which records the change as a cancellation and fires the auto order cancel notifications.  Setting enabled to false without either field records a disable. 
      * Update multiple auto orders
      */
     async updateAutoOrdersBatch(requestParameters: UpdateAutoOrdersBatchRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AutoOrdersResponse> {

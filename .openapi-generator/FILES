@@ -812,6 +812,7 @@ src/models/OrderChannelPartner.ts
 src/models/OrderCheckout.ts
 src/models/OrderCoupon.ts
 src/models/OrderCurrentStageHistory.ts
+src/models/OrderCustomerActivityResponse.ts
 src/models/OrderDigitalItem.ts
 src/models/OrderDigitalOrder.ts
 src/models/OrderEdi.ts
