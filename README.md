@@ -1,12 +1,12 @@
 # UltraCart Typescript SDK
-## ultracart_rest_api_v2_typescript@4.1.131
+## ultracart_rest_api_v2_typescript@4.1.132
 
 Every API method call has a sample for every language SDK.  See https://github.com/UltraCart/sdk_samples
 
 Installation
 
 ```
-npm install ultracart_rest_api_v2_typescript@4.1.131 --save
+npm install ultracart_rest_api_v2_typescript@4.1.132 --save
 ```
 
 ```typescript
@@ -85,6 +85,7 @@ Not every change is committed to every SDK.
 
 | Version | Date | Comments |
 | --: | :-: | --- |
+| 4.1.132 | 08/18/2026 | customer activity bug fix |
 | 4.1.131 | 08/18/2026 | customer activity now returns the SF communications active flag and last_activity_dts |
 | 4.1.130 | 08/17/2026 | order api - new method to obtain customer activity similar to the customer endpoint for a profile |
 | 4.1.129 | 08/13/2026 | ChannelPartnerOrder and OrderChannelPartner were missing a property |

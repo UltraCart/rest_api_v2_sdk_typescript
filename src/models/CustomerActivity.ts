@@ -46,6 +46,12 @@ import {
 export interface CustomerActivity {
     /**
      * 
+     * @type {boolean}
+     * @memberof CustomerActivity
+     */
+    active?: boolean;
+    /**
+     * 
      * @type {Array<Activity>}
      * @memberof CustomerActivity
      */
@@ -62,6 +68,12 @@ export interface CustomerActivity {
      * @memberof CustomerActivity
      */
     global_unsubscribed_dts?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof CustomerActivity
+     */
+    last_activity_dts?: string;
     /**
      * 
      * @type {Array<ListSegmentMembership>}
@@ -127,9 +139,11 @@ export function CustomerActivityFromJSONTyped(json: any, ignoreDiscriminator: bo
     }
     return {
         
+        'active': !exists(json, 'active') ? undefined : json['active'],
         'activities': !exists(json, 'activities') ? undefined : ((json['activities'] as Array<any>).map(ActivityFromJSON)),
         'global_unsubscribed': !exists(json, 'global_unsubscribed') ? undefined : json['global_unsubscribed'],
         'global_unsubscribed_dts': !exists(json, 'global_unsubscribed_dts') ? undefined : json['global_unsubscribed_dts'],
+        'last_activity_dts': !exists(json, 'last_activity_dts') ? undefined : json['last_activity_dts'],
         'memberships': !exists(json, 'memberships') ? undefined : ((json['memberships'] as Array<any>).map(ListSegmentMembershipFromJSON)),
         'metrics': !exists(json, 'metrics') ? undefined : ((json['metrics'] as Array<any>).map(MetricFromJSON)),
         'properties_list': !exists(json, 'properties_list') ? undefined : ((json['properties_list'] as Array<any>).map(PropertyFromJSON)),
@@ -149,9 +163,11 @@ export function CustomerActivityToJSON(value?: CustomerActivity | null): any {
     }
     return {
         
+        'active': value.active,
         'activities': value.activities === undefined ? undefined : ((value.activities as Array<any>).map(ActivityToJSON)),
         'global_unsubscribed': value.global_unsubscribed,
         'global_unsubscribed_dts': value.global_unsubscribed_dts,
+        'last_activity_dts': value.last_activity_dts,
         'memberships': value.memberships === undefined ? undefined : ((value.memberships as Array<any>).map(ListSegmentMembershipToJSON)),
         'metrics': value.metrics === undefined ? undefined : ((value.metrics as Array<any>).map(MetricToJSON)),
         'properties_list': value.properties_list === undefined ? undefined : ((value.properties_list as Array<any>).map(PropertyToJSON)),
