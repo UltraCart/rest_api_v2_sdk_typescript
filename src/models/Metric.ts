@@ -21,6 +21,12 @@ import { exists, mapValues } from '../runtime';
 export interface Metric {
     /**
      * 
+     * @type {boolean}
+     * @memberof Metric
+     */
+    active?: boolean;
+    /**
+     * 
      * @type {number}
      * @memberof Metric
      */
@@ -43,6 +49,12 @@ export interface Metric {
      * @memberof Metric
      */
     last_30_formatted?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof Metric
+     */
+    last_activity_dts?: string;
     /**
      * 
      * @type {string}
@@ -90,10 +102,12 @@ export function MetricFromJSONTyped(json: any, ignoreDiscriminator: boolean): Me
     }
     return {
         
+        'active': !exists(json, 'active') ? undefined : json['active'],
         'all_time': !exists(json, 'all_time') ? undefined : json['all_time'],
         'all_time_formatted': !exists(json, 'all_time_formatted') ? undefined : json['all_time_formatted'],
         'last_30': !exists(json, 'last_30') ? undefined : json['last_30'],
         'last_30_formatted': !exists(json, 'last_30_formatted') ? undefined : json['last_30_formatted'],
+        'last_activity_dts': !exists(json, 'last_activity_dts') ? undefined : json['last_activity_dts'],
         'name': !exists(json, 'name') ? undefined : json['name'],
         'prior_30': !exists(json, 'prior_30') ? undefined : json['prior_30'],
         'prior_30_formatted': !exists(json, 'prior_30_formatted') ? undefined : json['prior_30_formatted'],
@@ -110,10 +124,12 @@ export function MetricToJSON(value?: Metric | null): any {
     }
     return {
         
+        'active': value.active,
         'all_time': value.all_time,
         'all_time_formatted': value.all_time_formatted,
         'last_30': value.last_30,
         'last_30_formatted': value.last_30_formatted,
+        'last_activity_dts': value.last_activity_dts,
         'name': value.name,
         'prior_30': value.prior_30,
         'prior_30_formatted': value.prior_30_formatted,
