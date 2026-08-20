@@ -363,7 +363,7 @@ export interface Order {
      */
     point_of_sale?: OrderPointOfSale;
     /**
-     * Properties, available only through update, not through insert due to the nature of how properties are handled internally
+     * Properties associated with the order
      * @type {Array<OrderProperty>}
      * @memberof Order
      */

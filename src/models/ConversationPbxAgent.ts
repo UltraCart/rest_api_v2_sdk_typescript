@@ -145,6 +145,18 @@ export interface ConversationPbxAgent {
      * @memberof ConversationPbxAgent
      */
     voicemail?: boolean;
+    /**
+     * Zoho Desk department ID to create outbound-call tickets in for this agent
+     * @type {string}
+     * @memberof ConversationPbxAgent
+     */
+    zoho_desk_outbound_department_id?: string;
+    /**
+     * If true, a Zoho Desk ticket is automatically created for outbound calls placed by this agent
+     * @type {boolean}
+     * @memberof ConversationPbxAgent
+     */
+    zoho_desk_outbound_ticket_enabled?: boolean;
 }
 
 
@@ -209,6 +221,8 @@ export function ConversationPbxAgentFromJSONTyped(json: any, ignoreDiscriminator
         'unavailable_say_voice': !exists(json, 'unavailable_say_voice') ? undefined : json['unavailable_say_voice'],
         'user_id': !exists(json, 'user_id') ? undefined : json['user_id'],
         'voicemail': !exists(json, 'voicemail') ? undefined : json['voicemail'],
+        'zoho_desk_outbound_department_id': !exists(json, 'zoho_desk_outbound_department_id') ? undefined : json['zoho_desk_outbound_department_id'],
+        'zoho_desk_outbound_ticket_enabled': !exists(json, 'zoho_desk_outbound_ticket_enabled') ? undefined : json['zoho_desk_outbound_ticket_enabled'],
     };
 }
 
@@ -242,6 +256,8 @@ export function ConversationPbxAgentToJSON(value?: ConversationPbxAgent | null):
         'unavailable_say_voice': value.unavailable_say_voice,
         'user_id': value.user_id,
         'voicemail': value.voicemail,
+        'zoho_desk_outbound_department_id': value.zoho_desk_outbound_department_id,
+        'zoho_desk_outbound_ticket_enabled': value.zoho_desk_outbound_ticket_enabled,
     };
 }
 

@@ -189,7 +189,7 @@ export interface OrderPayment {
      */
     test_order?: boolean;
     /**
-     * Transactions associated with processing this payment
+     * Transactions associated with processing this payment.  Accepted on insert to carry the payment history of an order captured outside the system.
      * @type {Array<OrderPaymentTransaction>}
      * @memberof OrderPayment
      */
