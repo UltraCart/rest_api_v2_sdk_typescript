@@ -38,6 +38,12 @@ export interface ConversationPbxMenuMapping {
      */
     digits?: number;
     /**
+     * Optional phone number to send the text message from.  Must be a phone number configured on this merchant account and SMS enabled.  Defaults to the number the caller dialed.  Only used when the action is 'send text'.
+     * @type {string}
+     * @memberof ConversationPbxMenuMapping
+     */
+    sms_from_number?: string;
+    /**
      * Speech
      * @type {string}
      * @memberof ConversationPbxMenuMapping
@@ -89,6 +95,7 @@ export function ConversationPbxMenuMappingFromJSONTyped(json: any, ignoreDiscrim
         'action': !exists(json, 'action') ? undefined : json['action'],
         'action_target': !exists(json, 'action_target') ? undefined : json['action_target'],
         'digits': !exists(json, 'digits') ? undefined : json['digits'],
+        'sms_from_number': !exists(json, 'sms_from_number') ? undefined : json['sms_from_number'],
         'speech': !exists(json, 'speech') ? undefined : json['speech'],
         'text_message': !exists(json, 'text_message') ? undefined : json['text_message'],
     };
@@ -106,6 +113,7 @@ export function ConversationPbxMenuMappingToJSON(value?: ConversationPbxMenuMapp
         'action': value.action,
         'action_target': value.action_target,
         'digits': value.digits,
+        'sms_from_number': value.sms_from_number,
         'speech': value.speech,
         'text_message': value.text_message,
     };
