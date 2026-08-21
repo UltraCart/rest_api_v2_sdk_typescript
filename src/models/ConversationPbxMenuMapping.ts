@@ -43,6 +43,12 @@ export interface ConversationPbxMenuMapping {
      * @memberof ConversationPbxMenuMapping
      */
     speech?: string;
+    /**
+     * Text message body sent to the caller when the action is 'send text'.  Ignored for all other actions.
+     * @type {string}
+     * @memberof ConversationPbxMenuMapping
+     */
+    text_message?: string;
 }
 
 
@@ -55,7 +61,8 @@ export const ConversationPbxMenuMappingActionEnum = {
     Menu: 'menu',
     Queue: 'queue',
     Voicemail: 'voicemail',
-    Agent: 'agent'
+    Agent: 'agent',
+    SendText: 'send text'
 } as const;
 export type ConversationPbxMenuMappingActionEnum = typeof ConversationPbxMenuMappingActionEnum[keyof typeof ConversationPbxMenuMappingActionEnum];
 
@@ -83,6 +90,7 @@ export function ConversationPbxMenuMappingFromJSONTyped(json: any, ignoreDiscrim
         'action_target': !exists(json, 'action_target') ? undefined : json['action_target'],
         'digits': !exists(json, 'digits') ? undefined : json['digits'],
         'speech': !exists(json, 'speech') ? undefined : json['speech'],
+        'text_message': !exists(json, 'text_message') ? undefined : json['text_message'],
     };
 }
 
@@ -99,6 +107,7 @@ export function ConversationPbxMenuMappingToJSON(value?: ConversationPbxMenuMapp
         'action_target': value.action_target,
         'digits': value.digits,
         'speech': value.speech,
+        'text_message': value.text_message,
     };
 }
 

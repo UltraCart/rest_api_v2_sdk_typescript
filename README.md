@@ -1,12 +1,12 @@
 # UltraCart Typescript SDK
-## ultracart_rest_api_v2_typescript@4.1.133
+## ultracart_rest_api_v2_typescript@4.1.134
 
 Every API method call has a sample for every language SDK.  See https://github.com/UltraCart/sdk_samples
 
 Installation
 
 ```
-npm install ultracart_rest_api_v2_typescript@4.1.133 --save
+npm install ultracart_rest_api_v2_typescript@4.1.134 --save
 ```
 
 ```typescript
@@ -85,6 +85,7 @@ Not every change is committed to every SDK.
 
 | Version | Date | Comments |
 | --: | :-: | --- |
+| 4.1.134 | 08/21/2026 | conversation - pbx menu mapping for send text |
 | 4.1.133 | 08/20/2026 | conversations - pbx agent setting for creating tickets in zoho desk for outgoing calls |
 | 4.1.132 | 08/18/2026 | customer activity bug fix |
 | 4.1.131 | 08/18/2026 | customer activity now returns the SF communications active flag and last_activity_dts |
