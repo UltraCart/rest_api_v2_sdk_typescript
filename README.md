@@ -1,12 +1,12 @@
 # UltraCart Typescript SDK
-## ultracart_rest_api_v2_typescript@4.1.135
+## ultracart_rest_api_v2_typescript@4.1.136
 
 Every API method call has a sample for every language SDK.  See https://github.com/UltraCart/sdk_samples
 
 Installation
 
 ```
-npm install ultracart_rest_api_v2_typescript@4.1.135 --save
+npm install ultracart_rest_api_v2_typescript@4.1.136 --save
 ```
 
 ```typescript
@@ -85,6 +85,7 @@ Not every change is committed to every SDK.
 
 | Version | Date | Comments |
 | --: | :-: | --- |
+| 4.1.136 | 08/24/2026 | customer api - adjust method for loyalty points |
 | 4.1.135 | 08/21/2026 | conversation pbx - support send text operation as a menu item froma different phone number |
 | 4.1.134 | 08/21/2026 | conversation - pbx menu mapping for send text |
 | 4.1.133 | 08/20/2026 | conversations - pbx agent setting for creating tickets in zoho desk for outgoing calls |

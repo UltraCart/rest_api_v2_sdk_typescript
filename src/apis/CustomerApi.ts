@@ -21,6 +21,12 @@ import {
     AdjustInternalCertificateResponse,
     AdjustInternalCertificateResponseFromJSON,
     AdjustInternalCertificateResponseToJSON,
+    AdjustLoyaltyPointsRequest,
+    AdjustLoyaltyPointsRequestFromJSON,
+    AdjustLoyaltyPointsRequestToJSON,
+    AdjustLoyaltyPointsResponse,
+    AdjustLoyaltyPointsResponseFromJSON,
+    AdjustLoyaltyPointsResponseToJSON,
     BaseResponse,
     BaseResponseFromJSON,
     BaseResponseToJSON,
@@ -39,6 +45,9 @@ import {
     CustomerEmailSuppressionResponse,
     CustomerEmailSuppressionResponseFromJSON,
     CustomerEmailSuppressionResponseToJSON,
+    CustomerLoyaltyResponse,
+    CustomerLoyaltyResponseFromJSON,
+    CustomerLoyaltyResponseToJSON,
     CustomerMagicLinkResponse,
     CustomerMagicLinkResponseFromJSON,
     CustomerMagicLinkResponseToJSON,
@@ -111,6 +120,11 @@ export interface AdjustInternalCertificateOperationRequest {
     adjustInternalCertificateRequest: AdjustInternalCertificateRequest;
 }
 
+export interface AdjustLoyaltyPointsOperationRequest {
+    customerProfileOid: number;
+    adjustLoyaltyPointsRequest: AdjustLoyaltyPointsRequest;
+}
+
 export interface DeleteCustomerRequest {
     customerProfileOid: number;
 }
@@ -128,6 +142,10 @@ export interface GetCustomerRequest {
 export interface GetCustomerByEmailRequest {
     email: string;
     expand?: string;
+}
+
+export interface GetCustomerLoyaltyRequest {
+    customerProfileOid: number;
 }
 
 export interface GetCustomerStoreCreditRequest {
@@ -303,6 +321,23 @@ export interface CustomerApiInterface {
     adjustInternalCertificate(requestParameters: AdjustInternalCertificateOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AdjustInternalCertificateResponse>;
 
     /**
+     * Adjusts the loyalty points for a customer by adding a record to the loyalty ledger.  The loyalty ledger is append only.  Records are never updated or deleted, so a correction is made by posting a second adjustment with the opposite sign. 
+     * @summary Adjusts the loyalty points for a customer by adding a record to the loyalty ledger.
+     * @param {number} customerProfileOid The customer profile oid
+     * @param {AdjustLoyaltyPointsRequest} adjustLoyaltyPointsRequest adjustLoyaltyPointsRequest
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof CustomerApiInterface
+     */
+    adjustLoyaltyPointsRaw(requestParameters: AdjustLoyaltyPointsOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AdjustLoyaltyPointsResponse>>;
+
+    /**
+     * Adjusts the loyalty points for a customer by adding a record to the loyalty ledger.  The loyalty ledger is append only.  Records are never updated or deleted, so a correction is made by posting a second adjustment with the opposite sign. 
+     * Adjusts the loyalty points for a customer by adding a record to the loyalty ledger.
+     */
+    adjustLoyaltyPoints(requestParameters: AdjustLoyaltyPointsOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AdjustLoyaltyPointsResponse>;
+
+    /**
      * Delete a customer on the UltraCart account. 
      * @summary Delete a customer
      * @param {number} customerProfileOid The customer_profile_oid to delete.
@@ -398,6 +433,22 @@ export interface CustomerApiInterface {
      * Retrieve all email lists across all storefronts
      */
     getCustomerEmailLists(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EmailListsResponse>;
+
+    /**
+     * Retrieve the loyalty points, ledger and redemptions for a customer.  This is a convenience method that returns the same information as expanding loyalty on the customer object, without having to retrieve the entire customer. 
+     * @summary Retrieve the loyalty points, ledger and redemptions for a customer
+     * @param {number} customerProfileOid The customer oid to retrieve.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof CustomerApiInterface
+     */
+    getCustomerLoyaltyRaw(requestParameters: GetCustomerLoyaltyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CustomerLoyaltyResponse>>;
+
+    /**
+     * Retrieve the loyalty points, ledger and redemptions for a customer.  This is a convenience method that returns the same information as expanding loyalty on the customer object, without having to retrieve the entire customer. 
+     * Retrieve the loyalty points, ledger and redemptions for a customer
+     */
+    getCustomerLoyalty(requestParameters: GetCustomerLoyaltyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomerLoyaltyResponse>;
 
     /**
      * Retrieve the customer store credit accumulated through loyalty programs 
@@ -861,6 +912,54 @@ export class CustomerApi extends runtime.BaseAPI implements CustomerApiInterface
     }
 
     /**
+     * Adjusts the loyalty points for a customer by adding a record to the loyalty ledger.  The loyalty ledger is append only.  Records are never updated or deleted, so a correction is made by posting a second adjustment with the opposite sign. 
+     * Adjusts the loyalty points for a customer by adding a record to the loyalty ledger.
+     */
+    async adjustLoyaltyPointsRaw(requestParameters: AdjustLoyaltyPointsOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AdjustLoyaltyPointsResponse>> {
+        if (requestParameters.customerProfileOid === null || requestParameters.customerProfileOid === undefined) {
+            throw new runtime.RequiredError('customerProfileOid','Required parameter requestParameters.customerProfileOid was null or undefined when calling adjustLoyaltyPoints.');
+        }
+
+        if (requestParameters.adjustLoyaltyPointsRequest === null || requestParameters.adjustLoyaltyPointsRequest === undefined) {
+            throw new runtime.RequiredError('adjustLoyaltyPointsRequest','Required parameter requestParameters.adjustLoyaltyPointsRequest was null or undefined when calling adjustLoyaltyPoints.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json; charset=UTF-8';
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", ["customer_write"]);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/customer/customers/{customer_profile_oid}/adjust_loyalty_points`.replace(`{${"customer_profile_oid"}}`, encodeURIComponent(String(requestParameters.customerProfileOid))),
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: AdjustLoyaltyPointsRequestToJSON(requestParameters.adjustLoyaltyPointsRequest),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => AdjustLoyaltyPointsResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Adjusts the loyalty points for a customer by adding a record to the loyalty ledger.  The loyalty ledger is append only.  Records are never updated or deleted, so a correction is made by posting a second adjustment with the opposite sign. 
+     * Adjusts the loyalty points for a customer by adding a record to the loyalty ledger.
+     */
+    async adjustLoyaltyPoints(requestParameters: AdjustLoyaltyPointsOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AdjustLoyaltyPointsResponse> {
+        const response = await this.adjustLoyaltyPointsRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
      * Delete a customer on the UltraCart account. 
      * Delete a customer
      */
@@ -1105,6 +1204,47 @@ export class CustomerApi extends runtime.BaseAPI implements CustomerApiInterface
      */
     async getCustomerEmailLists(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EmailListsResponse> {
         const response = await this.getCustomerEmailListsRaw(initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Retrieve the loyalty points, ledger and redemptions for a customer.  This is a convenience method that returns the same information as expanding loyalty on the customer object, without having to retrieve the entire customer. 
+     * Retrieve the loyalty points, ledger and redemptions for a customer
+     */
+    async getCustomerLoyaltyRaw(requestParameters: GetCustomerLoyaltyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CustomerLoyaltyResponse>> {
+        if (requestParameters.customerProfileOid === null || requestParameters.customerProfileOid === undefined) {
+            throw new runtime.RequiredError('customerProfileOid','Required parameter requestParameters.customerProfileOid was null or undefined when calling getCustomerLoyalty.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", ["customer_read"]);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/customer/customers/{customer_profile_oid}/loyalty`.replace(`{${"customer_profile_oid"}}`, encodeURIComponent(String(requestParameters.customerProfileOid))),
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => CustomerLoyaltyResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Retrieve the loyalty points, ledger and redemptions for a customer.  This is a convenience method that returns the same information as expanding loyalty on the customer object, without having to retrieve the entire customer. 
+     * Retrieve the loyalty points, ledger and redemptions for a customer
+     */
+    async getCustomerLoyalty(requestParameters: GetCustomerLoyaltyRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomerLoyaltyResponse> {
+        const response = await this.getCustomerLoyaltyRaw(requestParameters, initOverrides);
         return await response.value();
     }
 

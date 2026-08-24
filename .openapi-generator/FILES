@@ -39,6 +39,8 @@ src/models/Activity.ts
 src/models/AddLibraryItemRequest.ts
 src/models/AdjustInternalCertificateRequest.ts
 src/models/AdjustInternalCertificateResponse.ts
+src/models/AdjustLoyaltyPointsRequest.ts
+src/models/AdjustLoyaltyPointsResponse.ts
 src/models/Affiliate.ts
 src/models/AffiliateAttribute.ts
 src/models/AffiliateClick.ts
@@ -471,6 +473,7 @@ src/models/CustomerEmailSuppressionResult.ts
 src/models/CustomerLoyalty.ts
 src/models/CustomerLoyaltyLedger.ts
 src/models/CustomerLoyaltyRedemption.ts
+src/models/CustomerLoyaltyResponse.ts
 src/models/CustomerMagicLinkResponse.ts
 src/models/CustomerMergeRequest.ts
 src/models/CustomerOrdersSummary.ts
