@@ -51,6 +51,12 @@ export interface ChannelPartnerOrder {
      */
     affiliate_sub_id?: string;
     /**
+     * Names of pricing tiers to price this order against, without associating a customer profile.  An unknown tier name will fail the import.  An item that also supplies arbitrary_unit_cost keeps that cost and ignores the tier.  If a customer profile is attached to this order during checkout, these tiers are granted to that profile permanently.
+     * @type {Array<string>}
+     * @memberof ChannelPartnerOrder
+     */
+    arbitrary_pricing_tier_names?: Array<string>;
+    /**
      * Arbitrary shipping handling total
      * @type {number}
      * @memberof ChannelPartnerOrder
@@ -679,6 +685,7 @@ export function ChannelPartnerOrderFromJSONTyped(json: any, ignoreDiscriminator:
         'advertisingSource': !exists(json, 'advertisingSource') ? undefined : json['advertisingSource'],
         'affiliate_id': !exists(json, 'affiliate_id') ? undefined : json['affiliate_id'],
         'affiliate_sub_id': !exists(json, 'affiliate_sub_id') ? undefined : json['affiliate_sub_id'],
+        'arbitrary_pricing_tier_names': !exists(json, 'arbitrary_pricing_tier_names') ? undefined : json['arbitrary_pricing_tier_names'],
         'arbitrary_shipping_handling_total': !exists(json, 'arbitrary_shipping_handling_total') ? undefined : json['arbitrary_shipping_handling_total'],
         'arbitrary_subtotal_discount': !exists(json, 'arbitrary_subtotal_discount') ? undefined : json['arbitrary_subtotal_discount'],
         'arbitrary_tax': !exists(json, 'arbitrary_tax') ? undefined : json['arbitrary_tax'],
@@ -788,6 +795,7 @@ export function ChannelPartnerOrderToJSON(value?: ChannelPartnerOrder | null): a
         'advertisingSource': value.advertisingSource,
         'affiliate_id': value.affiliate_id,
         'affiliate_sub_id': value.affiliate_sub_id,
+        'arbitrary_pricing_tier_names': value.arbitrary_pricing_tier_names,
         'arbitrary_shipping_handling_total': value.arbitrary_shipping_handling_total,
         'arbitrary_subtotal_discount': value.arbitrary_subtotal_discount,
         'arbitrary_tax': value.arbitrary_tax,

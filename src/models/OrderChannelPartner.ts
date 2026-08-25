@@ -20,6 +20,12 @@ import { exists, mapValues } from '../runtime';
  */
 export interface OrderChannelPartner {
     /**
+     * Names of pricing tiers to price this order against, without associating a customer profile.  An unknown tier name will fail the import.  An item that also supplies arbitrary_unit_cost keeps that cost and ignores the tier.  If a customer profile is attached to this order during checkout, these tiers are granted to that profile permanently.  Only applicable on inserting orders.
+     * @type {Array<string>}
+     * @memberof OrderChannelPartner
+     */
+    arbitrary_pricing_tier_names?: Array<string>;
+    /**
      * If true, any purchase order submitted is automatically approved
      * @type {boolean}
      * @memberof OrderChannelPartner
@@ -114,6 +120,7 @@ export function OrderChannelPartnerFromJSONTyped(json: any, ignoreDiscriminator:
     }
     return {
         
+        'arbitrary_pricing_tier_names': !exists(json, 'arbitrary_pricing_tier_names') ? undefined : json['arbitrary_pricing_tier_names'],
         'auto_approve_purchase_order': !exists(json, 'auto_approve_purchase_order') ? undefined : json['auto_approve_purchase_order'],
         'channel_partner_code': !exists(json, 'channel_partner_code') ? undefined : json['channel_partner_code'],
         'channel_partner_data': !exists(json, 'channel_partner_data') ? undefined : json['channel_partner_data'],
@@ -138,6 +145,7 @@ export function OrderChannelPartnerToJSON(value?: OrderChannelPartner | null): a
     }
     return {
         
+        'arbitrary_pricing_tier_names': value.arbitrary_pricing_tier_names,
         'auto_approve_purchase_order': value.auto_approve_purchase_order,
         'channel_partner_code': value.channel_partner_code,
         'channel_partner_data': value.channel_partner_data,
