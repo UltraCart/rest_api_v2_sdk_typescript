@@ -45,6 +45,24 @@ export interface SfvbWhoamiResponse {
      */
     authenticationType?: string;
     /**
+     * True when this token may write a target that is currently live - an active upsell offer, an email on a delivering flow, the active theme, the storefront root.  Never infer this; it is the difference between a draft edit and a shopper visible change.
+     * @type {boolean}
+     * @memberof SfvbWhoamiResponse
+     */
+    canPublish?: boolean;
+    /**
+     * True when this token may read.  Do not infer this from the requested scope name.
+     * @type {boolean}
+     * @memberof SfvbWhoamiResponse
+     */
+    canRead?: boolean;
+    /**
+     * True when this token may write.  Writing a target that is not currently live needs only this.
+     * @type {boolean}
+     * @memberof SfvbWhoamiResponse
+     */
+    canWrite?: boolean;
+    /**
      * Device scope name, when this is a device flow token.
      * @type {string}
      * @memberof SfvbWhoamiResponse
@@ -112,6 +130,9 @@ export function SfvbWhoamiResponseFromJSONTyped(json: any, ignoreDiscriminator: 
         'actingAsUser': !exists(json, 'actingAsUser') ? undefined : json['actingAsUser'],
         'applicationName': !exists(json, 'applicationName') ? undefined : json['applicationName'],
         'authenticationType': !exists(json, 'authenticationType') ? undefined : json['authenticationType'],
+        'canPublish': !exists(json, 'canPublish') ? undefined : json['canPublish'],
+        'canRead': !exists(json, 'canRead') ? undefined : json['canRead'],
+        'canWrite': !exists(json, 'canWrite') ? undefined : json['canWrite'],
         'deviceScope': !exists(json, 'deviceScope') ? undefined : json['deviceScope'],
         'login': !exists(json, 'login') ? undefined : json['login'],
         'merchantId': !exists(json, 'merchantId') ? undefined : json['merchantId'],
@@ -134,6 +155,9 @@ export function SfvbWhoamiResponseToJSON(value?: SfvbWhoamiResponse | null): any
         'actingAsUser': value.actingAsUser,
         'applicationName': value.applicationName,
         'authenticationType': value.authenticationType,
+        'canPublish': value.canPublish,
+        'canRead': value.canRead,
+        'canWrite': value.canWrite,
         'deviceScope': value.deviceScope,
         'login': value.login,
         'merchantId': value.merchantId,
