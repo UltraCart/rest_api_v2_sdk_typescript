@@ -36,19 +36,19 @@ export interface SfvbContainerVersion {
      * @type {number}
      * @memberof SfvbContainerVersion
      */
-    containerHistoryOid?: number;
+    container_history_oid?: number;
     /**
      * Container name, where the owner has more than one container.
      * @type {string}
      * @memberof SfvbContainerVersion
      */
-    containerName?: string;
+    container_name?: string;
     /**
      * When this snapshot was taken.
      * @type {string}
      * @memberof SfvbContainerVersion
      */
-    createdDts?: string;
+    created_dts?: string;
     /**
      * True for the value currently stored.
      * @type {boolean}
@@ -60,13 +60,13 @@ export interface SfvbContainerVersion {
      * @type {string}
      * @memberof SfvbContainerVersion
      */
-    editedBy?: string;
+    edited_by?: string;
     /**
      * SHA-256 of this version's CJSON.
      * @type {string}
      * @memberof SfvbContainerVersion
      */
-    hashSha256?: string;
+    hash_sha256?: string;
     /**
      * What the container was before the write this entry precedes.  create means it did not exist, so reverting to this entry removes it again; update means it held the cjson recorded here.
      * @type {string}
@@ -78,13 +78,13 @@ export interface SfvbContainerVersion {
      * @type {string}
      * @memberof SfvbContainerVersion
      */
-    ownerObjectId?: string;
+    owner_object_id?: string;
     /**
      * Owner type.
      * @type {string}
      * @memberof SfvbContainerVersion
      */
-    ownerType?: SfvbContainerVersionOwnerTypeEnum;
+    owner_type?: SfvbContainerVersionOwnerTypeEnum;
     /**
      * Size of this version's CJSON in bytes.
      * @type {number}
@@ -138,15 +138,15 @@ export function SfvbContainerVersionFromJSONTyped(json: any, ignoreDiscriminator
         
         'cjson': !exists(json, 'cjson') ? undefined : json['cjson'],
         'comment': !exists(json, 'comment') ? undefined : json['comment'],
-        'containerHistoryOid': !exists(json, 'containerHistoryOid') ? undefined : json['containerHistoryOid'],
-        'containerName': !exists(json, 'containerName') ? undefined : json['containerName'],
-        'createdDts': !exists(json, 'createdDts') ? undefined : json['createdDts'],
+        'container_history_oid': !exists(json, 'container_history_oid') ? undefined : json['container_history_oid'],
+        'container_name': !exists(json, 'container_name') ? undefined : json['container_name'],
+        'created_dts': !exists(json, 'created_dts') ? undefined : json['created_dts'],
         'current': !exists(json, 'current') ? undefined : json['current'],
-        'editedBy': !exists(json, 'editedBy') ? undefined : json['editedBy'],
-        'hashSha256': !exists(json, 'hashSha256') ? undefined : json['hashSha256'],
+        'edited_by': !exists(json, 'edited_by') ? undefined : json['edited_by'],
+        'hash_sha256': !exists(json, 'hash_sha256') ? undefined : json['hash_sha256'],
         'operation': !exists(json, 'operation') ? undefined : json['operation'],
-        'ownerObjectId': !exists(json, 'ownerObjectId') ? undefined : json['ownerObjectId'],
-        'ownerType': !exists(json, 'ownerType') ? undefined : json['ownerType'],
+        'owner_object_id': !exists(json, 'owner_object_id') ? undefined : json['owner_object_id'],
+        'owner_type': !exists(json, 'owner_type') ? undefined : json['owner_type'],
         'size': !exists(json, 'size') ? undefined : json['size'],
     };
 }
@@ -162,15 +162,15 @@ export function SfvbContainerVersionToJSON(value?: SfvbContainerVersion | null):
         
         'cjson': value.cjson,
         'comment': value.comment,
-        'containerHistoryOid': value.containerHistoryOid,
-        'containerName': value.containerName,
-        'createdDts': value.createdDts,
+        'container_history_oid': value.container_history_oid,
+        'container_name': value.container_name,
+        'created_dts': value.created_dts,
         'current': value.current,
-        'editedBy': value.editedBy,
-        'hashSha256': value.hashSha256,
+        'edited_by': value.edited_by,
+        'hash_sha256': value.hash_sha256,
         'operation': value.operation,
-        'ownerObjectId': value.ownerObjectId,
-        'ownerType': value.ownerType,
+        'owner_object_id': value.owner_object_id,
+        'owner_type': value.owner_type,
         'size': value.size,
     };
 }

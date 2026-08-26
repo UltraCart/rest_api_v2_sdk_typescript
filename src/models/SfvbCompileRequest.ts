@@ -30,19 +30,19 @@ export interface SfvbCompileRequest {
      * @type {string}
      * @memberof SfvbCompileRequest
      */
-    containerName?: string;
+    container_name?: string;
     /**
      * Optional storefront oid.  Required when theme_oid is supplied.
      * @type {number}
      * @memberof SfvbCompileRequest
      */
-    storefrontOid?: number;
+    storefront_oid?: number;
     /**
      * Optional theme oid.  Supplies the theme's inherit groups configuration so compilation matches what the theme would produce.  Omit to compile without inheritance.
      * @type {number}
      * @memberof SfvbCompileRequest
      */
-    themeOid?: number;
+    theme_oid?: number;
     /**
      * Run validation before compiling and fail on errors.  Defaults to true.
      * @type {boolean}
@@ -73,9 +73,9 @@ export function SfvbCompileRequestFromJSONTyped(json: any, ignoreDiscriminator: 
     return {
         
         'cjson': !exists(json, 'cjson') ? undefined : json['cjson'],
-        'containerName': !exists(json, 'containerName') ? undefined : json['containerName'],
-        'storefrontOid': !exists(json, 'storefrontOid') ? undefined : json['storefrontOid'],
-        'themeOid': !exists(json, 'themeOid') ? undefined : json['themeOid'],
+        'container_name': !exists(json, 'container_name') ? undefined : json['container_name'],
+        'storefront_oid': !exists(json, 'storefront_oid') ? undefined : json['storefront_oid'],
+        'theme_oid': !exists(json, 'theme_oid') ? undefined : json['theme_oid'],
         'validate': !exists(json, 'validate') ? undefined : json['validate'],
     };
 }
@@ -90,9 +90,9 @@ export function SfvbCompileRequestToJSON(value?: SfvbCompileRequest | null): any
     return {
         
         'cjson': value.cjson,
-        'containerName': value.containerName,
-        'storefrontOid': value.storefrontOid,
-        'themeOid': value.themeOid,
+        'container_name': value.container_name,
+        'storefront_oid': value.storefront_oid,
+        'theme_oid': value.theme_oid,
         'validate': value.validate,
     };
 }

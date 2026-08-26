@@ -36,7 +36,7 @@ export interface SfvbErrorDetail {
      * @type {Array<string>}
      * @memberof SfvbErrorDetail
      */
-    didYouMean?: Array<string>;
+    did_you_mean?: Array<string>;
     /**
      * Description of what was expected instead.
      * @type {string}
@@ -114,7 +114,7 @@ export function SfvbErrorDetailFromJSONTyped(json: any, ignoreDiscriminator: boo
         
         'code': !exists(json, 'code') ? undefined : json['code'],
         'column': !exists(json, 'column') ? undefined : json['column'],
-        'didYouMean': !exists(json, 'didYouMean') ? undefined : json['didYouMean'],
+        'did_you_mean': !exists(json, 'did_you_mean') ? undefined : json['did_you_mean'],
         'expected': !exists(json, 'expected') ? undefined : json['expected'],
         'found': !exists(json, 'found') ? undefined : json['found'],
         'line': !exists(json, 'line') ? undefined : json['line'],
@@ -136,7 +136,7 @@ export function SfvbErrorDetailToJSON(value?: SfvbErrorDetail | null): any {
         
         'code': value.code,
         'column': value.column,
-        'didYouMean': value.didYouMean,
+        'did_you_mean': value.did_you_mean,
         'expected': value.expected,
         'found': value.found,
         'line': value.line,

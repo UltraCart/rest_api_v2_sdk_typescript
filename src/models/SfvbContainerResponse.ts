@@ -24,7 +24,7 @@ export interface SfvbContainerResponse {
      * @type {boolean}
      * @memberof SfvbContainerResponse
      */
-    activeTheme?: boolean;
+    active_theme?: boolean;
     /**
      * The container JSON.  Runtime state is stripped on the way out.
      * @type {string}
@@ -36,37 +36,37 @@ export interface SfvbContainerResponse {
      * @type {string}
      * @memberof SfvbContainerResponse
      */
-    containerId?: string;
+    container_id?: string;
     /**
      * Container name.
      * @type {string}
      * @memberof SfvbContainerResponse
      */
-    containerName?: string;
+    container_name?: string;
     /**
      * SHA-256 of the cjson.  Send back as If-Match when writing.
      * @type {string}
      * @memberof SfvbContainerResponse
      */
-    hashSha256?: string;
+    hash_sha256?: string;
     /**
      * When the container was last modified, where the store records it.
      * @type {string}
      * @memberof SfvbContainerResponse
      */
-    lastModified?: string;
+    last_modified?: string;
     /**
      * Identifier of the owning object within its store.
      * @type {string}
      * @memberof SfvbContainerResponse
      */
-    ownerObjectId?: string;
+    owner_object_id?: string;
     /**
      * Where this container lives.
      * @type {string}
      * @memberof SfvbContainerResponse
      */
-    ownerType?: SfvbContainerResponseOwnerTypeEnum;
+    owner_type?: SfvbContainerResponseOwnerTypeEnum;
     /**
      * File path, for theme and page containers only.
      * @type {string}
@@ -116,14 +116,14 @@ export function SfvbContainerResponseFromJSONTyped(json: any, ignoreDiscriminato
     }
     return {
         
-        'activeTheme': !exists(json, 'activeTheme') ? undefined : json['activeTheme'],
+        'active_theme': !exists(json, 'active_theme') ? undefined : json['active_theme'],
         'cjson': !exists(json, 'cjson') ? undefined : json['cjson'],
-        'containerId': !exists(json, 'containerId') ? undefined : json['containerId'],
-        'containerName': !exists(json, 'containerName') ? undefined : json['containerName'],
-        'hashSha256': !exists(json, 'hashSha256') ? undefined : json['hashSha256'],
-        'lastModified': !exists(json, 'lastModified') ? undefined : json['lastModified'],
-        'ownerObjectId': !exists(json, 'ownerObjectId') ? undefined : json['ownerObjectId'],
-        'ownerType': !exists(json, 'ownerType') ? undefined : json['ownerType'],
+        'container_id': !exists(json, 'container_id') ? undefined : json['container_id'],
+        'container_name': !exists(json, 'container_name') ? undefined : json['container_name'],
+        'hash_sha256': !exists(json, 'hash_sha256') ? undefined : json['hash_sha256'],
+        'last_modified': !exists(json, 'last_modified') ? undefined : json['last_modified'],
+        'owner_object_id': !exists(json, 'owner_object_id') ? undefined : json['owner_object_id'],
+        'owner_type': !exists(json, 'owner_type') ? undefined : json['owner_type'],
         'path': !exists(json, 'path') ? undefined : json['path'],
         'version': !exists(json, 'version') ? undefined : json['version'],
     };
@@ -138,14 +138,14 @@ export function SfvbContainerResponseToJSON(value?: SfvbContainerResponse | null
     }
     return {
         
-        'activeTheme': value.activeTheme,
+        'active_theme': value.active_theme,
         'cjson': value.cjson,
-        'containerId': value.containerId,
-        'containerName': value.containerName,
-        'hashSha256': value.hashSha256,
-        'lastModified': value.lastModified,
-        'ownerObjectId': value.ownerObjectId,
-        'ownerType': value.ownerType,
+        'container_id': value.container_id,
+        'container_name': value.container_name,
+        'hash_sha256': value.hash_sha256,
+        'last_modified': value.last_modified,
+        'owner_object_id': value.owner_object_id,
+        'owner_type': value.owner_type,
         'path': value.path,
         'version': value.version,
     };

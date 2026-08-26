@@ -36,7 +36,7 @@ export interface SfvbTheme {
      * @type {number}
      * @memberof SfvbTheme
      */
-    fsDirectoryOid?: number;
+    fs_directory_oid?: number;
     /**
      * Root path of the theme in the storefront file system, for example /themes/mytheme/
      * @type {string}
@@ -48,25 +48,25 @@ export interface SfvbTheme {
      * @type {number}
      * @memberof SfvbTheme
      */
-    storefrontOid?: number;
+    storefront_oid?: number;
     /**
      * Theme name.
      * @type {string}
      * @memberof SfvbTheme
      */
-    themeName?: string;
+    theme_name?: string;
     /**
      * StoreFront theme oid.
      * @type {number}
      * @memberof SfvbTheme
      */
-    themeOid?: number;
+    theme_oid?: number;
     /**
      * True when a newer version of this theme exists.  Relevant because an upgrade is what produces the merge conflicts that block activation.
      * @type {boolean}
      * @memberof SfvbTheme
      */
-    upgradeAvailable?: boolean;
+    upgrade_available?: boolean;
     /**
      * False when the theme contains templates that failed validation.  Worth checking before choosing a theme to work in.
      * @type {boolean}
@@ -104,12 +104,12 @@ export function SfvbThemeFromJSONTyped(json: any, ignoreDiscriminator: boolean):
         
         'active': !exists(json, 'active') ? undefined : json['active'],
         'description': !exists(json, 'description') ? undefined : json['description'],
-        'fsDirectoryOid': !exists(json, 'fsDirectoryOid') ? undefined : json['fsDirectoryOid'],
+        'fs_directory_oid': !exists(json, 'fs_directory_oid') ? undefined : json['fs_directory_oid'],
         'path': !exists(json, 'path') ? undefined : json['path'],
-        'storefrontOid': !exists(json, 'storefrontOid') ? undefined : json['storefrontOid'],
-        'themeName': !exists(json, 'themeName') ? undefined : json['themeName'],
-        'themeOid': !exists(json, 'themeOid') ? undefined : json['themeOid'],
-        'upgradeAvailable': !exists(json, 'upgradeAvailable') ? undefined : json['upgradeAvailable'],
+        'storefront_oid': !exists(json, 'storefront_oid') ? undefined : json['storefront_oid'],
+        'theme_name': !exists(json, 'theme_name') ? undefined : json['theme_name'],
+        'theme_oid': !exists(json, 'theme_oid') ? undefined : json['theme_oid'],
+        'upgrade_available': !exists(json, 'upgrade_available') ? undefined : json['upgrade_available'],
         'valid': !exists(json, 'valid') ? undefined : json['valid'],
         'version': !exists(json, 'version') ? undefined : json['version'],
     };
@@ -126,12 +126,12 @@ export function SfvbThemeToJSON(value?: SfvbTheme | null): any {
         
         'active': value.active,
         'description': value.description,
-        'fsDirectoryOid': value.fsDirectoryOid,
+        'fs_directory_oid': value.fs_directory_oid,
         'path': value.path,
-        'storefrontOid': value.storefrontOid,
-        'themeName': value.themeName,
-        'themeOid': value.themeOid,
-        'upgradeAvailable': value.upgradeAvailable,
+        'storefront_oid': value.storefront_oid,
+        'theme_name': value.theme_name,
+        'theme_oid': value.theme_oid,
+        'upgrade_available': value.upgrade_available,
         'valid': value.valid,
         'version': value.version,
     };

@@ -24,7 +24,7 @@ export interface SfvbFileEntry {
      * @type {boolean}
      * @memberof SfvbFileEntry
      */
-    autoCompiled?: boolean;
+    auto_compiled?: boolean;
     /**
      * True when this entry is a directory.
      * @type {boolean}
@@ -36,43 +36,43 @@ export interface SfvbFileEntry {
      * @type {number}
      * @memberof SfvbFileEntry
      */
-    fsDirectoryOid?: number;
+    fs_directory_oid?: number;
     /**
      * StoreFront file system file oid.
      * @type {number}
      * @memberof SfvbFileEntry
      */
-    fsFileOid?: number;
+    fs_file_oid?: number;
     /**
      * SHA-256 of the content.  Use as the If-Match value when writing.
      * @type {string}
      * @memberof SfvbFileEntry
      */
-    hashSha256?: string;
+    hash_sha256?: string;
     /**
      * True when the file has internationalization violations.
      * @type {boolean}
      * @memberof SfvbFileEntry
      */
-    i18nViolation?: boolean;
+    i18n_violation?: boolean;
     /**
      * Last modified timestamp.
      * @type {string}
      * @memberof SfvbFileEntry
      */
-    lastModified?: string;
+    last_modified?: string;
     /**
      * True when the file carries an unresolved theme merge conflict.  Blocks theme activation.
      * @type {boolean}
      * @memberof SfvbFileEntry
      */
-    mergeConflict?: boolean;
+    merge_conflict?: boolean;
     /**
      * Mime type.  Only text/* files can be read as content or searched by text.
      * @type {string}
      * @memberof SfvbFileEntry
      */
-    mimeType?: string;
+    mime_type?: string;
     /**
      * File or directory name.
      * @type {string}
@@ -90,7 +90,7 @@ export interface SfvbFileEntry {
      * @type {boolean}
      * @memberof SfvbFileEntry
      */
-    readOnly?: boolean;
+    read_only?: boolean;
     /**
      * Size in bytes.  Zero for directories.
      * @type {number}
@@ -132,18 +132,18 @@ export function SfvbFileEntryFromJSONTyped(json: any, ignoreDiscriminator: boole
     }
     return {
         
-        'autoCompiled': !exists(json, 'autoCompiled') ? undefined : json['autoCompiled'],
+        'auto_compiled': !exists(json, 'auto_compiled') ? undefined : json['auto_compiled'],
         'directory': !exists(json, 'directory') ? undefined : json['directory'],
-        'fsDirectoryOid': !exists(json, 'fsDirectoryOid') ? undefined : json['fsDirectoryOid'],
-        'fsFileOid': !exists(json, 'fsFileOid') ? undefined : json['fsFileOid'],
-        'hashSha256': !exists(json, 'hashSha256') ? undefined : json['hashSha256'],
-        'i18nViolation': !exists(json, 'i18nViolation') ? undefined : json['i18nViolation'],
-        'lastModified': !exists(json, 'lastModified') ? undefined : json['lastModified'],
-        'mergeConflict': !exists(json, 'mergeConflict') ? undefined : json['mergeConflict'],
-        'mimeType': !exists(json, 'mimeType') ? undefined : json['mimeType'],
+        'fs_directory_oid': !exists(json, 'fs_directory_oid') ? undefined : json['fs_directory_oid'],
+        'fs_file_oid': !exists(json, 'fs_file_oid') ? undefined : json['fs_file_oid'],
+        'hash_sha256': !exists(json, 'hash_sha256') ? undefined : json['hash_sha256'],
+        'i18n_violation': !exists(json, 'i18n_violation') ? undefined : json['i18n_violation'],
+        'last_modified': !exists(json, 'last_modified') ? undefined : json['last_modified'],
+        'merge_conflict': !exists(json, 'merge_conflict') ? undefined : json['merge_conflict'],
+        'mime_type': !exists(json, 'mime_type') ? undefined : json['mime_type'],
         'name': !exists(json, 'name') ? undefined : json['name'],
         'path': !exists(json, 'path') ? undefined : json['path'],
-        'readOnly': !exists(json, 'readOnly') ? undefined : json['readOnly'],
+        'read_only': !exists(json, 'read_only') ? undefined : json['read_only'],
         'size': !exists(json, 'size') ? undefined : json['size'],
         'valid': !exists(json, 'valid') ? undefined : json['valid'],
         'version': !exists(json, 'version') ? undefined : json['version'],
@@ -159,18 +159,18 @@ export function SfvbFileEntryToJSON(value?: SfvbFileEntry | null): any {
     }
     return {
         
-        'autoCompiled': value.autoCompiled,
+        'auto_compiled': value.auto_compiled,
         'directory': value.directory,
-        'fsDirectoryOid': value.fsDirectoryOid,
-        'fsFileOid': value.fsFileOid,
-        'hashSha256': value.hashSha256,
-        'i18nViolation': value.i18nViolation,
-        'lastModified': value.lastModified,
-        'mergeConflict': value.mergeConflict,
-        'mimeType': value.mimeType,
+        'fs_directory_oid': value.fs_directory_oid,
+        'fs_file_oid': value.fs_file_oid,
+        'hash_sha256': value.hash_sha256,
+        'i18n_violation': value.i18n_violation,
+        'last_modified': value.last_modified,
+        'merge_conflict': value.merge_conflict,
+        'mime_type': value.mime_type,
         'name': value.name,
         'path': value.path,
-        'readOnly': value.readOnly,
+        'read_only': value.read_only,
         'size': value.size,
         'valid': value.valid,
         'version': value.version,

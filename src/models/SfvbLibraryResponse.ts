@@ -43,13 +43,13 @@ export interface SfvbLibraryResponse {
      * @type {number}
      * @memberof SfvbLibraryResponse
      */
-    firstResultNumber?: number;
+    first_result_number?: number;
     /**
      * 1-indexed position of the last result on this page.
      * @type {number}
      * @memberof SfvbLibraryResponse
      */
-    lastResultNumber?: number;
+    last_result_number?: number;
     /**
      * Matching library entries, without their CJSON.  Fetch a single entry to get the fragment itself.
      * @type {Array<SfvbLibraryEntry>}
@@ -61,13 +61,13 @@ export interface SfvbLibraryResponse {
      * @type {number}
      * @memberof SfvbLibraryResponse
      */
-    totalPages?: number;
+    total_pages?: number;
     /**
      * Total matches across all pages.
      * @type {number}
      * @memberof SfvbLibraryResponse
      */
-    totalResults?: number;
+    total_results?: number;
 }
 
 
@@ -92,11 +92,11 @@ export function SfvbLibraryResponseFromJSONTyped(json: any, ignoreDiscriminator:
     return {
         
         'facets': !exists(json, 'facets') ? undefined : ((json['facets'] as Array<any>).map(SfvbLibraryFacetFromJSON)),
-        'firstResultNumber': !exists(json, 'firstResultNumber') ? undefined : json['firstResultNumber'],
-        'lastResultNumber': !exists(json, 'lastResultNumber') ? undefined : json['lastResultNumber'],
+        'first_result_number': !exists(json, 'first_result_number') ? undefined : json['first_result_number'],
+        'last_result_number': !exists(json, 'last_result_number') ? undefined : json['last_result_number'],
         'results': !exists(json, 'results') ? undefined : ((json['results'] as Array<any>).map(SfvbLibraryEntryFromJSON)),
-        'totalPages': !exists(json, 'totalPages') ? undefined : json['totalPages'],
-        'totalResults': !exists(json, 'totalResults') ? undefined : json['totalResults'],
+        'total_pages': !exists(json, 'total_pages') ? undefined : json['total_pages'],
+        'total_results': !exists(json, 'total_results') ? undefined : json['total_results'],
     };
 }
 
@@ -110,11 +110,11 @@ export function SfvbLibraryResponseToJSON(value?: SfvbLibraryResponse | null): a
     return {
         
         'facets': value.facets === undefined ? undefined : ((value.facets as Array<any>).map(SfvbLibraryFacetToJSON)),
-        'firstResultNumber': value.firstResultNumber,
-        'lastResultNumber': value.lastResultNumber,
+        'first_result_number': value.first_result_number,
+        'last_result_number': value.last_result_number,
         'results': value.results === undefined ? undefined : ((value.results as Array<any>).map(SfvbLibraryEntryToJSON)),
-        'totalPages': value.totalPages,
-        'totalResults': value.totalResults,
+        'total_pages': value.total_pages,
+        'total_results': value.total_results,
     };
 }
 

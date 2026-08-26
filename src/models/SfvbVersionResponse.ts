@@ -24,55 +24,55 @@ export interface SfvbVersionResponse {
      * @type {string}
      * @memberof SfvbVersionResponse
      */
-    containerManagerVersion?: string;
+    container_manager_version?: string;
     /**
      * Versions kept per non-file container before the oldest are pruned.  Beyond this, history is gone - not merely paginated.
      * @type {number}
      * @memberof SfvbVersionResponse
      */
-    containerVersionsRetained?: number;
+    container_versions_retained?: number;
     /**
      * Number of element types this version recognizes.
      * @type {number}
      * @memberof SfvbVersionResponse
      */
-    elementCount?: number;
+    element_count?: number;
     /**
      * Largest CJSON document that will be parsed, in bytes.
      * @type {number}
      * @memberof SfvbVersionResponse
      */
-    maxCjsonBytes?: number;
+    max_cjson_bytes?: number;
     /**
      * Largest payload one preview session may hold, in bytes.
      * @type {number}
      * @memberof SfvbVersionResponse
      */
-    maxPreviewSessionBytes?: number;
+    max_preview_session_bytes?: number;
     /**
      * Hard ceiling on file search results per page.
      * @type {number}
      * @memberof SfvbVersionResponse
      */
-    maxSearchResults?: number;
+    max_search_results?: number;
     /**
      * Largest template file that can be written, in bytes.
      * @type {number}
      * @memberof SfvbVersionResponse
      */
-    maxTemplateBytes?: number;
+    max_template_bytes?: number;
     /**
      * Most widget ids that can be reserved in one call.
      * @type {number}
      * @memberof SfvbVersionResponse
      */
-    maxWidgetIdsPerRequest?: number;
+    max_widget_ids_per_request?: number;
     /**
      * Seconds a preview session survives before expiring.
      * @type {number}
      * @memberof SfvbVersionResponse
      */
-    previewSessionTtlSeconds?: number;
+    preview_session_ttl_seconds?: number;
     /**
      * Release channel selected for this merchant.
      * @type {string}
@@ -113,15 +113,15 @@ export function SfvbVersionResponseFromJSONTyped(json: any, ignoreDiscriminator:
     }
     return {
         
-        'containerManagerVersion': !exists(json, 'containerManagerVersion') ? undefined : json['containerManagerVersion'],
-        'containerVersionsRetained': !exists(json, 'containerVersionsRetained') ? undefined : json['containerVersionsRetained'],
-        'elementCount': !exists(json, 'elementCount') ? undefined : json['elementCount'],
-        'maxCjsonBytes': !exists(json, 'maxCjsonBytes') ? undefined : json['maxCjsonBytes'],
-        'maxPreviewSessionBytes': !exists(json, 'maxPreviewSessionBytes') ? undefined : json['maxPreviewSessionBytes'],
-        'maxSearchResults': !exists(json, 'maxSearchResults') ? undefined : json['maxSearchResults'],
-        'maxTemplateBytes': !exists(json, 'maxTemplateBytes') ? undefined : json['maxTemplateBytes'],
-        'maxWidgetIdsPerRequest': !exists(json, 'maxWidgetIdsPerRequest') ? undefined : json['maxWidgetIdsPerRequest'],
-        'previewSessionTtlSeconds': !exists(json, 'previewSessionTtlSeconds') ? undefined : json['previewSessionTtlSeconds'],
+        'container_manager_version': !exists(json, 'container_manager_version') ? undefined : json['container_manager_version'],
+        'container_versions_retained': !exists(json, 'container_versions_retained') ? undefined : json['container_versions_retained'],
+        'element_count': !exists(json, 'element_count') ? undefined : json['element_count'],
+        'max_cjson_bytes': !exists(json, 'max_cjson_bytes') ? undefined : json['max_cjson_bytes'],
+        'max_preview_session_bytes': !exists(json, 'max_preview_session_bytes') ? undefined : json['max_preview_session_bytes'],
+        'max_search_results': !exists(json, 'max_search_results') ? undefined : json['max_search_results'],
+        'max_template_bytes': !exists(json, 'max_template_bytes') ? undefined : json['max_template_bytes'],
+        'max_widget_ids_per_request': !exists(json, 'max_widget_ids_per_request') ? undefined : json['max_widget_ids_per_request'],
+        'preview_session_ttl_seconds': !exists(json, 'preview_session_ttl_seconds') ? undefined : json['preview_session_ttl_seconds'],
         'release': !exists(json, 'release') ? undefined : json['release'],
     };
 }
@@ -135,15 +135,15 @@ export function SfvbVersionResponseToJSON(value?: SfvbVersionResponse | null): a
     }
     return {
         
-        'containerManagerVersion': value.containerManagerVersion,
-        'containerVersionsRetained': value.containerVersionsRetained,
-        'elementCount': value.elementCount,
-        'maxCjsonBytes': value.maxCjsonBytes,
-        'maxPreviewSessionBytes': value.maxPreviewSessionBytes,
-        'maxSearchResults': value.maxSearchResults,
-        'maxTemplateBytes': value.maxTemplateBytes,
-        'maxWidgetIdsPerRequest': value.maxWidgetIdsPerRequest,
-        'previewSessionTtlSeconds': value.previewSessionTtlSeconds,
+        'container_manager_version': value.container_manager_version,
+        'container_versions_retained': value.container_versions_retained,
+        'element_count': value.element_count,
+        'max_cjson_bytes': value.max_cjson_bytes,
+        'max_preview_session_bytes': value.max_preview_session_bytes,
+        'max_search_results': value.max_search_results,
+        'max_template_bytes': value.max_template_bytes,
+        'max_widget_ids_per_request': value.max_widget_ids_per_request,
+        'preview_session_ttl_seconds': value.preview_session_ttl_seconds,
         'release': value.release,
     };
 }

@@ -30,13 +30,13 @@ export interface SfvbThemeDuplicateRequest {
      * @type {number}
      * @memberof SfvbThemeDuplicateRequest
      */
-    targetStorefrontOid?: number;
+    target_storefront_oid?: number;
     /**
      * Name for the new theme.
      * @type {string}
      * @memberof SfvbThemeDuplicateRequest
      */
-    themeName?: string;
+    theme_name?: string;
 }
 
 
@@ -61,8 +61,8 @@ export function SfvbThemeDuplicateRequestFromJSONTyped(json: any, ignoreDiscrimi
     return {
         
         'folder': !exists(json, 'folder') ? undefined : json['folder'],
-        'targetStorefrontOid': !exists(json, 'targetStorefrontOid') ? undefined : json['targetStorefrontOid'],
-        'themeName': !exists(json, 'themeName') ? undefined : json['themeName'],
+        'target_storefront_oid': !exists(json, 'target_storefront_oid') ? undefined : json['target_storefront_oid'],
+        'theme_name': !exists(json, 'theme_name') ? undefined : json['theme_name'],
     };
 }
 
@@ -76,8 +76,8 @@ export function SfvbThemeDuplicateRequestToJSON(value?: SfvbThemeDuplicateReques
     return {
         
         'folder': value.folder,
-        'targetStorefrontOid': value.targetStorefrontOid,
-        'themeName': value.themeName,
+        'target_storefront_oid': value.target_storefront_oid,
+        'theme_name': value.theme_name,
     };
 }
 

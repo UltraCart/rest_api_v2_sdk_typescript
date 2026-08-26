@@ -37,13 +37,13 @@ export interface SfvbFileSearchResponse {
      * @type {number}
      * @memberof SfvbFileSearchResponse
      */
-    maxResults?: number;
+    max_results?: number;
     /**
      * Offset to send for the next page.  Zero when truncated is false.  Never truncates without giving a way to continue.
      * @type {number}
      * @memberof SfvbFileSearchResponse
      */
-    nextOffset?: number;
+    next_offset?: number;
     /**
      * Results skipped to produce this page.
      * @type {number}
@@ -55,13 +55,13 @@ export interface SfvbFileSearchResponse {
      * @type {number}
      * @memberof SfvbFileSearchResponse
      */
-    resultCount?: number;
+    result_count?: number;
     /**
      * Total matches found.  Available because the underlying query is unbounded and returns everything anyway; it is not evidence that fetching them all is cheap.
      * @type {number}
      * @memberof SfvbFileSearchResponse
      */
-    totalCount?: number;
+    total_count?: number;
     /**
      * True when matches exist beyond this page.  next_offset is populated when it is.
      * @type {boolean}
@@ -73,7 +73,7 @@ export interface SfvbFileSearchResponse {
      * @type {string}
      * @memberof SfvbFileSearchResponse
      */
-    truncationAdvice?: string;
+    truncation_advice?: string;
 }
 
 
@@ -98,13 +98,13 @@ export function SfvbFileSearchResponseFromJSONTyped(json: any, ignoreDiscriminat
     return {
         
         'files': !exists(json, 'files') ? undefined : ((json['files'] as Array<any>).map(SfvbFileEntryFromJSON)),
-        'maxResults': !exists(json, 'maxResults') ? undefined : json['maxResults'],
-        'nextOffset': !exists(json, 'nextOffset') ? undefined : json['nextOffset'],
+        'max_results': !exists(json, 'max_results') ? undefined : json['max_results'],
+        'next_offset': !exists(json, 'next_offset') ? undefined : json['next_offset'],
         'offset': !exists(json, 'offset') ? undefined : json['offset'],
-        'resultCount': !exists(json, 'resultCount') ? undefined : json['resultCount'],
-        'totalCount': !exists(json, 'totalCount') ? undefined : json['totalCount'],
+        'result_count': !exists(json, 'result_count') ? undefined : json['result_count'],
+        'total_count': !exists(json, 'total_count') ? undefined : json['total_count'],
         'truncated': !exists(json, 'truncated') ? undefined : json['truncated'],
-        'truncationAdvice': !exists(json, 'truncationAdvice') ? undefined : json['truncationAdvice'],
+        'truncation_advice': !exists(json, 'truncation_advice') ? undefined : json['truncation_advice'],
     };
 }
 
@@ -118,13 +118,13 @@ export function SfvbFileSearchResponseToJSON(value?: SfvbFileSearchResponse | nu
     return {
         
         'files': value.files === undefined ? undefined : ((value.files as Array<any>).map(SfvbFileEntryToJSON)),
-        'maxResults': value.maxResults,
-        'nextOffset': value.nextOffset,
+        'max_results': value.max_results,
+        'next_offset': value.next_offset,
         'offset': value.offset,
-        'resultCount': value.resultCount,
-        'totalCount': value.totalCount,
+        'result_count': value.result_count,
+        'total_count': value.total_count,
         'truncated': value.truncated,
-        'truncationAdvice': value.truncationAdvice,
+        'truncation_advice': value.truncation_advice,
     };
 }
 

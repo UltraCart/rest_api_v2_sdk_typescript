@@ -30,7 +30,7 @@ export interface SfvbWidgetIdsResponse {
      * @type {number}
      * @memberof SfvbWidgetIdsResponse
      */
-    firstId?: number;
+    first_id?: number;
     /**
      * Reserved id numbers.  Combine with an element type to form a widget id, for example headline-4271.
      * @type {Array<number>}
@@ -61,7 +61,7 @@ export function SfvbWidgetIdsResponseFromJSONTyped(json: any, ignoreDiscriminato
     return {
         
         'count': !exists(json, 'count') ? undefined : json['count'],
-        'firstId': !exists(json, 'firstId') ? undefined : json['firstId'],
+        'first_id': !exists(json, 'first_id') ? undefined : json['first_id'],
         'ids': !exists(json, 'ids') ? undefined : json['ids'],
     };
 }
@@ -76,7 +76,7 @@ export function SfvbWidgetIdsResponseToJSON(value?: SfvbWidgetIdsResponse | null
     return {
         
         'count': value.count,
-        'firstId': value.firstId,
+        'first_id': value.first_id,
         'ids': value.ids,
     };
 }

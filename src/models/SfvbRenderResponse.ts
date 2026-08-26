@@ -43,7 +43,7 @@ export interface SfvbRenderResponse {
      * @type {number}
      * @memberof SfvbRenderResponse
      */
-    pendingTranslationCount?: number;
+    pending_translation_count?: number;
     /**
      * True when HTML was produced.
      * @type {boolean}
@@ -87,7 +87,7 @@ export function SfvbRenderResponseFromJSONTyped(json: any, ignoreDiscriminator: 
         
         'errors': !exists(json, 'errors') ? undefined : ((json['errors'] as Array<any>).map(SfvbErrorDetailFromJSON)),
         'html': !exists(json, 'html') ? undefined : json['html'],
-        'pendingTranslationCount': !exists(json, 'pendingTranslationCount') ? undefined : json['pendingTranslationCount'],
+        'pending_translation_count': !exists(json, 'pending_translation_count') ? undefined : json['pending_translation_count'],
         'success': !exists(json, 'success') ? undefined : json['success'],
         'truncated': !exists(json, 'truncated') ? undefined : json['truncated'],
         'warnings': !exists(json, 'warnings') ? undefined : ((json['warnings'] as Array<any>).map(SfvbErrorDetailFromJSON)),
@@ -105,7 +105,7 @@ export function SfvbRenderResponseToJSON(value?: SfvbRenderResponse | null): any
         
         'errors': value.errors === undefined ? undefined : ((value.errors as Array<any>).map(SfvbErrorDetailToJSON)),
         'html': value.html,
-        'pendingTranslationCount': value.pendingTranslationCount,
+        'pending_translation_count': value.pending_translation_count,
         'success': value.success,
         'truncated': value.truncated,
         'warnings': value.warnings === undefined ? undefined : ((value.warnings as Array<any>).map(SfvbErrorDetailToJSON)),

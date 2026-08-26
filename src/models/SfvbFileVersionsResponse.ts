@@ -31,7 +31,7 @@ export interface SfvbFileVersionsResponse {
      * @type {number}
      * @memberof SfvbFileVersionsResponse
      */
-    fsFileOid?: number;
+    fs_file_oid?: number;
     /**
      * Path of the file.
      * @type {string}
@@ -67,7 +67,7 @@ export function SfvbFileVersionsResponseFromJSONTyped(json: any, ignoreDiscrimin
     }
     return {
         
-        'fsFileOid': !exists(json, 'fsFileOid') ? undefined : json['fsFileOid'],
+        'fs_file_oid': !exists(json, 'fs_file_oid') ? undefined : json['fs_file_oid'],
         'path': !exists(json, 'path') ? undefined : json['path'],
         'versions': !exists(json, 'versions') ? undefined : ((json['versions'] as Array<any>).map(SfvbFileVersionFromJSON)),
     };
@@ -82,7 +82,7 @@ export function SfvbFileVersionsResponseToJSON(value?: SfvbFileVersionsResponse 
     }
     return {
         
-        'fsFileOid': value.fsFileOid,
+        'fs_file_oid': value.fs_file_oid,
         'path': value.path,
         'versions': value.versions === undefined ? undefined : ((value.versions as Array<any>).map(SfvbFileVersionToJSON)),
     };

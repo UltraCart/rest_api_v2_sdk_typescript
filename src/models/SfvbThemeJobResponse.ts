@@ -36,19 +36,19 @@ export interface SfvbThemeJobResponse {
      * @type {string}
      * @memberof SfvbThemeJobResponse
      */
-    errorMessage?: string;
+    error_message?: string;
     /**
      * When the job stopped.  Null until it does.
      * @type {string}
      * @memberof SfvbThemeJobResponse
      */
-    finishedDts?: string;
+    finished_dts?: string;
     /**
      * Job handle.  Poll getSfvbThemeJob with this.
      * @type {number}
      * @memberof SfvbThemeJobResponse
      */
-    jobId?: number;
+    job_id?: number;
     /**
      * Percent complete, 0-100.
      * @type {number}
@@ -60,13 +60,13 @@ export interface SfvbThemeJobResponse {
      * @type {string}
      * @memberof SfvbThemeJobResponse
      */
-    progressDescription?: string;
+    progress_description?: string;
     /**
      * When the job started running.  Null until it does.
      * @type {string}
      * @memberof SfvbThemeJobResponse
      */
-    startedDts?: string;
+    started_dts?: string;
     /**
      * Raw job status.
      * @type {string}
@@ -78,7 +78,7 @@ export interface SfvbThemeJobResponse {
      * @type {string}
      * @memberof SfvbThemeJobResponse
      */
-    submittedDts?: string;
+    submitted_dts?: string;
     /**
      * True only when the job finished successfully.  Check complete first.
      * @type {boolean}
@@ -90,7 +90,7 @@ export interface SfvbThemeJobResponse {
      * @type {string}
      * @memberof SfvbThemeJobResponse
      */
-    targetPath?: string;
+    target_path?: string;
 }
 
 
@@ -129,16 +129,16 @@ export function SfvbThemeJobResponseFromJSONTyped(json: any, ignoreDiscriminator
         
         'complete': !exists(json, 'complete') ? undefined : json['complete'],
         'description': !exists(json, 'description') ? undefined : json['description'],
-        'errorMessage': !exists(json, 'errorMessage') ? undefined : json['errorMessage'],
-        'finishedDts': !exists(json, 'finishedDts') ? undefined : json['finishedDts'],
-        'jobId': !exists(json, 'jobId') ? undefined : json['jobId'],
+        'error_message': !exists(json, 'error_message') ? undefined : json['error_message'],
+        'finished_dts': !exists(json, 'finished_dts') ? undefined : json['finished_dts'],
+        'job_id': !exists(json, 'job_id') ? undefined : json['job_id'],
         'progress': !exists(json, 'progress') ? undefined : json['progress'],
-        'progressDescription': !exists(json, 'progressDescription') ? undefined : json['progressDescription'],
-        'startedDts': !exists(json, 'startedDts') ? undefined : json['startedDts'],
+        'progress_description': !exists(json, 'progress_description') ? undefined : json['progress_description'],
+        'started_dts': !exists(json, 'started_dts') ? undefined : json['started_dts'],
         'status': !exists(json, 'status') ? undefined : json['status'],
-        'submittedDts': !exists(json, 'submittedDts') ? undefined : json['submittedDts'],
+        'submitted_dts': !exists(json, 'submitted_dts') ? undefined : json['submitted_dts'],
         'success': !exists(json, 'success') ? undefined : json['success'],
-        'targetPath': !exists(json, 'targetPath') ? undefined : json['targetPath'],
+        'target_path': !exists(json, 'target_path') ? undefined : json['target_path'],
     };
 }
 
@@ -153,16 +153,16 @@ export function SfvbThemeJobResponseToJSON(value?: SfvbThemeJobResponse | null):
         
         'complete': value.complete,
         'description': value.description,
-        'errorMessage': value.errorMessage,
-        'finishedDts': value.finishedDts,
-        'jobId': value.jobId,
+        'error_message': value.error_message,
+        'finished_dts': value.finished_dts,
+        'job_id': value.job_id,
         'progress': value.progress,
-        'progressDescription': value.progressDescription,
-        'startedDts': value.startedDts,
+        'progress_description': value.progress_description,
+        'started_dts': value.started_dts,
         'status': value.status,
-        'submittedDts': value.submittedDts,
+        'submitted_dts': value.submitted_dts,
         'success': value.success,
-        'targetPath': value.targetPath,
+        'target_path': value.target_path,
     };
 }
 

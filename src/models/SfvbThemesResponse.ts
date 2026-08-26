@@ -31,7 +31,7 @@ export interface SfvbThemesResponse {
      * @type {number}
      * @memberof SfvbThemesResponse
      */
-    activeThemeOid?: number;
+    active_theme_oid?: number;
     /**
      * Themes belonging to the storefront.  Exactly one is flagged active.
      * @type {Array<SfvbTheme>}
@@ -61,7 +61,7 @@ export function SfvbThemesResponseFromJSONTyped(json: any, ignoreDiscriminator: 
     }
     return {
         
-        'activeThemeOid': !exists(json, 'activeThemeOid') ? undefined : json['activeThemeOid'],
+        'active_theme_oid': !exists(json, 'active_theme_oid') ? undefined : json['active_theme_oid'],
         'themes': !exists(json, 'themes') ? undefined : ((json['themes'] as Array<any>).map(SfvbThemeFromJSON)),
     };
 }
@@ -75,7 +75,7 @@ export function SfvbThemesResponseToJSON(value?: SfvbThemesResponse | null): any
     }
     return {
         
-        'activeThemeOid': value.activeThemeOid,
+        'active_theme_oid': value.active_theme_oid,
         'themes': value.themes === undefined ? undefined : ((value.themes as Array<any>).map(SfvbThemeToJSON)),
     };
 }

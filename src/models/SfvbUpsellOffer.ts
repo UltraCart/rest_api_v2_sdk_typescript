@@ -30,19 +30,19 @@ export interface SfvbUpsellOffer {
      * @type {boolean}
      * @memberof SfvbUpsellOffer
      */
-    activeOverall?: boolean;
+    active_overall?: boolean;
     /**
      * Size of the offer's container JSON in bytes.  A large value here alongside a low element count is the signature of a hand pasted HTML dump.
      * @type {number}
      * @memberof SfvbUpsellOffer
      */
-    cjsonSize?: number;
+    cjson_size?: number;
     /**
      * Whether a container has been authored for this offer.
      * @type {boolean}
      * @memberof SfvbUpsellOffer
      */
-    hasContainer?: boolean;
+    has_container?: boolean;
     /**
      * Offer name.
      * @type {string}
@@ -54,25 +54,25 @@ export interface SfvbUpsellOffer {
      * @type {string}
      * @memberof SfvbUpsellOffer
      */
-    pathName?: string;
+    path_name?: string;
     /**
      * Storefront oid.
      * @type {number}
      * @memberof SfvbUpsellOffer
      */
-    storefrontOid?: number;
+    storefront_oid?: number;
     /**
      * Whether the offer is restricted to test traffic.
      * @type {boolean}
      * @memberof SfvbUpsellOffer
      */
-    testOnly?: boolean;
+    test_only?: boolean;
     /**
      * Upsell offer oid.
      * @type {number}
      * @memberof SfvbUpsellOffer
      */
-    upsellOfferOid?: number;
+    upsell_offer_oid?: number;
 }
 
 
@@ -97,14 +97,14 @@ export function SfvbUpsellOfferFromJSONTyped(json: any, ignoreDiscriminator: boo
     return {
         
         'active': !exists(json, 'active') ? undefined : json['active'],
-        'activeOverall': !exists(json, 'activeOverall') ? undefined : json['activeOverall'],
-        'cjsonSize': !exists(json, 'cjsonSize') ? undefined : json['cjsonSize'],
-        'hasContainer': !exists(json, 'hasContainer') ? undefined : json['hasContainer'],
+        'active_overall': !exists(json, 'active_overall') ? undefined : json['active_overall'],
+        'cjson_size': !exists(json, 'cjson_size') ? undefined : json['cjson_size'],
+        'has_container': !exists(json, 'has_container') ? undefined : json['has_container'],
         'name': !exists(json, 'name') ? undefined : json['name'],
-        'pathName': !exists(json, 'pathName') ? undefined : json['pathName'],
-        'storefrontOid': !exists(json, 'storefrontOid') ? undefined : json['storefrontOid'],
-        'testOnly': !exists(json, 'testOnly') ? undefined : json['testOnly'],
-        'upsellOfferOid': !exists(json, 'upsellOfferOid') ? undefined : json['upsellOfferOid'],
+        'path_name': !exists(json, 'path_name') ? undefined : json['path_name'],
+        'storefront_oid': !exists(json, 'storefront_oid') ? undefined : json['storefront_oid'],
+        'test_only': !exists(json, 'test_only') ? undefined : json['test_only'],
+        'upsell_offer_oid': !exists(json, 'upsell_offer_oid') ? undefined : json['upsell_offer_oid'],
     };
 }
 
@@ -118,14 +118,14 @@ export function SfvbUpsellOfferToJSON(value?: SfvbUpsellOffer | null): any {
     return {
         
         'active': value.active,
-        'activeOverall': value.activeOverall,
-        'cjsonSize': value.cjsonSize,
-        'hasContainer': value.hasContainer,
+        'active_overall': value.active_overall,
+        'cjson_size': value.cjson_size,
+        'has_container': value.has_container,
         'name': value.name,
-        'pathName': value.pathName,
-        'storefrontOid': value.storefrontOid,
-        'testOnly': value.testOnly,
-        'upsellOfferOid': value.upsellOfferOid,
+        'path_name': value.path_name,
+        'storefront_oid': value.storefront_oid,
+        'test_only': value.test_only,
+        'upsell_offer_oid': value.upsell_offer_oid,
     };
 }
 

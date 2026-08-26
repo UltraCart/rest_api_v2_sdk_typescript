@@ -24,7 +24,7 @@ export interface SfvbLibraryFacet {
      * @type {string}
      * @memberof SfvbLibraryFacet
      */
-    displayName?: string;
+    display_name?: string;
     /**
      * Facet key.  Pass a chosen option back as facet_{name}={option}.
      * @type {string}
@@ -60,7 +60,7 @@ export function SfvbLibraryFacetFromJSONTyped(json: any, ignoreDiscriminator: bo
     }
     return {
         
-        'displayName': !exists(json, 'displayName') ? undefined : json['displayName'],
+        'display_name': !exists(json, 'display_name') ? undefined : json['display_name'],
         'name': !exists(json, 'name') ? undefined : json['name'],
         'options': !exists(json, 'options') ? undefined : json['options'],
     };
@@ -75,7 +75,7 @@ export function SfvbLibraryFacetToJSON(value?: SfvbLibraryFacet | null): any {
     }
     return {
         
-        'displayName': value.displayName,
+        'display_name': value.display_name,
         'name': value.name,
         'options': value.options,
     };

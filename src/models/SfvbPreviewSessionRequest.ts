@@ -30,7 +30,7 @@ export interface SfvbPreviewSessionRequest {
      * @type {number}
      * @memberof SfvbPreviewSessionRequest
      */
-    themeOid?: number;
+    theme_oid?: number;
 }
 
 
@@ -55,7 +55,7 @@ export function SfvbPreviewSessionRequestFromJSONTyped(json: any, ignoreDiscrimi
     return {
         
         'containers': !exists(json, 'containers') ? undefined : json['containers'],
-        'themeOid': !exists(json, 'themeOid') ? undefined : json['themeOid'],
+        'theme_oid': !exists(json, 'theme_oid') ? undefined : json['theme_oid'],
     };
 }
 
@@ -69,7 +69,7 @@ export function SfvbPreviewSessionRequestToJSON(value?: SfvbPreviewSessionReques
     return {
         
         'containers': value.containers,
-        'themeOid': value.themeOid,
+        'theme_oid': value.theme_oid,
     };
 }
 

@@ -37,7 +37,7 @@ export interface SfvbValidationResponse {
      * @type {Array<string>}
      * @memberof SfvbValidationResponse
      */
-    usedElements?: Array<string>;
+    used_elements?: Array<string>;
     /**
      * True when there are no errors.  Warnings do not affect this flag.
      * @type {boolean}
@@ -74,7 +74,7 @@ export function SfvbValidationResponseFromJSONTyped(json: any, ignoreDiscriminat
     return {
         
         'errors': !exists(json, 'errors') ? undefined : ((json['errors'] as Array<any>).map(SfvbErrorDetailFromJSON)),
-        'usedElements': !exists(json, 'usedElements') ? undefined : json['usedElements'],
+        'used_elements': !exists(json, 'used_elements') ? undefined : json['used_elements'],
         'valid': !exists(json, 'valid') ? undefined : json['valid'],
         'warnings': !exists(json, 'warnings') ? undefined : ((json['warnings'] as Array<any>).map(SfvbErrorDetailFromJSON)),
     };
@@ -90,7 +90,7 @@ export function SfvbValidationResponseToJSON(value?: SfvbValidationResponse | nu
     return {
         
         'errors': value.errors === undefined ? undefined : ((value.errors as Array<any>).map(SfvbErrorDetailToJSON)),
-        'usedElements': value.usedElements,
+        'used_elements': value.used_elements,
         'valid': value.valid,
         'warnings': value.warnings === undefined ? undefined : ((value.warnings as Array<any>).map(SfvbErrorDetailToJSON)),
     };

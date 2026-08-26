@@ -42,7 +42,7 @@ export interface SfvbLibraryEntry {
      * @type {number}
      * @memberof SfvbLibraryEntry
      */
-    libraryOid?: number;
+    library_oid?: number;
     /**
      * Entry name.
      * @type {string}
@@ -60,31 +60,31 @@ export interface SfvbLibraryEntry {
      * @type {Array<string>}
      * @memberof SfvbLibraryEntry
      */
-    referencedFiles?: Array<string>;
+    referenced_files?: Array<string>;
     /**
      * S3 listing key for the large screenshot, when one has been generated.
      * @type {string}
      * @memberof SfvbLibraryEntry
      */
-    screenshotKey?: string;
+    screenshot_key?: string;
     /**
      * True when the entry is shared across the merchant account.
      * @type {boolean}
      * @memberof SfvbLibraryEntry
      */
-    shareWithAccount?: boolean;
+    share_with_account?: boolean;
     /**
      * S3 listing key for the medium thumbnail, when one has been generated.  Thumbnails are produced asynchronously and can lag a save by a minute or two.
      * @type {string}
      * @memberof SfvbLibraryEntry
      */
-    thumbnailKey?: string;
+    thumbnail_key?: string;
     /**
      * Element type at the root of the fragment.
      * @type {string}
      * @memberof SfvbLibraryEntry
      */
-    widgetType?: string;
+    widget_type?: string;
 }
 
 
@@ -111,14 +111,14 @@ export function SfvbLibraryEntryFromJSONTyped(json: any, ignoreDiscriminator: bo
         'bookmarked': !exists(json, 'bookmarked') ? undefined : json['bookmarked'],
         'cjson': !exists(json, 'cjson') ? undefined : json['cjson'],
         'description': !exists(json, 'description') ? undefined : json['description'],
-        'libraryOid': !exists(json, 'libraryOid') ? undefined : json['libraryOid'],
+        'library_oid': !exists(json, 'library_oid') ? undefined : json['library_oid'],
         'name': !exists(json, 'name') ? undefined : json['name'],
         'owned': !exists(json, 'owned') ? undefined : json['owned'],
-        'referencedFiles': !exists(json, 'referencedFiles') ? undefined : json['referencedFiles'],
-        'screenshotKey': !exists(json, 'screenshotKey') ? undefined : json['screenshotKey'],
-        'shareWithAccount': !exists(json, 'shareWithAccount') ? undefined : json['shareWithAccount'],
-        'thumbnailKey': !exists(json, 'thumbnailKey') ? undefined : json['thumbnailKey'],
-        'widgetType': !exists(json, 'widgetType') ? undefined : json['widgetType'],
+        'referenced_files': !exists(json, 'referenced_files') ? undefined : json['referenced_files'],
+        'screenshot_key': !exists(json, 'screenshot_key') ? undefined : json['screenshot_key'],
+        'share_with_account': !exists(json, 'share_with_account') ? undefined : json['share_with_account'],
+        'thumbnail_key': !exists(json, 'thumbnail_key') ? undefined : json['thumbnail_key'],
+        'widget_type': !exists(json, 'widget_type') ? undefined : json['widget_type'],
     };
 }
 
@@ -134,14 +134,14 @@ export function SfvbLibraryEntryToJSON(value?: SfvbLibraryEntry | null): any {
         'bookmarked': value.bookmarked,
         'cjson': value.cjson,
         'description': value.description,
-        'libraryOid': value.libraryOid,
+        'library_oid': value.library_oid,
         'name': value.name,
         'owned': value.owned,
-        'referencedFiles': value.referencedFiles,
-        'screenshotKey': value.screenshotKey,
-        'shareWithAccount': value.shareWithAccount,
-        'thumbnailKey': value.thumbnailKey,
-        'widgetType': value.widgetType,
+        'referenced_files': value.referenced_files,
+        'screenshot_key': value.screenshot_key,
+        'share_with_account': value.share_with_account,
+        'thumbnail_key': value.thumbnail_key,
+        'widget_type': value.widget_type,
     };
 }
 

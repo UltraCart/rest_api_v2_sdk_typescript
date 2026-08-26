@@ -24,7 +24,7 @@ export interface SfvbElement {
      * @type {boolean}
      * @memberof SfvbElement
      */
-    schemaAvailable?: boolean;
+    schema_available?: boolean;
     /**
      * The element type as it appears in the type property of a CJSON node.
      * @type {string}
@@ -54,7 +54,7 @@ export function SfvbElementFromJSONTyped(json: any, ignoreDiscriminator: boolean
     }
     return {
         
-        'schemaAvailable': !exists(json, 'schemaAvailable') ? undefined : json['schemaAvailable'],
+        'schema_available': !exists(json, 'schema_available') ? undefined : json['schema_available'],
         'type': !exists(json, 'type') ? undefined : json['type'],
     };
 }
@@ -68,7 +68,7 @@ export function SfvbElementToJSON(value?: SfvbElement | null): any {
     }
     return {
         
-        'schemaAvailable': value.schemaAvailable,
+        'schema_available': value.schema_available,
         'type': value.type,
     };
 }

@@ -30,25 +30,25 @@ export interface SfvbValidateRequest {
      * @type {string}
      * @memberof SfvbValidateRequest
      */
-    containerName?: string;
+    container_name?: string;
     /**
      * Include quality warnings as well as errors.  Defaults to true.
      * @type {boolean}
      * @memberof SfvbValidateRequest
      */
-    includeWarnings?: boolean;
+    include_warnings?: boolean;
     /**
      * For email containers, whether this is a marketing email.  Marketing emails carry CAN-SPAM footer requirements that transactional emails do not.
      * @type {boolean}
      * @memberof SfvbValidateRequest
      */
-    marketingEmail?: boolean;
+    marketing_email?: boolean;
     /**
      * Where this container is destined to live.  Determines which contextual rules apply.
      * @type {string}
      * @memberof SfvbValidateRequest
      */
-    ownerType?: SfvbValidateRequestOwnerTypeEnum;
+    owner_type?: SfvbValidateRequestOwnerTypeEnum;
 }
 
 
@@ -87,10 +87,10 @@ export function SfvbValidateRequestFromJSONTyped(json: any, ignoreDiscriminator:
     return {
         
         'cjson': !exists(json, 'cjson') ? undefined : json['cjson'],
-        'containerName': !exists(json, 'containerName') ? undefined : json['containerName'],
-        'includeWarnings': !exists(json, 'includeWarnings') ? undefined : json['includeWarnings'],
-        'marketingEmail': !exists(json, 'marketingEmail') ? undefined : json['marketingEmail'],
-        'ownerType': !exists(json, 'ownerType') ? undefined : json['ownerType'],
+        'container_name': !exists(json, 'container_name') ? undefined : json['container_name'],
+        'include_warnings': !exists(json, 'include_warnings') ? undefined : json['include_warnings'],
+        'marketing_email': !exists(json, 'marketing_email') ? undefined : json['marketing_email'],
+        'owner_type': !exists(json, 'owner_type') ? undefined : json['owner_type'],
     };
 }
 
@@ -104,10 +104,10 @@ export function SfvbValidateRequestToJSON(value?: SfvbValidateRequest | null): a
     return {
         
         'cjson': value.cjson,
-        'containerName': value.containerName,
-        'includeWarnings': value.includeWarnings,
-        'marketingEmail': value.marketingEmail,
-        'ownerType': value.ownerType,
+        'container_name': value.container_name,
+        'include_warnings': value.include_warnings,
+        'marketing_email': value.marketing_email,
+        'owner_type': value.owner_type,
     };
 }
 

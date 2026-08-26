@@ -24,25 +24,25 @@ export interface SfvbFileSearchRequest {
      * @type {boolean}
      * @memberof SfvbFileSearchRequest
      */
-    caseSensitive?: boolean;
+    case_sensitive?: boolean;
     /**
      * Only dynamic HTML (arbitrary) files.
      * @type {boolean}
      * @memberof SfvbFileSearchRequest
      */
-    dynamicHtml?: boolean;
+    dynamic_html?: boolean;
     /**
      * Comma separated file name patterns, matched case insensitively with wildcards.
      * @type {string}
      * @memberof SfvbFileSearchRequest
      */
-    fileName?: string;
+    file_name?: string;
     /**
      * Only files with internationalization violations.
      * @type {boolean}
      * @memberof SfvbFileSearchRequest
      */
-    i18nViolations?: boolean;
+    i18n_violations?: boolean;
     /**
      * Only files that failed Velocity validation.
      * @type {boolean}
@@ -54,31 +54,31 @@ export interface SfvbFileSearchRequest {
      * @type {number}
      * @memberof SfvbFileSearchRequest
      */
-    maxResults?: number;
+    max_results?: number;
     /**
      * Only files with unresolved theme merge conflicts.
      * @type {boolean}
      * @memberof SfvbFileSearchRequest
      */
-    mergeConflicts?: boolean;
+    merge_conflicts?: boolean;
     /**
      * Restrict to a mime type.
      * @type {string}
      * @memberof SfvbFileSearchRequest
      */
-    mimeType?: string;
+    mime_type?: string;
     /**
      * Only files modified at or before this ISO-8601 timestamp.
      * @type {string}
      * @memberof SfvbFileSearchRequest
      */
-    modifiedMax?: string;
+    modified_max?: string;
     /**
      * Only files modified at or after this ISO-8601 timestamp.
      * @type {string}
      * @memberof SfvbFileSearchRequest
      */
-    modifiedMin?: string;
+    modified_min?: string;
     /**
      * Results to skip.  Send the next_offset from a truncated response to continue.  Ordering is by path with the file oid as a tie breaker, so pages do not overlap or skip entries between calls.
      * @type {number}
@@ -96,19 +96,19 @@ export interface SfvbFileSearchRequest {
      * @type {number}
      * @memberof SfvbFileSearchRequest
      */
-    sizeMax?: number;
+    size_max?: number;
     /**
      * Minimum size in bytes.
      * @type {number}
      * @memberof SfvbFileSearchRequest
      */
-    sizeMin?: number;
+    size_min?: number;
     /**
      * Recurse below path.  Defaults to true.
      * @type {boolean}
      * @memberof SfvbFileSearchRequest
      */
-    subDirectories?: boolean;
+    sub_directories?: boolean;
     /**
      * Text to find inside files.  Only text/* files are searched.  This is the expensive filter; narrow with path or file_name where possible.
      * @type {string}
@@ -138,21 +138,21 @@ export function SfvbFileSearchRequestFromJSONTyped(json: any, ignoreDiscriminato
     }
     return {
         
-        'caseSensitive': !exists(json, 'caseSensitive') ? undefined : json['caseSensitive'],
-        'dynamicHtml': !exists(json, 'dynamicHtml') ? undefined : json['dynamicHtml'],
-        'fileName': !exists(json, 'fileName') ? undefined : json['fileName'],
-        'i18nViolations': !exists(json, 'i18nViolations') ? undefined : json['i18nViolations'],
+        'case_sensitive': !exists(json, 'case_sensitive') ? undefined : json['case_sensitive'],
+        'dynamic_html': !exists(json, 'dynamic_html') ? undefined : json['dynamic_html'],
+        'file_name': !exists(json, 'file_name') ? undefined : json['file_name'],
+        'i18n_violations': !exists(json, 'i18n_violations') ? undefined : json['i18n_violations'],
         'invalid': !exists(json, 'invalid') ? undefined : json['invalid'],
-        'maxResults': !exists(json, 'maxResults') ? undefined : json['maxResults'],
-        'mergeConflicts': !exists(json, 'mergeConflicts') ? undefined : json['mergeConflicts'],
-        'mimeType': !exists(json, 'mimeType') ? undefined : json['mimeType'],
-        'modifiedMax': !exists(json, 'modifiedMax') ? undefined : json['modifiedMax'],
-        'modifiedMin': !exists(json, 'modifiedMin') ? undefined : json['modifiedMin'],
+        'max_results': !exists(json, 'max_results') ? undefined : json['max_results'],
+        'merge_conflicts': !exists(json, 'merge_conflicts') ? undefined : json['merge_conflicts'],
+        'mime_type': !exists(json, 'mime_type') ? undefined : json['mime_type'],
+        'modified_max': !exists(json, 'modified_max') ? undefined : json['modified_max'],
+        'modified_min': !exists(json, 'modified_min') ? undefined : json['modified_min'],
         'offset': !exists(json, 'offset') ? undefined : json['offset'],
         'path': !exists(json, 'path') ? undefined : json['path'],
-        'sizeMax': !exists(json, 'sizeMax') ? undefined : json['sizeMax'],
-        'sizeMin': !exists(json, 'sizeMin') ? undefined : json['sizeMin'],
-        'subDirectories': !exists(json, 'subDirectories') ? undefined : json['subDirectories'],
+        'size_max': !exists(json, 'size_max') ? undefined : json['size_max'],
+        'size_min': !exists(json, 'size_min') ? undefined : json['size_min'],
+        'sub_directories': !exists(json, 'sub_directories') ? undefined : json['sub_directories'],
         'text': !exists(json, 'text') ? undefined : json['text'],
     };
 }
@@ -166,21 +166,21 @@ export function SfvbFileSearchRequestToJSON(value?: SfvbFileSearchRequest | null
     }
     return {
         
-        'caseSensitive': value.caseSensitive,
-        'dynamicHtml': value.dynamicHtml,
-        'fileName': value.fileName,
-        'i18nViolations': value.i18nViolations,
+        'case_sensitive': value.case_sensitive,
+        'dynamic_html': value.dynamic_html,
+        'file_name': value.file_name,
+        'i18n_violations': value.i18n_violations,
         'invalid': value.invalid,
-        'maxResults': value.maxResults,
-        'mergeConflicts': value.mergeConflicts,
-        'mimeType': value.mimeType,
-        'modifiedMax': value.modifiedMax,
-        'modifiedMin': value.modifiedMin,
+        'max_results': value.max_results,
+        'merge_conflicts': value.merge_conflicts,
+        'mime_type': value.mime_type,
+        'modified_max': value.modified_max,
+        'modified_min': value.modified_min,
         'offset': value.offset,
         'path': value.path,
-        'sizeMax': value.sizeMax,
-        'sizeMin': value.sizeMin,
-        'subDirectories': value.subDirectories,
+        'size_max': value.size_max,
+        'size_min': value.size_min,
+        'sub_directories': value.sub_directories,
         'text': value.text,
     };
 }

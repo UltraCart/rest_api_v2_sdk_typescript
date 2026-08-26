@@ -30,7 +30,7 @@ export interface SfvbContainerRevertRequest {
      * @type {number}
      * @memberof SfvbContainerRevertRequest
      */
-    containerHistoryOid?: number;
+    container_history_oid?: number;
 }
 
 
@@ -55,7 +55,7 @@ export function SfvbContainerRevertRequestFromJSONTyped(json: any, ignoreDiscrim
     return {
         
         'comment': !exists(json, 'comment') ? undefined : json['comment'],
-        'containerHistoryOid': !exists(json, 'containerHistoryOid') ? undefined : json['containerHistoryOid'],
+        'container_history_oid': !exists(json, 'container_history_oid') ? undefined : json['container_history_oid'],
     };
 }
 
@@ -69,7 +69,7 @@ export function SfvbContainerRevertRequestToJSON(value?: SfvbContainerRevertRequ
     return {
         
         'comment': value.comment,
-        'containerHistoryOid': value.containerHistoryOid,
+        'container_history_oid': value.container_history_oid,
     };
 }
 

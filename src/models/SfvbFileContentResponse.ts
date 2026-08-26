@@ -24,7 +24,7 @@ export interface SfvbFileContentResponse {
      * @type {boolean}
      * @memberof SfvbFileContentResponse
      */
-    autoCompiled?: boolean;
+    auto_compiled?: boolean;
     /**
      * UTF-8 content.  Only text/* files can be read this way.
      * @type {string}
@@ -36,19 +36,19 @@ export interface SfvbFileContentResponse {
      * @type {number}
      * @memberof SfvbFileContentResponse
      */
-    fsFileOid?: number;
+    fs_file_oid?: number;
     /**
      * SHA-256 of the content.  Also returned as the ETag header; send it back as If-Match when writing.
      * @type {string}
      * @memberof SfvbFileContentResponse
      */
-    hashSha256?: string;
+    hash_sha256?: string;
     /**
      * Mime type.
      * @type {string}
      * @memberof SfvbFileContentResponse
      */
-    mimeType?: string;
+    mime_type?: string;
     /**
      * Full path of the file.
      * @type {string}
@@ -78,7 +78,7 @@ export interface SfvbFileContentResponse {
      * @type {string}
      * @memberof SfvbFileContentResponse
      */
-    velocityErrors?: string;
+    velocity_errors?: string;
     /**
      * Version number of the content returned.
      * @type {number}
@@ -108,16 +108,16 @@ export function SfvbFileContentResponseFromJSONTyped(json: any, ignoreDiscrimina
     }
     return {
         
-        'autoCompiled': !exists(json, 'autoCompiled') ? undefined : json['autoCompiled'],
+        'auto_compiled': !exists(json, 'auto_compiled') ? undefined : json['auto_compiled'],
         'content': !exists(json, 'content') ? undefined : json['content'],
-        'fsFileOid': !exists(json, 'fsFileOid') ? undefined : json['fsFileOid'],
-        'hashSha256': !exists(json, 'hashSha256') ? undefined : json['hashSha256'],
-        'mimeType': !exists(json, 'mimeType') ? undefined : json['mimeType'],
+        'fs_file_oid': !exists(json, 'fs_file_oid') ? undefined : json['fs_file_oid'],
+        'hash_sha256': !exists(json, 'hash_sha256') ? undefined : json['hash_sha256'],
+        'mime_type': !exists(json, 'mime_type') ? undefined : json['mime_type'],
         'path': !exists(json, 'path') ? undefined : json['path'],
         'size': !exists(json, 'size') ? undefined : json['size'],
         'truncated': !exists(json, 'truncated') ? undefined : json['truncated'],
         'valid': !exists(json, 'valid') ? undefined : json['valid'],
-        'velocityErrors': !exists(json, 'velocityErrors') ? undefined : json['velocityErrors'],
+        'velocity_errors': !exists(json, 'velocity_errors') ? undefined : json['velocity_errors'],
         'version': !exists(json, 'version') ? undefined : json['version'],
     };
 }
@@ -131,16 +131,16 @@ export function SfvbFileContentResponseToJSON(value?: SfvbFileContentResponse | 
     }
     return {
         
-        'autoCompiled': value.autoCompiled,
+        'auto_compiled': value.auto_compiled,
         'content': value.content,
-        'fsFileOid': value.fsFileOid,
-        'hashSha256': value.hashSha256,
-        'mimeType': value.mimeType,
+        'fs_file_oid': value.fs_file_oid,
+        'hash_sha256': value.hash_sha256,
+        'mime_type': value.mime_type,
         'path': value.path,
         'size': value.size,
         'truncated': value.truncated,
         'valid': value.valid,
-        'velocityErrors': value.velocityErrors,
+        'velocity_errors': value.velocity_errors,
         'version': value.version,
     };
 }

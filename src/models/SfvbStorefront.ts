@@ -24,19 +24,19 @@ export interface SfvbStorefront {
      * @type {number}
      * @memberof SfvbStorefront
      */
-    activeThemeOid?: number;
+    active_theme_oid?: number;
     /**
      * Host name of the storefront.
      * @type {string}
      * @memberof SfvbStorefront
      */
-    hostName?: string;
+    host_name?: string;
     /**
      * StoreFront oid.
      * @type {number}
      * @memberof SfvbStorefront
      */
-    storefrontOid?: number;
+    storefront_oid?: number;
 }
 
 
@@ -60,9 +60,9 @@ export function SfvbStorefrontFromJSONTyped(json: any, ignoreDiscriminator: bool
     }
     return {
         
-        'activeThemeOid': !exists(json, 'activeThemeOid') ? undefined : json['activeThemeOid'],
-        'hostName': !exists(json, 'hostName') ? undefined : json['hostName'],
-        'storefrontOid': !exists(json, 'storefrontOid') ? undefined : json['storefrontOid'],
+        'active_theme_oid': !exists(json, 'active_theme_oid') ? undefined : json['active_theme_oid'],
+        'host_name': !exists(json, 'host_name') ? undefined : json['host_name'],
+        'storefront_oid': !exists(json, 'storefront_oid') ? undefined : json['storefront_oid'],
     };
 }
 
@@ -75,9 +75,9 @@ export function SfvbStorefrontToJSON(value?: SfvbStorefront | null): any {
     }
     return {
         
-        'activeThemeOid': value.activeThemeOid,
-        'hostName': value.hostName,
-        'storefrontOid': value.storefrontOid,
+        'active_theme_oid': value.active_theme_oid,
+        'host_name': value.host_name,
+        'storefront_oid': value.storefront_oid,
     };
 }
 

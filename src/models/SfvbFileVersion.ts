@@ -36,25 +36,25 @@ export interface SfvbFileVersion {
      * @type {string}
      * @memberof SfvbFileVersion
      */
-    editedBy?: string;
+    edited_by?: string;
     /**
      * History record oid.
      * @type {number}
      * @memberof SfvbFileVersion
      */
-    fsFileHistoryOid?: number;
+    fs_file_history_oid?: number;
     /**
      * SHA-256 of this version's content.
      * @type {string}
      * @memberof SfvbFileVersion
      */
-    hashSha256?: string;
+    hash_sha256?: string;
     /**
      * When this version was written.
      * @type {string}
      * @memberof SfvbFileVersion
      */
-    lastModified?: string;
+    last_modified?: string;
     /**
      * True when this version can be reverted to.
      * @type {boolean}
@@ -98,10 +98,10 @@ export function SfvbFileVersionFromJSONTyped(json: any, ignoreDiscriminator: boo
         
         'comment': !exists(json, 'comment') ? undefined : json['comment'],
         'current': !exists(json, 'current') ? undefined : json['current'],
-        'editedBy': !exists(json, 'editedBy') ? undefined : json['editedBy'],
-        'fsFileHistoryOid': !exists(json, 'fsFileHistoryOid') ? undefined : json['fsFileHistoryOid'],
-        'hashSha256': !exists(json, 'hashSha256') ? undefined : json['hashSha256'],
-        'lastModified': !exists(json, 'lastModified') ? undefined : json['lastModified'],
+        'edited_by': !exists(json, 'edited_by') ? undefined : json['edited_by'],
+        'fs_file_history_oid': !exists(json, 'fs_file_history_oid') ? undefined : json['fs_file_history_oid'],
+        'hash_sha256': !exists(json, 'hash_sha256') ? undefined : json['hash_sha256'],
+        'last_modified': !exists(json, 'last_modified') ? undefined : json['last_modified'],
         'revertable': !exists(json, 'revertable') ? undefined : json['revertable'],
         'size': !exists(json, 'size') ? undefined : json['size'],
         'version': !exists(json, 'version') ? undefined : json['version'],
@@ -119,10 +119,10 @@ export function SfvbFileVersionToJSON(value?: SfvbFileVersion | null): any {
         
         'comment': value.comment,
         'current': value.current,
-        'editedBy': value.editedBy,
-        'fsFileHistoryOid': value.fsFileHistoryOid,
-        'hashSha256': value.hashSha256,
-        'lastModified': value.lastModified,
+        'edited_by': value.edited_by,
+        'fs_file_history_oid': value.fs_file_history_oid,
+        'hash_sha256': value.hash_sha256,
+        'last_modified': value.last_modified,
         'revertable': value.revertable,
         'size': value.size,
         'version': value.version,

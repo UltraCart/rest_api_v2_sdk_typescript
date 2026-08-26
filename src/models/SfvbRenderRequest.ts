@@ -24,13 +24,13 @@ export interface SfvbRenderRequest {
      * @type {string}
      * @memberof SfvbRenderRequest
      */
-    ancestorsCjson?: string;
+    ancestors_cjson?: string;
     /**
      * Child containers this node references, as a JSON object keyed by container id.  Compiled into the render context so nested containers resolve.
      * @type {string}
      * @memberof SfvbRenderRequest
      */
-    childContainersJson?: string;
+    child_containers_json?: string;
     /**
      * The CJSON node to render.
      * @type {string}
@@ -42,49 +42,49 @@ export interface SfvbRenderRequest {
      * @type {number}
      * @memberof SfvbRenderRequest
      */
-    contextAffiliateOid?: number;
+    context_affiliate_oid?: number;
     /**
      * Blog post oid for the rendering context.
      * @type {number}
      * @memberof SfvbRenderRequest
      */
-    contextBlogPostOid?: number;
+    context_blog_post_oid?: number;
     /**
      * Catalog group path for the rendering context.
      * @type {string}
      * @memberof SfvbRenderRequest
      */
-    contextGroupPath?: string;
+    context_group_path?: string;
     /**
      * Item id for the rendering context.  Required for item bound elements.
      * @type {string}
      * @memberof SfvbRenderRequest
      */
-    contextItemId?: string;
+    context_item_id?: string;
     /**
      * Order id for the rendering context.
      * @type {string}
      * @memberof SfvbRenderRequest
      */
-    contextOrderId?: string;
+    context_order_id?: string;
     /**
      * Page number for paginated elements.  Defaults to 1.
      * @type {string}
      * @memberof SfvbRenderRequest
      */
-    contextPageNumber?: string;
+    context_page_number?: string;
     /**
      * Upsell offer oid for the rendering context.
      * @type {number}
      * @memberof SfvbRenderRequest
      */
-    contextUpsellOfferOid?: number;
+    context_upsell_offer_oid?: number;
     /**
      * Language ISO code.  Defaults to ENG.
      * @type {string}
      * @memberof SfvbRenderRequest
      */
-    languageIsoCode?: string;
+    language_iso_code?: string;
     /**
      * Storefront URI the node would appear on.  Affects rendering of anything page relative.
      * @type {string}
@@ -114,17 +114,17 @@ export function SfvbRenderRequestFromJSONTyped(json: any, ignoreDiscriminator: b
     }
     return {
         
-        'ancestorsCjson': !exists(json, 'ancestorsCjson') ? undefined : json['ancestorsCjson'],
-        'childContainersJson': !exists(json, 'childContainersJson') ? undefined : json['childContainersJson'],
+        'ancestors_cjson': !exists(json, 'ancestors_cjson') ? undefined : json['ancestors_cjson'],
+        'child_containers_json': !exists(json, 'child_containers_json') ? undefined : json['child_containers_json'],
         'cjson': !exists(json, 'cjson') ? undefined : json['cjson'],
-        'contextAffiliateOid': !exists(json, 'contextAffiliateOid') ? undefined : json['contextAffiliateOid'],
-        'contextBlogPostOid': !exists(json, 'contextBlogPostOid') ? undefined : json['contextBlogPostOid'],
-        'contextGroupPath': !exists(json, 'contextGroupPath') ? undefined : json['contextGroupPath'],
-        'contextItemId': !exists(json, 'contextItemId') ? undefined : json['contextItemId'],
-        'contextOrderId': !exists(json, 'contextOrderId') ? undefined : json['contextOrderId'],
-        'contextPageNumber': !exists(json, 'contextPageNumber') ? undefined : json['contextPageNumber'],
-        'contextUpsellOfferOid': !exists(json, 'contextUpsellOfferOid') ? undefined : json['contextUpsellOfferOid'],
-        'languageIsoCode': !exists(json, 'languageIsoCode') ? undefined : json['languageIsoCode'],
+        'context_affiliate_oid': !exists(json, 'context_affiliate_oid') ? undefined : json['context_affiliate_oid'],
+        'context_blog_post_oid': !exists(json, 'context_blog_post_oid') ? undefined : json['context_blog_post_oid'],
+        'context_group_path': !exists(json, 'context_group_path') ? undefined : json['context_group_path'],
+        'context_item_id': !exists(json, 'context_item_id') ? undefined : json['context_item_id'],
+        'context_order_id': !exists(json, 'context_order_id') ? undefined : json['context_order_id'],
+        'context_page_number': !exists(json, 'context_page_number') ? undefined : json['context_page_number'],
+        'context_upsell_offer_oid': !exists(json, 'context_upsell_offer_oid') ? undefined : json['context_upsell_offer_oid'],
+        'language_iso_code': !exists(json, 'language_iso_code') ? undefined : json['language_iso_code'],
         'uri': !exists(json, 'uri') ? undefined : json['uri'],
     };
 }
@@ -138,17 +138,17 @@ export function SfvbRenderRequestToJSON(value?: SfvbRenderRequest | null): any {
     }
     return {
         
-        'ancestorsCjson': value.ancestorsCjson,
-        'childContainersJson': value.childContainersJson,
+        'ancestors_cjson': value.ancestors_cjson,
+        'child_containers_json': value.child_containers_json,
         'cjson': value.cjson,
-        'contextAffiliateOid': value.contextAffiliateOid,
-        'contextBlogPostOid': value.contextBlogPostOid,
-        'contextGroupPath': value.contextGroupPath,
-        'contextItemId': value.contextItemId,
-        'contextOrderId': value.contextOrderId,
-        'contextPageNumber': value.contextPageNumber,
-        'contextUpsellOfferOid': value.contextUpsellOfferOid,
-        'languageIsoCode': value.languageIsoCode,
+        'context_affiliate_oid': value.context_affiliate_oid,
+        'context_blog_post_oid': value.context_blog_post_oid,
+        'context_group_path': value.context_group_path,
+        'context_item_id': value.context_item_id,
+        'context_order_id': value.context_order_id,
+        'context_page_number': value.context_page_number,
+        'context_upsell_offer_oid': value.context_upsell_offer_oid,
+        'language_iso_code': value.language_iso_code,
         'uri': value.uri,
     };
 }

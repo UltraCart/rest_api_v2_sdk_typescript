@@ -31,31 +31,31 @@ export interface SfvbPreviewSessionResponse {
      * @type {number}
      * @memberof SfvbPreviewSessionResponse
      */
-    bytesStored?: number;
+    bytes_stored?: number;
     /**
      * Seconds until this session expires.
      * @type {number}
      * @memberof SfvbPreviewSessionResponse
      */
-    expiresInSeconds?: number;
+    expires_in_seconds?: number;
     /**
      * Maximum bytes one preview session may hold.
      * @type {number}
      * @memberof SfvbPreviewSessionResponse
      */
-    maxBytes?: number;
+    max_bytes?: number;
     /**
      * Login this session belongs to.  Sessions are keyed by user, not by token.
      * @type {string}
      * @memberof SfvbPreviewSessionResponse
      */
-    ownerLogin?: string;
+    owner_login?: string;
     /**
      * The preview session id.
      * @type {string}
      * @memberof SfvbPreviewSessionResponse
      */
-    previewSessionId?: string;
+    preview_session_id?: string;
     /**
      * Containers that were sent but could not be stored, with the reason.
      * @type {Array<SfvbErrorDetail>}
@@ -67,7 +67,7 @@ export interface SfvbPreviewSessionResponse {
      * @type {Array<string>}
      * @memberof SfvbPreviewSessionResponse
      */
-    storedKeys?: Array<string>;
+    stored_keys?: Array<string>;
 }
 
 
@@ -91,13 +91,13 @@ export function SfvbPreviewSessionResponseFromJSONTyped(json: any, ignoreDiscrim
     }
     return {
         
-        'bytesStored': !exists(json, 'bytesStored') ? undefined : json['bytesStored'],
-        'expiresInSeconds': !exists(json, 'expiresInSeconds') ? undefined : json['expiresInSeconds'],
-        'maxBytes': !exists(json, 'maxBytes') ? undefined : json['maxBytes'],
-        'ownerLogin': !exists(json, 'ownerLogin') ? undefined : json['ownerLogin'],
-        'previewSessionId': !exists(json, 'previewSessionId') ? undefined : json['previewSessionId'],
+        'bytes_stored': !exists(json, 'bytes_stored') ? undefined : json['bytes_stored'],
+        'expires_in_seconds': !exists(json, 'expires_in_seconds') ? undefined : json['expires_in_seconds'],
+        'max_bytes': !exists(json, 'max_bytes') ? undefined : json['max_bytes'],
+        'owner_login': !exists(json, 'owner_login') ? undefined : json['owner_login'],
+        'preview_session_id': !exists(json, 'preview_session_id') ? undefined : json['preview_session_id'],
         'skipped': !exists(json, 'skipped') ? undefined : ((json['skipped'] as Array<any>).map(SfvbErrorDetailFromJSON)),
-        'storedKeys': !exists(json, 'storedKeys') ? undefined : json['storedKeys'],
+        'stored_keys': !exists(json, 'stored_keys') ? undefined : json['stored_keys'],
     };
 }
 
@@ -110,13 +110,13 @@ export function SfvbPreviewSessionResponseToJSON(value?: SfvbPreviewSessionRespo
     }
     return {
         
-        'bytesStored': value.bytesStored,
-        'expiresInSeconds': value.expiresInSeconds,
-        'maxBytes': value.maxBytes,
-        'ownerLogin': value.ownerLogin,
-        'previewSessionId': value.previewSessionId,
+        'bytes_stored': value.bytes_stored,
+        'expires_in_seconds': value.expires_in_seconds,
+        'max_bytes': value.max_bytes,
+        'owner_login': value.owner_login,
+        'preview_session_id': value.preview_session_id,
         'skipped': value.skipped === undefined ? undefined : ((value.skipped as Array<any>).map(SfvbErrorDetailToJSON)),
-        'storedKeys': value.storedKeys,
+        'stored_keys': value.stored_keys,
     };
 }
 

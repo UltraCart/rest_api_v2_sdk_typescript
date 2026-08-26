@@ -37,19 +37,19 @@ export interface SfvbFilesResponse {
      * @type {number}
      * @memberof SfvbFilesResponse
      */
-    fsDirectoryOid?: number;
+    fs_directory_oid?: number;
     /**
      * Number of entries omitted when truncated is true.
      * @type {number}
      * @memberof SfvbFilesResponse
      */
-    omittedCount?: number;
+    omitted_count?: number;
     /**
      * Oid of the parent directory, or zero at the root.
      * @type {number}
      * @memberof SfvbFilesResponse
      */
-    parentFsDirectoryOid?: number;
+    parent_fs_directory_oid?: number;
     /**
      * Path that was listed.
      * @type {string}
@@ -86,9 +86,9 @@ export function SfvbFilesResponseFromJSONTyped(json: any, ignoreDiscriminator: b
     return {
         
         'files': !exists(json, 'files') ? undefined : ((json['files'] as Array<any>).map(SfvbFileEntryFromJSON)),
-        'fsDirectoryOid': !exists(json, 'fsDirectoryOid') ? undefined : json['fsDirectoryOid'],
-        'omittedCount': !exists(json, 'omittedCount') ? undefined : json['omittedCount'],
-        'parentFsDirectoryOid': !exists(json, 'parentFsDirectoryOid') ? undefined : json['parentFsDirectoryOid'],
+        'fs_directory_oid': !exists(json, 'fs_directory_oid') ? undefined : json['fs_directory_oid'],
+        'omitted_count': !exists(json, 'omitted_count') ? undefined : json['omitted_count'],
+        'parent_fs_directory_oid': !exists(json, 'parent_fs_directory_oid') ? undefined : json['parent_fs_directory_oid'],
         'path': !exists(json, 'path') ? undefined : json['path'],
         'truncated': !exists(json, 'truncated') ? undefined : json['truncated'],
     };
@@ -104,9 +104,9 @@ export function SfvbFilesResponseToJSON(value?: SfvbFilesResponse | null): any {
     return {
         
         'files': value.files === undefined ? undefined : ((value.files as Array<any>).map(SfvbFileEntryToJSON)),
-        'fsDirectoryOid': value.fsDirectoryOid,
-        'omittedCount': value.omittedCount,
-        'parentFsDirectoryOid': value.parentFsDirectoryOid,
+        'fs_directory_oid': value.fs_directory_oid,
+        'omitted_count': value.omitted_count,
+        'parent_fs_directory_oid': value.parent_fs_directory_oid,
         'path': value.path,
         'truncated': value.truncated,
     };

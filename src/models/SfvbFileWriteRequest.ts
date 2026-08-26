@@ -36,7 +36,7 @@ export interface SfvbFileWriteRequest {
      * @type {boolean}
      * @memberof SfvbFileWriteRequest
      */
-    createIfMissing?: boolean;
+    create_if_missing?: boolean;
 }
 
 
@@ -62,7 +62,7 @@ export function SfvbFileWriteRequestFromJSONTyped(json: any, ignoreDiscriminator
         
         'comment': !exists(json, 'comment') ? undefined : json['comment'],
         'content': !exists(json, 'content') ? undefined : json['content'],
-        'createIfMissing': !exists(json, 'createIfMissing') ? undefined : json['createIfMissing'],
+        'create_if_missing': !exists(json, 'create_if_missing') ? undefined : json['create_if_missing'],
     };
 }
 
@@ -77,7 +77,7 @@ export function SfvbFileWriteRequestToJSON(value?: SfvbFileWriteRequest | null):
         
         'comment': value.comment,
         'content': value.content,
-        'createIfMissing': value.createIfMissing,
+        'create_if_missing': value.create_if_missing,
     };
 }
 

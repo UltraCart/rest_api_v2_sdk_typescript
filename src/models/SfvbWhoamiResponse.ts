@@ -31,43 +31,43 @@ export interface SfvbWhoamiResponse {
      * @type {boolean}
      * @memberof SfvbWhoamiResponse
      */
-    actingAsUser?: boolean;
+    acting_as_user?: boolean;
     /**
      * Description of the application this credential belongs to.
      * @type {string}
      * @memberof SfvbWhoamiResponse
      */
-    applicationName?: string;
+    application_name?: string;
     /**
      * How this token authenticated - Oauth2, Simple Key, Public/Private Key or Browser Key.
      * @type {string}
      * @memberof SfvbWhoamiResponse
      */
-    authenticationType?: string;
+    authentication_type?: string;
     /**
      * True when this token may write a target that is currently live - an active upsell offer, an email on a delivering flow, the active theme, the storefront root.  Never infer this; it is the difference between a draft edit and a shopper visible change.
      * @type {boolean}
      * @memberof SfvbWhoamiResponse
      */
-    canPublish?: boolean;
+    can_publish?: boolean;
     /**
      * True when this token may read.  Do not infer this from the requested scope name.
      * @type {boolean}
      * @memberof SfvbWhoamiResponse
      */
-    canRead?: boolean;
+    can_read?: boolean;
     /**
      * True when this token may write.  Writing a target that is not currently live needs only this.
      * @type {boolean}
      * @memberof SfvbWhoamiResponse
      */
-    canWrite?: boolean;
+    can_write?: boolean;
     /**
      * Device scope name, when this is a device flow token.
      * @type {string}
      * @memberof SfvbWhoamiResponse
      */
-    deviceScope?: string;
+    device_scope?: string;
     /**
      * Login of the user who approved this token.  Populated for device flow tokens; null for plain API key credentials.
      * @type {string}
@@ -79,7 +79,7 @@ export interface SfvbWhoamiResponse {
      * @type {string}
      * @memberof SfvbWhoamiResponse
      */
-    merchantId?: string;
+    merchant_id?: string;
     /**
      * Scopes granted to this token.
      * @type {Array<string>}
@@ -97,13 +97,13 @@ export interface SfvbWhoamiResponse {
      * @type {boolean}
      * @memberof SfvbWhoamiResponse
      */
-    storefrontsWithheld?: boolean;
+    storefronts_withheld?: boolean;
     /**
      * Display name of the approving user, when known.
      * @type {string}
      * @memberof SfvbWhoamiResponse
      */
-    userName?: string;
+    user_name?: string;
 }
 
 
@@ -127,19 +127,19 @@ export function SfvbWhoamiResponseFromJSONTyped(json: any, ignoreDiscriminator: 
     }
     return {
         
-        'actingAsUser': !exists(json, 'actingAsUser') ? undefined : json['actingAsUser'],
-        'applicationName': !exists(json, 'applicationName') ? undefined : json['applicationName'],
-        'authenticationType': !exists(json, 'authenticationType') ? undefined : json['authenticationType'],
-        'canPublish': !exists(json, 'canPublish') ? undefined : json['canPublish'],
-        'canRead': !exists(json, 'canRead') ? undefined : json['canRead'],
-        'canWrite': !exists(json, 'canWrite') ? undefined : json['canWrite'],
-        'deviceScope': !exists(json, 'deviceScope') ? undefined : json['deviceScope'],
+        'acting_as_user': !exists(json, 'acting_as_user') ? undefined : json['acting_as_user'],
+        'application_name': !exists(json, 'application_name') ? undefined : json['application_name'],
+        'authentication_type': !exists(json, 'authentication_type') ? undefined : json['authentication_type'],
+        'can_publish': !exists(json, 'can_publish') ? undefined : json['can_publish'],
+        'can_read': !exists(json, 'can_read') ? undefined : json['can_read'],
+        'can_write': !exists(json, 'can_write') ? undefined : json['can_write'],
+        'device_scope': !exists(json, 'device_scope') ? undefined : json['device_scope'],
         'login': !exists(json, 'login') ? undefined : json['login'],
-        'merchantId': !exists(json, 'merchantId') ? undefined : json['merchantId'],
+        'merchant_id': !exists(json, 'merchant_id') ? undefined : json['merchant_id'],
         'scopes': !exists(json, 'scopes') ? undefined : json['scopes'],
         'storefronts': !exists(json, 'storefronts') ? undefined : ((json['storefronts'] as Array<any>).map(SfvbStorefrontFromJSON)),
-        'storefrontsWithheld': !exists(json, 'storefrontsWithheld') ? undefined : json['storefrontsWithheld'],
-        'userName': !exists(json, 'userName') ? undefined : json['userName'],
+        'storefronts_withheld': !exists(json, 'storefronts_withheld') ? undefined : json['storefronts_withheld'],
+        'user_name': !exists(json, 'user_name') ? undefined : json['user_name'],
     };
 }
 
@@ -152,19 +152,19 @@ export function SfvbWhoamiResponseToJSON(value?: SfvbWhoamiResponse | null): any
     }
     return {
         
-        'actingAsUser': value.actingAsUser,
-        'applicationName': value.applicationName,
-        'authenticationType': value.authenticationType,
-        'canPublish': value.canPublish,
-        'canRead': value.canRead,
-        'canWrite': value.canWrite,
-        'deviceScope': value.deviceScope,
+        'acting_as_user': value.acting_as_user,
+        'application_name': value.application_name,
+        'authentication_type': value.authentication_type,
+        'can_publish': value.can_publish,
+        'can_read': value.can_read,
+        'can_write': value.can_write,
+        'device_scope': value.device_scope,
         'login': value.login,
-        'merchantId': value.merchantId,
+        'merchant_id': value.merchant_id,
         'scopes': value.scopes,
         'storefronts': value.storefronts === undefined ? undefined : ((value.storefronts as Array<any>).map(SfvbStorefrontToJSON)),
-        'storefrontsWithheld': value.storefrontsWithheld,
-        'userName': value.userName,
+        'storefronts_withheld': value.storefronts_withheld,
+        'user_name': value.user_name,
     };
 }
 

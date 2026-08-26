@@ -31,7 +31,7 @@ export interface SfvbElementsResponse {
      * @type {number}
      * @memberof SfvbElementsResponse
      */
-    elementCount?: number;
+    element_count?: number;
     /**
      * Every element type the compiler recognizes, sorted.
      * @type {Array<SfvbElement>}
@@ -67,7 +67,7 @@ export function SfvbElementsResponseFromJSONTyped(json: any, ignoreDiscriminator
     }
     return {
         
-        'elementCount': !exists(json, 'elementCount') ? undefined : json['elementCount'],
+        'element_count': !exists(json, 'element_count') ? undefined : json['element_count'],
         'elements': !exists(json, 'elements') ? undefined : ((json['elements'] as Array<any>).map(SfvbElementFromJSON)),
         'version': !exists(json, 'version') ? undefined : json['version'],
     };
@@ -82,7 +82,7 @@ export function SfvbElementsResponseToJSON(value?: SfvbElementsResponse | null):
     }
     return {
         
-        'elementCount': value.elementCount,
+        'element_count': value.element_count,
         'elements': value.elements === undefined ? undefined : ((value.elements as Array<any>).map(SfvbElementToJSON)),
         'version': value.version,
     };

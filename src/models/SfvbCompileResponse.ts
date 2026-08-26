@@ -31,7 +31,7 @@ export interface SfvbCompileResponse {
      * @type {string}
      * @memberof SfvbCompileResponse
      */
-    containerId?: string;
+    container_id?: string;
     /**
      * Velocity directives the compiled output declares.
      * @type {Array<string>}
@@ -49,7 +49,7 @@ export interface SfvbCompileResponse {
      * @type {Array<string>}
      * @memberof SfvbCompileResponse
      */
-    usedElements?: Array<string>;
+    used_elements?: Array<string>;
     /**
      * 
      * @type {SfvbValidationResponse}
@@ -85,10 +85,10 @@ export function SfvbCompileResponseFromJSONTyped(json: any, ignoreDiscriminator:
     }
     return {
         
-        'containerId': !exists(json, 'containerId') ? undefined : json['containerId'],
+        'container_id': !exists(json, 'container_id') ? undefined : json['container_id'],
         'directives': !exists(json, 'directives') ? undefined : json['directives'],
         'success': !exists(json, 'success') ? undefined : json['success'],
-        'usedElements': !exists(json, 'usedElements') ? undefined : json['usedElements'],
+        'used_elements': !exists(json, 'used_elements') ? undefined : json['used_elements'],
         'validation': !exists(json, 'validation') ? undefined : SfvbValidationResponseFromJSON(json['validation']),
         'velocity': !exists(json, 'velocity') ? undefined : json['velocity'],
     };
@@ -103,10 +103,10 @@ export function SfvbCompileResponseToJSON(value?: SfvbCompileResponse | null): a
     }
     return {
         
-        'containerId': value.containerId,
+        'container_id': value.container_id,
         'directives': value.directives,
         'success': value.success,
-        'usedElements': value.usedElements,
+        'used_elements': value.used_elements,
         'validation': SfvbValidationResponseToJSON(value.validation),
         'velocity': value.velocity,
     };

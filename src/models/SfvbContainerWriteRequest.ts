@@ -24,7 +24,7 @@ export interface SfvbContainerWriteRequest {
      * @type {boolean}
      * @memberof SfvbContainerWriteRequest
      */
-    allowWarnings?: boolean;
+    allow_warnings?: boolean;
     /**
      * The container JSON to store.
      * @type {string}
@@ -42,7 +42,7 @@ export interface SfvbContainerWriteRequest {
      * @type {boolean}
      * @memberof SfvbContainerWriteRequest
      */
-    marketingEmail?: boolean;
+    marketing_email?: boolean;
 }
 
 
@@ -66,10 +66,10 @@ export function SfvbContainerWriteRequestFromJSONTyped(json: any, ignoreDiscrimi
     }
     return {
         
-        'allowWarnings': !exists(json, 'allowWarnings') ? undefined : json['allowWarnings'],
+        'allow_warnings': !exists(json, 'allow_warnings') ? undefined : json['allow_warnings'],
         'cjson': !exists(json, 'cjson') ? undefined : json['cjson'],
         'comment': !exists(json, 'comment') ? undefined : json['comment'],
-        'marketingEmail': !exists(json, 'marketingEmail') ? undefined : json['marketingEmail'],
+        'marketing_email': !exists(json, 'marketing_email') ? undefined : json['marketing_email'],
     };
 }
 
@@ -82,10 +82,10 @@ export function SfvbContainerWriteRequestToJSON(value?: SfvbContainerWriteReques
     }
     return {
         
-        'allowWarnings': value.allowWarnings,
+        'allow_warnings': value.allow_warnings,
         'cjson': value.cjson,
         'comment': value.comment,
-        'marketingEmail': value.marketingEmail,
+        'marketing_email': value.marketing_email,
     };
 }
 

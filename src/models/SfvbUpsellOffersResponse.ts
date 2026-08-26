@@ -31,7 +31,7 @@ export interface SfvbUpsellOffersResponse {
      * @type {Array<SfvbUpsellOffer>}
      * @memberof SfvbUpsellOffersResponse
      */
-    upsellOffers?: Array<SfvbUpsellOffer>;
+    upsell_offers?: Array<SfvbUpsellOffer>;
 }
 
 
@@ -55,7 +55,7 @@ export function SfvbUpsellOffersResponseFromJSONTyped(json: any, ignoreDiscrimin
     }
     return {
         
-        'upsellOffers': !exists(json, 'upsellOffers') ? undefined : ((json['upsellOffers'] as Array<any>).map(SfvbUpsellOfferFromJSON)),
+        'upsell_offers': !exists(json, 'upsell_offers') ? undefined : ((json['upsell_offers'] as Array<any>).map(SfvbUpsellOfferFromJSON)),
     };
 }
 
@@ -68,7 +68,7 @@ export function SfvbUpsellOffersResponseToJSON(value?: SfvbUpsellOffersResponse 
     }
     return {
         
-        'upsellOffers': value.upsellOffers === undefined ? undefined : ((value.upsellOffers as Array<any>).map(SfvbUpsellOfferToJSON)),
+        'upsell_offers': value.upsell_offers === undefined ? undefined : ((value.upsell_offers as Array<any>).map(SfvbUpsellOfferToJSON)),
     };
 }
 

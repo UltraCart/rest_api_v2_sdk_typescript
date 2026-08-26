@@ -37,7 +37,7 @@ export interface SfvbFileWriteResponse {
      * @type {string}
      * @memberof SfvbFileWriteResponse
      */
-    compiledPath?: string;
+    compiled_path?: string;
     /**
      * 
      * @type {SfvbFileEntry}
@@ -49,7 +49,7 @@ export interface SfvbFileWriteResponse {
      * @type {string}
      * @memberof SfvbFileWriteResponse
      */
-    hashSha256?: string;
+    hash_sha256?: string;
     /**
      * 
      * @type {SfvbValidationResponse}
@@ -61,7 +61,7 @@ export interface SfvbFileWriteResponse {
      * @type {string}
      * @memberof SfvbFileWriteResponse
      */
-    velocityErrors?: string;
+    velocity_errors?: string;
     /**
      * New version number.
      * @type {number}
@@ -91,11 +91,11 @@ export function SfvbFileWriteResponseFromJSONTyped(json: any, ignoreDiscriminato
     }
     return {
         
-        'compiledPath': !exists(json, 'compiledPath') ? undefined : json['compiledPath'],
+        'compiled_path': !exists(json, 'compiled_path') ? undefined : json['compiled_path'],
         'file': !exists(json, 'file') ? undefined : SfvbFileEntryFromJSON(json['file']),
-        'hashSha256': !exists(json, 'hashSha256') ? undefined : json['hashSha256'],
+        'hash_sha256': !exists(json, 'hash_sha256') ? undefined : json['hash_sha256'],
         'validation': !exists(json, 'validation') ? undefined : SfvbValidationResponseFromJSON(json['validation']),
-        'velocityErrors': !exists(json, 'velocityErrors') ? undefined : json['velocityErrors'],
+        'velocity_errors': !exists(json, 'velocity_errors') ? undefined : json['velocity_errors'],
         'version': !exists(json, 'version') ? undefined : json['version'],
     };
 }
@@ -109,11 +109,11 @@ export function SfvbFileWriteResponseToJSON(value?: SfvbFileWriteResponse | null
     }
     return {
         
-        'compiledPath': value.compiledPath,
+        'compiled_path': value.compiled_path,
         'file': SfvbFileEntryToJSON(value.file),
-        'hashSha256': value.hashSha256,
+        'hash_sha256': value.hash_sha256,
         'validation': SfvbValidationResponseToJSON(value.validation),
-        'velocityErrors': value.velocityErrors,
+        'velocity_errors': value.velocity_errors,
         'version': value.version,
     };
 }

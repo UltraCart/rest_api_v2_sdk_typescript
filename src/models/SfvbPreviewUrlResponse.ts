@@ -24,7 +24,7 @@ export interface SfvbPreviewUrlResponse {
      * @type {number}
      * @memberof SfvbPreviewUrlResponse
      */
-    expiresInSeconds?: number;
+    expires_in_seconds?: number;
     /**
      * Storefront path being previewed.
      * @type {string}
@@ -36,19 +36,19 @@ export interface SfvbPreviewUrlResponse {
      * @type {string}
      * @memberof SfvbPreviewUrlResponse
      */
-    previewSessionId?: string;
+    preview_session_id?: string;
     /**
      * URL that renders the storefront page with the preview session's containers substituted for the stored ones.
      * @type {string}
      * @memberof SfvbPreviewUrlResponse
      */
-    previewUrl?: string;
+    preview_url?: string;
     /**
      * Always true.  The preview only applies to a request carrying the UltraCart admin session cookie of the user who authorised this token.  Fetched without it, the URL returns the LIVE page with a 200 and no error, so a successful fetch is not evidence the preview was applied.  Present this URL for a human to open; do not fetch it.
      * @type {boolean}
      * @memberof SfvbPreviewUrlResponse
      */
-    requiresBrowserSession?: boolean;
+    requires_browser_session?: boolean;
     /**
      * Always false.  The session is keyed by individual login, so anyone else opening this URL sees the live page rather than the preview.
      * @type {boolean}
@@ -60,7 +60,7 @@ export interface SfvbPreviewUrlResponse {
      * @type {string}
      * @memberof SfvbPreviewUrlResponse
      */
-    usageNote?: string;
+    usage_note?: string;
 }
 
 
@@ -84,13 +84,13 @@ export function SfvbPreviewUrlResponseFromJSONTyped(json: any, ignoreDiscriminat
     }
     return {
         
-        'expiresInSeconds': !exists(json, 'expiresInSeconds') ? undefined : json['expiresInSeconds'],
+        'expires_in_seconds': !exists(json, 'expires_in_seconds') ? undefined : json['expires_in_seconds'],
         'path': !exists(json, 'path') ? undefined : json['path'],
-        'previewSessionId': !exists(json, 'previewSessionId') ? undefined : json['previewSessionId'],
-        'previewUrl': !exists(json, 'previewUrl') ? undefined : json['previewUrl'],
-        'requiresBrowserSession': !exists(json, 'requiresBrowserSession') ? undefined : json['requiresBrowserSession'],
+        'preview_session_id': !exists(json, 'preview_session_id') ? undefined : json['preview_session_id'],
+        'preview_url': !exists(json, 'preview_url') ? undefined : json['preview_url'],
+        'requires_browser_session': !exists(json, 'requires_browser_session') ? undefined : json['requires_browser_session'],
         'shareable': !exists(json, 'shareable') ? undefined : json['shareable'],
-        'usageNote': !exists(json, 'usageNote') ? undefined : json['usageNote'],
+        'usage_note': !exists(json, 'usage_note') ? undefined : json['usage_note'],
     };
 }
 
@@ -103,13 +103,13 @@ export function SfvbPreviewUrlResponseToJSON(value?: SfvbPreviewUrlResponse | nu
     }
     return {
         
-        'expiresInSeconds': value.expiresInSeconds,
+        'expires_in_seconds': value.expires_in_seconds,
         'path': value.path,
-        'previewSessionId': value.previewSessionId,
-        'previewUrl': value.previewUrl,
-        'requiresBrowserSession': value.requiresBrowserSession,
+        'preview_session_id': value.preview_session_id,
+        'preview_url': value.preview_url,
+        'requires_browser_session': value.requires_browser_session,
         'shareable': value.shareable,
-        'usageNote': value.usageNote,
+        'usage_note': value.usage_note,
     };
 }
 
