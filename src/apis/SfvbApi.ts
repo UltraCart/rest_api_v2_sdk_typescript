@@ -561,7 +561,7 @@ export interface SfvbApiInterface {
     getSfvbLibraryEntry(requestParameters: GetSfvbLibraryEntryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbLibraryEntry>;
 
     /**
-     * 
+     * Refuses a session that does not exist, so a URL you receive is for a session that was really there.  expires_in_seconds is the time actually remaining, not the configured lifetime.  Needs a token that resolves to a user, because a preview session belongs to the person who created it. 
      * @summary URL that renders a preview session
      * @param {number} storefrontOid 
      * @param {string} previewSessionId 
@@ -573,6 +573,7 @@ export interface SfvbApiInterface {
     getSfvbPreviewUrlRaw(requestParameters: GetSfvbPreviewUrlRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbPreviewUrlResponse>>;
 
     /**
+     * Refuses a session that does not exist, so a URL you receive is for a session that was really there.  expires_in_seconds is the time actually remaining, not the configured lifetime.  Needs a token that resolves to a user, because a preview session belongs to the person who created it. 
      * URL that renders a preview session
      */
     getSfvbPreviewUrl(requestParameters: GetSfvbPreviewUrlRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbPreviewUrlResponse>;
@@ -1610,6 +1611,7 @@ export class SfvbApi extends runtime.BaseAPI implements SfvbApiInterface {
     }
 
     /**
+     * Refuses a session that does not exist, so a URL you receive is for a session that was really there.  expires_in_seconds is the time actually remaining, not the configured lifetime.  Needs a token that resolves to a user, because a preview session belongs to the person who created it. 
      * URL that renders a preview session
      */
     async getSfvbPreviewUrlRaw(requestParameters: GetSfvbPreviewUrlRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbPreviewUrlResponse>> {
@@ -1649,6 +1651,7 @@ export class SfvbApi extends runtime.BaseAPI implements SfvbApiInterface {
     }
 
     /**
+     * Refuses a session that does not exist, so a URL you receive is for a session that was really there.  expires_in_seconds is the time actually remaining, not the configured lifetime.  Needs a token that resolves to a user, because a preview session belongs to the person who created it. 
      * URL that renders a preview session
      */
     async getSfvbPreviewUrl(requestParameters: GetSfvbPreviewUrlRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbPreviewUrlResponse> {

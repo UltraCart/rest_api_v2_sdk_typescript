@@ -50,7 +50,7 @@ export interface SfvbPreviewUrlResponse {
      */
     requires_browser_session?: boolean;
     /**
-     * Always false.  The session is keyed by individual login, so anyone else opening this URL sees the live page rather than the preview.
+     * The session is keyed by individual login, so anyone else opening this URL sees the live page rather than the preview.  This is false in every response, which means it is absent from the JSON - false booleans are omitted across this API, so a generated client sees undefined rather than false.  Do not test it for equality with false.  usage_note carries the same warning as a string and does survive.
      * @type {boolean}
      * @memberof SfvbPreviewUrlResponse
      */
