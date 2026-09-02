@@ -38,7 +38,7 @@ export interface SfvbFileContentResponse {
      */
     fs_file_oid?: number;
     /**
-     * SHA-256 of the content.  Also returned as the ETag header; send it back as If-Match when writing.
+     * SHA-256 of the content.  Send this back as If-Match when writing.  The ETag header carries the same hash, but a compressing proxy may append a suffix such as -gzip to it, so this body value is the authoritative one.  Both forms are accepted on write.
      * @type {string}
      * @memberof SfvbFileContentResponse
      */

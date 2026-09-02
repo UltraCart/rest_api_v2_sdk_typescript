@@ -972,6 +972,8 @@ export * from './SfvbFileEntry';
 export * from './SfvbFileRevertRequest';
 export * from './SfvbFileSearchRequest';
 export * from './SfvbFileSearchResponse';
+export * from './SfvbFileUploadRequest';
+export * from './SfvbFileUploadUrlResponse';
 export * from './SfvbFileVersion';
 export * from './SfvbFileVersionsResponse';
 export * from './SfvbFileWriteRequest';

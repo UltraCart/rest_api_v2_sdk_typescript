@@ -1000,6 +1000,8 @@ src/models/SfvbFileEntry.ts
 src/models/SfvbFileRevertRequest.ts
 src/models/SfvbFileSearchRequest.ts
 src/models/SfvbFileSearchResponse.ts
+src/models/SfvbFileUploadRequest.ts
+src/models/SfvbFileUploadUrlResponse.ts
 src/models/SfvbFileVersion.ts
 src/models/SfvbFileVersionsResponse.ts
 src/models/SfvbFileWriteRequest.ts

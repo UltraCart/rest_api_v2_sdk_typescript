@@ -57,6 +57,12 @@ import {
     SfvbFileSearchResponse,
     SfvbFileSearchResponseFromJSON,
     SfvbFileSearchResponseToJSON,
+    SfvbFileUploadRequest,
+    SfvbFileUploadRequestFromJSON,
+    SfvbFileUploadRequestToJSON,
+    SfvbFileUploadUrlResponse,
+    SfvbFileUploadUrlResponseFromJSON,
+    SfvbFileUploadUrlResponseToJSON,
     SfvbFileVersionsResponse,
     SfvbFileVersionsResponseFromJSON,
     SfvbFileVersionsResponseToJSON,
@@ -147,6 +153,11 @@ export interface DeleteSfvbPreviewSessionRequest {
     previewSessionId: string;
 }
 
+export interface DownloadSfvbFileRequest {
+    storefrontOid: number;
+    path?: string;
+}
+
 export interface DuplicateSfvbThemeRequest {
     storefrontOid: number;
     themeOid: number;
@@ -180,6 +191,11 @@ export interface GetSfvbFileContentRequest {
     storefrontOid: number;
     path?: string;
     version?: number;
+}
+
+export interface GetSfvbFileUploadUrlRequest {
+    storefrontOid: number;
+    extension: string;
 }
 
 export interface GetSfvbLibraryEntryRequest {
@@ -298,6 +314,12 @@ export interface SearchSfvbLibraryRequest {
     resultsPerPage?: number;
 }
 
+export interface UploadSfvbFileRequest {
+    storefrontOid: number;
+    fileUploadRequest: SfvbFileUploadRequest;
+    ifMatch?: string;
+}
+
 export interface ValidateSfvbCjsonRequest {
     validateRequest: SfvbValidateRequest;
 }
@@ -381,6 +403,23 @@ export interface SfvbApiInterface {
      * Delete a preview session
      */
     deleteSfvbPreviewSession(requestParameters: DeleteSfvbPreviewSessionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+
+    /**
+     * Returns the file itself rather than a JSON envelope, for any type including binaries that files/content refuses.  Use this to verify what you uploaded, and note it is the only way to read a file inside a theme that is not active - such a file is served to nobody until the theme is promoted, so it has no public URL to fetch instead.  On success the body is the file; on failure it is the usual JSON error object, so do not assume the content type without checking the status. 
+     * @summary Read a storefront file\'s raw bytes
+     * @param {number} storefrontOid 
+     * @param {string} [path] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SfvbApiInterface
+     */
+    downloadSfvbFileRaw(requestParameters: DownloadSfvbFileRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+
+    /**
+     * Returns the file itself rather than a JSON envelope, for any type including binaries that files/content refuses.  Use this to verify what you uploaded, and note it is the only way to read a file inside a theme that is not active - such a file is served to nobody until the theme is promoted, so it has no public URL to fetch instead.  On success the body is the file; on failure it is the usual JSON error object, so do not assume the content type without checking the status. 
+     * Read a storefront file\'s raw bytes
+     */
+    downloadSfvbFile(requestParameters: DownloadSfvbFileRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
      * Copies a theme into a new one and returns a job handle to poll.  Asynchronous, because copying a theme copies every file in it.  Needs sfvb_write rather than sfvb_publish, because the job explicitly does not activate what it creates, so the worst outcome of a mistaken call is a spare theme.  This is how you get somewhere safe to work - duplicate, edit the copy with an ordinary write scope, and let a human promote it. 
@@ -470,7 +509,7 @@ export interface SfvbApiInterface {
     getSfvbElement(requestParameters: GetSfvbElementRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbElementSchemaResponse>;
 
     /**
-     * Returns the current content, or an earlier version when version is supplied.  The content hash is returned as an ETag; send it back as If-Match when writing. 
+     * Returns the current content, or an earlier version when version is supplied.  Send the body\'s hash_sha256 back as If-Match when writing.  The ETag header carries the same hash, but a compressing proxy may append a suffix such as -gzip to it, so prefer the body value. 
      * @summary Read a storefront file
      * @param {number} storefrontOid 
      * @param {string} [path] 
@@ -482,10 +521,27 @@ export interface SfvbApiInterface {
     getSfvbFileContentRaw(requestParameters: GetSfvbFileContentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbFileContentResponse>>;
 
     /**
-     * Returns the current content, or an earlier version when version is supplied.  The content hash is returned as an ETag; send it back as If-Match when writing. 
+     * Returns the current content, or an earlier version when version is supplied.  Send the body\'s hash_sha256 back as If-Match when writing.  The ETag header carries the same hash, but a compressing proxy may append a suffix such as -gzip to it, so prefer the body value. 
      * Read a storefront file
      */
     getSfvbFileContent(requestParameters: GetSfvbFileContentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbFileContentResponse>;
+
+    /**
+     * Binary content does not travel through this API as JSON, so uploading an image, font, video or PDF is two steps.  Ask here for a URL, PUT the raw bytes straight to it, then call uploadSfvbFile quoting the key you were given.  The bytes never pass through the API server.  The extension is checked against the accepted type list before a URL is issued, so an unsupported type fails here rather than after you have sent the file.  The URL is short lived and the key is bound to your account. 
+     * @summary Get a URL to upload a binary asset to
+     * @param {number} storefrontOid 
+     * @param {string} extension 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SfvbApiInterface
+     */
+    getSfvbFileUploadUrlRaw(requestParameters: GetSfvbFileUploadUrlRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbFileUploadUrlResponse>>;
+
+    /**
+     * Binary content does not travel through this API as JSON, so uploading an image, font, video or PDF is two steps.  Ask here for a URL, PUT the raw bytes straight to it, then call uploadSfvbFile quoting the key you were given.  The bytes never pass through the API server.  The extension is checked against the accepted type list before a URL is issued, so an unsupported type fails here rather than after you have sent the file.  The URL is short lived and the key is bound to your account. 
+     * Get a URL to upload a binary asset to
+     */
+    getSfvbFileUploadUrl(requestParameters: GetSfvbFileUploadUrlRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbFileUploadUrlResponse>;
 
     /**
      * Returns the fragment as authored.  If it references images or other storefront files those paths will not resolve on this storefront until the entry is installed, so use install rather than this when the intent is to place the fragment. 
@@ -888,6 +944,24 @@ export interface SfvbApiInterface {
     searchSfvbLibrary(requestParameters: SearchSfvbLibraryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbLibraryResponse>;
 
     /**
+     * The second half of the two step upload.  The bytes are fetched from the key, checked against the extension they claim to be, and written exactly as a text write is - so the same If-Match precondition, the same read only refusal and the same publish gate apply.  An SVG is sanitized before it is stored.  Writing outside /themes/ requires sfvb_publish, because anything served off the storefront root is live by definition. 
+     * @summary Store a binary asset that was already uploaded
+     * @param {number} storefrontOid 
+     * @param {SfvbFileUploadRequest} fileUploadRequest Where to store the uploaded bytes
+     * @param {string} [ifMatch] Content hash from the last read.  Required when the file already exists; 428 when absent, 412 when stale.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SfvbApiInterface
+     */
+    uploadSfvbFileRaw(requestParameters: UploadSfvbFileRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbFileWriteResponse>>;
+
+    /**
+     * The second half of the two step upload.  The bytes are fetched from the key, checked against the extension they claim to be, and written exactly as a text write is - so the same If-Match precondition, the same read only refusal and the same publish gate apply.  An SVG is sanitized before it is stored.  Writing outside /themes/ requires sfvb_publish, because anything served off the storefront root is live by definition. 
+     * Store a binary asset that was already uploaded
+     */
+    uploadSfvbFile(requestParameters: UploadSfvbFileRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbFileWriteResponse>;
+
+    /**
      * Runs the structural schema, the contextual business rules for the destination owner type, and the quality lint.  A document that fails returns HTTP 200 with valid false rather than a transport error - the request was well formed, the document was not. 
      * @summary Validate CJSON
      * @param {SfvbValidateRequest} validateRequest CJSON to validate
@@ -1107,6 +1181,50 @@ export class SfvbApi extends runtime.BaseAPI implements SfvbApiInterface {
      */
     async deleteSfvbPreviewSession(requestParameters: DeleteSfvbPreviewSessionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.deleteSfvbPreviewSessionRaw(requestParameters, initOverrides);
+    }
+
+    /**
+     * Returns the file itself rather than a JSON envelope, for any type including binaries that files/content refuses.  Use this to verify what you uploaded, and note it is the only way to read a file inside a theme that is not active - such a file is served to nobody until the theme is promoted, so it has no public URL to fetch instead.  On success the body is the file; on failure it is the usual JSON error object, so do not assume the content type without checking the status. 
+     * Read a storefront file\'s raw bytes
+     */
+    async downloadSfvbFileRaw(requestParameters: DownloadSfvbFileRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        if (requestParameters.storefrontOid === null || requestParameters.storefrontOid === undefined) {
+            throw new runtime.RequiredError('storefrontOid','Required parameter requestParameters.storefrontOid was null or undefined when calling downloadSfvbFile.');
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters.path !== undefined) {
+            queryParameters['path'] = requestParameters.path;
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", []);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/sfvb/storefronts/{storefront_oid}/files/download`.replace(`{${"storefront_oid"}}`, encodeURIComponent(String(requestParameters.storefrontOid))),
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     * Returns the file itself rather than a JSON envelope, for any type including binaries that files/content refuses.  Use this to verify what you uploaded, and note it is the only way to read a file inside a theme that is not active - such a file is served to nobody until the theme is promoted, so it has no public URL to fetch instead.  On success the body is the file; on failure it is the usual JSON error object, so do not assume the content type without checking the status. 
+     * Read a storefront file\'s raw bytes
+     */
+    async downloadSfvbFile(requestParameters: DownloadSfvbFileRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.downloadSfvbFileRaw(requestParameters, initOverrides);
     }
 
     /**
@@ -1353,7 +1471,7 @@ export class SfvbApi extends runtime.BaseAPI implements SfvbApiInterface {
     }
 
     /**
-     * Returns the current content, or an earlier version when version is supplied.  The content hash is returned as an ETag; send it back as If-Match when writing. 
+     * Returns the current content, or an earlier version when version is supplied.  Send the body\'s hash_sha256 back as If-Match when writing.  The ETag header carries the same hash, but a compressing proxy may append a suffix such as -gzip to it, so prefer the body value. 
      * Read a storefront file
      */
     async getSfvbFileContentRaw(requestParameters: GetSfvbFileContentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbFileContentResponse>> {
@@ -1393,11 +1511,56 @@ export class SfvbApi extends runtime.BaseAPI implements SfvbApiInterface {
     }
 
     /**
-     * Returns the current content, or an earlier version when version is supplied.  The content hash is returned as an ETag; send it back as If-Match when writing. 
+     * Returns the current content, or an earlier version when version is supplied.  Send the body\'s hash_sha256 back as If-Match when writing.  The ETag header carries the same hash, but a compressing proxy may append a suffix such as -gzip to it, so prefer the body value. 
      * Read a storefront file
      */
     async getSfvbFileContent(requestParameters: GetSfvbFileContentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbFileContentResponse> {
         const response = await this.getSfvbFileContentRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Binary content does not travel through this API as JSON, so uploading an image, font, video or PDF is two steps.  Ask here for a URL, PUT the raw bytes straight to it, then call uploadSfvbFile quoting the key you were given.  The bytes never pass through the API server.  The extension is checked against the accepted type list before a URL is issued, so an unsupported type fails here rather than after you have sent the file.  The URL is short lived and the key is bound to your account. 
+     * Get a URL to upload a binary asset to
+     */
+    async getSfvbFileUploadUrlRaw(requestParameters: GetSfvbFileUploadUrlRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbFileUploadUrlResponse>> {
+        if (requestParameters.storefrontOid === null || requestParameters.storefrontOid === undefined) {
+            throw new runtime.RequiredError('storefrontOid','Required parameter requestParameters.storefrontOid was null or undefined when calling getSfvbFileUploadUrl.');
+        }
+
+        if (requestParameters.extension === null || requestParameters.extension === undefined) {
+            throw new runtime.RequiredError('extension','Required parameter requestParameters.extension was null or undefined when calling getSfvbFileUploadUrl.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", []);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/sfvb/storefronts/{storefront_oid}/files/upload_url/{extension}`.replace(`{${"storefront_oid"}}`, encodeURIComponent(String(requestParameters.storefrontOid))).replace(`{${"extension"}}`, encodeURIComponent(String(requestParameters.extension))),
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => SfvbFileUploadUrlResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Binary content does not travel through this API as JSON, so uploading an image, font, video or PDF is two steps.  Ask here for a URL, PUT the raw bytes straight to it, then call uploadSfvbFile quoting the key you were given.  The bytes never pass through the API server.  The extension is checked against the accepted type list before a URL is issued, so an unsupported type fails here rather than after you have sent the file.  The URL is short lived and the key is bound to your account. 
+     * Get a URL to upload a binary asset to
+     */
+    async getSfvbFileUploadUrl(requestParameters: GetSfvbFileUploadUrlRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbFileUploadUrlResponse> {
+        const response = await this.getSfvbFileUploadUrlRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
@@ -2514,6 +2677,58 @@ export class SfvbApi extends runtime.BaseAPI implements SfvbApiInterface {
      */
     async searchSfvbLibrary(requestParameters: SearchSfvbLibraryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbLibraryResponse> {
         const response = await this.searchSfvbLibraryRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * The second half of the two step upload.  The bytes are fetched from the key, checked against the extension they claim to be, and written exactly as a text write is - so the same If-Match precondition, the same read only refusal and the same publish gate apply.  An SVG is sanitized before it is stored.  Writing outside /themes/ requires sfvb_publish, because anything served off the storefront root is live by definition. 
+     * Store a binary asset that was already uploaded
+     */
+    async uploadSfvbFileRaw(requestParameters: UploadSfvbFileRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbFileWriteResponse>> {
+        if (requestParameters.storefrontOid === null || requestParameters.storefrontOid === undefined) {
+            throw new runtime.RequiredError('storefrontOid','Required parameter requestParameters.storefrontOid was null or undefined when calling uploadSfvbFile.');
+        }
+
+        if (requestParameters.fileUploadRequest === null || requestParameters.fileUploadRequest === undefined) {
+            throw new runtime.RequiredError('fileUploadRequest','Required parameter requestParameters.fileUploadRequest was null or undefined when calling uploadSfvbFile.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        if (requestParameters.ifMatch !== undefined && requestParameters.ifMatch !== null) {
+            headerParameters['If-Match'] = String(requestParameters.ifMatch);
+        }
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", []);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/sfvb/storefronts/{storefront_oid}/files/upload`.replace(`{${"storefront_oid"}}`, encodeURIComponent(String(requestParameters.storefrontOid))),
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: SfvbFileUploadRequestToJSON(requestParameters.fileUploadRequest),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => SfvbFileWriteResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * The second half of the two step upload.  The bytes are fetched from the key, checked against the extension they claim to be, and written exactly as a text write is - so the same If-Match precondition, the same read only refusal and the same publish gate apply.  An SVG is sanitized before it is stored.  Writing outside /themes/ requires sfvb_publish, because anything served off the storefront root is live by definition. 
+     * Store a binary asset that was already uploaded
+     */
+    async uploadSfvbFile(requestParameters: UploadSfvbFileRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbFileWriteResponse> {
+        const response = await this.uploadSfvbFileRaw(requestParameters, initOverrides);
         return await response.value();
     }
 

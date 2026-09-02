@@ -51,6 +51,12 @@ export interface SfvbFileWriteResponse {
      */
     hash_sha256?: string;
     /**
+     * Where a shopper's browser will fetch this file, for use in an img src or a background image.  Present only for a path outside /themes/, which is served straight off the storefront root.  A file inside a theme is absent here because its public URL depends on which theme is active, and guessing it would be worse than omitting it.
+     * @type {string}
+     * @memberof SfvbFileWriteResponse
+     */
+    public_url?: string;
+    /**
      * 
      * @type {SfvbValidationResponse}
      * @memberof SfvbFileWriteResponse
@@ -94,6 +100,7 @@ export function SfvbFileWriteResponseFromJSONTyped(json: any, ignoreDiscriminato
         'compiled_path': !exists(json, 'compiled_path') ? undefined : json['compiled_path'],
         'file': !exists(json, 'file') ? undefined : SfvbFileEntryFromJSON(json['file']),
         'hash_sha256': !exists(json, 'hash_sha256') ? undefined : json['hash_sha256'],
+        'public_url': !exists(json, 'public_url') ? undefined : json['public_url'],
         'validation': !exists(json, 'validation') ? undefined : SfvbValidationResponseFromJSON(json['validation']),
         'velocity_errors': !exists(json, 'velocity_errors') ? undefined : json['velocity_errors'],
         'version': !exists(json, 'version') ? undefined : json['version'],
@@ -112,6 +119,7 @@ export function SfvbFileWriteResponseToJSON(value?: SfvbFileWriteResponse | null
         'compiled_path': value.compiled_path,
         'file': SfvbFileEntryToJSON(value.file),
         'hash_sha256': value.hash_sha256,
+        'public_url': value.public_url,
         'validation': SfvbValidationResponseToJSON(value.validation),
         'velocity_errors': value.velocity_errors,
         'version': value.version,
