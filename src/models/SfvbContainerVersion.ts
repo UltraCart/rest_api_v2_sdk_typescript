@@ -32,7 +32,7 @@ export interface SfvbContainerVersion {
      */
     comment?: string;
     /**
-     * History record oid.  Pass to the revert operation on the owning container.
+     * History record oid.  Pass to the revert operation on the owning container.  Absent on the entry marked current, which holds the value stored right now, has no history row of its own, and so cannot be fetched or reverted to.
      * @type {number}
      * @memberof SfvbContainerVersion
      */

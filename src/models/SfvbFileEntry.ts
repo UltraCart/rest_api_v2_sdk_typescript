@@ -38,7 +38,7 @@ export interface SfvbFileEntry {
      */
     fs_directory_oid?: number;
     /**
-     * StoreFront file system file oid.
+     * StoreFront file system file oid.  Absent on a directory entry, which has no file oid.
      * @type {number}
      * @memberof SfvbFileEntry
      */
@@ -104,7 +104,7 @@ export interface SfvbFileEntry {
      */
     valid?: boolean;
     /**
-     * Current version number of the file.
+     * Current version number of the file.  Absent on a directory entry, which is not versioned.
      * @type {number}
      * @memberof SfvbFileEntry
      */
