@@ -20,23 +20,11 @@ import { exists, mapValues } from '../runtime';
  */
 export interface SfvbContainerResponse {
     /**
-     * True when this container lives in the theme currently serving live traffic.  Writing to it requires the sfvb_publish scope.
-     * @type {boolean}
-     * @memberof SfvbContainerResponse
-     */
-    active_theme?: boolean;
-    /**
      * The container JSON.  Runtime state is stripped on the way out.
      * @type {string}
      * @memberof SfvbContainerResponse
      */
     cjson?: string;
-    /**
-     * Container id as the compiler will derive it.
-     * @type {string}
-     * @memberof SfvbContainerResponse
-     */
-    container_id?: string;
     /**
      * Container name.
      * @type {string}
@@ -50,7 +38,7 @@ export interface SfvbContainerResponse {
      */
     hash_sha256?: string;
     /**
-     * When the container was last modified, where the store records it.
+     * When the container was last modified, in the store's own record of it.  Present for email, postcardfront and postcardback.  Absent for upsell and item, because those tables carry no modification timestamp at all - for those two, read created_dts on the current entry of container_versions, which records when this API last wrote the container.  Note that a postcard keeps one timestamp for both of its sides, so writing the front moves the value the back reports.
      * @type {string}
      * @memberof SfvbContainerResponse
      */
@@ -67,18 +55,6 @@ export interface SfvbContainerResponse {
      * @memberof SfvbContainerResponse
      */
     owner_type?: SfvbContainerResponseOwnerTypeEnum;
-    /**
-     * File path, for theme and page containers only.
-     * @type {string}
-     * @memberof SfvbContainerResponse
-     */
-    path?: string;
-    /**
-     * File version, for theme and page containers only.
-     * @type {number}
-     * @memberof SfvbContainerResponse
-     */
-    version?: number;
 }
 
 
@@ -116,16 +92,12 @@ export function SfvbContainerResponseFromJSONTyped(json: any, ignoreDiscriminato
     }
     return {
         
-        'active_theme': !exists(json, 'active_theme') ? undefined : json['active_theme'],
         'cjson': !exists(json, 'cjson') ? undefined : json['cjson'],
-        'container_id': !exists(json, 'container_id') ? undefined : json['container_id'],
         'container_name': !exists(json, 'container_name') ? undefined : json['container_name'],
         'hash_sha256': !exists(json, 'hash_sha256') ? undefined : json['hash_sha256'],
         'last_modified': !exists(json, 'last_modified') ? undefined : json['last_modified'],
         'owner_object_id': !exists(json, 'owner_object_id') ? undefined : json['owner_object_id'],
         'owner_type': !exists(json, 'owner_type') ? undefined : json['owner_type'],
-        'path': !exists(json, 'path') ? undefined : json['path'],
-        'version': !exists(json, 'version') ? undefined : json['version'],
     };
 }
 
@@ -138,16 +110,12 @@ export function SfvbContainerResponseToJSON(value?: SfvbContainerResponse | null
     }
     return {
         
-        'active_theme': value.active_theme,
         'cjson': value.cjson,
-        'container_id': value.container_id,
         'container_name': value.container_name,
         'hash_sha256': value.hash_sha256,
         'last_modified': value.last_modified,
         'owner_object_id': value.owner_object_id,
         'owner_type': value.owner_type,
-        'path': value.path,
-        'version': value.version,
     };
 }
 
