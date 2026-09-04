@@ -354,7 +354,7 @@ export interface SfvbApiInterface {
     compileSfvbCjson(requestParameters: CompileSfvbCjsonRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbCompileResponse>;
 
     /**
-     * Returns a server generated session id to push containers into.  The id is not caller supplied, because concurrent agents choosing their own would be free to collide, and the browser editor\'s habit of minting one with Math.random is not a property worth carrying into an API.  Expires after eight hours and can be deleted sooner.  Requires a token that resolves to a user, so use the device authorization flow. 
+     * Returns a server generated session id to push containers into, and opens the session so that id exists rather than merely being random.  The id is not caller supplied, because concurrent agents choosing their own would be free to collide, and the browser editor\'s habit of minting one with Math.random is not a property worth carrying into an API.  Expires after eight hours and can be deleted sooner.  Requires a token that resolves to a user, so use the device authorization flow. 
      * @summary Create a preview session
      * @param {number} storefrontOid 
      * @param {*} [options] Override http request option.
@@ -364,7 +364,7 @@ export interface SfvbApiInterface {
     createSfvbPreviewSessionRaw(requestParameters: CreateSfvbPreviewSessionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbPreviewSessionResponse>>;
 
     /**
-     * Returns a server generated session id to push containers into.  The id is not caller supplied, because concurrent agents choosing their own would be free to collide, and the browser editor\'s habit of minting one with Math.random is not a property worth carrying into an API.  Expires after eight hours and can be deleted sooner.  Requires a token that resolves to a user, so use the device authorization flow. 
+     * Returns a server generated session id to push containers into, and opens the session so that id exists rather than merely being random.  The id is not caller supplied, because concurrent agents choosing their own would be free to collide, and the browser editor\'s habit of minting one with Math.random is not a property worth carrying into an API.  Expires after eight hours and can be deleted sooner.  Requires a token that resolves to a user, so use the device authorization flow. 
      * Create a preview session
      */
     createSfvbPreviewSession(requestParameters: CreateSfvbPreviewSessionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbPreviewSessionResponse>;
@@ -815,7 +815,7 @@ export interface SfvbApiInterface {
     putSfvbFileContent(requestParameters: PutSfvbFileContentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbFileWriteResponse>;
 
     /**
-     * Stores compiled containers against a session created by createSfvbPreviewSession.  Replaces whatever the session held.  Nothing durable is written.  Requires a token that resolves to a user, so use the device authorization flow. 
+     * Stores compiled containers against a session created by createSfvbPreviewSession.  Replaces whatever the session held.  The session must exist - this does not create one, so a deleted, expired or never issued id is a 404 rather than a new session.  Nothing durable is written.  Requires a token that resolves to a user, so use the device authorization flow. 
      * @summary Push containers into a preview session
      * @param {number} storefrontOid 
      * @param {string} previewSessionId 
@@ -828,7 +828,7 @@ export interface SfvbApiInterface {
     putSfvbPreviewSessionRaw(requestParameters: PutSfvbPreviewSessionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbPreviewSessionResponse>>;
 
     /**
-     * Stores compiled containers against a session created by createSfvbPreviewSession.  Replaces whatever the session held.  Nothing durable is written.  Requires a token that resolves to a user, so use the device authorization flow. 
+     * Stores compiled containers against a session created by createSfvbPreviewSession.  Replaces whatever the session held.  The session must exist - this does not create one, so a deleted, expired or never issued id is a 404 rather than a new session.  Nothing durable is written.  Requires a token that resolves to a user, so use the device authorization flow. 
      * Push containers into a preview session
      */
     putSfvbPreviewSession(requestParameters: PutSfvbPreviewSessionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbPreviewSessionResponse>;
@@ -1048,7 +1048,7 @@ export class SfvbApi extends runtime.BaseAPI implements SfvbApiInterface {
     }
 
     /**
-     * Returns a server generated session id to push containers into.  The id is not caller supplied, because concurrent agents choosing their own would be free to collide, and the browser editor\'s habit of minting one with Math.random is not a property worth carrying into an API.  Expires after eight hours and can be deleted sooner.  Requires a token that resolves to a user, so use the device authorization flow. 
+     * Returns a server generated session id to push containers into, and opens the session so that id exists rather than merely being random.  The id is not caller supplied, because concurrent agents choosing their own would be free to collide, and the browser editor\'s habit of minting one with Math.random is not a property worth carrying into an API.  Expires after eight hours and can be deleted sooner.  Requires a token that resolves to a user, so use the device authorization flow. 
      * Create a preview session
      */
     async createSfvbPreviewSessionRaw(requestParameters: CreateSfvbPreviewSessionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbPreviewSessionResponse>> {
@@ -1080,7 +1080,7 @@ export class SfvbApi extends runtime.BaseAPI implements SfvbApiInterface {
     }
 
     /**
-     * Returns a server generated session id to push containers into.  The id is not caller supplied, because concurrent agents choosing their own would be free to collide, and the browser editor\'s habit of minting one with Math.random is not a property worth carrying into an API.  Expires after eight hours and can be deleted sooner.  Requires a token that resolves to a user, so use the device authorization flow. 
+     * Returns a server generated session id to push containers into, and opens the session so that id exists rather than merely being random.  The id is not caller supplied, because concurrent agents choosing their own would be free to collide, and the browser editor\'s habit of minting one with Math.random is not a property worth carrying into an API.  Expires after eight hours and can be deleted sooner.  Requires a token that resolves to a user, so use the device authorization flow. 
      * Create a preview session
      */
     async createSfvbPreviewSession(requestParameters: CreateSfvbPreviewSessionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbPreviewSessionResponse> {
@@ -2302,7 +2302,7 @@ export class SfvbApi extends runtime.BaseAPI implements SfvbApiInterface {
     }
 
     /**
-     * Stores compiled containers against a session created by createSfvbPreviewSession.  Replaces whatever the session held.  Nothing durable is written.  Requires a token that resolves to a user, so use the device authorization flow. 
+     * Stores compiled containers against a session created by createSfvbPreviewSession.  Replaces whatever the session held.  The session must exist - this does not create one, so a deleted, expired or never issued id is a 404 rather than a new session.  Nothing durable is written.  Requires a token that resolves to a user, so use the device authorization flow. 
      * Push containers into a preview session
      */
     async putSfvbPreviewSessionRaw(requestParameters: PutSfvbPreviewSessionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbPreviewSessionResponse>> {
@@ -2349,7 +2349,7 @@ export class SfvbApi extends runtime.BaseAPI implements SfvbApiInterface {
     }
 
     /**
-     * Stores compiled containers against a session created by createSfvbPreviewSession.  Replaces whatever the session held.  Nothing durable is written.  Requires a token that resolves to a user, so use the device authorization flow. 
+     * Stores compiled containers against a session created by createSfvbPreviewSession.  Replaces whatever the session held.  The session must exist - this does not create one, so a deleted, expired or never issued id is a 404 rather than a new session.  Nothing durable is written.  Requires a token that resolves to a user, so use the device authorization flow. 
      * Push containers into a preview session
      */
     async putSfvbPreviewSession(requestParameters: PutSfvbPreviewSessionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbPreviewSessionResponse> {

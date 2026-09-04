@@ -20,7 +20,7 @@ import { exists, mapValues } from '../runtime';
  */
 export interface SfvbThemeDuplicateRequest {
     /**
-     * Directory name for the new theme under /themes/.  Letters and numbers; it is cleansed before use.  Must not already exist - a collision is refused rather than resolved, because silently creating a differently named theme leaves you unsure what you made.
+     * Directory name for the new theme under /themes/.  Letters and numbers, one path segment.  Used verbatim - anything that is not already a valid directory name is refused rather than adjusted, because this call does not return the new theme's oid and you find your copy by matching the target_path you asked for.  Must not already exist - a collision is refused rather than resolved, because silently creating a differently named theme leaves you unsure what you made.
      * @type {string}
      * @memberof SfvbThemeDuplicateRequest
      */

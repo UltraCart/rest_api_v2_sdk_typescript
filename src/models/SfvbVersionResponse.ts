@@ -38,11 +38,29 @@ export interface SfvbVersionResponse {
      */
     element_count?: number;
     /**
+     * Largest binary asset that can be uploaded, in bytes, for every accepted type except video.
+     * @type {number}
+     * @memberof SfvbVersionResponse
+     */
+    max_asset_bytes?: number;
+    /**
      * Largest CJSON document that will be parsed, in bytes.
      * @type {number}
      * @memberof SfvbVersionResponse
      */
     max_cjson_bytes?: number;
+    /**
+     * Most entries one directory listing returns.  Asking for more is silently reduced to this rather than refused, so compare against it instead of trusting that you got what you asked for.  The listing does set a truncated flag when it drops entries.
+     * @type {number}
+     * @memberof SfvbVersionResponse
+     */
+    max_directory_entries?: number;
+    /**
+     * Most element library results one page returns.  Asking for more is silently reduced to this, and unlike the directory listing there is no truncation flag on the response, so this number is the only way to know a larger request was cut.
+     * @type {number}
+     * @memberof SfvbVersionResponse
+     */
+    max_library_results_per_page?: number;
     /**
      * Largest payload one preview session may hold, in bytes.
      * @type {number}
@@ -50,17 +68,35 @@ export interface SfvbVersionResponse {
      */
     max_preview_session_bytes?: number;
     /**
+     * Largest historical version files/revert will restore, in bytes.  Higher than max_text_read_bytes deliberately - putting back a version that is already stored is cheaper than serving it as JSON, so a version too large to read can still be reverted to.
+     * @type {number}
+     * @memberof SfvbVersionResponse
+     */
+    max_revertable_bytes?: number;
+    /**
      * Hard ceiling on file search results per page.
      * @type {number}
      * @memberof SfvbVersionResponse
      */
     max_search_results?: number;
     /**
-     * Largest template file that can be written, in bytes.
+     * Largest .vm template that can be written, in bytes.  Narrow on purpose - it gates writes, only for files ending in .vm, and it is not the ceiling on reading a file back.  Use max_text_read_bytes for that.
      * @type {number}
      * @memberof SfvbVersionResponse
      */
     max_template_bytes?: number;
+    /**
+     * Largest file files/content will return as text, in bytes.  A file above this is refused with sfvb.too_large however small its history versions are.  Bigger than max_template_bytes, so a file can be readable here and still be too large to write back as a template.  Anything above this is still readable in full through files/download, which returns raw bytes and applies no ceiling.
+     * @type {number}
+     * @memberof SfvbVersionResponse
+     */
+    max_text_read_bytes?: number;
+    /**
+     * Largest video that can be uploaded, in bytes.  Video is the one type allowed past max_asset_bytes.
+     * @type {number}
+     * @memberof SfvbVersionResponse
+     */
+    max_video_bytes?: number;
     /**
      * Most widget ids that can be reserved in one call.
      * @type {number}
@@ -116,10 +152,16 @@ export function SfvbVersionResponseFromJSONTyped(json: any, ignoreDiscriminator:
         'container_manager_version': !exists(json, 'container_manager_version') ? undefined : json['container_manager_version'],
         'container_versions_retained': !exists(json, 'container_versions_retained') ? undefined : json['container_versions_retained'],
         'element_count': !exists(json, 'element_count') ? undefined : json['element_count'],
+        'max_asset_bytes': !exists(json, 'max_asset_bytes') ? undefined : json['max_asset_bytes'],
         'max_cjson_bytes': !exists(json, 'max_cjson_bytes') ? undefined : json['max_cjson_bytes'],
+        'max_directory_entries': !exists(json, 'max_directory_entries') ? undefined : json['max_directory_entries'],
+        'max_library_results_per_page': !exists(json, 'max_library_results_per_page') ? undefined : json['max_library_results_per_page'],
         'max_preview_session_bytes': !exists(json, 'max_preview_session_bytes') ? undefined : json['max_preview_session_bytes'],
+        'max_revertable_bytes': !exists(json, 'max_revertable_bytes') ? undefined : json['max_revertable_bytes'],
         'max_search_results': !exists(json, 'max_search_results') ? undefined : json['max_search_results'],
         'max_template_bytes': !exists(json, 'max_template_bytes') ? undefined : json['max_template_bytes'],
+        'max_text_read_bytes': !exists(json, 'max_text_read_bytes') ? undefined : json['max_text_read_bytes'],
+        'max_video_bytes': !exists(json, 'max_video_bytes') ? undefined : json['max_video_bytes'],
         'max_widget_ids_per_request': !exists(json, 'max_widget_ids_per_request') ? undefined : json['max_widget_ids_per_request'],
         'preview_session_ttl_seconds': !exists(json, 'preview_session_ttl_seconds') ? undefined : json['preview_session_ttl_seconds'],
         'release': !exists(json, 'release') ? undefined : json['release'],
@@ -138,10 +180,16 @@ export function SfvbVersionResponseToJSON(value?: SfvbVersionResponse | null): a
         'container_manager_version': value.container_manager_version,
         'container_versions_retained': value.container_versions_retained,
         'element_count': value.element_count,
+        'max_asset_bytes': value.max_asset_bytes,
         'max_cjson_bytes': value.max_cjson_bytes,
+        'max_directory_entries': value.max_directory_entries,
+        'max_library_results_per_page': value.max_library_results_per_page,
         'max_preview_session_bytes': value.max_preview_session_bytes,
+        'max_revertable_bytes': value.max_revertable_bytes,
         'max_search_results': value.max_search_results,
         'max_template_bytes': value.max_template_bytes,
+        'max_text_read_bytes': value.max_text_read_bytes,
+        'max_video_bytes': value.max_video_bytes,
         'max_widget_ids_per_request': value.max_widget_ids_per_request,
         'preview_session_ttl_seconds': value.preview_session_ttl_seconds,
         'release': value.release,
