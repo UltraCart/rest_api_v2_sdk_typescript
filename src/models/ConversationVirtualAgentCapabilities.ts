@@ -52,10 +52,10 @@ export interface ConversationVirtualAgentCapabilities {
     cancel_subscription?: boolean;
     /**
      * The custom collections this Agent is allowed to search.  Empty means none, even when access_custom_collections is true.
-     * @type {object}
+     * @type {Array<number>}
      * @memberof ConversationVirtualAgentCapabilities
      */
-    custom_collection_oids?: object;
+    custom_collection_oids?: Array<number>;
     /**
      * Read only.  All of the merchant's custom collections, to populate the selection list for custom_collection_oids.  Changes here are ignored.
      * @type {Array<ConversationVirtualAgentCapabilityCustomCollection>}

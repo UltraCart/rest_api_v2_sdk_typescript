@@ -1,12 +1,12 @@
 # UltraCart Typescript SDK
-## ultracart_rest_api_v2_typescript@4.1.148
+## ultracart_rest_api_v2_typescript@4.1.149
 
 Every API method call has a sample for every language SDK.  See https://github.com/UltraCart/sdk_samples
 
 Installation
 
 ```
-npm install ultracart_rest_api_v2_typescript@4.1.148 --save
+npm install ultracart_rest_api_v2_typescript@4.1.149 --save
 ```
 
 ```typescript
@@ -85,6 +85,7 @@ Not every change is committed to every SDK.
 
 | Version | Date | Comments |
 | --: | :-: | --- |
+| 4.1.149 | 09/04/2026 | conversations - added ai agent capabilities |
 | 4.1.148 | 09/04/2026 | conversations - added ai agent capabilities |
 | 4.1.147 | 09/04/2026 | sfvb - internal testing |
 | 4.1.146 | 09/03/2026 | sfvb - internal testing |
