@@ -349,6 +349,7 @@ src/models/ConversationVirtualAgentBudget.ts
 src/models/ConversationVirtualAgentBudgetResponse.ts
 src/models/ConversationVirtualAgentCapabilities.ts
 src/models/ConversationVirtualAgentCapabilitiesResponse.ts
+src/models/ConversationVirtualAgentCapabilityCustomCollection.ts
 src/models/ConversationVirtualAgentCapabilityZohoDeskDepartment.ts
 src/models/ConversationWebchatContext.ts
 src/models/ConversationWebchatQueueStatus.ts

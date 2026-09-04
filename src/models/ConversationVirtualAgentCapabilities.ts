@@ -14,6 +14,12 @@
 
 import { exists, mapValues } from '../runtime';
 import {
+    ConversationVirtualAgentCapabilityCustomCollection,
+    ConversationVirtualAgentCapabilityCustomCollectionFromJSON,
+    ConversationVirtualAgentCapabilityCustomCollectionFromJSONTyped,
+    ConversationVirtualAgentCapabilityCustomCollectionToJSON,
+} from './ConversationVirtualAgentCapabilityCustomCollection';
+import {
     ConversationVirtualAgentCapabilityZohoDeskDepartment,
     ConversationVirtualAgentCapabilityZohoDeskDepartmentFromJSON,
     ConversationVirtualAgentCapabilityZohoDeskDepartmentFromJSONTyped,
@@ -27,6 +33,12 @@ import {
  */
 export interface ConversationVirtualAgentCapabilities {
     /**
+     * Permission flag to allow this Agent to search the merchant's custom Typesense collections.
+     * @type {boolean}
+     * @memberof ConversationVirtualAgentCapabilities
+     */
+    access_custom_collections?: boolean;
+    /**
      * Permission flag to allow this Agent access to the storefront and item information.
      * @type {boolean}
      * @memberof ConversationVirtualAgentCapabilities
@@ -38,6 +50,18 @@ export interface ConversationVirtualAgentCapabilities {
      * @memberof ConversationVirtualAgentCapabilities
      */
     cancel_subscription?: boolean;
+    /**
+     * The custom collections this Agent is allowed to search.  Empty means none, even when access_custom_collections is true.
+     * @type {object}
+     * @memberof ConversationVirtualAgentCapabilities
+     */
+    custom_collection_oids?: object;
+    /**
+     * Read only.  All of the merchant's custom collections, to populate the selection list for custom_collection_oids.  Changes here are ignored.
+     * @type {Array<ConversationVirtualAgentCapabilityCustomCollection>}
+     * @memberof ConversationVirtualAgentCapabilities
+     */
+    custom_collections?: Array<ConversationVirtualAgentCapabilityCustomCollection>;
     /**
      * 
      * @type {boolean}
@@ -157,8 +181,11 @@ export function ConversationVirtualAgentCapabilitiesFromJSONTyped(json: any, ign
     }
     return {
         
+        'access_custom_collections': !exists(json, 'access_custom_collections') ? undefined : json['access_custom_collections'],
         'access_storefront_and_item': !exists(json, 'access_storefront_and_item') ? undefined : json['access_storefront_and_item'],
         'cancel_subscription': !exists(json, 'cancel_subscription') ? undefined : json['cancel_subscription'],
+        'custom_collection_oids': !exists(json, 'custom_collection_oids') ? undefined : json['custom_collection_oids'],
+        'custom_collections': !exists(json, 'custom_collections') ? undefined : ((json['custom_collections'] as Array<any>).map(ConversationVirtualAgentCapabilityCustomCollectionFromJSON)),
         'delay_subscription': !exists(json, 'delay_subscription') ? undefined : json['delay_subscription'],
         'generate_coupon': !exists(json, 'generate_coupon') ? undefined : json['generate_coupon'],
         'lookup_order_information': !exists(json, 'lookup_order_information') ? undefined : json['lookup_order_information'],
@@ -185,8 +212,11 @@ export function ConversationVirtualAgentCapabilitiesToJSON(value?: ConversationV
     }
     return {
         
+        'access_custom_collections': value.access_custom_collections,
         'access_storefront_and_item': value.access_storefront_and_item,
         'cancel_subscription': value.cancel_subscription,
+        'custom_collection_oids': value.custom_collection_oids,
+        'custom_collections': value.custom_collections === undefined ? undefined : ((value.custom_collections as Array<any>).map(ConversationVirtualAgentCapabilityCustomCollectionToJSON)),
         'delay_subscription': value.delay_subscription,
         'generate_coupon': value.generate_coupon,
         'lookup_order_information': value.lookup_order_information,

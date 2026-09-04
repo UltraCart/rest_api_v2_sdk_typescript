@@ -321,6 +321,7 @@ export * from './ConversationVirtualAgentBudget';
 export * from './ConversationVirtualAgentBudgetResponse';
 export * from './ConversationVirtualAgentCapabilities';
 export * from './ConversationVirtualAgentCapabilitiesResponse';
+export * from './ConversationVirtualAgentCapabilityCustomCollection';
 export * from './ConversationVirtualAgentCapabilityZohoDeskDepartment';
 export * from './ConversationWebchatContext';
 export * from './ConversationWebchatQueueStatus';
