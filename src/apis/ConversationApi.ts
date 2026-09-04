@@ -63,6 +63,15 @@ import {
     ConversationAgentStatusTimelineResponse,
     ConversationAgentStatusTimelineResponseFromJSON,
     ConversationAgentStatusTimelineResponseToJSON,
+    ConversationAgentTestSessionJoinRequest,
+    ConversationAgentTestSessionJoinRequestFromJSON,
+    ConversationAgentTestSessionJoinRequestToJSON,
+    ConversationAgentTestSessionRequest,
+    ConversationAgentTestSessionRequestFromJSON,
+    ConversationAgentTestSessionRequestToJSON,
+    ConversationAgentTestSessionResponse,
+    ConversationAgentTestSessionResponseFromJSON,
+    ConversationAgentTestSessionResponseToJSON,
     ConversationAutocompleteRequest,
     ConversationAutocompleteRequestFromJSON,
     ConversationAutocompleteRequestToJSON,
@@ -657,6 +666,12 @@ export interface InsertUserPbxAudioRequest {
     pbxAudio: ConversationPbxAudio;
 }
 
+export interface JoinAgentTestSessionRequest {
+    userId: number;
+    conversationUuid: string;
+    joinRequest: ConversationAgentTestSessionJoinRequest;
+}
+
 export interface JoinConversationRequest {
     conversationUuid: string;
     joinRequest?: ConversationJoinRequest;
@@ -729,6 +744,11 @@ export interface SearchPbxCallsRequest {
 
 export interface SmsUnsubscribeConversationRequest {
     conversationUuid: string;
+}
+
+export interface StartAgentTestSessionRequest {
+    userId: number;
+    testSessionRequest: ConversationAgentTestSessionRequest;
 }
 
 export interface StartConversationRequest {
@@ -2497,6 +2517,24 @@ export interface ConversationApiInterface {
     insertUserPbxAudio(requestParameters: InsertUserPbxAudioRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ConversationPbxAudioResponse>;
 
     /**
+     * Joins the simulated customer to the conversation the agent opened for a test session.  This mirrors what the storefront webchat widget does after an agent picks up its queue entry, and it is what gives the conversation a customer participant.  Requires a logged in user with conversations admin; an API key or OAuth application cannot call this. 
+     * @summary Join a test conversation as the simulated customer
+     * @param {number} userId 
+     * @param {string} conversationUuid 
+     * @param {ConversationAgentTestSessionJoinRequest} joinRequest Test session join request
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApiInterface
+     */
+    joinAgentTestSessionRaw(requestParameters: JoinAgentTestSessionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+
+    /**
+     * Joins the simulated customer to the conversation the agent opened for a test session.  This mirrors what the storefront webchat widget does after an agent picks up its queue entry, and it is what gives the conversation a customer participant.  Requires a logged in user with conversations admin; an API key or OAuth application cannot call this. 
+     * Join a test conversation as the simulated customer
+     */
+    joinAgentTestSession(requestParameters: JoinAgentTestSessionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+
+    /**
      * Join a conversation 
      * @summary Join a conversation
      * @param {string} conversationUuid 
@@ -2749,6 +2787,23 @@ export interface ConversationApiInterface {
      * Unsubscribe any SMS participants in this conversation
      */
     smsUnsubscribeConversation(requestParameters: SmsUnsubscribeConversationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+
+    /**
+     * Opens a webchat conversation against this specific AI agent as if the given customer had started it from the storefront, so the agent can be tried out before it is put in front of anyone.  The session runs against live data: the cart is real, the customer is real, and anything the agent does during the conversation actually happens.  Requires a logged in user with conversations admin; an API key or OAuth application cannot call this. 
+     * @summary Start a test conversation with this AI agent
+     * @param {number} userId 
+     * @param {ConversationAgentTestSessionRequest} testSessionRequest Test session request
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ConversationApiInterface
+     */
+    startAgentTestSessionRaw(requestParameters: StartAgentTestSessionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ConversationAgentTestSessionResponse>>;
+
+    /**
+     * Opens a webchat conversation against this specific AI agent as if the given customer had started it from the storefront, so the agent can be tried out before it is put in front of anyone.  The session runs against live data: the cart is real, the customer is real, and anything the agent does during the conversation actually happens.  Requires a logged in user with conversations admin; an API key or OAuth application cannot call this. 
+     * Start a test conversation with this AI agent
+     */
+    startAgentTestSession(requestParameters: StartAgentTestSessionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ConversationAgentTestSessionResponse>;
 
     /**
      * Start a new conversation 
@@ -7424,6 +7479,57 @@ export class ConversationApi extends runtime.BaseAPI implements ConversationApiI
     }
 
     /**
+     * Joins the simulated customer to the conversation the agent opened for a test session.  This mirrors what the storefront webchat widget does after an agent picks up its queue entry, and it is what gives the conversation a customer participant.  Requires a logged in user with conversations admin; an API key or OAuth application cannot call this. 
+     * Join a test conversation as the simulated customer
+     */
+    async joinAgentTestSessionRaw(requestParameters: JoinAgentTestSessionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
+        if (requestParameters.userId === null || requestParameters.userId === undefined) {
+            throw new runtime.RequiredError('userId','Required parameter requestParameters.userId was null or undefined when calling joinAgentTestSession.');
+        }
+
+        if (requestParameters.conversationUuid === null || requestParameters.conversationUuid === undefined) {
+            throw new runtime.RequiredError('conversationUuid','Required parameter requestParameters.conversationUuid was null or undefined when calling joinAgentTestSession.');
+        }
+
+        if (requestParameters.joinRequest === null || requestParameters.joinRequest === undefined) {
+            throw new runtime.RequiredError('joinRequest','Required parameter requestParameters.joinRequest was null or undefined when calling joinAgentTestSession.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", ["conversation_write"]);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/conversation/agent/profiles/{user_id}/test_session/{conversation_uuid}/join`.replace(`{${"user_id"}}`, encodeURIComponent(String(requestParameters.userId))).replace(`{${"conversation_uuid"}}`, encodeURIComponent(String(requestParameters.conversationUuid))),
+            method: 'PUT',
+            headers: headerParameters,
+            query: queryParameters,
+            body: ConversationAgentTestSessionJoinRequestToJSON(requestParameters.joinRequest),
+        }, initOverrides);
+
+        return new runtime.VoidApiResponse(response);
+    }
+
+    /**
+     * Joins the simulated customer to the conversation the agent opened for a test session.  This mirrors what the storefront webchat widget does after an agent picks up its queue entry, and it is what gives the conversation a customer participant.  Requires a logged in user with conversations admin; an API key or OAuth application cannot call this. 
+     * Join a test conversation as the simulated customer
+     */
+    async joinAgentTestSession(requestParameters: JoinAgentTestSessionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
+        await this.joinAgentTestSessionRaw(requestParameters, initOverrides);
+    }
+
+    /**
      * Join a conversation 
      * Join a conversation
      */
@@ -8106,6 +8212,54 @@ export class ConversationApi extends runtime.BaseAPI implements ConversationApiI
      */
     async smsUnsubscribeConversation(requestParameters: SmsUnsubscribeConversationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.smsUnsubscribeConversationRaw(requestParameters, initOverrides);
+    }
+
+    /**
+     * Opens a webchat conversation against this specific AI agent as if the given customer had started it from the storefront, so the agent can be tried out before it is put in front of anyone.  The session runs against live data: the cart is real, the customer is real, and anything the agent does during the conversation actually happens.  Requires a logged in user with conversations admin; an API key or OAuth application cannot call this. 
+     * Start a test conversation with this AI agent
+     */
+    async startAgentTestSessionRaw(requestParameters: StartAgentTestSessionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ConversationAgentTestSessionResponse>> {
+        if (requestParameters.userId === null || requestParameters.userId === undefined) {
+            throw new runtime.RequiredError('userId','Required parameter requestParameters.userId was null or undefined when calling startAgentTestSession.');
+        }
+
+        if (requestParameters.testSessionRequest === null || requestParameters.testSessionRequest === undefined) {
+            throw new runtime.RequiredError('testSessionRequest','Required parameter requestParameters.testSessionRequest was null or undefined when calling startAgentTestSession.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", ["conversation_write"]);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/conversation/agent/profiles/{user_id}/test_session`.replace(`{${"user_id"}}`, encodeURIComponent(String(requestParameters.userId))),
+            method: 'PUT',
+            headers: headerParameters,
+            query: queryParameters,
+            body: ConversationAgentTestSessionRequestToJSON(requestParameters.testSessionRequest),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => ConversationAgentTestSessionResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Opens a webchat conversation against this specific AI agent as if the given customer had started it from the storefront, so the agent can be tried out before it is put in front of anyone.  The session runs against live data: the cart is real, the customer is real, and anything the agent does during the conversation actually happens.  Requires a logged in user with conversations admin; an API key or OAuth application cannot call this. 
+     * Start a test conversation with this AI agent
+     */
+    async startAgentTestSession(requestParameters: StartAgentTestSessionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ConversationAgentTestSessionResponse> {
+        const response = await this.startAgentTestSessionRaw(requestParameters, initOverrides);
+        return await response.value();
     }
 
     /**

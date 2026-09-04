@@ -206,6 +206,9 @@ src/models/ConversationAgentStatusRollupSearchRequest.ts
 src/models/ConversationAgentStatusRollupSearchResponse.ts
 src/models/ConversationAgentStatusSummaryResponse.ts
 src/models/ConversationAgentStatusTimelineResponse.ts
+src/models/ConversationAgentTestSessionJoinRequest.ts
+src/models/ConversationAgentTestSessionRequest.ts
+src/models/ConversationAgentTestSessionResponse.ts
 src/models/ConversationAutocompleteRequest.ts
 src/models/ConversationAutocompleteResponse.ts
 src/models/ConversationAutocompleteValue.ts
@@ -213,6 +216,7 @@ src/models/ConversationCannedMessage.ts
 src/models/ConversationCannedMessageResponse.ts
 src/models/ConversationCannedMessagesResponse.ts
 src/models/ConversationCannedMessagesSearch.ts
+src/models/ConversationCustomerAuth.ts
 src/models/ConversationDeleteKnowledgeBaseDocumentResponse.ts
 src/models/ConversationDepartment.ts
 src/models/ConversationDepartmentMember.ts
