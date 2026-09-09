@@ -102,6 +102,12 @@ import {
     SfvbTheme,
     SfvbThemeFromJSON,
     SfvbThemeToJSON,
+    SfvbThemeAttributeUpdateRequest,
+    SfvbThemeAttributeUpdateRequestFromJSON,
+    SfvbThemeAttributeUpdateRequestToJSON,
+    SfvbThemeAttributesResponse,
+    SfvbThemeAttributesResponseFromJSON,
+    SfvbThemeAttributesResponseToJSON,
     SfvbThemeDuplicateRequest,
     SfvbThemeDuplicateRequestFromJSON,
     SfvbThemeDuplicateRequestToJSON,
@@ -214,6 +220,11 @@ export interface GetSfvbThemeRequest {
     themeOid: number;
 }
 
+export interface GetSfvbThemeAttributesRequest {
+    storefrontOid: number;
+    themeOid: number;
+}
+
 export interface GetSfvbThemeJobRequest {
     storefrontOid: number;
     jobId: number;
@@ -273,6 +284,12 @@ export interface PutSfvbPreviewSessionRequest {
     previewSessionId: string;
     previewSession: SfvbPreviewSessionRequest;
     themeOid?: number;
+}
+
+export interface PutSfvbThemeAttributesRequest {
+    storefrontOid: number;
+    themeOid: number;
+    attributeUpdateRequest: SfvbThemeAttributeUpdateRequest;
 }
 
 export interface RenderSfvbWidgetsRequest {
@@ -595,6 +612,23 @@ export interface SfvbApiInterface {
     getSfvbTheme(requestParameters: GetSfvbThemeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbTheme>;
 
     /**
+     * The values theme.css and the compiled containers resolve at render time.  These do NOT live in any file.  settings.json contains a palette and looks like the answer, but it is the theme\'s factory template - it supplies defaults for slots that have never been set and is ignored for slots that have, so editing it will not change a color and reading it will not tell you the current one.  Slots a template declares but nothing has ever set are included here, carrying the default they will render with, so the response describes the whole theme rather than the rows that happen to exist. 
+     * @summary Read a theme\'s colors, fonts and settings
+     * @param {number} storefrontOid 
+     * @param {number} themeOid 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SfvbApiInterface
+     */
+    getSfvbThemeAttributesRaw(requestParameters: GetSfvbThemeAttributesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbThemeAttributesResponse>>;
+
+    /**
+     * The values theme.css and the compiled containers resolve at render time.  These do NOT live in any file.  settings.json contains a palette and looks like the answer, but it is the theme\'s factory template - it supplies defaults for slots that have never been set and is ignored for slots that have, so editing it will not change a color and reading it will not tell you the current one.  Slots a template declares but nothing has ever set are included here, carrying the default they will render with, so the response describes the whole theme rather than the rows that happen to exist. 
+     * Read a theme\'s colors, fonts and settings
+     */
+    getSfvbThemeAttributes(requestParameters: GetSfvbThemeAttributesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbThemeAttributesResponse>;
+
+    /**
      * Poll until complete is true, then check success.  Note that the new theme\'s oid is not returned.  The job\'s product is a plain text report rather than a structured result, so once it completes, list themes and match on the target_path the start call gave you. 
      * @summary Status of an asynchronous theme job
      * @param {number} storefrontOid 
@@ -832,6 +866,24 @@ export interface SfvbApiInterface {
      * Push containers into a preview session
      */
     putSfvbPreviewSession(requestParameters: PutSfvbPreviewSessionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbPreviewSessionResponse>;
+
+    /**
+     * A partial update.  Only the slots you name are changed and every other slot on the theme keeps its value, so there is no need to send the whole set back to change one color.  Send a whole palette in one call rather than one call per color - they are applied together, so the storefront never renders half of a change.  Needs sfvb_publish when the theme is the one serving live traffic, because a color is referenced by name from every template that uses it and one write repaints the whole storefront at once.  On a dormant theme sfvb_write is enough, which is what makes duplicate-then-restyle work. 
+     * @summary Change a theme\'s colors, fonts and settings
+     * @param {number} storefrontOid 
+     * @param {number} themeOid 
+     * @param {SfvbThemeAttributeUpdateRequest} attributeUpdateRequest Slots to change
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SfvbApiInterface
+     */
+    putSfvbThemeAttributesRaw(requestParameters: PutSfvbThemeAttributesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbThemeAttributesResponse>>;
+
+    /**
+     * A partial update.  Only the slots you name are changed and every other slot on the theme keeps its value, so there is no need to send the whole set back to change one color.  Send a whole palette in one call rather than one call per color - they are applied together, so the storefront never renders half of a change.  Needs sfvb_publish when the theme is the one serving live traffic, because a color is referenced by name from every template that uses it and one write repaints the whole storefront at once.  On a dormant theme sfvb_write is enough, which is what makes duplicate-then-restyle work. 
+     * Change a theme\'s colors, fonts and settings
+     */
+    putSfvbThemeAttributes(requestParameters: PutSfvbThemeAttributesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbThemeAttributesResponse>;
 
     /**
      * Renders one node in the context of a theme and a page.  Unlike compile this is stateful.  Rendering resolves merchant data, so an element bound to an item renders wrongly, and silently, without a context item id.  One node per call, so a node that fails to render fails on its own rather than taking a batch with it, and a failure says why. 
@@ -1703,6 +1755,51 @@ export class SfvbApi extends runtime.BaseAPI implements SfvbApiInterface {
     }
 
     /**
+     * The values theme.css and the compiled containers resolve at render time.  These do NOT live in any file.  settings.json contains a palette and looks like the answer, but it is the theme\'s factory template - it supplies defaults for slots that have never been set and is ignored for slots that have, so editing it will not change a color and reading it will not tell you the current one.  Slots a template declares but nothing has ever set are included here, carrying the default they will render with, so the response describes the whole theme rather than the rows that happen to exist. 
+     * Read a theme\'s colors, fonts and settings
+     */
+    async getSfvbThemeAttributesRaw(requestParameters: GetSfvbThemeAttributesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbThemeAttributesResponse>> {
+        if (requestParameters.storefrontOid === null || requestParameters.storefrontOid === undefined) {
+            throw new runtime.RequiredError('storefrontOid','Required parameter requestParameters.storefrontOid was null or undefined when calling getSfvbThemeAttributes.');
+        }
+
+        if (requestParameters.themeOid === null || requestParameters.themeOid === undefined) {
+            throw new runtime.RequiredError('themeOid','Required parameter requestParameters.themeOid was null or undefined when calling getSfvbThemeAttributes.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", []);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/sfvb/storefronts/{storefront_oid}/themes/{theme_oid}/attributes`.replace(`{${"storefront_oid"}}`, encodeURIComponent(String(requestParameters.storefrontOid))).replace(`{${"theme_oid"}}`, encodeURIComponent(String(requestParameters.themeOid))),
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => SfvbThemeAttributesResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * The values theme.css and the compiled containers resolve at render time.  These do NOT live in any file.  settings.json contains a palette and looks like the answer, but it is the theme\'s factory template - it supplies defaults for slots that have never been set and is ignored for slots that have, so editing it will not change a color and reading it will not tell you the current one.  Slots a template declares but nothing has ever set are included here, carrying the default they will render with, so the response describes the whole theme rather than the rows that happen to exist. 
+     * Read a theme\'s colors, fonts and settings
+     */
+    async getSfvbThemeAttributes(requestParameters: GetSfvbThemeAttributesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbThemeAttributesResponse> {
+        const response = await this.getSfvbThemeAttributesRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
      * Poll until complete is true, then check success.  Note that the new theme\'s oid is not returned.  The job\'s product is a plain text report rather than a structured result, so once it completes, list themes and match on the target_path the start call gave you. 
      * Status of an asynchronous theme job
      */
@@ -2354,6 +2451,58 @@ export class SfvbApi extends runtime.BaseAPI implements SfvbApiInterface {
      */
     async putSfvbPreviewSession(requestParameters: PutSfvbPreviewSessionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbPreviewSessionResponse> {
         const response = await this.putSfvbPreviewSessionRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * A partial update.  Only the slots you name are changed and every other slot on the theme keeps its value, so there is no need to send the whole set back to change one color.  Send a whole palette in one call rather than one call per color - they are applied together, so the storefront never renders half of a change.  Needs sfvb_publish when the theme is the one serving live traffic, because a color is referenced by name from every template that uses it and one write repaints the whole storefront at once.  On a dormant theme sfvb_write is enough, which is what makes duplicate-then-restyle work. 
+     * Change a theme\'s colors, fonts and settings
+     */
+    async putSfvbThemeAttributesRaw(requestParameters: PutSfvbThemeAttributesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbThemeAttributesResponse>> {
+        if (requestParameters.storefrontOid === null || requestParameters.storefrontOid === undefined) {
+            throw new runtime.RequiredError('storefrontOid','Required parameter requestParameters.storefrontOid was null or undefined when calling putSfvbThemeAttributes.');
+        }
+
+        if (requestParameters.themeOid === null || requestParameters.themeOid === undefined) {
+            throw new runtime.RequiredError('themeOid','Required parameter requestParameters.themeOid was null or undefined when calling putSfvbThemeAttributes.');
+        }
+
+        if (requestParameters.attributeUpdateRequest === null || requestParameters.attributeUpdateRequest === undefined) {
+            throw new runtime.RequiredError('attributeUpdateRequest','Required parameter requestParameters.attributeUpdateRequest was null or undefined when calling putSfvbThemeAttributes.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", []);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/sfvb/storefronts/{storefront_oid}/themes/{theme_oid}/attributes`.replace(`{${"storefront_oid"}}`, encodeURIComponent(String(requestParameters.storefrontOid))).replace(`{${"theme_oid"}}`, encodeURIComponent(String(requestParameters.themeOid))),
+            method: 'PUT',
+            headers: headerParameters,
+            query: queryParameters,
+            body: SfvbThemeAttributeUpdateRequestToJSON(requestParameters.attributeUpdateRequest),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => SfvbThemeAttributesResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * A partial update.  Only the slots you name are changed and every other slot on the theme keeps its value, so there is no need to send the whole set back to change one color.  Send a whole palette in one call rather than one call per color - they are applied together, so the storefront never renders half of a change.  Needs sfvb_publish when the theme is the one serving live traffic, because a color is referenced by name from every template that uses it and one write repaints the whole storefront at once.  On a dormant theme sfvb_write is enough, which is what makes duplicate-then-restyle work. 
+     * Change a theme\'s colors, fonts and settings
+     */
+    async putSfvbThemeAttributes(requestParameters: PutSfvbThemeAttributesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbThemeAttributesResponse> {
+        const response = await this.putSfvbThemeAttributesRaw(requestParameters, initOverrides);
         return await response.value();
     }
 

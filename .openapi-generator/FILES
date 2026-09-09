@@ -1023,7 +1023,13 @@ src/models/SfvbRenderResponse.ts
 src/models/SfvbStorefront.ts
 src/models/SfvbStorefrontsResponse.ts
 src/models/SfvbTheme.ts
+src/models/SfvbThemeAttribute.ts
+src/models/SfvbThemeAttributeUpdate.ts
+src/models/SfvbThemeAttributeUpdateRequest.ts
+src/models/SfvbThemeAttributesResponse.ts
 src/models/SfvbThemeDuplicateRequest.ts
+src/models/SfvbThemeFont.ts
+src/models/SfvbThemeFontFamily.ts
 src/models/SfvbThemeJobResponse.ts
 src/models/SfvbThemesResponse.ts
 src/models/SfvbUpsellOffer.ts
