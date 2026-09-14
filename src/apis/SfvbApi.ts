@@ -81,6 +81,15 @@ import {
     SfvbLibraryResponse,
     SfvbLibraryResponseFromJSON,
     SfvbLibraryResponseToJSON,
+    SfvbPageAttributeUpdateRequest,
+    SfvbPageAttributeUpdateRequestFromJSON,
+    SfvbPageAttributeUpdateRequestToJSON,
+    SfvbPageMultimediaRequest,
+    SfvbPageMultimediaRequestFromJSON,
+    SfvbPageMultimediaRequestToJSON,
+    SfvbPageResponse,
+    SfvbPageResponseFromJSON,
+    SfvbPageResponseToJSON,
     SfvbPreviewSessionRequest,
     SfvbPreviewSessionRequestFromJSON,
     SfvbPreviewSessionRequestToJSON,
@@ -154,6 +163,13 @@ export interface DeleteSfvbFileRequest {
     path?: string;
 }
 
+export interface DeleteSfvbPageMultimediaRequest {
+    storefrontOid: number;
+    path: string;
+    code?: string;
+    _default?: boolean;
+}
+
 export interface DeleteSfvbPreviewSessionRequest {
     storefrontOid: number;
     previewSessionId: string;
@@ -207,6 +223,11 @@ export interface GetSfvbFileUploadUrlRequest {
 export interface GetSfvbLibraryEntryRequest {
     storefrontOid: number;
     libraryOid: number;
+}
+
+export interface GetSfvbPageRequest {
+    storefrontOid: number;
+    path: string;
 }
 
 export interface GetSfvbPreviewUrlRequest {
@@ -277,6 +298,18 @@ export interface PutSfvbFileContentRequest {
     ifMatch: string;
     fileWriteRequest: SfvbFileWriteRequest;
     path?: string;
+}
+
+export interface PutSfvbPageAttributesRequest {
+    storefrontOid: number;
+    path: string;
+    pageAttributeUpdateRequest: SfvbPageAttributeUpdateRequest;
+}
+
+export interface PutSfvbPageMultimediaRequest {
+    storefrontOid: number;
+    path: string;
+    pageMultimediaRequest: SfvbPageMultimediaRequest;
 }
 
 export interface PutSfvbPreviewSessionRequest {
@@ -403,6 +436,25 @@ export interface SfvbApiInterface {
      * Delete a storefront file
      */
     deleteSfvbFile(requestParameters: DeleteSfvbFileRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+
+    /**
+     * Name exactly one of code or default.  Removes the page\'s copy of the image; the source file in the page folder is left alone.  Always needs sfvb_publish. 
+     * @summary Detach an image from a page
+     * @param {number} storefrontOid 
+     * @param {string} path Page path, for example /catalog/dispensers/
+     * @param {string} [code] Image code to detach
+     * @param {boolean} [_default] True to detach the default image
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SfvbApiInterface
+     */
+    deleteSfvbPageMultimediaRaw(requestParameters: DeleteSfvbPageMultimediaRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbPageResponse>>;
+
+    /**
+     * Name exactly one of code or default.  Removes the page\'s copy of the image; the source file in the page folder is left alone.  Always needs sfvb_publish. 
+     * Detach an image from a page
+     */
+    deleteSfvbPageMultimedia(requestParameters: DeleteSfvbPageMultimediaRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbPageResponse>;
 
     /**
      * Releases the session before its eight hour expiry.  Without this the only way to free one is to wait, which is a poor answer for a tool that may open a dozen in an afternoon. 
@@ -576,6 +628,23 @@ export interface SfvbApiInterface {
      * Read one library entry including its CJSON
      */
     getSfvbLibraryEntry(requestParameters: GetSfvbLibraryEntryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbLibraryEntry>;
+
+    /**
+     * What the pageattribute and pageimage elements render for this page.  These are not in any file, which is why a page folder can be empty and its elements still render something.  Attributes and image codes a template declares but nothing has set are included, so the response describes what the page can show rather than only what has been saved. 
+     * @summary Read a page\'s attributes and images
+     * @param {number} storefrontOid 
+     * @param {string} path Page path, for example /catalog/dispensers/
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SfvbApiInterface
+     */
+    getSfvbPageRaw(requestParameters: GetSfvbPageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbPageResponse>>;
+
+    /**
+     * What the pageattribute and pageimage elements render for this page.  These are not in any file, which is why a page folder can be empty and its elements still render something.  Attributes and image codes a template declares but nothing has set are included, so the response describes what the page can show rather than only what has been saved. 
+     * Read a page\'s attributes and images
+     */
+    getSfvbPage(requestParameters: GetSfvbPageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbPageResponse>;
 
     /**
      * Refuses a session that does not exist, so a URL you receive is for a session that was really there.  expires_in_seconds is the time actually remaining, not the configured lifetime.  Needs a token that resolves to a user, because a preview session belongs to the person who created it. 
@@ -847,6 +916,42 @@ export interface SfvbApiInterface {
      * Write a storefront file
      */
     putSfvbFileContent(requestParameters: PutSfvbFileContentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbFileWriteResponse>;
+
+    /**
+     * A partial update.  Only the attributes you name are changed.  Every entry is checked before any is written.  List, slider, item set, page collection and video list attributes are refused - edit those in the page editor.  Always needs sfvb_publish, because a page\'s attributes are shared by every theme and there is no dormant copy to change instead. 
+     * @summary Change a page\'s attributes
+     * @param {number} storefrontOid 
+     * @param {string} path Page path, for example /catalog/dispensers/
+     * @param {SfvbPageAttributeUpdateRequest} pageAttributeUpdateRequest Attributes to change
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SfvbApiInterface
+     */
+    putSfvbPageAttributesRaw(requestParameters: PutSfvbPageAttributesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbPageResponse>>;
+
+    /**
+     * A partial update.  Only the attributes you name are changed.  Every entry is checked before any is written.  List, slider, item set, page collection and video list attributes are refused - edit those in the page editor.  Always needs sfvb_publish, because a page\'s attributes are shared by every theme and there is no dormant copy to change instead. 
+     * Change a page\'s attributes
+     */
+    putSfvbPageAttributes(requestParameters: PutSfvbPageAttributesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbPageResponse>;
+
+    /**
+     * Upload the image with files/upload to the page path followed by a filename first, then name that filename here as either the default image or an image code.  The default image is what a pageimage element with no pageImageCode renders, and what a subgroup tile shows.  Replaces whatever that slot held.  Always needs sfvb_publish. 
+     * @summary Attach an image to a page
+     * @param {number} storefrontOid 
+     * @param {string} path Page path, for example /catalog/dispensers/
+     * @param {SfvbPageMultimediaRequest} pageMultimediaRequest Image to attach
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SfvbApiInterface
+     */
+    putSfvbPageMultimediaRaw(requestParameters: PutSfvbPageMultimediaRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbPageResponse>>;
+
+    /**
+     * Upload the image with files/upload to the page path followed by a filename first, then name that filename here as either the default image or an image code.  The default image is what a pageimage element with no pageImageCode renders, and what a subgroup tile shows.  Replaces whatever that slot held.  Always needs sfvb_publish. 
+     * Attach an image to a page
+     */
+    putSfvbPageMultimedia(requestParameters: PutSfvbPageMultimediaRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbPageResponse>;
 
     /**
      * Stores compiled containers against a session created by createSfvbPreviewSession.  Replaces whatever the session held.  The session must exist - this does not create one, so a deleted, expired or never issued id is a 404 rather than a new session.  Nothing durable is written.  Requires a token that resolves to a user, so use the device authorization flow. 
@@ -1190,6 +1295,63 @@ export class SfvbApi extends runtime.BaseAPI implements SfvbApiInterface {
      */
     async deleteSfvbFile(requestParameters: DeleteSfvbFileRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.deleteSfvbFileRaw(requestParameters, initOverrides);
+    }
+
+    /**
+     * Name exactly one of code or default.  Removes the page\'s copy of the image; the source file in the page folder is left alone.  Always needs sfvb_publish. 
+     * Detach an image from a page
+     */
+    async deleteSfvbPageMultimediaRaw(requestParameters: DeleteSfvbPageMultimediaRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbPageResponse>> {
+        if (requestParameters.storefrontOid === null || requestParameters.storefrontOid === undefined) {
+            throw new runtime.RequiredError('storefrontOid','Required parameter requestParameters.storefrontOid was null or undefined when calling deleteSfvbPageMultimedia.');
+        }
+
+        if (requestParameters.path === null || requestParameters.path === undefined) {
+            throw new runtime.RequiredError('path','Required parameter requestParameters.path was null or undefined when calling deleteSfvbPageMultimedia.');
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters.path !== undefined) {
+            queryParameters['path'] = requestParameters.path;
+        }
+
+        if (requestParameters.code !== undefined) {
+            queryParameters['code'] = requestParameters.code;
+        }
+
+        if (requestParameters._default !== undefined) {
+            queryParameters['default'] = requestParameters._default;
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", []);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/sfvb/storefronts/{storefront_oid}/pages/multimedia`.replace(`{${"storefront_oid"}}`, encodeURIComponent(String(requestParameters.storefrontOid))),
+            method: 'DELETE',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => SfvbPageResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Name exactly one of code or default.  Removes the page\'s copy of the image; the source file in the page folder is left alone.  Always needs sfvb_publish. 
+     * Detach an image from a page
+     */
+    async deleteSfvbPageMultimedia(requestParameters: DeleteSfvbPageMultimediaRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbPageResponse> {
+        const response = await this.deleteSfvbPageMultimediaRaw(requestParameters, initOverrides);
+        return await response.value();
     }
 
     /**
@@ -1659,6 +1821,55 @@ export class SfvbApi extends runtime.BaseAPI implements SfvbApiInterface {
      */
     async getSfvbLibraryEntry(requestParameters: GetSfvbLibraryEntryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbLibraryEntry> {
         const response = await this.getSfvbLibraryEntryRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * What the pageattribute and pageimage elements render for this page.  These are not in any file, which is why a page folder can be empty and its elements still render something.  Attributes and image codes a template declares but nothing has set are included, so the response describes what the page can show rather than only what has been saved. 
+     * Read a page\'s attributes and images
+     */
+    async getSfvbPageRaw(requestParameters: GetSfvbPageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbPageResponse>> {
+        if (requestParameters.storefrontOid === null || requestParameters.storefrontOid === undefined) {
+            throw new runtime.RequiredError('storefrontOid','Required parameter requestParameters.storefrontOid was null or undefined when calling getSfvbPage.');
+        }
+
+        if (requestParameters.path === null || requestParameters.path === undefined) {
+            throw new runtime.RequiredError('path','Required parameter requestParameters.path was null or undefined when calling getSfvbPage.');
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters.path !== undefined) {
+            queryParameters['path'] = requestParameters.path;
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", []);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/sfvb/storefronts/{storefront_oid}/pages`.replace(`{${"storefront_oid"}}`, encodeURIComponent(String(requestParameters.storefrontOid))),
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => SfvbPageResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * What the pageattribute and pageimage elements render for this page.  These are not in any file, which is why a page folder can be empty and its elements still render something.  Attributes and image codes a template declares but nothing has set are included, so the response describes what the page can show rather than only what has been saved. 
+     * Read a page\'s attributes and images
+     */
+    async getSfvbPage(requestParameters: GetSfvbPageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbPageResponse> {
+        const response = await this.getSfvbPageRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
@@ -2395,6 +2606,118 @@ export class SfvbApi extends runtime.BaseAPI implements SfvbApiInterface {
      */
     async putSfvbFileContent(requestParameters: PutSfvbFileContentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbFileWriteResponse> {
         const response = await this.putSfvbFileContentRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * A partial update.  Only the attributes you name are changed.  Every entry is checked before any is written.  List, slider, item set, page collection and video list attributes are refused - edit those in the page editor.  Always needs sfvb_publish, because a page\'s attributes are shared by every theme and there is no dormant copy to change instead. 
+     * Change a page\'s attributes
+     */
+    async putSfvbPageAttributesRaw(requestParameters: PutSfvbPageAttributesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbPageResponse>> {
+        if (requestParameters.storefrontOid === null || requestParameters.storefrontOid === undefined) {
+            throw new runtime.RequiredError('storefrontOid','Required parameter requestParameters.storefrontOid was null or undefined when calling putSfvbPageAttributes.');
+        }
+
+        if (requestParameters.path === null || requestParameters.path === undefined) {
+            throw new runtime.RequiredError('path','Required parameter requestParameters.path was null or undefined when calling putSfvbPageAttributes.');
+        }
+
+        if (requestParameters.pageAttributeUpdateRequest === null || requestParameters.pageAttributeUpdateRequest === undefined) {
+            throw new runtime.RequiredError('pageAttributeUpdateRequest','Required parameter requestParameters.pageAttributeUpdateRequest was null or undefined when calling putSfvbPageAttributes.');
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters.path !== undefined) {
+            queryParameters['path'] = requestParameters.path;
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", []);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/sfvb/storefronts/{storefront_oid}/pages/attributes`.replace(`{${"storefront_oid"}}`, encodeURIComponent(String(requestParameters.storefrontOid))),
+            method: 'PUT',
+            headers: headerParameters,
+            query: queryParameters,
+            body: SfvbPageAttributeUpdateRequestToJSON(requestParameters.pageAttributeUpdateRequest),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => SfvbPageResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * A partial update.  Only the attributes you name are changed.  Every entry is checked before any is written.  List, slider, item set, page collection and video list attributes are refused - edit those in the page editor.  Always needs sfvb_publish, because a page\'s attributes are shared by every theme and there is no dormant copy to change instead. 
+     * Change a page\'s attributes
+     */
+    async putSfvbPageAttributes(requestParameters: PutSfvbPageAttributesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbPageResponse> {
+        const response = await this.putSfvbPageAttributesRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Upload the image with files/upload to the page path followed by a filename first, then name that filename here as either the default image or an image code.  The default image is what a pageimage element with no pageImageCode renders, and what a subgroup tile shows.  Replaces whatever that slot held.  Always needs sfvb_publish. 
+     * Attach an image to a page
+     */
+    async putSfvbPageMultimediaRaw(requestParameters: PutSfvbPageMultimediaRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbPageResponse>> {
+        if (requestParameters.storefrontOid === null || requestParameters.storefrontOid === undefined) {
+            throw new runtime.RequiredError('storefrontOid','Required parameter requestParameters.storefrontOid was null or undefined when calling putSfvbPageMultimedia.');
+        }
+
+        if (requestParameters.path === null || requestParameters.path === undefined) {
+            throw new runtime.RequiredError('path','Required parameter requestParameters.path was null or undefined when calling putSfvbPageMultimedia.');
+        }
+
+        if (requestParameters.pageMultimediaRequest === null || requestParameters.pageMultimediaRequest === undefined) {
+            throw new runtime.RequiredError('pageMultimediaRequest','Required parameter requestParameters.pageMultimediaRequest was null or undefined when calling putSfvbPageMultimedia.');
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters.path !== undefined) {
+            queryParameters['path'] = requestParameters.path;
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", []);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/sfvb/storefronts/{storefront_oid}/pages/multimedia`.replace(`{${"storefront_oid"}}`, encodeURIComponent(String(requestParameters.storefrontOid))),
+            method: 'PUT',
+            headers: headerParameters,
+            query: queryParameters,
+            body: SfvbPageMultimediaRequestToJSON(requestParameters.pageMultimediaRequest),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => SfvbPageResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Upload the image with files/upload to the page path followed by a filename first, then name that filename here as either the default image or an image code.  The default image is what a pageimage element with no pageImageCode renders, and what a subgroup tile shows.  Replaces whatever that slot held.  Always needs sfvb_publish. 
+     * Attach an image to a page
+     */
+    async putSfvbPageMultimedia(requestParameters: PutSfvbPageMultimediaRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbPageResponse> {
+        const response = await this.putSfvbPageMultimediaRaw(requestParameters, initOverrides);
         return await response.value();
     }
 

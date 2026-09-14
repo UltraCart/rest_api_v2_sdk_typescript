@@ -1015,6 +1015,12 @@ src/models/SfvbFilesResponse.ts
 src/models/SfvbLibraryEntry.ts
 src/models/SfvbLibraryFacet.ts
 src/models/SfvbLibraryResponse.ts
+src/models/SfvbPageAttribute.ts
+src/models/SfvbPageAttributeUpdate.ts
+src/models/SfvbPageAttributeUpdateRequest.ts
+src/models/SfvbPageMultimedia.ts
+src/models/SfvbPageMultimediaRequest.ts
+src/models/SfvbPageResponse.ts
 src/models/SfvbPreviewSessionRequest.ts
 src/models/SfvbPreviewSessionResponse.ts
 src/models/SfvbPreviewUrlResponse.ts
