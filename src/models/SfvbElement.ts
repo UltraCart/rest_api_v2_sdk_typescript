@@ -20,6 +20,12 @@ import { exists, mapValues } from '../runtime';
  */
 export interface SfvbElement {
     /**
+     * True when a markdown field card for this element is available from elements/{element_type}.
+     * @type {boolean}
+     * @memberof SfvbElement
+     */
+    doc_available?: boolean;
+    /**
      * True when a per element configuration schema is available from elements/{element_type}.
      * @type {boolean}
      * @memberof SfvbElement
@@ -54,6 +60,7 @@ export function SfvbElementFromJSONTyped(json: any, ignoreDiscriminator: boolean
     }
     return {
         
+        'doc_available': !exists(json, 'doc_available') ? undefined : json['doc_available'],
         'schema_available': !exists(json, 'schema_available') ? undefined : json['schema_available'],
         'type': !exists(json, 'type') ? undefined : json['type'],
     };
@@ -68,6 +75,7 @@ export function SfvbElementToJSON(value?: SfvbElement | null): any {
     }
     return {
         
+        'doc_available': value.doc_available,
         'schema_available': value.schema_available,
         'type': value.type,
     };

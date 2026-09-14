@@ -563,8 +563,8 @@ export interface SfvbApiInterface {
     getSfvbContainerVersion(requestParameters: GetSfvbContainerVersionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbContainerVersion>;
 
     /**
-     * 
-     * @summary Configuration schema for one element type
+     * schema is the draft-07 JSON schema for the element config object and doc is the markdown field card, both as strings.  Either is omitted when none has been published for the element, which is still a 200.  The catalog is published by the visual builder release process, and a republish can take up to an hour to appear here. 
+     * @summary Configuration schema and field card for one element type
      * @param {string} elementType 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -573,7 +573,8 @@ export interface SfvbApiInterface {
     getSfvbElementRaw(requestParameters: GetSfvbElementRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbElementSchemaResponse>>;
 
     /**
-     * Configuration schema for one element type
+     * schema is the draft-07 JSON schema for the element config object and doc is the markdown field card, both as strings.  Either is omitted when none has been published for the element, which is still a 200.  The catalog is published by the visual builder release process, and a republish can take up to an hour to appear here. 
+     * Configuration schema and field card for one element type
      */
     getSfvbElement(requestParameters: GetSfvbElementRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbElementSchemaResponse>;
 
@@ -1647,7 +1648,8 @@ export class SfvbApi extends runtime.BaseAPI implements SfvbApiInterface {
     }
 
     /**
-     * Configuration schema for one element type
+     * schema is the draft-07 JSON schema for the element config object and doc is the markdown field card, both as strings.  Either is omitted when none has been published for the element, which is still a 200.  The catalog is published by the visual builder release process, and a republish can take up to an hour to appear here. 
+     * Configuration schema and field card for one element type
      */
     async getSfvbElementRaw(requestParameters: GetSfvbElementRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbElementSchemaResponse>> {
         if (requestParameters.elementType === null || requestParameters.elementType === undefined) {
@@ -1678,7 +1680,8 @@ export class SfvbApi extends runtime.BaseAPI implements SfvbApiInterface {
     }
 
     /**
-     * Configuration schema for one element type
+     * schema is the draft-07 JSON schema for the element config object and doc is the markdown field card, both as strings.  Either is omitted when none has been published for the element, which is still a 200.  The catalog is published by the visual builder release process, and a republish can take up to an hour to appear here. 
+     * Configuration schema and field card for one element type
      */
     async getSfvbElement(requestParameters: GetSfvbElementRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbElementSchemaResponse> {
         const response = await this.getSfvbElementRaw(requestParameters, initOverrides);

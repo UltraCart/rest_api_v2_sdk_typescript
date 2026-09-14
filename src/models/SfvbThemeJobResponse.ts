@@ -32,7 +32,7 @@ export interface SfvbThemeJobResponse {
      */
     description?: string;
     /**
-     * Failure detail.  Populated only when status is error.
+     * What to do next when the job did not produce a theme.  The internal cause is not returned; it is recorded against the job id in the server log.
      * @type {string}
      * @memberof SfvbThemeJobResponse
      */

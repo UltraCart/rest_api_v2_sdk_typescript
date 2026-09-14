@@ -20,7 +20,13 @@ import { exists, mapValues } from '../runtime';
  */
 export interface SfvbElementSchemaResponse {
     /**
-     * JSON schema for this element's config object, as a JSON string.  Null when no schema has been published for this element yet.
+     * Markdown field card for this element, as a string.  Omitted when no field card has been published for this element.
+     * @type {string}
+     * @memberof SfvbElementSchemaResponse
+     */
+    doc?: string;
+    /**
+     * Draft-07 JSON schema for this element's config object, as a JSON string.  Omitted when no schema has been published for this element.
      * @type {string}
      * @memberof SfvbElementSchemaResponse
      */
@@ -54,6 +60,7 @@ export function SfvbElementSchemaResponseFromJSONTyped(json: any, ignoreDiscrimi
     }
     return {
         
+        'doc': !exists(json, 'doc') ? undefined : json['doc'],
         'schema': !exists(json, 'schema') ? undefined : json['schema'],
         'type': !exists(json, 'type') ? undefined : json['type'],
     };
@@ -68,6 +75,7 @@ export function SfvbElementSchemaResponseToJSON(value?: SfvbElementSchemaRespons
     }
     return {
         
+        'doc': value.doc,
         'schema': value.schema,
         'type': value.type,
     };
