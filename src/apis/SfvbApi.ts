@@ -90,6 +90,12 @@ import {
     SfvbPageResponse,
     SfvbPageResponseFromJSON,
     SfvbPageResponseToJSON,
+    SfvbPreviewAccessRequest,
+    SfvbPreviewAccessRequestFromJSON,
+    SfvbPreviewAccessRequestToJSON,
+    SfvbPreviewAccessResponse,
+    SfvbPreviewAccessResponseFromJSON,
+    SfvbPreviewAccessResponseToJSON,
     SfvbPreviewSessionRequest,
     SfvbPreviewSessionRequestFromJSON,
     SfvbPreviewSessionRequestToJSON,
@@ -151,6 +157,11 @@ import {
 
 export interface CompileSfvbCjsonRequest {
     compileRequest: SfvbCompileRequest;
+}
+
+export interface CreateSfvbPreviewAccessRequest {
+    storefrontOid: number;
+    previewAccess?: SfvbPreviewAccessRequest;
 }
 
 export interface CreateSfvbPreviewSessionRequest {
@@ -402,6 +413,23 @@ export interface SfvbApiInterface {
      * Compile CJSON to Velocity
      */
     compileSfvbCjson(requestParameters: CompileSfvbCjsonRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbCompileResponse>;
+
+    /**
+     * The preview URL only works in a browser already signed in to UltraCart on the storefront\'s own host, and an agent\'s built in browser never is.  This returns a single use access_url on the storefront host instead.  Opening it gets past the storefront lock, shows the requested theme and applies the requested preview session for the rest of that browser session, then redirects to path.  It expires two minutes after issue or on first use.  Pages opened afterwards carry an X-UltraCart-Preview header of applied or not-applied.  Requires a token that resolves to a user, so use the device authorization flow. 
+     * @summary One time link that opens a preview in a browser with no UltraCart login
+     * @param {number} storefrontOid 
+     * @param {SfvbPreviewAccessRequest} [previewAccess] What the browser should see
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SfvbApiInterface
+     */
+    createSfvbPreviewAccessRaw(requestParameters: CreateSfvbPreviewAccessRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbPreviewAccessResponse>>;
+
+    /**
+     * The preview URL only works in a browser already signed in to UltraCart on the storefront\'s own host, and an agent\'s built in browser never is.  This returns a single use access_url on the storefront host instead.  Opening it gets past the storefront lock, shows the requested theme and applies the requested preview session for the rest of that browser session, then redirects to path.  It expires two minutes after issue or on first use.  Pages opened afterwards carry an X-UltraCart-Preview header of applied or not-applied.  Requires a token that resolves to a user, so use the device authorization flow. 
+     * One time link that opens a preview in a browser with no UltraCart login
+     */
+    createSfvbPreviewAccess(requestParameters: CreateSfvbPreviewAccessRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbPreviewAccessResponse>;
 
     /**
      * Returns a server generated session id to push containers into, and opens the session so that id exists rather than merely being random.  The id is not caller supplied, because concurrent agents choosing their own would be free to collide, and the browser editor\'s habit of minting one with Math.random is not a property worth carrying into an API.  Expires after eight hours and can be deleted sooner.  Requires a token that resolves to a user, so use the device authorization flow. 
@@ -1202,6 +1230,50 @@ export class SfvbApi extends runtime.BaseAPI implements SfvbApiInterface {
      */
     async compileSfvbCjson(requestParameters: CompileSfvbCjsonRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbCompileResponse> {
         const response = await this.compileSfvbCjsonRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * The preview URL only works in a browser already signed in to UltraCart on the storefront\'s own host, and an agent\'s built in browser never is.  This returns a single use access_url on the storefront host instead.  Opening it gets past the storefront lock, shows the requested theme and applies the requested preview session for the rest of that browser session, then redirects to path.  It expires two minutes after issue or on first use.  Pages opened afterwards carry an X-UltraCart-Preview header of applied or not-applied.  Requires a token that resolves to a user, so use the device authorization flow. 
+     * One time link that opens a preview in a browser with no UltraCart login
+     */
+    async createSfvbPreviewAccessRaw(requestParameters: CreateSfvbPreviewAccessRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbPreviewAccessResponse>> {
+        if (requestParameters.storefrontOid === null || requestParameters.storefrontOid === undefined) {
+            throw new runtime.RequiredError('storefrontOid','Required parameter requestParameters.storefrontOid was null or undefined when calling createSfvbPreviewAccess.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", []);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/sfvb/storefronts/{storefront_oid}/preview_access`.replace(`{${"storefront_oid"}}`, encodeURIComponent(String(requestParameters.storefrontOid))),
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: SfvbPreviewAccessRequestToJSON(requestParameters.previewAccess),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => SfvbPreviewAccessResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * The preview URL only works in a browser already signed in to UltraCart on the storefront\'s own host, and an agent\'s built in browser never is.  This returns a single use access_url on the storefront host instead.  Opening it gets past the storefront lock, shows the requested theme and applies the requested preview session for the rest of that browser session, then redirects to path.  It expires two minutes after issue or on first use.  Pages opened afterwards carry an X-UltraCart-Preview header of applied or not-applied.  Requires a token that resolves to a user, so use the device authorization flow. 
+     * One time link that opens a preview in a browser with no UltraCart login
+     */
+    async createSfvbPreviewAccess(requestParameters: CreateSfvbPreviewAccessRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbPreviewAccessResponse> {
+        const response = await this.createSfvbPreviewAccessRaw(requestParameters, initOverrides);
         return await response.value();
     }
 

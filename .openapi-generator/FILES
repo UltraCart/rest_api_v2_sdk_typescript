@@ -1021,6 +1021,8 @@ src/models/SfvbPageAttributeUpdateRequest.ts
 src/models/SfvbPageMultimedia.ts
 src/models/SfvbPageMultimediaRequest.ts
 src/models/SfvbPageResponse.ts
+src/models/SfvbPreviewAccessRequest.ts
+src/models/SfvbPreviewAccessResponse.ts
 src/models/SfvbPreviewSessionRequest.ts
 src/models/SfvbPreviewSessionResponse.ts
 src/models/SfvbPreviewUrlResponse.ts

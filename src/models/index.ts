@@ -993,6 +993,8 @@ export * from './SfvbPageAttributeUpdateRequest';
 export * from './SfvbPageMultimedia';
 export * from './SfvbPageMultimediaRequest';
 export * from './SfvbPageResponse';
+export * from './SfvbPreviewAccessRequest';
+export * from './SfvbPreviewAccessResponse';
 export * from './SfvbPreviewSessionRequest';
 export * from './SfvbPreviewSessionResponse';
 export * from './SfvbPreviewUrlResponse';
