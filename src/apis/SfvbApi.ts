@@ -81,6 +81,15 @@ import {
     SfvbLibraryResponse,
     SfvbLibraryResponseFromJSON,
     SfvbLibraryResponseToJSON,
+    SfvbMenu,
+    SfvbMenuFromJSON,
+    SfvbMenuToJSON,
+    SfvbMenuWriteRequest,
+    SfvbMenuWriteRequestFromJSON,
+    SfvbMenuWriteRequestToJSON,
+    SfvbMenusResponse,
+    SfvbMenusResponseFromJSON,
+    SfvbMenusResponseToJSON,
     SfvbPageAttributeUpdateRequest,
     SfvbPageAttributeUpdateRequestFromJSON,
     SfvbPageAttributeUpdateRequestToJSON,
@@ -236,6 +245,15 @@ export interface GetSfvbLibraryEntryRequest {
     libraryOid: number;
 }
 
+export interface GetSfvbMenuRequest {
+    storefrontOid: number;
+    code: string;
+}
+
+export interface GetSfvbMenusRequest {
+    storefrontOid: number;
+}
+
 export interface GetSfvbPageRequest {
     storefrontOid: number;
     path: string;
@@ -309,6 +327,13 @@ export interface PutSfvbFileContentRequest {
     ifMatch: string;
     fileWriteRequest: SfvbFileWriteRequest;
     path?: string;
+}
+
+export interface PutSfvbMenuRequest {
+    storefrontOid: number;
+    code: string;
+    menuWriteRequest: SfvbMenuWriteRequest;
+    ifMatch?: string;
 }
 
 export interface PutSfvbPageAttributesRequest {
@@ -659,6 +684,39 @@ export interface SfvbApiInterface {
     getSfvbLibraryEntry(requestParameters: GetSfvbLibraryEntryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbLibraryEntry>;
 
     /**
+     * The whole tree, in render order.  Page entries carry the page_path they resolve to and item entries the merchant_item_id, rather than the oids the storage keeps.  Menu item oids are not returned at all because a write regenerates every one of them.  Keep hash_sha256 - it is the If-Match a write needs. 
+     * @summary Read one store menu and its entries
+     * @param {number} storefrontOid 
+     * @param {string} code Menu code, matched without regard to case
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SfvbApiInterface
+     */
+    getSfvbMenuRaw(requestParameters: GetSfvbMenuRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbMenu>>;
+
+    /**
+     * The whole tree, in render order.  Page entries carry the page_path they resolve to and item entries the merchant_item_id, rather than the oids the storage keeps.  Menu item oids are not returned at all because a write regenerates every one of them.  Keep hash_sha256 - it is the If-Match a write needs. 
+     * Read one store menu and its entries
+     */
+    getSfvbMenu(requestParameters: GetSfvbMenuRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbMenu>;
+
+    /**
+     * The menus a menu element\'s menuName can name, sorted by code and without their entries.  A code the active theme\'s templates ask for but nothing has created is included with unconfigured true - that code renders an empty list today, and writing it creates it.  A menu no template names is marked undeclared, which usually means a menuName is misspelled. 
+     * @summary List a storefront\'s store menus
+     * @param {number} storefrontOid 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SfvbApiInterface
+     */
+    getSfvbMenusRaw(requestParameters: GetSfvbMenusRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbMenusResponse>>;
+
+    /**
+     * The menus a menu element\'s menuName can name, sorted by code and without their entries.  A code the active theme\'s templates ask for but nothing has created is included with unconfigured true - that code renders an empty list today, and writing it creates it.  A menu no template names is marked undeclared, which usually means a menuName is misspelled. 
+     * List a storefront\'s store menus
+     */
+    getSfvbMenus(requestParameters: GetSfvbMenusRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbMenusResponse>;
+
+    /**
      * What the pageattribute and pageimage elements render for this page.  These are not in any file, which is why a page folder can be empty and its elements still render something.  Attributes and image codes a template declares but nothing has set are included, so the response describes what the page can show rather than only what has been saved. 
      * @summary Read a page\'s attributes and images
      * @param {number} storefrontOid 
@@ -945,6 +1003,25 @@ export interface SfvbApiInterface {
      * Write a storefront file
      */
     putSfvbFileContent(requestParameters: PutSfvbFileContentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbFileWriteResponse>;
+
+    /**
+     * A whole menu replace, not a merge - what you send is what the menu holds afterwards, so read it, change the tree and send it back.  Omitting items changes only the title; sending an empty array empties the menu.  Writing a code that does not exist creates it.  Every entry is checked before any of it is written, including that a merchant_item_id and a page_path actually resolve, so a tree with one bad entry changes nothing.  Always needs sfvb_publish, because a menu is shared by every theme and there is no dormant copy to change instead. 
+     * @summary Replace a store menu\'s entries
+     * @param {number} storefrontOid 
+     * @param {string} code Menu code, matched without regard to case
+     * @param {SfvbMenuWriteRequest} menuWriteRequest The menu\&#39;s replacement contents
+     * @param {string} [ifMatch] Content hash from the last read.  Required when the menu already exists; 428 when absent, 412 when stale.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SfvbApiInterface
+     */
+    putSfvbMenuRaw(requestParameters: PutSfvbMenuRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbMenu>>;
+
+    /**
+     * A whole menu replace, not a merge - what you send is what the menu holds afterwards, so read it, change the tree and send it back.  Omitting items changes only the title; sending an empty array empties the menu.  Writing a code that does not exist creates it.  Every entry is checked before any of it is written, including that a merchant_item_id and a page_path actually resolve, so a tree with one bad entry changes nothing.  Always needs sfvb_publish, because a menu is shared by every theme and there is no dormant copy to change instead. 
+     * Replace a store menu\'s entries
+     */
+    putSfvbMenu(requestParameters: PutSfvbMenuRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbMenu>;
 
     /**
      * A partial update.  Only the attributes you name are changed.  Every entry is checked before any is written.  List, slider, item set, page collection and video list attributes are refused - edit those in the page editor.  Always needs sfvb_publish, because a page\'s attributes are shared by every theme and there is no dormant copy to change instead. 
@@ -1900,6 +1977,92 @@ export class SfvbApi extends runtime.BaseAPI implements SfvbApiInterface {
     }
 
     /**
+     * The whole tree, in render order.  Page entries carry the page_path they resolve to and item entries the merchant_item_id, rather than the oids the storage keeps.  Menu item oids are not returned at all because a write regenerates every one of them.  Keep hash_sha256 - it is the If-Match a write needs. 
+     * Read one store menu and its entries
+     */
+    async getSfvbMenuRaw(requestParameters: GetSfvbMenuRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbMenu>> {
+        if (requestParameters.storefrontOid === null || requestParameters.storefrontOid === undefined) {
+            throw new runtime.RequiredError('storefrontOid','Required parameter requestParameters.storefrontOid was null or undefined when calling getSfvbMenu.');
+        }
+
+        if (requestParameters.code === null || requestParameters.code === undefined) {
+            throw new runtime.RequiredError('code','Required parameter requestParameters.code was null or undefined when calling getSfvbMenu.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", []);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/sfvb/storefronts/{storefront_oid}/menus/{code}`.replace(`{${"storefront_oid"}}`, encodeURIComponent(String(requestParameters.storefrontOid))).replace(`{${"code"}}`, encodeURIComponent(String(requestParameters.code))),
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => SfvbMenuFromJSON(jsonValue));
+    }
+
+    /**
+     * The whole tree, in render order.  Page entries carry the page_path they resolve to and item entries the merchant_item_id, rather than the oids the storage keeps.  Menu item oids are not returned at all because a write regenerates every one of them.  Keep hash_sha256 - it is the If-Match a write needs. 
+     * Read one store menu and its entries
+     */
+    async getSfvbMenu(requestParameters: GetSfvbMenuRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbMenu> {
+        const response = await this.getSfvbMenuRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * The menus a menu element\'s menuName can name, sorted by code and without their entries.  A code the active theme\'s templates ask for but nothing has created is included with unconfigured true - that code renders an empty list today, and writing it creates it.  A menu no template names is marked undeclared, which usually means a menuName is misspelled. 
+     * List a storefront\'s store menus
+     */
+    async getSfvbMenusRaw(requestParameters: GetSfvbMenusRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbMenusResponse>> {
+        if (requestParameters.storefrontOid === null || requestParameters.storefrontOid === undefined) {
+            throw new runtime.RequiredError('storefrontOid','Required parameter requestParameters.storefrontOid was null or undefined when calling getSfvbMenus.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", []);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/sfvb/storefronts/{storefront_oid}/menus`.replace(`{${"storefront_oid"}}`, encodeURIComponent(String(requestParameters.storefrontOid))),
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => SfvbMenusResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * The menus a menu element\'s menuName can name, sorted by code and without their entries.  A code the active theme\'s templates ask for but nothing has created is included with unconfigured true - that code renders an empty list today, and writing it creates it.  A menu no template names is marked undeclared, which usually means a menuName is misspelled. 
+     * List a storefront\'s store menus
+     */
+    async getSfvbMenus(requestParameters: GetSfvbMenusRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbMenusResponse> {
+        const response = await this.getSfvbMenusRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
      * What the pageattribute and pageimage elements render for this page.  These are not in any file, which is why a page folder can be empty and its elements still render something.  Attributes and image codes a template declares but nothing has set are included, so the response describes what the page can show rather than only what has been saved. 
      * Read a page\'s attributes and images
      */
@@ -2681,6 +2844,62 @@ export class SfvbApi extends runtime.BaseAPI implements SfvbApiInterface {
      */
     async putSfvbFileContent(requestParameters: PutSfvbFileContentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbFileWriteResponse> {
         const response = await this.putSfvbFileContentRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * A whole menu replace, not a merge - what you send is what the menu holds afterwards, so read it, change the tree and send it back.  Omitting items changes only the title; sending an empty array empties the menu.  Writing a code that does not exist creates it.  Every entry is checked before any of it is written, including that a merchant_item_id and a page_path actually resolve, so a tree with one bad entry changes nothing.  Always needs sfvb_publish, because a menu is shared by every theme and there is no dormant copy to change instead. 
+     * Replace a store menu\'s entries
+     */
+    async putSfvbMenuRaw(requestParameters: PutSfvbMenuRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbMenu>> {
+        if (requestParameters.storefrontOid === null || requestParameters.storefrontOid === undefined) {
+            throw new runtime.RequiredError('storefrontOid','Required parameter requestParameters.storefrontOid was null or undefined when calling putSfvbMenu.');
+        }
+
+        if (requestParameters.code === null || requestParameters.code === undefined) {
+            throw new runtime.RequiredError('code','Required parameter requestParameters.code was null or undefined when calling putSfvbMenu.');
+        }
+
+        if (requestParameters.menuWriteRequest === null || requestParameters.menuWriteRequest === undefined) {
+            throw new runtime.RequiredError('menuWriteRequest','Required parameter requestParameters.menuWriteRequest was null or undefined when calling putSfvbMenu.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        if (requestParameters.ifMatch !== undefined && requestParameters.ifMatch !== null) {
+            headerParameters['If-Match'] = String(requestParameters.ifMatch);
+        }
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", []);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/sfvb/storefronts/{storefront_oid}/menus/{code}`.replace(`{${"storefront_oid"}}`, encodeURIComponent(String(requestParameters.storefrontOid))).replace(`{${"code"}}`, encodeURIComponent(String(requestParameters.code))),
+            method: 'PUT',
+            headers: headerParameters,
+            query: queryParameters,
+            body: SfvbMenuWriteRequestToJSON(requestParameters.menuWriteRequest),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => SfvbMenuFromJSON(jsonValue));
+    }
+
+    /**
+     * A whole menu replace, not a merge - what you send is what the menu holds afterwards, so read it, change the tree and send it back.  Omitting items changes only the title; sending an empty array empties the menu.  Writing a code that does not exist creates it.  Every entry is checked before any of it is written, including that a merchant_item_id and a page_path actually resolve, so a tree with one bad entry changes nothing.  Always needs sfvb_publish, because a menu is shared by every theme and there is no dormant copy to change instead. 
+     * Replace a store menu\'s entries
+     */
+    async putSfvbMenu(requestParameters: PutSfvbMenuRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbMenu> {
+        const response = await this.putSfvbMenuRaw(requestParameters, initOverrides);
         return await response.value();
     }
 

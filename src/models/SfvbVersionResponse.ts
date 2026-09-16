@@ -62,6 +62,18 @@ export interface SfvbVersionResponse {
      */
     max_library_results_per_page?: number;
     /**
+     * How deeply store menu entries can nest.
+     * @type {number}
+     * @memberof SfvbVersionResponse
+     */
+    max_menu_depth?: number;
+    /**
+     * Most entries one store menu can hold, counting every level of the tree.  A menu is navigation that renders on every page, so this is deliberately far below what the storage would physically accept.
+     * @type {number}
+     * @memberof SfvbVersionResponse
+     */
+    max_menu_items?: number;
+    /**
      * Largest payload one preview session may hold, in bytes.
      * @type {number}
      * @memberof SfvbVersionResponse
@@ -156,6 +168,8 @@ export function SfvbVersionResponseFromJSONTyped(json: any, ignoreDiscriminator:
         'max_cjson_bytes': !exists(json, 'max_cjson_bytes') ? undefined : json['max_cjson_bytes'],
         'max_directory_entries': !exists(json, 'max_directory_entries') ? undefined : json['max_directory_entries'],
         'max_library_results_per_page': !exists(json, 'max_library_results_per_page') ? undefined : json['max_library_results_per_page'],
+        'max_menu_depth': !exists(json, 'max_menu_depth') ? undefined : json['max_menu_depth'],
+        'max_menu_items': !exists(json, 'max_menu_items') ? undefined : json['max_menu_items'],
         'max_preview_session_bytes': !exists(json, 'max_preview_session_bytes') ? undefined : json['max_preview_session_bytes'],
         'max_revertable_bytes': !exists(json, 'max_revertable_bytes') ? undefined : json['max_revertable_bytes'],
         'max_search_results': !exists(json, 'max_search_results') ? undefined : json['max_search_results'],
@@ -184,6 +198,8 @@ export function SfvbVersionResponseToJSON(value?: SfvbVersionResponse | null): a
         'max_cjson_bytes': value.max_cjson_bytes,
         'max_directory_entries': value.max_directory_entries,
         'max_library_results_per_page': value.max_library_results_per_page,
+        'max_menu_depth': value.max_menu_depth,
+        'max_menu_items': value.max_menu_items,
         'max_preview_session_bytes': value.max_preview_session_bytes,
         'max_revertable_bytes': value.max_revertable_bytes,
         'max_search_results': value.max_search_results,

@@ -44,7 +44,7 @@ export interface SfvbPreviewAccessResponse {
      */
     preview_session_id?: string;
     /**
-     * How long the browser stays in preview once access_url is opened.  The remaining life of the preview session, or eight hours when none was given.  The user and their storefront permission are checked again on every page, so removing either ends it sooner.
+     * How long the browser stays in preview once access_url is opened.  The remaining life of the preview session, or eight hours when none was given.  Ending the preview session ends preview in that browser at its next page.  The user and their storefront permission are checked again on every page, so removing either ends it sooner.
      * @type {number}
      * @memberof SfvbPreviewAccessResponse
      */

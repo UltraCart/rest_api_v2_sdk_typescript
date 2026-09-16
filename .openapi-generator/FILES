@@ -1015,6 +1015,10 @@ src/models/SfvbFilesResponse.ts
 src/models/SfvbLibraryEntry.ts
 src/models/SfvbLibraryFacet.ts
 src/models/SfvbLibraryResponse.ts
+src/models/SfvbMenu.ts
+src/models/SfvbMenuItem.ts
+src/models/SfvbMenuWriteRequest.ts
+src/models/SfvbMenusResponse.ts
 src/models/SfvbPageAttribute.ts
 src/models/SfvbPageAttributeUpdate.ts
 src/models/SfvbPageAttributeUpdateRequest.ts
