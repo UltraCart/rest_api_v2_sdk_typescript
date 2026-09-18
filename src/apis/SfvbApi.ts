@@ -18,6 +18,9 @@ import {
     ErrorResponse,
     ErrorResponseFromJSON,
     ErrorResponseToJSON,
+    SfvbBlogPostsResponse,
+    SfvbBlogPostsResponseFromJSON,
+    SfvbBlogPostsResponseToJSON,
     SfvbCompileRequest,
     SfvbCompileRequestFromJSON,
     SfvbCompileRequestToJSON,
@@ -45,6 +48,24 @@ import {
     SfvbElementsResponse,
     SfvbElementsResponseFromJSON,
     SfvbElementsResponseToJSON,
+    SfvbExperiment,
+    SfvbExperimentFromJSON,
+    SfvbExperimentToJSON,
+    SfvbExperimentEndRequest,
+    SfvbExperimentEndRequestFromJSON,
+    SfvbExperimentEndRequestToJSON,
+    SfvbExperimentObjectivesResponse,
+    SfvbExperimentObjectivesResponseFromJSON,
+    SfvbExperimentObjectivesResponseToJSON,
+    SfvbExperimentStartRequest,
+    SfvbExperimentStartRequestFromJSON,
+    SfvbExperimentStartRequestToJSON,
+    SfvbExperimentVariationUpdateRequest,
+    SfvbExperimentVariationUpdateRequestFromJSON,
+    SfvbExperimentVariationUpdateRequestToJSON,
+    SfvbExperimentsResponse,
+    SfvbExperimentsResponseFromJSON,
+    SfvbExperimentsResponseToJSON,
     SfvbFileContentResponse,
     SfvbFileContentResponseFromJSON,
     SfvbFileContentResponseToJSON,
@@ -93,12 +114,42 @@ import {
     SfvbPageAttributeUpdateRequest,
     SfvbPageAttributeUpdateRequestFromJSON,
     SfvbPageAttributeUpdateRequestToJSON,
+    SfvbPageBlogPostsRequest,
+    SfvbPageBlogPostsRequestFromJSON,
+    SfvbPageBlogPostsRequestToJSON,
+    SfvbPageBlogPostsResponse,
+    SfvbPageBlogPostsResponseFromJSON,
+    SfvbPageBlogPostsResponseToJSON,
+    SfvbPageCreateRequest,
+    SfvbPageCreateRequestFromJSON,
+    SfvbPageCreateRequestToJSON,
+    SfvbPageDuplicateRequest,
+    SfvbPageDuplicateRequestFromJSON,
+    SfvbPageDuplicateRequestToJSON,
+    SfvbPageItemsAddRequest,
+    SfvbPageItemsAddRequestFromJSON,
+    SfvbPageItemsAddRequestToJSON,
+    SfvbPageItemsRemoveRequest,
+    SfvbPageItemsRemoveRequestFromJSON,
+    SfvbPageItemsRemoveRequestToJSON,
+    SfvbPageItemsResponse,
+    SfvbPageItemsResponseFromJSON,
+    SfvbPageItemsResponseToJSON,
+    SfvbPageListResponse,
+    SfvbPageListResponseFromJSON,
+    SfvbPageListResponseToJSON,
     SfvbPageMultimediaRequest,
     SfvbPageMultimediaRequestFromJSON,
     SfvbPageMultimediaRequestToJSON,
     SfvbPageResponse,
     SfvbPageResponseFromJSON,
     SfvbPageResponseToJSON,
+    SfvbPageSelectors,
+    SfvbPageSelectorsFromJSON,
+    SfvbPageSelectorsToJSON,
+    SfvbPageSettingsRequest,
+    SfvbPageSettingsRequestFromJSON,
+    SfvbPageSettingsRequestToJSON,
     SfvbPreviewAccessRequest,
     SfvbPreviewAccessRequestFromJSON,
     SfvbPreviewAccessRequestToJSON,
@@ -129,6 +180,9 @@ import {
     SfvbStorefrontsResponse,
     SfvbStorefrontsResponseFromJSON,
     SfvbStorefrontsResponseToJSON,
+    SfvbTemplatesResponse,
+    SfvbTemplatesResponseFromJSON,
+    SfvbTemplatesResponseToJSON,
     SfvbTheme,
     SfvbThemeFromJSON,
     SfvbThemeToJSON,
@@ -170,6 +224,18 @@ import {
     SfvbWidgetIdsResponseToJSON,
 } from '../models';
 
+export interface AddSfvbPageBlogPostsRequest {
+    storefrontOid: number;
+    path: string;
+    pageBlogPostsRequest: SfvbPageBlogPostsRequest;
+}
+
+export interface AddSfvbPageItemsRequest {
+    storefrontOid: number;
+    path: string;
+    pageItemsAddRequest: SfvbPageItemsAddRequest;
+}
+
 export interface CompileSfvbCjsonRequest {
     compileRequest: SfvbCompileRequest;
 }
@@ -206,10 +272,21 @@ export interface DownloadSfvbFileRequest {
     path?: string;
 }
 
+export interface DuplicateSfvbPageRequest {
+    storefrontOid: number;
+    pageDuplicateRequest: SfvbPageDuplicateRequest;
+}
+
 export interface DuplicateSfvbThemeRequest {
     storefrontOid: number;
     themeOid: number;
     duplicateRequest: SfvbThemeDuplicateRequest;
+}
+
+export interface EndSfvbExperimentRequest {
+    storefrontOid: number;
+    experimentOid: number;
+    experimentEndRequest?: SfvbExperimentEndRequest;
 }
 
 export interface GetSfvbCjsonUsedElementsRequest {
@@ -233,6 +310,16 @@ export interface GetSfvbContainerVersionRequest {
 
 export interface GetSfvbElementRequest {
     elementType: string;
+}
+
+export interface GetSfvbExperimentRequest {
+    storefrontOid: number;
+    experimentOid: number;
+    daily?: boolean;
+}
+
+export interface GetSfvbExperimentObjectivesRequest {
+    storefrontOid: number;
 }
 
 export interface GetSfvbFileContentRequest {
@@ -265,6 +352,21 @@ export interface GetSfvbPageRequest {
     path: string;
 }
 
+export interface GetSfvbPageBlogPostsRequest {
+    storefrontOid: number;
+    path: string;
+}
+
+export interface GetSfvbPageItemsRequest {
+    storefrontOid: number;
+    path: string;
+}
+
+export interface GetSfvbPageSelectorsRequest {
+    storefrontOid: number;
+    path: string;
+}
+
 export interface GetSfvbPreviewUrlRequest {
     storefrontOid: number;
     previewSessionId: string;
@@ -290,9 +392,21 @@ export interface GetSfvbThemeJobRequest {
     jobId: number;
 }
 
+export interface InsertSfvbPageRequest {
+    storefrontOid: number;
+    pageCreateRequest: SfvbPageCreateRequest;
+}
+
 export interface InstallSfvbLibraryEntryRequest {
     storefrontOid: number;
     libraryOid: number;
+}
+
+export interface ListSfvbBlogPostsRequest {
+    storefrontOid: number;
+    search?: string;
+    page?: number;
+    pageSize?: number;
 }
 
 export interface ListSfvbContainerVersionsRequest {
@@ -300,6 +414,13 @@ export interface ListSfvbContainerVersionsRequest {
     ownerType?: string;
     ownerObjectId?: string;
     containerName?: string;
+}
+
+export interface ListSfvbExperimentsRequest {
+    storefrontOid: number;
+    status?: string;
+    type?: string;
+    path?: string;
 }
 
 export interface ListSfvbFileVersionsRequest {
@@ -313,6 +434,16 @@ export interface ListSfvbFilesRequest {
     storefrontFsDirectoryOid?: number;
     themeOid?: number;
     maxEntries?: number;
+}
+
+export interface ListSfvbPagesRequest {
+    storefrontOid: number;
+    under?: string;
+}
+
+export interface ListSfvbTemplatesRequest {
+    storefrontOid: number;
+    pageType?: string;
 }
 
 export interface ListSfvbThemesRequest {
@@ -330,6 +461,13 @@ export interface PutSfvbContainerRequest {
     ifMatch: string;
     containerWriteRequest: SfvbContainerWriteRequest;
     containerName?: string;
+}
+
+export interface PutSfvbExperimentVariationRequest {
+    storefrontOid: number;
+    experimentOid: number;
+    variationNumber: number;
+    experimentVariationUpdateRequest: SfvbExperimentVariationUpdateRequest;
 }
 
 export interface PutSfvbFileContentRequest {
@@ -358,6 +496,18 @@ export interface PutSfvbPageMultimediaRequest {
     pageMultimediaRequest: SfvbPageMultimediaRequest;
 }
 
+export interface PutSfvbPageSelectorsRequest {
+    storefrontOid: number;
+    path: string;
+    pageSelectorsRequest: SfvbPageSelectors;
+}
+
+export interface PutSfvbPageSettingsRequest {
+    storefrontOid: number;
+    path: string;
+    pageSettingsRequest: SfvbPageSettingsRequest;
+}
+
 export interface PutSfvbPreviewSessionRequest {
     storefrontOid: number;
     previewSessionId: string;
@@ -374,6 +524,18 @@ export interface PutSfvbThemeAttributesRequest {
     storefrontOid: number;
     themeOid: number;
     attributeUpdateRequest: SfvbThemeAttributeUpdateRequest;
+}
+
+export interface RemoveSfvbPageBlogPostsRequest {
+    storefrontOid: number;
+    path: string;
+    pageBlogPostsRequest: SfvbPageBlogPostsRequest;
+}
+
+export interface RemoveSfvbPageItemsRequest {
+    storefrontOid: number;
+    path: string;
+    pageItemsRemoveRequest: SfvbPageItemsRemoveRequest;
 }
 
 export interface RenderSfvbWidgetsRequest {
@@ -415,6 +577,11 @@ export interface SearchSfvbLibraryRequest {
     resultsPerPage?: number;
 }
 
+export interface StartSfvbExperimentRequest {
+    storefrontOid: number;
+    experimentStartRequest: SfvbExperimentStartRequest;
+}
+
 export interface UploadSfvbFileRequest {
     storefrontOid: number;
     fileUploadRequest: SfvbFileUploadRequest;
@@ -438,6 +605,42 @@ export interface ValidateSfvbVelocityRequest {
  * @interface SfvbApiInterface
  */
 export interface SfvbApiInterface {
+    /**
+     * Adds posts by blog_post_oid, at most 500 at a time.  Every oid must be a post on this storefront, and one that is not changes nothing.  Refused on a page whose selectors choose its blog posts.  Always needs sfvb_publish. 
+     * @summary Assign blog posts to a page
+     * @param {number} storefrontOid 
+     * @param {string} path Page path, for example /blog/
+     * @param {SfvbPageBlogPostsRequest} pageBlogPostsRequest Blog posts to assign
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SfvbApiInterface
+     */
+    addSfvbPageBlogPostsRaw(requestParameters: AddSfvbPageBlogPostsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbPageBlogPostsResponse>>;
+
+    /**
+     * Adds posts by blog_post_oid, at most 500 at a time.  Every oid must be a post on this storefront, and one that is not changes nothing.  Refused on a page whose selectors choose its blog posts.  Always needs sfvb_publish. 
+     * Assign blog posts to a page
+     */
+    addSfvbPageBlogPosts(requestParameters: AddSfvbPageBlogPostsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbPageBlogPostsResponse>;
+
+    /**
+     * Adds items by item id, at most 500 at a time, or changes the sort order or url part of items already on the page.  Every id is checked first and one unknown id changes nothing.  Refused on a page whose selectors choose its items.  sort_order is refused unless the page sorts its items by a custom order.  Always needs sfvb_publish. 
+     * @summary Assign items to a page
+     * @param {number} storefrontOid 
+     * @param {string} path Page path, for example /lp/spring-sale/
+     * @param {SfvbPageItemsAddRequest} pageItemsAddRequest Items to assign
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SfvbApiInterface
+     */
+    addSfvbPageItemsRaw(requestParameters: AddSfvbPageItemsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbPageItemsResponse>>;
+
+    /**
+     * Adds items by item id, at most 500 at a time, or changes the sort order or url part of items already on the page.  Every id is checked first and one unknown id changes nothing.  Refused on a page whose selectors choose its items.  sort_order is refused unless the page sorts its items by a custom order.  Always needs sfvb_publish. 
+     * Assign items to a page
+     */
+    addSfvbPageItems(requestParameters: AddSfvbPageItemsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbPageItemsResponse>;
+
     /**
      * Compiles a container document to Velocity without storing anything.  Supply theme_oid to compile with the theme\'s inherit groups applied; omit it to compile standalone. 
      * @summary Compile CJSON to Velocity
@@ -559,6 +762,23 @@ export interface SfvbApiInterface {
     downloadSfvbFile(requestParameters: DownloadSfvbFileRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
 
     /**
+     * Copies what the store admin\'s duplicate copies - settings, items, blog posts, permissions, attributes, selectors, images and the page folder with its body.  The copy goes to the path you choose, under any existing page, with the same path rules as creating a page, and a 409 with the code sfvb.page_exists when that path is taken.  The root page and pages with pages under them cannot be copied.  A page whose folder holds a started experiment is refused, because the copy would share the experiment - end it first.  Translated title and description text is not copied.  Always needs sfvb_publish, because the copy is live as soon as it exists. 
+     * @summary Copy a page to a new path
+     * @param {number} storefrontOid 
+     * @param {SfvbPageDuplicateRequest} pageDuplicateRequest The page to copy and where
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SfvbApiInterface
+     */
+    duplicateSfvbPageRaw(requestParameters: DuplicateSfvbPageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbPageResponse>>;
+
+    /**
+     * Copies what the store admin\'s duplicate copies - settings, items, blog posts, permissions, attributes, selectors, images and the page folder with its body.  The copy goes to the path you choose, under any existing page, with the same path rules as creating a page, and a 409 with the code sfvb.page_exists when that path is taken.  The root page and pages with pages under them cannot be copied.  A page whose folder holds a started experiment is refused, because the copy would share the experiment - end it first.  Translated title and description text is not copied.  Always needs sfvb_publish, because the copy is live as soon as it exists. 
+     * Copy a page to a new path
+     */
+    duplicateSfvbPage(requestParameters: DuplicateSfvbPageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbPageResponse>;
+
+    /**
      * Copies a theme into a new one and returns a job handle to poll.  Asynchronous, because copying a theme copies every file in it.  Needs sfvb_write rather than sfvb_publish, because the job explicitly does not activate what it creates, so the worst outcome of a mistaken call is a spare theme.  This is how you get somewhere safe to work - duplicate, edit the copy with an ordinary write scope, and let a human promote it. 
      * @summary Duplicate a theme
      * @param {number} storefrontOid 
@@ -575,6 +795,24 @@ export interface SfvbApiInterface {
      * Duplicate a theme
      */
     duplicateSfvbTheme(requestParameters: DuplicateSfvbThemeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbThemeJobResponse>;
+
+    /**
+     * Ends a running experiment.  With winner_variation_number the winner gets all new visitors, and a page experiment\'s winning content is promoted into the page by the completion job on its next run, which also emails the merchant.  Without a winner a page experiment\'s id is cleared from its page body so the page shows variation 0, and a url experiment sends everyone to variation 0.  Visitors already assigned to a url experiment keep their page for up to 30 days.  Always needs sfvb_publish. 
+     * @summary End an experiment
+     * @param {number} storefrontOid 
+     * @param {number} experimentOid 
+     * @param {SfvbExperimentEndRequest} [experimentEndRequest] The winner, if any
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SfvbApiInterface
+     */
+    endSfvbExperimentRaw(requestParameters: EndSfvbExperimentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbExperiment>>;
+
+    /**
+     * Ends a running experiment.  With winner_variation_number the winner gets all new visitors, and a page experiment\'s winning content is promoted into the page by the completion job on its next run, which also emails the merchant.  Without a winner a page experiment\'s id is cleared from its page body so the page shows variation 0, and a url experiment sends everyone to variation 0.  Visitors already assigned to a url experiment keep their page for up to 30 days.  Always needs sfvb_publish. 
+     * End an experiment
+     */
+    endSfvbExperiment(requestParameters: EndSfvbExperimentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbExperiment>;
 
     /**
      * 
@@ -645,6 +883,40 @@ export interface SfvbApiInterface {
      * Configuration schema and field card for one element type
      */
     getSfvbElement(requestParameters: GetSfvbElementRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbElementSchemaResponse>;
+
+    /**
+     * The experiment, its variations and their statistics, and with daily=true each variation\'s daily rows.  p95_sessions_needed is estimated only after 1000 sessions, and sessions_needed_computed_dts says when.  For a url experiment, router_url is the address visitors must enter through. 
+     * @summary Read one experiment and its statistics
+     * @param {number} storefrontOid 
+     * @param {number} experimentOid 
+     * @param {boolean} [daily] Include each variation\&#39;s daily statistics
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SfvbApiInterface
+     */
+    getSfvbExperimentRaw(requestParameters: GetSfvbExperimentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbExperiment>>;
+
+    /**
+     * The experiment, its variations and their statistics, and with daily=true each variation\'s daily rows.  p95_sessions_needed is estimated only after 1000 sessions, and sessions_needed_computed_dts says when.  For a url experiment, router_url is the address visitors must enter through. 
+     * Read one experiment and its statistics
+     */
+    getSfvbExperiment(requestParameters: GetSfvbExperimentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbExperiment>;
+
+    /**
+     * Each objective with what is measured per session and compared between variations, the usual optimization type, and whether it needs an event name. 
+     * @summary List the objectives an experiment can optimize
+     * @param {number} storefrontOid 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SfvbApiInterface
+     */
+    getSfvbExperimentObjectivesRaw(requestParameters: GetSfvbExperimentObjectivesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbExperimentObjectivesResponse>>;
+
+    /**
+     * Each objective with what is measured per session and compared between variations, the usual optimization type, and whether it needs an event name. 
+     * List the objectives an experiment can optimize
+     */
+    getSfvbExperimentObjectives(requestParameters: GetSfvbExperimentObjectivesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbExperimentObjectivesResponse>;
 
     /**
      * Returns the current content, or an earlier version when version is supplied.  Send the body\'s hash_sha256 back as If-Match when writing.  The ETag header carries the same hash, but a compressing proxy may append a suffix such as -gzip to it, so prefer the body value. 
@@ -747,6 +1019,57 @@ export interface SfvbApiInterface {
      * Read a page\'s attributes and images
      */
     getSfvbPage(requestParameters: GetSfvbPageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbPageResponse>;
+
+    /**
+     * The posts the page shows.  uses_selectors is true when the page\'s blog post selectors choose them instead. 
+     * @summary Read the blog posts assigned to a page
+     * @param {number} storefrontOid 
+     * @param {string} path Page path, for example /blog/
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SfvbApiInterface
+     */
+    getSfvbPageBlogPostsRaw(requestParameters: GetSfvbPageBlogPostsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbPageBlogPostsResponse>>;
+
+    /**
+     * The posts the page shows.  uses_selectors is true when the page\'s blog post selectors choose them instead. 
+     * Read the blog posts assigned to a page
+     */
+    getSfvbPageBlogPosts(requestParameters: GetSfvbPageBlogPostsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbPageBlogPostsResponse>;
+
+    /**
+     * The items on the page with their sort order and url part.  uses_selectors is true when the page\'s selectors choose its items instead. 
+     * @summary Read the items assigned to a page
+     * @param {number} storefrontOid 
+     * @param {string} path Page path, for example /lp/spring-sale/
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SfvbApiInterface
+     */
+    getSfvbPageItemsRaw(requestParameters: GetSfvbPageItemsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbPageItemsResponse>>;
+
+    /**
+     * The items on the page with their sort order and url part.  uses_selectors is true when the page\'s selectors choose its items instead. 
+     * Read the items assigned to a page
+     */
+    getSfvbPageItems(requestParameters: GetSfvbPageItemsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbPageItemsResponse>;
+
+    /**
+     * The conditions that choose the page\'s items and blog posts, and whether each set must all match. 
+     * @summary Read a page\'s selectors
+     * @param {number} storefrontOid 
+     * @param {string} path Page path, for example /lp/spring-sale/
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SfvbApiInterface
+     */
+    getSfvbPageSelectorsRaw(requestParameters: GetSfvbPageSelectorsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbPageSelectors>>;
+
+    /**
+     * The conditions that choose the page\'s items and blog posts, and whether each set must all match. 
+     * Read a page\'s selectors
+     */
+    getSfvbPageSelectors(requestParameters: GetSfvbPageSelectorsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbPageSelectors>;
 
     /**
      * Refuses a session that does not exist, so a URL you receive is for a session that was really there.  expires_in_seconds is the time actually remaining, not the configured lifetime.  Needs a token that resolves to a user, because a preview session belongs to the person who created it. 
@@ -863,6 +1186,23 @@ export interface SfvbApiInterface {
     getSfvbWhoami(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbWhoamiResponse>;
 
     /**
+     * Creates the page and its folder, the way the store admin\'s add page does.  The parent page must already exist, and the last part of the path may only contain letters, digits, hyphens and underscores - it is refused, not cleaned.  A path that already has a page is refused with a 409 and the code sfvb.page_exists.  Without a group_template the page inherits its parent\'s templates, or catalog_group.vm directly under the root.  Set attributes and images afterwards with the page attribute and image endpoints, and push the body to the page folder.  Always needs sfvb_publish, because the page is live as soon as it exists.  Deleting, moving and renaming pages stay in the store admin. 
+     * @summary Create a page
+     * @param {number} storefrontOid 
+     * @param {SfvbPageCreateRequest} pageCreateRequest The page to create
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SfvbApiInterface
+     */
+    insertSfvbPageRaw(requestParameters: InsertSfvbPageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbPageResponse>>;
+
+    /**
+     * Creates the page and its folder, the way the store admin\'s add page does.  The parent page must already exist, and the last part of the path may only contain letters, digits, hyphens and underscores - it is refused, not cleaned.  A path that already has a page is refused with a 409 and the code sfvb.page_exists.  Without a group_template the page inherits its parent\'s templates, or catalog_group.vm directly under the root.  Set attributes and images afterwards with the page attribute and image endpoints, and push the body to the page folder.  Always needs sfvb_publish, because the page is live as soon as it exists.  Deleting, moving and renaming pages stay in the store admin. 
+     * Create a page
+     */
+    insertSfvbPage(requestParameters: InsertSfvbPageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbPageResponse>;
+
+    /**
      * Copies the fragment\'s referenced assets into the storefront file system and returns the CJSON with its paths resolved, ready to place.  This writes, which is why it is a POST rather than the GET the internal admin endpoint uses.  It also requires sfvb_publish, because the assets land in the shared storefront file system, which is served to shoppers regardless of which theme is active, so no amount of working inside a duplicate theme isolates them. 
      * @summary Install a library entry into a storefront
      * @param {number} storefrontOid 
@@ -878,6 +1218,25 @@ export interface SfvbApiInterface {
      * Install a library entry into a storefront
      */
     installSfvbLibraryEntry(requestParameters: InstallSfvbLibraryEntryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbLibraryEntry>;
+
+    /**
+     * One page of blog posts, newest first, without their bodies.  search matches the title, body, excerpt, url part or author, or a tag exactly.  unassigned marks posts no page shows yet.  Use a post\'s blog_post_oid to assign it to a page. 
+     * @summary List the storefront\'s blog posts
+     * @param {number} storefrontOid 
+     * @param {string} [search] Text to search for
+     * @param {number} [page] Page number, starting at 1
+     * @param {number} [pageSize] Posts per page, 1 to 100, default 50
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SfvbApiInterface
+     */
+    listSfvbBlogPostsRaw(requestParameters: ListSfvbBlogPostsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbBlogPostsResponse>>;
+
+    /**
+     * One page of blog posts, newest first, without their bodies.  search matches the title, body, excerpt, url part or author, or a tag exactly.  unassigned marks posts no page shows yet.  Use a post\'s blog_post_oid to assign it to a page. 
+     * List the storefront\'s blog posts
+     */
+    listSfvbBlogPosts(requestParameters: ListSfvbBlogPostsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbBlogPostsResponse>;
 
     /**
      * Addressed the same way as the container itself, so owner_type also says how owner_object_id is read and itemid lists the history of the item container that merchant item id names. 
@@ -912,6 +1271,25 @@ export interface SfvbApiInterface {
      * List every SFVB element type
      */
     listSfvbElements(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbElementsResponse>;
+
+    /**
+     * Every experiment that is not deleted, with its variations and their statistics - the same numbers the store admin shows.  Filter by status, by type (page, url, theme, openai), or by the page an experiment runs on.  auto_ends_at says when the engine will end an experiment by itself, and p_value is a one-way ANOVA across all variations.  Read one experiment for its daily statistics. 
+     * @summary List the storefront\'s experiments
+     * @param {number} storefrontOid 
+     * @param {string} [status] Running or Ended
+     * @param {string} [type] page, url, theme or openai
+     * @param {string} [path] Only experiments on this page, for example /lp/spring-sale/
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SfvbApiInterface
+     */
+    listSfvbExperimentsRaw(requestParameters: ListSfvbExperimentsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbExperimentsResponse>>;
+
+    /**
+     * Every experiment that is not deleted, with its variations and their statistics - the same numbers the store admin shows.  Filter by status, by type (page, url, theme, openai), or by the page an experiment runs on.  auto_ends_at says when the engine will end an experiment by itself, and p_value is a one-way ANOVA across all variations.  Read one experiment for its daily statistics. 
+     * List the storefront\'s experiments
+     */
+    listSfvbExperiments(requestParameters: ListSfvbExperimentsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbExperimentsResponse>;
 
     /**
      * Version history is the undo for anything in the storefront file system, which is what makes an agent\'s writes recoverable. 
@@ -951,6 +1329,23 @@ export interface SfvbApiInterface {
     listSfvbFiles(requestParameters: ListSfvbFilesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbFilesResponse>;
 
     /**
+     * Every page with its settings, sorted by path with the root first.  Hidden pages are included.  Pass under to list one page and everything below it.  Read from the same cached catalog the admin page tree uses, so a page created a moment ago can take a moment to appear here - read it directly with the single-page read to confirm a write. 
+     * @summary List the storefront\'s pages
+     * @param {number} storefrontOid 
+     * @param {string} [under] Only this page and the pages below it, for example /lp/
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SfvbApiInterface
+     */
+    listSfvbPagesRaw(requestParameters: ListSfvbPagesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbPageListResponse>>;
+
+    /**
+     * Every page with its settings, sorted by path with the root first.  Hidden pages are included.  Pass under to list one page and everything below it.  Read from the same cached catalog the admin page tree uses, so a page created a moment ago can take a moment to appear here - read it directly with the single-page read to confirm a write. 
+     * List the storefront\'s pages
+     */
+    listSfvbPages(requestParameters: ListSfvbPagesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbPageListResponse>;
+
+    /**
      * 
      * @summary List storefronts
      * @param {*} [options] Override http request option.
@@ -963,6 +1358,23 @@ export interface SfvbApiInterface {
      * List storefronts
      */
     listSfvbStorefronts(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbStorefrontsResponse>;
+
+    /**
+     * Each template with the page type it declares and what it can render - items, sub-pages, blog posts, pagination, visual builder containers.  A page\'s group_template names one of these.  The storefront\'s fixed templates, such as checkout and my account, are flagged system and must never be assigned to a page. 
+     * @summary List the active theme\'s templates
+     * @param {number} storefrontOid 
+     * @param {string} [pageType] Only templates declaring this page type, for example group
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SfvbApiInterface
+     */
+    listSfvbTemplatesRaw(requestParameters: ListSfvbTemplatesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbTemplatesResponse>>;
+
+    /**
+     * Each template with the page type it declares and what it can render - items, sub-pages, blog posts, pagination, visual builder containers.  A page\'s group_template names one of these.  The storefront\'s fixed templates, such as checkout and my account, are flagged system and must never be assigned to a page. 
+     * List the active theme\'s templates
+     */
+    listSfvbTemplates(requestParameters: ListSfvbTemplatesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbTemplatesResponse>;
 
     /**
      * Exactly one theme is flagged active.  Writing to the active theme is writing live and requires the sfvb_publish scope. 
@@ -1016,6 +1428,25 @@ export interface SfvbApiInterface {
      * Write a container stored outside the file system
      */
     putSfvbContainer(requestParameters: PutSfvbContainerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbContainerResponse>;
+
+    /**
+     * Stops or resumes sending new visitors to one variation of a running experiment.  Visitors already assigned keep seeing it.  Variation 0 cannot be paused, because the split falls back to it, and the last variation still receiving visitors cannot be paused.  Always needs sfvb_publish. 
+     * @summary Pause or resume a variation
+     * @param {number} storefrontOid 
+     * @param {number} experimentOid 
+     * @param {number} variationNumber 
+     * @param {SfvbExperimentVariationUpdateRequest} experimentVariationUpdateRequest Pause or resume
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SfvbApiInterface
+     */
+    putSfvbExperimentVariationRaw(requestParameters: PutSfvbExperimentVariationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbExperiment>>;
+
+    /**
+     * Stops or resumes sending new visitors to one variation of a running experiment.  Visitors already assigned keep seeing it.  Variation 0 cannot be paused, because the split falls back to it, and the last variation still receiving visitors cannot be paused.  Always needs sfvb_publish. 
+     * Pause or resume a variation
+     */
+    putSfvbExperimentVariation(requestParameters: PutSfvbExperimentVariationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbExperiment>;
 
     /**
      * Runs the template sandbox, Velocity validation and the internationalization check, records a version, and compiles the sibling .vm when the file is a .cjson under a theme.  Send If-Match with the hash from the last read to avoid clobbering a concurrent change.  Writing into the active theme requires sfvb_publish. 
@@ -1092,6 +1523,42 @@ export interface SfvbApiInterface {
     putSfvbPageMultimedia(requestParameters: PutSfvbPageMultimediaRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbPageResponse>;
 
     /**
+     * Each list you send replaces that whole set, and an empty list clears it.  A list you leave out is not touched.  The page\'s items or blog posts are recalculated from the new selectors straight away.  While a page has item selectors its items cannot be assigned by hand.  Always needs sfvb_publish. 
+     * @summary Replace a page\'s selectors
+     * @param {number} storefrontOid 
+     * @param {string} path Page path, for example /lp/spring-sale/
+     * @param {SfvbPageSelectors} pageSelectorsRequest The selector sets to replace
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SfvbApiInterface
+     */
+    putSfvbPageSelectorsRaw(requestParameters: PutSfvbPageSelectorsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbPageSelectors>>;
+
+    /**
+     * Each list you send replaces that whole set, and an empty list clears it.  A list you leave out is not touched.  The page\'s items or blog posts are recalculated from the new selectors straight away.  While a page has item selectors its items cannot be assigned by hand.  Always needs sfvb_publish. 
+     * Replace a page\'s selectors
+     */
+    putSfvbPageSelectors(requestParameters: PutSfvbPageSelectorsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbPageSelectors>;
+
+    /**
+     * A partial update.  Only the fields you send change - title, description, templates, visibility, sitemap exclusion, sort orders, items per page and page type.  Unlike the store admin\'s page save, the page\'s attributes, images, items, selectors and permissions are left exactly as they are.  Fields that would move or rename the page, and fields this endpoint does not know, are refused.  The root page cannot be hidden.  Always needs sfvb_publish, because page settings are live. 
+     * @summary Change a page\'s settings
+     * @param {number} storefrontOid 
+     * @param {string} path Page path, for example /lp/spring-sale/
+     * @param {SfvbPageSettingsRequest} pageSettingsRequest The settings to change
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SfvbApiInterface
+     */
+    putSfvbPageSettingsRaw(requestParameters: PutSfvbPageSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbPageResponse>>;
+
+    /**
+     * A partial update.  Only the fields you send change - title, description, templates, visibility, sitemap exclusion, sort orders, items per page and page type.  Unlike the store admin\'s page save, the page\'s attributes, images, items, selectors and permissions are left exactly as they are.  Fields that would move or rename the page, and fields this endpoint does not know, are refused.  The root page cannot be hidden.  Always needs sfvb_publish, because page settings are live. 
+     * Change a page\'s settings
+     */
+    putSfvbPageSettings(requestParameters: PutSfvbPageSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbPageResponse>;
+
+    /**
      * Stores compiled containers against a session created by createSfvbPreviewSession.  Replaces whatever the session held.  The session must exist - this does not create one, so a deleted, expired or never issued id is a 404 rather than a new session.  Nothing durable is written.  Requires a token that resolves to a user, so use the device authorization flow. 
      * @summary Push containers into a preview session
      * @param {number} storefrontOid 
@@ -1144,6 +1611,42 @@ export interface SfvbApiInterface {
      * Change a theme\'s colors, fonts and settings
      */
     putSfvbThemeAttributes(requestParameters: PutSfvbThemeAttributesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbThemeAttributesResponse>;
+
+    /**
+     * Removes posts by blog_post_oid, at most 500 at a time.  Every oid must be on the page, and one that is not changes nothing.  The posts themselves are not touched.  Always needs sfvb_publish. 
+     * @summary Take blog posts off a page
+     * @param {number} storefrontOid 
+     * @param {string} path Page path, for example /blog/
+     * @param {SfvbPageBlogPostsRequest} pageBlogPostsRequest Blog posts to take off the page
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SfvbApiInterface
+     */
+    removeSfvbPageBlogPostsRaw(requestParameters: RemoveSfvbPageBlogPostsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbPageBlogPostsResponse>>;
+
+    /**
+     * Removes posts by blog_post_oid, at most 500 at a time.  Every oid must be on the page, and one that is not changes nothing.  The posts themselves are not touched.  Always needs sfvb_publish. 
+     * Take blog posts off a page
+     */
+    removeSfvbPageBlogPosts(requestParameters: RemoveSfvbPageBlogPostsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbPageBlogPostsResponse>;
+
+    /**
+     * Removes items by item id, at most 500 at a time.  Every id must be on the page, and one that is not changes nothing.  The items themselves are not touched.  Refused on a page whose selectors choose its items.  Always needs sfvb_publish. 
+     * @summary Take items off a page
+     * @param {number} storefrontOid 
+     * @param {string} path Page path, for example /lp/spring-sale/
+     * @param {SfvbPageItemsRemoveRequest} pageItemsRemoveRequest Items to take off the page
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SfvbApiInterface
+     */
+    removeSfvbPageItemsRaw(requestParameters: RemoveSfvbPageItemsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbPageItemsResponse>>;
+
+    /**
+     * Removes items by item id, at most 500 at a time.  Every id must be on the page, and one that is not changes nothing.  The items themselves are not touched.  Refused on a page whose selectors choose its items.  Always needs sfvb_publish. 
+     * Take items off a page
+     */
+    removeSfvbPageItems(requestParameters: RemoveSfvbPageItemsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbPageItemsResponse>;
 
     /**
      * Renders one node in the context of a theme and a page.  Unlike compile this is stateful.  Rendering resolves merchant data, so an element bound to an item renders wrongly, and silently, without a context item id.  One node per call, so a node that fails to render fails on its own rather than taking a batch with it, and a failure says why. 
@@ -1257,6 +1760,23 @@ export interface SfvbApiInterface {
     searchSfvbLibrary(requestParameters: SearchSfvbLibraryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbLibraryResponse>;
 
     /**
+     * type page starts an experiment element already saved in a page body - send path, slot and widget_id, and its name, objective, duration and variations are read from the element with the builder\'s rules (2 to 5 variations numbered 0 up with no gaps, 3 to 90 days, traffic on all or none adding up to 100).  The new id is written into the element and the body is saved, so pull it again before the next edit.  type url splits visitors between existing pages at router_url, and always ends by itself after duration_days.  Always needs sfvb_publish, because visitors are split as soon as it starts. 
+     * @summary Start an experiment
+     * @param {number} storefrontOid 
+     * @param {SfvbExperimentStartRequest} experimentStartRequest The experiment to start
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SfvbApiInterface
+     */
+    startSfvbExperimentRaw(requestParameters: StartSfvbExperimentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbExperiment>>;
+
+    /**
+     * type page starts an experiment element already saved in a page body - send path, slot and widget_id, and its name, objective, duration and variations are read from the element with the builder\'s rules (2 to 5 variations numbered 0 up with no gaps, 3 to 90 days, traffic on all or none adding up to 100).  The new id is written into the element and the body is saved, so pull it again before the next edit.  type url splits visitors between existing pages at router_url, and always ends by itself after duration_days.  Always needs sfvb_publish, because visitors are split as soon as it starts. 
+     * Start an experiment
+     */
+    startSfvbExperiment(requestParameters: StartSfvbExperimentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbExperiment>;
+
+    /**
      * The second half of the two step upload.  The bytes are fetched from the key, checked against the extension they claim to be, and written exactly as a text write is - so the same If-Match precondition, the same read only refusal and the same publish gate apply.  An SVG is sanitized before it is stored.  Writing outside /themes/ requires sfvb_publish, because anything served off the storefront root is live by definition. 
      * @summary Store a binary asset that was already uploaded
      * @param {number} storefrontOid 
@@ -1314,6 +1834,118 @@ export interface SfvbApiInterface {
  * 
  */
 export class SfvbApi extends runtime.BaseAPI implements SfvbApiInterface {
+
+    /**
+     * Adds posts by blog_post_oid, at most 500 at a time.  Every oid must be a post on this storefront, and one that is not changes nothing.  Refused on a page whose selectors choose its blog posts.  Always needs sfvb_publish. 
+     * Assign blog posts to a page
+     */
+    async addSfvbPageBlogPostsRaw(requestParameters: AddSfvbPageBlogPostsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbPageBlogPostsResponse>> {
+        if (requestParameters.storefrontOid === null || requestParameters.storefrontOid === undefined) {
+            throw new runtime.RequiredError('storefrontOid','Required parameter requestParameters.storefrontOid was null or undefined when calling addSfvbPageBlogPosts.');
+        }
+
+        if (requestParameters.path === null || requestParameters.path === undefined) {
+            throw new runtime.RequiredError('path','Required parameter requestParameters.path was null or undefined when calling addSfvbPageBlogPosts.');
+        }
+
+        if (requestParameters.pageBlogPostsRequest === null || requestParameters.pageBlogPostsRequest === undefined) {
+            throw new runtime.RequiredError('pageBlogPostsRequest','Required parameter requestParameters.pageBlogPostsRequest was null or undefined when calling addSfvbPageBlogPosts.');
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters.path !== undefined) {
+            queryParameters['path'] = requestParameters.path;
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json; charset=UTF-8';
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", []);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/sfvb/storefronts/{storefront_oid}/pages/blog_posts/add`.replace(`{${"storefront_oid"}}`, encodeURIComponent(String(requestParameters.storefrontOid))),
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: SfvbPageBlogPostsRequestToJSON(requestParameters.pageBlogPostsRequest),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => SfvbPageBlogPostsResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Adds posts by blog_post_oid, at most 500 at a time.  Every oid must be a post on this storefront, and one that is not changes nothing.  Refused on a page whose selectors choose its blog posts.  Always needs sfvb_publish. 
+     * Assign blog posts to a page
+     */
+    async addSfvbPageBlogPosts(requestParameters: AddSfvbPageBlogPostsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbPageBlogPostsResponse> {
+        const response = await this.addSfvbPageBlogPostsRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Adds items by item id, at most 500 at a time, or changes the sort order or url part of items already on the page.  Every id is checked first and one unknown id changes nothing.  Refused on a page whose selectors choose its items.  sort_order is refused unless the page sorts its items by a custom order.  Always needs sfvb_publish. 
+     * Assign items to a page
+     */
+    async addSfvbPageItemsRaw(requestParameters: AddSfvbPageItemsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbPageItemsResponse>> {
+        if (requestParameters.storefrontOid === null || requestParameters.storefrontOid === undefined) {
+            throw new runtime.RequiredError('storefrontOid','Required parameter requestParameters.storefrontOid was null or undefined when calling addSfvbPageItems.');
+        }
+
+        if (requestParameters.path === null || requestParameters.path === undefined) {
+            throw new runtime.RequiredError('path','Required parameter requestParameters.path was null or undefined when calling addSfvbPageItems.');
+        }
+
+        if (requestParameters.pageItemsAddRequest === null || requestParameters.pageItemsAddRequest === undefined) {
+            throw new runtime.RequiredError('pageItemsAddRequest','Required parameter requestParameters.pageItemsAddRequest was null or undefined when calling addSfvbPageItems.');
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters.path !== undefined) {
+            queryParameters['path'] = requestParameters.path;
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json; charset=UTF-8';
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", []);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/sfvb/storefronts/{storefront_oid}/pages/items/add`.replace(`{${"storefront_oid"}}`, encodeURIComponent(String(requestParameters.storefrontOid))),
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: SfvbPageItemsAddRequestToJSON(requestParameters.pageItemsAddRequest),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => SfvbPageItemsResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Adds items by item id, at most 500 at a time, or changes the sort order or url part of items already on the page.  Every id is checked first and one unknown id changes nothing.  Refused on a page whose selectors choose its items.  sort_order is refused unless the page sorts its items by a custom order.  Always needs sfvb_publish. 
+     * Assign items to a page
+     */
+    async addSfvbPageItems(requestParameters: AddSfvbPageItemsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbPageItemsResponse> {
+        const response = await this.addSfvbPageItemsRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
 
     /**
      * Compiles a container document to Velocity without storing anything.  Supply theme_oid to compile with the theme\'s inherit groups applied; omit it to compile standalone. 
@@ -1642,6 +2274,54 @@ export class SfvbApi extends runtime.BaseAPI implements SfvbApiInterface {
     }
 
     /**
+     * Copies what the store admin\'s duplicate copies - settings, items, blog posts, permissions, attributes, selectors, images and the page folder with its body.  The copy goes to the path you choose, under any existing page, with the same path rules as creating a page, and a 409 with the code sfvb.page_exists when that path is taken.  The root page and pages with pages under them cannot be copied.  A page whose folder holds a started experiment is refused, because the copy would share the experiment - end it first.  Translated title and description text is not copied.  Always needs sfvb_publish, because the copy is live as soon as it exists. 
+     * Copy a page to a new path
+     */
+    async duplicateSfvbPageRaw(requestParameters: DuplicateSfvbPageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbPageResponse>> {
+        if (requestParameters.storefrontOid === null || requestParameters.storefrontOid === undefined) {
+            throw new runtime.RequiredError('storefrontOid','Required parameter requestParameters.storefrontOid was null or undefined when calling duplicateSfvbPage.');
+        }
+
+        if (requestParameters.pageDuplicateRequest === null || requestParameters.pageDuplicateRequest === undefined) {
+            throw new runtime.RequiredError('pageDuplicateRequest','Required parameter requestParameters.pageDuplicateRequest was null or undefined when calling duplicateSfvbPage.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json; charset=UTF-8';
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", []);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/sfvb/storefronts/{storefront_oid}/pages/duplicate`.replace(`{${"storefront_oid"}}`, encodeURIComponent(String(requestParameters.storefrontOid))),
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: SfvbPageDuplicateRequestToJSON(requestParameters.pageDuplicateRequest),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => SfvbPageResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Copies what the store admin\'s duplicate copies - settings, items, blog posts, permissions, attributes, selectors, images and the page folder with its body.  The copy goes to the path you choose, under any existing page, with the same path rules as creating a page, and a 409 with the code sfvb.page_exists when that path is taken.  The root page and pages with pages under them cannot be copied.  A page whose folder holds a started experiment is refused, because the copy would share the experiment - end it first.  Translated title and description text is not copied.  Always needs sfvb_publish, because the copy is live as soon as it exists. 
+     * Copy a page to a new path
+     */
+    async duplicateSfvbPage(requestParameters: DuplicateSfvbPageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbPageResponse> {
+        const response = await this.duplicateSfvbPageRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
      * Copies a theme into a new one and returns a job handle to poll.  Asynchronous, because copying a theme copies every file in it.  Needs sfvb_write rather than sfvb_publish, because the job explicitly does not activate what it creates, so the worst outcome of a mistaken call is a spare theme.  This is how you get somewhere safe to work - duplicate, edit the copy with an ordinary write scope, and let a human promote it. 
      * Duplicate a theme
      */
@@ -1690,6 +2370,54 @@ export class SfvbApi extends runtime.BaseAPI implements SfvbApiInterface {
      */
     async duplicateSfvbTheme(requestParameters: DuplicateSfvbThemeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbThemeJobResponse> {
         const response = await this.duplicateSfvbThemeRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Ends a running experiment.  With winner_variation_number the winner gets all new visitors, and a page experiment\'s winning content is promoted into the page by the completion job on its next run, which also emails the merchant.  Without a winner a page experiment\'s id is cleared from its page body so the page shows variation 0, and a url experiment sends everyone to variation 0.  Visitors already assigned to a url experiment keep their page for up to 30 days.  Always needs sfvb_publish. 
+     * End an experiment
+     */
+    async endSfvbExperimentRaw(requestParameters: EndSfvbExperimentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbExperiment>> {
+        if (requestParameters.storefrontOid === null || requestParameters.storefrontOid === undefined) {
+            throw new runtime.RequiredError('storefrontOid','Required parameter requestParameters.storefrontOid was null or undefined when calling endSfvbExperiment.');
+        }
+
+        if (requestParameters.experimentOid === null || requestParameters.experimentOid === undefined) {
+            throw new runtime.RequiredError('experimentOid','Required parameter requestParameters.experimentOid was null or undefined when calling endSfvbExperiment.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json; charset=UTF-8';
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", []);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/sfvb/storefronts/{storefront_oid}/experiments/{experiment_oid}/end`.replace(`{${"storefront_oid"}}`, encodeURIComponent(String(requestParameters.storefrontOid))).replace(`{${"experiment_oid"}}`, encodeURIComponent(String(requestParameters.experimentOid))),
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: SfvbExperimentEndRequestToJSON(requestParameters.experimentEndRequest),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => SfvbExperimentFromJSON(jsonValue));
+    }
+
+    /**
+     * Ends a running experiment.  With winner_variation_number the winner gets all new visitors, and a page experiment\'s winning content is promoted into the page by the completion job on its next run, which also emails the merchant.  Without a winner a page experiment\'s id is cleared from its page body so the page shows variation 0, and a url experiment sends everyone to variation 0.  Visitors already assigned to a url experiment keep their page for up to 30 days.  Always needs sfvb_publish. 
+     * End an experiment
+     */
+    async endSfvbExperiment(requestParameters: EndSfvbExperimentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbExperiment> {
+        const response = await this.endSfvbExperimentRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
@@ -1883,6 +2611,96 @@ export class SfvbApi extends runtime.BaseAPI implements SfvbApiInterface {
      */
     async getSfvbElement(requestParameters: GetSfvbElementRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbElementSchemaResponse> {
         const response = await this.getSfvbElementRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * The experiment, its variations and their statistics, and with daily=true each variation\'s daily rows.  p95_sessions_needed is estimated only after 1000 sessions, and sessions_needed_computed_dts says when.  For a url experiment, router_url is the address visitors must enter through. 
+     * Read one experiment and its statistics
+     */
+    async getSfvbExperimentRaw(requestParameters: GetSfvbExperimentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbExperiment>> {
+        if (requestParameters.storefrontOid === null || requestParameters.storefrontOid === undefined) {
+            throw new runtime.RequiredError('storefrontOid','Required parameter requestParameters.storefrontOid was null or undefined when calling getSfvbExperiment.');
+        }
+
+        if (requestParameters.experimentOid === null || requestParameters.experimentOid === undefined) {
+            throw new runtime.RequiredError('experimentOid','Required parameter requestParameters.experimentOid was null or undefined when calling getSfvbExperiment.');
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters.daily !== undefined) {
+            queryParameters['daily'] = requestParameters.daily;
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", []);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/sfvb/storefronts/{storefront_oid}/experiments/{experiment_oid}`.replace(`{${"storefront_oid"}}`, encodeURIComponent(String(requestParameters.storefrontOid))).replace(`{${"experiment_oid"}}`, encodeURIComponent(String(requestParameters.experimentOid))),
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => SfvbExperimentFromJSON(jsonValue));
+    }
+
+    /**
+     * The experiment, its variations and their statistics, and with daily=true each variation\'s daily rows.  p95_sessions_needed is estimated only after 1000 sessions, and sessions_needed_computed_dts says when.  For a url experiment, router_url is the address visitors must enter through. 
+     * Read one experiment and its statistics
+     */
+    async getSfvbExperiment(requestParameters: GetSfvbExperimentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbExperiment> {
+        const response = await this.getSfvbExperimentRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Each objective with what is measured per session and compared between variations, the usual optimization type, and whether it needs an event name. 
+     * List the objectives an experiment can optimize
+     */
+    async getSfvbExperimentObjectivesRaw(requestParameters: GetSfvbExperimentObjectivesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbExperimentObjectivesResponse>> {
+        if (requestParameters.storefrontOid === null || requestParameters.storefrontOid === undefined) {
+            throw new runtime.RequiredError('storefrontOid','Required parameter requestParameters.storefrontOid was null or undefined when calling getSfvbExperimentObjectives.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", []);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/sfvb/storefronts/{storefront_oid}/experiments/objectives`.replace(`{${"storefront_oid"}}`, encodeURIComponent(String(requestParameters.storefrontOid))),
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => SfvbExperimentObjectivesResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Each objective with what is measured per session and compared between variations, the usual optimization type, and whether it needs an event name. 
+     * List the objectives an experiment can optimize
+     */
+    async getSfvbExperimentObjectives(requestParameters: GetSfvbExperimentObjectivesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbExperimentObjectivesResponse> {
+        const response = await this.getSfvbExperimentObjectivesRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
@@ -2157,6 +2975,153 @@ export class SfvbApi extends runtime.BaseAPI implements SfvbApiInterface {
      */
     async getSfvbPage(requestParameters: GetSfvbPageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbPageResponse> {
         const response = await this.getSfvbPageRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * The posts the page shows.  uses_selectors is true when the page\'s blog post selectors choose them instead. 
+     * Read the blog posts assigned to a page
+     */
+    async getSfvbPageBlogPostsRaw(requestParameters: GetSfvbPageBlogPostsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbPageBlogPostsResponse>> {
+        if (requestParameters.storefrontOid === null || requestParameters.storefrontOid === undefined) {
+            throw new runtime.RequiredError('storefrontOid','Required parameter requestParameters.storefrontOid was null or undefined when calling getSfvbPageBlogPosts.');
+        }
+
+        if (requestParameters.path === null || requestParameters.path === undefined) {
+            throw new runtime.RequiredError('path','Required parameter requestParameters.path was null or undefined when calling getSfvbPageBlogPosts.');
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters.path !== undefined) {
+            queryParameters['path'] = requestParameters.path;
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", []);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/sfvb/storefronts/{storefront_oid}/pages/blog_posts`.replace(`{${"storefront_oid"}}`, encodeURIComponent(String(requestParameters.storefrontOid))),
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => SfvbPageBlogPostsResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * The posts the page shows.  uses_selectors is true when the page\'s blog post selectors choose them instead. 
+     * Read the blog posts assigned to a page
+     */
+    async getSfvbPageBlogPosts(requestParameters: GetSfvbPageBlogPostsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbPageBlogPostsResponse> {
+        const response = await this.getSfvbPageBlogPostsRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * The items on the page with their sort order and url part.  uses_selectors is true when the page\'s selectors choose its items instead. 
+     * Read the items assigned to a page
+     */
+    async getSfvbPageItemsRaw(requestParameters: GetSfvbPageItemsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbPageItemsResponse>> {
+        if (requestParameters.storefrontOid === null || requestParameters.storefrontOid === undefined) {
+            throw new runtime.RequiredError('storefrontOid','Required parameter requestParameters.storefrontOid was null or undefined when calling getSfvbPageItems.');
+        }
+
+        if (requestParameters.path === null || requestParameters.path === undefined) {
+            throw new runtime.RequiredError('path','Required parameter requestParameters.path was null or undefined when calling getSfvbPageItems.');
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters.path !== undefined) {
+            queryParameters['path'] = requestParameters.path;
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", []);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/sfvb/storefronts/{storefront_oid}/pages/items`.replace(`{${"storefront_oid"}}`, encodeURIComponent(String(requestParameters.storefrontOid))),
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => SfvbPageItemsResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * The items on the page with their sort order and url part.  uses_selectors is true when the page\'s selectors choose its items instead. 
+     * Read the items assigned to a page
+     */
+    async getSfvbPageItems(requestParameters: GetSfvbPageItemsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbPageItemsResponse> {
+        const response = await this.getSfvbPageItemsRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * The conditions that choose the page\'s items and blog posts, and whether each set must all match. 
+     * Read a page\'s selectors
+     */
+    async getSfvbPageSelectorsRaw(requestParameters: GetSfvbPageSelectorsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbPageSelectors>> {
+        if (requestParameters.storefrontOid === null || requestParameters.storefrontOid === undefined) {
+            throw new runtime.RequiredError('storefrontOid','Required parameter requestParameters.storefrontOid was null or undefined when calling getSfvbPageSelectors.');
+        }
+
+        if (requestParameters.path === null || requestParameters.path === undefined) {
+            throw new runtime.RequiredError('path','Required parameter requestParameters.path was null or undefined when calling getSfvbPageSelectors.');
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters.path !== undefined) {
+            queryParameters['path'] = requestParameters.path;
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", []);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/sfvb/storefronts/{storefront_oid}/pages/selectors`.replace(`{${"storefront_oid"}}`, encodeURIComponent(String(requestParameters.storefrontOid))),
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => SfvbPageSelectorsFromJSON(jsonValue));
+    }
+
+    /**
+     * The conditions that choose the page\'s items and blog posts, and whether each set must all match. 
+     * Read a page\'s selectors
+     */
+    async getSfvbPageSelectors(requestParameters: GetSfvbPageSelectorsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbPageSelectors> {
+        const response = await this.getSfvbPageSelectorsRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
@@ -2458,6 +3423,54 @@ export class SfvbApi extends runtime.BaseAPI implements SfvbApiInterface {
     }
 
     /**
+     * Creates the page and its folder, the way the store admin\'s add page does.  The parent page must already exist, and the last part of the path may only contain letters, digits, hyphens and underscores - it is refused, not cleaned.  A path that already has a page is refused with a 409 and the code sfvb.page_exists.  Without a group_template the page inherits its parent\'s templates, or catalog_group.vm directly under the root.  Set attributes and images afterwards with the page attribute and image endpoints, and push the body to the page folder.  Always needs sfvb_publish, because the page is live as soon as it exists.  Deleting, moving and renaming pages stay in the store admin. 
+     * Create a page
+     */
+    async insertSfvbPageRaw(requestParameters: InsertSfvbPageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbPageResponse>> {
+        if (requestParameters.storefrontOid === null || requestParameters.storefrontOid === undefined) {
+            throw new runtime.RequiredError('storefrontOid','Required parameter requestParameters.storefrontOid was null or undefined when calling insertSfvbPage.');
+        }
+
+        if (requestParameters.pageCreateRequest === null || requestParameters.pageCreateRequest === undefined) {
+            throw new runtime.RequiredError('pageCreateRequest','Required parameter requestParameters.pageCreateRequest was null or undefined when calling insertSfvbPage.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json; charset=UTF-8';
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", []);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/sfvb/storefronts/{storefront_oid}/pages`.replace(`{${"storefront_oid"}}`, encodeURIComponent(String(requestParameters.storefrontOid))),
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: SfvbPageCreateRequestToJSON(requestParameters.pageCreateRequest),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => SfvbPageResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Creates the page and its folder, the way the store admin\'s add page does.  The parent page must already exist, and the last part of the path may only contain letters, digits, hyphens and underscores - it is refused, not cleaned.  A path that already has a page is refused with a 409 and the code sfvb.page_exists.  Without a group_template the page inherits its parent\'s templates, or catalog_group.vm directly under the root.  Set attributes and images afterwards with the page attribute and image endpoints, and push the body to the page folder.  Always needs sfvb_publish, because the page is live as soon as it exists.  Deleting, moving and renaming pages stay in the store admin. 
+     * Create a page
+     */
+    async insertSfvbPage(requestParameters: InsertSfvbPageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbPageResponse> {
+        const response = await this.insertSfvbPageRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
      * Copies the fragment\'s referenced assets into the storefront file system and returns the CJSON with its paths resolved, ready to place.  This writes, which is why it is a POST rather than the GET the internal admin endpoint uses.  It also requires sfvb_publish, because the assets land in the shared storefront file system, which is served to shoppers regardless of which theme is active, so no amount of working inside a duplicate theme isolates them. 
      * Install a library entry into a storefront
      */
@@ -2499,6 +3512,59 @@ export class SfvbApi extends runtime.BaseAPI implements SfvbApiInterface {
      */
     async installSfvbLibraryEntry(requestParameters: InstallSfvbLibraryEntryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbLibraryEntry> {
         const response = await this.installSfvbLibraryEntryRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * One page of blog posts, newest first, without their bodies.  search matches the title, body, excerpt, url part or author, or a tag exactly.  unassigned marks posts no page shows yet.  Use a post\'s blog_post_oid to assign it to a page. 
+     * List the storefront\'s blog posts
+     */
+    async listSfvbBlogPostsRaw(requestParameters: ListSfvbBlogPostsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbBlogPostsResponse>> {
+        if (requestParameters.storefrontOid === null || requestParameters.storefrontOid === undefined) {
+            throw new runtime.RequiredError('storefrontOid','Required parameter requestParameters.storefrontOid was null or undefined when calling listSfvbBlogPosts.');
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters.search !== undefined) {
+            queryParameters['search'] = requestParameters.search;
+        }
+
+        if (requestParameters.page !== undefined) {
+            queryParameters['page'] = requestParameters.page;
+        }
+
+        if (requestParameters.pageSize !== undefined) {
+            queryParameters['page_size'] = requestParameters.pageSize;
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", []);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/sfvb/storefronts/{storefront_oid}/blog_posts`.replace(`{${"storefront_oid"}}`, encodeURIComponent(String(requestParameters.storefrontOid))),
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => SfvbBlogPostsResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * One page of blog posts, newest first, without their bodies.  search matches the title, body, excerpt, url part or author, or a tag exactly.  unassigned marks posts no page shows yet.  Use a post\'s blog_post_oid to assign it to a page. 
+     * List the storefront\'s blog posts
+     */
+    async listSfvbBlogPosts(requestParameters: ListSfvbBlogPostsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbBlogPostsResponse> {
+        const response = await this.listSfvbBlogPostsRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
@@ -2589,6 +3655,59 @@ export class SfvbApi extends runtime.BaseAPI implements SfvbApiInterface {
      */
     async listSfvbElements(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbElementsResponse> {
         const response = await this.listSfvbElementsRaw(initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Every experiment that is not deleted, with its variations and their statistics - the same numbers the store admin shows.  Filter by status, by type (page, url, theme, openai), or by the page an experiment runs on.  auto_ends_at says when the engine will end an experiment by itself, and p_value is a one-way ANOVA across all variations.  Read one experiment for its daily statistics. 
+     * List the storefront\'s experiments
+     */
+    async listSfvbExperimentsRaw(requestParameters: ListSfvbExperimentsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbExperimentsResponse>> {
+        if (requestParameters.storefrontOid === null || requestParameters.storefrontOid === undefined) {
+            throw new runtime.RequiredError('storefrontOid','Required parameter requestParameters.storefrontOid was null or undefined when calling listSfvbExperiments.');
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters.status !== undefined) {
+            queryParameters['status'] = requestParameters.status;
+        }
+
+        if (requestParameters.type !== undefined) {
+            queryParameters['type'] = requestParameters.type;
+        }
+
+        if (requestParameters.path !== undefined) {
+            queryParameters['path'] = requestParameters.path;
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", []);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/sfvb/storefronts/{storefront_oid}/experiments`.replace(`{${"storefront_oid"}}`, encodeURIComponent(String(requestParameters.storefrontOid))),
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => SfvbExperimentsResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Every experiment that is not deleted, with its variations and their statistics - the same numbers the store admin shows.  Filter by status, by type (page, url, theme, openai), or by the page an experiment runs on.  auto_ends_at says when the engine will end an experiment by itself, and p_value is a one-way ANOVA across all variations.  Read one experiment for its daily statistics. 
+     * List the storefront\'s experiments
+     */
+    async listSfvbExperiments(requestParameters: ListSfvbExperimentsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbExperimentsResponse> {
+        const response = await this.listSfvbExperimentsRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
@@ -2695,6 +3814,51 @@ export class SfvbApi extends runtime.BaseAPI implements SfvbApiInterface {
     }
 
     /**
+     * Every page with its settings, sorted by path with the root first.  Hidden pages are included.  Pass under to list one page and everything below it.  Read from the same cached catalog the admin page tree uses, so a page created a moment ago can take a moment to appear here - read it directly with the single-page read to confirm a write. 
+     * List the storefront\'s pages
+     */
+    async listSfvbPagesRaw(requestParameters: ListSfvbPagesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbPageListResponse>> {
+        if (requestParameters.storefrontOid === null || requestParameters.storefrontOid === undefined) {
+            throw new runtime.RequiredError('storefrontOid','Required parameter requestParameters.storefrontOid was null or undefined when calling listSfvbPages.');
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters.under !== undefined) {
+            queryParameters['under'] = requestParameters.under;
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", []);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/sfvb/storefronts/{storefront_oid}/pages/list`.replace(`{${"storefront_oid"}}`, encodeURIComponent(String(requestParameters.storefrontOid))),
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => SfvbPageListResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Every page with its settings, sorted by path with the root first.  Hidden pages are included.  Pass under to list one page and everything below it.  Read from the same cached catalog the admin page tree uses, so a page created a moment ago can take a moment to appear here - read it directly with the single-page read to confirm a write. 
+     * List the storefront\'s pages
+     */
+    async listSfvbPages(requestParameters: ListSfvbPagesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbPageListResponse> {
+        const response = await this.listSfvbPagesRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
      * List storefronts
      */
     async listSfvbStorefrontsRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbStorefrontsResponse>> {
@@ -2726,6 +3890,51 @@ export class SfvbApi extends runtime.BaseAPI implements SfvbApiInterface {
      */
     async listSfvbStorefronts(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbStorefrontsResponse> {
         const response = await this.listSfvbStorefrontsRaw(initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Each template with the page type it declares and what it can render - items, sub-pages, blog posts, pagination, visual builder containers.  A page\'s group_template names one of these.  The storefront\'s fixed templates, such as checkout and my account, are flagged system and must never be assigned to a page. 
+     * List the active theme\'s templates
+     */
+    async listSfvbTemplatesRaw(requestParameters: ListSfvbTemplatesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbTemplatesResponse>> {
+        if (requestParameters.storefrontOid === null || requestParameters.storefrontOid === undefined) {
+            throw new runtime.RequiredError('storefrontOid','Required parameter requestParameters.storefrontOid was null or undefined when calling listSfvbTemplates.');
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters.pageType !== undefined) {
+            queryParameters['page_type'] = requestParameters.pageType;
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", []);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/sfvb/storefronts/{storefront_oid}/templates`.replace(`{${"storefront_oid"}}`, encodeURIComponent(String(requestParameters.storefrontOid))),
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => SfvbTemplatesResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Each template with the page type it declares and what it can render - items, sub-pages, blog posts, pagination, visual builder containers.  A page\'s group_template names one of these.  The storefront\'s fixed templates, such as checkout and my account, are flagged system and must never be assigned to a page. 
+     * List the active theme\'s templates
+     */
+    async listSfvbTemplates(requestParameters: ListSfvbTemplatesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbTemplatesResponse> {
+        const response = await this.listSfvbTemplatesRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
@@ -2876,6 +4085,62 @@ export class SfvbApi extends runtime.BaseAPI implements SfvbApiInterface {
      */
     async putSfvbContainer(requestParameters: PutSfvbContainerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbContainerResponse> {
         const response = await this.putSfvbContainerRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Stops or resumes sending new visitors to one variation of a running experiment.  Visitors already assigned keep seeing it.  Variation 0 cannot be paused, because the split falls back to it, and the last variation still receiving visitors cannot be paused.  Always needs sfvb_publish. 
+     * Pause or resume a variation
+     */
+    async putSfvbExperimentVariationRaw(requestParameters: PutSfvbExperimentVariationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbExperiment>> {
+        if (requestParameters.storefrontOid === null || requestParameters.storefrontOid === undefined) {
+            throw new runtime.RequiredError('storefrontOid','Required parameter requestParameters.storefrontOid was null or undefined when calling putSfvbExperimentVariation.');
+        }
+
+        if (requestParameters.experimentOid === null || requestParameters.experimentOid === undefined) {
+            throw new runtime.RequiredError('experimentOid','Required parameter requestParameters.experimentOid was null or undefined when calling putSfvbExperimentVariation.');
+        }
+
+        if (requestParameters.variationNumber === null || requestParameters.variationNumber === undefined) {
+            throw new runtime.RequiredError('variationNumber','Required parameter requestParameters.variationNumber was null or undefined when calling putSfvbExperimentVariation.');
+        }
+
+        if (requestParameters.experimentVariationUpdateRequest === null || requestParameters.experimentVariationUpdateRequest === undefined) {
+            throw new runtime.RequiredError('experimentVariationUpdateRequest','Required parameter requestParameters.experimentVariationUpdateRequest was null or undefined when calling putSfvbExperimentVariation.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json; charset=UTF-8';
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", []);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/sfvb/storefronts/{storefront_oid}/experiments/{experiment_oid}/variations/{variation_number}`.replace(`{${"storefront_oid"}}`, encodeURIComponent(String(requestParameters.storefrontOid))).replace(`{${"experiment_oid"}}`, encodeURIComponent(String(requestParameters.experimentOid))).replace(`{${"variation_number"}}`, encodeURIComponent(String(requestParameters.variationNumber))),
+            method: 'PUT',
+            headers: headerParameters,
+            query: queryParameters,
+            body: SfvbExperimentVariationUpdateRequestToJSON(requestParameters.experimentVariationUpdateRequest),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => SfvbExperimentFromJSON(jsonValue));
+    }
+
+    /**
+     * Stops or resumes sending new visitors to one variation of a running experiment.  Visitors already assigned keep seeing it.  Variation 0 cannot be paused, because the split falls back to it, and the last variation still receiving visitors cannot be paused.  Always needs sfvb_publish. 
+     * Pause or resume a variation
+     */
+    async putSfvbExperimentVariation(requestParameters: PutSfvbExperimentVariationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbExperiment> {
+        const response = await this.putSfvbExperimentVariationRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
@@ -3108,6 +4373,118 @@ export class SfvbApi extends runtime.BaseAPI implements SfvbApiInterface {
     }
 
     /**
+     * Each list you send replaces that whole set, and an empty list clears it.  A list you leave out is not touched.  The page\'s items or blog posts are recalculated from the new selectors straight away.  While a page has item selectors its items cannot be assigned by hand.  Always needs sfvb_publish. 
+     * Replace a page\'s selectors
+     */
+    async putSfvbPageSelectorsRaw(requestParameters: PutSfvbPageSelectorsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbPageSelectors>> {
+        if (requestParameters.storefrontOid === null || requestParameters.storefrontOid === undefined) {
+            throw new runtime.RequiredError('storefrontOid','Required parameter requestParameters.storefrontOid was null or undefined when calling putSfvbPageSelectors.');
+        }
+
+        if (requestParameters.path === null || requestParameters.path === undefined) {
+            throw new runtime.RequiredError('path','Required parameter requestParameters.path was null or undefined when calling putSfvbPageSelectors.');
+        }
+
+        if (requestParameters.pageSelectorsRequest === null || requestParameters.pageSelectorsRequest === undefined) {
+            throw new runtime.RequiredError('pageSelectorsRequest','Required parameter requestParameters.pageSelectorsRequest was null or undefined when calling putSfvbPageSelectors.');
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters.path !== undefined) {
+            queryParameters['path'] = requestParameters.path;
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json; charset=UTF-8';
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", []);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/sfvb/storefronts/{storefront_oid}/pages/selectors`.replace(`{${"storefront_oid"}}`, encodeURIComponent(String(requestParameters.storefrontOid))),
+            method: 'PUT',
+            headers: headerParameters,
+            query: queryParameters,
+            body: SfvbPageSelectorsToJSON(requestParameters.pageSelectorsRequest),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => SfvbPageSelectorsFromJSON(jsonValue));
+    }
+
+    /**
+     * Each list you send replaces that whole set, and an empty list clears it.  A list you leave out is not touched.  The page\'s items or blog posts are recalculated from the new selectors straight away.  While a page has item selectors its items cannot be assigned by hand.  Always needs sfvb_publish. 
+     * Replace a page\'s selectors
+     */
+    async putSfvbPageSelectors(requestParameters: PutSfvbPageSelectorsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbPageSelectors> {
+        const response = await this.putSfvbPageSelectorsRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * A partial update.  Only the fields you send change - title, description, templates, visibility, sitemap exclusion, sort orders, items per page and page type.  Unlike the store admin\'s page save, the page\'s attributes, images, items, selectors and permissions are left exactly as they are.  Fields that would move or rename the page, and fields this endpoint does not know, are refused.  The root page cannot be hidden.  Always needs sfvb_publish, because page settings are live. 
+     * Change a page\'s settings
+     */
+    async putSfvbPageSettingsRaw(requestParameters: PutSfvbPageSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbPageResponse>> {
+        if (requestParameters.storefrontOid === null || requestParameters.storefrontOid === undefined) {
+            throw new runtime.RequiredError('storefrontOid','Required parameter requestParameters.storefrontOid was null or undefined when calling putSfvbPageSettings.');
+        }
+
+        if (requestParameters.path === null || requestParameters.path === undefined) {
+            throw new runtime.RequiredError('path','Required parameter requestParameters.path was null or undefined when calling putSfvbPageSettings.');
+        }
+
+        if (requestParameters.pageSettingsRequest === null || requestParameters.pageSettingsRequest === undefined) {
+            throw new runtime.RequiredError('pageSettingsRequest','Required parameter requestParameters.pageSettingsRequest was null or undefined when calling putSfvbPageSettings.');
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters.path !== undefined) {
+            queryParameters['path'] = requestParameters.path;
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json; charset=UTF-8';
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", []);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/sfvb/storefronts/{storefront_oid}/pages/settings`.replace(`{${"storefront_oid"}}`, encodeURIComponent(String(requestParameters.storefrontOid))),
+            method: 'PUT',
+            headers: headerParameters,
+            query: queryParameters,
+            body: SfvbPageSettingsRequestToJSON(requestParameters.pageSettingsRequest),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => SfvbPageResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * A partial update.  Only the fields you send change - title, description, templates, visibility, sitemap exclusion, sort orders, items per page and page type.  Unlike the store admin\'s page save, the page\'s attributes, images, items, selectors and permissions are left exactly as they are.  Fields that would move or rename the page, and fields this endpoint does not know, are refused.  The root page cannot be hidden.  Always needs sfvb_publish, because page settings are live. 
+     * Change a page\'s settings
+     */
+    async putSfvbPageSettings(requestParameters: PutSfvbPageSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbPageResponse> {
+        const response = await this.putSfvbPageSettingsRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
      * Stores compiled containers against a session created by createSfvbPreviewSession.  Replaces whatever the session held.  The session must exist - this does not create one, so a deleted, expired or never issued id is a 404 rather than a new session.  Nothing durable is written.  Requires a token that resolves to a user, so use the device authorization flow. 
      * Push containers into a preview session
      */
@@ -3260,6 +4637,118 @@ export class SfvbApi extends runtime.BaseAPI implements SfvbApiInterface {
      */
     async putSfvbThemeAttributes(requestParameters: PutSfvbThemeAttributesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbThemeAttributesResponse> {
         const response = await this.putSfvbThemeAttributesRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Removes posts by blog_post_oid, at most 500 at a time.  Every oid must be on the page, and one that is not changes nothing.  The posts themselves are not touched.  Always needs sfvb_publish. 
+     * Take blog posts off a page
+     */
+    async removeSfvbPageBlogPostsRaw(requestParameters: RemoveSfvbPageBlogPostsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbPageBlogPostsResponse>> {
+        if (requestParameters.storefrontOid === null || requestParameters.storefrontOid === undefined) {
+            throw new runtime.RequiredError('storefrontOid','Required parameter requestParameters.storefrontOid was null or undefined when calling removeSfvbPageBlogPosts.');
+        }
+
+        if (requestParameters.path === null || requestParameters.path === undefined) {
+            throw new runtime.RequiredError('path','Required parameter requestParameters.path was null or undefined when calling removeSfvbPageBlogPosts.');
+        }
+
+        if (requestParameters.pageBlogPostsRequest === null || requestParameters.pageBlogPostsRequest === undefined) {
+            throw new runtime.RequiredError('pageBlogPostsRequest','Required parameter requestParameters.pageBlogPostsRequest was null or undefined when calling removeSfvbPageBlogPosts.');
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters.path !== undefined) {
+            queryParameters['path'] = requestParameters.path;
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json; charset=UTF-8';
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", []);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/sfvb/storefronts/{storefront_oid}/pages/blog_posts/remove`.replace(`{${"storefront_oid"}}`, encodeURIComponent(String(requestParameters.storefrontOid))),
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: SfvbPageBlogPostsRequestToJSON(requestParameters.pageBlogPostsRequest),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => SfvbPageBlogPostsResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Removes posts by blog_post_oid, at most 500 at a time.  Every oid must be on the page, and one that is not changes nothing.  The posts themselves are not touched.  Always needs sfvb_publish. 
+     * Take blog posts off a page
+     */
+    async removeSfvbPageBlogPosts(requestParameters: RemoveSfvbPageBlogPostsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbPageBlogPostsResponse> {
+        const response = await this.removeSfvbPageBlogPostsRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Removes items by item id, at most 500 at a time.  Every id must be on the page, and one that is not changes nothing.  The items themselves are not touched.  Refused on a page whose selectors choose its items.  Always needs sfvb_publish. 
+     * Take items off a page
+     */
+    async removeSfvbPageItemsRaw(requestParameters: RemoveSfvbPageItemsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbPageItemsResponse>> {
+        if (requestParameters.storefrontOid === null || requestParameters.storefrontOid === undefined) {
+            throw new runtime.RequiredError('storefrontOid','Required parameter requestParameters.storefrontOid was null or undefined when calling removeSfvbPageItems.');
+        }
+
+        if (requestParameters.path === null || requestParameters.path === undefined) {
+            throw new runtime.RequiredError('path','Required parameter requestParameters.path was null or undefined when calling removeSfvbPageItems.');
+        }
+
+        if (requestParameters.pageItemsRemoveRequest === null || requestParameters.pageItemsRemoveRequest === undefined) {
+            throw new runtime.RequiredError('pageItemsRemoveRequest','Required parameter requestParameters.pageItemsRemoveRequest was null or undefined when calling removeSfvbPageItems.');
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters.path !== undefined) {
+            queryParameters['path'] = requestParameters.path;
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json; charset=UTF-8';
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", []);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/sfvb/storefronts/{storefront_oid}/pages/items/remove`.replace(`{${"storefront_oid"}}`, encodeURIComponent(String(requestParameters.storefrontOid))),
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: SfvbPageItemsRemoveRequestToJSON(requestParameters.pageItemsRemoveRequest),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => SfvbPageItemsResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Removes items by item id, at most 500 at a time.  Every id must be on the page, and one that is not changes nothing.  The items themselves are not touched.  Refused on a page whose selectors choose its items.  Always needs sfvb_publish. 
+     * Take items off a page
+     */
+    async removeSfvbPageItems(requestParameters: RemoveSfvbPageItemsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbPageItemsResponse> {
+        const response = await this.removeSfvbPageItemsRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
@@ -3586,6 +5075,54 @@ export class SfvbApi extends runtime.BaseAPI implements SfvbApiInterface {
      */
     async searchSfvbLibrary(requestParameters: SearchSfvbLibraryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbLibraryResponse> {
         const response = await this.searchSfvbLibraryRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * type page starts an experiment element already saved in a page body - send path, slot and widget_id, and its name, objective, duration and variations are read from the element with the builder\'s rules (2 to 5 variations numbered 0 up with no gaps, 3 to 90 days, traffic on all or none adding up to 100).  The new id is written into the element and the body is saved, so pull it again before the next edit.  type url splits visitors between existing pages at router_url, and always ends by itself after duration_days.  Always needs sfvb_publish, because visitors are split as soon as it starts. 
+     * Start an experiment
+     */
+    async startSfvbExperimentRaw(requestParameters: StartSfvbExperimentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbExperiment>> {
+        if (requestParameters.storefrontOid === null || requestParameters.storefrontOid === undefined) {
+            throw new runtime.RequiredError('storefrontOid','Required parameter requestParameters.storefrontOid was null or undefined when calling startSfvbExperiment.');
+        }
+
+        if (requestParameters.experimentStartRequest === null || requestParameters.experimentStartRequest === undefined) {
+            throw new runtime.RequiredError('experimentStartRequest','Required parameter requestParameters.experimentStartRequest was null or undefined when calling startSfvbExperiment.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json; charset=UTF-8';
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", []);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/sfvb/storefronts/{storefront_oid}/experiments`.replace(`{${"storefront_oid"}}`, encodeURIComponent(String(requestParameters.storefrontOid))),
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: SfvbExperimentStartRequestToJSON(requestParameters.experimentStartRequest),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => SfvbExperimentFromJSON(jsonValue));
+    }
+
+    /**
+     * type page starts an experiment element already saved in a page body - send path, slot and widget_id, and its name, objective, duration and variations are read from the element with the builder\'s rules (2 to 5 variations numbered 0 up with no gaps, 3 to 90 days, traffic on all or none adding up to 100).  The new id is written into the element and the body is saved, so pull it again before the next edit.  type url splits visitors between existing pages at router_url, and always ends by itself after duration_days.  Always needs sfvb_publish, because visitors are split as soon as it starts. 
+     * Start an experiment
+     */
+    async startSfvbExperiment(requestParameters: StartSfvbExperimentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbExperiment> {
+        const response = await this.startSfvbExperimentRaw(requestParameters, initOverrides);
         return await response.value();
     }
 

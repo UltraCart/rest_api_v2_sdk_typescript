@@ -39,6 +39,24 @@ export interface SfvbPageResponse {
      */
     attributes?: Array<SfvbPageAttribute>;
     /**
+     * True when the page is left out of the sitemap and marked noindex.
+     * @type {boolean}
+     * @memberof SfvbPageResponse
+     */
+    exclude_from_sitemap?: boolean;
+    /**
+     * Template file that renders the page itself, a bare .vm name found anywhere in the active theme.
+     * @type {string}
+     * @memberof SfvbPageResponse
+     */
+    group_template?: string;
+    /**
+     * Template file that renders the item pages under this page.
+     * @type {string}
+     * @memberof SfvbPageResponse
+     */
+    item_template?: string;
+    /**
      * The page's images, including codes a template declares but nothing has attached yet.  These are what the pageimage element renders - the default image when pageImageCode is empty, otherwise the image with that code.  The default image comes first.
      * @type {Array<SfvbPageMultimedia>}
      * @memberof SfvbPageResponse
@@ -50,6 +68,24 @@ export interface SfvbPageResponse {
      * @memberof SfvbPageResponse
      */
     path?: string;
+    /**
+     * The page title.
+     * @type {string}
+     * @memberof SfvbPageResponse
+     */
+    title?: string;
+    /**
+     * False when the page is hidden.  A hidden page answers 404 to shoppers.
+     * @type {boolean}
+     * @memberof SfvbPageResponse
+     */
+    visible?: boolean;
+    /**
+     * When set, the page stays hidden until this time (ISO 8601, UTC).
+     * @type {string}
+     * @memberof SfvbPageResponse
+     */
+    visible_dts?: string;
 }
 
 
@@ -74,8 +110,14 @@ export function SfvbPageResponseFromJSONTyped(json: any, ignoreDiscriminator: bo
     return {
         
         'attributes': !exists(json, 'attributes') ? undefined : ((json['attributes'] as Array<any>).map(SfvbPageAttributeFromJSON)),
+        'exclude_from_sitemap': !exists(json, 'exclude_from_sitemap') ? undefined : json['exclude_from_sitemap'],
+        'group_template': !exists(json, 'group_template') ? undefined : json['group_template'],
+        'item_template': !exists(json, 'item_template') ? undefined : json['item_template'],
         'multimedia': !exists(json, 'multimedia') ? undefined : ((json['multimedia'] as Array<any>).map(SfvbPageMultimediaFromJSON)),
         'path': !exists(json, 'path') ? undefined : json['path'],
+        'title': !exists(json, 'title') ? undefined : json['title'],
+        'visible': !exists(json, 'visible') ? undefined : json['visible'],
+        'visible_dts': !exists(json, 'visible_dts') ? undefined : json['visible_dts'],
     };
 }
 
@@ -89,8 +131,14 @@ export function SfvbPageResponseToJSON(value?: SfvbPageResponse | null): any {
     return {
         
         'attributes': value.attributes === undefined ? undefined : ((value.attributes as Array<any>).map(SfvbPageAttributeToJSON)),
+        'exclude_from_sitemap': value.exclude_from_sitemap,
+        'group_template': value.group_template,
+        'item_template': value.item_template,
         'multimedia': value.multimedia === undefined ? undefined : ((value.multimedia as Array<any>).map(SfvbPageMultimediaToJSON)),
         'path': value.path,
+        'title': value.title,
+        'visible': value.visible,
+        'visible_dts': value.visible_dts,
     };
 }
 
