@@ -44,6 +44,12 @@ export interface SfvbContainerResponse {
      */
     last_modified?: string;
     /**
+     * The merchant item id of the owning item, for item containers only and absent for every other owner type.  owner_object_id is the item oid, which appears nowhere on a rendered storefront, so this is how a caller confirms which item an oid actually reached.  It is read fresh on every call and so reflects a renamed item.  A container's own id embeds this value, which is what a preview session keys an item container on.
+     * @type {string}
+     * @memberof SfvbContainerResponse
+     */
+    merchant_item_id?: string;
+    /**
      * Identifier of the owning object within its store.
      * @type {string}
      * @memberof SfvbContainerResponse
@@ -96,6 +102,7 @@ export function SfvbContainerResponseFromJSONTyped(json: any, ignoreDiscriminato
         'container_name': !exists(json, 'container_name') ? undefined : json['container_name'],
         'hash_sha256': !exists(json, 'hash_sha256') ? undefined : json['hash_sha256'],
         'last_modified': !exists(json, 'last_modified') ? undefined : json['last_modified'],
+        'merchant_item_id': !exists(json, 'merchant_item_id') ? undefined : json['merchant_item_id'],
         'owner_object_id': !exists(json, 'owner_object_id') ? undefined : json['owner_object_id'],
         'owner_type': !exists(json, 'owner_type') ? undefined : json['owner_type'],
     };
@@ -114,6 +121,7 @@ export function SfvbContainerResponseToJSON(value?: SfvbContainerResponse | null
         'container_name': value.container_name,
         'hash_sha256': value.hash_sha256,
         'last_modified': value.last_modified,
+        'merchant_item_id': value.merchant_item_id,
         'owner_object_id': value.owner_object_id,
         'owner_type': value.owner_type,
     };

@@ -577,7 +577,7 @@ export interface SfvbApiInterface {
     getSfvbCjsonUsedElements(requestParameters: GetSfvbCjsonUsedElementsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbElementsResponse>;
 
     /**
-     * owner_type is one of upsell, email, postcardfront, postcardback or item.  Item containers also require container_name.  Theme and page containers are files; read those through files/content. 
+     * owner_type is one of upsell, email, postcardfront, postcardback, item or itemid.  It also says how owner_object_id is read - item and upsell take an oid, itemid takes a merchant item id, and the rest take an esp uuid.  itemid reaches the same containers as item and is the way to address one from a storefront, where data-context-item-id carries the merchant item id and the oid appears nowhere.  Item containers also require container_name.  Theme and page containers are files; read those through files/content. 
      * @summary Read a container stored outside the file system
      * @param {number} storefrontOid 
      * @param {string} ownerType 
@@ -590,13 +590,13 @@ export interface SfvbApiInterface {
     getSfvbContainerRaw(requestParameters: GetSfvbContainerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbContainerResponse>>;
 
     /**
-     * owner_type is one of upsell, email, postcardfront, postcardback or item.  Item containers also require container_name.  Theme and page containers are files; read those through files/content. 
+     * owner_type is one of upsell, email, postcardfront, postcardback, item or itemid.  It also says how owner_object_id is read - item and upsell take an oid, itemid takes a merchant item id, and the rest take an esp uuid.  itemid reaches the same containers as item and is the way to address one from a storefront, where data-context-item-id carries the merchant item id and the oid appears nowhere.  Item containers also require container_name.  Theme and page containers are files; read those through files/content. 
      * Read a container stored outside the file system
      */
     getSfvbContainer(requestParameters: GetSfvbContainerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbContainerResponse>;
 
     /**
-     * Inspect or diff an earlier version without reverting to it.  The version is addressed through the container that owns it, so a history oid belonging to some other resource cannot be read through this route. 
+     * Inspect or diff an earlier version without reverting to it.  The version is addressed through the container that owns it, so a history oid belonging to some other resource cannot be read through this route.  owner_type also says how owner_object_id is read, and itemid addresses an item container by merchant item id. 
      * @summary Read the CJSON stored in one container history entry
      * @param {number} storefrontOid 
      * @param {number} containerHistoryOid 
@@ -610,7 +610,7 @@ export interface SfvbApiInterface {
     getSfvbContainerVersionRaw(requestParameters: GetSfvbContainerVersionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbContainerVersion>>;
 
     /**
-     * Inspect or diff an earlier version without reverting to it.  The version is addressed through the container that owns it, so a history oid belonging to some other resource cannot be read through this route. 
+     * Inspect or diff an earlier version without reverting to it.  The version is addressed through the container that owns it, so a history oid belonging to some other resource cannot be read through this route.  owner_type also says how owner_object_id is read, and itemid addresses an item container by merchant item id. 
      * Read the CJSON stored in one container history entry
      */
     getSfvbContainerVersion(requestParameters: GetSfvbContainerVersionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbContainerVersion>;
@@ -849,7 +849,7 @@ export interface SfvbApiInterface {
     installSfvbLibraryEntry(requestParameters: InstallSfvbLibraryEntryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbLibraryEntry>;
 
     /**
-     * 
+     * Addressed the same way as the container itself, so owner_type also says how owner_object_id is read and itemid lists the history of the item container that merchant item id names. 
      * @summary Version history for a container stored outside the file system
      * @param {number} storefrontOid 
      * @param {string} [ownerType] 
@@ -862,6 +862,7 @@ export interface SfvbApiInterface {
     listSfvbContainerVersionsRaw(requestParameters: ListSfvbContainerVersionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbContainerVersionsResponse>>;
 
     /**
+     * Addressed the same way as the container itself, so owner_type also says how owner_object_id is read and itemid lists the history of the item container that merchant item id names. 
      * Version history for a container stored outside the file system
      */
     listSfvbContainerVersions(requestParameters: ListSfvbContainerVersionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbContainerVersionsResponse>;
@@ -965,7 +966,7 @@ export interface SfvbApiInterface {
     listSfvbUpsellOffers(requestParameters: ListSfvbUpsellOffersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbUpsellOffersResponse>;
 
     /**
-     * Validation is mandatory and runs here regardless of whether the caller validated first.  The previous value is snapshotted before the write, so the change can be reverted.  Side effects the visual builder performs on save, such as upsell screenshot regeneration and email content review flagging, are applied too. 
+     * Validation is mandatory and runs here regardless of whether the caller validated first.  The previous value is snapshotted before the write, so the change can be reverted.  Side effects the visual builder performs on save, such as upsell screenshot regeneration and email content review flagging, are applied too.  owner_type also says how owner_object_id is read; send itemid to address an item container by merchant item id rather than by oid.  Either way the history records the one canonical address, so a container written under one spelling is listed and reverted under the other. 
      * @summary Write a container stored outside the file system
      * @param {number} storefrontOid 
      * @param {string} ownerType 
@@ -980,7 +981,7 @@ export interface SfvbApiInterface {
     putSfvbContainerRaw(requestParameters: PutSfvbContainerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbContainerResponse>>;
 
     /**
-     * Validation is mandatory and runs here regardless of whether the caller validated first.  The previous value is snapshotted before the write, so the change can be reverted.  Side effects the visual builder performs on save, such as upsell screenshot regeneration and email content review flagging, are applied too. 
+     * Validation is mandatory and runs here regardless of whether the caller validated first.  The previous value is snapshotted before the write, so the change can be reverted.  Side effects the visual builder performs on save, such as upsell screenshot regeneration and email content review flagging, are applied too.  owner_type also says how owner_object_id is read; send itemid to address an item container by merchant item id rather than by oid.  Either way the history records the one canonical address, so a container written under one spelling is listed and reverted under the other. 
      * Write a container stored outside the file system
      */
     putSfvbContainer(requestParameters: PutSfvbContainerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbContainerResponse>;
@@ -1132,7 +1133,7 @@ export interface SfvbApiInterface {
     reserveSfvbWidgetIds(requestParameters: ReserveSfvbWidgetIdsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbWidgetIdsResponse>;
 
     /**
-     * The restore is itself snapshotted, so a revert can be undone in turn.  Reverting to an entry recorded before the container existed removes it again.  Addressed through the owning container and guarded by If-Match, because a revert overwrites live content just as much as an ordinary write does. 
+     * The restore is itself snapshotted, so a revert can be undone in turn.  Reverting to an entry recorded before the container existed removes it again.  Addressed through the owning container and guarded by If-Match, because a revert overwrites live content just as much as an ordinary write does.  owner_type also says how owner_object_id is read, so a version written by oid can be reverted by merchant item id and the other way round. 
      * @summary Revert a container stored outside the file system
      * @param {number} storefrontOid 
      * @param {string} ownerType 
@@ -1147,7 +1148,7 @@ export interface SfvbApiInterface {
     revertSfvbContainerRaw(requestParameters: RevertSfvbContainerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbContainerResponse>>;
 
     /**
-     * The restore is itself snapshotted, so a revert can be undone in turn.  Reverting to an entry recorded before the container existed removes it again.  Addressed through the owning container and guarded by If-Match, because a revert overwrites live content just as much as an ordinary write does. 
+     * The restore is itself snapshotted, so a revert can be undone in turn.  Reverting to an entry recorded before the container existed removes it again.  Addressed through the owning container and guarded by If-Match, because a revert overwrites live content just as much as an ordinary write does.  owner_type also says how owner_object_id is read, so a version written by oid can be reverted by merchant item id and the other way round. 
      * Revert a container stored outside the file system
      */
     revertSfvbContainer(requestParameters: RevertSfvbContainerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbContainerResponse>;
@@ -1687,7 +1688,7 @@ export class SfvbApi extends runtime.BaseAPI implements SfvbApiInterface {
     }
 
     /**
-     * owner_type is one of upsell, email, postcardfront, postcardback or item.  Item containers also require container_name.  Theme and page containers are files; read those through files/content. 
+     * owner_type is one of upsell, email, postcardfront, postcardback, item or itemid.  It also says how owner_object_id is read - item and upsell take an oid, itemid takes a merchant item id, and the rest take an esp uuid.  itemid reaches the same containers as item and is the way to address one from a storefront, where data-context-item-id carries the merchant item id and the oid appears nowhere.  Item containers also require container_name.  Theme and page containers are files; read those through files/content. 
      * Read a container stored outside the file system
      */
     async getSfvbContainerRaw(requestParameters: GetSfvbContainerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbContainerResponse>> {
@@ -1731,7 +1732,7 @@ export class SfvbApi extends runtime.BaseAPI implements SfvbApiInterface {
     }
 
     /**
-     * owner_type is one of upsell, email, postcardfront, postcardback or item.  Item containers also require container_name.  Theme and page containers are files; read those through files/content. 
+     * owner_type is one of upsell, email, postcardfront, postcardback, item or itemid.  It also says how owner_object_id is read - item and upsell take an oid, itemid takes a merchant item id, and the rest take an esp uuid.  itemid reaches the same containers as item and is the way to address one from a storefront, where data-context-item-id carries the merchant item id and the oid appears nowhere.  Item containers also require container_name.  Theme and page containers are files; read those through files/content. 
      * Read a container stored outside the file system
      */
     async getSfvbContainer(requestParameters: GetSfvbContainerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbContainerResponse> {
@@ -1740,7 +1741,7 @@ export class SfvbApi extends runtime.BaseAPI implements SfvbApiInterface {
     }
 
     /**
-     * Inspect or diff an earlier version without reverting to it.  The version is addressed through the container that owns it, so a history oid belonging to some other resource cannot be read through this route. 
+     * Inspect or diff an earlier version without reverting to it.  The version is addressed through the container that owns it, so a history oid belonging to some other resource cannot be read through this route.  owner_type also says how owner_object_id is read, and itemid addresses an item container by merchant item id. 
      * Read the CJSON stored in one container history entry
      */
     async getSfvbContainerVersionRaw(requestParameters: GetSfvbContainerVersionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbContainerVersion>> {
@@ -1788,7 +1789,7 @@ export class SfvbApi extends runtime.BaseAPI implements SfvbApiInterface {
     }
 
     /**
-     * Inspect or diff an earlier version without reverting to it.  The version is addressed through the container that owns it, so a history oid belonging to some other resource cannot be read through this route. 
+     * Inspect or diff an earlier version without reverting to it.  The version is addressed through the container that owns it, so a history oid belonging to some other resource cannot be read through this route.  owner_type also says how owner_object_id is read, and itemid addresses an item container by merchant item id. 
      * Read the CJSON stored in one container history entry
      */
     async getSfvbContainerVersion(requestParameters: GetSfvbContainerVersionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbContainerVersion> {
@@ -2413,6 +2414,7 @@ export class SfvbApi extends runtime.BaseAPI implements SfvbApiInterface {
     }
 
     /**
+     * Addressed the same way as the container itself, so owner_type also says how owner_object_id is read and itemid lists the history of the item container that merchant item id names. 
      * Version history for a container stored outside the file system
      */
     async listSfvbContainerVersionsRaw(requestParameters: ListSfvbContainerVersionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbContainerVersionsResponse>> {
@@ -2456,6 +2458,7 @@ export class SfvbApi extends runtime.BaseAPI implements SfvbApiInterface {
     }
 
     /**
+     * Addressed the same way as the container itself, so owner_type also says how owner_object_id is read and itemid lists the history of the item container that merchant item id names. 
      * Version history for a container stored outside the file system
      */
     async listSfvbContainerVersions(requestParameters: ListSfvbContainerVersionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbContainerVersionsResponse> {
@@ -2720,7 +2723,7 @@ export class SfvbApi extends runtime.BaseAPI implements SfvbApiInterface {
     }
 
     /**
-     * Validation is mandatory and runs here regardless of whether the caller validated first.  The previous value is snapshotted before the write, so the change can be reverted.  Side effects the visual builder performs on save, such as upsell screenshot regeneration and email content review flagging, are applied too. 
+     * Validation is mandatory and runs here regardless of whether the caller validated first.  The previous value is snapshotted before the write, so the change can be reverted.  Side effects the visual builder performs on save, such as upsell screenshot regeneration and email content review flagging, are applied too.  owner_type also says how owner_object_id is read; send itemid to address an item container by merchant item id rather than by oid.  Either way the history records the one canonical address, so a container written under one spelling is listed and reverted under the other. 
      * Write a container stored outside the file system
      */
     async putSfvbContainerRaw(requestParameters: PutSfvbContainerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbContainerResponse>> {
@@ -2779,7 +2782,7 @@ export class SfvbApi extends runtime.BaseAPI implements SfvbApiInterface {
     }
 
     /**
-     * Validation is mandatory and runs here regardless of whether the caller validated first.  The previous value is snapshotted before the write, so the change can be reverted.  Side effects the visual builder performs on save, such as upsell screenshot regeneration and email content review flagging, are applied too. 
+     * Validation is mandatory and runs here regardless of whether the caller validated first.  The previous value is snapshotted before the write, so the change can be reverted.  Side effects the visual builder performs on save, such as upsell screenshot regeneration and email content review flagging, are applied too.  owner_type also says how owner_object_id is read; send itemid to address an item container by merchant item id rather than by oid.  Either way the history records the one canonical address, so a container written under one spelling is listed and reverted under the other. 
      * Write a container stored outside the file system
      */
     async putSfvbContainer(requestParameters: PutSfvbContainerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbContainerResponse> {
@@ -3221,7 +3224,7 @@ export class SfvbApi extends runtime.BaseAPI implements SfvbApiInterface {
     }
 
     /**
-     * The restore is itself snapshotted, so a revert can be undone in turn.  Reverting to an entry recorded before the container existed removes it again.  Addressed through the owning container and guarded by If-Match, because a revert overwrites live content just as much as an ordinary write does. 
+     * The restore is itself snapshotted, so a revert can be undone in turn.  Reverting to an entry recorded before the container existed removes it again.  Addressed through the owning container and guarded by If-Match, because a revert overwrites live content just as much as an ordinary write does.  owner_type also says how owner_object_id is read, so a version written by oid can be reverted by merchant item id and the other way round. 
      * Revert a container stored outside the file system
      */
     async revertSfvbContainerRaw(requestParameters: RevertSfvbContainerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbContainerResponse>> {
@@ -3280,7 +3283,7 @@ export class SfvbApi extends runtime.BaseAPI implements SfvbApiInterface {
     }
 
     /**
-     * The restore is itself snapshotted, so a revert can be undone in turn.  Reverting to an entry recorded before the container existed removes it again.  Addressed through the owning container and guarded by If-Match, because a revert overwrites live content just as much as an ordinary write does. 
+     * The restore is itself snapshotted, so a revert can be undone in turn.  Reverting to an entry recorded before the container existed removes it again.  Addressed through the owning container and guarded by If-Match, because a revert overwrites live content just as much as an ordinary write does.  owner_type also says how owner_object_id is read, so a version written by oid can be reverted by merchant item id and the other way round. 
      * Revert a container stored outside the file system
      */
     async revertSfvbContainer(requestParameters: RevertSfvbContainerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbContainerResponse> {
