@@ -120,6 +120,12 @@ import {
     SfvbRenderResponse,
     SfvbRenderResponseFromJSON,
     SfvbRenderResponseToJSON,
+    SfvbSiteAttributeUpdateRequest,
+    SfvbSiteAttributeUpdateRequestFromJSON,
+    SfvbSiteAttributeUpdateRequestToJSON,
+    SfvbSiteAttributesResponse,
+    SfvbSiteAttributesResponseFromJSON,
+    SfvbSiteAttributesResponseToJSON,
     SfvbStorefrontsResponse,
     SfvbStorefrontsResponseFromJSON,
     SfvbStorefrontsResponseToJSON,
@@ -265,6 +271,10 @@ export interface GetSfvbPreviewUrlRequest {
     path?: string;
 }
 
+export interface GetSfvbSiteAttributesRequest {
+    storefrontOid: number;
+}
+
 export interface GetSfvbThemeRequest {
     storefrontOid: number;
     themeOid: number;
@@ -353,6 +363,11 @@ export interface PutSfvbPreviewSessionRequest {
     previewSessionId: string;
     previewSession: SfvbPreviewSessionRequest;
     themeOid?: number;
+}
+
+export interface PutSfvbSiteAttributesRequest {
+    storefrontOid: number;
+    siteAttributeUpdateRequest: SfvbSiteAttributeUpdateRequest;
 }
 
 export interface PutSfvbThemeAttributesRequest {
@@ -752,6 +767,22 @@ export interface SfvbApiInterface {
     getSfvbPreviewUrl(requestParameters: GetSfvbPreviewUrlRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbPreviewUrlResponse>;
 
     /**
+     * The values the siteattribute element and $site.attr render.  These are not in any file or theme.  Attributes a template declares but nothing has set are included with the template\'s default, so the response describes what the templates can render rather than only what has been saved.  Credentials stored as site attributes are never included. 
+     * @summary Read a storefront\'s site attributes
+     * @param {number} storefrontOid 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SfvbApiInterface
+     */
+    getSfvbSiteAttributesRaw(requestParameters: GetSfvbSiteAttributesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbSiteAttributesResponse>>;
+
+    /**
+     * The values the siteattribute element and $site.attr render.  These are not in any file or theme.  Attributes a template declares but nothing has set are included with the template\'s default, so the response describes what the templates can render rather than only what has been saved.  Credentials stored as site attributes are never included. 
+     * Read a storefront\'s site attributes
+     */
+    getSfvbSiteAttributes(requestParameters: GetSfvbSiteAttributesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbSiteAttributesResponse>;
+
+    /**
      * 
      * @summary Get a theme
      * @param {number} storefrontOid 
@@ -1078,6 +1109,23 @@ export interface SfvbApiInterface {
      * Push containers into a preview session
      */
     putSfvbPreviewSession(requestParameters: PutSfvbPreviewSessionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbPreviewSessionResponse>;
+
+    /**
+     * A partial update.  Only the attributes you name are changed.  Every entry is checked before any is written.  List, video list, mailing list and item set attributes are refused, and so are the General screen settings other than the title, the SEO description and keywords and the social account names.  Credentials are refused.  Always needs sfvb_publish, because every theme reads the same attributes and there is no dormant copy to change instead.  The admin General screen saves the whole storefront, so a merchant with it open can still overwrite a change made here. 
+     * @summary Change a storefront\'s site attributes
+     * @param {number} storefrontOid 
+     * @param {SfvbSiteAttributeUpdateRequest} siteAttributeUpdateRequest Attributes to change
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SfvbApiInterface
+     */
+    putSfvbSiteAttributesRaw(requestParameters: PutSfvbSiteAttributesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbSiteAttributesResponse>>;
+
+    /**
+     * A partial update.  Only the attributes you name are changed.  Every entry is checked before any is written.  List, video list, mailing list and item set attributes are refused, and so are the General screen settings other than the title, the SEO description and keywords and the social account names.  Credentials are refused.  Always needs sfvb_publish, because every theme reads the same attributes and there is no dormant copy to change instead.  The admin General screen saves the whole storefront, so a merchant with it open can still overwrite a change made here. 
+     * Change a storefront\'s site attributes
+     */
+    putSfvbSiteAttributes(requestParameters: PutSfvbSiteAttributesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbSiteAttributesResponse>;
 
     /**
      * A partial update.  Only the slots you name are changed and every other slot on the theme keeps its value, so there is no need to send the whole set back to change one color.  Send a whole palette in one call rather than one call per color - they are applied together, so the storefront never renders half of a change.  Needs sfvb_publish when the theme is the one serving live traffic, because a color is referenced by name from every template that uses it and one write repaints the whole storefront at once.  On a dormant theme sfvb_write is enough, which is what makes duplicate-then-restyle work. 
@@ -2162,6 +2210,47 @@ export class SfvbApi extends runtime.BaseAPI implements SfvbApiInterface {
     }
 
     /**
+     * The values the siteattribute element and $site.attr render.  These are not in any file or theme.  Attributes a template declares but nothing has set are included with the template\'s default, so the response describes what the templates can render rather than only what has been saved.  Credentials stored as site attributes are never included. 
+     * Read a storefront\'s site attributes
+     */
+    async getSfvbSiteAttributesRaw(requestParameters: GetSfvbSiteAttributesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbSiteAttributesResponse>> {
+        if (requestParameters.storefrontOid === null || requestParameters.storefrontOid === undefined) {
+            throw new runtime.RequiredError('storefrontOid','Required parameter requestParameters.storefrontOid was null or undefined when calling getSfvbSiteAttributes.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", []);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/sfvb/storefronts/{storefront_oid}/attributes`.replace(`{${"storefront_oid"}}`, encodeURIComponent(String(requestParameters.storefrontOid))),
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => SfvbSiteAttributesResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * The values the siteattribute element and $site.attr render.  These are not in any file or theme.  Attributes a template declares but nothing has set are included with the template\'s default, so the response describes what the templates can render rather than only what has been saved.  Credentials stored as site attributes are never included. 
+     * Read a storefront\'s site attributes
+     */
+    async getSfvbSiteAttributes(requestParameters: GetSfvbSiteAttributesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbSiteAttributesResponse> {
+        const response = await this.getSfvbSiteAttributesRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
      * Get a theme
      */
     async getSfvbThemeRaw(requestParameters: GetSfvbThemeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbTheme>> {
@@ -3071,6 +3160,54 @@ export class SfvbApi extends runtime.BaseAPI implements SfvbApiInterface {
      */
     async putSfvbPreviewSession(requestParameters: PutSfvbPreviewSessionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbPreviewSessionResponse> {
         const response = await this.putSfvbPreviewSessionRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * A partial update.  Only the attributes you name are changed.  Every entry is checked before any is written.  List, video list, mailing list and item set attributes are refused, and so are the General screen settings other than the title, the SEO description and keywords and the social account names.  Credentials are refused.  Always needs sfvb_publish, because every theme reads the same attributes and there is no dormant copy to change instead.  The admin General screen saves the whole storefront, so a merchant with it open can still overwrite a change made here. 
+     * Change a storefront\'s site attributes
+     */
+    async putSfvbSiteAttributesRaw(requestParameters: PutSfvbSiteAttributesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbSiteAttributesResponse>> {
+        if (requestParameters.storefrontOid === null || requestParameters.storefrontOid === undefined) {
+            throw new runtime.RequiredError('storefrontOid','Required parameter requestParameters.storefrontOid was null or undefined when calling putSfvbSiteAttributes.');
+        }
+
+        if (requestParameters.siteAttributeUpdateRequest === null || requestParameters.siteAttributeUpdateRequest === undefined) {
+            throw new runtime.RequiredError('siteAttributeUpdateRequest','Required parameter requestParameters.siteAttributeUpdateRequest was null or undefined when calling putSfvbSiteAttributes.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", []);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/sfvb/storefronts/{storefront_oid}/attributes`.replace(`{${"storefront_oid"}}`, encodeURIComponent(String(requestParameters.storefrontOid))),
+            method: 'PUT',
+            headers: headerParameters,
+            query: queryParameters,
+            body: SfvbSiteAttributeUpdateRequestToJSON(requestParameters.siteAttributeUpdateRequest),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => SfvbSiteAttributesResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * A partial update.  Only the attributes you name are changed.  Every entry is checked before any is written.  List, video list, mailing list and item set attributes are refused, and so are the General screen settings other than the title, the SEO description and keywords and the social account names.  Credentials are refused.  Always needs sfvb_publish, because every theme reads the same attributes and there is no dormant copy to change instead.  The admin General screen saves the whole storefront, so a merchant with it open can still overwrite a change made here. 
+     * Change a storefront\'s site attributes
+     */
+    async putSfvbSiteAttributes(requestParameters: PutSfvbSiteAttributesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbSiteAttributesResponse> {
+        const response = await this.putSfvbSiteAttributesRaw(requestParameters, initOverrides);
         return await response.value();
     }
 

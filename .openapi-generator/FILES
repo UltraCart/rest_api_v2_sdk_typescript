@@ -1032,6 +1032,10 @@ src/models/SfvbPreviewSessionResponse.ts
 src/models/SfvbPreviewUrlResponse.ts
 src/models/SfvbRenderRequest.ts
 src/models/SfvbRenderResponse.ts
+src/models/SfvbSiteAttribute.ts
+src/models/SfvbSiteAttributeUpdate.ts
+src/models/SfvbSiteAttributeUpdateRequest.ts
+src/models/SfvbSiteAttributesResponse.ts
 src/models/SfvbStorefront.ts
 src/models/SfvbStorefrontsResponse.ts
 src/models/SfvbTheme.ts
