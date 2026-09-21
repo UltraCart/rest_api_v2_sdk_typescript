@@ -1,12 +1,12 @@
 # UltraCart Typescript SDK
-## ultracart_rest_api_v2_typescript@4.1.166
+## ultracart_rest_api_v2_typescript@4.1.167
 
 Every API method call has a sample for every language SDK.  See https://github.com/UltraCart/sdk_samples
 
 Installation
 
 ```
-npm install ultracart_rest_api_v2_typescript@4.1.166 --save
+npm install ultracart_rest_api_v2_typescript@4.1.167 --save
 ```
 
 ```typescript
@@ -74,9 +74,8 @@ export class GetOrder {
 // });
 ```
 
-\n\n
-```
-\n\n
+
+
 
 
 
@@ -85,7 +84,7 @@ Not every change is committed to every SDK.
 
 | Version | Date | Comments |
 | --: | :-: | --- |
-| 4.1.166 | 09/21/2026 | sfvb internal testing |
+| 4.1.167 | 09/21/2026 | automation test |
 | 4.1.165 | 09/21/2026 | automation testing |
 | 4.1.164 | 09/20/2026 | automation testing |
 | 4.1.163 | 09/20/2026 | automation testing |
