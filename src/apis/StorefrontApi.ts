@@ -63,6 +63,15 @@ import {
     EmailCommseqEmailResponse,
     EmailCommseqEmailResponseFromJSON,
     EmailCommseqEmailResponseToJSON,
+    EmailCommseqEmailReviewStatusResponse,
+    EmailCommseqEmailReviewStatusResponseFromJSON,
+    EmailCommseqEmailReviewStatusResponseToJSON,
+    EmailCommseqEmailReviewStatusesRequest,
+    EmailCommseqEmailReviewStatusesRequestFromJSON,
+    EmailCommseqEmailReviewStatusesRequestToJSON,
+    EmailCommseqEmailReviewStatusesResponse,
+    EmailCommseqEmailReviewStatusesResponseFromJSON,
+    EmailCommseqEmailReviewStatusesResponseToJSON,
     EmailCommseqEmailSendTestRequest,
     EmailCommseqEmailSendTestRequestFromJSON,
     EmailCommseqEmailSendTestRequestToJSON,
@@ -883,6 +892,16 @@ export interface GetEmailPostcardsRequest {
 export interface GetEmailPostcardsMultipleRequest {
     storefrontOid: number;
     emailCommseqPostcardsRequest: EmailCommseqPostcardsRequest;
+}
+
+export interface GetEmailReviewStatusRequest {
+    storefrontOid: number;
+    commseqEmailUuid: string;
+}
+
+export interface GetEmailReviewStatusesMultipleRequest {
+    storefrontOid: number;
+    emailCommseqEmailReviewStatusesRequest: EmailCommseqEmailReviewStatusesRequest;
 }
 
 export interface GetEmailSegmentRequest {
@@ -2753,6 +2772,39 @@ export interface StorefrontApiInterface {
      * Get email postcards multiple
      */
     getEmailPostcardsMultiple(requestParameters: GetEmailPostcardsMultipleRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EmailCommseqPostcardsResponse>;
+
+    /**
+     * 
+     * @summary Get the review status of an email
+     * @param {number} storefrontOid 
+     * @param {string} commseqEmailUuid 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof StorefrontApiInterface
+     */
+    getEmailReviewStatusRaw(requestParameters: GetEmailReviewStatusRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EmailCommseqEmailReviewStatusResponse>>;
+
+    /**
+     * Get the review status of an email
+     */
+    getEmailReviewStatus(requestParameters: GetEmailReviewStatusRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EmailCommseqEmailReviewStatusResponse>;
+
+    /**
+     * Returns one entry per requested email, in the order requested, so a caller polling a campaign does not have to reconcile a short response. 
+     * @summary Get the review status of multiple emails
+     * @param {number} storefrontOid 
+     * @param {EmailCommseqEmailReviewStatusesRequest} emailCommseqEmailReviewStatusesRequest Request of email uuids
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof StorefrontApiInterface
+     */
+    getEmailReviewStatusesMultipleRaw(requestParameters: GetEmailReviewStatusesMultipleRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EmailCommseqEmailReviewStatusesResponse>>;
+
+    /**
+     * Returns one entry per requested email, in the order requested, so a caller polling a campaign does not have to reconcile a short response. 
+     * Get the review status of multiple emails
+     */
+    getEmailReviewStatusesMultiple(requestParameters: GetEmailReviewStatusesMultipleRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EmailCommseqEmailReviewStatusesResponse>;
 
     /**
      * 
@@ -8371,6 +8423,105 @@ export class StorefrontApi extends runtime.BaseAPI implements StorefrontApiInter
      */
     async getEmailPostcardsMultiple(requestParameters: GetEmailPostcardsMultipleRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EmailCommseqPostcardsResponse> {
         const response = await this.getEmailPostcardsMultipleRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Get the review status of an email
+     */
+    async getEmailReviewStatusRaw(requestParameters: GetEmailReviewStatusRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EmailCommseqEmailReviewStatusResponse>> {
+        if (requestParameters.storefrontOid === null || requestParameters.storefrontOid === undefined) {
+            throw new runtime.RequiredError('storefrontOid','Required parameter requestParameters.storefrontOid was null or undefined when calling getEmailReviewStatus.');
+        }
+
+        if (requestParameters.commseqEmailUuid === null || requestParameters.commseqEmailUuid === undefined) {
+            throw new runtime.RequiredError('commseqEmailUuid','Required parameter requestParameters.commseqEmailUuid was null or undefined when calling getEmailReviewStatus.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-browser-key"] = this.configuration.apiKey("x-ultracart-browser-key"); // ultraCartBrowserApiKey authentication
+        }
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", ["storefront_read"]);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/storefront/{storefront_oid}/email/emails/{commseq_email_uuid}/review_status`.replace(`{${"storefront_oid"}}`, encodeURIComponent(String(requestParameters.storefrontOid))).replace(`{${"commseq_email_uuid"}}`, encodeURIComponent(String(requestParameters.commseqEmailUuid))),
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => EmailCommseqEmailReviewStatusResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Get the review status of an email
+     */
+    async getEmailReviewStatus(requestParameters: GetEmailReviewStatusRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EmailCommseqEmailReviewStatusResponse> {
+        const response = await this.getEmailReviewStatusRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Returns one entry per requested email, in the order requested, so a caller polling a campaign does not have to reconcile a short response. 
+     * Get the review status of multiple emails
+     */
+    async getEmailReviewStatusesMultipleRaw(requestParameters: GetEmailReviewStatusesMultipleRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EmailCommseqEmailReviewStatusesResponse>> {
+        if (requestParameters.storefrontOid === null || requestParameters.storefrontOid === undefined) {
+            throw new runtime.RequiredError('storefrontOid','Required parameter requestParameters.storefrontOid was null or undefined when calling getEmailReviewStatusesMultiple.');
+        }
+
+        if (requestParameters.emailCommseqEmailReviewStatusesRequest === null || requestParameters.emailCommseqEmailReviewStatusesRequest === undefined) {
+            throw new runtime.RequiredError('emailCommseqEmailReviewStatusesRequest','Required parameter requestParameters.emailCommseqEmailReviewStatusesRequest was null or undefined when calling getEmailReviewStatusesMultiple.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-browser-key"] = this.configuration.apiKey("x-ultracart-browser-key"); // ultraCartBrowserApiKey authentication
+        }
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", ["storefront_read"]);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/storefront/{storefront_oid}/email/emails/review_status/multiple`.replace(`{${"storefront_oid"}}`, encodeURIComponent(String(requestParameters.storefrontOid))),
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: EmailCommseqEmailReviewStatusesRequestToJSON(requestParameters.emailCommseqEmailReviewStatusesRequest),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => EmailCommseqEmailReviewStatusesResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Returns one entry per requested email, in the order requested, so a caller polling a campaign does not have to reconcile a short response. 
+     * Get the review status of multiple emails
+     */
+    async getEmailReviewStatusesMultiple(requestParameters: GetEmailReviewStatusesMultipleRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EmailCommseqEmailReviewStatusesResponse> {
+        const response = await this.getEmailReviewStatusesMultipleRaw(requestParameters, initOverrides);
         return await response.value();
     }
 

@@ -520,6 +520,10 @@ src/models/EmailClicksResponse.ts
 src/models/EmailCommseq.ts
 src/models/EmailCommseqEmail.ts
 src/models/EmailCommseqEmailResponse.ts
+src/models/EmailCommseqEmailReviewStatus.ts
+src/models/EmailCommseqEmailReviewStatusResponse.ts
+src/models/EmailCommseqEmailReviewStatusesRequest.ts
+src/models/EmailCommseqEmailReviewStatusesResponse.ts
 src/models/EmailCommseqEmailSendTestRequest.ts
 src/models/EmailCommseqEmailSendTestResponse.ts
 src/models/EmailCommseqEmailsRequest.ts
