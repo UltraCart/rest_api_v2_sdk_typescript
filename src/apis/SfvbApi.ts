@@ -96,9 +96,24 @@ import {
     SfvbFilesResponse,
     SfvbFilesResponseFromJSON,
     SfvbFilesResponseToJSON,
+    SfvbItemAttributeUpdateRequest,
+    SfvbItemAttributeUpdateRequestFromJSON,
+    SfvbItemAttributeUpdateRequestToJSON,
     SfvbItemContainersResponse,
     SfvbItemContainersResponseFromJSON,
     SfvbItemContainersResponseToJSON,
+    SfvbItemContentRequest,
+    SfvbItemContentRequestFromJSON,
+    SfvbItemContentRequestToJSON,
+    SfvbItemMultimediaRequest,
+    SfvbItemMultimediaRequestFromJSON,
+    SfvbItemMultimediaRequestToJSON,
+    SfvbItemResponse,
+    SfvbItemResponseFromJSON,
+    SfvbItemResponseToJSON,
+    SfvbItemSeoRequest,
+    SfvbItemSeoRequestFromJSON,
+    SfvbItemSeoRequestToJSON,
     SfvbLibraryEntry,
     SfvbLibraryEntryFromJSON,
     SfvbLibraryEntryToJSON,
@@ -258,6 +273,14 @@ export interface DeleteSfvbFileRequest {
     path?: string;
 }
 
+export interface DeleteSfvbItemMultimediaRequest {
+    storefrontOid: number;
+    merchantItemId?: string;
+    merchantItemOid?: number;
+    code?: string;
+    _default?: boolean;
+}
+
 export interface DeleteSfvbPageMultimediaRequest {
     storefrontOid: number;
     path: string;
@@ -334,6 +357,12 @@ export interface GetSfvbFileContentRequest {
 export interface GetSfvbFileUploadUrlRequest {
     storefrontOid: number;
     extension: string;
+}
+
+export interface GetSfvbItemRequest {
+    storefrontOid: number;
+    merchantItemId?: string;
+    merchantItemOid?: number;
 }
 
 export interface GetSfvbLibraryEntryRequest {
@@ -487,6 +516,34 @@ export interface PutSfvbFileContentRequest {
     ifMatch: string;
     fileWriteRequest: SfvbFileWriteRequest;
     path?: string;
+}
+
+export interface PutSfvbItemAttributesRequest {
+    storefrontOid: number;
+    itemAttributeUpdateRequest: SfvbItemAttributeUpdateRequest;
+    merchantItemId?: string;
+    merchantItemOid?: number;
+}
+
+export interface PutSfvbItemContentRequest {
+    storefrontOid: number;
+    itemContentRequest: SfvbItemContentRequest;
+    merchantItemId?: string;
+    merchantItemOid?: number;
+}
+
+export interface PutSfvbItemMultimediaRequest {
+    storefrontOid: number;
+    itemMultimediaRequest: SfvbItemMultimediaRequest;
+    merchantItemId?: string;
+    merchantItemOid?: number;
+}
+
+export interface PutSfvbItemSeoRequest {
+    storefrontOid: number;
+    itemSeoRequest: SfvbItemSeoRequest;
+    merchantItemId?: string;
+    merchantItemOid?: number;
 }
 
 export interface PutSfvbMenuRequest {
@@ -719,6 +776,26 @@ export interface SfvbApiInterface {
      * Delete a storefront file
      */
     deleteSfvbFile(requestParameters: DeleteSfvbFileRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+
+    /**
+     * Removes the item\'s copy of the image in one slot.  The file you uploaded is left where it is, so the same source can be attached again or used elsewhere. 
+     * @summary Detach an image from an item
+     * @param {number} storefrontOid 
+     * @param {string} [merchantItemId] 
+     * @param {number} [merchantItemOid] 
+     * @param {string} [code] The image code to detach
+     * @param {boolean} [_default] Detach the default image instead of a coded one
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SfvbApiInterface
+     */
+    deleteSfvbItemMultimediaRaw(requestParameters: DeleteSfvbItemMultimediaRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbItemResponse>>;
+
+    /**
+     * Removes the item\'s copy of the image in one slot.  The file you uploaded is left where it is, so the same source can be attached again or used elsewhere. 
+     * Detach an image from an item
+     */
+    deleteSfvbItemMultimedia(requestParameters: DeleteSfvbItemMultimediaRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbItemResponse>;
 
     /**
      * Name exactly one of code or default.  Removes the page\'s copy of the image; the source file in the page folder is left alone.  Always needs sfvb_publish. 
@@ -964,6 +1041,24 @@ export interface SfvbApiInterface {
      * Get a URL to upload a binary asset to
      */
     getSfvbFileUploadUrl(requestParameters: GetSfvbFileUploadUrlRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbFileUploadUrlResponse>;
+
+    /**
+     * The attributes, images, title, description and search metadata a StoreFront element can render, reconciled against the templates behind the pages this item sits on.  An attribute a template declares but nothing has set comes back present with an empty value, which is how you discover what the page is asking for.  Pricing, shipping, inventory, tax, variants and kit structure are not here because no element reads them; use the item API for those.  Address by merchant_item_id, the value data-context-item-id carries, or by merchant_item_oid. 
+     * @summary Read an item\'s storefront facing content
+     * @param {number} storefrontOid 
+     * @param {string} [merchantItemId] The merchant item id, as a storefront carries it
+     * @param {number} [merchantItemOid] The item oid.  Send this or merchant_item_id, not both
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SfvbApiInterface
+     */
+    getSfvbItemRaw(requestParameters: GetSfvbItemRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbItemResponse>>;
+
+    /**
+     * The attributes, images, title, description and search metadata a StoreFront element can render, reconciled against the templates behind the pages this item sits on.  An attribute a template declares but nothing has set comes back present with an empty value, which is how you discover what the page is asking for.  Pricing, shipping, inventory, tax, variants and kit structure are not here because no element reads them; use the item API for those.  Address by merchant_item_id, the value data-context-item-id carries, or by merchant_item_oid. 
+     * Read an item\'s storefront facing content
+     */
+    getSfvbItem(requestParameters: GetSfvbItemRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbItemResponse>;
 
     /**
      * Returns the fragment as authored.  If it references images or other storefront files those paths will not resolve on this storefront until the entry is installed, so use install rather than this when the intent is to place the fragment. 
@@ -1499,6 +1594,82 @@ export interface SfvbApiInterface {
      * Write a storefront file
      */
     putSfvbFileContent(requestParameters: PutSfvbFileContentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbFileWriteResponse>;
+
+    /**
+     * Partial - only the attributes named change, and an empty value clears one.  Every entry is validated before any is written, so a refusal leaves the item untouched.  The list types are checked against the shape their renderer actually parses, which matters more than it sounds: a definition list is a bare array with one letter keys, a video list is a wrapper object with keys spelled out, and an item set is comma separated text rather than JSON.  A shape the renderer cannot read is not reported at render time - it renders exactly like an attribute nobody ever set. 
+     * @summary Change some of an item\'s attributes
+     * @param {number} storefrontOid 
+     * @param {SfvbItemAttributeUpdateRequest} itemAttributeUpdateRequest Attributes to change
+     * @param {string} [merchantItemId] 
+     * @param {number} [merchantItemOid] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SfvbApiInterface
+     */
+    putSfvbItemAttributesRaw(requestParameters: PutSfvbItemAttributesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbItemResponse>>;
+
+    /**
+     * Partial - only the attributes named change, and an empty value clears one.  Every entry is validated before any is written, so a refusal leaves the item untouched.  The list types are checked against the shape their renderer actually parses, which matters more than it sounds: a definition list is a bare array with one letter keys, a video list is a wrapper object with keys spelled out, and an item set is comma separated text rather than JSON.  A shape the renderer cannot read is not reported at render time - it renders exactly like an attribute nobody ever set. 
+     * Change some of an item\'s attributes
+     */
+    putSfvbItemAttributes(requestParameters: PutSfvbItemAttributesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbItemResponse>;
+
+    /**
+     * Partial - a field left out is untouched, a field sent empty is cleared, and those are different things.  These are what itemtitle and itemdescription render.  Writing the matching config keys into a container does nothing, because they are dialog buffers bound to the item and the render never reads them.  Both are the catalog\'s own fields, so a change here reaches the item everywhere, not only on this storefront. 
+     * @summary Change an item\'s title or long description
+     * @param {number} storefrontOid 
+     * @param {SfvbItemContentRequest} itemContentRequest Title and description to change
+     * @param {string} [merchantItemId] 
+     * @param {number} [merchantItemOid] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SfvbApiInterface
+     */
+    putSfvbItemContentRaw(requestParameters: PutSfvbItemContentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbItemResponse>>;
+
+    /**
+     * Partial - a field left out is untouched, a field sent empty is cleared, and those are different things.  These are what itemtitle and itemdescription render.  Writing the matching config keys into a container does nothing, because they are dialog buffers bound to the item and the render never reads them.  Both are the catalog\'s own fields, so a change here reaches the item everywhere, not only on this storefront. 
+     * Change an item\'s title or long description
+     */
+    putSfvbItemContent(requestParameters: PutSfvbItemContentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbItemResponse>;
+
+    /**
+     * One slot at a time - the default image or one code - and every other image on the item is left alone.  That is the difference from the item API, where images are reachable only through a full item update whose multimedia array is reconciled destructively, so adding one means resending the rest or losing them.  Upload the file with files/upload first and name its storefront path here; unlike a page image it does not have to live in any particular folder, because the bytes are copied into the item\'s own storage on attach. 
+     * @summary Attach an image to an item
+     * @param {number} storefrontOid 
+     * @param {SfvbItemMultimediaRequest} itemMultimediaRequest Image to attach
+     * @param {string} [merchantItemId] 
+     * @param {number} [merchantItemOid] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SfvbApiInterface
+     */
+    putSfvbItemMultimediaRaw(requestParameters: PutSfvbItemMultimediaRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbItemResponse>>;
+
+    /**
+     * One slot at a time - the default image or one code - and every other image on the item is left alone.  That is the difference from the item API, where images are reachable only through a full item update whose multimedia array is reconciled destructively, so adding one means resending the rest or losing them.  Upload the file with files/upload first and name its storefront path here; unlike a page image it does not have to live in any particular folder, because the bytes are copied into the item\'s own storage on attach. 
+     * Attach an image to an item
+     */
+    putSfvbItemMultimedia(requestParameters: PutSfvbItemMultimediaRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbItemResponse>;
+
+    /**
+     * Partial - a field left out is untouched, a field sent empty is cleared and the page falls back to what it fell back to before.  Underneath these are three item attributes with reserved names, so this and the attributes endpoint reach the same storage; it exists separately because the names are not discoverable from the templates.  Two things worth knowing.  A title set here changes the document title only - og:title and twitter:title render the item\'s description either way.  And there is no canonical or noindex field, because both are site wide switches rather than per item values. 
+     * @summary Change an item\'s search metadata
+     * @param {number} storefrontOid 
+     * @param {SfvbItemSeoRequest} itemSeoRequest Search metadata to change
+     * @param {string} [merchantItemId] 
+     * @param {number} [merchantItemOid] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SfvbApiInterface
+     */
+    putSfvbItemSeoRaw(requestParameters: PutSfvbItemSeoRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbItemResponse>>;
+
+    /**
+     * Partial - a field left out is untouched, a field sent empty is cleared and the page falls back to what it fell back to before.  Underneath these are three item attributes with reserved names, so this and the attributes endpoint reach the same storage; it exists separately because the names are not discoverable from the templates.  Two things worth knowing.  A title set here changes the document title only - og:title and twitter:title render the item\'s description either way.  And there is no canonical or noindex field, because both are site wide switches rather than per item values. 
+     * Change an item\'s search metadata
+     */
+    putSfvbItemSeo(requestParameters: PutSfvbItemSeoRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbItemResponse>;
 
     /**
      * A whole menu replace, not a merge - what you send is what the menu holds afterwards, so read it, change the tree and send it back.  Omitting items changes only the title; sending an empty array empties the menu.  Writing a code that does not exist creates it.  Every entry is checked before any of it is written, including that a merchant_item_id and a page_path actually resolve, so a tree with one bad entry changes nothing.  Always needs sfvb_publish, because a menu is shared by every theme and there is no dormant copy to change instead. 
@@ -2159,6 +2330,63 @@ export class SfvbApi extends runtime.BaseAPI implements SfvbApiInterface {
      */
     async deleteSfvbFile(requestParameters: DeleteSfvbFileRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
         await this.deleteSfvbFileRaw(requestParameters, initOverrides);
+    }
+
+    /**
+     * Removes the item\'s copy of the image in one slot.  The file you uploaded is left where it is, so the same source can be attached again or used elsewhere. 
+     * Detach an image from an item
+     */
+    async deleteSfvbItemMultimediaRaw(requestParameters: DeleteSfvbItemMultimediaRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbItemResponse>> {
+        if (requestParameters.storefrontOid === null || requestParameters.storefrontOid === undefined) {
+            throw new runtime.RequiredError('storefrontOid','Required parameter requestParameters.storefrontOid was null or undefined when calling deleteSfvbItemMultimedia.');
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters.merchantItemId !== undefined) {
+            queryParameters['merchant_item_id'] = requestParameters.merchantItemId;
+        }
+
+        if (requestParameters.merchantItemOid !== undefined) {
+            queryParameters['merchant_item_oid'] = requestParameters.merchantItemOid;
+        }
+
+        if (requestParameters.code !== undefined) {
+            queryParameters['code'] = requestParameters.code;
+        }
+
+        if (requestParameters._default !== undefined) {
+            queryParameters['default'] = requestParameters._default;
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", []);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/sfvb/storefronts/{storefront_oid}/items/multimedia`.replace(`{${"storefront_oid"}}`, encodeURIComponent(String(requestParameters.storefrontOid))),
+            method: 'DELETE',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => SfvbItemResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Removes the item\'s copy of the image in one slot.  The file you uploaded is left where it is, so the same source can be attached again or used elsewhere. 
+     * Detach an image from an item
+     */
+    async deleteSfvbItemMultimedia(requestParameters: DeleteSfvbItemMultimediaRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbItemResponse> {
+        const response = await this.deleteSfvbItemMultimediaRaw(requestParameters, initOverrides);
+        return await response.value();
     }
 
     /**
@@ -2828,6 +3056,55 @@ export class SfvbApi extends runtime.BaseAPI implements SfvbApiInterface {
      */
     async getSfvbFileUploadUrl(requestParameters: GetSfvbFileUploadUrlRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbFileUploadUrlResponse> {
         const response = await this.getSfvbFileUploadUrlRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * The attributes, images, title, description and search metadata a StoreFront element can render, reconciled against the templates behind the pages this item sits on.  An attribute a template declares but nothing has set comes back present with an empty value, which is how you discover what the page is asking for.  Pricing, shipping, inventory, tax, variants and kit structure are not here because no element reads them; use the item API for those.  Address by merchant_item_id, the value data-context-item-id carries, or by merchant_item_oid. 
+     * Read an item\'s storefront facing content
+     */
+    async getSfvbItemRaw(requestParameters: GetSfvbItemRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbItemResponse>> {
+        if (requestParameters.storefrontOid === null || requestParameters.storefrontOid === undefined) {
+            throw new runtime.RequiredError('storefrontOid','Required parameter requestParameters.storefrontOid was null or undefined when calling getSfvbItem.');
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters.merchantItemId !== undefined) {
+            queryParameters['merchant_item_id'] = requestParameters.merchantItemId;
+        }
+
+        if (requestParameters.merchantItemOid !== undefined) {
+            queryParameters['merchant_item_oid'] = requestParameters.merchantItemOid;
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", []);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/sfvb/storefronts/{storefront_oid}/items`.replace(`{${"storefront_oid"}}`, encodeURIComponent(String(requestParameters.storefrontOid))),
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => SfvbItemResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * The attributes, images, title, description and search metadata a StoreFront element can render, reconciled against the templates behind the pages this item sits on.  An attribute a template declares but nothing has set comes back present with an empty value, which is how you discover what the page is asking for.  Pricing, shipping, inventory, tax, variants and kit structure are not here because no element reads them; use the item API for those.  Address by merchant_item_id, the value data-context-item-id carries, or by merchant_item_oid. 
+     * Read an item\'s storefront facing content
+     */
+    async getSfvbItem(requestParameters: GetSfvbItemRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbItemResponse> {
+        const response = await this.getSfvbItemRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
@@ -4295,6 +4572,230 @@ export class SfvbApi extends runtime.BaseAPI implements SfvbApiInterface {
      */
     async putSfvbFileContent(requestParameters: PutSfvbFileContentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbFileWriteResponse> {
         const response = await this.putSfvbFileContentRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Partial - only the attributes named change, and an empty value clears one.  Every entry is validated before any is written, so a refusal leaves the item untouched.  The list types are checked against the shape their renderer actually parses, which matters more than it sounds: a definition list is a bare array with one letter keys, a video list is a wrapper object with keys spelled out, and an item set is comma separated text rather than JSON.  A shape the renderer cannot read is not reported at render time - it renders exactly like an attribute nobody ever set. 
+     * Change some of an item\'s attributes
+     */
+    async putSfvbItemAttributesRaw(requestParameters: PutSfvbItemAttributesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbItemResponse>> {
+        if (requestParameters.storefrontOid === null || requestParameters.storefrontOid === undefined) {
+            throw new runtime.RequiredError('storefrontOid','Required parameter requestParameters.storefrontOid was null or undefined when calling putSfvbItemAttributes.');
+        }
+
+        if (requestParameters.itemAttributeUpdateRequest === null || requestParameters.itemAttributeUpdateRequest === undefined) {
+            throw new runtime.RequiredError('itemAttributeUpdateRequest','Required parameter requestParameters.itemAttributeUpdateRequest was null or undefined when calling putSfvbItemAttributes.');
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters.merchantItemId !== undefined) {
+            queryParameters['merchant_item_id'] = requestParameters.merchantItemId;
+        }
+
+        if (requestParameters.merchantItemOid !== undefined) {
+            queryParameters['merchant_item_oid'] = requestParameters.merchantItemOid;
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", []);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/sfvb/storefronts/{storefront_oid}/items/attributes`.replace(`{${"storefront_oid"}}`, encodeURIComponent(String(requestParameters.storefrontOid))),
+            method: 'PUT',
+            headers: headerParameters,
+            query: queryParameters,
+            body: SfvbItemAttributeUpdateRequestToJSON(requestParameters.itemAttributeUpdateRequest),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => SfvbItemResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Partial - only the attributes named change, and an empty value clears one.  Every entry is validated before any is written, so a refusal leaves the item untouched.  The list types are checked against the shape their renderer actually parses, which matters more than it sounds: a definition list is a bare array with one letter keys, a video list is a wrapper object with keys spelled out, and an item set is comma separated text rather than JSON.  A shape the renderer cannot read is not reported at render time - it renders exactly like an attribute nobody ever set. 
+     * Change some of an item\'s attributes
+     */
+    async putSfvbItemAttributes(requestParameters: PutSfvbItemAttributesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbItemResponse> {
+        const response = await this.putSfvbItemAttributesRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Partial - a field left out is untouched, a field sent empty is cleared, and those are different things.  These are what itemtitle and itemdescription render.  Writing the matching config keys into a container does nothing, because they are dialog buffers bound to the item and the render never reads them.  Both are the catalog\'s own fields, so a change here reaches the item everywhere, not only on this storefront. 
+     * Change an item\'s title or long description
+     */
+    async putSfvbItemContentRaw(requestParameters: PutSfvbItemContentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbItemResponse>> {
+        if (requestParameters.storefrontOid === null || requestParameters.storefrontOid === undefined) {
+            throw new runtime.RequiredError('storefrontOid','Required parameter requestParameters.storefrontOid was null or undefined when calling putSfvbItemContent.');
+        }
+
+        if (requestParameters.itemContentRequest === null || requestParameters.itemContentRequest === undefined) {
+            throw new runtime.RequiredError('itemContentRequest','Required parameter requestParameters.itemContentRequest was null or undefined when calling putSfvbItemContent.');
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters.merchantItemId !== undefined) {
+            queryParameters['merchant_item_id'] = requestParameters.merchantItemId;
+        }
+
+        if (requestParameters.merchantItemOid !== undefined) {
+            queryParameters['merchant_item_oid'] = requestParameters.merchantItemOid;
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", []);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/sfvb/storefronts/{storefront_oid}/items/content`.replace(`{${"storefront_oid"}}`, encodeURIComponent(String(requestParameters.storefrontOid))),
+            method: 'PUT',
+            headers: headerParameters,
+            query: queryParameters,
+            body: SfvbItemContentRequestToJSON(requestParameters.itemContentRequest),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => SfvbItemResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Partial - a field left out is untouched, a field sent empty is cleared, and those are different things.  These are what itemtitle and itemdescription render.  Writing the matching config keys into a container does nothing, because they are dialog buffers bound to the item and the render never reads them.  Both are the catalog\'s own fields, so a change here reaches the item everywhere, not only on this storefront. 
+     * Change an item\'s title or long description
+     */
+    async putSfvbItemContent(requestParameters: PutSfvbItemContentRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbItemResponse> {
+        const response = await this.putSfvbItemContentRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * One slot at a time - the default image or one code - and every other image on the item is left alone.  That is the difference from the item API, where images are reachable only through a full item update whose multimedia array is reconciled destructively, so adding one means resending the rest or losing them.  Upload the file with files/upload first and name its storefront path here; unlike a page image it does not have to live in any particular folder, because the bytes are copied into the item\'s own storage on attach. 
+     * Attach an image to an item
+     */
+    async putSfvbItemMultimediaRaw(requestParameters: PutSfvbItemMultimediaRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbItemResponse>> {
+        if (requestParameters.storefrontOid === null || requestParameters.storefrontOid === undefined) {
+            throw new runtime.RequiredError('storefrontOid','Required parameter requestParameters.storefrontOid was null or undefined when calling putSfvbItemMultimedia.');
+        }
+
+        if (requestParameters.itemMultimediaRequest === null || requestParameters.itemMultimediaRequest === undefined) {
+            throw new runtime.RequiredError('itemMultimediaRequest','Required parameter requestParameters.itemMultimediaRequest was null or undefined when calling putSfvbItemMultimedia.');
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters.merchantItemId !== undefined) {
+            queryParameters['merchant_item_id'] = requestParameters.merchantItemId;
+        }
+
+        if (requestParameters.merchantItemOid !== undefined) {
+            queryParameters['merchant_item_oid'] = requestParameters.merchantItemOid;
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", []);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/sfvb/storefronts/{storefront_oid}/items/multimedia`.replace(`{${"storefront_oid"}}`, encodeURIComponent(String(requestParameters.storefrontOid))),
+            method: 'PUT',
+            headers: headerParameters,
+            query: queryParameters,
+            body: SfvbItemMultimediaRequestToJSON(requestParameters.itemMultimediaRequest),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => SfvbItemResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * One slot at a time - the default image or one code - and every other image on the item is left alone.  That is the difference from the item API, where images are reachable only through a full item update whose multimedia array is reconciled destructively, so adding one means resending the rest or losing them.  Upload the file with files/upload first and name its storefront path here; unlike a page image it does not have to live in any particular folder, because the bytes are copied into the item\'s own storage on attach. 
+     * Attach an image to an item
+     */
+    async putSfvbItemMultimedia(requestParameters: PutSfvbItemMultimediaRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbItemResponse> {
+        const response = await this.putSfvbItemMultimediaRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Partial - a field left out is untouched, a field sent empty is cleared and the page falls back to what it fell back to before.  Underneath these are three item attributes with reserved names, so this and the attributes endpoint reach the same storage; it exists separately because the names are not discoverable from the templates.  Two things worth knowing.  A title set here changes the document title only - og:title and twitter:title render the item\'s description either way.  And there is no canonical or noindex field, because both are site wide switches rather than per item values. 
+     * Change an item\'s search metadata
+     */
+    async putSfvbItemSeoRaw(requestParameters: PutSfvbItemSeoRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbItemResponse>> {
+        if (requestParameters.storefrontOid === null || requestParameters.storefrontOid === undefined) {
+            throw new runtime.RequiredError('storefrontOid','Required parameter requestParameters.storefrontOid was null or undefined when calling putSfvbItemSeo.');
+        }
+
+        if (requestParameters.itemSeoRequest === null || requestParameters.itemSeoRequest === undefined) {
+            throw new runtime.RequiredError('itemSeoRequest','Required parameter requestParameters.itemSeoRequest was null or undefined when calling putSfvbItemSeo.');
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters.merchantItemId !== undefined) {
+            queryParameters['merchant_item_id'] = requestParameters.merchantItemId;
+        }
+
+        if (requestParameters.merchantItemOid !== undefined) {
+            queryParameters['merchant_item_oid'] = requestParameters.merchantItemOid;
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", []);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/sfvb/storefronts/{storefront_oid}/items/seo`.replace(`{${"storefront_oid"}}`, encodeURIComponent(String(requestParameters.storefrontOid))),
+            method: 'PUT',
+            headers: headerParameters,
+            query: queryParameters,
+            body: SfvbItemSeoRequestToJSON(requestParameters.itemSeoRequest),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => SfvbItemResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Partial - a field left out is untouched, a field sent empty is cleared and the page falls back to what it fell back to before.  Underneath these are three item attributes with reserved names, so this and the attributes endpoint reach the same storage; it exists separately because the names are not discoverable from the templates.  Two things worth knowing.  A title set here changes the document title only - og:title and twitter:title render the item\'s description either way.  And there is no canonical or noindex field, because both are site wide switches rather than per item values. 
+     * Change an item\'s search metadata
+     */
+    async putSfvbItemSeo(requestParameters: PutSfvbItemSeoRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbItemResponse> {
+        const response = await this.putSfvbItemSeoRaw(requestParameters, initOverrides);
         return await response.value();
     }
 

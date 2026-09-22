@@ -1026,8 +1026,17 @@ src/models/SfvbFileVersionsResponse.ts
 src/models/SfvbFileWriteRequest.ts
 src/models/SfvbFileWriteResponse.ts
 src/models/SfvbFilesResponse.ts
+src/models/SfvbItemAttribute.ts
+src/models/SfvbItemAttributeUpdate.ts
+src/models/SfvbItemAttributeUpdateRequest.ts
 src/models/SfvbItemContainer.ts
 src/models/SfvbItemContainersResponse.ts
+src/models/SfvbItemContentRequest.ts
+src/models/SfvbItemMultimedia.ts
+src/models/SfvbItemMultimediaRequest.ts
+src/models/SfvbItemResponse.ts
+src/models/SfvbItemSeo.ts
+src/models/SfvbItemSeoRequest.ts
 src/models/SfvbLibraryEntry.ts
 src/models/SfvbLibraryFacet.ts
 src/models/SfvbLibraryResponse.ts
