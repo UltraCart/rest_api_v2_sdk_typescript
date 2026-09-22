@@ -96,6 +96,9 @@ import {
     SfvbFilesResponse,
     SfvbFilesResponseFromJSON,
     SfvbFilesResponseToJSON,
+    SfvbItemContainersResponse,
+    SfvbItemContainersResponseFromJSON,
+    SfvbItemContainersResponseToJSON,
     SfvbLibraryEntry,
     SfvbLibraryEntryFromJSON,
     SfvbLibraryEntryToJSON,
@@ -434,6 +437,15 @@ export interface ListSfvbFilesRequest {
     storefrontFsDirectoryOid?: number;
     themeOid?: number;
     maxEntries?: number;
+}
+
+export interface ListSfvbItemContainersRequest {
+    storefrontOid: number;
+    merchantItemId?: string;
+    merchantItemOid?: number;
+    containerName?: string;
+    maxResults?: number;
+    offset?: number;
 }
 
 export interface ListSfvbPagesRequest {
@@ -1327,6 +1339,27 @@ export interface SfvbApiInterface {
      * List a storefront directory
      */
     listSfvbFiles(requestParameters: ListSfvbFilesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbFilesResponse>;
+
+    /**
+     * An itemcontainer element renders nothing of its own.  It names a slot, and a separate container is resolved per item for that slot, so a catalog of five hundred products with three slots is fifteen hundred containers.  This says which of them exist.  Filter by container_name to find every item carrying one slot, or by merchant_item_id to see what one item has.  Which items are missing a slot is a set difference against pages/items, because a listing can only report containers that exist.  Each row carries hash_sha256, so a listing is enough to start an If-Match write without reading the container first.  Item containers are stored per account rather than per storefront, so storefront_oid identifies the caller\'s storefront but does not narrow the result. 
+     * @summary List the item containers on the account
+     * @param {number} storefrontOid 
+     * @param {string} [merchantItemId] Restrict to one item, by the merchant item id a storefront carries
+     * @param {number} [merchantItemOid] Restrict to one item, by oid.  Send this or merchant_item_id, not both
+     * @param {string} [containerName] Restrict to one slot name, matched without regard to case
+     * @param {number} [maxResults] 
+     * @param {number} [offset] 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SfvbApiInterface
+     */
+    listSfvbItemContainersRaw(requestParameters: ListSfvbItemContainersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbItemContainersResponse>>;
+
+    /**
+     * An itemcontainer element renders nothing of its own.  It names a slot, and a separate container is resolved per item for that slot, so a catalog of five hundred products with three slots is fifteen hundred containers.  This says which of them exist.  Filter by container_name to find every item carrying one slot, or by merchant_item_id to see what one item has.  Which items are missing a slot is a set difference against pages/items, because a listing can only report containers that exist.  Each row carries hash_sha256, so a listing is enough to start an If-Match write without reading the container first.  Item containers are stored per account rather than per storefront, so storefront_oid identifies the caller\'s storefront but does not narrow the result. 
+     * List the item containers on the account
+     */
+    listSfvbItemContainers(requestParameters: ListSfvbItemContainersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbItemContainersResponse>;
 
     /**
      * Every page with its settings, sorted by path with the root first.  Hidden pages are included.  Pass under to list one page and everything below it.  Read from the same cached catalog the admin page tree uses, so a page created a moment ago can take a moment to appear here - read it directly with the single-page read to confirm a write. 
@@ -3810,6 +3843,67 @@ export class SfvbApi extends runtime.BaseAPI implements SfvbApiInterface {
      */
     async listSfvbFiles(requestParameters: ListSfvbFilesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbFilesResponse> {
         const response = await this.listSfvbFilesRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * An itemcontainer element renders nothing of its own.  It names a slot, and a separate container is resolved per item for that slot, so a catalog of five hundred products with three slots is fifteen hundred containers.  This says which of them exist.  Filter by container_name to find every item carrying one slot, or by merchant_item_id to see what one item has.  Which items are missing a slot is a set difference against pages/items, because a listing can only report containers that exist.  Each row carries hash_sha256, so a listing is enough to start an If-Match write without reading the container first.  Item containers are stored per account rather than per storefront, so storefront_oid identifies the caller\'s storefront but does not narrow the result. 
+     * List the item containers on the account
+     */
+    async listSfvbItemContainersRaw(requestParameters: ListSfvbItemContainersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SfvbItemContainersResponse>> {
+        if (requestParameters.storefrontOid === null || requestParameters.storefrontOid === undefined) {
+            throw new runtime.RequiredError('storefrontOid','Required parameter requestParameters.storefrontOid was null or undefined when calling listSfvbItemContainers.');
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters.merchantItemId !== undefined) {
+            queryParameters['merchant_item_id'] = requestParameters.merchantItemId;
+        }
+
+        if (requestParameters.merchantItemOid !== undefined) {
+            queryParameters['merchant_item_oid'] = requestParameters.merchantItemOid;
+        }
+
+        if (requestParameters.containerName !== undefined) {
+            queryParameters['container_name'] = requestParameters.containerName;
+        }
+
+        if (requestParameters.maxResults !== undefined) {
+            queryParameters['max_results'] = requestParameters.maxResults;
+        }
+
+        if (requestParameters.offset !== undefined) {
+            queryParameters['offset'] = requestParameters.offset;
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            // oauth required
+            headerParameters["Authorization"] = await this.configuration.accessToken("ultraCartOauth", []);
+        }
+
+        if (this.configuration && this.configuration.apiKey) {
+            headerParameters["x-ultracart-simple-key"] = this.configuration.apiKey("x-ultracart-simple-key"); // ultraCartSimpleApiKey authentication
+        }
+
+        const response = await this.request({
+            path: `/sfvb/storefronts/{storefront_oid}/item_containers`.replace(`{${"storefront_oid"}}`, encodeURIComponent(String(requestParameters.storefrontOid))),
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => SfvbItemContainersResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * An itemcontainer element renders nothing of its own.  It names a slot, and a separate container is resolved per item for that slot, so a catalog of five hundred products with three slots is fifteen hundred containers.  This says which of them exist.  Filter by container_name to find every item carrying one slot, or by merchant_item_id to see what one item has.  Which items are missing a slot is a set difference against pages/items, because a listing can only report containers that exist.  Each row carries hash_sha256, so a listing is enough to start an If-Match write without reading the container first.  Item containers are stored per account rather than per storefront, so storefront_oid identifies the caller\'s storefront but does not narrow the result. 
+     * List the item containers on the account
+     */
+    async listSfvbItemContainers(requestParameters: ListSfvbItemContainersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SfvbItemContainersResponse> {
+        const response = await this.listSfvbItemContainersRaw(requestParameters, initOverrides);
         return await response.value();
     }
 

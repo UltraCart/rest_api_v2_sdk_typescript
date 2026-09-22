@@ -998,6 +998,8 @@ export * from './SfvbFileVersionsResponse';
 export * from './SfvbFileWriteRequest';
 export * from './SfvbFileWriteResponse';
 export * from './SfvbFilesResponse';
+export * from './SfvbItemContainer';
+export * from './SfvbItemContainersResponse';
 export * from './SfvbLibraryEntry';
 export * from './SfvbLibraryFacet';
 export * from './SfvbLibraryResponse';

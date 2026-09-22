@@ -1026,6 +1026,8 @@ src/models/SfvbFileVersionsResponse.ts
 src/models/SfvbFileWriteRequest.ts
 src/models/SfvbFileWriteResponse.ts
 src/models/SfvbFilesResponse.ts
+src/models/SfvbItemContainer.ts
+src/models/SfvbItemContainersResponse.ts
 src/models/SfvbLibraryEntry.ts
 src/models/SfvbLibraryFacet.ts
 src/models/SfvbLibraryResponse.ts
